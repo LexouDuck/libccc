@@ -26,124 +26,106 @@ TOML_TEST(toml_bool_1	, "true")
 
 
 
-TOML_TEST(toml_number_0				, "0")
-TOML_TEST(toml_number_1				, "1")
-TOML_TEST(toml_number_2				, "42")
-TOML_TEST(toml_number_3				, "777")
-TOML_TEST(toml_number_4				, "123456")
-TOML_TEST(toml_number_0f			, "0.")
-TOML_TEST(toml_number_1f			, "1.")
-TOML_TEST(toml_number_2f			, "42.")
-TOML_TEST(toml_number_3f			, "777.")
-TOML_TEST(toml_number_4f			, "123456.")
-TOML_TEST(toml_number_0f1			, "0.0")
-TOML_TEST(toml_number_1f1			, "1.0")
-TOML_TEST(toml_number_2f1			, "42.0")
-TOML_TEST(toml_number_3f1			, "777.0")
-TOML_TEST(toml_number_4f1			, "123456.7")
-TOML_TEST(toml_number_0f2			, "0.00")
-TOML_TEST(toml_number_1f2			, "1.00")
-TOML_TEST(toml_number_2f2			, "42.00")
-TOML_TEST(toml_number_3f2			, "777.00")
-TOML_TEST(toml_number_4f2			, "123456.78")
-TOML_TEST(toml_number_0f3			, "0.000")
-TOML_TEST(toml_number_1f3			, "1.000")
-TOML_TEST(toml_number_2f3			, "42.000")
-TOML_TEST(toml_number_3f3			, "777.000")
-TOML_TEST(toml_number_4f3			, "123456.789")
-TOML_TEST(toml_number_fmin_lt		, "-9007199254740991")
-TOML_TEST(toml_number_fmin_eq		, "-9007199254740992")
-TOML_TEST(toml_number_fmin_gt		, "-9007199254740993")
-TOML_TEST(toml_number_fmax_lt		,  "9007199254740991")
-TOML_TEST(toml_number_fmax_eq		,  "9007199254740992")
-TOML_TEST(toml_number_fmax_gt		,  "9007199254740993")
-TOML_TEST(toml_number_inf_u_lower_0	,  "inf")
-TOML_TEST(toml_number_inf_p_lower_0	, "+inf")
-TOML_TEST(toml_number_inf_n_lower_0	, "-inf")
-TOML_TEST(toml_number_inf_u_lower_1	, "infinity")
-TOML_TEST(toml_number_inf_p_lower_1	, "+infinity")
-TOML_TEST(toml_number_inf_n_lower_1	, "-infinity")
-TOML_TEST(toml_number_inf_u_mixed_0	,  "Inf")
-TOML_TEST(toml_number_inf_p_mixed_0	, "+Inf")
-TOML_TEST(toml_number_inf_n_mixed_0	, "-Inf")
-TOML_TEST(toml_number_inf_u_mixed_1	,  "Infinity")
-TOML_TEST(toml_number_inf_p_mixed_1	, "+Infinity")
-TOML_TEST(toml_number_inf_n_mixed_1	, "-Infinity")
-TOML_TEST(toml_number_inf_u_upper_0	,  "INF")
-TOML_TEST(toml_number_inf_p_upper_0	, "+INF")
-TOML_TEST(toml_number_inf_n_upper_0	, "-INF")
-TOML_TEST(toml_number_inf_u_upper_1	,  "INFINITY")
-TOML_TEST(toml_number_inf_p_upper_1	, "+INFINITY")
-TOML_TEST(toml_number_inf_n_upper_1	, "-INFINITY")
-TOML_TEST(toml_number_nan_u_lower_0	,  "nan")
-TOML_TEST(toml_number_nan_p_lower_0	, "+nan")
-TOML_TEST(toml_number_nan_n_lower_0	, "-nan")
-TOML_TEST(toml_number_nan_u_mixed_0	,  "NaN")
-TOML_TEST(toml_number_nan_p_mixed_0	, "+NaN")
-TOML_TEST(toml_number_nan_n_mixed_0	, "-NaN")
-TOML_TEST(toml_number_nan_u_upper_0	,  "NAN")
-TOML_TEST(toml_number_nan_p_upper_0	, "+NAN")
-TOML_TEST(toml_number_nan_n_upper_0	, "-NAN")
-
-TOML_TEST(toml_number_inf_u_utf8_0	,  "∞")
-TOML_TEST(toml_number_inf_p_utf8_0	, "+∞")
-TOML_TEST(toml_number_inf_n_utf8_0	, "-∞")
-TOML_TEST(toml_number_inf_u_utf8_1	,  "\u221E")
-TOML_TEST(toml_number_inf_p_utf8_1	, "+\u221E")
-TOML_TEST(toml_number_inf_n_utf8_1	, "-\u221E")
+TOML_TEST(toml_integr_empty_u		,  "")
+TOML_TEST(toml_integr_0_u			,  "0")
+TOML_TEST(toml_integr_1_u			,  "1")
+TOML_TEST(toml_integr_2_u			,  "42")
+TOML_TEST(toml_integr_3_u			,  "777")
+TOML_TEST(toml_integr_4_u			,  "123456789")
+TOML_TEST(toml_integr_empty_n		, "-")
+TOML_TEST(toml_integr_0_n			, "-0")
+TOML_TEST(toml_integr_1_n			, "-1")
+TOML_TEST(toml_integr_2_n			, "-42")
+TOML_TEST(toml_integr_3_n			, "-777")
+TOML_TEST(toml_integr_4_n			, "-123456789")
+TOML_TEST(toml_integr_empty_p		, "+")
+TOML_TEST(toml_integr_0_p			, "+0")
+TOML_TEST(toml_integr_1_p			, "+1")
+TOML_TEST(toml_integr_2_p			, "+42")
+TOML_TEST(toml_integr_3_p			, "+777")
+TOML_TEST(toml_integr_4_p			, "+123456789")
+TOML_TEST(toml_integr_f64min_lt		, "-9007199254740991")
+TOML_TEST(toml_integr_f64min_eq		, "-9007199254740992")
+TOML_TEST(toml_integr_f64min_gt		, "-9007199254740993")
+TOML_TEST(toml_integr_f64max_lt		,  "9007199254740991")
+TOML_TEST(toml_integr_f64max_eq		,  "9007199254740992")
+TOML_TEST(toml_integr_f64max_gt		,  "9007199254740993")
+TOML_TEST(toml_integr_s64min_lt		, "-9223372036854775807")
+TOML_TEST(toml_integr_s64min_eq		, "-9223372036854775808")
+TOML_TEST(toml_integr_s64min_gt		, "-9223372036854775809")
+TOML_TEST(toml_integr_s64max_lt		,  "9223372036854775806")
+TOML_TEST(toml_integr_s64max_eq		,  "9223372036854775807")
+TOML_TEST(toml_integr_s64max_gt		,  "9223372036854775808")
 
 
 
-TOML_TEST(toml_bigint_empty			, "n")
-TOML_TEST(toml_bigint_0				, "0n")
-TOML_TEST(toml_bigint_1				, "1n")
-TOML_TEST(toml_bigint_2				, "42n")
-TOML_TEST(toml_bigint_3				, "777n")
-TOML_TEST(toml_bigint_4				, "123456n")
-TOML_TEST(toml_bigint_0f			, "0.n")
-TOML_TEST(toml_bigint_1f			, "1.n")
-TOML_TEST(toml_bigint_2f			, "42.n")
-TOML_TEST(toml_bigint_3f			, "777.n")
-TOML_TEST(toml_bigint_4f			, "123456.n")
-TOML_TEST(toml_bigint_0f1			, "0.0n")
-TOML_TEST(toml_bigint_1f1			, "1.0n")
-TOML_TEST(toml_bigint_2f1			, "42.0n")
-TOML_TEST(toml_bigint_3f1			, "777.0n")
-TOML_TEST(toml_bigint_4f1			, "123456.7n")
-TOML_TEST(toml_bigint_0f2			, "0.00n")
-TOML_TEST(toml_bigint_1f2			, "1.00n")
-TOML_TEST(toml_bigint_2f2			, "42.00n")
-TOML_TEST(toml_bigint_3f2			, "777.00n")
-TOML_TEST(toml_bigint_4f2			, "123456.78n")
-TOML_TEST(toml_bigint_0f3			, "0.000n")
-TOML_TEST(toml_bigint_1f3			, "1.000n")
-TOML_TEST(toml_bigint_2f3			, "42.000n")
-TOML_TEST(toml_bigint_3f3			, "777.000n")
-TOML_TEST(toml_bigint_4f3			, "123456.789n")
-TOML_TEST(toml_bigint_fmin_lt		, "-9007199254740991n")
-TOML_TEST(toml_bigint_fmin_eq		, "-9007199254740992n")
-TOML_TEST(toml_bigint_fmin_gt		, "-9007199254740993n")
-TOML_TEST(toml_bigint_fmax_lt		,  "9007199254740991n")
-TOML_TEST(toml_bigint_fmax_eq		,  "9007199254740992n")
-TOML_TEST(toml_bigint_fmax_gt		,  "9007199254740993n")
-TOML_TEST(toml_bigint_s64min_lt		, "-9223372036854775807n")
-TOML_TEST(toml_bigint_s64min_eq		, "-9223372036854775808n")
-TOML_TEST(toml_bigint_s64min_gt		, "-9223372036854775809n")
-TOML_TEST(toml_bigint_s64max_lt		,  "9223372036854775806n")
-TOML_TEST(toml_bigint_s64max_eq		,  "9223372036854775807n")
-TOML_TEST(toml_bigint_s64max_gt		,  "9223372036854775808n")
-TOML_TEST(toml_bigint_bad_unan_lower, "nann")
-TOML_TEST(toml_bigint_bad_unan_upper, "NANn")
-TOML_TEST(toml_bigint_bad_uinf_lower, "infn")
-TOML_TEST(toml_bigint_bad_uinf_upper, "INFn")
-TOML_TEST(toml_bigint_bad_nnan_lower, "-nann")
-TOML_TEST(toml_bigint_bad_nnan_upper, "-NANn")
-TOML_TEST(toml_bigint_bad_ninf_lower, "-infn")
-TOML_TEST(toml_bigint_bad_ninf_upper, "-INFn")
-TOML_TEST(toml_bigint_bad_pnan_lower, "+nann")
-TOML_TEST(toml_bigint_bad_pnan_upper, "+NANn")
-TOML_TEST(toml_bigint_bad_pinf_lower, "+infn")
-TOML_TEST(toml_bigint_bad_pinf_upper, "+INFn")
+TOML_TEST(toml_floatp_0				, "0e0")
+TOML_TEST(toml_floatp_1				, "1e0")
+TOML_TEST(toml_floatp_2				, "42e0")
+TOML_TEST(toml_floatp_3				, "777e0")
+TOML_TEST(toml_floatp_4				, "123456.0")
+TOML_TEST(toml_floatp_0f			, "0.")
+TOML_TEST(toml_floatp_1f			, "1.")
+TOML_TEST(toml_floatp_2f			, "42.")
+TOML_TEST(toml_floatp_3f			, "777.")
+TOML_TEST(toml_floatp_4f			, "123456.")
+TOML_TEST(toml_floatp_0f1			, "0.0")
+TOML_TEST(toml_floatp_1f1			, "1.0")
+TOML_TEST(toml_floatp_2f1			, "42.0")
+TOML_TEST(toml_floatp_3f1			, "777.0")
+TOML_TEST(toml_floatp_4f1			, "123456.7")
+TOML_TEST(toml_floatp_0f2			, "0.00")
+TOML_TEST(toml_floatp_1f2			, "1.00")
+TOML_TEST(toml_floatp_2f2			, "42.00")
+TOML_TEST(toml_floatp_3f2			, "777.00")
+TOML_TEST(toml_floatp_4f2			, "123456.78")
+TOML_TEST(toml_floatp_0f3			, "0.000")
+TOML_TEST(toml_floatp_1f3			, "1.000")
+TOML_TEST(toml_floatp_2f3			, "42.000")
+TOML_TEST(toml_floatp_3f3			, "777.000")
+TOML_TEST(toml_floatp_4f3			, "123456.789")
+TOML_TEST(toml_floatp_f64min_lt		, "-9007199254740991.0")
+TOML_TEST(toml_floatp_f64min_eq		, "-9007199254740992.0")
+TOML_TEST(toml_floatp_f64min_gt		, "-9007199254740993.0")
+TOML_TEST(toml_floatp_f64max_lt		,  "9007199254740991.0")
+TOML_TEST(toml_floatp_f64max_eq		,  "9007199254740992.0")
+TOML_TEST(toml_floatp_f64max_gt		,  "9007199254740993.0")
+TOML_TEST(toml_floatp_inf_u_lower_0	,  "inf")
+TOML_TEST(toml_floatp_inf_p_lower_0	, "+inf")
+TOML_TEST(toml_floatp_inf_n_lower_0	, "-inf")
+TOML_TEST(toml_floatp_inf_u_lower_1	,  "infinity")
+TOML_TEST(toml_floatp_inf_p_lower_1	, "+infinity")
+TOML_TEST(toml_floatp_inf_n_lower_1	, "-infinity")
+TOML_TEST(toml_floatp_inf_u_mixed_0	,  "Inf")
+TOML_TEST(toml_floatp_inf_p_mixed_0	, "+Inf")
+TOML_TEST(toml_floatp_inf_n_mixed_0	, "-Inf")
+TOML_TEST(toml_floatp_inf_u_mixed_1	,  "Infinity")
+TOML_TEST(toml_floatp_inf_p_mixed_1	, "+Infinity")
+TOML_TEST(toml_floatp_inf_n_mixed_1	, "-Infinity")
+TOML_TEST(toml_floatp_inf_u_upper_0	,  "INF")
+TOML_TEST(toml_floatp_inf_p_upper_0	, "+INF")
+TOML_TEST(toml_floatp_inf_n_upper_0	, "-INF")
+TOML_TEST(toml_floatp_inf_u_upper_1	,  "INFINITY")
+TOML_TEST(toml_floatp_inf_p_upper_1	, "+INFINITY")
+TOML_TEST(toml_floatp_inf_n_upper_1	, "-INFINITY")
+TOML_TEST(toml_floatp_nan_u_lower_0	,  "nan")
+TOML_TEST(toml_floatp_nan_p_lower_0	, "+nan")
+TOML_TEST(toml_floatp_nan_n_lower_0	, "-nan")
+TOML_TEST(toml_floatp_nan_u_mixed_0	,  "NaN")
+TOML_TEST(toml_floatp_nan_p_mixed_0	, "+NaN")
+TOML_TEST(toml_floatp_nan_n_mixed_0	, "-NaN")
+TOML_TEST(toml_floatp_nan_u_upper_0	,  "NAN")
+TOML_TEST(toml_floatp_nan_p_upper_0	, "+NAN")
+TOML_TEST(toml_floatp_nan_n_upper_0	, "-NAN")
+
+TOML_TEST(toml_floatp_inf_u_utf8_0	,  "∞")
+TOML_TEST(toml_floatp_inf_p_utf8_0	, "+∞")
+TOML_TEST(toml_floatp_inf_n_utf8_0	, "-∞")
+TOML_TEST(toml_floatp_inf_u_utf8_1	,  "\u221E")
+TOML_TEST(toml_floatp_inf_p_utf8_1	, "+\u221E")
+TOML_TEST(toml_floatp_inf_n_utf8_1	, "-\u221E")
+
+// TODO float precision tests, using math constants
 
 
 
@@ -548,120 +530,100 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_null                 ("#STRICT" -> "#MINIFY")", FALSE,		toml_null##_MIN,						toml_null);						\
 	print_test_toml_##STRICT##_##MINIFY("toml_bool_0               ("#STRICT" -> "#MINIFY")", FALSE,		toml_bool_0##_MIN,						toml_bool_0);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_bool_1               ("#STRICT" -> "#MINIFY")", FALSE,		toml_bool_1##_MIN,						toml_bool_1);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_0             ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_0##_MIN,					toml_number_0);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_1             ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_1##_MIN,					toml_number_1);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_2             ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_2##_MIN,					toml_number_2);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_3             ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_3##_MIN,					toml_number_3);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_4             ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_4##_MIN,					toml_number_4);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_0f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_0##_MIN,					toml_number_0f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_1f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_1##_MIN,					toml_number_1f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_2f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_2##_MIN,					toml_number_2f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_3f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_3##_MIN,					toml_number_3f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_4f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_4##_MIN,					toml_number_4f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_0f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_0##_MIN,					toml_number_0f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_1f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_1##_MIN,					toml_number_1f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_2f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_2##_MIN,					toml_number_2f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_3f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_3##_MIN,					toml_number_3f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_4f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_4f1##_MIN,					toml_number_4f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_0f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_0##_MIN,					toml_number_0f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_1f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_1##_MIN,					toml_number_1f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_2f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_2##_MIN,					toml_number_2f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_3f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_3##_MIN,					toml_number_3f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_4f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_4f2##_MIN,					toml_number_4f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_0f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_0##_MIN,					toml_number_0f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_1f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_1##_MIN,					toml_number_1f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_2f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_2##_MIN,					toml_number_2f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_3f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_3##_MIN,					toml_number_3f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_4f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_4f3##_MIN,					toml_number_4f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmin_lt       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmin_lt##_MIN,				toml_number_fmin_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmin_eq       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmin_eq##_MIN,				toml_number_fmin_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmin_gt       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmin_eq##_MIN,				toml_number_fmin_gt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmax_lt       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmax_lt##_MIN,				toml_number_fmax_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmax_eq       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmax_eq##_MIN,				toml_number_fmax_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_fmax_gt       ("#STRICT" -> "#MINIFY")", FALSE,		toml_number_fmax_eq##_MIN,				toml_number_fmax_gt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_lower_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_lower_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_lower_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_mixed_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_mixed_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_mixed_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_u_upper_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_number_inf_p_upper_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_number_inf_n_upper_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_u_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_p_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_n_lower_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_u_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_p_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_n_mixed_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_u_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_p_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_nan_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_number_nan_n_upper_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_u_utf8_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_p_utf8_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_n_utf8_0);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_u_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_u_utf8_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_p_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_p_utf8_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_number_inf_n_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_number_inf_n_utf8_1);		\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_empty         ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_bigint_empty);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_0             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_0##_MIN:NULL,				toml_bigint_0);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_1             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_1##_MIN:NULL,				toml_bigint_1);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_2             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_2##_MIN:NULL,				toml_bigint_2);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_3             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_3##_MIN:NULL,				toml_bigint_3);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_4             ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_4##_MIN:NULL,				toml_bigint_4);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_0f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_0##_MIN:NULL,				toml_bigint_0f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_1f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_1##_MIN:NULL,				toml_bigint_1f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_2f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_2##_MIN:NULL,				toml_bigint_2f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_3f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_3##_MIN:NULL,				toml_bigint_3f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_4f            ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_4##_MIN:NULL,				toml_bigint_4f);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_0f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_0##_MIN:NULL,				toml_bigint_0f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_1f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_1##_MIN:NULL,				toml_bigint_1f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_2f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_2##_MIN:NULL,				toml_bigint_2f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_3f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_3##_MIN:NULL,				toml_bigint_3f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_4f1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_4##_MIN:NULL,				toml_bigint_4f1);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_0f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_0##_MIN:NULL,				toml_bigint_0f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_1f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_1##_MIN:NULL,				toml_bigint_1f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_2f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_2##_MIN:NULL,				toml_bigint_2f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_3f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_3##_MIN:NULL,				toml_bigint_3f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_4f2           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_4##_MIN:NULL,				toml_bigint_4f2);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_0f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_0##_MIN:NULL,				toml_bigint_0f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_1f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_1##_MIN:NULL,				toml_bigint_1f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_2f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_2##_MIN:NULL,				toml_bigint_2f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_3f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_3##_MIN:NULL,				toml_bigint_3f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_4f3           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_4##_MIN:NULL,				toml_bigint_4f3);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmin_lt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmin_lt##_MIN:NULL,			toml_bigint_fmin_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmin_eq       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmin_eq##_MIN:NULL,			toml_bigint_fmin_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmin_gt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmin_gt##_MIN:NULL,			toml_bigint_fmin_gt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmax_lt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmax_lt##_MIN:NULL,			toml_bigint_fmax_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmax_eq       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmax_eq##_MIN:NULL,			toml_bigint_fmax_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_fmax_gt       ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_fmax_gt##_MIN:NULL,			toml_bigint_fmax_gt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64min_lt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64min_lt##_MIN:NULL,		toml_bigint_s64min_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64min_eq     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64min_eq##_MIN:NULL,		toml_bigint_s64min_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64min_gt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64max_eq##_MIN:NULL,		toml_bigint_s64min_gt);/*TODO*/	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64max_lt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64max_lt##_MIN:NULL,		toml_bigint_s64max_lt);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64max_eq     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64max_eq##_MIN:NULL,		toml_bigint_s64max_eq);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_s64max_gt     ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_bigint_s64min_eq##_MIN:NULL,		toml_bigint_s64max_gt);/*TODO*/	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_uinf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_bigint_bad_uinf_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_uinf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_bigint_bad_uinf_upper);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_ninf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_bigint_bad_ninf_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_ninf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_n_lower_0##_MIN:NULL,	toml_bigint_bad_ninf_upper);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_pinf_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_bigint_bad_pinf_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_pinf_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_inf_p_lower_0##_MIN:NULL,	toml_bigint_bad_pinf_upper);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_unan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_unan_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_unan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_unan_upper);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_nnan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_nnan_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_nnan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_nnan_upper);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_pnan_lower("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_pnan_lower);	\
-	print_test_toml_##STRICT##_##MINIFY("toml_bigint_bad_pnan_upper("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_number_nan_u_lower_0##_MIN:NULL,	toml_bigint_bad_pnan_upper);	\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_empty_u       ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_integr_empty_u);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_0_u           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_0_u##_MIN,					toml_integr_0_u);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_1_u           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_1_u##_MIN,					toml_integr_1_u);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_2_u           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_2_u##_MIN,					toml_integr_2_u);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_3_u           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_3_u##_MIN,					toml_integr_3_u);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_4_u           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_4_u##_MIN,					toml_integr_4_u);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_empty_n       ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_integr_empty_n);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_0_n           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_0_u##_MIN,					toml_integr_0_n);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_1_n           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_1_n##_MIN,					toml_integr_1_n);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_2_n           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_2_n##_MIN,					toml_integr_2_n);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_3_n           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_3_n##_MIN,					toml_integr_3_n);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_4_n           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_4_n##_MIN,					toml_integr_4_n);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_empty_p       ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_integr_empty_p);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_0_p           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_0_u##_MIN,					toml_integr_0_p);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_1_p           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_1_u##_MIN,					toml_integr_1_p);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_2_p           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_2_u##_MIN,					toml_integr_2_p);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_3_p           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_3_u##_MIN,					toml_integr_3_p);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_4_p           ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_4_u##_MIN,					toml_integr_4_p);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64min_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64min_lt##_MIN,			toml_integr_f64min_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64min_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64min_eq##_MIN,			toml_integr_f64min_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64min_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64min_gt##_MIN,			toml_integr_f64min_gt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64max_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64max_lt##_MIN,			toml_integr_f64max_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64max_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64max_eq##_MIN,			toml_integr_f64max_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_f64max_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_f64max_gt##_MIN,			toml_integr_f64max_gt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64min_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64min_lt##_MIN,			toml_integr_s64min_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64min_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64min_eq##_MIN,			toml_integr_s64min_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64min_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64max_eq##_MIN,			toml_integr_s64min_gt);/*TODO*/	\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64max_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64max_lt##_MIN,			toml_integr_s64max_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64max_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64max_eq##_MIN,			toml_integr_s64max_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_integr_s64max_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_integr_s64min_eq##_MIN,			toml_integr_s64max_gt);/*TODO*/	\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_0             ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_0f1##_MIN,					toml_floatp_0);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_1             ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_1f1##_MIN,					toml_floatp_1);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_2             ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_2f1##_MIN,					toml_floatp_2);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_3             ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_3f1##_MIN,					toml_floatp_3);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_4             ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_4##_MIN,					toml_floatp_4);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_0f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_0f1##_MIN,					toml_floatp_0f);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_1f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_1f1##_MIN,					toml_floatp_1f);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_2f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_2f1##_MIN,					toml_floatp_2f);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_3f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_3f1##_MIN,					toml_floatp_3f);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_4f            ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_4##_MIN,					toml_floatp_4f);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_0f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_0f1##_MIN,					toml_floatp_0f1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_1f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_1f1##_MIN,					toml_floatp_1f1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_2f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_2f1##_MIN,					toml_floatp_2f1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_3f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_3f1##_MIN,					toml_floatp_3f1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_4f1           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_4f1##_MIN,					toml_floatp_4f1);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_0f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_0f1##_MIN,					toml_floatp_0f2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_1f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_1f1##_MIN,					toml_floatp_1f2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_2f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_2f1##_MIN,					toml_floatp_2f2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_3f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_3f1##_MIN,					toml_floatp_3f2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_4f2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_4f2##_MIN,					toml_floatp_4f2);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_0f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_0f1##_MIN,					toml_floatp_0f3);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_1f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_1f1##_MIN,					toml_floatp_1f3);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_2f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_2f1##_MIN,					toml_floatp_2f3);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_3f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_3f1##_MIN,					toml_floatp_3f3);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_4f3           ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_4f3##_MIN,					toml_floatp_4f3);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64min_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64min_lt##_MIN,			toml_floatp_f64min_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64min_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64min_eq##_MIN,			toml_floatp_f64min_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64min_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64min_eq##_MIN,			toml_floatp_f64min_gt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64max_lt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64max_lt##_MIN,			toml_floatp_f64max_lt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64max_eq     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64max_eq##_MIN,			toml_floatp_f64max_eq);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_f64max_gt     ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_f64max_eq##_MIN,			toml_floatp_f64max_gt);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_inf_p_lower_0##_MIN,		toml_floatp_inf_u_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_inf_p_lower_0##_MIN,		toml_floatp_inf_p_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_inf_n_lower_0##_MIN,		toml_floatp_inf_n_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_u_lower_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_p_lower_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_lower_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_n_lower_0##_MIN:NULL,	toml_floatp_inf_n_lower_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_u_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_p_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_n_lower_0##_MIN:NULL,	toml_floatp_inf_n_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_u_mixed_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_p_mixed_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_mixed_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_n_lower_0##_MIN:NULL,	toml_floatp_inf_n_mixed_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_u_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_p_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_n_lower_0##_MIN:NULL,	toml_floatp_inf_n_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_u_upper_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_p_lower_0##_MIN:NULL,	toml_floatp_inf_p_upper_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_upper_1 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_inf_n_lower_0##_MIN:NULL,	toml_floatp_inf_n_upper_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_u_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_nan_u_lower_0##_MIN,		toml_floatp_nan_u_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_p_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_nan_u_lower_0##_MIN,		toml_floatp_nan_p_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_n_lower_0 ("#STRICT" -> "#MINIFY")", FALSE,		toml_floatp_nan_u_lower_0##_MIN,		toml_floatp_nan_n_lower_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_u_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_u_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_p_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_p_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_n_mixed_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_n_mixed_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_u_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_u_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_p_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_p_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_nan_n_upper_0 ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_floatp_nan_u_lower_0##_MIN:NULL,	toml_floatp_nan_n_upper_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_u_utf8_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_p_utf8_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_utf8_0  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_n_utf8_0);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_u_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_u_utf8_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_p_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_p_utf8_1);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatp_inf_n_utf8_1  ("#STRICT" -> "#MINIFY")", FALSE,		NULL,									toml_floatp_inf_n_utf8_1);		\
 	print_test_toml_##STRICT##_##MINIFY("toml_string_empty         ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_empty##_MIN,				toml_string_empty);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_string               ("#STRICT" -> "#MINIFY")", FALSE,		toml_string##_MIN,						toml_string);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_string_cc_c0         ("#STRICT" -> "#MINIFY")", FALSE,		toml_string_cc_c0##_MIN,				toml_string_cc_c0);				\
@@ -685,7 +647,7 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_config               ("#STRICT" -> "#MINIFY")", FALSE,		toml_config##_MIN,						toml_config);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace           ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_tab       ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace_tab);			\
-	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace_nl);			\
+	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_nl        ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_helloworld##_MIN:NULL,				toml_whitespace_nl);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_cr        ("#STRICT" -> "#MINIFY")", FALSE,		toml_helloworld##_MIN,					toml_whitespace_cr);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_ff        ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_helloworld##_MIN:NULL,				toml_whitespace_ff);			\
 	print_test_toml_##STRICT##_##MINIFY("toml_whitespace_vt        ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_helloworld##_MIN:NULL,				toml_whitespace_vt);			\
@@ -693,14 +655,14 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_simple               ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_simple);					\
 	print_test_toml_##STRICT##_##MINIFY("toml_simple_min           ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_simple_min);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_commas               ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas);					\
-	print_test_toml_##STRICT##_##MINIFY("toml_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_commas_min);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_newline);					\
+	print_test_toml_##STRICT##_##MINIFY("toml_commas_min           ("#STRICT" -> "#MINIFY")", FALSE,		toml_simple##_MIN,						toml_commas_min);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_newline              ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_simple##_MIN:NULL,					toml_newline);					\
 /*	print_test_toml_##STRICT##_##MINIFY("toml_complex              ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex);					TODO */\
 /*	print_test_toml_##STRICT##_##MINIFY("toml_complex_min          ("#STRICT" -> "#MINIFY")", FALSE,		toml_complex##_MIN,						toml_complex_min);				TODO */\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq1           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_sq1##_MIN:NULL,				toml_escape_sq1);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_sq2           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_sq2##_MIN,					toml_escape_sq2);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_slb           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_slb##_MIN,					toml_escape_slb);				\
-	print_test_toml_##STRICT##_##MINIFY("toml_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_slf##_MIN:"[\"test:/.\"]",	toml_escape_slf);				\
+	print_test_toml_##STRICT##_##MINIFY("toml_escape_slf           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_slf##_MIN:NULL,				toml_escape_slf);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_spc           ("#STRICT" -> "#MINIFY")", FALSE,NSTRICT?toml_escstr_spc##_MIN:NULL,				toml_escape_spc);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_tab           ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_tab##_MIN,					toml_escape_tab);				\
 	print_test_toml_##STRICT##_##MINIFY("toml_escape_nl            ("#STRICT" -> "#MINIFY")", FALSE,		toml_escape_nl##_MIN,					toml_escape_nl);				\
@@ -745,8 +707,8 @@ int		testsuite_encode_toml(void)
 
 	test_toml_Lenient_Pretty();
 	test_toml_Lenient_Minify();
-//	test_toml_Strict_Pretty();
-//	test_toml_Strict_Minify();
+	test_toml_Strict_Pretty();
+	test_toml_Strict_Minify();
 
 	return (OK);
 }
