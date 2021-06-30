@@ -243,8 +243,8 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
 	if (multiline &&
-		p->buffer[p->offset - 1] == ' ' &&
-		p->buffer[p->offset - 2] == ':')
+		p->result[p->offset - 1] == ' ' &&
+		p->result[p->offset - 2] == ':')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
@@ -323,8 +323,8 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
 	if (multiline && p->offset >= 2 &&
-		p->buffer[p->offset - 1] == ' ' &&
-		p->buffer[p->offset - 2] == ':')
+		p->result[p->offset - 1] == ' ' &&
+		p->result[p->offset - 2] == ':')
 	{
 		ENSURE(p->depth + 1)
 		*result++ = '\n';
@@ -482,8 +482,8 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	p->item = item;
 	p->format = format;
 	p->length = default_buffer_size;
-	p->buffer = (t_utf8*)Memory_Allocate(default_buffer_size);
-	HANDLE_ERROR(ALLOCFAILURE, (p->buffer == NULL), goto failure;)
+	p->result = (t_utf8*)Memory_Allocate(default_buffer_size);
+	HANDLE_ERROR(ALLOCFAILURE, (p->result == NULL), goto failure;)
 	// print the value
 	if (JSON_Print_Value(item, p))
 		goto failure;
@@ -492,25 +492,25 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 
 #ifdef c_realloc // check if reallocate is available
 	{
-		printed = (t_utf8*)Memory_Reallocate(p->buffer, p->offset + 1);
+		printed = (t_utf8*)Memory_Reallocate(p->result, p->offset + 1);
 		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
-		p->buffer = NULL;
+		p->result = NULL;
 	}
 #else // otherwise copy the JSON over to a new buffer
 	{
 		printed = (t_utf8*)Memory_Allocate(p->offset + 1);
 		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
-		Memory_Copy(printed, p->buffer, MIN(p->length, p->offset + 1));
+		Memory_Copy(printed, p->result, MIN(p->length, p->offset + 1));
 		printed[p->offset] = '\0'; // just to be sure
-		Memory_Free(p->buffer); // free the buffer
+		Memory_Free(p->result); // free the buffer
 	}
 #endif
 	return (printed);
 
 failure:
-	if (p->buffer != NULL)
+	if (p->result != NULL)
 	{
-		Memory_Free(p->buffer);
+		Memory_Free(p->result);
 	}
 	if (printed != NULL)
 	{
@@ -529,7 +529,7 @@ t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
-	p.buffer = dest;
+	p.result = dest;
 	p.length = n;
 	p.offset = 0;
 	p.noalloc = TRUE;
@@ -546,7 +546,7 @@ t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
-	p.buffer = dest;
+	p.result = dest;
 	p.length = n;
 	p.offset = 0;
 	p.noalloc = TRUE;
@@ -575,17 +575,17 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 	s_json_print p = { 0 };
 
 	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (ERROR);)
-	p.buffer = (t_utf8*)Memory_Allocate((t_size)prebuffer);
-	HANDLE_ERROR(ALLOCFAILURE, (p.buffer == NULL), return (NULL);)
+	p.result = (t_utf8*)Memory_Allocate((t_size)prebuffer);
+	HANDLE_ERROR(ALLOCFAILURE, (p.result == NULL), return (NULL);)
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;
 	p.format = format;
 	if (JSON_Print_Value(item, &p))
 	{
-		Memory_Free(p.buffer);
+		Memory_Free(p.result);
 		return (NULL);
 	}
-	return ((t_utf8*)p.buffer);
+	return ((t_utf8*)p.result);
 }
 #endif

@@ -9,9 +9,9 @@
 void	KVT_Print_UpdateOffset(s_kvt_print* p)
 {
 	t_utf8 const* buffer_pointer = NULL;
-	if ((p == NULL) || (p->buffer == NULL))
+	if ((p == NULL) || (p->result == NULL))
 		return;
-	buffer_pointer = p->buffer + p->offset;
+	buffer_pointer = p->result + p->offset;
 	p->offset += String_Length(buffer_pointer);
 }
 
@@ -22,7 +22,7 @@ t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed)
 	t_utf8*	newbuffer = NULL;
 	t_size	newsize = 0;
 
-	if ((p == NULL) || (p->buffer == NULL))
+	if ((p == NULL) || (p->result == NULL))
 		return (NULL);
 	if ((p->length > 0) && (p->offset >= p->length))
 	{	// make sure that offset is valid
@@ -34,7 +34,7 @@ t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed)
 	}
 	needed += p->offset + 1;
 	if (needed <= p->length)
-		return (p->buffer + p->offset);
+		return (p->result + p->offset);
 	if (p->noalloc)
 		return (NULL);
 	// calculate new buffer size
@@ -55,26 +55,26 @@ t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed)
 
 #ifdef c_realloc // TODO make this ifdef check more robust ?
 	// reallocate with realloc if available
-	newbuffer = (t_utf8*)Memory_Reallocate(p->buffer, newsize);
+	newbuffer = (t_utf8*)Memory_Reallocate(p->result, newsize);
 	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
-		Memory_Free(p->buffer);
+		Memory_Free(p->result);
 		p->length = 0;
-		p->buffer = NULL;
+		p->result = NULL;
 		return (NULL);
 	)
 #else
 	// otherwise reallocate manually
 	newbuffer = (t_utf8*)Memory_Allocate(newsize);
 	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
-		Memory_Free(p->buffer);
+		Memory_Free(p->result);
 		p->length = 0;
-		p->buffer = NULL;
+		p->result = NULL;
 		return (NULL);
 	)
-	Memory_Copy(newbuffer, p->buffer, p->offset + 1);
-	Memory_Free(p->buffer);
+	Memory_Copy(newbuffer, p->result, p->offset + 1);
+	Memory_Free(p->result);
 #endif
 	p->length = newsize;
-	p->buffer = newbuffer;
+	p->result = newbuffer;
 	return (newbuffer + p->offset);
 }

@@ -79,6 +79,7 @@ typedef struct kvt
 	struct kvt*	next;	//!< linked-list pointer to neighboring items (is `NULL` for the last item in the list)
 	struct kvt*	prev;	//!< linked-list pointer to neighboring items (for the first item, `prev` will point to the end of the list)
 
+//	t_utf8*		comment;//!< A comment line associated with this item // TODO
 	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
 	union dynamic
@@ -123,14 +124,14 @@ typedef union dynamic	u_dynamic;
 //! This struct is used to parse a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_parse
 {
-	s_kvt*			result;		//!< the result JSON
-	t_utf8 const*	content;	//!< the string to parse
-	t_size			offset;		//!< current parsing offset
-	t_size			length;		//!< the length of the string to parse
-	t_bool			strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
-	t_uint			depth;		//!< current section nesting level
-	t_size			line;		//!< current line number
-	t_char*			error;		//!< current error message (or NULL if no error has been thrown yet)
+	t_utf8 const*	content;//!< the string to parse
+	s_kvt*		result;		//!< the result JSON
+	t_size		offset;		//!< current parsing offset
+	t_size		length;		//!< the length of the string to parse
+	t_bool		strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
+	t_uint		depth;		//!< current section nesting level
+	t_size		line;		//!< current line number
+	t_char*		error;		//!< current error message (or NULL if no error has been thrown yet)
 }		s_kvt_parse;
 
 
@@ -138,14 +139,14 @@ typedef struct kvt_parse
 //! This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_print
 {
-	s_kvt const* item;	//!< the object to print
-	t_utf8*	buffer;		//!< the result string which is written to
-	t_size	offset;		//!< current writing offset of the string to print
-	t_size	length;		//!< the (current maximum) length of the string to print
-	t_bool	noalloc;	//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
-	t_bool	format;		//!< is this print a formatted print
-	t_size	depth;		//!< the current nesting depth (for formatted printing)
-	t_utf8*	keypath;	//!< the current path of keys, separated by periods (think TOML section tables)
+	s_kvt const*	item;	//!< the object to print
+	t_utf8*		result;		//!< the result string which is written to
+	t_size		offset;		//!< current writing offset of the string to print
+	t_size		length;		//!< the (current maximum) length of the string to print
+	t_bool		noalloc;	//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
+	t_bool		format;		//!< is this print a formatted print
+	t_size		depth;		//!< the current nesting depth (for formatted printing)
+	t_utf8*		keypath;	//!< the current path of keys, separated by periods (think TOML section tables)
 }		s_kvt_print;
 
 #define KVT_NUMBER_BUFFERSIZE	64

@@ -164,7 +164,7 @@ t_size					JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n);
 #define c_jsonprintmin	JSON_Print_Minify
 //!@}
 
-
+// TODO alternate versions which can print BigInt numbers and comments ?
 
 //! Get a new string from the given JSON `item`, with readable formatting.
 t_utf8*					JSON_ToString_Pretty(s_json const* item);
