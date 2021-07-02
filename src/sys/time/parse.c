@@ -1,9 +1,10 @@
 
+#include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/sys/time.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -49,11 +50,8 @@
 /* ************************************************************************** */
 
 #ifndef __NOSTD__
-	#include <ctype.h>
 	#include <locale.h>
-	#include <string.h>
 	#include <time.h>
-	#include <stdint.h>
 #else
 	// TODO
 	#define INT64_MAX	-1llu
@@ -257,7 +255,7 @@ t_size	strptime_r(t_char const* str, t_char const* format, s_date* date, t_bitma
 		{
 			if (c != (buffer++)[0])
 				PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\").\n"
-					"Expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+					"Expected '%c'/0x%2X, instead found '%c'/0x%2X", str, format,
 					(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
 					(c ? c : '\a'), c);
 			LEGAL_ALT(0);
@@ -271,7 +269,7 @@ again:
 			{
 				if (c != (buffer++)[0])
 					PARSINGERROR_DATE("The string to parse (\"%s\") did not match the given format (\"%s\"): "
-						"expected '%c'/0x%X, instead found '%c'/0x%X", str, format,
+						"expected '%c'/0x%2X, instead found '%c'/0x%2X", str, format,
 						(format[i - 1] ? format[i - 1] : '\a'), format[i - 1],
 						(c ? c : '\a'), c);
 				LEGAL_ALT(0);
@@ -606,7 +604,7 @@ recurse:
 							x = *buffer;
 							continue;
 						}
-						PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+						PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%2X) in the given format string (\"%s\")",
 							(x ? x : '\a'), x, format)
 				}
 				offset = 0;
@@ -636,7 +634,7 @@ recurse:
 					{
 						number = offset % 100;
 						if (number >= 60)
-							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered (%i), should be 60 or less", number)
+							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered ("SF_SINT"), should be 60 or less", number)
 						/* Convert minutes into decimal */
 						offset = (offset / 100) * 100 + (number * 50) / 30;
 						break;
@@ -667,7 +665,7 @@ recurse:
 			continue;
 
 		default:
-			PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%X) in the given format string (\"%s\")",
+			PARSINGERROR_DATE("Invalid format specifier encountered ('%c'/0x%2X) in the given format string (\"%s\")",
 				(c ? c : '\a'), c, format)
 		}
 	}
@@ -749,7 +747,35 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 
 
 
-s_date		Date_Parse(t_char const* str, t_char const* format)
+t_size		Date_Parse(s_date* dest, t_char const* str, t_char const* format)
+{
+	s_date result = DATE_NULL;
+	t_size parsed;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
+	if (dest)	*dest = result;
+	return (parsed);
+}
+
+
+
+t_size		Date_Parse_Min(s_date* dest, t_char const* str, t_char const* format)
+{
+	s_date result = DATE_NULL;
+	t_size parsed;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
+	if (dest)	*dest = result;
+	return (parsed);
+}
+
+
+
+s_date		Date_FromString(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
@@ -761,7 +787,7 @@ s_date		Date_Parse(t_char const* str, t_char const* format)
 
 
 
-s_date		Date_Parse_Min(t_char const* str, t_char const* format)
+s_date		Date_FromString_Min(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
@@ -769,32 +795,4 @@ s_date		Date_Parse_Min(t_char const* str, t_char const* format)
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
 	Date_Parse_(&result, str, format, TRUE, FALSE);
 	return (result);
-}
-
-
-
-t_size		Date_Parse_Strict(s_date* dest, t_char const* str, t_char const* format)
-{
-	s_date result = DATE_NULL;
-	t_size parsed;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
-	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
-	*dest = result;
-	return (parsed);
-}
-
-
-
-t_size		Date_Parse_Strict_Min(s_date* dest, t_char const* str, t_char const* format)
-{
-	s_date result = DATE_NULL;
-	t_size parsed;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
-	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
-	*dest = result;
-	return (parsed);
 }

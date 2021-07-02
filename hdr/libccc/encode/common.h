@@ -13,10 +13,10 @@
 #define __LIBCCC_ENCODE_COMMON_H
 /*!@group{libccc_encode_common}
 ** @{
-**	This header defines a dynamic runtime object type, similar to objects in JS.
-**	- JSON spec: https://www.json.org/json-en.html
+**	This header defines a dynamic runtime "object" type, which is called "KVT",
+**	as in "Key Value Tree" - it stores key/value pairs in a tree-like structure.
 **
-**	In particular, most of the code exposed from this header comes from cJSON:
+**	In particular, much of the code in this header was inspired by cJSON:
 **	- https://github.com/DaveGamble/cJSON
 **
 **	@file
@@ -28,8 +28,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
+#include "libccc/text/unicode.h"
 
 HEADER_CPP
 
@@ -45,45 +49,46 @@ typedef t_sint		t_dynamic;
 
 //! These constants are the enum items/bitflags for the `t_dynamic` dynamic-type enum
 //!@{
-#define DYNAMICTYPE_INVALID	(t_dynamic)(0)		//!< value stored is invalid
-#define DYNAMICTYPE_NULL	(t_dynamic)(1 << 0)	//!< no value stored
-#define DYNAMICTYPE_BOOLEAN	(t_dynamic)(1 << 1)	//!< value stored as boolean: #t_bool
-#define DYNAMICTYPE_INTEGER	(t_dynamic)(1 << 2)	//!< value stored as integer: #t_s64
-#define DYNAMICTYPE_FLOAT	(t_dynamic)(1 << 3)	//!< value stored as floating-point number: #t_f64
-#define DYNAMICTYPE_STRING	(t_dynamic)(1 << 4)	//!< value stored as string
-#define DYNAMICTYPE_ARRAY	(t_dynamic)(1 << 5)	//!< value stored as array of values (no keys)
-#define DYNAMICTYPE_OBJECT	(t_dynamic)(1 << 6)	//!< value stored as dict of values (with keys)
-#define DYNAMICTYPE_RAW		(t_dynamic)(1 << 7)	//!< value stored as raw string (language-specific syntax)
+#define DYNAMICTYPE_INVALID	((t_dynamic)(0))		//!< value stored is invalid
+#define DYNAMICTYPE_NULL	((t_dynamic)(1 << 0))	//!< no value stored
+#define DYNAMICTYPE_BOOLEAN	((t_dynamic)(1 << 1))	//!< value stored as boolean (`t_bool`)
+#define DYNAMICTYPE_INTEGER	((t_dynamic)(1 << 2))	//!< value stored as integer (`t_s64`)
+#define DYNAMICTYPE_FLOAT	((t_dynamic)(1 << 3))	//!< value stored as floating-point number: (`t_f64`)
+#define DYNAMICTYPE_STRING	((t_dynamic)(1 << 4))	//!< value stored as string (`t_char*`)
+#define DYNAMICTYPE_ARRAY	((t_dynamic)(1 << 5))	//!< value stored as array of values (no keys)
+#define DYNAMICTYPE_OBJECT	((t_dynamic)(1 << 6))	//!< value stored as dict of values (with keys)
+#define DYNAMICTYPE_RAW		((t_dynamic)(1 << 7))	//!< value stored as raw string (language-specific syntax)
 
-#define DYNAMICTYPE_ISREFERENCE	(t_dynamic)(1 << 8)	//!< If this bit is set, the `value` is not to be freed
+#define DYNAMICTYPE_ISREFERENCE	((t_dynamic)(1 << 8))	//!< If this bit is set, the `value` is not to be freed
 //!@}
 
 //! The bitmask expressing the 'type enum' portion of a `t_dynamic` type specifier
-#define DYNAMICTYPE_MASK	(0xFF)
+#define DYNAMICTYPE_MASK	((t_dynamic)(0xFF))
 
 
 
-//! A general key-value tree struct, used to model data for several file formats: INI, KVT, TOML, YAML, XML, etc
+//! A general key-value tree struct, used to model data for several file formats: JSON, INI/TOML, YAML, XML, etc
 /*!
 **	This struct can be used to store any kind of data, much like a general
-**	extensible data file format: think INI, JSON, TOML, YAML, XML, etc.
+**	extensible data file format: think JSON, INI/TOML, YAML, XML, etc.
 **	The abbreviation "KVT" is used throughout the code to avoid writing `key_value_tree`, which is rather long.
 **	In general, you should not use this struct directly, unless you wish to implement a new file format spec.
 */
 typedef struct kvt
 {
-	struct kvt*	next;	//!< linked-list pointers to neighboring items
-	struct kvt*	prev;	//!< linked-list pointers to neighboring items
+	struct kvt*	next;	//!< linked-list pointer to neighboring items (is `NULL` for the last item in the list)
+	struct kvt*	prev;	//!< linked-list pointer to neighboring items (for the first item, `prev` will point to the end of the list)
 
-	t_char*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
+//	t_utf8*		comment;//!< A comment line associated with this item // TODO
+	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
 	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
 	union dynamic
 	{
-		t_bool		boolean;
-		t_s64		integer;
-		t_f64		number;
-		t_char*		string;
-		struct kvt*	child;
+		t_bool		boolean;	//!< #DYNAMICTYPE_BOOLEAN
+		t_s64		integer;	//!< #DYNAMICTYPE_INTEGER
+		t_f64		number;		//!< #DYNAMICTYPE_FLOAT
+		t_utf8*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
+		struct kvt*	child;		//!< #DYNAMICTYPE_ARRAY or #DYNAMICTYPE_OBJECT
 	}			value;	//!< The item's stored value (can be of any type)
 }		s_kvt;
 
@@ -116,33 +121,82 @@ typedef union dynamic	u_dynamic;
 
 
 
+//! This struct is used to parse a data file string (JSON, TOML, YAML, XML, etc)
+typedef struct kvt_parse
+{
+	t_utf8 const*	content;//!< the string to parse
+	s_kvt*		result;		//!< the result JSON
+	t_size		offset;		//!< current parsing offset
+	t_size		length;		//!< the length of the string to parse
+	t_bool		strict;		//!< if TRUE, strict parsing mode is on (rigourously follows the spec)
+	t_uint		depth;		//!< current section nesting level
+	t_size		line;		//!< current line number
+	t_char*		error;		//!< current error message (or NULL if no error has been thrown yet)
+}		s_kvt_parse;
+
+
+
+//! This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)
+typedef struct kvt_print
+{
+	s_kvt const*	item;	//!< the object to print
+	t_utf8*		result;		//!< the result string which is written to
+	t_size		offset;		//!< current writing offset of the string to print
+	t_size		length;		//!< the (current maximum) length of the string to print
+	t_bool		noalloc;	//!< if `TRUE`, then it means `buffer` is pre-allocated by the caller
+	t_bool		format;		//!< is this print a formatted print
+	t_size		depth;		//!< the current nesting depth (for formatted printing)
+	t_utf8*		keypath;	//!< the current path of keys, separated by periods (think TOML section tables)
+}		s_kvt_print;
+
+#define KVT_NUMBER_BUFFERSIZE	64
+
+//! This function is used by the `*_Parse()` functions, to update the #s_kvt_print struct
+/*!
+**	Calculates the new length of the string in `p->result` and updates the `p->offset`.
+*/
+void	KVT_Print_UpdateOffset(s_kvt_print* p);
+
+//! This function is used by the `*_Print()` functions, to ensure the print buffer has `needed` bytes more
+/*!
+**	If the `p->length` is too short, will reallocate the `p->result` string.
+**	If `p->noalloc == FALSE`, this will simply return `NULL` if `needed` is too large.
+*/
+t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed);
+
+
+
 /*
 ** ************************************************************************** *|
 **                             Basic KVT Operations                           *|
 ** ************************************************************************** *|
 */
 
-//! Allocated one single KVT struct
+//! Allocates one single KVT struct
 s_kvt*	KVT_Item(void);
 
 
 
 //! Duplicates a KVT object.
 /*!
-**	Duplicate will create a new, identical s_kvt item to the one you pass, in new memory that will
+**	Duplicate will create a new, identical `s_kvt` item to the one you pass, in new memory that will
 **	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
-**	The item->next and ->prev pointers are always zero on return from Duplicate.
+**	The `item`'s `->next` and `->prev` pointers are always zero on return from Duplicate.
 */
 s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
 
 
 
-//! Recursively compare two s_kvt items for equality.
+//! Recursively compare two `s_kvt` items for equality.
 /*!
-**	If either a or b is NULL or invalid, they will be considered unequal.
-**	case_sensitive determines if object keys are treated case sensitive (1) or case insensitive (0).
+**	If either `a` or `b` is `NULL` or invalid, they will be considered unequal.
+**	@param kvt1				the first KVT to check
+**	@param kvt2				the second KVT to check
+**	@param case_sensitive	if `TRUE`, object keys are treated as case-sensitive
+**	@returns
+**	`TRUE` if `a` and `b` have equal contents
 */
-t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
+t_bool	KVT_Equals(s_kvt const* kvt1, s_kvt const* kvt2, t_bool case_sensitive);
 
 
 
@@ -150,7 +204,11 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive);
 /*!
 **	Concatenate two objects together while duplicating all of their contents.
 */
-s_kvt*	KVT_Concat(s_kvt const* a, s_kvt const* b);
+s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2);
+//! TODO document
+s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2);
+//! TODO document
+s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2);
 
 
 
@@ -229,25 +287,29 @@ s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_uint count);
 ** ************************************************************************** *|
 */
 
-//! Returns the amount of items in an array (or object).
+//! Returns the amount of items in the given `array` (or object).
 t_sint	KVT_GetArrayLength(s_kvt const* array);
 
-//! Retrieve item number "index" from array "array". Returns NULL if unsuccessful.
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_uint index);
+//! Retrieve item number `index` from the given `array`. Returns `NULL` if unsuccessful.
+/*!
+**	@param	array	The array (or object) from which to get an item
+**	@param	index	The index of the item to get (NOTE: if negative, get starting from the last item)
+*/
+s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
 
 
 
 //! Get the item with the given `key` from the given `object`.
 #define KVT_GetObjectItem \
-		KVT_GetObjectItem_IgnoreCase
-s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+		KVT_GetObjectItem_CaseSensitive
 s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
+s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
 
 //! Returns `TRUE` if the given `object` contains an item with the given `key`.
 #define KVT_HasObjectItem \
-		KVT_HasObjectItem_IgnoreCase
-t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+		KVT_HasObjectItem_CaseSensitive
 t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
+t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
 
 
 
@@ -256,7 +318,9 @@ t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);
 **	@param	object		The KVT object to get an item from
 **	@param	format_path	The format string with an accessor pattern (example: `KVT_Get(json, "[\"subarray\"][3][\"name\"]")`)
 **	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
-**	@returns the KVT object gotten from the given accessor path, or NULL if the path or KVT was invalid.
+**	@returns
+**	The KVT object gotten from the given accessor path,
+**	or `NULL` if the given path or KVT object was invalid.
 */
 s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 _FORMAT(printf, 2, 3);
@@ -307,7 +371,8 @@ e_cccerror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt
 
 /*!
 **	Helper functions for creating and adding items to an object at the same time.
-**	They return the added item or NULL on failure.
+**	@returns
+**	The newly added KVT item, or `NULL` on failure.
 */
 //!@{
 s_kvt*	KVT_AddToObject_Null	(s_kvt* object, t_char const* key);
@@ -356,7 +421,7 @@ t_bool	KVT_IsRaw		(s_kvt const* item);
 //! Removes (without deleting) the given `item` from the given `parent` object.
 s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
 
-//! Delete a s_kvt entity and all subentities.
+//! Delete a `s_kvt` entity and all subentities.
 e_cccerror	KVT_Delete(s_kvt* item);
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.
@@ -365,41 +430,41 @@ e_cccerror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
 
 
 //! Deletes the item at the given `index` from the given `array`.
-e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index);
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index);
 
 //! Removes (without deleting) the given `item` from the given `array`.
-s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_uint index);
+s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
-e_cccerror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
 //! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
-e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem);
+e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
 
 
 
 //! Deletes the item with the given `key` from the given `object`.
 //!@{
 #define 	KVT_Delete_FromObject \
-			KVT_Delete_FromObject_IgnoreCase
-e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+			KVT_Delete_FromObject_CaseSensitive
 e_cccerror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 //!@}
 
 //! Removes (without deleting) the given `item` from the given `object`.
 //!@{
 #define 	KVT_Detach_FromObject \
-			KVT_Detach_FromObject_IgnoreCase
-s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
+			KVT_Detach_FromObject_CaseSensitive
 s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
+s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!< (case-insensitive)
 //!@}
 
 //! Replaces the given `item` from the given `object`, with the given `newitem`
 //!@{
 #define 	KVT_Replace_InObject \
-			KVT_Replace_InObject_IgnoreCase
-e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
+			KVT_Replace_InObject_CaseSensitive
 e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
+e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
 //!@}
 
 

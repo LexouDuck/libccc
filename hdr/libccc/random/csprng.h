@@ -28,7 +28,10 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
 
 HEADER_CPP
 
@@ -54,7 +57,8 @@ typedef void   t_csprng;
 
 //! Creates a new CSPRNG state
 /*!
-**	@returns a new CSPRNG state, 0 on error.
+**	@returns
+**	A new CSPRNG state, or `NULL` if an error occurred.
 */
 t_csprng*			CSPRNG_New(void);
 #define c_csprngnew	CSPRNG_New
@@ -65,7 +69,6 @@ t_csprng*			CSPRNG_New(void);
 */
 void				CSPRNG_Delete(t_csprng* *a_state);
 #define c_csprngdel	CSPRNG_Delete
-
 
 
 

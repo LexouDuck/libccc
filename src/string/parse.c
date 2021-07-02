@@ -1,9 +1,11 @@
 
 #include "libccc/char.h"
+#include "libccc/int.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
+#include "libccc/text/unicode.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -31,10 +33,11 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 				case '\'':	length += 1 * sizeof(t_char);	break; // Single quotation mark
 				case '\"':	length += 1 * sizeof(t_char);	break; // Double quotation mark
 				case  '?':	length += 1 * sizeof(t_char);	break; // Question mark (used to avoid trigraphs)
+				case  '/':	length += 1 * sizeof(t_char);	break; // Forward slash
 				case '\\':	length += 1 * sizeof(t_char);	break; // Backslash
 				case 'x':	length += 1 * sizeof(t_char);	break; // Hexadecimal t_char value
-				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-char (UTF-16)
-				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-char (UTF-32)
+				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
+				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				default:
 					if (Char_IsDigit_Oct(str[i])) // Octal t_char value
 						length += 1 * sizeof(t_char);
@@ -62,11 +65,11 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
 	}																			\
 	tmp[((_BITS_) / 4)] = '\0';													\
 	unicode = U##_BITS_##_FromString_Hex(tmp);									\
-	i += UTF32_ToUTF8((t_utf8*)result, unicode);								\
+	i += UTF32_ToUTF8((t_utf8*)result + i, unicode);							\
 
 
 
-t_char*	String_Parse(t_char const* str, t_bool any_escape)
+t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escape)
 {
 	t_char*	result;
 	t_char	tmp[9] = { 0 };
@@ -74,10 +77,12 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	result = (t_char*)Memory_Allocate(String_Parse_GetLength(str, any_escape) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	while (str[index])
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(NULL);)
+	if (n == 0)
+		n = SIZE_MAX;
+	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape) + sizeof(""));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PARSE_RETURN(NULL);)
+	while (index < n && str[index])
 	{
 		if (str[index] == '\\') // escape sequence
 		{
@@ -92,10 +97,11 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 				case 'f':	result[i++] = '\x0C';	break; // Formfeed
 				case 'r':	result[i++] = '\x0D';	break; // Carriage Return
 				case 'e':	result[i++] = '\x1B';	break; // Escape
-				case '\'':	result[i++] = '\x27';	break; // Single quotation mark
-				case '\"':	result[i++] = '\x22';	break; // Double quotation mark
-				case  '?':	result[i++] = '\x3F';	break; // Question mark (used to avoid trigraphs)
-				case '\\':	result[i++] = '\x5C';	break; // Backslash
+				case '\'':	result[i++] = '\'';		break; // Single quotation mark
+				case '\"':	result[i++] = '\"';		break; // Double quotation mark
+				case  '?':	result[i++] = '?';		break; // Question mark (used to avoid trigraphs)
+				case  '/':	result[i++] = '/';		break; // Forward Slash
+				case '\\':	result[i++] = '\\';		break; // Backslash
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
@@ -118,8 +124,20 @@ t_char*	String_Parse(t_char const* str, t_bool any_escape)
 					break;
 			}
 		}
+		else result[i++] = str[index];
 		++index;
 	}
 	result[i] = '\0';
+	if (dest)	*dest = result;
+	return (index);
+}
+
+
+
+inline
+t_char*	String_FromEscape(t_char const* str, t_bool any_escape)
+{
+	t_char*	result = NULL;
+	String_Parse(&result, str, 0, any_escape);
 	return (result);
 }

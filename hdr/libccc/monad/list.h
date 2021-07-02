@@ -43,7 +43,8 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
 
 HEADER_CPP
 
@@ -87,7 +88,7 @@ typedef struct list_T
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
 		__typeof__(_LIST_)
 #else
-	//! if the `typeof()` operator doesn't exist, an inline struct is used (very unsafe !)
+	//! if the `typeof()` operator doesn't exist, an inline anonymous struct is used (very unsafe !)
 	#if LIBCONFIG_LIST_DOUBLYLINKED
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
 		struct _##_VAR_				\
@@ -117,7 +118,8 @@ typedef struct list_T
 //! Allocates and returns a single list element from the given `item`.
 /*!
 **	@param	item	The value to store within the linked list element
-**	@returns a newly allocated linked list element containing `item`
+**	@returns
+**	A newly allocated linked list element containing `item`
 */
 _MALLOC()
 _GENERIC()
@@ -127,7 +129,8 @@ s_list_T*			CONCAT(List_Item,T_NAME)(T item);
 //! Returns the amount of elements in the given `list`
 /*!
 **	@param	list		the list to look through
-**	@returns the amount of elements in the given `list`,
+**	@returns
+**	The amount of elements in the given `list`,
 **	by traversing it, looping through every `next` pointer.
 */
 _GENERIC()
@@ -136,20 +139,33 @@ t_uint				CONCAT(List_Length,T_NAME)(s_list_T const* list);
 
 
 
-//! Allocates and returns a list element from the given list of arguments.
+//! Allocates and returns a linked list with `n` elements.
 /*!
 **	Allocates a new linked list, consisting of several `s_list` structs chained
 **	together via their `next` pointer, with each struct storing an `item`.
+**
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@returns
+**	A newly allocated linked list which consists of `n` structs chained together.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*			CONCAT(List_New,T_NAME)(t_uint n);
+#define c_lstnew	CONCAT(List_New,T_NAME)
+
+//! Allocates and returns a linked list, created from the given variadic arguments.
+/*!
 **	This function accepts a variadic list of arguments to initialize the list.
 **
 **	@param	n		The amount of items in this list (amount of variadic args)
 **	@param	...		The variadic list of arguments: they must all be of type `T`
-**	@returns a newly allocated linked list which consists of `n` structs chained together.
+**	@returns
+**	A newly allocated linked list which consists of `n` structs chained together.
 */
 _MALLOC()
 _GENERIC()
-s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, ...);
-#define c_lstnew	CONCAT(List_New,T_NAME)
+s_list_T*			CONCAT(List_Create,T_NAME)(t_uint n, ...);
+#define c_lstcreate	CONCAT(List_Create,T_NAME)
 
 
 
@@ -175,7 +191,8 @@ void				CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
 //! Returns a newly allocated copy of the given `list`
 /*!
 **	@param	list	The list to duplicate
-**	@returns a newly allocated copy of the given linked `list`.
+**	@returns
+**	A newly allocated copy of the given linked `list`.
 */
 _MALLOC()
 _GENERIC()
@@ -188,22 +205,24 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 /*!
 **	@param	list	the list to look through
 **	@param	index	the index in the list of the element to get
-**	@returns the `index`th element in the given `list`.
-**		Will return NULL if `index` is beyond the last element.
+**	@returns
+**	The `index`th element in the given `list`,
+**	or `NULL`, if `index` is beyond the last element.
 */
 _GENERIC()
-s_list_T*			CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
+T*					CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
 #define c_lstget	CONCAT(List_Get,T_NAME)
 
 //! Sets the item at position `index` in the list, and returns that link chain TODO
 /*!
 **	@param	list	the list in which an item should be set
 **	@param	index	the index in the list of the element to get
-**	@returns the `index`th element in the given `list`.
-**		Will return NULL if `index` is beyond the last element.
+**	@returns
+**	The `index`th element in the given `list`,
+**	or `NULL`, if `index` is beyond the last element.
 */
 _GENERIC()
-s_list_T*			CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
+T*					CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
 #define c_lstset	CONCAT(List_Set,T_NAME)
 
 //! Copies over `n` items from the given `src` list into the given `dest` list
@@ -211,7 +230,8 @@ s_list_T*			CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
 **	@param	dest	The destination list to copy to
 **	@param	src		The source list which should be copied
 **	@param	n		The amount of list items to copy from `src` to `dest`
-**	@returns the given `dest` pointer.
+**	@returns
+**	The given `dest` pointer.
 */
 _GENERIC()
 s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint n);
@@ -219,9 +239,10 @@ s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint
 
 //! Returns a copy of a subsection of the given `list`, starting at `index` and taking `n` elements
 /*!
-**	Returns a newly allocated subsection of the given `list`, starting at `index`,
+**	@returns
+**	A newly allocated subsection of the given `list`, starting at `index`,
 **	and copying at most `n` items from the given source `list`.
-**	Will return NULL if `index` is too large or if `n` is 0.
+**	Will return `NULL` if `index` is too large or if `(n == 0)`.
 **	If `index` is valid but the list is not large enough for `n`,
 **	then the resulting list will have fewer than `n` elements.
 */
@@ -245,10 +266,10 @@ s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n
 **
 **	@param	list	The address ('&') of the beginning of the list (the address of the first item)
 **	@param	elem	The list element to prepend to `alst` - if NULL, this function does nothing
-**	@returns the new beginning pointer for the given `list`.
-**		This return will always be the same as the given `list` argument.
-_GENERIC()
-**		The return value only exists to imitate CONCAT(List_Prepend,T_NAME)() and CONCAT(List_Insert,T_NAME)().
+**	@returns
+**	The new beginning pointer for the given `list`.
+**	This return will always be the same as the given `list` argument.
+**	The return value only exists to imitate `List_Prepend<T>()` and `List_Insert<T>()`.
 */
 _GENERIC()
 s_list_T*				CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem);
@@ -262,7 +283,8 @@ s_list_T*				CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem);
 **
 **	@param	list	The address ('&') of the beginning of the list (the address of the first item)
 **	@param	elem	The list element to prepend to `alst` - if NULL, this function does nothing
-**	@returns the new beginning pointer for the given `list`.
+**	@returns
+**	The new beginning pointer for the given `list`.
 */
 _GENERIC()
 s_list_T*				CONCAT(List_Prepend,T_NAME)(s_list_T* list, s_list_T* elem);
@@ -276,8 +298,9 @@ s_list_T*				CONCAT(List_Prepend,T_NAME)(s_list_T* list, s_list_T* elem);
 **	@param	list	The address ('&') of the beginning of the list (the address of the first item)
 **	@param	elem	The list element to insert in `alst` - if NULL, this function does nothing
 **	@param	index	The index at which to insert the new list item
-**	@returns the new beginning pointer for the given `list`. This pointer will only
-**		be different from the given `list` pointer if `index` given is zero.
+**	@returns
+**	The new beginning pointer for the given `list`. This pointer will only
+**	be different from the given `list` pointer if `index` given is zero.
 */
 _GENERIC()
 s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index);
@@ -336,8 +359,9 @@ s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
 /*!
 **	@param	list	the linked list to look through
 **	@param	item	the `item` pointer to match against
-**	@returns the first encountered element of the given linked `list`,
-**		for which `(list->item == item)`, or `NULL` otherwise
+**	@returns
+**	The first encountered element of the given linked `list`,
+**	for which `(list->item == item)`, or `NULL` otherwise
 */
 _GENERIC()
 s_list_T const*			CONCAT(List_Find,T_NAME)(s_list_T const* list, T item);
@@ -347,8 +371,9 @@ s_list_T const*			CONCAT(List_Find,T_NAME)(s_list_T const* list, T item);
 /*!
 **	@param	list	the linked list to look through
 **	@param	item	the `item` pointer to match against
-**	@returns the first encountered element of the given linked `list`,
-**		for which `(list->item == item)`, or `NULL` otherwise
+**	@returns
+**	The first encountered element of the given linked `list`,
+**	for which `(list->item == item)`, or `NULL` otherwise
 */
 _GENERIC()
 s_list_T const*			CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item));
@@ -358,8 +383,9 @@ s_list_T const*			CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*matc
 /*!
 **	@param	list	the linked list to look through
 **	@param	item	the `item` pointer to match against
-**	@returns the index of the first encountered element of the given `list`,
-**		for which `(list->item == item)`, or `-1` otherwise.
+**	@returns
+**	The index of the first encountered element of the given `list`,
+**	for which `(list->item == item)`, or `-1` otherwise.
 */
 _GENERIC()
 t_sint					CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item);
@@ -369,8 +395,9 @@ t_sint					CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item);
 /*!
 **	@param	list	the linked list to look through
 **	@param	item	the `item` pointer to match against
-**	@returns the index of the first encountered element of the given `list`,
-**		for which `(list->item == item)`, or `-1` otherwise.
+**	@returns
+**	The index of the first encountered element of the given `list`,
+**	for which `(list->item == item)`, or `-1` otherwise.
 */
 _GENERIC()
 t_sint					CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item));

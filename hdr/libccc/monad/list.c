@@ -3,7 +3,7 @@
 #undef _GENERIC
 #if (defined(__GNUC__) || defined(__llvm__))
 	#define _GENERIC()		__attribute__((unused))	static
-#elif (defined(_MSC_VER) || defined(__SWIG__))
+#elif defined(__MSVC__)
 	#pragma warning(push)
 	#pragma warning(disable : 4505)
 	#define _GENERIC()		static
@@ -19,6 +19,7 @@
 #include "libccc/../../src/monad/list/item.c"
 #include "libccc/../../src/monad/list/length.c"
 #include "libccc/../../src/monad/list/new.c"
+#include "libccc/../../src/monad/list/create.c"
 #include "libccc/../../src/monad/list/delete.c"
 #include "libccc/../../src/monad/list/duplicate.c"
 #include "libccc/../../src/monad/list/get.c"
@@ -55,7 +56,7 @@
 #undef _GENERIC
 #if (defined(__GNUC__) || defined(__llvm__))
 	#define _GENERIC()	
-#elif (defined(_MSC_VER) || defined(__SWIG__))
+#elif defined(__MSVC__)
 	#pragma warning(pop)
 	#define _GENERIC()	
 #else

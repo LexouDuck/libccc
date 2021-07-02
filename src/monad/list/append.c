@@ -1,7 +1,7 @@
 
 #include "libccc/monad/list.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -12,8 +12,6 @@ s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem)
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (elem);)
 	HANDLE_ERROR(NULLPOINTER, (elem == NULL), return (list);)
-	if (elem == NULL)
-		return (list);
 	i = list;
 	while (i->next != NULL)
 	{

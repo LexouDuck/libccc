@@ -4,7 +4,7 @@
 #include "libccc/string.h"
 #include "libccc/encode/common.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -38,7 +38,7 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 		case DYNAMICTYPE_NULL:    return (TRUE);
 		case DYNAMICTYPE_BOOLEAN: return (a->value.boolean == b->value.boolean);
 		case DYNAMICTYPE_INTEGER: return (a->value.number == b->value.number);
-		case DYNAMICTYPE_FLOAT:   return (F64_Equals(a->value.number, b->value.number));
+		case DYNAMICTYPE_FLOAT:   return (a->value.number == b->value.number);
 		case DYNAMICTYPE_STRING:  return (String_Equals(a->value.string, b->value.string));
 		case DYNAMICTYPE_RAW:     return (String_Equals(a->value.string, b->value.string));
 		case DYNAMICTYPE_ARRAY:

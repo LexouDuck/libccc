@@ -32,16 +32,21 @@ Here are the warnings which are added by default (any warning can be deactivated
 
 ### Accepted alternate notation:
 
-- dereference: `*` can be written `$` (to avoid synonymy with the multiply operator)
+- dereference: `*` can be written `$`:
+This is to avoid synonymy with the arithmetic multiplication operator.
 ```c
 value = *pointer; // pure C
 value = $pointer; // ++C
 ```
-- get address: `&` can be written `@` (to avoid synonymy with the bitwise AND operator)
+
+- get address: `&` can be written `@`:
+This is to avoid synonymy with the bitwise AND operator.
 ```c
 address = &value; // pure C
 address = @value; // ++C
 ```
+
+
 
 - binary number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
 ```c
@@ -55,34 +60,56 @@ value = 0644;	// pure C
 value = 0o644;	// ++C
 ```
 
+
+
 - static array types: brackets can be written after the type (before the associated token), rather than after the variable name:
+This is to allow for greater readibility, always having the variable name on the right-most side of a declaration.
 ```c
-char*	strings[9];	// pure C
-char*[9] strings;	// ++C
+char*   strings[9]; // pure C
+char*[9]   strings; // ++C
 ```
 
 - function pointer types: to avoid hard-to-read function pointer types using `(*func)` notation, you can instead use `=>` arrow notation
+This is to allow for greater readibility, always having the variable name on the right-most side of a declaration.
 ```c
-void	(*f)(int, char*);	// pure C
-(int, char*) => void	f;	// ++C
+void (*f)(int, char*); // pure C
+(int, char*)=>void  f; // ++C
 
-// example nested function (with another function pointer as argument)
-void	(*g)(int, char*	(*)(char*));// pure C
-(int, (char*)=>char*) => void	g;	// ++C
+// example nested function pointers (takes another function pointer as argument)
+void (*g)(int, char* (*)(char*)); // pure C
+(int, (char*)=>char*) => void  g; // ++C
 ```
 
+
+
+### Cross-platform fixes:
+
+- `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
+- `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
+- `restrict`: Transpiles to the more cross-platform equivalent: `__restrict__`
+
+- `alignof(X)`: Transpiles to whatever logic makes sense for the given platform
+- `alignas(X)`: Transpiles to whatever logic makes sense for the given platform
 
 
 ### Compile-time operators:
 
-- `alignof(X)`: Transpiles to the minimum memory alignment requirement of a variable/value/token `X`
-- `typeof(X)`: Transpiles to inline code, the type of the variable/value/token `X`
-- `nameof(X)`: Transpiles to a string literal, the name of the variable/value/token `X`
+- `typeof(X)`: Transpiles to the fully resolved type of the variable/value/token `X`
+
+There is an `is` operator, which allows for equality checks between types:
+```c
+#if #(typeof(size_t) is unsigned long)
+	// do something
+#elif #(!(typeof(size_t) is unsigned long long))
+	#error "unsupported size_t type"
+#endif
+```
+A type equality check returns `1` if both types, when fully resolved (after following any nested `typedef`s), are the same.
+Essentially, any 2 types which would issue a warning when implicitly casted will have `is` between them return `0`.
+
+
 
 Also:
-- `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
-- `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
-- `restrict`: Transpiles to the more cross-platform equivalent: `__restrict__`
 
 
 
@@ -103,12 +130,12 @@ char const* regex3 = r"[a-zA-Z_]\w*"sg;
 ```
 When writing a regex literal, the transpiled C output string literal will:
 - have double backquotes `\\` wherever necessary
-- place the regex mode flags within the string, at the start, using `(?i)` notation (https://www.regular-expressions.info/modifiers.html?wlr=1)
+- place the regex mode flags within the string, at the start, using `(?i)` notation (learn more: https://www.regular-expressions.info/modifiers.html?wlr=1)
 
 Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other RegExp engines into one:
-https://github.com/kkos/oniguruma
-https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
-http://www.greenend.org.uk/rjk/tech/regexp.html
+- https://github.com/kkos/oniguruma
+- https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
+- http://www.greenend.org.uk/rjk/tech/regexp.html
 
 
 
@@ -128,17 +155,16 @@ int	main()
 	);
 }
 ```
-For simplicity, only pure functions and functions with only global-scope side-effects, can be defined locally.
-TODO: Perhaps we can implement a variable-capture mechanism which isn't too complex ? This way parent-scoped locals can be used, like in many modern languages.
+When transpiled to C, this becomes:
 ```c
 // NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
 void	WaitAndRunCallback(void (*callback)(void));
 
+static
 void	main_HelloWorld(void)
 {
 	printf("Hello World!\n");
 }
-
 int	main()
 {
 	WaitAndRunCallback(
@@ -146,38 +172,67 @@ int	main()
 	);
 }
 ```
+For simplicity, only pure functions (no side-effects) and functions with only global-scope side-effects, can be defined locally.
+
+TODO: DEBATE: Perhaps we can implement a variable-capture mechanism which isn't too complex ?
+	This way parent-scoped local variables can be used, like in many modern languages.
+	Although, this requires some method of storage for the local variables used (like a "closure"),
+	and generally is not very idiomatic to C, since it "hides away" some function arguments.
 
 
 
 ### Preprocessor directives:
 
-Most of the new additions take the form of new preprocessor directives, of which here is a brief list:
+There are a couple of changes/fixes to existing preprocessor directives:
 ```c
-#operator	$	(char* a, char* b) => int	= DoOperation(a, b)		// define a custom operator (optionally with a certain specified `precedence` and `associativity`)
-#accessor (struct s var)[int index] => int	= GetFunction(var, index)	// define a custom accessor syntax for a struct/union (custom brackets `get` functions)
-#namespace NameSpace.Type<T=(float|int), P>	// works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic types below)
-#reflect // type reflection - type stringization , enum stringization, etc ? TODO define this and how it can work
-#replace MACRO() <string>	// works like a `#define` macro, but occurs at transpile-time, and uses m4 (which allows us to do much more stuff)
-#header __HEADER_H			// insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
-#incbin myvar "filepath"	// include a binary file into the executable as an extern const global variable
-#alias(token)		// shorter way of writing `__attribute__((alias, ...))`
-#align(4)			// shorter way of writing `__attribute__((align, ...))` and/or `_Alignas`
-#format(func, 1, 2)	// shorter way of writing `__attribute__((format, ...))`
-#noreturn			// shorter way of writing `__attribute__((noreturn, ...))` and/or `_Noreturn`
-#malloc				// shorter way of writing `__attribute__((malloc, ...))`
-#delete				// shorter way of writing `__attribute__((delete, ...))`
-#inline				// shorter way of writing `__attribute__((always_inline, ...))` and/or `inline`
-#pure				// shorter way of writing `__attribute__((pure, ...))`
-#packed				// shorter way of writing `__attribute__((packed, ...))`
-```
-Also, some changes/fixes to existing preprocessor directives:
-```c
-#if // compile-time operators like sizeof() can be used in #if directly now, the transpiler will handle it
-// TODO (perhaps even use static_assert() where appropriate ?)
-
-#elif defined(MACRO) // 
-
+//! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
+#if (sizeof(char) == 1)
 #endif
+
+//! Here is an example of function-call generic type promotion (to use with va_arg())
+#if (typeof(T) is char)
+	#define T_VA_ARG	int
+#elif (typeof(T) is short)
+	#define T_VA_ARG	int
+#elif (typeof(T) is float)
+	#define T_VA_ARG	double
+#else
+	#define T_VA_ARG	T
+#endif
+```
+
+Most of the new additions in ++C take the form of new preprocessor directives, of which here is a brief list:
+```c
+//! works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic namespace types below)
+#namespace NameSpace.Type<T=(float|int), P>
+
+//! define a custom operator (optionally with a certain specified `precedence` and `associativity`)
+#operator	$	(char* a, char* b) => int	= DoOperation(a, b)
+
+//! define a custom accessor syntax for a struct/union (custom brackets `get` functions)
+#accessor (struct s var)[int index] => int	= GetFunction(var, index)
+
+//! type reflection - a special kind of macro, for types (inserts contents of a type into the code)
+#reflect(struct s)	printf("%s %s;\n", #type, #name)
+
+//! works like a `#define` macro, but occurs at transpile-time, and uses the powerful `m4` macro engine (by K&R)
+#replace MACRO() <string>
+
+//! insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
+#header __HEADER_H
+
+//! include a binary file into the executable as an extern const global variable
+#incbin myvar "filepath"
+
+#alias(token)        //!< cross-platform way to use `__attribute__((alias, ...))`
+#align(4)            //!< cross-platform way to use `__attribute__((align, ...))` and/or `_Alignas`
+#format(func, 1, 2)  //!< cross-platform way to use `__attribute__((format, ...))`
+#noreturn            //!< cross-platform way to use `__attribute__((noreturn, ...))` and/or `_Noreturn`
+#malloc              //!< cross-platform way to use `__attribute__((malloc, ...))`
+#delete              //!< cross-platform way to use `__attribute__((delete, ...))`
+#inline              //!< cross-platform way to use `__attribute__((always_inline, ...))` and/or `inline`
+#pure                //!< cross-platform way to use `__attribute__((pure, ...))`
+#packed              //!< cross-platform way to use `__attribute__((packed, ...))`
 ```
 
 
@@ -195,10 +250,13 @@ printf("%d", 2 ** 15);
 ```
 
 A custom operator has a maximum length of 4 characters, and it can use any of the following characters:
-`= - + * / % & | ^ ! ~ ? : < > $ @`
+- `= - + * / % & | ^ ! ~ ? : < > $ @`
+
 Looking at it the other way around, the following ASCII characters cannot be used for a custom operator:
-`. , ; ( ) [ ] { } # ' " \`
+- `. , ; ( ) [ ] { } # ' " \`
+
 A custom operator cannot use any token characters (eg: alphanumeric characters `a-z,A-Z,0-9`, or underscore `_`).
+
 Additionnally, some sequences of characters are special and cannot be overridden (even though they only contain legal characters):
 - `=` assignment
 - `->` deref sub-field access
@@ -226,8 +284,8 @@ char* new_str = str OTHERWISE "str is NULL";
 You can specify operator precedence and associativity:
 https://en.cppreference.com/w/c/language/operator_precedence
 Simply place these two arguments within parentheses immediately after the `#operator` directive keyword
-- the first argument is an integer index of the operator - by default it will be 0 (highest priority)
-- the second argument is a boolean (int 0 or 1), 0 (default) for left-to-right associativity, 1 for right-to-left associativity
+- the first argument is `precedence`: an integer index of the operator - by default it will be 0 (highest priority)
+- the second argument is `associativity`: a boolean (int 0 or 1), 0 (default) for left-to-right, 1 for right-to-left
 ```c
 // fixed-point math
 #operator(4, FALSE)	+ (t_fixed a, t_fixed b) => t_fixed = Fixed.Add(a, b)
@@ -238,10 +296,10 @@ Simply place these two arguments within parentheses immediately after the `#oper
 ```
 ```c
 // string concatenation operators
-#operator(5, FALSE) +	(char const* left, char const* right) => char* = String.Join(left, right)
-#operator(5, FALSE) :+	(char*       left, char const* right) => char* = String.Append(left, right)
-#operator(5, FALSE) +:	(char const* left, char*       right) => char* = String.Prepend(left, right)
-#operator(5, FALSE) :+:	(char*       left, char*       right) => char* = String.Merge(left, right)
+#operator(5, FALSE) +   (char const* left, char const* right) => char* = String.Join(left, right)
+#operator(5, FALSE) :+  (char*       left, char const* right) => char* = String.Append(left, right)
+#operator(5, FALSE) +:  (char const* left, char*       right) => char* = String.Prepend(left, right)
+#operator(5, FALSE) :+: (char*       left, char*       right) => char* = String.Merge(left, right)
 
 // usage example:
 char* new_str = "Concatenated: " + str;
@@ -263,7 +321,7 @@ s_complex z = { 1.5, 2.2 };
 s_complex conjug = !z;
 ```
 ```c
-// bool exclusive OR (XOR) operator
+// boolean exclusive OR (XOR) operator
 #operator(12, FALSE) ^^ (bool left, bool right) => bool = \
 	((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE))
 
@@ -273,12 +331,12 @@ if (i < 3 ^^ x >= 4) { /* do stuff */}
 ```c
 // 3D vector subtraction operator
 #operator - (s_vector3d left, s_vector3d right) => s_vector3d = \
-	(s_vector3d)				\
-	{							\
-		.x = left.x - right.x,	\
-		.y = left.y - right.y,	\
-		.z = left.z - right.z,	\
-	}							\
+	(s_vector3d) \
+	{ \
+		.x = left.x - right.x, \
+		.y = left.y - right.y, \
+		.z = left.z - right.z, \
+	} \
 
 // usage example:
 s_vector3d u = (s_vector3d){ 1, 2, 3 };
@@ -616,7 +674,7 @@ unsigned long int
 For a struct or a union, each field is inserted:
 ```c
 // ++C
-struct s_test
+struct test
 {
 	int x;
 	int y;
@@ -627,7 +685,7 @@ struct s_test
 // ++C
 int main()
 {
-#reflect(struct s_test) \
+	#reflect(struct test) \
 	printf("\t%s\t%s\n", #type, #name);
 }
 
@@ -654,7 +712,7 @@ enum e_test
 // ++C
 int main()
 {
-#reflect(enum e_test) \
+	#reflect(enum e_test) \
 	printf("\t%s\t%s\n", #type, #name); comment
 }
 

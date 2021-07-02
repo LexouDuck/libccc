@@ -2,11 +2,11 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STRHEX(BITS) \
+#define DEFINEFUNC_UINT_TOSTRHEX(BITS) \
 t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 {																		\
 	t_char*	result;														\
@@ -39,17 +39,17 @@ t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(8)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(16)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(32)
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(64)
+DEFINEFUNC_UINT_TOSTRHEX(8)
+DEFINEFUNC_UINT_TOSTRHEX(16)
+DEFINEFUNC_UINT_TOSTRHEX(32)
+DEFINEFUNC_UINT_TOSTRHEX(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STRHEX(128)
+DEFINEFUNC_UINT_TOSTRHEX(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STRHEX(BITS) \
+#define DEFINEFUNC_SINT_TOSTRHEX(BITS) \
 t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 {																		\
 	t_char*	result;														\
@@ -84,10 +84,10 @@ t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(8)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(16)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(32)
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(64)
+DEFINEFUNC_SINT_TOSTRHEX(8)
+DEFINEFUNC_SINT_TOSTRHEX(16)
+DEFINEFUNC_SINT_TOSTRHEX(32)
+DEFINEFUNC_SINT_TOSTRHEX(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STRHEX(128)
+DEFINEFUNC_SINT_TOSTRHEX(128)
 #endif

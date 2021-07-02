@@ -4,7 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -29,12 +29,12 @@ e_cccerror	KVT_Delete(s_kvt* item)
 			else if ((item->type & DYNAMICTYPE_STRING))
 			{
 				if (item->value.string != NULL)
-					Memory_Delete((void* *)&item->value.string);
+					String_Delete(&item->value.string);
 			}
 		}
 		if (item->key != NULL)
 		{
-			Memory_Delete((void* *)&item->key);
+			String_Delete(&item->key);
 		}
 		Memory_Delete((void* *)&item);
 		item = next;
@@ -42,7 +42,7 @@ e_cccerror	KVT_Delete(s_kvt* item)
 	return (OK);
 }
 
-e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_uint index)
+e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 

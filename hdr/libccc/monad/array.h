@@ -43,7 +43,8 @@
 	typedef __builtin_va_list va_list;
 #endif
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
 
 HEADER_CPP
 
@@ -90,22 +91,33 @@ typedef struct array_T
 //! Returns an array which consists of `n` items, initialized with variadic arguments.
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
-**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
-**	@returns an array containing `n` elements (the given `...` varargs)
+**	@returns
+**	An array containing `n` elements
 */
 _GENERIC()
-s_array_T			CONCAT(Array,T_NAME)(t_uint n, ...);
+s_array_T			CONCAT(Array,T_NAME)(t_uint n);
 #define c_arr		CONCAT(Array,T_NAME)
 
 //! Allocates a new array which consists of `n` items, initialized with variadic arguments.
 /*!
 **	@param	n		The amount of items in this list (amount of variadic args)
-**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
-**	@returns a newly allocated array containing `n` elements (the given `...` varargs)
+**	@returns
+**	A newly allocated array containing `n` elements
 */
 _GENERIC()
-s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, ...);
+s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n);
 #define c_arrnew	CONCAT(Array_New,T_NAME)
+
+//! Allocates a new array which consists of `n` items, initialized with variadic arguments.
+/*!
+**	@param	n		The amount of items in this list (amount of variadic args)
+**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
+**	@returns
+**	A newly allocated array containing `n` elements (the given `...` varargs)
+*/
+_GENERIC()
+s_array_T*			CONCAT(Array_Create,T_NAME)(t_uint n, ...);
+#define c_arrcreate	CONCAT(Array_Create,T_NAME)
 
 
 
@@ -131,7 +143,8 @@ void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T* item))
 //! Returns a newly allocated copy of the given `list`
 /*!
 **	@param	array	The list to duplicate
-**	@returns a newly allocated copy of the given linked `list`.
+**	@returns
+**	A newly allocated copy of the given linked `list`.
 */
 _GENERIC()
 s_array_T			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
@@ -141,12 +154,12 @@ s_array_T			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
 
 //! TODO document this
 _GENERIC()
-T					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
+T*					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
 #define c_arrget	CONCAT(Array_Get,T_NAME)
 
 //! TODO document this
 _GENERIC()
-void				CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
+T*					CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
 #define c_arrset	CONCAT(Array_Set,T_NAME)
 
 //! TODO document this

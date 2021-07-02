@@ -1,13 +1,13 @@
 
 #include "libccc/stringarray.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_u32		StringArray_Length(t_char const** strarr)
+t_uint		StringArray_Length(t_char const** strarr)
 {
-	t_u32		i;
+	t_uint		i;
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
 	i = 0;

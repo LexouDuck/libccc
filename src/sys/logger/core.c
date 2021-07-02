@@ -23,7 +23,7 @@
 #include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 static
 void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
@@ -42,7 +42,7 @@ void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char 
 	t_size	wrote;
 
 	wrote = IO_Write_String(fd, log_msg);
-	HANDLE_ERROR_INITIAL(PRINT, (wrote == 0))
+	HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
 	Log_Logger_FatalError(logger, output);
 	HANDLE_ERROR_FINAL()
 }

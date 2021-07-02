@@ -1,7 +1,7 @@
 
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -28,6 +28,7 @@ t_size	String_Count_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	result;
 	t_size	i;
+	t_size	j;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
 	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (0);)
@@ -35,8 +36,14 @@ t_size	String_Count_Charset(t_char const* str, t_char const* charset)
 	i = 0;
 	while (str[i])
 	{
-		if (String_Find_Char(charset, str[i]))
-			++result;
+		for (j = 0; charset[j]; ++j)
+		{
+			if (str[i] == charset[j])
+			{
+				++result;
+				break;
+			}
+		}
 		++i;
 	}
 	return (result);

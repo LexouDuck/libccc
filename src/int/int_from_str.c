@@ -3,82 +3,98 @@
 #include "libccc/int.h"
 #include "libccc/char.h"
 #include "libccc/pointer.h"
+#include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-#define DEFINEFUNC_CONVERT_STR_TO_UINT(BITS) \
-t_u##BITS	U##BITS##_FromString(t_char const* str)							\
-{																			\
-	t_u##BITS	result;														\
-	t_u##BITS	tmp;														\
-	t_size	i;																\
-																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)					\
-	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)						\
-		continue;															\
-	HANDLE_ERROR(PARSE,														\
-		!(str[i] == '+' || Char_IsDigit(str[i])),							\
-		return (0);)														\
-	if (str[i] == '+')														\
-		++i;																\
-	result = 0;																\
-	while (str[i] && Char_IsDigit(str[i]))									\
-	{																		\
-		tmp = result * 10 + (str[i++] - '0');								\
-		HANDLE_ERROR(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW)\
-		result = tmp;														\
-	}																		\
-	return (result);														\
-}																			\
+#define DEFINEFUNC_UINT_FROMSTR(BITS) \
+t_size	U##BITS##_Parse(t_u##BITS *dest, t_char const* str, t_size n)				\
+{																					\
+	t_char const* s = NULL;															\
+	t_size	i = 0;																	\
+																					\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
+		PARSE_RETURN(S##BITS##_ERROR))												\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	for (i = 0; (i < n - 1 && str[i]); ++i)											\
+	{																				\
+		if (str[i] == '0')															\
+		{																			\
+			s = str + i;															\
+			break;																	\
+		}																			\
+	}																				\
+	if (s && s[0] && s[0] == '0')													\
+	{																				\
+		switch (s[1])																\
+		{																			\
+			case 'x': return (U##BITS##_Parse_Hex(dest, str, n - i));				\
+			case 'o': return (U##BITS##_Parse_Oct(dest, str, n - i));				\
+			case 'b': return (U##BITS##_Parse_Bin(dest, str, n - i));				\
+		}																			\
+	}																				\
+	return (U##BITS##_Parse_Dec(dest, str, n - i));									\
+}																					\
+inline t_u##BITS	U##BITS##_FromString(t_char const* str)							\
+{																					\
+	t_u##BITS	result = U##BITS##_ERROR;											\
+	U##BITS##_Parse(&result, str, 0);												\
+	return (result);																\
+}																					\
 
-DEFINEFUNC_CONVERT_STR_TO_UINT(8)
-DEFINEFUNC_CONVERT_STR_TO_UINT(16)
-DEFINEFUNC_CONVERT_STR_TO_UINT(32)
-DEFINEFUNC_CONVERT_STR_TO_UINT(64)
+DEFINEFUNC_UINT_FROMSTR(8)
+DEFINEFUNC_UINT_FROMSTR(16)
+DEFINEFUNC_UINT_FROMSTR(32)
+DEFINEFUNC_UINT_FROMSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STR_TO_UINT(128)
+DEFINEFUNC_UINT_FROMSTR(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_STR_TO_SINT(BITS) \
-t_s##BITS	S##BITS##_FromString(t_char const* str)							\
-{																			\
-	t_u##BITS	result;														\
-	t_u##BITS	tmp;														\
-	t_bool	negative;														\
-	t_size	i;																\
-																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)					\
-	for (i = 0; str[i] && Char_IsSpace(str[i]); ++i)						\
-		continue;															\
-	HANDLE_ERROR(PARSE,														\
-		!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),			\
-		return (0);)														\
-	negative = FALSE;														\
-	if (str[i] == '-')														\
-	{																		\
-		negative = TRUE;													\
-		++i;																\
-	}																		\
-	else if (str[i] == '+')													\
-		++i;																\
-	result = 0;																\
-	while (str[i] && Char_IsDigit(str[i]))									\
-	{																		\
-		tmp = result * 10 + (str[i++] - '0');								\
-		HANDLE_ERROR(RESULTRANGE, (tmp < result), LIBCONFIG_HANDLE_OVERFLOW)\
-		result = tmp;														\
-	}																		\
-	return (negative ? -(t_s##BITS)result : (t_s##BITS)result);				\
-}																			\
+#define DEFINEFUNC_SINT_FROMSTR(BITS) \
+t_size	S##BITS##_Parse(t_s##BITS *dest, t_char const* str, t_size n)				\
+{																					\
+	t_char const* s = NULL;															\
+	t_size	i = 0;																	\
+																					\
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
+		PARSE_RETURN(S##BITS##_ERROR))												\
+	if (n == 0)																		\
+		n = SIZE_MAX;																\
+	for (i = 0; (i < n - 1 && str[i]); ++i)											\
+	{																				\
+		if (str[i] == '0')															\
+		{																			\
+			s = str + i;															\
+			break;																	\
+		}																			\
+	}																				\
+	if (s && s[0] && s[0] == '0')													\
+	{																				\
+		switch (s[1])																\
+		{																			\
+			case 'x': return (S##BITS##_Parse_Hex(dest, str, n - i));				\
+			case 'o': return (S##BITS##_Parse_Oct(dest, str, n - i));				\
+			case 'b': return (S##BITS##_Parse_Bin(dest, str, n - i));				\
+		}																			\
+	}																				\
+	return (S##BITS##_Parse_Dec(dest, str, n - i));									\
+}																					\
+inline t_s##BITS	S##BITS##_FromString(t_char const* str)							\
+{																					\
+	t_s##BITS	result = S##BITS##_ERROR;											\
+	S##BITS##_Parse(&result, str, 0);												\
+	return (result);																\
+}																					\
 
-DEFINEFUNC_CONVERT_STR_TO_SINT(8)
-DEFINEFUNC_CONVERT_STR_TO_SINT(16)
-DEFINEFUNC_CONVERT_STR_TO_SINT(32)
-DEFINEFUNC_CONVERT_STR_TO_SINT(64)
+DEFINEFUNC_SINT_FROMSTR(8)
+DEFINEFUNC_SINT_FROMSTR(16)
+DEFINEFUNC_SINT_FROMSTR(32)
+DEFINEFUNC_SINT_FROMSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_STR_TO_SINT(128)
+DEFINEFUNC_SINT_FROMSTR(128)
 #endif

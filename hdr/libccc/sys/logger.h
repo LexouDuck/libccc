@@ -38,6 +38,9 @@
 
 HEADER_CPP
 
+#ifndef __LIBCCC_SYS_LOGGER_T
+#define __LIBCCC_SYS_LOGGER_T
+
 /* ************************************************************************** */
 /*                                 Definitions                                */
 /* ************************************************************************** */
@@ -91,6 +94,10 @@ typedef s_logger const* const*	t_logptrarr;
 #define LOG_JSON_INDENT			"        "
 
 
+
+#endif
+#ifndef __LIBCCC_SYS_LOGGER_F
+#define __LIBCCC_SYS_LOGGER_F
 
 /* ************************************************************************** */
 /*                            Logger Body Macros                              */
@@ -262,6 +269,8 @@ e_cccerror					Log_Message_Verbose		(s_logger const* logger,                 t_c
 #define Log_Verbose		Log_Message_Verbose
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

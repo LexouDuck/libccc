@@ -1,34 +1,38 @@
 
 #include "libccc/sys/time.h"
+#include "libccc/math/math.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
 t_bool	Date_IsValid(s_date const* date)
 {
 	HANDLE_ERROR(NULLPOINTER, (date == NULL), return (FALSE);)
+
 	if (date->sec >= (Date_HasLeapSecond(date->month, date->year) ? TIME_MAX_SECONDS_LEAP : TIME_MAX_SECONDS))
 		return (FALSE);
 	if (date->min >= TIME_MAX_MINUTES)
 		return (FALSE);
 	if (date->hour >= TIME_MAX_HOURS)
 		return (FALSE);
-	if (date->day_month < 1)
-		return (FALSE);
-	if (date->day_month > Date_DaysInMonth(date->month, date->year))
-		return (FALSE);
-	if (date->day_year < 0)
-		return (FALSE);
+
 	if (date->day_year >= (Date_IsLeapYear(date->year) ? TIME_MAX_DAYS_YEAR_LEAP : TIME_MAX_DAYS_YEAR))
 		return (FALSE);
-	if (date->day_week < 0)
+
+	if (date->day_month > Date_DaysInMonth(date->month, date->year))
 		return (FALSE);
+	if (date->day_month < 1)
+		return (FALSE);
+
 	if (date->day_week >= ENUMLENGTH_WEEKDAY)
 		return (FALSE);
-	if (date->month < 0)
+	if (ISNEG(date->day_week))
 		return (FALSE);
+
 	if (date->month >= ENUMLENGTH_MONTH)
+		return (FALSE);
+	if (ISNEG(date->month))
 		return (FALSE);
 	return (TRUE);
 }
@@ -40,6 +44,7 @@ void	Date_MakeValid(s_date* date)
 	t_s64 tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (date == NULL), return;)
+
 	tmp = (Date_HasLeapSecond(date->month, date->year) ? TIME_MAX_SECONDS_LEAP : TIME_MAX_SECONDS);
 	if (date->sec >= tmp)
 		date->sec = (tmp - 1);
@@ -49,25 +54,27 @@ void	Date_MakeValid(s_date* date)
 	tmp = TIME_MAX_HOURS;
 	if (date->hour >= tmp)
 		date->hour = (tmp - 1);
+
+	tmp = (Date_IsLeapYear(date->year) ? TIME_MAX_DAYS_YEAR_LEAP : TIME_MAX_DAYS_YEAR);
+	if (date->day_year >= tmp)
+		date->day_year = (tmp - 1);
+
 	tmp = Date_DaysInMonth(date->month, date->year);
 	if (date->day_month > tmp)
 		date->day_month = (tmp - 1);
 	if (date->day_month < 1)
 		date->day_month = 1;
-	tmp = (Date_IsLeapYear(date->year) ? TIME_MAX_DAYS_YEAR_LEAP : TIME_MAX_DAYS_YEAR);
-	if (date->day_year >= tmp)
-		date->day_year = (tmp - 1);
-	if (date->day_year < 0)
-		date->day_year = 0;
+
 	tmp = ENUMLENGTH_WEEKDAY;
 	if (date->day_week >= tmp)
 		date->day_week = (tmp - 1);
-	if (date->day_week < 0)
+	if (ISNEG(date->day_week))
 		date->day_week = 0;
+
 	tmp = ENUMLENGTH_MONTH;
 	if (date->month >= tmp)
 		date->month = (tmp - 1);
-	if (date->month < 0)
+	if (ISNEG(date->month))
 		date->month = 0;
 }
 

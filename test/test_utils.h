@@ -15,6 +15,8 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/text/ascii.h"
+#include "libccc/text/unicode.h"
 #include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
 #include "libccc/sys/time.h"
@@ -61,7 +63,7 @@ void	print_title(void);
 void	print_endian_warning(void);
 void	print_nonstd(void);
 
-s_sortedlist_int	print_test_random(int samples);
+s_sorted_int	print_test_random(int samples);
 
 
 
@@ -78,15 +80,20 @@ int		str_equals_until(char const* str1, char const* str2, char c);
 
 char*	print_memory(void const* ptr, t_size length);
 
-char*	str_padleft(char const* str, char c, t_size length);
-
 char*	strtoescape(char const* str);
 
 char*	strsurround(char const* str, char begin, char end);
 
-char*	sinttostr(t_s64 number);
-
-char*	uinttostr(t_u64 number);
+char*	u8tostr(	t_u8	number);
+char*	s8tostr(	t_s8	number);
+char*	u16tostr(	t_u16	number);
+char*	s16tostr(	t_s16	number);
+char*	u32tostr(	t_u32	number);
+char*	s32tostr(	t_s32	number);
+char*	u64tostr(	t_u64	number);
+char*	s64tostr(	t_s64	number);
+char*	u128tostr(	t_u128	number);
+char*	s128tostr(	t_s128	number);
 
 char*	ptrtostr(void const* ptr);
 
@@ -177,7 +184,7 @@ DEFINEFUNC_PRINT_TEST(list,		s_list const*)
 
 DEFINEFUNC_PRINT_TEST(date,		s_date)
 
-DEFINEFUNC_PRINT_TEST(sign,		t_s64)
+DEFINEFUNC_PRINT_TEST(sign,		t_sintmax)
 DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 
 
@@ -326,7 +333,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = "_"#FUNCTION;			\
 	print_test_##TYPENAME(&test, args);		\
-	free(args);								\
+	if (args)	free(args);					\
 	args = NULL;							\
 
 //! Prints the test result for a "compare test" (one which has an equivalent function in the C standard library)
@@ -335,7 +342,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
 	test.function = #FUNCTION;				\
 	print_test_##TYPENAME(&test, args);		\
-	free(args);								\
+	if (args)	free(args);					\
 	args = NULL;							\
 
 

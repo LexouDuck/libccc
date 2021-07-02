@@ -3,11 +3,12 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
+static
+t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 {
 	t_size	i;
 	t_size	j;
@@ -32,7 +33,7 @@ static t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STRBASE(BITS) \
+#define DEFINEFUNC_UINT_TOSTRBASE(BITS) \
 t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 {																		\
 	t_char*	result;														\
@@ -64,17 +65,17 @@ t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_UINT_TO_STRBASE(8)
-DEFINEFUNC_CONVERT_UINT_TO_STRBASE(16)
-DEFINEFUNC_CONVERT_UINT_TO_STRBASE(32)
-DEFINEFUNC_CONVERT_UINT_TO_STRBASE(64)
+DEFINEFUNC_UINT_TOSTRBASE(8)
+DEFINEFUNC_UINT_TOSTRBASE(16)
+DEFINEFUNC_UINT_TOSTRBASE(32)
+DEFINEFUNC_UINT_TOSTRBASE(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STRBASE(128)
+DEFINEFUNC_UINT_TOSTRBASE(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STRBASE(BITS) \
+#define DEFINEFUNC_SINT_TOSTRBASE(BITS) \
 t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 {																		\
 	t_char*	result;														\
@@ -107,10 +108,10 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_SINT_TO_STRBASE(8)
-DEFINEFUNC_CONVERT_SINT_TO_STRBASE(16)
-DEFINEFUNC_CONVERT_SINT_TO_STRBASE(32)
-DEFINEFUNC_CONVERT_SINT_TO_STRBASE(64)
+DEFINEFUNC_SINT_TOSTRBASE(8)
+DEFINEFUNC_SINT_TOSTRBASE(16)
+DEFINEFUNC_SINT_TOSTRBASE(32)
+DEFINEFUNC_SINT_TOSTRBASE(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STRBASE(128)
+DEFINEFUNC_SINT_TOSTRBASE(128)
 #endif

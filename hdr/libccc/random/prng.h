@@ -24,7 +24,10 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
+#include "libccc/pointer.h"
 
 HEADER_CPP
 
@@ -35,29 +38,31 @@ HEADER_CPP
 */
 
 /*!
-**	Pseudo-random number generator. Modulus is `2^31`
+**	Pseudo-random number generator (Linear Congruential Generator). Modulus is `2^31`
 **
-**	- `OFFSET` and `MODULUS` are mutually prime.
-**	- `CEIL_SQRT_MOD % 4` should be equal to 1 because `MODULUS` is a multiple of 4
-**	- For all P prime divisors of `MODULUS`, `a % p = 1`
-**	- `OFFSET` should be small compared to the two other parameters
+**	- `PRNG_OFFSET` and `PRNG_MODULUS` are mutually prime.
+**	- `PRNG_CEIL_SQRT_MOD % 4` should be equal to 1 because `PRNG_MODULUS` is a multiple of 4
+**	- For all P prime divisors of `PRNG_MODULUS`, `a % p = 1`
+**	- `PRNG_OFFSET` should be small compared to the two other parameters
 **	- The bitwise AND `&` operator is applied, which explains the choice of modulus
-**		to be `2^31 - 1` in implementation (could also be called RAND_MAX)
+**		to be `2^31 - 1` in implementation (could also be called `RAND_MAX`)
 **
 **	Basic RNG formula is:
-**		`next_value = (CEIL_SQRT_MOD * old_nb + OFFSET) % MODULUS`
+**		`next_value = (PRNG_CEIL_SQRT_MOD * old_nb + PRNG_OFFSET) % PRNG_MODULUS`
+**
+**	@see https://www.freecodecamp.org/news/random-number-generator/
 */
 //!@{
 
 //! The default random seed for pseudo-random number generation
-#define DEFAULT_SEED	(0x93E21FD5)
+#define PRNG_SEED_DEFAULT	(0x93E21FD5)
 
-//! TODO document this
-#define MODULUS			(0x7FFFFFFF)
-//! TODO document this
-#define CEIL_SQRT_MOD	(46341)
-//! TODO document this
-#define OFFSET			(2835)
+//! Modulus for the Linear Congruential RNG
+#define PRNG_MODULUS		(0x7FFFFFFF)
+//! The value of the multiplier for the Linear Congruential RNG
+#define PRNG_CEIL_SQRT_MOD	(46341)
+//! The value of the increment for the Linear Congruential RNG
+#define PRNG_OFFSET			(2835)
 
 //!@}
 
@@ -84,16 +89,17 @@ void				PRNG_NewSeed(t_prng* state);
 
 
 
-//! Creates a new CSPRNG state
+//! Creates a new PRNG state
 /*!
-**	@returns a new CSPRNG state, 0 on error.
+**	@returns
+**	A new PRNG state, or `NULL` if an error occurred.
 */
 t_prng*				PRNG_New(void);
 #define c_prngnew	PRNG_New
 
-//! Deletes (free and nullify) an existing CSPRNG state
+//! Deletes (free and nullify) an existing PRNG state
 /*!
-**	@param	a_state	The address of the CSPRNG state to free and nullify
+**	@param	a_state	The address of the PRNG state to free and nullify
 */
 void				PRNG_Delete(t_prng* *a_state);
 #define c_prngdel	PRNG_Delete
@@ -111,10 +117,12 @@ void				PRNG_Delete(t_prng* *a_state);
 **	@param	state	The PRNG state to use
 **	@param	dest	The destination memory buffer to write to
 **	@param	n		The amount of bytes of random data to write into `dest`
-**	@returns `0` if successful, otherwise a non-zero error code
+**	@returns
+**	`0`(#OK) if successful, otherwise a non-zero error code
 */
 e_cccerror			PRNG_Next			(t_prng* state, void* dest, t_size n);
 #define c_prng		PRNG_Next
+
 
 
 //!	Get a random unsigned integer value
@@ -168,6 +176,7 @@ t_float				PRNG_Float_Range	(t_prng* state, t_float min, t_float max);
 */
 void*				PRNG_Get			(void* dest, t_size n);
 #define c_prngget	PRNG_Get
+
 
 
 //!	Get a random unsigned integer, statelessly.

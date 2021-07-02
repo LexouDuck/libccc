@@ -2,7 +2,7 @@
 #include "libccc/char.h"
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

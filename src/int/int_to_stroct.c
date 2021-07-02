@@ -2,7 +2,7 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -14,7 +14,7 @@
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STROCT(BITS) \
+#define DEFINEFUNC_UINT_TOSTROCT(BITS) \
 t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 {																	\
 	t_char*	result;													\
@@ -47,17 +47,17 @@ t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 	return (result);												\
 }																	\
 
-DEFINEFUNC_CONVERT_UINT_TO_STROCT(8)
-DEFINEFUNC_CONVERT_UINT_TO_STROCT(16)
-DEFINEFUNC_CONVERT_UINT_TO_STROCT(32)
-DEFINEFUNC_CONVERT_UINT_TO_STROCT(64)
+DEFINEFUNC_UINT_TOSTROCT(8)
+DEFINEFUNC_UINT_TOSTROCT(16)
+DEFINEFUNC_UINT_TOSTROCT(32)
+DEFINEFUNC_UINT_TOSTROCT(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STROCT(128)
+DEFINEFUNC_UINT_TOSTROCT(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STROCT(BITS) \
+#define DEFINEFUNC_SINT_TOSTROCT(BITS) \
 t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 {																	\
 	t_char*	result;													\
@@ -92,10 +92,10 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 	return (result);												\
 }																	\
 
-DEFINEFUNC_CONVERT_SINT_TO_STROCT(8)
-DEFINEFUNC_CONVERT_SINT_TO_STROCT(16)
-DEFINEFUNC_CONVERT_SINT_TO_STROCT(32)
-DEFINEFUNC_CONVERT_SINT_TO_STROCT(64)
+DEFINEFUNC_SINT_TOSTROCT(8)
+DEFINEFUNC_SINT_TOSTROCT(16)
+DEFINEFUNC_SINT_TOSTROCT(32)
+DEFINEFUNC_SINT_TOSTROCT(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STROCT(128)
+DEFINEFUNC_SINT_TOSTROCT(128)
 #endif

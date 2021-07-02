@@ -2,7 +2,7 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -14,7 +14,7 @@
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STR(BITS) \
+#define DEFINEFUNC_UINT_TOSTR(BITS) \
 t_char*	U##BITS##_ToString(t_u##BITS number)		\
 {													\
 	t_char*	result;									\
@@ -43,17 +43,17 @@ t_char*	U##BITS##_ToString(t_u##BITS number)		\
 	return (result);								\
 }													\
 
-DEFINEFUNC_CONVERT_UINT_TO_STR(8)
-DEFINEFUNC_CONVERT_UINT_TO_STR(16)
-DEFINEFUNC_CONVERT_UINT_TO_STR(32)
-DEFINEFUNC_CONVERT_UINT_TO_STR(64)
+DEFINEFUNC_UINT_TOSTR(8)
+DEFINEFUNC_UINT_TOSTR(16)
+DEFINEFUNC_UINT_TOSTR(32)
+DEFINEFUNC_UINT_TOSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STR(128)
+DEFINEFUNC_UINT_TOSTR(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STR(BITS) \
+#define DEFINEFUNC_SINT_TOSTR(BITS) \
 t_char*	S##BITS##_ToString(t_s##BITS number)		\
 {													\
 	t_char*	result;									\
@@ -83,10 +83,10 @@ t_char*	S##BITS##_ToString(t_s##BITS number)		\
 	return (result);								\
 }													\
 
-DEFINEFUNC_CONVERT_SINT_TO_STR(8)
-DEFINEFUNC_CONVERT_SINT_TO_STR(16)
-DEFINEFUNC_CONVERT_SINT_TO_STR(32)
-DEFINEFUNC_CONVERT_SINT_TO_STR(64)
+DEFINEFUNC_SINT_TOSTR(8)
+DEFINEFUNC_SINT_TOSTR(16)
+DEFINEFUNC_SINT_TOSTR(32)
+DEFINEFUNC_SINT_TOSTR(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STR(128)
+DEFINEFUNC_SINT_TOSTR(128)
 #endif

@@ -26,9 +26,16 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/int.h"
+#include "libccc/fixed.h"
+#include "libccc/float.h"
 
 HEADER_CPP
+
+typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
+typedef struct array_float	s_array_float;	//!< @see "libccc/monad/array.h"
+
+// TODO implement stat unctions for `fixed` type
 
 /*
 ** ************************************************************************** *|
@@ -36,35 +43,11 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! This struct stores a list of integer values (contiguously, like an array)
-typedef struct list_int
-{
-	t_sint		*data;		//!< The list of integer values
-	t_uint		length;		//!< The amount of items in the list
-}				s_list_int;
+typedef s_array_int		s_set_int;		//!< This type represents a list of integers with no duplicate values
+typedef s_array_float	s_set_float;	//!< This type represents a list of floats with no duplicate values
 
-//! Define the value for an empty list of integers
-#define NULL_LIST_INT		((s_list_int){ 0, 0 })
-
-
-
-//! This struct stores a list of float values (contiguously, like an array)
-typedef struct list_float
-{
-	t_float		*data;		//!< The list of float values
-	t_uint		length;		//!< The amount of items in the list
-}				s_list_float;
-
-//! Define the value for an empty list of floats
-#define NULL_LIST_FLOAT		((s_list_float){ 0, 0 })
-
-
-
-typedef s_list_int		s_set_int;			//!< This type represents a list of integers with no duplicate values
-typedef s_list_float	s_set_float;		//!< This type represents a list of floats with no duplicate values
-
-typedef s_list_int		s_sortedlist_int;	//!< This type represents a list of integers whose values are ordered from smallest to largest
-typedef s_list_float	s_sortedlist_float;	//!< This type represents a list of floats whose values are ordered from smallest to largest
+typedef s_array_int		s_sorted_int;	//!< This type represents a list of integers whose values are ordered from smallest to largest
+typedef s_array_float	s_sorted_float;	//!< This type represents a list of floats whose values are ordered from smallest to largest
 
 
 
@@ -119,7 +102,7 @@ typedef struct prob_mass
 {
 	t_float		*value;		// TODO document this
 	t_float		*prob;		// TODO document this
-	t_u32		length;		// TODO document this
+	t_uint		length;		// TODO document this
 }				s_prob_mass;
 
 
@@ -131,47 +114,46 @@ typedef struct prob_mass
 */
 
 //! TODO document this
-s_list_int						Stat_Int_NewList(t_u32 length);
+s_array_int						Stat_Int_NewList(t_uint length);
 #define c_stat_new_ilst			Stat_Int_NewList
 
 //! TODO document this
-void							Stat_Int_FreeList(s_list_int* ilst);
+void							Stat_Int_FreeList(s_array_int* ilst);
 #define c_stat_free_ilst		Stat_Int_FreeList
 
 //! TODO document this
-s_list_int						Stat_Int_MergeList(s_list_int* start, s_list_int* append);
+s_array_int						Stat_Int_MergeList(s_array_int* start, s_array_int* append);
 #define c_stat_merge_ilst		Stat_Int_MergeList
 
 //! TODO document this
-/*!
-**	@isostd{https://en.cppreference.com/w/c/algorithm/qsort}
-**
-*/
-s_list_int 						Stat_Int_Quicksort(s_list_int const ilst);
+s_array_int 					Stat_Int_Quicksort(s_array_int const ilst);
 #define c_stat_quicksort_i_new	Stat_Int_Quicksort
 
 //! TODO document this
-void							Stat_Int_Quicksort_InPlace(s_list_int ilst);
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/algorithm/qsort}
+*/
+void							Stat_Int_Quicksort_InPlace(s_array_int ilst);
 #define c_stat_quicksort_i		Stat_Int_Quicksort_InPlace
 
 //! TODO document this
-t_float							Stat_Int_Median(s_sortedlist_int const ilst);
+t_float							Stat_Int_Median(s_sorted_int const ilst);
 #define c_stat_median_i			Stat_Int_Median
 
 //! TODO document this
-t_float							Stat_Int_Average(s_list_int const ilst);
+t_float							Stat_Int_Average(s_array_int const ilst);
 #define c_stat_average_i		Stat_Int_Average
 
 //! TODO document this
-t_float							Stat_Int_Variance(s_list_int const ilst);
+t_float							Stat_Int_Variance(s_array_int const ilst);
 #define c_stat_variance_i		Stat_Int_Variance
 
 //! TODO document this
-t_float							Stat_Int_StandardDeviation(s_list_int const ilst);
+t_float							Stat_Int_StandardDeviation(s_array_int const ilst);
 #define c_stat_stddev_i			Stat_Int_StandardDeviation
 
 //! TODO document this
-void							Stat_Int_Decile(s_list_int const ilst);
+void							Stat_Int_Decile(s_array_int const ilst);
 #define c_stat_decile_i			Stat_Int_Decile
 
 //! TODO implement & document this
@@ -181,53 +163,53 @@ void							Stat_Int_Decile(s_list_int const ilst);
 
 
 //! TODO document this
-s_list_float					Stat_Float_NewList(t_u32 length);
+s_array_float					Stat_Float_NewList(t_uint length);
 #define c_stat_new_flst			Stat_Float_NewList
 
 //! TODO document this
-void							Stat_Float_FreeList(s_list_float* flst);
+void							Stat_Float_FreeList(s_array_float* flst);
 #define c_stat_free_flst		Stat_Float_FreeList
 
 //! TODO document this
-s_list_float					Stat_Float_MergeList(s_list_float* start, s_list_float* append);
+s_array_float					Stat_Float_MergeList(s_array_float* start, s_array_float* append);
 #define c_stat_merge_flst		Stat_Float_MergeList
 
 //! TODO document this
-s_list_float 					Stat_Float_Quicksort_f_n(s_list_float const flst);
-#define c_stat_quicksort_f_new	Stat_Float_Quicksort_f_n
+s_array_float 					Stat_Float_Quicksort(s_array_float const flst);
+#define c_stat_quicksort_f_new	Stat_Float_Quicksort
 
 //! TODO document this
-void							Stat_Float_Quicksort(s_list_float flst);
-#define c_stat_quicksort_f		Stat_Float_Quicksort
+void							Stat_Float_Quicksort_InPlace(s_array_float flst);
+#define c_stat_quicksort_f		Stat_Float_Quicksort_InPlace
 
 //! TODO document this
-t_float							Stat_Float_Median(s_sortedlist_float const flst);
+t_float							Stat_Float_Median(s_sorted_float const flst);
 #define c_stat_median_f			Stat_Float_Median
 
 //! TODO document this
-t_float							Stat_Float_Average(s_list_float const flst);
+t_float							Stat_Float_Average(s_array_float const flst);
 #define c_stat_average_f		Stat_Float_Average
 
 //! TODO document this
-t_float							Stat_Float_Variance(s_list_float const flst);
+t_float							Stat_Float_Variance(s_array_float const flst);
 #define c_stat_variance_f		Stat_Float_Variance
 
 //! TODO document this
-t_float							Stat_Float_StandardDeviation(s_list_float const flst);
+t_float							Stat_Float_StandardDeviation(s_array_float const flst);
 #define c_stat_stddev_f			Stat_Float_StandardDeviation
 
 //! TODO document this
-void							Stat_Float_Decile(s_list_float const flst);
+void							Stat_Float_Decile(s_array_float const flst);
 #define c_stat_decile_f			Stat_Float_Decile
 
 //! TODO implement & document this
-//t_bool							Stat_Float_ProbabilityIsValid(t_prob_sample_f const f_problst);
+//t_bool						Stat_Float_ProbabilityIsValid(t_prob_sample_f const f_problst);
 //#define c_prob_is_valid_f		Stat_Float_ProbabilityIsValid
 
 
 
 //! TODO document this
-s_prob_mass						Stat_NewPMF(t_u32 length);
+s_prob_mass						Stat_NewPMF(t_uint length);
 #define c_stat_new_pmf			Stat_NewPMF
 
 //! TODO document this
@@ -235,15 +217,15 @@ void							Stat_FreePMF(s_prob_mass *drv);
 #define c_stat_free_pmf			Stat_FreePMF
 
 //! TODO document this
-s_list_int						Stat_IntList_To_Set(s_list_int const ilst);
+s_array_int						Stat_IntList_To_Set(s_array_int const ilst);
 #define c_stat_ilst_to_iset		Stat_IntList_To_Set
 
 //! TODO document this
-t_u32							Stat_IntList_Count(s_list_int ilst, t_sint elem);
+t_uint							Stat_IntList_Count(s_array_int ilst, t_sint elem);
 #define c_stat_ilst_count		Stat_IntList_Count
 
-//! TODO document this
-s_prob_mass						Stat_IntList_To_PMF(s_list_int const ilst);
+//! Returns the probability distribution of an array of integers.
+s_prob_mass						Stat_IntList_To_PMF(s_array_int const ilst);
 #define c_stat_ilst_to_pmf		Stat_IntList_To_PMF
 
 

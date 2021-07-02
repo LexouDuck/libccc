@@ -2,14 +2,14 @@
 #include "libccc/color.h"
 #include "libccc/math/math.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
 s_ahsl		Color_ARGB_To_AHSL(s_argb const* color)
 {
 	static const t_float factor = TAU / 6.;
-	s_ahsl result = {0};
+	s_ahsl result = COLOR_AHSL_NULL;
 	s_argb c;
 	t_float min = 1.;
 	t_float max = 0.;
@@ -50,7 +50,7 @@ s_argb		Color_AHSL_To_ARGB(s_ahsl const* color)
 	static const t_float factor = 1. / TAU;
 	static const t_float third1 = 1. / 3.;
 	static const t_float third2 = 2. / 3.;
-	s_argb result = {0};
+	s_argb result = COLOR_ARGB_NULL;
 	s_ahsl c;
 	t_float tmp1;
 	t_float tmp2;

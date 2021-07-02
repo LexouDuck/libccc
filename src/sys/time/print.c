@@ -7,18 +7,17 @@
 	size_t	strftime(t_char* s, size_t max, const t_char* format, const struct tm *tm);
 #endif
 
-
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-#define MAX_BUFFER_SIZE		1024
+#define MAX_BUFFER_SIZE		((t_size)1024)
 
 
 
-t_char*			Date_ToString(s_date const* date, t_char const* format)
+t_char*		Date_ToString(s_date const* date, t_char const* format)
 {
 	struct tm tm;
 	t_char*	result;
@@ -26,13 +25,12 @@ t_char*			Date_ToString(s_date const* date, t_char const* format)
 	t_size	wrote;
 	t_uint	leapsec;
 
-	if (!Date_IsValid(date))
-		return (NULL);
+	HANDLE_ERROR_SF(INVALIDARGS, (!Date_IsValid(date)), return (NULL);,
+		": date given is not a valid calendar date/time")
 	tm = Date_ToSTDC(date);
 	size = String_Length(format) + 1;
 	result = String_New(size);
-	if (result == NULL)
-		return (NULL);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	leapsec = (tm.tm_sec >= TIME_MAX_SECONDS) ? (tm.tm_sec - (TIME_MAX_SECONDS - 1)) : 0;
 	tm.tm_sec -= leapsec;
 	wrote = strftime(result, size - 1, format, &tm);
@@ -41,12 +39,12 @@ t_char*			Date_ToString(s_date const* date, t_char const* format)
 		String_Delete(&result);
 		size *= 2;
 		result = String_New(size);
-		if (result == NULL)
-			return (NULL);
+		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 		wrote = strftime(result, size - 1, format, &tm);
 	}
-	if (size >= MAX_BUFFER_SIZE)
-		return (NULL);
+	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
+		": Could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
+		size, MAX_BUFFER_SIZE)
 	result[wrote] = '\0';
 /*	// TODO fix this bad heuristic correction (waiting for ISO to get their story straight concerning leap seconds)
 	if (leapsec) 
@@ -70,7 +68,9 @@ t_char*			Date_ToString(s_date const* date, t_char const* format)
 	return (result);
 }
 
-t_size			Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format)
+
+
+t_size		Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format)
 {
 	struct tm tm;
 
@@ -79,12 +79,14 @@ t_size			Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char co
 }
 
 
-inline t_char*	Date_ToString_Unix(s_date const* date)
+
+inline
+t_char*		Date_ToString_Unix(s_date const* date)
 {
 	return (Date_ToString(date, SF_DATE_UNIX" "SF_TIME_UNIX));
 }
 
-t_char*			DateNow_ToString_Unix(void)
+t_char*		DateNow_ToString_Unix(void)
 {
 	s_date date = Date_Now();
 	return (Date_ToString_Unix(&date));

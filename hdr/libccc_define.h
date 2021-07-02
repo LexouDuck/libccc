@@ -14,13 +14,13 @@
 /*! @file libccc_define.h
 **	@addtogroup libccc_define
 **	@{
-**	This header defines all the common macros/defines used to "extend" C.
+**	This header defines all the common macros used to extend the C language.
 **
 **	Important read - regarding identifiers, storage duration, alignment:
-**	@isostd{https://en.cppreference.com/w/c/language/object}
+**	@isostd{C,https://en.cppreference.com/w/c/language/object}
 **
 **	Interesting read, little known fact about C syntax and code text encodings.
-**	@isostd{https://en.cppreference.com/w/c/language/operator_alternative}
+**	@isostd{C,https://en.cppreference.com/w/c/language/operator_alternative}
 */
 
 /*
@@ -89,36 +89,64 @@ HEADER_CPP
 
 //! These are convienence macros, to check for different C standards in preprocessor `#if` statements.
 //!@{
-#define __STDC_VERSION_C90__	199409L
-#define __STDC_VERSION_C99__	199901L
-#define __STDC_VERSION_C11__	201112L
-#define __STDC_VERSION_C17__	201710L
+#define __STDC_VERSION_ANSI__	0l	//!< NOTE: when only ANSI/C89/C90 support is present, __STDC_VERSION__ will not be defined !
+#define __STDC_VERSION_C95__	199409l
+#define __STDC_VERSION_C99__	199901l
+#define __STDC_VERSION_C11__	201112l
+#define __STDC_VERSION_C17__	201710l
+#define __STDC_VERSION_C23__	(-1)	//!< TBD
 //!@}
 
 
 
-#if (defined(_WIN32) || defined(_WIN64) || defined(_MSC_VER) || defined(__SWIG__))
+//! These are convienence macros, to check for different POSIX standards in preprocessor `#if` statements.
+//!@{
+#define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
+#define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
+#define __POSIX_VERSION_1993__ 199309L	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
+#define __POSIX_VERSION_1995__ 199506L	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
+#define __POSIX_VERSION_2001__ 200112L	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
+#define __POSIX_VERSION_2008__ 200809L	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
+//!@}
+
+
+
+/*! @def __WINDOWS__
+**	Platform macro to check if the current environment is windows (regardless of compiler)
+*/
+//!@{
+#if (defined(_WIN32) || defined(_WIN64) || defined(_MSC_VER))
 #ifndef __WINDOWS__
-#define __WINDOWS__	1 //!< Platform macro to check if the current environment is windows (regardless of compiler)
+#define __WINDOWS__	1
 #endif
 #endif
+//!@}
+
+/*! @def __MSVC__
+**	Platform macro to check if the current compiler is microsoft-like
+*/
+//!@{
+#if (defined(_MSC_VER) || defined(SWIG))
+#define __MSVC__	1
+#endif
+//!@}
 
 
 
 // Check windows
-#if (defined(_WIN32) || defined(_WIN64))
+#if (__WINDOWS__)
 	#if (defined(_WIN64))
-		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
-		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
 
 // Check GCC
 #elif (__GNUC__)
 	#if (__x86_64__ || __ppc64__)
-		#define _IS_64BIT	(1)	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
 	#else
-		#define _IS_32BIT	(1)	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
 	#endif
 
 #endif
@@ -132,7 +160,7 @@ HEADER_CPP
 */
 
 /*!
-**	@isostd{https://en.cppreference.com/w/c/program}
+**	@isostd{C,https://en.cppreference.com/w/c/program}
 */
 //!@{
 // TODO wrapper function for abort()
@@ -190,7 +218,7 @@ HEADER_CPP
 
 //! This macro function expands and stringizes the given `TOKEN` argument
 /*!
-**	NB: This is useful because the stringize token operator `#` converts
+**	NB: This is useful because the stringization operator `#` converts
 **		the tokens after expanding the macro's arguments, but it happens
 **		before expanding their respective values. Here, an additional layer
 **		of macro indirection forces the expansion to occur before stringizing.
@@ -202,7 +230,7 @@ HEADER_CPP
 
 
 
-//! Works like strlen() or String_Length() but is resolved at compile time
+//! Works like `strlen()` (aka String_Length()) but is resolved at compile time
 //!@{
 #define STRING_LENGTH(X)	(sizeof(X) - sizeof(""))
 #define STRLEN(X)			STRING_LENGTH(X)
@@ -212,143 +240,147 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                  Cross-platform C99 keywords and operators                 *|
+**                         Cross-platform C keywords                          *|
 ** ************************************************************************** *|
 */
 
-#ifndef __GNUC__
-#if (defined(__NOSTD__))
+/*! @def __asm__
+**	@isostd{C89,https://en.cppreference.com/w/c/language/asm}
+*/
+//!@{
+#ifndef __asm__
+#ifdef __MSVC__
+	#define __asm__	__asm
+#elif !defined(__GNUC__)
+	#define __asm__	asm
+#endif
+#endif
+//!@}
 
-	#define __asm__			asm
-	#define __inline__		inline
-	#define __restrict__	restrict
-	#define __nameof__(x)	#x
-	#define __typeof__(x)	typeof(x)
-	#define __alignof__(x)	alignof(x)
 
-#elif (defined(_MSC_VER) || defined(__SWIG__))
 
-	#define __asm__			__asm
-	#define __inline__		__inline
+/*! @def __inline__
+**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
+*/
+//!@{
+#ifndef __inline__
+#ifdef __MSVC__
+	#define __inline__	__inline
+#elif !defined(__GNUC__)
+	#define __inline__	inline
+#endif
+#endif
+//!@}
+
+
+
+/*! @def __restrict__
+**	@isostd{C99,https://en.cppreference.com/w/c/language/restrict}
+*/
+//!@{
+#ifndef __restrict__
+#ifdef __MSVC__
 	#define __restrict__	__restrict
-	#define __nameof__(x)	#x
-	#define __typeof__(x)	decltype(x)
-	#define __alignof__(x)	_Alignof(x)
-
-#else
-
-	#define __asm__			asm
-	#define __inline__		inline
+#elif !defined(__GNUC__)
 	#define __restrict__	restrict
-	#define __nameof__(x)	nameof(x)
-	#define __typeof__(x)	typeof(x)
-	#define __alignof__(x)	alignof(x)
-
 #endif
 #endif
+//!@}
 
 
 
 /*
 ** ************************************************************************** *|
-**               Cross-platform function attribute flags macros               *|
+**                         Cross-platform C operators                         *|
 ** ************************************************************************** *|
 */
 
-#undef _FORMAT
-#undef _ALIAS
-#undef _ALIGN
-#undef _PURE
-#undef _MALLOC
-#undef _UNUSED
-#undef _INLINE
-#undef _NOINLINE
-#undef _NORETURN
-#undef _PACKED
+/*! @def __sizeof__
+**	@isostd{C89,https://en.cppreference.com/w/c/types/sizeof}
+*/
+//!@{
+#ifndef __sizeof__
+#define __sizeof__(X)	sizeof(X)
+#endif
+//!@}
 
-#if (defined(__NOSTD__))
 
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	
-	#define _ALIGN(MINIMUM)		
-	#define _PURE()				
-	#define _MALLOC()			
-	#define _UNUSED()			
-	#define _INLINE()			
-	#define _NOINLINE()			
-	#define _NORETURN()			
-	#define _PACKED()			
 
-#elif (defined(__GNUC__))
-
-	#if (defined(__MINGW32__) && !defined(__clang__))
-		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
-		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
-	#else
-		//! Before a function def: make the compiler give warnings for a variadic-args function with a format string
-		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
-	#endif
-	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))	//!< Before a function or variable def: sets the token to be an alias for the one given as arg
-	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))	//!< Before a function or variable def: sets minimum byte alignment size (power of 2)
-	#define _PURE()				__attribute__((pure))				//!< Before a function def: indicates that the function has no side-effects
-	#define _MALLOC()			__attribute__((malloc))				//!< Before a function def: indicates that it returns newly allocated ptr
-	#define _UNUSED()			__attribute__((unused))				//!< Before a function def: suppresses warnings for empty/incomplete function
-	#define _INLINE()			__attribute__((always_inline))		//!< Before a function def: makes the function be always inlined regardless of compiler config
-	#define _NOINLINE()			__attribute__((noinline))			//!< Before a function def: makes the function be always inlined regardless of compiler config
-	#define _NORETURN()			__attribute__((noreturn))			//!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
-	#define _PACKED()			__attribute__((packed))				//!< Before a struct/union def: do not perform byte-padding on this struct/union type
-
-#elif (defined(_MSC_VER) || defined(__SWIG__))
-
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
-	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
-	#define _PURE()				__declspec(noalias)
-	#define _MALLOC()			__declspec(allocator)
-	#define _UNUSED()			__declspec(deprecated)
-	#define _INLINE()			inline
-	#define _NOINLINE()			__declspec(noinline)
-	#define _NORETURN()			__declspec(noreturn)
-	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop))
-
-#elif (defined(__CC_ARM))
-
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	
-	#define _ALIGN(MINIMUM)		__align(MINIMUM)
-	#define _PURE()				__pure
-	#define _MALLOC()			
-	#define _UNUSED()			
-	#define _INLINE()			__inline
-	#define _NOINLINE()			
-	#define _NORETURN()			__declspec(noreturn)
-	#define _PACKED()			__packed
-
+/*! @def __typeof__
+**	@isostd{GNU,https://gcc.gnu.org/onlinedocs/gcc/Typeof.html}
+*/
+//!@{
+#ifndef __typeof__
+#ifdef __MSVC__
+	#define __typeof__(X)	decltype(X)
 #else
+	#define __typeof__(X)	typeof(X)
+#endif
+#endif
+//!@}
 
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	
-	#define _ALIGN(MINIMUM)		
-	#define _PURE()				
-	#define _MALLOC()			
-	#define _UNUSED()			
-	#define _INLINE()			
-	#define _NOINLINE()			
-	#define _NORETURN()			
-	#define _PACKED()			
 
+
+/*! @def __offsetof__
+**	@isostd{C89,https://en.cppreference.com/w/c/types/offsetof}
+*/
+//!@{
+#ifndef __offsetof__
+#define __offsetof__(STRUCT, MEMBER)	offsetof(STRUCT, MEMBER)
 #endif
 
+#ifndef offsetof
+#ifdef __NOSTD__
+	#define offsetof(STRUCT, MEMBER)	((size_t)((char*)&((STRUCT*)0)->MEMBER - (char*)0))
+#else
+//	#include <stddef.h>
+#endif
+#endif
+//!@}
 
 
-//! This macro is used for generic-type functions, to perform DCE on unused functions
-/*!
-**	To be more precise, this macro is used when including a generic-type file
-**	(ie: the .c files located in `hdr/libccc/monad/`), to make all generic-type
-**	functions be declared as 'static', all the while suppressing the annoying
-**	'static function never used' warning, and still perform dead code elimination (DCE).
+
+/*! @def __alignof__
+**	@isostd{C11,https://en.cppreference.com/w/c/language/_Alignof}
 */
-#define _GENERIC()	
+//!@{
+#ifndef __alignof__
+#ifdef __NOSTD__
+	#define __alignof__(X)	_Alignof(X)
+#elif (defined(__STDC_VERSION__) && __STDC_VERSION__ >= __STDC_VERSION_C11__)
+	#define __alignof__(X)	_Alignof(X)
+#elif defined(alignof)
+	#define __alignof__(X)	alignof(X)
+#elif (!defined(__MSVC__))
+	#include <stdalign.h>
+	#define __alignof__(X)	alignof(X)
+#else
+	#define __alignof__(X)	
+#endif
+#endif
+//!@}
+
+
+
+/*! @def __alignas__
+**	@isostd{C11,https://en.cppreference.com/w/c/language/_Alignas}
+*/
+//!@{
+#ifndef __alignas__
+#ifdef __NOSTD__
+	#define __alignas__(X)	_Alignas(X)
+#elif (defined(__STDC_VERSION__) && __STDC_VERSION__ >= __STDC_VERSION_C11__)
+	#define __alignas__(X)	_Alignas(X)
+#elif defined(alignas)
+	#define __alignas__(X)	alignas(X)
+#elif (!defined(__MSVC__))
+	#include <stdalign.h>
+	#define __alignas__(X)	alignas(X)
+#else
+	#define __alignas__(X)	
+#endif
+#endif
+//!@}
 
 
 
@@ -375,6 +407,98 @@ HEADER_CPP
 		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
 		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE),	\
 		foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE))	\
+
+
+
+/*
+** ************************************************************************** *|
+**               Cross-platform function attribute flags macros               *|
+** ************************************************************************** *|
+*/
+
+//! This macro is used for generic-type functions, to perform dead code elimination on unused functions
+/*!
+**	To be more precise, this macro is used when including a generic-type file
+**	(ie: the files located in `hdr/libccc/monad/` with the file extension `.c`),
+**	to make all generic-type functions be declared as `static` (so they are local to a unit),
+**	all the while suppressing the annoying "static function never used" warnings,
+**	and still have the compiler/linker perform dead code elimination as appropriate.
+*/
+#define _GENERIC()	
+
+
+
+#undef _FORMAT   //!< @def _FORMAT   Before a function def: make the compiler give warnings for a variadic-args function with a format string
+#undef _ALIAS    //!< @def _ALIAS    Before a function or variable def: sets the token to be an alias for the one given as arg
+#undef _ALIGN    //!< @def _ALIGN    Before a function or variable def: sets minimum byte alignment size (power of 2)
+#undef _PURE     //!< @def _PURE     Before a function def: indicates that the function has no side-effects
+#undef _MALLOC   //!< @def _MALLOC   Before a function def: indicates that it returns newly allocated ptr
+#undef _UNUSED   //!< @def _UNUSED   Before a function def: suppresses warnings for empty/incomplete function
+#undef _INLINE   //!< @def _INLINE   Before a function def: makes the function be always inlined regardless of compiler config
+#undef _NOINLINE //!< @def _NOINLINE Before a function def: makes the function be always inlined regardless of compiler config
+#undef _NORETURN //!< @def _NORETURN Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
+#undef _PACKED   //!< @def _PACKED   Before a struct/union def: do not perform byte-padding on this struct/union type
+//#undef _EXPORT   //!< @def _EXPORT   Before a function def: always export the symbol (regardless of static/dynamic linking)
+
+
+
+#ifdef __NOSTD__
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		
+	#define _PURE()				
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			
+	#define _NOINLINE()			
+	#define _NORETURN()			
+	#define _PACKED()			
+
+#elif defined(__GNUC__)
+
+	#if (defined(__MINGW32__) && !defined(__clang__))
+		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
+	#else
+		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(FUNCTION, POS_FORMAT, POS_VARARGS)))
+	#endif
+	#define _ALIAS(FUNCTION)	__attribute__((alias(#FUNCTION)))
+	#define _ALIGN(MINIMUM)		__attribute__((aligned(MINIMUM)))
+	#define _PURE()				__attribute__((pure))
+	#define _MALLOC()			__attribute__((malloc))
+	#define _UNUSED()			__attribute__((unused))
+	#define _INLINE()			__attribute__((always_inline))
+	#define _NOINLINE()			__attribute__((noinline))
+	#define _NORETURN()			__attribute__((noreturn))
+	#define _PACKED()			__attribute__((packed))
+
+#elif defined(__MSVC__)
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
+	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
+	#define _PURE()				__declspec(noalias)
+	#define _MALLOC()			__declspec(allocator)
+	#define _UNUSED()			__declspec(deprecated)
+	#define _INLINE()			inline
+	#define _NOINLINE()			__declspec(noinline)
+	#define _NORETURN()			__declspec(noreturn)
+	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop)) // TODO find a way to make this work in pure C ?
+
+#else
+
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
+	#define _ALIAS(FUNCTION)	
+	#define _ALIGN(MINIMUM)		
+	#define _PURE()				
+	#define _MALLOC()			
+	#define _UNUSED()			
+	#define _INLINE()			
+	#define _NOINLINE()			
+	#define _NORETURN()			
+	#define _PACKED()			
+
+#endif
 
 
 

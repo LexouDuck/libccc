@@ -37,7 +37,8 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
 
 HEADER_CPP
 

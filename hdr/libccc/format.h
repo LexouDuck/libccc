@@ -15,6 +15,8 @@
 ** @{
 **	This header defines printf-style functions, and their format specifiers
 **
+**	@isostd{C,https://en.cppreference.com/w/c/variadic}
+**
 **	@file
 */
 
@@ -85,43 +87,43 @@ HEADER_CPP
 	#define SF_U64		"%lu"
 	#define SF_HEX_U64	"%#lX"
 #endif
-#define SF_S128		"%lli"
-#define SF_U128		"%llu"
-#define SF_HEX_U128	"%#llX"
+#define SF_S128		"[128-bit signed int]"		// TODO find a way to make this work
+#define SF_U128		"[128-bit unsigned int]"	// TODO find a way to make this work
+#define SF_HEX_U128	"[128-bit unsigned int]"	// TODO find a way to make this work
 
-#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_BITS_SINT)
-#define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_BITS_UINT)
-#define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_BITS_UINT)
+#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_SINT_BITS)
+#define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_UINT_BITS)
+#define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_UINT_BITS)
 //!@}
 
 //! @see libccc/fixed.h
 //!@{
 #define SF_Q16		"%0.8i"
 #define SF_Q32		"%0.8i"
-#define SF_Q64		"%0.8i"
-#define SF_Q128		"%0.8i"
+#define SF_Q64		"%0.8li"
+#define SF_Q128		"%0.8lli"
 #define SF_HEX_Q16	"%#0.8X"
 #define SF_HEX_Q32	"%#0.8X"
-#define SF_HEX_Q64	"%#0.8X"
-#define SF_HEX_Q128	"%#0.8X"
+#define SF_HEX_Q64	"%#0.8lX"
+#define SF_HEX_Q128	"%#0.8llX"
 
-#define SF_FIXED		"%0.8i"
-#define SF_HEX_FIXED	"%#0.8X"
+#define SF_FIXED		CONCAT(SF_Q,	 LIBCONFIG_FIXED_BITS)
+#define SF_HEX_FIXED	CONCAT(SF_HEX_Q, LIBCONFIG_FIXED_BITS)
 //!@}
 
 //! @see libccc/float.h
 //!@{
 #define SF_F32		"%#g"
 #define SF_F64		"%#g"
-#define SF_F80		"%#g"
-#define SF_F128		"%#g"
+#define SF_F80		"%#Lg"
+#define SF_F128		"%#Lg"
 #define SF_HEX_F32	"%#a"
 #define SF_HEX_F64	"%#a"
-#define SF_HEX_F80	"%#a"
-#define SF_HEX_F128	"%#a"
+#define SF_HEX_F80	"%#La"
+#define SF_HEX_F128	"%#La"
 
-#define SF_FLOAT		"%#g"
-#define SF_HEX_FLOAT	"%#g"
+#define SF_FLOAT		CONCAT(SF_F,	 LIBCONFIG_FLOAT_BITS)
+#define SF_HEX_FLOAT	CONCAT(SF_HEX_F, LIBCONFIG_FLOAT_BITS)
 //!@}
 
 //! @see libccc/pointer.h
@@ -185,7 +187,7 @@ HEADER_CPP
 
 //! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/variadic}
+**	@isostd{BSD,https://linux.die.net/man/3/asprintf}
 **
 **	Constructs a new null-terminated string, which is generated from the given `format` string,
 **	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.
@@ -258,6 +260,9 @@ HEADER_CPP
 **	|  "L"	|				|						| long double	|		|			|		|				|
 **	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
 **	```
+**
+**	@returns
+**	A newly allocated string, constructed from the given `format` string and arguments
 */
 _FORMAT(printf, 1, 2)
 _MALLOC()
@@ -279,10 +284,16 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 
 //! Constructs a string from the given `format` string and multiple args, writing at most `max` chars into `dest` (equivalent to `snprintf()`)
 /*!
-**	@param	dest	The destination buffer, in which to write the resulting string (if `NULL`, does not write anything and simply returns the length)
-**	@param	max		The maximum amount of characters to write to `dest`, including the '\0' null terminator
-**	@param	format	The format string used to construct the resulting date string: learn more here https://www.cplusplus.com/reference/cstdio/printf/
-**	@returns the amount of characters in the constructed format string, regardless of `max` size
+**	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
+**
+**	@param	dest	The destination buffer, in which to write the resulting string
+**					NOTE: if `NULL`, does not write anything and simply returns the length
+**	@param	max		The maximum amount of characters to write to `dest`,
+**					including the `'\0'` null terminator
+**	@param	format	The format string used to construct the resulting date string.
+**					You can learn more here: https://www.cplusplus.com/reference/cstdio/printf/
+**	@returns
+**	The amount of characters in the constructed format string, regardless of `max` size
 */
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
@@ -313,8 +324,9 @@ _FORMAT(printf, 1, 2)
 int						IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
-
 */
+
+
 
 /*! @} */
 HEADER_END

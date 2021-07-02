@@ -25,7 +25,9 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#include "libccc/float.h"
 #include "libccc/math/float.h"
 
 HEADER_CPP
@@ -33,12 +35,6 @@ HEADER_CPP
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
-** ************************************************************************** *|
-*/
-
-/*
-** ************************************************************************** *|
-**                        2-dimensional Vector Operations                     *|
 ** ************************************************************************** *|
 */
 
@@ -59,6 +55,51 @@ typedef	union vector2d
 TYPEDEF_ALIAS(	u_vector2d, VECTOR_2D, UNION)
 
 
+
+//! A simple vector struct for storing 3-dimensional values
+typedef struct vec3d
+{
+	t_float		x;			//!< The X axis coordinate of this vector
+	t_float		y;			//!< The Y axis coordinate of this vector
+	t_float		z;			//!< The Z axis coordinate of this vector
+}				s_vector3d;
+TYPEDEF_ALIAS(	s_vector3d, VECTOR_3D, STRUCT)
+
+//! This union stores a 3-dimensional value which can be accessed in several ways
+typedef	union vector3d
+{
+	t_float		values[3];	//!< An array, to access the 3 values from within brackets
+	s_vector3d	vector;		//!< A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
+}				u_vector3d;
+TYPEDEF_ALIAS(	u_vector3d, VECTOR_3D, UNION)
+
+
+
+//! A simple vector struct for storing 4-dimensional values
+typedef struct vec4d
+{
+	t_float		x;			//!<< The X axis coordinate of this vector
+	t_float		y;			//!<< The Y axis coordinate of this vector
+	t_float		z;			//!<< The Z axis coordinate of this vector
+	t_float		t;			//!<< The T axis coordinate of this vector
+}				s_vector4d;
+TYPEDEF_ALIAS(	s_vector4d, VECTOR_4D, STRUCT)
+
+//! This union stores a 4-dimensional value which can be accessed in several ways
+typedef	union vector4d
+{
+	t_float		values[4];	//!< An array, to access the 4 values from within brackets
+	s_vector4d	vector;		//!< A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
+}				u_vector4d;
+TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
+
+
+
+/*
+** ************************************************************************** *|
+**                        2-dimensional Vector Operations                     *|
+** ************************************************************************** *|
+*/
 
 //! Returns a vector struct, with the given coordinates
 s_vector2d				Vector2D(t_float x, t_float y);
@@ -113,25 +154,6 @@ t_float							Vector2D_Dot(s_vector2d const* v1, s_vector2d const* v2);
 **                        3-dimensional Vector Operations                     *|
 ** ************************************************************************** *|
 */
-
-//! A simple vector struct for storing 3-dimensional values
-typedef struct vec3d
-{
-	t_float		x;			//!< The X axis coordinate of this vector
-	t_float		y;			//!< The Y axis coordinate of this vector
-	t_float		z;			//!< The Z axis coordinate of this vector
-}				s_vector3d;
-TYPEDEF_ALIAS(	s_vector3d, VECTOR_3D, STRUCT)
-
-//! This union stores a 3-dimensional value which can be accessed in several ways
-typedef	union vector3d
-{
-	t_float		values[3];	//!< An array, to access the 3 values from within brackets
-	s_vector3d	vector;		//!< A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
-}				u_vector3d;
-TYPEDEF_ALIAS(	u_vector3d, VECTOR_3D, UNION)
-
-
 
 //! Returns a vector struct, with the given coordinates
 s_vector3d			Vector3D(t_float x, t_float y, t_float z);
@@ -193,26 +215,6 @@ s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
 **                        4-dimensional Vector Operations                     *|
 ** ************************************************************************** *|
 */
-
-//! A simple vector struct for storing 4-dimensional values
-typedef struct vec4d
-{
-	t_float		x;			//!<< The X axis coordinate of this vector
-	t_float		y;			//!<< The Y axis coordinate of this vector
-	t_float		z;			//!<< The Z axis coordinate of this vector
-	t_float		t;			//!<< The T axis coordinate of this vector
-}				s_vector4d;
-TYPEDEF_ALIAS(	s_vector4d, VECTOR_4D, STRUCT)
-
-//! This union stores a 4-dimensional value which can be accessed in several ways
-typedef	union vector4d
-{
-	t_float		values[4];	//!< An array, to access the 4 values from within brackets
-	s_vector4d	vector;		//!< A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
-}				u_vector4d;
-TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
-
-
 
 // TODO define and implement 4D vector operations
 

@@ -1,11 +1,13 @@
 
+#include "libccc.h"
 #include "libccc/bool.h"
+#include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/math/math.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -28,9 +30,70 @@ t_char*	Float_ToString_CheckSpecial(t_f32 number)
 
 
 
-#if LIBCONFIG_USE_FAST_APPROX_MATH
+#if LIBCONFIG_USE_STD_MATH
 
-#define DEFINEFUNC_FLOAT_TO_STR(BITS) \
+	#define DEFINEFUNC_FLOAT_TOSTR_ANY_(BITS, FORMAT) \
+	t_char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
+	{																		\
+		t_char*	result = Float_ToString_CheckSpecial(number);				\
+		if (result)															\
+			return (result);												\
+		if ((number >=  FLOAT_THRESHOLD_HUGE) ||							\
+			(number <= -FLOAT_THRESHOLD_HUGE) ||							\
+			(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||				\
+			(number < 0 && number >= -FLOAT_THRESHOLD_TINY))				\
+			return (String_Format(FORMAT"e", precision, number));			\
+		else																\
+			return (String_Format(FORMAT"f", precision, number));			\
+		return (NULL);														\
+	}																		\
+
+	#define DEFINEFUNC_FLOAT_TOSTR(SUFFIX, BITS, FORMAT) \
+	t_char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
+	{																		\
+		t_char*	result = Float_ToString_CheckSpecial(number);				\
+		if (result)															\
+			return (result);												\
+		return (String_Format(FORMAT, precision, number));					\
+	}																		\
+
+
+
+	DEFINEFUNC_FLOAT_TOSTR_ANY_(32,  "%.*")
+	DEFINEFUNC_FLOAT_TOSTR(_Exp,32, "%#.*e")
+	DEFINEFUNC_FLOAT_TOSTR(_Dec,32, "%#.*f")
+	DEFINEFUNC_FLOAT_TOSTR(_Hex,32, "%#.*a")
+	DEFINEFUNC_FLOAT_TOSTR(_Bin,32, "%#.*a") // TODO
+
+	DEFINEFUNC_FLOAT_TOSTR_ANY_(64,  "%.*l")
+	DEFINEFUNC_FLOAT_TOSTR(_Exp,64, "%#.*le")
+	DEFINEFUNC_FLOAT_TOSTR(_Dec,64, "%#.*lf")
+	DEFINEFUNC_FLOAT_TOSTR(_Hex,64, "%#.*la")
+	DEFINEFUNC_FLOAT_TOSTR(_Bin,64, "%#.*a") // TODO
+
+	#ifdef	__float80
+	DEFINEFUNC_FLOAT_TOSTR_ANY_(80,  "%.*L")
+	DEFINEFUNC_FLOAT_TOSTR(_Exp,80, "%#.*Le")
+	DEFINEFUNC_FLOAT_TOSTR(_Dec,80, "%#.*Lf")
+	DEFINEFUNC_FLOAT_TOSTR(_Hex,80, "%#.*La")
+	DEFINEFUNC_FLOAT_TOSTR(_Bin,80, "%#.*La") // TODO
+	#endif
+
+	#ifdef	__float128
+	DEFINEFUNC_FLOAT_TOSTR_ANY_(128,  "%.*L")
+	DEFINEFUNC_FLOAT_TOSTR(_Exp,128, "%#.*Le")
+	DEFINEFUNC_FLOAT_TOSTR(_Dec,128, "%#.*Lf")
+	DEFINEFUNC_FLOAT_TOSTR(_Hex,128, "%#.*La")
+	DEFINEFUNC_FLOAT_TOSTR(_Bin,128, "%#.*La") // TODO
+	#endif
+
+
+
+#else
+
+
+
+#define DEFINEFUNC_FLOAT_TOSTR(BITS) \
 t_char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 {																	\
 	if ((number >=  FLOAT_THRESHOLD_HUGE) ||						\
@@ -45,7 +108,7 @@ t_char*		F##BITS##_ToString(t_f##BITS number, t_u8 precision)	\
 
 
 
-#define DEFINEFUNC_FLOAT_TO_STREXP(BITS) \
+#define DEFINEFUNC_FLOAT_TOSTREXP(BITS) \
 t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 {																			\
 	t_char*	result = NULL;													\
@@ -82,7 +145,7 @@ failure:																	\
 
 
 
-#define DEFINEFUNC_FLOAT_TO_STRDEC(BITS) \
+#define DEFINEFUNC_FLOAT_TOSTRDEC(BITS) \
 static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 {																			\
 	t_char*	result = NULL;													\
@@ -117,105 +180,46 @@ static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 
 
 // TODO Float_ToString_Hex()
-#define DEFINEFUNC_FLOAT_TO_STRHEX(BITS) \
+#define DEFINEFUNC_FLOAT_TOSTRHEX(BITS) \
 static t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision)	\
 { return (IS_NAN(number) ? NAN : precision); }
 
 
 
 // TODO Float_ToString_Bin()
-#define DEFINEFUNC_FLOAT_TO_STRBIN(BITS) \
+#define DEFINEFUNC_FLOAT_TOSTRBIN(BITS) \
 static t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision)	\
 { return (IS_NAN(number) ? NAN : precision); }
 
 
 
-DEFINEFUNC_FLOAT_TO_STR(   32)
-DEFINEFUNC_FLOAT_TO_STREXP(32)
-DEFINEFUNC_FLOAT_TO_STRDEC(32)
-DEFINEFUNC_FLOAT_TO_STRHEX(32)
-DEFINEFUNC_FLOAT_TO_STRBIN(32)
+DEFINEFUNC_FLOAT_TOSTR(   32)
+DEFINEFUNC_FLOAT_TOSTREXP(32)
+DEFINEFUNC_FLOAT_TOSTRDEC(32)
+DEFINEFUNC_FLOAT_TOSTRHEX(32)
+DEFINEFUNC_FLOAT_TOSTRBIN(32)
 
-DEFINEFUNC_FLOAT_TO_STR(   64)
-DEFINEFUNC_FLOAT_TO_STREXP(64)
-DEFINEFUNC_FLOAT_TO_STRDEC(64)
-DEFINEFUNC_FLOAT_TO_STRHEX(64)
-DEFINEFUNC_FLOAT_TO_STRBIN(64)
+DEFINEFUNC_FLOAT_TOSTR(   64)
+DEFINEFUNC_FLOAT_TOSTREXP(64)
+DEFINEFUNC_FLOAT_TOSTRDEC(64)
+DEFINEFUNC_FLOAT_TOSTRHEX(64)
+DEFINEFUNC_FLOAT_TOSTRBIN(64)
 
 #ifdef	__float80
-DEFINEFUNC_FLOAT_TO_STR(   80)
-DEFINEFUNC_FLOAT_TO_STREXP(80)
-DEFINEFUNC_FLOAT_TO_STRDEC(80)
-DEFINEFUNC_FLOAT_TO_STRHEX(80)
-DEFINEFUNC_FLOAT_TO_STRBIN(80)
+DEFINEFUNC_FLOAT_TOSTR(   80)
+DEFINEFUNC_FLOAT_TOSTREXP(80)
+DEFINEFUNC_FLOAT_TOSTRDEC(80)
+DEFINEFUNC_FLOAT_TOSTRHEX(80)
+DEFINEFUNC_FLOAT_TOSTRBIN(80)
 #endif
 
 #ifdef	__float128
-DEFINEFUNC_FLOAT_TO_STR(   128)
-DEFINEFUNC_FLOAT_TO_STREXP(128)
-DEFINEFUNC_FLOAT_TO_STRDEC(128)
-DEFINEFUNC_FLOAT_TO_STRHEX(128)
-DEFINEFUNC_FLOAT_TO_STRBIN(128)
+DEFINEFUNC_FLOAT_TOSTR(   128)
+DEFINEFUNC_FLOAT_TOSTREXP(128)
+DEFINEFUNC_FLOAT_TOSTRDEC(128)
+DEFINEFUNC_FLOAT_TOSTRHEX(128)
+DEFINEFUNC_FLOAT_TOSTRBIN(128)
 #endif
-
-
-
-#else
-
-	#define DEFINEFUNC_FLOAT_TO_STR_ANY_(BITS, FORMAT) \
-	t_char*	F##BITS##_ToString(t_f##BITS number, t_u8 precision)			\
-	{																		\
-		t_char*	result = Float_ToString_CheckSpecial(number);				\
-		if (result)															\
-			return (result);												\
-		if ((number >=  FLOAT_THRESHOLD_HUGE) ||							\
-			(number <= -FLOAT_THRESHOLD_HUGE) ||							\
-			(number > 0 && number <=  FLOAT_THRESHOLD_TINY) ||				\
-			(number < 0 && number >= -FLOAT_THRESHOLD_TINY))				\
-			return (String_Format(FORMAT"e", precision, number));			\
-		else																\
-			return (String_Format(FORMAT"f", precision, number));			\
-		return (NULL);														\
-	}																		\
-
-	#define DEFINEFUNC_FLOAT_TO_STR(SUFFIX, BITS, FORMAT) \
-	t_char*	F##BITS##_ToString##SUFFIX(t_f##BITS number, t_u8 precision)	\
-	{																		\
-		t_char*	result = Float_ToString_CheckSpecial(number);				\
-		if (result)															\
-			return (result);												\
-		return (String_Format(FORMAT, precision, number));					\
-	}																		\
-
-
-
-	DEFINEFUNC_FLOAT_TO_STR_ANY_(32,  "%.*")
-	DEFINEFUNC_FLOAT_TO_STR(_Exp,32, "%#.*e")
-	DEFINEFUNC_FLOAT_TO_STR(_Dec,32, "%#.*f")
-	DEFINEFUNC_FLOAT_TO_STR(_Hex,32, "%#.*a")
-	DEFINEFUNC_FLOAT_TO_STR(_Bin,32, "%#.*a") // TODO
-
-	DEFINEFUNC_FLOAT_TO_STR_ANY_(64,  "%.*l")
-	DEFINEFUNC_FLOAT_TO_STR(_Exp,64, "%#.*le")
-	DEFINEFUNC_FLOAT_TO_STR(_Dec,64, "%#.*lf")
-	DEFINEFUNC_FLOAT_TO_STR(_Hex,64, "%#.*la")
-	DEFINEFUNC_FLOAT_TO_STR(_Bin,64, "%#.*a") // TODO
-
-	#ifdef	__float80
-	DEFINEFUNC_FLOAT_TO_STR_ANY_(80,  "%.*ll")
-	DEFINEFUNC_FLOAT_TO_STR(_Exp,80, "%#.*lle")
-	DEFINEFUNC_FLOAT_TO_STR(_Dec,80, "%#.*llf")
-	DEFINEFUNC_FLOAT_TO_STR(_Hex,80, "%#.*lla")
-	DEFINEFUNC_FLOAT_TO_STR(_Bin,80, "%#.*a") // TODO
-	#endif
-
-	#ifdef	__float128
-	DEFINEFUNC_FLOAT_TO_STR_ANY_(128,  "%.*ll")
-	DEFINEFUNC_FLOAT_TO_STR(_Exp,128, "%#.*lle")
-	DEFINEFUNC_FLOAT_TO_STR(_Dec,128, "%#.*llf")
-	DEFINEFUNC_FLOAT_TO_STR(_Hex,128, "%#.*lla")
-	DEFINEFUNC_FLOAT_TO_STR(_Bin,128, "%#.*a") // TODO
-	#endif
 
 
 

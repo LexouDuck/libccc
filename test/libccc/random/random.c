@@ -1,16 +1,20 @@
 
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
+#define T			t_sint
+#define T_NAME		_int
+#define T_DEFAULT	0
+#include "libccc/monad/array.c"
 
 #include "test.h"
 
 
 
-s_sortedlist_int	print_test_random(int samples)
+s_sorted_int	print_test_random(int samples)
 {
-	s_sortedlist_int	result;
-	s_list_int			ilst;
-	t_rand*				rng;
+	s_sorted_int	result;
+	s_array_int		values;
+	t_rand*			rng;
 
 	rng = Random_New();
 
@@ -18,33 +22,33 @@ s_sortedlist_int	print_test_random(int samples)
 	{
 		printf("Statistic repartition test of RNG (sample size: %d)\n", samples);
 	}
-	ilst = c_stat_new_ilst(samples);
+	values = c_stat_new_ilst(samples);
 
-	for (t_uint i = 0; i < ilst.length; ++i)
+	for (t_uint i = 0; i < values.length; ++i)
 	{
-		ilst.data[i] = Random_SInt_Range(rng, -500, 501);
+		values.items[i] = Random_SInt_Range(rng, -500, 501);
 	}
 
 /*	static t_sint arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
-	for (int i = 0; i < ilst.length; ++i)
-		ilst.data[i] = arr[i];
+	for (int i = 0; i < values.length; ++i)
+		values.items[i] = arr[i];
 
-	for (int i = 0; i < ilst.length; ++i)
-		printf("%d, ", ilst.data[i]);
+	for (int i = 0; i < values.length; ++i)
+		printf("%d, ", values.items[i]);
 	printf("\n");
 */
 	if (g_test.flags.verbose)
-		printf("Quicksorting... ");
-	result = c_stat_quicksort_i_new(ilst);
+		printf("Quicksorting...");
+	result = c_stat_quicksort_i_new(values);
 	if (g_test.flags.verbose)
 		printf("Done !\n");
 /*
 	for (int i = 0; i < result.length - 1; ++i)
 	{
-		if (result.data[i] > result.data[i + 1])
+		if (result.items[i] > result.items[i + 1])
 			printf(C_RED"Sorting error at index %d\n"C_RESET, i);
 	}
-	c_stat_free_ilst(&ilst);
+	c_stat_free_ilst(&values);
 */
 	Random_Delete(&rng);
 	return (result);
@@ -60,11 +64,14 @@ s_sortedlist_int	print_test_random(int samples)
 
 int		testsuite_math_random(void)
 {
+	static const int	samples = 20000;
+	s_sorted_int	values_sorted;
+
 	print_suite_title("libccc/math/random");
 
-	static const int	samples = 20000;
-	s_sortedlist_int	ilst_sorted = print_test_random(samples);
+	values_sorted = print_test_random(samples);
 
-	c_stat_free_ilst(&ilst_sorted);
+	c_stat_free_ilst(&values_sorted);
+
 	return (OK);
 }

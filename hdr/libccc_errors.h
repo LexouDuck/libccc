@@ -38,30 +38,19 @@ HEADER_CPP
 **	These macro functions determine how exception cases are to be handled by libccc.
 **	You may change the logic here (to implement custom exception handling for example).
 */
-#ifndef LIBCONFIG_HANDLE_ERROR
-	#ifdef DEBUG
-		#define LIBCONFIG_HANDLE_ERROR(...) \
-		{									\
-			IO_Output_Format(__VA_ARGS__);	\
-		}
-	#else
-		#define LIBCONFIG_HANDLE_ERROR(...) \
-		
-	#endif
+//!@{
+#ifdef DEBUG
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
+	{														\
+		IO_Output_Format(C_RED"ERROR"C_RESET"[%s]: %s\n",	\
+			Error_GetName(ERRORCODE), MESSAGE);				\
+	}														\
+
+#else
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
+	
 #endif
-
-//! The action to take when there is an integer overflow (by default, let it continue)
-#ifndef LIBCONFIG_HANDLE_OVERFLOW
-#define LIBCONFIG_HANDLE_OVERFLOW \
-	// return (0);
-#endif
-
-
-
-//! The file to include in source files which use `HANDLE_ERROR()`
-#ifndef LIBCONFIG_HANDLE_INCLUDE
-#define LIBCONFIG_HANDLE_INCLUDE	"libccc/error.h"
-#endif
+//!@}
 
 
 
@@ -71,8 +60,14 @@ HEADER_CPP
 */
 //!@{
 #define HANDLE_ERRORS_UNSPECIFIED  1
+
 #define HANDLE_ERRORS_SYSTEM       1
 #define HANDLE_ERRORS_ALLOCFAILURE 1
+
+#define HANDLE_ERRORS_PARSE        1
+#define HANDLE_ERRORS_PRINT        1
+#define HANDLE_ERRORS_NOTFOUND     1
+
 #define HANDLE_ERRORS_INVALIDARGS  1
 #define HANDLE_ERRORS_NULLPOINTER  1
 #define HANDLE_ERRORS_MATHDOMAIN   1
@@ -88,35 +83,13 @@ HEADER_CPP
 #define HANDLE_ERRORS_KEYNOTFOUND  1
 #define HANDLE_ERRORS_WRONGTYPE    1
 #define HANDLE_ERRORS_DELETEREF    1
-#define HANDLE_ERRORS_PARSE        1
-#define HANDLE_ERRORS_PRINT        1
 //!@}
 
 
 
 //! Comment out this `#define` to deactivate all error handling (not recommended)
-#define HANDLE_ERRORS
-#ifndef HANDLE_ERRORS
-#define HANDLE_ERROR(	ERRORTYPE, CONDITION, ACTION) 
-#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) 
-
-
-
-#else
-//! The behavior to handle an error case
-#define HANDLE_ERROR_INITIAL(ERRORTYPE, CONDITION) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		if (HANDLE_ERRORS_##ERRORTYPE)							\
-		{														\
-			LIBCONFIG_HANDLE_ERROR(								\
-				C_RED"ERROR"C_RESET": %s -> %s\n", __func__,	\
-				Error_GetMessage(ERROR_##ERRORTYPE))			\
-		}														\
-
-#define HANDLE_ERROR_FINAL() \
-	}															\
+#define HANDLE_ERRORS	1
+#ifdef	HANDLE_ERRORS
 
 /*!
 **	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
@@ -124,29 +97,20 @@ HEADER_CPP
 **	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
 **			A variadic argument is used here to allow use of the comma operator.
 */
+//!@{
 #define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
-		HANDLE_ERROR_INITIAL(ERRORTYPE, CONDITION)				\
-		ACTION													\
-		HANDLE_ERROR_FINAL()									\
+	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)							\
+	ACTION																\
+	HANDLE_ERROR_FINAL()												\
 
-
-
-#define HANDLE_ERROR_SF_INITIAL(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)													\
-	{																\
-		Error_Set(ERROR_##ERRORTYPE);								\
-		if (HANDLE_ERRORS_##ERRORTYPE)								\
-		{															\
-			t_char* tmp_##ERRORTYPE = String_Format(__VA_ARGS__);	\
-			LIBCONFIG_HANDLE_ERROR(									\
-				C_RED"ERROR"C_RESET": %s -> %s\n%s\n", __func__,	\
-				Error_GetMessage(ERROR_##ERRORTYPE),				\
-				tmp_##ERRORTYPE)									\
-			String_Delete(&tmp_##ERRORTYPE);						\
-		}															\
-
-#define HANDLE_ERROR_SF_FINAL() \
-	}																\
+#define HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION) \
+	if (CONDITION)														\
+	{																	\
+		Error_Set(ERROR_##ERRORTYPE);									\
+		if (HANDLE_ERRORS_##ERRORTYPE)									\
+		{																\
+			Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);			\
+		}																\
 
 //! The behavior to handle an error case, with a custom message
 /*!
@@ -156,9 +120,34 @@ HEADER_CPP
 **	@param ...			The custom error message (format string and args, like `printf()`)
 */
 #define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
-	HANDLE_ERROR_SF_INITIAL(ERRORTYPE, CONDITION, __VA_ARGS__)		\
-	ACTION															\
-	HANDLE_ERROR_SF_FINAL()											\
+	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)			\
+	ACTION																\
+	HANDLE_ERROR_FINAL()												\
+
+#define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) \
+	if (CONDITION)														\
+	{																	\
+		Error_Set(ERROR_##ERRORTYPE);									\
+		if (HANDLE_ERRORS_##ERRORTYPE)									\
+		{																\
+			Error_Handle(ERROR_##ERRORTYPE, __func__,					\
+				String_Format(__VA_ARGS__));							\
+		}																\
+
+
+
+#define HANDLE_ERROR_FINAL() \
+	}																	\
+
+//!@}
+
+#else
+
+#define HANDLE_ERROR(			ERRORTYPE, CONDITION, ACTION) 
+#define HANDLE_ERROR_BEGIN(		ERRORTYPE, CONDITION) 
+#define HANDLE_ERROR_SF(		ERRORTYPE, CONDITION, ACTION, ...) 
+#define HANDLE_ERROR_BEGIN_SF(	ERRORTYPE, CONDITION, ...) 
+#define HANDLE_ERROR_FINAL() 
 
 #endif
 
@@ -172,8 +161,8 @@ HEADER_CPP
 
 //! This type represents an error code for a libccc function (ie: a value for the 'errno' global variable)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/error/errno}
-**	@isostd{https://en.cppreference.com/w/c/error/errno_macros}
+**	@isostd{C89,https://en.cppreference.com/w/c/error/errno}
+**	@isostd{C89,https://en.cppreference.com/w/c/error/errno_macros}
 **
 **	The `e_cccerror` error code enum used is meant to not be platform-specific, unlike `errno`.
 **
@@ -185,13 +174,17 @@ HEADER_CPP
 **	-	`ERANGE` (`ERROR_INVALIDARG_RESULTRANGE`)   Result too large
 **	-	`EILSEQ` (`ERROR_INVALIDARG_ILLEGALBYTES`)  Illegal byte sequence (C95)
 */
-typedef enum stderror
+typedef enum cccerror
 {
 	ERROR_UNSPECIFIED = ERROR, //!< Unspecified error
 	ERROR_NONE        = OK,    //!< No error
 
 	ERROR_SYSTEM,       //!< System Error: `strerror(errno)` message
 	ERROR_ALLOCFAILURE, //!< System Error: Memory allocation failure
+
+	ERROR_PARSE,        //!< Error while attempting to parse string
+	ERROR_PRINT,        //!< Error while attempting to print string
+	ERROR_NOTFOUND,     //!< Error: could not find value
 
 	ERROR_INVALIDARGS,  //!< Argument Error
 	ERROR_NULLPOINTER,  //!< Argument Error: null pointer received
@@ -209,12 +202,9 @@ typedef enum stderror
 	ERROR_WRONGTYPE,    //!< Argument Error: attempted to read dynamic-type item using the wrong type
 	ERROR_DELETEREF,    //!< Argument Error: attempted to free an area of constant memory
 
-	ERROR_PARSE,        //!< Error while attempting to parse string
-	ERROR_PRINT,        //!< Error while attempting to print string
-
 //	ERROR_,
 
-	ENUMLENGTH_STDERROR,
+	ENUMLENGTH_CCCERROR,
 }		e_cccerror;
 
 /*

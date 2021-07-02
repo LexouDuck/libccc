@@ -3,7 +3,7 @@
 #undef _GENERIC
 #if (defined(__GNUC__) || defined(__llvm__))
 	#define _GENERIC()		__attribute__((unused))	static
-#elif (defined(_MSC_VER) || defined(__SWIG__))
+#elif defined(__MSVC__)
 	#pragma warning(push)
 	#pragma warning(disable : 4505)
 	#define _GENERIC()		static
@@ -17,6 +17,7 @@
 
 // generate code for all generic functions
 #include "libccc/../../src/monad/array/new.c"
+#include "libccc/../../src/monad/array/create.c"
 #include "libccc/../../src/monad/array/delete.c"
 #include "libccc/../../src/monad/array/duplicate.c"
 #include "libccc/../../src/monad/array/get.c"
@@ -53,7 +54,7 @@
 #undef _GENERIC
 #if (defined(__GNUC__) || defined(__llvm__))
 	#define _GENERIC()	
-#elif (defined(_MSC_VER) || defined(__SWIG__))
+#elif defined(__MSVC__)
 	#pragma warning(pop)
 	#define _GENERIC()	
 #else

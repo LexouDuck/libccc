@@ -1,7 +1,8 @@
 
+#include <stddef.h>
+#include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include <stdio.h>
 #include <setjmp.h>
 #include <signal.h>
 
@@ -35,6 +36,7 @@ s_program	g_test;
 
 static void	handle_arg_verbose()		{ g_test.flags.verbose		 = TRUE; }
 static void	handle_arg_show_args()		{ g_test.flags.show_args	 = TRUE; }
+static void	handle_arg_show_errors()	{ g_test.flags.show_errors	 = TRUE; }
 static void	handle_arg_show_result()	{ g_test.flags.show_result	 = TRUE; }
 static void	handle_arg_show_escaped()	{ g_test.flags.show_escaped	 = TRUE; }
 static void handle_arg_show_speed()		{ g_test.flags.show_speed	 = TRUE; }
@@ -71,8 +73,9 @@ static void	init(void)
 		(s_test_suite){ FALSE, "sys/time",			testsuite_sys_time },
 		(s_test_suite){ FALSE, "sys/regex",			testsuite_sys_regex },
 		(s_test_suite){ FALSE, "math/math",			testsuite_math },
-//		(s_test_suite){ FALSE, "math/fixed",		testsuite_math_fixed },
-//		(s_test_suite){ FALSE, "math/float",		testsuite_math_float },
+		(s_test_suite){ FALSE, "math/int",			testsuite_math_int },
+		(s_test_suite){ FALSE, "math/fixed",		testsuite_math_fixed },
+		(s_test_suite){ FALSE, "math/float",		testsuite_math_float },
 		(s_test_suite){ FALSE, "math/stat",			testsuite_math_stat },
 		(s_test_suite){ FALSE, "math/algebra",		testsuite_math_algebra },
 		(s_test_suite){ FALSE, "math/complex",		testsuite_math_complex },
@@ -86,7 +89,7 @@ static void	init(void)
 		(s_test_suite){ FALSE, "monad/tree",		testsuite_monad_tree },
 		(s_test_suite){ FALSE, "monad/object",		testsuite_monad_object },
 		(s_test_suite){ FALSE, "encode/json",		testsuite_encode_json },
-//		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
+		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
 //		(s_test_suite){ FALSE, "encode/yaml",		testsuite_encode_yaml },
 //		(s_test_suite){ FALSE, "encode/xml",		testsuite_encode_xml },
 	};
@@ -97,8 +100,9 @@ static void	init(void)
 		(s_test_arg){ NULL,						'h', "help",			"If provided, output only the program usage help and exit." },
 		(s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
 		(s_test_arg){ handle_arg_show_args,		'a', "show-args",		"If provided, output the arguments used for each test performed." },
+		(s_test_arg){ handle_arg_show_errors,	'e', "show-errors",		"If provided, output any errors that occurred during function execution, with the default libccc error handler." },
 		(s_test_arg){ handle_arg_show_result,	'r', "show-result",		"If provided, output the result for each test performed, even when passed." },
-		(s_test_arg){ handle_arg_show_escaped,	'e', "show-escaped",	"If provided, output any non-printable characters as a backslash C escape sequence." },
+		(s_test_arg){ handle_arg_show_escaped,	's', "show-escaped",	"If provided, output any non-printable characters as a backslash C escape sequence." },
 		(s_test_arg){ handle_arg_show_speed,	'p', "show-performance","If provided, output the execution speed for each test performed." },
 		(s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
 		(s_test_arg){ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
@@ -115,21 +119,10 @@ static void	init(void)
 ** ************************************************************************** *|
 */
 
-// Returns 1 if all the global g_test.suites structs have 'run' set to 0
-static int	check_no_test_suites(void)
-{
-	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
-	{
-		if (g_test.suites[i].run)
-			return (FALSE);
-	}
-	return (TRUE);
-}
-
-
-
 // A special return value to signal when a help argument has been provided by the user
 #define MATCHED_HELP	((int)-1)
+
+
 
 static int	handle_args_test_suites(char const* arg)
 {
@@ -176,9 +169,9 @@ static int	handle_args_option_string(char const* arg)
 
 
 
-int		main(int argc, char** argv)
+int	main(int argc, char** argv)
 {
-	if (argc < 1 || argv == NULL)
+	if (argc < 1 || argv == NULL || argv[0] == NULL)
 	{
 		print_error("Invalid platform, no 'argv' program argument list received.");
 		return (ERROR);
@@ -234,15 +227,7 @@ int		main(int argc, char** argv)
 	// Run the appropriate test suites
 	print_title();
 	print_endian_warning();
-	if (check_no_test_suites())
-	{
-		for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
-		{
-			g_test.suites[i].run = TRUE;
-		}
-	}
-	g_test.totals.tests = 0;
-	g_test.totals.failed = 0;
+	test_init();
 	s_test_totals suite;
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{

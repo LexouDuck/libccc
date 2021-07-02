@@ -233,7 +233,7 @@ contexts:
     - match: \s*\b(compl|not|not_eq|and|and_eq|or|or_eq|xor|xor_eq|bitand|bitor)\b
       captures:
         1: keyword.operator.word.c
-    - match: \s*\b(sizeof|defined)\b
+    - match: \s*\b(sizeof|offsetof|defined)\b
       captures:
         1: keyword.operator.word.c
     - match: \s*\b(_Alignas|alignas|alignof|_Alignof|_Generic|_Static_assert|static_assert)\b
@@ -242,13 +242,12 @@ contexts:
     - match: \s*\b((__)?(typeof)(__)?)\b
       captures:
         1: keyword.operator.extension.c
-    - match: \s*\b(typeof|nameof)\b
-      captures:
-        1: keyword.operator.word.++c
     - match: (\*|\$)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getvalue.++c
     - match: (\&|\@)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getaddress.++c
+    - match: \b(is)\b
+      scope: keyword.operator.equaltype.++c
     - match: \s*\b(=>)\b
       scope: keyword.operator.function.++c
     - match: \s*\b([\=\-\+\*\/\%\&\|\^\!\~\?\:\<\>\$\@]+)\b
@@ -518,6 +517,7 @@ contexts:
         - match: '\s*\b([A-Za-z_]\w*+)(?=\s*[\[;])'
           captures:
             1: entity.name.type.typedef.c
+        - include: support-type
 
 
 
@@ -973,6 +973,7 @@ contexts:
         - meta_scope: meta.preprocessor.def.c
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
+        - include: ppline-include-innards
 
   ppline-pragma-mark:
     - match: '(^\s*(#)\s*(pragma\s+mark)\b)[\s&&[^\n]]*'
@@ -1110,9 +1111,12 @@ contexts:
     - include: support-function
 
   support-type:
-    - match: \s*\b(u_char|u_short|u_int|u_long|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|clock|size|ssize|time|useconds|suseconds|siginfo)_t)\b
+    - match: \s*\b(u_char|u_short|u_int|u_long|(?:u_quad|quad|qaddr|caddr|daddr|dev|fixpt|blkcnt|blksize|gid|in_addr|in_port|ino|key|mode|nlink|id|pid|off|segsz|swblk|uid|id|siginfo)_t)\b
       captures:
         1: support.type.stdlib.c
+    - match: \s*\b((size|ssize|rsize|ptrdiff)_t)\b
+      captures:
+        1: support.type.stddef.c
     - match: \s*\b(u?int(?:(?:_least|_fast)?(?:8|16|32|64)_t|ptr_t|max_t))\b
       captures:
         1: support.type.stdint.c
@@ -1122,10 +1126,13 @@ contexts:
     - match: \s*\b(va_list)\b
       captures:
         1: support.type.stdarg.c
+    - match: \s*\b((time|time64|clock|useconds|suseconds|)_t)\b
+      captures:
+        1: support.type.time.c
     - match: \s*\b(_Bool|_Complex|_Imaginary)\b
       captures:
         1: support.type.C99.c
-    - match: \s*\b(((w(int|char|ctype|ctrans))|(char(16|32))|mbstate)_t)\b
+    - match: \s*\b(((w(int|char|ctype|ctrans))|(char(16|32))|mbstate|max_align)_t)\b
       captures:
         1: support.type.C11.c
     - match: \s*\b(_Decimal(32|64|128))\b

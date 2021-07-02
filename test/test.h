@@ -26,26 +26,28 @@
 ** ************************************************************************** *|
 */
 
-//! Args for main are: help, verbose, arguments, performance, overflow
+//! This type stores info about a program argument (ie: `argc`/`argv`)
 typedef struct test_arg
 {
-	void	(*handle_arg)();
-	char		arg;
-	char const*	name;
-	char const* description;
+	void	(*handle_arg)();	//!< The function to execute for this program argument
+	char		arg;			//!< The "character version" of this argument (ie: `-a`)
+	char const*	name;			//!< The "string version" of this argument (ie: `--arg`)
+	char const* description;	//!< The description for this argument (displayed when doing `--help`)
 }				s_test_arg;
-#define TEST_ARGS_AMOUNT	9
+//! The amount of different arguments accepted by the test suite
+#define TEST_ARGS_AMOUNT	10
 
 //! This struct stores the program argument boolean flags
 typedef struct test_flags
 {
-	bool	verbose;		//!< if TRUE, display all logger output for each test
-	bool	show_args;		//!< if TRUE, display arguments given to each test
-	bool	show_speed;		//!< if TRUE, display performance (execution speed) for each test
-	bool	show_result;	//!< if TRUE, display result, even when test passed
-	bool	show_escaped;	//!< if TRUE, display strings with non-printable characters as escape sequences
-	bool	test_nullptrs;	//!< if TRUE, perform all NULL pointer tests
-	bool	test_overflow;	//!< if TRUE, perform all the libccc_convert overflowing number tests
+	bool	verbose;		//!< if `TRUE`, display all logger output for each test
+	bool	show_args;		//!< if `TRUE`, display arguments given to each test
+	bool	show_speed;		//!< if `TRUE`, display performance (execution speed) for each test
+	bool	show_result;	//!< if `TRUE`, display result, even when test passed
+	bool	show_errors;	//!< if `TRUE`, display any errors output by libccc during function execution
+	bool	show_escaped;	//!< if `TRUE`, display strings with non-printable characters as escape sequences
+	bool	test_nullptrs;	//!< if `TRUE`, perform all NULL pointer tests
+	bool	test_overflow;	//!< if `TRUE`, perform all the libccc_convert overflowing number tests
 }				s_test_flags;
 
 
@@ -57,7 +59,7 @@ typedef struct test_suite
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
 }				s_test_suite;
-#define TEST_SUITE_AMOUNT	26
+#define TEST_SUITE_AMOUNT	30
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
@@ -71,7 +73,8 @@ typedef struct test_totals
 //! This struct holds all program state data
 typedef struct program
 {
-	bool			last_test_failed;			//!< is TRUE if the lastest test performed had an error.
+	bool			last_test_failed;			//!< is `TRUE` if the latest test performed had an error.
+	char*			last_test_error;			//!< contains any error output by libccc during the latest test
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
 	s_test_flags	flags;						//!< Stores the main program argument options (as boolean flags)
 	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument
@@ -88,6 +91,9 @@ extern s_program	g_test;
 **                              Testing Functions                             *|
 ** ************************************************************************** *|
 */
+
+//! Initializes variables to prepare to run test suites
+void	test_init(void);
 
 /*
 **	Test suite functions
@@ -107,8 +113,9 @@ int		testsuite_sys_io(void);
 int		testsuite_sys_time(void);
 int		testsuite_sys_regex(void);
 int		testsuite_math(void);
-//int	testsuite_math_fixed(void);
-//int	testsuite_math_float(void);
+int		testsuite_math_int(void);
+int		testsuite_math_fixed(void);
+int		testsuite_math_float(void);
 int		testsuite_math_stat(void);
 int		testsuite_math_algebra(void);
 int		testsuite_math_complex(void);
@@ -122,7 +129,7 @@ int		testsuite_monad_dict(void);
 int		testsuite_monad_tree(void);
 int		testsuite_monad_object(void);
 int		testsuite_encode_json(void);
-//int	testsuite_encode_toml(void);
+int		testsuite_encode_toml(void);
 //int	testsuite_encode_yaml(void);
 //int	testsuite_encode_xml(void);
 

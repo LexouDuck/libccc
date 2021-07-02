@@ -1,10 +1,19 @@
 
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_Char(t_char const* str, t_char c)
+{ return (strchr(str, c)); }
+#else
 t_char*	String_Find_Char(t_char const* str, t_char c)
 {
 	t_size	i;
@@ -19,17 +28,26 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 			break;
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char '%c' in string \"%s\"", c, str)
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_Char(t_char const* str, t_char c)
+t_sintmax	String_IndexOf_Char(t_char const* str, t_char c)
 {
 	t_char* result = String_Find_Char(str, c);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
+{ return (strpbrk(str, charset)); }
+#else
 t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 {
 	t_size	i;
@@ -48,17 +66,26 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 		}
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char from charset \"%s\" in string \"%s\"", charset, str)
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_Charset(t_char const* str, t_char const* charset)
+t_sintmax	String_IndexOf_Charset(t_char const* str, t_char const* charset)
 {
 	t_char* result = String_Find_Charset(str, charset);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_String(t_char const* str, t_char const* query)
+{ return (strstr(str, query)); }
+#else
 t_char*	String_Find_String(t_char const* str, t_char const* query)
 {
 	t_size	i;
@@ -81,11 +108,15 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 		}
 		++i;
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no string \"%s\" in string \"%s\"", query, str)
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_String(t_char const* str, t_char const* query)
+t_sintmax	String_IndexOf_String(t_char const* str, t_char const* query)
 {
 	t_char* result = String_Find_String(str, query);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }

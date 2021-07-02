@@ -2,11 +2,11 @@
 #include "libccc/color.h"
 #include "libccc/math/math.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-inline t_argb16	Color_ARGB16_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b)
+inline t_argb16	Color_ARGB16_Set(t_bool a, t_u8 r, t_u8 g, t_u8 b)
 {
 	return ((t_argb16)(((a ? 1 : 0) << COLOR_ARGB16_A_BITINDEX) |
 		((r & COLOR_ARGB16_CHANNEL) << COLOR_ARGB16_R_BITINDEX) |

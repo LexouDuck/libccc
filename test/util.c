@@ -134,32 +134,6 @@ char*	print_memory(void const* ptr, size_t length)
 
 
 
-char*	str_padleft(char const* str, char c, size_t length)
-{
-	char*	result;
-	long	offset;
-	size_t	i;
-
-	if (!(result = (char*)malloc(length + 1)))
-		return (NULL);
-	offset = length - strlen(str);
-	i = 0;
-	while (i < (size_t)offset)
-	{
-		result[i] = c;
-		++i;
-	}
-	while (i < length)
-	{
-		result[i] = str[i - offset];
-		++i;
-	}
-	result[length] = '\0';
-	return (result);
-}
-
-
-
 char*	strtoescape(char const* str)
 {
 	unsigned char HI_nibble;
@@ -231,62 +205,80 @@ char*	strsurround(char const* str, char begin, char end)
 
 
 
-char*	sinttostr(t_s64 number)
-{
-	char*	result;
-	t_u8	digits[20];
-	t_u8	i;
-	t_u64	n;
+#define DEFINEFUNC_SINTTOSTR(BITS) \
+char*	s##BITS##tostr(t_s##BITS number)		\
+{												\
+	char*		result;							\
+	t_u8		digits[64] = { 0 };				\
+	t_u8		i;								\
+	t_u##BITS	n;								\
+												\
+	n = number;									\
+	if (number < 0)								\
+		n = -n;									\
+	i = 0;										\
+	while (n > 0)								\
+	{											\
+		digits[i++] = n % 10;					\
+		n /= 10;								\
+	}											\
+	if (!(result = (char*)malloc(i + 2)))		\
+		return (NULL);							\
+	result[0] = (number == 0) ? '0' : '-';		\
+	n = 1;										\
+	while (i--)									\
+	{											\
+		result[n++] = '0' + digits[i];			\
+	}											\
+	result[n] = '\0';							\
+	return (number <= 0 ? result : result + 1);	\
+}												\
 
-	n = number;
-	if (number < 0)
-		n = -n;
-	i = 0;
-	while (n > 0)
-	{
-		digits[i++] = n % 10;
-		n /= 10;
-	}
-	if (!(result = (char*)malloc(i + 2)))
-		return (NULL);
-	result[0] = (number == 0) ? '0' : '-';
-	n = 1;
-	while (i--)
-	{
-		result[n++] = '0' + digits[i];
-	}
-	result[n] = '\0';
-	return (number <= 0 ? result : result + 1);
-}
+DEFINEFUNC_SINTTOSTR(8)
+DEFINEFUNC_SINTTOSTR(16)
+DEFINEFUNC_SINTTOSTR(32)
+DEFINEFUNC_SINTTOSTR(64)
+#ifdef __int128
+DEFINEFUNC_SINTTOSTR(128)
+#endif
 
 
 
-char*	uinttostr(t_u64 number)
-{
-	char*	result;
-	t_u8	digits[20];
-	t_u8	i;
-	t_u64	n;
+#define DEFINEFUNC_UINTTOSTR(BITS) \
+char*	u##BITS##tostr(t_u##BITS number)		\
+{												\
+	char*		result;							\
+	t_u8		digits[64] = { 0 };				\
+	t_u8		i;								\
+	t_u##BITS	n;								\
+												\
+	n = number;									\
+	i = 0;										\
+	while (n > 0)								\
+	{											\
+		digits[i++] = n % 10;					\
+		n /= 10;								\
+	}											\
+	if (i == 0)									\
+		digits[i++] = 0;						\
+	if (!(result = (char*)malloc(i + 1)))		\
+		return (NULL);							\
+	n = 0;										\
+	while (i--)									\
+	{											\
+		result[n++] = '0' + digits[i];			\
+	}											\
+	result[n] = '\0';							\
+	return (result);							\
+}												\
 
-	n = number;
-	i = 0;
-	while (n > 0)
-	{
-		digits[i++] = n % 10;
-		n /= 10;
-	}
-	if (i == 0)
-		digits[i++] = 0;
-	if (!(result = (char*)malloc(i + 1)))
-		return (NULL);
-	n = 0;
-	while (i--)
-	{
-		result[n++] = '0' + digits[i];
-	}
-	result[n] = '\0';
-	return (result);
-}
+DEFINEFUNC_UINTTOSTR(8)
+DEFINEFUNC_UINTTOSTR(16)
+DEFINEFUNC_UINTTOSTR(32)
+DEFINEFUNC_UINTTOSTR(64)
+#ifdef __int128
+DEFINEFUNC_UINTTOSTR(128)
+#endif
 
 
 

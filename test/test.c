@@ -1,14 +1,55 @@
 
+#include <stdio.h>
 #include <ctype.h>
 #include <math.h>
 
 #include "libccc.h"
+#include "libccc/error.h"
 #include "libccc/math/math.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
 
 
+
+//! Returns `1` if all the global `g_test.suite` structs have `.run` set to `0`
+static
+int	check_no_test_suites(void)
+{
+	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+	{
+		if (g_test.suites[i].run)
+			return (FALSE);
+	}
+	return (TRUE);
+}
+
+void	test_cccerrorhandler(e_cccerror error, t_char const* message)
+{
+	if (message == NULL)
+	{
+		printf("FATAL ERROR: error handler function ran with NULL message\n");
+		return;
+	}
+	g_test.last_test_error = String_Format(
+		"%s"C_RED"ERROR"C_RESET"[%s]: %s\n",
+		(g_test.last_test_error ? g_test.last_test_error : ""),
+		Error_GetName(error), message);
+}
+
+void	test_init(void)
+{
+	if (check_no_test_suites())
+	{	// if no test suites have been specified, run all of them
+		for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+		{
+			g_test.suites[i].run = TRUE;
+		}
+	}
+	g_test.totals.tests = 0;
+	g_test.totals.failed = 0;
+	Error_SetAllHandlers(test_cccerrorhandler);
+}
 
 /*
 ** ************************************************************************** *|
@@ -53,23 +94,43 @@ void	print_test(
 			printf(" | ");
 		}
 	}
-	if (g_test.flags.show_args && args && (g_test.flags.verbose || g_test.last_test_failed))
+	if (g_test.last_test_failed || g_test.flags.verbose)
 	{
-		printf("(%s)\t=> ", args);
+		if (g_test.flags.show_args && args)
+		{
+			printf("(%s)\t=> ", args);
+		}
+		if (g_test.flags.show_errors && g_test.last_test_error)
+		{
+			printf("\n%s", g_test.last_test_error);
+		}
+	}
+	if (g_test.last_test_error)
+	{
+		free(g_test.last_test_error);
+		g_test.last_test_error = NULL;
 	}
 	if (error)
 	{
 		if (str_equals(expect, "(n/a)"))
 			printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
-		else printf(C_RED"Error:\n");
+		else printf(C_RED"TEST FAILED:\n");
 		if (function[0] == '_')
 		{
-			char*	expected = str_padleft("Expected", ' ', strlen(function) + 1);
-			printf(">c%s: (%s)\n"
-					">%s: (%s)\n"C_RESET,
+			static char const* expected = "Expected";
+			int length_expected = (int)sizeof("Expected");
+			int length_function = (int)strlen(function) + 1;
+			length_expected = (length_expected > length_function) ? length_expected : length_function;
+			length_function = length_expected - length_function + 1;
+			printf(">%*.*s%s: (%s)\n"
+					">%*.*s: (%s)\n"C_RESET,
+				length_function,
+				length_function,
+				"c",
 				function, result,
+				length_expected,
+				length_expected,
 				expected, expect);
-			free(expected);
 		}
 		else
 		{
@@ -94,7 +155,7 @@ void	print_test(
 
 
 
-#define DEFINE_TESTFUNCTION_INT(NAME, SIGNED) \
+#define DEFINE_TESTFUNCTION_INT(NAME, SIGNED, BITS) \
 void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 {																							\
 	int error;																				\
@@ -104,38 +165,38 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 		error = !HANDLE_ERRORS_NULLPOINTER;													\
 	else error = (test->result != test->expect);											\
 	print_test(test->name, test->function, args,											\
-		(test->result_sig ? signals[test->result_sig] : SIGNED##inttostr(test->result)),	\
-		(test->expect_sig ? signals[test->expect_sig] : SIGNED##inttostr(test->expect)),	\
+		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
+		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)),	\
 		test->can_sig,																		\
 		error, NULL);																		\
 }																							\
 
-DEFINE_TESTFUNCTION_INT(bool,	u)
+DEFINE_TESTFUNCTION_INT(bool,	u, 64)
 
-DEFINE_TESTFUNCTION_INT( u8, 	u)
-DEFINE_TESTFUNCTION_INT(u16,	u)
-DEFINE_TESTFUNCTION_INT(u32,	u)
-DEFINE_TESTFUNCTION_INT(u64,	u)
+DEFINE_TESTFUNCTION_INT( u8, 	u, 8)
+DEFINE_TESTFUNCTION_INT(u16,	u, 16)
+DEFINE_TESTFUNCTION_INT(u32,	u, 32)
+DEFINE_TESTFUNCTION_INT(u64,	u, 64)
 #ifdef __int128
-DEFINE_TESTFUNCTION_INT(u128,	u)
+DEFINE_TESTFUNCTION_INT(u128,	u, 128)
 #endif
-DEFINE_TESTFUNCTION_INT(uint,	u)
+DEFINE_TESTFUNCTION_INT(uint,	u, 64)
 
-DEFINE_TESTFUNCTION_INT( s8, 	s)
-DEFINE_TESTFUNCTION_INT(s16,	s)
-DEFINE_TESTFUNCTION_INT(s32,	s)
-DEFINE_TESTFUNCTION_INT(s64,	s)
+DEFINE_TESTFUNCTION_INT( s8, 	s, 8)
+DEFINE_TESTFUNCTION_INT(s16,	s, 16)
+DEFINE_TESTFUNCTION_INT(s32,	s, 32)
+DEFINE_TESTFUNCTION_INT(s64,	s, 64)
 #ifdef __int128
-DEFINE_TESTFUNCTION_INT(s128,	s)
+DEFINE_TESTFUNCTION_INT(s128,	s, 128)
 #endif
-DEFINE_TESTFUNCTION_INT(sint,	s)
+DEFINE_TESTFUNCTION_INT(sint,	s, 64)
 
-DEFINE_TESTFUNCTION_INT(size,	u)
-DEFINE_TESTFUNCTION_INT(ptrdiff,s)
-DEFINE_TESTFUNCTION_INT(sintptr,s)
-DEFINE_TESTFUNCTION_INT(uintptr,u)
-DEFINE_TESTFUNCTION_INT(sintmax,s)
-DEFINE_TESTFUNCTION_INT(uintmax,u)
+DEFINE_TESTFUNCTION_INT(size,	u, 64)
+DEFINE_TESTFUNCTION_INT(ptrdiff,s, 64)
+DEFINE_TESTFUNCTION_INT(sintptr,s, 64)
+DEFINE_TESTFUNCTION_INT(uintptr,u, 64)
+DEFINE_TESTFUNCTION_INT(sintmax,s, 64)
+DEFINE_TESTFUNCTION_INT(uintmax,u, 64)
 
 
 
@@ -144,33 +205,56 @@ DEFINE_TESTFUNCTION_INT(uintmax,u)
 
 
 #define F32_PRECISION_FORMAT	"%.8f"
-#define F64_PRECISION_FORMAT	"%.16f"
-#define F80_PRECISION_FORMAT	"%.20f"
-#define F128_PRECISION_FORMAT	"%.32f"
+#define F64_PRECISION_FORMAT	"%.16lf"
+#define F80_PRECISION_FORMAT	"%.20Lf"
+#define F128_PRECISION_FORMAT	"%.32Lf"
 
-#define FLOAT_PRECISION_FORMAT	CONCAT(CONCAT(F,LIBCONFIG_BITS_FLOAT),_PRECISION_FORMAT)
+#define FLOAT_PRECISION_FORMAT	
 
-#define DEFINE_TESTFUNCTION_FLOAT(NAME, SIZE) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args)		\
-{																		\
-	int error;															\
-	char str_result[SIZE];												\
-	char str_expect[SIZE];												\
-	if (test->result_sig)												\
-		error = !test->expect_sig;										\
-	else if (test->expect_sig)											\
-		error = !HANDLE_ERRORS_NULLPOINTER;								\
-	else error = (test->result != test->expect);						\
-	if (isnan(test->result) && isnan(test->expect))						\
-		error = FALSE;													\
-	snprintf(str_result, SIZE, FLOAT_PRECISION_FORMAT, test->result);	\
-	snprintf(str_expect, SIZE, FLOAT_PRECISION_FORMAT, test->expect);	\
-	print_test(test->name, test->function, args,						\
-		(test->result_sig ? signals[test->result_sig] : str_result),	\
-		(test->expect_sig ? signals[test->expect_sig] : str_expect),	\
-		test->can_sig,													\
-		error, NULL);													\
-}																		\
+#define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
+void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
+{																							\
+	char* tmp = NULL;																		\
+	int warning = FALSE;																	\
+	int error = FALSE;																		\
+	char str_result[BITS];																	\
+	char str_expect[BITS];																	\
+	if (test->result_sig)																	\
+		error = !test->expect_sig;															\
+	else if (test->expect_sig)																\
+		error = !HANDLE_ERRORS_NULLPOINTER;													\
+	else error = (test->result != test->expect);											\
+	if (isnan(test->result) && isnan(test->expect))											\
+		error = FALSE;																		\
+	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result);		\
+	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect);		\
+	if (error && !isnan(test->result) && !isnan(test->expect))								\
+	{																						\
+		if (ABS(test->result - test->expect) <=												\
+			FLOAT_APPROX * MAX(ABS(test->result), ABS(test->expect)))						\
+		{																					\
+			error = FALSE;																	\
+			warning = TRUE;																	\
+		}																					\
+	}																						\
+	if (warning)																			\
+	{																						\
+		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;							\
+		size_t len = snprintf(tmp,	128, "Approximation error:\n"							\
+				"- received: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n"					\
+				"- expected: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n",					\
+			test->result,																	\
+			test->expect);																	\
+		if (len == 0)																		\
+			return;																			\
+	}																						\
+	print_test(test->name, test->function, args,											\
+		(test->result_sig ? signals[test->result_sig] : str_result),						\
+		(test->expect_sig ? signals[test->expect_sig] : str_expect),						\
+		test->can_sig,																		\
+		error, (warning ? tmp : NULL));														\
+	if (tmp)	free(tmp);																	\
+}																							\
 
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(f64, 64)
@@ -180,12 +264,13 @@ DEFINE_TESTFUNCTION_FLOAT(f80, 80)
 #ifdef __float128
 DEFINE_TESTFUNCTION_FLOAT(f128, 128)
 #endif
-DEFINE_TESTFUNCTION_FLOAT(float, sizeof(t_float) * 8)
+DEFINE_TESTFUNCTION_FLOAT(float, LIBCONFIG_FLOAT_BITS)
 
 
 
 void	print_test_sign(s_test_sign* test, char const* args)
 {
+	char* tmp = NULL;
 	int warning = FALSE;
 	int error = FALSE;
 	if (test->result_sig)
@@ -207,18 +292,21 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		test->result_sig = 0;
 		test->expect_sig = 0;
 	}
-	char* tmp = (char*)malloc(1+128);	if (tmp == NULL) return;
-	size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %li, but expected %li).",
-		test->result,
-		test->expect);
-	if (len == 0)
-		return;
+	if (warning)
+	{
+		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;
+		size_t len = snprintf(tmp,	128, "Return value differs, but sign is the same (got %ji, but expected %ji).",
+			test->result,
+			test->expect);
+		if (len == 0)
+			return;
+	}
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : sinttostr(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : sinttostr(test->expect)),
+		(test->result_sig ? signals[test->result_sig] : s64tostr(test->result)),
+		(test->expect_sig ? signals[test->expect_sig] : s64tostr(test->expect)),
 		test->can_sig,
-		error, warning ? tmp : NULL);
-	free(tmp);
+		error, (warning ? tmp : NULL));
+	if (tmp)	free(tmp);
 }
 
 
@@ -237,8 +325,8 @@ void	print_test_ptr(s_test_ptr* test, char const* args)
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -260,8 +348,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -273,8 +361,8 @@ void	print_test_str(s_test_str* test, char const* args)
 	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
 	int error;
 
-	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	free(tmp);	tmp = NULL;
-	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	free(tmp);	tmp = NULL;
+	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
+	tmp = tmp_expect;	tmp_expect = strsurround(tmp_expect, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
 	else if (test->result == NULL || test->expect == NULL)
@@ -286,8 +374,8 @@ void	print_test_str(s_test_str* test, char const* args)
 		tmp_expect ? tmp_expect : "NULL",
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 }
 
 
@@ -316,8 +404,8 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 		tmp_expect,
 		test->can_sig,
 		error, NULL);
-	free(tmp_result);
-	free(tmp_expect);
+	if (tmp_result)	free(tmp_result);
+	if (tmp_expect)	free(tmp_expect);
 // TODO call print_test() here
 /*
 	if (error || g_test.flags.verbose)
@@ -446,7 +534,7 @@ void	print_test_list(s_test_list* test, char const* args)
 			tmp = print_memory(lst->item, item_size);
 			printf("%s{%s}", (lst == test->result ? "" : ", "), tmp);
 			lst = lst->next;
-			free(tmp);
+			if (tmp)	free(tmp);
 			tmp = NULL;
 		}
 		i = 0;

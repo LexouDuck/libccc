@@ -15,7 +15,7 @@
 ** @{
 **	This header defines all the functions for OS-level input/output, read/write.
 **
-**	@isostd{https://en.cppreference.com/w/c/io}
+**	@isostd{C,https://en.cppreference.com/w/c/io}
 **
 **	@file
 */
@@ -50,10 +50,20 @@
 #endif
 
 #include "libccc.h"
-#include "libccc/color.h"
+
 #include "libccc/sys/ansi.h"
 
+#ifndef __LIBCCC_COLOR_H
+#define	__LIBCCC_COLOR_F
+#include "libccc/color.h"
+#undef	__LIBCCC_COLOR_H
+#undef	__LIBCCC_COLOR_F
+#endif
+
 HEADER_CPP
+
+#ifndef __LIBCCC_SYS_IO_T
+#define __LIBCCC_SYS_IO_T
 
 /*
 ** ************************************************************************** *|
@@ -72,7 +82,7 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	@def STDIN
 **	@def STDOUT
 **	@def STDERR
-**	@isostd{https://en.cppreference.com/w/c/io/std_streams}
+**	@isostd{C,https://en.cppreference.com/w/c/io/std_streams}
 **
 **	Define the 3 standard (std) streams of data - these numbers are special
 **	file descriptors used to read from and write to the terminal commandline.
@@ -152,6 +162,10 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 
 
 
+#endif
+#ifndef __LIBCCC_SYS_IO_F
+#define __LIBCCC_SYS_IO_F
+
 /*
 ** ************************************************************************** *|
 **                             General IO Functions                           *|
@@ -170,7 +184,9 @@ t_u8						IO_GetColor(t_argb32 color);
 
 //! Checks whether the given file descriptor `fd` points to a terminal.
 /*!
-**	@returns `TRUE` if the given file descriptor `fd` corresponds to a terminal.
+**	@returns
+**	`TRUE` if the given file descriptor `fd` corresponds to a terminal,
+**	otherwise `FALSE`.
 */
 t_bool						IO_IsTerminal(t_fd fd);
 #define c_isatty			IO_IsTerminal
@@ -186,13 +202,14 @@ t_bool						IO_IsTerminal(t_fd fd);
 
 //! Opens the file at 'filepath', with the given file open 'flags', and the given file access 'mode' permissions
 /*!
-**	SYSCALL wrapper:
-**		int	open(const char *pathname, int flags, mode_t mode);
+**	@isostd{POSIX,https://linux.die.net/man/3/open}
 **
 **	@param	filepath	The path of the file to open
 **	@param	flags		The flags with which to open the file (bitflag, can be bitwise OR'd, ie: `(OPEN_READONLY|OPEN_CREATE)`)
 **	@param	mode		The file access mode (permissions) with which to open the file
-**	@returns the new file descriptor value for the opened file, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	The new file descriptor value for the opened file,
+**	or a negative result if there was an error while attempting to open the file
 */
 t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 #define c_open			IO_Open
@@ -200,11 +217,12 @@ t_fd					IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode);
 
 //! Closes the given file descriptor 'fd', so that it no longer refers to any file, and may be reused.
 /*!
-**	SYSCALL wrapper:
-**		int close(int fd);
+**	@isostd{POSIX,https://linux.die.net/man/3/close}
 **
 **	@param	fd	The file descriptor to close
-**	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror				IO_Close(t_fd fd);
 #define c_close			IO_Close
@@ -212,12 +230,13 @@ e_cccerror				IO_Close(t_fd fd);
 
 //! Changes the file access mode permissions for the file at 'filepath' to the new value 'mode'
 /*!
-**	SYSCALL wrapper:
-**		int chmod(const char *pathname, mode_t mode);
+**	@isostd{POSIX,https://linux.die.net/man/3/chmod}
 **
 **	@param	filepath	The path of the file whose access permissions should change
 **	@param	mode		The new file access mode permissions bitflag value to set
-**	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror					IO_ChangeMode	(t_char const* filepath, t_io_mode mode);
 #define c_chmod				IO_ChangeMode
@@ -240,13 +259,14 @@ t_io_mode					IO_GetMode		(t_char const* filepath);
 #if 0
 //! Changes the owner and group for the file at 'filepath'
 /*!
-**	SYSCALL wrapper:
-**		int chown(const char *pathname, uid_t owner, gid_t group);
+**	@isostd{POSIX,https://linux.die.net/man/3/chown}
 **
 **	@param	filepath	The path of the file whose owner/group should change
 **	@param	owner		The new owner to set for the file
 **	@param	group		The new group to set for the file
-**	@returns 0(OK) on success, or a non-zero error code (ie: an 'errno' value)
+**	@returns
+**	`0`(#OK) if the function completed successfully,
+**	otherwise a non-zero error code (ie: an `errno` value)
 */
 e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group);
 #define c_chown				IO_ChangeOwner
@@ -255,7 +275,7 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 
 
 
-// TODO wrapper for tmpfile() @isostd{https://en.cppreference.com/w/c/io/tmpfile}
+// TODO wrapper for tmpfile() @isostd{C,https://en.cppreference.com/w/c/io/tmpfile}
 
 
 
@@ -265,10 +285,9 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 ** ************************************************************************** *|
 */
 
-//! Reads the contents of 'fd' and fill a data buffer with those bytes
+//! Reads the contents of the given `fd` and fill a data buffer with those bytes
 /*!
-**	SYSCALL wrapper:
-**		int	read(const char *pathname, int flags, mode_t mode);
+**	@isostd{POSIX,https://linux.die.net/man/3/read}
 **
 **	Reads the full contents of the file descriptor `fd` (ie, until read() returns 0),
 **	and allocates a memory region which stores the file contents in `*a_file`.
@@ -276,15 +295,18 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 **	@param	fd		The file descriptor to read data from
 **	@param	a_file	The address of the buffer to fill: is allocated and filled with the data
 **	@param	max		The maximum amount of bytes to read from 'fd' (if 0, replaced by `(t_size)-1`)
-**	@returns the amount of bytes read from the given file descriptor `fd` in total.
-**		If the return value is a negative number, there was a read error:
-**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
+**	@returns
+**	The amount of bytes read from the given file descriptor `fd` in total.
+**	If the return value is a negative number, there was a read error:
+**	You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
 t_sintmax				IO_Read_File	(t_fd const fd, void* *a_file, t_size max);
 #define c_readfile		IO_Read_File
 
-//! Reads the contents of 'fd' and makes an array of strings, one for each line
+//! Reads the contents of `fd` and makes an array of strings, one for each line
 /*!
+**	@nonstd
+**
 **	Reads the contents of the file descriptor 'fd', and puts that into
 **	an array of strings, one char pointer for each line (each '\\n' newline char).
 **	Each '\\n' character in the string are replaced by '\\0' string terminators.
@@ -293,26 +315,29 @@ t_sintmax				IO_Read_File	(t_fd const fd, void* *a_file, t_size max);
 **	@param	fd			The file descriptor to read data from
 **	@param	a_strarr	The address of the string array to fill: the top-level
 **						top-level pointer array is allocated and filled appropriately.
-**	@returns the amount of bytes read from the given file descriptor `fd` in total.
-**		If the return value is a negative number, there was a read error:
-**		You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
+**	@returns
+**	The amount of bytes read from the given file descriptor `fd` in total.
+**	If the return value is a negative number, there was a read error:
+**	You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
 */
 t_sintmax				IO_Read_Lines	(t_fd const fd, t_char** *a_strarr);
 #define c_readlines		IO_Read_Lines
 
-//! Reads the contents of the file descriptor 'fd' line-per-line.
+//! Reads the contents of the file descriptor `fd` line-per-line.
 /*!
-**	This function will read 'fd' line-per-line as you call it repeatedly.
-**	This means that it will allocate and fill a buffer until reading '\\n',
-**	at which point this buffer is returned via the 'line' char pointer arg.
+**	@nonstd
+**
+**	This function will read `fd` line-per-line as you call it repeatedly.
+**	This means that it will allocate and fill a buffer until reading `'\n'`,
+**	at which point this buffer is returned via the `line` char pointer arg.
 **	As such, this function will typically be called within a while loop.
 **
 **	@param	fd		The file descriptor to read data from
 **	@param	a_line	The address of the string to allocate and fill with the current line.
 **	@returns
-**		+1 (GNL_LINE)	if a line of characters was successfully read
-**		 0 (GNL_END)	if the end of the file was reached
-**		-1 (GNL_ERROR)	if there's an error
+**	- `+1` (`GNL_LINE`) 	if a line of characters was successfully read
+**	- `0`  (`GNL_END`)  	if the end of the file was reached
+**	- `-1` (`GNL_ERROR`)	if there's an error
 */
 //TODO DO NOT USE, TODO FIX, confirmed to have very, very rare, platform-specific problems...
 int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
@@ -320,9 +345,9 @@ int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 #define c_getnextline	IO_Read_NextLine
 #define c_readnextline	IO_Read_NextLine
 
-#define GNL_LINE  +1	//!< Return value for c_getnextline: indicates succesful line read, more to follow
-#define GNL_END    0	//!< Return value for c_getnextline: indicates successful line read, end of file reached
-#define GNL_ERROR -1	//!< Return value for c_getnextline: indicates a read error occurred
+#define GNL_LINE  +1	//!< Return value for IO_Read_NextLine(): indicates succesful line read, more to follow
+#define GNL_END    0	//!< Return value for IO_Read_NextLine(): indicates successful line read, end of file reached
+#define GNL_ERROR -1	//!< Return value for IO_Read_NextLine(): indicates a read error occurred
 
 
 
@@ -332,31 +357,52 @@ int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 ** ************************************************************************** *|
 */
 
-//! Writes the given character 'c' to the given file descriptor 'fd'
+//! Writes the given character `c` to the given file descriptor `fd`
+/*!
+**	@nonstd
+*/
 t_size					IO_Write_Char	(t_fd fd, t_char c);
 #define c_write_char	IO_Write_Char
 
-//! Writes the given string 'str' to the given file descriptor 'fd'
+//! Writes the given string `str` to the given file descriptor `fd`
+/*!
+**	@isostd{POSIX,https://linux.die.net/man/3/write}
+*/
 t_size					IO_Write_String	(t_fd fd, t_char const* str);
 #define c_write_string	IO_Write_String
 
-//! Writes the given data buffer 'data' of size 'n' to the given file descriptor 'fd'
+//! Writes the given data buffer `data` of size `n` to the given file descriptor `fd`
+/*!
+**	@nonstd
+*/
 t_size					IO_Write_Data	(t_fd fd, t_u8 const* data, t_size n);
 #define c_write_data	IO_Write_Data
 
-//! Writes the given string 'str' to the given file descriptor 'fd', and a newline '\n' char at the end
+//! Writes the given string `str` to the given file descriptor `fd`, and a newline `'\n'` char at the end
+/*!
+**	@nonstd
+*/
 t_size					IO_Write_Line	(t_fd fd, t_char const* str);
 #define c_write_line	IO_Write_Line
 
-//! Writes the given string array 'strarr' to the given file descriptor 'fd'
+//! Writes the given string array `strarr` to the given file descriptor `fd`
+/*!
+**	@nonstd
+*/
 t_size					IO_Write_Lines	(t_fd fd, t_char const** strarr);
 #define c_write_lines	IO_Write_Lines
 
-//!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the given file descriptor 'fd'
+//!< Writes 'n' bytes of memory from `ptr` as hexadecimal 2-char blocks in `cols` columns, to the given file descriptor `fd`
+/*!
+**	@nonstd
+*/
 t_size					IO_Write_Memory	(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_write_memory	IO_Write_Memory
 
-//! Writes the given formatted string to the standard output - equivalent to 'fprintf()', or rather 'dprintf()'
+//! Writes the given formatted string to the standard output - equivalent to `dprintf()`
+/*!
+**	@isostd{POSIX,https://linux.die.net/man/3/dprintf}
+*/
 _FORMAT(printf, 2, 3)
 t_size					IO_Write_Format	(t_fd fd, t_char const* format, ...);
 #define c_write_format	IO_Write_Format
@@ -370,38 +416,58 @@ t_size					IO_Write_Format	(t_fd fd, t_char const* format, ...);
 ** ************************************************************************** *|
 */
 
-//! Writes the given char 'c' to the standard output.
+//! Writes the given char `c` to the standard output.
+/*!
+**	@nonstd
+*/
 t_size					IO_Output_Char(t_char c);
 #define c_output_char	IO_Output_Char
 #define c_putchar		IO_Output_Char
 
-//! Writes the given string 'str' to the standard output.
+//! Writes the given string `str` to the standard output.
+/*!
+**	@nonstd
+*/
 t_size					IO_Output_String(t_char const* str);
 #define c_output_string	IO_Output_String
 #define c_putstr		IO_Output_String
 
-//! Writes the given string 'str' to the standard output, with a newline '\n' character at the end.
+//! Writes the given string `str` to the standard output, with a newline `'\n'` character at the end.
+/*!
+**	@nonstd
+*/
 t_size					IO_Output_Line(t_char const* str);
 #define c_output_line	IO_Output_Line
 #define c_putline		IO_Output_Line
 
-//! Writes the given string array 'strls' to the standard output.
+//! Writes the given string array `strls` to the standard output.
+/*!
+**	@nonstd
+*/
 t_size					IO_Output_Lines(t_char const** strarr);
 #define c_output_lines	IO_Output_Lines
 #define c_putlines		IO_Output_Lines
 
-//!< Writes 'n' bytes of memory from 'ptr' as hexadecimal 2-char blocks in 'cols' columns, to the standard output
+//!< Writes 'n' bytes of memory from `ptr` as hexadecimal 2-char blocks in `cols` columns, to the standard output
+/*!
+**	@nonstd
+*/
 t_size					IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 #define c_output_memory	IO_Output_Memory
 #define c_putmem		IO_Output_Memory
 
-//! Writes the given formatted string to the standard output - equivalent to 'printf()'
+//! Writes the given formatted string to the standard output - equivalent to `printf()`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/io/printf}
+*/
 _FORMAT(printf, 1, 2)
 t_size					IO_Output_Format(t_char const* format, ...);
 #define c_output_format	IO_Output_Format
 #define c_printf		IO_Output_Format
 
 
+
+#endif
 
 /*! @} */
 HEADER_END

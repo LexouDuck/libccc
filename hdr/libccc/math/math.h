@@ -15,7 +15,8 @@
 ** @{
 **	This header defines the common standard math functions and macro defines.
 **
-**	@isostd{https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/tgmath}
 **
 **	@file
 */
@@ -28,9 +29,8 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
-
 #include "libccc/math/constants.h"
+#include "libccc/math/int.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"
 
@@ -42,10 +42,10 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Expands to the absolute value of `x` (ie: gives the positive equivalent of `x`)
+//! Computes to the absolute value of `X` (ie: gives the positive equivalent of `X`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/abs}
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fabs}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/abs}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
 **
 **	- Math: @f$ {|x|} @f$
 */
@@ -53,52 +53,67 @@ HEADER_CPP
 #define ABS(X)		((X) < 0 ? -(X) : (X))
 #endif
 
-//! Expands to +1 or -1 according to the sign of `x` (NB: if `x` is zero, gives +1)
+//! Computes to `+1`, `-1` (or `0` if `(X) == 0`) according to the sign of `X`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/signbit} (differs)
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/signbit} (differs)
 **
 **	- Math: @f$ {\frac{x}{|x|}} @f$
 */
 #ifndef SIGN
-#define SIGN(X)		((X) < 0 ? -1 : +1)
+#define SIGN(X)		((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
+#endif
+
+//! Checks if a value is negative (works for unsigned types, without causing tautology warnings)
+/*!
+**	This macro is useful to check if a value is negative, but its type (signed or unsigned) is not known.
+**	In particular, the `char` and `enum` native C types are of unknown/undefined signage,
+**	so this macro is useful to check that a value is positive, no matter the platform/environment.
+**
+**	- Math: @f$ {x < 0} @f$
+*/
+#ifndef ISNEG
+#define ISNEG(X)	(!((X) > 0) && ((X) != 0))
 #endif
 
 
 
-//!	Expands to the minimum value between `x` and `y` (the smaller of the two)
+//!	Expands to the minimum value between `X` and `Y` (the smaller of the two)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmin}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmin}
 */
 #ifndef MIN
 #define MIN(X, Y)	((X) < (Y) ? (X) : (Y))
 #endif
 
-//! Expands to the maximum value between `x` and `y` (the larger of the two)
+//! Expands to the maximum value between `X` and `Y` (the larger of the two)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmax}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmax}
 */
 #ifndef MAX
 #define MAX(X, Y)	((X) < (Y) ? (Y) : (X))
 #endif
 
-//! Expands to the maximum value between `x` and `y` (the larger of the two)
+//! Expands to a sequence of `Y` repetitive multiplications of `X` (ie: a compile-time `pow()` function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmax}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmax}
+**
+**	@param	X	The number to exponentiate (can be a value of any numeric type)
+**	@param	Y	The exponent (must be an integer literal, in the range `[0,16]`)
 */
 #ifndef POW
 #define POW(X, Y)		POW_##Y(X)
 
 // TODO make more optimized with log2n method
-#define POW_0( X)	(1)
-#define POW_1( X)	(X)
-#define POW_2( X)	(X * X)
-#define POW_3( X)	(X * X * X)
-#define POW_4( X)	(X * X * X * X)
-#define POW_5( X)	(X * X * X * X * X)
-#define POW_6( X)	(X * X * X * X * X * X)
-#define POW_7( X)	(X * X * X * X * X * X * X)
-#define POW_8( X)	(X * X * X * X * X * X * X * X)
-#define POW_9( X)	(X * X * X * X * X * X * X * X * X)
+#define POW_0(X)	(1)
+#define POW_1(X)	(X)
+#define POW_2(X)	(X * X)
+#define POW_3(X)	(X * X * X)
+#define POW_4(X)	(X * X * X * X)
+#define POW_5(X)	(X * X * X * X * X)
+#define POW_6(X)	(X * X * X * X * X * X)
+#define POW_7(X)	(X * X * X * X * X * X * X)
+#define POW_8(X)	(X * X * X * X * X * X * X * X)
+#define POW_9(X)	(X * X * X * X * X * X * X * X * X)
 #define POW_10(X)	(X * X * X * X * X * X * X * X * X * X)
 #define POW_11(X)	(X * X * X * X * X * X * X * X * X * X * X)
 #define POW_12(X)	(X * X * X * X * X * X * X * X * X * X * X * X)
@@ -110,57 +125,123 @@ HEADER_CPP
 
 
 
-#define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE)	inline RETURN	 c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
-#define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x)				{ return (__builtin_##CNAME##TYPE(x)); }
-#define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE)		inline t_f##BITS c_f##BITS##NAME(t_f##BITS x, t_f##BITS y)	{ return (__builtin_##CNAME##TYPE(x, y)); }
+#define MATH_DEFINE_FUNCTION(RETURN, BITS, NAME, CNAME, TYPE) \
+	inline RETURN	 F##BITS##_##NAME(t_f##BITS a)					\
+	{																\
+		return (__builtin_##CNAME##TYPE(a));						\
+	}
 
-// TODO ascertain platform macros for sizeof(long double), and use them to conditionally defien wrappers for std libc math functions
+#define MATH_DEFINE_REALFUNCTION(BITS, NAME, CNAME, TYPE) \
+	inline t_f##BITS	F##BITS##_##NAME(t_f##BITS a)				\
+	{																\
+		return (__builtin_##CNAME##TYPE(a));						\
+	}
+
+#define MATH_DEFINE_REALOPERATOR(BITS, NAME, CNAME, TYPE) \
+	inline t_f##BITS	F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)	\
+	{																\
+		return (__builtin_##CNAME##TYPE(a, b));						\
+	}
+
+#define MATH_DEFINE_FUNCTION_F32(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,32, NAME, CNAME,f)
+#define MATH_DEFINE_REALFUNCTION_F32(	NAME, CNAME)	MATH_DEFINE_REALFUNCTION(	32, NAME, CNAME,f)
+#define MATH_DEFINE_REALOPERATOR_F32(	NAME, CNAME)	MATH_DEFINE_REALOPERATOR(	32, NAME, CNAME,f)
+
+#define MATH_DEFINE_FUNCTION_F64(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,64, NAME, CNAME,)
+#define MATH_DEFINE_REALFUNCTION_F64(	NAME, CNAME)	MATH_DEFINE_REALFUNCTION(	64, NAME, CNAME,)
+#define MATH_DEFINE_REALOPERATOR_F64(	NAME, CNAME)	MATH_DEFINE_REALOPERATOR(	64, NAME, CNAME,)
+
+#ifdef __float80
+#define MATH_DEFINE_FUNCTION_F80(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,80, NAME, CNAME,l)
+#define MATH_DEFINE_REALFUNCTION_F80(	NAME, CNAME)	MATH_DEFINE_REALFUNCTION(	80, NAME, CNAME,l)
+#define MATH_DEFINE_REALOPERATOR_F80(	NAME, CNAME)	MATH_DEFINE_REALOPERATOR(	80, NAME, CNAME,l)
+#else
+#define MATH_DEFINE_FUNCTION_F80(RETURN,NAME, CNAME)	
+#define MATH_DEFINE_REALFUNCTION_F80(	NAME, CNAME)	
+#define MATH_DEFINE_REALOPERATOR_F80(	NAME, CNAME)	
+#endif
+
+#ifdef __float128
+#define MATH_DEFINE_FUNCTION_F128(RETURN,NAME, CNAME)	MATH_DEFINE_FUNCTION(RETURN,128,NAME, CNAME,q)
+#define MATH_DEFINE_REALFUNCTION_F128(	NAME, CNAME)	MATH_DEFINE_REALFUNCTION(	128,NAME, CNAME,q)
+#define MATH_DEFINE_REALOPERATOR_F128(	NAME, CNAME)	MATH_DEFINE_REALOPERATOR(	128,NAME, CNAME,q)
+#else
+#define MATH_DEFINE_FUNCTION_F128(RETURN,NAME, CNAME)	
+#define MATH_DEFINE_REALFUNCTION_F128(	NAME, CNAME)	
+#define MATH_DEFINE_REALOPERATOR_F128(	NAME, CNAME)	
+#endif
+
+
 
 #define MATH_DECL_FUNCTION(RETURN, NAME, CNAME)	\
-	MATH_DEFINE_FUNCTION(RETURN, 32, NAME, CNAME,f)	\
-	MATH_DEFINE_FUNCTION(RETURN, 64, NAME, CNAME,)	\
-/*	MATH_DEFINE_FUNCTION(RETURN, 80, NAME, CNAME,l)	\*/
-/*	MATH_DEFINE_FUNCTION(RETURN, 128,NAME, CNAME,q)	\*/
+	MATH_DEFINE_FUNCTION_F32 (RETURN, NAME, CNAME)	\
+	MATH_DEFINE_FUNCTION_F64 (RETURN, NAME, CNAME)	\
+	MATH_DEFINE_FUNCTION_F80 (RETURN, NAME, CNAME)	\
+	MATH_DEFINE_FUNCTION_F128(RETURN, NAME, CNAME)	\
 
 #define MATH_DECL_REALFUNCTION(NAME, CNAME)		\
-	MATH_DEFINE_REALFUNCTION(32, NAME, CNAME,f)	\
-	MATH_DEFINE_REALFUNCTION(64, NAME, CNAME,)	\
-/*	MATH_DEFINE_REALFUNCTION(80, NAME, CNAME,l)	\*/
-/*	MATH_DEFINE_REALFUNCTION(128,NAME, CNAME,q)	\*/
+	MATH_DEFINE_REALFUNCTION_F32 (NAME, CNAME)	\
+	MATH_DEFINE_REALFUNCTION_F64 (NAME, CNAME)	\
+	MATH_DEFINE_REALFUNCTION_F80 (NAME, CNAME)	\
+	MATH_DEFINE_REALFUNCTION_F128(NAME, CNAME)	\
 
 #define MATH_DECL_REALOPERATOR(NAME, CNAME)		\
-	MATH_DEFINE_REALOPERATOR(32, NAME, CNAME,f)	\
-	MATH_DEFINE_REALOPERATOR(64, NAME, CNAME,)	\
-/*	MATH_DEFINE_REALOPERATOR(80, NAME, CNAME,l)	\*/
-/*	MATH_DEFINE_REALOPERATOR(128,NAME, CNAME,q)	\*/
+	MATH_DEFINE_REALOPERATOR_F32 (NAME, CNAME)	\
+	MATH_DEFINE_REALOPERATOR_F64 (NAME, CNAME)	\
+	MATH_DEFINE_REALOPERATOR_F80 (NAME, CNAME)	\
+	MATH_DEFINE_REALOPERATOR_F128(NAME, CNAME)	\
 
 
 
 #define DEFINE_GENERIC_MATH_FUNCTION(FUNCTION, X) \
 	_Generic((X),	\
-		t_q16:	 Q16_##FUNCTION,	\
-		t_q32:	 Q32_##FUNCTION,	\
-		t_q64:	 Q64_##FUNCTION,	\
-		t_q128:	 Q128_##FUNCTION,	\
+		t_u8:	 U8_   ##FUNCTION,	\
+		t_u16:	 U16_  ##FUNCTION,	\
+		t_u32:	 U32_  ##FUNCTION,	\
+		t_u64:	 U64_  ##FUNCTION,	\
+		t_u128:	 U128_ ##FUNCTION,	\
+		t_uint:	 UInt_ ##FUNCTION,	\
+		t_s8:	 S8_   ##FUNCTION,	\
+		t_s16:	 S16_  ##FUNCTION,	\
+		t_s32:	 S32_  ##FUNCTION,	\
+		t_s64:	 S64_  ##FUNCTION,	\
+		t_s128:	 S128_ ##FUNCTION,	\
+		t_sint:	 SInt_ ##FUNCTION,	\
+		t_q16:	 Q16_  ##FUNCTION,	\
+		t_q32:	 Q32_  ##FUNCTION,	\
+		t_q64:	 Q64_  ##FUNCTION,	\
+		t_q128:	 Q128_ ##FUNCTION,	\
 		t_fixed: Fixed_##FUNCTION,	\
-		t_f32:	 F32_##FUNCTION,	\
-		t_f64:	 F64_##FUNCTION,	\
-		t_f80:	 F80_##FUNCTION,	\
-		t_f128:	 F128_##FUNCTION,	\
+		t_f32:	 F32_  ##FUNCTION,	\
+		t_f64:	 F64_  ##FUNCTION,	\
+		t_f80:	 F80_  ##FUNCTION,	\
+		t_f128:	 F128_ ##FUNCTION,	\
 		t_float: Float_##FUNCTION,	\
 	)(X)
 
 #define DEFINE_GENERIC_MATH_OPERATOR(FUNCTION, X, Y) \
 	_Generic((X),	\
-		t_q16:	 Q16_##FUNCTION,	\
-		t_q32:	 Q32_##FUNCTION,	\
-		t_q64:	 Q64_##FUNCTION,	\
-		t_q128:	 Q128_##FUNCTION,	\
+		t_u8:	 U8_   ##FUNCTION,	\
+		t_u16:	 U16_  ##FUNCTION,	\
+		t_u32:	 U32_  ##FUNCTION,	\
+		t_u64:	 U64_  ##FUNCTION,	\
+		t_u128:	 U128_ ##FUNCTION,	\
+		t_uint:	 UInt_ ##FUNCTION,	\
+		t_s8:	 S8_   ##FUNCTION,	\
+		t_s16:	 S16_  ##FUNCTION,	\
+		t_s32:	 S32_  ##FUNCTION,	\
+		t_s64:	 S64_  ##FUNCTION,	\
+		t_s128:	 S128_ ##FUNCTION,	\
+		t_sint:	 SInt_ ##FUNCTION,	\
+		t_q16:	 Q16_  ##FUNCTION,	\
+		t_q32:	 Q32_  ##FUNCTION,	\
+		t_q64:	 Q64_  ##FUNCTION,	\
+		t_q128:	 Q128_ ##FUNCTION,	\
 		t_fixed: Fixed_##FUNCTION,	\
-		t_f32:	 F32_##FUNCTION,	\
-		t_f64:	 F64_##FUNCTION,	\
-		t_f80:	 F80_##FUNCTION,	\
-		t_f128:	 F128_##FUNCTION,	\
+		t_f32:	 F32_  ##FUNCTION,	\
+		t_f64:	 F64_  ##FUNCTION,	\
+		t_f80:	 F80_  ##FUNCTION,	\
+		t_f128:	 F128_ ##FUNCTION,	\
 		t_float: Float_##FUNCTION,	\
 	)(X, Y)
 
@@ -174,37 +255,80 @@ HEADER_CPP
 
 //! Returns the value of `x`, rounded to the nearest integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/round}
+**	- Math: @f$ {round{x}} @f$ or @f$ {\lfloor{x}\rceil} @f$
 */
 #define						Math_Round(X)		DEFINE_GENERIC_MATH_FUNCTION(Round, X)
 #define c_round				Math_Round
-#define Math_FloatRound		Math_Round
 
 //! Returns the value of `x`, rounded towards 0
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/trunc}
+**	- Math: @f$ {trunc{x}} @f$
 */
-#define						Math_Truncate(X)	DEFINE_GENERIC_MATH_FUNCTION(Truncate, X)
-#define c_trunc				Math_Truncate
-#define Math_FloatTrunc		Math_Truncate
+#define						Math_Trunc(X)	DEFINE_GENERIC_MATH_FUNCTION(Truncate, X)
+#define c_trunc				Math_Trunc
+#define Math_Truncate		Math_Trunc
 
 //! Returns the value of `x`, rounded to the superior integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/floor}
+**	- Math: @f$ {floor{x}} @f$ or @f$ {\lfloor{x}\rfloor} @f$
 */
 #define						Math_Floor(X)		DEFINE_GENERIC_MATH_FUNCTION(Floor, X)
 #define c_floor				Math_Floor
-#define Math_FloatFloor		Math_Floor
 
 //! Returns the value of `x`, rounded to the inferior integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/ceil}
+**	- Math: @f$ {ceil{x}} @f$ or @f$ {\lceil{x}\rceil} @f$
 */
-#define						Math_Ceiling(X)		DEFINE_GENERIC_MATH_FUNCTION(Ceiling, X)
-#define c_ceil				Math_Ceiling
-#define Math_FloatCeiling	Math_Ceiling
+#define						Math_Ceil(X)		DEFINE_GENERIC_MATH_FUNCTION(Ceiling, X)
+#define c_ceil				Math_Ceil
+#define Math_Ceiling		Math_Ceil
 
 
+
+/*
+** ************************************************************************** *|
+**                            Basic Math Operators                            *|
+** ************************************************************************** *|
+*/
+
+//! Returns the addition result of `x` and `y`
+/*!
+**	- Math: @f$ {x + y} @f$
+*/
+#define						Math_Add(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Add, X, Y)
+#define c_add				Math_Add
+
+//! Returns the subtraction result of `x` by `y`
+/*!
+**	- Math: @f$ {x - y} @f$
+*/
+#define						Math_Sub(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Sub, X, Y)
+#define c_sub				Math_Sub
+#define Math_Subtract		Math_Sub
+
+//! Returns the multiplication result of `x` and `y`
+/*!
+**	- Math: @f$ {x \times y} @f$
+*/
+#define						Math_Mul(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mul, X, Y)
+#define c_mul				Math_Mul
+#define Math_Multiply		Math_Mul
+
+//! Returns the quotient of euclidian division of `x` by `y`
+/*!
+**	- Math: @f$ {\frac{x}{y}} @f$
+*/
+#define						Math_Div(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Div, X, Y)
+#define c_div				Math_Div
+#define Math_Divide			Math_Div
+
+//! Returns the remainder of euclidian division of `x` by `y`
+/*!
+**	- Math: @f$ {x \mod y} @f$
+*/
+#define						Math_Mod(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mod, X, Y)
+#define c_mod				Math_Mod
+#define Math_Modulo			Math_Mod
 
 /*
 ** ************************************************************************** *|
@@ -214,9 +338,6 @@ HEADER_CPP
 
 //! Returns the absolute value of `x` (makes `x` positive)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/abs}
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fabs}
-**
 **	- Math: @f$ {|x|} @f$
 */
 #define						Math_Abs(X)		DEFINE_GENERIC_MATH_FUNCTION(Abs, X)
@@ -225,49 +346,8 @@ HEADER_CPP
 
 
 
-//! Returns the addition result of `x` and `y`
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
-*/
-#define						Math_Add(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Add, X, Y)
-#define c_add				Math_Add
-
-//! Returns the subtraction result of `x` by `y`
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
-*/
-#define						Math_Sub(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Sub, X, Y)
-#define c_sub				Math_Sub
-#define Math_Subtract		Math_Sub
-
-//! Returns the multiplication result of `x` and `y`
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
-*/
-#define						Math_Mul(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mul, X, Y)
-#define c_mul				Math_Mul
-#define Math_Multiply		Math_Mul
-
-//! Returns the quotient of euclidian division of `x` by `y`
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
-*/
-#define						Math_Div(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Div, X, Y)
-#define c_div				Math_Div
-#define Math_Divide			Math_Div
-
-//! Returns the remainder of euclidian division of `x` by `y`
-/*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
-*/
-#define						Math_Mod(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mod, X, Y)
-#define c_mod				Math_Mod
-#define Math_Modulo			Math_Mod
-
 //! Returns the value of `x` to the power of `y`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/pow}
-**
 **	- Math: @f$ {x^y} @f$
 */
 #define						Math_Pow(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Pow, X, Y)
@@ -276,8 +356,6 @@ HEADER_CPP
 
 //! Returns the value of `x` to the power of `n` (integer)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/pow}
-**
 **	- Math: @f$ {x^n} @f$
 */
 #define						Math_IntPow(X, N);	DEFINE_GENERIC_MATH_OPERATOR(IntPow, X, N)
@@ -288,9 +366,7 @@ HEADER_CPP
 
 //! Returns the square root of `x` (inverse of power of 2)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sqrt}
-**
-**	- Math: @f$ {\sqrt {x}} @f$
+**	- Math: @f$ {\sqrt{x}} @f$
 */
 #define						Math_Root2(X)	DEFINE_GENERIC_MATH_FUNCTION(Root2, X)
 #define c_sqrt				Math_Root2
@@ -299,9 +375,7 @@ HEADER_CPP
 
 //! Returns the cubic root of `x` (inverse of power of 3)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cbrt}
-**
-**	- Math: @f$ {\sqrt[3] {x}} @f$
+**	- Math: @f$ {\sqrt[3]{x}} @f$
 */
 #define						Math_Root3(X)	DEFINE_GENERIC_MATH_FUNCTION(Root3, X)
 #define c_cbrt				Math_Root3
@@ -310,9 +384,7 @@ HEADER_CPP
 
 //! Returns the power-n-ic root of `x` (inverse of power of `n`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/nrt}
-**
-**	- Math: @f$ {\sqrt[n] {x}} @f$
+**	- Math: @f$ {\sqrt[n]{x}} @f$
 */
 #define						Math_RootN(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(RootN, X, Y)
 #define c_nrt				Math_RootN
@@ -331,8 +403,6 @@ HEADER_CPP
 
 //! Returns the exponential function's value for `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/exp}
-**
 **	- Math: @f$ {e^x} @f$
 */
 #define							Math_Exp(X)		DEFINE_GENERIC_MATH_FUNCTION(Exp, X)
@@ -341,8 +411,6 @@ HEADER_CPP
 
 //! Returns the natural logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log}
-**
 **	- Math: @f$ {\ln {x}} @f$
 */
 #define							Math_Ln(X)		DEFINE_GENERIC_MATH_FUNCTION(Ln, X)
@@ -351,8 +419,6 @@ HEADER_CPP
 
 //! Returns the binary (base-2) logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log2}
-**
 **	- Math: @f$ {\log_{2} {x}} @f$
 */
 #define							Math_Log2(X)	DEFINE_GENERIC_MATH_FUNCTION(Log2, X)
@@ -362,8 +428,6 @@ HEADER_CPP
 
 //! Returns the decimal (base-10) logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log10}
-**
 **	- Math: @f$ {\log_{10} {x}} @f$
 */
 #define							Math_Log10(X)	DEFINE_GENERIC_MATH_FUNCTION(Log10, X)
@@ -373,8 +437,6 @@ HEADER_CPP
 
 //! Returns the base-`n` logarithm of `x`
 /*!
-**	@nonstd
-**
 **	- Math: @f$ {\log_{n} {x}} @f$
 */
 #define							Math_LogN(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(LogN, X, Y)
@@ -391,8 +453,6 @@ HEADER_CPP
 
 //! Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cos}
-**
 **	- Math: @f$ {\cos {x}} @f$
 */
 #define						Math_Cos(X)		DEFINE_GENERIC_MATH_FUNCTION(Cos, X)
@@ -401,8 +461,6 @@ HEADER_CPP
 
 //! Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sin}
-**
 **	- Math: @f$ {\sin {x}} @f$
 */
 #define						Math_Sin(X)		DEFINE_GENERIC_MATH_FUNCTION(Sin, X)
@@ -411,8 +469,6 @@ HEADER_CPP
 
 //! Returns the tangent of `x` (trigonometry tangent line)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/tan}
-**
 **	- Math: @f$ {\tan {x}} @f$
 */
 #define						Math_Tan(X)		DEFINE_GENERIC_MATH_FUNCTION(Tan, X)
@@ -421,8 +477,6 @@ HEADER_CPP
 
 //! Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/acos}
-**
 **	- Math: @f$ {\cos^{-1} {x}} @f$
 */
 #define						Math_ArcCos(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcCos, X)
@@ -432,8 +486,6 @@ HEADER_CPP
 
 //! Returns the arc-sine of `x` (inverse of the sin function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/asin}
-**
 **	- Math: @f$ {\sin^{-1} {x}} @f$
 */
 #define						Math_ArcSin(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcSin, X)
@@ -443,8 +495,6 @@ HEADER_CPP
 
 //! Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atan}
-**
 **	- Math: @f$ {\tan^{-1} {x}} @f$
 */
 #define						Math_ArcTan(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcTan, X)
@@ -456,8 +506,6 @@ HEADER_CPP
 
 //! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atan2}
-**
 **	- Math: @f$ {\arctan(\frac{y}{x})} @f$, in the range @f$ {[-\pi;+\pi]} @f$
 */
 #define							Math_ArcTan2(Y, X)	DEFINE_GENERIC_MATH_FUNCTION(ArcTan2, Y, X)
@@ -468,10 +516,14 @@ HEADER_CPP
 
 
 
+/*
+** ************************************************************************** *|
+**                           Hyperbolic Trigonometry                          *|
+** ************************************************************************** *|
+*/
+
 //! Returns the hyperbolic cosine of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cosh}
-**
 **	- Math: @f$ {\cosh {x}} @f$
 */
 #define								Math_CosH(X)	DEFINE_GENERIC_MATH_FUNCTION(CosH, X)
@@ -481,8 +533,6 @@ HEADER_CPP
 
 //! Returns the hyperbolic sine of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sinh}
-**
 **	- Math: @f$ {\sinh {x}} @f$
 */
 #define								Math_SinH(X)	DEFINE_GENERIC_MATH_FUNCTION(SinH, X)
@@ -492,8 +542,6 @@ HEADER_CPP
 
 //! Returns the hyperbolic tangent of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/tanh}
-**
 **	- Math: @f$ {\tanh {x}} @f$
 */
 #define								Math_TanH(X)	DEFINE_GENERIC_MATH_FUNCTION(TanH, X)
@@ -503,8 +551,6 @@ HEADER_CPP
 
 //! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/acosh}
-**
 **	- Math: @f$ {\cosh^{-1} {x}} @f$
 */
 #define								Math_InvCosH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvCosH, X)
@@ -514,8 +560,6 @@ HEADER_CPP
 
 //! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/asinh}
-**
 **	- Math: @f$ {\sinh^{-1} {x}} @f$
 */
 #define								Math_InvSinH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvSinH, X)
@@ -525,8 +569,6 @@ HEADER_CPP
 
 //! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atanh}
-**
 **	- Math: @f$ {\tanh^{-1} {x}} @f$
 */
 #define								Math_InvTanH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvTanH, X)

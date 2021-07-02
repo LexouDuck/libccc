@@ -66,16 +66,12 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-#include "libccc/int.h"
-#include "libccc/float.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_FIXED_T
+#define __LIBCCC_FIXED_T
 
 /*
 ** ************************************************************************** *|
@@ -85,31 +81,12 @@ HEADER_CPP
 
 // TODO make fixed-point type have configurable denominator, not just bitwise point ?
 
-//! The amount of bits dedicated to the fixed-point number type's fractional number part
-#define FIXED_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(LIBCONFIG_BITS_FIXED)
-#define Q16_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(16)
-#define Q32_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(32)
-#define Q64_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(64)
-#define Q128_BITS_FRACTIONPART	LIBCONFIG_FIXED_BITS_FRACTIONPART(128)
-#define FIXED_MASK_FRACTIONPART	(((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_FRACTIONPART) - 1)
-#define FIXED_MAX_FRACTIONPART	(((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_FRACTIONPART) - 1)
-#define Q16_MAX_FRACTIONPART	(((t_q16) 1 << Q16_BITS_FRACTIONPART) - 1)
-#define Q32_MAX_FRACTIONPART	(((t_q32) 1 << Q32_BITS_FRACTIONPART) - 1)
-#define Q64_MAX_FRACTIONPART	(((t_q64) 1 << Q64_BITS_FRACTIONPART) - 1)
-#define Q128_MAX_FRACTIONPART	(((t_q128)1 << Q128_BITS_FRACTIONPART)- 1)
+//! The maximum value of the fixed-point number type's fractional number part
+#define FIXED_MAX_FRACTIONPART	(LIBCONFIG_FIXED_DENOMINATOR - 1)
 
 //! The amount of bits dedicated to the fixed-point number type's integer number part
-#define FIXED_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(LIBCONFIG_BITS_FIXED)
-#define Q16_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(16)
-#define Q32_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(32)
-#define Q64_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(64)
-#define Q128_BITS_INTEGERPART	LIBCONFIG_FIXED_BITS_INTEGERPART(128)
-#define FIXED_MASK_INTEGERPART	((((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_INTEGERPART) - 1) << FIXED_BITS_FRACTIONPART)
-#define FIXED_MAX_INTEGERPART	 (((CONCAT(t_s,LIBCONFIG_BITS_FIXED))1 << FIXED_BITS_INTEGERPART) - 1)
-#define Q16_MAX_INTEGERPART		 (((t_q16)1  << Q16_BITS_INTEGERPART) - 1)
-#define Q32_MAX_INTEGERPART		 (((t_q32)1  << Q32_BITS_INTEGERPART) - 1)
-#define Q64_MAX_INTEGERPART		 (((t_q64)1  << Q64_BITS_INTEGERPART) - 1)
-#define Q128_MAX_INTEGERPART	 (((t_q128)1 << Q128_BITS_INTEGERPART)- 1)
+#define FIXED_MAX_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_FIXED_BITS),_MAX) / LIBCONFIG_FIXED_DENOMINATOR)
+#define FIXED_MIN_INTEGERPART	(CONCAT(CONCAT(S,LIBCONFIG_FIXED_BITS),_MIN) / LIBCONFIG_FIXED_DENOMINATOR)
 
 
 
@@ -161,7 +138,7 @@ HEADER_CPP
 	typedef	_Sat long _Accum		t_q64;
 	TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 
-	#if (LIBCONFIG_BITS_FIXED == 128)
+	#if (LIBCONFIG_FIXED_BITS == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -177,8 +154,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q16_MAX.
 	*/
-	typedef t_s16		t_q16;
-	TYPEDEF_ALIAS(		t_q16,	FIXED_16,	PRIMITIVE)
+	typedef s16		t_q16;
+	TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 
 	//! Primitive type: 32-bit signed fixed-point rational number (configurable bit portions)
 	/*!
@@ -190,8 +167,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q32_MAX.
 	*/
-	typedef t_s32		t_q32;
-	TYPEDEF_ALIAS(		t_q32,	FIXED_32,	PRIMITIVE)
+	typedef s32		t_q32;
+	TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 
 	//! Primitive type: 64-bit signed fixed-point rational number (configurable bit portions)
 	/*!
@@ -203,8 +180,8 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q64_MAX.
 	*/
-	typedef	t_s64		t_q64;
-	TYPEDEF_ALIAS(		t_q64,	FIXED_64,	PRIMITIVE)
+	typedef	s64		t_q64;
+	TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 
 	#ifdef	__int128
 	//! Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
@@ -217,9 +194,9 @@ HEADER_CPP
 	**	All the other `#define`s depend on this one macro.
 	**	The largest possible value for this type is #Q128_MAX.
 	*/
-	typedef __int128	t_q128;
-	TYPEDEF_ALIAS(		t_q128,	FIXED_128,	PRIMITIVE)
-	#elif (LIBCONFIG_BITS_FIXED == 128)
+	typedef s128	t_q128;
+	TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
+	#elif (LIBCONFIG_FIXED_BITS == 128)
 		#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 	#endif
 
@@ -228,16 +205,19 @@ HEADER_CPP
 
 
 //! The actual underlying type for the `t_fixed` configurable type
-#define FIXED_T			CONCAT(t_q,LIBCONFIG_BITS_FIXED)
+#define FIXED_T			CONCAT(t_q,LIBCONFIG_FIXED_BITS)
 //! The actual underlying type for the `t_fixed` configurable type, in uppercase
-#define FIXED_TYPE		CONCAT(Q,LIBCONFIG_BITS_FIXED)
+#define FIXED_TYPE		CONCAT(Q,LIBCONFIG_FIXED_BITS)
+//! the denominator/divisor for this fixed-point number type, @see #LIBCONFIG_FIXED_DENOMINATOR
+#define FIXED_DENOMINATOR	LIBCONFIG_FIXED_DENOMINATOR
+
 
 //! The configurable-size fixed-point number primitive type.
 /*!
 **	@nonstd
 **
 **	Configurable-width fixed-point rational number type.
-**	The size of this fixed-point type depends on the value of #LIBCONFIG_BITS_FIXED.
+**	The size of this fixed-point type depends on the value of #LIBCONFIG_FIXED_BITS.
 **	The portion dedicated to the fractional part depends on the value of #FIXED_BITS_FRACTIONPART.
 **	All the other important `#define`s depend on this one macro (FIXED_BITS_FRACTIONPART).
 **	This type can express a number between #FIXED_MIN and #FIXED_MAX.
@@ -247,55 +227,98 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 
 
-/*!
-**	This very small float is typically used to compare two fixed-point values.
-**	Since fixed-point types have a configurable fractional portion, it can be useful
-**	to have the Fixed_EqualsApprox() functions for approximate equality checks.
-**	@see not to be confused with #FLOAT_EPSILON
-*/
-#define FIXED_APPROX	LIBCONFIG_FIXED_APPROX
-
-
-
-#if(LIBCONFIG_BITS_FIXED != 16 && \
-	LIBCONFIG_BITS_FIXED != 32 && \
-	LIBCONFIG_BITS_FIXED != 64 && \
-	LIBCONFIG_BITS_FIXED != 128)
-	#error "LIBCONFIG_BITS_FIXED must be equal to one of: 16, 32, 64, 128"
+#if(LIBCONFIG_FIXED_BITS != 16 && \
+	LIBCONFIG_FIXED_BITS != 32 && \
+	LIBCONFIG_FIXED_BITS != 64 && \
+	LIBCONFIG_FIXED_BITS != 128)
+	#error "LIBCONFIG_FIXED_BITS must be equal to one of: 16, 32, 64, 128"
 #endif
 
-#if (FIXED_BITS_INTEGERPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_INTEGERPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "FIXED_BITS_FRACTIONPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
-#endif
-
-#if (FIXED_BITS_INTEGERPART + FIXED_BITS_FRACTIONPART > LIBCONFIG_BITS_FIXED)
-	#error "The sum of both _INTEGERPART and _DECIMALPART must be inferior or equal to LIBCONFIG_BITS_FIXED"
+#if (FIXED_DENOMINATOR == 0)
+	#error "LIBCONFIG_FIXED_DENOMINATOR must never be 0 (cannot divide by zero)"
 #endif
 
 
 
-#define Q16_MAX		((t_q16)S16_MAX)	//!< The largest possible value that a 16-bit fixed-point can hold
-#define Q16_MIN		((t_q16)S16_MIN)	//!< The largest possible value that a 16-bit fixed-point can hold
+#undef FIXED_ERROR
+#undef FIXED_MAX
+#undef FIXED_MIN
 
-#define Q32_MAX		((t_q32)S32_MAX)	//!< The largest possible value that a 32-bit fixed-point can hold
-#define Q32_MIN		((t_q32)S32_MIN)	//!< The largest possible value that a 32-bit fixed-point can hold
+#if (LIBCONFIG_FIXED_ERROR == 0)
 
-#define Q64_MAX		((t_q64)S64_MAX)	//!< The largest possible value that a 64-bit fixed-point can hold
-#define Q64_MIN		((t_q64)S64_MIN)	//!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q16_ERROR	((t_q16)0)
+	#define Q16_MAX		((t_q16)0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MIN		((t_q16)0x8000) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAXINT	((t_s16)(Q16_MAX / FIXED_DENOMINATOR))
+	#define Q16_MININT	((t_s16)(Q16_MIN / FIXED_DENOMINATOR))
 
-#ifdef __int128
-#define Q128_MAX	((t_q128)S128_MAX)	//!< The largest possible value that a 128-bit fixed-point can hold
-#define Q128_MIN	((t_q128)S128_MIN)	//!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q32_ERROR	((t_q32)0)
+	#define Q32_MAX		((t_q32)0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MIN		((t_q32)0x80000000) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAXINT	((t_s32)(Q32_MAX / FIXED_DENOMINATOR))
+	#define Q32_MININT	((t_s32)(Q32_MIN / FIXED_DENOMINATOR))
+
+	#define Q64_ERROR	((t_q64)0)
+	#define Q64_MAX		((t_q64)0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MIN		((t_q64)0x8000000000000000) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
+	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
+
+	#ifdef __int128
+	#define Q128_ERROR	((t_q128)0)
+	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MIN	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAXINT	((t_s128)(Q128_MAX / FIXED_DENOMINATOR))
+	#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
+	#endif
+
+	#define FIXED_ERROR		((t_fixed)0)
+	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+
+#else
+
+	#define Q16_ERROR	((t_q16)0x8000)
+	#define Q16_MAX		((t_q16)0x7FFF)  //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MIN		((t_q16)-0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAXINT	((t_s16)(Q16_MAX / FIXED_DENOMINATOR))
+	#define Q16_MININT	((t_s16)(Q16_MIN / FIXED_DENOMINATOR))
+
+	#define Q32_ERROR	((t_q32)0x80000000)
+	#define Q32_MAX		((t_q32)0x7FFFFFFF)  //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MIN		((t_q32)-0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAXINT	((t_s32)(Q32_MAX / FIXED_DENOMINATOR))
+	#define Q32_MININT	((t_s32)(Q32_MIN / FIXED_DENOMINATOR))
+
+	#define Q64_ERROR	((t_q64)0x8000000000000000)
+	#define Q64_MAX		((t_q64)0x7FFFFFFFFFFFFFFF)  //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MIN		((t_q64)-0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
+	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
+
+	#ifdef __int128
+	#define Q128_ERROR	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))  //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MIN	((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAXINT	((t_s128)(Q128_MAX / FIXED_DENOMINATOR))
+	#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
+	#endif
+
+	#define FIXED_ERROR		((t_fixed)((~(t_fixed)0) >> 1) + 1))
+	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
+	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+
 #endif
 
-#define FIXED_MAX	((t_fixed)SINT_MAX)	//!< The largest possible value that a configurable-size fixed-point can hold
-#define FIXED_MIN	((t_fixed)SINT_MIN)	//!< The largest possible value that a configurable-size fixed-point can hold
 
 
+#endif
+#ifndef __LIBCCC_FIXED_F
+#define __LIBCCC_FIXED_F
 
 /*
 ** ************************************************************************** *|
@@ -303,32 +326,32 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-
-
-//! Create a new fixed-point value from its individual component parts
-/*!
-**	TODO document
-**	@param	part_integer	the integer portion of the fixed-point number
-**	@param	part_fraction	the fractional portion of the fixed-point number
-**	@param	denominator		the denominator applied to this fixed-point number
-**	@returns
-*/
+//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
 //!@{
-#define				Fixed	CONCAT(FIXED_TYPE,)
-t_q16				Q16(t_s16 part_integer, t_u16 part_fraction, t_u16 denominator);
-t_q32				Q32(t_s32 part_integer, t_u32 part_fraction, t_u32 denominator);
-t_q64				Q64(t_s64 part_integer, t_u64 part_fraction, t_u64 denominator);
-#ifdef __int128
-t_q128				Q128(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
-#endif
-#define c_fixed		Fixed 	//!< @alias{Fixed}
-#define c_q16		Q16 	//!< @alias{Q16}
-#define c_q32		Q32 	//!< @alias{Q32}
-#define c_q64		Q64 	//!< @alias{Q64}
-#define c_q128		Q128 	//!< @alias{Q128}
+#define DEFINEFUNC_Fixed(X, FUNCTYPE) \
+	_Generic((X),	\
+		t_s16:	 FUNCTYPE##_FromInt,	\
+		t_s32:	 FUNCTYPE##_FromInt,	\
+		t_s64:	 FUNCTYPE##_FromInt,	\
+		t_s128:	 FUNCTYPE##_FromInt,	\
+		t_sint:  FUNCTYPE##_FromInt,	\
+		t_q16:	 FUNCTYPE##_FromFixed,	\
+		t_q32:	 FUNCTYPE##_FromFixed,	\
+		t_q64:	 FUNCTYPE##_FromFixed,	\
+		t_q128:	 FUNCTYPE##_FromFixed,	\
+		t_fixed: FUNCTYPE##_FromFixed,	\
+		t_f32:	 FUNCTYPE##_FromFloat,	\
+		t_f64:	 FUNCTYPE##_FromFloat,	\
+		t_f80:	 FUNCTYPE##_FromFloat,	\
+		t_f128:	 FUNCTYPE##_FromFloat,	\
+		t_float: FUNCTYPE##_FromFloat,	\
+	)(X)
+#define Fixed(X)	DEFINEFUNC_Fixed(X, Fixed)
+#define Q16(X)		DEFINEFUNC_Fixed(X, Q16)
+#define Q32(X)		DEFINEFUNC_Fixed(X, Q32)
+#define Q64(X)		DEFINEFUNC_Fixed(X, Q64)
+#define Q128(X)		DEFINEFUNC_Fixed(X, Q128)
 //!@}
-
-
 
 //! Returns the nearest fixed-point value to the given integer `number`
 /*!
@@ -336,11 +359,11 @@ t_q128				Q128(t_s128 part_integer, t_u128 part_fraction, t_u128 denominator);
 */
 //!@{
 #define					Fixed_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-t_q16					Q16_FromInt(t_s16 number);
-t_q32					Q32_FromInt(t_s32 number);
-t_q64					Q64_FromInt(t_s64 number);
+t_q16					Q16_FromInt(t_sint number);
+t_q32					Q32_FromInt(t_sint number);
+t_q64					Q64_FromInt(t_sint number);
 #ifdef __int128
-t_q128					Q128_FromInt(t_s128 number);
+t_q128					Q128_FromInt(t_sint number);
 #endif
 #define c_itofixed		Fixed_FromInt 	//!< @alias{Fixed_FromInt}
 #define c_itoq16		Q16_FromInt 	//!< @alias{Q16_FromInt}
@@ -349,17 +372,36 @@ t_q128					Q128_FromInt(t_s128 number);
 #define c_itoq128		Q128_FromInt 	//!< @alias{Q128_FromInt}
 //!@}
 
+//! Returns the nearest fixed-point value to the given fixed-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define					Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+t_q16					Q16_FromFixed(t_fixed number);
+t_q32					Q32_FromFixed(t_fixed number);
+t_q64					Q64_FromFixed(t_fixed number);
+#ifdef __int128
+t_q128					Q128_FromFixed(t_fixed number);
+#endif
+#define c_qtofixed		Fixed_FromFixed	//!< @alias{Fixed_FromFixed}
+#define c_qtoq16		Q16_FromFixed	//!< @alias{Q16_FromFixed}
+#define c_qtoq32		Q32_FromFixed	//!< @alias{Q32_FromFixed}
+#define c_qtoq64		Q64_FromFixed	//!< @alias{Q64_FromFixed}
+#define c_qtoq128		Q128_FromFixed	//!< @alias{Q128_FromFixed}
+//!@}
+
 //! Returns the nearest fixed-point value to the given floating-point `number`
 /*!
 **	TODO document
 */
 //!@{
 #define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-t_q16	 				Q16_FromFloat(t_f64 number);
-t_q32	 				Q32_FromFloat(t_f64 number);
-t_q64	 				Q64_FromFloat(t_f64 number);
+t_q16	 				Q16_FromFloat(t_float number);
+t_q32	 				Q32_FromFloat(t_float number);
+t_q64	 				Q64_FromFloat(t_float number);
 #ifdef __int128
-t_q128	 				Q128_FromFloat(t_f64 number);
+t_q128	 				Q128_FromFloat(t_float number);
 #endif
 #define c_ftofixed		Fixed_FromFloat	//!< @alias{Fixed_FromFloat}
 #define c_ftoq16		Q16_FromFloat	//!< @alias{Q16_FromFloat}
@@ -369,6 +411,28 @@ t_q128	 				Q128_FromFloat(t_f64 number);
 //!@}
 
 
+
+//! Get the nearest fixed-point value from the given fraction/rational number
+/*!
+**	TODO document
+$$	@param	numerator		the numerator: number at the top of the fraction
+**	@param	denominator		the denominator: number at the bottom of the fraction
+**	@returns
+*/
+//!@{
+#define					Fixed_From	CONCAT(FIXED_TYPE,_From)
+t_q16					Q16_From(t_s16 part_fraction, t_s16 denominator);
+t_q32					Q32_From(t_s32 part_fraction, t_s32 denominator);
+t_q64					Q64_From(t_s64 part_fraction, t_s64 denominator);
+#ifdef __int128
+t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
+#endif
+#define c_tofixed		Fixed_From	//!< @alias{Fixed_From}
+#define c_toq16			Q16_From	//!< @alias{Q16_From}
+#define c_toq32			Q32_From	//!< @alias{Q32_From}
+#define c_toq64			Q64_From	//!< @alias{Q64_From}
+#define c_toq128		Q128_From	//!< @alias{Q128_From}
+//!@}
 
 //! Returns the integer portion of the given fixed-point `number`
 /*!
@@ -412,67 +476,6 @@ t_s128							Q128_FractionPart(t_q128 number);
 
 /*
 ** ************************************************************************** *|
-**                         Fixed-point logic operators                        *|
-** ************************************************************************** *|
-*/
-
-
-
-//! Returns 1(TRUE) if the 2 given floating-point values are exactly equal (operator: `==`)
-/*!
-**	@param	number1	The first value to check for (exact) equality
-**	@param	number2	The second value to check for (exact) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are exactly equal, 0(FALSE) otherwise.
-*/
-//!@{
-#define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
-t_bool					Q16_Equals(t_q16 number1, t_q16 number2);
-t_bool					Q32_Equals(t_q32 number1, t_q32 number2);
-t_bool					Q64_Equals(t_q64 number1, t_q64 number2);
-#ifdef	__int128
-t_bool					Q128_Equals(t_q128 number1, t_q128 number2);
-#endif
-#define c_qequ			Fixed_Equals	//!< @alias{Fixed_Equals}
-#define c_q16equ		Q16_Equals	//!< @alias{Q16_Equals}
-#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
-#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
-#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
-//!@}
-
-
-
-//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal (operator: `=~`, using FLOAT_APPROX)
-/*!
-**	@param	number1	The first value to check for (approximate) equality
-**	@param	number2	The second value to check for (approximate) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
-**		(using FLOAT_BIAS as a comparison margin), or 0(FALSE) otherwise.
-*/
-//!@{
-#define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
-t_bool					Q16_EqualsApprox(t_q16 number1, t_q16 number2);
-t_bool					Q32_EqualsApprox(t_q32 number1, t_q32 number2);
-t_bool					Q64_EqualsApprox(t_q64 number1, t_q64 number2);
-#ifdef	__int128
-t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
-#endif
-#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
-#define c_q16equa		Q16_EqualsApprox	//!< @alias{Q16_EqualsApprox}
-#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
-#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
-#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
-//!@}
-
-
-
-// TODO Fixed_LessThan
-
-// TODO Fixed_GreaterThan
-
-
-
-/*
-** ************************************************************************** *|
 **                          Fixed-to-String Conversions                       *|
 ** ************************************************************************** *|
 */
@@ -482,7 +485,8 @@ t_bool					Q128_EqualsApprox(t_q128 number1, t_q128 number2);
 //! Get the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
@@ -504,7 +508,8 @@ _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 //! Get the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
@@ -523,10 +528,34 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 
 
 
+//! Get the string octal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					Fixed_ToString_Oct	CONCAT(FIXED_TYPE,_ToString_Oct)
+_MALLOC()	t_char*		Q16_ToString_Oct(t_q16 number); // TODO implement
+_MALLOC()	t_char*		Q32_ToString_Oct(t_q32 number); // TODO implement
+_MALLOC()	t_char*		Q64_ToString_Oct(t_q64 number); // TODO implement
+#ifdef	__int128
+_MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
+#endif
+#define c_qtostroct		Fixed_ToString_Oct	//!< @alias{Fixed_ToString_Oct}
+#define c_q16tostroct	Q16_ToString_Oct	//!< @alias{Q16_ToString_Oct}
+#define c_q32tostroct	Q32_ToString_Oct	//!< @alias{Q32_ToString_Oct}
+#define c_q64tostroct	Q64_ToString_Oct	//!< @alias{Q64_ToString_Oct}
+#define c_q128tostroct	Q128_ToString_Oct	//!< @alias{Q128_ToString_Oct}
+//!@}
+
+
+
 //! Get the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
@@ -549,7 +578,8 @@ _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base to use to represent the given `number`
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
@@ -576,11 +606,41 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 
 
 
-//! Parses the string decimal representation of a signed fixed-point number
+// General parser functions
+
+
+
+//! Parse a fixed-point number from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse	CONCAT(FIXED_TYPE,_Parse)
+t_size					Q16_Parse	(t_q16	*dest, t_char const* str, t_size n);
+t_size					Q32_Parse	(t_q32	*dest, t_char const* str, t_size n);
+t_size					Q64_Parse	(t_q64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					Q128_Parse	(t_q128	*dest, t_char const* str, t_size n);
+#endif
+#define c_qparse		Fixed_Parse	//!< @alias{Fixed_Parse}
+#define c_q16parse		Q16_Parse	//!< @alias{Q16_Parse}
+#define c_q32parse		Q32_Parse	//!< @alias{Q32_Parse}
+#define c_q64parse		Q64_Parse	//!< @alias{Q64_Parse}
+#define c_q128parse		Q128_Parse	//!< @alias{Q128_Parse}
+//!@}
+
+//! Parses the string representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString	CONCAT(FIXED_TYPE,_FromString)
@@ -599,11 +659,94 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 
 
 
+// Decimal parser functions
+
+
+
+//! Parse a fixed-point number from the given decimal number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
+t_size					Q16_Parse_Dec	(t_q16	*dest, t_char const* str, t_size n);
+t_size					Q32_Parse_Dec	(t_q32	*dest, t_char const* str, t_size n);
+t_size					Q64_Parse_Dec	(t_q64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str, t_size n);
+#endif
+#define c_qparsedec		Fixed_Parse_Dec	//!< @alias{Fixed_Parse_Dec}
+#define c_q16parsedec	Q16_Parse_Dec	//!< @alias{Q16_Parse_Dec}
+#define c_q32parsedec	Q32_Parse_Dec	//!< @alias{Q32_Parse_Dec}
+#define c_q64parsedec	Q64_Parse_Dec	//!< @alias{Q64_Parse_Dec}
+#define c_q128parsedec	Q128_Parse_Dec	//!< @alias{Q128_Parse_Dec}
+//!@}
+
+//! Parses the string decimal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
+*/
+//!@{
+#define					Fixed_FromString_Dec	CONCAT(FIXED_TYPE,_FromString_Dec)
+t_q16					Q16_FromString_Dec(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Dec(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Dec(t_char const* str); // TODO implement
+#ifdef	__int128
+t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
+#endif
+#define c_strdectoq		Fixed_FromString_Dec//!< @alias{Fixed_FromString_Dec}
+#define c_strdectoq16	Q16_FromString_Dec	//!< @alias{Q16_FromString_Dec}
+#define c_strdectoq32	Q32_FromString_Dec	//!< @alias{Q32_FromString_Dec}
+#define c_strdectoq64	Q64_FromString_Dec	//!< @alias{Q64_FromString_Dec}
+#define c_strdectoq128	Q128_FromString_Dec	//!< @alias{Q128_FromString_Dec}
+//!@}
+
+
+
+// Hexadecimal parser functions
+
+
+
+//! Parse a fixed-point number from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
+t_size					Q16_Parse_Hex	(t_q16	*dest, t_char const* str, t_size n);
+t_size					Q32_Parse_Hex	(t_q32	*dest, t_char const* str, t_size n);
+t_size					Q64_Parse_Hex	(t_q64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str, t_size n);
+#endif
+#define c_qparsehex		Fixed_Parse_Hex	//!< @alias{Fixed_Parse_Hex}
+#define c_q16parsehex	Q16_Parse_Hex	//!< @alias{Q16_Parse_Hex}
+#define c_q32parsehex	Q32_Parse_Hex	//!< @alias{Q32_Parse_Hex}
+#define c_q64parsehex	Q64_Parse_Hex	//!< @alias{Q64_Parse_Hex}
+#define c_q128parsehex	Q128_Parse_Hex	//!< @alias{Q128_Parse_Hex}
+//!@}
+
 //! Parses the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Hex	CONCAT(FIXED_TYPE,_FromString_Hex)
@@ -622,11 +765,94 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 
 
 
+// Octal parser functions
+
+
+
+//! Parse a fixed-point number from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
+t_size					Q16_Parse_Oct	(t_q16	*dest, t_char const* str, t_size n);
+t_size					Q32_Parse_Oct	(t_q32	*dest, t_char const* str, t_size n);
+t_size					Q64_Parse_Oct	(t_q64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str, t_size n);
+#endif
+#define c_qparseoct		Fixed_Parse_Oct	//!< @alias{Fixed_Parse_Oct}
+#define c_q16parseoct	Q16_Parse_Oct	//!< @alias{Q16_Parse_Oct}
+#define c_q32parseoct	Q32_Parse_Oct	//!< @alias{Q32_Parse_Oct}
+#define c_q64parseoct	Q64_Parse_Oct	//!< @alias{Q64_Parse_Oct}
+#define c_q128parseoct	Q128_Parse_Oct	//!< @alias{Q128_Parse_Oct}
+//!@}
+
+//! Parses the string octal representation of a signed fixed-point number
+/*!
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
+*/
+//!@{
+#define					Fixed_FromString_Oct	CONCAT(FIXED_TYPE,_FromString_Oct)
+t_q16					Q16_FromString_Oct(t_char const* str); // TODO implement
+t_q32					Q32_FromString_Oct(t_char const* str); // TODO implement
+t_q64					Q64_FromString_Oct(t_char const* str); // TODO implement
+#ifdef	__int128
+t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
+#endif
+#define c_strocttoq		Fixed_FromString_Oct//!< @alias{Fixed_FromString_Oct}
+#define c_strocttoq16	Q16_FromString_Oct	//!< @alias{Q16_FromString_Oct}
+#define c_strocttoq32	Q32_FromString_Oct	//!< @alias{Q32_FromString_Oct}
+#define c_strocttoq64	Q64_FromString_Oct	//!< @alias{Q64_FromString_Oct}
+#define c_strocttoq128	Q128_FromString_Oct	//!< @alias{Q128_FromString_Oct}
+//!@}
+
+
+
+// Binary parser functions
+
+
+
+//! Parse a fixed-point number from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
+t_size					Q16_Parse_Bin	(t_q16	*dest, t_char const* str, t_size n);
+t_size					Q32_Parse_Bin	(t_q32	*dest, t_char const* str, t_size n);
+t_size					Q64_Parse_Bin	(t_q64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str, t_size n);
+#endif
+#define c_qparsebin		Fixed_Parse_Bin	//!< @alias{Fixed_Parse_Bin}
+#define c_q16parsebin	Q16_Parse_Bin	//!< @alias{Q16_Parse_Bin}
+#define c_q32parsebin	Q32_Parse_Bin	//!< @alias{Q32_Parse_Bin}
+#define c_q64parsebin	Q64_Parse_Bin	//!< @alias{Q64_Parse_Bin}
+#define c_q128parsebin	Q128_Parse_Bin	//!< @alias{Q128_Parse_Bin}
+//!@}
+
 //! Parses the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Bin	CONCAT(FIXED_TYPE,_FromString_Bin)
@@ -645,12 +871,44 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 
 
 
+// Custom-base parser functions
+
+
+
+//! Parse a fixed-point number from a custom-base number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Fixed_Parse_Base	CONCAT(FIXED_TYPE,_Parse_Base)
+t_size					Q16_Parse_Base	(t_q16	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					Q32_Parse_Base	(t_q32	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					Q64_Parse_Base	(t_q64	*dest, t_char const* str, t_char const* base, t_size n);
+#ifdef __int128
+t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base, t_size n);
+#endif
+#define c_qparsebase	Fixed_Parse_Base	//!< @alias{Fixed_Parse_Base}
+#define c_q16parsebase	Q16_Parse_Base	//!< @alias{Q16_Parse_Base}
+#define c_q32parsebase	Q32_Parse_Base	//!< @alias{Q32_Parse_Base}
+#define c_q64parsebase	Q64_Parse_Base	//!< @alias{Q64_Parse_Base}
+#define c_q128parsebase	Q128_Parse_Base	//!< @alias{Q128_Parse_Base}
+//!@}
+
 //! Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base used to represent the given `number`
-**	@returns A newly allocated string, converted from the given `number`,
-**		or `NULL` if there was a parsing error.
+**	@returns
+**	A newly allocated string, converted from the given `number`,
+**	or `NULL` if there was a parsing error.
 */
 //!@{
 #define					Fixed_FromString_Base	CONCAT(FIXED_TYPE,_FromString_Base)
@@ -667,6 +925,9 @@ t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO 
 #define c_strbasetoq128	Q128_FromString_Base 	//!< @alias{Q128_FromString_Base}
 //!@}
 
+
+
+#endif
 
 /*! @} */
 HEADER_END

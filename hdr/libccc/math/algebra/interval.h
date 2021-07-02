@@ -25,7 +25,9 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/bool.h"
+#include "libccc/int.h"
+#include "libccc/float.h"
 #include "libccc/math/float.h"
 #include "libccc/math/algebra/vector.h"
 
@@ -33,14 +35,15 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                     Axis-aligned Bounding-box Operations                   *|
+**                                 Definitions                                *|
 ** ************************************************************************** *|
 */
 
-/*
+/*!
 **	Definitions of axis-aligned bounding-box are assumed to be entirely composed of
 **	orthogonal edges (brick shaped), which is why only two vectors are necessary to define it.
 */
+//!@{
 
 //! A 1-dimensional interval of coordinates, defined by two corner-point vectors
 typedef struct box1d
@@ -74,6 +77,8 @@ typedef struct box4d
 }				s_box4d;
 TYPEDEF_ALIAS(	s_box4d, BOX_4D, STRUCT)
 
+//!@}
+
 
 
 //! An interval/range, defined by a 'start' number and 'end' number
@@ -94,11 +99,19 @@ typedef t_float	(*f_scalar_func4)(u_vector4d const v);
 
 
 /*
+** ************************************************************************** *|
+**                     Axis-aligned Bounding-box Operations                   *|
+** ************************************************************************** *|
+*/
+
+/*!
 **	NB: For a coordinate box in the input space R^3, the volume computed
 **	by the integral is thus technically a 4-hypervolume (since you
 **	add a dimension because of the output space of dimension 1).
 */
+
 // TODO document these functions
+
 //t_float	lin_integrate(sf, domain);
 t_float		c_integrate(f_float_function const f, s_interval const domain, t_float step);
 t_float		c_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
@@ -123,6 +136,7 @@ t_s8		c_distance_s8  (t_s8  x, t_s8  y);
 t_s16		c_distance_s16 (t_s16 x, t_s16 y);
 t_s32		c_distance_s32 (t_s32 x, t_s32 y);
 t_s64		c_distance_s64 (t_s64 x, t_s64 y);
+
 // TODO distance manh, eucl, inf for 2d, 3d and 4d
 
 

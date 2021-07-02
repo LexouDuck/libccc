@@ -13,7 +13,7 @@
 	#include <stdio.h>
 #endif
 #else
-	typedef struct file FILE;
+	typedef struct file	FILE;
 	FILE*	fopen(char const* path, char const* mode);
 	int		fclose(FILE* file);
 	size_t	fread(void* ptr, size_t size, size_t n, FILE* file);
@@ -23,7 +23,7 @@
 #include "libccc/math/float.h"
 #include "libccc/random/csprng.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -35,7 +35,7 @@ typedef union csprng
 #else
 	FILE*       urandom;
 #endif
-}       u_csprng;
+}		u_csprng;
 
 
 
@@ -147,10 +147,10 @@ inline t_float	CSPRNG_Float(t_csprng* state)
 		(min > max),			\
 		ACTION_ERROR)			\
 
-t_uint     CSPRNG_UInt_Range      (t_csprng* state, t_uint  min, t_uint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
-t_sint     CSPRNG_SInt_Range      (t_csprng* state, t_sint  min, t_sint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
-t_fixed    CSPRNG_Fixed_Range     (t_csprng* state, t_fixed min, t_fixed max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
-t_float    CSPRNG_Float_Range     (t_csprng* state, t_float min, t_float max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
+t_uint  CSPRNG_UInt_Range     (t_csprng* state, t_uint  min, t_uint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
+t_sint  CSPRNG_SInt_Range     (t_csprng* state, t_sint  min, t_sint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
+t_fixed CSPRNG_Fixed_Range    (t_csprng* state, t_fixed min, t_fixed max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
+t_float CSPRNG_Float_Range    (t_csprng* state, t_float min, t_float max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
 
 t_uint  CSPRNG_UInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt       (state);            CSPRNG_Delete(&state);  return (result); }
 t_sint  CSPRNG_SInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt       (state);            CSPRNG_Delete(&state);  return (result); }

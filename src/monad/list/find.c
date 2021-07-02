@@ -1,7 +1,7 @@
 
 #include "libccc/monad/list.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -15,7 +15,7 @@ s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
 			return (list);
 		list = list->next;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 
@@ -30,7 +30,7 @@ s_list_T const*	CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)
 			return (list);
 		list = list->next;
 	}
-	return (NULL);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (NULL);)
 }
 
 
@@ -49,7 +49,7 @@ t_sint	CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item)
 		list = list->next;
 		++i;
 	}
-	return (ERROR);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (ERROR);)
 }
 
 
@@ -68,5 +68,5 @@ t_sint	CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T ite
 		list = list->next;
 		++i;
 	}
-	return (ERROR);
+	HANDLE_ERROR(NOTFOUND, (TRUE), return (ERROR);)
 }

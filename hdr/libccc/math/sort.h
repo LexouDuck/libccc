@@ -29,7 +29,8 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc.h"
+#include "libccc/int.h"
+#include "libccc/pointer.h"
 
 HEADER_CPP
 

@@ -9,7 +9,7 @@
 	int	open(char const* pathname, int flags, mode_t mode);
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 

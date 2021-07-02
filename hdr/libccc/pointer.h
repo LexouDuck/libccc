@@ -15,8 +15,8 @@
 ** @{
 **	This header defines the standard memory size and pointer integer types.
 **
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
-**	@isostd{https://en.cppreference.com/w/c/types/limits}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/limits}
 **
 **	The types defined here are aliases for all the primitive integer types
 **	which have a varying (platform-dependent) amount of bits. These types
@@ -54,11 +54,12 @@
 	typedef signed long long	intptr_t;
 #endif
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_POINTER_T
+#define __LIBCCC_POINTER_T
 
 /*
 ** ************************************************************************** *|
@@ -66,22 +67,23 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#ifdef	NULL
-#undef	NULL
-#endif
 //! Represents a NULL (0-value) pointer, of type 'void'
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/NULL}
+**	@isostd{C,https://en.cppreference.com/w/c/types/NULL}
 **
 **	The `NULL` pointer is simply an integer value of zero, cast to `void*`.
 */
+//!@{
+#ifndef NULL
 #define NULL	((void*)0)
+#endif
+//!@}
 
 
 
 //! Primitive type: The address memory size integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/size_t}
+**	@isostd{C,https://en.cppreference.com/w/c/types/size_t}
 **
 **	@see
 **	- Size_ToString()
@@ -94,7 +96,7 @@ TYPEDEF_ALIAS(		t_size, SIZE, PRIMITIVE)
 
 //! Primitive type: The pointer subtraction integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/ptrdiff_t}
+**	@isostd{C,https://en.cppreference.com/w/c/types/ptrdiff_t}
 */
 typedef ptrdiff_t	t_ptrdiff;
 TYPEDEF_ALIAS(		t_ptrdiff, PTRDIFF, PRIMITIVE)
@@ -103,14 +105,14 @@ TYPEDEF_ALIAS(		t_ptrdiff, PTRDIFF, PRIMITIVE)
 
 //! Primitive type: Maximum-width signed integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/cpp/types/integer}
 */
 typedef intmax_t	t_sintmax;
 TYPEDEF_ALIAS(		t_sintmax, SINTMAX, PRIMITIVE)
 
 //! Primitive type: Maximum-width unsigned integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/cpp/types/integer}
 */
 typedef uintmax_t	t_uintmax;
 TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
@@ -119,21 +121,96 @@ TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
 
 //! Primitive type: Pointer-sized signed integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/cpp/types/integer}
 */
 typedef intptr_t	t_sintptr;
 TYPEDEF_ALIAS(		t_sintptr, SINTPTR, PRIMITIVE)
 
 //! Primitive type: Pointer-sized unsigned integer type
 /*!
-**	@isostd{https://en.cppreference.com/w/cpp/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/cpp/types/integer}
 */
 typedef uintptr_t	t_uintptr;
 TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 
 
 
-#include "libccc/char.h"
+#if (LIBCONFIG_UINT_ERROR == 0)
+
+	#define SIZE_ERROR	0
+	#ifndef SIZE_MAX
+	#define SIZE_MAX	((t_size)-1)
+	#endif
+
+	#define UINTMAX_ERROR	0
+	#ifndef UINTMAX_MAX
+	#define UINTMAX_MAX	((t_uintmax)-1)
+	#endif
+
+	#define UINTPTR_ERROR	0
+	#ifndef UINTPTR_MAX
+	#define UINTPTR_MAX	((t_uintptr)-1)
+	#endif
+
+#else
+
+	#define SIZE_ERROR		((t_size)-1)
+	#undef	SIZE_MAX
+	#define SIZE_MAX		((t_size)-2)
+
+	#define UINTMAX_ERROR	((t_uintmax)-1)
+	#undef	UINTMAX_MAX
+	#define UINTMAX_MAX		((t_uintmax)-2)
+
+	#define UINTPTR_ERROR	((t_uintptr)-1)
+	#undef	UINTPTR_MAX
+	#define UINTPTR_MAX		((t_uintptr)-2)
+
+#endif
+
+
+
+#if (LIBCONFIG_SINT_ERROR == 0)
+
+	#define PTRDIFF_ERROR	0
+
+	#define SINTMAX_ERROR	0
+
+	#define SINTPTR_ERROR	0
+
+#else
+
+	#define PTRDIFF_ERROR	((t_ptrdiff)((~(t_size)0) >> 1) + 1))
+	#undef	PTRDIFF_MAX
+	#define PTRDIFF_MAX		((t_ptrdiff)((~(t_size)0) >> 1))
+	#undef	PTRDIFF_MIN
+	#define PTRDIFF_MIN		((t_ptrdiff)-((~(t_size)0) >> 1))
+
+	#define SINTMAX_ERROR	((t_sintmax)((~(t_uintmax)0) >> 1) + 1))
+	#undef	INTMAX_MAX
+	#define INTMAX_MAX		((t_sintmax)((~(t_uintmax)0) >> 1))
+	#undef	INTMAX_MIN
+	#define INTMAX_MIN		((t_sintmax)-((~(t_uintmax)0) >> 1))
+
+	#define SINTPTR_ERROR	((t_sintptr)((~(t_uintptr)0) >> 1) + 1))
+	#undef	INTPTR_MAX
+	#define INTPTR_MAX		((t_sintptr)((~(t_uintptr)0) >> 1))
+	#undef	INTPTR_MIN
+	#define INTPTR_MIN		((t_sintptr)-((~(t_uintptr)0) >> 1))
+
+#endif
+
+#define SINTMAX_MIN		INTMAX_MIN
+#define SINTMAX_MAX		INTMAX_MAX
+
+#define SINTPTR_MIN		INTPTR_MIN
+#define SINTPTR_MAX		INTPTR_MAX
+
+
+
+#endif
+#ifndef __LIBCCC_POINTER_F
+#define __LIBCCC_POINTER_F
 
 /*
 ** ************************************************************************** *|
@@ -142,37 +219,116 @@ TYPEDEF_ALIAS(		t_uintptr, UINTPTR, PRIMITIVE)
 */
 
 //! Get the string decimal representation of the given size integer `value`
+/*!
+**	@nonstd
+*/
 _MALLOC()
 t_char*					Size_ToString(t_size value);
 #define c_sizetostr		Size_ToString //!< @alias{Size_ToString}
 
 //! Get the string hexadecimal representation of the given size integer `value`
+/*!
+**	@nonstd
+*/
 _MALLOC()
 t_char*					Size_ToString_Hex(t_size value);
 #define c_sizetostrhex	Size_ToString_Hex //!< @alias{Size_ToString_Hex}
 
 //! Get the string representation of `value` in short readable form, ie: with bytes units (KB,MB,GB,etc)
+/*!
+**	@nonstd
+*/
 _MALLOC()
 t_char*							Size_ToString_Pretty(t_size value);
 #define c_sizetostr_readable	Size_ToString_Pretty //!< @alias{Size_ToString_Pretty}
 
-//! Parse a size integer value from the given string `str`
-t_size					Size_FromString(t_char const* str);
-#define c_strtosize		Size_FromString //!< @alias{Size_FromString}
-
-
 
 
 //! Get the string decimal representation of a pointer/address value
+/*!
+**	@nonstd
+*/
 _MALLOC()
 t_char*					Pointer_ToString(void const* ptr);
 #define c_ptrtostr		Pointer_ToString //!< @alias{Pointer_ToString}
+
 //! Get the string hexadecimal representation of a pointer/address value
+/*!
+**	@nonstd
+*/
 _MALLOC()
 t_char*					Pointer_ToString_Hex(void const* ptr);
 #define c_ptrtostrhex	Pointer_ToString_Hex //!< @alias{Pointer_ToString_Hex}
 
 
+
+/*
+** ************************************************************************** *|
+**                        String Conversion Functions                         *|
+** ************************************************************************** *|
+*/
+
+// TODO define macro alias functions UIntMax_Parse() and SIntMax_Parse()
+
+
+
+//! @see #t_size, UInt_FromString()
+t_size					Size_Parse(t_size *dest, t_char const* str);
+#define c_sizeparse		Size_Parse //!< @alias{Size_Parse}
+
+//! @see #t_size, UInt_FromString()
+t_size					Size_FromString(t_char const* str);
+#define c_strtosize		Size_FromString //!< @alias{Size_FromString}
+
+
+
+//! @see #t_ptrdiff, SInt_FromString()
+t_size					PtrDiff_Parse(t_ptrdiff *dest, t_char const* str);
+#define c_ptrdiffparse	PtrDiff_Parse //!< @alias{PtrDiff_Parse}
+
+//! @see #t_ptrdiff, SInt_FromString()
+t_ptrdiff				PtrDiff_FromString(t_char const* str);
+#define c_strtoptrdiff	PtrDiff_FromString //!< @alias{PtrDiff_FromString}
+
+
+
+//! @see #t_uintmax, UInt_Parse()
+t_size					UIntMax_Parse(t_uintmax *dest, t_char const* str);
+#define c_uintmaxparse	UIntMax_Parse //!< @alias{UIntMax_Parse}
+
+//! @see #t_uintmax, UInt_FromString()
+t_uintmax				UIntMax_FromString(t_char const* str);
+#define c_strtouintmax	UIntMax_FromString //!< @alias{UIntMax_FromString}
+
+//! @see #t_sintmax, SInt_Parse()
+t_size					SIntMax_Parse(t_sintmax *dest, t_char const* str);
+#define c_sintmaxparse	SIntMax_Parse //!< @alias{SIntMax_Parse}
+
+//! @see #t_sintmax, SInt_FromString()
+t_sintmax				SIntMax_FromString(t_char const* str);
+#define c_strtosintmax	SIntMax_FromString //!< @alias{SIntMax_FromString}
+
+
+
+//! @see #t_uintptr, UInt_Parse()
+t_size					UIntPtr_Parse(t_uintptr *dest, t_char const* str);
+#define c_uintptrparse	UIntPtr_Parse //!< @alias{UIntPtr_Parse}
+
+//! @see #t_uintptr, UInt_FromString()
+t_uintptr				UIntPtr_FromString(t_char const* str);
+#define c_strtouintptr	UIntPtr_FromString //!< @alias{UIntPtr_FromString}
+
+//! @see #t_sintptr, SInt_Parse()
+t_size					SIntPtr_Parse(t_sintptr *dest, t_char const* str);
+#define c_sintptrparse	SIntPtr_Parse //!< @alias{SIntPtr_Parse}
+
+//! @see #t_sintptr, SInt_FromString()
+t_sintptr				SIntPtr_FromString(t_char const* str);
+#define c_strtosintptr	SIntPtr_FromString //!< @alias{SIntPtr_FromString}
+
+
+
+#endif
 
 /*! @} */
 HEADER_END

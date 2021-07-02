@@ -2,7 +2,7 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -64,8 +64,8 @@ t_char*		StringArray_Fold(t_char const** strarr, t_char const* separator)
 	StringArray_GetWordAndCharCount(strarr, &strarr_str_nb, &strarr_char_nb);
 	total_sep_char_nb = (strarr_str_nb - 1) * String_Length(separator);
 	total_char_nb = total_sep_char_nb + strarr_char_nb;
-	if (!(str = String_New(total_char_nb + 1)))
-		return (NULL);
+	str = String_New(total_char_nb + 1);
+	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (NULL);)
 	Fold_Into_String(str, strarr, separator);
 	return (str);
 }

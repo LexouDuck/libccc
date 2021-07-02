@@ -116,7 +116,7 @@ void	print_test_strarrlen(char const* test_name, int can_segfault,
 {
 	TEST_INIT(size)
 	TEST_PERFORM(	strarrlen, strarr)
-//	TEST_PRINT(size,strarrlen, "strarr=[ %s ]", tmp) // TODO
+	TEST_PRINT(size,strarrlen, "strarr=[ %s ]", tmp) // TODO
 }
 void	test_strarrlen()
 {
@@ -146,12 +146,12 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 {
 	TEST_INIT(strarr)
 	TEST_PERFORM(		strsplit_char, str, separator)
-	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%X", str, separator, separator)
+	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%2X", str, separator, separator)
 	TEST_FREE_ARRAY_NULLTERM()
 }
 void	test_strsplit_char()
 {
-//	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING					| TEST ARGS
+//	| TEST FUNCTION			| TEST NAME					| CAN SEGV		| EXPECTING				| TEST ARGS
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr1_A,				strarr1_as_str,		'\n');
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr2_B,				strarr2_as_str,		'a');
 	print_test_strsplit_char("strsplit_char",			FALSE,			strarr3,				strarr3_as_str_A,	' ');
@@ -178,7 +178,7 @@ void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 void	test_strsplit_charset()
 {
 	char const* numbers[4] = {"2130706433", "136661", "46", NULL};
-//	| TEST FUNCTION				| TEST NAME						| CAN SEGV	| EXPECTING				| TEST ARGS
+//	| TEST FUNCTION				| TEST NAME						| CAN SEGV		| EXPECTING			| TEST ARGS
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_A,			strarr1_as_str,				"\n");
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_B,			strarr1_as_str,				"\n\t");
 	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr2_B,			strarr2_as_str,				"a");
@@ -288,9 +288,12 @@ int		testsuite_stringarray(void)
 {
 	print_suite_title("libccc/stringarray");
 
+
+
 	print_nonstd();
 
 
+/*
 	test_strarrlen();
 
 //	test_strarrnew();
@@ -313,5 +316,6 @@ int		testsuite_stringarray(void)
 //	test_strarrmap();
 
 	test_strarrfold();
+*/
 	return (0);
 }

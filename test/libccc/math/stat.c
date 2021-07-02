@@ -5,6 +5,10 @@
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
+#define T			t_sint
+#define T_NAME		_int
+#define T_DEFAULT	0
+#include "libccc/monad/array.c"
 
 #include "test.h"
 
@@ -21,46 +25,46 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	print_suite_title("libccc/math/stat");
 
 	static const int	samples = 20000;
-	s_sortedlist_int	ilst_sorted = print_test_random(samples);
+	s_sorted_int	values_sorted = print_test_random(samples);
 /*
 	for (int i = 0; i < i_lst.length; ++i)
-		printf("%d, ", i_lst.data[i]);
+		printf("%d, ", i_lst.items[i]);
 	printf("\n");
 */
-	t_float				tmp;
-	t_float				decile_inc = samples / 10.;
+	t_float	tmp;
+	t_float	decile_inc = samples / 10.;
 
 	if (g_test.flags.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :"SF_U64"\n", c_stat_median_i(ilst_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :"SF_U64"\n", c_stat_average_i(ilst_sorted), intmax / 2);
-		tmp = c_stat_variance_i(ilst_sorted);
+		printf("\tMedian:   %12f | intmax   :"SF_U64"\n", c_stat_median_i(values_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :"SF_U64"\n", c_stat_average_i(values_sorted), intmax / 2);
+		tmp = c_stat_variance_i(values_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
-			"\t\t 0: %u\n"
-			"\t\t 1: %u\n"
-			"\t\t 2: %u\n"
-			"\t\t 3: %u\n"
-			"\t\t 4: %u\n"
-			"\t\t 5: %u\n"
-			"\t\t 6: %u\n"
-			"\t\t 7: %u\n"
-			"\t\t 8: %u\n"
-			"\t\t 9: %u\n"
-			"\t\t10: %u\n\n",
-			ilst_sorted.data[0],
-			ilst_sorted.data[(t_u32)decile_inc],
-			ilst_sorted.data[(t_u32)(decile_inc * 2)],
-			ilst_sorted.data[(t_u32)(decile_inc * 3)],
-			ilst_sorted.data[(t_u32)(decile_inc * 4)],
-			ilst_sorted.data[(t_u32)(decile_inc * 5)],
-			ilst_sorted.data[(t_u32)(decile_inc * 6)],
-			ilst_sorted.data[(t_u32)(decile_inc * 7)],
-			ilst_sorted.data[(t_u32)(decile_inc * 8)],
-			ilst_sorted.data[(t_u32)(decile_inc * 9)],
-			ilst_sorted.data[samples - 1]);
+			"\t\t 0: "SF_SINT"\n"
+			"\t\t 1: "SF_SINT"\n"
+			"\t\t 2: "SF_SINT"\n"
+			"\t\t 3: "SF_SINT"\n"
+			"\t\t 4: "SF_SINT"\n"
+			"\t\t 5: "SF_SINT"\n"
+			"\t\t 6: "SF_SINT"\n"
+			"\t\t 7: "SF_SINT"\n"
+			"\t\t 8: "SF_SINT"\n"
+			"\t\t 9: "SF_SINT"\n"
+			"\t\t10: "SF_SINT"\n\n",
+			values_sorted.items[0],
+			values_sorted.items[(t_u32)(decile_inc)],
+			values_sorted.items[(t_u32)(decile_inc * 2)],
+			values_sorted.items[(t_u32)(decile_inc * 3)],
+			values_sorted.items[(t_u32)(decile_inc * 4)],
+			values_sorted.items[(t_u32)(decile_inc * 5)],
+			values_sorted.items[(t_u32)(decile_inc * 6)],
+			values_sorted.items[(t_u32)(decile_inc * 7)],
+			values_sorted.items[(t_u32)(decile_inc * 8)],
+			values_sorted.items[(t_u32)(decile_inc * 9)],
+			values_sorted.items[samples - 1]);
 	}
 //	if (g_test.flags.show_args) // TODO special program option for this ?
 //	{
@@ -76,17 +80,17 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 //			"\t\t 8: %12lu\n"
 //			"\t\t 9: %12lu\n"
 //			"\t\t10: %12lu\n\n",
-//			ilst_sorted.data[0],
-//			ilst_sorted.data[(t_u32)decile_inc],
-//			ilst_sorted.data[(t_u32)(decile_inc * 2)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 3)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 4)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 5)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 6)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 7)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 8)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 9)],
-//			ilst_sorted.data[samples - 1]);
+//			values_sorted.items[0],
+//			values_sorted.items[(t_u32)decile_inc],
+//			values_sorted.items[(t_u32)(decile_inc * 2)],
+//			values_sorted.items[(t_u32)(decile_inc * 3)],
+//			values_sorted.items[(t_u32)(decile_inc * 4)],
+//			values_sorted.items[(t_u32)(decile_inc * 5)],
+//			values_sorted.items[(t_u32)(decile_inc * 6)],
+//			values_sorted.items[(t_u32)(decile_inc * 7)],
+//			values_sorted.items[(t_u32)(decile_inc * 8)],
+//			values_sorted.items[(t_u32)(decile_inc * 9)],
+//			values_sorted.items[samples - 1]);
 //
 //		printf("\tDeciles hex:\n"
 //			"\t\t 0: %#12lx\n"
@@ -100,22 +104,22 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 //			"\t\t 8: %#12lx\n"
 //			"\t\t 9: %#12lx\n"
 //			"\t\t10: %#12lx\n\n",
-//			ilst_sorted.data[0],
-//			ilst_sorted.data[(t_u32)decile_inc],
-//			ilst_sorted.data[(t_u32)(decile_inc * 2)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 3)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 4)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 5)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 6)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 7)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 8)],
-//			ilst_sorted.data[(t_u32)(decile_inc * 9)],
-//			ilst_sorted.data[samples - 1]);
+//			values_sorted.items[0],
+//			values_sorted.items[(t_u32)decile_inc],
+//			values_sorted.items[(t_u32)(decile_inc * 2)],
+//			values_sorted.items[(t_u32)(decile_inc * 3)],
+//			values_sorted.items[(t_u32)(decile_inc * 4)],
+//			values_sorted.items[(t_u32)(decile_inc * 5)],
+//			values_sorted.items[(t_u32)(decile_inc * 6)],
+//			values_sorted.items[(t_u32)(decile_inc * 7)],
+//			values_sorted.items[(t_u32)(decile_inc * 8)],
+//			values_sorted.items[(t_u32)(decile_inc * 9)],
+//			values_sorted.items[samples - 1]);
 //	}
 
 	s_prob_mass		pmf;
 
-	pmf = c_stat_ilst_to_pmf(ilst_sorted);
+	pmf = c_stat_ilst_to_pmf(values_sorted);
 
 	if (g_test.flags.verbose && g_test.flags.show_args) // TODO special program option for this ?
 	{
@@ -134,6 +138,6 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	{
 		printf("Sum of probs: %.12f\n", tmp);
 	}
-	c_stat_free_ilst(&ilst_sorted);
+	c_stat_free_ilst(&values_sorted);
 	return (OK);
 }

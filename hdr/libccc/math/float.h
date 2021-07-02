@@ -13,9 +13,9 @@
 #define __LIBCCC_MATH_FLOAT_H
 /*!@group{libccc_math_float}
 ** @{
-**	This header defines the common standard math functions and macro defines.
+**	This header defines the common standard math functions for floating-point numbers.
 **
-**	@isostd{https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **
 **	@file
 */
@@ -38,7 +38,19 @@ HEADER_CPP
 
 
 
+/*!
+**	This very small float is typically used to compare two floating-point values.
+**	Floating point equality checks aren't the most dependable kind of operation,
+**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
+**	You can use the Float_EqualsApprox() functions for this purpose.
+**	@see not to be confused with #FLOAT_EPSILON
+*/
+#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
+
+
+
 //! The type of function which takes one real number and outputs one real number
+//!@{
 typedef		t_float	(*f_float_function)	(t_float x);
 typedef		t_f32	(*f_f32_function)	(t_f32 x);
 typedef		t_f64	(*f_f64_function)	(t_f64 x);
@@ -48,8 +60,10 @@ typedef		t_f80	(*f_f80_function)	(t_f80 x);
 #ifdef __float128
 typedef		t_f128	(*f_f128_function)	(t_f128 x);
 #endif
+//!@}
 
 //! The type of function which takes two real numbers and outputs one real number
+//!@{
 typedef		t_float	(*f_float_operator)	(t_float x, t_float y);
 typedef		t_f32	(*f_f32_operator)	(t_f32 x,	t_f32 y);
 typedef		t_f64	(*f_f64_operator)	(t_f64 x,	t_f64 y);
@@ -59,6 +73,7 @@ typedef		t_f80	(*f_f80_operator)	(t_f80 x,	t_f80 y);
 #ifdef __float128
 typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
 #endif
+//!@}
 
 
 
@@ -70,10 +85,7 @@ typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
 
 //! Returns the absolute value of `x` (makes `x` positive)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/abs}
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fabs}
-**
-**	- Math: @f$ {|x|} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
 */
 //!@{
 #define						Float_Abs	CONCAT(FLOAT_TYPE,_Abs)
@@ -90,13 +102,11 @@ t_f128						F128_Abs(t_f128 x);
 #define c_f64abs			F64_Abs
 #define c_f80abs			F80_Abs
 #define c_f128abs			F128_Abs
-
-#define Float_AbsoluteValue	Float_Abs
 //!@}
 
 //! Returns the value of `x`, rounded to the nearest integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/round}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/round}
 */
 //!@{
 #define						Float_Round	CONCAT(FLOAT_TYPE,_Round)
@@ -113,35 +123,34 @@ t_f128						F128_Round(t_f128 x);
 #define c_f64round			F64_Round
 #define c_f80round			F80_Round
 #define c_f128round			F128_Round
-
 //!@}
 
 //! Returns the value of `x`, rounded towards 0
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/trunc}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/trunc}
 */
 //!@{
-#define						Float_Truncate	CONCAT(FLOAT_TYPE,_Truncate)
-t_f32						F32_Truncate(t_f32 x);
-t_f64						F64_Truncate(t_f64 x);
+#define						Float_Trunc	CONCAT(FLOAT_TYPE,_Trunc)
+t_f32						F32_Trunc(t_f32 x);
+t_f64						F64_Trunc(t_f64 x);
 #ifdef __float80
-t_f80						F80_Truncate(t_f80 x);
+t_f80						F80_Trunc(t_f80 x);
 #endif
 #ifdef __float128
-t_f128						F128_Truncate(t_f128 x);
+t_f128						F128_Trunc(t_f128 x);
 #endif
-#define c_ftrunc			Float_Truncate
-#define c_f32trunc			F32_Truncate
-#define c_f64trunc			F64_Truncate
-#define c_f80trunc			F80_Truncate
-#define c_f128trunc			F128_Truncate
+#define c_ftrunc			Float_Trunc
+#define c_f32trunc			F32_Trunc
+#define c_f64trunc			F64_Trunc
+#define c_f80trunc			F80_Trunc
+#define c_f128trunc			F128_Trunc
 
-#define Float_Trunc			Float_Truncate
+#define Float_Truncate		Float_Trunc
 //!@}
 
 //! Returns the value of `x`, rounded to the superior integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/floor}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/floor}
 */
 //!@{
 #define						Float_Floor	CONCAT(FLOAT_TYPE,_Floor)
@@ -158,31 +167,100 @@ t_f128						F128_Floor(t_f128 x);
 #define c_f64floor			F64_Floor
 #define c_f80floor			F80_Floor
 #define c_f128floor			F128_Floor
-
 //!@}
 
 //! Returns the value of `x`, rounded to the inferior integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/ceil}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/ceil}
 */
 //!@{
-#define						Float_Ceiling	CONCAT(FLOAT_TYPE,_Ceiling)
-t_f32						F32_Ceiling(t_f32 x);
-t_f64						F64_Ceiling(t_f64 x);
+#define						Float_Ceil	CONCAT(FLOAT_TYPE,_Ceil)
+t_f32						F32_Ceil(t_f32 x);
+t_f64						F64_Ceil(t_f64 x);
 #ifdef __float80
-t_f80						F80_Ceiling(t_f80 x);
+t_f80						F80_Ceil(t_f80 x);
 #endif
 #ifdef __float128
-t_f128						F128_Ceiling(t_f128 x);
+t_f128						F128_Ceil(t_f128 x);
 #endif
-#define c_fceil				Float_Ceiling
-#define c_f32ceil			F32_Ceiling
-#define c_f64ceil			F64_Ceiling
-#define c_f80ceil			F80_Ceiling
-#define c_f128ceil			F128_Ceiling
+#define c_fceil				Float_Ceil
+#define c_f32ceil			F32_Ceil
+#define c_f64ceil			F64_Ceil
+#define c_f80ceil			F80_Ceil
+#define c_f128ceil			F128_Ceil
 
-#define Float_Ceil			Float_Ceiling
+#define Float_Ceiling		Float_Ceil
 //!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                       Floating-point logic operators                       *|
+** ************************************************************************** *|
+*/
+
+//! Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (exact) equality
+**	@param	y	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given floating-point values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					Float_Equals	CONCAT(FLOAT_TYPE,_Equals)
+t_bool					F32_Equals(t_f32 x, t_f32 y);
+t_bool					F64_Equals(t_f64 x, t_f64 y);
+#ifdef	__float80
+t_bool					F80_Equals(t_f80 x, t_f80 y);
+#endif
+#ifdef	__float128
+t_bool					F128_Equals(t_f128 x, t_f128 y);
+#endif
+#define c_fequ			Float_Equals//!< @alias{Float_Equals}
+#define c_f32equ		F32_Equals	//!< @alias{F32_Equals}
+#define c_f64equ		F64_Equals	//!< @alias{F64_Equals}
+#define c_f80equ		F80_Equals	//!< @alias{F80_Equals}
+#define c_f128equ		F128_Equals	//!< @alias{F128_Equals}
+//!@}
+
+
+
+//! Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (approximate) equality
+**	@param	y	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given floating-point values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+t_bool					F32_EqualsApprox(t_f32 x, t_f32 y);
+t_bool					F64_EqualsApprox(t_f64 x, t_f64 y);
+#ifdef	__float80
+t_bool					F80_EqualsApprox(t_f80 x, t_f80 y);
+#endif
+#ifdef	__float128
+t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
+#endif
+#define c_fequa			Float_EqualsApprox	//!< @alias{Float_EqualsApprox}
+#define c_f32equa		F32_EqualsApprox	//!< @alias{F32_EqualsApprox}
+#define c_f64equa		F64_EqualsApprox	//!< @alias{F64_EqualsApprox}
+#define c_f80equa		F80_EqualsApprox	//!< @alias{F80_EqualsApprox}
+#define c_f128equa		F128_EqualsApprox	//!< @alias{F128_EqualsApprox}
+//!@}
+
+
+
+// TODO Float_LessThan
+
+// TODO Float_GreaterThan
 
 
 
@@ -197,13 +275,13 @@ t_f128						F128_Ceiling(t_f128 x);
 //! Performs an addition with the 2 given floating-point values (operator: `+`)
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
-t_f32					F32_Add(t_f32 number1, t_f32 number2);
-t_f64					F64_Add(t_f64 number1, t_f64 number2);
+t_f32					F32_Add(t_f32 x, t_f32 y);
+t_f64					F64_Add(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Add(t_f80 number1, t_f80 number2);
+t_f80					F80_Add(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Add(t_f128 number1, t_f128 number2);
+t_f128					F128_Add(t_f128 x, t_f128 y);
 #endif
 #define c_fadd			Float_Add	//!< @alias{Float_Add}
 #define c_f32add		F32_Add 	//!< @alias{F32_Add}
@@ -217,13 +295,13 @@ t_f128					F128_Add(t_f128 number1, t_f128 number2);
 //! Performs a subtraction with the 2 given floating-point values (operator: `-`)
 //!@{
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
-t_f32					F32_Sub(t_f32 number1, t_f32 number2);
-t_f64					F64_Sub(t_f64 number1, t_f64 number2);
+t_f32					F32_Sub(t_f32 x, t_f32 y);
+t_f64					F64_Sub(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Sub(t_f80 number1, t_f80 number2);
+t_f80					F80_Sub(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Sub(t_f128 number1, t_f128 number2);
+t_f128					F128_Sub(t_f128 x, t_f128 y);
 #endif
 #define c_fsub			Float_Sub	//!< @alias{Float_Sub}
 #define c_f32sub		F32_Sub 	//!< @alias{F32_Sub}
@@ -237,13 +315,13 @@ t_f128					F128_Sub(t_f128 number1, t_f128 number2);
 //! Performs a multiplication with the 2 given floating-point values (operator: `*`)
 //!@{
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
-t_f32					F32_Mul(t_f32 number1, t_f32 number2);
-t_f64					F64_Mul(t_f64 number1, t_f64 number2);
+t_f32					F32_Mul(t_f32 x, t_f32 y);
+t_f64					F64_Mul(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Mul(t_f80 number1, t_f80 number2);
+t_f80					F80_Mul(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Mul(t_f128 number1, t_f128 number2);
+t_f128					F128_Mul(t_f128 x, t_f128 y);
 #endif
 #define c_fmul			Float_Mul	//!< @alias{Float_Mul}
 #define c_f32mul		F32_Mul 	//!< @alias{F32_Mul}
@@ -257,13 +335,13 @@ t_f128					F128_Mul(t_f128 number1, t_f128 number2);
 //! Performs a division with the 2 given floating-point values (operator: `/`)
 //!@{
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
-t_f32					F32_Div(t_f32 number1, t_f32 number2);
-t_f64					F64_Div(t_f64 number1, t_f64 number2);
+t_f32					F32_Div(t_f32 x, t_f32 y);
+t_f64					F64_Div(t_f64 x, t_f64 y);
 #ifdef	__float80
-t_f80					F80_Div(t_f80 number1, t_f80 number2);
+t_f80					F80_Div(t_f80 x, t_f80 y);
 #endif
 #ifdef	__float128
-t_f128					F128_Div(t_f128 number1, t_f128 number2);
+t_f128					F128_Div(t_f128 x, t_f128 y);
 #endif
 #define c_fdiv			Float_Div	//!< @alias{Float_Div}
 #define c_f32div		F32_Div 	//!< @alias{F32_Div}
@@ -274,9 +352,17 @@ t_f128					F128_Div(t_f128 number1, t_f128 number2);
 
 
 
+/*
+** ************************************************************************** *|
+**                        Floating-point math operators                       *|
+** ************************************************************************** *|
+*/
+
+
+
 //! Returns the remainder of euclidian division of `x` by `y`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/fmod}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmod}
 */
 //!@{
 #define						Float_Mod	CONCAT(FLOAT_TYPE,_Mod)
@@ -299,19 +385,9 @@ t_f128						F128_Mod(t_f128 x, t_f128 y);
 
 
 
-/*
-** ************************************************************************** *|
-**                        Floating-point math operators                       *|
-** ************************************************************************** *|
-*/
-
-
-
 //! Returns the value of `x` to the power of `y` (float)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/pow}
-**
-**	- Math: @f$ {x^y} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/pow}
 */
 //!@{
 #define						Float_Pow	CONCAT(FLOAT_TYPE,_Pow)
@@ -334,9 +410,7 @@ t_f128						F128_Pow(t_f128 x, t_f128 y);
 
 //! Returns the value of `x` to the power of `n` (integer)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/pow}
-**
-**	- Math: @f$ {x^n} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/pow}
 */
 //!@{
 #define						Float_IntPow	CONCAT(FLOAT_TYPE,_IntPow)
@@ -361,9 +435,7 @@ t_f128						F128_IntPow(t_f128 x, t_sint n);
 
 //! Returns the square root of `x` (inverse of power of 2)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sqrt}
-**
-**	- Math: @f$ {\sqrt {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sqrt}
 */
 //!@{
 #define						Float_Root2	CONCAT(FLOAT_TYPE,_Root2)
@@ -387,9 +459,7 @@ t_f128						F128_Root2(t_f128 x);
 
 //! Returns the cubic root of `x` (inverse of power of 3)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cbrt}
-**
-**	- Math: @f$ {\sqrt[3]{x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cbrt}
 */
 //!@{
 #define						Float_Root3	CONCAT(FLOAT_TYPE,_Root3)
@@ -413,9 +483,7 @@ t_f128						F128_Root3(t_f128 x);
 
 //! Returns the n-ic root of `x` (inverse of power of `n`)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/nrt}
-**
-**	- Math: @f$ {\sqrt[n] {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/nrt}
 */
 //!@{
 #define						Float_RootN	CONCAT(FLOAT_TYPE,_RootN)
@@ -451,9 +519,7 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 
 //! Returns the exponential function's value for `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/exp}
-**
-**	- Math: @f$ {e^x} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/exp}
 */
 //!@{
 #define							Float_Exp	CONCAT(FLOAT_TYPE,_Exp)
@@ -476,9 +542,7 @@ t_f128							F128_Exp(t_f128 x);
 
 //! Returns the natural logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log}
-**
-**	- Math: @f$ {\ln {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log}
 */
 //!@{
 #define							Float_Ln	CONCAT(FLOAT_TYPE,_Ln)
@@ -501,9 +565,7 @@ t_f128							F128_Ln(t_f128 x);
 
 //! Returns the binary (base-2) logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log2}
-**
-**	- Math: @f$ {\log_{2} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log2}
 */
 //!@{
 #define							Float_Log2	CONCAT(FLOAT_TYPE,_Log2)
@@ -528,9 +590,7 @@ t_f128							F128_Log2(t_f128 x);
 
 //! Returns the decimal (base-10) logarithm of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/log10}
-**
-**	- Math: @f$ {\log_{10} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log10}
 */
 //!@{
 #define							Float_Log10	CONCAT(FLOAT_TYPE,_Log10)
@@ -556,8 +616,6 @@ t_f128							F128_Log10(t_f128 x);
 //! Returns the base-`n` logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{n} {x}} @f$
 */
 //!@{
 #define							Float_LogN	CONCAT(FLOAT_TYPE,_LogN)
@@ -590,9 +648,7 @@ t_f128							F128_LogN(t_f128 x, t_f128 n);
 
 //! Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cos}
-**
-**	- Math: @f$ {\cos {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cos}
 */
 //!@{
 #define						Float_Cos	CONCAT(FLOAT_TYPE,_Cos)
@@ -615,9 +671,7 @@ t_f128						F128_Cos(t_f128 x);
 
 //! Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sin}
-**
-**	- Math: @f$ {\sin {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sin}
 */
 //!@{
 #define						Float_Sin	CONCAT(FLOAT_TYPE,_Sin)
@@ -640,9 +694,7 @@ t_f128						F128_Sin(t_f128 x);
 
 //! Returns the tangent of `x` (trigonometry tangent line)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/tan}
-**
-**	- Math: @f$ {\tan {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/tan}
 */
 //!@{
 #define						Float_Tan	CONCAT(FLOAT_TYPE,_Tan)
@@ -667,9 +719,7 @@ t_f128						F128_Tan(t_f128 x);
 
 //! Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/acos}
-**
-**	- Math: @f$ {\cos^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acos}
 */
 //!@{
 #define							Float_ArcCos	CONCAT(FLOAT_TYPE,_ArcCos)
@@ -693,9 +743,7 @@ t_f128							F128_ArcCos(t_f128 x);
 
 //! Returns the arc-sine of `x` (inverse of the sin function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/asin}
-**
-**	- Math: @f$ {\sin^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/asin}
 */
 //!@{
 #define							Float_ArcSin	CONCAT(FLOAT_TYPE,_ArcSin)
@@ -719,9 +767,7 @@ t_f128							F128_ArcSin(t_f128 x);
 
 //! Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atan}
-**
-**	- Math: @f$ {\tan^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan}
 */
 //!@{
 #define							Float_ArcTan	CONCAT(FLOAT_TYPE,_ArcTan)
@@ -747,9 +793,7 @@ t_f128							F128_ArcTan(t_f128 x);
 
 //! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atan2}
-**
-**	- Math: @f$ {\arctan(\frac{y}{x})} @f$, in the range @f$ {[-\pi;+\pi]} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan2}
 */
 //!@{
 #define								Float_ArcTan2	CONCAT(FLOAT_TYPE,_ArcTan2)
@@ -774,11 +818,15 @@ t_f128								F128_ArcTan2(t_f128 y, t_f128 x);
 
 
 
+/*
+** ************************************************************************** *|
+**                           Hyperbolic Trigonometry                          *|
+** ************************************************************************** *|
+*/
+
 //! Returns the hyperbolic cosine of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/cosh}
-**
-**	- Math: @f$ {\cosh {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cosh}
 */
 //!@{
 #define								Float_CosH	CONCAT(FLOAT_TYPE,_CosH)
@@ -802,9 +850,7 @@ t_f128								F128_CosH(t_f128 x);
 
 //! Returns the hyperbolic sine of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/sinh}
-**
-**	- Math: @f$ {\sinh {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sinh}
 */
 //!@{
 #define								Float_SinH	CONCAT(FLOAT_TYPE,_SinH)
@@ -828,9 +874,7 @@ t_f128								F128_SinH(t_f128 x);
 
 //! Returns the hyperbolic tangent of `x`
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/tanh}
-**
-**	- Math: @f$ {\tanh {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/tanh}
 */
 //!@{
 #define								Float_TanH	CONCAT(FLOAT_TYPE,_TanH)
@@ -856,9 +900,7 @@ t_f128								F128_TanH(t_f128 x);
 
 //! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/acosh}
-**
-**	- Math: @f$ {\cosh^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acosh}
 */
 //!@{
 #define								Float_InvCosH	CONCAT(FLOAT_TYPE,_InvCosH)
@@ -882,9 +924,7 @@ t_f128								F128_InvCosH(t_f128 x);
 
 //! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/asinh}
-**
-**	- Math: @f$ {\sinh^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/asinh}
 */
 //!@{
 #define								Float_InvSinH	CONCAT(FLOAT_TYPE,_InvSinH)
@@ -908,9 +948,7 @@ t_f128								F128_InvSinH(t_f128 x);
 
 //! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/atanh}
-**
-**	- Math: @f$ {\tanh^{-1} {x}} @f$
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atanh}
 */
 //!@{
 #define								Float_InvTanH	CONCAT(FLOAT_TYPE,_InvTanH)

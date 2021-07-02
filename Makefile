@@ -43,7 +43,16 @@ CC_LINUX = gcc
 CC_MACOS = clang
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -Winline -Wpedantic -Wstrict-prototypes -Wmissing-prototypes -Wold-style-definition -Werror $(CFLAGS_OS) -MMD -fstrict-aliasing
+CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) -MMD -fstrict-aliasing \
+	-Werror \
+	-Wall \
+	-Wextra \
+	-Winline \
+	-Wpedantic \
+	-Wstrict-prototypes \
+	-Wmissing-prototypes \
+	-Wold-style-definition \
+	-Wno-format-extra-args \
 #	-L/usr/local/lib -ltsan
 #	-fsanitize=address
 #	-fsanitize=thread
@@ -54,33 +63,33 @@ CFLAGS_RELEASE = -O3
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-missing-field-initializers -Wno-tautological-compare -Wno-language-extension-token
+CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
+CFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
 else
 	CFLAGS_OS_WIN += -D__USE_MINGW_ANSI_STDIO=1
 endif
 CFLAGS_EXTRA = 
-CFLAGS += $(CFLAGS_EXTRA)
 
 
 
 # Linker flags
-LDFLAGS = $(LDFLAGS_OS)
-#	-Wl,-rpath='$$ORIGIN/'
-LDFLAGS_OS = _
-LDFLAGS_WIN   = 
-LDFLAGS_LINUX =
-LDFLAGS_MACOS = 
+LDFLAGS = $(LDFLAGS_OS) $(CFLAGS_EXTRA)
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/
+#	-Wl,-rpath='$$ORIGIN/'
+LDFLAGS_OS = _
+LDFLAGS_OS_WIN   = 
+LDFLAGS_OS_LINUX = 
+LDFLAGS_OS_MACOS = 
+LDFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	LDFLAGS_OS_WIN += -L/lib
 else
 	LDFLAGS_OS_WIN += -L./ -static-libgcc
 endif
 LDFLAGS_EXTRA = 
-LDFLAGS += $(LDFLAGS_EXTRA)
 
 
 
@@ -109,6 +118,9 @@ endif
 
 
 ifeq ($(OSMODE),other)
+	CC = $(CC_OTHER)
+	CFLAGS_OS = $(CFLAGS_OS_OTHER)
+	LDFLAGS_OS = $(LDFLAGS_OS_OTHER)
 	DYNAMICLIB_FILE_EXT=
 else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
@@ -151,23 +163,22 @@ SRCS = error.c \
 	bool/bool_to_str.c		\
 	bool/bool_from_str.c	\
 	int/int_to_str.c		\
-	int/int_to_strbase.c	\
 	int/int_to_strhex.c		\
 	int/int_to_stroct.c		\
 	int/int_to_strbin.c		\
+	int/int_to_strbase.c	\
 	int/int_from_str.c		\
-	int/int_from_strbase.c	\
+	int/int_from_strdec.c	\
 	int/int_from_strhex.c	\
 	int/int_from_stroct.c	\
 	int/int_from_strbin.c	\
+	int/int_from_strbase.c	\
 	fixed/fixed.c			\
 	fixed/fixed_to_str.c	\
 	fixed/fixed_from_str.c	\
-	fixed/operators.c		\
 	float/float.c			\
 	float/float_to_str.c	\
 	float/float_from_str.c	\
-	float/operators.c		\
 	memory/allocate.c	\
 	memory/new.c		\
 	memory/delete.c		\
@@ -180,9 +191,9 @@ SRCS = error.c \
 	memory/find.c		\
 	memory/swap.c		\
 	memory/replace.c	\
-	memory/getbits.c	\
+	memory/bits.c		\
+	pointer/int_from_str.c	\
 	pointer/size_to_str.c	\
-	pointer/str_to_size.c	\
 	pointer/ptr_to_str.c	\
 	pointerarray/new.c		\
 	pointerarray/length.c	\
@@ -235,20 +246,21 @@ SRCS = error.c \
 	color/convert.c		\
 	color/nearest.c		\
 	color/diff.c		\
-	sys/ascii/isalpha.c		\
-	sys/ascii/isdigit.c		\
-	sys/ascii/isprint.c		\
-	sys/ascii/incharset.c	\
-	sys/ascii/to.c			\
-	sys/unicode/isalpha.c	\
-	sys/unicode/isdigit.c	\
-	sys/unicode/isprint.c	\
-	sys/unicode/incharset.c	\
-	sys/unicode/toupper.c	\
-	sys/unicode/tolower.c	\
-	sys/unicode/utf8.c		\
-	sys/unicode/utf16.c		\
-	sys/unicode/parse.c		\
+	text/ascii/isalpha.c		\
+	text/ascii/isdigit.c		\
+	text/ascii/isprint.c		\
+	text/ascii/incharset.c		\
+	text/ascii/to.c				\
+	text/unicode/isalpha.c		\
+	text/unicode/isdigit.c		\
+	text/unicode/isprint.c		\
+	text/unicode/incharset.c	\
+	text/unicode/toupper.c		\
+	text/unicode/tolower.c		\
+	text/unicode/utf8.c			\
+	text/unicode/utf16.c		\
+	text/unicode/utfbom.c		\
+	text/unicode/parse.c		\
 	sys/io/fd.c			\
 	sys/io/color.c		\
 	sys/io/open.c		\
@@ -268,15 +280,22 @@ SRCS = error.c \
 	sys/logger/util.c	\
 	sys/logger/init.c	\
 	sys/logger/log.c	\
-	math/math.c		\
-	math/pow.c		\
-	math/root.c		\
-	math/exp.c		\
-	math/log.c		\
-	math/trig.c		\
-	math/trig_h.c	\
 	random/prng.c	\
 	random/csprng.c	\
+	math/int/comparison.c	\
+	math/int/operators.c	\
+	math/fixed/comparison.c	\
+	math/fixed/operators.c	\
+	math/fixed/rounding.c	\
+	math/float/comparison.c	\
+	math/float/operators.c	\
+	math/float/rounding.c	\
+	math/float/pow.c		\
+	math/float/root.c		\
+	math/float/exp.c		\
+	math/float/log.c		\
+	math/float/trig.c		\
+	math/float/trig_h.c		\
 	math/algebra/calculus.c				\
 	math/algebra/vector/new.c			\
 	math/algebra/vector/equals.c		\
@@ -305,6 +324,7 @@ SRCS = error.c \
 	math/stat/int.c		\
 	math/stat/float.c	\
 	monad/array/new.c		\
+	monad/array/create.c	\
 	monad/array/delete.c	\
 	monad/array/duplicate.c	\
 	monad/array/get.c		\
@@ -330,6 +350,7 @@ SRCS = error.c \
 	monad/list/item.c		\
 	monad/list/length.c		\
 	monad/list/new.c		\
+	monad/list/create.c		\
 	monad/list/delete.c		\
 	monad/list/duplicate.c	\
 	monad/list/get.c		\
@@ -368,9 +389,13 @@ SRCS = error.c \
 	encode/kvt/delete.c		\
 	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
+	encode/kvt/print.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
 	encode/json/minify.c	\
+	encode/toml/parse.c		\
+	encode/toml/print.c		\
+	encode/toml/minify.c	\
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
@@ -438,18 +463,18 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
-	@mkdir -p	$(BINDIR)static/$(OSMODE)/
+	@mkdir -p $(BINDIR)static/$(OSMODE)/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
-	# @ranlib $@
+	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
 
 
 
 # This rule builds the dynamically-linked library files for the current target platform
-$(NAME_DYNAMIC): $(NAME_STATIC)
-	@mkdir -p	$(BINDIR)dynamic/$(OSMODE)/
+$(NAME_DYNAMIC): $(OBJS)
+	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
@@ -497,16 +522,19 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/int.c		\
 	$(TEST_DIR)libccc/fixed.c	\
 	$(TEST_DIR)libccc/float.c	\
+	$(TEST_DIR)libccc/color.c	\
 	$(TEST_DIR)libccc/memory.c			\
 	$(TEST_DIR)libccc/pointer.c			\
 	$(TEST_DIR)libccc/pointerarray.c	\
 	$(TEST_DIR)libccc/string.c			\
 	$(TEST_DIR)libccc/stringarray.c		\
-	$(TEST_DIR)libccc/color.c	\
+	$(TEST_DIR)libccc/text/regex.c	\
 	$(TEST_DIR)libccc/sys/io.c		\
 	$(TEST_DIR)libccc/sys/time.c	\
-	$(TEST_DIR)libccc/sys/regex.c	\
 	$(TEST_DIR)libccc/math/math.c		\
+	$(TEST_DIR)libccc/math/int.c		\
+	$(TEST_DIR)libccc/math/fixed.c		\
+	$(TEST_DIR)libccc/math/float.c		\
 	$(TEST_DIR)libccc/math/stat.c		\
 	$(TEST_DIR)libccc/math/vlq.c		\
 	$(TEST_DIR)libccc/math/algebra.c	\
@@ -518,6 +546,7 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/monad/dict.c			\
 	$(TEST_DIR)libccc/monad/object.c		\
 	$(TEST_DIR)libccc/encode/json.c			\
+	$(TEST_DIR)libccc/encode/toml.c			\
 
 TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
 TEST_DEPS = ${TEST_OBJS:.o=.d}
@@ -526,7 +555,8 @@ TEST_INCLUDEDIRS = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
-TEST_CFLAGS = -O2 -g -ggdb # -fanalyzer
+TEST_CFLAGS = -O2 -g -ggdb -Wno-format-extra-args -fno-inline
+# -fanalyzer
 TEST_LDFLAGS = $(LDFLAGS)
 
 TEST_LIBS = -L./ -lccc -lpthread -lm
@@ -557,19 +587,43 @@ test: $(NAME_TEST)
 
 test_log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
-	@./$(NAME_TEST) -var --test-all >> $(LOGDIR)libccc_test.log
+	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)libccc_test.log
 
 
 
-test_foreach:
-	@$(CC) $(CFLAGS) $(TEST_DIR)_foreach.c -I$(HDRDIR) -L./ -lccc -o $(NAME_TEST)_foreach
-	@./$(NAME_TEST)_foreach
-	@rm $(NAME_TEST)_foreach
+test_predef:
+	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
+	@rm -f						$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@./$(TEST_DIR)_predef.sh >>	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
 
 test_errno:
-	@mkdir -p                  $(LOGDIR)errno/$(OSMODE)/
-	@rm -f                     $(LOGDIR)errno/$(OSMODE)/$(CC).c
-	@./$(TEST_DIR)_errno.sh >> $(LOGDIR)errno/$(OSMODE)/$(CC).c
+	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
+	@rm -f						$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@./$(TEST_DIR)_errno.sh >>	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+
+$(NAME_TEST)_helloworld: debug
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) $(CFLAGS) -I$(HDRDIR) \
+	-o $(NAME_TEST)_helloworld \
+		$(TEST_DIR)_helloworld.c \
+		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+test_helloworld: $(NAME_TEST)_helloworld
+	@ ./$(NAME_TEST)_helloworld $(ARGS)
+	@rm $(NAME_TEST)_helloworld
+
+$(NAME_TEST)_foreach: debug
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) $(CFLAGS) -I$(HDRDIR) \
+	-o $(NAME_TEST)_foreach \
+		$(TEST_DIR)_foreach.c \
+		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+test_foreach: $(NAME_TEST)_foreach
+	@ ./$(NAME_TEST)_foreach $(ARGS)
+	@rm $(NAME_TEST)_foreach
 
 
 
@@ -678,6 +732,7 @@ clean:
 	@rm -f $(TEST_OBJS)
 	@printf "Deleting all .d files...\n"
 	@rm -f $(DEPS)
+	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
 fclean: clean
@@ -702,6 +757,12 @@ logclean:
 	@printf "Deleting "$(LOGDIR)" folder...\n"
 	@rm -rf $(LOGDIR)
 
+tclean:
+	@printf "Deleting test .o files...\n"
+	@rm -f $(TEST_OBJS)
+	@printf "Deleting test .d files...\n"
+	@rm -f $(TEST_DEPS)
+
 re: fclean all
 
 
@@ -719,6 +780,10 @@ re: fclean all
 	dist			\
 	dist_version	\
 	test			\
+	test_predef		\
+	test_errno		\
+	test_helloworld	\
+	test_foreach	\
 	doc				\
 	lint			\
 	preprocessed	\

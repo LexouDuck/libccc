@@ -15,10 +15,10 @@
 ** @{
 **	This header defines the floating-point number primitive types and functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
-**	@isostd{https://en.cppreference.com/w/c/language/floating_constant}
-**	@isostd{https://en.cppreference.com/w/c/numeric/math}
-**	@isostd{https://en.cppreference.com/w/c/numeric/fenv}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/floating_constant}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/fenv}
 **	- https://en.wikipedia.org/wiki/IEEE_754
 **
 **	@file
@@ -32,15 +32,31 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
+//! Check if this environment's `long double` type is larger than 64-bits
+//!@{
+#ifdef __LDBL_MANT_DIG__
+#if (__LDBL_MANT_DIG__ == 53) // long double is 64-bit
 
-#include "libccc/char.h"
-#include "libccc/bool.h"
-#include "libccc/int.h"
+#elif (__LDBL_MANT_DIG__ == 64) // long double is 80-bit (mantissa:64bit, exponent:15bit)
+	#ifndef __float80
+	#define __float80
+	typedef long double	_Float80;
+	#endif
+#elif (__LDBL_MANT_DIG__ >= 112) // long double is 128-bit (mantissa:113bit, exponent:15bit)
+	#ifndef __float128
+	#define __float128
+	typedef long double	_Float128;
+	#endif
+#endif
+#endif
+//!@}
+
+#include "libccc.h"
 
 HEADER_CPP
+
+#ifndef __LIBCCC_FLOAT_T
+#define __LIBCCC_FLOAT_T
 
 /*
 ** ************************************************************************** *|
@@ -48,75 +64,89 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-
-
 //! Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
-**	- https://en.wikipedia.org/wiki/Single-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Single-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 8 exponent bits
+**	- 23 fraction bits
 */
 typedef float		t_f32;
 TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
 
 //! Primitive type: 64-bit 'double precision' IEEE-754 floating-point numbers
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
-**	- https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Double-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 11 exponent bits
+**	- 52 fraction bits
 */
 typedef double		t_f64;
 TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 
 #ifdef	__float80
-//! Primitive type: 80-bit 'extended precision' MacOS floating-point numbers (only certain platforms)
+//! Primitive type: 80-bit 'extended precision' x86 floating-point numbers (only certain platforms)
 /*!
-**	@isostd{https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
+**	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
-**	Consists of: 1 sign bit, 15 exponent bits, 1 integer bit, 63 fraction bits
+**	Learn more: https://en.wikipedia.org/wiki/Extended_precision
+**
+**	NOTE: There are two major implementations of extended-precision floats:
+**	-	80-bit 'extended precision' x86 floating-point numbers
+**	-	96-bit 'extended precision' 68881 floating-point numbers
+**	The 96-bit variant has a different `sizeof()`, as its name shows, but it
+**	does not have any more precision: those 16 added bits are only there
+**	for padding, for memory alignment purposes.
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 15 exponent bits
+**	- [16 padding bits, if 96-bit]
+**	- 1 integer bit
+**	- 63 fraction bits
 */
 typedef _Float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 80)
+#elif (LIBCONFIG_FLOAT_BITS == 80)
 	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
-#endif
-
-#ifdef	__float96
-//! Primitive type: 96-bit 'extended precision' 68881 floating-point numbers (only certain platforms)
-/*!
-**	@isostd{https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
-**
-**	Consists of: 1 sign bit, 15 exponent bits, 16 pad bits, 1 integer bit, 63 fraction bits
-*/
-typedef _Float96	t_f96;
-TYPEDEF_ALIAS(		t_f96,	FLOAT_96,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 96)
-	#error "Cannot set default float to 96-bit extended-precision, unavailable on this platform"
 #endif
 
 #ifdef	__float128
 //! Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
 /*!
-**	@isostd{https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
+**	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
-**	- https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+**	Learn more: https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 15 exponent bits
+**	- 112 fraction bits
 */
 typedef _Float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
-#elif (LIBCONFIG_BITS_FLOAT == 128)
+#elif (LIBCONFIG_FLOAT_BITS == 128)
 	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
 
 
 //! The actual underlying type for the `t_float` configurable type
-#define FLOAT_T		CONCAT(t_f,LIBCONFIG_BITS_FLOAT)
+#define FLOAT_T		CONCAT(t_f,LIBCONFIG_FLOAT_BITS)
 //! The actual underlying type for the `t_float` configurable type, in uppercase
-#define FLOAT_TYPE	CONCAT(F,LIBCONFIG_BITS_FLOAT)
+#define FLOAT_TYPE	CONCAT(F,LIBCONFIG_FLOAT_BITS)
 
 //! The configurable-size floating-point number primitive type.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
 **	A floating-point number is a number which is encoded as 3 distinct parts:
 **	- A sign bit (typically the rightmost bit)
@@ -128,83 +158,103 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 **	as there are between `+1.` and `+INFINITY`. The higher you go along the real numbers,
 **	the more imprecise your floating-point calculations will become.
 **	This type can express a number between negative #INFINITY and positive #INFINITY.
+**
+**	@see
+**	- #t_f32
+**	- #t_f64
+**	- #t_f80
+**	- #t_f128
 */
-typedef CONCAT(t_f,LIBCONFIG_BITS_FLOAT)	t_float;
+typedef CONCAT(t_f,LIBCONFIG_FLOAT_BITS)	t_float;
 TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-#if(LIBCONFIG_BITS_FLOAT != 32 && \
-	LIBCONFIG_BITS_FLOAT != 64 && \
-	LIBCONFIG_BITS_FLOAT != 80 && \
-	LIBCONFIG_BITS_FLOAT != 96 && \
-	LIBCONFIG_BITS_FLOAT != 128)
-	#error "LIBCONFIG_BITS_FLOAT must be equal to one of: 32, 64, 80, 96, 128"
+#if(LIBCONFIG_FLOAT_BITS != 32 && \
+	LIBCONFIG_FLOAT_BITS != 64 && \
+	LIBCONFIG_FLOAT_BITS != 80 && \
+	LIBCONFIG_FLOAT_BITS != 96 && \
+	LIBCONFIG_FLOAT_BITS != 128)
+	#error "LIBCONFIG_FLOAT_BITS must be equal to one of: 32, 64, 80, 96, 128"
 #endif
 
 
 
-/*!
-**	This very small float is typically used to compare two floating-point values.
-**	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
-**	You can use the Float_EqualsApprox() functions for this purpose.
-**	@see not to be confused with #FLOAT_EPSILON
-*/
-#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
+#undef FLOAT_ERROR
+
+#if (LIBCONFIG_FIXED_ERROR == 0)
+
+	#define F32_ERROR	((t_f32)  (0.))
+	#define F64_ERROR	((t_f64)  (0.))
+	#define F80_ERROR	((t_f80)  (0.))
+	#define F128_ERROR	((t_f128) (0.))
+	#define FLOAT_ERROR	((t_float)(0.))
+
+#else
+
+	#define F32_ERROR	((t_f32)  (0. / 0.))
+	#define F64_ERROR	((t_f64)  (0. / 0.))
+	#define F80_ERROR	((t_f80)  (0. / 0.))
+	#define F128_ERROR	((t_f128) (0. / 0.))
+	#define FLOAT_ERROR	((t_float)(0. / 0.))
+
+#endif
 
 
 
 //! The floating-point "not a number" value.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/nan}
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/NAN}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
 */
+//!@{
 #ifndef NAN
 #define NAN			(0. / 0.)
 #endif
-
 #ifndef NOTNUMBER
 #define NOTNUMBER	NAN
 #endif
+//!@}
 
 //! Checks if the given 'x' has a "not a number" value.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/isnan}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isnan}
 **
 **	Also, define isnan() for ANSI C compatibility, if needed.
 */
+//!@{
 #ifndef isnan
 #define isnan(X)	(X != X)
 #endif
-
 #ifndef IS_NAN
 #define IS_NAN(X)		isnan(X)
 #endif
-
 #ifndef IS_NOTNUMBER
 #define IS_NOTNUMBER(X)	isnan(X)
 #endif
+//!@}
 
 
 
 //! The floating-point infinity value (use `-INF` for negative)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/INFINITY}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/INFINITY}
 */
+//!@{
 #ifndef INF
 #define INF			(1. / 0.)
 #endif
 #ifndef INFINITY
 #define INFINITY	INF
 #endif
+//!@}
 
 //! Checks if the given 'x' is either +INFINITY or -INFINITY
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/isinf}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isinf}
 **
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
+//!@{
 #ifndef isinf
 #define isinf(X)	(isnan((X) - (X)) && !isnan(X))
 #endif
@@ -214,6 +264,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #ifndef IS_INFINITY
 #define IS_INFINITY(X)	isinf(X)
 #endif
+//!@}
 
 
 
@@ -224,15 +275,15 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-// TODO add HUGE and TINY min/max value macros
+//! TODO add HUGE and TINY min/max value macros
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}
-**	@isostd{https://en.cppreference.com/w/c/types/limits#Limits_of_floating_point_types}
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}
+**	@isostd{C,https://en.cppreference.com/w/c/types/limits#Limits_of_floating_point_types}
 */
 
 
 
-//	TODO document this
+//! TODO document this
 #define SAMPLE_NB		(1024)
 
 
@@ -240,11 +291,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //! This macro sets the rounding behavior for floating-point number operations.
 /*!
 **	Rounding behavior for floating-point types. Possible values are:
-**	-1 undetermined
-**	 0 towards zero
-**	 1 to nearest
-**	 2 toward positive infinity
-**	 3 toward negative infinity
+**	`-1`	undetermined
+**	 `0`	towards zero
+**	 `1`	to nearest
+**	 `2`	toward positive infinity
+**	 `3`	toward negative infinity
 */
 #ifndef FLT_ROUNDS
 #define FLT_ROUNDS	1
@@ -253,19 +304,19 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //! This macro sets the floating-point expression evaluation method (ie: how floats are operated upon).
 /*!
 **	The floating-point evaluation method. Possible values are:
-**	-1  indeterminate
-**	 0  evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 1  evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 2  evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 N  where _FloatN  is a supported interchange floating type:
-**	    evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
-**	 N + 1, where _FloatNx is a supported extended floating type:
-**	    evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
-**	    evaluate all other operations and constants to the range and precision of the semantic type.
+**	`-1`	indeterminate
+**	 `0`	evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `1`	evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `2`	evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `N`	where `_FloatN`  is a supported interchange floating type:
+**	    	evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
+**	 `N + 1`, where `_FloatNx` is a supported extended floating type:
+**	    	evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
+**	    	evaluate all other operations and constants to the range and precision of the semantic type.
 */
 #ifndef FLT_EVAL_METHOD
 #define FLT_EVAL_METHOD	1
@@ -392,18 +443,21 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 */
 typedef union float_cast
 {
-	t_float		value_float;
-#if (LIBCONFIG_BITS_FLOAT == 32)
-	t_s32
-#elif (LIBCONFIG_BITS_FLOAT == 64)
-	t_s64
+	t_float	value_float;
+#if (LIBCONFIG_FLOAT_BITS == 32)
+	s32		value_int;
+#elif (LIBCONFIG_FLOAT_BITS == 64)
+	s64		value_int;
 #else
-	t_s64[2]
+	s64[2]	value_int;
 #endif
-	value_int;
 }				u_float_cast;
 
 
+
+#endif
+#ifndef __LIBCCC_FLOAT_F
+#define __LIBCCC_FLOAT_F
 
 /*
 ** ************************************************************************** *|
@@ -411,35 +465,143 @@ typedef union float_cast
 ** ************************************************************************** *|
 */
 
-//! Creates a float value from its individual parts.
+//! A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
+//!@{
+#define DEFINEFUNC_Float(X, FUNCTYPE) \
+	_Generic((X),	\
+		t_s16:	 FUNCTYPE##_FromInt,	\
+		t_s32:	 FUNCTYPE##_FromInt,	\
+		t_s64:	 FUNCTYPE##_FromInt,	\
+		t_s128:	 FUNCTYPE##_FromInt,	\
+		t_sint:  FUNCTYPE##_FromInt,	\
+		t_q16:	 FUNCTYPE##_FromFixed,	\
+		t_q32:	 FUNCTYPE##_FromFixed,	\
+		t_q64:	 FUNCTYPE##_FromFixed,	\
+		t_q128:	 FUNCTYPE##_FromFixed,	\
+		t_fixed: FUNCTYPE##_FromFixed,	\
+		t_f32:	 FUNCTYPE##_FromFloat,	\
+		t_f64:	 FUNCTYPE##_FromFloat,	\
+		t_f80:	 FUNCTYPE##_FromFloat,	\
+		t_f128:	 FUNCTYPE##_FromFloat,	\
+		t_float: FUNCTYPE##_FromFloat,	\
+	)(X)
+#define Float(X)	DEFINEFUNC_Float(X, Fixed)
+#define F32(X)		DEFINEFUNC_Float(X, F32)
+#define F64(X)		DEFINEFUNC_Float(X, F64)
+#define F80(X)		DEFINEFUNC_Float(X, F80)
+#define F128(X)		DEFINEFUNC_Float(X, F128)
+//!@}
+
+//! Returns the nearest floating-point value to the given integer `number`
 /*!
-**	@param	mantissa	The significant digits of this floating-point number
-**	@param	exponent	The (decimal) exponent of this floating-point number, is applied like: `number * pow(10, exponent)`
-**	@returns the floating-point number value resulting from putting together
-**		the given`mantissa` and `exponent` parts.
+**	TODO document
 */
 //!@{
-#define					Float	CONCAT(FLOAT_TYPE,)
-t_f32					F32(t_sint mantissa, t_sint exponent);
-t_f64					F64(t_sint mantissa, t_sint exponent);
+#define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
+t_f32					F32_FromInt(t_sint number);
+t_f64					F64_FromInt(t_sint number);
+#ifdef __float80
+t_f80					F80_FromInt(t_sint number);
+#endif
+#ifdef __float128
+t_f128					F128_FromInt(t_sint number);
+#endif
+#define c_itofloat		Float_FromInt 	//!< @alias{Float_FromInt}
+#define c_itof32		F32_FromInt 	//!< @alias{F32_FromInt}
+#define c_itof64		F64_FromInt 	//!< @alias{F64_FromInt}
+#define c_itof80		F80_FromInt 	//!< @alias{F80_FromInt}
+#define c_itof128		F128_FromInt 	//!< @alias{F128_FromInt}
+//!@}
+
+//! Returns the nearest floating-point value to the given fixed-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+t_f32					F32_FromFixed(t_fixed number);
+t_f64					F64_FromFixed(t_fixed number);
+#ifdef __float80
+t_f80					F80_FromFixed(t_fixed number);
+#endif
+#ifdef __float128
+t_f128					F128_FromFixed(t_fixed number);
+#endif
+#define c_qtofloat		Float_FromFixed	//!< @alias{Float_FromFixed}
+#define c_qtof32		F32_FromFixed	//!< @alias{F32_FromFixed}
+#define c_qtof64		F64_FromFixed	//!< @alias{F64_FromFixed}
+#define c_qtof80		F80_FromFixed	//!< @alias{F80_FromFixed}
+#define c_qtof128		F128_FromFixed	//!< @alias{F128_FromFixed}
+//!@}
+
+//! Returns the nearest floating-point value to the given floating-point `number`
+/*!
+**	TODO document
+*/
+//!@{
+#define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
+t_f32	 				F32_FromFloat(t_float number);
+t_f64	 				F64_FromFloat(t_float number);
+#ifdef __float80
+t_f80	 				F80_FromFloat(t_float number);
+#endif
+#ifdef __float128
+t_f128	 				F128_FromFloat(t_float number);
+#endif
+#define c_ftofloat		Float_FromFloat	//!< @alias{Float_FromFloat}
+#define c_ftof32		F32_FromFloat	//!< @alias{F32_FromFloat}
+#define c_ftof64		F64_FromFloat	//!< @alias{F64_FromFloat}
+#define c_ftof80		F80_FromFloat	//!< @alias{F80_FromFloat}
+#define c_ftof128		F128_FromFloat	//!< @alias{F128_FromFloat}
+//!@}
+
+
+
+//! Creates a float value from its individual component parts.
+/*!
+**	@nonstd
+**
+**	@param	integer		The significant digits of this floating-point number
+**	@param	exponent	The (base 2) exponent of this floating-point number,
+**						this is applied like so: `integer * pow(2, exponent)`
+**	@returns
+**	The floating-point number value resulting from putting together
+**	the given `integer` and `exponent` parts.
+*/
+//!@{
+#define					Float_From	CONCAT(FLOAT_TYPE,_From)
+t_f32					F32_From(t_sint integer, t_sint exponent);
+t_f64					F64_From(t_sint integer, t_sint exponent);
 #ifdef	__float80
-t_f80					F80(t_sint mantissa, t_sint exponent);
+t_f80					F80_From(t_sint integer, t_sint exponent);
 #endif
 #ifdef	__float128
-t_f128					F128(t_sint mantissa, t_sint exponent);
+t_f128					F128_From(t_sint integer, t_sint exponent);
 #endif
-#define c_float			Float 	//!< @alias{Float}
-#define c_f32			F32 	//!< @alias{F32}
-#define c_f64			F64 	//!< @alias{F64}
-#define c_f80			F80 	//!< @alias{F80}
-#define c_f128			F128 	//!< @alias{F128}
+#define c_tofloat		Float_From	//!< @alias{Float_From}
+#define c_tof32			F32_From	//!< @alias{F32_From}
+#define c_tof64			F64_From	//!< @alias{F64_From}
+#define c_tof80			F80_From	//!< @alias{F80_From}
+#define c_tof128		F128_From	//!< @alias{F128_From}
 //!@}
+
+
+
+// TODO t_float	Float_NaN(t_char const* str)
+/* 
+**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
+*/
+
+// TODO t_float	Float_Infinity(void)
+/* 
+**	@nonstd
+*/
 
 
 
 //! Returns the base-2 exponent of the given number `x`, as an integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/numeric/math/ilogb}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/ilogb}
 */
 //!@{
 #define						Float_GetExp2	CONCAT(FLOAT_TYPE,_GetExp2)
@@ -451,17 +613,16 @@ t_sint						F80_GetExp2(t_f80 number);
 #ifdef	__float128
 t_sint						F128_GetExp2(t_f128 number);
 #endif
-#define c_filogb			Float_GetExp2	//!< @alias{Float_GetExp2}
 #define c_fgetexp2			Float_GetExp2	//!< @alias{Float_GetExp2}
 #define c_f32getexp2		F32_GetExp2		//!< @alias{F32_GetExp2}
 #define c_f64getexp2		F64_GetExp2		//!< @alias{F64_GetExp2}
 #define c_f80getexp2		F80_GetExp2		//!< @alias{F80_GetExp2}
 #define c_f128getexp2		F128_GetExp2	//!< @alias{F128_GetExp2}
 
-#define Float_GetExponent2	Float_GetExp2
+#define Float_GetExponent2	Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_filogb			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_filog2			Float_GetExp2	//!< @alias{Float_GetExp2}
 //!@}
-
-
 
 //! Returns the base-10 exponent of the given number `x`, as an integer
 /*!
@@ -477,78 +638,16 @@ t_sint						F80_GetExp10(t_f80 number);
 #ifdef	__float128
 t_sint						F128_GetExp10(t_f128 number);
 #endif
-#define c_filog10			Float_GetExp10	//!< @alias{Float_GetExp10}
 #define c_fgetexp10			Float_GetExp10	//!< @alias{Float_GetExp10}
 #define c_f32getexp10		F32_GetExp10	//!< @alias{F32_GetExp10}
 #define c_f64getexp10		F64_GetExp10	//!< @alias{F64_GetExp10}
 #define c_f80getexp10		F80_GetExp10	//!< @alias{F80_GetExp10}
 #define c_f128getexp10		F128_GetExp10	//!< @alias{F128_GetExp10}
 
-#define Float_GetExponent10	Float_GetExp10
+#define Float_GetExponent10	Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_filogd			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_filog10			Float_GetExp10	//!< @alias{Float_GetExp10}
 //!@}
-
-
-
-/*
-** ************************************************************************** *|
-**                       Floating-point logic operators                       *|
-** ************************************************************************** *|
-*/
-
-//! Returns 1(TRUE) if the 2 given floating-point values are exactly equal (operator: `==`)
-/*!
-**	@param	number1	The first value to check for (exact) equality
-**	@param	number2	The second value to check for (exact) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are exactly equal, 0(FALSE) otherwise.
-*/
-//!@{
-#define					Float_Equals	CONCAT(FLOAT_TYPE,_Equals)
-t_bool					F32_Equals(t_f32 number1, t_f32 number2);
-t_bool					F64_Equals(t_f64 number1, t_f64 number2);
-#ifdef	__float80
-t_bool					F80_Equals(t_f80 number1, t_f80 number2);
-#endif
-#ifdef	__float128
-t_bool					F128_Equals(t_f128 number1, t_f128 number2);
-#endif
-#define c_fequ			Float_Equals//!< @alias{Float_Equals}
-#define c_f32equ		F32_Equals	//!< @alias{F32_Equals}
-#define c_f64equ		F64_Equals	//!< @alias{F64_Equals}
-#define c_f80equ		F80_Equals	//!< @alias{F80_Equals}
-#define c_f128equ		F128_Equals	//!< @alias{F128_Equals}
-//!@}
-
-
-
-//! Returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal (operator: `=~`, using FLOAT_APPROX)
-/*!
-**	@param	number1	The first value to check for (approximate) equality
-**	@param	number2	The second value to check for (approximate) equality
-**	@returns 1(TRUE) if the 2 given floating-point values are close enough to be considered equal
-**		(using FLOAT_BIAS as a comparison margin), or 0(FALSE) otherwise.
-*/
-//!@{
-#define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
-t_bool					F32_EqualsApprox(t_f32 number1, t_f32 number2);
-t_bool					F64_EqualsApprox(t_f64 number1, t_f64 number2);
-#ifdef	__float80
-t_bool					F80_EqualsApprox(t_f80 number1, t_f80 number2);
-#endif
-#ifdef	__float128
-t_bool					F128_EqualsApprox(t_f128 number1, t_f128 number2);
-#endif
-#define c_fequa			Float_EqualsApprox	//!< @alias{Float_EqualsApprox}
-#define c_f32equa		F32_EqualsApprox	//!< @alias{F32_EqualsApprox}
-#define c_f64equa		F64_EqualsApprox	//!< @alias{F64_EqualsApprox}
-#define c_f80equa		F80_EqualsApprox	//!< @alias{F80_EqualsApprox}
-#define c_f128equa		F128_EqualsApprox	//!< @alias{F128_EqualsApprox}
-//!@}
-
-
-
-// TODO Float_LessThan
-
-// TODO Float_GreaterThan
 
 
 
@@ -558,11 +657,16 @@ t_bool					F128_EqualsApprox(t_f128 number1, t_f128 number2);
 ** ************************************************************************** *|
 */
 
+
+
 //! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 /*!
+**	@nonstd `ftoa()`
+**
 **	@param	number		The number to convert to a string
 **	@param	precision	The amount of digits to print after the decimal point
-**	@returns a newly llocated string representation of the given `number`, with `precision` digits
+**	@returns
+**	A newly allocated string representation of the given `number`, with `precision` digits
 */
 //!@{
 #define					Float_ToString	CONCAT(FLOAT_TYPE,_ToString)
@@ -585,9 +689,12 @@ _MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
 
 //! Get the string scientific notation of a floating-point number, with 'precision' fractional digits
 /*!
+**	@nonstd
+**
 **	@param	number		The number to convert to a string
 **	@param	precision	The amount of digits to print after the decimal point
-**	@returns a newly llocated string representation of the given `number`, with `precision` digits
+**	@returns
+**	A newly allocated string representation of the given `number`, with `precision` digits
 */
 //!@{
 #define								Float_ToString_Exp	CONCAT(FLOAT_TYPE,_ToString_Exp)
@@ -611,20 +718,10 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 #define c_f80tostrsci				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define c_f128tostrsci				F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 
-#define Float_ToString_Exponential	Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define Float_ToString_Scientific	Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
 #define Float_ToString_Sci			Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define F32_ToString_Exponential	F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define F32_ToString_Scientific		F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
 #define F32_ToString_Sci			F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define F64_ToString_Exponential	F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define F64_ToString_Scientific		F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
 #define F64_ToString_Sci			F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define F80_ToString_Exponential	F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
-#define F80_ToString_Scientific		F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define F80_ToString_Sci			F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
-#define F128_ToString_Exponential	F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
-#define F128_ToString_Scientific	F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 #define F128_ToString_Sci			F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
 //!@}
 
@@ -632,76 +729,89 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 
 //! Get the string decimal representation of a floating-point number, with 'precision' fractional digits
 /*!
+**	@nonstd
+**
 **	@param	number		The number to convert to a string
 **	@param	precision	The amount of digits to print after the decimal point
-**	@returns a newly llocated string representation of the given `number`, with `precision` digits
+**	@returns
+**	A newly allocated string representation of the given `number`, with `precision` digits
 */
 //!@{
-#define								Float_ToString_Dec	CONCAT(FLOAT_TYPE,_ToString_Dec)
-_MALLOC()	t_char*					F32_ToString_Dec(t_f32 number, t_u8 precision);
-_MALLOC()	t_char*					F64_ToString_Dec(t_f64 number, t_u8 precision);
+#define					Float_ToString_Dec	CONCAT(FLOAT_TYPE,_ToString_Dec)
+_MALLOC()	t_char*		F32_ToString_Dec(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*		F64_ToString_Dec(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	t_char*					F80_ToString_Dec(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*		F80_ToString_Dec(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	t_char*					F128_ToString_Dec(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*		F128_ToString_Dec(t_f128 number, t_u8 precision);
 #endif
-#define c_ftostrdec					Float_ToString_Dec	//!< @alias{Float_ToString_Dec}
-#define c_f32tostrdec				F32_ToString_Dec	//!< @alias{F32_ToString_Dec}
-#define c_f64tostrdec				F64_ToString_Dec	//!< @alias{F64_ToString_Dec}
-#define c_f80tostrdec				F80_ToString_Dec	//!< @alias{F80_ToString_Dec}
-#define c_f128tostrdec				F128_ToString_Dec	//!< @alias{F128_ToString_Dec}
+#define c_ftostrdec		Float_ToString_Dec	//!< @alias{Float_ToString_Dec}
+#define c_f32tostrdec	F32_ToString_Dec	//!< @alias{F32_ToString_Dec}
+#define c_f64tostrdec	F64_ToString_Dec	//!< @alias{F64_ToString_Dec}
+#define c_f80tostrdec	F80_ToString_Dec	//!< @alias{F80_ToString_Dec}
+#define c_f128tostrdec	F128_ToString_Dec	//!< @alias{F128_ToString_Dec}
 //!@}
 
 
 
 //! Get the string hexadecimal representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 /*!
+**	@nonstd
+**
 **	@param	number		The number to convert to a string
 **	@param	precision	The amount of digits to print after the decimal point
-**	@returns a newly llocated string representation of the given `number`, with `precision` digits
+**	@returns
+**	A newly allocated string representation of the given `number`, with `precision` digits
 */
 //!@{
-#define								Float_ToString_Hex	CONCAT(FLOAT_TYPE,_ToString_Hex)
-_MALLOC()	t_char*					F32_ToString_Hex(t_f32 number, t_u8 precision);
-_MALLOC()	t_char*					F64_ToString_Hex(t_f64 number, t_u8 precision);
+#define					Float_ToString_Hex	CONCAT(FLOAT_TYPE,_ToString_Hex)
+_MALLOC()	t_char*		F32_ToString_Hex(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*		F64_ToString_Hex(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	t_char*					F80_ToString_Hex(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*		F80_ToString_Hex(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	t_char*					F128_ToString_Hex(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*		F128_ToString_Hex(t_f128 number, t_u8 precision);
 #endif
-#define c_ftostrhex					Float_ToString_Hex	//!< @alias{Float_ToString_Hex}
-#define c_f32tostrhex				F32_ToString_Hex	//!< @alias{F32_ToString_Hex}
-#define c_f64tostrhex				F64_ToString_Hex	//!< @alias{F64_ToString_Hex}
-#define c_f80tostrhex				F80_ToString_Hex	//!< @alias{F80_ToString_Hex}
-#define c_f128tostrhex				F128_ToString_Hex	//!< @alias{F128_ToString_Hex}
+#define c_ftostrhex		Float_ToString_Hex	//!< @alias{Float_ToString_Hex}
+#define c_f32tostrhex	F32_ToString_Hex	//!< @alias{F32_ToString_Hex}
+#define c_f64tostrhex	F64_ToString_Hex	//!< @alias{F64_ToString_Hex}
+#define c_f80tostrhex	F80_ToString_Hex	//!< @alias{F80_ToString_Hex}
+#define c_f128tostrhex	F128_ToString_Hex	//!< @alias{F128_ToString_Hex}
 //!@}
 
 
 
 //! Get the string binary representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 /*!
+**	@nonstd
+**
 **	@param	number		The number to convert to a string
 **	@param	precision	The amount of digits to print after the decimal point
-**	@returns a newly llocated string representation of the given `number`, with `precision` digits
+**	@returns
+**	A newly allocated string representation of the given `number`, with `precision` digits
 */
 //!@{
-#define								Float_ToString_Bin	CONCAT(FLOAT_TYPE,_ToString_Bin)
-_MALLOC()	t_char*					F32_ToString_Bin(t_f32 number, t_u8 precision);
-_MALLOC()	t_char*					F64_ToString_Bin(t_f64 number, t_u8 precision);
+#define					Float_ToString_Bin	CONCAT(FLOAT_TYPE,_ToString_Bin)
+_MALLOC()	t_char*		F32_ToString_Bin(t_f32 number, t_u8 precision);
+_MALLOC()	t_char*		F64_ToString_Bin(t_f64 number, t_u8 precision);
 #ifdef	__float80
-_MALLOC()	t_char*					F80_ToString_Bin(t_f80 number, t_u8 precision);
+_MALLOC()	t_char*		F80_ToString_Bin(t_f80 number, t_u8 precision);
 #endif
 #ifdef	__float128
-_MALLOC()	t_char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
+_MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 #endif
-#define c_ftostrbin					Float_ToString_Bin	//!< @alias{Float_ToString_Bin}
-#define c_f32tostrbin				F32_ToString_Bin	//!< @alias{F32_ToString_Bin}
-#define c_f64tostrbin				F64_ToString_Bin	//!< @alias{F64_ToString_Bin}
-#define c_f80tostrbin				F80_ToString_Bin	//!< @alias{F80_ToString_Bin}
-#define c_f128tostrbin				F128_ToString_Bin	//!< @alias{F128_ToString_Bin}
+#define c_ftostrbin		Float_ToString_Bin	//!< @alias{Float_ToString_Bin}
+#define c_f32tostrbin	F32_ToString_Bin	//!< @alias{F32_ToString_Bin}
+#define c_f64tostrbin	F64_ToString_Bin	//!< @alias{F64_ToString_Bin}
+#define c_f80tostrbin	F80_ToString_Bin	//!< @alias{F80_ToString_Bin}
+#define c_f128tostrbin	F128_ToString_Bin	//!< @alias{F128_ToString_Bin}
 //!@}
+
+
+
+// TODO Float_ToString_Base()
 
 
 
@@ -711,10 +821,46 @@ _MALLOC()	t_char*					F128_ToString_Bin(t_f128 number, t_u8 precision);
 ** ************************************************************************** *|
 */
 
+
+
+// General parser functions
+
+
+
+//! Parse a floating-point number from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse	CONCAT(FIXED_TYPE,_Parse)
+t_size					F32_Parse	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse	(t_f64	*dest, t_char const* str, t_size n);
+#ifdef __float80
+t_size					F80_Parse	(t_f80	*dest, t_char const* str, t_size n);
+#endif
+#ifdef __float128
+t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
+#endif
+#define c_fparse		Float_Parse	//!< @alias{Float_Parse}
+#define c_f32parse		F32_Parse	//!< @alias{F32_Parse}
+#define c_f64parse		F64_Parse	//!< @alias{F64_Parse}
+#define c_f80parse		F80_Parse	//!< @alias{F80_Parse}
+#define c_f128parse		F128_Parse	//!< @alias{F128_Parse}
+//!@}
+
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
 /*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atof}
+**
 **	@param	str	The string to parse a floating-point value from.
-**	@returns A converted floating-point value from the given `str`
+**	@returns
+**	A floating-point value parsed from the given `str`
 */
 //!@{
 #define					Float_FromString	CONCAT(FLOAT_TYPE,_FromString)
@@ -735,149 +881,247 @@ t_f128					F128_FromString(t_char const* str);
 
 
 
-//! Parse the scientific notation of a floating-point number
+// Decimal parser functions
+
+
+
+//! Parse a floating-point number from the given decimal number string
 /*!
-**	@param	str	The string to parse a floating-point value from.
-**	@returns A converted floating-point value from the given `str`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
 */
 //!@{
-#define									Float_FromString_Exp	CONCAT(FLOAT_TYPE,_FromString_Exp)
-t_f32									F32_FromString_Exp(t_char const* str);
-t_f64									F64_FromString_Exp(t_char const* str);
-#ifdef	__float80
-t_f80									F80_FromString_Exp(t_char const* str);
+#define					Float_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
+t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Dec	(t_f64	*dest, t_char const* str, t_size n);
+#ifdef __float80
+t_size					F80_Parse_Dec	(t_f80	*dest, t_char const* str, t_size n);
 #endif
-#ifdef	__float128
-t_f128									F128_FromString_Exp(t_char const* str);
+#ifdef __float128
+t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
 #endif
-#define c_strexptof						Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define c_strexptof32					F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define c_strexptof64					F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define c_strexptof80					F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define c_strexptof128					F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-
-#define c_strscitof						Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define c_strscitof32					F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define c_strscitof64					F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define c_strscitof80					F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define c_strscitof128					F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-
-#define Float_FromString_Exponential	Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define Float_FromString_Scientific		Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define Float_FromString_Sci			Float_FromString_Exp//!< @alias{Float_FromString_Exp}
-#define F32_FromString_Exponential		F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F32_FromString_Scientific		F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F32_FromString_Sci				F32_FromString_Exp	//!< @alias{F32_FromString_Exp}
-#define F64_FromString_Exponential		F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F64_FromString_Scientific		F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F64_FromString_Sci				F64_FromString_Exp	//!< @alias{F64_FromString_Exp}
-#define F80_FromString_Exponential		F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F80_FromString_Scientific		F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F80_FromString_Sci				F80_FromString_Exp	//!< @alias{F80_FromString_Exp}
-#define F128_FromString_Exponential		F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-#define F128_FromString_Scientific		F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
-#define F128_FromString_Sci				F128_FromString_Exp	//!< @alias{F128FromoString_Exp}
+#define c_fparsedec		Float_Parse_Dec	//!< @alias{Float_Parse_Dec}
+#define c_f32parsedec	F32_Parse_Dec	//!< @alias{F32_Parse_Dec}
+#define c_f64parsedec	F64_Parse_Dec	//!< @alias{F64_Parse_Dec}
+#define c_f80parsedec	F80_Parse_Dec	//!< @alias{F80_Parse_Dec}
+#define c_f128parsedec	F128_Parse_Dec	//!< @alias{F128_Parse_Dec}
 //!@}
-
-
 
 //! Parse the decimal representation of a floating-point number
 /*!
-**	@param	str	The string to parse a floating-point value from.
-**	@returns A converted floating-point value from the given `str`
+**	@nonstd
+**
+**	@param	str	The string to parse a floating-point value from:
+**				it must be a number in decimal notation (ie: no `e` exponent allowed)
+**	@returns
+**	A floating-point value parsed from the given `str`
 */
 //!@{
-#define									Float_FromString_Dec	CONCAT(FLOAT_TYPE,_FromString_Dec)
-t_f32									F32_FromString_Dec(t_char const* str);
-t_f64									F64_FromString_Dec(t_char const* str);
+#define					Float_FromString_Dec	CONCAT(FLOAT_TYPE,_FromString_Dec)
+t_f32					F32_FromString_Dec(t_char const* str);
+t_f64					F64_FromString_Dec(t_char const* str);
 #ifdef	__float80
-t_f80									F80_FromString_Dec(t_char const* str);
+t_f80					F80_FromString_Dec(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128									F128_FromString_Dec(t_char const* str);
+t_f128					F128_FromString_Dec(t_char const* str);
 #endif
-#define c_strdectof						Float_FromString_Dec//!< @alias{Float_FromString_Dec}
-#define c_strdectof32					F32_FromString_Dec	//!< @alias{F32_FromString_Dec}
-#define c_strdectof64					F64_FromString_Dec	//!< @alias{F64_FromString_Dec}
-#define c_strdectof80					F80_FromString_Dec	//!< @alias{F80_FromString_Dec}
-#define c_strdectof128					F128_FromString_Dec	//!< @alias{F128_FromString_Dec}
+#define c_strdectof		Float_FromString_Dec//!< @alias{Float_FromString_Dec}
+#define c_strdectof32	F32_FromString_Dec	//!< @alias{F32_FromString_Dec}
+#define c_strdectof64	F64_FromString_Dec	//!< @alias{F64_FromString_Dec}
+#define c_strdectof80	F80_FromString_Dec	//!< @alias{F80_FromString_Dec}
+#define c_strdectof128	F128_FromString_Dec	//!< @alias{F128_FromString_Dec}
 //!@}
 
 
+
+// Hexadecimal parser functions
+
+
+
+//! Parse a floating-point number from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
+t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Hex	(t_f64	*dest, t_char const* str, t_size n);
+#ifdef __float80
+t_size					F80_Parse_Hex	(t_f80	*dest, t_char const* str, t_size n);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
+#endif
+#define c_fparsehex		Float_Parse_Hex	//!< @alias{Float_Parse_Hex}
+#define c_f32parsehex	F32_Parse_Hex	//!< @alias{F32_Parse_Hex}
+#define c_f64parsehex	F64_Parse_Hex	//!< @alias{F64_Parse_Hex}
+#define c_f80parsehex	F80_Parse_Hex	//!< @alias{F80_Parse_Hex}
+#define c_f128parsehex	F128_Parse_Hex	//!< @alias{F128_Parse_Hex}
+//!@}
 
 //! Parse the hexadecimal representation of a floating-point number
 /*!
-**	@param	str	The string to parse a floating-point value from.
-**	@returns A converted floating-point value from the given `str`
+**	@nonstd
+**
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in hexadecimal float notation (ie: with `p` exponent)
+**	@returns
+**	A floating-point value parsed from the given `str`
 */
 //!@{
-#define									Float_FromString_Hex	CONCAT(FLOAT_TYPE,_FromString_Hex)
-t_f32									F32_FromString_Hex(t_char const* str);
-t_f64									F64_FromString_Hex(t_char const* str);
+#define					Float_FromString_Hex	CONCAT(FLOAT_TYPE,_FromString_Hex)
+t_f32					F32_FromString_Hex(t_char const* str);
+t_f64					F64_FromString_Hex(t_char const* str);
 #ifdef	__float80
-t_f80									F80_FromString_Hex(t_char const* str);
+t_f80					F80_FromString_Hex(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128									F128_FromString_Hex(t_char const* str);
+t_f128					F128_FromString_Hex(t_char const* str);
 #endif
-#define c_strhextof						Float_FromString_Hex//!< @alias{Float_FromString_Hex}
-#define c_strhextof32					F32_FromString_Hex	//!< @alias{F32_FromString_Hex}
-#define c_strhextof64					F64_FromString_Hex	//!< @alias{F64_FromString_Hex}
-#define c_strhextof80					F80_FromString_Hex	//!< @alias{F80_FromString_Hex}
-#define c_strhextof128					F128_FromString_Hex	//!< @alias{F128_FromString_Hex}
+#define c_strhextof		Float_FromString_Hex//!< @alias{Float_FromString_Hex}
+#define c_strhextof32	F32_FromString_Hex	//!< @alias{F32_FromString_Hex}
+#define c_strhextof64	F64_FromString_Hex	//!< @alias{F64_FromString_Hex}
+#define c_strhextof80	F80_FromString_Hex	//!< @alias{F80_FromString_Hex}
+#define c_strhextof128	F128_FromString_Hex	//!< @alias{F128_FromString_Hex}
 //!@}
 
 
+
+// Octal parser functions
+
+
+
+//! Parse a floating-point number from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
+t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Oct	(t_f64	*dest, t_char const* str, t_size n);
+#ifdef __float80
+t_size					F80_Parse_Oct	(t_f80	*dest, t_char const* str, t_size n);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
+#endif
+#define c_fparseoct		Float_Parse_Oct	//!< @alias{Float_Parse_Oct}
+#define c_f32parseoct	F32_Parse_Oct	//!< @alias{F32_Parse_Oct}
+#define c_f64parseoct	F64_Parse_Oct	//!< @alias{F64_Parse_Oct}
+#define c_f80parseoct	F80_Parse_Oct	//!< @alias{F80_Parse_Oct}
+#define c_f128parseoct	F128_Parse_Oct	//!< @alias{F128_Parse_Oct}
+//!@}
+
+//! Parse the octal representation of a floating-point number
+/*!
+**	@nonstd
+**
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in octal float notation (ie: with `p` exponent)
+**	@returns
+**	A floating-point value parsed from the given `str`
+*/
+//!@{
+#define					Float_FromString_Oct	CONCAT(TYPE_FLOAT,_FromString_Oct)
+t_f32					F32_FromString_Oct(t_char const* str);
+t_f64					F64_FromString_Oct(t_char const* str);
+#ifdef	__float80
+t_f80					F80_FromString_Oct(t_char const* str);
+#endif
+#ifdef	__float128
+t_f128					F128_FromString_Oct(t_char const* str);
+#endif
+#define c_strocttof		Float_FromString_Oct//!< @alias{Float_FromString_Oct}
+#define c_strocttof32	F32_FromString_Oct	//!< @alias{F32_FromString_Oct}
+#define c_strocttof64	F64_FromString_Oct	//!< @alias{F64_FromString_Oct}
+#define c_strocttof80	F80_FromString_Oct	//!< @alias{F80_FromString_Oct}
+#define c_strocttof128	F128_FromString_Oct	//!< @alias{F128_FromString_Oct}
+//!@}
+
+
+
+// Binary parser functions
+
+
+
+//! Parse a floating-point number from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of characters to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					Float_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
+t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str, t_size n);
+t_size					F64_Parse_Bin	(t_f64	*dest, t_char const* str, t_size n);
+#ifdef __float80
+t_size					F80_Parse_Bin	(t_f80	*dest, t_char const* str, t_size n);
+#endif
+#ifdef __float128
+t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
+#endif
+#define c_fparsebin		Float_Parse_Bin	//!< @alias{Float_Parse_Bin}
+#define c_f32parsebin	F32_Parse_Bin	//!< @alias{F32_Parse_Bin}
+#define c_f64parsebin	F64_Parse_Bin	//!< @alias{F64_Parse_Bin}
+#define c_f80parsebin	F80_Parse_Bin	//!< @alias{F80_Parse_Bin}
+#define c_f128parsebin	F128_Parse_Bin	//!< @alias{F128_Parse_Bin}
+//!@}
 
 //! Parse the binary representation of a floating-point number
 /*!
-**	@param	str	The string to parse a floating-point value from.
-**	@returns A converted floating-point value from the given `str`
+**	@nonstd
+**
+**	@param	str	The string to parse a floating-point value from:
+**				it must be in binary float notation (ie: with `p` exponent)
+**	@returns
+**	A floating-point value parsed from the given `str`
 */
 //!@{
-#define								Float_FromString_Bin	CONCAT(TYPE_FLOAT,_FromString_Bin)
-t_f32								F32_FromString_Bin(t_char const* str);
-t_f64								F64_FromString_Bin(t_char const* str);
+#define					Float_FromString_Bin	CONCAT(TYPE_FLOAT,_FromString_Bin)
+t_f32					F32_FromString_Bin(t_char const* str);
+t_f64					F64_FromString_Bin(t_char const* str);
 #ifdef	__float80
-t_f80								F80_FromString_Bin(t_char const* str);
+t_f80					F80_FromString_Bin(t_char const* str);
 #endif
 #ifdef	__float128
-t_f128								F128_FromString_Bin(t_char const* str);
+t_f128					F128_FromString_Bin(t_char const* str);
 #endif
-#define c_strbintof					Float_FromString_Bin//!< @alias{Float_FromString_Bin}
-#define c_strbintof32				F32_FromString_Bin	//!< @alias{F32_FromString_Bin}
-#define c_strbintof64				F64_FromString_Bin	//!< @alias{F64_FromString_Bin}
-#define c_strbintof80				F80_FromString_Bin	//!< @alias{F80_FromString_Bin}
-#define c_strbintof128				F128_FromString_Bin	//!< @alias{F128_FromString_Bin}
+#define c_strbintof		Float_FromString_Bin//!< @alias{Float_FromString_Bin}
+#define c_strbintof32	F32_FromString_Bin	//!< @alias{F32_FromString_Bin}
+#define c_strbintof64	F64_FromString_Bin	//!< @alias{F64_FromString_Bin}
+#define c_strbintof80	F80_FromString_Bin	//!< @alias{F80_FromString_Bin}
+#define c_strbintof128	F128_FromString_Bin	//!< @alias{F128_FromString_Bin}
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
+// TODO Float_FromString_Base()
 
-//! A union storing a floating-point number of any common size/precision
-/*!
-** These unions are used for certain difficult casting conditions.
-** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in c_printf.
-*/
-typedef union varfloat
-{
-	t_f32			f;
-	t_f64			d;
-#ifdef	__float80
-	t_f80			e;
+
+
 #endif
-#ifdef	__float128
-	t_f128			q;
-#endif
-}					u_varfloat;
-
-
 
 /*! @} */
 HEADER_END

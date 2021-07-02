@@ -3,11 +3,11 @@
 #include "libccc/char.h"
 #include "libccc/encode/common.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-e_cccerror	KVT_Insert_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
+e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt* after_inserted = NULL;
 

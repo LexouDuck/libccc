@@ -8,6 +8,8 @@ log/**/*.log
 libccc_test*
 pclint_*.*
 
+test/_test.c
+
 # Prerequisites
 *.d
 

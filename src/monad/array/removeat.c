@@ -1,8 +1,9 @@
 
 #include "libccc/memory.h"
+#include "libccc/string.h"
 #include "libccc/monad/array.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -13,9 +14,9 @@ void	CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index)
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	if (array->length == 0 ||
-		array->length <= index)
-		return;
+	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
+		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		index, array->length)
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i < array->length - 1; ++i)
@@ -38,9 +39,9 @@ void	CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*dele
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	if (array->length == 0 ||
-		array->length <= index)
-		return;
+	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
+		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		index, array->length)
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i < array->length - 1; ++i)

@@ -2,11 +2,11 @@
 #include "libccc/int.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-#define DEFINEFUNC_CONVERT_UINT_TO_STRBIN(BITS) \
+#define DEFINEFUNC_UINT_TOSTRBIN(BITS) \
 t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 {																		\
 	t_char*	result;														\
@@ -39,17 +39,17 @@ t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_UINT_TO_STRBIN(8)
-DEFINEFUNC_CONVERT_UINT_TO_STRBIN(16)
-DEFINEFUNC_CONVERT_UINT_TO_STRBIN(32)
-DEFINEFUNC_CONVERT_UINT_TO_STRBIN(64)
+DEFINEFUNC_UINT_TOSTRBIN(8)
+DEFINEFUNC_UINT_TOSTRBIN(16)
+DEFINEFUNC_UINT_TOSTRBIN(32)
+DEFINEFUNC_UINT_TOSTRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_UINT_TO_STRBIN(128)
+DEFINEFUNC_UINT_TOSTRBIN(128)
 #endif
 
 
 
-#define DEFINEFUNC_CONVERT_SINT_TO_STRBIN(BITS) \
+#define DEFINEFUNC_SINT_TOSTRBIN(BITS) \
 t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 {																		\
 	t_char*	result;														\
@@ -84,10 +84,10 @@ t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 	return (result);													\
 }																		\
 
-DEFINEFUNC_CONVERT_SINT_TO_STRBIN(8)
-DEFINEFUNC_CONVERT_SINT_TO_STRBIN(16)
-DEFINEFUNC_CONVERT_SINT_TO_STRBIN(32)
-DEFINEFUNC_CONVERT_SINT_TO_STRBIN(64)
+DEFINEFUNC_SINT_TOSTRBIN(8)
+DEFINEFUNC_SINT_TOSTRBIN(16)
+DEFINEFUNC_SINT_TOSTRBIN(32)
+DEFINEFUNC_SINT_TOSTRBIN(64)
 #ifdef __int128
-DEFINEFUNC_CONVERT_SINT_TO_STRBIN(128)
+DEFINEFUNC_SINT_TOSTRBIN(128)
 #endif

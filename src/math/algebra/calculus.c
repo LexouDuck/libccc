@@ -3,7 +3,7 @@
 #include "libccc/math/math.h"
 #include "libccc/math/algebra.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -17,6 +17,7 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 	result = 0.;
 	i = 0;
 	rng = Random_New();
+	HANDLE_ERROR(ALLOCFAILURE, (rng == NULL), return (NAN);)
 	while (i < SAMPLE_NB)
 	{
 		rand_input.vector.x = Random_Float_Range(rng, domain.start.vector.x, domain.end.vector.x);

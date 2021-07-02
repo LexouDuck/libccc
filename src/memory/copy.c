@@ -1,10 +1,19 @@
 
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+void*	Memory_Copy(void* dest, void const* src, t_size n)
+{ return (memcpy(dest, src, n)); }
+#else
 void*	Memory_Copy(void* dest, void const* src, t_size n)
 {
 	t_u8*	result;
@@ -23,6 +32,7 @@ void*	Memory_Copy(void* dest, void const* src, t_size n)
 	}
 	return (dest);
 }
+#endif
 
 
 

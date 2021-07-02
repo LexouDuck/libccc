@@ -1,10 +1,19 @@
 
 #include "libccc/string.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#include <string.h>
+#endif
+
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
+#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+inline
+t_char*	String_Find_R_Char(t_char const* str, t_char c)
+{ return (strchr(str, c)); }
+#else
 t_char*	String_Find_R_Char(t_char const* str, t_char c)
 {
 	t_size	i;
@@ -22,13 +31,17 @@ t_char*	String_Find_R_Char(t_char const* str, t_char c)
 		if (str[i] == c)
 			return ((t_char*)str + i);
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char '%c' in string \"%s\"", c, str)
 }
+#endif
+
 inline
-t_ptrdiff	String_IndexOf_R_Char(t_char const* str, t_char c)
+t_sintmax	String_IndexOf_R_Char(t_char const* str, t_char c)
 {
 	t_char* result = String_Find_R_Char(str, c);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
@@ -54,13 +67,16 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 				return ((t_char*)str + i);
 		}
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no char from charset \"%s\" in string \"%s\"", charset, str)
 }
+
 inline
-t_ptrdiff	String_IndexOf_R_Charset(t_char const* str, t_char const* charset)
+t_sintmax	String_IndexOf_R_Charset(t_char const* str, t_char const* charset)
 {
 	t_char* result = String_Find_R_Charset(str, charset);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }
 
 
@@ -92,11 +108,14 @@ t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 		if (match == length)
 			return ((t_char*)str + i);
 	}
-	return (NULL);
+	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+		", no string \"%s\" in string \"%s\"", query, str)
 }
+
 inline
-t_ptrdiff	String_IndexOf_R_String(t_char const* str, t_char const* query)
+t_sintmax	String_IndexOf_R_String(t_char const* str, t_char const* query)
 {
 	t_char* result = String_Find_R_String(str, query);
-	return (result ? result - str : -1);
+	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	return (result - str);
 }

@@ -2,15 +2,22 @@
 #include "libccc/sys/time.h"
 
 #ifndef __NOSTD__
+	#define __STDC_WANT_LIB_EXT1__	1
 	#include <time.h>
 #else
 	extern long	timezone;
 	time_t	time(time_t* t);
-	struct tm*	gmtime(const time_t* timep);
-	struct tm*	localtime(const time_t* timep);
+
+	struct tm*	gmtime(time_t const* timer);						// (since C89)
+	struct tm*	gmtime_s(struct tm* buf, time_t const* timer);		// (since C11)
+	struct tm*	gmtime_r(time_t const* timer, struct tm* buf);		// (since C23)
+
+	struct tm*	localtime(time_t const* timer);						// (since C89)
+	struct tm*	localtime_s(struct tm* buf, time_t const* timer);	// (since C11)
+	struct tm*	localtime_r(time_t const* timer, struct tm* buf);	// (since C23)
 #endif
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -28,24 +35,28 @@ t_time		Time_Now(void)
 s_date		Time_ToDate_UTC(t_time const value)
 {
 	s_date result = DATE_NULL;
- 	struct tm* tm;
+	struct tm tm = {0};
 
- 	tm = gmtime(&value);
- 	if (tm == NULL)
- 		return (result);
-	result = Date_FromSTDC(tm);
+#ifdef _WIN32
+	gmtime_s(&tm, &value);	// gmtime_s() is thread-safe, unlike gmtime()
+#else
+	gmtime_r(&value, &tm);	// gmtime_r() is thread-safe, unlike gmtime()
+#endif
+	result = Date_FromSTDC(&tm);
 	return (result);
 }
 
 s_date		Time_ToDate_LocalTime(t_time const value)
 {
 	s_date result = DATE_NULL;
- 	struct tm* tm;
+	struct tm tm = {0};
 
- 	tm = localtime(&value);
- 	if (tm == NULL)
- 		return (result);
-	result = Date_FromSTDC(tm);
+#ifdef _WIN32
+	localtime_s(&tm, &value);	// localtime_s() is thread-safe, unlike localtime()
+#else
+	localtime_r(&value, &tm);	// localtime_r() is thread-safe, unlike localtime()
+#endif
+	result = Date_FromSTDC(&tm);
 	if (result.offset == 0)
 		result.offset = -timezone;
 	return (result);

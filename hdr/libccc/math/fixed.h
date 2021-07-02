@@ -13,7 +13,7 @@
 #define __LIBCCC_MATH_FIXED_H
 /*!@group{libccc_math_fixed}
 ** @{
-**	This header defines the common standard math functions and macro defines.
+**	This header defines the common standard math functions for fixed-point numbers.
 **
 **	@nonstd
 **
@@ -38,7 +38,17 @@ HEADER_CPP
 
 
 
+/*!
+**	This very small float is typically used to compare two fixed-point values.
+**	Since fixed-point types have a configurable fractional portion, it can be useful
+**	to have the Fixed_EqualsApprox() functions for approximate equality checks.
+*/
+#define FIXED_APPROX	LIBCONFIG_FIXED_APPROX
+
+
+
 //! The type of function which takes one real number and outputs one real number
+//!@{
 typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
 typedef		t_q16	(*f_q16_function)	(t_q16 x);
 typedef		t_q32	(*f_q32_function)	(t_q32 x);
@@ -46,8 +56,10 @@ typedef		t_q64	(*f_q64_function)	(t_q64 x);
 #ifdef __int128
 typedef		t_q128	(*f_q128_function)	(t_q128 x);
 #endif
+//!@}
 
 //! The type of function which takes two real numbers and outputs one real number
+//!@{
 typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
 typedef		t_q16	(*f_q16_operator)	(t_q16 x,	t_q16 y);
 typedef		t_q32	(*f_q32_operator)	(t_q32 x,	t_q32 y);
@@ -55,6 +67,7 @@ typedef		t_q64	(*f_q64_operator)	(t_q64 x,	t_q64 y);
 #ifdef __int128
 typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 #endif
+//!@}
 
 
 
@@ -67,22 +80,20 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 //! Returns the absolute value of `x` (makes `x` positive)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {|x|} @f$
 */
 //!@{
-#define						Fixed_Abs	CONCAT(FIXED_TYPE,_Abs)
-t_q16						Q16_Abs(t_q16 x);
-t_q32						Q32_Abs(t_q32 x);
-t_q64						Q64_Abs(t_q64 x);
+#define				Fixed_Abs	CONCAT(FIXED_TYPE,_Abs)
+t_q16				Q16_Abs(t_q16 x);
+t_q32				Q32_Abs(t_q32 x);
+t_q64				Q64_Abs(t_q64 x);
 #ifdef __int128
-t_q128						Q128_Abs(t_q128 x);
+t_q128				Q128_Abs(t_q128 x);
 #endif
-#define c_qabs				Fixed_Abs 	//!< @alias{Fixed_Abs}
-#define c_q16abs			Q16_Abs 	//!< @alias{Q16_Abs}
-#define c_q32abs			Q32_Abs 	//!< @alias{Q32_Abs}
-#define c_q64abs			Q64_Abs 	//!< @alias{Q64_Abs}
-#define c_q128abs			Q128_Abs 	//!< @alias{Q128_Abs}
+#define c_qabs		Fixed_Abs 	//!< @alias{Fixed_Abs}
+#define c_q16abs	Q16_Abs 	//!< @alias{Q16_Abs}
+#define c_q32abs	Q32_Abs 	//!< @alias{Q32_Abs}
+#define c_q64abs	Q64_Abs 	//!< @alias{Q64_Abs}
+#define c_q128abs	Q128_Abs 	//!< @alias{Q128_Abs}
 
 #define Fixed_AbsoluteValue	Fixed_Abs
 //!@}
@@ -111,20 +122,20 @@ t_q128					Q128_Round(t_q128 x);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Truncate	CONCAT(FIXED_TYPE,_Truncate)
-t_q16					Q16_Truncate(t_q16 x);
-t_q32					Q32_Truncate(t_q32 x);
-t_q64					Q64_Truncate(t_q64 x);
+#define					Fixed_Trunc	CONCAT(FIXED_TYPE,_Trunc)
+t_q16					Q16_Trunc(t_q16 x);
+t_q32					Q32_Trunc(t_q32 x);
+t_q64					Q64_Trunc(t_q64 x);
 #ifdef __int128
-t_q128					Q128_Truncate(t_q128 x);
+t_q128					Q128_Trunc(t_q128 x);
 #endif
-#define c_qtrunc		Fixed_Truncate 	//!< @alias{Fixed_Truncate}
-#define c_q16trunc		Q16_Truncate 	//!< @alias{Q16_Truncate}
-#define c_q32trunc		Q32_Truncate 	//!< @alias{Q32_Truncate}
-#define c_q64trunc		Q64_Truncate 	//!< @alias{Q64_Truncate}
-#define c_q128trunc		Q128_Truncate 	//!< @alias{Q128_Truncate}
+#define c_qtrunc		Fixed_Trunc	//!< @alias{Fixed_Trunc}
+#define c_q16trunc		Q16_Trunc	//!< @alias{Q16_Trunc}
+#define c_q32trunc		Q32_Trunc	//!< @alias{Q32_Trunc}
+#define c_q64trunc		Q64_Trunc	//!< @alias{Q64_Trunc}
+#define c_q128trunc		Q128_Trunc	//!< @alias{Q128_Trunc}
 
-#define Fixed_Trunc		Fixed_Truncate
+#define Fixed_Truncate	Fixed_Trunc
 //!@}
 
 //! Returns the value of `x`, rounded to the superior integer
@@ -151,21 +162,87 @@ t_q128					Q128_Floor(t_q128 x);
 **	@nonstd
 */
 //!@{
-#define					Fixed_Ceiling	CONCAT(FIXED_TYPE,_Ceiling)
-t_q16					Q16_Ceiling(t_q16 x);
-t_q32					Q32_Ceiling(t_q32 x);
-t_q64					Q64_Ceiling(t_q64 x);
+#define					Fixed_Ceil	CONCAT(FIXED_TYPE,_Ceil)
+t_q16					Q16_Ceil(t_q16 x);
+t_q32					Q32_Ceil(t_q32 x);
+t_q64					Q64_Ceil(t_q64 x);
 #ifdef __int128
-t_q128					Q128_Ceiling(t_q128 x);
+t_q128					Q128_Ceil(t_q128 x);
 #endif
-#define c_qceil			Fixed_Ceiling
-#define c_q16ceil		Q16_Ceiling
-#define c_q32ceil		Q32_Ceiling
-#define c_q64ceil		Q64_Ceiling
-#define c_q128ceil		Q128_Ceiling
+#define c_qceil			Fixed_Ceil
+#define c_q16ceil		Q16_Ceil
+#define c_q32ceil		Q32_Ceil
+#define c_q64ceil		Q64_Ceil
+#define c_q128ceil		Q128_Ceil
 
-#define Fixed_Ceil		Fixed_Ceiling
+#define Fixed_Ceiling	Fixed_Ceil
 //!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                       Floating-point logic operators                       *|
+** ************************************************************************** *|
+*/
+
+//! Returns `TRUE` if the 2 given fixed-point values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (exact) equality
+**	@param	y	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given fixed-point values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
+t_bool					Q16_Equals(t_q16 x, t_q16 y);
+t_bool					Q32_Equals(t_q32 x, t_q32 y);
+t_bool					Q64_Equals(t_q64 x, t_q64 y);
+#ifdef	__int128
+t_bool					Q128_Equals(t_q128 x, t_q128 y);
+#endif
+#define c_qequ			Fixed_Equals//!< @alias{Fixed_Equals}
+#define c_q16equ		Q16_Equals	//!< @alias{Q16_Equals}
+#define c_q32equ		Q32_Equals	//!< @alias{Q32_Equals}
+#define c_q64equ		Q64_Equals	//!< @alias{Q64_Equals}
+#define c_q128equ		Q128_Equals	//!< @alias{Q128_Equals}
+//!@}
+
+
+
+//! Returns `TRUE` if the 2 given fixed-point values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	x	The first value to check for (approximate) equality
+**	@param	y	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given fixed-point values are close enough to be considered equal
+**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+t_bool					Q16_EqualsApprox(t_q16 x, t_q16 y);
+t_bool					Q32_EqualsApprox(t_q32 x, t_q32 y);
+t_bool					Q64_EqualsApprox(t_q64 x, t_q64 y);
+#ifdef	__int128
+t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
+#endif
+#define c_qequa			Fixed_EqualsApprox	//!< @alias{Fixed_EqualsApprox}
+#define c_q16equa		Q16_EqualsApprox	//!< @alias{Q16_EqualsApprox}
+#define c_q32equa		Q32_EqualsApprox	//!< @alias{Q32_EqualsApprox}
+#define c_q64equa		Q64_EqualsApprox	//!< @alias{Q64_EqualsApprox}
+#define c_q128equa		Q128_EqualsApprox	//!< @alias{Q128_EqualsApprox}
+//!@}
+
+
+
+// TODO Fixed_LessThan
+
+// TODO Fixed_GreaterThan
 
 
 
@@ -177,7 +254,7 @@ t_q128					Q128_Ceiling(t_q128 x);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `+`)
+//! Performs an addition between the 2 given fixed-point values (operator: `+`)
 //!@{
 #define				Fixed_Add	CONCAT(FIXED_TYPE,_Add)
 t_q16				Q16_Add(t_q16 x, t_q16 y);
@@ -195,7 +272,7 @@ t_q128				Q128_Add(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `-`)
+//! Performs an addition between the 2 given fixed-point values (operator: `-`)
 //!@{
 #define				Fixed_Sub	CONCAT(FIXED_TYPE,_Sub)
 t_q16				Q16_Sub(t_q16 x, t_q16 y);
@@ -213,7 +290,7 @@ t_q128				Q128_Sub(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given floating-point values (operator: `*`)
+//! Performs an addition between the 2 given fixed-point values (operator: `*`)
 //!@{
 #define				Fixed_Mul	CONCAT(FIXED_TYPE,_Mul)
 t_q16				Q16_Mul(t_q16 x, t_q16 y);
@@ -231,7 +308,7 @@ t_q128				Q128_Mul(t_q128 x, t_q128 y);
 
 
 
-//! Performs a division between the 2 given floating-point values (operator: `/`)
+//! Performs a division between the 2 given fixed-point values (operator: `/`)
 //!@{
 #define				Fixed_Div	CONCAT(FIXED_TYPE,_Div)
 t_q16				Q16_Div(t_q16 x, t_q16 y);
@@ -283,8 +360,6 @@ t_q128					Q128_Mod(t_q128 x, t_q128 y);
 //! Returns the value of `x` to the power of `y` (fixed)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {x^y} @f$
 */
 //!@{
 #define					Fixed_Pow	CONCAT(FIXED_TYPE,_Pow)
@@ -306,8 +381,6 @@ t_q128					Q128_Pow(t_q128 x, t_q128 y);
 //! Returns the value of `x` to the power of `n` (integer)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {x^n} @f$
 */
 //!@{
 #define					Fixed_IntPow	CONCAT(FIXED_TYPE,_IntPow)
@@ -331,8 +404,6 @@ t_q128					Q128_IntPow(t_q128 x, t_sint n);
 //! Returns the square root of `x` (inverse of power of 2)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt {x}} @f$
 */
 //!@{
 #define						Fixed_Root2	CONCAT(FIXED_TYPE,_Root2)
@@ -355,8 +426,6 @@ t_q128						Q128_Root2(t_q128 x);
 //! Returns the cubic root of `x` (inverse of power of 3)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt[3] {x}} @f$
 */
 //!@{
 #define						Fixed_Root3	CONCAT(FIXED_TYPE,_Root3)
@@ -379,8 +448,6 @@ t_q128						Q128_Root3(t_q128 x);
 //! Returns the n-ic root of `x` (inverse of power of `n`)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sqrt[n] {x}} @f$
 */
 //!@{
 #define						Fixed_RootN	CONCAT(FIXED_TYPE,_RootN)
@@ -415,8 +482,6 @@ t_q128						Q128_RootN(t_q128 x, t_u8 n);
 //! Returns the exponential function's value for `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {e^x} @f$
 */
 //!@{
 #define							Fixed_Exp	CONCAT(FIXED_TYPE,_Exp)
@@ -440,8 +505,6 @@ t_q128							Q128_Exp(t_q128 x);
 //! Returns the natural logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\ln {x}} @f$
 */
 //!@{
 #define							Fixed_Ln	CONCAT(FIXED_TYPE,_Ln)
@@ -463,8 +526,6 @@ t_q128							Q128_Ln(t_q128 x);
 //! Returns the binary (base-2) logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{2} {x}} @f$
 */
 //!@{
 #define							Fixed_Log2	CONCAT(FIXED_TYPE,_Log2)
@@ -492,8 +553,6 @@ t_q128							Q128_Log2(t_q128 x);
 //! Returns the decimal (base-10) logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{10} {x}} @f$
 */
 //!@{
 #define							Fixed_Log10	CONCAT(FIXED_TYPE,_Log10)
@@ -521,8 +580,6 @@ t_q128							Q128_Log10(t_q128 x);
 //! Returns the base-`n` logarithm of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\log_{n} {x}} @f$
 */
 //!@{
 #define							Fixed_LogN	CONCAT(FIXED_TYPE,_LogN)
@@ -554,8 +611,6 @@ t_q128							Q128_LogN(t_q128 x, t_q128 y);
 //! Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cos {x}} @f$
 */
 //!@{
 #define							Fixed_Cos	CONCAT(FIXED_TYPE,_Cos)
@@ -577,8 +632,6 @@ t_q128							Q128_Cos(t_q128 x);
 //! Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sin {x}} @f$
 */
 //!@{
 #define							Fixed_Sin	CONCAT(FIXED_TYPE,_Sin)
@@ -600,8 +653,6 @@ t_q128							Q128_Sin(t_q128 x);
 //! Returns the tangent of `x` (trigonometry tangent line)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tan {x}} @f$
 */
 //!@{
 #define							Fixed_Tan	CONCAT(FIXED_TYPE,_Tan)
@@ -625,8 +676,6 @@ t_q128							Q128_Tan(t_q128 x);
 //! Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cos^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcCos	CONCAT(FIXED_TYPE,_ArcCos)
@@ -649,8 +698,6 @@ t_q128							Q128_ArcCos(t_q128 x);
 //! Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sin^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcSin	CONCAT(FIXED_TYPE,_ArcSin)
@@ -673,8 +720,6 @@ t_q128							Q128_ArcSin(t_q128 x);
 //! Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tan^{-1} {x}} @f$
 */
 //!@{
 #define							Fixed_ArcTan	CONCAT(FIXED_TYPE,_ArcTan)
@@ -699,8 +744,6 @@ t_q128							Q128_ArcTan(t_q128 x);
 //! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\arctan(\frac{y}{x})} @f$, in the range @f$ {[-\pi;+\pi]} @f$
 */
 //!@{
 #define								Fixed_ArcTan2	CONCAT(FIXED_TYPE,_ArcTan2)
@@ -726,8 +769,6 @@ t_q128								Q128_(t_q128 x, t_q128 y);
 //! Returns the hyperbolic cosine of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cosh {x}} @f$
 */
 //!@{
 #define								Fixed_CosH	CONCAT(FIXED_TYPE,_CosH)
@@ -750,8 +791,6 @@ t_q128								Q128_CosH(t_q128 x);
 //! Returns the hyperbolic sine of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sinh {x}} @f$
 */
 //!@{
 #define								Fixed_SinH	CONCAT(FIXED_TYPE,_SinH)
@@ -774,8 +813,6 @@ t_q128								Q128_SinH(t_q128 x);
 //! Returns the hyperbolic tangent of `x`
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tanh {x}} @f$
 */
 //!@{
 #define								Fixed_TanH	CONCAT(FIXED_TYPE,_TanH)
@@ -800,8 +837,6 @@ t_q128								Q128_TanH(t_q128 x);
 //! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\cosh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvCosH	CONCAT(FIXED_TYPE,_InvCosH)
@@ -824,8 +859,6 @@ t_q128								Q128_InvCosH(t_q128 x);
 //! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\sinh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvSinH	CONCAT(FIXED_TYPE,_InvSinH)
@@ -848,8 +881,6 @@ t_q128								Q128_InvSinH(t_q128 x);
 //! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
 **	@nonstd
-**
-**	- Math: @f$ {\tanh^{-1} {x}} @f$
 */
 //!@{
 #define								Fixed_InvTanH	CONCAT(FIXED_TYPE,_InvTanH)

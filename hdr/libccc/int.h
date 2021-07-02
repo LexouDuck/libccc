@@ -15,9 +15,9 @@
 ** @{
 **	This header defines the integer number primitive types and functions.
 **
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
-**	@isostd{https://en.cppreference.com/w/c/types/limits}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/limits}
 **
 **	These are wrapper types for all the primitive integer types in a more concise
 **	naming convention, to better reflect the amount of bits used by each type.
@@ -69,22 +69,19 @@
 	typedef int64_t		int_fast64_t;
 #endif
 
-#include "libccc_config.h"
-#include "libccc_naming.h"
-#include "libccc_define.h"
-
-#include "libccc/char.h"
-#include "libccc/bool.h"
-
-HEADER_CPP
-
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
-
-
+//! Check if this environment supports 128-bit integer types
+//!@{
+#ifdef __SIZEOF_INT128__
+	#ifndef __int128
+	#define __int128	__int128
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpedantic"
+	typedef unsigned __int128	_UInt128;
+	typedef signed   __int128	_SInt128;
+	#pragma GCC diagnostic pop
+	#endif
+#endif
+//!@}
 
 #ifndef LIBCONFIG_INTEGER_TYPES
 	#define STDINT(TYPE, BITS)	TYPE##BITS##_t
@@ -96,21 +93,32 @@ typedef STDINT(uint,16)	u16;
 typedef STDINT(uint,32)	u32;
 typedef	STDINT(uint,64)	u64;
 #ifdef	__int128
-typedef unsigned __int128	u128;
+typedef _UInt128	u128;
 #endif
 typedef STDINT(int,  8)	s8;
 typedef STDINT(int, 16)	s16;
 typedef STDINT(int, 32)	s32;
 typedef	STDINT(int, 64)	s64;
 #ifdef	__int128
-typedef __int128		s128;
+typedef _SInt128	s128;
 #endif
 
+#include "libccc.h"
 
+HEADER_CPP
+
+#ifndef __LIBCCC_INT_T
+#define __LIBCCC_INT_T
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
 
 //! Primitive type: 8-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 8 bits in size.
 **	The possible range of values is between zero and #U8_MAX.
@@ -126,7 +134,7 @@ TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 
 //! Primitive type: 16-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 16 bits in size.
 **	The possible range of values is between zero and #U16_MAX.
@@ -142,7 +150,7 @@ TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 
 //! Primitive type: 32-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 32 bits in size.
 **	The possible range of values is between zero and #U32_MAX.
@@ -158,7 +166,7 @@ TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 
 //! Primitive type: 64-bit unsigned integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 64 bits in size.
 **	The possible range of values is between zero and #U64_MAX.
@@ -175,7 +183,7 @@ TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 #ifdef	__int128
 //! Primitive type: 128-bit unsigned integer (only available on certain platforms)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width unsigned integer type which is 128 bits in size.
 **	NB: This type does not exist on most common platforms/machines.
@@ -189,7 +197,7 @@ TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 */
 typedef u128	t_u128;
 TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
-#elif (LIBCONFIG_BITS_UINT == 128)
+#elif (LIBCONFIG_UINT_BITS == 128)
 	#error "Cannot set default unsigned int type to 128-bit, unavailable on this platform"
 #endif
 
@@ -197,7 +205,7 @@ TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 
 //! Primitive type: 8-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 8 bits in size.
 **	The possible range of values is between #S8_MIN and #S8_MAX.
@@ -213,7 +221,7 @@ TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 
 //! Primitive type: 16-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 16 bits in size.
 **	The possible range of values is between #S16_MIN and #S16_MAX.
@@ -229,7 +237,7 @@ TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 
 //! Primitive type: 32-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 32 bits in size.
 **	The possible range of values is between #S32_MIN and #S32_MAX.
@@ -245,7 +253,7 @@ TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 
 //! Primitive type: 64-bit signed integer
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 64 bits in size.
 **	The possible range of values is between #S64_MIN and #S64_MAX.
@@ -262,7 +270,7 @@ TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 #ifdef	__int128
 //! Primitive type: 128-bit signed integer (only available on certain platforms)
 /*!
-**	@isostd{https://en.cppreference.com/w/c/types/integer}
+**	@isostd{C,https://en.cppreference.com/w/c/types/integer}
 **
 **	Fixed-width signed integer type which is 128 bits in size.
 **	NB: This type does not exist on most common platforms/machines.
@@ -276,23 +284,23 @@ TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 */
 typedef s128	t_s128;
 TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
-#elif (LIBCONFIG_BITS_SINT == 128)
+#elif (LIBCONFIG_SINT_BITS == 128)
 	#error "Cannot set default signed int type to 128-bit, unavailable on this platform"
 #endif
 
 
 
 //! The actual underlying type for the `t_uint` configurable type
-#define UINT_T		CONCAT(t_u,LIBCONFIG_BITS_UINT)
+#define UINT_T		CONCAT(t_u,LIBCONFIG_UINT_BITS)
 //! The actual underlying type for the `t_uint` configurable type, in uppercase
-#define UINT_TYPE	CONCAT(U,LIBCONFIG_BITS_UINT)
+#define UINT_TYPE	CONCAT(U,LIBCONFIG_UINT_BITS)
 
 //! The configurable-size unsigned integer primitive type.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width unsigned integer type.
-**	The size of this integer type depends on the value of #LIBCONFIG_BITS_UINT.
+**	The size of this integer type depends on the value of #LIBCONFIG_UINT_BITS.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
@@ -303,17 +311,17 @@ TYPEDEF_ALIAS(t_uint, UINT, PRIMITIVE)
 
 
 
+//! The actual underlying type for the `t_sint` configurable type
+#define SINT_T		CONCAT(t_s,LIBCONFIG_SINT_BITS)
 //! The actual underlying type for the `t_sint` configurable type, in uppercase
-#define SINT_T		CONCAT(t_s,LIBCONFIG_BITS_SINT)
-//! The actual underlying type for the `t_sint` configurable type, in uppercase
-#define SINT_TYPE	CONCAT(S,LIBCONFIG_BITS_SINT)
+#define SINT_TYPE	CONCAT(S,LIBCONFIG_SINT_BITS)
 
 //! The configurable-size signed integer primitive type.
 /*!
-**	@isostd{https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
+**	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
 **
 **	Configurable-width signed integer type.
-**	The size of this integer type depends on the value of #LIBCONFIG_BITS_SINT.
+**	The size of this integer type depends on the value of #LIBCONFIG_SINT_BITS.
 **	This is meant to be used as a "default integer type", a type where the
 **	programmer doesn't need to worry about integer overflow behaviors being
 **	platform-dependent (like they would if they used the C native `int` type).
@@ -324,79 +332,215 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 
 
-#if LIBCONFIG_BITS_UINT != 8 && \
-	LIBCONFIG_BITS_UINT != 16 && \
-	LIBCONFIG_BITS_UINT != 32 && \
-	LIBCONFIG_BITS_UINT != 64 && \
-	LIBCONFIG_BITS_UINT != 128
-	#error "LIBCONFIG_BITS_UINT must be equal to one of: 8, 16, 32, 64, 128"
+#if LIBCONFIG_UINT_BITS != 8 && \
+	LIBCONFIG_UINT_BITS != 16 && \
+	LIBCONFIG_UINT_BITS != 32 && \
+	LIBCONFIG_UINT_BITS != 64 && \
+	LIBCONFIG_UINT_BITS != 128
+	#error "LIBCONFIG_UINT_BITS must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
-#if LIBCONFIG_BITS_SINT != 8 && \
-	LIBCONFIG_BITS_SINT != 16 && \
-	LIBCONFIG_BITS_SINT != 32 && \
-	LIBCONFIG_BITS_SINT != 64 && \
-	LIBCONFIG_BITS_SINT != 128
-	#error "LIBCONFIG_BITS_SINT must be equal to one of: 8, 16, 32, 64, 128"
+#if LIBCONFIG_SINT_BITS != 8 && \
+	LIBCONFIG_SINT_BITS != 16 && \
+	LIBCONFIG_SINT_BITS != 32 && \
+	LIBCONFIG_SINT_BITS != 64 && \
+	LIBCONFIG_SINT_BITS != 128
+	#error "LIBCONFIG_SINT_BITS must be equal to one of: 8, 16, 32, 64, 128"
 #endif
 
 
+/*
+#ifdef LIBCONFIG_INTEGER_TYPES
 
-#ifndef LIBCONFIG_INTEGER_TYPES
+	#define U8_MAX	((t_u8)-1)						//!< The largest representable value for at least size  8-bit, unsigned integer type
+	#define S8_MAX	((t_s8)(U8_MAX  >> 1))			//!< The largest representable value for at least size  8-bit, signed integer type
+	#define S8_MIN	((t_s8)((U8_MAX  >> 1) + 1))	//!< The minimum representable value for at least size  8-bit, signed integer type
 
-	#define U8_MAX (0xFF)					//!< The largest possible value for any 8-bit unsigned integer	(255)
-	#define S8_MAX (0x7F)					//!< The largest possible value for any 8-bit signed integer	(+127)
-	#define S8_MIN (0x80)					//!< The minimum possible value for any 8-bit signed integer	(-128)
+	#define U16_MAX	((t_u16)-1)						//!< The largest representable value for at least size 16-bit, unsigned integer type
+	#define S16_MAX	((t_s16)(U16_MAX >> 1))			//!< The largest representable value for at least size 16-bit, signed integer type
+	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1))	//!< The minimum representable value for at least size 16-bit, signed integer type
 
-	#define U16_MAX (0xFFFF)				//!< The largest possible value for any 16-bit unsigned integer	(65535)
-	#define S16_MAX (0x7FFF)				//!< The largest possible value for any 16-bit signed integer	(+32767)
-	#define S16_MIN (0x8000)				//!< The minimum possible value for any 16-bit signed integer	(-32768)
+	#define U32_MAX	((t_u32)-1)						//!< The largest representable value for at least size 32-bit, unsigned integer type
+	#define S32_MAX	((t_s32)(U32_MAX >> 1))			//!< The largest representable value for at least size 32-bit, signed integer type
+	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1))	//!< The minimum representable value for at least size 32-bit, signed integer type
 
-	#define U32_MAX (0xFFFFFFFF)			//!< The largest possible value for any 32-bit unsigned integer	(4294967295)
-	#define S32_MAX (0x7FFFFFFF)			//!< The largest possible value for any 32-bit signed integer	(+2147483647)
-	#define S32_MIN (0x80000000)			//!< The minimum possible value for any 32-bit signed integer	(-2147483648)
-
-	#define U64_MAX (0xFFFFFFFFFFFFFFFFllu)	//!< The largest possible value for any 64-bit unsigned integer	(18446744073709551615)
-	#define S64_MAX (0x7FFFFFFFFFFFFFFFll)	//!< The largest possible value for any 64-bit signed integer	(+9223372036854775807)
-	#define S64_MIN (0x8000000000000000ll)	//!< The minimum possible value for any 64-bit signed integer	(-9223372036854775807)
+	#define U64_MAX	((t_u64)-1)						//!< The largest representable value for at least size 64-bit, unsigned integer type
+	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The largest representable value for at least size 64-bit, signed integer type
+	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum representable value for at least size 64-bit, signed integer type
 
 	#ifdef __int128
-	#define U128_MAX (0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFllu) //!< The largest possible value for a 128-bit unsigned integer	(340282366920938463463374607431768211455llu)
-	#define S128_MAX (0x7FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFll)  //!< The largest possible value for a 128-bit signed integer	(+170141183460469231731687303715884105727ll)
-	#define S128_MIN (0x80000000000000000000000000000000ll)  //!< The minimum possible value for a 128-bit signed integer	(−170141183460469231731687303715884105728ll)
+	#define U128_MAX ((t_u128)-1)					//!< The largest representable value for at least size 128-bit, unsigned integer type
+	#define S128_MAX ((t_s128)(U128_MAX >> 1))		//!< The largest representable value for at least size 128-bit, signed integer type
+	#define S128_MIN ((t_s128)((U128_MAX >> 1) + 1))//!< The minimum representable value for at least size 128-bit, signed integer type
 	#endif
+#else
+#endif
+*/
+
+#undef UINT_ERROR
+#undef UINT_MAX
+
+#undef SINT_ERROR
+#undef SINT_MAX
+#undef SINT_MIN
+
+#if (LIBCONFIG_UINT_ERROR == 0)
+
+	#define U8_ERROR	0
+	#define U8_MAX		((t_u8)0xFF)				//!< The largest representable value for a 8-bit unsigned integer (255)
+
+	#define U16_ERROR	0
+	#define U16_MAX		((t_u16)0xFFFF)				//!< The largest representable value for a 16-bit unsigned integer (65535)
+
+	#define U32_ERROR	0
+	#define U32_MAX		((t_u32)0xFFFFFFFF)			//!< The largest representable value for a 32-bit unsigned integer (4294967295)
+
+	#define U64_ERROR	0
+	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551615)
+
+	#ifdef __int128
+	#define U128_ERROR	0
+	#define U128_MAX	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211455)
+	#endif
+
+	#define UINT_ERROR	0
+	#define UINT_MAX	((t_uint)-1)				//!< The largest representable value for a configurable-size unsigned integer type
 
 #else
 
-	#define U8_MAX	((t_u8 )-1)						//!< The largest possible value for at least size  8-bit, unsigned integer type
-	#define S8_MAX	((t_s8)(U8_MAX  >> 1))			//!< The largest possible value for at least size  8-bit, signed integer type
-	#define S8_MIN	((t_s8)((U8_MAX  >> 1) + 1))	//!< The minimum possible value for at least size  8-bit, signed integer type
+	#define U8_ERROR	((t_u8)0xFF)
+	#define U8_MAX		((t_u8)0xFE)				//!< The largest representable value for a 8-bit unsigned integer (254)
 
-	#define U16_MAX	((t_u16)-1)						//!< The largest possible value for at least size 16-bit, unsigned integer type
-	#define S16_MAX	((t_s16)(U16_MAX >> 1))			//!< The largest possible value for at least size 16-bit, signed integer type
-	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1))	//!< The minimum possible value for at least size 16-bit, signed integer type
+	#define U16_ERROR	((t_u16)0xFFFF)
+	#define U16_MAX		((t_u16)0xFFFE)				//!< The largest representable value for a 16-bit unsigned integer (65534)
 
-	#define U32_MAX	((t_u32)-1)						//!< The largest possible value for at least size 32-bit, unsigned integer type
-	#define S32_MAX	((t_s32)(U32_MAX >> 1))			//!< The largest possible value for at least size 32-bit, signed integer type
-	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1))	//!< The minimum possible value for at least size 32-bit, signed integer type
+	#define U32_ERROR	((t_u32)0xFFFFFFFF)
+	#define U32_MAX		((t_u32)0xFFFFFFFE)			//!< The largest representable value for a 32-bit unsigned integer (4294967294)
 
-	#define U64_MAX	((t_u64)-1)						//!< The largest possible value for at least size 64-bit, unsigned integer type
-	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The largest possible value for at least size 64-bit, signed integer type
-	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum possible value for at least size 64-bit, signed integer type
+	#define U64_ERROR	((t_u64)0xFFFFFFFFFFFFFFFF)
+	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551614)
 
 	#ifdef __int128
-	#define U128_MAX ((t_u128)-1)					//!< The largest possible value for at least size 128-bit, unsigned integer type
-	#define S128_MAX ((t_s128)(U128_MAX >> 1))		//!< The largest possible value for at least size 128-bit, signed integer type
-	#define S128_MIN ((t_s128)((U128_MAX >> 1) + 1))//!< The minimum possible value for at least size 128-bit, signed integer type
+	#define U128_ERROR	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)
+	#define U128_MAX	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#endif
+
+	#define UINT_ERROR	((t_uint)-1)
+	#define UINT_MAX	((t_uint)-2)				//!< The largest representable value for a configurable-size unsigned integer type
+
 #endif
 
 
 
-#undef	UINT_MAX
-#define UINT_MAX	((t_uint)-1)					//!< The largest possible value for a configurable-size unsigned integer type
-#define SINT_MAX	((t_sint)(UINT_MAX >> 1))		//!< The largest possible value for a configurable-size signed integer type
-#define SINT_MIN	((t_sint)((UINT_MAX >> 1) + 1))	//!< The minimum possible value for a configurable-size signed integer type
+#if (LIBCONFIG_SINT_ERROR == 0)
+
+	#define S8_ERROR	((t_s8)0)
+	#define S8_MAX		((t_s8)0x7F)				//!< The largest representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		((t_s8)0x80)				//!< The minimum representable value for a 8-bit signed integer (-128)
+
+	#define S16_ERROR	((t_s16)0)
+	#define S16_MAX		((t_s16)0x7FFF)				//!< The largest representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		((t_s16)0x8000)				//!< The minimum representable value for a 16-bit signed integer (-32768)
+
+	#define S32_ERROR	((t_s32)0)
+	#define S32_MAX		((t_s32)0x7FFFFFFF)			//!< The largest representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		((t_s32)0x80000000)			//!< The minimum representable value for a 32-bit signed integer (-2147483648)
+
+	#define S64_ERROR	((t_s64)0)
+	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		((t_s64)0x8000000000000000)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775808)
+
+	#ifdef __int128
+	#define S128_ERROR	((t_s128)0)
+	#define S128_MAX	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN	((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#endif
+
+	#define SINT_ERROR	((t_sint)0)
+	#define SINT_MAX	((t_sint)((~(t_uint)0) >> 1))		//!< The largest representable value for a configurable-size signed integer type
+	#define SINT_MIN	((t_sint)((~(t_uint)0) >> 1) + 1))	//!< The minimum representable value for a configurable-size signed integer type
+
+#else
+
+	#define S8_ERROR	((t_s8)0x80)
+	#define S8_MAX		((t_s8)0x7F)					//!< The largest representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		((t_s8)-0x7F)					//!< The minimum representable value for a 8-bit signed integer (-127)
+
+	#define S16_ERROR	((t_s16)0x8000)
+	#define S16_MAX		((t_s16)0x7FFF)					//!< The largest representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		((t_s16)-0x7FFF)				//!< The minimum representable value for a 16-bit signed integer (-32767)
+
+	#define S32_ERROR	((t_s32)0x80000000)
+	#define S32_MAX		((t_s32)0x7FFFFFFF)				//!< The largest representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		((t_s32)-0x7FFFFFFF)			//!< The minimum representable value for a 32-bit signed integer (-2147483647)
+
+	#define S64_ERROR	((t_s64)0x8000000000000000)
+	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)		//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
+
+	#ifdef __int128
+	#define S128_ERROR	((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define S128_MAX	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#endif
+
+	#define SINT_ERROR	((t_sint)((~(t_uint)0) >> 1) + 1))
+	#define SINT_MAX	((t_sint)((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
+	#define SINT_MIN	((t_sint)-((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
+
+#endif
+
+
+
+#endif
+#ifndef __LIBCCC_INT_F
+#define __LIBCCC_INT_F
+
+/*
+** ************************************************************************** *|
+**                           Integer number functions                         *|
+** ************************************************************************** *|
+*/
+
+//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//!@{
+#define DEFINEFUNC_Int(X, FUNCTYPE) \
+	_Generic((X),	\
+		t_s16:	 FUNCTYPE##_FromInt,	\
+		t_s32:	 FUNCTYPE##_FromInt,	\
+		t_s64:	 FUNCTYPE##_FromInt,	\
+		t_s128:	 FUNCTYPE##_FromInt,	\
+		t_sint:  FUNCTYPE##_FromInt,	\
+		t_q16:	 FUNCTYPE##_FromFixed,	\
+		t_q32:	 FUNCTYPE##_FromFixed,	\
+		t_q64:	 FUNCTYPE##_FromFixed,	\
+		t_q128:	 FUNCTYPE##_FromFixed,	\
+		t_fixed: FUNCTYPE##_FromFixed,	\
+		t_f32:	 FUNCTYPE##_FromFloat,	\
+		t_f64:	 FUNCTYPE##_FromFloat,	\
+		t_f80:	 FUNCTYPE##_FromFloat,	\
+		t_f128:	 FUNCTYPE##_FromFloat,	\
+		t_float: FUNCTYPE##_FromFloat,	\
+	)(X)
+
+#define Int(X)		DEFINEFUNC_Int(X, Int)
+#define S16(X)		DEFINEFUNC_Int(X, S16)
+#define S32(X)		DEFINEFUNC_Int(X, S32)
+#define S64(X)		DEFINEFUNC_Int(X, S64)
+#define S128(X)		DEFINEFUNC_Int(X, S128)
+
+#define c_int(X)	Int(X)
+#define c_s16(X)	S16(X)
+#define c_s32(X)	S32(X)
+#define c_s64(X)	S64(X)
+#define c_s128(X)	S128(X)
+//!@}
+
+
+
+// TODO Int_FromInt()
+// TODO Int_FromFixed()
+// TODO Int_FromFloat()
 
 
 
@@ -406,14 +550,25 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
+// TODO Int_ToString() generic function
+
+
+
+// General printer functions
+
+
+
 //! Get the string decimal (base 10) representation of an unsigned integer
 /*!
+**	@nonstd, `utoa()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString	CONCAT(UINT_TYPE,_ToString)
-_MALLOC()	t_char*		U8_ToString(t_u8 number);
+_MALLOC()	t_char*		U8_ToString	(t_u8  number);
 _MALLOC()	t_char*		U16_ToString(t_u16 number);
 _MALLOC()	t_char*		U32_ToString(t_u32 number);
 _MALLOC()	t_char*		U64_ToString(t_u64 number);
@@ -430,12 +585,15 @@ _MALLOC()	t_char*		U128_ToString(t_u128 number); // TODO implement
 
 //! Get the string decimal (base 10) representation of a signed integer
 /*!
+**	@nonstd, `itoa()`
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	t_char*		S8_ToString(t_s8 number);
+_MALLOC()	t_char*		S8_ToString	(t_s8  number);
 _MALLOC()	t_char*		S16_ToString(t_s16 number);
 _MALLOC()	t_char*		S32_ToString(t_s32 number);
 _MALLOC()	t_char*		S64_ToString(t_s64 number);
@@ -452,15 +610,78 @@ _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 
 
 
+// Decimal printer functions
+
+
+
+//! Get the string decimal (base 10) representation of an unsigned integer
+/*!
+**	@nonstd, `utoa()`
+**
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					UInt_ToString_Dec	CONCAT(UINT_TYPE,_ToString_Dec)
+_MALLOC()	t_char*		U8_ToString_Dec	(t_u8  number);
+_MALLOC()	t_char*		U16_ToString_Dec(t_u16 number);
+_MALLOC()	t_char*		U32_ToString_Dec(t_u32 number);
+_MALLOC()	t_char*		U64_ToString_Dec(t_u64 number);
+#ifdef __int128
+_MALLOC()	t_char*		U128_ToString_Dec(t_u128 number);
+#endif
+#define c_utostrdec		UInt_ToString_Dec	//!< @alias{UInt_ToString_Dec}
+#define c_u8tostrdec	U8_ToString_Dec 	//!< @alias{U8_ToString_Dec}
+#define c_u16tostrdec	U16_ToString_Dec 	//!< @alias{U16_ToString_Dec}
+#define c_u32tostrdec	U32_ToString_Dec 	//!< @alias{U32_ToString_Dec}
+#define c_u64tostrdec	U64_ToString_Dec 	//!< @alias{U64_ToString_Dec}
+#define c_u128tostrdec	U128_ToString_Dec 	//!< @alias{U128_ToString_Dec}
+//!@}
+
+//! Get the string decimal (base 10) representation of a signed integer
+/*!
+**	@nonstd, `itoa()`
+**
+**	@param	number	The number to convert to string
+**	@returns
+**	A newly allocated string, converted from the given `number`
+*/
+//!@{
+#define					SInt_ToString_Dec	CONCAT(SINT_TYPE,_ToString_Dec)
+_MALLOC()	t_char*		S8_ToString_Dec	(t_s8  number);
+_MALLOC()	t_char*		S16_ToString_Dec(t_s16 number);
+_MALLOC()	t_char*		S32_ToString_Dec(t_s32 number);
+_MALLOC()	t_char*		S64_ToString_Dec(t_s64 number);
+#ifdef __int128
+_MALLOC()	t_char*		S128_ToString_Dec(t_s128 number);
+#endif
+#define c_stostrdec		SInt_ToString_Dec	//!< @alias{SInt_ToString_Dec}
+#define c_s8tostrdec	S8_ToString_Dec 	//!< @alias{S8_ToString_Dec}
+#define c_s16tostrdec	S16_ToString_Dec 	//!< @alias{S16_ToString_Dec}
+#define c_s32tostrdec	S32_ToString_Dec 	//!< @alias{S32_ToString_Dec}
+#define c_s64tostrdec	S64_ToString_Dec 	//!< @alias{S64_ToString_Dec}
+#define c_s128tostrdec	S128_ToString_Dec 	//!< @alias{S128_ToString_Dec}
+//!@}
+
+
+
+// Hexadecimal printer functions
+
+
+
 //! Get the string hexadecimal (base 16) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0x` hexadecimal number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Hex	CONCAT(UINT_TYPE,_ToString_Hex)
-_MALLOC()	t_char*		U8_ToString_Hex(t_u8 number, t_bool prefix);
+_MALLOC()	t_char*		U8_ToString_Hex	(t_u8  number, t_bool prefix);
 _MALLOC()	t_char*		U16_ToString_Hex(t_u16 number, t_bool prefix);
 _MALLOC()	t_char*		U32_ToString_Hex(t_u32 number, t_bool prefix);
 _MALLOC()	t_char*		U64_ToString_Hex(t_u64 number, t_bool prefix);
@@ -477,13 +698,16 @@ _MALLOC()	t_char*		U128_ToString_Hex(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string hexadecimal (base 16) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0x` hexadecimal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0x` hexadecimal number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Hex	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	t_char*		S8_ToString_Hex(t_s8 number, t_bool prefix);
+_MALLOC()	t_char*		S8_ToString_Hex	(t_s8  number, t_bool prefix);
 _MALLOC()	t_char*		S16_ToString_Hex(t_s16 number, t_bool prefix);
 _MALLOC()	t_char*		S32_ToString_Hex(t_s32 number, t_bool prefix);
 _MALLOC()	t_char*		S64_ToString_Hex(t_s64 number, t_bool prefix);
@@ -500,15 +724,22 @@ _MALLOC()	t_char*		S128_ToString_Hex(t_s128 number, t_bool prefix); // TODO impl
 
 
 
+// Octal printer functions
+
+
+
 //! Get the string octal (base 8) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0o` octal number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Oct	CONCAT(UINT_TYPE,_ToString_Oct)
-_MALLOC()	t_char*		U8_ToString_Oct(t_u8 number, t_bool prefix);
+_MALLOC()	t_char*		U8_ToString_Oct	(t_u8  number, t_bool prefix);
 _MALLOC()	t_char*		U16_ToString_Oct(t_u16 number, t_bool prefix);
 _MALLOC()	t_char*		U32_ToString_Oct(t_u32 number, t_bool prefix);
 _MALLOC()	t_char*		U64_ToString_Oct(t_u64 number, t_bool prefix);
@@ -525,13 +756,16 @@ _MALLOC()	t_char*		U128_ToString_Oct(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string octal (base 8) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0o` octal number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0o` octal number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Oct	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	t_char*		S8_ToString_Oct(t_s8 number, t_bool prefix);
+_MALLOC()	t_char*		S8_ToString_Oct	(t_s8  number, t_bool prefix);
 _MALLOC()	t_char*		S16_ToString_Oct(t_s16 number, t_bool prefix);
 _MALLOC()	t_char*		S32_ToString_Oct(t_s32 number, t_bool prefix);
 _MALLOC()	t_char*		S64_ToString_Oct(t_s64 number, t_bool prefix);
@@ -548,15 +782,22 @@ _MALLOC()	t_char*		S128_ToString_Oct(t_s128 number, t_bool prefix); // TODO impl
 
 
 
+// Binary printer functions
+
+
+
 //! Get the string binary (base 2) representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0b` binary number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Bin	CONCAT(UINT_TYPE,_ToString_Hex)
-_MALLOC()	t_char*		U8_ToString_Bin(t_u8 number, t_bool prefix);
+_MALLOC()	t_char*		U8_ToString_Bin	(t_u8  number, t_bool prefix);
 _MALLOC()	t_char*		U16_ToString_Bin(t_u16 number, t_bool prefix);
 _MALLOC()	t_char*		U32_ToString_Bin(t_u32 number, t_bool prefix);
 _MALLOC()	t_char*		U64_ToString_Bin(t_u64 number, t_bool prefix);
@@ -573,13 +814,16 @@ _MALLOC()	t_char*		U128_ToString_Bin(t_u128 number, t_bool prefix); // TODO impl
 
 //! Get the string binary (base 2) representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@param	prefix	If #TRUE, the output string will have a `0b` binary number literal prefix
-**	@returns A newly allocated string, converted from the given `number`
+**	@param	prefix	If `TRUE`, the output string will have a `0b` binary number literal prefix
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Bin	CONCAT(SINT_TYPE,_ToString)
-_MALLOC()	t_char*		S8_ToString_Bin(t_s8 number, t_bool prefix);
+_MALLOC()	t_char*		S8_ToString_Bin	(t_s8  number, t_bool prefix);
 _MALLOC()	t_char*		S16_ToString_Bin(t_s16 number, t_bool prefix);
 _MALLOC()	t_char*		S32_ToString_Bin(t_s32 number, t_bool prefix);
 _MALLOC()	t_char*		S64_ToString_Bin(t_s64 number, t_bool prefix);
@@ -596,19 +840,26 @@ _MALLOC()	t_char*		S128_ToString_Bin(t_s128 number, t_bool prefix); // TODO impl
 
 
 
-//! Returns newly allocated string custom-base representation of an 8-bit unsigned integer
+// Custom-base printer functions
+
+
+
+//! Get the string custom-base representation of an unsigned integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					UInt_ToString_Base	CONCAT(UINT_TYPE,_ToString_Base)
-_MALLOC()	t_char*		U8_ToString_Base(t_u8 number, t_char const* base);
-_MALLOC()	t_char*		U16_ToString_Base(t_u16 number, t_char const* base);
-_MALLOC()	t_char*		U32_ToString_Base(t_u32 number, t_char const* base);
-_MALLOC()	t_char*		U64_ToString_Base(t_u64 number, t_char const* base);
+_MALLOC()	t_char*		U8_ToString_Base	(t_u8  number, t_char const* base);
+_MALLOC()	t_char*		U16_ToString_Base	(t_u16 number, t_char const* base);
+_MALLOC()	t_char*		U32_ToString_Base	(t_u32 number, t_char const* base);
+_MALLOC()	t_char*		U64_ToString_Base	(t_u64 number, t_char const* base);
 #ifdef __int128
-_MALLOC()	t_char*		U128_ToString_Base(t_u128 number, t_char const* base); // TODO implement
+_MALLOC()	t_char*		U128_ToString_Base	(t_u128 number, t_char const* base); // TODO implement
 #endif
 #define c_utostrbase	UInt_ToString_Base	//!< @alias{UInt_ToString_Base}
 #define c_u8tostrbase	U8_ToString_Base 	//!< @alias{U8_ToString_Base}
@@ -618,19 +869,22 @@ _MALLOC()	t_char*		U128_ToString_Base(t_u128 number, t_char const* base); // TOD
 #define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 //!@}
 
-//! Returns newly allocated string custom-base representation of an 8-bit signed integer
+//! Get the string custom-base representation of a signed integer
 /*!
+**	@nonstd
+**
 **	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@returns
+**	A newly allocated string, converted from the given `number`
 */
 //!@{
 #define					SInt_ToString_Base	CONCAT(SINT_TYPE,_ToString_Base)
-_MALLOC()	t_char*		S8_ToString_Base(t_s8 number, t_char const* base);
-_MALLOC()	t_char*		S16_ToString_Base(t_s16 number, t_char const* base);
-_MALLOC()	t_char*		S32_ToString_Base(t_s32 number, t_char const* base);
-_MALLOC()	t_char*		S64_ToString_Base(t_s64 number, t_char const* base);
+_MALLOC()	t_char*		S8_ToString_Base	(t_s8  number, t_char const* base);
+_MALLOC()	t_char*		S16_ToString_Base	(t_s16 number, t_char const* base);
+_MALLOC()	t_char*		S32_ToString_Base	(t_s32 number, t_char const* base);
+_MALLOC()	t_char*		S64_ToString_Base	(t_s64 number, t_char const* base);
 #ifdef __int128
-_MALLOC()	t_char*		S128_ToString_Base(t_s128 number, t_char const* base); // TODO implement
+_MALLOC()	t_char*		S128_ToString_Base	(t_s128 number, t_char const* base); // TODO implement
 #endif
 #define c_stostrbase	SInt_ToString_Base	//!< @alias{SInt_ToString_Base}
 #define c_s8tostrbase	S8_ToString_Base	//!< @alias{S8_ToString_Base}
@@ -648,10 +902,46 @@ _MALLOC()	t_char*		S128_ToString_Base(t_s128 number, t_char const* base); // TOD
 ** ************************************************************************** *|
 */
 
-//! Parse an 8-bit unsigned integer from the given decimal number string
+
+
+// General parser functions
+
+
+
+//! Parse an unsigned integer from the given number string `str`
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse	CONCAT(UINT_TYPE,_Parse)
+t_size					U8_Parse	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse	(t_u64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					U128_Parse	(t_u128	*dest, t_char const* str, t_size n);
+#endif
+#define c_uparse		UInt_Parse	//!< @alias{UInt_Parse}
+#define c_u8parse		U8_Parse	//!< @alias{U8_Parse}
+#define c_u16parse		U16_Parse	//!< @alias{U16_Parse}
+#define c_u32parse		U32_Parse	//!< @alias{U32_Parse}
+#define c_u64parse		U64_Parse	//!< @alias{U64_Parse}
+#define c_u128parse		U128_Parse	//!< @alias{U128_Parse}
+//!@}
+
+//! Parse an unsigned integer from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					UInt_FromString	CONCAT(UINT_TYPE,_FromString)
@@ -670,10 +960,40 @@ t_u128					U128_FromString(t_char const* str);
 #define c_strtou128		U128_FromString	//!< @alias{U128_FromString}
 //!@}
 
-//! Parse an 8-bit signed integer from the given decimal number string
+//! Parse a signed integer from the given number string `str`
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse	CONCAT(SINT_TYPE,_Parse)
+t_size					S8_Parse	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse	(t_s64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					S128_Parse	(t_s128	*dest, t_char const* str, t_size n);
+#endif
+#define c_sparse		SInt_Parse	//!< @alias{SInt_Parse}
+#define c_s8parse		S8_Parse	//!< @alias{S8_Parse}
+#define c_s16parse		S16_Parse	//!< @alias{S16_Parse}
+#define c_s32parse		S32_Parse	//!< @alias{S32_Parse}
+#define c_s64parse		S64_Parse	//!< @alias{S64_Parse}
+#define c_s128parse		S128_Parse	//!< @alias{S128_Parse}
+//!@}
+
+//! Parse a signed integer from the given number string `str`
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					SInt_FromString	CONCAT(SINT_TYPE,_FromString)
@@ -694,10 +1014,154 @@ t_s128					S128_FromString(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
+// Decimal parser functions
+
+
+
+//! Parse an unsigned integer from the given decimal number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse_Dec	CONCAT(UINT_TYPE,_Parse_Dec)
+t_size					U8_Parse_Dec	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Dec	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Dec	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Dec	(t_u64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					U128_Parse_Dec	(t_u128	*dest, t_char const* str, t_size n);
+#endif
+#define c_uparsedec		UInt_Parse_Dec	//!< @alias{UInt_Parse_Dec}
+#define c_u8parsedec	U8_Parse_Dec	//!< @alias{U8_Parse_Dec}
+#define c_u16parsedec	U16_Parse_Dec	//!< @alias{U16_Parse_Dec}
+#define c_u32parsedec	U32_Parse_Dec	//!< @alias{U32_Parse_Dec}
+#define c_u64parsedec	U64_Parse_Dec	//!< @alias{U64_Parse_Dec}
+#define c_u128parsedec	U128_Parse_Dec	//!< @alias{U128_Parse_Dec}
+//!@}
+
+//! Parse an unsigned integer from the given decimal number string
+/*!
+**	@nonstd, `atou()`
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
+*/
+//!@{
+#define					UInt_FromString_Dec	CONCAT(UINT_TYPE,_FromString_Dec)
+t_u8					U8_FromString_Dec(t_char const* str);
+t_u16					U16_FromString_Dec(t_char const* str);
+t_u32					U32_FromString_Dec(t_char const* str);
+t_u64					U64_FromString_Dec(t_char const* str);
+#ifdef __int128
+t_u128					U128_FromString_Dec(t_char const* str);
+#endif
+#define c_strdectou		UInt_FromString_Dec	//!< @alias{UInt_FromString_Dec}
+#define c_strdectou8	U8_FromString_Dec	//!< @alias{U8_FromString_Dec}
+#define c_strdectou16	U16_FromString_Dec	//!< @alias{U16_FromString_Dec}
+#define c_strdectou32	U32_FromString_Dec	//!< @alias{U32_FromString_Dec}
+#define c_strdectou64	U64_FromString_Dec	//!< @alias{U64_FromString_Dec}
+#define c_strdectou128	U128_FromString_Dec	//!< @alias{U128_FromString_Dec}
+//!@}
+
+//! Parse a signed integer from the given decimal number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be decimal number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse_Dec	CONCAT(SINT_TYPE,_Parse_Dec)
+t_size					S8_Parse_Dec	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Dec	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Dec	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Dec	(t_s64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					S128_Parse_Dec	(t_s128	*dest, t_char const* str, t_size n);
+#endif
+#define c_sparsedec		SInt_Parse_Dec	//!< @alias{SInt_Parse_Dec}
+#define c_s8parsedec	S8_Parse_Dec	//!< @alias{S8_Parse_Dec}
+#define c_s16parsedec	S16_Parse_Dec	//!< @alias{S16_Parse_Dec}
+#define c_s32parsedec	S32_Parse_Dec	//!< @alias{S32_Parse_Dec}
+#define c_s64parsedec	S64_Parse_Dec	//!< @alias{S64_Parse_Dec}
+#define c_s128parsedec	S128_Parse_Dec	//!< @alias{S128_Parse_Dec}
+//!@}
+
+//! Parse a signed integer from the given decimal number string
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atoi}
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
+*/
+//!@{
+#define					SInt_FromString_Dec	CONCAT(SINT_TYPE,_FromString_Dec)
+t_s8					S8_FromString_Dec(t_char const* str);
+t_s16					S16_FromString_Dec(t_char const* str);
+t_s32					S32_FromString_Dec(t_char const* str);
+t_s64					S64_FromString_Dec(t_char const* str);
+#ifdef __int128
+t_s128					S128_FromString_Dec(t_char const* str);
+#endif
+#define c_strdectos		SInt_FromString_Dec	//!< @alias{SInt_FromString_Dec}
+#define c_strdectos8	S8_FromString_Dec	//!< @alias{S8_FromString_Dec}
+#define c_strdectos16	S16_FromString_Dec	//!< @alias{S16_FromString_Dec}
+#define c_strdectos32	S32_FromString_Dec	//!< @alias{S32_FromString_Dec}
+#define c_strdectos64	S64_FromString_Dec	//!< @alias{S64_FromString_Dec}
+#define c_strdectos128	S128_FromString_Dec	//!< @alias{S128_FromString_Dec}
+//!@}
+
+
+
+// Hexadecimal parser functions
+
+
+
+//! Parse an unsigned integer from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse_Hex	CONCAT(UINT_TYPE,_Parse_Hex)
+t_size					U8_Parse_Hex	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Hex	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Hex	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Hex	(t_u64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					U128_Parse_Hex	(t_u128	*dest, t_char const* str, t_size n);
+#endif
+#define c_uparsehex		UInt_Parse_Hex	//!< @alias{UInt_Parse_Hex}
+#define c_u8parsehex	U8_Parse_Hex	//!< @alias{U8_Parse_Hex}
+#define c_u16parsehex	U16_Parse_Hex	//!< @alias{U16_Parse_Hex}
+#define c_u32parsehex	U32_Parse_Hex	//!< @alias{U32_Parse_Hex}
+#define c_u64parsehex	U64_Parse_Hex	//!< @alias{U64_Parse_Hex}
+#define c_u128parsehex	U128_Parse_Hex	//!< @alias{U128_Parse_Hex}
+//!@}
+
+//! Parse an unsigned integer from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					UInt_FromString_Hex	CONCAT(UINT_TYPE,_FromString_Hex)
@@ -716,10 +1180,40 @@ t_u128					U128_FromString_Hex(t_char const* str);
 #define c_strhextou128	U128_FromString_Hex	//!< @alias{U128_FromString_Hex}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given hexadecimal (base 16) number string
+//! Parse a signed integer from the given hexadecimal (base 16) number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 16) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse_Hex	CONCAT(SINT_TYPE,_Parse_Hex)
+t_size					S8_Parse_Hex	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Hex	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Hex	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Hex	(t_s64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					S128_Parse_Hex	(t_s128	*dest, t_char const* str, t_size n);
+#endif
+#define c_sparsehex		SInt_Parse_Hex	//!< @alias{SInt_Parse_Hex}
+#define c_s8parsehex	S8_Parse_Hex	//!< @alias{S8_Parse_Hex}
+#define c_s16parsehex	S16_Parse_Hex	//!< @alias{S16_Parse_Hex}
+#define c_s32parsehex	S32_Parse_Hex	//!< @alias{S32_Parse_Hex}
+#define c_s64parsehex	S64_Parse_Hex	//!< @alias{S64_Parse_Hex}
+#define c_s128parsehex	S128_Parse_Hex	//!< @alias{S128_Parse_Hex}
+//!@}
+
+//! Parse a signed integer from the given hexadecimal (base 16) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					SInt_FromString_Hex	CONCAT(SINT_TYPE,_FromString_Hex)
@@ -740,10 +1234,44 @@ t_s128					S128_FromString_Hex(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+// Octal parser functions
+
+
+
+//! Parse an unsigned integer from the given octal (base 8) number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse_Oct	CONCAT(UINT_TYPE,_Parse_Oct)
+t_size					U8_Parse_Oct	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Oct	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Oct	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Oct	(t_u64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					U128_Parse_Oct	(t_u128	*dest, t_char const* str, t_size n);
+#endif
+#define c_uparseoct		UInt_Parse_Oct	//!< @alias{UInt_Parse_Oct}
+#define c_u8parseoct	U8_Parse_Oct	//!< @alias{U8_Parse_Oct}
+#define c_u16parseoct	U16_Parse_Oct	//!< @alias{U16_Parse_Oct}
+#define c_u32parseoct	U32_Parse_Oct	//!< @alias{U32_Parse_Oct}
+#define c_u64parseoct	U64_Parse_Oct	//!< @alias{U64_Parse_Oct}
+#define c_u128parseoct	U128_Parse_Oct	//!< @alias{U128_Parse_Oct}
+//!@}
+
+//! Parse an unsigned integer from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					UInt_FromString_Oct	CONCAT(UINT_TYPE,_FromString_Oct)
@@ -762,10 +1290,40 @@ t_u128					U128_FromString_Oct(t_char const* str);
 #define c_strocttou128	U128_FromString_Oct	//!< @alias{U128_FromString_Oct}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given octal (base 8) number string
+//! Parse a signed integer from the given octal (base 8) number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 8) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse_Oct	CONCAT(SINT_TYPE,_Parse_Oct)
+t_size					S8_Parse_Oct	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Oct	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Oct	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Oct	(t_s64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					S128_Parse_Oct	(t_s128	*dest, t_char const* str, t_size n);
+#endif
+#define c_sparseoct		SInt_Parse_Oct	//!< @alias{SInt_Parse_Oct}
+#define c_s8parseoct	S8_Parse_Oct	//!< @alias{S8_Parse_Oct}
+#define c_s16parseoct	S16_Parse_Oct	//!< @alias{S16_Parse_Oct}
+#define c_s32parseoct	S32_Parse_Oct	//!< @alias{S32_Parse_Oct}
+#define c_s64parseoct	S64_Parse_Oct	//!< @alias{S64_Parse_Oct}
+#define c_s128parseoct	S128_Parse_Oct	//!< @alias{S128_Parse_Oct}
+//!@}
+
+//! Parse a signed integer from the given octal (base 8) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					SInt_FromString_Oct	CONCAT(SINT_TYPE,_FromString_Oct)
@@ -786,10 +1344,44 @@ t_s128					S128_FromString_Oct(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+// Binary parser functions
+
+
+
+//! Parse an unsigned integer from the given binary (base 2) number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse_Bin	CONCAT(UINT_TYPE,_Parse_Bin)
+t_size					U8_Parse_Bin	(t_u8	*dest, t_char const* str, t_size n);
+t_size					U16_Parse_Bin	(t_u16	*dest, t_char const* str, t_size n);
+t_size					U32_Parse_Bin	(t_u32	*dest, t_char const* str, t_size n);
+t_size					U64_Parse_Bin	(t_u64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					U128_Parse_Bin	(t_u128	*dest, t_char const* str, t_size n);
+#endif
+#define c_uparsebin		UInt_Parse_Bin	//!< @alias{UInt_Parse_Bin}
+#define c_u8parsebin	U8_Parse_Bin	//!< @alias{U8_Parse_Bin}
+#define c_u16parsebin	U16_Parse_Bin	//!< @alias{U16_Parse_Bin}
+#define c_u32parsebin	U32_Parse_Bin	//!< @alias{U32_Parse_Bin}
+#define c_u64parsebin	U64_Parse_Bin	//!< @alias{U64_Parse_Bin}
+#define c_u128parsebin	U128_Parse_Bin	//!< @alias{U128_Parse_Bin}
+//!@}
+
+//! Parse an unsigned integer from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					UInt_FromString_Bin	CONCAT(UINT_TYPE,_FromString_Bin)
@@ -808,10 +1400,40 @@ t_u128					U128_FromString_Bin(t_char const* str);
 #define c_strbintou128	U128_FromString_Bin	//!< @alias{U128_FromString_Bin}
 //!@}
 
-//! Parse an 8-bit unsigned integer from the given binary (base 2) number string
+//! Parse a signed integer from the given binary (base 2) number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be base 2) number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse_Bin	CONCAT(SINT_TYPE,_Parse_Bin)
+t_size					S8_Parse_Bin	(t_s8	*dest, t_char const* str, t_size n);
+t_size					S16_Parse_Bin	(t_s16	*dest, t_char const* str, t_size n);
+t_size					S32_Parse_Bin	(t_s32	*dest, t_char const* str, t_size n);
+t_size					S64_Parse_Bin	(t_s64	*dest, t_char const* str, t_size n);
+#ifdef __int128
+t_size					S128_Parse_Bin	(t_s128	*dest, t_char const* str, t_size n);
+#endif
+#define c_sparsebin		SInt_Parse_Bin	//!< @alias{SInt_Parse_Bin}
+#define c_s8parsebin	S8_Parse_Bin	//!< @alias{S8_Parse_Bin}
+#define c_s16parsebin	S16_Parse_Bin	//!< @alias{S16_Parse_Bin}
+#define c_s32parsebin	S32_Parse_Bin	//!< @alias{S32_Parse_Bin}
+#define c_s64parsebin	S64_Parse_Bin	//!< @alias{S64_Parse_Bin}
+#define c_s128parsebin	S128_Parse_Bin	//!< @alias{S128_Parse_Bin}
+//!@}
+
+//! Parse a signed integer from the given binary (base 2) number string
+/*!
+**	@nonstd
+**
+**	@param	str		The numeric string to parse
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					SInt_FromString_Bin	CONCAT(SINT_TYPE,_FromString_Bin)
@@ -832,77 +1454,125 @@ t_s128					S128_FromString_Bin(t_char const* str);
 
 
 
-//! Parse an 8-bit unsigned integer from a custom-base number string
+// Custom-base parser functions
+
+
+
+//! Parse an unsigned integer from a custom-base number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					UInt_Parse_Base	CONCAT(UINT_TYPE,_Parse_Base)
+t_size					U8_Parse_Base	(t_u8	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U16_Parse_Base	(t_u16	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U32_Parse_Base	(t_u32	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					U64_Parse_Base	(t_u64	*dest, t_char const* str, t_char const* base, t_size n);
+#ifdef __int128
+t_size					U128_Parse_Base	(t_u128	*dest, t_char const* str, t_char const* base, t_size n);
+#endif
+#define c_uparsebase	UInt_Parse_Base	//!< @alias{UInt_Parse_Base}
+#define c_u8parsebase	U8_Parse_Base	//!< @alias{U8_Parse_Base}
+#define c_u16parsebase	U16_Parse_Base	//!< @alias{U16_Parse_Base}
+#define c_u32parsebase	U32_Parse_Base	//!< @alias{U32_Parse_Base}
+#define c_u64parsebase	U64_Parse_Base	//!< @alias{U64_Parse_Base}
+#define c_u128parsebase	U128_Parse_Base	//!< @alias{U128_Parse_Base}
+//!@}
+
+//! Parse an unsigned integer from a custom-base number string
+/*!
+**	@nonstd, `strtoul()`
+**
+**	@param	str		The numeric string to parse
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					UInt_FromString_Base	CONCAT(UINT_TYPE,_FromString_Base)
-t_u8					U8_FromString_Base(t_char const* str, t_char const* base);
-t_u16					U16_FromString_Base(t_char const* str, t_char const* base);
-t_u32					U32_FromString_Base(t_char const* str, t_char const* base);
-t_u64					U64_FromString_Base(t_char const* str, t_char const* base);
+t_u8					U8_FromString_Base	(t_char const* str, t_char const* base);
+t_u16					U16_FromString_Base	(t_char const* str, t_char const* base);
+t_u32					U32_FromString_Base	(t_char const* str, t_char const* base);
+t_u64					U64_FromString_Base	(t_char const* str, t_char const* base);
 #ifdef __int128
 t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 #endif
-#define c_strbasetou	UInt_FromString_Base//!< @alias{UInt_FromString_Base}
-#define c_strbasetou8	U8_FromString_Base	//!< @alias{U8_FromString_Base}
-#define c_strbasetou16	U16_FromString_Base	//!< @alias{U16_FromString_Base}
-#define c_strbasetou32	U32_FromString_Base	//!< @alias{U32_FromString_Base}
-#define c_strbasetou64	U64_FromString_Base	//!< @alias{U64_FromString_Base}
-#define c_strbasetou128	U128_FromString_Base//!< @alias{U128_FromString_Base}
+#define c_strbasetou	UInt_FromString_Base	//!< @alias{UInt_FromString_Base}
+#define c_strbasetou8	U8_FromString_Base		//!< @alias{U8_FromString_Base}
+#define c_strbasetou16	U16_FromString_Base		//!< @alias{U16_FromString_Base}
+#define c_strbasetou32	U32_FromString_Base		//!< @alias{U32_FromString_Base}
+#define c_strbasetou64	U64_FromString_Base		//!< @alias{U64_FromString_Base}
+#define c_strbasetou128	U128_FromString_Base	//!< @alias{U128_FromString_Base}
 //!@}
 
-//! Parse an 8-bit signed integer from a custom-base number string
+//! Parse a signed integer from a custom-base number string
 /*!
-**	@param	number	The number to convert to string
-**	@returns A newly allocated string, converted from the given `number`
+**	@nonstd
+**
+**	@param	dest	The resulting number, parse from the given `str`
+**	@param	str		The numeric string to parse (must be custom-base number string)
+**	@param	n		The maximum amount of character to parse (infinite if `0` is given)
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The amount of characters parsed from the given `str`
+*/
+//!@{
+#define					SInt_Parse_Base	CONCAT(SINT_TYPE,_Parse_Base)
+t_size					S8_Parse_Base	(t_s8	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S16_Parse_Base	(t_s16	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S32_Parse_Base	(t_s32	*dest, t_char const* str, t_char const* base, t_size n);
+t_size					S64_Parse_Base	(t_s64	*dest, t_char const* str, t_char const* base, t_size n);
+#ifdef __int128
+t_size					S128_Parse_Base	(t_s128	*dest, t_char const* str, t_char const* base, t_size n);
+#endif
+#define c_sparsebase	SInt_Parse_Base	//!< @alias{SInt_Parse_Base}
+#define c_s8parsebase	S8_Parse_Base	//!< @alias{S8_Parse_Base}
+#define c_s16parsebase	S16_Parse_Base	//!< @alias{S16_Parse_Base}
+#define c_s32parsebase	S32_Parse_Base	//!< @alias{S32_Parse_Base}
+#define c_s64parsebase	S64_Parse_Base	//!< @alias{S64_Parse_Base}
+#define c_s128parsebase	S128_Parse_Base	//!< @alias{S128_Parse_Base}
+//!@}
+
+//! Parse a signed integer from a custom-base number string
+/*!
+**	@nonstd, `strtol()`
+**
+**	@param	str		The numeric string to parse
+**	@param	base	The custom numeric base to interpret, the char index being the digit.
+**					The base string must have at least 2 chars, no sign chars, no duplicate chars.
+**	@returns
+**	The resulting number, parse from the given `str`
 */
 //!@{
 #define					SInt_FromString_Base	CONCAT(SINT_TYPE,_FromString_Base)
-t_s8					S8_FromString_Base(t_char const* str, t_char const* base);
-t_s16					S16_FromString_Base(t_char const* str, t_char const* base);
-t_s32					S32_FromString_Base(t_char const* str, t_char const* base);
-t_s64					S64_FromString_Base(t_char const* str, t_char const* base);
+t_s8					S8_FromString_Base	(t_char const* str, t_char const* base);
+t_s16					S16_FromString_Base	(t_char const* str, t_char const* base);
+t_s32					S32_FromString_Base	(t_char const* str, t_char const* base);
+t_s64					S64_FromString_Base	(t_char const* str, t_char const* base);
 #ifdef __int128
 t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 #endif
-#define c_strbasetos	SInt_FromString_Base//!< @alias{SInt_FromString_Base}
-#define c_strbasetos8	S8_FromString_Base	//!< @alias{S8_FromString_Base}
-#define c_strbasetos16	S16_FromString_Base	//!< @alias{S16_FromString_Base}
-#define c_strbasetos32	S32_FromString_Base	//!< @alias{S32_FromString_Base}
-#define c_strbasetos64	S64_FromString_Base	//!< @alias{S64_FromString_Base}
-#define c_strbasetos128	S128_FromString_Base//!< @alias{S128_FromString_Base}
+#define c_strbasetos	SInt_FromString_Base	//!< @alias{SInt_FromString_Base}
+#define c_strbasetos8	S8_FromString_Base		//!< @alias{S8_FromString_Base}
+#define c_strbasetos16	S16_FromString_Base		//!< @alias{S16_FromString_Base}
+#define c_strbasetos32	S32_FromString_Base		//!< @alias{S32_FromString_Base}
+#define c_strbasetos64	S64_FromString_Base		//!< @alias{S64_FromString_Base}
+#define c_strbasetos128	S128_FromString_Base	//!< @alias{S128_FromString_Base}
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                       Variable-size primitive types                        *|
-** ************************************************************************** *|
-*/
-
-//! A union storing an integer (signed or unsigned) of any common storage size
-/*!
-** These unions are used for certain difficult casting conditions.
-** They are used in particular when casting an <stdarg.h> var_arg to the
-** appropriate type in c_printf.
-*/
-typedef union varint
-{
-	t_s8			sc;
-	t_s16			ss;
-	t_s32			si;
-	t_s64			sl;
-	t_u8			uc;
-	t_u16			us;
-	t_u32			ui;
-	t_u64			ul;
-}					u_varint;
-
-
+#endif
 
 /*! @} */
 HEADER_END

@@ -4,7 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/encode/common.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -46,7 +46,7 @@ e_cccerror	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacemen
 	return (TRUE);
 }
 
-e_cccerror	KVT_Replace_InArray(s_kvt* array, t_uint index, s_kvt* newitem)
+e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt*	item;
 

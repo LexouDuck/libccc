@@ -3,7 +3,7 @@
 #include "libccc/string.h"
 #include "libccc/memory.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
@@ -25,10 +25,11 @@ t_size	String_Print_GetLength(t_char const* str, t_char const* charset_extra)
 			case '\x0C': length += 2; break; // Formfeed
 			case '\x0D': length += 2; break; // Carriage Return
 			case '\x1B': length += 2; break; // Escape
-			case '\x27': length += 2; break; // Single quotation mark
-			case '\x22': length += 2; break; // Double quotation mark
-			case '\x3F': length += 2; break; // Question mark (used to avoid trigraphs)
-			case '\x5C': length += 2; break; // Backslash
+			case '\'':	 length += 2; break; // Single quotation mark
+			case '\"':	 length += 2; break; // Double quotation mark
+			case '?':	 length += 2; break; // Question mark (used to avoid trigraphs)
+			case '/':	 length += 2; break; // Forward Slash
+			case '\\':	 length += 2; break; // Backslash
 			default:
 				if (!Char_IsPrintable(str[i]) ||
 					(String_IndexOf_Char(charset_extra, str[i]) >= 0))
@@ -45,7 +46,7 @@ t_size	String_Print_GetLength(t_char const* str, t_char const* charset_extra)
 
 
 
-t_char*	String_Print(t_char const* str, t_char const* charset_extra)
+t_size	String_Print(t_char* *dest, t_char const* str, t_size n, t_char const* charset_extra)
 {
 	t_u8	HI_nibble;
 	t_u8	LO_nibble;
@@ -53,10 +54,12 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), PRINT_RETURN(NULL))
+	if (n == 0)
+		n = SIZE_MAX;
 	result = (t_char*)Memory_Allocate(String_Print_GetLength(str, charset_extra) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	while (str[index])
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PRINT_RETURN(NULL))
+	while (index < n && str[index])
 	{
 		switch (str[index])
 		{
@@ -68,10 +71,11 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 			case '\x0C': result[i++] = '\\';	result[i++] =  'f'; break; // Formfeed
 			case '\x0D': result[i++] = '\\';	result[i++] =  'r'; break; // Carriage Return
 			case '\x1B': result[i++] = '\\';	result[i++] =  'e'; break; // Escape
-			case '\x27': result[i++] = '\\';	result[i++] = '\''; break; // Single quotation mark
-			case '\x22': result[i++] = '\\';	result[i++] = '\"'; break; // Double quotation mark
-			case '\x3F': result[i++] = '\\';	result[i++] =  '?'; break; // Question mark (used to avoid trigraphs)
-			case '\x5C': result[i++] = '\\';	result[i++] = '\\'; break; // Backslash
+			case '\'':	 result[i++] = '\\';	result[i++] = '\''; break; // Single quotation mark
+			case '\"':	 result[i++] = '\\';	result[i++] = '\"'; break; // Double quotation mark
+			case '?':	 result[i++] = '\\';	result[i++] =  '?'; break; // Question mark (used to avoid trigraphs)
+			case '/':	 result[i++] = '\\';	result[i++] =  '/'; break; // Forward Slash
+			case '\\':	 result[i++] = '\\';	result[i++] = '\\'; break; // Backslash
 			default:
 				if (!Char_IsPrintable(str[index]) ||
 					(String_IndexOf_Char(charset_extra, str[index]) >= 0))
@@ -89,5 +93,16 @@ t_char*	String_Print(t_char const* str, t_char const* charset_extra)
 		++index;
 	}
 	result[i] = '\0';
+	if (dest)	*dest = result;
+	return (index);
+}
+
+
+
+inline
+t_char*	String_ToEscape(t_char const* str, t_char const* charset_extra)
+{
+	t_char*	result = NULL;
+	String_Print(&result, str, 0, charset_extra);
 	return (result);
 }

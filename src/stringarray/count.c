@@ -2,14 +2,14 @@
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
 
-#include LIBCONFIG_HANDLE_INCLUDE
+#include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_u32		StringArray_Count_Char(t_char const** strarr, t_char const c)
+t_uint		StringArray_Count_Char(t_char const** strarr, t_char const c)
 {
-	t_u32		i;
-	t_u32		count;
+	t_uint		i;
+	t_uint		count;
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
 	count = 0;
@@ -24,10 +24,10 @@ t_u32		StringArray_Count_Char(t_char const** strarr, t_char const c)
 
 
 
-t_u32		StringArray_Count_Charset(t_char const** strarr, t_char const* charset)
+t_uint		StringArray_Count_Charset(t_char const** strarr, t_char const* charset)
 {
-	t_u32		i;
-	t_u32		count;
+	t_uint		i;
+	t_uint		count;
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
 	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (0);)
@@ -43,10 +43,10 @@ t_u32		StringArray_Count_Charset(t_char const** strarr, t_char const* charset)
 
 
 
-t_u32		StringArray_Count_String(t_char const** strarr, t_char const* query)
+t_uint		StringArray_Count_String(t_char const** strarr, t_char const* query)
 {
-	t_u32		i;
-	t_u32		count;
+	t_uint		i;
+	t_uint		count;
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
 	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (0);)
