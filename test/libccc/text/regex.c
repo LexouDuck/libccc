@@ -33,7 +33,7 @@ void	test_regex_(void)
 ** ************************************************************************** *|
 */
 
-int		testsuite_sys_regex(void)
+int		testsuite_text_regex(void)
 {
 	print_suite_title("libccc/text/regex");
 
