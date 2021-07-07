@@ -389,6 +389,7 @@ SRCS = error.c \
 	encode/kvt/delete.c		\
 	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
+	encode/kvt/merge.c		\
 	encode/kvt/print.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\

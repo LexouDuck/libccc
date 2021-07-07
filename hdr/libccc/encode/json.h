@@ -403,6 +403,10 @@ void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), an
 
 
 
+#define TOML_Merge	KVT_Merge	//!< @alias{KVT_Merge}
+
+
+
 /*! @} */
 HEADER_END
 #endif

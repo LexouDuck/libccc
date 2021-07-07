@@ -556,8 +556,22 @@ s_kvt*				KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2);
 
 
 
-// TODO
-//s_kvt*			KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2);
+//! Creates a new object by syncing the fields of both given objects `kvt1` and `kvt2`
+/*!
+**	Creates a new KVT object by combining the fields of `kvt1` and `kvt2`
+**	This function only works if both `kvt1` and `kvt2` have `.type` set to #DYNAMICTYPE_OBJECT
+**	This is similar to how you would use spread syntax in JavaScript, ie: `{ ...kvt1, ...kvt2 }`
+**	The second argument `kvt2` has higher priority than `kvt1`: this means that
+**	if both objects have a field with the same name, then the value from `kvt2` will be kept.
+**	
+**	@param	kvt1	The first object to merge
+**	@param	kvt2	The second object to merge (has greater priorit then `kvt1`)
+**	@param	recurse	If `TRUE`, recursively merges any sub-objects or sub-arrays
+**	@returns
+**	A newly created KVT object, created by duplicating `kvt1` and subsequently
+**	adding/applying any fields from `kvt2`.
+*/
+s_kvt*				KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse);
 #define c_kvtmerge	KVT_Merge
 
 
