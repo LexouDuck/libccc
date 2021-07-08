@@ -184,29 +184,25 @@ failure:
 
 t_bool	KVT_GetValue_Boolean(s_kvt const* item) 
 {
-	if (!KVT_IsBoolean(item)) 
-		return ((t_bool)FALSE);
-	return (item->value.number);
+	HANDLE_ERROR(WRONGTYPE, (!KVT_IsBoolean(item)), return ((t_bool)FALSE);)
+	return (item->value.boolean);
 }
 
 t_s64	KVT_GetValue_Integer(s_kvt const* item) 
 {
-	if (!KVT_IsInteger(item)) 
-		return ((t_s64)0);
-	return (item->value.number);
+	HANDLE_ERROR(WRONGTYPE, (!KVT_IsInteger(item)), return ((t_s64)0);)
+	return (item->value.integer);
 }
 
 t_f64	KVT_GetValue_Float(s_kvt const* item) 
 {
-	if (!KVT_IsFloat(item)) 
-		return ((t_f64)NAN);
+	HANDLE_ERROR(WRONGTYPE, (!KVT_IsFloat(item)), return ((t_f64)NAN);)
 	return (item->value.number);
 }
 
 t_char*	KVT_GetValue_String(s_kvt const* item) 
 {
-	if (!KVT_IsString(item)) 
-		return (NULL);
+	HANDLE_ERROR(WRONGTYPE, (!KVT_IsString(item)), return (NULL);)
 	return (item->value.string);
 }
 
