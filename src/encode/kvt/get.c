@@ -11,6 +11,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/encode/common.h"
@@ -182,27 +183,53 @@ failure:
 
 
 
+static
+t_char const*	KVT_GetTypeName(t_dynamic type)
+{
+	type &= DYNAMICTYPE_MASK;
+	if (Memory_CountBits(type) != 1)
+		return ("INVALID");
+	else if (type & DYNAMICTYPE_BOOLEAN)	return ("BOOLEAN");
+	else if (type & DYNAMICTYPE_INTEGER)	return ("INTEGER");
+	else if (type & DYNAMICTYPE_FLOAT)		return ("FLOAT");
+	else if (type & DYNAMICTYPE_STRING)		return ("STRING");
+	else if (type & DYNAMICTYPE_ARRAY)		return ("ARRAY");
+	else if (type & DYNAMICTYPE_OBJECT)		return ("OBJECT");
+	else if (type & DYNAMICTYPE_RAW)		return ("RAW");
+	else return ("INVALID");
+}
+
+
+
 t_bool	KVT_GetValue_Boolean(s_kvt const* item) 
 {
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsBoolean(item)), return ((t_bool)FALSE);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_bool)FALSE);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsBoolean(item)),	return ((t_bool)FALSE);,
+		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.boolean);
 }
 
 t_s64	KVT_GetValue_Integer(s_kvt const* item) 
 {
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsInteger(item)), return ((t_s64)0);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_s64)0);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsInteger(item)),	return ((t_s64)0);,
+		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.integer);
 }
 
 t_f64	KVT_GetValue_Float(s_kvt const* item) 
 {
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsFloat(item)), return ((t_f64)NAN);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_f64)NAN);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsFloat(item)),	return ((t_f64)NAN);,
+		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.number);
 }
 
 t_char*	KVT_GetValue_String(s_kvt const* item) 
 {
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsString(item)), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return (NULL);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsString(item)),	return (NULL);,
+		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.string);
 }
 
@@ -214,7 +241,8 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 	t_sint i;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(array) && !KVT_IsObject(array)), return (NULL);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(array) && !KVT_IsObject(array)), return (NULL);,
+		", for key \"%s\", type is %s", array->key, KVT_GetTypeName(array->type))
 	item = array->value.child;
 	HANDLE_ERROR_SF(NOTFOUND, (item == NULL),
 		return (NULL);,
@@ -253,7 +281,8 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 
 	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (key == NULL), return (NULL);)
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(object) && !KVT_IsObject(object)), return (NULL);)
+	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(object) && !KVT_IsObject(object)), return (NULL);,
+		", for key \"%s\", type is %s", object->key, KVT_GetTypeName(object->type))
 	item = object->value.child;
 	HANDLE_ERROR_SF(KEYNOTFOUND, (item == NULL),
 		return (NULL);,
