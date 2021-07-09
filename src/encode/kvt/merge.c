@@ -22,31 +22,30 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 	result = KVT_Duplicate(kvt1, recurse);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	append = NULL;
-	item = result->value.child;
-	while (item)
+	other = kvt2->value.child;
+	while (other)
 	{
-		other = kvt2->value.child;
-		while (other)
+		item = result->value.child;
+		while (item)
 		{
-			if (other->key && String_Equals(item->key, other->key))
+			if (item->key && String_Equals(item->key, other->key))
 				break;
-			other = other->next;
+			item = item->next;
 		}
-		if (other) // matching keys, merge values
+		if (item) // matching keys, merge values
 		{
 			if (recurse && KVT_IsObject(other))
 			{
 				if (KVT_IsObject(item))
 					new = KVT_Merge(item, other, recurse);
-				else new = KVT_Duplicate(other, recurse);
-				item->type = DYNAMICTYPE_OBJECT;
-				item->value.child = new;
+				else
+					new = KVT_Duplicate(other, recurse);
+				KVT_Replace(result, item, new);
 			}
 			else if (recurse && KVT_IsArray(other))
 			{
 				new = KVT_Duplicate(other, recurse);
-				item->type = DYNAMICTYPE_OBJECT;
-				item->value.child = new;
+				KVT_Replace(result, item, new);
 			}
 			else
 			{
@@ -68,9 +67,8 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 				new->prev = current;
 				current = new;
 			}
-			other = other->next;
 		}
-		item = item->next;
+		other = other->next;
 	}
 	KVT_AddToArray_Item(result, append);
 	return (result);
