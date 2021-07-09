@@ -70,6 +70,10 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 		}
 		other = other->next;
 	}
-	KVT_AddToArray_Item(result, append);
+	if (append)
+		append->prev = current;
+	result->value.child->prev->next = append->value.child; // use `prev` to access last element without looping
+	append->value.child->prev = result->value.child->prev;
+	result->value.child->prev = append->value.child->prev;
 	return (result);
 }
