@@ -287,11 +287,11 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 	HANDLE_ERROR_SF(KEYNOTFOUND, (item == NULL),
 		return (NULL);,
 		": \"%s\"", key)
-	while (item && item->key)
+	while (item)
 	{
-		if (case_sensitive ?
+		if (item->key && (case_sensitive ?
 			String_Equals(key, item->key) :
-			String_Equals_IgnoreCase(key, item->key))
+			String_Equals_IgnoreCase(key, item->key)))
 			return (item);
 		item = item->next;
 	}

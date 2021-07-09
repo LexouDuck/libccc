@@ -14,19 +14,25 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 	s_kvt*	item;
 	s_kvt*	other;
 	s_kvt*	append;
+	s_kvt*	current;
+	s_kvt*	new;
 
 	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt1), return (NULL);)
 	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt2), return (NULL);)
 	result = KVT_Duplicate(kvt1, recurse);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	item = result->value.child;
-	other = kvt2->value.child;
 	append = NULL;
+	item = result->value.child;
 	while (item)
 	{
-		s_kvt*	new;
-
-		if (String_Equals(item->key, other->key))
+		other = kvt2->value.child;
+		while (other)
+		{
+			if (other->key && String_Equals(item->key, other->key))
+				break;
+			other = other->next;
+		}
+		if (other) // matching keys, merge values
 		{
 			if (recurse && KVT_IsObject(other))
 			{
@@ -54,13 +60,18 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 			if (append == NULL)
 			{
 				append = new;
+				current = new;
 			}
 			else
 			{
-				KVT_AddToArray_Item(append, new);
+				current->next = new;
+				new->prev = current;
+				current = new;
 			}
+			other = other->next;
 		}
 		item = item->next;
 	}
+	KVT_AddToArray_Item(result, append);
 	return (result);
 }
