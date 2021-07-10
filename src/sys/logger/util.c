@@ -39,10 +39,17 @@ e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
 	t_size result = 0;
 	t_char* message;
 
-	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+
 	message = Error_STDC(errno);
 	if (message == NULL)
 		return (OK);
+//	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+	if (logger == NULL)
+	{
+		if (str)	result = IO_Output_Format(			 C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
+		else		result = IO_Output_Format(			 C_RED"Fatal Error"C_RESET": %s\n",               message);
+		return (ERROR_NULLPOINTER);
+	}
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
 		if (str)	result = IO_Write_Format(logger->fd, C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
@@ -54,7 +61,9 @@ e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
 		else		result = IO_Write_Format(logger->fd,      "Fatal Error: %s\n",                        message);
 	}
 	String_Delete(&message);
-	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
+//	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
+	if (result == 0)
+		return (ERROR_PRINT);
 	return (result);
 }
 

@@ -53,9 +53,9 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,
-	t_char const*		prefix,
-	t_char const*		prefix_color,
-	t_char const*		format_str,
+	t_char const*	prefix,
+	t_char const*	prefix_color,
+	t_char const*	format_str,
 	va_list			args)
 {
 	if (( logger->silence_logs   && !error_code) ||
