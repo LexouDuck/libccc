@@ -14,8 +14,8 @@
 inline
 t_bool	IO_IsTerminal(t_fd fd)
 {
-	return (isatty(fd) ||
-		fd == STDOUT ||
-		fd == STDERR ||
-		fd == STDIN);
+	return (fd == STDIN ||
+			fd == STDOUT ||
+			fd == STDERR ||
+			isatty(fd));
 }
