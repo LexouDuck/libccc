@@ -38,20 +38,13 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 			{
 				if (KVT_IsObject(item))
 					new = KVT_Merge(item, other, recurse);
-				else
-					new = KVT_Duplicate(other, recurse);
-				KVT_Replace(result, item, new);
-			}
-			else if (recurse && KVT_IsArray(other))
-			{
-				new = KVT_Duplicate(other, recurse);
-				KVT_Replace(result, item, new);
+				else new = KVT_Duplicate(other, recurse);
 			}
 			else
 			{
-				item->type = other->type;
-				Memory_Copy(&item->value, &other->value, sizeof(u_dynamic));
+				new = KVT_Duplicate(other, recurse);
 			}
+			KVT_Replace(result, item, new);
 		}
 		else
 		{
@@ -71,9 +64,10 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 		other = other->next;
 	}
 	if (append)
-		append->prev = current;
-	result->value.child->prev->next = append->value.child; // use `prev` to access last element without looping
-	append->value.child->prev = result->value.child->prev;
-	result->value.child->prev = append->value.child->prev;
+	{
+		result->value.child->prev->next = append->value.child; // use `prev` to access last element without looping
+		append->value.child->prev = result->value.child->prev;
+		result->value.child->prev = append->value.child->prev;
+	}
 	return (result);
 }
