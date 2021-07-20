@@ -318,6 +318,21 @@ t_sint				Memory_Compare(void const* ptr1, void const* ptr2, t_size n);
 
 
 
+//! Checks `n` bytes of memory in `ptr1` and `ptr2` for equality
+/*!
+**	@nonstd
+**
+**	Compares `n` bytes of memory between `ptr1` and `ptr2`.
+**
+**	@returns
+**	`TRUE` if the `n` first bytes of `ptr1` and `ptr2` are identical.
+**	Otherwise, returns `FALSE`.
+*/
+t_bool				Memory_Equals(void const* ptr1, void const* ptr2, t_size n);
+#define c_memequ	Memory_Equals //!< @alias{Memory_Equals}
+
+
+
 //! Swaps `size` bytes of memory between `ptr1` and `ptr2`
 /*!
 **	@nonstd
