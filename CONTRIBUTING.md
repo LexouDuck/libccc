@@ -3,11 +3,11 @@ This file describes good practices to follow if you want to contribute to this p
 # Commit Message Format
 (inspired from git commit message from angular style and git-commit-message-convention repository)
 
-The following format is used for commit messages:
+The following format is used for commit messages (items within square brackets are optional):
 ```
-[<type>[(<scope>)]: ]<subject>[ (#task)]
+<type>(<scope>): <subject>[ (#task)]
 
-<body>
+[<body>]
 ```
 
 The idea here is for commit messages to be "short and effective". This means the developer needs to "nuclearize" their commits as much as possible. If you have several things to say in your commit message, then you should have split that into several commits.
@@ -24,9 +24,11 @@ The idea here is for commit messages to be "short and effective". This means the
 | `breaking`    | for backwards-incompatible enhancement commits |
 | `deprecated`  | for deprecated feature commits |
 | `refactor`    | for refactoring commits |
+| `merge`       | for merge commits |
 | `style`       | for coding style commits |
 | `test`        | for testing commits |
-| `doc`         | for documentation commits |
+| `cleanup`     | for commits which remove unused/deprecated files |
+| `doc`, `docs` | for documentation commits |
 | `example`     | for example code commits |
 | `dependency`  | for dependencies upgrading or downgrading commits |
 | `i18n`        | for i18n (internationalization) commits |
@@ -34,6 +36,7 @@ The idea here is for commit messages to be "short and effective". This means the
 | `build`       | for packaging or bundling commits |
 | `ci`          | for continuous integration commits |
 | `release`     | for publishing commits |
+| `assets`      | for asset file change commits |
 | `update`      | for update commits |
 | `revert`      | for history revert commits |
 | `wip`         | for work in progress commits |
