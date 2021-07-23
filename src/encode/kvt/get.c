@@ -275,7 +275,7 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 
 
 static
-s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_sensitive)
+s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_sensitive, t_bool error)
 {
 	s_kvt* item = NULL;
 
@@ -284,9 +284,6 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(object) && !KVT_IsObject(object)), return (NULL);,
 		", for key \"%s\", type is %s", object->key, KVT_GetTypeName(object->type))
 	item = object->value.child;
-	HANDLE_ERROR_SF(KEYNOTFOUND, (item == NULL),
-		return (NULL);,
-		": \"%s\"", key)
 	while (item)
 	{
 		if (item->key && (case_sensitive ?
@@ -295,7 +292,7 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 			return (item);
 		item = item->next;
 	}
-	HANDLE_ERROR_SF(KEYNOTFOUND, (TRUE),
+	HANDLE_ERROR_SF(KEYNOTFOUND, (error),
 		return (NULL);,
 		": \"%s\"", key)
 	return (NULL);
@@ -303,20 +300,20 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 
 s_kvt*	KVT_GetObjectItem_IgnoreCase(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_(object, key, FALSE));
+	return (KVT_GetObjectItem_(object, key, FALSE, FALSE));
 }
 
 s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_(object, key, TRUE));
+	return (KVT_GetObjectItem_(object, key, TRUE, FALSE));
 }
 
 t_bool	KVT_HasObjectItem_IgnoreCase(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_IgnoreCase(object, key) ? 1 : 0);
+	return (KVT_GetObjectItem_(object, key, FALSE, TRUE) ? TRUE : FALSE);
 }
 
 t_bool	KVT_HasObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_CaseSensitive(object, key) ? 1 : 0);
+	return (KVT_GetObjectItem_(object, key, TRUE, TRUE) ? TRUE : FALSE);
 }

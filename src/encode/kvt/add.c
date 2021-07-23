@@ -62,7 +62,6 @@ static
 e_cccerror	KVT_AddToObject(s_kvt* object, t_char const* key, s_kvt* item)
 {
 	t_char* new_key = NULL;
-	t_sint new_type = DYNAMICTYPE_INVALID;
 
 	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(NULLPOINTER, (key    == NULL), return (ERROR_NULLPOINTER);)
@@ -73,7 +72,6 @@ e_cccerror	KVT_AddToObject(s_kvt* object, t_char const* key, s_kvt* item)
 	if (item->key)
 		Memory_Free(item->key);
 	item->key = new_key;
-	item->type = new_type;
 	return (KVT_AddToArray_Item(object, item));
 }
 
