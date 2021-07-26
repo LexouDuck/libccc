@@ -73,25 +73,34 @@ void TOML_Print_KeyPath_Pop(s_toml_print* p)
 	if (p->keypath == NULL)
 		return;
 	bare = TRUE;
+
 	if (p->keypath)
 		oldpath = p->keypath;
-	i = String_Length(oldpath) - 1;
-	while (--i)
+
+	i = String_Length(oldpath);
+	if (i)
 	{
-		if (bare)
+		if (oldpath[--i] == '.')
+			--i;
+		while (i--)
 		{
-			if (oldpath[i] == '.')
-				break;
-			if (oldpath[i] == '\"')
-				bare = FALSE;
+			if (bare)
+			{
+				if (oldpath[i] == '.')
+					break;
+				if (oldpath[i] == '\"')
+					bare = FALSE;
+			}
+			else
+			{
+				if (oldpath[i] == '\"')
+					bare = TRUE;
+			}
 		}
-		else
-		{
-			if (oldpath[i] == '\"')
-				bare = TRUE;
-		}
+		++i;
 	}
 	p->keypath = (i == 0 ? NULL : String_Sub(oldpath, 0, i));
+
 	if (oldpath)
 		String_Delete(&oldpath);
 }

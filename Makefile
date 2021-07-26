@@ -57,7 +57,7 @@ CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) -MMD -fstrict-aliasing \
 #	-fsanitize=address
 #	-fsanitize=thread
 #	-fanalyzer
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 -fsanitize=address # -D__NOSTD__=1
 CFLAGS_RELEASE = -O3
 #	-flto
 CFLAGS_OS = _
