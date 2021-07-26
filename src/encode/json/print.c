@@ -242,7 +242,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline &&
+	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == ':')
 	{

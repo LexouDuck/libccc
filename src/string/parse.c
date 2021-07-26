@@ -133,7 +133,6 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 	}
 	result[i] = '\0';
 	if (dest)	*dest = result;
-//IO_Output_Line(result);
 	return (index);
 }
 
