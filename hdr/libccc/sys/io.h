@@ -285,6 +285,7 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 ** ************************************************************************** *|
 */
 
+
 //! Reads the contents of the given `fd` and fill a data buffer with those bytes
 /*!
 **	@isostd{POSIX,https://linux.die.net/man/3/read}
@@ -302,6 +303,39 @@ e_cccerror					IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_cha
 */
 t_sintmax				IO_Read_File	(t_fd const fd, void* *a_file, t_size max);
 #define c_readfile		IO_Read_File
+
+//! Reads the contents of the file at `filepath`, and returns a char array
+/*!
+**	Reads the full contents of the file at path `filepath` (ie, until read() returns 0),
+**	and allocates a memory region which stores the file contents in `*a_file`.
+**
+**	@param	filepath	The filepath of the file from which to read data
+**	@param	a_file		The address of the buffer to fill: is allocated and filled with the data
+**	@returns
+**	The amount of bytes read from the given file descriptor `fd` in total.
+**	If the return value is a negative number, there was a read error:
+**	You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
+*/
+t_sintmax				IO_Read_Filepath		(t_char const* filepath, void* *a_file);
+#define c_readfpath		IO_Read_Filepath
+
+//! Reads the contents of the file at `filepath`, and returns a char array
+/*!
+**	Reads the full contents of the file at path `filepath` (ie, until read() returns 0),
+**	and allocates a memory region which stores the file contents, and is returned.
+**
+**	NB: if the file read contains the ASCII null terminator `\0`, it will read until the end,
+**	but the actual length of the data content will be lost.
+**
+**	@param	filepath	The filepath of the file from which to read data
+**	@returns
+**	A string with the data read.
+**	If the return value is `NULL`, there was a read error:
+**	You should then check `errno`, and/or use `IO_GetError(errno)` immediately after.
+*/
+char*					IO_Read_Filepath_Text	(t_char const* filepath);
+#define c_readfpath_txt	IO_Read_Filepath_Text
+
 
 //! Reads the contents of `fd` and makes an array of strings, one for each line
 /*!

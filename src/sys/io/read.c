@@ -78,3 +78,26 @@ t_sintmax	IO_Read_Lines	(t_fd const fd, t_char** *a_strarr)
 	*a_strarr = result;
 	return (OK);
 }
+
+t_sintmax	IO_Read_Filepath		(t_char const* filepath, void* *a_file)
+{
+	t_fd		fd		= 0;
+	t_sintmax	status	= 0;
+
+	fd = IO_Open(filepath, O_RDONLY, 0);
+	if (fd < 0)
+	{
+		return (ERROR);
+	}
+	status = IO_Read_File(fd, a_file, 0);
+	IO_Close(fd);
+
+	return (status);
+}
+
+char*		IO_Read_Filepath_Text	(t_char const* filepath)
+{
+	char*		result	= NULL;
+	IO_Read_Filepath(filepath, (void* *)&result);
+	return (result);
+}
