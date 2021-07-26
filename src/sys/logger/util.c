@@ -3,6 +3,7 @@
 	#include <unistd.h>
 #else
 	char*	strerror(int error);
+	int		write(int fd, void const* buffer, size_t n);
 #endif
 #ifndef __NOSTD__
 	#include <errno.h>
@@ -36,25 +37,53 @@
 
 e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
 {
-	t_size result = 0;
+	int 	result = 0;
 	t_char* message;
 
-	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+
 	message = Error_STDC(errno);
 	if (message == NULL)
 		return (OK);
+//	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+
+// only using write()
+	t_fd	fd = (logger ? logger->fd : STDOUT);
+	t_bool	is_sh = IO_IsTerminal(fd);
+	if (is_sh)	write(fd, C_RED,	(sizeof(C_RED)			- sizeof("")));
+	write(fd, "Fatal Error",		(sizeof("Fatal Error")	- sizeof("")));
+	if (is_sh)	write(fd, C_RESET,	(sizeof(C_RESET)		- sizeof("")));
+	write(fd, ": ",					(sizeof(": ")			- sizeof("")));
+	if (str)	write(fd, str,		String_Length(str));
+	write(fd, "\n\t-> ",			(sizeof("\n\t-> ")		- sizeof("")));
+	write(fd, message,				String_Length(message));
+	write(fd, "\n",					(sizeof("\n")			- sizeof("")));
+
+// printf/dprintf method (less compatible)
+/*
+	if (logger == NULL)
+	{
+		result = printf(
+			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n",
+			(str ? str : ""), message);
+		return (ERROR_NULLPOINTER);
+	}
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
-		if (str)	result = IO_Write_Format(logger->fd, C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n", str, message);
-		else		result = IO_Write_Format(logger->fd, C_RED"Fatal Error"C_RESET": %s\n",               message);
+		result = dprintf(logger->fd,
+			C_RED"Fatal Error"C_RESET": %s\n\t-> %s\n",
+			(str ? str : ""), message);
 	}
 	else
 	{
-		if (str)	result = IO_Write_Format(logger->fd,      "Fatal Error: %s\n\t-> %s\n",          str, message);
-		else		result = IO_Write_Format(logger->fd,      "Fatal Error: %s\n",                        message);
+		result = dprintf(logger->fd,
+			"Fatal Error: %s\n\t-> %s\n",
+			(str ? str : ""), message);
 	}
+*/
 	String_Delete(&message);
-	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
+//	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
+	if (result <= 0)
+		return (ERROR_PRINT);
 	return (result);
 }
 

@@ -10,16 +10,18 @@
 
 
 static
-t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape)
+t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 {
 	t_size	length = 0;
 	t_size	i = 0;
 
-	while (str[i])
+	while (i < n && str[i])
 	{
 		if (str[i] == '\\') // escape sequence
 		{
 			++i;
+			HANDLE_ERROR_SF(PARSE, (i == n || str[i] == '\0'), return (0);,
+				"String ends with backslash, potential buffer overrun")
 			switch (str[i])
 			{
 				case 'a':	length += 1 * sizeof(t_char);	break; // Alert (Beep, Bell) (added in C89)[1]
@@ -80,13 +82,15 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(NULL);)
 	if (n == 0)
 		n = SIZE_MAX;
-	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape) + sizeof(""));
+	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape, n) + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PARSE_RETURN(NULL);)
 	while (index < n && str[index])
 	{
 		if (str[index] == '\\') // escape sequence
 		{
 			++index;
+			HANDLE_ERROR_SF(PARSE, (index == n || str[index] == '\0'), return (0);,
+				"String ends with backslash, potential buffer overrun")
 			switch (str[index])
 			{
 				case 'a':	result[i++] = '\x07';	break; // Alert (Beep, Bell) (added in C89)[1]

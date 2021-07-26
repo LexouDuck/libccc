@@ -25,16 +25,22 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
+
+
 static
 void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 {
 	t_char*	tmp;
 
 	tmp = String_Join("Could not write log message to ", output);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
-	Log_FatalError(logger, tmp);
+//	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
+	if (tmp == NULL)
+		Log_FatalError(logger, "Could not write log message: allocation failure");
+	else Log_FatalError(logger, tmp);
 	String_Delete(&tmp);
 }
+
+
 
 static
 void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
@@ -43,7 +49,7 @@ void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char 
 
 	wrote = IO_Write_String(fd, log_msg);
 	HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
-	Log_Logger_FatalError(logger, output);
+		Log_Logger_FatalError(logger, output);
 	HANDLE_ERROR_FINAL()
 }
 
@@ -53,9 +59,9 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_bool			verbose_only,
 	t_bool			use_errno,
 	int				error_code,
-	t_char const*		prefix,
-	t_char const*		prefix_color,
-	t_char const*		format_str,
+	t_char const*	prefix,
+	t_char const*	prefix_color,
+	t_char const*	format_str,
 	va_list			args)
 {
 	if (( logger->silence_logs   && !error_code) ||

@@ -59,7 +59,7 @@ typedef struct test_suite
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
 }				s_test_suite;
-#define TEST_SUITE_AMOUNT	30
+#define TEST_SUITE_AMOUNT	31
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
@@ -109,9 +109,11 @@ int		testsuite_pointerarray(void);
 int		testsuite_string(void);
 int		testsuite_stringarray(void);
 int		testsuite_color(void);
+int		testsuite_text_ascii(void);
+int		testsuite_text_unicode(void);
+int		testsuite_text_regex(void);
 int		testsuite_sys_io(void);
 int		testsuite_sys_time(void);
-int		testsuite_sys_regex(void);
 int		testsuite_math(void);
 int		testsuite_math_int(void);
 int		testsuite_math_fixed(void);
@@ -128,6 +130,7 @@ int		testsuite_monad_list(void);
 int		testsuite_monad_dict(void);
 int		testsuite_monad_tree(void);
 int		testsuite_monad_object(void);
+int		testsuite_encode_kvt(void);
 int		testsuite_encode_json(void);
 int		testsuite_encode_toml(void);
 //int	testsuite_encode_yaml(void);

@@ -389,6 +389,7 @@ SRCS = error.c \
 	encode/kvt/delete.c		\
 	encode/kvt/detach.c		\
 	encode/kvt/replace.c	\
+	encode/kvt/merge.c		\
 	encode/kvt/print.c		\
 	encode/json/parse.c		\
 	encode/json/print.c		\
@@ -545,6 +546,7 @@ TEST_SRCS = \
 	$(TEST_DIR)libccc/monad/tree.c			\
 	$(TEST_DIR)libccc/monad/dict.c			\
 	$(TEST_DIR)libccc/monad/object.c		\
+	$(TEST_DIR)libccc/encode/kvt.c			\
 	$(TEST_DIR)libccc/encode/json.c			\
 	$(TEST_DIR)libccc/encode/toml.c			\
 

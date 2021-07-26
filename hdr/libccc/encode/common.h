@@ -124,7 +124,7 @@ typedef union dynamic	u_dynamic;
 //! This struct is used to parse a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_parse
 {
-	t_utf8 const*	content;//!< the string to parse
+	t_utf8 const* content;	//!< the string to parse
 	s_kvt*		result;		//!< the result JSON
 	t_size		offset;		//!< current parsing offset
 	t_size		length;		//!< the length of the string to parse
@@ -139,7 +139,7 @@ typedef struct kvt_parse
 //! This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)
 typedef struct kvt_print
 {
-	s_kvt const*	item;	//!< the object to print
+	s_kvt const* item;		//!< the object to print
 	t_utf8*		result;		//!< the result string which is written to
 	t_size		offset;		//!< current writing offset of the string to print
 	t_size		length;		//!< the (current maximum) length of the string to print
@@ -173,7 +173,8 @@ t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed);
 */
 
 //! Allocates one single KVT struct
-s_kvt*	KVT_Item(void);
+s_kvt*				KVT_Item(void);
+#define c_kvtitem	KVT_Item
 
 
 
@@ -183,7 +184,8 @@ s_kvt*	KVT_Item(void);
 **	need to be released. With `recurse != FALSE`, it will duplicate any children connected to the item.
 **	The `item`'s `->next` and `->prev` pointers are always zero on return from Duplicate.
 */
-s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
+s_kvt*				KVT_Duplicate(s_kvt const* item, t_bool recurse);
+#define c_kvtdup	KVT_Duplicate
 
 
 
@@ -196,19 +198,8 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse);
 **	@returns
 **	`TRUE` if `a` and `b` have equal contents
 */
-t_bool	KVT_Equals(s_kvt const* kvt1, s_kvt const* kvt2, t_bool case_sensitive);
-
-
-
-//! Creates a new KVT object by concatenating two existing ones
-/*!
-**	Concatenate two objects together while duplicating all of their contents.
-*/
-s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2);
-//! TODO document
-s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2);
-//! TODO document
-s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2);
+t_bool				KVT_Equals(s_kvt const* kvt1, s_kvt const* kvt2, t_bool case_sensitive);
+#define c_kvtequ	KVT_Equals
 
 
 
@@ -228,16 +219,32 @@ s_kvt*	KVT_CreateString(t_char const* value);
 s_kvt*	KVT_CreateArray(void);
 s_kvt*	KVT_CreateObject(void);
 s_kvt*	KVT_CreateRaw(t_char const* raw);
+
+#define c_kvt_null		KVT_CreateNull
+#define c_kvt_bool		KVT_CreateBoolean
+#define c_kvt_int		KVT_CreateInteger
+#define c_kvt_float		KVT_CreateFloat
+#define c_kvt_string	KVT_CreateString
+#define c_kvt_array		KVT_CreateArray
+#define c_kvt_object	KVT_CreateObject
+#define c_kvt_raw		KVT_CreateRaw
 //!@}
 
 
 
 //! Create a string where `value_string` references a string, so it will not be freed by KVT_Delete()
-s_kvt*	KVT_CreateStringReference(t_char const* string);
+s_kvt*					KVT_CreateStringReference(t_char const* string);
+#define c_kvt_stringref	KVT_CreateStringReference
+
 //! Create an array that only references it's elements, so they will not be freed by KVT_Delete()
-s_kvt*	KVT_CreateArrayReference(s_kvt const* child);
+s_kvt*					KVT_CreateArrayReference(s_kvt const* child);
+#define c_kvt_arrayref	KVT_CreateArrayReference
+
 //! Create an object that only references it's elements, so they will not be freed by KVT_Delete()
-s_kvt*	KVT_CreateObjectReference(s_kvt const* child);
+s_kvt*					KVT_CreateObjectReference(s_kvt const* child);
+#define c_kvt_objectref	KVT_CreateObjectReference
+
+
 
 //! Create and fill a KVT array
 /*!
@@ -288,51 +295,75 @@ s_kvt*	KVT_CreateArray_String	(t_char const* const* strings, t_uint count);
 */
 
 //! Returns the amount of items in the given `array` (or object).
-t_sint	KVT_GetArrayLength(s_kvt const* array);
+t_sint				KVT_GetArrayLength(s_kvt const* array);
+#define c_kvtlen	KVT_GetArrayLength
 
 //! Retrieve item number `index` from the given `array`. Returns `NULL` if unsuccessful.
 /*!
 **	@param	array	The array (or object) from which to get an item
 **	@param	index	The index of the item to get (NOTE: if negative, get starting from the last item)
 */
-s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index);
+s_kvt*				KVT_GetArrayItem(s_kvt const* array, t_sint index);
+#define c_kvtgetv	KVT_GetArrayItem
 
 
 
 //! Get the item with the given `key` from the given `object`.
+//!@{
+#define c_kvtgetkv \
+		KVT_GetObjectItem
 #define KVT_GetObjectItem \
 		KVT_GetObjectItem_CaseSensitive
 s_kvt*	KVT_GetObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
 s_kvt*	KVT_GetObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+//!@}
 
 //! Returns `TRUE` if the given `object` contains an item with the given `key`.
+//!@{
+#define c_kvthaskv \
+		KVT_HasObjectItem
 #define KVT_HasObjectItem \
 		KVT_HasObjectItem_CaseSensitive
 t_bool	KVT_HasObjectItem_CaseSensitive	(s_kvt const* object, t_char const* key);	//!< (case-sensitive)
 t_bool	KVT_HasObjectItem_IgnoreCase	(s_kvt const* object, t_char const* key);	//!< (case-insensitive)
+//!@}
 
 
 
 //! Access the contents of a KVT with a 'KVT path', ie: a format string of 'accessors' (ie: strings or numbers in brackets)
 /*!
 **	@param	object		The KVT object to get an item from
-**	@param	format_path	The format string with an accessor pattern (example: `KVT_Get(json, "[\"subarray\"][3][\"name\"]")`)
-**	@param	...			The variadic arguments list which goes along with `format_path` (works like printf)
+**	@param	format_path	The format string with an accessor pattern.
+**						There are 4 valid syntaxes for an accessor path:
+**						- spaces accessor style:	`"subarray 3 \"name\""`
+**						- struct accessor style:	`"subarray[3].\"name\""`
+**						- periods accessor style:	`"subarray.3.\"name\""`
+**						- brackets accessor style:	`"[\"subarray\"][3][\"name\"]")`
+**						NB: In all styles, key strings can be either bare or quoted (like in TOML)
+**							If an object key only contains digits, it should be quoted to avoid ambiguity
+**	@param	...			The variadic arguments list which goes along with `format_path` (works like printf() or String_Format())
 **	@returns
 **	The KVT object gotten from the given accessor path,
 **	or `NULL` if the given path or KVT object was invalid.
 */
+//!@{
 s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 _FORMAT(printf, 2, 3);
+#define c_kvtget	KVT_Get
+//!@}
 
 //! Returns the boolean value contained within the given `item`, or `FALSE` if type is not #KVT_TYPE_BOOLEAN.
-t_bool	KVT_GetValue_Boolean(s_kvt const* item);
+t_bool					KVT_GetValue_Boolean(s_kvt const* item);
+#define c_kvtget_bool	KVT_GetValue_Boolean
 //! Returns the integer value contained within the given `item`, or `0` if type is not #KVT_TYPE_INTEGER.
-t_s64	KVT_GetValue_Integer(s_kvt const* item);
+t_s64					KVT_GetValue_Integer(s_kvt const* item);
+#define c_kvtget_int	KVT_GetValue_Integer
 //! Returns the number value contained within the given `item`, or `NAN` if type is not #KVT_TYPE_FLOAT.
-t_f64	KVT_GetValue_Float	(s_kvt const* item);
+t_f64					KVT_GetValue_Float	(s_kvt const* item);
+#define c_kvtget_float	KVT_GetValue_Float
 //! Returns the string value contained within the given `item`, or `NULL` if type is not #KVT_TYPE_STRING.
-t_char*	KVT_GetValue_String	(s_kvt const* item);
+t_char*					KVT_GetValue_String	(s_kvt const* item);
+#define c_kvtget_string	KVT_GetValue_String
 
 
 
@@ -343,29 +374,37 @@ t_char*	KVT_GetValue_String	(s_kvt const* item);
 */
 
 //! Change the `value` of a #KVT_TYPE_BOOLEAN object, only takes effect when `object->type == KVT_TYPE_BOOLEAN`.
-e_cccerror	KVT_SetValue_Boolean(s_kvt* object, t_bool value);
+e_cccerror				KVT_SetValue_Boolean(s_kvt* object, t_bool value);
+#define c_kvtset_bool	KVT_SetValue_Boolean
 //! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
-e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value);
+e_cccerror				KVT_SetValue_Integer(s_kvt* object, t_s64 value);
+#define c_kvtset_int	KVT_SetValue_Integer
 //! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
-e_cccerror	KVT_SetValue_Float	(s_kvt* object, t_f64 value);
+e_cccerror				KVT_SetValue_Float	(s_kvt* object, t_f64 value);
+#define c_kvtset_float	KVT_SetValue_Float
 //! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
-e_cccerror	KVT_SetValue_String	(s_kvt* object, t_char* value);
+e_cccerror				KVT_SetValue_String	(s_kvt* object, t_char* value);
+#define c_kvtset_string	KVT_SetValue_String
 
 
 
 //! Appends the given `item` to the given `array`.
-e_cccerror	KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
+e_cccerror				KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
+#define c_kvtaddvref	KVT_
 
 //! Append a reference to `item` to the given `array`.
-e_cccerror	KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
+e_cccerror				KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
+#define c_kvtaddvref	KVT_
 
 
 
 //! Appends the given `item` to the given `object`, with the given `key`.
-e_cccerror	KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
+e_cccerror				KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
+#define c_kvtaddkv		KVT_
 
 //! Append reference to item to the given object.
-e_cccerror	KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
+e_cccerror				KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
+#define c_kvtaddkvref	KVT_
 
 
 
@@ -383,6 +422,15 @@ s_kvt*	KVT_AddToObject_String	(s_kvt* object, t_char const* key, t_char const* v
 s_kvt*	KVT_AddToObject_Object	(s_kvt* object, t_char const* key);
 s_kvt*	KVT_AddToObject_Array	(s_kvt* object, t_char const* key);
 s_kvt*	KVT_AddToObject_Raw		(s_kvt* object, t_char const* key, t_char const* raw);
+
+#define c_kvtadd_null	KVT_AddToObject_Null
+#define c_kvtadd_bool	KVT_AddToObject_Boolean
+#define c_kvtadd_int	KVT_AddToObject_Integer
+#define c_kvtadd_float	KVT_AddToObject_Float
+#define c_kvtadd_string	KVT_AddToObject_String
+#define c_kvtadd_array	KVT_AddToObject_Array
+#define c_kvtadd_object	KVT_AddToObject_Object
+#define c_kvtadd_raw	KVT_AddToObject_Raw
 //!@}
 
 
@@ -404,6 +452,15 @@ t_bool	KVT_IsString	(s_kvt const* item);
 t_bool	KVT_IsArray		(s_kvt const* item);
 t_bool	KVT_IsObject	(s_kvt const* item);
 t_bool	KVT_IsRaw		(s_kvt const* item);
+
+#define c_kvtisnull		KVT_IsNull
+#define c_kvtisbool		KVT_IsBoolean
+#define c_kvtisint		KVT_IsInteger
+#define c_kvtisfloat	KVT_IsFloat
+#define c_kvtisstring	KVT_IsString
+#define c_kvtisarray	KVT_IsArray
+#define c_kvtisobject	KVT_IsObject
+#define c_kvtisraw		KVT_IsRaw
 //!@}
 
 
@@ -418,33 +475,42 @@ t_bool	KVT_IsRaw		(s_kvt const* item);
 ** ************************************************************************** *|
 */
 
-//! Removes (without deleting) the given `item` from the given `parent` object.
-s_kvt*		KVT_Detach(s_kvt* parent, s_kvt* item);
-
 //! Delete a `s_kvt` entity and all subentities.
-e_cccerror	KVT_Delete(s_kvt* item);
+e_cccerror			KVT_Delete(s_kvt* item);
+#define c_kvtdel	KVT_Delete
+
+//! Removes (without deleting) the given `item` from the given `parent` object.
+s_kvt*				KVT_Detach(s_kvt* parent, s_kvt* item);
+#define c_kvtdetach	KVT_Detach
 
 //! Replaces the given `item` from the given `parent` object, with the given `newitem`.
-e_cccerror	KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
+e_cccerror			KVT_Replace(s_kvt* parent, s_kvt* item, s_kvt* newitem);
+#define c_kvtrep	KVT_Replace
 
 
 
 //! Deletes the item at the given `index` from the given `array`.
-e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index);
+e_cccerror				KVT_Delete_FromArray(s_kvt* array, t_sint index);
+#define c_kvtdelv		KVT_Delete_FromArray
 
 //! Removes (without deleting) the given `item` from the given `array`.
-s_kvt*		KVT_Detach_FromArray(s_kvt* array, t_sint index);
+s_kvt*					KVT_Detach_FromArray(s_kvt* array, t_sint index);
+#define c_kvtdetachv	KVT_Detach_FromArray
 
 //! Replaces the given `item` from the given `array`, with the given `newitem`.
-e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+e_cccerror				KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+#define c_kvtrepv		KVT_Replace_InArray
 
 //! Inserts the given `newitem` in the givne `array`, shifting pre-existing items to the right.
-e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+e_cccerror				KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem);
+#define c_kvtinsertv	KVT_Insert_InArray
 
 
 
 //! Deletes the item with the given `key` from the given `object`.
 //!@{
+#define c_kvtdelkv \
+			KVT_Delete_FromObject
 #define 	KVT_Delete_FromObject \
 			KVT_Delete_FromObject_CaseSensitive
 e_cccerror	KVT_Delete_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
@@ -453,6 +519,8 @@ e_cccerror	KVT_Delete_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); 
 
 //! Removes (without deleting) the given `item` from the given `object`.
 //!@{
+#define c_kvtdetachkv \
+			KVT_Detach_FromObject
 #define 	KVT_Detach_FromObject \
 			KVT_Detach_FromObject_CaseSensitive
 s_kvt*		KVT_Detach_FromObject_CaseSensitive	(s_kvt* object, t_char const* key); //!< (case-sensitive)
@@ -461,11 +529,50 @@ s_kvt*		KVT_Detach_FromObject_IgnoreCase	(s_kvt* object, t_char const* key); //!
 
 //! Replaces the given `item` from the given `object`, with the given `newitem`
 //!@{
+#define c_kvtreplacekv \
+			KVT_Replace_InObject
 #define 	KVT_Replace_InObject \
 			KVT_Replace_InObject_CaseSensitive
 e_cccerror	KVT_Replace_InObject_CaseSensitive	(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-sensitive)
 e_cccerror	KVT_Replace_InObject_IgnoreCase		(s_kvt* object, t_char const* key, s_kvt* newitem); //!< (case-insensitive)
 //!@}
+
+
+
+//! Creates a new KVT object by concatenating two existing ones
+/*!
+**	Concatenate two objects together while duplicating all of their contents.
+*/
+s_kvt*				KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2);
+#define c_kvtcat	KVT_Concat
+
+//! TODO document
+s_kvt*				KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2);
+#define c_kvtcatv	KVT_Concat_Array
+
+//! TODO document
+s_kvt*				KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2);
+#define c_kvtcatkv	KVT_Concat_Object
+
+
+
+//! Creates a new object by syncing the fields of both given objects `kvt1` and `kvt2`
+/*!
+**	Creates a new KVT object by combining the fields of `kvt1` and `kvt2`
+**	This function only works if both `kvt1` and `kvt2` have `.type` set to #DYNAMICTYPE_OBJECT
+**	This is similar to how you would use spread syntax in JavaScript, ie: `{ ...kvt1, ...kvt2 }`
+**	The second argument `kvt2` has higher priority than `kvt1`: this means that
+**	if both objects have a field with the same name, then the value from `kvt2` will be kept.
+**	
+**	@param	kvt1	The first object to merge
+**	@param	kvt2	The second object to merge (has greater priorit then `kvt1`)
+**	@param	recurse	If `TRUE`, recursively merges any sub-objects or sub-arrays
+**	@returns
+**	A newly created KVT object, created by duplicating `kvt1` and subsequently
+**	adding/applying any fields from `kvt2`.
+*/
+s_kvt*				KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse);
+#define c_kvtmerge	KVT_Merge
 
 
 

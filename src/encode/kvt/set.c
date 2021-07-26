@@ -10,6 +10,7 @@
 
 e_cccerror	KVT_SetValue_Boolean(s_kvt* object, t_bool value)
 {
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(WRONGTYPE, !(object->type & DYNAMICTYPE_BOOLEAN),
 		return (ERROR_WRONGTYPE);)
 	object->value.boolean = value;
@@ -18,6 +19,7 @@ e_cccerror	KVT_SetValue_Boolean(s_kvt* object, t_bool value)
 
 e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value)
 {
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(WRONGTYPE, !(object->type & DYNAMICTYPE_INTEGER),
 		return (ERROR_WRONGTYPE);)
 	object->value.integer = value;
@@ -26,6 +28,7 @@ e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value)
 
 e_cccerror	KVT_SetValue_Float(s_kvt* object, t_f64 value)
 {
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(WRONGTYPE, !(object->type & DYNAMICTYPE_FLOAT),
 		return (ERROR_WRONGTYPE);)
 	object->value.number = value;
@@ -35,9 +38,11 @@ e_cccerror	KVT_SetValue_Float(s_kvt* object, t_f64 value)
 e_cccerror	KVT_SetValue_String(s_kvt* object, t_char* value)
 {
 	t_char* copy = NULL;
-	// if object's type is not DYNAMICTYPE_STRING or is DYNAMICTYPE_ISREFERENCE, it should not set value.string
+
+	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(WRONGTYPE, !(object->type & DYNAMICTYPE_STRING),
 		return (ERROR_WRONGTYPE);)
+	// if object's type is not DYNAMICTYPE_STRING or is DYNAMICTYPE_ISREFERENCE, it should not set value.string
 	HANDLE_ERROR(DELETEREF, ((object->type & DYNAMICTYPE_ISREFERENCE)),
 		return (ERROR_DELETEREF);)
 	if (String_Length(value) <= String_Length(object->value.string))

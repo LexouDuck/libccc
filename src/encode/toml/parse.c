@@ -818,7 +818,7 @@ t_bool	TOML_Parse_Key(s_toml* item, s_toml_parse* p, s_toml* context, s_toml* *a
 	return (OK);
 
 failure:
-/*
+
 	if (child && !exists)
 	{
 		TOML_Delete(child);
@@ -831,7 +831,6 @@ failure:
 	}
 	if (key && key != item->key)
 		String_Delete(&key);
-*/
 	return (ERROR);
 }
 

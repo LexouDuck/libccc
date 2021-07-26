@@ -59,7 +59,7 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 
 
 static
-e_cccerror replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
+e_cccerror KVT_Replace_InObject_(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
 	HANDLE_ERROR(NULLPOINTER, (object      == NULL), return (ERROR_NULLPOINTER);)
 	HANDLE_ERROR(NULLPOINTER, (key         == NULL), return (ERROR_NULLPOINTER);)
@@ -77,10 +77,10 @@ e_cccerror replace_item_in_object(s_kvt* object, t_char const* key, s_kvt* repla
 
 e_cccerror	KVT_Replace_InObject_IgnoreCase(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
-	return (replace_item_in_object(object, key, newitem, FALSE));
+	return (KVT_Replace_InObject_(object, key, newitem, FALSE));
 }
 
 e_cccerror	KVT_Replace_InObject_CaseSensitive(s_kvt* object, t_char const* key, s_kvt* newitem)
 {
-	return (replace_item_in_object(object, key, newitem, TRUE));
+	return (KVT_Replace_InObject_(object, key, newitem, TRUE));
 }

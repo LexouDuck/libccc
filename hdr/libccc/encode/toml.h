@@ -404,6 +404,10 @@ void				TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), an
 
 
 
+#define TOML_Merge	KVT_Merge	//!< @alias{KVT_Merge}
+
+
+
 /*! @} */
 HEADER_END
 #endif

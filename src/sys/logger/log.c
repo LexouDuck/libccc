@@ -27,6 +27,8 @@ e_cccerror	LogAll(t_logptrarr const loggers,
 
 */
 
+// TODO get rid of `int errorcode` errno-value arguments in favor of `e_cccerror` error codes
+
 //! To be called when there is an error which does not use errno
 e_cccerror	Log_Error				(s_logger const* logger, int error_code, t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE, error_code,    "Error", C_RED)    }
 //! To be called when there is an error that sets errno
