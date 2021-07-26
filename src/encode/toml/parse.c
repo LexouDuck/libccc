@@ -309,6 +309,7 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 		// is escape sequence
 		if (input_end[0] == '\\')
 		{
+			// TODO implement newer fixes from JSON_Parse_String() here
 			if ((t_size)(input_end + 1 - p->content) >= p->length)
 				PARSINGERROR_TOML("Could not parse string: Potential buffer-overflow, string ends with backslash")
 			skipped_bytes++;

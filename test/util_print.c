@@ -35,7 +35,7 @@ void	print_percent(double percent)
 
 void	print_totals(int amount, int failed, char const* category)
 {
-	double percent = (amount - failed) * 100. / amount;
+	double percent = (amount == 0 ? 100. : ((amount - failed) * 100. / amount));
 
 	printf("\n\n");
 	printf("|========================================\n");
