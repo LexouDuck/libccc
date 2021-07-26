@@ -117,7 +117,7 @@ static s_cccerror_info	cccerrors[ENUMLENGTH_CCCERROR] =
 t_char*		Error_GetMessage(e_cccerror error)
 {
 	if (error == ERROR_NONE)
-		return ("");
+		return (String_Duplicate(""));
 	if (error == ERROR_SYSTEM)
 		return (Error_STDC(errno));
 	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
@@ -133,7 +133,7 @@ t_char*		Error_GetMessage(e_cccerror error)
 t_char*		Error_GetName(e_cccerror error)
 {
 	if (error == ERROR_NONE)
-		return ("");
+		return (String_Duplicate(""));
 	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (cccerrors[i].code == error)
@@ -162,15 +162,18 @@ e_cccerror	Error_GetCode(t_char const* name)
 void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
 {
 	f_ccchandler	handler;
-	t_char*	tmp;
+	t_char*			tmp;
+	t_char*			error_msg;
 
 	handler = Error_GetHandler(error);
 	if (handler)
 	{
+		error_msg = Error_GetMessage(error);
 		if (message)
-			tmp = String_Format("%s -> %s%s",  funcname, Error_GetMessage(error), message);
-		else tmp = String_Format("%s -> %s",   funcname, Error_GetMessage(error));
+			tmp = String_Format("%s -> %s%s",  funcname, error_msg, message);
+		else tmp = String_Format("%s -> %s",   funcname, error_msg);
 		handler(error, tmp);
+		String_Delete(&error_msg);
 		String_Delete(&tmp);
 		String_Delete(&message);
 	}

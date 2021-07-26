@@ -76,7 +76,7 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 
 t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char const* new)
 {
-	t_char*	result;
+	t_char*		result;
 	t_char**	strarr;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
