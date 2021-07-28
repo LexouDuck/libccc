@@ -1315,11 +1315,11 @@ contexts:
     - match: '(`(.*?)`)'
       captures:
         0: markup.raw
-    - match: '\b(?:[A-Za-z_]\w+)(\(\))'
+    - match: '\b(#)(?:[A-Za-z_]\w+)\b'
       captures:
         0: comment.c
         1: comment.command.c
-    - match: '\b(#)(?:[A-Za-z_]\w+)\b'
+    - match: '\b(?:[A-Za-z_]\w+)(\(\))'
       captures:
         0: comment.c
         1: comment.command.c
@@ -1332,6 +1332,10 @@ contexts:
           ( GROUP
           | ALIAS
           | ARG
+          | DOC
+          | MINIDOC
+          | FAMILY
+          | SEEALSO
           | ISOSTD
           | NONSTD
           | ERRORS

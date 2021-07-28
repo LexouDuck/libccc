@@ -86,15 +86,16 @@ void	test_u##BITS##tostr(void)																							\
 	}																														\
 	if (sizeof(t_u##BITS) * 8 >= 64)																						\
 	{																														\
-	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,           "999999999999", 999999999999          );	\
-	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,        "999999999999000", 999999999999000       );	\
-	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,     "999999999999000999", 999999999999000999    );	\
-	print_test_u##BITS##tostr("u"#BITS"tostr (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL);	\
+	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,             "9876543210", 9876543210ul          );	\
+	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,           "999999999999", 999999999999ul        );	\
+	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,        "999999999999000", 999999999999000ul     );	\
+	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,     "999999999999000999", 999999999999000999ul  );	\
+	print_test_u##BITS##tostr("u"#BITS"tostr (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615ul);	\
 	if (g_test.flags.test_overflow) {																						\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n < 64min)     ",	FALSE,                     "-1", -1                    );	\
-/*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616UL); */\
-/*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999UL);*/\
-/*	print_test_u##BITS##tostr("u"#BITS"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999UL);*/\
+/*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616ul); */\
+/*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999ul);*/\
+/*	print_test_u##BITS##tostr("u"#BITS"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999ul);*/\
 	}																														\
 	}}}																														\
 }
@@ -192,17 +193,19 @@ void	test_s##BITS##tostr(void)																							\
 	}																														\
 	if (sizeof(t_s##BITS) * 8 >= 64)																						\
 	{																														\
-	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,             "2147483648", 2147483648             );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,            "-2147483649",-2147483649             );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,           "999999999999", 999999999999           );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,          "-999999999999",-999999999999           );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808LL  );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807LL  );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,             "2147483648", 2147483648ll           );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,            "-2147483649",-2147483649ll           );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,            "-9876543210",-9876543210ll           );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,             "9876543210", 9876543210ll           );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,           "999999999999", 999999999999ll         );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,          "-999999999999",-999999999999ll         );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808ll  );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807ll  );	\
 	if (g_test.flags.test_overflow) {																						\
-	print_test_s##BITS##tostr("s"#BITS"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809LL  );	\
-	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808LL  );	\
-/*	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999LL);*/\
-/*	print_test_s##BITS##tostr("s"#BITS"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999LL);*/\
+	print_test_s##BITS##tostr("s"#BITS"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809ll  );	\
+	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808ll  );	\
+/*	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999ll);*/\
+/*	print_test_s##BITS##tostr("s"#BITS"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999",-999999999999999999999ll);*/\
 	}																														\
 	}}}																														\
 }
@@ -299,14 +302,15 @@ void	test_u##BITS##tostrhex(void)																								\
 	}																																\
 	if (sizeof(t_u##BITS) * 8 >= 64)																								\
 	{																																\
-	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A50FFF", 999999999999L         );	\
-	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A51000", 1000000000000         );	\
-	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 64max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615UL);	\
+	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,              "24CB016EA", 9876543210ul          );	\
+	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A50FFF", 999999999999ul        );	\
+	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A51000", 1000000000000ul       );	\
+	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 64max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615ul);	\
 	if (g_test.flags.test_overflow) {																								\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 64min)     ",	FALSE,                 "-1", -1                    );	\
-		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64max)     ",	FALSE,  "10000000000000000", 18446744073709551616UL);*/	\
-		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64maxdigit)",	FALSE,                  "0", 999999999999999999999UL);*/\
-		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 64maxdigit)",	FALSE,                  "0",-999999999999999999999UL);*/\
+		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64max)     ",	FALSE,  "10000000000000000", 18446744073709551616ul);*/	\
+		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64maxdigit)",	FALSE,                  "0", 999999999999999999999ul);*/\
+		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 64maxdigit)",	FALSE,                  "0",-999999999999999999999ul);*/\
 	}																																\
 	}}}																																\
 }
@@ -441,6 +445,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	if (sizeof(t_s##BITS) * 8 >= 64)																													\
 	{																																					\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,                  "7FFFFFFF",          2147483647, "0123456789ABCDEF");	\
+	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,               "-2147483648",         -2147483648,       "0123456789");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 64min, dec)",	FALSE,      "-9223372036854775808",-9223372036854775808,       "0123456789");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 64max, dec)",	FALSE,       "9223372036854775807", 9223372036854775807,       "0123456789");	\

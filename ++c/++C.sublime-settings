@@ -40,5 +40,6 @@ RegReplace:				set up regex replace rules to automatically refactor code with a 
 		"XXc",
 		"XXH",
 		"XXC",
-	]
+		"dox",
+	],
 }

@@ -73,25 +73,34 @@ void TOML_Print_KeyPath_Pop(s_toml_print* p)
 	if (p->keypath == NULL)
 		return;
 	bare = TRUE;
+
 	if (p->keypath)
 		oldpath = p->keypath;
-	i = String_Length(oldpath) - 1;
-	while (--i)
+
+	i = String_Length(oldpath);
+	if (i)
 	{
-		if (bare)
+		if (oldpath[--i] == '.')
+			--i;
+		while (i--)
 		{
-			if (oldpath[i] == '.')
-				break;
-			if (oldpath[i] == '\"')
-				bare = FALSE;
+			if (bare)
+			{
+				if (oldpath[i] == '.')
+					break;
+				if (oldpath[i] == '\"')
+					bare = FALSE;
+			}
+			else
+			{
+				if (oldpath[i] == '\"')
+					bare = TRUE;
+			}
 		}
-		else
-		{
-			if (oldpath[i] == '\"')
-				bare = TRUE;
-		}
+		++i;
 	}
 	p->keypath = (i == 0 ? NULL : String_Sub(oldpath, 0, i));
+
 	if (oldpath)
 		String_Delete(&oldpath);
 }
@@ -363,7 +372,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline &&
+	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == '=')
 	{
@@ -458,7 +467,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
-	if (multiline &&
+	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == '=')
 	{

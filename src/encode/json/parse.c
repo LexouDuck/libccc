@@ -181,8 +181,8 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 {
 	t_utf8 const* input_ptr = &p->content[p->offset] + 1;
 	t_utf8 const* input_end = &p->content[p->offset] + 1;
-	t_utf8*	output_ptr = NULL;
 	t_utf8*	output = NULL;
+	t_size	offset;
 	t_size	alloc_length;
 	t_size	skipped_bytes;
 	t_utf32	c;
@@ -209,11 +209,11 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 			t_sint sequence_chars = 0;
 			switch (c)
 			{
-				case 'u': 					sequence_chars += 4;	break;
-				case 'U': if (!p->strict)	sequence_chars += 8;	break;
-				case 'x': if (!p->strict)	sequence_chars += 2;	break;
+				case 'u': 					sequence_chars = 4;	skipped_bytes += (2 + sequence_chars - 2);	break;
+				case 'U': if (!p->strict)	sequence_chars = 8;	skipped_bytes += (2 + sequence_chars - 4);	break;
+				case 'x': if (!p->strict)	sequence_chars = 2;	skipped_bytes += (2 + sequence_chars - 1);	break;
+				default:					sequence_chars = 0;	skipped_bytes += (2 + sequence_chars - 1);
 			}
-			skipped_bytes++;
 			input_end++;
 			for (t_sint i = 1; i <= sequence_chars; ++i)
 			{
@@ -223,8 +223,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						"must be followed by %i hexadecimal digit chars, instead found \"%.*s\"",
 						c, sequence_chars, sequence_chars + 2, input_end - 1)
 			}
-			skipped_bytes	+= sequence_chars;
-			input_end		+= sequence_chars;
+			input_end += sequence_chars;
 		}
 		input_end++;
 	}
@@ -244,7 +243,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 		output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
 		if (output == NULL)
 			PARSINGERROR_JSON("Could not parse string: Allocation failure")
-		output_ptr = output;
+		offset = 0;
 		// loop through the string literal
 		while (input_ptr < input_end)
 		{
@@ -255,32 +254,37 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 					PARSINGERROR_JSON("Could not parse string: Unexpected end of input within string escape sequence")
 				switch (input_ptr[1])
 				{
-					case 'b':	*output_ptr++ = '\b';	break;
-					case 't':	*output_ptr++ = '\t';	break;
-					case 'n':	*output_ptr++ = '\n';	break;
-					case 'f':	*output_ptr++ = '\f';	break;
-					case 'r':	*output_ptr++ = '\r';	break;
+					case 'b':	output[offset++] = '\b';	break;
+					case 't':	output[offset++] = '\t';	break;
+					case 'n':	output[offset++] = '\n';	break;
+					case 'f':	output[offset++] = '\f';	break;
+					case 'r':	output[offset++] = '\r';	break;
 					case '\"':
 					case '\\':
 					case '/':
-						*output_ptr++ = input_ptr[1];
+						output[offset++] = input_ptr[1];
 						break;
 					case 'u': // UTF-16 literal
 						c = '\0';
 						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-						output_ptr += UTF32_ToUTF8(output_ptr, c);
+						if (c < UTF8_1BYTE)			{ if (offset + 1 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (1-byte char)") }
+						else if (c < UTF8_2BYTE)	{ if (offset + 2 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (2-byte char)") }
+						else if (c < UTF8_3BYTE)	{ if (offset + 3 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (3-byte char)") }
+						else if (c <= UTF8_4BYTE)	{ if (offset + 4 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (4-byte char)") }
+						else						{ PARSINGERROR_JSON("Could not parse string: Illegal unicode char encountered") }
+						offset += UTF32_ToUTF8(output + offset, c);
 						break;
 					default: // TODO non-strict escape sequence handling
 						PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
 				}
 				input_ptr += sequence_length;
 			}
-			else *output_ptr++ = *input_ptr++;
+			else output[offset++] = *input_ptr++;
 		}
 		// zero terminate the output
-		*output_ptr = '\0';
+		output[offset] = '\0';
 	}
 	item->type = DYNAMICTYPE_STRING;
 	item->value.string = output;
@@ -649,6 +653,7 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	return (p->offset);
 }
 
 
