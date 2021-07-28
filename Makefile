@@ -57,8 +57,11 @@ CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) -MMD -fstrict-aliasing \
 #	-fsanitize=address
 #	-fsanitize=thread
 #	-fanalyzer
-CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 -fsanitize=address # -D__NOSTD__=1
+CFLAGS_DEBUG = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
 CFLAGS_RELEASE = -O3
+ifneq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+	CFLAGS_DEBUG += -fsanitize=address
+endif
 #	-flto
 CFLAGS_OS = _
 CFLAGS_OS_WIN   = -D__USE_MINGW_ANSI_STDIO=1

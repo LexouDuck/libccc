@@ -653,6 +653,7 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	return (p->offset);
 }
 
 
