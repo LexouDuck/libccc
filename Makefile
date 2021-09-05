@@ -660,12 +660,36 @@ doc:
 #          Linting operations         #
 #######################################
 
-# These rules run a linter on all source files,
-# giving useful additionnal warnings concerning the code
+LINTDIR = ./lint/
+# define lint ouput files list from source list
+LINT = ${SRCS:%.c=$(LINTDIR)%.txt}
 
-lint:
+$(LINTDIR)%.txt: $(SRCDIR)%.c
+	@mkdir -p $(@D)
+	@printf "Linting file: "$@" -> "
+	@$(CC) $(filter-out -MMD,$(CFLAGS)) -c $< -I$(HDRDIR) 2> $@
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+# These rules run a linter on all source files,
+# giving useful additional warnings concerning the code
+ifeq (gcc,$(findstring gcc,$(CC)))
+lint: CFLAGS += -fanalyzer
+else ifeq (clang,$(findstring clang,$(CC)))
+lint: CFLAGS += --analyze -Xanalyzer -analyzer-output=text
+else
+$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
+endif
+lint: MODE = debug
+lint: $(LINT)
+	@find $(LINTDIR) -size 0 -print -delete
+	@echo "Linting finished."
+
+lclean:
+	@printf "Deleting "$(LINTDIR)" folder...\n"
+	@rm -rf $(LINTDIR)
+
 # CCPcheck: http://cppcheck.sourceforge.net/
-	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
+#	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
 		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
