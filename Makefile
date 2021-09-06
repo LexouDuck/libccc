@@ -29,6 +29,7 @@ BINDIR = ./bin/
 LOGDIR = ./log/
 DISTDIR = ./dist/
 LINTDIR = ./lint/
+TEMPDIR = ./temp/
 
 
 
@@ -426,6 +427,10 @@ debug: $(NAME_STATIC) $(NAME_DYNAMIC)
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME_STATIC) $(NAME_DYNAMIC)
+	@mkdir -p           $(BINDIR)$(OSMODE)/static/
+	@cp $(NAME_STATIC)  $(BINDIR)$(OSMODE)/static/
+	@mkdir -p           $(BINDIR)$(OSMODE)/dynamic/
+	@cp $(NAME_DYNAMIC) $(BINDIR)$(OSMODE)/dynamic/
 
 
 
@@ -437,22 +442,25 @@ init:
 
 # This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release
-	@rm -f $(DISTDIR)*
 	@mkdir -p $(DISTDIR)
-	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=static
+	@-$(MAKE) -s dist-version OSMODE=win32
+	@-$(MAKE) -s dist-version OSMODE=win64
+	@-$(MAKE) -s dist-version OSMODE=linux
+	@-$(MAKE) -s dist-version OSMODE=macos
 
 # This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
 dist-version:
-	@printf "Preparing ZIP: "
-	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
-	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
+ifneq ($(wildcard $(BINDIR)$(OSMODE)/*),)
+	@printf "Preparing .zip archive: "
+else
+	$(error Cannot produce distributable archive for target "$(OSMODE)")
+endif
+	@mkdir -p                   $(NAME)-$(VERSION)
+	@cp -r $(BINDIR)$(OSMODE)/* $(NAME)-$(VERSION)
+	@printf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip"\n"
+	@rm -rf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip
+	@zip -r $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip $(NAME)-$(VERSION)
+	@rm -rf $(NAME)-$(VERSION)
 	@printf $(C_GREEN)"  OK!"$(C_RESET)"\n"
 
 
@@ -468,18 +476,18 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 # This rule builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
-	@mkdir -p $(BINDIR)static/$(OSMODE)/
+	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
+	@cp -f $(NAME_STATIC)	$(BINDIR)$(OSMODE)/static/
 
 
 
 # This rule builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
-	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
+	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
@@ -487,8 +495,8 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
-	@cp -f $(NAME).def	$(BINDIR)dynamic/$(OSMODE)/
-	@cp -f $(NAME).lib	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
+	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
 	@printf \
 	"Compiling dylib: "$(NAME_DYNAMIC)" -> " ; \
@@ -499,7 +507,7 @@ else ifeq ($(OSMODE),linux)
 	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@cp -f $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME_DYNAMIC)	$(BINDIR)$(OSMODE)/dynamic/
 
 
 
@@ -615,7 +623,7 @@ $(NAME_TEST)-helloworld: debug
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test-helloworld: $(NAME_TEST)_helloworld
+test-helloworld: $(NAME_TEST)-helloworld
 	@ ./$(NAME_TEST)_helloworld $(ARGS)
 	@rm $(NAME_TEST)_helloworld
 
@@ -627,7 +635,7 @@ $(NAME_TEST)-foreach: debug
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test-foreach: $(NAME_TEST)_foreach
+test-foreach: $(NAME_TEST)-foreach
 	@ ./$(NAME_TEST)_foreach $(ARGS)
 	@rm $(NAME_TEST)_foreach
 
