@@ -3,11 +3,12 @@
 #          Project variables          #
 #######################################
 
+VERSION = 0.8
+
 # Output file names
 NAME      = libccc
 NAME_STATIC  = $(NAME).a
 NAME_DYNAMIC = $(NAME)$(DYNAMICLIB_FILE_EXT)
-NAME_TEST = libccc_test
 # Build names with filetype suffixes
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -16,8 +17,7 @@ endif
 ifeq ($(LIBMODE),dynamic)
 	NAME_LIBMODE = $(NAME_DYNAMIC)
 endif
-
-VERSION = 0.8
+NAME_TEST = libccc-test
 
 # Directories that this Makefile will use
 HDRDIR = ./hdr/
@@ -28,6 +28,7 @@ DOCDIR = ./doc/
 BINDIR = ./bin/
 LOGDIR = ./log/
 DISTDIR = ./dist/
+LINTDIR = ./lint/
 
 
 
@@ -448,7 +449,7 @@ dist: release
 	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=static
 
 # This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
-dist_version:
+dist-version:
 	@printf "Preparing ZIP: "
 	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
 	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
@@ -590,23 +591,23 @@ $(NAME_TEST): debug $(TEST_OBJS)
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
-test_log: $(NAME_TEST)
+test-log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
 	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)libccc_test.log
 
 
 
-test_predef:
+test-predef:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
 	@rm -f						$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
 	@./$(TEST_DIR)_predef.sh >>	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
 
-test_errno:
+test-errno:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
 	@rm -f						$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 	@./$(TEST_DIR)_errno.sh >>	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
 
-$(NAME_TEST)_helloworld: debug
+$(NAME_TEST)-helloworld: debug
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_helloworld \
@@ -614,11 +615,11 @@ $(NAME_TEST)_helloworld: debug
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test_helloworld: $(NAME_TEST)_helloworld
+test-helloworld: $(NAME_TEST)_helloworld
 	@ ./$(NAME_TEST)_helloworld $(ARGS)
 	@rm $(NAME_TEST)_helloworld
 
-$(NAME_TEST)_foreach: debug
+$(NAME_TEST)-foreach: debug
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(CFLAGS) -I$(HDRDIR) \
 	-o $(NAME_TEST)_foreach \
@@ -626,7 +627,7 @@ $(NAME_TEST)_foreach: debug
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test_foreach: $(NAME_TEST)_foreach
+test-foreach: $(NAME_TEST)_foreach
 	@ ./$(NAME_TEST)_foreach $(ARGS)
 	@rm $(NAME_TEST)_foreach
 
@@ -660,11 +661,10 @@ doc:
 #          Linting operations         #
 #######################################
 
-LINTDIR = ./lint/
 # define lint ouput files list from source list
-LINT = ${SRCS:%.c=$(LINTDIR)%.txt}
+LINT = ${SRCS:%.c=$(LINTDIR)%.html}
 
-$(LINTDIR)%.txt: $(SRCDIR)%.c
+$(LINTDIR)%.html: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Linting file: "$@" -> "
 	@$(CC) $(filter-out -MMD,$(CFLAGS)) -c $< -I$(HDRDIR) 2> $@
@@ -675,7 +675,7 @@ $(LINTDIR)%.txt: $(SRCDIR)%.c
 ifeq (gcc,$(findstring gcc,$(CC)))
 lint: CFLAGS += -fanalyzer
 else ifeq (clang,$(findstring clang,$(CC)))
-lint: CFLAGS += --analyze -Xanalyzer -analyzer-output=text
+lint: CFLAGS += --analyze --analyzer-output text
 else
 $(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
 endif
@@ -684,20 +684,7 @@ lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete
 	@echo "Linting finished."
 
-lclean:
-	@printf "Deleting "$(LINTDIR)" folder...\n"
-	@rm -rf $(LINTDIR)
 
-# CCPcheck: http://cppcheck.sourceforge.net/
-#	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
-		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
-		--suppress=variableScope \
-		--suppress=unusedFunction \
-		--suppress=memleak \
-		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
-		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
-# splint: http://splint.org/
-#	@splint
 
 PCLP				= /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/pclp32.exe
 PCLP_SETUP =python3.8 /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/config/pclp_config.py
@@ -707,7 +694,7 @@ PCLP_LOG			= pclint_log.txt
 PCLP_CONFIG			= pclint_config
 PCLP_PROJECT		= pclint_project
 
-pclint_setup:
+lint-pclint-setup:
 	$(PCLP_SETUP) \
 		--compiler=$(CC) \
 		--compiler-bin=/usr/bin/$(CC) \
@@ -725,13 +712,26 @@ pclint_setup:
 		--generate-project-config
 	@rm $(PCLP_IMPOSTER_LOG)
 
-pclint:
 # pc-lint: https://gimpel.com/
+lint-pclint:
 	@printf "Running linter: "
 	@$(PCLP) -width"(120,4)" -format="%(%f:%l%):\n[%n]->%t: %m" -w2 \
 		-e438 -e534 -e641 -e655 -e695 -e835 -e2445 \
 		$(PCLP_CONFIG).lnt $(PCLP_PROJECT).lnt > $(PCLP_LOG)
 	@printf $(C_GREEN)"SUCCESS"$(C_RESET)": output file is "$(PCLP_LOG)"\n"
+
+# splint: http://splint.org/
+#	@splint
+
+# CCPcheck: http://cppcheck.sourceforge.net/
+lint-cppcheck:
+	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
+		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
+		--suppress=variableScope \
+		--suppress=unusedFunction \
+		--suppress=memleak \
+		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
+		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
 
 
 
@@ -764,35 +764,35 @@ clean:
 	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
-fclean: clean
+clean-exe:
+	@rm -f $(NAME).*
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
 	@rm -f $(NAME_STATIC)
 	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
 	@rm -f $(NAME_DYNAMIC)
-	@rm -f $(NAME).*
 	@printf "Deleting program: "$(NAME_TEST)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 
-rclean: fclean
+clean-obj: clean-full
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
-aclean: rclean logclean
+clean-bin:
 	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
 
-logclean:
+clean-logs:
 	@printf "Deleting "$(LOGDIR)" folder...\n"
 	@rm -rf $(LOGDIR)
 
-tclean:
-	@printf "Deleting test .o files...\n"
-	@rm -f $(TEST_OBJS)
-	@printf "Deleting test .d files...\n"
-	@rm -f $(TEST_DEPS)
+clean-lint:
+	@printf "Deleting "$(LINTDIR)" folder...\n"
+	@rm -rf $(LINTDIR)
 
-re: fclean all
+clean-full: clean clean-test
+
+re: clean-full all
 
 
 
@@ -800,27 +800,31 @@ re: fclean all
 #        Meta makefile rules          #
 #######################################
 
-# This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
+# This line ensures the makefile won't conflict with files named 'clean', 'clean-full', etc
 .PHONY: \
 	all				\
 	debug			\
 	release			\
 	init			\
+	install			\
+	uninstall		\
 	dist			\
-	dist_version	\
-	test			\
-	test_predef		\
-	test_errno		\
-	test_helloworld	\
-	test_foreach	\
+	dist-version	\
 	doc				\
+	test			\
+	test-predef		\
+	test-errno		\
+	test-helloworld	\
+	test-foreach	\
 	lint			\
 	preprocessed	\
 	clean			\
-	fclean			\
-	rclean			\
-	aclean			\
-	logclean		\
+	clean-exe		\
+	clean-obj		\
+	clean-bin		\
+	clean-logs		\
+	clean-lint		\
+	clean-full		\
 	re				\
 
 # The following line is for Makefile GCC dependency file handling (.d files)
