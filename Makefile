@@ -8,7 +8,7 @@ VERSION = 0.8
 # Output file names
 NAME      = libccc
 NAME_STATIC  = $(NAME).a
-NAME_DYNAMIC = $(NAME)$(DYNAMICLIB_FILE_EXT)
+NAME_DYNAMIC = $(NAME).$(DYNAMICLIB_FILE_EXT)
 # Build names with filetype suffixes
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -131,22 +131,22 @@ else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
-	DYNAMICLIB_FILE_EXT=.dll
+	DYNAMICLIB_FILE_EXT=dll
 else ifeq ($(OSMODE),win64)
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
-	DYNAMICLIB_FILE_EXT=.dll
+	DYNAMICLIB_FILE_EXT=dll
 else ifeq ($(OSMODE),linux)
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
 	LDFLAGS_OS = $(LDFLAGS_OS_LINUX)
-	DYNAMICLIB_FILE_EXT=.so
+	DYNAMICLIB_FILE_EXT=so
 else ifeq ($(OSMODE),macos)
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
 	LDFLAGS_OS = $(LDFLAGS_OS_MACOS)
-	DYNAMICLIB_FILE_EXT=.dylib
+	DYNAMICLIB_FILE_EXT=dylib
 endif
 
 
@@ -431,6 +431,21 @@ release: $(NAME_STATIC) $(NAME_DYNAMIC)
 	@cp $(NAME_STATIC)  $(BINDIR)$(OSMODE)/static/
 	@mkdir -p           $(BINDIR)$(OSMODE)/dynamic/
 	@cp $(NAME_DYNAMIC) $(BINDIR)$(OSMODE)/dynamic/
+
+
+
+INSTALLDIR=/usr/local/lib/
+# This rule installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
+install:
+	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)               $(INSTALLDIR)$(NAME).$(VERSION).a
+	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)             $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT)
+	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).a                      $(INSTALLDIR)$(NAME).a
+	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT) $(INSTALLDIR)$(NAME).$(DYNAMICLIB_FILE_EXT)
+
+# This rule removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
+uninstall:
+	@printf "Removing the following files:\n"
+	@find $(INSTALLDIR) -name "$(NAME).*" -print -delete
 
 
 
