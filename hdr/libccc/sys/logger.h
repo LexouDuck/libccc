@@ -178,8 +178,8 @@ t_char*		Logger_GetTimestamp(t_time utc);
 _FORMAT(printf, 5, 6)
 e_cccerror 	Log(s_logger const* logger,
 	t_bool is_verbose_only,
+	t_bool use_errno,
 	t_bool is_error,
-	t_bool use_errno_perror,
 	t_char const* format_str, ...);
 #define c_log_		Log
 

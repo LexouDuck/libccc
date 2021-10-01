@@ -126,7 +126,7 @@ HEADER_CPP
 **	Platform macro to check if the current compiler is microsoft-like
 */
 //!@{
-#if (defined(_MSC_VER) || defined(SWIG))
+#if (defined(_MSC_VER))
 #define __MSVC__	1
 #endif
 //!@}
