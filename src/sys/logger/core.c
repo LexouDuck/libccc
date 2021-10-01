@@ -201,3 +201,26 @@ e_cccerror	Log_VA(s_logger const* logger,
 
 	return (OK);
 }
+
+
+
+e_cccerror 	Log(s_logger const* logger,
+	t_bool verbose_only,
+	t_bool use_errno,
+	t_bool is_error,
+	t_char const* format_str, ...)
+{
+	e_cccerror result;
+	va_list args;
+	va_start(args, format_str);
+	result = Log_VA(logger,
+		verbose_only,
+		use_errno,
+		is_error,
+		NULL,
+		NULL,
+		format_str,
+		args);
+	va_end(args);
+	return (result);
+}
