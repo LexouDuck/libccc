@@ -27,7 +27,6 @@ static void	Fold_Into_String(t_char* dest, t_char const** strarr, t_char const* 
 	int sep_i;
 
 	i = 0;
-	sep_i = 0;
 	words = -1;
 	while (strarr[++words])
 	{

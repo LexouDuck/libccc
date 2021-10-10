@@ -34,7 +34,7 @@ t_time		Time_Now(void)
 
 s_date		Time_ToDate_UTC(t_time const value)
 {
-	s_date result = DATE_NULL;
+	s_date result;
 	struct tm tm = {0};
 
 #ifdef _WIN32
@@ -48,7 +48,7 @@ s_date		Time_ToDate_UTC(t_time const value)
 
 s_date		Time_ToDate_LocalTime(t_time const value)
 {
-	s_date result = DATE_NULL;
+	s_date result;
 	struct tm tm = {0};
 
 #ifdef _WIN32
