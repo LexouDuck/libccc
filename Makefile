@@ -1,3 +1,6 @@
+# the two following lines are to stay at the very top of this Makefile and never move
+MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
 #######################################
 #          Project variables          #
@@ -415,15 +418,18 @@ DEPS = ${OBJS:.o=.d}
 #           Main build rules          #
 #######################################
 
-# This is the default build rule, called when doing 'make' without args
+.PHONY:\
+all # Builds all targets (this is the default rule)
 all: debug
 
-# This rule builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
+.PHONY:\
+debug # Builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
 debug: MODE = debug
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(NAME_STATIC) $(NAME_DYNAMIC)
 
-# This rule fills the ./bin folder with necessary files for release distribution
+.PHONY:\
+release # Fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME_STATIC) $(NAME_DYNAMIC)
@@ -434,28 +440,33 @@ release: $(NAME_STATIC) $(NAME_DYNAMIC)
 
 
 
+.PHONY:\
+init # Should be executed once, after cloning the repo
+init:
+	@git config core.hooksPath ./.github/hooks
+
+
+
 INSTALLDIR=/usr/local/lib/
-# This rule installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
+
+.PHONY:\
+install # Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
 install:
 	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)               $(INSTALLDIR)$(NAME).$(VERSION).a
 	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)             $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT)
 	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).a                      $(INSTALLDIR)$(NAME).a
 	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT) $(INSTALLDIR)$(NAME).$(DYNAMICLIB_FILE_EXT)
 
-# This rule removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
+.PHONY:\
+uninstall # Removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
 uninstall:
 	@printf "Removing the following files:\n"
 	@find $(INSTALLDIR) -name "$(NAME).*" -print -delete
 
 
 
-# This rule should be executed once, after cloning the repo
-init:
-	@git config core.hooksPath ./.github/hooks
-
-
-
-# This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
+.PHONY:\
+dist # Prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: release
 	@mkdir -p $(DISTDIR)
 	@-$(MAKE) -s dist-version OSMODE=win32
@@ -463,7 +474,8 @@ dist: release
 	@-$(MAKE) -s dist-version OSMODE=linux
 	@-$(MAKE) -s dist-version OSMODE=macos
 
-# This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
+.PHONY:\
+dist-version # Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
 dist-version:
 ifneq ($(wildcard $(BINDIR)$(OSMODE)/*),)
 	@printf "Preparing .zip archive: "
@@ -480,7 +492,7 @@ endif
 
 
 
-# This rule compiles object files from source files
+# Compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
@@ -489,7 +501,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 
 
-# This rule builds the static library file to link against, in the root directory
+# Builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling library: "$@" -> "
@@ -500,7 +512,7 @@ $(NAME_STATIC): $(OBJS)
 
 
 
-# This rule builds the dynamically-linked library files for the current target platform
+# Builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
@@ -595,7 +607,7 @@ endif
 
 
 
-# This rule compiles object files from source files
+# Compiles object files from source files
 $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
@@ -604,16 +616,19 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 
 
 
-# This rule builds the testing/CI program
+# Builds the testing/CI program
 $(NAME_TEST): debug $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) $(TEST_LIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-# This rule builds and runs the test executable
+.PHONY:\
+test # Builds and runs the test suite program with the given 'ARGS'
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
+.PHONY:\
+test-log # Builds and runs the test suite program with the given 'ARGS', logging all results to files
 test-log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
 	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)libccc_test.log
@@ -662,7 +677,8 @@ test-foreach: $(NAME_TEST)-foreach
 
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
-# This rule generates documentation for libccc
+.PHONY:\
+doc # Generates documentation for libccc
 doc:
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
@@ -693,16 +709,16 @@ $(LINTDIR)%.html: $(SRCDIR)%.c
 	@$(CC) $(filter-out -MMD,$(CFLAGS)) -c $< -I$(HDRDIR) 2> $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-# These rules run a linter on all source files,
-# giving useful additional warnings concerning the code
+.PHONY:\
+lint # Runs a linter on all source files, giving useful additional warnings
+lint: MODE = debug
 ifeq (gcc,$(findstring gcc,$(CC)))
 lint: CFLAGS += -fanalyzer
 else ifeq (clang,$(findstring clang,$(CC)))
-lint: CFLAGS += --analyze --analyzer-output text
+lint: CFLAGS += -Wthread-safety --analyze --analyzer-output text
 else
 $(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
 endif
-lint: MODE = debug
 lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete
 	@echo "Linting finished."
@@ -762,15 +778,17 @@ lint-cppcheck:
 #       Preprocessing operations      #
 #######################################
 
-PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
-
-preprocessed: all $(PREPROCESSED)
-	@printf "Outputting preprocessed code...\n"
+PREPROCESSED = ${SRCS:%.c=$(OBJDIR)%.c}
 
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) $(CFLAGS) -E $< -o $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+.PHONY:\
+preprocessed # Preprocesses all source files and stores them in the obj folder
+preprocessed: all $(PREPROCESSED)
+	@printf "Outputting preprocessed code...\n"
 
 
 
@@ -778,6 +796,8 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 #        File deletion rules          #
 #######################################
 
+.PHONY:\
+clean # Deletes all intermediary build files
 clean:
 	@printf "Deleting all .o files...\n"
 	@rm -f $(OBJS)
@@ -787,6 +807,8 @@ clean:
 	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
+.PHONY:\
+clean-exe # Deletes any libraries/executables
 clean-exe:
 	@rm -f $(NAME).*
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
@@ -797,24 +819,36 @@ clean-exe:
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 
+.PHONY:\
+clean-obj # Deletes the ./obj folder
 clean-obj: clean-full
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
+.PHONY:\
+clean-bin # Deletes the ./bin folder
 clean-bin:
 	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
 
+.PHONY:\
+clean-logs # Deletes the ./log folder
 clean-logs:
 	@printf "Deleting "$(LOGDIR)" folder...\n"
 	@rm -rf $(LOGDIR)
 
+.PHONY:\
+clean-lint # Deletes the ./lint folder
 clean-lint:
 	@printf "Deleting "$(LINTDIR)" folder...\n"
 	@rm -rf $(LINTDIR)
 
+.PHONY:\
+clean-full # Deletes every generated file
 clean-full: clean clean-test
 
+.PHONY:\
+re # Deletes all generated files and rebuilds all
 re: clean-full all
 
 
@@ -823,32 +857,27 @@ re: clean-full all
 #        Meta makefile rules          #
 #######################################
 
-# This line ensures the makefile won't conflict with files named 'clean', 'clean-full', etc
-.PHONY: \
-	all				\
-	debug			\
-	release			\
-	init			\
-	install			\
-	uninstall		\
-	dist			\
-	dist-version	\
-	doc				\
-	test			\
-	test-predef		\
-	test-errno		\
-	test-helloworld	\
-	test-foreach	\
-	lint			\
-	preprocessed	\
-	clean			\
-	clean-exe		\
-	clean-obj		\
-	clean-bin		\
-	clean-logs		\
-	clean-lint		\
-	clean-full		\
-	re				\
+
+
+.PHONY:\
+help # Displays list of "PHONY" targets, with descriptions                                                                
+help:                                                                                                                    
+	@cat $(MKFILE_PATH) \
+		| awk -v phony=0 '{ if(phony) { sub(/#/,"\t-"); phony=0; print } else if (/^\.PHONY:\\/) {phony=1} }' \
+		| expand -t20
+
+
+
+.PHONY:\
+list # Displays list of all available targets in this Makefile, sorted in alphabetical order
+list:
+	@LC_ALL=C $(MAKE) -pRrq -f $(MKFILE_PATH) : 2>/dev/null \
+		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' \
+		| sort \
+		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+	# see https://stackoverflow.com/questions/4219255/how-do-you-get-the-list-of-targets-in-a-makefile
+
+
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPS}
