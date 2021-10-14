@@ -56,7 +56,7 @@ t_bool	KVT_Get_IsBareKeyChar(t_utf32 c)
 s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 {
 	va_list args;
-	t_char*	str;
+	t_char*	str = NULL;
 	t_char*	key = NULL;
 	s_kvt*	result = NULL;
 	t_bool	bracket;
@@ -171,13 +171,13 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 		PARSE_KVTPATH_WHITESPACE()
 */
 	}
+	if (str) { String_Delete(&str); }
+	if (key) { String_Delete(&key); }
 	return (result);
 
 failure:
-	if (str)
-		String_Delete(&str);
-	if (key)
-		String_Delete(&key);
+	if (str) { String_Delete(&str); }
+	if (key) { String_Delete(&key); }
 	return (NULL);
 }
 
