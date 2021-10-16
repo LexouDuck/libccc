@@ -41,7 +41,6 @@ int		gnl_read(t_fd const fd, t_char** a_newline)
 		if (end_of_buffer)
 		{
 			buf_pos = 0;
-			end_of_buffer = FALSE;
 			Memory_Clear(buffer, IO_BUFFER_SIZE);
 			status = read(fd, buffer, IO_BUFFER_SIZE);
 			if (status < 0)
@@ -51,6 +50,7 @@ int		gnl_read(t_fd const fd, t_char** a_newline)
 			}
 			if (status == 0)
 				return (GNL_END);
+			end_of_buffer = FALSE;
 		}
 		temp = String_Find_Char(buffer + buf_pos, '\n');
 		if (temp == NULL)
