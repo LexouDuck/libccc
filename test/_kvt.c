@@ -9,12 +9,23 @@
 #include "libccc/encode/json.h"
 #include "libccc/encode/toml.h"
 
+#define AMOUNT 1000
 
-
-int main(int argc, char** argv)
+int main()//(int argc, char** argv)
 {
 	t_char* json = IO_Read_Filepath_Text("./test/_kvt_test.json");
-	s_kvt* item = JSON_FromString(json);
+	for (t_uint i = 0; i < AMOUNT; ++i)
+	{
+		s_kvt* kvt = JSON_FromString(json);
+		t_char* str = JSON_ToString(kvt);
+		IO_Output_Line((AMOUNT == 1) ? str : UInt_ToString(i));
+		KVT_Delete(kvt);
+		String_Delete(&str);
+	}
+	String_Delete(&json);
+	return (OK);
+}
+
 /*
 	s_entity temp_entity = NULL_ENTITY;
 	status = Avial_Create_Entity_KWARGS(&worker, &temp_entity,
@@ -30,9 +41,3 @@ int main(int argc, char** argv)
 	status = Avial_Store_Entity(&worker, temp_entity, auth, value, NULL);
 	if (status) { return (status); }
 */
-	t_char* str = JSON_ToString(item);
-	IO_Output_Line(str);
-	String_Delete(&str);
-	String_Delete(&json);
-	return (OK);
-}

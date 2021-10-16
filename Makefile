@@ -496,7 +496,7 @@ endif
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
+	@$(CC) -o $@ $(CFLAGS) -MMD -I$(HDRDIR) -c $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
@@ -617,7 +617,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 
 
 # Builds the testing/CI program
-$(NAME_TEST): debug $(TEST_OBJS)
+$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) $(TEST_LIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
@@ -635,39 +635,73 @@ test-log: $(NAME_TEST)
 
 
 
+.PHONY:\
+test-predef # Gets the list of all predefined macros for the current compiler/flags/env/arch
 test-predef:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
-	@rm -f						$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
-	@./$(TEST_DIR)_predef.sh >>	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@./$(TEST_DIR)_predef.sh >	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@printf " => File saved to: $(LOGDIR)env/$(OSMODE)/predef_$(CC).c""\n"
 
+.PHONY:\
+test-errno # Gets the list of all 'errno' values for the current compiler/flags/env/arch
 test-errno:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
-	@rm -f						$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
-	@./$(TEST_DIR)_errno.sh >>	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@./$(TEST_DIR)_errno.sh >	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@printf " => File saved to: $(LOGDIR)env/$(OSMODE)/errno_$(CC).c""\n"
 
-$(NAME_TEST)-helloworld: debug
+
+
+NAME_TEST_HELLOWORLD = libccc-test_helloworld
+SRCS_TEST_HELLOWORLD = $(TEST_DIR)_helloworld.c
+
+.PHONY:\
+test-helloworld # Builds and runs a simple 'hello world' test program
+test-helloworld: $(NAME_TEST_HELLOWORLD)
+	@ ./$(NAME_TEST_HELLOWORLD) $(ARGS)
+	@rm $(NAME_TEST_HELLOWORLD)
+
+$(NAME_TEST_HELLOWORLD): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_HELLOWORLD)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(CFLAGS) -I$(HDRDIR) \
-	-o $(NAME_TEST)_helloworld \
-		$(TEST_DIR)_helloworld.c \
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_HELLOWORLD) \
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test-helloworld: $(NAME_TEST)-helloworld
-	@ ./$(NAME_TEST)_helloworld $(ARGS)
-	@rm $(NAME_TEST)_helloworld
 
-$(NAME_TEST)-foreach: debug
+
+NAME_TEST_FOREACH = libccc-test_foreach
+SRCS_TEST_FOREACH = $(TEST_DIR)_foreach.c
+
+.PHONY:\
+test-foreach # Builds and runs a simple foreach() macro test program
+test-foreach: $(NAME_TEST_FOREACH)
+	@ ./$(NAME_TEST_FOREACH) $(ARGS)
+	@rm $(NAME_TEST_FOREACH)
+
+$(NAME_TEST_FOREACH): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_FOREACH)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(CFLAGS) -I$(HDRDIR) \
-	-o $(NAME_TEST)_foreach \
-		$(TEST_DIR)_foreach.c \
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_FOREACH) \
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test-foreach: $(NAME_TEST)-foreach
-	@ ./$(NAME_TEST)_foreach $(ARGS)
-	@rm $(NAME_TEST)_foreach
+
+
+NAME_TEST_KVT = libccc-test_kvt
+SRCS_TEST_KVT = $(TEST_DIR)_kvt.c
+
+.PHONY:\
+test-kvt # Builds and runs a KVT (json,toml,yaml,xml) print/parse test program
+test-kvt: $(NAME_TEST_KVT)
+	@ ./$(NAME_TEST_KVT) $(ARGS)
+	@rm $(NAME_TEST_KVT)
+
+$(NAME_TEST_KVT): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_KVT)
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_KVT) \
+		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
@@ -706,7 +740,7 @@ LINT = ${SRCS:%.c=$(LINTDIR)%.html}
 $(LINTDIR)%.html: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Linting file: "$@" -> "
-	@$(CC) $(filter-out -MMD,$(CFLAGS)) -c $< -I$(HDRDIR) 2> $@
+	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) 2> $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 .PHONY:\
@@ -782,7 +816,7 @@ PREPROCESSED = ${SRCS:%.c=$(OBJDIR)%.c}
 
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
-	@$(CC) $(CFLAGS) -E $< -o $@
+	@$(CC) -o $@ $(CFLAGS) -E $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 .PHONY:\
