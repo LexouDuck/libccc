@@ -63,8 +63,12 @@ HEADER_CPP
 
 //! @see libccc/char.h
 //!@{
-#define SF_CHAR	"%c"
-#define SF_UTF8	"%c"
+#define SF_CHAR		"%c"
+#define SF_UTF8		"%c"
+#define SF_UTF16	"%lc"
+#define SF_UTF32	"%lc"
+#define SF_UTF16_CODE	"\\U%4.4X"
+#define SF_UTF32_CODE	"\\U%8.8X"
 //!@}
 
 //! @see libccc/int.h
