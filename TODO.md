@@ -54,3 +54,11 @@
 		- `%.5[.5s]` will show the first 5 chars of the 5 first strings
 	- specifier: fixed-point `%q` (and `%k` for hex), doing `%.5q` will print at most 5 digits after the decimal point
 	- specifier: data/memory bytes hex display: `%m`, doing `%.5m` will print at most 5 bytes of memory
+
+
+
+### Other stdlibs to take ideas from
+- https://github.com/oz123/awesome-c#game-programming
+- [libcork](https://libcork.io/), [git](https://github.com/dcreager/libcork)
+- [glib](https://docs.gtk.org/glib), [git](https://gitlab.gnome.org/GNOME/glib/)
+- [apr](https://apr.apache.org/), [git](https://svn.apache.org/viewvc/apr/apr/tags/1.7.0/)

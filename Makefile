@@ -855,7 +855,7 @@ clean-exe:
 
 .PHONY:\
 clean-obj # Deletes the ./obj folder
-clean-obj: clean-full
+clean-obj:
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
@@ -879,7 +879,7 @@ clean-lint:
 
 .PHONY:\
 clean-full # Deletes every generated file
-clean-full: clean clean-test
+clean-full: clean clean-exe
 
 .PHONY:\
 re # Deletes all generated files and rebuilds all
