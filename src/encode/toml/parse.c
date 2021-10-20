@@ -30,13 +30,13 @@ static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_TOML(...) \
-	{																						\
-		t_char* tmp_error;																	\
-		tmp_error = String_Format(__VA_ARGS__);												\
-		tmp_error = String_Prepend("\n"PARSINGERROR_TOML_MESSAGE" ", &tmp_error);			\
-		p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
-		goto failure;																		\
-	}																						\
+	{																							\
+		t_char* tmp_error;																		\
+		tmp_error = String_Format(__VA_ARGS__);													\
+		tmp_error = String_Prepend("\n"PARSINGERROR_TOML_MESSAGE" ", &tmp_error);				\
+		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		goto failure;																			\
+	}																							\
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \
@@ -274,7 +274,6 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 	t_utf8 const* input_end = NULL;
 	t_utf8* output_ptr = NULL;
 	t_utf8* output = NULL;
-	t_size alloc_length;
 	t_size skipped_bytes;
 	t_char stringtype = 0;
 	t_bool is_multiline = FALSE;
@@ -302,7 +301,6 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 		input_end += 2;
 	}
 	// calculate approximate size of the output (overestimate)
-	alloc_length = 0;
 	skipped_bytes = 0;
 	while ((t_size)(input_end - p->content) < p->length)
 	{
@@ -334,12 +332,12 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 	{
 		if ((input_end - input_ptr) == 0)
 			output = String_Duplicate("");
-		else skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
+		else String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
 	else
 	{
 		// This is how many bytes we need for the output, at most
-		alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
+		t_size	alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
 		output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
 		if (output == NULL)
 			PARSINGERROR_TOML("Could not parse string: Allocation failure")
@@ -939,7 +937,7 @@ t_bool	TOML_Parse_Lines(s_toml* item, s_toml_parse* p)
 				item->value.child = new_item;
 				current_item = new_item;
 			}
-			else
+			else if (current_item)
 			{	// add to the end and advance
 				current_item->next = new_item;
 				new_item->prev = current_item;

@@ -52,7 +52,7 @@ You can read the full contributing guidelines here:
 https://github.com/LexouDuck/libccc/blob/master/CONTRIBUTING.md
 "
 # Match the regular expression to the git commit message
-if [[ $FILE_CONTENT =~ $REGEX ]]; then
+if echo "$FILE_CONTENT" | grep -Eq "$REGEX" ; then
 	printf "$SUCCESS Commit message follows the proper format.\n"
 else
 	printf "$ERROR Bad commit message:\n$FILE_CONTENT\n$ERROR_MSG\n"

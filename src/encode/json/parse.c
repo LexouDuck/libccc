@@ -25,13 +25,13 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(...) \
-	{																						\
-		t_char* tmp_error;																	\
-		tmp_error = String_Format(__VA_ARGS__);												\
-		tmp_error = String_Prepend("\n"PARSINGERROR_JSON_MESSAGE" ", &tmp_error);			\
-		p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
-		goto failure;																		\
-	}																						\
+	{																							\
+		t_char* tmp_error;																		\
+		tmp_error = String_Format(__VA_ARGS__);													\
+		tmp_error = String_Prepend("\n"PARSINGERROR_JSON_MESSAGE" ", &tmp_error);				\
+		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		goto failure;																			\
+	}																							\
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \
@@ -183,7 +183,6 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	t_utf8 const* input_end = &p->content[p->offset] + 1;
 	t_utf8*	output = NULL;
 	t_size	offset;
-	t_size	alloc_length;
 	t_size	skipped_bytes;
 	t_utf32	c;
 
@@ -197,7 +196,6 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 			(p->content[p->offset] ? p->content[p->offset] : '\a'), p->content[p->offset])
 
 	// calculate approximate size of the output (overestimate)
-	alloc_length = 0;
 	skipped_bytes = 0;
 	while (((t_size)(input_end - p->content) < p->length) && (*input_end != '\"'))
 	{
@@ -212,7 +210,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 				case 'u': 					sequence_chars = 4;	skipped_bytes += (2 + sequence_chars - 2);	break;
 				case 'U': if (!p->strict)	sequence_chars = 8;	skipped_bytes += (2 + sequence_chars - 4);	break;
 				case 'x': if (!p->strict)	sequence_chars = 2;	skipped_bytes += (2 + sequence_chars - 1);	break;
-				default:					sequence_chars = 0;	skipped_bytes += (2 + sequence_chars - 1);
+				default:					sequence_chars = 0;	skipped_bytes += (2 + sequence_chars - 1);	break;
 			}
 			input_end++;
 			for (t_sint i = 1; i <= sequence_chars; ++i)
@@ -234,12 +232,12 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	{
 		if ((input_end - input_ptr) == 0)
 			output = String_Duplicate("");
-		else skipped_bytes = String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
+		else String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
 	else
 	{
 		// This is at most how much we need for the output
-		alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
+		t_size	alloc_length = (t_size)(input_end - &p->content[p->offset]) - skipped_bytes;
 		output = (t_utf8*)Memory_Allocate(alloc_length + sizeof(""));
 		if (output == NULL)
 			PARSINGERROR_JSON("Could not parse string: Allocation failure")
@@ -269,7 +267,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-						if (c < UTF8_1BYTE)			{ if (offset + 1 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (1-byte char)") }
+						else if (c < UTF8_1BYTE)	{ if (offset + 1 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (1-byte char)") }
 						else if (c < UTF8_2BYTE)	{ if (offset + 2 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (2-byte char)") }
 						else if (c < UTF8_3BYTE)	{ if (offset + 3 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (3-byte char)") }
 						else if (c <= UTF8_4BYTE)	{ if (offset + 4 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (4-byte char)") }

@@ -63,8 +63,23 @@ HEADER_CPP
 
 //! @see libccc/char.h
 //!@{
-#define SF_CHAR	"%c"
-#define SF_UTF8	"%c"
+#define SF_CHAR		CONCAT(SF_,LIBCONFIG_CHAR_NAME)
+#define SF_ASCII	"%c"
+#define SF_UTF8		"%c"
+#define SF_UTF16	"%lc"
+#define SF_UTF32	"%lc"
+#define SF_UTF16_CODE	"\\U%4.4X"
+#define SF_UTF32_CODE	"\\U%8.8X"
+//!@}
+
+//! @see libccc/string.h
+//!@{
+#define SF_STR			SF_STRING
+#define SF_STRING		CONCAT(SF_,LIBCONFIG_CHAR_NAME)
+#define SF_STRING_ASCII	"%s"
+#define SF_STRING_UTF8	"%s"
+#define SF_STRING_UTF16	"%ls"
+#define SF_STRING_UTF32	"%ls"
 //!@}
 
 //! @see libccc/int.h
@@ -144,12 +159,6 @@ HEADER_CPP
 //!@{
 #define SF_MEM(N)		SF_MEMORY(N)
 #define SF_MEMORY(N)	"%."#N"s"
-//!@}
-
-//! @see libccc/string.h
-//!@{
-#define SF_STR			SF_STRING
-#define SF_STRING		"%s"
 //!@}
 
 //! @see libccc/color.h

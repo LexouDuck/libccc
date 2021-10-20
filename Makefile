@@ -1,13 +1,17 @@
+# the two following lines are to stay at the very top of this Makefile and never move
+MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
 #######################################
 #          Project variables          #
 #######################################
 
+VERSION = 0.8
+
 # Output file names
 NAME      = libccc
 NAME_STATIC  = $(NAME).a
-NAME_DYNAMIC = $(NAME)$(DYNAMICLIB_FILE_EXT)
-NAME_TEST = libccc_test
+NAME_DYNAMIC = $(NAME).$(DYNAMICLIB_FILE_EXT)
 # Build names with filetype suffixes
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -16,8 +20,7 @@ endif
 ifeq ($(LIBMODE),dynamic)
 	NAME_LIBMODE = $(NAME_DYNAMIC)
 endif
-
-VERSION = 0.8
+NAME_TEST = libccc-test
 
 # Directories that this Makefile will use
 HDRDIR = ./hdr/
@@ -28,6 +31,8 @@ DOCDIR = ./doc/
 BINDIR = ./bin/
 LOGDIR = ./log/
 DISTDIR = ./dist/
+LINTDIR = ./lint/
+TEMPDIR = ./temp/
 
 
 
@@ -129,22 +134,22 @@ else ifeq ($(OSMODE),win32)
 	CC = $(CC_WIN32)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
-	DYNAMICLIB_FILE_EXT=.dll
+	DYNAMICLIB_FILE_EXT=dll
 else ifeq ($(OSMODE),win64)
 	CC = $(CC_WIN64)
 	CFLAGS_OS = $(CFLAGS_OS_WIN)
 	LDFLAGS_OS = $(LDFLAGS_OS_WIN)
-	DYNAMICLIB_FILE_EXT=.dll
+	DYNAMICLIB_FILE_EXT=dll
 else ifeq ($(OSMODE),linux)
 	CC = $(CC_LINUX)
 	CFLAGS_OS = $(CFLAGS_OS_LINUX)
 	LDFLAGS_OS = $(LDFLAGS_OS_LINUX)
-	DYNAMICLIB_FILE_EXT=.so
+	DYNAMICLIB_FILE_EXT=so
 else ifeq ($(OSMODE),macos)
 	CC = $(CC_MACOS)
 	CFLAGS_OS = $(CFLAGS_OS_MACOS)
 	LDFLAGS_OS = $(LDFLAGS_OS_MACOS)
-	DYNAMICLIB_FILE_EXT=.dylib
+	DYNAMICLIB_FILE_EXT=dylib
 endif
 
 
@@ -413,72 +418,103 @@ DEPS = ${OBJS:.o=.d}
 #           Main build rules          #
 #######################################
 
-# This is the default build rule, called when doing 'make' without args
+.PHONY:\
+all # Builds all targets (this is the default rule)
 all: debug
 
-# This rule builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
+.PHONY:\
+debug # Builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
 debug: MODE = debug
 debug: CFLAGS += $(CFLAGS_DEBUG)
 debug: $(NAME_STATIC) $(NAME_DYNAMIC)
 
-# This rule fills the ./bin folder with necessary files for release distribution
+.PHONY:\
+release # Fills the ./bin folder with necessary files for release distribution
 release: MODE = release
 release: CFLAGS += $(CFLAGS_RELEASE)
 release: $(NAME_STATIC) $(NAME_DYNAMIC)
+	@mkdir -p           $(BINDIR)$(OSMODE)/static/
+	@cp $(NAME_STATIC)  $(BINDIR)$(OSMODE)/static/
+	@mkdir -p           $(BINDIR)$(OSMODE)/dynamic/
+	@cp $(NAME_DYNAMIC) $(BINDIR)$(OSMODE)/dynamic/
 
 
 
-# This rule should be executed once, after cloning the repo
+.PHONY:\
+init # Should be executed once, after cloning the repo
 init:
 	@git config core.hooksPath ./.github/hooks
 
 
 
-# This rule prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
-dist: release
-	@rm -f $(DISTDIR)*
-	@mkdir -p $(DISTDIR)
-	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=win32 LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=win64 LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=linux LIBMODE=static
-	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=dynamic
-	@$(MAKE) -s dist_version OSMODE=macos LIBMODE=static
+INSTALLDIR=/usr/local/lib/
 
-# This rule creates one ZIP distributable according to the current OSMODE and LIBMODE
-dist_version:
-	@printf "Preparing ZIP: "
-	@printf $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip"\n"
-	@zip -j $(DISTDIR)$(NAME)_$(VERSION)_$(OSMODE)_$(LIBMODE).zip	$(BINDIR)$(LIBMODE)/$(OSMODE)/*
+.PHONY:\
+install # Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
+install:
+	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)               $(INSTALLDIR)$(NAME).$(VERSION).a
+	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)             $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT)
+	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).a                      $(INSTALLDIR)$(NAME).a
+	@ln -s $(INSTALLDIR)$(NAME).$(VERSION).$(DYNAMICLIB_FILE_EXT) $(INSTALLDIR)$(NAME).$(DYNAMICLIB_FILE_EXT)
+
+.PHONY:\
+uninstall # Removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
+uninstall:
+	@printf "Removing the following files:\n"
+	@find $(INSTALLDIR) -name "$(NAME).*" -print -delete
+
+
+
+.PHONY:\
+dist # Prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
+dist: release
+	@mkdir -p $(DISTDIR)
+	@-$(MAKE) -s dist-version OSMODE=win32
+	@-$(MAKE) -s dist-version OSMODE=win64
+	@-$(MAKE) -s dist-version OSMODE=linux
+	@-$(MAKE) -s dist-version OSMODE=macos
+
+.PHONY:\
+dist-version # Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
+dist-version:
+ifneq ($(wildcard $(BINDIR)$(OSMODE)/*),)
+	@printf "Preparing .zip archive: "
+else
+	$(error Cannot produce distributable archive for target "$(OSMODE)")
+endif
+	@mkdir -p                   $(NAME)-$(VERSION)
+	@cp -r $(BINDIR)$(OSMODE)/* $(NAME)-$(VERSION)
+	@printf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip"\n"
+	@rm -rf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip
+	@zip -r $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip $(NAME)-$(VERSION)
+	@rm -rf $(NAME)-$(VERSION)
 	@printf $(C_GREEN)"  OK!"$(C_RESET)"\n"
 
 
 
-# This rule compiles object files from source files
+# Compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) -o $@
+	@$(CC) -o $@ $(CFLAGS) -MMD -I$(HDRDIR) -c $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
-# This rule builds the static library file to link against, in the root directory
+# Builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
-	@mkdir -p $(BINDIR)static/$(OSMODE)/
+	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@cp -f $(NAME_STATIC)	$(BINDIR)static/$(OSMODE)/
+	@cp -f $(NAME_STATIC)	$(BINDIR)$(OSMODE)/static/
 
 
 
-# This rule builds the dynamically-linked library files for the current target platform
+# Builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
-	@mkdir -p $(BINDIR)dynamic/$(OSMODE)/
+	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf \
 	"Compiling DLL: "$(NAME_DYNAMIC)" -> " ; \
@@ -486,8 +522,8 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
-	@cp -f $(NAME).def	$(BINDIR)dynamic/$(OSMODE)/
-	@cp -f $(NAME).lib	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
+	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
 	@printf \
 	"Compiling dylib: "$(NAME_DYNAMIC)" -> " ; \
@@ -498,7 +534,7 @@ else ifeq ($(OSMODE),linux)
 	$(CC) -shared -o $(NAME_DYNAMIC) $(CFLAGS) $(LDFLAGS) $(OBJS)
 endif
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
-	@cp -f $(NAME_DYNAMIC)	$(BINDIR)dynamic/$(OSMODE)/
+	@cp -f $(NAME_DYNAMIC)	$(BINDIR)$(OSMODE)/dynamic/
 
 
 
@@ -571,7 +607,7 @@ endif
 
 
 
-# This rule compiles object files from source files
+# Compiles object files from source files
 $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
@@ -580,55 +616,92 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 
 
 
-# This rule builds the testing/CI program
-$(NAME_TEST): debug $(TEST_OBJS)
+# Builds the testing/CI program
+$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) $(TEST_LIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-# This rule builds and runs the test executable
+.PHONY:\
+test # Builds and runs the test suite program with the given 'ARGS'
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
-test_log: $(NAME_TEST)
+.PHONY:\
+test-log # Builds and runs the test suite program with the given 'ARGS', logging all results to files
+test-log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)
 	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)libccc_test.log
 
 
 
-test_predef:
+.PHONY:\
+test-predef # Gets the list of all predefined macros for the current compiler/flags/env/arch
+test-predef:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
-	@rm -f						$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
-	@./$(TEST_DIR)_predef.sh >>	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@./$(TEST_DIR)_predef.sh >	$(LOGDIR)env/$(OSMODE)/predef_$(CC).c
+	@printf " => File saved to: $(LOGDIR)env/$(OSMODE)/predef_$(CC).c""\n"
 
-test_errno:
+.PHONY:\
+test-errno # Gets the list of all 'errno' values for the current compiler/flags/env/arch
+test-errno:
 	@mkdir -p					$(LOGDIR)env/$(OSMODE)/
-	@rm -f						$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
-	@./$(TEST_DIR)_errno.sh >>	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@./$(TEST_DIR)_errno.sh >	$(LOGDIR)env/$(OSMODE)/errno_$(CC).c
+	@printf " => File saved to: $(LOGDIR)env/$(OSMODE)/errno_$(CC).c""\n"
 
-$(NAME_TEST)_helloworld: debug
+
+
+NAME_TEST_HELLOWORLD = libccc-test_helloworld
+SRCS_TEST_HELLOWORLD = $(TEST_DIR)_helloworld.c
+
+.PHONY:\
+test-helloworld # Builds and runs a simple 'hello world' test program
+test-helloworld: $(NAME_TEST_HELLOWORLD)
+	@ ./$(NAME_TEST_HELLOWORLD) $(ARGS)
+	@rm $(NAME_TEST_HELLOWORLD)
+
+$(NAME_TEST_HELLOWORLD): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_HELLOWORLD)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(CFLAGS) -I$(HDRDIR) \
-	-o $(NAME_TEST)_helloworld \
-		$(TEST_DIR)_helloworld.c \
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_HELLOWORLD) \
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test_helloworld: $(NAME_TEST)_helloworld
-	@ ./$(NAME_TEST)_helloworld $(ARGS)
-	@rm $(NAME_TEST)_helloworld
 
-$(NAME_TEST)_foreach: debug
+
+NAME_TEST_FOREACH = libccc-test_foreach
+SRCS_TEST_FOREACH = $(TEST_DIR)_foreach.c
+
+.PHONY:\
+test-foreach # Builds and runs a simple foreach() macro test program
+test-foreach: $(NAME_TEST_FOREACH)
+	@ ./$(NAME_TEST_FOREACH) $(ARGS)
+	@rm $(NAME_TEST_FOREACH)
+
+$(NAME_TEST_FOREACH): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_FOREACH)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(CFLAGS) -I$(HDRDIR) \
-	-o $(NAME_TEST)_foreach \
-		$(TEST_DIR)_foreach.c \
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_FOREACH) \
 		-L./ -lccc
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
-test_foreach: $(NAME_TEST)_foreach
-	@ ./$(NAME_TEST)_foreach $(ARGS)
-	@rm $(NAME_TEST)_foreach
+
+
+NAME_TEST_KVT = libccc-test_kvt
+SRCS_TEST_KVT = $(TEST_DIR)_kvt.c
+
+.PHONY:\
+test-kvt # Builds and runs a KVT (json,toml,yaml,xml) print/parse test program
+test-kvt: $(NAME_TEST_KVT)
+	@ ./$(NAME_TEST_KVT) $(ARGS)
+	@rm $(NAME_TEST_KVT)
+
+$(NAME_TEST_KVT): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_KVT)
+	@printf "Compiling testing program: "$@" -> "
+	@$(CC) -o $@ $(CFLAGS) \
+		-I$(HDRDIR) $(SRCS_TEST_KVT) \
+		-L./ -lccc
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
 
@@ -638,7 +711,8 @@ test_foreach: $(NAME_TEST)_foreach
 
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
-# This rule generates documentation for libccc
+.PHONY:\
+doc # Generates documentation for libccc
 doc:
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
@@ -660,20 +734,30 @@ doc:
 #          Linting operations         #
 #######################################
 
-# These rules run a linter on all source files,
-# giving useful additionnal warnings concerning the code
+# define lint ouput files list from source list
+LINT = ${SRCS:%.c=$(LINTDIR)%.html}
 
-lint:
-# CCPcheck: http://cppcheck.sourceforge.net/
-	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
-		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
-		--suppress=variableScope \
-		--suppress=unusedFunction \
-		--suppress=memleak \
-		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
-		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
-# splint: http://splint.org/
-#	@splint
+$(LINTDIR)%.html: $(SRCDIR)%.c
+	@mkdir -p $(@D)
+	@printf "Linting file: "$@" -> "
+	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) 2> $@
+	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+.PHONY:\
+lint # Runs a linter on all source files, giving useful additional warnings
+lint: MODE = debug
+ifeq (gcc,$(findstring gcc,$(CC)))
+lint: CFLAGS += -fanalyzer
+else ifeq (clang,$(findstring clang,$(CC)))
+lint: CFLAGS += -Wthread-safety --analyze --analyzer-output text
+else
+$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
+endif
+lint: $(LINT)
+	@find $(LINTDIR) -size 0 -print -delete
+	@echo "Linting finished."
+
+
 
 PCLP				= /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/pclp32.exe
 PCLP_SETUP =python3.8 /cygdrive/d/Lexou/Projects/_C/pc-lint/windows/config/pclp_config.py
@@ -683,7 +767,7 @@ PCLP_LOG			= pclint_log.txt
 PCLP_CONFIG			= pclint_config
 PCLP_PROJECT		= pclint_project
 
-pclint_setup:
+lint-pclint-setup:
 	$(PCLP_SETUP) \
 		--compiler=$(CC) \
 		--compiler-bin=/usr/bin/$(CC) \
@@ -701,13 +785,26 @@ pclint_setup:
 		--generate-project-config
 	@rm $(PCLP_IMPOSTER_LOG)
 
-pclint:
 # pc-lint: https://gimpel.com/
+lint-pclint:
 	@printf "Running linter: "
 	@$(PCLP) -width"(120,4)" -format="%(%f:%l%):\n[%n]->%t: %m" -w2 \
 		-e438 -e534 -e641 -e655 -e695 -e835 -e2445 \
 		$(PCLP_CONFIG).lnt $(PCLP_PROJECT).lnt > $(PCLP_LOG)
 	@printf $(C_GREEN)"SUCCESS"$(C_RESET)": output file is "$(PCLP_LOG)"\n"
+
+# splint: http://splint.org/
+#	@splint
+
+# CCPcheck: http://cppcheck.sourceforge.net/
+lint-cppcheck:
+	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
+		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
+		--suppress=variableScope \
+		--suppress=unusedFunction \
+		--suppress=memleak \
+		--template="-[{severity}]\t{file}:{line}\t->\t{id}: {message}" \
+		--template-location="  -> from:\t{file}:{line}\t->\t{info}"
 
 
 
@@ -715,15 +812,17 @@ pclint:
 #       Preprocessing operations      #
 #######################################
 
-PREPROCESSED	=	${SRCS:%.c=$(OBJDIR)%.c}
-
-preprocessed: all $(PREPROCESSED)
-	@printf "Outputting preprocessed code...\n"
+PREPROCESSED = ${SRCS:%.c=$(OBJDIR)%.c}
 
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
-	@$(CC) $(CFLAGS) -E $< -o $@
+	@$(CC) -o $@ $(CFLAGS) -E $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+
+.PHONY:\
+preprocessed # Preprocesses all source files and stores them in the obj folder
+preprocessed: all $(PREPROCESSED)
+	@printf "Outputting preprocessed code...\n"
 
 
 
@@ -731,6 +830,8 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 #        File deletion rules          #
 #######################################
 
+.PHONY:\
+clean # Deletes all intermediary build files
 clean:
 	@printf "Deleting all .o files...\n"
 	@rm -f $(OBJS)
@@ -740,35 +841,49 @@ clean:
 	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
-fclean: clean
+.PHONY:\
+clean-exe # Deletes any libraries/executables
+clean-exe:
+	@rm -f $(NAME).*
 	@printf "Deleting library: "$(NAME_STATIC)"\n"
 	@rm -f $(NAME_STATIC)
 	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
 	@rm -f $(NAME_DYNAMIC)
-	@rm -f $(NAME).*
 	@printf "Deleting program: "$(NAME_TEST)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 
-rclean: fclean
+.PHONY:\
+clean-obj # Deletes the ./obj folder
+clean-obj:
 	@printf "Deleting "$(OBJDIR)" folder...\n"
 	@rm -rf $(OBJDIR)
 
-aclean: rclean logclean
+.PHONY:\
+clean-bin # Deletes the ./bin folder
+clean-bin:
 	@printf "Deleting "$(BINDIR)" folder...\n"
 	@rm -rf $(BINDIR)
 
-logclean:
+.PHONY:\
+clean-logs # Deletes the ./log folder
+clean-logs:
 	@printf "Deleting "$(LOGDIR)" folder...\n"
 	@rm -rf $(LOGDIR)
 
-tclean:
-	@printf "Deleting test .o files...\n"
-	@rm -f $(TEST_OBJS)
-	@printf "Deleting test .d files...\n"
-	@rm -f $(TEST_DEPS)
+.PHONY:\
+clean-lint # Deletes the ./lint folder
+clean-lint:
+	@printf "Deleting "$(LINTDIR)" folder...\n"
+	@rm -rf $(LINTDIR)
 
-re: fclean all
+.PHONY:\
+clean-full # Deletes every generated file
+clean-full: clean clean-exe
+
+.PHONY:\
+re # Deletes all generated files and rebuilds all
+re: clean-full all
 
 
 
@@ -776,28 +891,27 @@ re: fclean all
 #        Meta makefile rules          #
 #######################################
 
-# This line ensures the makefile won't conflict with files named 'clean', 'fclean', etc
-.PHONY: \
-	all				\
-	debug			\
-	release			\
-	init			\
-	dist			\
-	dist_version	\
-	test			\
-	test_predef		\
-	test_errno		\
-	test_helloworld	\
-	test_foreach	\
-	doc				\
-	lint			\
-	preprocessed	\
-	clean			\
-	fclean			\
-	rclean			\
-	aclean			\
-	logclean		\
-	re				\
+
+
+.PHONY:\
+help # Displays list of "PHONY" targets, with descriptions                                                                
+help:                                                                                                                    
+	@cat $(MKFILE_PATH) \
+		| awk -v phony=0 '{ if(phony) { sub(/#/,"\t-"); phony=0; print } else if (/^\.PHONY:\\/) {phony=1} }' \
+		| expand -t20
+
+
+
+.PHONY:\
+list # Displays list of all available targets in this Makefile, sorted in alphabetical order
+list:
+	@LC_ALL=C $(MAKE) -pRrq -f $(MKFILE_PATH) : 2>/dev/null \
+		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' \
+		| sort \
+		| egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+	# see https://stackoverflow.com/questions/4219255/how-do-you-get-the-list-of-targets-in-a-makefile
+
+
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPS}
