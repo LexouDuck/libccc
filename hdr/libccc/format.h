@@ -75,7 +75,7 @@ HEADER_CPP
 //! @see libccc/string.h
 //!@{
 #define SF_STR			SF_STRING
-#define SF_STRING		CONCAT(SF_,LIBCONFIG_CHAR_NAME)
+#define SF_STRING		CONCAT(SF_STRING_,LIBCONFIG_CHAR_NAME)
 #define SF_STRING_ASCII	"%s"
 #define SF_STRING_UTF8	"%s"
 #define SF_STRING_UTF16	"%ls"
