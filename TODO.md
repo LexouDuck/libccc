@@ -42,7 +42,7 @@
 ```
 - TODO: reorganize test suite to reflect new header file folder tree + add empty files for tests
 - TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
-- TODO: for each compound type in 'array' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
+- TODO: for each compound type in 'monad' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
 - TODO: add printf format specifier flags to String_Format wrapper for the following:
 	- specifier: unsigned binary integer: `%b`
 	- specifier: boolean (TRUE or FALSE): `%B`

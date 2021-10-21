@@ -68,7 +68,7 @@ HEADER_CPP
 #define SF_UTF8		"%c"
 #define SF_UTF16	"%lc"
 #define SF_UTF32	"%lc"
-#define SF_UTF16_CODE	"\\U%4.4X"
+#define SF_UTF16_CODE	"\\u%4.4X"
 #define SF_UTF32_CODE	"\\U%8.8X"
 //!@}
 
@@ -84,31 +84,52 @@ HEADER_CPP
 
 //! @see libccc/int.h
 //!@{
-#define SF_S8		"%i"
-#define SF_S16		"%i"
-#define SF_S32		"%i"
 #define SF_U8		"%u"
+#define SF_I8		"%i"
+#define SF_S8		"%+i"
+#define SF_HEX_U8	"0x%X"
+#define SF_HEX_S8	"0x%+X"
+#define SF_HEX_I8	"0x%X"
 #define SF_U16		"%u"
+#define SF_I16		"%i"
+#define SF_S16		"%+i"
+#define SF_HEX_U16	"0x%X"
+#define SF_HEX_S16	"0x%+X"
+#define SF_HEX_I16	"0x%X"
 #define SF_U32		"%u"
-#define SF_HEX_U8	"%#X"
-#define SF_HEX_U16	"%#X"
-#define SF_HEX_U32	"%#X"
+#define SF_I32		"%i"
+#define SF_S32		"%+i"
+#define SF_HEX_U32	"0x%X"
+#define SF_HEX_S32	"0x%+X"
+#define SF_HEX_I32	"0x%X"
 #if (defined(__APPLE__) || defined(_WIN32))
-	#define SF_S64		"%lli"
 	#define SF_U64		"%llu"
-	#define SF_HEX_U64	"%#llX"
+	#define SF_I64		"%lli"
+	#define SF_S64		"%+lli"
+	#define SF_HEX_U64	"0x%llX"
+	#define SF_HEX_S64	"0x%+llX"
+	#define SF_HEX_I64	"0x%llX"
 #else
-	#define SF_S64		"%li"
 	#define SF_U64		"%lu"
-	#define SF_HEX_U64	"%#lX"
+	#define SF_I64		"%li"
+	#define SF_S64		"%+li"
+	#define SF_HEX_U64	"0x%lX"
+	#define SF_HEX_S64	"0x+%lX"
+	#define SF_HEX_I64	"0x%lX"
 #endif
-#define SF_S128		"[128-bit signed int]"		// TODO find a way to make this work
 #define SF_U128		"[128-bit unsigned int]"	// TODO find a way to make this work
+#define SF_S128		"[128-bit signed int]"		// TODO find a way to make this work
+#define SF_I128		"[128-bit integer]"			// TODO find a way to make this work
 #define SF_HEX_U128	"[128-bit unsigned int]"	// TODO find a way to make this work
+#define SF_HEX_S128	"[128-bit signed int]"		// TODO find a way to make this work
+#define SF_HEX_I128	"[128-bit integer]"			// TODO find a way to make this work
 
-#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_SINT_BITS)
 #define SF_UINT		CONCAT(SF_U,	 LIBCONFIG_UINT_BITS)
+#define SF_SINT		CONCAT(SF_S,	 LIBCONFIG_SINT_BITS)
+#define SF_INT		CONCAT(SF_I,	 LIBCONFIG_SINT_BITS)
 #define SF_HEX_UINT	CONCAT(SF_HEX_U, LIBCONFIG_UINT_BITS)
+#define SF_HEX_SINT	CONCAT(SF_HEX_S, LIBCONFIG_SINT_BITS)
+#define SF_HEX_INT	CONCAT(SF_HEX_I, LIBCONFIG_SINT_BITS)
 //!@}
 
 //! @see libccc/fixed.h
@@ -117,10 +138,10 @@ HEADER_CPP
 #define SF_Q32		"%0.8i"
 #define SF_Q64		"%0.8li"
 #define SF_Q128		"%0.8lli"
-#define SF_HEX_Q16	"%#0.8X"
-#define SF_HEX_Q32	"%#0.8X"
-#define SF_HEX_Q64	"%#0.8lX"
-#define SF_HEX_Q128	"%#0.8llX"
+#define SF_HEX_Q16	"0x%0.8X"
+#define SF_HEX_Q32	"0x%0.8X"
+#define SF_HEX_Q64	"0x%0.8lX"
+#define SF_HEX_Q128	"0x%0.8llX"
 
 #define SF_FIXED		CONCAT(SF_Q,	 LIBCONFIG_FIXED_BITS)
 #define SF_HEX_FIXED	CONCAT(SF_HEX_Q, LIBCONFIG_FIXED_BITS)
@@ -145,14 +166,22 @@ HEADER_CPP
 //!@{
 #define SF_PTR			SF_POINTER
 #define SF_POINTER		"%#p"
+
 #define SF_SIZE			"%zu"
 #define SF_HEX_SIZE		"%#zx"
+
 #define SF_PTRDIFF		"%ti"
 #define SF_HEX_PTRDIFF	"%#tx"
+
 #define SF_SINTPTR		"%zi"
 #define SF_UINTPTR		"%zu"
+#define SF_HEX_SINTPTR	"0x%zX"
+#define SF_HEX_UINTPTR	"0x%zX"
+
 #define SF_SINTMAX		"%ji"
 #define SF_UINTMAX		"%ju"
+#define SF_HEX_SINTMAX	"0x%jX"
+#define SF_HEX_UINTMAX	"0x%jX"
 //!@}
 
 //! @see libccc/memory.h
@@ -210,65 +239,63 @@ HEADER_CPP
 **	```
 **
 **	Here is a description of the valid possible choices for each of these 5 fields: (flags,minsize,precision,bitsize,char)
-**	```c
-**	.________________________________________________________________________
-**	| char	| Output										| Output Example |
-**	|_______|_______________________________________________|________________|
-**	|'d','i'| Signed decimal integer						| "392"
-**	| 'u'	| Unsigned decimal integer						| "7235"
-**	| 'o'	| Unsigned octal								| "610"
-**	| 'x'	| Unsigned hexadecimal integer, lowercase		| "7fa"
-**	| 'X'	| Unsigned hexadecimal integer, uppercase		| "7FA"
-**	| 'f'	| Decimal notation floating-point, lowercase	| "392.65"
-**	| 'F'	| Decimal notation floating-point, uppercase	| "392.65"
-**	| 'e'	| Scientific notation floating-point, lowercase	| "3.9265e+2"
-**	| 'E'	| Scientific notation floating-point, uppercase	| "3.9265E+2"
-**	| 'g'	| Use the shortest representation: "%e" or "%f"	| "392.65"
-**	| 'G'	| Use the shortest representation: "%E" or "%F"	| "392.65"
-**	| 'a'	| Hexadecimal floating point, lowercase			| "-0xc.90fep-2"
-**	| 'A'	| Hexadecimal floating point, uppercase			| "-0XC.90FEP-2"
-**	| 'c'	| Character										| "a"
-**	| 's'	| String of characters							| "example"
-**	| 'p'	| Pointer address								| "b8000000"
-**	| '%'	| A "%%" specifier will write a single '%' char	| "%"
-**	| 'n'	| Nothing printed: the corresponding argument must be a pointer to a signed int.
-**	|_______|	The number of characters written so far is stored in the pointed location.	
-**	.___________________________________________________________________________________________________________________
-**	| flags	| Description																								|
-**	|_______|___________________________________________________________________________________________________________|
-**	| '+'	| Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.					|
-**	|_______|_By default, only negative numbers are preceded with a minus '-' sign._____________________________________|
-**	| '#'	| With 'o','x','X': the value is preceeded with 0, 0x or 0X respectively, for values different than zero.	|
-**	|_______|_With 'a','A','e','E','f','F','g','G': forces the written output number to contain a decimal point.________|
-**	|(space)| If no sign is going to be written, a blank space is inserted before the value.							|
-**	|_______|___________________________________________________________________________________________________________|
-**	.___________________________________________________________________________________________
-**	| minsize	|	is a number (so, decimal numerical digit chars).							|
-**	|___________|_______________________________________________________________________________|
-**	| The minimum amount of characters to be printed for this specifier.
-**	| The value is not truncated, even if the result is larger.
-**	| If the value is shorter than this number, the result is padded with blank spaces.
-**	.___________________________________________________________________________________________
-**	| precision	|	is a number (so, decimal numerical digit chars), preceded by a '.' period.	|
-**	|___________|_______________________________________________________________________________|
-**	| With 'a','A','e','E','f','F': the number of digits to be printed after the decimal point (by default, this is 6).
-**	| With 'g','G': the maximum number of significant digits to be printed for the mantissa.
-**	| With 's': this is the maximum number of characters to be printed (by default, all chars are printed until the '\0').
-**	| If the period is specified without an explicit value for precision, 0 is assumed.
-**	.___________________________________________________________________________________________________________
-**	|bitsize| 'd', 'i'		| 'u', 'o', 'x', 'X'	|'f','e','g','a'| 'c'	| 's'		| 'p'	| 'n'			|
-**	|_______|_______________|_______________________|'F'_'E'_'G'_'A'|_______|___________|_______|_______________|
-**	|(none)	| int			| unsigned int			| double		| int	| char*		| void*	| int*			|
-**	| "hh"	| signed char	| unsigned char			|				|		|			|		| signed char*	|
-**	|  "h"	| short int		| unsigned short int	|				|		|			|		| short int*	|
-**	|  "l"	| long int		| unsigned long int		|				| wint_t| wchar_t*	|		| long int*		|
-**	| "ll"	| long long int	| unsigned long long int|				|		|			|		| long long int*|
-**	|  "j"	| intmax_t		| uintmax_t				|				|		|			|		| intmax_t*		|
-**	|  "z"	| size_t		| size_t				|				|		|			|		| size_t*		|
-**	|  "t"	| ptrdiff_t		| ptrdiff_t				|				|		|			|		| ptrdiff_t*	|
-**	|  "L"	|				|						| long double	|		|			|		|				|
-**	|_______|_______________|_______________________|_______________|_______|___________|_______|_______________|
-**	```
+**	 ________________________________________________________________________
+**	| char  | Output                                        | Output Example |
+**	|:-----:|-----------------------------------------------|----------------|
+**	|`d`,`i`| Signed decimal integer                        |`"392"`         |
+**	| `u`   | Unsigned decimal integer                      |`"7235"`        |
+**	| `o`   | Unsigned octal                                |`"610"`         |
+**	| `x`   | Unsigned hexadecimal integer, lowercase       |`"7fa"`         |
+**	| `X`   | Unsigned hexadecimal integer, uppercase       |`"7FA"`         |
+**	| `f`   | Decimal notation floating-point, lowercase    |`"392.65"`      |
+**	| `F`   | Decimal notation floating-point, uppercase    |`"392.65"`      |
+**	| `e`   | Scientific notation floating-point, lowercase |`"3.9265e+2"`   |
+**	| `E`   | Scientific notation floating-point, uppercase |`"3.9265E+2"`   |
+**	| `g`   | Use the shortest representation: `%e` or `%f` |`"392.65"`      |
+**	| `G`   | Use the shortest representation: `%E` or `%F` |`"392.65"`      |
+**	| `a`   | Hexadecimal floating point, lowercase         |`"-0xc.90fep-2"`|
+**	| `A`   | Hexadecimal floating point, uppercase         |`"-0XC.90FEP-2"`|
+**	| `c`   | Character                                     |`"a"`           |
+**	| `s`   | String of characters                          |`"example"`     |
+**	| `p`   | Pointer address                               |`"b8000000"`    |
+**	| `%`   | A `%%` specifier will write a single '%' char |`"%"`           |
+**	| `n`   | Nothing printed: the corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location.	|
+**	 _______________________________________________________________________________________________________________________
+**	| flags	| Description                                                                                                   |
+**	|-------|---------------------------------------------------------------------------------------------------------------|
+**	| `+`   | Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.                     |
+**	|       | By default, only negative numbers are preceded with a minus '-' sign.                                         |
+**	|-------|---------------------------------------------------------------------------------------------------------------|
+**	| `#`   | With `o`,`x`,`X`: the value is preceeded with `0`, `0x` or `0X` respectively, for values different than zero. |
+**	|       | With `a`,`A`,`e`,`E`,`f`,`F`,`g`,`G`: forces the written output number to contain a decimal point.            |
+**	|-------|---------------------------------------------------------------------------------------------------------------|
+**	|(space)| If no sign is going to be written, a blank space is inserted before the value.                                |
+**	|-------|---------------------------------------------------------------------------------------------------------------|
+**	 ___________________________________________________________________________________________
+**	| minsize   | is a number (so, decimal numerical digit chars).                              |
+**	|-----------|-------------------------------------------------------------------------------|
+**	|| The minimum amount of characters to be printed for this specifier.
+**	|| The value is not truncated, even if the result is larger.
+**	|| If the value is shorter than this number, the result is padded with blank spaces.
+**	 ___________________________________________________________________________________________
+**	| precision | is a number (so, decimal numerical digit chars), preceded by a '.' period.    |
+**	|-----------|-------------------------------------------------------------------------------|
+**	|| With `a`,`A`,`e`,`E`,`f`,`F`: the number of digits to be printed after the decimal point (by default, this is 6).
+**	|| With `g`,`G`: the maximum number of significant digits to be printed for the mantissa.
+**	|| With `s`: this is the maximum number of characters to be printed (by default, all chars are printed until the `'\0'` terminator).
+**	|| If the period is specified without an explicit value for precision, 0 is assumed.
+**	 ______________________________________________________________________________________________________
+**	| size | `d`/`i`       | `u`, `o`, `x`/`X`      |`f`,`e`,`g`,`a`| `c`  | `s`    | `p` | `n`			   |
+**	|:----:|---------------|------------------------|---------------|------|--------|-----|----------------|
+**	|(none)| int           | unsigned int           | double        | int  | char*  |void*| int*           |
+**	| `hh` | signed char   | unsigned char          |               |      |        |     | signed char*   |
+**	| `h`  | short int     | unsigned short int     |               |      |        |     | short int*     |
+**	| `l`  | long int      | unsigned long int      |               |wint_t|wchar_t*|     | long int*      |
+**	| `ll` | long long int | unsigned long long int |               |      |        |     | long long int* |
+**	| `j`  | intmax_t      | uintmax_t              |               |      |        |     | intmax_t*      |
+**	| `z`  | size_t        | size_t                 |               |      |        |     | size_t*        |
+**	| `t`  | ptrdiff_t     | ptrdiff_t              |               |      |        |     | ptrdiff_t*     |
+**	| `L`  |               |                        | long double   |      |        |     |                |
 **
 **	@returns
 **	A newly allocated string, constructed from the given `format` string and arguments
