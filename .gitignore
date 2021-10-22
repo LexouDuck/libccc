@@ -6,7 +6,7 @@ doc/*/*
 doc/html/.doctrees
 log/**/*.log
 
-libccc-test*
+libccc_test*
 pclint_*.*
 
 test/_test.c
