@@ -103,10 +103,10 @@ HEADER_CPP
 //!@{
 #define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
 #define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
-#define __POSIX_VERSION_1993__ 199309L	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
-#define __POSIX_VERSION_1995__ 199506L	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
-#define __POSIX_VERSION_2001__ 200112L	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
-#define __POSIX_VERSION_2008__ 200809L	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
+#define __POSIX_VERSION_1993__ 199309l	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
+#define __POSIX_VERSION_1995__ 199506l	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
+#define __POSIX_VERSION_2001__ 200112l	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
+#define __POSIX_VERSION_2008__ 200809l	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
 //!@}
 
 
@@ -133,23 +133,56 @@ HEADER_CPP
 
 
 
-// Check windows
+//! These are convienence macros, to check for different C data model standards in preprocessor `#if` statements.
+//!@{
+#define __DATAMODEL_LP32__	0x02020404ul //!< (int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API
+#define __DATAMODEL_ILP32__	0x02040404ul //!< (int, long, and pointer are all size 32-bit) 32bit: Win32 API, Unix and Unix-like systems (Linux, macOS)
+#define __DATAMODEL_LLP64__	0x02040408ul //!< (int and long are 32-bit, pointer is 64-bit) 64bit: Win64 API
+#define __DATAMODEL_LP64__	0x02040808ul //!< (int is 32-bit, long and pointer are 64-bit) 64bit: Unix and Unix-like systems (Linux, macOS)
+//!@}
+
+// Check platform: windows
 #if (__WINDOWS__)
 	#if (defined(_WIN64))
-		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define __DATAMODEL__	__DATAMODEL_LLP64__
+	#elif (defined(_WIN32))
+		#define __DATAMODEL__	__DATAMODEL_ILP32__
 	#else
-		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define __DATAMODEL__	__DATAMODEL_LP32__
 	#endif
 
-// Check GCC
+// Check platform: Unix
 #elif (__GNUC__)
 	#if (__x86_64__ || __ppc64__)
-		#define _IS_64BIT	1	//!< If this is a 64-bit platform, then this is defined with value (1)
+		#define __DATAMODEL__	__DATAMODEL_LP64__
 	#else
-		#define _IS_32BIT	1	//!< If this is a 32-bit platform, then this is defined with value (1)
+		#define __DATAMODEL__	__DATAMODEL_ILP32__
 	#endif
 
+#else
+	#error "Unknown data model: this platform is unsupported, and needs some manual configuration to build."
+		"\n""Please run the libccc 'predef' simple test program, "
+			"to check which macros are predefined in your environment."
+
 #endif
+
+
+
+//!< If this is a 32-bit platform, then this expands to `1`, otherwise `0`
+#define _IS_32BIT	(__DATAMODEL__ == __DATAMODEL_LP32__ || __DATAMODEL__ == __DATAMODEL_ILP32__)
+//!< If this is a 64-bit platform, then this expands to `1`, otherwise `0`
+#define _IS_64BIT	(__DATAMODEL__ == __DATAMODEL_LP64__ || __DATAMODEL__ == __DATAMODEL_LLP64__)
+
+
+
+//! These macros can be used to check native type sizes at preprocess-time, ie: in `#if` statements.
+//!@{
+#define SIZEOF_SHORT	((__DATAMODEL__ >> 24) & 0xFF)
+#define SIZEOF_INT		((__DATAMODEL__ >> 16) & 0xFF)
+#define SIZEOF_LONG		((__DATAMODEL__ >>  8) & 0xFF)
+#define SIZEOF_LONGLONG	((__DATAMODEL__ >>  0) & 0xFF)
+#define SIZEOF_POINTER	(_IS_32BIT ? 4 : 8)
+//!@}
 
 
 
@@ -167,7 +200,9 @@ HEADER_CPP
 // TODO wrapper function for exit() & at_exit()
 // TODO wrapper function for quick_exit() & at_quick_exit()
 // TODO wrapper function for system() https://en.cppreference.com/w/c/program/system
+// TODO wrapper function for getcwd() https://en.cppreference.com/w/c/program/getcwd
 // TODO wrapper function for getenv() https://en.cppreference.com/w/c/program/getenv -> make it safe with a strdup()
+// TODO wrapper function for setenv() https://en.cppreference.com/w/c/program/setenv
 //!@}
 
 
