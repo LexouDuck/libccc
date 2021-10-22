@@ -98,7 +98,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
-			" (integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
+			" ("#BITS"-bit unsigned integer overflow for \"%s\" with base \"%s\" at "SF_U##BITS")",		\
 			str, base, U##BITS##_MAX)												\
 		result = tmp;																\
 	}																				\
@@ -177,11 +177,11 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
-			" (integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
+			" ("#BITS"-bit signed integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
 			str, base, S##BITS##_MIN)												\
 		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX),							\
-			" (integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
+			" ("#BITS"-bit signed integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
 			str, base, S##BITS##_MAX)												\
 		result = tmp;																\
 	}																				\
