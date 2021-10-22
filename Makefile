@@ -102,26 +102,37 @@ LDFLAGS_EXTRA =
 #           General variables         #
 #######################################
 
-# Set platform-specific variables
-ifeq ($(OS),Windows_NT)
-	ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-		OSMODE=win32
-	endif
-	ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-		OSMODE=win64
-	endif
-else
-	UNAME_S = $(shell uname -s)
-	ifeq ($(UNAME_S),Linux)
-		OSMODE=linux
-	endif
-	ifeq ($(UNAME_S),Darwin)
-		OSMODE=macos
+# if the MODE variable has no value, give it a default value
+ifeq ($(MODE),)
+	MODE=debug
+endif
+
+# if the LIBMODE variable has no value, give it a default value
+ifeq ($(LIBMODE),)
+	LIBMODE=static
+endif
+
+# if the OSMODE variable has no value, give it a default value
+ifeq ($(OSMODE),)
+	ifeq ($(OS),Windows_NT)
+		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
+			OSMODE=win32
+		endif
+		ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
+			OSMODE=win64
+		endif
+	else
+		UNAME_S = $(shell uname -s)
+		ifeq ($(UNAME_S),Linux)
+			OSMODE=linux
+		endif
+		ifeq ($(UNAME_S),Darwin)
+			OSMODE=macos
+		endif
 	endif
 endif
 
-
-
+# Set platform-specific variables
 ifeq ($(OSMODE),other)
 	CC = $(CC_OTHER)
 	CFLAGS_OS = $(CFLAGS_OS_OTHER)
@@ -417,7 +428,7 @@ DEPS = ${OBJS:.o=.d}
 
 .PHONY:\
 all # Builds all targets (this is the default rule)
-all: debug
+all: $(MODE)
 
 .PHONY:\
 debug # Builds the library, in DEBUG mode (with '-g -ggdb -D DEBUG=1')
