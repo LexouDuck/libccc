@@ -179,6 +179,7 @@ TODO: DEBATE: Perhaps we can implement a variable-capture mechanism which isn't 
 	Although, this requires some method of storage for the local variables used (like a "closure"),
 	and generally is not very idiomatic to C, since it "hides away" some function arguments.
 
+TODO: add example to show how variable capture is complicated
 
 
 ### Preprocessor directives:
@@ -713,7 +714,7 @@ enum e_test
 int main()
 {
 	#reflect(enum e_test) \
-	printf("\t%s\t%s\n", #type, #name); comment
+	printf("\t%s\t%s\n", #value, #type, #name); comment
 }
 
 // transpiles to C:
@@ -945,10 +946,6 @@ m4_changequote(`<',`>')m4_dnl
 #replace #malloc	<__attribute__((malloc))>
 #replace #delete	<__attribute__((delete))>
 #replace #unused	<__attribute__((unused))>
-#replace #replace	<define(|[$1]|,|[$2]|)>
-#replace #operator	<>
-#replace #accessor	<>
-#replace #namespace	<>
 ```
 
 PS: RegExp to get all code block contents here:

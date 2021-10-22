@@ -406,7 +406,7 @@
 				<key>foreground</key>
 				<string>#66D9EF</string>
 				<key>fontStyle</key>
-				<string>bold underline</string>
+				<string>italic</string>
 			</dict>
 		</dict>
 

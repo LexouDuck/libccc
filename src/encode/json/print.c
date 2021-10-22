@@ -411,7 +411,7 @@ static
 t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 {
 	t_utf8* result = NULL;
-	t_utf8 const* str;
+	t_utf8 const* str = NULL;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
@@ -426,14 +426,14 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 		{
 			str = "null";
 			ENSURE(String_Length(str) + 1)
-			String_Copy(result, str);
+			String_Copy(result, str); // TODO inspect !
 			return (OK);
 		}
 		case DYNAMICTYPE_BOOLEAN:
 		{
 			str = (item->value.boolean ? "true" : "false");
 			ENSURE(String_Length(str) + 1)
-			String_Copy(result, str);
+			String_Copy(result, str); // TODO inspect !
 			return (OK);
 		}
 		case DYNAMICTYPE_RAW:

@@ -28,6 +28,11 @@
 #include "libccc_naming.h"
 #include "libccc_errors.h"
 
+/*
+**	Here we include all the primitive type headers, but we define some important
+**	header macros beforehand, so as to define only the types, not any of the functions
+*/
+
 //#define __LIBCCC_NOFUNCTIONS__
 
 #define	__LIBCCC_CHAR_F
