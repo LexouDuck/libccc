@@ -132,8 +132,9 @@ include make/rules/dist.mk
 include make/rules/clean.mk
 include make/rules/install.mk
 
+include make/rules/prereq.mk
 include make/rules/update.mk
-include make/rules/build-lib.mk
+include make/rules/build-library.mk
 include make/rules/build-tests.mk
 include make/rules/debugging.mk
 include make/rules/test.mk
