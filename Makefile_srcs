@@ -29,7 +29,6 @@ encode/kvt/set.c
 encode/toml/minify.c
 encode/toml/parse.c
 encode/toml/print.c
-error.c
 fixed/fixed.c
 fixed/fixed_from_str.c
 fixed/fixed_to_str.c
@@ -204,6 +203,7 @@ stringarray/split_char.c
 stringarray/split_charset.c
 stringarray/split_str.c
 stringarray/sub.c
+sys/error.c
 sys/io/chmod.c
 sys/io/close.c
 sys/io/color.c
