@@ -163,14 +163,35 @@ C_YELLOW = "\e[33m"
 #          Project variables          #
 #######################################
 
-# List of all source code files
-SRCS := $(shell cat Makefile-srcs)
+HDRSFILE = Makefile_hdrs
+# List of all C header code files
+HDRS := $(shell cat $(HDRSFILE))
+
+SRCSFILE = Makefile_srcs
+# List of all C source code files
+SRCS := $(shell cat $(SRCSFILE))
 
 # define object files list (.o) from source list
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
 
 # define dependency files list (.d)
 DEPS = ${OBJS:.o=.d}
+
+
+
+HDRSFILE_TEST = Makefile_hdrs-test
+# List of all C header code files
+HDRS_TEST := $(shell cat $(HDRSFILE_TEST))
+
+SRCSFILE_TEST = Makefile_srcs-test
+# List of all C source code files
+SRCS_TEST := $(shell cat $(SRCSFILE_TEST))
+
+# define object files list (.o) from source list
+OBJS_TEST = ${SRCS_TEST:%.c=$(OBJDIR)%.o}
+
+# define dependency files list (.d)
+DEPS_TEST = ${OBJS_TEST:.o=.d}
 
 
 
@@ -204,6 +225,16 @@ release: $(NAME_STATIC) $(NAME_DYNAMIC)
 init # Should be executed once, after cloning the repo
 init:
 	@git config core.hooksPath ./.github/hooks
+
+
+
+.PHONY:\
+update-srcs # Updates the lists of source/header files
+update-srcs:
+	@find $(HDRDIR)   -name "*.h" | sort | sed "s|$(HDRDIR)/||g"         > $(HDRSFILE)
+	@find $(SRCDIR)   -name "*.c" | sort | sed "s|$(SRCDIR)/||g"         > $(SRCSFILE)
+	@find $(TEST_DIR) -name "*.h" | sort | sed "s|//|/|g" | grep -v "/_" > $(HDRSFILE_TEST)
+	@find $(TEST_DIR) -name "*.c" | sort | sed "s|//|/|g" | grep -v "/_" > $(SRCSFILE_TEST)
 
 
 
@@ -304,54 +335,6 @@ endif
 
 TEST_DIR = ./test/
 
-TEST_HDRS = \
-	$(TEST_DIR)test.h		\
-	$(TEST_DIR)test_catch.h	\
-	$(TEST_DIR)test_timer.h	\
-	$(TEST_DIR)test_utils.h	\
-
-TEST_SRCS = \
-	$(TEST_DIR)main.c		\
-	$(TEST_DIR)test.c		\
-	$(TEST_DIR)test_timer.c	\
-	$(TEST_DIR)test_catch.c	\
-	$(TEST_DIR)util.c		\
-	$(TEST_DIR)util_print.c	\
-	$(TEST_DIR)libccc/bool.c	\
-	$(TEST_DIR)libccc/char.c	\
-	$(TEST_DIR)libccc/int.c		\
-	$(TEST_DIR)libccc/fixed.c	\
-	$(TEST_DIR)libccc/float.c	\
-	$(TEST_DIR)libccc/color.c	\
-	$(TEST_DIR)libccc/memory.c			\
-	$(TEST_DIR)libccc/pointer.c			\
-	$(TEST_DIR)libccc/pointerarray.c	\
-	$(TEST_DIR)libccc/string.c			\
-	$(TEST_DIR)libccc/stringarray.c		\
-	$(TEST_DIR)libccc/text/regex.c	\
-	$(TEST_DIR)libccc/sys/io.c		\
-	$(TEST_DIR)libccc/sys/time.c	\
-	$(TEST_DIR)libccc/math/math.c		\
-	$(TEST_DIR)libccc/math/int.c		\
-	$(TEST_DIR)libccc/math/fixed.c		\
-	$(TEST_DIR)libccc/math/float.c		\
-	$(TEST_DIR)libccc/math/stat.c		\
-	$(TEST_DIR)libccc/math/vlq.c		\
-	$(TEST_DIR)libccc/math/algebra.c	\
-	$(TEST_DIR)libccc/math/complex.c	\
-	$(TEST_DIR)libccc/random/random.c	\
-	$(TEST_DIR)libccc/monad/array.c			\
-	$(TEST_DIR)libccc/monad/list.c			\
-	$(TEST_DIR)libccc/monad/tree.c			\
-	$(TEST_DIR)libccc/monad/dict.c			\
-	$(TEST_DIR)libccc/monad/object.c		\
-	$(TEST_DIR)libccc/encode/kvt.c			\
-	$(TEST_DIR)libccc/encode/json.c			\
-	$(TEST_DIR)libccc/encode/toml.c			\
-
-TEST_OBJS = ${TEST_SRCS:%.c=$(OBJDIR)%.o}
-TEST_DEPS = ${TEST_OBJS:.o=.d}
-
 TEST_INCLUDEDIRS = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
@@ -368,7 +351,7 @@ endif
 
 
 # Compiles object files from source files
-$(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
+$(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(HDRS_TEST)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
@@ -377,9 +360,9 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 
 
 # Builds the testing/CI program
-$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
+$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(OBJS_TEST)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(TEST_OBJS) $(TEST_LIBS)
+	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(OBJS_TEST) $(TEST_LIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 .PHONY:\
@@ -595,10 +578,10 @@ clean # Deletes all intermediary build files
 clean:
 	@printf "Deleting all .o files...\n"
 	@rm -f $(OBJS)
-	@rm -f $(TEST_OBJS)
+	@rm -f $(OBJS_TEST)
 	@printf "Deleting all .d files...\n"
 	@rm -f $(DEPS)
-	@rm -f $(TEST_DEPS)
+	@rm -f $(DEPS_TEST)
 	@rm -f *.d
 
 .PHONY:\
@@ -675,4 +658,4 @@ list:
 
 # The following line is for Makefile GCC dependency file handling (.d files)
 -include ${DEPS}
--include ${TEST_DEPS}
+-include ${DEPS_TEST}
