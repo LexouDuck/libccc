@@ -4,7 +4,7 @@
 VERSION_FILE = VERSION
 
 # The complete project version number
-VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)-$(COMMIT_REF)
+VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
 VERSION_MAJOR := 0
 VERSION_MINOR := 8
 VERSION_BUILD := 3
@@ -14,7 +14,7 @@ COMMIT_REF = $(shell git rev-parse HEAD)
 
 
 define set_version
-	@echo "$(NAME)@$(VERSION)" > $(VERSION_FILE)
+	@echo "$(NAME)@$(VERSION)-$(COMMIT_REF)" > $(VERSION_FILE)
 	@cat $(VERSION_FILE)
 endef
 

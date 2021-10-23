@@ -17,14 +17,14 @@ dist: release
 dist-version # Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
 dist-version:
 ifeq ($(wildcard $(BINDIR)$(OSMODE)/*),)
-	$(error Cannot produce distributable archive for target "$(OSMODE)")
+	@printf $(C_RED)"ERROR"$(C_RESET)": Cannot produce distributable archive for target '$(OSMODE)'\n"
 else
 	@printf "Preparing .zip archive: "
-endif
 	@mkdir -p                   $(NAME)-$(VERSION)
 	@cp -r $(BINDIR)$(OSMODE)/* $(NAME)-$(VERSION)
 	@printf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip"\n"
 	@rm -rf $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip
 	@zip -r $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip $(NAME)-$(VERSION)
 	@rm -rf $(NAME)-$(VERSION)
-	@printf $(C_GREEN)" -> OK!"$(C_RESET)"\n"
+	@printf " -> "$(C_GREEN)"OK!"$(C_RESET)"\n"
+endif

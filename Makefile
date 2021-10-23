@@ -18,26 +18,31 @@ NAME_TEST = libccc-test
 #      Project folder structure       #
 #######################################
 
+# repository folders
+
 # The header code files directory (stores `.h` files)
 HDRDIR = ./hdr/
 # The source code files directory (stores `.c` files)
 SRCDIR = ./src/
-# The object assembly files directory (stores `.o` files)
-OBJDIR = ./obj/
-# The built binary files directory (stores programs/libraries built by this project)
-BINDIR = ./bin/
 # The dependency library files directory (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)
 LIBDIR = ./lib/
 # The documentation directory (stores config and scripts to generate doc)
 DOCDIR = ./doc/
+# The testing programs directory (stores source/header code for the various testing programs)
+TEST_DIR = ./test/
+
+# generated folders
+
+# The object assembly files directory (stores `.o` files)
+OBJDIR = ./obj/
+# The built binary files directory (stores programs/libraries built by this project)
+BINDIR = ./bin/
 # The distribution archives directory (stores `.zip` distributable builds)
 DISTDIR = ./dist/
 # The output logs directory (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
 # The linter/static analyzer output logs directory (stores warnings logs)
 LINTDIR = ./lint/
-# The testing programs directory (stores source/header code for the various testing programs)
-TEST_DIR = ./test/
 # The temporary directory (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
 
