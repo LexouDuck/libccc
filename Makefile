@@ -266,6 +266,10 @@ SRCS = error.c \
 	text/unicode/utf16.c		\
 	text/unicode/utfbom.c		\
 	text/unicode/parse.c		\
+	sys/program/run.c	\
+	sys/program/dir.c	\
+	sys/program/env.c	\
+	sys/program/exit.c	\
 	sys/io/fd.c			\
 	sys/io/color.c		\
 	sys/io/open.c		\

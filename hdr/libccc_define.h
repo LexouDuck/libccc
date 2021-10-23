@@ -188,27 +188,6 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                           Common Program Utilities                         *|
-** ************************************************************************** *|
-*/
-
-/*!
-**	@isostd{C,https://en.cppreference.com/w/c/program}
-*/
-//!@{
-// TODO wrapper function for abort()
-// TODO wrapper function for exit() & at_exit()
-// TODO wrapper function for quick_exit() & at_quick_exit()
-// TODO wrapper function for system() https://en.cppreference.com/w/c/program/system
-// TODO wrapper function for getcwd() https://en.cppreference.com/w/c/program/getcwd
-// TODO wrapper function for getenv() https://en.cppreference.com/w/c/program/getenv -> make it safe with a strdup()
-// TODO wrapper function for setenv() https://en.cppreference.com/w/c/program/setenv
-//!@}
-
-
-
-/*
-** ************************************************************************** *|
 **                           Common Macro Definitions                         *|
 ** ************************************************************************** *|
 */
