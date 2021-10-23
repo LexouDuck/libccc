@@ -6,16 +6,6 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 #          Project variables          #
 #######################################
 
-# The complete project version number
-VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)-$(COMMIT_REF)
-VERSION_MAJOR := 0
-VERSION_MINOR := 8
-VERSION_BUILD := 1
-# The current commit's revision hash code
-COMMIT_REF = $(shell git rev-parse HEAD)
-
-
-
 # Output filename for the library
 NAME = libccc
 
