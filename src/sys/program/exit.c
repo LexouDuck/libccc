@@ -35,4 +35,5 @@ e_cccerror	Program_OnExit(void (*f)(void))
 	HANDLE_ERROR(SYSTEM,
 		atexit(f),
 		return (ERROR_SYSTEM);)
+	return (OK);
 }
