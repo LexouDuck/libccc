@@ -6,7 +6,15 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 #          Project variables          #
 #######################################
 
-VERSION = 0.8
+# The complete project version number
+VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)-$(COMMIT_REF)
+VERSION_MAJOR := 0
+VERSION_MINOR := 8
+VERSION_BUILD := 1
+# The current commit's revision hash code
+COMMIT_REF = $(shell git rev-parse HEAD)
+
+
 
 # Output filename for the library
 NAME = libccc
@@ -125,6 +133,7 @@ include make/utils.mk
 #      Included Makefile Rules        #
 #######################################
 
+# general rules
 include make/rules/help.mk
 include make/rules/list.mk
 include make/rules/init.mk
@@ -132,11 +141,15 @@ include make/rules/dist.mk
 include make/rules/clean.mk
 include make/rules/install.mk
 
-include make/rules/prereq.mk
-include make/rules/update.mk
+# language-specific rules
 include make/rules/build-library.mk
 include make/rules/build-tests.mk
 include make/rules/debugging.mk
+include make/rules/prereq.mk
+include make/rules/update.mk
+include make/rules/version.mk
+
+# project-specific rules
 include make/rules/test.mk
 include make/rules/test-foreach.mk
 include make/rules/test-helloworld.mk
