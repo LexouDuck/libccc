@@ -88,5 +88,5 @@ else ifeq ($(OSMODE),linux)
 else ifeq ($(OSMODE),macos)
 	LIBEXT_DYNAMIC=dylib
 else
-	$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif
