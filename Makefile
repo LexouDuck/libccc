@@ -85,6 +85,21 @@ DEPS_TEST = ${OBJS_TEST:.o=.d}
 
 
 #######################################
+#     Included Makefile Variables     #
+#######################################
+
+# general variables
+include make/utils/ansi.mk
+include make/utils/sudo.mk
+
+# project-specific rules
+include make/config/modes.mk
+include make/config/build.mk
+include make/config/tests.mk
+
+
+
+#######################################
 #           Main build rules          #
 #######################################
 
@@ -109,21 +124,6 @@ release: $(NAME_STATIC) $(NAME_DYNAMIC)
 .PHONY:\
 re # Deletes all generated files and rebuilds `all`
 re: clean-full all
-
-
-
-#######################################
-#     Included Makefile Variables     #
-#######################################
-
-# general variables
-include make/utils/ansi.mk
-include make/utils/sudo.mk
-
-# project-specific rules
-include make/config/modes.mk
-include make/config/build.mk
-include make/config/tests.mk
 
 
 
