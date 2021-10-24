@@ -18,5 +18,34 @@ debug-macros: all $(SRCS_PREPROCESSED)
 
 
 
-# TODO: rules for debugging linking (symbols dumping, linkpath-dependency-walking)
+.PHONY:\
+debug-symbols # Outputs the list of symbols found inside the given `ARGS` binary/ies
+debug-symbols: all
+ifeq ($(ARGS),)
+	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+else
+	@nm -a $(ARGS)
+endif
+	
+
+
+.PHONY:\
+debug-linking # Outputs the list of linking paths to find dynamic libraries for the given `ARGS`
+debug-linking: all
+ifeq ($(ARGS),)
+	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+else ifeq ($(OSMODE),win32)
+	@objdump -p $(ARGS)
+else ifeq ($(OSMODE),win64)
+	@objdump -p $(ARGS)
+else ifeq ($(OSMODE),macos)
+	@otool -L $(ARGS)
+else ifeq ($(OSMODE),linux)
+	@ldd $(ARGS)
+else
+	@printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform, needs manual configuration""\n"
+endif
+
+
+
 # TODO: rules for leak-checking (valgrind, dr.memory, etc)
