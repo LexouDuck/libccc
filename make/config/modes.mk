@@ -70,3 +70,23 @@ ifeq ($(OSMODE),)
 		endif
 	endif
 endif
+
+
+
+# The file extension used for static library files
+LIBEXT_STATIC=a
+
+# The file extension used for dynamic library files
+ifeq ($(OSMODE),other)
+	LIBEXT_DYNAMIC=
+else ifeq ($(OSMODE),win32)
+	LIBEXT_DYNAMIC=dll
+else ifeq ($(OSMODE),win64)
+	LIBEXT_DYNAMIC=dll
+else ifeq ($(OSMODE),linux)
+	LIBEXT_DYNAMIC=so
+else ifeq ($(OSMODE),macos)
+	LIBEXT_DYNAMIC=dylib
+else
+	$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+endif

@@ -116,11 +116,14 @@ re: clean-full all
 #     Included Makefile Variables     #
 #######################################
 
+# general variables
+include make/utils/ansi.mk
+include make/utils/sudo.mk
+
+# project-specific rules
 include make/config/modes.mk
 include make/config/build.mk
 include make/config/tests.mk
-
-include make/utils.mk
 
 
 
