@@ -14,7 +14,7 @@ ERROR=$C_RED"ERROR"$C_RESET": "
 SUCCESS=$C_GREEN"SUCCESS"$C_RESET": "
 WARNING=$C_YELLOW"WARNING"$C_RESET": "
 
-export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|doc|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
+export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|cleanup|doc|docs|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
 export ERROR_MSG="
 Commit message is invalid, should follow this format:
 <types>(<scope>): <message>
@@ -36,7 +36,8 @@ Here are the explanations for each item:
 	merge        for merge commits
 	style        for coding style commits
 	test         for testing commits
-	doc          for documentation commits
+	cleanup      for commits which remove unused/deprecated files
+	doc, docs    for documentation commits
 	example      for example code commits
 	dependency   for dependencies upgrading or downgrading commits
 	i18n         for i18n (internationalization) commits
@@ -44,6 +45,7 @@ Here are the explanations for each item:
 	build        for packaging or bundling commits
 	ci           for continuous integration commits
 	release      for publishing commits
+	assets       for asset file change commits
 	update       for update commits
 	revert       for history revert commits
 	wip          for work in progress commits
