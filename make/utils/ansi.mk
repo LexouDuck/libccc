@@ -1,4 +1,4 @@
-# This file holds useful variables to color/style output terminal text (ANSI escape sequences)
+#! This file holds useful variables to color/style output terminal text (ANSI escape sequences)
 
 
 
