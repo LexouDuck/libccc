@@ -78,7 +78,7 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 4;
 		HANDLE_ERROR_SF(PARSE, (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END))), return (ERROR);,
-			PARSINGERROR_UTF16"invalid UTF-16 char code ("SF_HEX_U16")", code1)
+			PARSINGERROR_UTF16"invalid UTF-16 char code ("SF_U16_HEX")", code1)
 		if ((code1 >= UTF16_SURROGATE_HI) && (code1 < UTF16_SURROGATE_LO))
 		{	// UTF16 surrogate pair
 			code2 = 0;
@@ -95,7 +95,7 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 				PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			i += 4;
 			HANDLE_ERROR_SF(PARSE, ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END)), return (ERROR);,
-				PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("SF_HEX_U16")", code2)
+				PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("SF_U16_HEX")", code2)
 			// calculate the unicode codepoint from the surrogate pair
 			result = (t_utf32)(UTF16_BIAS + (((code1 & UTF16_SURROGATE_MASK) << 10) | (code2 & UTF16_SURROGATE_MASK)));
 		}

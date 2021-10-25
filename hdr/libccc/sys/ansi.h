@@ -96,7 +96,7 @@ HEADER_CPP
 */
 #define IO_COLOR_FG(CODE)	ANSI("38;5;"CODE"")
 
-//!< The string sequence to color the terminal text output with the default color for this terminal
+//! The string sequence to color the terminal text output with the default color for this terminal
 #define IO_COLOR_FG_DEFAULT	ANSI("39")
 
 #define IO_COLOR_BG_BLACK			ANSI("40")	//!< The string sequence to color the terminal text background/highlight black
@@ -123,7 +123,7 @@ HEADER_CPP
 */
 #define IO_COLOR_BG(CODE)		ANSI("48;5;"CODE"")
 
-//!< The string sequence to color the terminal text background with the default color for this terminal
+//! The string sequence to color the terminal text background with the default color for this terminal
 #define IO_COLOR_BG_DEFAULT		ANSI("49")
 
 //! @}
