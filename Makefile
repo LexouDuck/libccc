@@ -148,6 +148,7 @@ include make/rules/prereq.mk
 include make/rules/clean.mk
 include make/rules/list.mk
 include make/rules/update.mk
+include make/rules/version.mk
 
 include make/rules/debugging.mk
 include make/rules/test.mk
@@ -160,5 +161,4 @@ include make/rules/lint.mk
 include make/rules/format.mk
 
 # general rules
-include make/utils/version.mk
 include make/utils/help.mk
