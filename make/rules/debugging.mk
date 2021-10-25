@@ -1,11 +1,11 @@
-# This file holds C-specific rules to debug the code in various ways
+#! This file holds C-specific rules to debug the code in various ways
 
-# The list of output files for 'debug-macros' - essentially just the list of sources, but in the ./obj folder
+
+
+#! The list of output files for 'debug-macros' - essentially just the list of sources, but in the ./obj folder
 SRCS_PREPROCESSED = ${SRCS:%.c=$(OBJDIR)%.c}
 
-
-
-# This rule runs the preprocessing step for each .c file, and outputs to obj
+#! This rule runs the preprocessing step for each .c file, and outputs to obj
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) -o $@ $(CFLAGS) -E $<

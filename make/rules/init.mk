@@ -1,4 +1,4 @@
-# This file holds rules which perform some initial project/repo setup
+#! This file holds rules which perform some initial project/repo setup
 
 
 

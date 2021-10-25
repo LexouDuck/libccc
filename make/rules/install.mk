@@ -1,6 +1,9 @@
-# This file holds rules to install/uninstall a C library in the appropriate location
+#! This file holds rules to install/uninstall a C library in the appropriate location
 
-INSTALL_DIR=/usr/local/lib/
+
+
+#! The folder in which to install to library files
+INSTALL_DIR = /usr/local/lib/
 
 
 

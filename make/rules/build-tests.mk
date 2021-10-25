@@ -1,8 +1,8 @@
-# This file holds C-specific rules to build a test suite program
+#! This file holds C-specific rules to build a test suite program
 
 
 
-# Compiles object files from source files
+#! Compiles object files from source files
 $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(HDRS_TEST)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
@@ -11,7 +11,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(HDRS_TEST)
 
 
 
-# Builds the testing/CI program
+#! Builds the testing/CI program
 $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(OBJS_TEST)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(OBJS_TEST) $(TEST_LIBS)

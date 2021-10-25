@@ -1,4 +1,4 @@
-# This file holds rules to run test executables
+#! This file holds project-specific rules to run test executables
 
 
 

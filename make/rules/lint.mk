@@ -1,6 +1,8 @@
-# This file holds C-specific rules and logic to run static analyzers/linters on the code
+#! This file holds project-specific rules and logic to run static analyzers/linters on the code
 
-# define lint ouput files list from source list
+
+
+#! Derive the list of linter warnings output files, from the the of sources
 LINT = ${SRCS:%.c=$(LINTDIR)%.html}
 
 

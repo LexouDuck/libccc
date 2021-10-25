@@ -1,13 +1,16 @@
+# This file holds useful variables to color/style output terminal text (ANSI escape sequences)
+
+
 
 #! The ANSI escape sequences for simple colored terminal output
 #!{
-C_RESET  = "\033[0m"
-C_RED    = "\033[0;31m"
-C_GREEN  = "\033[0;32m"
-C_YELLOW = "\033[0;33m"
-C_BLUE   = "\033[0;34m"
-C_MAGENTA= "\033[0;35m"
-C_CYAN   = "\033[0;36m"
+C_RESET   = "\033[0m"
+C_RED     = "\033[0;31m"
+C_GREEN   = "\033[0;32m"
+C_YELLOW  = "\033[0;33m"
+C_BLUE    = "\033[0;34m"
+C_MAGENTA = "\033[0;35m"
+C_CYAN    = "\033[0;36m"
 #!}
 
 
@@ -96,4 +99,4 @@ define ANSI_COLOR_BG
 endef
 
 #! The escape sequence to color the terminal text background with the default color for this terminal
-ANSI_COLOR_BG_DEFAULT                             := $(call ANSI,"49")
+ANSI_COLOR_BG_DEFAULT       := $(call ANSI,"49")

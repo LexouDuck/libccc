@@ -1,4 +1,4 @@
-# This file holds rules to clean up the project folder, deleting generated files, etc
+#! This file holds rules to clean up the project folder, deleting generated files, etc
 
 
 

@@ -1,21 +1,21 @@
-# This file holds rules to increment the project version number (in the root-level makefile)
+#! This file holds rules to increment the project version number (in the root-level makefile)
 
-# The filepath in which to store the version number
+#! The filepath in which to store the version number
 VERSION_FILE = VERSION
 
 
 
-# The current project commit's revision hash code
+#! The current project commit's revision hash code
 COMMITREF = $(shell git rev-parse HEAD)
-# The current project version number
+#! The current project version number
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
 
-# The project name, as parsed from the VERSION file
-PARSED_NAME = $(shell cat $(VERSION_FILE) | cut -d'@' -f 1)
-# The project commit's revision hash code, as parsed from the VERSION file
-PARSED_COMMITREF = $(shell cat $(VERSION_FILE) | rev | cut -d'-' -f 1 | rev)
-# The project version number, as parsed from the VERSION file
-PARSED_VERSION := $(shell cat $(VERSION_FILE) | cut -d'@' -f 2 | cut -d'-' -f 1)
+#! The project name, as parsed from the VERSION file
+PARSED_NAME      := $(shell cat $(VERSION_FILE) | cut -d'@' -f 1)
+#! The project commit's revision hash code, as parsed from the VERSION file
+PARSED_COMMITREF := $(shell cat $(VERSION_FILE) | rev | cut -d'-' -f 1 | rev)
+#! The project version number, as parsed from the VERSION file
+PARSED_VERSION   := $(shell cat $(VERSION_FILE) | cut -d'@' -f 2 | cut -d'-' -f 1)
 
 VERSION_MAJOR := $(shell echo $(PARSED_VERSION) | cut -d'.' -f 1)
 VERSION_MINOR := $(shell echo $(PARSED_VERSION) | cut -d'.' -f 2)

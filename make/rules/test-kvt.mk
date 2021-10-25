@@ -1,4 +1,4 @@
-# This file holds rules for a simple standalone testing program
+#! This file holds project-specific rules for a simple standalone testing program
 
 
 

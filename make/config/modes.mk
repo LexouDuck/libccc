@@ -1,8 +1,8 @@
-# This file holds the default values and logic for project build configuration variables
+#! This file holds the default values and logic for project build configuration variables
 
 
 
-# Define all possible build modes
+#! Define all possible build modes
 MODES = \
 	debug	\
 	release	\
@@ -17,7 +17,7 @@ endif
 
 
 
-# Define all possible library-linking modes
+#! Define all possible library-linking modes
 LIBMODES = \
 	static	\
 	dynamic	\
@@ -30,9 +30,11 @@ else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
 
-# Define build target names with appropriate file extensions
+#! Define build target name for static library with appropriate file extensions
 NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
+#! Define build target name for dynamic library with appropriate file extensions
 NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
+#! Define build target name for library with appropriate file extension according to LIBMODE
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
 	NAME_LIBMODE = $(NAME_STATIC)
@@ -43,7 +45,7 @@ endif
 
 
 
-# Define all possible supported platforms
+#! Define all possible supported platforms
 OSMODES = \
 	win32	\
 	win64	\
@@ -73,10 +75,11 @@ endif
 
 
 
-# The file extension used for static library files
+#! The file extension used for static library files
 LIBEXT_STATIC=a
 
-# The file extension used for dynamic library files
+#! The file extension used for dynamic library files
+LIBEXT_DYNAMIC=
 ifeq ($(OSMODE),other)
 	LIBEXT_DYNAMIC=
 else ifeq ($(OSMODE),win32)

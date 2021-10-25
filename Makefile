@@ -6,10 +6,10 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 #          Project variables          #
 #######################################
 
-# Output filename for the library
+#! Output filename for the library
 NAME = libccc
 
-# Output filename for the test suite program
+#! Output filename for the test suite program
 NAME_TEST = libccc-test
 
 
@@ -20,30 +20,30 @@ NAME_TEST = libccc-test
 
 # repository folders
 
-# The header code files directory (stores `.h` files)
+#! The directory for header code files (stores `.h` files)
 HDRDIR = ./hdr/
-# The source code files directory (stores `.c` files)
+#! The directory for source code files (stores `.c` files)
 SRCDIR = ./src/
-# The dependency library files directory (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)
+#! The directory for dependency library files (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)
 LIBDIR = ./lib/
-# The documentation directory (stores config and scripts to generate doc)
+#! The directory for documentation (stores config and scripts to generate doc)
 DOCDIR = ./doc/
-# The testing programs directory (stores source/header code for the various testing programs)
+#! The directory for testing programs (stores source/header code for the various testing programs)
 TEST_DIR = ./test/
 
 # generated folders
 
-# The object assembly files directory (stores `.o` files)
+#! The directory for object assembly files (stores `.o` files)
 OBJDIR = ./obj/
-# The built binary files directory (stores programs/libraries built by this project)
+#! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
-# The distribution archives directory (stores `.zip` distributable builds)
+#! The directory for distribution archives (stores `.zip` distributable builds)
 DISTDIR = ./dist/
-# The output logs directory (stores `.txt` outputs of the test suite program)
+#! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
-# The linter/static analyzer output logs directory (stores warnings logs)
+#! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = ./lint/
-# The temporary directory (can be used for several things - should always be deleted after use)
+#! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
 
 
@@ -52,34 +52,38 @@ TEMPDIR = ./temp/
 #          Project variables          #
 #######################################
 
+#! Path of the file which stores the list of header code files
 HDRSFILE = make/lists/hdrs.txt
-# List of all C header code files
+#! List of all C header code files
 HDRS := $(shell cat $(HDRSFILE))
 
+#! Path of the file which stores the list of source code files
 SRCSFILE = make/lists/srcs.txt
-# List of all C source code files
+#! List of all C source code files
 SRCS := $(shell cat $(SRCSFILE))
 
-# define object files list (.o) from source list
+#! Derive list of compiled object files (.o) from list of srcs
 OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
 
-# define dependency files list (.d)
+#! Derive list of dependency files (.d) from list of srcs
 DEPS = ${OBJS:.o=.d}
 
 
 
+#! Path of the file which stores the list of header code files
 HDRSFILE_TEST = make/lists/hdrs-test.txt
-# List of all C header code files
+#! List of all C header code files
 HDRS_TEST := $(shell cat $(HDRSFILE_TEST))
 
+#! Path of the file which stores the list of source code files
 SRCSFILE_TEST = make/lists/srcs-test.txt
-# List of all C source code files
+#! List of all C source code files
 SRCS_TEST := $(shell cat $(SRCSFILE_TEST))
 
-# define object files list (.o) from source list
+#! Derive list of compiled object files (.o) from list of srcs
 OBJS_TEST = ${SRCS_TEST:%.c=$(OBJDIR)%.o}
 
-# define dependency files list (.d)
+#! Derive list of dependency files (.d) from list of srcs
 DEPS_TEST = ${OBJS_TEST:.o=.d}
 
 
@@ -131,6 +135,8 @@ re: clean-full all
 #      Included Makefile Rules        #
 #######################################
 
+RULES_PATH = ./make/rules/
+
 # general rules
 include make/rules/help.mk
 include make/rules/list.mk
@@ -138,20 +144,20 @@ include make/rules/init.mk
 include make/rules/dist.mk
 include make/rules/clean.mk
 include make/rules/install.mk
+include make/rules/version.mk
 
 # language-specific rules
 include make/rules/build-library.mk
 include make/rules/build-tests.mk
 include make/rules/debugging.mk
-include make/rules/prereq.mk
 include make/rules/update.mk
-include make/rules/version.mk
 
 # project-specific rules
+include make/rules/doc.mk
+include make/rules/lint.mk
+include make/rules/format.mk
+include make/rules/prereq.mk
 include make/rules/test.mk
 include make/rules/test-foreach.mk
 include make/rules/test-helloworld.mk
 include make/rules/test-kvt.mk
-include make/rules/doc.mk
-include make/rules/lint.mk
-include make/rules/format.mk

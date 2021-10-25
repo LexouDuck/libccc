@@ -1,8 +1,8 @@
-# This file holds C-specific rules to build a library
+#! This file holds C-specific rules to build a library
 
 
 
-# Compiles object files from source files
+#! Compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
@@ -11,7 +11,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 
 
-# Builds the static library file to link against, in the root directory
+#! Builds the static library file to link against, in the root directory
 $(NAME_STATIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling static library: "$@" -> "
@@ -22,7 +22,7 @@ $(NAME_STATIC): $(OBJS)
 
 
 
-# Builds the dynamically-linked library files for the current target platform
+#! Builds the dynamically-linked library files for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))

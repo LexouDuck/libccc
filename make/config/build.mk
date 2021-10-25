@@ -1,6 +1,6 @@
-# This file holds the variables which configure the code compiler
+#! This file holds the variables which configure the code compiler
 
-# Compiler
+#! C Compiler
 CC	= _
 CC_WIN32 =   i686-w64-mingw32-gcc
 CC_WIN64 = x86_64-w64-mingw32-gcc
@@ -9,7 +9,7 @@ CC_MACOS = clang
 
 
 
-# Compiler flags
+#! C Compiler flags & settings
 CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
 	-Werror \
 	-Wall \
@@ -43,7 +43,7 @@ CFLAGS_EXTRA =
 
 
 
-# Linker flags
+#! C Linker flags & settings
 LDFLAGS = $(LDFLAGS_OS) $(CFLAGS_EXTRA)
 #	-fsanitize=address
 #	-Wl,-rpath,bin/linux/dynamic/

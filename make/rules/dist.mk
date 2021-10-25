@@ -1,4 +1,4 @@
-# This file holds the rules to prepare distributable archives for release builds
+#! This file holds the rules to prepare distributable archives for release builds
 
 
 

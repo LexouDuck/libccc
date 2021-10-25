@@ -1,6 +1,6 @@
-# This file holds rules to generate/build the documentation for the project
+#! This file holds project-specific rules to generate/build the documentation for the project
 
-# path to the doxyrest executable
+#! The filepath of the doxyrest executable
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 
 
@@ -18,6 +18,5 @@ doc:
 	@doxygen $(DOCDIR)doxygen-config.doxygen
 	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
 	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
-
-#	@sphinx-build -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
-#	@$(MAKE) -C $(DOCDIR)pdf/latex/ all
+	@#sphinx-build -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
+	@#$(MAKE) -C $(DOCDIR)pdf/latex/ all

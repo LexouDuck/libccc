@@ -1,4 +1,4 @@
-# This file holds rules to run the automatic code style formatter
+#! This file holds project-specific rules to run an automatic code style formatter
 
 
 

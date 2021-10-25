@@ -1,4 +1,4 @@
-# This file holds rules to check whether prerequisite programs are correctly installed/available
+#! This file holds project-specific rules to check whether prerequisite programs are correctly installed/available
 
 
 
