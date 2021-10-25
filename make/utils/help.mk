@@ -2,6 +2,10 @@
 
 
 
+ifeq ($(MKFILE_PATH),)
+$(error To use the 'help.mk' utils, you must set the MKFILE_PATH variable)
+endif
+
 #! The list of files included by the root-level makefile
 MKFILES := $(MKFILE_PATH) $(shell cat $(MKFILE_PATH) | grep include | cut -d' ' -f 2-)
 

@@ -89,12 +89,21 @@ DEPS_TEST = ${OBJS_TEST:.o=.d}
 
 
 #######################################
-#     Included Makefile Variables     #
+#      General Makefile Utilities     #
 #######################################
 
 # general variables
 include make/utils/ansi.mk
 include make/utils/sudo.mk
+
+# general rules
+include make/utils/help.mk
+
+
+
+#######################################
+#     Included Makefile Variables     #
+#######################################
 
 # project-specific rules
 include make/config/modes.mk
@@ -159,6 +168,3 @@ include make/rules/test-kvt.mk
 include make/rules/doc.mk
 include make/rules/lint.mk
 include make/rules/format.mk
-
-# general rules
-include make/utils/help.mk
