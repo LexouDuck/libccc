@@ -1,3 +1,5 @@
+#! This is the root-level Makefile, which includes all the others
+
 # NOTE: the two following lines are to stay at the very top of this Makefile and never move
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))

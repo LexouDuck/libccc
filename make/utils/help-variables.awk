@@ -15,7 +15,7 @@ match($0, /#![^<]/)	{ doc = substr($0, RSTART + 3); }
 	{
 		if (doc != "")
 		{
-			print $1 "\t# " doc;
+			print $1 "\t" color "# " doc reset;
 		}
 		doc = "";
 	}

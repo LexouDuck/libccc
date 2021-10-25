@@ -5,7 +5,7 @@ BEGIN {
 {
 	if (/^#!/)
 	{
-		print "#" substr($0, 2);
+		print color "#" substr($0, 2) reset;
 		printed += 1;
 	}
 	else if (/^#/)

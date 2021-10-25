@@ -7,7 +7,7 @@ $(error To use the 'help.mk' utils, you must set the MKFILE_PATH variable)
 endif
 
 #! The list of files included by the root-level makefile
-MKFILES := $(MKFILE_PATH) $(shell cat $(MKFILE_PATH) | grep include | cut -d' ' -f 2-)
+MKFILES = $(MKFILE_PATH) $(shell cat $(MKFILE_PATH) | grep '\binclude\b' | cut -d' ' -f 2-)
 
 #! The char column at which the doc comments should show up
 COLUMN_DOC = 30
@@ -53,9 +53,11 @@ help-all # Displays all makefiles, variables and targets, with any available doc
 help-all:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
-		awk -f "make/utils/help-makefiles.awk" $$i | expand -t$(COLUMN_DOC) ; \
-		awk -f "make/utils/help-variables.awk" $$i | expand -t$(COLUMN_DOC) ; \
-		awk -f "make/utils/help-targets.awk"   $$i | expand -t$(COLUMN_DOC) ; \
+		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-makefiles.awk" $$i | expand -t$(COLUMN_DOC) ; \
+		printf $(C_DARK)"# Documented variables:"$(C_RESET)"\n" ; \
+		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-variables.awk" $$i | expand -t$(COLUMN_DOC) ; \
+		printf $(C_DARK)"# Documented targets:"$(C_RESET)"\n" ; \
+		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-targets.awk"   $$i | expand -t$(COLUMN_DOC) ; \
 	done
 
 
