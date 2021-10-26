@@ -68,6 +68,16 @@ help-debug:
 	@LC_ALL=C $(MAKE) -prRq -f $(MKFILE_PATH) : 2>/dev/null \
 
 .PHONY:\
+help-debug-makefiles # Displays list of all variables used each included makefile
+help-debug-makefiles:
+	@for i in $(MKFILES) ; do \
+		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
+		awk 'BEGIN { RS=" "; } match($$0, /\$$\([A-Z0-9_]+\)/) { print "uses " substr($$0, RSTART, RLENGTH); }' $$i \
+		| sort \
+		| uniq ; \
+	done
+
+.PHONY:\
 help-debug-variables # Displays list of all variables in the makefile, with their respective values
 help-debug-variables:
 	@LC_ALL=C $(MAKE) -prRq -f $(MKFILE_PATH) : 2>/dev/null \
