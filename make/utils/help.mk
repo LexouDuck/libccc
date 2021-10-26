@@ -72,7 +72,13 @@ help-debug-makefiles # Displays list of all variables used each included makefil
 help-debug-makefiles:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
-		awk 'BEGIN { RS=" "; } match($$0, /\$$\([A-Z0-9_]+\)/) { print "uses " substr($$0, RSTART, RLENGTH); }' $$i \
+		awk '\
+		BEGIN { RS=" "; } \
+		match($$0, /\$$\([A-Z0-9_]+\)/) \
+		{ \
+			print "uses " substr($$0, RSTART, RLENGTH); \
+		} \
+		' $$i \
 		| sort \
 		| uniq ; \
 	done
