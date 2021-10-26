@@ -3,7 +3,7 @@
 
 
 ifeq ($(MKFILE_PATH),)
-$(error To use the 'help.mk' utils, you must set the MKFILE_PATH variable)
+$(error To use the 'help.mk' utils, you must set the 'MKFILE_PATH' variable)
 endif
 
 #! The list of files included by the root-level makefile
@@ -72,11 +72,18 @@ help-debug-makefiles # Displays list of all variables used each included makefil
 help-debug-makefiles:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
-		awk '\
-		BEGIN { RS=" "; } \
-		match($$0, /\$$\([A-Z0-9_]+\)/) \
+		awk -v RS=" " '\
 		{ \
-			print "uses " substr($$0, RSTART, RLENGTH); \
+			remaining = $$0; \
+			while (length(remaining) > 0) \
+			{ \
+				if (match(remaining, /\$$\([a-zA-Z0-9_]+\)/) != 0) \
+				{ \
+					print "uses " substr(remaining, RSTART, RLENGTH); \
+					remaining = substr(remaining, RSTART + RLENGTH); \
+				} \
+				else remaining = ""; \
+			} \
 		} \
 		' $$i \
 		| sort \
