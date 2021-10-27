@@ -10,10 +10,10 @@ INSTALL_DIR = /usr/local/lib/
 .PHONY:\
 install # Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
 install:
-	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)           $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_STATIC)
-	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)         $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_DYNAMIC)
-	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_STATIC)  $(INSTALL_DIR)$(NAME).$(LIBEXT_STATIC)
-	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_DYNAMIC) $(INSTALL_DIR)$(NAME).$(LIBEXT_DYNAMIC)
+	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)           $(INSTALL_DIR)$(NAME).$(VERSION)$(EXT_LIB_STATIC)
+	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)         $(INSTALL_DIR)$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC)
+	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION)$(EXT_LIB_STATIC)  $(INSTALL_DIR)$(NAME)$(EXT_LIB_STATIC)
+	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC) $(INSTALL_DIR)$(NAME)$(EXT_LIB_DYNAMIC)
 
 
 

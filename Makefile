@@ -77,7 +77,7 @@ SRCSFILE_TEST = make/lists/srcs-test.txt
 # general variables
 include make/utils/ansi.mk
 include make/utils/sudo.mk
-include make/utils/exe.mk
+include make/utils/ext.mk
 
 # project-specific rules
 include make/config/modes.mk
