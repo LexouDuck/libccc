@@ -56,56 +56,28 @@ TEMPDIR = ./temp/
 
 #! Path of the file which stores the list of header code files
 HDRSFILE = make/lists/hdrs.txt
-#! List of all C header code files
-HDRS := $(shell cat $(HDRSFILE))
 
 #! Path of the file which stores the list of source code files
 SRCSFILE = make/lists/srcs.txt
-#! List of all C source code files
-SRCS := $(shell cat $(SRCSFILE))
-
-#! Derive list of compiled object files (.o) from list of srcs
-OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
-
-#! Derive list of dependency files (.d) from list of srcs
-DEPS = ${OBJS:.o=.d}
 
 
 
 #! Path of the file which stores the list of header code files
 HDRSFILE_TEST = make/lists/hdrs-test.txt
-#! List of all C header code files
-HDRS_TEST := $(shell cat $(HDRSFILE_TEST))
 
 #! Path of the file which stores the list of source code files
 SRCSFILE_TEST = make/lists/srcs-test.txt
-#! List of all C source code files
-SRCS_TEST := $(shell cat $(SRCSFILE_TEST))
-
-#! Derive list of compiled object files (.o) from list of srcs
-OBJS_TEST = ${SRCS_TEST:%.c=$(OBJDIR)%.o}
-
-#! Derive list of dependency files (.d) from list of srcs
-DEPS_TEST = ${OBJS_TEST:.o=.d}
-
-
-
-#######################################
-#      General Makefile Utilities     #
-#######################################
-
-# general variables
-include make/utils/ansi.mk
-include make/utils/sudo.mk
-
-# general rules
-include make/utils/help.mk
 
 
 
 #######################################
 #     Included Makefile Variables     #
 #######################################
+
+# general variables
+include make/utils/ansi.mk
+include make/utils/sudo.mk
+include make/utils/exe.mk
 
 # project-specific rules
 include make/config/modes.mk
@@ -146,20 +118,20 @@ re: clean-full all
 #      Included Makefile Rules        #
 #######################################
 
-RULES_PATH = ./make/rules/
+# general rules
+include make/utils/help.mk
 
 # project-specific rules
 include make/rules/build-library.mk
 include make/rules/build-tests.mk
-include make/rules/dist.mk
-include make/rules/install.mk
+include make/rules/install-library.mk
 
 include make/rules/init.mk
 include make/rules/prereq.mk
 include make/rules/clean.mk
-include make/rules/list.mk
 include make/rules/update.mk
 include make/rules/version.mk
+include make/rules/dist.mk
 
 include make/rules/debugging.mk
 include make/rules/test.mk

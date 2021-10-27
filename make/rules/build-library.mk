@@ -2,6 +2,28 @@
 
 
 
+#! List of all C header code files
+HDRS := $(shell cat $(HDRSFILE))
+
+#! List of all C source code files
+SRCS := $(shell cat $(SRCSFILE))
+
+#! Derive list of compiled object files (.o) from list of srcs
+OBJS := ${SRCS:%.c=$(OBJDIR)%.o}
+
+#! Derive list of dependency files (.d) from list of srcs
+DEPS := ${OBJS:.o=.d}
+
+
+
+.PHONY:\
+update-lists-build # Create/update the list of source/header files
+update-lists-build:
+	@find $(HDRDIR) -name "*.h" | sort | sed "s|$(HDRDIR)/||g" > $(HDRSFILE)
+	@find $(SRCDIR) -name "*.c" | sort | sed "s|$(SRCDIR)/||g" > $(SRCSFILE)
+
+
+
 #! Compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
