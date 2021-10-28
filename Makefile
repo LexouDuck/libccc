@@ -120,6 +120,7 @@ re: clean-full all
 
 # general rules
 include make/utils/help.mk
+include make/utils/install.mk
 
 # project-specific rules
 include make/rules/build-library.mk
