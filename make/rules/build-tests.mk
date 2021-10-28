@@ -17,8 +17,8 @@ DEPS_TEST := ${OBJS_TEST:.o=.d}
 
 
 .PHONY:\
-update-lists-tests # Create/update the list of source/header files for the test suite program
-update-lists-tests:
+lists-tests # Create/update the list of source/header files for the test suite program
+lists-tests:
 	@find $(TEST_DIR) -name "*.h" | sort | sed "s|//|/|g" | grep -v "/_" > $(HDRSFILE_TEST)
 	@find $(TEST_DIR) -name "*.c" | sort | sed "s|//|/|g" | grep -v "/_" > $(SRCSFILE_TEST)
 

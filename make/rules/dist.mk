@@ -4,7 +4,7 @@
 
 .PHONY:\
 dist # Prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
-dist: release
+dist: build-release
 	@mkdir -p $(DISTDIR)
 	@-$(MAKE) -s dist-version OSMODE=win32
 	@-$(MAKE) -s dist-version OSMODE=win64

@@ -78,6 +78,7 @@ SRCSFILE_TEST = make/lists/srcs-test.txt
 include make/utils/ansi.mk
 include make/utils/sudo.mk
 include make/utils/ext.mk
+include make/utils/install.mk
 
 # project-specific rules
 include make/config/modes.mk
@@ -87,52 +88,21 @@ include make/config/tests.mk
 
 
 #######################################
-#           Main build rules          #
-#######################################
-
-.PHONY:\
-all # Builds all targets (this is the default rule)
-all: $(MODE)
-
-.PHONY:\
-debug # Builds the library, in 'debug' mode (with debug flags and symbol-info)
-debug: MODE = debug
-debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
-
-.PHONY:\
-release # Builds the library, in 'release' mode (with debug flags and symbol-info)
-release: MODE = release
-release: CFLAGS += $(CFLAGS_RELEASE)
-release: $(NAME_STATIC) $(NAME_DYNAMIC)
-
-
-
-.PHONY:\
-re # Deletes all generated files and rebuilds `all`
-re: clean-full all
-
-
-
-#######################################
 #      Included Makefile Rules        #
 #######################################
 
-# general rules
-include make/utils/help.mk
-include make/utils/install.mk
-
 # project-specific rules
-include make/rules/build-library.mk
+include make/rules/all.mk
+include make/rules/build.mk
 include make/rules/build-tests.mk
 include make/rules/install.mk
 
 include make/rules/init.mk
 include make/rules/prereq.mk
-include make/rules/clean.mk
-include make/rules/update.mk
+include make/rules/packages.mk
 include make/rules/version.mk
 include make/rules/dist.mk
+include make/rules/clean.mk
 
 include make/rules/debugging.mk
 include make/rules/test.mk
@@ -143,3 +113,6 @@ include make/rules/test-kvt.mk
 include make/rules/doc.mk
 include make/rules/lint.mk
 include make/rules/format.mk
+
+# general rules
+include make/utils/help.mk

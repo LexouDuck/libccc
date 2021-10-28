@@ -1,5 +1,7 @@
 #! This file holds project-specific rules to generate/build the documentation for the project
 
+
+
 #! The filepath of the doxyrest executable
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
 

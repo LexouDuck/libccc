@@ -14,13 +14,33 @@ OBJS := ${SRCS:%.c=$(OBJDIR)%.o}
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := ${OBJS:.o=.d}
 
+#! GNU conventional variable: List of libraries to link against
+LDLIBS = $(foreach i,$(PACKAGES_LINK),$($(i)))
+
+#! GNU conventional variable: List of folders which store header code files
+INCLUDES = -I$(HDRDIR) $(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
+
 
 
 .PHONY:\
-update-lists-build # Create/update the list of source/header files
-update-lists-build:
+lists # Create/update the list of source/header files
+lists:
 	@find $(HDRDIR) -name "*.h" | sort | sed "s|$(HDRDIR)/||g" > $(HDRSFILE)
 	@find $(SRCDIR) -name "*.c" | sort | sed "s|$(SRCDIR)/||g" > $(SRCSFILE)
+
+
+
+.PHONY:\
+build-debug # Builds the library, in 'debug' mode (with debug flags and symbol-info)
+build-debug: MODE = debug
+build-debug: CFLAGS += $(CFLAGS_DEBUG)
+build-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
+
+.PHONY:\
+build-release # Builds the library, in 'release' mode (with debug flags and symbol-info)
+build-release: MODE = release
+build-release: CFLAGS += $(CFLAGS_RELEASE)
+build-release: $(NAME_STATIC) $(NAME_DYNAMIC)
 
 
 
@@ -28,7 +48,7 @@ update-lists-build:
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) -MMD -I$(HDRDIR) -c $<
+	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
@@ -49,7 +69,7 @@ $(NAME_DYNAMIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) \
+	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS) \
 	-Wl,--output-def,$(NAME).def \
 	-Wl,--out-implib,$(NAME).lib \
 	-Wl,--export-all-symbols
@@ -57,10 +77,10 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS)
+	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
 else ifeq ($(OSMODE),linux)
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS)
+	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
 else
 	@printf $(C_YELLOW)"Unknown platform: needs manual configuration."$(C_RESET)"\n"
 	@printf "You must manually configure the script to build a dynamic library""\n"
