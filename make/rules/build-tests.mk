@@ -28,7 +28,7 @@ lists-tests:
 $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(HDRS_TEST)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -c $< -o $@
+	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) -c $<
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 
@@ -36,7 +36,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(HDRS_TEST)
 #! Builds the testing/CI program
 $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(OBJS_TEST)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) $(TEST_CFLAGS) $(TEST_INCLUDEDIRS) -o $@ $(OBJS_TEST) $(TEST_LIBS)
+	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) $(OBJS_TEST) $(TEST_LDLIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 

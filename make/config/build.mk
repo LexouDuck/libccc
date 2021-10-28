@@ -1,13 +1,13 @@
 #! This file holds the variables which configure the code compiler
 
+
+
 #! C Compiler
 CC	= _
 CC_WIN32 =   i686-w64-mingw32-gcc
 CC_WIN64 = x86_64-w64-mingw32-gcc
 CC_LINUX = gcc
 CC_MACOS = clang
-
-
 
 #! C Compiler flags & settings
 CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
