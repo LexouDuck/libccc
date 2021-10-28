@@ -124,7 +124,7 @@ include make/utils/help.mk
 # project-specific rules
 include make/rules/build-library.mk
 include make/rules/build-tests.mk
-include make/rules/install-library.mk
+include make/rules/install.mk
 
 include make/rules/init.mk
 include make/rules/prereq.mk
