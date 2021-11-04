@@ -2,23 +2,28 @@
 
 
 
-#! The folder in which to install to library files
-INSTALL_DIR = /usr/local/lib/
-
-
-
 .PHONY:\
 install # Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
-install:
-	@cp    $(BINDIR)$(OSMODE)/static/$(NAME_STATIC)           $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_STATIC)
-	@cp    $(BINDIR)$(OSMODE)/dynamic/$(NAME_DYNAMIC)         $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_DYNAMIC)
-	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_STATIC)  $(INSTALL_DIR)$(NAME).$(LIBEXT_STATIC)
-	@ln -s $(INSTALL_DIR)$(NAME).$(VERSION).$(LIBEXT_DYNAMIC) $(INSTALL_DIR)$(NAME).$(LIBEXT_DYNAMIC)
+install: $(NAME_STATIC) $(NAME_DYNAMIC)
+	@echo "Installing library: $(NAME)..."
+	@mkdir -p $(INSTALLDIR)/include/
+	@mkdir -p $(INSTALLDIR)/lib/
+	@$(INSTALL_DATA) $(HDRS)        $(INSTALLDIR)/include/
+	@$(INSTALL_DATA) $(NAME_STATIC) $(INSTALLDIR)/lib/
+	@$(INSTALL_PROGRAM) $(NAME_DYNAMIC) \
+			$(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC)
+	@ln -sf $(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC) \
+			$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_DYNAMIC)
+	@echo "done"
 
 
 
 .PHONY:\
 uninstall # Removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
 uninstall:
-	@printf "Removing the following files:\n"
-	@find $(INSTALL_DIR) -name "$(NAME).*" -print -delete
+	@echo "Uninstalling library: $(NAME)..."
+	@rm -f $(INSTALLDIR)/include/$(HDRS)
+	@rm -f $(INSTALLDIR)/lib/$(NAME_STATIC)
+	@rm -f $(INSTALLDIR)/lib/$(NAME_DYNAMIC)
+	@rm -f $(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC)
+	@echo "done"

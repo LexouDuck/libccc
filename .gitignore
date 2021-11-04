@@ -1,11 +1,14 @@
-obj
-bin
-dist
-lint
+# PROJECT
+
+obj/
+bin/
+dist/
+lint/
 ref/
 doc/*/*
 doc/html/.doctrees
 log/**/*.log
+log/**/*.txt
 
 libccc-test*
 libccc_test*
@@ -13,38 +16,50 @@ pclint_*.*
 
 test/_test.c
 
-# Prerequisites
-*.d
 
-# Object files
+
+# OS/IDE
+
+### Linux
+### MacOS
+.DS-Store
+.DS_Store
+### Windows
+
+### Sublime text
+*.sublime-workspace
+### Visual Studio
+.vs/
+### Visual Studio Code
+.vscode/
+
+
+
+# C
+
+### C intermediary build files
+*.d
 *.o
 *.ko
 *.obj
 *.elf
-
-# Linker output
 *.ilk
 *.map
 *.exp
-
-# Precompiled Headers
 *.gch
 *.pch
-
-# Libraries
-*.lib
+### Libraries (static)
 *.a
 *.la
 *.lo
-
-# Shared objects (inc. Windows DLLs)
+*.lib
+### Libraries (dynamic)
 *.def
 *.dll
 *.so
 *.so.*
 *.dylib
-
-# Executables
+### Executables
 *.exe
 *.out
 *.app
@@ -52,14 +67,12 @@ test/_test.c
 *.x86_64
 *.hex
 *.stackdump
-
-# Debug files
+### Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
-
-# Kernel Module Compile Results
+### Kernel Module Compile Results
 *.mod*
 *.cmd
 .tmp_versions/
@@ -67,8 +80,3 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-
-#Other
-*.sublime-workspace
-.DS-Store
-.DS_Store

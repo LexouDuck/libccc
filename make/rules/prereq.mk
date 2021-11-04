@@ -72,10 +72,25 @@ prereq-build:
 .PHONY:\
 prereq-tests # Checks prerequisite installs to run the various tests
 prereq-tests:
+ifeq ($(OSMODE),other)
+	@printf $(C_YELLOW)"WARNING"$(C_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
+else ifeq ($(OSMODE),win32)
+	@# TODO drmemory.exe ?
+else ifeq ($(OSMODE),win64)
+	@# TODO drmemory.exe ?
+else ifeq ($(OSMODE),macos)
+	$(call check_prereq,\
+		(tests) Xcode leaks checker,\
+		leaks --help,\
+		$(call install_prereq,leaks))
+else ifeq ($(OSMODE),linux)
 	$(call check_prereq,\
 		(tests) Valgrind,\
 		valgrind --version,\
 		$(call install_prereq,valgrind))
+else
+	@printf $(C_YELLOW)"WARNING"$(C_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
+endif
 
 .PHONY:\
 prereq-format # Checks prerequisite installs to run the automatic code style formatter

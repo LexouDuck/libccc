@@ -12,18 +12,18 @@ TEST_LDFLAGS = $(LDFLAGS)
 
 
 #! C header file paths
-TEST_INCLUDEDIRS = \
+TEST_INCLUDES = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
 
 
 #! C libraries to link with
-TEST_LIBS = -L./ \
+TEST_LDLIBS = -L./ \
 	-lccc \
 	-lpthread \
 	-lm \
 
 ifneq ($(OSMODE),macos)
-	TEST_LIBS := -static $(TEST_LIBS)
+	TEST_LDLIBS := -static $(TEST_LDLIBS)
 endif
