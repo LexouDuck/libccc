@@ -2,6 +2,7 @@ obj
 bin
 dist
 lint
+ref/
 doc/*/*
 doc/html/.doctrees
 log/**/*.log
