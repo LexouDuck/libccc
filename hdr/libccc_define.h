@@ -161,7 +161,7 @@ HEADER_CPP
 
 #else
 	#error "Unknown data model: this platform is unsupported, and needs some manual configuration to build."
-		"\n""Please run the libccc 'predef' simple test program, "
+		"\n""Please run the libccc 'make test-predef' simple test program, "
 			"to check which macros are predefined in your environment."
 
 #endif
