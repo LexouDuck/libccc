@@ -7,8 +7,8 @@ COMMITREF = $(shell git rev-parse HEAD)
 
 #! The filepath in which to store the version number
 VERSION_FILE = VERSION
-# if it doesn't exist, create it
-ifeq ($(shell test -f $(VERSION_FILE) && echo _),)
+# if file doesn't exist, create it
+ifeq ($(shell test -f $(VERSION_FILE) ; echo $$?),1)
 $(warning NOTE: version file '$(VERSION_FILE)' doesn't exist - creating now...)
 $(shell echo "$(NAME)@0.0.1-$(COMMITREF)" > $(VERSION_FILE) && cat $(VERSION_FILE))
 endif
@@ -57,6 +57,7 @@ version:
 .PHONY:\
 version-major # Increments the project major version number (1st of the 3 numbers: X.0.0)
 version-major:
+	@printf $(C_CYAN)"Incrementing major version number..."$(C_RESET)"\n"
 	@$(eval VERSION_MAJOR := $(shell echo $$(($(VERSION_MAJOR)+1))))
 	@$(eval VERSION_MINOR := 0)
 	@$(eval VERSION_BUILD := 0)
@@ -65,6 +66,7 @@ version-major:
 .PHONY:\
 version-minor # Increments the project minor version number (2nd of the 3 numbers: 0.X.0)
 version-minor:
+	@printf $(C_CYAN)"Incrementing minor version number..."$(C_RESET)"\n"
 	@$(eval VERSION_MINOR := $(shell echo $$(($(VERSION_MINOR)+1))))
 	@$(eval VERSION_BUILD := 0)
 	@$(call set_version)
@@ -72,5 +74,6 @@ version-minor:
 .PHONY:\
 version-build # Increments the project build number (3rd of the 3 numbers: 0.0.X)
 version-build:
+	@printf $(C_CYAN)"Incrementing build version number..."$(C_RESET)"\n"
 	@$(eval VERSION_BUILD := $(shell echo $$(($(VERSION_BUILD)+1))))
 	@$(call set_version)
