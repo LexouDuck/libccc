@@ -18,10 +18,8 @@ C_DARK    = "\033[0;90m"
 
 
 #! This function simply puts ANSI escape-sequence delimiters around the given string
-#!	@param $1	should be a valid ANSI number string
-define ANSI
-	"\033["$1"m"
-endef
+#!	@param $(1)	should be a valid ANSI number string
+ANSI = "\033["$(1)"m"
 
 # TODO refactor  these macros to instead have an 'ANSI_' prefix
 
@@ -68,9 +66,7 @@ ANSI_COLOR_FG_WHITE         := $(call ANSI,"97")	#!< The escape sequence to colo
 
 #! ANSI Color code (255-map, not supported on certain old terminals)
 #!	@param	$1	should be a string, containing number between 0 and 255
-define ANSI_COLOR_FG
-	$(call ANSI,"38;5;"$1"")
-endef
+ANSI_COLOR_FG = $(call ANSI,"38;5;"$(1)"")
 
 #! The escape sequence to color the terminal text output with the default color for this terminal
 ANSI_COLOR_FG_DEFAULT       := $(call ANSI,"39")
@@ -96,9 +92,7 @@ ANSI_COLOR_BG_WHITE         := $(call ANSI,"107")	#!< The escape sequence to col
 
 #! ANSI Color code (255-map, not supported on certain old terminals)
 #!	@param	$1	should be a string, containing number between 0 and 255
-define ANSI_COLOR_BG
-	$(call ANSI,"48;5;"$1"")
-endef
+ANSI_COLOR_BG = $(call ANSI,"48;5;"$(1)"")
 
 #! The escape sequence to color the terminal text background with the default color for this terminal
 ANSI_COLOR_BG_DEFAULT       := $(call ANSI,"49")

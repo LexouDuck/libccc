@@ -2,43 +2,41 @@
 
 
 
-define check_prereq
-	@printf "\n\n"$(C_CYAN)"|=> Checking prerequisite: $1"$(C_RESET)"\n$$ $2\n"
-	@- { $2 ; } || \
+check_prereq = \
+	printf "\n\n"$(C_CYAN)"|=> Checking prerequisite: $(1)"$(C_RESET)"\n$$ $(2)\n" ; \
+	{ $(2) ; } || \
 	{ \
-		printf $(C_YELLOW)"$1 is not installed"$(C_RESET)"\n" ; \
+		printf $(C_YELLOW)"$(1) is not installed"$(C_RESET)"\n" ; \
 		printf $(C_MAGENTA)"Installing...\n" ; \
-		$3 ; \
+		$(3) ; \
 	}
-endef
 
 
 
 ifeq ($(OS),Windows_NT)
-define install_prereq
-	printf $(C_RED)"ERROR"$(C_RESET)": Windows platform detected. You must manually install: "
-endef
+install_prereq = \
+	printf $(C_RED)"ERROR"$(C_RESET)": Windows platform detected. You must manually install: " \
+
 else ifeq ($(UNAME_S),Darwin)
-define install_prereq
-	brew install $1
-endef
+install_prereq = \
+	brew install $(1) \
+
 else ifeq ($(UNAME_S),Linux)
-define install_prereq
-	if   [ -x "$(command -v apk)"     ]; then $(SUDO) apk add --no-cache $1 ; \
-	elif [ -x "$(command -v apt-get)" ]; then $(SUDO) apt-get install    $1 ; \
-	elif [ -x "$(command -v yum)"     ]; then $(SUDO) yum     install    $1 ; \
-	elif [ -x "$(command -v pacman)"  ]; then $(SUDO) pacman  -S         $1 ; \
-	elif [ -x "$(command -v dnf)"     ]; then $(SUDO) dnf     install    $1 ; \
-	elif [ -x "$(command -v zypp)"    ]; then $(SUDO) zypp    install    $1 ; \
-	elif [ -x "$(command -v zypper)"  ]; then $(SUDO) zypper  install    $1 ; \
+install_prereq = \
+	if   [ -x "$(command -v apk)"     ]; then $(SUDO) apk add --no-cache $(1) ; \
+	elif [ -x "$(command -v apt-get)" ]; then $(SUDO) apt-get install    $(1) ; \
+	elif [ -x "$(command -v yum)"     ]; then $(SUDO) yum     install    $(1) ; \
+	elif [ -x "$(command -v pacman)"  ]; then $(SUDO) pacman  -S         $(1) ; \
+	elif [ -x "$(command -v dnf)"     ]; then $(SUDO) dnf     install    $(1) ; \
+	elif [ -x "$(command -v zypp)"    ]; then $(SUDO) zypp    install    $(1) ; \
+	elif [ -x "$(command -v zypper)"  ]; then $(SUDO) zypper  install    $(1) ; \
 	else \
-		printf $(C_RED)"ERROR"$(C_RESET)": Package manager not found. You must manually install: $1" >&2 ; \
-	fi
-endef
+		printf $(C_RED)"ERROR"$(C_RESET)": Package manager not found. You must manually install: $(1)" >&2 ; \
+	fi \
+
 else
-define install_prereq
-	printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform. You must manually install: $1"
-endef
+install_prereq = \
+	printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform. You must manually install: $(1)"
 endif
 
 
@@ -60,11 +58,11 @@ prereq-doc
 .PHONY:\
 prereq-build # Checks prerequisite installs to build the library/program
 prereq-build:
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(build) compiler: $(CC),\
 		$(CC) --version,\
 		$(call install_prereq,$(CC)))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(build) archiver: $(AR),\
 		which $(AR),\
 		$(call install_prereq,binutils))
@@ -75,16 +73,16 @@ prereq-tests:
 ifeq ($(OSMODE),other)
 	@printf $(C_YELLOW)"WARNING"$(C_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
 else ifeq ($(OSMODE),win32)
-	@# TODO drmemory.exe ?
+	@-# TODO drmemory.exe ?
 else ifeq ($(OSMODE),win64)
-	@# TODO drmemory.exe ?
+	@-# TODO drmemory.exe ?
 else ifeq ($(OSMODE),macos)
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(tests) Xcode leaks checker,\
 		leaks --help,\
 		$(call install_prereq,leaks))
 else ifeq ($(OSMODE),linux)
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(tests) Valgrind,\
 		valgrind --version,\
 		$(call install_prereq,valgrind))
@@ -95,7 +93,7 @@ endif
 .PHONY:\
 prereq-format # Checks prerequisite installs to run the automatic code style formatter
 prereq-format:
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(format) indent,\
 		which indent,\
 		$(call install_prereq,indent))
@@ -103,11 +101,11 @@ prereq-format:
 .PHONY:\
 prereq-lint # Checks prerequisite installs to run the linter/static analyzer
 prereq-lint:
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(lint) cppcheck,\
 		cppcheck --version,\
 		$(call install_prereq,cppcheck))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(lint) splint,\
 		splint --help,\
 		$(call install_prereq,splint))
@@ -115,23 +113,23 @@ prereq-lint:
 .PHONY:\
 prereq-doc # Checks prerequisite installs to generate the documentation
 prereq-doc:
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(doc) Doxygen,\
 		doxygen --version,\
 		$(call install_prereq,doxygen))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(doc) Doxyrest,\
 		$(DOXYREST) --version,\
 		$(call install_prereq,doxyrest))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(doc) Lua,\
 		lua -v,\
 		$(call install_prereq,lua))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(doc) Python 3.7,\
 		python3.7 --version,\
 		$(call install_prereq,python@3.7))
-	$(call check_prereq,\
+	@-$(call check_prereq,\
 		(doc) Python Sphinx doc generator,\
 		sphinx-build --version,\
 		$(call install_prereq,sphinx))
