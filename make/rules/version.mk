@@ -41,8 +41,8 @@ $(error Project name mismatch: NAME is "$(NAME)",\
 endif
 
 ifneq ($(PARSED_COMMITREF),$(COMMITREF))
-$(info Project commit changed: updating version file...)
-$(shell $(call make_VERSIONFILE,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_BUILD)))
+$(info Project commit changed: updating version file "$(VERSIONFILE)"...)
+VERSIONFULL := $(shell $(call make_VERSIONFILE,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_BUILD)))
 endif
 
 

@@ -7,10 +7,9 @@ $(error To use the 'help.mk' utils, you must set the 'MKFILE_PATH' variable)
 endif
 
 #! The list of files included by the root-level makefile (and any sub-included)
-MKFILES := $(MKFILE_PATH)
-MKFILES += $(shell cat $(MKFILES) | grep '^-\?include\b' | cut -d' ' -f 2-)
-MKFILES += $(shell cat $(MKFILES) | grep '^-\?include\b' | cut -d' ' -f 2-)
-$(eval MKFILES := $(MKFILES))
+MKFILES :=            $(shell cat $(MKFILE_PATH) | grep '^include\b' | cut -d' ' -f 2-)
+MKFILES := $(MKFILES) $(shell cat $(MKFILES)     | grep '^include\b' | cut -d' ' -f 2-)
+$(eval MKFILES := $(MKFILE_PATH) $(MKFILES))
 
 #! The char column at which the doc comments should show up
 COLUMN_DOC = 30
