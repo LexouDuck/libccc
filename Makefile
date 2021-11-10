@@ -47,6 +47,8 @@ LOGDIR = ./log/
 LINTDIR = ./lint/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
+#! The directory for git hooks scripts
+GITHOOKSDIR = ./.githooks/
 
 
 
