@@ -1,14 +1,22 @@
 #! This file holds rules to increment the project version number (in the root-level makefile)
 
-#! The filepath in which to store the version number
-VERSION_FILE = VERSION
-
 
 
 #! The current project commit's revision hash code
 COMMITREF = $(shell git rev-parse HEAD)
+
+#! The filepath in which to store the version number
+VERSION_FILE = VERSION
+# if it doesn't exist, create it
+ifeq ($(shell test -f $(VERSION_FILE) && echo _),)
+$(warning NOTE: version file '$(VERSION_FILE)' doesn't exist - creating now...)
+$(shell echo "$(NAME)@0.0.1-$(COMMITREF)" > $(VERSION_FILE) && cat $(VERSION_FILE))
+endif
+
 #! The current project version number
 VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_BUILD)
+
+
 
 #! The project name, as parsed from the VERSION file
 PARSED_NAME      := $(shell cat $(VERSION_FILE) | cut -d'@' -f 1)
