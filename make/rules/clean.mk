@@ -5,10 +5,10 @@
 .PHONY:\
 clean # Deletes all intermediary build files
 clean:
-	@printf "Deleting all .o files...\n"
+	@printf $(C_CYAN)"Deleting all .o files..."$(C_RESET)"\n"
 	@rm -f $(OBJS)
 	@rm -f $(OBJS_TEST)
-	@printf "Deleting all .d files...\n"
+	@printf $(C_CYAN)"Deleting all .d files..."$(C_RESET)"\n"
 	@rm -f $(DEPS)
 	@rm -f $(DEPS_TEST)
 	@rm -f *.d
@@ -19,36 +19,36 @@ clean:
 clean-exe # Deletes any libraries/executables
 clean-exe:
 	@rm -f $(NAME).*
-	@printf "Deleting library: "$(NAME_STATIC)"\n"
+	@printf $(C_CYAN)"Deleting library: "$(NAME_STATIC)""$(C_RESET)"\n"
 	@rm -f $(NAME_STATIC)
-	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
+	@printf $(C_CYAN)"Deleting library: "$(NAME_DYNAMIC)""$(C_RESET)"\n"
 	@rm -f $(NAME_DYNAMIC)
-	@printf "Deleting program: "$(NAME_TEST)"\n"
+	@printf $(C_CYAN)"Deleting program: "$(NAME_TEST)""$(C_RESET)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 
 .PHONY:\
 clean-obj # Deletes the ./obj folder
 clean-obj:
-	@printf "Deleting "$(OBJDIR)" folder...\n"
+	@printf $(C_CYAN)"Deleting "$(OBJDIR)" folder..."$(C_RESET)"\n"
 	@rm -rf $(OBJDIR)
 
 .PHONY:\
 clean-bin # Deletes the ./bin folder
 clean-bin:
-	@printf "Deleting "$(BINDIR)" folder...\n"
+	@printf $(C_CYAN)"Deleting "$(BINDIR)" folder..."$(C_RESET)"\n"
 	@rm -rf $(BINDIR)
 
 .PHONY:\
 clean-logs # Deletes the ./log folder
 clean-logs:
-	@printf "Deleting "$(LOGDIR)" folder...\n"
+	@printf $(C_CYAN)"Deleting "$(LOGDIR)" folder..."$(C_RESET)"\n"
 	@rm -rf $(LOGDIR)
 
 .PHONY:\
 clean-lint # Deletes the ./lint folder
 clean-lint:
-	@printf "Deleting "$(LINTDIR)" folder...\n"
+	@printf $(C_CYAN)"Deleting "$(LINTDIR)" folder..."$(C_RESET)"\n"
 	@rm -rf $(LINTDIR)
 
 

@@ -1,7 +1,11 @@
 #! This file holds configuration variables for the test suite compilation
 
 #! C compiler config flags
-TEST_CFLAGS = -O2 -g -ggdb \
+TEST_CFLAGS = \
+	-O2 \
+	-g -ggdb \
+	-Wall \
+	-Wextra \
 	-Wno-format-extra-args \
 	-fno-inline \
 #	-fanalyzer

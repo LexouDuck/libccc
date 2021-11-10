@@ -40,10 +40,9 @@ endif
 
 
 
-define set_version
-	@echo "$(NAME)@$(VERSION)-$(COMMITREF)" > $(VERSION_FILE)
-	@cat $(VERSION_FILE)
-endef
+set_version = \
+	echo "$(NAME)@$(VERSION)-$(COMMITREF)" > $(VERSION_FILE) \
+	&& cat $(VERSION_FILE) \
 
 
 

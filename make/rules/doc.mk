@@ -2,19 +2,19 @@
 
 
 
-#! doxygen command
+#! Shell command: doxygen
 DOXYGEN = doxygen
-#! doxygen command options
+#! Shell command: doxygen options
 DOXYGEN_FLAGS = 
 
-#! doxyrest command
+#! Shell command: doxyrest
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
-#! doxyrest command options
+#! Shell command: doxyrest options
 DOXYREST_FLAGS = 
 
-#! sphinx-build command
+#! Shell command: sphinx-build
 SPHINX = sphinx-build
-#! sphinx-build command options
+#! Shell command: sphinx-build options
 SPHINX_FLAGS = 
 
 
@@ -22,6 +22,7 @@ SPHINX_FLAGS =
 .PHONY:\
 doc # Generates documentation for libccc
 doc:
+	@printf $(C_CYAN)"Generating documentation..."$(C_RESET)"\n"
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
 	@rm -rf $(DOCDIR)man/*
