@@ -115,4 +115,5 @@ include make/rules/lint.mk
 include make/rules/format.mk
 
 # general rules
+include make/utils/refactor.mk
 include make/utils/help.mk
