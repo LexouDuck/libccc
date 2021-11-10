@@ -4,7 +4,8 @@
 
 .PHONY:\
 all # Builds all targets (this is the default rule)
-all: build-$(MODE)
+all: \
+	build-$(MODE)
 
 
 
@@ -19,4 +20,6 @@ setup: \
 
 .PHONY:\
 re # Deletes all generated files and rebuilds `all`
-re: clean-full all
+re: \
+	clean-full \
+	all \

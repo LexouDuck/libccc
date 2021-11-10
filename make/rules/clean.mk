@@ -18,6 +18,7 @@ clean:
 .PHONY:\
 clean-exe # Deletes any libraries/executables
 clean-exe:
+	@rm -f $(NAME)
 	@rm -f $(NAME).*
 	@printf $(C_CYAN)"Deleting library: "$(NAME_STATIC)""$(C_RESET)"\n"
 	@rm -f $(NAME_STATIC)

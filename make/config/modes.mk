@@ -31,9 +31,9 @@ $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
 
 #! Define build target name for static library with appropriate file extensions
-NAME_STATIC  = $(NAME)$(EXT_LIB_STATIC)
+NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
 #! Define build target name for dynamic library with appropriate file extensions
-NAME_DYNAMIC = $(NAME)$(EXT_LIB_DYNAMIC)
+NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
 #! Define build target name for library with appropriate file extension according to LIBMODE
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -64,12 +64,32 @@ ifeq ($(OSMODE),)
 		endif
 	else
 		UNAME_S = $(shell uname -s)
+		ifeq ($(UNAME_S),Linux)
+			OSMODE=linux
+		endif
 		ifeq ($(UNAME_S),Darwin)
 			OSMODE=macos
-		else ifeq ($(UNAME_S),Linux)
-			OSMODE=linux
-		else
-			OSMODE=other
 		endif
 	endif
+endif
+
+
+
+#! The file extension used for static library files
+LIBEXT_STATIC=a
+
+#! The file extension used for dynamic library files
+LIBEXT_DYNAMIC=
+ifeq ($(OSMODE),other)
+	LIBEXT_DYNAMIC=
+else ifeq ($(OSMODE),win32)
+	LIBEXT_DYNAMIC=dll
+else ifeq ($(OSMODE),win64)
+	LIBEXT_DYNAMIC=dll
+else ifeq ($(OSMODE),linux)
+	LIBEXT_DYNAMIC=so
+else ifeq ($(OSMODE),macos)
+	LIBEXT_DYNAMIC=dylib
+else
+$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif

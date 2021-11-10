@@ -2,11 +2,33 @@
 
 
 
+#! Path of the file which stores the list of header code files
+HDRSFILE = make/lists/hdrs.txt
+#! The shell command which generates the list of header code files
+make_HDRSFILE = find $(HDRDIR) -name "*.h" | sort | sed "s|$(HDRDIR)/||g" > $(HDRSFILE)
+# if file doesn't exist, create it
+ifeq ($(shell test -f $(HDRSFILE) ; echo $$?),1)
+$(warning NOTE: header code list file '$(HDRSFILE)' doesn't exist - creating now...)
+$(shell $(call make_HDRSFILE))
+endif
 #! List of all C header code files
 HDRS := $(shell cat $(HDRSFILE))
 
+
+
+#! Path of the file which stores the list of source code files
+SRCSFILE = make/lists/srcs.txt
+#! The shell command which generates the list of source code files
+make_SRCSFILE = find $(SRCDIR) -name "*.c" | sort | sed "s|$(SRCDIR)/||g" > $(SRCSFILE)
+# if file doesn't exist, create it
+ifeq ($(shell test -f $(SRCSFILE) ; echo $$?),1)
+$(warning NOTE: source code list file '$(SRCSFILE)' doesn't exist - creating now...)
+$(shell $(call make_SRCSFILE))
+endif
 #! List of all C source code files
 SRCS := $(shell cat $(SRCSFILE))
+
+
 
 #! Derive list of compiled object files (.o) from list of srcs
 OBJS := $(SRCS:%.c=$(OBJDIR)%.o)
@@ -25,8 +47,8 @@ INCLUDES = -I$(HDRDIR) $(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
 .PHONY:\
 lists # Create/update the list of source/header files
 lists:
-	@find $(HDRDIR) -name "*.h" | sort | sed "s|$(HDRDIR)/||g" > $(HDRSFILE)
-	@find $(SRCDIR) -name "*.c" | sort | sed "s|$(SRCDIR)/||g" > $(SRCSFILE)
+	@$(call make_HDRSFILE)
+	@$(call make_SRCSFILE)
 
 
 

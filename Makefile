@@ -53,26 +53,6 @@ GITHOOKSDIR = ./.githooks/
 
 
 #######################################
-#          Project variables          #
-#######################################
-
-#! Path of the file which stores the list of header code files
-HDRSFILE = make/lists/hdrs.txt
-
-#! Path of the file which stores the list of source code files
-SRCSFILE = make/lists/srcs.txt
-
-
-
-#! Path of the file which stores the list of header code files
-HDRSFILE_TEST = make/lists/hdrs-test.txt
-
-#! Path of the file which stores the list of source code files
-SRCSFILE_TEST = make/lists/srcs-test.txt
-
-
-
-#######################################
 #     Included Makefile Variables     #
 #######################################
 
@@ -86,6 +66,7 @@ include make/utils/install.mk
 include make/config/modes.mk
 include make/config/build.mk
 include make/config/tests.mk
+include make/config/packages.mk
 
 
 

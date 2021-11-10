@@ -59,11 +59,11 @@ prereq-doc
 prereq-build # Checks prerequisite installs to build the library/program
 prereq-build:
 	@-$(call check_prereq,\
-		(build) compiler: $(CC),\
+		(build) C compiler: $(CC),\
 		$(CC) --version,\
 		$(call install_prereq,$(CC)))
 	@-$(call check_prereq,\
-		(build) archiver: $(AR),\
+		(build) C archiver: $(AR),\
 		which $(AR),\
 		$(call install_prereq,binutils))
 

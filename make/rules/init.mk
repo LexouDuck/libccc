@@ -7,3 +7,5 @@ init # Should be executed once, after cloning the repo
 init:
 	@git submodule update --init --recursive
 	@git config core.hooksPath $(GITHOOKSDIR)
+
+# TODO 'configure' rule, for easier cross-platform setup ?
