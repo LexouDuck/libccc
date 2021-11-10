@@ -7,10 +7,10 @@ clean # Deletes all intermediary build files
 clean:
 	@printf $(C_CYAN)"Deleting all .o files..."$(C_RESET)"\n"
 	@rm -f $(OBJS)
-	@rm -f $(OBJS_TEST)
+	@rm -f $(TEST_OBJS)
 	@printf $(C_CYAN)"Deleting all .d files..."$(C_RESET)"\n"
 	@rm -f $(DEPS)
-	@rm -f $(DEPS_TEST)
+	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
 
@@ -24,7 +24,7 @@ clean-exe:
 	@rm -f $(NAME_STATIC)
 	@printf $(C_CYAN)"Deleting library: "$(NAME_DYNAMIC)""$(C_RESET)"\n"
 	@rm -f $(NAME_DYNAMIC)
-	@printf $(C_CYAN)"Deleting program: "$(NAME_TEST)""$(C_RESET)"\n"
+	@printf $(C_CYAN)"Deleting test program: "$(NAME_TEST)""$(C_RESET)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 

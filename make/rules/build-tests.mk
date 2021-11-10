@@ -56,7 +56,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 
 
 #! Builds the testing/CI program
-$(TEST_NAME): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
+$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
