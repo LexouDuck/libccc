@@ -9,10 +9,10 @@ HDRS_TEST := $(shell cat $(HDRSFILE_TEST))
 SRCS_TEST := $(shell cat $(SRCSFILE_TEST))
 
 #! Derive list of compiled object files (.o) from list of srcs
-OBJS_TEST := ${SRCS_TEST:%.c=$(OBJDIR)%.o}
+OBJS_TEST := $(SRCS_TEST:%.c=$(OBJDIR)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
-DEPS_TEST := ${OBJS_TEST:.o=.d}
+DEPS_TEST := $(OBJS_TEST:.o=.d)
 
 
 
@@ -42,4 +42,4 @@ $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(OBJS_TEST)
 
 
 # The following line is for `.d` dependency file handling
--include ${DEPS_TEST}
+-include $(DEPS_TEST)

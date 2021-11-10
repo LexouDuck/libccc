@@ -3,7 +3,7 @@
 
 
 #! Derive the list of linter warnings output files, from the the of sources
-LINT = ${SRCS:%.c=$(LINTDIR)%.html}
+LINT = $(SRCS:%.c=$(LINTDIR)%.html)
 
 
 

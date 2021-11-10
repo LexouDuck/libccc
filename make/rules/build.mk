@@ -9,10 +9,10 @@ HDRS := $(shell cat $(HDRSFILE))
 SRCS := $(shell cat $(SRCSFILE))
 
 #! Derive list of compiled object files (.o) from list of srcs
-OBJS := ${SRCS:%.c=$(OBJDIR)%.o}
+OBJS := $(SRCS:%.c=$(OBJDIR)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
-DEPS := ${OBJS:.o=.d}
+DEPS := $(OBJS:.o=.d)
 
 #! GNU conventional variable: List of libraries to link against
 LDLIBS = $(foreach i,$(PACKAGES_LINK),$($(i)))
@@ -91,4 +91,4 @@ endif
 
 
 # The following line is for `.d` dependency file handling
--include ${DEPS}
+-include $(DEPS)

@@ -23,13 +23,13 @@ install_prereq = \
 
 else ifeq ($(UNAME_S),Linux)
 install_prereq = \
-	if   [ -x "$(command -v apk)"     ]; then $(SUDO) apk add --no-cache $(1) ; \
-	elif [ -x "$(command -v apt-get)" ]; then $(SUDO) apt-get install    $(1) ; \
-	elif [ -x "$(command -v yum)"     ]; then $(SUDO) yum     install    $(1) ; \
-	elif [ -x "$(command -v pacman)"  ]; then $(SUDO) pacman  -S         $(1) ; \
-	elif [ -x "$(command -v dnf)"     ]; then $(SUDO) dnf     install    $(1) ; \
-	elif [ -x "$(command -v zypp)"    ]; then $(SUDO) zypp    install    $(1) ; \
-	elif [ -x "$(command -v zypper)"  ]; then $(SUDO) zypper  install    $(1) ; \
+	if   [ -x "`command -v apk     `" ]; then $(SUDO) apk add --no-cache $(1) ; \
+	elif [ -x "`command -v apt-get `" ]; then $(SUDO) apt-get install    $(1) ; \
+	elif [ -x "`command -v yum     `" ]; then $(SUDO) yum     install    $(1) ; \
+	elif [ -x "`command -v pacman  `" ]; then $(SUDO) pacman  -S         $(1) ; \
+	elif [ -x "`command -v dnf     `" ]; then $(SUDO) dnf     install    $(1) ; \
+	elif [ -x "`command -v zypp    `" ]; then $(SUDO) zypp    install    $(1) ; \
+	elif [ -x "`command -v zypper  `" ]; then $(SUDO) zypper  install    $(1) ; \
 	else \
 		printf $(C_RED)"ERROR"$(C_RESET)": Package manager not found. You must manually install: $(1)" >&2 ; \
 	fi \
