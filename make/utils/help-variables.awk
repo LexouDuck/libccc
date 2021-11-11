@@ -1,5 +1,6 @@
 BEGIN {
 	doc = "";
+	docblock = 0;
 }
 
 {
@@ -7,9 +8,13 @@ BEGIN {
 	{
 		doc = substr($0, RSTART + 3);
 	}
+
+	if (/^#{/ || /^#!{/)	{ docblock = 1; }
+	if (/^#}/ || /^#!}/)	{ docblock = 0; }
+
 	if ($0 == "")
 	{
-		doc = "";
+		if (docblock == 0) doc = "";
 	}
 	else if (/=/)
 	{
@@ -21,7 +26,6 @@ BEGIN {
 		{
 			print $1 "\t" color "#! " doc reset;
 		}
-		doc = "";
+		if (docblock == 0) doc = "";
 	}
 }
-# TODO: implement special "block doc comments": `#!{` and `#!}`
