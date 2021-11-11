@@ -6,9 +6,15 @@ TEST_CFLAGS = \
 	-g -ggdb \
 	-Wall \
 	-Wextra \
+	-Wno-unused-variable \
+	-Wno-unused-parameter \
 	-Wno-format-extra-args \
 	-fno-inline \
 #	-fanalyzer
+
+ifneq ($(OSMODE),macos)
+	TEST_CFLAGS += -Wno-missing-braces
+endif
 
 #! C linker config flags
 TEST_LDFLAGS = $(LDFLAGS)

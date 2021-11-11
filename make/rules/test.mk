@@ -38,7 +38,7 @@ else ifeq ($(OSMODE),linux)
 		./$(NAME_TEST) $(ARGS)
 else ifeq ($(OSMODE),macos)
 	@./$(NAME_TEST) $(ARGS) >> $(LOGDIR)libccc_test.log
-	@$(SUDO) ln -sf "$(shell xcode-select -p)/usr/lib/libLeaksAtExit.dylib" "/usr/local/lib"
+	@$(SUDO) ln -sf "`xcode-select -p`/usr/lib/libLeaksAtExit.dylib" "/usr/local/lib"
 	@leaks --fullContent -atExit -- ./$(NAME_TEST) $(ARGS) > $(LOGDIR)leaks/xcode_$(NAME_TEST).txt
 	@$(SUDO) rm "/usr/local/lib/libLeaksAtExit.dylib"
 endif
