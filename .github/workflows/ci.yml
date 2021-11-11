@@ -48,5 +48,7 @@ jobs:
     - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test CC=${{matrix.compiler}} ARGS="-a"
 
-    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make release CC=${{matrix.compiler}}
+#    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
+#      run: make clean ; make build-release CC=${{matrix.compiler}}
+
+# TODO upload build artifacts and automate release tag for github ?
