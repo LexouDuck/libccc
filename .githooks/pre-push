@@ -2,7 +2,4 @@
 
 
 # increment the build number (3rd number of the version number)
-#VERSION_FILE=VERSION
-#make version-build
-#git add $VERSION_FILE
-#git commit -m "update(version): incremented version build number"
+make version-build
