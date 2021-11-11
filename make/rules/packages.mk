@@ -14,6 +14,30 @@ endif
 
 
 
+#! The shell command to parse a version number from the packages list file
+#	@param 1	The name of the package whose version number should be parsed
+packages_getversion = \
+	cat $(PACKAGESFILE) \
+	| grep '^$(1)' \
+	| cut -d'@' -f 2 \
+	| cut -d'-' -f 1 \
+
+
+
+#! The shell command to set a version number in the packages list file
+#	@param 1	The name of the package whose version number should updated
+#	@param 2	The new version number to set for the given package
+packages_setversion = \
+	cat $(PACKAGESFILE) \
+	| awk '\
+	{ \
+		if (/^$(1)/) { print "$(1)@$(2)-?"; } \
+		else { print; } \
+	}'  > packages.temp \
+	&& mv packages.temp $(PACKAGESFILE)
+
+
+
 .PHONY:\
 packages # This rule builds/prepares the dependency external packages
 packages: $(addprefix package-, $(PACKAGES))
