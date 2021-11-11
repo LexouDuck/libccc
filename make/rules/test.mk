@@ -3,14 +3,14 @@
 
 
 .PHONY:\
-test # Builds and runs the test suite program with the given 'ARGS'
+test #! Builds and runs the test suite program with the given 'ARGS'
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
 
 
 .PHONY:\
-test-log # Builds and runs the test suite program with the given 'ARGS', logging all results to files
+test-log #! Builds and runs the test suite program with the given 'ARGS', logging all results to files
 test-log: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)test/$(OSMODE)/
 	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)test/$(OSMODE)/$(NAME_TEST).txt
@@ -18,7 +18,7 @@ test-log: $(NAME_TEST)
 
 
 .PHONY:\
-test-memleaks # Builds and runs the test suite program with the given 'ARGS', checking for memory leaks
+test-memleaks #! Builds and runs the test suite program with the given 'ARGS', checking for memory leaks
 test-memleaks: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)leaks/
 ifeq ($(OSMODE),other)

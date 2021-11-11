@@ -39,13 +39,13 @@ packages_setversion = \
 
 
 .PHONY:\
-packages # This rule builds/prepares the dependency external packages
+packages #! This rule builds/prepares the dependency external packages
 packages: $(addprefix package-, $(PACKAGES))
 
 
 
 .PHONY:\
-update-all # This rule update the dependency external packages to their latest versions
+update-all #! This rule update the dependency external packages to their latest versions
 update-all: $(addprefix update-, $(PACKAGES))
 
 

@@ -2,6 +2,10 @@
 
 
 
+#! The shell command to check whether or not a prerequite program/library is installed
+#	@param 1	The name of the prerequisite to check (can be full name with spaces)
+#	@param 2	The shell command to check whether it exists (exit code 0 means it is ok)
+#	@param 3	The shell command to install the prerequisite (will only run if command $(2) fails)
 check_prereq = \
 	printf "\n\n"$(C_CYAN)"|=> Checking prerequisite: $(1)"$(C_RESET)"\n$$ $(2)\n" ; \
 	{ $(2) ; } || \
@@ -12,6 +16,11 @@ check_prereq = \
 	}
 
 
+
+#! The shell command to install a prerequisite program/library (uses the appropriate OS-specific package manager)
+#	@param 1	The name of the program/library/package to install
+install_prereq = \
+	printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform. You must manually install: $(1)" \
 
 ifeq ($(OS),Windows_NT)
 install_prereq = \
@@ -34,9 +43,6 @@ install_prereq = \
 		printf $(C_RED)"ERROR"$(C_RESET)": Package manager not found. You must manually install: $(1)" >&2 ; \
 	fi \
 
-else
-install_prereq = \
-	printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform. You must manually install: $(1)"
 endif
 
 
@@ -44,7 +50,7 @@ endif
 
 
 .PHONY:\
-prereq # Checks version numbers for all prerequisite tools
+prereq #! Checks version numbers for all prerequisite tools
 prereq: init \
 prereq-build \
 prereq-tests \
@@ -56,7 +62,7 @@ prereq-doc
 
 
 .PHONY:\
-prereq-build # Checks prerequisite installs to build the library/program
+prereq-build #! Checks prerequisite installs to build the library/program
 prereq-build:
 	@-$(call check_prereq,\
 		(build) C compiler: $(CC),\
@@ -68,7 +74,7 @@ prereq-build:
 		$(call install_prereq,binutils))
 
 .PHONY:\
-prereq-tests # Checks prerequisite installs to run the various tests
+prereq-tests #! Checks prerequisite installs to run the various tests
 prereq-tests:
 ifeq ($(OSMODE),other)
 	@printf $(C_YELLOW)"WARNING"$(C_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
@@ -91,7 +97,7 @@ else
 endif
 
 .PHONY:\
-prereq-format # Checks prerequisite installs to run the automatic code style formatter
+prereq-format #! Checks prerequisite installs to run the automatic code style formatter
 prereq-format:
 	@-$(call check_prereq,\
 		(format) indent,\
@@ -99,7 +105,7 @@ prereq-format:
 		$(call install_prereq,indent))
 
 .PHONY:\
-prereq-lint # Checks prerequisite installs to run the linter/static analyzer
+prereq-lint #! Checks prerequisite installs to run the linter/static analyzer
 prereq-lint:
 	@-$(call check_prereq,\
 		(lint) cppcheck,\
@@ -111,7 +117,7 @@ prereq-lint:
 		$(call install_prereq,splint))
 
 .PHONY:\
-prereq-doc # Checks prerequisite installs to generate the documentation
+prereq-doc #! Checks prerequisite installs to generate the documentation
 prereq-doc:
 	@-$(call check_prereq,\
 		(doc) Doxygen,\

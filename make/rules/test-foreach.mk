@@ -6,7 +6,7 @@ NAME_TEST_FOREACH = libccc-test_foreach
 SRCS_TEST_FOREACH = $(TEST_DIR)_foreach.c
 
 .PHONY:\
-test-foreach # Builds and runs a simple test program for the 'foreach ()' macro
+test-foreach #! Builds and runs a simple test program for the 'foreach ()' macro
 test-foreach: $(NAME_TEST_FOREACH)
 	@ ./$(NAME_TEST_FOREACH) $(ARGS)
 	@rm $(NAME_TEST_FOREACH)

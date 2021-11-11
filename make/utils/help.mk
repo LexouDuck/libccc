@@ -17,7 +17,7 @@ COLUMN_DOC = 30
 
 
 .PHONY:\
-help # Displays list of any targets which are documented
+help #! Displays list of any targets which are documented
 help:
 	@for i in $(MKFILES) ; do \
 		awk -f "make/utils/help-targets.awk" $$i | expand -t $(COLUMN_DOC) ; \
@@ -26,7 +26,7 @@ help:
 
 
 .PHONY:\
-help-makefiles # Displays list of all makefiles (with brief description, if available)
+help-makefiles #! Displays list of all makefiles (with brief description, if available)
 help-makefiles:
 	@for i in $(MKFILES) ; do \
 		printf "$$i""\t" | expand -t 40 ; \
@@ -34,14 +34,14 @@ help-makefiles:
 	done
 
 .PHONY:\
-help-variables # Displays list of variables in the makefile which are documented
+help-variables #! Displays list of variables in the makefile which are documented
 help-variables:
 	@for i in $(MKFILES) ; do \
 		awk -f "make/utils/help-variables.awk" $$i | expand -t $(COLUMN_DOC) ; \
 	done
 
 .PHONY:\
-help-targets # Displays list of "PHONY" targets, with description if available
+help-targets #! Displays list of "PHONY" targets, with description if available
 help-targets:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
@@ -51,7 +51,7 @@ help-targets:
 
 
 .PHONY:\
-help-all # Displays all makefiles, variables and targets, with any available documentation
+help-all #! Displays all makefiles, variables and targets, with any available documentation
 help-all:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
@@ -65,12 +65,12 @@ help-all:
 
 
 .PHONY:\
-help-debug # Displays the entire makefile database
+help-debug #! Displays the entire makefile database
 help-debug:
 	@LC_ALL=C $(MAKE) -prRq -f $(MKFILE_PATH) : 2>/dev/null \
 
 .PHONY:\
-help-debug-makefiles # Displays list of all variables used each included makefile
+help-debug-makefiles #! Displays list of all variables used each included makefile
 help-debug-makefiles:
 	@for i in $(MKFILES) ; do \
 		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
@@ -93,7 +93,7 @@ help-debug-makefiles:
 	done
 
 .PHONY:\
-help-debug-variables # Displays list of all variables in the makefile, with their respective values
+help-debug-variables #! Displays list of all variables in the makefile, with their respective values
 help-debug-variables:
 	@LC_ALL=C $(MAKE) -prRq -f $(MKFILE_PATH) : 2>/dev/null \
 		| grep '=' \
@@ -103,7 +103,7 @@ help-debug-variables:
 
 # see https://stackoverflow.com/questions/4219255/how-do-you-get-the-list-of-targets-in-a-makefile
 .PHONY:\
-help-debug-targets # Displays list of all available targets in this Makefile, sorted in alphabetical order
+help-debug-targets #! Displays list of all available targets in this Makefile, sorted in alphabetical order
 help-debug-targets:
 	@LC_ALL=C $(MAKE) -prRq -f $(MKFILE_PATH) : 2>/dev/null \
 		| awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ /^[#.]/) {print $$1}}' \

@@ -6,7 +6,7 @@ NAME_TEST_HELLOWORLD = libccc-test_helloworld
 SRCS_TEST_HELLOWORLD = $(TEST_DIR)_helloworld.c
 
 .PHONY:\
-test-helloworld # Builds and runs a simple 'Hello World!' test program
+test-helloworld #! Builds and runs a simple 'Hello World!' test program
 test-helloworld: $(NAME_TEST_HELLOWORLD)
 	@ ./$(NAME_TEST_HELLOWORLD) $(ARGS)
 	@rm $(NAME_TEST_HELLOWORLD)

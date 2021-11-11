@@ -45,7 +45,7 @@ INCLUDES = -I$(HDRDIR) $(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
 
 
 .PHONY:\
-lists # Create/update the list of source/header files
+lists #! Create/update the list of source/header files
 lists:
 	@$(call make_HDRSFILE)
 	@$(call make_SRCSFILE)
@@ -53,13 +53,13 @@ lists:
 
 
 .PHONY:\
-build-debug # Builds the library, in 'debug' mode (with debug flags and symbol-info)
+build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: MODE = debug
 build-debug: CFLAGS += $(CFLAGS_DEBUG)
 build-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
 
 .PHONY:\
-build-release # Builds the library, in 'release' mode (with debug flags and symbol-info)
+build-release #! Builds the library, in 'release' mode (with debug flags and symbol-info)
 build-release: MODE = release
 build-release: CFLAGS += $(CFLAGS_RELEASE)
 build-release: $(NAME_STATIC) $(NAME_DYNAMIC)

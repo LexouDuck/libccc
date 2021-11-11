@@ -20,7 +20,7 @@ SPHINX_FLAGS =
 
 
 .PHONY:\
-doc # Generates documentation for libccc
+doc #! Generates documentation for libccc
 doc:
 	@printf $(C_CYAN)"Generating documentation..."$(C_RESET)"\n"
 	@rm -rf $(DOCDIR)xml/*

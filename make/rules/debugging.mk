@@ -12,14 +12,14 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
 
 .PHONY:\
-debug-macros # Preprocesses all source files and stores them in the obj folder
+debug-macros #! Preprocesses all source files and stores them in the obj folder
 debug-macros: all $(SRCS_PREPROCESSED)
 	@printf "Outputting preprocessed code...\n"
 
 
 
 .PHONY:\
-debug-symbols # Outputs the list of symbols found inside the given `ARGS` binary/ies
+debug-symbols #! Outputs the list of symbols found inside the given `ARGS` binary/ies
 debug-symbols: all
 ifeq ($(ARGS),)
 	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
@@ -30,7 +30,7 @@ endif
 
 
 .PHONY:\
-debug-linking # Outputs the list of linking paths to find dynamic libraries for the given `ARGS`
+debug-linking #! Outputs the list of linking paths to find dynamic libraries for the given `ARGS`
 debug-linking: all
 ifeq ($(ARGS),)
 	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"

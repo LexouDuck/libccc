@@ -39,7 +39,7 @@ TEST_DEPS := $(TEST_OBJS:.o=.d)
 
 
 .PHONY:\
-lists-tests # Create/update the list of source/header files for the test suite program
+lists-tests #! Create/update the list of source/header files for the test suite program
 lists-tests:
 	@$(call make_TEST_HDRSFILE)
 	@$(call make_TEST_SRCSFILE)

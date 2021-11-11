@@ -16,7 +16,7 @@ $(LINTDIR)%.html: $(SRCDIR)%.c
 
 
 .PHONY:\
-lint # Runs a linter on all source files, giving useful additional warnings
+lint #! Runs a linter on all source files, giving useful additional warnings
 lint: MODE = debug
 ifeq (gcc,$(findstring gcc,$(CC)))
 lint: CFLAGS += -fanalyzer

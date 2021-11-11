@@ -8,7 +8,7 @@ DISTRIBUTABLE = $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip
 
 
 .PHONY:\
-dist # Prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
+dist #! Prepares ZIP archives in ./dist for each platform from the contents of the ./bin folder
 dist: build-release
 	@mkdir -p $(DISTDIR)
 	@-$(MAKE) -s dist-version OSMODE=win32
@@ -19,7 +19,7 @@ dist: build-release
 
 
 .PHONY:\
-dist-version # Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
+dist-version #! Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
 dist-version:
 ifeq ($(wildcard $(BINDIR)$(OSMODE)/*),)
 	@printf $(C_RED)"ERROR"$(C_RESET)": Cannot produce distributable archive for target '$(OSMODE)'\n"
