@@ -139,6 +139,34 @@ Note that libccc uses the Oniguruma Regex engine, which encompasses the features
 
 
 
+### Optional function arguments (named):
+
+In ++C, you can declare functions with optional arguments:
+```c
+// ++C
+void MyFunc(int arg1, int arg2, [ int arg3, int arg4 = 0, int arg5 = 0 ]);
+// usage example
+MyFunc(1, 1, .arg3=1, .arg4=1);
+```
+Any optional arguments must be placed after the necessary positional arguments, enclosed in square brackets.
+You can set a default value for an optional argument, with the `=` assignment operator.
+
+When calling the function, optional arguments can either be provided in their normal positional order,
+or they may all be specified in any order, if the argument name is given for each: `.myarg = 1, `.
+
+When transpiled to C, the example above becomes:
+```c
+void MyFunc_kwargs(int arg1, int arg2, struct MyFunc_kwargs { int _; int arg3; int arg4; } kwargs);
+#define MyFunc(ARG1, ARG2, ...) \
+	MyFunc(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
+// usage example
+MyFunc(.arg1=1, .arg2=1, .arg3=1, .arg4=1, .arg5=0);
+```
+This feature works thanks to a neat trick which leverages C99 compound struct initializers to have type-safe optional arguments.
+You can learn more about this here: https://snai.pe/posts/varargs
+
+
+
 ### Functions declared in local scopes (prime citizens-ish):
 
 In ++C, you can declare functions in local scopes:
@@ -225,15 +253,8 @@ Most of the new additions in ++C take the form of new preprocessor directives, o
 //! include a binary file into the executable as an extern const global variable
 #incbin myvar "filepath"
 
-#alias(token)        //!< cross-platform way to use `__attribute__((alias, ...))`
-#align(4)            //!< cross-platform way to use `__attribute__((align, ...))` and/or `_Alignas`
-#format(func, 1, 2)  //!< cross-platform way to use `__attribute__((format, ...))`
-#noreturn            //!< cross-platform way to use `__attribute__((noreturn, ...))` and/or `_Noreturn`
-#malloc              //!< cross-platform way to use `__attribute__((malloc, ...))`
-#delete              //!< cross-platform way to use `__attribute__((delete, ...))`
-#inline              //!< cross-platform way to use `__attribute__((always_inline, ...))` and/or `inline`
-#pure                //!< cross-platform way to use `__attribute__((pure, ...))`
-#packed              //!< cross-platform way to use `__attribute__((packed, ...))`
+//! cross-platform way to declare function attributes (in GNU C for example: `__attribute__((alias, ...))`)
+#is alias(token)
 ```
 
 
@@ -269,7 +290,7 @@ Additionnally, some sequences of characters are special and cannot be overridden
 - `/*`	(comment start) or any sequence which contains this string
 - `*/`	(comment end) or any sequence which contains this string
 
-If you wish to define a "word" operator, you can make a `#replace` macro which wraps a custom operator:
+If you wish to define a "word" operator which uses regular token characters, you can make a `#replace` macro which wraps a custom operator:
 ```c
 // NULL check and return operator
 #operator ?? (void const* left, void const* right) => void const* = \
@@ -457,7 +478,7 @@ Namespaces sections can be defined, by using the `#namespace` preprocessor direc
 // in .h header file
 #namespace String
 char*	Duplicate(char* str);
-#namespace // using the namespace instruction with nothing after it ends the namespace section
+#namespace
 
 ...
 
@@ -469,6 +490,9 @@ char*	String.Duplicate(char* str)
 
 char* str = String.Duplicate("foo");
 ```
+Using the `#namespace` instruction with nothing after it, ends the namespace section.
+To be precise, it brings us back to the global-scope namespace, since there is no argument given.
+
 Namespaces can be also be nested:
 ```c
 // in .h header file
@@ -729,7 +753,7 @@ int main()
 
 
 
-### Pre-processor instructions:
+### Transpiler instructions:
 
 
 ##### INCBIN
@@ -744,6 +768,7 @@ and `myfile_size`, which is the filesize (despite its actual type being `unsigne
 
 
 ##### REPLACE
+
 Creates a replacement token - works just like to the C `#define` pre-processor instruction, but operates when transpiling.
 ```c
 void		MyFunction(void);
@@ -765,6 +790,7 @@ This is the difference between `#define` and `#alias` instructions, `#alias` wil
 
 
 ##### HEADER
+
 Should be placed in a header file (ie: `.++h`,`.pph`,`.xxh`,etc), at the top of the file (before any `#include` directives).
 Surrounds the file with include-guards, with the given token argument being the `#define` used for header inclusion guarding.
 ```c
@@ -811,11 +837,46 @@ If no argument is supplied, `#header` will generate a header based on the file n
 
 
 
+### Function attributes:
+
+++C provides the `#is` instruction to associate traits to types/variables/functions.
+In particular, there are 9 pre-defined `#is` attributes:
+```c
+#is inline              //!< cross-platform way to use `__attribute__((always_inline, ...))` and/or `inline`
+#is noreturn            //!< cross-platform way to use `__attribute__((noreturn, ...))` and/or `_Noreturn`
+#is align(4)            //!< cross-platform way to use `__attribute__((align, ...))` and/or `_Alignas`
+#is alias(token)        //!< cross-platform way to use `__attribute__((alias, ...))`
+#is format(func, 1, 2)  //!< cross-platform way to use `__attribute__((format, ...))`
+#is malloc              //!< cross-platform way to use `__attribute__((malloc, ...))`
+#is delete              //!< cross-platform way to use `__attribute__((delete, ...))`
+#is pure                //!< cross-platform way to use `__attribute__((pure, ...))`
+#is packed              //!< cross-platform way to use `__attribute__((packed, ...))`
+```
+Users can also define their own `#is` attributes - there are mainly useful to give additional compile-time errors/warnings.
+
+
+
+Below is a description of all the pre-defined `#is` attributes.
+
+
+##### INLINE
+Sets the function declared after it to be always inlined, using `__attribute__`:
+```c
+#is inline
+void	MyFunction(void);
+```
+```c
+// transpiles to:
+__attribute__((always_inline)) inline
+void*	MyFunction(void);
+```
+
+
 ##### ALIAS
 Creates an alias for a function/variable (must be globally scoped), using `__attribute__` (or, you can configure it to rather transpile like a `#define`, or a `#replace`).
 ```c
 void			MyFunction(void);
-#alias	func	MyFunction
+#is alias	func	MyFunction
 ```
 The above example transpiles by declaring `f` with the function aliasing attribute, like so:
 ```c
@@ -831,18 +892,17 @@ void	func(void) __attribute__((weak, alias("MyFunction")));
 If no second argument is supplied, the alias will be applied to the last definition immediately before it:
 ```c
 void		MyFunction(void);
-#alias	func	// `func` is an alias for `MyFunction`
+#is alias	func	// `func` is an alias for `MyFunction`
 
 extern int my_global_var;
-#alias	my_gv	// `my_gv` is an alias for `my_global_var`
+#is alias	my_gv	// `my_gv` is an alias for `my_global_var`
 ```
-
 
 
 ##### PACKED
 Sets the struct declared after it to be packed a tight as possible, removing any and all byte-padding, by using `__attribute__`:
 ```c
-#packed
+#is packed
 typedef struct example
 {
 	char a;
@@ -860,23 +920,10 @@ typedef struct example
 ```
 
 
-##### INLINE
-Sets the function declared after it to be always inlined, using `__attribute__`:
-```c
-#inline
-void	MyFunction(void);
-```
-```c
-// transpiles to:
-__attribute__((always_inline)) inline
-void*	MyFunction(void);
-```
-
-
 ##### PURE
 Sets the function declared after it to be a "pure function", (ie: a function with no side-effects), using `__attribute__`:
 ```c
-#pure
+#is pure
 char	MyFunction(char c);
 ```
 ```c
@@ -890,7 +937,7 @@ This allows your compiler to perform additionnal optimizations (like memoization
 ##### MALLOC
 Sets the function declared after it to be always inlined, using `__attribute__`:
 ```c
-#malloc
+#is malloc
 char*	MyFunction(void);
 ```
 ```c
@@ -903,7 +950,7 @@ char*	MyFunction(void);
 ##### FORMAT
 Sets the function declared after it to variadic argument type-cehcking according to a format string, like `printf` or `strptime`, using `__attribute__`:
 ```c
-#format(printf, 1, 2)
+#is format(printf, 1, 2)
 void	MyFunction(char* format, ...);
 ```
 ```c
