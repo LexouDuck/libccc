@@ -9,7 +9,7 @@ SRCS_PREPROCESSED = $(SRCS:%.c=$(OBJDIR)%.c)
 $(OBJDIR)%.c: $(SRCDIR)%.c
 	@printf "Preprocessing file: "$@" -> "
 	@$(CC) -o $@ $(CFLAGS) -E $<
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 .PHONY:\
 debug-macros #! Preprocesses all source files and stores them in the obj folder
@@ -22,7 +22,7 @@ debug-macros: all $(SRCS_PREPROCESSED)
 debug-symbols #! Outputs the list of symbols found inside the given `ARGS` binary/ies
 debug-symbols: all
 ifeq ($(ARGS),)
-	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+	@printf $(IO_RED)"ERROR"$(IO_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
 else
 	@nm -a $(ARGS)
 endif
@@ -33,7 +33,7 @@ endif
 debug-linking #! Outputs the list of linking paths to find dynamic libraries for the given `ARGS`
 debug-linking: all
 ifeq ($(ARGS),)
-	@printf $(C_RED)"ERROR"$(C_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+	@printf $(IO_RED)"ERROR"$(IO_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
 else ifeq ($(OSMODE),win32)
 	@objdump -p $(ARGS)
 else ifeq ($(OSMODE),win64)
@@ -43,7 +43,7 @@ else ifeq ($(OSMODE),macos)
 else ifeq ($(OSMODE),linux)
 	@ldd $(ARGS)
 else
-	@printf $(C_RED)"ERROR"$(C_RESET)": Unknown platform, needs manual configuration""\n"
+	@printf $(IO_RED)"ERROR"$(IO_RESET)": Unknown platform, needs manual configuration""\n"
 endif
 
 

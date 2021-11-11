@@ -51,7 +51,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) -c $<
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 
@@ -59,7 +59,7 @@ $(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c $(TEST_HDRS)
 $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) $(TEST_OBJS) $(TEST_LDLIBS)
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 

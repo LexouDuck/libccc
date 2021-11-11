@@ -22,11 +22,11 @@ test-memleaks #! Builds and runs the test suite program with the given 'ARGS', c
 test-memleaks: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)leaks/
 ifeq ($(OSMODE),other)
-	@printf $(C_RED)"Unsupported platform: requires manual configuration"$(C_RESET)"\n" ; exit 1
+	@printf $(IO_RED)"Unsupported platform: requires manual configuration"$(IO_RESET)"\n" ; exit 1
 else ifeq ($(OSMODE),win32)
-	@printf $(C_RED)"Windows 32-bit platform: requires manual configuration"$(C_RESET)"\n" ; exit 1
+	@printf $(IO_RED)"Windows 32-bit platform: requires manual configuration"$(IO_RESET)"\n" ; exit 1
 else ifeq ($(OSMODE),win64)
-	@printf $(C_RED)"Windows 64-bit platform: requires manual configuration"$(C_RESET)"\n" ; exit 1
+	@printf $(IO_RED)"Windows 64-bit platform: requires manual configuration"$(IO_RESET)"\n" ; exit 1
 else ifeq ($(OSMODE),linux)
 	@valgrind \
 		--tool=memcheck \

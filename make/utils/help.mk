@@ -44,7 +44,7 @@ help-variables:
 help-targets #! Displays list of "PHONY" targets, with description if available
 help-targets:
 	@for i in $(MKFILES) ; do \
-		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
+		printf "\n"$(IO_CYAN)"$$i"$(IO_RESET)"\n" ; \
 		awk -f "make/utils/help-targets.awk" $$i | expand -t $(COLUMN_DOC) ; \
 	done
 
@@ -54,12 +54,12 @@ help-targets:
 help-all #! Displays all makefiles, variables and targets, with any available documentation
 help-all:
 	@for i in $(MKFILES) ; do \
-		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
-		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-makefiles.awk" $$i | expand -t $(COLUMN_DOC) ; \
-		printf $(C_DARK)"# Documented variables:"$(C_RESET)"\n" ; \
-		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-variables.awk" $$i | expand -t $(COLUMN_DOC) ; \
-		printf $(C_DARK)"# Documented targets:"$(C_RESET)"\n" ; \
-		awk -v color=$(C_DARK) -v reset=$(C_RESET) -f "make/utils/help-targets.awk"   $$i | expand -t $(COLUMN_DOC) ; \
+		printf "\n"$(IO_CYAN)"$$i"$(IO_RESET)"\n" ; \
+		awk -v color=$(IO_DARK) -v reset=$(IO_RESET) -f "make/utils/help-makefiles.awk" $$i | expand -t $(COLUMN_DOC) ; \
+		printf $(IO_DARK)"# Documented variables:"$(IO_RESET)"\n" ; \
+		awk -v color=$(IO_DARK) -v reset=$(IO_RESET) -f "make/utils/help-variables.awk" $$i | expand -t $(COLUMN_DOC) ; \
+		printf $(IO_DARK)"# Documented targets:"$(IO_RESET)"\n" ; \
+		awk -v color=$(IO_DARK) -v reset=$(IO_RESET) -f "make/utils/help-targets.awk"   $$i | expand -t $(COLUMN_DOC) ; \
 	done
 
 
@@ -73,7 +73,7 @@ help-debug:
 help-debug-makefiles #! Displays list of all variables used each included makefile
 help-debug-makefiles:
 	@for i in $(MKFILES) ; do \
-		printf "\n"$(C_CYAN)"$$i"$(C_RESET)"\n" ; \
+		printf "\n"$(IO_CYAN)"$$i"$(IO_RESET)"\n" ; \
 		awk -v RS=" " '\
 		{ \
 			remaining = $$0; \

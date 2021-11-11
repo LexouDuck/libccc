@@ -57,7 +57,7 @@ version:
 .PHONY:\
 version-major #! Increments the project major version number (1st of the 3 numbers: X.0.0)
 version-major:
-	@printf $(C_CYAN)"Incrementing major version number..."$(C_RESET)"\n"
+	@printf $(IO_CYAN)"Incrementing major version number..."$(IO_RESET)"\n"
 	@$(eval VERSION_MAJOR := $(shell echo $$(($(VERSION_MAJOR)+1))))
 	@$(eval VERSION_MINOR := 0)
 	@$(eval VERSION_BUILD := 0)
@@ -66,7 +66,7 @@ version-major:
 .PHONY:\
 version-minor #! Increments the project minor version number (2nd of the 3 numbers: 0.X.0)
 version-minor:
-	@printf $(C_CYAN)"Incrementing minor version number..."$(C_RESET)"\n"
+	@printf $(IO_CYAN)"Incrementing minor version number..."$(IO_RESET)"\n"
 	@$(eval VERSION_MINOR := $(shell echo $$(($(VERSION_MINOR)+1))))
 	@$(eval VERSION_BUILD := 0)
 	@$(call make_VERSIONFILE,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_BUILD))
@@ -74,6 +74,6 @@ version-minor:
 .PHONY:\
 version-build #! Increments the project build number (3rd of the 3 numbers: 0.0.X)
 version-build:
-	@printf $(C_CYAN)"Incrementing build version number..."$(C_RESET)"\n"
+	@printf $(IO_CYAN)"Incrementing build version number..."$(IO_RESET)"\n"
 	@$(eval VERSION_BUILD := $(shell echo $$(($(VERSION_BUILD)+1))))
 	@$(call make_VERSIONFILE,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_BUILD))

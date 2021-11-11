@@ -11,7 +11,7 @@ $(LINTDIR)%.html: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Linting file: "$@" -> "
 	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) 2> $@
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 

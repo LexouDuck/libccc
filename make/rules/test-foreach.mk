@@ -16,4 +16,4 @@ $(NAME_TEST_FOREACH): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_FOREACH)
 	@$(CC) -o $@ $(CFLAGS) \
 		-I$(HDRDIR) $(SRCS_TEST_FOREACH) \
 		-L./ -lccc
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"

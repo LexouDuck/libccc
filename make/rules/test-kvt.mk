@@ -16,4 +16,4 @@ $(NAME_TEST_KVT): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_KVT)
 	@$(CC) -o $@ $(CFLAGS) \
 		-I$(HDRDIR) $(SRCS_TEST_KVT) \
 		-L./ -lccc
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"

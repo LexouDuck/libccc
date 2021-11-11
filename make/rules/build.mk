@@ -71,7 +71,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 
@@ -81,7 +81,7 @@ $(NAME_STATIC): $(OBJS)
 	@printf "Compiling static library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)$(OSMODE)/static/
 
 
@@ -104,11 +104,11 @@ else ifeq ($(OSMODE),linux)
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
 	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
 else
-	@printf $(C_YELLOW)"Unknown platform: needs manual configuration."$(C_RESET)"\n"
+	@printf $(IO_YELLOW)"Unknown platform: needs manual configuration."$(IO_RESET)"\n"
 	@printf "You must manually configure the script to build a dynamic library""\n"
 endif
 	@cp -f $(NAME_DYNAMIC)	$(BINDIR)$(OSMODE)/dynamic/
-	@printf $(C_GREEN)"OK!"$(C_RESET)"\n"
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 
