@@ -1,3 +1,5 @@
+# This script parses a makefile for any '#!' doc comments at the beginning of the file
+
 BEGIN {
 	printed = 0;
 }

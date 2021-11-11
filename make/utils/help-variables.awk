@@ -1,3 +1,5 @@
+# This script parses a makefile for any '#!' doc comments for any defined variables
+
 BEGIN {
 	doc = "";
 	docblock = 0;
@@ -24,6 +26,7 @@ BEGIN {
 		}
 		if (doc != "")
 		{
+			sub(/=/, " ");
 			print $1 "\t" color "#! " doc reset;
 		}
 		if (docblock == 0) doc = "";

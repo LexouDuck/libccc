@@ -1,3 +1,5 @@
+# This script parses a makefile for any '#!' doc comments for any .PHONY makefile targets
+
 BEGIN {
 	phony = 0;
 }
