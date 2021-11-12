@@ -128,14 +128,18 @@ HEADER_CPP
 
 //! @see libccc/float.h
 //!@{
-#define SF_F32		"%#g"
-#define SF_F64		"%#g"
-#define SF_F80		"%#Lg"
-#define SF_F128		"%#Lg"
-#define SF_HEX_F32	"%#a"
-#define SF_HEX_F64	"%#a"
-#define SF_HEX_F80	"%#La"
-#define SF_HEX_F128	"%#La"
+#define SF_F32			"%#g"
+#define SF_F64			"%#g"
+#define SF_F80			"%#Lg"
+#define SF_F128			"%#Lg"
+#define SF_HEX_F32		"%#a"
+#define SF_HEX_F64		"%#a"
+#define SF_HEX_F80		"%#La"
+#define SF_HEX_F128		"%#La"
+#define SF_FULL_F32		"%#.9E"
+#define SF_FULL_F64		"%#.17E"
+#define SF_FULL_F80		"%#.21LE"
+#define SF_FULL_F128	"%#.36LE"
 
 #define SF_FLOAT		CONCAT(SF_F,	 LIBCONFIG_FLOAT_BITS)
 #define SF_HEX_FLOAT	CONCAT(SF_HEX_F, LIBCONFIG_FLOAT_BITS)
