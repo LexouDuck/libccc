@@ -146,7 +146,7 @@ In ++C, you can declare functions with optional arguments:
 // ++C
 void MyFunc(int arg1, int arg2, [ int arg3, int arg4 = 0, int arg5 = 0 ]);
 // usage example
-MyFunc(1, 1, .arg3=1, .arg4=1);
+MyFunc(1, 1, 1, .arg4=1);
 ```
 Any optional arguments must be placed after the necessary positional arguments, enclosed in square brackets.
 You can set a default value for an optional argument, with the `=` assignment operator.
@@ -158,9 +158,9 @@ When transpiled to C, the example above becomes:
 ```c
 void MyFunc_kwargs(int arg1, int arg2, struct MyFunc_kwargs { int _; int arg3; int arg4; } kwargs);
 #define MyFunc(ARG1, ARG2, ...) \
-	MyFunc(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
+	MyFunc_kwargs(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
 // usage example
-MyFunc(.arg1=1, .arg2=1, .arg3=1, .arg4=1, .arg5=0);
+MyFunc(1, 1, 1, .arg4=1, .arg5=0);
 ```
 This feature works thanks to a neat trick which leverages C99 compound struct initializers to have type-safe optional arguments.
 You can learn more about this here: https://snai.pe/posts/varargs
