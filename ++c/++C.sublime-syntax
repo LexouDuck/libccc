@@ -1039,7 +1039,7 @@ contexts:
           pop: true
         - include: lex-core
         - include: macro
-    - match: ^\s*(#)\s*(namespace|function|operator|accessor|incbin|header|reflect|alias|align|inline|format|noreturn|malloc|delete|packed|pure)\b
+    - match: ^\s*(#)\s*(namespace|header|operator|accessor|reflect|incbin|is)\b
       captures:
         0: keyword.other.preprocessor.++c
       push:
@@ -1066,7 +1066,7 @@ contexts:
       captures:
         1: keyword.other.preprocessor.c
         4: invalid.illegal.invalid-usage-of-preprocessor-directive.c
-    - match: (^\s*(#)\s*(operator|accessor|replace|alias|align|incbin)\b)\s*?(\n|$)
+    - match: (^\s*(#)\s*(operator|accessor|replace|incbin|is)\b)\s*?(\n|$)
       scope: meta.preprocessor.directive.c
       captures:
         1: keyword.other.preprocessor.c

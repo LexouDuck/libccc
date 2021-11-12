@@ -1,5 +1,7 @@
 #! This file holds the variables which configure the code compiler
 
+
+
 #! C Compiler
 CC	= _
 CC_WIN32 =   i686-w64-mingw32-gcc
@@ -10,7 +12,7 @@ CC_MACOS = clang
 
 
 #! C Compiler flags & settings
-CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
+CFLAGS = \
 	-Werror \
 	-Wall \
 	-Wextra \
@@ -21,6 +23,7 @@ CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
 	-Wold-style-definition \
 	-Wno-format-extra-args \
 	-fstrict-aliasing \
+	$(CFLAGS_OS) $(CFLAGS_EXTRA)
 #	-L/usr/local/lib -ltsan
 #	-fsanitize=address
 #	-fsanitize=thread
@@ -36,8 +39,6 @@ CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 CFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
 	CFLAGS_OS_WIN += -Wno-missing-braces
-else
-	CFLAGS_OS_WIN += -D__USE_MINGW_ANSI_STDIO=1
 endif
 CFLAGS_EXTRA = 
 

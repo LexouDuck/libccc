@@ -418,9 +418,7 @@ HEADER_CPP
 **	certain specific text characters, documented below).
 **	A format specifier has the following syntax (items between brackets are optional):
 **
-**	```c
-**	%[flags][minsize][.precision][bitsize]char
-**	```
+**	`%[flags][minsize][.precision][bitsize]char`
 **
 **	Here is a description of the valid possible choices for each of these 5 fields: (flags,minsize,precision,bitsize,char)
 **	 ________________________________________________________________________

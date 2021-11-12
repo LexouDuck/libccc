@@ -1,4 +1,4 @@
-# This file holds a cross-platform SUDO variable, for actions which necessitate privileges
+#! This file holds a cross-platform SUDO variable, for actions which necessitate privileges
 
 
 

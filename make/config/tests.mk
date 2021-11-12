@@ -1,10 +1,20 @@
 #! This file holds configuration variables for the test suite compilation
 
 #! C compiler config flags
-TEST_CFLAGS = -O2 -g -ggdb \
+TEST_CFLAGS = \
+	-O2 \
+	-g -ggdb \
+	-Wall \
+	-Wextra \
+	-Wno-unused-variable \
+	-Wno-unused-parameter \
 	-Wno-format-extra-args \
 	-fno-inline \
 #	-fanalyzer
+
+ifneq ($(OSMODE),macos)
+	TEST_CFLAGS += -Wno-missing-braces
+endif
 
 #! C linker config flags
 TEST_LDFLAGS = $(LDFLAGS)
@@ -12,18 +22,18 @@ TEST_LDFLAGS = $(LDFLAGS)
 
 
 #! C header file paths
-TEST_INCLUDEDIRS = \
+TEST_INCLUDES = \
 	-I$(HDRDIR) \
 	-I$(TEST_DIR) \
 
 
 
 #! C libraries to link with
-TEST_LIBS = -L./ \
+TEST_LDLIBS = -L./ \
 	-lccc \
 	-lpthread \
 	-lm \
 
 ifneq ($(OSMODE),macos)
-	TEST_LIBS := -static $(TEST_LIBS)
+	TEST_LDLIBS := -static $(TEST_LDLIBS)
 endif

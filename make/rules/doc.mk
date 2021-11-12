@@ -1,13 +1,28 @@
 #! This file holds project-specific rules to generate/build the documentation for the project
 
-#! The filepath of the doxyrest executable
+
+
+#! Shell command: doxygen
+DOXYGEN = doxygen
+#! Shell command: doxygen options
+DOXYGEN_FLAGS = 
+
+#! Shell command: doxyrest
 DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
+#! Shell command: doxyrest options
+DOXYREST_FLAGS = 
+
+#! Shell command: sphinx-build
+SPHINX = sphinx-build
+#! Shell command: sphinx-build options
+SPHINX_FLAGS = 
 
 
 
 .PHONY:\
-doc # Generates documentation for libccc
+doc #! Generates documentation for libccc
 doc:
+	@printf $(IO_CYAN)"Generating documentation..."$(IO_RESET)"\n"
 	@rm -rf $(DOCDIR)xml/*
 	@rm -rf $(DOCDIR)rst/*
 	@rm -rf $(DOCDIR)man/*
@@ -15,8 +30,8 @@ doc:
 	@rm -rf $(DOCDIR)pdf/*
 	@rm -rf $(DOCDIR)html/*
 	@rm -rf $(DOCDIR)latex/*
-	@doxygen $(DOCDIR)doxygen-config.doxygen
-	@$(DOXYREST) -c $(DOCDIR)doxyrest-config.lua
-	@sphinx-build -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
-	@#sphinx-build -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
+	@$(DOXYGEN)  $(DOXYGEN_FLAGS)     $(DOCDIR)doxygen-config.doxygen
+	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOCDIR)doxyrest-config.lua
+	@$(SPHINX)   $(SPHINX_FLAGS) -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
+	@#$(SPHINX)   $(SPHINX_FLAGS) -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
 	@#$(MAKE) -C $(DOCDIR)pdf/latex/ all

@@ -1,6 +1,15 @@
-# NOTE: the two following lines are to stay at the very top of this Makefile and never move
+#! This is the root-level Makefile, which includes all the others
+
+
+
+# NOTE: the two following variables are to stay at the very top of this Makefile and never move
+
+#! The complete absolute path of the root-level makefile
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
+#! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
+
+
 
 #######################################
 #          Project variables          #
@@ -45,46 +54,8 @@ LOGDIR = ./log/
 LINTDIR = ./lint/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
-
-
-
-#######################################
-#          Project variables          #
-#######################################
-
-#! Path of the file which stores the list of header code files
-HDRSFILE = make/lists/hdrs.txt
-#! List of all C header code files
-HDRS := $(shell cat $(HDRSFILE))
-
-#! Path of the file which stores the list of source code files
-SRCSFILE = make/lists/srcs.txt
-#! List of all C source code files
-SRCS := $(shell cat $(SRCSFILE))
-
-#! Derive list of compiled object files (.o) from list of srcs
-OBJS = ${SRCS:%.c=$(OBJDIR)%.o}
-
-#! Derive list of dependency files (.d) from list of srcs
-DEPS = ${OBJS:.o=.d}
-
-
-
-#! Path of the file which stores the list of header code files
-HDRSFILE_TEST = make/lists/hdrs-test.txt
-#! List of all C header code files
-HDRS_TEST := $(shell cat $(HDRSFILE_TEST))
-
-#! Path of the file which stores the list of source code files
-SRCSFILE_TEST = make/lists/srcs-test.txt
-#! List of all C source code files
-SRCS_TEST := $(shell cat $(SRCSFILE_TEST))
-
-#! Derive list of compiled object files (.o) from list of srcs
-OBJS_TEST = ${SRCS_TEST:%.c=$(OBJDIR)%.o}
-
-#! Derive list of dependency files (.d) from list of srcs
-DEPS_TEST = ${OBJS_TEST:.o=.d}
+#! The directory for git hooks scripts
+GITHOOKSDIR = ./.githooks/
 
 
 
@@ -95,39 +66,14 @@ DEPS_TEST = ${OBJS_TEST:.o=.d}
 # general variables
 include make/utils/ansi.mk
 include make/utils/sudo.mk
+include make/utils/ext.mk
+include make/utils/install.mk
 
 # project-specific rules
 include make/config/modes.mk
 include make/config/build.mk
 include make/config/tests.mk
-
-
-
-#######################################
-#           Main build rules          #
-#######################################
-
-.PHONY:\
-all # Builds all targets (this is the default rule)
-all: $(MODE)
-
-.PHONY:\
-debug # Builds the library, in 'debug' mode (with debug flags and symbol-info)
-debug: MODE = debug
-debug: CFLAGS += $(CFLAGS_DEBUG)
-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
-
-.PHONY:\
-release # Builds the library, in 'release' mode (with debug flags and symbol-info)
-release: MODE = release
-release: CFLAGS += $(CFLAGS_RELEASE)
-release: $(NAME_STATIC) $(NAME_DYNAMIC)
-
-
-
-.PHONY:\
-re # Deletes all generated files and rebuilds `all`
-re: clean-full all
+include make/config/packages.mk
 
 
 
@@ -135,29 +81,28 @@ re: clean-full all
 #      Included Makefile Rules        #
 #######################################
 
-RULES_PATH = ./make/rules/
+# project-specific rules
+include make/rules/all.mk
+include make/rules/build.mk
+include make/rules/build-tests.mk
+include make/rules/install.mk
 
-# general rules
-include make/rules/help.mk
-include make/rules/list.mk
 include make/rules/init.mk
+include make/rules/prereq.mk
+include make/rules/packages.mk
+include make/rules/version.mk
 include make/rules/dist.mk
 include make/rules/clean.mk
-include make/rules/install.mk
-include make/rules/version.mk
 
-# language-specific rules
-include make/rules/build-library.mk
-include make/rules/build-tests.mk
 include make/rules/debugging.mk
-include make/rules/update.mk
-
-# project-specific rules
-include make/rules/doc.mk
-include make/rules/lint.mk
-include make/rules/format.mk
-include make/rules/prereq.mk
 include make/rules/test.mk
 include make/rules/test-helloworld.mk
 include make/rules/test-foreach.mk
 include make/rules/test-kvt.mk
+include make/rules/lint.mk
+include make/rules/format.mk
+include make/rules/doc.mk
+
+# general rules
+include make/utils/refactor.mk
+include make/utils/help.mk

@@ -3,56 +3,57 @@
 
 
 .PHONY:\
-clean # Deletes all intermediary build files
+clean #! Deletes all intermediary build files
 clean:
-	@printf "Deleting all .o files...\n"
+	@printf $(IO_CYAN)"Deleting all .o files..."$(IO_RESET)"\n"
 	@rm -f $(OBJS)
-	@rm -f $(OBJS_TEST)
-	@printf "Deleting all .d files...\n"
+	@rm -f $(TEST_OBJS)
+	@printf $(IO_CYAN)"Deleting all .d files..."$(IO_RESET)"\n"
 	@rm -f $(DEPS)
-	@rm -f $(DEPS_TEST)
+	@rm -f $(TEST_DEPS)
 	@rm -f *.d
 
 
 
 .PHONY:\
-clean-exe # Deletes any libraries/executables
+clean-exe #! Deletes any libraries/executables
 clean-exe:
+	@rm -f $(NAME)
 	@rm -f $(NAME).*
-	@printf "Deleting library: "$(NAME_STATIC)"\n"
+	@printf $(IO_CYAN)"Deleting library: "$(NAME_STATIC)""$(IO_RESET)"\n"
 	@rm -f $(NAME_STATIC)
-	@printf "Deleting library: "$(NAME_DYNAMIC)"\n"
+	@printf $(IO_CYAN)"Deleting library: "$(NAME_DYNAMIC)""$(IO_RESET)"\n"
 	@rm -f $(NAME_DYNAMIC)
-	@printf "Deleting program: "$(NAME_TEST)"\n"
+	@printf $(IO_CYAN)"Deleting test program: "$(NAME_TEST)""$(IO_RESET)"\n"
 	@rm -f $(NAME_TEST)
 	@rm -f $(NAME_TEST).d
 
 .PHONY:\
-clean-obj # Deletes the ./obj folder
+clean-obj #! Deletes the ./obj folder
 clean-obj:
-	@printf "Deleting "$(OBJDIR)" folder...\n"
+	@printf $(IO_CYAN)"Deleting "$(OBJDIR)" folder..."$(IO_RESET)"\n"
 	@rm -rf $(OBJDIR)
 
 .PHONY:\
-clean-bin # Deletes the ./bin folder
+clean-bin #! Deletes the ./bin folder
 clean-bin:
-	@printf "Deleting "$(BINDIR)" folder...\n"
+	@printf $(IO_CYAN)"Deleting "$(BINDIR)" folder..."$(IO_RESET)"\n"
 	@rm -rf $(BINDIR)
 
 .PHONY:\
-clean-logs # Deletes the ./log folder
+clean-logs #! Deletes the ./log folder
 clean-logs:
-	@printf "Deleting "$(LOGDIR)" folder...\n"
+	@printf $(IO_CYAN)"Deleting "$(LOGDIR)" folder..."$(IO_RESET)"\n"
 	@rm -rf $(LOGDIR)
 
 .PHONY:\
-clean-lint # Deletes the ./lint folder
+clean-lint #! Deletes the ./lint folder
 clean-lint:
-	@printf "Deleting "$(LINTDIR)" folder...\n"
+	@printf $(IO_CYAN)"Deleting "$(LINTDIR)" folder..."$(IO_RESET)"\n"
 	@rm -rf $(LINTDIR)
 
 
 
 .PHONY:\
-clean-full # Deletes every generated file
+clean-full #! Deletes every generated file
 clean-full: clean clean-exe

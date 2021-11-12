@@ -15,16 +15,26 @@ value = 0644;	// pure C
 value = 0o644;	// ++C
 
 
-char*	strings[9];	// pure C
-char*[9] strings;	// ++C
+char*   strings[9]; // pure C
+char*[9]   strings; // ++C
 
 
-void	(*f)(int, char*);	// pure C
-(int, char*) => void	f;	// ++C
+void (*f)(int, char*); // pure C
+(int, char*)=>void  f; // ++C
 
-// example nested function (with another function pointer as argument)
-void	(*g)(int, char*	(*)(char*));// pure C
-(int, (char*)=>char*) => void	g;	// ++C
+// example nested function pointers (takes another function pointer as argument)
+void (*g)(int, char* (*)(char*)); // pure C
+(int, (char*)=>char*) => void  g; // ++C
+
+
+#if #(typeof(size_t) is unsigned long)
+	// do something
+#elif #(!(typeof(size_t) is unsigned long long))
+	#error "unsupported size_t type"
+#endif
+
+
+t_utf8 const* unicode = u"Any unicode character directly works: それは本当に作品";
 
 
 char const* regex1 = r"\b(My_\w*)\b"g;
@@ -32,7 +42,20 @@ char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
 char const* regex3 = r"[a-zA-Z_]\w*"sg;
 
 
-//void	WaitAndRunCallback(void (*callback)(void));
+// ++C
+void MyFunc(int arg1, int arg2, [ int arg3, int arg4 = 0, int arg5 = 0 ]);
+// usage example
+MyFunc(1, 1, .arg3=1, .arg4=1);
+
+
+void MyFunc_kwargs(int arg1, int arg2, struct MyFunc_kwargs { int _; int arg3; int arg4; } kwargs);
+#define MyFunc(ARG1, ARG2, ...) \
+	MyFunc(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
+// usage example
+MyFunc(.arg1=1, .arg2=1, .arg3=1, .arg4=1, .arg5=0);
+
+
+void	WaitAndRunCallback(void (*callback)(void));
 
 int	main()
 {
@@ -46,13 +69,13 @@ int	main()
 
 
 // NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
-//void	WaitAndRunCallback(void (*callback)(void));
+void	WaitAndRunCallback(void (*callback)(void));
 
+static
 void	main_HelloWorld(void)
 {
 	printf("Hello World!\n");
 }
-
 int	main()
 {
 	WaitAndRunCallback(
@@ -61,30 +84,45 @@ int	main()
 }
 
 
-#operator	$	(char* a, char* b) => int	= DoOperation(a, b)		// define a custom operator (optionally with a certain specified `precedence` and `associativity`)
-#accessor (struct s var)[int index] => int	= GetFunction(var, index)	// define a custom accessor syntax for a struct/union (custom brackets `get` functions)
-#namespace NameSpace.Type<T=(float|int), P>	// works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic types below)
-#reflect // type reflection - type stringization , enum stringization, etc ? TODO define this and how it can work
-#replace MACRO() <string>	// works like a `#define` macro, but occurs at transpile-time, and uses m4 (which allows us to do much more stuff)
-#header __HEADER_H			// insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
-#incbin myvar "filepath"	// include a binary file into the executable as an extern const global variable
-#alias(token)		// shorter way of writing `__attribute__((alias, ...))`
-#align(4)			// shorter way of writing `__attribute__((align, ...))` and/or `_Alignas`
-#format(func, 1, 2)	// shorter way of writing `__attribute__((format, ...))`
-#noreturn			// shorter way of writing `__attribute__((noreturn, ...))` and/or `_Noreturn`
-#malloc				// shorter way of writing `__attribute__((malloc, ...))`
-#delete				// shorter way of writing `__attribute__((delete, ...))`
-#inline				// shorter way of writing `__attribute__((always_inline, ...))` and/or `inline`
-#pure				// shorter way of writing `__attribute__((pure, ...))`
-#packed				// shorter way of writing `__attribute__((packed, ...))`
-
-
-#if // compile-time operators like sizeof() can be used in #if directly now, the transpiler will handle it
-// TODO (perhaps even use static_assert() where appropriate ?)
-
-#elif defined(MACRO) // 
-
+//! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
+#if (sizeof(char) == 1)
 #endif
+
+//! Here is an example of function-call generic type promotion (to use with va_arg())
+#if (typeof(T) is char)
+	#define T_VA_ARG	int
+#elif (typeof(T) is short)
+	#define T_VA_ARG	int
+#elif (typeof(T) is float)
+	#define T_VA_ARG	double
+#else
+	#define T_VA_ARG	T
+#endif
+
+
+//! works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic namespace types below)
+#namespace NameSpace.Type<T=(float|int), P>
+
+//! define a custom operator (optionally with a certain specified `precedence` and `associativity`)
+#operator	$	(char* a, char* b) => int	= DoOperation(a, b)
+
+//! define a custom accessor syntax for a struct/union (custom brackets `get` functions)
+#accessor (struct s var)[int index] => int	= GetFunction(var, index)
+
+//! type reflection - a special kind of macro, for types (inserts contents of a type into the code)
+#reflect(struct s)	printf("%s %s;\n", #type, #name)
+
+//! works like a `#define` macro, but occurs at transpile-time, and uses the powerful `m4` macro engine (by K&R)
+#replace MACRO() <string>
+
+//! insert header include guards at the beginning and end of a header file (and c++ `extern "C" {}`guards)
+#header __HEADER_H
+
+//! include a binary file into the executable as an extern const global variable
+#incbin myvar "filepath"
+
+//! cross-platform way to declare function attributes (in GNU C for example: `__attribute__((alias, ...))`)
+#is alias(token)
 
 
 // integer power operator
@@ -99,8 +137,12 @@ printf("%d", 2 ** 15);
 #operator ?? (void const* left, void const* right) => void const* = \
 	(left == NULL ? right : left)
 
+// define a 'word' operator wrapper above the actual operator
+#replace OTHERWISE	<??>
+
 // usage example:
 char* new_str = str ?? "str is NULL";
+char* new_str = str OTHERWISE "str is NULL";
 
 
 // fixed-point math
@@ -112,10 +154,10 @@ char* new_str = str ?? "str is NULL";
 
 
 // string concatenation operators
-#operator(5, FALSE) +	(char const* left, char const* right) => char* = String.Join(left, right)
-#operator(5, FALSE) :+	(char*       left, char const* right) => char* = String.Append(left, right)
-#operator(5, FALSE) +:	(char const* left, char*       right) => char* = String.Prepend(left, right)
-#operator(5, FALSE) :+:	(char*       left, char*       right) => char* = String.Merge(left, right)
+#operator(5, FALSE) +   (char const* left, char const* right) => char* = String.Join(left, right)
+#operator(5, FALSE) :+  (char*       left, char const* right) => char* = String.Append(left, right)
+#operator(5, FALSE) +:  (char const* left, char*       right) => char* = String.Prepend(left, right)
+#operator(5, FALSE) :+: (char*       left, char*       right) => char* = String.Merge(left, right)
 
 // usage example:
 char* new_str = "Concatenated: " + str;
@@ -136,7 +178,7 @@ s_complex z = { 1.5, 2.2 };
 s_complex conjug = !z;
 
 
-// bool exclusive OR (XOR) operator
+// boolean exclusive OR (XOR) operator
 #operator(12, FALSE) ^^ (bool left, bool right) => bool = \
 	((left ? TRUE : FALSE) ^ (right ? TRUE : FALSE))
 
@@ -146,12 +188,12 @@ if (i < 3 ^^ x >= 4) { /* do stuff */}
 
 // 3D vector subtraction operator
 #operator - (s_vector3d left, s_vector3d right) => s_vector3d = \
-	(s_vector3d)				\
-	{							\
-		.x = left.x - right.x,	\
-		.y = left.y - right.y,	\
-		.z = left.z - right.z,	\
-	}							\
+	(s_vector3d) \
+	{ \
+		.x = left.x - right.x, \
+		.y = left.y - right.y, \
+		.z = left.z - right.z, \
+	} \
 
 // usage example:
 s_vector3d u = (s_vector3d){ 1, 2, 3 };
@@ -398,11 +440,11 @@ char* str = list[2]; // type inferrence for the accessor
 
 #namespace KeyVal<T>
 
-typedef struct keyval<T>
+typedef struct	keyval_<T>
 {
 	char*	key;
 	char*	type;
-	T		value;
+	T	value;
 }				s_keyval<T>;
 
 s_keyval<T>	New(char* key, T value);
@@ -450,7 +492,7 @@ unsigned long int
 
 
 // ++C
-struct s_test
+struct test
 {
 	int x;
 	int y;
@@ -461,7 +503,7 @@ struct s_test
 // ++C
 int main()
 {
-#reflect(struct s_test) \
+	#reflect(struct test) \
 	printf("\t%s\t%s\n", #type, #name);
 }
 
@@ -487,8 +529,8 @@ enum e_test
 // ++C
 int main()
 {
-#reflect(enum e_test) \
-	printf("\t%s\t%s\n", #type, #name); comment
+	#reflect(enum e_test) \
+	printf("\t%s\t%s\n", #value, #type, #name); comment
 }
 
 // transpiles to C:
@@ -557,8 +599,28 @@ void HelloWorld(void);
 #endif
 
 
+#is inline              //!< cross-platform way to use `__attribute__((always_inline, ...))` and/or `inline`
+#is noreturn            //!< cross-platform way to use `__attribute__((noreturn, ...))` and/or `_Noreturn`
+#is align(4)            //!< cross-platform way to use `__attribute__((align, ...))` and/or `_Alignas`
+#is alias(token)        //!< cross-platform way to use `__attribute__((alias, ...))`
+#is format(func, 1, 2)  //!< cross-platform way to use `__attribute__((format, ...))`
+#is malloc              //!< cross-platform way to use `__attribute__((malloc, ...))`
+#is delete              //!< cross-platform way to use `__attribute__((delete, ...))`
+#is pure                //!< cross-platform way to use `__attribute__((pure, ...))`
+#is packed              //!< cross-platform way to use `__attribute__((packed, ...))`
+
+
+#is inline
+void	MyFunction(void);
+
+
+// transpiles to:
+__attribute__((always_inline)) inline
+void*	MyFunction(void);
+
+
 void			MyFunction(void);
-#alias	func	MyFunction
+#is alias	func	MyFunction
 
 
 // transpiles to:
@@ -571,13 +633,13 @@ void	func(void) __attribute__((weak, alias("MyFunction")));
 
 
 void		MyFunction(void);
-#alias	func	// `func` is an alias for `MyFunction`
+#is alias	func	// `func` is an alias for `MyFunction`
 
 extern int my_global_var;
-#alias	my_gv	// `my_gv` is an alias for `my_global_var`
+#is alias	my_gv	// `my_gv` is an alias for `my_global_var`
 
 
-#packed
+#is packed
 typedef struct example
 {
 	char a;
@@ -594,16 +656,7 @@ typedef struct example
 	...
 
 
-#inline
-void	MyFunction(void);
-
-
-// transpiles to:
-__attribute__((always_inline)) inline
-void*	MyFunction(void);
-
-
-#pure
+#is pure
 char	MyFunction(char c);
 
 
@@ -612,7 +665,7 @@ __attribute__((pure))
 char	MyFunction(char c);
 
 
-#malloc
+#is malloc
 char*	MyFunction(void);
 
 
@@ -621,7 +674,7 @@ __attribute__((malloc))
 char*	MyFunction(void);
 
 
-#format(printf, 1, 2)
+#is format(printf, 1, 2)
 void	MyFunction(char* format, ...);
 
 
@@ -632,3 +685,15 @@ void	MyFunction(char* format, ...);
 
 void*		->	void$
 void const*	->	void@
+
+
+#replace #incbin	<INCBIN($1,$2)>
+#replace #packed	<__attribute__((packed))>
+#replace #format	<__attribute__((format($1,$2,$3)))>
+#replace #alias		<__attribute__((alias(#$1)))>
+#replace #align		<__attribute__((aligned($1)))>
+#replace #pure		<__attribute__((pure))>
+#replace #inline	<__attribute__((always_inline)) inline>
+#replace #malloc	<__attribute__((malloc))>
+#replace #delete	<__attribute__((delete))>
+#replace #unused	<__attribute__((unused))>
