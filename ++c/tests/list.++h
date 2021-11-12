@@ -29,6 +29,9 @@
 ** ************************************************************************** *|
 */
 
+
+#header __LIBCCC_LIST_H
+
 #namespace List<T=void*>
 
 //! This is a simple linked list struct, with dynamic content type
@@ -40,11 +43,11 @@
 */
 typedef struct list<T>
 {
-//	struct s_list<T>_*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
-	struct s_list<T>_*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
-	t_size			item_size;	//!< The size of the data contained within 'item'
-	<T>				item;		//!< The contents of this linked-list element
-}					s_list<T>;
+//	struct list<T>_* prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct list<T>_* next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
+	t_size           item_size;	//!< The size of the data contained within 'item'
+	<T>              item;		//!< The contents of this linked-list element
+}	s_list<T>;
 
 #define foreach_s_list<T>_init(			TYPE, VAR, LIST)	foreach_s_list<T>_init_1(TYPE, VAR, LIST); foreach_s_list<T>_init_2(TYPE, VAR, LIST);
 #define foreach_s_list<T>_init_1(		TYPE, VAR, LIST)	t_size VAR##_i = 0
