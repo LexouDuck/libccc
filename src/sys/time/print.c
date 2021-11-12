@@ -20,28 +20,27 @@
 t_char*		Date_ToString(s_date const* date, t_char const* format)
 {
 	struct tm tm;
-	t_char*	result;
-	t_size	size;
-	t_size	wrote;
+	t_char*	result = NULL;
+	t_size	size = 0;
+	t_size	wrote = 0;
 	t_uint	leapsec;
 
 	HANDLE_ERROR_SF(INVALIDARGS, (!Date_IsValid(date)), return (NULL);,
 		": date given is not a valid calendar date/time")
 	tm = Date_ToSTDC(date);
-	size = String_Length(format) + 1;
-	result = String_New(size);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	leapsec = (tm.tm_sec >= TIME_MAX_SECONDS) ? (tm.tm_sec - (TIME_MAX_SECONDS - 1)) : 0;
 	tm.tm_sec -= leapsec;
-	wrote = strftime(result, size - 1, format, &tm);
-	while (wrote == 0 && size < MAX_BUFFER_SIZE)
+	do
 	{
 		String_Delete(&result);
-		size *= 2;
+		if (size == 0)
+			size = String_Length(format) + 1;
+		else size *= 2;
 		result = String_New(size);
 		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 		wrote = strftime(result, size - 1, format, &tm);
 	}
+	while (wrote == 0 && size < MAX_BUFFER_SIZE);
 	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
 		": Could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)

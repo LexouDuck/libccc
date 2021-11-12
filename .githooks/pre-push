@@ -1,0 +1,5 @@
+#!/bin/sh
+
+
+# increment the build number (3rd number of the version number)
+make version-build
