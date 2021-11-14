@@ -14,7 +14,7 @@ s_list<T>*	New(T item, t_size item_size)
 {
 	asm {""}
 	int restrict a;
-	int b = 0b1101;
+	int b = 0b101101;
 	int o = 0o777;
 	typeof(a) _a;
 	s_list<T>* result;
