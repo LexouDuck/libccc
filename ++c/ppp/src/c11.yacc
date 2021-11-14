@@ -1,26 +1,34 @@
 /*
-**	ANSI C Yacc grammar
-**	(This Yacc file is accompanied by a matching Lex file.)
-**	In 1985, Jeff Lee published his Yacc grammar based on a draft version of the ANSI C standard, along with a supporting Lex specification. Tom Stockfisch reposted those files to net.sources in 1987; as mentioned in the answer to question 17.25 of the comp.lang.c FAQ, they used to be available from ftp.uu.net as usenet/net.sources/ansi.c.grammar.Z.
-**	
-**	The version you see here has been updated based on the 2011 ISO C standard. (The previous version's Lex and Yacc files for ANSI C9X still exist as archived copies.)
-**	
-**	This grammar assumes that translation phases 1..5 have already been completed, including preprocessing and _Pragma processing. The Lex rule for string literals will perform concatenation (translation phase 6). Transliteration of universal character names (\uHHHH or \UHHHHHHHH) must have been done by either the preprocessor or a replacement for the input() macro used by Lex (or the YY_INPUT function used by Flex) to read characters. Although comments should have been changed to space characters during translation phase 3, there are Lex rules for them anyway.
-**	
+**	ANSI C grammar, Lex specification
+**	(This Lex file is accompanied by a matching Yacc file.)
+**	In 1985, Jeff Lee published his Yacc grammar based on a draft version of the ANSI C standard, along with a supporting Lex specification.
+**	Tom Stockfisch reposted those files to net.sources in 1987;
+**	as mentioned in the answer to question 17.25 of the comp.lang.c FAQ,
+**	they used to be available from ftp.uu.net as usenet/net.sources/ansi.c.grammar.Z.
+**
+**	The version you see here has been updated based on the 2011 ISO C standard.
+**	(The previous version's Lex and Yacc files for ANSI C9X still exist as archived copies.)
+**
+**	It is assumed that translation phases 1..5 have already been completed, including preprocessing and _Pragma processing.
+**	The Lex rule for string literals will perform concatenation (translation phase 6).
+**	Transliteration of universal character names (\uHHHH or \UHHHHHHHH) must have been done by either the preprocessor,
+**	or a replacement for the input() macro used by Lex (or the YY_INPUT function used by Flex) to read characters.
+**	Although comments should have been changed to space characters during translation phase 3, there are Lex rules for them anyway.
+**
 **	I want to keep this version as close to the current C Standard grammar as possible; please let me know if you discover discrepancies.
 **	(There is an FAQ for this grammar that you might want to read first.)
-**	
+**
 **	jutta@pobox.com, 2012
-**	
-**	Last edit: 2012-12-18 DAGwyn@aol.com
+**
+**	Last edit: 2012-12-19 DAGwyn@aol.com
 */
 
 /*
-Note: There are two shift/reduce conflicts, correctly resolved by default:
-  IF '(' expression ')' statement _ ELSE statement
-and
-  ATOMIC _ '(' type_name ')'
-where "_" has been used to flag the points of ambiguity.
+	Note: There are two shift/reduce conflicts, correctly resolved by default:
+		IF '(' expression ')' statement _ ELSE statement
+	and
+		ATOMIC _ '(' type_name ')'
+	where "_" has been used to flag the points of ambiguity.
 */
 
 %{
@@ -33,11 +41,11 @@ extern void yyerror(char const * s);
 //extern FILE *yyin;
 %}
 
-%token	IDENTIFIER I_CONSTANT F_CONSTANT STRING_LITERAL FUNC_NAME SIZEOF
-%token	PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
-%token	AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
-%token	SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
-%token	XOR_ASSIGN OR_ASSIGN
+%token	IDENTIFIER LITERAL_INT LITERAL_CHAR LITERAL_FLOAT LITERAL_STRING FUNC_NAME SIZEOF
+%token	OP_PTR OP_INC OP_DEC OP_LEFT OP_RIGHT OP_LTE OP_GTE OP_EQ OP_NEQ
+%token	OP_AND OP_OR OP_ASSIGN_MUL OP_ASSIGN_DIV OP_ASSIGN_MOD OP_ASSIGN_ADD
+%token	OP_ASSIGN_SUB OP_ASSIGN_BITLEFT OP_ASSIGN_BITRIGHT OP_ASSIGN_BITAND
+%token	OP_ASSIGN_BITXOR OP_ASSIGN_BITOR
 %token	TYPEDEF_NAME ENUMERATION_CONSTANT
 
 %token	TYPEDEF EXTERN STATIC AUTO REGISTER INLINE
@@ -53,7 +61,7 @@ extern void yyerror(char const * s);
 %start translation_unit
 %%
 
-primary_expression
+expression_primary
 	: IDENTIFIER
 	| constant
 	| string
@@ -62,8 +70,9 @@ primary_expression
 	;
 
 constant
-	: I_CONSTANT		/* includes character_constant */
-	| F_CONSTANT
+	: LITERAL_INT
+	| LITERAL_CHAR
+	| LITERAL_FLOAT
 	| ENUMERATION_CONSTANT	/* after it has been defined as such */
 	;
 
@@ -72,12 +81,12 @@ enumeration_constant		/* before it has been defined as such */
 	;
 
 string
-	: STRING_LITERAL
+	: LITERAL_STRING
 	| FUNC_NAME
 	;
 
 generic_selection
-	: GENERIC '(' assignment_expression ',' generic_assoc_list ')'
+	: GENERIC '(' expression_assignment ',' generic_assoc_list ')'
 	;
 
 generic_assoc_list
@@ -86,34 +95,34 @@ generic_assoc_list
 	;
 
 generic_association
-	: type_name ':' assignment_expression
-	| DEFAULT ':' assignment_expression
+	: type_name ':' expression_assignment
+	| DEFAULT ':' expression_assignment
 	;
 
-postfix_expression
-	: primary_expression
-	| postfix_expression '[' expression ']'
-	| postfix_expression '(' ')'
-	| postfix_expression '(' argument_expression_list ')'
-	| postfix_expression '.' IDENTIFIER
-	| postfix_expression PTR_OP IDENTIFIER
-	| postfix_expression INC_OP
-	| postfix_expression DEC_OP
+expression_postfix
+	: expression_primary
+	| expression_postfix '[' expression ']'
+	| expression_postfix '(' ')'
+	| expression_postfix '(' argument_expression_list ')'
+	| expression_postfix '.' IDENTIFIER
+	| expression_postfix OP_PTR IDENTIFIER
+	| expression_postfix OP_INC
+	| expression_postfix OP_DEC
 	| '(' type_name ')' '{' initializer_list '}'
 	| '(' type_name ')' '{' initializer_list ',' '}'
 	;
 
 argument_expression_list
-	: assignment_expression
-	| argument_expression_list ',' assignment_expression
+	: expression_assignment
+	| argument_expression_list ',' expression_assignment
 	;
 
-unary_expression
-	: postfix_expression
-	| INC_OP unary_expression
-	| DEC_OP unary_expression
-	| unary_operator cast_expression
-	| SIZEOF unary_expression
+expression_unary
+	: expression_postfix
+	| OP_INC expression_unary
+	| OP_DEC expression_unary
+	| unary_operator expression_cast
+	| SIZEOF expression_unary
 	| SIZEOF '(' type_name ')'
 	| ALIGNOF '(' type_name ')'
 	;
@@ -127,100 +136,100 @@ unary_operator
 	| '!'
 	;
 
-cast_expression
-	: unary_expression
-	| '(' type_name ')' cast_expression
+expression_cast
+	: expression_unary
+	| '(' type_name ')' expression_cast
 	;
 
-multiplicative_expression
-	: cast_expression
-	| multiplicative_expression '*' cast_expression
-	| multiplicative_expression '/' cast_expression
-	| multiplicative_expression '%' cast_expression
+expression_multiplicative
+	: expression_cast
+	| expression_multiplicative '*' expression_cast
+	| expression_multiplicative '/' expression_cast
+	| expression_multiplicative '%' expression_cast
 	;
 
-additive_expression
-	: multiplicative_expression
-	| additive_expression '+' multiplicative_expression
-	| additive_expression '-' multiplicative_expression
+expression_additive
+	: expression_multiplicative
+	| expression_additive '+' expression_multiplicative
+	| expression_additive '-' expression_multiplicative
 	;
 
-shift_expression
-	: additive_expression
-	| shift_expression LEFT_OP additive_expression
-	| shift_expression RIGHT_OP additive_expression
+expression_shift
+	: expression_additive
+	| expression_shift OP_LEFT expression_additive
+	| expression_shift OP_RIGHT expression_additive
 	;
 
-relational_expression
-	: shift_expression
-	| relational_expression '<' shift_expression
-	| relational_expression '>' shift_expression
-	| relational_expression LE_OP shift_expression
-	| relational_expression GE_OP shift_expression
+expression_relational
+	: expression_shift
+	| expression_relational '<' expression_shift
+	| expression_relational '>' expression_shift
+	| expression_relational OP_LTE expression_shift
+	| expression_relational OP_GTE expression_shift
 	;
 
-equality_expression
-	: relational_expression
-	| equality_expression EQ_OP relational_expression
-	| equality_expression NE_OP relational_expression
+expression_equality
+	: expression_relational
+	| expression_equality OP_EQ expression_relational
+	| expression_equality OP_NEQ expression_relational
 	;
 
-and_expression
-	: equality_expression
-	| and_expression '&' equality_expression
+expression_and
+	: expression_equality
+	| expression_and '&' expression_equality
 	;
 
-exclusive_or_expression
-	: and_expression
-	| exclusive_or_expression '^' and_expression
+expression_exclusive_or
+	: expression_and
+	| expression_exclusive_or '^' expression_and
 	;
 
-inclusive_or_expression
-	: exclusive_or_expression
-	| inclusive_or_expression '|' exclusive_or_expression
+expression_inclusive_or
+	: expression_exclusive_or
+	| expression_inclusive_or '|' expression_exclusive_or
 	;
 
-logical_and_expression
-	: inclusive_or_expression
-	| logical_and_expression AND_OP inclusive_or_expression
+expression_logical_and
+	: expression_inclusive_or
+	| expression_logical_and OP_AND expression_inclusive_or
 	;
 
-logical_or_expression
-	: logical_and_expression
-	| logical_or_expression OR_OP logical_and_expression
+expression_logical_or
+	: expression_logical_and
+	| expression_logical_or OP_OR expression_logical_and
 	;
 
-conditional_expression
-	: logical_or_expression
-	| logical_or_expression '?' expression ':' conditional_expression
+expression_conditional
+	: expression_logical_or
+	| expression_logical_or '?' expression ':' expression_conditional
 	;
 
-assignment_expression
-	: conditional_expression
-	| unary_expression assignment_operator assignment_expression
+expression_assignment
+	: expression_conditional
+	| expression_unary assignment_operator expression_assignment
 	;
 
 assignment_operator
 	: '='
-	| MUL_ASSIGN
-	| DIV_ASSIGN
-	| MOD_ASSIGN
-	| ADD_ASSIGN
-	| SUB_ASSIGN
-	| LEFT_ASSIGN
-	| RIGHT_ASSIGN
-	| AND_ASSIGN
-	| XOR_ASSIGN
-	| OR_ASSIGN
+	| OP_ASSIGN_MUL
+	| OP_ASSIGN_DIV
+	| OP_ASSIGN_MOD
+	| OP_ASSIGN_ADD
+	| OP_ASSIGN_SUB
+	| OP_ASSIGN_BITLEFT
+	| OP_ASSIGN_BITRIGHT
+	| OP_ASSIGN_BITAND
+	| OP_ASSIGN_BITXOR
+	| OP_ASSIGN_BITOR
 	;
 
 expression
-	: assignment_expression
-	| expression ',' assignment_expression
+	: expression_assignment
+	| expression ',' expression_assignment
 	;
 
-constant_expression
-	: conditional_expression	/* with constraints */
+expression_constant
+	: expression_conditional	/* with constraints */
 	;
 
 declaration
@@ -315,8 +324,8 @@ struct_declarator_list
 	;
 
 struct_declarator
-	: ':' constant_expression
-	| declarator ':' constant_expression
+	: ':' expression_constant
+	| declarator ':' expression_constant
 	| declarator
 	;
 
@@ -334,7 +343,7 @@ enumerator_list
 	;
 
 enumerator	/* identifiers must be flagged as ENUMERATION_CONSTANT */
-	: enumeration_constant '=' constant_expression
+	: enumeration_constant '=' expression_constant
 	| enumeration_constant
 	;
 
@@ -356,7 +365,7 @@ function_specifier
 
 alignment_specifier
 	: ALIGNAS '(' type_name ')'
-	| ALIGNAS '(' constant_expression ')'
+	| ALIGNAS '(' expression_constant ')'
 	;
 
 declarator
@@ -369,13 +378,13 @@ direct_declarator
 	| '(' declarator ')'
 	| direct_declarator '[' ']'
 	| direct_declarator '[' '*' ']'
-	| direct_declarator '[' STATIC type_qualifier_list assignment_expression ']'
-	| direct_declarator '[' STATIC assignment_expression ']'
+	| direct_declarator '[' STATIC type_qualifier_list expression_assignment ']'
+	| direct_declarator '[' STATIC expression_assignment ']'
 	| direct_declarator '[' type_qualifier_list '*' ']'
-	| direct_declarator '[' type_qualifier_list STATIC assignment_expression ']'
-	| direct_declarator '[' type_qualifier_list assignment_expression ']'
+	| direct_declarator '[' type_qualifier_list STATIC expression_assignment ']'
+	| direct_declarator '[' type_qualifier_list expression_assignment ']'
 	| direct_declarator '[' type_qualifier_list ']'
-	| direct_declarator '[' assignment_expression ']'
+	| direct_declarator '[' expression_assignment ']'
 	| direct_declarator '(' parameter_type_list ')'
 	| direct_declarator '(' ')'
 	| direct_declarator '(' identifier_list ')'
@@ -430,20 +439,20 @@ direct_abstract_declarator
 	: '(' abstract_declarator ')'
 	| '[' ']'
 	| '[' '*' ']'
-	| '[' STATIC type_qualifier_list assignment_expression ']'
-	| '[' STATIC assignment_expression ']'
-	| '[' type_qualifier_list STATIC assignment_expression ']'
-	| '[' type_qualifier_list assignment_expression ']'
+	| '[' STATIC type_qualifier_list expression_assignment ']'
+	| '[' STATIC expression_assignment ']'
+	| '[' type_qualifier_list STATIC expression_assignment ']'
+	| '[' type_qualifier_list expression_assignment ']'
 	| '[' type_qualifier_list ']'
-	| '[' assignment_expression ']'
+	| '[' expression_assignment ']'
 	| direct_abstract_declarator '[' ']'
 	| direct_abstract_declarator '[' '*' ']'
-	| direct_abstract_declarator '[' STATIC type_qualifier_list assignment_expression ']'
-	| direct_abstract_declarator '[' STATIC assignment_expression ']'
-	| direct_abstract_declarator '[' type_qualifier_list assignment_expression ']'
-	| direct_abstract_declarator '[' type_qualifier_list STATIC assignment_expression ']'
+	| direct_abstract_declarator '[' STATIC type_qualifier_list expression_assignment ']'
+	| direct_abstract_declarator '[' STATIC expression_assignment ']'
+	| direct_abstract_declarator '[' type_qualifier_list expression_assignment ']'
+	| direct_abstract_declarator '[' type_qualifier_list STATIC expression_assignment ']'
 	| direct_abstract_declarator '[' type_qualifier_list ']'
-	| direct_abstract_declarator '[' assignment_expression ']'
+	| direct_abstract_declarator '[' expression_assignment ']'
 	| '(' ')'
 	| '(' parameter_type_list ')'
 	| direct_abstract_declarator '(' ')'
@@ -453,7 +462,7 @@ direct_abstract_declarator
 initializer
 	: '{' initializer_list '}'
 	| '{' initializer_list ',' '}'
-	| assignment_expression
+	| expression_assignment
 	;
 
 initializer_list
@@ -473,12 +482,12 @@ designator_list
 	;
 
 designator
-	: '[' constant_expression ']'
+	: '[' expression_constant ']'
 	| '.' IDENTIFIER
 	;
 
 static_assert_declaration
-	: STATIC_ASSERT '(' constant_expression ',' STRING_LITERAL ')' ';'
+	: STATIC_ASSERT '(' expression_constant ',' LITERAL_STRING ')' ';'
 	;
 
 statement
@@ -492,13 +501,13 @@ statement
 
 labeled_statement
 	: IDENTIFIER ':' statement
-	| CASE constant_expression ':' statement
+	| CASE expression_constant ':' statement
 	| DEFAULT ':' statement
 	;
 
 compound_statement
 	: '{' '}'
-	| '{'  block_item_list '}'
+	| '{' block_item_list '}'
 	;
 
 block_item_list

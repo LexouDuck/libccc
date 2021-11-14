@@ -1,21 +1,29 @@
-	/*
-	**  ANSI C grammar, Lex specification
-	**  (This Lex file is accompanied by a matching Yacc file.)
-	**  In 1985, Jeff Lee published his Yacc grammar based on a draft version of the ANSI C standard, along with a supporting Lex specification. Tom Stockfisch reposted those files to net.sources in 1987; as mentioned in the answer to question 17.25 of the comp.lang.c FAQ, they used to be available from ftp.uu.net as usenet/net.sources/ansi.c.grammar.Z.
-	**  
-	**  The version you see here has been updated based on the 2011 ISO C standard. (The previous version's Lex and Yacc files for ANSI C9X still exist as archived copies.)
-	**  
-	**  It is assumed that translation phases 1..5 have already been completed, including preprocessing and _Pragma processing. The Lex rule for string literals will perform concatenation (translation phase 6). Transliteration of universal character names (\uHHHH or \UHHHHHHHH) must have been done by either the preprocessor or a replacement for the input() macro used by Lex (or the YY_INPUT function used by Flex) to read characters. Although comments should have been changed to space characters during translation phase 3, there are Lex rules for them anyway.
-	**  
-	**  I want to keep this version as close to the current C Standard grammar as possible; please let me know if you discover discrepancies.
-	**  (There is an FAQ for this grammar that you might want to read first.)
-	**  
-	**  jutta@pobox.com, 2012
-	**  
-	**  Last edit: 2012-12-19 DAGwyn@aol.com
-	*/
+/*
+**	ANSI C grammar, Lex specification
+**	(This Lex file is accompanied by a matching Yacc file.)
+**	In 1985, Jeff Lee published his Yacc grammar based on a draft version of the ANSI C standard, along with a supporting Lex specification.
+**	Tom Stockfisch reposted those files to net.sources in 1987;
+**	as mentioned in the answer to question 17.25 of the comp.lang.c FAQ,
+**	they used to be available from ftp.uu.net as usenet/net.sources/ansi.c.grammar.Z.
+**
+**	The version you see here has been updated based on the 2011 ISO C standard.
+**	(The previous version's Lex and Yacc files for ANSI C9X still exist as archived copies.)
+**
+**	It is assumed that translation phases 1..5 have already been completed, including preprocessing and _Pragma processing.
+**	The Lex rule for string literals will perform concatenation (translation phase 6).
+**	Transliteration of universal character names (\uHHHH or \UHHHHHHHH) must have been done by either the preprocessor,
+**	or a replacement for the input() macro used by Lex (or the YY_INPUT function used by Flex) to read characters.
+**	Although comments should have been changed to space characters during translation phase 3, there are Lex rules for them anyway.
+**
+**	I want to keep this version as close to the current C Standard grammar as possible; please let me know if you discover discrepancies.
+**	(There is an FAQ for this grammar that you might want to read first.)
+**
+**	jutta@pobox.com, 2012
+**
+**	Last edit: 2012-12-19 DAGwyn@aol.com
+*/
 
-	/*
+/*
 	Note: The following %-parameters are the minimum sizes needed for real Lex.
 	%e	number of parsed tree nodes
 	%p	number of positions
@@ -23,31 +31,31 @@
 	%k	number of packed character classes
 	%a	number of transitions
 	%o	size of output array
-	%e  1019
-	%p  2807
-	%n  371
-	%k  284
-	%a  1213
-	%o  1117
-	*/
+	%e	1019
+	%p	2807
+	%n	371
+	%k	284
+	%a	1213
+	%o	1117
+*/
 
 
 
-O   [0-7]
-D   [0-9]
-NZ  [1-9]
-L   [a-zA-Z_]
-A   [a-zA-Z0-9_]
-H   [a-fA-F0-9]
-HP  (0[xX])
-E   ([Ee][+-]?{D}+)
-P   ([Pp][+-]?{D}+)
-FS  (f|F|l|L)
-IS  (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
-CP  (u|U|L)
-SP  (u8|u|U|L)
-ES  (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
-WS  [ \t\v\n\f]
+digit_octal   [0-7]
+digit         [0-9]
+digit_nonzero [1-9]
+digit_hex     [0-9a-fA-F]
+char_alpha    [a-zA-Z_]
+char_token    [a-zA-Z0-9_]
+prefix_hex    (0[xX])
+floatexp      ([Ee][+-]?{digit}+)
+floatexp_hex  ([Pp][+-]?{digit}+)
+suffix_float  (f|F|l|L)
+suffix_int    (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
+prefix_char   (u|U|L)
+prefix_string (u8|u|U|L)
+str_escape    (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
+whitespace    [ \t\v\n\f]
 
 %{
 #include <stdio.h>
@@ -63,44 +71,52 @@ static int	c_check_type(void);
 %}
 
 %%
+
+ /* comments */
 "/*"                    { c_comment(); }
 "//".*                  { /* consume '//'-comment */ }
 
-"auto"					{ return (AUTO); }
-"break"					{ return (BREAK); }
-"case"					{ return (CASE); }
-"char"					{ return (CHAR); }
-"const"					{ return (CONST); }
-"continue"				{ return (CONTINUE); }
-"default"				{ return (DEFAULT); }
-"do"					{ return (DO); }
-"double"				{ return (DOUBLE); }
-"else"					{ return (ELSE); }
-"enum"					{ return (ENUM); }
-"extern"				{ return (EXTERN); }
-"float"					{ return (FLOAT); }
-"for"					{ return (FOR); }
-"goto"					{ return (GOTO); }
+ /* C keywords */
 "if"					{ return (IF); }
+"else"					{ return (ELSE); }
+"while"					{ return (WHILE); }
+"for"					{ return (FOR); }
+"do"					{ return (DO); }
+"break"					{ return (BREAK); }
+"continue"				{ return (CONTINUE); }
+"goto"					{ return (GOTO); }
+"switch"				{ return (SWITCH); }
+"case"					{ return (CASE); }
+"default"				{ return (DEFAULT); }
+"return"				{ return (RETURN); }
+ /* C keywords for decl options */
 "inline"				{ return (INLINE); }
+"static"				{ return (STATIC); }
+"extern"				{ return (EXTERN); }
+"volatile"				{ return (VOLATILE); }
+ /* C keywords for type definition */
+"typedef"				{ return (TYPEDEF); }
+"struct"				{ return (STRUCT); }
+"union"					{ return (UNION); }
+"enum"					{ return (ENUM); }
+ /* C primitive types */
+"void"					{ return (VOID); }
+"char"					{ return (CHAR); }
+"short"					{ return (SHORT); }
 "int"					{ return (INT); }
 "long"					{ return (LONG); }
-"register"				{ return (REGISTER); }
-"restrict"				{ return (RESTRICT); }
-"return"				{ return (RETURN); }
-"short"					{ return (SHORT); }
+"float"					{ return (FLOAT); }
+"double"				{ return (DOUBLE); }
+ /* C type qualifiers */
 "signed"				{ return (SIGNED); }
-"sizeof"				{ return (SIZEOF); }
-"static"				{ return (STATIC); }
-"struct"				{ return (STRUCT); }
-"switch"				{ return (SWITCH); }
-"typedef"				{ return (TYPEDEF); }
-"union"					{ return (UNION); }
 "unsigned"				{ return (UNSIGNED); }
-"void"					{ return (VOID); }
-"volatile"				{ return (VOLATILE); }
-"while"					{ return (WHILE); }
-
+"const"					{ return (CONST); }
+"restrict"				{ return (RESTRICT); }
+"auto"					{ return (AUTO); }
+"register"				{ return (REGISTER); }
+ /* C builtin operators */
+"sizeof"				{ return (SIZEOF); }
+ /* C99/C11 */
 "_Alignas"              { return (ALIGNAS); }
 "_Alignof"              { return (ALIGNOF); }
 "_Atomic"               { return (ATOMIC); }
@@ -113,44 +129,46 @@ static int	c_check_type(void);
 "_Thread_local"         { return (THREAD_LOCAL); }
 "__func__"              { return (FUNC_NAME); }
 
-{L}{A}*					{ return c_check_type(); }
+{char_alpha}{char_token}*					{ return c_check_type(); }
 
-{HP}{H}+{IS}?				{ return (I_CONSTANT); }
-{NZ}{D}*{IS}?				{ return (I_CONSTANT); }
-"0"{O}*{IS}?				{ return (I_CONSTANT); }
-{CP}?"'"([^'\\\n]|{ES})+"'"	{ return (I_CONSTANT); }
+{prefix_hex}{digit_hex}+{suffix_int}?				{ return (LITERAL_INT); }
+{digit_nonzero}{digit}*{suffix_int}?				{ return (LITERAL_INT); }
+"0"{digit_octal}*{suffix_int}?						{ return (LITERAL_INT); }
 
-{D}+{E}{FS}?				{ return (F_CONSTANT); }
-{D}*"."{D}+{E}?{FS}?		{ return (F_CONSTANT); }
-{D}+"."{E}?{FS}?			{ return (F_CONSTANT); }
-{HP}{H}+{P}{FS}?			{ return (F_CONSTANT); }
-{HP}{H}*"."{H}+{P}{FS}?		{ return (F_CONSTANT); }
-{HP}{H}+"."{P}{FS}?			{ return (F_CONSTANT); }
+{prefix_char}?"'"([^'\\\n]|{str_escape})+"'"		{ return (LITERAL_CHAR); }
 
-({SP}?\"([^"\\\n]|{ES})*\"{WS}*)+	{ return (STRING_LITERAL); }
+{digit}+{floatexp}{suffix_float}?										{ return (LITERAL_FLOAT); }
+{digit}*"."{digit}+{floatexp}?{suffix_float}?							{ return (LITERAL_FLOAT); }
+{digit}+"."{floatexp}?{suffix_float}?									{ return (LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}+{floatexp_hex}{suffix_float}?					{ return (LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return (LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return (LITERAL_FLOAT); }
+
+({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ return (LITERAL_STRING); }
 
 "..."				{ return (ELLIPSIS); }
-">>="				{ return (RIGHT_ASSIGN); }
-"<<="				{ return (LEFT_ASSIGN); }
-"+="				{ return (ADD_ASSIGN); }
-"-="				{ return (SUB_ASSIGN); }
-"*="				{ return (MUL_ASSIGN); }
-"/="				{ return (DIV_ASSIGN); }
-"%="				{ return (MOD_ASSIGN); }
-"&="				{ return (AND_ASSIGN); }
-"^="				{ return (XOR_ASSIGN); }
-"|="				{ return (OR_ASSIGN); }
-">>"				{ return (RIGHT_OP); }
-"<<"				{ return (LEFT_OP); }
-"++"				{ return (INC_OP); }
-"--"				{ return (DEC_OP); }
-"->"				{ return (PTR_OP); }
-"&&"				{ return (AND_OP); }
-"||"				{ return (OR_OP); }
-"<="				{ return (LE_OP); }
-">="				{ return (GE_OP); }
-"=="				{ return (EQ_OP); }
-"!="				{ return (NE_OP); }
+
+">>="				{ return (OP_ASSIGN_BITRIGHT); }
+"<<="				{ return (OP_ASSIGN_BITLEFT); }
+"+="				{ return (OP_ASSIGN_ADD); }
+"-="				{ return (OP_ASSIGN_SUB); }
+"*="				{ return (OP_ASSIGN_MUL); }
+"/="				{ return (OP_ASSIGN_DIV); }
+"%="				{ return (OP_ASSIGN_MOD); }
+"&="				{ return (OP_ASSIGN_BITAND); }
+"^="				{ return (OP_ASSIGN_BITXOR); }
+"|="				{ return (OP_ASSIGN_BITOR); }
+">>"				{ return (OP_RIGHT); }
+"<<"				{ return (OP_LEFT); }
+"++"				{ return (OP_INC); }
+"--"				{ return (OP_DEC); }
+"->"				{ return (OP_PTR); }
+"&&"				{ return (OP_AND); }
+"||"				{ return (OP_OR); }
+"<="				{ return (OP_LTE); }
+">="				{ return (OP_GTE); }
+"=="				{ return (OP_EQ); }
+"!="				{ return (OP_NEQ); }
 ";"					{ return (';'); }
 ("{"|"<%")			{ return ('{'); }
 ("}"|"%>")			{ return ('}'); }
@@ -176,7 +194,7 @@ static int	c_check_type(void);
 "|"					{ return ('|'); }
 "?"					{ return ('?'); }
 
-{WS}+				{ /* whitespace separates tokens */ }
+{whitespace}+		{ /* whitespace separates tokens */ }
 .					{ /* discard bad characters */ }
 
 %%
