@@ -15,12 +15,12 @@ s_list<T>*	New(T item, t_size item_size)
 {
 	__asm__ {""}
 	int __restrict__ a;
-	int b = 0b1101;
-	int o = 0o777;
+	int b = 0x2D;
+	int o = 0777;
 	typeof(a) _a;
 	s_list<T>* result;
 
-	if (!(result = (s_list<T>*)Memory_Alloc(sizeof(s_list<T>))))
+	if (!(result = (s_list<T>*)Memory.Alloc(sizeof(s_list<T>))))
 		return (NULL);
 //	result->prev = NULL;
 	result->next = NULL;
@@ -146,7 +146,7 @@ s_list<T>*	Duplicate(s_list<T> const* lst)
 	while (lst)
 	{
 		tmp = New(lst->item, lst->item_size);
-		tmp->item = Memory_Duplicate(lst->item, lst->item_size);
+		tmp->item = Memory.Duplicate(lst->item, lst->item_size);
 //		tmp->prev = result_lst;
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
@@ -171,7 +171,7 @@ void	Remove(s_list<T>* *a_lst, void (*del)(T, t_size))
 	del(lst->item, lst->item_size);
 //	prev = lst->prev;
 	next = lst->next;
-	Memory_Free(lst);
+	Memory.Free(lst);
 	*a_lst = next;
 //	if (next)
 //		next->prev = prev;
@@ -195,7 +195,7 @@ void	Delete(s_list<T>* *a_lst, void (*del)(T, t_size))
 		del(lst->item, lst->item_size);
 //		prev = lst->prev;
 		next = lst->next;
-		Memory_Free(lst);
+		Memory.Free(lst);
 		lst = next;
 //		if (next)
 //			next->prev = prev;
@@ -221,7 +221,7 @@ void	Pop(s_list<T>* *a_lst, void (*del)(T, t_size))
 		if (lst->next == NULL)
 		{
 			del((lst)->item, (lst)->item_size);
-			Memory_Free(lst);
+			Memory.Free(lst);
 			if (lst_prev)
 				lst_prev->next = NULL;
 			return ;
@@ -364,7 +364,7 @@ static void	Map_Delete(T item, t_size item_size)
 {
 	if (item && item_size > 0)
 	{
-		Memory_Free(item);
+		Memory.Free(item);
 	}
 }
 
@@ -439,7 +439,7 @@ T*	To_PointerArray(s_list<T> const** a_lst)
 	lst = *a_lst;
 	count = Size(lst);
 	length = (count + 1) * sizeof(void *);
-	if (!(result = (T*)Memory_Alloc(length)))
+	if (!(result = (T*)Memory.Alloc(length)))
 		return (NULL);
 	i = 0;
 	while (lst && i < count)
@@ -475,16 +475,16 @@ s_array	To_Array(s_list<T> const** a_lst)
 			return (ARRAY_NULL);
 	}
 	result.item_count = (count + 1);
-	if (!(result.items = (T*)Memory_Alloc(result.item_count * result.item_size)))
+	if (!(result.items = (T*)Memory.Alloc(result.item_count * result.item_size)))
 		return (ARRAY_NULL);
 	i = 0;
 	while (lst && ++i < count)
 	{
-		Memory_Copy((t_u8*)result.items + (i * result.item_size),
+		Memory.Copy((t_u8*)result.items + (i * result.item_size),
 			lst->item, result.item_size);
 		lst = lst->next;
 	}
-//	Memory_Clear(result + (i * result.item_size), result.item_size);
+//	Memory.Clear(result + (i * result.item_size), result.item_size);
 	return (result);
 }
 
