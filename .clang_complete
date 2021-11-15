@@ -3,6 +3,7 @@
 -I./
 -I./hdr/
 -I./test/
+-I./++c/ppp/gen/
 -std=c99
 -Wall
 -Wextra

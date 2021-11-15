@@ -32,33 +32,60 @@
 */
 
 %{
-#include <stdio.h>
 
-// Declare stuff from Flex that Bison needs to know about:
+// Declare stuff from lex that yacc needs to know about:
 extern int yylex();
 extern int yyparse();
 extern void yyerror(char const * s);
 //extern FILE *yyin;
 %}
 
-%token	IDENTIFIER LITERAL_INT LITERAL_CHAR LITERAL_FLOAT LITERAL_STRING FUNC_NAME SIZEOF
-%token	OP_PTR OP_INC OP_DEC OP_LEFT OP_RIGHT OP_LTE OP_GTE OP_EQ OP_NEQ
-%token	OP_AND OP_OR OP_ASSIGN_MUL OP_ASSIGN_DIV OP_ASSIGN_MOD OP_ASSIGN_ADD
-%token	OP_ASSIGN_SUB OP_ASSIGN_BITLEFT OP_ASSIGN_BITRIGHT OP_ASSIGN_BITAND
-%token	OP_ASSIGN_BITXOR OP_ASSIGN_BITOR
-%token	TYPEDEF_NAME ENUMERATION_CONSTANT
+%locations
 
-%token	TYPEDEF EXTERN STATIC AUTO REGISTER INLINE
+%token	PP_IF PP_ELIF PP_ELSE
+%token	PP_IFDEF PP_IFNDEF
+%token	PP_UNDEF PP_DEFINE
+%token	PP_INCLUDE
+%token	PP_LINE
+
+%token	IDENTIFIER
+%token	LITERAL_INT LITERAL_CHAR LITERAL_FLOAT LITERAL_STRING
+%token	FUNC_NAME
+
+%token	SIZEOF
+%token	OP_PTR
+%token	OP_INC OP_DEC
+%token	OP_BITLEFT OP_BITRIGHT
+%token	OP_AND OP_OR
+%token	OP_LTE OP_GTE OP_EQ OP_NEQ
+%token	OP_ASSIGN_MUL OP_ASSIGN_DIV OP_ASSIGN_MOD OP_ASSIGN_ADD OP_ASSIGN_SUB
+%token	OP_ASSIGN_BITLEFT OP_ASSIGN_BITRIGHT
+%token	OP_ASSIGN_BITAND OP_ASSIGN_BITXOR OP_ASSIGN_BITOR
+%token	TYPEDEF_NAME
+%token	ENUMERATION_CONSTANT
+
+%token	TYPEDEF
+%token	EXTERN STATIC AUTO REGISTER INLINE
 %token	CONST RESTRICT VOLATILE
-%token	BOOL CHAR SHORT INT LONG SIGNED UNSIGNED FLOAT DOUBLE VOID
+%token	SIGNED UNSIGNED
+%token	VOID BOOL CHAR SHORT INT LONG FLOAT DOUBLE
 %token	COMPLEX IMAGINARY 
-%token	STRUCT UNION ENUM ELLIPSIS
+%token	STRUCT UNION ENUM
+%token	ELLIPSIS
 
-%token	CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
+%token	IF ELSE
+%token	WHILE DO FOR
+%token	RETURN GOTO CONTINUE BREAK
+%token	SWITCH CASE DEFAULT
 
-%token	ALIGNAS ALIGNOF ATOMIC GENERIC NORETURN STATIC_ASSERT THREAD_LOCAL
+%token	ALIGNAS ALIGNOF
+%token	NORETURN
+%token	ATOMIC THREAD_LOCAL
+%token	GENERIC
+%token	STATIC_ASSERT
 
 %start translation_unit
+
 %%
 
 expression_primary
@@ -156,8 +183,8 @@ expression_additive
 
 expression_shift
 	: expression_additive
-	| expression_shift OP_LEFT expression_additive
-	| expression_shift OP_RIGHT expression_additive
+	| expression_shift OP_BITLEFT expression_additive
+	| expression_shift OP_BITRIGHT expression_additive
 	;
 
 expression_relational
@@ -174,24 +201,24 @@ expression_equality
 	| expression_equality OP_NEQ expression_relational
 	;
 
-expression_and
+expression_bitwise_and
 	: expression_equality
-	| expression_and '&' expression_equality
+	| expression_bitwise_and '&' expression_equality
 	;
 
-expression_exclusive_or
-	: expression_and
-	| expression_exclusive_or '^' expression_and
+expression_bitwise_xor
+	: expression_bitwise_and
+	| expression_bitwise_xor '^' expression_bitwise_and
 	;
 
-expression_inclusive_or
-	: expression_exclusive_or
-	| expression_inclusive_or '|' expression_exclusive_or
+expression_bitwise_or
+	: expression_bitwise_xor
+	| expression_bitwise_or '|' expression_bitwise_xor
 	;
 
 expression_logical_and
-	: expression_inclusive_or
-	| expression_logical_and OP_AND expression_inclusive_or
+	: expression_bitwise_or
+	| expression_logical_and OP_AND expression_bitwise_or
 	;
 
 expression_logical_or
@@ -199,13 +226,13 @@ expression_logical_or
 	| expression_logical_or OP_OR expression_logical_and
 	;
 
-expression_conditional
+expression_ternary
 	: expression_logical_or
-	| expression_logical_or '?' expression ':' expression_conditional
+	| expression_logical_or '?' expression ':' expression_ternary
 	;
 
 expression_assignment
-	: expression_conditional
+	: expression_ternary
 	| expression_unary assignment_operator expression_assignment
 	;
 
@@ -229,7 +256,7 @@ expression
 	;
 
 expression_constant
-	: expression_conditional	/* with constraints */
+	: expression_ternary	/* with constraints */
 	;
 
 declaration
@@ -569,10 +596,10 @@ declaration_list
 	;
 
 %%
-#include <stdio.h>
+
+#include <ppp.h>
 
 void yyerror(const char * s)
 {
-	fflush(stdout);
-	fprintf(stderr, "*** %s\n", s);
+	ppp_error(s);
 }

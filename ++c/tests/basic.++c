@@ -32,3 +32,4 @@ int main()
 	printf("a = %d, b = (%d,%d)\n", a, b->x, b->y);
 	return (a);
 }
+/*
