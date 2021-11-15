@@ -55,26 +55,32 @@ suffix_int    (((u|U)(l|L|ll|LL)?)|((l|L|ll|LL)(u|U)?))
 prefix_char   (u|U|L)
 prefix_string (u8|u|U|L)
 str_escape    (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
+preprocessor  (\n[ \t]*#[ \t]*)
 whitespace    [ \t\v\n\f]
 
 %{
-#include <stdio.h>
-#include "y.tab.h"
+
+#include "ppp.h"
 
 extern void yyerror(const char *);  /* prints grammar violation message */
 
-extern int	c_sym_type(const char *);  /* returns type from symbol table */
-#define c_sym_type(identifier) IDENTIFIER /* with no symbol table, fake it */
-
-static void	c_comment(void);
-static int	c_check_type(void);
 %}
 
 %%
 
  /* comments */
-"/*"                    { c_comment(); }
-"//".*                  { /* consume '//'-comment */ }
+"/*"     { ppp_comment_block(); }
+"//"     { ppp_comment_line(); }
+
+ /* C preprocessor */
+{preprocessor}"if"		{ return (PP_IF); }
+{preprocessor}"elif"	{ return (PP_ELIF); }
+{preprocessor}"else"	{ return (PP_ELSE); }
+{preprocessor}"ifdef"	{ return (PP_IFDEF); }
+{preprocessor}"ifndef"	{ return (PP_IFNDEF); }
+{preprocessor}"define"	{ return (PP_DEFINE); }
+{preprocessor}"include"	{ return (PP_INCLUDE); }
+{preprocessor}"line"	{ return (PP_LINE); }
 
  /* C keywords */
 "if"					{ return (IF); }
@@ -129,13 +135,13 @@ static int	c_check_type(void);
 "_Thread_local"         { return (THREAD_LOCAL); }
 "__func__"              { return (FUNC_NAME); }
 
-{char_alpha}{char_token}*					{ return c_check_type(); }
+{char_alpha}{char_token}*					{ return ppp_symbol(yytext); }
 
-{prefix_hex}{digit_hex}+{suffix_int}?				{ return (LITERAL_INT); }
-{digit_nonzero}{digit}*{suffix_int}?				{ return (LITERAL_INT); }
-"0"{digit_octal}*{suffix_int}?						{ return (LITERAL_INT); }
+{prefix_hex}{digit_hex}+{suffix_int}?									{ return (LITERAL_INT); }
+{digit_nonzero}{digit}*{suffix_int}?									{ return (LITERAL_INT); }
+"0"{digit_octal}*{suffix_int}?											{ return (LITERAL_INT); }
 
-{prefix_char}?"'"([^'\\\n]|{str_escape})+"'"		{ return (LITERAL_CHAR); }
+{prefix_char}?"'"([^'\\\n]|{str_escape})+"'"							{ return (LITERAL_CHAR); }
 
 {digit}+{floatexp}{suffix_float}?										{ return (LITERAL_FLOAT); }
 {digit}*"."{digit}+{floatexp}?{suffix_float}?							{ return (LITERAL_FLOAT); }
@@ -144,7 +150,7 @@ static int	c_check_type(void);
 {prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return (LITERAL_FLOAT); }
 {prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return (LITERAL_FLOAT); }
 
-({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ return (LITERAL_STRING); }
+({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+			{ return (LITERAL_STRING); }
 
 "..."				{ return (ELLIPSIS); }
 
@@ -158,8 +164,8 @@ static int	c_check_type(void);
 "&="				{ return (OP_ASSIGN_BITAND); }
 "^="				{ return (OP_ASSIGN_BITXOR); }
 "|="				{ return (OP_ASSIGN_BITOR); }
-">>"				{ return (OP_RIGHT); }
-"<<"				{ return (OP_LEFT); }
+">>"				{ return (OP_BITRIGHT); }
+"<<"				{ return (OP_BITLEFT); }
 "++"				{ return (OP_INC); }
 "--"				{ return (OP_DEC); }
 "->"				{ return (OP_PTR); }
@@ -204,11 +210,11 @@ int yywrap(void)        /* called at end of input */
 	return 1;           /* terminate now */
 }
 
-static void c_comment(void)
+void	c_comment_block(char const* str)
 {
 	int c;
 
-	while ((c = input()) != 0)
+	while ((c = input()) != '\0')
 	{
 		if (c == '*')
 		{
@@ -216,22 +222,14 @@ static void c_comment(void)
 			{}
 			if (c == '/')
 				return;
-			if (c == 0)
+			if (c == '\0')
 				break;
 		}
 	}
-	yyerror("unterminated comment");
+	ppp_error("unterminated comment");
 }
 
-static int c_check_type(void)
+void	c_comment_line(char const* str)
 {
-	switch (c_sym_type(yytext))
-	{
-	case TYPEDEF_NAME:                /* previously defined */
-		return TYPEDEF_NAME;
-	case ENUMERATION_CONSTANT:        /* previously defined */
-		return ENUMERATION_CONSTANT;
-	default:                          /* includes undefined */
-		return IDENTIFIER;
-	}
+	ppp_error("line comments not supported yet lol");
 }

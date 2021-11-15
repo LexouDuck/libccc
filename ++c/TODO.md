@@ -95,8 +95,10 @@ void (*g)(int, char* (*)(char*)); // pure C
 ### Compile-time operators:
 
 - `typeof(X)`: Transpiles to the fully resolved type of the variable/value/token `X`
+- `nullof(X)`: Transpiles to the user-defined default value of the variable/value/token `X`
+- `formatof(X)`: Transpiles to the user-defined string literal printf format specifier of the variable/value/token `X`
 
-There is an `is` operator, which allows for equality checks between types:
+There is also an `is` operator, which allows for equality checks between types at transpile-time:
 ```c
 #if #(typeof(size_t) is unsigned long)
 	// do something
