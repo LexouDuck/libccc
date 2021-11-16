@@ -1,64 +1,40 @@
 
-value = *pointer; // pure C
-value = $pointer; // ++C
 
-
-address = &value; // pure C
-address = @value; // ++C
-
-
-value = 0b110;	// pure C (GCC extension only)
-value = 0b110;	// ++C
-
-
-value = 0644;	// pure C
-value = 0o644;	// ++C
-
-
-char*   strings[9]; // pure C
-char*[9]   strings; // ++C
-
-
-void (*f)(int, char*); // pure C
-(int, char*)=>void  f; // ++C
-
-// example nested function pointers (takes another function pointer as argument)
-void (*g)(int, char* (*)(char*)); // pure C
-(int, (char*)=>char*) => void  g; // ++C
-
-
-#if #(typeof(size_t) is unsigned long)
-	// do something
-#elif #(!(typeof(size_t) is unsigned long long))
-	#error "unsupported size_t type"
-#endif
-
-
-t_utf8 const* unicode = u"Any unicode character directly works: それは本当に作品";
-
-
-char const* regex1 = r"\b(My_\w*)\b"g;
-char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
-char const* regex3 = r"[a-zA-Z_]\w*"sg;
-
-
-// ++C
-void MyFunc(int arg1, int arg2, [ int arg3, int arg4 = 0, int arg5 = 0 ]);
-// usage example
-MyFunc(1, 1, .arg3=1, .arg4=1);
-
-
-void MyFunc_kwargs(int arg1, int arg2, struct MyFunc_kwargs { int _; int arg3; int arg4; } kwargs);
-#define MyFunc(ARG1, ARG2, ...) \
-	MyFunc(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
-// usage example
-MyFunc(.arg1=1, .arg2=1, .arg3=1, .arg4=1, .arg5=0);
-
-
-void	WaitAndRunCallback(void (*callback)(void));
+//void	WaitAndRunCallback(void (*callback)(void));
 
 int	main()
 {
+	value = *pointer; // pure C
+	value = $pointer; // ++C
+
+
+	address = &value; // pure C
+	address = @value; // ++C
+
+
+	value = 0b110;	// pure C (GCC extension only)
+	value = 0b110;	// ++C
+
+
+	value = 0644;	// pure C
+	value = 0o644;	// ++C
+
+
+	char*	strings[9];	// pure C
+	char*[9] strings;	// ++C
+
+	void	(*f)(int, char*);	// pure C
+	(int, char*) => void	f;	// ++C
+
+	// example nested function (with another function pointer as argument)
+	void	(*g)(int, char*	(*)(char*));// pure C
+	(int, (char*)=>char*) => void	g;	// ++C
+
+
+	char const* regex1 = r"\b(My_\w*)\b"g;
+	char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
+	char const* regex3 = r"[a-zA-Z_]\w*"sg;
+
 	WaitAndRunCallback(
 		void HelloWorld(void)
 		{
@@ -66,7 +42,6 @@ int	main()
 		}
 	);
 }
-
 
 // NB: when transpiled to C, the 'HelloWorld' local function will be in global scope, named:
 void	WaitAndRunCallback(void (*callback)(void));
@@ -82,6 +57,18 @@ int	main()
 		&main_HelloWorld
 	);
 }
+
+// ++C
+void MyFunc(int arg1, int arg2, [ int arg3, int arg4 = 0, int arg5 = 0 ]);
+// usage example
+MyFunc(1, 1, .arg3=1, .arg4=1);
+
+
+void MyFunc_kwargs(int arg1, int arg2, struct MyFunc_kwargs { int _; int arg3; int arg4; } kwargs);
+#define MyFunc(ARG1, ARG2, ...) \
+	MyFunc(ARG1, ARG2, &(struct MyFunc_kwargs { int _; int arg3; int arg4; }) { ._ = 0, __VA_ARGS__ })
+// usage example
+MyFunc(.arg1=1, .arg2=1, .arg3=1, .arg4=1, .arg5=0);
 
 
 //! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
