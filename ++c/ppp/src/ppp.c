@@ -29,6 +29,7 @@ s_symbol_##KIND* ppp_getsymbol_##KIND(char const* name) \
 #define DEFINEFUNC_PPP_SYMBOLTABLE_ADD(KIND) \
 void ppp_addsymbol_##KIND(s_symbol_##KIND symbol) \
 { \
+	ppp_message("New "#KIND" symbol encountered: '%s'", symbol.name); \
 	ppp.symbolcount_##KIND++; \
 	if (ppp.symboltable_##KIND == NULL) \
 	{ \
@@ -45,6 +46,7 @@ void ppp_addsymbol_##KIND(s_symbol_##KIND symbol) \
 #define DEFINEFUNC_PPP_SYMBOLTABLE_DEL(KIND) \
 void ppp_removesymbol_##KIND(char const* name) \
 { \
+	ppp_message("Removing "#KIND" symbol: '%s'", name); \
 	if (ppp.symboltable_##KIND == NULL) \
 	{ \
 		ppp_error("symbol table '"#KIND"' is empty, but attempted to remove symbol '%s'", name); \
@@ -150,6 +152,8 @@ void	ppp_whitespace(char const* lex_str)
 
 int		ppp_symbol(char const* lex_str)
 {
+	ppp_verbatim(lex_str, 0);
+	yylval.v_str = lex_str;
 	if (ppp_getsymbol_macro  (lex_str))	return (MACRO_NAME);
 	if (ppp_getsymbol_enum   (lex_str))	return (LITERAL_ENUM);
 	if (ppp_getsymbol_type   (lex_str))	return (TYPEDEF_NAME);

@@ -25,16 +25,16 @@ INCLUDES = \
 
 # lex
 LEX_SRC = $(GENDIR)/lex.yy.c
-LEX_INPUT = $(SRCDIR)/ppp.l
+LEX_INPUT = $(SRCDIR)/parser.l
 LEX = lex
 LFLAGS = 
 
 # yacc
 YACC_HDR = $(GENDIR)/y.tab.h
 YACC_SRC = $(GENDIR)/y.tab.c
-YACC_INPUT = $(SRCDIR)/ppp.y
+YACC_INPUT = $(SRCDIR)/parser.y
 YACC = yacc
-YFLAGS = -d
+YFLAGS = 
 
 
 
@@ -61,4 +61,4 @@ $(LEX_SRC): $(LEX_INPUT)
 	$(LEX)  $(LFLAGS) -o $(LEX_SRC) $(LEX_INPUT)
 
 $(YACC_SRC): $(YACC_INPUT)
-	$(YACC) $(YFLAGS) -o $(YACC_SRC) $(YACC_INPUT)
+	$(YACC) $(YFLAGS) --defines=$(YACC_HDR) -o $(YACC_SRC) $(YACC_INPUT)

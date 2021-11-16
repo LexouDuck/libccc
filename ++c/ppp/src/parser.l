@@ -86,6 +86,9 @@ whitespace    [ \t\v\n\f]
 {preprocessor}"line"	{ return ppp_verbatim(yytext, PP_LINE); }
 {preprocessor}"define"	{ return ppp_verbatim(yytext, PP_DEFINE); }
 {preprocessor}"include"	{ return ppp_verbatim(yytext, PP_INCLUDE); }
+{preprocessor}"error"	{ return ppp_verbatim(yytext, PP_ERROR); }
+{preprocessor}"warning"	{ return ppp_verbatim(yytext, PP_WARNING); }
+{preprocessor}"pragma"	{ return ppp_verbatim(yytext, PP_PRAGMA); }
 
  /* C keywords */
 "if"					{ return ppp_verbatim(yytext, IF); }

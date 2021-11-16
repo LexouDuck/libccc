@@ -46,7 +46,9 @@
 %token	PP_IF PP_ELIF PP_ELSE PP_ENDIF
 %token	PP_IFDEF PP_IFNDEF
 %token	PP_UNDEF PP_DEFINE
+%token	PP_ERROR PP_WARNING
 %token	PP_INCLUDE
+%token	PP_PRAGMA
 %token	PP_LINE
 
 %token	MACRO_NAME
@@ -95,7 +97,6 @@
 	All token types (see %type declarations below) are taken from the field names of this union.
 	The global variable `yylval` which lex uses to return token values is declared as a `YYSTYPE` union.
 */
-/*
 %union
 {
 	t_s64 v_int;
@@ -106,7 +107,6 @@
 %type <v_str> MACRO_NAME
 %type <v_str> IDENTIFIER
 %type <v_str> LITERAL_ENUM
-*/
 
 
 
@@ -175,7 +175,7 @@ constant
 	;
 
 enumeration_constant		/* before it has been defined as such */
-	: IDENTIFIER
+	: IDENTIFIER	{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1 }); }
 	;
 
 string
@@ -363,8 +363,8 @@ specifier_qualifier_list
 
 struct_or_union_specifier
 	: struct_or_union '{' struct_declaration_list '}'
-	| struct_or_union IDENTIFIER '{' struct_declaration_list '}'
-	| struct_or_union IDENTIFIER
+	| struct_or_union IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
+	| struct_or_union IDENTIFIER									{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
 	;
 
 struct_or_union
@@ -398,9 +398,9 @@ struct_declarator
 enum_specifier
 	: ENUM '{' enumerator_list '}'
 	| ENUM '{' enumerator_list ',' '}'
-	| ENUM IDENTIFIER '{' enumerator_list '}'
-	| ENUM IDENTIFIER '{' enumerator_list ',' '}'
-	| ENUM IDENTIFIER
+	| ENUM IDENTIFIER '{' enumerator_list '}'		{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
+	| ENUM IDENTIFIER '{' enumerator_list ',' '}'	{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
+	| ENUM IDENTIFIER								{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
 	;
 
 enumerator_list
@@ -408,8 +408,8 @@ enumerator_list
 	| enumerator_list ',' enumerator
 	;
 enumerator	/* identifiers must be flagged as LITERAL_ENUM */
-	: enumeration_constant '=' expression_constant	{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1, .text=$3 }); }
-	| enumeration_constant							{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1, .text="" }); }
+	: enumeration_constant '=' expression_constant
+	| enumeration_constant
 	;
 
 
