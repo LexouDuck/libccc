@@ -66,17 +66,17 @@ _FORMAT(printf, 1, 2)	void	ppp_message(char const* message, ...);
 
 
 
-void	ppp_comment_block(char const* str);
-void	ppp_comment_line(char const* str);
-void	ppp_whitespace(char const* str);
+void	ppp_comment_block(char const* lex_str);
+void	ppp_comment_line(char const* lex_str);
+void	ppp_whitespace(char const* lex_str);
 
-int		ppp_verbatim(char const* str, int lex);
+int		ppp_verbatim(char const* lex_str, int lex_token);
 
-int		ppp_symbol(char const* str);
+int		ppp_symbol(char const* lex_str);
 
-int		ppp_c_line(char const* str, int lex);
-int		ppp_c_define(char const* str, int lex);
-int		ppp_c_include(char const* str, int lex);
+int		ppp_c_line(char const* lex_str, int lex_token);
+int		ppp_c_define(char const* lex_str, int lex_token);
+int		ppp_c_include(char const* lex_str, int lex_token);
 
 
 

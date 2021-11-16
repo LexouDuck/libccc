@@ -120,68 +120,67 @@ int ppp_exit(void)
 
 
 
-int	ppp_verbatim(char const* str, int lex)
+int	ppp_verbatim(char const* lex_str, int lex_token)
 {
-	IO_Output_String(str); // TODO construct a buffer and write once at the end
-	return (lex);
+	IO_Output_String(lex_str); // TODO construct a buffer and write once at the end
+	return (lex_token);
 }
 
 
 
-void	ppp_comment_block(char const* str)
-{
-	//if (ppp_flags.no_comments == FALSE)
-	ppp_verbatim(str, 0);
-}
-
-void	ppp_comment_line(char const* str)
+void	ppp_comment_block(char const* lex_str)
 {
 	//if (ppp_flags.no_comments == FALSE)
-	ppp_verbatim(str, 0);
+	ppp_verbatim(lex_str, 0);
 }
 
-void	ppp_whitespace(char const* str)
+void	ppp_comment_line(char const* lex_str)
+{
+	//if (ppp_flags.no_comments == FALSE)
+	ppp_verbatim(lex_str, 0);
+}
+
+void	ppp_whitespace(char const* lex_str)
 {
 	//if (ppp_flags.minified == FALSE)
-	ppp_verbatim(str, 0);
+	ppp_verbatim(lex_str, 0);
 }
 
 
 
-int		ppp_symbol(char const* str)
+int		ppp_symbol(char const* lex_str)
 {
-	if (ppp_getsymbol_macro  (str))	return (MACRO_NAME);
-	if (ppp_getsymbol_enum   (str))	return (LITERAL_ENUM);
-	if (ppp_getsymbol_type   (str))	return (TYPEDEF_NAME);
-	if (ppp_getsymbol_typedef(str))	return (TYPEDEF_NAME);
-	if (ppp_getsymbol_func   (str))	return (IDENTIFIER);
-	if (ppp_getsymbol_global (str))	return (IDENTIFIER);
-	if (ppp_getsymbol_local  (str))	return (IDENTIFIER);
-	ppp_error("unknown symbol: %s", str);
+	if (ppp_getsymbol_macro  (lex_str))	return (MACRO_NAME);
+	if (ppp_getsymbol_enum   (lex_str))	return (LITERAL_ENUM);
+	if (ppp_getsymbol_type   (lex_str))	return (TYPEDEF_NAME);
+	if (ppp_getsymbol_func   (lex_str))	return (IDENTIFIER);
+	if (ppp_getsymbol_global (lex_str))	return (IDENTIFIER);
+	if (ppp_getsymbol_local  (lex_str))	return (IDENTIFIER);
+	ppp_error("unknown symbol: %s", lex_str);
 	return (IDENTIFIER);
 }
 
 
 
-int		ppp_c_line(char const* str, int lex)
+int		ppp_c_line(char const* lex_str, int lex_token)
 {
 	//if (ppp_flags.no_lines == FALSE)
-	ppp_verbatim(str, 0);
-	return (lex);
+	ppp_verbatim(lex_str, 0);
+	return (lex_token);
 }
 
-int		ppp_c_define(char const* str, int lex)
+int		ppp_c_define(char const* lex_str, int lex_token)
 {
 	// TODO custom parsing logic
-	ppp_verbatim(str, 0);
-	return (lex);
+	ppp_verbatim(lex_str, 0);
+	return (lex_token);
 }
 
-int		ppp_c_include(char const* str, int lex)
+int		ppp_c_include(char const* lex_str, int lex_token)
 {
 	// TODO custom parsing logic
-	ppp_verbatim(str, 0);
-	return (lex);
+	ppp_verbatim(lex_str, 0);
+	return (lex_token);
 
 }
 
@@ -214,8 +213,13 @@ int	main(int argc, char** argv)
 			}
 			// Set Flex to read from it instead of defaulting to STDIN:
 			yyin = file;
-			// begin lex/yacc on input file
+			// begin lex/yacc parsing on input file
 			yyparse();
+			if (fclose(file))
+			{
+				ppp_error("input file '%s' could not be closed properly", argv[i]);
+				return (EXIT_FAILURE);
+			}
 		}
 	}
 }

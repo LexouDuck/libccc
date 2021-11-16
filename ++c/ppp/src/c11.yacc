@@ -32,28 +32,6 @@
 */
 
 
-
-/* Yacc's YYSTYPE Union
-	The yacc parser maintains a stack (array) of token values while
-	it is parsing.  This union defines all the possible values tokens
-	may have.  Yacc creates a typedef of YYSTYPE for this union. All
-	token types (see %type declarations below) are taken from
-	the field names of this union.  The global variable yylval which lex
-	uses to return token values is declared as a YYSTYPE union.
-*/
-
-//%union
-//{
-//	long int4;              /* Constant integer value */
-//	float fp;               /* Constant floating point value */
-//	char *str;              /* Ptr to constant string (strings are malloc'd) */
-//	exprT expr;             /* Expression -  constant or address */
-//	operatorT *operatorP;   /* Pointer to run-time expression operator */
-//};
-//
-//%type <str> SYMBOL
-
-
 %{
 
 #include "ppp.h"
@@ -107,6 +85,30 @@
 %token	ATOMIC THREAD_LOCAL
 %token	GENERIC
 %token	STATIC_ASSERT
+
+
+
+/* Yacc's YYSTYPE Union
+	The yacc parser maintains a stack (array) of token values while it is parsing.
+	This union defines all the possible values that tokens may have.
+	Yacc creates a typedef named `YYSTYPE` for this union.
+	All token types (see %type declarations below) are taken from the field names of this union.
+	The global variable `yylval` which lex uses to return token values is declared as a `YYSTYPE` union.
+*/
+/*
+%union
+{
+	t_s64 v_int;
+	t_f64 v_float;
+	char const* v_str;
+};
+
+%type <v_str> MACRO_NAME
+%type <v_str> IDENTIFIER
+%type <v_str> LITERAL_ENUM
+*/
+
+
 
 %start translation_unit
 
