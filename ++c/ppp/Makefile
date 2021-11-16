@@ -8,6 +8,7 @@ LIBDIR = ../../hdr
 
 # output program
 NAME = $(BINDIR)/ppp
+OUTFILE = obj/test.c
 
 # generated c code
 HDRS = $(SRCDIR)/ppp.h $(YACC_HDR)
@@ -16,7 +17,7 @@ SRCS = $(SRCDIR)/ppp.c $(YACC_SRC) $(LEX_SRC)
 # c compiler
 CC = clang
 CFLAGS = 
-LDLIBS = -L../../ -lccc -ll
+LDLIBS = ../../libccc.a -ll
 INCLUDES = \
 	-I$(GENDIR) \
 	-I$(SRCDIR) \
@@ -40,12 +41,18 @@ YFLAGS = -d
 all: dirs $(NAME)
 
 test: all
-	@cat "$(FILE)" | ./$(NAME)
+	@./$(NAME) $(FILE) > "$(OUTFILE)"
+	@cat "$(OUTFILE)"
 
 dirs:
 	@mkdir -p $(BINDIR)
 	@mkdir -p $(OBJDIR)
 	@mkdir -p $(GENDIR)
+
+clean:
+	@rm -rf $(BINDIR)
+	@rm -rf $(OBJDIR)
+	@rm -rf $(GENDIR)
 
 $(NAME): $(SRCS) $(HDRS)
 	$(CC)   $(CFLAGS) -o $(NAME) $(INCLUDES) $(SRCS) $(LDLIBS)

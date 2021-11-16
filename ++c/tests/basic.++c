@@ -2,12 +2,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+typedef enum something
+{
+	SMTH_NULL = 0,
+	SMTH_SWAG,
+	SMTH_OTHER
+}	e_something;
+
 typedef struct point
 {
 	int x;
 	int y;
 	struct point* (*incr)(struct point* p);
-}		s_point;
+}	s_point;
 
 s_point* increment(s_point* p)
 {

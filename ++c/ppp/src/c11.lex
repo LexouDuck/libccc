@@ -39,6 +39,16 @@
 	%o	1117
 */
 
+%{
+
+#include "ppp.h"
+
+extern void yyerror(const char *);  /* prints grammar violation message */
+
+%}
+
+%option yylineno
+
 
 
 digit_octal   [0-7]
@@ -58,178 +68,152 @@ str_escape    (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
 preprocessor  (\n[ \t]*#[ \t]*)
 whitespace    [ \t\v\n\f]
 
-%{
-
-#include "ppp.h"
-
-extern void yyerror(const char *);  /* prints grammar violation message */
-
-%}
-
 %%
 
  /* comments */
-"/*"     { ppp_comment_block(); }
-"//"     { ppp_comment_line(); }
+"/*"((.*)?)*"*/"     { ppp_comment_block(yytext); }
+"/*"((.*)?)*         { ppp_error("unterminated comment block"); }
+"//"((.*)?)*"\n"     { ppp_comment_line(yytext); }
+"//"((.*)?)*         { ppp_error("unterminated comment line: no newline at end of file"); }
 
  /* C preprocessor */
-{preprocessor}"if"		{ return (PP_IF); }
-{preprocessor}"elif"	{ return (PP_ELIF); }
-{preprocessor}"else"	{ return (PP_ELSE); }
-{preprocessor}"ifdef"	{ return (PP_IFDEF); }
-{preprocessor}"ifndef"	{ return (PP_IFNDEF); }
-{preprocessor}"define"	{ return (PP_DEFINE); }
-{preprocessor}"include"	{ return (PP_INCLUDE); }
-{preprocessor}"line"	{ return (PP_LINE); }
+{preprocessor}"if"		{ return ppp_verbatim(yytext, PP_IF); }
+{preprocessor}"elif"	{ return ppp_verbatim(yytext, PP_ELIF); }
+{preprocessor}"else"	{ return ppp_verbatim(yytext, PP_ELSE); }
+{preprocessor}"endif"	{ return ppp_verbatim(yytext, PP_ENDIF); }
+{preprocessor}"ifdef"	{ return ppp_verbatim(yytext, PP_IFDEF); }
+{preprocessor}"ifndef"	{ return ppp_verbatim(yytext, PP_IFNDEF); }
+{preprocessor}"line"	{ return ppp_verbatim(yytext, PP_LINE); }
+{preprocessor}"define"	{ return ppp_verbatim(yytext, PP_DEFINE); }
+{preprocessor}"include"	{ return ppp_verbatim(yytext, PP_INCLUDE); }
 
  /* C keywords */
-"if"					{ return (IF); }
-"else"					{ return (ELSE); }
-"while"					{ return (WHILE); }
-"for"					{ return (FOR); }
-"do"					{ return (DO); }
-"break"					{ return (BREAK); }
-"continue"				{ return (CONTINUE); }
-"goto"					{ return (GOTO); }
-"switch"				{ return (SWITCH); }
-"case"					{ return (CASE); }
-"default"				{ return (DEFAULT); }
-"return"				{ return (RETURN); }
- /* C keywords for decl options */
-"inline"				{ return (INLINE); }
-"static"				{ return (STATIC); }
-"extern"				{ return (EXTERN); }
-"volatile"				{ return (VOLATILE); }
- /* C keywords for type definition */
-"typedef"				{ return (TYPEDEF); }
-"struct"				{ return (STRUCT); }
-"union"					{ return (UNION); }
-"enum"					{ return (ENUM); }
+"if"					{ return ppp_verbatim(yytext, IF); }
+"else"					{ return ppp_verbatim(yytext, ELSE); }
+"while"					{ return ppp_verbatim(yytext, WHILE); }
+"for"					{ return ppp_verbatim(yytext, FOR); }
+"do"					{ return ppp_verbatim(yytext, DO); }
+"break"					{ return ppp_verbatim(yytext, BREAK); }
+"continue"				{ return ppp_verbatim(yytext, CONTINUE); }
+"goto"					{ return ppp_verbatim(yytext, GOTO); }
+"switch"				{ return ppp_verbatim(yytext, SWITCH); }
+"case"					{ return ppp_verbatim(yytext, CASE); }
+"default"				{ return ppp_verbatim(yytext, DEFAULT); }
+"return"				{ return ppp_verbatim(yytext, RETURN); }
+ /* C keywords: storage class specifiers */
+"auto"					{ return ppp_verbatim(yytext, AUTO); }
+"register"				{ return ppp_verbatim(yytext, REGISTER); }
+"static"				{ return ppp_verbatim(yytext, STATIC); }
+"extern"				{ return ppp_verbatim(yytext, EXTERN); }
+"inline"				{ return ppp_verbatim(yytext, INLINE); }
+ /* C keywords: type qualifiers */
+"signed"				{ return ppp_verbatim(yytext, SIGNED); }
+"unsigned"				{ return ppp_verbatim(yytext, UNSIGNED); }
+"const"					{ return ppp_verbatim(yytext, CONST); }
+"restrict"				{ return ppp_verbatim(yytext, RESTRICT); }
+"volatile"				{ return ppp_verbatim(yytext, VOLATILE); }
+ /* C keywords: type definitions */
+"typedef"				{ return ppp_verbatim(yytext, TYPEDEF); }
+"struct"				{ return ppp_verbatim(yytext, STRUCT); }
+"union"					{ return ppp_verbatim(yytext, UNION); }
+"enum"					{ return ppp_verbatim(yytext, ENUM); }
  /* C primitive types */
-"void"					{ return (VOID); }
-"char"					{ return (CHAR); }
-"short"					{ return (SHORT); }
-"int"					{ return (INT); }
-"long"					{ return (LONG); }
-"float"					{ return (FLOAT); }
-"double"				{ return (DOUBLE); }
- /* C type qualifiers */
-"signed"				{ return (SIGNED); }
-"unsigned"				{ return (UNSIGNED); }
-"const"					{ return (CONST); }
-"restrict"				{ return (RESTRICT); }
-"auto"					{ return (AUTO); }
-"register"				{ return (REGISTER); }
+"void"					{ return ppp_verbatim(yytext, VOID); }
+"char"					{ return ppp_verbatim(yytext, CHAR); }
+"short"					{ return ppp_verbatim(yytext, SHORT); }
+"int"					{ return ppp_verbatim(yytext, INT); }
+"long"					{ return ppp_verbatim(yytext, LONG); }
+"float"					{ return ppp_verbatim(yytext, FLOAT); }
+"double"				{ return ppp_verbatim(yytext, DOUBLE); }
  /* C builtin operators */
-"sizeof"				{ return (SIZEOF); }
+"sizeof"				{ return ppp_verbatim(yytext, SIZEOF); }
  /* C99/C11 */
-"_Alignas"              { return (ALIGNAS); }
-"_Alignof"              { return (ALIGNOF); }
-"_Atomic"               { return (ATOMIC); }
-"_Bool"                 { return (BOOL); }
-"_Complex"              { return (COMPLEX); }
-"_Generic"              { return (GENERIC); }
-"_Imaginary"            { return (IMAGINARY); }
-"_Noreturn"             { return (NORETURN); }
-"_Static_assert"        { return (STATIC_ASSERT); }
-"_Thread_local"         { return (THREAD_LOCAL); }
-"__func__"              { return (FUNC_NAME); }
+"_Alignas"              { return ppp_verbatim(yytext, ALIGNAS); }
+"_Alignof"              { return ppp_verbatim(yytext, ALIGNOF); }
+"_Atomic"               { return ppp_verbatim(yytext, ATOMIC); }
+"_Bool"                 { return ppp_verbatim(yytext, BOOL); }
+"_Complex"              { return ppp_verbatim(yytext, COMPLEX); }
+"_Generic"              { return ppp_verbatim(yytext, GENERIC); }
+"_Imaginary"            { return ppp_verbatim(yytext, IMAGINARY); }
+"_Noreturn"             { return ppp_verbatim(yytext, NORETURN); }
+"_Static_assert"        { return ppp_verbatim(yytext, STATIC_ASSERT); }
+"_Thread_local"         { return ppp_verbatim(yytext, THREAD_LOCAL); }
 
-{char_alpha}{char_token}*					{ return ppp_symbol(yytext); }
+{char_alpha}{char_token}*		{ return ppp_symbol(yytext); }
 
-{prefix_hex}{digit_hex}+{suffix_int}?									{ return (LITERAL_INT); }
-{digit_nonzero}{digit}*{suffix_int}?									{ return (LITERAL_INT); }
-"0"{digit_octal}*{suffix_int}?											{ return (LITERAL_INT); }
+{prefix_hex}{digit_hex}+{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
+{digit_nonzero}{digit}*{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
+"0"{digit_octal}*{suffix_int}?											{ return ppp_verbatim(yytext, LITERAL_INT); }
 
-{prefix_char}?"'"([^'\\\n]|{str_escape})+"'"							{ return (LITERAL_CHAR); }
+{prefix_char}?"'"([^'\\\n]|{str_escape})+"'"							{ return ppp_verbatim(yytext, LITERAL_CHAR); }
 
-{digit}+{floatexp}{suffix_float}?										{ return (LITERAL_FLOAT); }
-{digit}*"."{digit}+{floatexp}?{suffix_float}?							{ return (LITERAL_FLOAT); }
-{digit}+"."{floatexp}?{suffix_float}?									{ return (LITERAL_FLOAT); }
-{prefix_hex}{digit_hex}+{floatexp_hex}{suffix_float}?					{ return (LITERAL_FLOAT); }
-{prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return (LITERAL_FLOAT); }
-{prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return (LITERAL_FLOAT); }
+{digit}+{floatexp}{suffix_float}?										{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
+{digit}*"."{digit}+{floatexp}?{suffix_float}?							{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
+{digit}+"."{floatexp}?{suffix_float}?									{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}+{floatexp_hex}{suffix_float}?					{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
+{prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
 
-({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+			{ return (LITERAL_STRING); }
+({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+			{ return ppp_verbatim(yytext, LITERAL_STRING); }
 
-"..."				{ return (ELLIPSIS); }
+(<([^>\\\n]|{str_escape})*>)											{ return ppp_verbatim(yytext, PP_STRING); }
+ /* [ \t]+[^\n]*														{ return (PP); } */
 
-">>="				{ return (OP_ASSIGN_BITRIGHT); }
-"<<="				{ return (OP_ASSIGN_BITLEFT); }
-"+="				{ return (OP_ASSIGN_ADD); }
-"-="				{ return (OP_ASSIGN_SUB); }
-"*="				{ return (OP_ASSIGN_MUL); }
-"/="				{ return (OP_ASSIGN_DIV); }
-"%="				{ return (OP_ASSIGN_MOD); }
-"&="				{ return (OP_ASSIGN_BITAND); }
-"^="				{ return (OP_ASSIGN_BITXOR); }
-"|="				{ return (OP_ASSIGN_BITOR); }
-">>"				{ return (OP_BITRIGHT); }
-"<<"				{ return (OP_BITLEFT); }
-"++"				{ return (OP_INC); }
-"--"				{ return (OP_DEC); }
-"->"				{ return (OP_PTR); }
-"&&"				{ return (OP_AND); }
-"||"				{ return (OP_OR); }
-"<="				{ return (OP_LTE); }
-">="				{ return (OP_GTE); }
-"=="				{ return (OP_EQ); }
-"!="				{ return (OP_NEQ); }
-";"					{ return (';'); }
-("{"|"<%")			{ return ('{'); }
-("}"|"%>")			{ return ('}'); }
-","					{ return (','); }
-":"					{ return (':'); }
-"="					{ return ('='); }
-"("					{ return ('('); }
-")"					{ return (')'); }
-("["|"<:")			{ return ('['); }
-("]"|":>")			{ return (']'); }
-"."					{ return ('.'); }
-"&"					{ return ('&'); }
-"!"					{ return ('!'); }
-"~"					{ return ('~'); }
-"-"					{ return ('-'); }
-"+"					{ return ('+'); }
-"*"					{ return ('*'); }
-"/"					{ return ('/'); }
-"%"					{ return ('%'); }
-"<"					{ return ('<'); }
-">"					{ return ('>'); }
-"^"					{ return ('^'); }
-"|"					{ return ('|'); }
-"?"					{ return ('?'); }
+"..."				{ return ppp_verbatim(yytext, ELLIPSIS); }
 
-{whitespace}+		{ /* whitespace separates tokens */ }
-.					{ /* discard bad characters */ }
+">>="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITRIGHT); }
+"<<="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITLEFT); }
+"+="				{ return ppp_verbatim(yytext, OP_ASSIGN_ADD); }
+"-="				{ return ppp_verbatim(yytext, OP_ASSIGN_SUB); }
+"*="				{ return ppp_verbatim(yytext, OP_ASSIGN_MUL); }
+"/="				{ return ppp_verbatim(yytext, OP_ASSIGN_DIV); }
+"%="				{ return ppp_verbatim(yytext, OP_ASSIGN_MOD); }
+"&="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITAND); }
+"^="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITXOR); }
+"|="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITOR); }
+">>"				{ return ppp_verbatim(yytext, OP_BITRIGHT); }
+"<<"				{ return ppp_verbatim(yytext, OP_BITLEFT); }
+"++"				{ return ppp_verbatim(yytext, OP_INC); }
+"--"				{ return ppp_verbatim(yytext, OP_DEC); }
+"->"				{ return ppp_verbatim(yytext, OP_PTR); }
+"&&"				{ return ppp_verbatim(yytext, OP_AND); }
+"||"				{ return ppp_verbatim(yytext, OP_OR); }
+"<="				{ return ppp_verbatim(yytext, OP_LTE); }
+">="				{ return ppp_verbatim(yytext, OP_GTE); }
+"=="				{ return ppp_verbatim(yytext, OP_EQ); }
+"!="				{ return ppp_verbatim(yytext, OP_NEQ); }
+";"					{ return ppp_verbatim(yytext, ';'); }
+("{"|"<%")			{ return ppp_verbatim(yytext, '{'); }
+("}"|"%>")			{ return ppp_verbatim(yytext, '}'); }
+","					{ return ppp_verbatim(yytext, ','); }
+":"					{ return ppp_verbatim(yytext, ':'); }
+"="					{ return ppp_verbatim(yytext, '='); }
+"("					{ return ppp_verbatim(yytext, '('); }
+")"					{ return ppp_verbatim(yytext, ')'); }
+("["|"<:")			{ return ppp_verbatim(yytext, '['); }
+("]"|":>")			{ return ppp_verbatim(yytext, ']'); }
+"."					{ return ppp_verbatim(yytext, '.'); }
+"&"					{ return ppp_verbatim(yytext, '&'); }
+"!"					{ return ppp_verbatim(yytext, '!'); }
+"~"					{ return ppp_verbatim(yytext, '~'); }
+"-"					{ return ppp_verbatim(yytext, '-'); }
+"+"					{ return ppp_verbatim(yytext, '+'); }
+"*"					{ return ppp_verbatim(yytext, '*'); }
+"/"					{ return ppp_verbatim(yytext, '/'); }
+"%"					{ return ppp_verbatim(yytext, '%'); }
+"<"					{ return ppp_verbatim(yytext, '<'); }
+">"					{ return ppp_verbatim(yytext, '>'); }
+"^"					{ return ppp_verbatim(yytext, '^'); }
+"|"					{ return ppp_verbatim(yytext, '|'); }
+"?"					{ return ppp_verbatim(yytext, '?'); }
+
+"\n"				{ return ppp_verbatim(yytext, '\n'); }
+{whitespace}+		{ ppp_whitespace(yytext); }
+.					{ ppp_error("syntax error, unexpected character: '%s'", yytext); }
 
 %%
 
 int yywrap(void)        /* called at end of input */
 {
-	return 1;           /* terminate now */
-}
-
-void	c_comment_block(char const* str)
-{
-	int c;
-
-	while ((c = input()) != '\0')
-	{
-		if (c == '*')
-		{
-			while ((c = input()) == '*')
-			{}
-			if (c == '/')
-				return;
-			if (c == '\0')
-				break;
-		}
-	}
-	ppp_error("unterminated comment");
-}
-
-void	c_comment_line(char const* str)
-{
-	ppp_error("line comments not supported yet lol");
+	return ppp_exit(); /* terminate now */
 }

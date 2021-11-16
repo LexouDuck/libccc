@@ -31,38 +31,62 @@
 	where "_" has been used to flag the points of ambiguity.
 */
 
+
+
+/* Yacc's YYSTYPE Union
+	The yacc parser maintains a stack (array) of token values while
+	it is parsing.  This union defines all the possible values tokens
+	may have.  Yacc creates a typedef of YYSTYPE for this union. All
+	token types (see %type declarations below) are taken from
+	the field names of this union.  The global variable yylval which lex
+	uses to return token values is declared as a YYSTYPE union.
+*/
+
+//%union
+//{
+//	long int4;              /* Constant integer value */
+//	float fp;               /* Constant floating point value */
+//	char *str;              /* Ptr to constant string (strings are malloc'd) */
+//	exprT expr;             /* Expression -  constant or address */
+//	operatorT *operatorP;   /* Pointer to run-time expression operator */
+//};
+//
+//%type <str> SYMBOL
+
+
 %{
 
-// Declare stuff from lex that yacc needs to know about:
-extern int yylex();
-extern int yyparse();
-extern void yyerror(char const * s);
-//extern FILE *yyin;
+#include "ppp.h"
+
 %}
+
+%error-verbose
 
 %locations
 
-%token	PP_IF PP_ELIF PP_ELSE
+%token	PP PP_STRING
+%token	PP_IF PP_ELIF PP_ELSE PP_ENDIF
 %token	PP_IFDEF PP_IFNDEF
 %token	PP_UNDEF PP_DEFINE
 %token	PP_INCLUDE
 %token	PP_LINE
 
+%token	MACRO_NAME
 %token	IDENTIFIER
-%token	LITERAL_INT LITERAL_CHAR LITERAL_FLOAT LITERAL_STRING
-%token	FUNC_NAME
+%token	LITERAL_INT LITERAL_FLOAT
+%token	LITERAL_CHAR LITERAL_STRING
+%token	LITERAL_ENUM
+%token	TYPEDEF_NAME
 
 %token	SIZEOF
 %token	OP_PTR
 %token	OP_INC OP_DEC
 %token	OP_BITLEFT OP_BITRIGHT
 %token	OP_AND OP_OR
-%token	OP_LTE OP_GTE OP_EQ OP_NEQ
+%token	OP_LT OP_GT OP_LTE OP_GTE OP_EQ OP_NEQ
 %token	OP_ASSIGN_MUL OP_ASSIGN_DIV OP_ASSIGN_MOD OP_ASSIGN_ADD OP_ASSIGN_SUB
 %token	OP_ASSIGN_BITLEFT OP_ASSIGN_BITRIGHT
 %token	OP_ASSIGN_BITAND OP_ASSIGN_BITXOR OP_ASSIGN_BITOR
-%token	TYPEDEF_NAME
-%token	ENUMERATION_CONSTANT
 
 %token	TYPEDEF
 %token	EXTERN STATIC AUTO REGISTER INLINE
@@ -88,19 +112,64 @@ extern void yyerror(char const * s);
 
 %%
 
-expression_primary
-	: IDENTIFIER
-	| constant
-	| string
-	| '(' expression ')'
-	| generic_selection
+
+
+/* C preprocessor */
+
+preprocessor
+	: preprocessor_conditional
+	| preprocessor_define
+	| preprocessor_undefine
+	| preprocessor_include
+	| preprocessor_line
 	;
+
+preprocessor_conditional
+	: PP_IF   PP '\n'
+	| PP_ELIF PP '\n'
+	| PP_ELSE  '\n'
+	| PP_ENDIF '\n'
+	| PP_IFDEF  IDENTIFIER '\n'
+	| PP_IFNDEF IDENTIFIER '\n'
+	;
+
+preprocessor_undefine
+	: PP_UNDEF IDENTIFIER
+	;
+
+preprocessor_define
+	: PP_DEFINE IDENTIFIER
+	| PP_DEFINE IDENTIFIER PP
+	| PP_DEFINE IDENTIFIER '(' preprocessor_define_args ')'
+	| PP_DEFINE IDENTIFIER '(' preprocessor_define_args ')' PP
+	;
+
+preprocessor_define_args
+	: IDENTIFIER
+	| preprocessor_define_args ',' IDENTIFIER
+	;
+
+preprocessor_include
+	: PP_INCLUDE PP_STRING
+	| PP_INCLUDE LITERAL_STRING
+	;
+
+preprocessor_line
+	: PP_LINE 
+	| PP_LINE constant
+	| PP_LINE constant PP_STRING
+	| PP_LINE constant LITERAL_STRING
+	;
+
+
+
+/* C language */
 
 constant
 	: LITERAL_INT
 	| LITERAL_CHAR
 	| LITERAL_FLOAT
-	| ENUMERATION_CONSTANT	/* after it has been defined as such */
+	| LITERAL_ENUM	/* after it has been defined as such */
 	;
 
 enumeration_constant		/* before it has been defined as such */
@@ -109,21 +178,14 @@ enumeration_constant		/* before it has been defined as such */
 
 string
 	: LITERAL_STRING
-	| FUNC_NAME
 	;
 
-generic_selection
-	: GENERIC '(' expression_assignment ',' generic_assoc_list ')'
-	;
-
-generic_assoc_list
-	: generic_association
-	| generic_assoc_list ',' generic_association
-	;
-
-generic_association
-	: type_name ':' expression_assignment
-	| DEFAULT ':' expression_assignment
+expression_primary
+	: IDENTIFIER
+	| constant
+	| string
+	| '(' expression ')'
+	| generic_selection
 	;
 
 expression_postfix
@@ -189,8 +251,8 @@ expression_shift
 
 expression_relational
 	: expression_shift
-	| expression_relational '<' expression_shift
-	| expression_relational '>' expression_shift
+	| expression_relational OP_LT expression_shift
+	| expression_relational OP_GT expression_shift
 	| expression_relational OP_LTE expression_shift
 	| expression_relational OP_GTE expression_shift
 	;
@@ -259,38 +321,10 @@ expression_constant
 	: expression_ternary	/* with constraints */
 	;
 
-declaration
-	: declaration_specifiers ';'
-	| declaration_specifiers init_declarator_list ';'
-	| static_assert_declaration
-	;
 
-declaration_specifiers
-	: storage_class_specifier declaration_specifiers
-	| storage_class_specifier
-	| type_specifier declaration_specifiers
-	| type_specifier
-	| type_qualifier declaration_specifiers
-	| type_qualifier
-	| function_specifier declaration_specifiers
-	| function_specifier
-	| alignment_specifier declaration_specifiers
-	| alignment_specifier
-	;
-
-init_declarator_list
-	: init_declarator
-	| init_declarator_list ',' init_declarator
-	;
-
-init_declarator
-	: declarator '=' initializer
-	| declarator
-	;
 
 storage_class_specifier
-	: TYPEDEF	/* identifiers must be flagged as TYPEDEF_NAME */
-	| EXTERN
+	: EXTERN
 	| STATIC
 	| THREAD_LOCAL
 	| AUTO
@@ -316,6 +350,15 @@ type_specifier
 	| TYPEDEF_NAME		/* after it has been defined as such */
 	;
 
+specifier_qualifier_list
+	: type_specifier specifier_qualifier_list
+	| type_specifier
+	| type_qualifier specifier_qualifier_list
+	| type_qualifier
+	;
+
+
+
 struct_or_union_specifier
 	: struct_or_union '{' struct_declaration_list '}'
 	| struct_or_union IDENTIFIER '{' struct_declaration_list '}'
@@ -338,23 +381,17 @@ struct_declaration
 	| static_assert_declaration
 	;
 
-specifier_qualifier_list
-	: type_specifier specifier_qualifier_list
-	| type_specifier
-	| type_qualifier specifier_qualifier_list
-	| type_qualifier
-	;
-
 struct_declarator_list
 	: struct_declarator
 	| struct_declarator_list ',' struct_declarator
 	;
-
 struct_declarator
 	: ':' expression_constant
 	| declarator ':' expression_constant
 	| declarator
 	;
+
+
 
 enum_specifier
 	: ENUM '{' enumerator_list '}'
@@ -368,21 +405,29 @@ enumerator_list
 	: enumerator
 	| enumerator_list ',' enumerator
 	;
+enumerator	/* identifiers must be flagged as LITERAL_ENUM */
+	: enumeration_constant '=' expression_constant	{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1, .text=$3 }); }
+	| enumeration_constant							{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1, .text="" }); }
+	;
 
-enumerator	/* identifiers must be flagged as ENUMERATION_CONSTANT */
-	: enumeration_constant '=' expression_constant
-	| enumeration_constant
+
+
+generic_selection
+	: GENERIC '(' expression_assignment ',' generic_assoc_list ')'
+	;
+
+generic_assoc_list
+	: generic_association
+	| generic_assoc_list ',' generic_association
+	;
+
+generic_association
+	: type_name ':' expression_assignment
+	| DEFAULT ':' expression_assignment
 	;
 
 atomic_type_specifier
 	: ATOMIC '(' type_name ')'
-	;
-
-type_qualifier
-	: CONST
-	| RESTRICT
-	| VOLATILE
-	| ATOMIC
 	;
 
 function_specifier
@@ -395,40 +440,6 @@ alignment_specifier
 	| ALIGNAS '(' expression_constant ')'
 	;
 
-declarator
-	: pointer direct_declarator
-	| direct_declarator
-	;
-
-direct_declarator
-	: IDENTIFIER
-	| '(' declarator ')'
-	| direct_declarator '[' ']'
-	| direct_declarator '[' '*' ']'
-	| direct_declarator '[' STATIC type_qualifier_list expression_assignment ']'
-	| direct_declarator '[' STATIC expression_assignment ']'
-	| direct_declarator '[' type_qualifier_list '*' ']'
-	| direct_declarator '[' type_qualifier_list STATIC expression_assignment ']'
-	| direct_declarator '[' type_qualifier_list expression_assignment ']'
-	| direct_declarator '[' type_qualifier_list ']'
-	| direct_declarator '[' expression_assignment ']'
-	| direct_declarator '(' parameter_type_list ')'
-	| direct_declarator '(' ')'
-	| direct_declarator '(' identifier_list ')'
-	;
-
-pointer
-	: '*' type_qualifier_list pointer
-	| '*' type_qualifier_list
-	| '*' pointer
-	| '*'
-	;
-
-type_qualifier_list
-	: type_qualifier
-	| type_qualifier_list type_qualifier
-	;
-
 
 parameter_type_list
 	: parameter_list ',' ELLIPSIS
@@ -439,12 +450,13 @@ parameter_list
 	: parameter_declaration
 	| parameter_list ',' parameter_declaration
 	;
-
 parameter_declaration
 	: declaration_specifiers declarator
 	| declaration_specifiers abstract_declarator
 	| declaration_specifiers
 	;
+
+
 
 identifier_list
 	: IDENTIFIER
@@ -456,11 +468,130 @@ type_name
 	| specifier_qualifier_list
 	;
 
-abstract_declarator
-	: pointer direct_abstract_declarator
-	| pointer
-	| direct_abstract_declarator
+
+
+initializer_list
+	: designation initializer
+	| initializer
+	| initializer_list ',' designation initializer
+	| initializer_list ',' initializer
 	;
+initializer
+	: '{' initializer_list '}'
+	| '{' initializer_list ',' '}'
+	| expression_assignment
+	;
+
+designation
+	: designator_list '='
+	;
+
+designator_list
+	: designator
+	| designator_list designator
+	;
+designator
+	: '[' expression_constant ']'
+	| '.' IDENTIFIER
+	;
+
+static_assert_declaration
+	: STATIC_ASSERT '(' expression_constant ',' LITERAL_STRING ')' ';'
+	;
+
+
+
+labeled_statement
+	: IDENTIFIER ':' statement
+	| CASE expression_constant ':' statement
+	| DEFAULT ':' statement
+	;
+
+statement_expression
+	: ';'
+	| expression ';'
+	;
+
+statement_condition
+	: IF '(' expression ')' statement ELSE statement
+	| IF '(' expression ')' statement
+	| SWITCH '(' expression ')' statement
+	;
+
+statement_iteration
+	: WHILE '(' expression ')' statement
+	| DO statement WHILE '(' expression ')' ';'
+	| FOR '(' statement_expression statement_expression ')' statement
+	| FOR '(' statement_expression statement_expression expression ')' statement
+	| FOR '(' declaration statement_expression ')' statement
+	| FOR '(' declaration statement_expression expression ')' statement
+	;
+
+statement_jump
+	: GOTO IDENTIFIER ';'
+	| CONTINUE ';'
+	| BREAK ';'
+	| RETURN ';'
+	| RETURN expression ';'
+	;
+
+statement
+	: labeled_statement
+	| compound_statement
+	| statement_expression
+	| statement_condition
+	| statement_iteration
+	| statement_jump
+	;
+
+
+
+init_declarator_list
+	: init_declarator
+	| init_declarator_list ',' init_declarator
+	;
+init_declarator
+	: declarator '=' initializer
+	| declarator
+	;
+
+
+
+block_item_list
+	: block_item
+	| block_item_list block_item
+	;
+block_item
+	: declaration
+	| statement
+	;
+
+compound_statement
+	: '{' '}'
+	| '{' block_item_list '}'
+	;
+
+
+
+type_qualifier
+	: CONST
+	| RESTRICT
+	| VOLATILE
+	| ATOMIC
+	;
+type_qualifier_list
+	: type_qualifier
+	| type_qualifier_list type_qualifier
+	;
+
+pointer
+	: '*' type_qualifier_list pointer
+	| '*' type_qualifier_list
+	| '*' pointer
+	| '*'
+	;
+
+
 
 direct_abstract_declarator
 	: '(' abstract_declarator ')'
@@ -486,103 +617,59 @@ direct_abstract_declarator
 	| direct_abstract_declarator '(' parameter_type_list ')'
 	;
 
-initializer
-	: '{' initializer_list '}'
-	| '{' initializer_list ',' '}'
-	| expression_assignment
+abstract_declarator
+	: pointer direct_abstract_declarator
+	| pointer
+	| direct_abstract_declarator
 	;
 
-initializer_list
-	: designation initializer
-	| initializer
-	| initializer_list ',' designation initializer
-	| initializer_list ',' initializer
+direct_declarator
+	: IDENTIFIER
+	| '(' declarator ')'
+	| direct_declarator '[' ']'
+	| direct_declarator '[' '*' ']'
+	| direct_declarator '[' STATIC type_qualifier_list expression_assignment ']'
+	| direct_declarator '[' STATIC expression_assignment ']'
+	| direct_declarator '[' type_qualifier_list '*' ']'
+	| direct_declarator '[' type_qualifier_list STATIC expression_assignment ']'
+	| direct_declarator '[' type_qualifier_list expression_assignment ']'
+	| direct_declarator '[' type_qualifier_list ']'
+	| direct_declarator '[' expression_assignment ']'
+	| direct_declarator '(' parameter_type_list ')'
+	| direct_declarator '(' ')'
+	| direct_declarator '(' identifier_list ')'
 	;
 
-designation
-	: designator_list '='
+declarator
+	: pointer direct_declarator
+	| direct_declarator
 	;
 
-designator_list
-	: designator
-	| designator_list designator
+
+
+declaration_specifiers
+	: TYPEDEF declaration_specifiers	/* identifiers must be flagged as TYPEDEF_NAME */
+	| TYPEDEF
+	| storage_class_specifier declaration_specifiers
+	| storage_class_specifier
+	| type_specifier declaration_specifiers
+	| type_specifier
+	| type_qualifier declaration_specifiers
+	| type_qualifier
+	| function_specifier declaration_specifiers
+	| function_specifier
+	| alignment_specifier declaration_specifiers
+	| alignment_specifier
 	;
 
-designator
-	: '[' expression_constant ']'
-	| '.' IDENTIFIER
+declaration
+	: declaration_specifiers ';'
+	| declaration_specifiers init_declarator_list ';'
+	| static_assert_declaration
 	;
-
-static_assert_declaration
-	: STATIC_ASSERT '(' expression_constant ',' LITERAL_STRING ')' ';'
-	;
-
-statement
-	: labeled_statement
-	| compound_statement
-	| expression_statement
-	| selection_statement
-	| iteration_statement
-	| jump_statement
-	;
-
-labeled_statement
-	: IDENTIFIER ':' statement
-	| CASE expression_constant ':' statement
-	| DEFAULT ':' statement
-	;
-
-compound_statement
-	: '{' '}'
-	| '{' block_item_list '}'
-	;
-
-block_item_list
-	: block_item
-	| block_item_list block_item
-	;
-
-block_item
+declaration_list
 	: declaration
-	| statement
-	;
-
-expression_statement
-	: ';'
-	| expression ';'
-	;
-
-selection_statement
-	: IF '(' expression ')' statement ELSE statement
-	| IF '(' expression ')' statement
-	| SWITCH '(' expression ')' statement
-	;
-
-iteration_statement
-	: WHILE '(' expression ')' statement
-	| DO statement WHILE '(' expression ')' ';'
-	| FOR '(' expression_statement expression_statement ')' statement
-	| FOR '(' expression_statement expression_statement expression ')' statement
-	| FOR '(' declaration expression_statement ')' statement
-	| FOR '(' declaration expression_statement expression ')' statement
-	;
-
-jump_statement
-	: GOTO IDENTIFIER ';'
-	| CONTINUE ';'
-	| BREAK ';'
-	| RETURN ';'
-	| RETURN expression ';'
-	;
-
-translation_unit
-	: external_declaration
-	| translation_unit external_declaration
-	;
-
-external_declaration
-	: function_definition
-	| declaration
+	| declaration_list declaration
 	;
 
 function_definition
@@ -590,16 +677,20 @@ function_definition
 	| declaration_specifiers declarator compound_statement
 	;
 
-declaration_list
-	: declaration
-	| declaration_list declaration
+external_declaration
+	: function_definition
+	| declaration
+	| preprocessor
+	;
+
+translation_unit
+	: external_declaration
+	| translation_unit external_declaration
 	;
 
 %%
 
-#include <ppp.h>
-
-void yyerror(const char * s)
+void yyerror(char const* str)
 {
-	ppp_error(s);
+	ppp_error("%s", str);
 }
