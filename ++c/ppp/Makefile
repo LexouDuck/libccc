@@ -25,14 +25,14 @@ INCLUDES = \
 
 # lex
 LEX_SRC = $(GENDIR)/lex.yy.c
-LEX_INPUT = $(SRCDIR)/c11.lex
+LEX_INPUT = $(SRCDIR)/ppp.l
 LEX = lex
 LFLAGS = 
 
 # yacc
 YACC_HDR = $(GENDIR)/y.tab.h
 YACC_SRC = $(GENDIR)/y.tab.c
-YACC_INPUT = $(SRCDIR)/c11.yacc
+YACC_INPUT = $(SRCDIR)/ppp.y
 YACC = yacc
 YFLAGS = -d
 
