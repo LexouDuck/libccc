@@ -14,9 +14,10 @@ OUTFILE = obj/test.c
 HDRS = $(SRCDIR)/ppp.h $(YACC_HDR)
 SRCS = $(SRCDIR)/ppp.c $(YACC_SRC) $(LEX_SRC)
 
+
 # c compiler
 CC = clang
-CFLAGS = 
+CFLAGS = -g
 LDLIBS = ../../libccc.a -ll
 INCLUDES = \
 	-I$(GENDIR) \
@@ -42,6 +43,7 @@ all: dirs $(NAME)
 
 test: all
 	@./$(NAME) $(FILE) > "$(OUTFILE)"
+	@echo "=========="
 	@cat "$(OUTFILE)"
 
 dirs:

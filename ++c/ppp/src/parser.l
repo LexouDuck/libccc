@@ -142,7 +142,7 @@ whitespace    [ \t\v\n\f]
 "_Static_assert"        { return ppp_verbatim(yytext, STATIC_ASSERT); }
 "_Thread_local"         { return ppp_verbatim(yytext, THREAD_LOCAL); }
 
-{char_alpha}{char_token}*		{ return ppp_symbol(yytext); }
+{char_alpha}{char_token}*		{ yylval.v_str = yytext; return ppp_symbol(yytext); }
 
 {prefix_hex}{digit_hex}+{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
 {digit_nonzero}{digit}*{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
@@ -210,7 +210,7 @@ whitespace    [ \t\v\n\f]
 "|"					{ return ppp_verbatim(yytext, '|'); }
 "?"					{ return ppp_verbatim(yytext, '?'); }
 
-"\n"				{ return ppp_verbatim(yytext, '\n'); }
+"\n"				{ ppp_verbatim(yytext, '\n'); }
 {whitespace}+		{ ppp_whitespace(yytext); }
 .					{ ppp_error("syntax error, unexpected character: '%s'", yytext); }
 

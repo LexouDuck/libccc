@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 #include <libccc.h>
 
@@ -20,8 +21,8 @@ extern int yylineno;
 
 
 
-#undef	SYMBOL
-#define SYMBOL(KIND, SYMBOLINFO) \
+#undef	SYMBOLKIND
+#define SYMBOLKIND(KIND, SYMBOLINFO) \
 typedef struct symbol_##KIND								\
 {															\
 	SYMBOLINFO												\
@@ -31,8 +32,12 @@ s_symbol_##KIND*	ppp_getsymbol_##KIND(char const* name);	\
 void	ppp_addsymbol_##KIND(s_symbol_##KIND symbol);		\
 void	ppp_removesymbol_##KIND(char const* name);			\
 
-#include "ppp.symboltypes.c"
-#undef	SYMBOL
+#include "ppp_symbolkind.c"
+#undef	SYMBOLKIND
+
+//! this macro is simply used to remove boilerplate
+#define ppp_addsymbol(KIND, STRUCT) \
+		ppp_addsymbol_##KIND((s_symbol_##KIND)STRUCT)
 
 
 
@@ -42,13 +47,13 @@ typedef struct ppp
 	t_uint	errors;		//!< total amount of errors so far
 	t_uint	warnings;	//!< total amount of warnings so far
 
-#undef	SYMBOL
-#define SYMBOL(KIND, SYMBOLINFO) \
+#undef	SYMBOLKIND
+#define SYMBOLKIND(KIND, SYMBOLINFO) \
 	t_uint           symbolcount_##KIND;	\
 	s_symbol_##KIND* symboltable_##KIND;	\
 
-#include "ppp.symboltypes.c"
-#undef	SYMBOL
+#include "ppp_symbolkind.c"
+#undef	SYMBOLKIND
 }
 s_ppp;
 

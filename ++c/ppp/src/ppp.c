@@ -29,17 +29,21 @@ s_symbol_##KIND* ppp_getsymbol_##KIND(char const* name) \
 #define DEFINEFUNC_PPP_SYMBOLTABLE_ADD(KIND) \
 void ppp_addsymbol_##KIND(s_symbol_##KIND symbol) \
 { \
-	ppp_message("New "#KIND" symbol encountered: '%s'", symbol.name); \
+	ppp_message("New "#KIND" symbol: '%s'", symbol.name); \
+	t_size size = ppp.symbolcount_##KIND * sizeof(s_symbol_##KIND); \
 	ppp.symbolcount_##KIND++; \
 	if (ppp.symboltable_##KIND == NULL) \
 	{ \
-		ppp.symboltable_##KIND = Memory_Allocate(ppp.symbolcount_##KIND * sizeof(s_symbol_##KIND)); \
+		ppp.symboltable_##KIND = Memory_New(size + sizeof(s_symbol_##KIND)); \
 		ppp.symboltable_##KIND[0] = symbol; \
 	} \
 	else \
 	{ \
-		ppp.symboltable_##KIND = Memory_Reallocate(ppp.symboltable_##KIND, \
-			ppp.symbolcount_##KIND * sizeof(s_symbol_##KIND)); \
+		s_symbol_##KIND* old = ppp.symboltable_##KIND; \
+		s_symbol_##KIND* new = Memory_New(size + sizeof(s_symbol_##KIND)); \
+		Memory_Copy(new, old, size); \
+		Memory_Delete((void**)&old); \
+		ppp.symboltable_##KIND = new; \
 	} \
 } \
 
@@ -47,6 +51,8 @@ void ppp_addsymbol_##KIND(s_symbol_##KIND symbol) \
 void ppp_removesymbol_##KIND(char const* name) \
 { \
 	ppp_message("Removing "#KIND" symbol: '%s'", name); \
+	t_size size = ppp.symbolcount_##KIND * sizeof(s_symbol_##KIND); \
+	ppp.symbolcount_##KIND--; \
 	if (ppp.symboltable_##KIND == NULL) \
 	{ \
 		ppp_error("symbol table '"#KIND"' is empty, but attempted to remove symbol '%s'", name); \
@@ -60,20 +66,24 @@ void ppp_removesymbol_##KIND(char const* name) \
 			ppp_error("symbol table '"#KIND"', could not find symbol to remove '%s'", name); \
 			return; \
 		} \
-		ppp.symboltable_##KIND = Memory_Reallocate(ppp.symboltable_##KIND, \
-			ppp.symbolcount_##KIND * sizeof(s_symbol_##KIND)); \
+		t_uint index = (symbol - ppp.symboltable_##KIND); \
+		s_symbol_##KIND* old = ppp.symboltable_##KIND; \
+		s_symbol_##KIND* new = Memory_New(size + sizeof(s_symbol_##KIND)); \
+		Memory_Copy(new, old, index); \
+		Memory_Copy(new, old + index + 1, size - index - 1); \
+		Memory_Delete((void**)&old); \
+		ppp.symboltable_##KIND = new; \
 	} \
-	ppp.symbolcount_##KIND--; \
 } \
 
-#undef	SYMBOL
-#define SYMBOL(KIND, SYMBOLINFO) \
+#undef	SYMBOLKIND
+#define SYMBOLKIND(KIND, SYMBOLINFO) \
 	DEFINEFUNC_PPP_SYMBOLTABLE_ADD(KIND) \
 	DEFINEFUNC_PPP_SYMBOLTABLE_GET(KIND) \
 	DEFINEFUNC_PPP_SYMBOLTABLE_DEL(KIND) \
 
-#include "ppp.symboltypes.c"
-#undef	SYMBOL
+#include "ppp_symbolkind.c"
+#undef	SYMBOLKIND
 
 
 
@@ -104,9 +114,30 @@ DEFINEFUNC_PPP_LOGGING(message, "ppp: line %i: "C_RESET "message"C_RESET": %s\n"
 
 
 
+// populate symbol table with standard builtin symbols
 int ppp_init(void)
 {
-	// TODO flag settings ?
+	// ANSI
+	ppp_addsymbol(macro,{ .name="__cplusplus" });
+	ppp_addsymbol(macro,{ .name="__OBJC__" });
+	ppp_addsymbol(macro,{ .name="__DATE__" });
+	ppp_addsymbol(macro,{ .name="__TIME__" });
+	ppp_addsymbol(macro,{ .name="__FILE__" });
+	ppp_addsymbol(macro,{ .name="__LINE__" });
+	ppp_addsymbol(macro,{ .name="__STDC__" });
+	ppp_addsymbol(macro,{ .name="__STDC_VERSION__" });
+	// GNUC
+	ppp_addsymbol(macro,{ .name="__GNUC__" });
+	ppp_addsymbol(macro,{ .name="__COUNTER__" });
+	ppp_addsymbol(macro,{ .name="__BASE_FILE__" });
+	ppp_addsymbol(macro,{ .name="__INCLUDE_LEVEL__" });
+	ppp_addsymbol(macro,{ .name="__BYTE_ORDER__" });
+	ppp_addsymbol(macro,{ .name="__ORDER_LITTLE_ENDIAN__" });
+	ppp_addsymbol(macro,{ .name="__ORDER_BIG_ENDIAN__" });
+	ppp_addsymbol(macro,{ .name="__ORDER_PDP_ENDIAN__" });
+	ppp_addsymbol(macro,{ .name="__FLOAT_WORD_ORDER__" });
+	// C99/C++
+	ppp_addsymbol(global,{ .name="__func__" });
 	return (OK);
 }
 
@@ -153,14 +184,15 @@ void	ppp_whitespace(char const* lex_str)
 int		ppp_symbol(char const* lex_str)
 {
 	ppp_verbatim(lex_str, 0);
-	yylval.v_str = lex_str;
-	if (ppp_getsymbol_macro  (lex_str))	return (MACRO_NAME);
+	if (ppp_getsymbol_macro  (lex_str))	return (NAME_MACRO);
+	if (ppp_getsymbol_type   (lex_str))	return (NAME_TYPEDEF);
+	if (ppp_getsymbol_struct (lex_str))	return (LITERAL_ENUM);
+	if (ppp_getsymbol_union  (lex_str))	return (LITERAL_ENUM);
 	if (ppp_getsymbol_enum   (lex_str))	return (LITERAL_ENUM);
-	if (ppp_getsymbol_type   (lex_str))	return (TYPEDEF_NAME);
 	if (ppp_getsymbol_func   (lex_str))	return (IDENTIFIER);
 	if (ppp_getsymbol_global (lex_str))	return (IDENTIFIER);
 	if (ppp_getsymbol_local  (lex_str))	return (IDENTIFIER);
-	ppp_error("unknown symbol: %s", lex_str);
+	ppp_warning("unknown symbol: '%s'", lex_str);
 	return (IDENTIFIER);
 }
 

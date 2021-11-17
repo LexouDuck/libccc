@@ -51,12 +51,15 @@
 %token	PP_PRAGMA
 %token	PP_LINE
 
-%token	MACRO_NAME
-%token	IDENTIFIER
+%token	IDENTIFIER /* new, as-of-yet-unknown symbol */
 %token	LITERAL_INT LITERAL_FLOAT
 %token	LITERAL_CHAR LITERAL_STRING
 %token	LITERAL_ENUM
-%token	TYPEDEF_NAME
+%token	NAME_MACRO
+%token	NAME_TYPEDEF
+%token	NAME_STRUCT
+%token	NAME_UNION
+%token	NAME_ENUM
 
 %token	SIZEOF
 %token	OP_PTR
@@ -104,9 +107,13 @@
 	char const* v_str;
 };
 
-%type <v_str> MACRO_NAME
 %type <v_str> IDENTIFIER
 %type <v_str> LITERAL_ENUM
+%type <v_str> NAME_MACRO
+%type <v_str> NAME_TYPEDEF
+%type <v_str> NAME_STRUCT
+%type <v_str> NAME_UNION
+%type <v_str> NAME_ENUM
 
 
 
@@ -172,10 +179,6 @@ constant
 	| LITERAL_CHAR
 	| LITERAL_FLOAT
 	| LITERAL_ENUM	/* after it has been defined as such */
-	;
-
-enumeration_constant		/* before it has been defined as such */
-	: IDENTIFIER	{ ppp_addsymbol_enum((s_symbol_enum){ .name=$1 }); }
 	;
 
 string
@@ -347,9 +350,10 @@ type_specifier
 	| COMPLEX
 	| IMAGINARY	  	/* non-mandated extension */
 	| atomic_type_specifier
-	| struct_or_union_specifier
+	| struct_specifier
+	| union_specifier
 	| enum_specifier
-	| TYPEDEF_NAME		/* after it has been defined as such */
+	| NAME_TYPEDEF		/* after it has been defined as such */
 	;
 
 specifier_qualifier_list
@@ -361,15 +365,10 @@ specifier_qualifier_list
 
 
 
-struct_or_union_specifier
-	: struct_or_union '{' struct_declaration_list '}'
-	| struct_or_union IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
-	| struct_or_union IDENTIFIER									{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
-	;
-
-struct_or_union
-	: STRUCT
-	| UNION
+struct_specifier
+	: STRUCT '{' struct_declaration_list '}'			{ ppp_addsymbol(struct,{ .name=strdup("") }); }
+	| STRUCT IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol(struct,{ .name=strdup($2) }); }
+	| STRUCT IDENTIFIER									{ ppp_addsymbol(struct,{ .name=strdup($2) }); }
 	;
 
 struct_declaration_list
@@ -395,12 +394,20 @@ struct_declarator
 
 
 
+union_specifier
+	: UNION '{' struct_declaration_list '}'				{ ppp_addsymbol(union,{ .name=strdup("") }); }
+	| UNION IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol(union,{ .name=strdup($2) }); }
+	| UNION IDENTIFIER									{ ppp_addsymbol(union,{ .name=strdup($2) }); }
+	;
+
+
+
 enum_specifier
-	: ENUM '{' enumerator_list '}'
-	| ENUM '{' enumerator_list ',' '}'
-	| ENUM IDENTIFIER '{' enumerator_list '}'		{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
-	| ENUM IDENTIFIER '{' enumerator_list ',' '}'	{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
-	| ENUM IDENTIFIER								{ ppp_addsymbol_type((s_symbol_type){ .name=$2 }); }
+	: ENUM '{' enumerator_list '}'					{ ppp_addsymbol(enum,{ .name=strdup("") }); }
+	| ENUM '{' enumerator_list ',' '}'				{ ppp_addsymbol(enum,{ .name=strdup("") }); }
+	| ENUM IDENTIFIER '{' enumerator_list '}'		{ ppp_addsymbol(enum,{ .name=strdup($2) }); }
+	| ENUM IDENTIFIER '{' enumerator_list ',' '}'	{ ppp_addsymbol(enum,{ .name=strdup($2) }); }
+	| ENUM IDENTIFIER								{ ppp_addsymbol(enum,{ .name=strdup($2) }); }
 	;
 
 enumerator_list
@@ -408,8 +415,8 @@ enumerator_list
 	| enumerator_list ',' enumerator
 	;
 enumerator	/* identifiers must be flagged as LITERAL_ENUM */
-	: enumeration_constant '=' expression_constant
-	| enumeration_constant
+	: IDENTIFIER '=' expression_constant
+	| IDENTIFIER
 	;
 
 
@@ -650,7 +657,7 @@ declarator
 
 
 declaration_specifiers
-	: TYPEDEF declaration_specifiers	/* identifiers must be flagged as TYPEDEF_NAME */
+	: TYPEDEF declaration_specifiers	/* identifiers must be flagged as NAME_TYPEDEF */
 	| TYPEDEF
 	| storage_class_specifier declaration_specifiers
 	| storage_class_specifier
