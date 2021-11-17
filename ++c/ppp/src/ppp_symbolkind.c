@@ -9,6 +9,11 @@ SYMBOLKIND(macro,
 	char**	args;	//!< contents
 )
 
+SYMBOLKIND(type,   
+	char*	name;	//!< typedef name
+	char*	type;	//!< underlying type
+)
+
 SYMBOLKIND(struct,   
 	char*	name;	//!< struct type name
 	t_uint	size;	//!< amount of fields
@@ -28,11 +33,6 @@ SYMBOLKIND(enum,
 	t_uint	size;	//!< amount of fields
 	char*	values;	//!< enum item values
 	char*	fields;	//!< enum item names
-)
-
-SYMBOLKIND(type,   
-	char*	name;	//!< typedef name
-	char*	type;	//!< underlying type
 )
 
 SYMBOLKIND(func,   

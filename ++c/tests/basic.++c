@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#define HELLO 1
+#define COOL "this is a string"
+#undef HELLO
+
 typedef enum something
 {
 	SMTH_NULL = 0,

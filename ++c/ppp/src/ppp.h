@@ -7,17 +7,28 @@
 #include <string.h>
 
 #include <libccc.h>
+#include <libccc/memory.h>
+#include <libccc/string.h>
+#include <libccc/stringarray.h>
 
 #include "y.tab.h"
 
 
 
-// Declare stuff from lex that yacc needs to know about:
+//! define lex/yacc function to lex one single token
 extern int yylex();
+//! define lex/yacc function to parse one file
 extern int yyparse();
+//! define lex/yacc function callback for lex/yacc parsing errors 
 extern void yyerror(char const * s);
+//! define lex/yacc input file handle
 extern FILE *yyin;
+//! define lex/yacc file line number
 extern int yylineno;
+//! enable yacc debug info
+extern int yydebug;
+//! use string type in yacc file by default
+//#define YYSTYPE 	char const*
 
 
 
@@ -35,9 +46,15 @@ void	ppp_removesymbol_##KIND(char const* name);			\
 #include "ppp_symbolkind.c"
 #undef	SYMBOLKIND
 
-//! this macro is simply used to remove boilerplate
-#define ppp_addsymbol(KIND, STRUCT) \
-		ppp_addsymbol_##KIND((s_symbol_##KIND)STRUCT)
+
+
+//! this macro is simply used to remove boilerplate in yacc code
+#define ppp_addsymbol(KIND, ...) \
+		ppp_addsymbol_##KIND((s_symbol_##KIND)__VA_ARGS__)
+
+//! this macro is simply used to remove boilerplate in yacc code
+#define ppp_removesymbol(KIND, NAME) \
+		ppp_removesymbol_##KIND(NAME)
 
 
 

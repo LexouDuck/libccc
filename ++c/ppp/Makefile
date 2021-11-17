@@ -11,8 +11,8 @@ NAME = $(BINDIR)/ppp
 OUTFILE = obj/test.c
 
 # generated c code
-HDRS = $(SRCDIR)/ppp.h $(YACC_HDR)
-SRCS = $(SRCDIR)/ppp.c $(YACC_SRC) $(LEX_SRC)
+HDRS = $(SRCDIR)/ppp.h            $(YACC_HDR)
+SRCS = $(SRCDIR)/ppp.c $(LEX_SRC) $(YACC_SRC)
 
 
 # c compiler
@@ -27,14 +27,14 @@ INCLUDES = \
 # lex
 LEX_SRC = $(GENDIR)/lex.yy.c
 LEX_INPUT = $(SRCDIR)/parser.l
-LEX = lex
+LEX = flex
 LFLAGS = 
 
 # yacc
 YACC_HDR = $(GENDIR)/y.tab.h
 YACC_SRC = $(GENDIR)/y.tab.c
 YACC_INPUT = $(SRCDIR)/parser.y
-YACC = yacc
+YACC = bison
 YFLAGS = 
 
 
@@ -42,6 +42,13 @@ YFLAGS =
 all: dirs $(NAME)
 
 test: all
+	@./$(NAME) $(FILE) > "$(OUTFILE)"
+	@echo "=========="
+	@cat "$(OUTFILE)"
+
+debug: LFLAGS += -d
+debug: YFLAGS += -t
+debug: all
 	@./$(NAME) $(FILE) > "$(OUTFILE)"
 	@echo "=========="
 	@cat "$(OUTFILE)"
@@ -58,6 +65,7 @@ clean:
 
 $(NAME): $(SRCS) $(HDRS)
 	$(CC)   $(CFLAGS) -o $(NAME) $(INCLUDES) $(SRCS) $(LDLIBS)
+	@echo "OK!"
 
 $(LEX_SRC): $(LEX_INPUT)
 	$(LEX)  $(LFLAGS) -o $(LEX_SRC) $(LEX_INPUT)
