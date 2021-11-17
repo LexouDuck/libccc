@@ -103,6 +103,16 @@ _MALLOC()
 t_char**				StringArray_New(t_uint length);
 #define c_strarrnew		StringArray_New
 
+//! Allocates a new string array which consists of `n` items, initialized from variadic arguments.
+/*!
+**	@param	n		The amount of strings in this array (amount of variadic args)
+**	@param	...		The variadic list of arguments: there must be `n` arguments, of type `T`
+**	@returns
+**	A newly allocated string array containing `n` elements (the given `...` varargs)
+*/
+t_char**				StringArray_Create(t_uint n, ...);
+#define c_strarrcreate	StringArray_Create
+
 /*!
 **	@returns
 **	A newly allocated string array, which has `y` line and `x` characters
@@ -117,6 +127,15 @@ t_char**				StringArray_New_C(t_uint y, t_size x, const char c);
 */
 void					StringArray_Delete(t_char** *a_strarr);
 #define c_strarrdel		StringArray_Delete
+
+/*!
+**	Duplicates the contents of a string array, and returns the copy.
+*/
+_MALLOC()
+t_char**				StringArray_Duplicate(t_char const** strarr);
+#define c_strarrdup		StringArray_Duplicate
+
+
 
 /*!
 **	@returns
