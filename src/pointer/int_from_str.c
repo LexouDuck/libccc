@@ -33,7 +33,7 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 		tmp = result * 10 + (str[i++] - '0');											\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),									\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX),							\
-			" ("#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO")", str, UINT_MACRO##_MAX)\
+			" ("#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO")", str, (UINT_TYPE)UINT_MACRO##_MAX)\
 		result = tmp;																	\
 	}																					\
 	if (dest)	*dest = result;															\

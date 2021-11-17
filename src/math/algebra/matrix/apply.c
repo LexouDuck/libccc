@@ -7,7 +7,7 @@
 
 s_vector2d	Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector)
 {
-	s_vector2d result = {0};
+	s_vector2d result = VECTOR2D_NULL;
 	s_vector2d const* tmp;
 	t_float x;
 	t_float y;
@@ -25,7 +25,7 @@ s_vector2d	Matrix2D_Apply(s_matrix2d const* matrix, s_vector2d const* vector)
 
 s_vector3d	Matrix3D_Apply(s_matrix3d const* matrix, s_vector3d const* vector)
 {
-	s_vector3d result = {0};
+	s_vector3d result = VECTOR3D_NULL;
 	s_vector3d const* tmp;
 	t_float x;
 	t_float y;

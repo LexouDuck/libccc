@@ -771,7 +771,8 @@ static
 t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
-	s_toml_print p[1] = {{0}};
+	s_toml_print print;
+	s_toml_print* p = &print;
 	t_utf8* printed = NULL;
 
 	Memory_Clear(p, sizeof(p));
@@ -818,8 +819,9 @@ failure:
 
 t_size	TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n)
 {
-	s_toml_print p = { 0 };
+	s_toml_print p;
 
+	Memory_Clear(&p, sizeof(s_toml_print));
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;
@@ -835,8 +837,9 @@ t_size	TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n)
 
 t_size	TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n)
 {
-	s_toml_print p = { 0 };
+	s_toml_print p;
 
+	Memory_Clear(&p, sizeof(s_toml_print));
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;

@@ -1,4 +1,5 @@
 
+#include "libccc/memory.h"
 #include "libccc/sys/time.h"
 
 #ifndef __NOSTD__
@@ -35,8 +36,9 @@ t_time		Time_Now(void)
 s_date		Time_ToDate_UTC(t_time const value)
 {
 	s_date result;
-	struct tm tm = {0};
+	struct tm tm;
 
+	Memory_Clear(&tm, sizeof(struct tm));
 #ifdef _WIN32
 	gmtime_s(&tm, &value);	// gmtime_s() is thread-safe, unlike gmtime()
 #else
@@ -49,8 +51,9 @@ s_date		Time_ToDate_UTC(t_time const value)
 s_date		Time_ToDate_LocalTime(t_time const value)
 {
 	s_date result;
-	struct tm tm = {0};
+	struct tm tm;
 
+	Memory_Clear(&tm, sizeof(struct tm));
 #ifdef _WIN32
 	localtime_s(&tm, &value);	// localtime_s() is thread-safe, unlike localtime()
 #else

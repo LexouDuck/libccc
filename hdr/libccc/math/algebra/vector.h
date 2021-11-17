@@ -54,6 +54,8 @@ typedef	union vector2d
 }				u_vector2d;
 TYPEDEF_ALIAS(	u_vector2d, VECTOR_2D, UNION)
 
+#define VECTOR2D_NULL	(s_vector2d){ .x = 0, .y = 0 } 
+
 
 
 //! A simple vector struct for storing 3-dimensional values
@@ -72,6 +74,8 @@ typedef	union vector3d
 	s_vector3d	vector;		//!< A vector, to access the 3 coordinates as `.x`, `.y` and `.z`
 }				u_vector3d;
 TYPEDEF_ALIAS(	u_vector3d, VECTOR_3D, UNION)
+
+#define VECTOR3D_NULL	(s_vector3d){ .x = 0, .y = 0, .z = 0 }
 
 
 
@@ -92,6 +96,8 @@ typedef	union vector4d
 	s_vector4d	vector;		//!< A vector, to access the 4 coordinates as `.x`, `.y`, `.z`, and `.t`
 }				u_vector4d;
 TYPEDEF_ALIAS(	u_vector4d, VECTOR_4D, UNION)
+
+#define VECTOR4D_NULL	(s_vector4d){ .x = 0, .y = 0, .z = 0, .t = 0 } 
 
 
 

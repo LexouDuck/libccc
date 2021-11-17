@@ -9,11 +9,12 @@
 _GENERIC()
 s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item))
 {
-	s_array_T	result = {0};
+	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
 	t_bool*	tmp;
 	t_uint	amount;
 	t_uint	i;
 
+	Memory_Clear(&result, sizeof(s_array_T));
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
@@ -48,11 +49,12 @@ s_array_T	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T
 _GENERIC()
 s_array_T	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)(T item, t_uint index))
 {
-	s_array_T	result = {0};
+	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
 	t_bool*	tmp;
 	t_uint	amount;
 	t_uint	i;
 
+	Memory_Clear(&result, sizeof(s_array_T));
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)

@@ -11,6 +11,7 @@
 	int stat (char const* pathname, struct stat* statbuf);
 #endif
 
+#include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 
@@ -34,8 +35,9 @@ t_io_mode	IO_GetMode		(t_char const* filepath)
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
 
 	t_io_mode	result = 0;
-	struct stat	stat_buffer = {0};
+	struct stat	stat_buffer;
 
+	Memory_Clear(&stat_buffer, sizeof(struct stat));
 	HANDLE_ERROR(SYSTEM,
 		stat(filepath, &stat_buffer),
 		return (ERROR_SYSTEM);)

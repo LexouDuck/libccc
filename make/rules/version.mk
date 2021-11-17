@@ -20,9 +20,9 @@ VERSIONFULL := $(shell cat $(VERSIONFILE))
 
 
 #! The project's name, as parsed from the VERSION file
-PARSED_NAME      := $(shell echo $(VERSIONFULL) | cut -d'@' -f 1)
+PARSED_NAME      := $(shell echo $(VERSIONFULL) | grep -o '^[^@]*')
 #! The project's commit revision hash code, as parsed from the VERSION file
-PARSED_COMMITREF := $(shell echo $(VERSIONFULL) | rev | cut -d'-' -f 1 | rev)
+PARSED_COMMITREF := $(shell echo $(VERSIONFULL) | grep -o '[^-]*$')
 #! The project's version number, as parsed from the VERSION file
 PARSED_VERSION   := $(shell echo $(VERSIONFULL) | cut -d'@' -f 2 | cut -d'-' -f 1)
 

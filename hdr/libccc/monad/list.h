@@ -73,6 +73,9 @@ typedef struct list_T
 	T				item;	//!< The content of this linked-list element
 }				s_list_T;
 
+extern
+s_list_T const CONCAT(NULL_LIST,T_NAME);
+
 
 
 #define foreach_s_list(_TYPE_, _VAR_, _LIST_)		foreach (_TYPE_, _VAR_, s_list, _LIST_)

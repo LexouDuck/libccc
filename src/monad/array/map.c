@@ -9,9 +9,10 @@
 _GENERIC()
 s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
 {
-	s_array_T	result = {0};
+	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
 	t_uint	i;
 
+	Memory_Clear(&result, sizeof(s_array_T));
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
@@ -29,9 +30,10 @@ s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
 _GENERIC()
 s_array_T	CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_uint index))
 {
-	s_array_T	result = {0};
+	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
 	t_uint	i;
 
+	Memory_Clear(&result, sizeof(s_array_T));
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)

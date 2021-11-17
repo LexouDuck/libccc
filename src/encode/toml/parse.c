@@ -993,9 +993,10 @@ failure:
 static
 t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 {
-	s_toml_parse parser = { 0 };
+	s_toml_parse parser;
 	s_toml_parse* p = &parser;
 
+	Memory_Clear(p, sizeof(s_toml_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
 		if (dest) *dest = NULL;
 		return (p->offset);

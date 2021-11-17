@@ -15,6 +15,12 @@
 #undef __LIBCCC_MONAD_ARRAY_H
 #include "libccc/monad/array.h"
 
+s_array_T const CONCAT(NULL_ARRAY,T_NAME) = (s_array_T)
+{
+	.length = 0,
+	.items = NULL,
+};
+
 // generate code for all generic functions
 #include "libccc/../../src/monad/array/new.c"
 #include "libccc/../../src/monad/array/create.c"

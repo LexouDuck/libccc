@@ -9,8 +9,9 @@
 _GENERIC()
 s_array_T		CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n)
 {
-	s_array_T	result = {0};
+	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
 
+	Memory_Clear(&result, sizeof(s_array_T));
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
 	if (index > array->length || index + n > array->length)

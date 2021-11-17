@@ -15,6 +15,15 @@
 #undef __LIBCCC_MONAD_LIST_H
 #include "libccc/monad/list.h"
 
+s_list_T const CONCAT(NULL_LIST,T_NAME) = (s_list_T)
+{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	.prev = NULL,
+#endif
+	.next = NULL,
+	.item = T_DEFAULT,
+};
+
 // generate code for all generic functions
 #include "libccc/../../src/monad/list/item.c"
 #include "libccc/../../src/monad/list/length.c"
