@@ -4,17 +4,22 @@
 
 
 
-#namespace List<T=void*>
+#header __LIBCCC_LIST_H
+
+#namespace List<T = void*>
 
 
-
-s_list*	List<T>.New(T item, t_size item_size)
+inline
+s_list<T>*	New(T item, t_size item_size)
 {
-	int a;
-	typeof(a) b;
-	s_list* result;
+	asm {""}
+	int restrict a;
+	int b = 0b101101;
+	int o = 0o777;
+	typeof(a) _a;
+	s_list<T>* result;
 
-	if (!(result = (s_list*)Memory_Alloc(sizeof(s_list))))
+	if (!(result = (s_list<T>*)Memory.Alloc(sizeof(s_list<T>))))
 		return (NULL);
 //	result->prev = NULL;
 	result->next = NULL;
@@ -25,7 +30,7 @@ s_list*	List<T>.New(T item, t_size item_size)
 
 
 
-void	List<T>.Prepend(s_list* *a_lst, s_list* elem)
+void	Prepend(s_list<T>* *a_lst, s_list<T>* elem)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || elem == NULL)
@@ -43,9 +48,9 @@ void	List<T>.Prepend(s_list* *a_lst, s_list* elem)
 
 
 
-void	List<T>.Append(s_list* *a_lst, s_list* elem)
+void	Append(s_list<T>* *a_lst, s_list<T>* elem)
 {
-	s_list*	lst;
+	s_list<T>*	lst;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || elem == NULL)
@@ -67,9 +72,9 @@ void	List<T>.Append(s_list* *a_lst, s_list* elem)
 
 
 
-void	List<T>.Insert(s_list* *a_lst, s_list* elem, t_u32 index)
+void	Insert(s_list<T>* *a_lst, s_list<T>* elem, t_u32 index)
 {
-	s_list*	lst;
+	s_list<T>*	lst;
 	t_u32	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -98,22 +103,22 @@ void	List<T>.Insert(s_list* *a_lst, s_list* elem, t_u32 index)
 
 
 
-s_list*	List<T>.Copy(s_list const* lst)
+s_list<T>*	Copy(s_list<T> const* lst)
 {
-	s_list	*result;
-	s_list	*result_lst;
-	s_list	*tmp;
+	s_list<T>	*result;
+	s_list<T>	*result_lst;
+	s_list<T>	*tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif
-	result = List<T>.New(lst->item, lst->item_size);
+	result = New(lst->item, lst->item_size);
 	result_lst = result;
 	lst = lst->next;
 	while (lst)
 	{
-		tmp = List<T>.New(lst->item, lst->item_size);
+		tmp = New(lst->item, lst->item_size);
 //		tmp->prev = result_lst;
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
@@ -124,23 +129,23 @@ s_list*	List<T>.Copy(s_list const* lst)
 
 
 
-s_list*	List<T>.Duplicate(s_list const* lst)
+s_list<T>*	Duplicate(s_list<T> const* lst)
 {
-	s_list	*result;
-	s_list	*result_lst;
-	s_list	*tmp;
+	s_list<T>	*result;
+	s_list<T>	*result_lst;
+	s_list<T>	*tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
 		return (NULL);
 #endif
-	result = List<T>.New(lst->item, lst->item_size);
+	result = New(lst->item, lst->item_size);
 	result_lst = result;
 	lst = lst->next;
 	while (lst)
 	{
-		tmp = List<T>.New(lst->item, lst->item_size);
-		tmp->item = Memory_Duplicate(lst->item, lst->item_size);
+		tmp = New(lst->item, lst->item_size);
+		tmp->item = Memory.Duplicate(lst->item, lst->item_size);
 //		tmp->prev = result_lst;
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
@@ -151,11 +156,11 @@ s_list*	List<T>.Duplicate(s_list const* lst)
 
 
 
-void	List<T>.Remove(s_list* *a_lst, void (*del)(T, t_size))
+void	Remove(s_list<T>* *a_lst, void (*del)(T, t_size))
 {
-//	s_list* prev;
-	s_list* next;
-	s_list* lst;
+//	s_list<T>* prev;
+	s_list<T>* next;
+	s_list<T>* lst;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
@@ -165,7 +170,7 @@ void	List<T>.Remove(s_list* *a_lst, void (*del)(T, t_size))
 	del(lst->item, lst->item_size);
 //	prev = lst->prev;
 	next = lst->next;
-	Memory_Free(lst);
+	Memory.Free(lst);
 	*a_lst = next;
 //	if (next)
 //		next->prev = prev;
@@ -173,11 +178,11 @@ void	List<T>.Remove(s_list* *a_lst, void (*del)(T, t_size))
 
 
 
-void	List<T>.Delete(s_list* *a_lst, void (*del)(T, t_size))
+void	Delete(s_list<T>* *a_lst, void (*del)(T, t_size))
 {
-//	s_list* prev;
-	s_list* next;
-	s_list* lst;
+//	s_list<T>* prev;
+	s_list<T>* next;
+	s_list<T>* lst;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
@@ -189,7 +194,7 @@ void	List<T>.Delete(s_list* *a_lst, void (*del)(T, t_size))
 		del(lst->item, lst->item_size);
 //		prev = lst->prev;
 		next = lst->next;
-		Memory_Free(lst);
+		Memory.Free(lst);
 		lst = next;
 //		if (next)
 //			next->prev = prev;
@@ -199,10 +204,10 @@ void	List<T>.Delete(s_list* *a_lst, void (*del)(T, t_size))
 
 
 
-void	List<T>.Pop(s_list* *a_lst, void (*del)(T, t_size))
+void	Pop(s_list<T>* *a_lst, void (*del)(T, t_size))
 {
-	s_list* lst;
-	s_list* lst_prev;
+	s_list<T>* lst;
+	s_list<T>* lst_prev;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (a_lst == NULL || del == NULL)
@@ -215,7 +220,7 @@ void	List<T>.Pop(s_list* *a_lst, void (*del)(T, t_size))
 		if (lst->next == NULL)
 		{
 			del((lst)->item, (lst)->item_size);
-			Memory_Free(lst);
+			Memory.Free(lst);
 			if (lst_prev)
 				lst_prev->next = NULL;
 			return ;
@@ -227,7 +232,7 @@ void	List<T>.Pop(s_list* *a_lst, void (*del)(T, t_size))
 
 
 
-t_u32	List<T>.Size(s_list const* lst)
+t_u32	Size(s_list<T> const* lst)
 {
 	t_u32 result;
 
@@ -246,7 +251,7 @@ t_u32	List<T>.Size(s_list const* lst)
 
 
 
-s_list*	List<T>.Get(s_list const* lst, t_u32 index)
+s_list<T>*	Get(s_list<T> const* lst, t_u32 index)
 {
 	t_u32	i;
 
@@ -263,12 +268,12 @@ s_list*	List<T>.Get(s_list const* lst, t_u32 index)
 			lst = lst->next;
 		++i;
 	}
-	return ((s_list*)lst);
+	return ((s_list<T>*)lst);
 }
 
 
 
-s_list*	List<T>.Find(s_list const* lst, void const* query)
+s_list<T>*	Find(s_list<T> const* lst, void const* query)
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
@@ -279,7 +284,7 @@ s_list*	List<T>.Find(s_list const* lst, void const* query)
 	while (lst)
 	{
 		if (lst->item == query)
-			return ((s_list*)lst);
+			return ((s_list<T>*)lst);
 		lst = lst->next;
 	}
 	return (NULL);
@@ -287,11 +292,11 @@ s_list*	List<T>.Find(s_list const* lst, void const* query)
 
 
 
-s_list*		List<T>.Sub(s_list* lst, t_u32 index, t_u32 n)
+s_list<T>*		Sub(s_list<T>* lst, t_u32 index, t_u32 n)
 {
-	s_list*	result;
-	s_list*	result_lst;
-	s_list*	tmp;
+	s_list<T>*	result;
+	s_list<T>*	result_lst;
+	s_list<T>*	tmp;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL)
@@ -303,14 +308,14 @@ s_list*		List<T>.Sub(s_list* lst, t_u32 index, t_u32 n)
 		lst = lst->next;
 	if (lst == NULL)
 		return (NULL);
-	result = List<T>.New(lst->item, lst->item_size);
+	result = New(lst->item, lst->item_size);
 	if (result == NULL)
 		return (NULL);
 	result_lst = result;
 	lst = lst->next;
 	while (lst && n--)
 	{
-		tmp = List<T>.New(lst->item, lst->item_size);
+		tmp = New(lst->item, lst->item_size);
 		result_lst->next = tmp;
 		result_lst = result_lst->next;
 		lst = lst->next;
@@ -320,7 +325,7 @@ s_list*		List<T>.Sub(s_list* lst, t_u32 index, t_u32 n)
 
 
 
-void	List<T>.Iterate(s_list* lst, void (*f)(s_list* elem))
+void	Iterate(s_list<T>* lst, void (*f)(s_list<T>* elem))
 {
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -335,7 +340,7 @@ void	List<T>.Iterate(s_list* lst, void (*f)(s_list* elem))
 
 
 
-void	List<T>.Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index))
+void	Iterate_I(s_list<T>* lst, void (*f)(s_list<T>* elem, t_u32 index))
 {
 	t_u32 i;
 
@@ -354,20 +359,20 @@ void	List<T>.Iterate_I(s_list* lst, void (*f)(s_list* elem, t_u32 index))
 
 
 
-static void	List<T>.Map_Delete(T item, t_size item_size)
+static void	Map_Delete(T item, t_size item_size)
 {
 	if (item && item_size > 0)
 	{
-		Memory_Free(item);
+		Memory.Free(item);
 	}
 }
 
 
 
-s_list*		List<T>.Map(s_list* lst, s_list *(*f)(s_list* elem))
+s_list<T>*		Map(s_list<T>* lst, s_list<T> *(*f)(s_list<T>* elem))
 {
-	s_list	*result;
-	s_list	*current;
+	s_list<T>	*result;
+	s_list<T>	*current;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
 	if (lst == NULL || f == NULL)
@@ -379,10 +384,10 @@ s_list*		List<T>.Map(s_list* lst, s_list *(*f)(s_list* elem))
 		current = f(lst);
 		if (current == NULL)
 		{
-			List<T>.Delete(&result, List<T>.Map_Delete);
+			Delete(&result, Map_Delete);
 			return (NULL);
 		}
-		List<T>.Append(&result, current);
+		Append(&result, current);
 		lst = lst->next;
 	}
 	return (result);
@@ -390,10 +395,10 @@ s_list*		List<T>.Map(s_list* lst, s_list *(*f)(s_list* elem))
 
 
 
-s_list*		List<T>.Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
+s_list<T>*		Map_I(s_list<T>* lst, s_list<T> *(*f)(s_list<T>* elem, t_u32 index))
 {
-	s_list	*result;
-	s_list	*current;
+	s_list<T>	*result;
+	s_list<T>	*current;
 	t_u32	i;
 
 #if LIBCONFIG_HANDLE_NULLPOINTERS
@@ -406,10 +411,10 @@ s_list*		List<T>.Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
 		current = f(lst, i);
 		if (current == NULL)
 		{
-			List<T>.Delete(&result, List<T>.Map_Delete);
+			Delete(&result, Map_Delete);
 			return (NULL);
 		}
-		List<T>.Append(&result, current);
+		Append(&result, current);
 		lst = lst->next;
 		++i;
 	}
@@ -418,9 +423,9 @@ s_list*		List<T>.Map_I(s_list* lst, s_list *(*f)(s_list* elem, t_u32 index))
 
 
 
-T*	List<T>.To_PointerArray(s_list const** a_lst)
+T*	To_PointerArray(s_list<T> const** a_lst)
 {
-	s_list const* lst;
+	s_list<T> const* lst;
 	T*	result;
 	t_size	length;
 	t_u32	count;
@@ -431,9 +436,9 @@ T*	List<T>.To_PointerArray(s_list const** a_lst)
 		return (NULL);
 #endif
 	lst = *a_lst;
-	count = List<T>.Size(lst);
+	count = Size(lst);
 	length = (count + 1) * sizeof(void *);
-	if (!(result = (T*)Memory_Alloc(length)))
+	if (!(result = (T*)Memory.Alloc(length)))
 		return (NULL);
 	i = 0;
 	while (lst && i < count)
@@ -448,9 +453,9 @@ T*	List<T>.To_PointerArray(s_list const** a_lst)
 
 
 
-s_array	List<T>.To_Array(s_list const** a_lst)
+s_array	To_Array(s_list<T> const** a_lst)
 {
-	s_list const* lst;
+	s_list<T> const* lst;
 	s_array result;
 	t_size	count;
 	t_size	i;
@@ -469,15 +474,15 @@ s_array	List<T>.To_Array(s_list const** a_lst)
 			return (ARRAY_NULL);
 	}
 	result.item_count = (count + 1);
-	if (!(result.items = (T*)Memory_Alloc(result.item_count * result.item_size)))
+	if (!(result.items = (T*)Memory.Alloc(result.item_count * result.item_size)))
 		return (ARRAY_NULL);
 	i = 0;
 	while (lst && ++i < count)
 	{
-		Memory_Copy((t_u8*)result.items + (i * result.item_size),
+		Memory.Copy((t_u8*)result.items + (i * result.item_size),
 			lst->item, result.item_size);
 		lst = lst->next;
 	}
-//	Memory_Clear(result + (i * result.item_size), result.item_size);
+//	Memory.Clear(result + (i * result.item_size), result.item_size);
 	return (result);
 }

@@ -160,9 +160,9 @@ HEADER_CPP
 	#endif
 
 #else
-	#error "Unknown data model: this platform is unsupported, and needs some manual configuration to build."
-		"\n""Please run the libccc 'make test-predef' simple test program, "
-			"to check which macros are predefined in your environment."
+	#warning "Unknown data model: this platform is unsupported, and may need some manual configuration to build." \
+		"\n""To be specific, the '_IS_[32/64]BIT' and '_SIZEOF_[SHORT/INT/LONG/LONGLONG/POINTER]' will not work." \
+		"\n""Please run the libccc 'make test-predef' simple test program, to check which macros are predefined in your environment." \
 
 #endif
 
@@ -177,11 +177,11 @@ HEADER_CPP
 
 //! These macros can be used to check native type sizes at preprocess-time, ie: in `#if` statements.
 //!@{
-#define SIZEOF_SHORT	((__DATAMODEL__ >> 24) & 0xFF)
-#define SIZEOF_INT		((__DATAMODEL__ >> 16) & 0xFF)
-#define SIZEOF_LONG		((__DATAMODEL__ >>  8) & 0xFF)
-#define SIZEOF_LONGLONG	((__DATAMODEL__ >>  0) & 0xFF)
-#define SIZEOF_POINTER	(_IS_32BIT ? 4 : 8)
+#define _SIZEOF_SHORT     ((__DATAMODEL__ >> 24) & 0xFF)
+#define _SIZEOF_INT       ((__DATAMODEL__ >> 16) & 0xFF)
+#define _SIZEOF_LONG      ((__DATAMODEL__ >>  8) & 0xFF)
+#define _SIZEOF_LONGLONG  ((__DATAMODEL__ >>  0) & 0xFF)
+#define _SIZEOF_POINTER   (_IS_32BIT ? 4 : 8)
 //!@}
 
 

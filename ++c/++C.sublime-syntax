@@ -13,28 +13,12 @@ comment: |
 file_extensions:
   - c
   - h
-  - C
-  - H
   - ++c
   - ++h
-  - ++C
-  - ++H
   - ppc
   - pph
-  - ppC
-  - ppH
-  - PPc
-  - PPh
-  - PPC
-  - PPH
   - xxc
   - xxh
-  - xxC
-  - xxH
-  - XXc
-  - XXh
-  - XXC
-  - XXH
 
 first_line_match: "-[*]-( Mode:)? C -[*]-"
 

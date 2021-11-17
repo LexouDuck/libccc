@@ -169,9 +169,8 @@ void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
 	if (handler)
 	{
 		error_msg = Error_GetMessage(error);
-		if (message)
-			tmp = String_Format("%s -> %s%s",  funcname, error_msg, message);
-		else tmp = String_Format("%s -> %s",   funcname, error_msg);
+		if (message) { tmp = String_Format("%s -> %s%s",  funcname, error_msg, message); }
+		else         { tmp = String_Format("%s -> %s",    funcname, error_msg);          }
 		handler(error, tmp);
 		String_Delete(&error_msg);
 		String_Delete(&tmp);

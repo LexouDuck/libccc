@@ -42,8 +42,10 @@ HEADER_CPP
 #ifdef DEBUG
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
 	{														\
+		t_char* tmp_errorname = Error_GetName(ERRORCODE);	\
 		IO_Output_Format(C_RED"ERROR"C_RESET"[%s]: %s\n",	\
-			Error_GetName(ERRORCODE), MESSAGE);				\
+			tmp_errorname, MESSAGE);						\
+		String_Delete(&tmp_errorname);						\
 	}														\
 
 #else

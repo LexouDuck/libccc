@@ -190,8 +190,10 @@ string/sub.c
 string/trim.c
 stringarray/add.c
 stringarray/count.c
+stringarray/create.c
 stringarray/delete.c
 stringarray/divide.c
+stringarray/duplicate.c
 stringarray/fold.c
 stringarray/join.c
 stringarray/length.c

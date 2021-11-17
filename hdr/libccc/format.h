@@ -243,30 +243,34 @@ HEADER_CPP
 
 //! @see libccc/float.h
 //!@{
-#define SF_FLOAT      "%"SF_FLOAT_
-#define SF_FLOAT_     CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_))
-#define SF_FLOAT_HEX  "%"SF_FLOAT_HEX_
-#define SF_FLOAT_HEX_ CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_HEX_))
+#define SF_FLOAT       "%"SF_FLOAT_
+#define SF_FLOAT_      CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_))
+#define SF_FLOAT_HEX   "%"SF_FLOAT_HEX_
+#define SF_FLOAT_HEX_  CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_HEX_))
 
 #define SF_F32        "%#"SF_F32_
 #define SF_F32_       "g"
 #define SF_F32_HEX    "%#"SF_F32_HEX_
 #define SF_F32_HEX_   "a"
+#define SF_F32_FULL   "%#.9E"
 
 #define SF_F64        "%#"SF_F64_
 #define SF_F64_       "g"
 #define SF_F64_HEX    "%#"SF_F64_HEX_
 #define SF_F64_HEX_   "a"
+#define SF_F64_FULL   "%#.17E"
 
 #define SF_F80        "%#"SF_F80_
 #define SF_F80_       "Lg"
 #define SF_F80_HEX    "%#"SF_F80_HEX_
 #define SF_F80_HEX_   "La"
+#define SF_F80_FULL   "%#.21LE"
 
 #define SF_F128       "%#"SF_F128_
 #define SF_F128_      "Lg"
 #define SF_F128_HEX   "%#"SF_F128_HEX_
 #define SF_F128_HEX_  "La"
+#define SF_F128_FULL  "%#.36LE"
 //!@}
 
 //! @see libccc/pointer.h
