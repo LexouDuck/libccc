@@ -22,9 +22,16 @@ IO_MAGENTA="\033[0;35m"
 FILES=`git diff  --cached  --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
 printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
 
-# check if the checksum is now different
-if [ ! -z "$(echo "$FILES" | grep "(`printf "$folders" | xargs | tr ' ' '|'`)/")" ]
-then
+SRCS=`make show-lists`
+
+for w in $FILES; do                                                         
+	if echo "$SRCS" | grep -q "$w" ; then
+		match=1
+		SRCS="$SRCS $w"
+	fi
+done
+
+if [ "$match" ]; then
 	make version-build || exit 1
 	git add VERSION
 fi
