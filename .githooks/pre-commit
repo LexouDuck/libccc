@@ -24,10 +24,10 @@ printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
 
 SRCS=`make show-lists`
 
-for w in $FILES; do                                                         
-	if echo "$SRCS" | grep -q "$w" ; then
+for i in $SRCS; do
+	if echo "$FILES" | grep -q "$i" ; then
 		match=1
-		SRCS="$SRCS $w"
+		FILES="$FILES $i"
 	fi
 done
 

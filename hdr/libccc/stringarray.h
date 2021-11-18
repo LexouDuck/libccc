@@ -44,8 +44,8 @@ HEADER_CPP
 
 //! Splits a string into several new sub-strings, with `sep` as the delimiter char
 /*!
-**	@param	str		
-**	@param	sep		
+**	@param	str		The string into split into several parts
+**	@param	sep		The separator character used to determine where to split
 **	@returns
 **	A string array made up of substrings of `str`, where each element
 **	is a section delimited by `c` separators, or the edges of the string.
