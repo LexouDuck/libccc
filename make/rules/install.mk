@@ -5,7 +5,7 @@
 .PHONY:\
 install #! Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
 install: $(NAME_STATIC) $(NAME_DYNAMIC)
-	@printf $(IO_CYAN)"Installing library: $(NAME)..."$(IO_RESET)"\n"
+	@$(call print_message,"Installing library: $(NAME)...")
 	@mkdir -p $(INSTALLDIR)/include/
 	@mkdir -p $(INSTALLDIR)/lib/
 	@$(INSTALL_DATA) $(HDRS)        $(INSTALLDIR)/include/
@@ -14,16 +14,16 @@ install: $(NAME_STATIC) $(NAME_DYNAMIC)
 			$(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC)
 	@ln -sf $(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC) \
 			$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_DYNAMIC)
-	@printf $(IO_GREEN)"SUCCESS!"$(IO_RESET)"\n"
+	@@$(call print_success,"Installed $(NAME) to $(INSTALLDIR)/lib/")
 
 
 
 .PHONY:\
 uninstall #! Removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
 uninstall:
-	@printf $(IO_CYAN)"Uninstalling library: $(NAME)..."$(IO_RESET)"\n"
+	@$(call print_message,"Uninstalling library: $(NAME)...")
 	@rm -f $(INSTALLDIR)/include/$(HDRS)
 	@rm -f $(INSTALLDIR)/lib/$(NAME_STATIC)
 	@rm -f $(INSTALLDIR)/lib/$(NAME_DYNAMIC)
 	@rm -f $(INSTALLDIR)/lib/$(NAME).$(VERSION)$(EXT_LIB_DYNAMIC)
-	@printf $(IO_GREEN)"SUCCESS!"$(IO_RESET)"\n"
+	@@$(call print_success,"Uninstalled $(NAME) from $(INSTALLDIR)/lib/")

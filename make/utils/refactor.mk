@@ -10,7 +10,7 @@ TEMPFILE = refactor.tmp
 refactor-indent #! On all source files: changes any tab characters which are not at the start of a line into spaces
 refactor-indent:
 	@if ! echo "    _ " | unexpand -t 4 --first-only > /dev/null  ; then \
-		printf $(IO_RED)"ERROR"$(IO_RESET)": 'unexpand' command doesn't support the '--first-only' option.\n" ; \
+		$(call print_error,"The 'unexpand' command doesn't support the '--first-only' option.") ; \
 		exit 1 ; \
 	fi
 	@for i in $(SRCS) $(HDRS) ; do \
@@ -27,8 +27,8 @@ refactor-indent:
 .PHONY:\
 refactor-replace #! On all source files: performs a regular expression match & replace (using args: `OLD` and `NEW`)
 refactor-replace:
-	@if [ "$(OLD)" == "" ]; then printf $(IO_RED)"ERROR"$(IO_RESET)": no 'OLD' argument specified.\n" ; exit 1 ; fi
-	@if [ "$(NEW)" == "" ]; then printf $(IO_RED)"ERROR"$(IO_RESET)": no 'NEW' argument specified.\n" ; exit 1 ; fi
+	@if [ "$(OLD)" == "" ]; then $(call print_error,"No 'OLD' argument was specified.") ; exit 1 ; fi
+	@if [ "$(NEW)" == "" ]; then $(call print_error,"No 'NEW' argument was specified.") ; exit 1 ; fi
 	@for i in $(SRCS) $(HDRS) ; do \
 		printf "Editing file: $$i -> " ; \
 		sed -E 's/$(OLD)/$(NEW)/g' $$i \

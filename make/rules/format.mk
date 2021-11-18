@@ -5,7 +5,7 @@
 .PHONY:\
 format #! Runs the code style auto-formatter on one or more files given as `ARGS`
 format:
-	@printf $(IO_YELLOW)"WARNING"$(IO_RESET)": No code style formatter implemented.""\n"
+	@$(call print_message,"No code style formatter implemented.")
 
 
 

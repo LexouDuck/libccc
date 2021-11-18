@@ -70,8 +70,8 @@ else ifeq ($(OSMODE),linux)
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
 	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
 else
-	@printf $(IO_YELLOW)"Unknown platform: needs manual configuration."$(IO_RESET)"\n"
-	@printf "You must manually configure the script to build a dynamic library""\n"
+	@$(call print_warning,"Unknown platform: needs manual configuration.")
+	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@cp -f $(NAME_DYNAMIC)	$(BINDIR)$(OSMODE)/dynamic/
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"

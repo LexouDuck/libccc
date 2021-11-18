@@ -15,7 +15,7 @@ echo_VERSION = echo "$(NAME)@$(1).$(2).$(3)-$(VERSION_METADATA)"
 make_VERSION = $(call echo_VERSION,$(1),$(2),$(3)) > $(VERSIONFILE) && cat $(VERSIONFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(VERSIONFILE) ; echo $$?),1)
-$(warning NOTE: version file '$(VERSIONFILE)' doesn't exist - creating now...)
+$(shell $(call print_warning,"version file '$(VERSIONFILE)' doesn't exist - creating now..."))
 $(shell $(call make_VERSION,0,0,1))
 endif
 #! The filepath in which to store the version number
@@ -84,7 +84,7 @@ version:
 .PHONY:\
 version-major #! Increments the project major version number (1st of the 3 numbers: X.0.0)
 version-major:
-	@printf $(IO_CYAN)"Incrementing major version number..."$(IO_RESET)"\n"
+	@$(call print_message,"Incrementing major version number...")
 	@$(eval VERSION_MAJOR := $(shell echo $$(($(VERSION_MAJOR)+1))))
 	@$(eval VERSION_MINOR := 0)
 	@$(eval VERSION_PATCH := 0)
@@ -93,7 +93,7 @@ version-major:
 .PHONY:\
 version-minor #! Increments the project minor version number (2nd of the 3 numbers: 0.Y.0)
 version-minor:
-	@printf $(IO_CYAN)"Incrementing minor version number..."$(IO_RESET)"\n"
+	@$(call print_message,"Incrementing minor version number...")
 	@$(eval VERSION_MINOR := $(shell echo $$(($(VERSION_MINOR)+1))))
 	@$(eval VERSION_PATCH := 0)
 	@$(call make_VERSION,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_PATCH))
@@ -101,6 +101,6 @@ version-minor:
 .PHONY:\
 version-patch #! Increments the project patch version number (3rd of the 3 numbers: 0.0.Z)
 version-patch:
-	@printf $(IO_CYAN)"Incrementing patch version number..."$(IO_RESET)"\n"
+	@$(call print_message,"Incrementing patch version number...")
 	@$(eval VERSION_PATCH := $(shell echo $$(($(VERSION_PATCH)+1))))
 	@$(call make_VERSION,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_PATCH))

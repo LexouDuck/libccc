@@ -14,7 +14,7 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 .PHONY:\
 debug-macros #! Preprocesses all source files and stores them in the obj folder
 debug-macros: all $(SRCS_PREPROCESSED)
-	@printf "Outputting preprocessed code...\n"
+	@$(call print_message,"Outputting preprocessed code...")
 
 
 
@@ -22,7 +22,7 @@ debug-macros: all $(SRCS_PREPROCESSED)
 debug-symbols #! Outputs the list of symbols found inside the given `ARGS` binary/ies
 debug-symbols: all
 ifeq ($(ARGS),)
-	@printf $(IO_RED)"ERROR"$(IO_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+	@$(call print_error,"This rule expects one or more binary files given as arguments (ARGS=...)")
 else
 	@nm -a $(ARGS)
 endif
@@ -33,7 +33,7 @@ endif
 debug-linking #! Outputs the list of linking paths to find dynamic libraries for the given `ARGS`
 debug-linking: all
 ifeq ($(ARGS),)
-	@printf $(IO_RED)"ERROR"$(IO_RESET)": This rule expects one or more binary files given as arguments (ARGS=...)""\n"
+	@$(call print_error,"This rule expects one or more binary files given as arguments (ARGS=...)")
 else ifeq ($(OSMODE),win32)
 	@objdump -p $(ARGS)
 else ifeq ($(OSMODE),win64)
@@ -43,7 +43,7 @@ else ifeq ($(OSMODE),macos)
 else ifeq ($(OSMODE),linux)
 	@ldd $(ARGS)
 else
-	@printf $(IO_RED)"ERROR"$(IO_RESET)": Unknown platform, needs manual configuration""\n"
+	@$(call print_error,"Unknown platform, needs manual configuration")
 endif
 
 

@@ -67,6 +67,7 @@ TEMPDIR = ./temp/
 #######################################
 
 # general variables
+include make/utils/print.mk
 include make/utils/ansi.mk
 include make/utils/sudo.mk
 include make/utils/ext.mk

@@ -10,8 +10,8 @@ echo_TEST_HDRSFILE = find $(TEST_DIR) -name "*.h" | sort | sed 's|//|/|g' | grep
 make_TEST_HDRSFILE = $(call echo_TEST_HDRSFILE) > $(TEST_HDRSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(TEST_HDRSFILE) ; echo $$?),1)
-$(warning NOTE: test suite header code list file '$(TEST_HDRSFILE)' doesn't exist - creating now...)
-$(shell $(call mkdir -p $(LISTSDIR)))
+$(shell $(call print_warning,"test suite header code list file '$(TEST_HDRSFILE)' doesn't exist - creating now..."))
+$(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_TEST_HDRSFILE))
 endif
 #! List of all C header code files
@@ -27,8 +27,8 @@ echo_TEST_SRCSFILE = find $(TEST_DIR) -name "*.c" | sort | sed 's|//|/|g' | grep
 make_TEST_SRCSFILE = $(call echo_TEST_SRCSFILE) > $(TEST_SRCSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(TEST_SRCSFILE) ; echo $$?),1)
-$(warning NOTE: test suite source code list file '$(TEST_SRCSFILE)' doesn't exist - creating now...)
-$(shell $(call mkdir -p $(LISTSDIR)))
+$(shell $(call print_warning,"test suite source code list file '$(TEST_SRCSFILE)' doesn't exist - creating now..."))
+$(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_TEST_SRCSFILE))
 endif
 #! List of all C source code files

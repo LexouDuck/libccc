@@ -15,8 +15,8 @@ echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACK
 make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(PACKAGESFILE) ; echo $$?),1)
-$(warning NOTE: packages list file '$(PACKAGESFILE)' doesn't exist - creating now...)
-$(shell $(call mkdir -p $(PACKAGESDIR)))
+$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
+$(shell mkdir -p $(PACKAGESDIR))
 $(shell $(call make_PACKAGESFILE))
 endif
 #! The raw contents of the packages list file
@@ -27,13 +27,13 @@ PACKAGES := $(shell cat $(PACKAGESFILE) | cut -d '@' -f 1)
 
 #! Here, we define necessary variables for each package
 #{
-PACKAGES_VERSIONS = $(addsuffix _VERSION, $(PACKAGES))
-PACKAGES_DIRS     = $(addsuffix _DIR,     $(PACKAGES))
-PACKAGES_BINS     = $(addsuffix _BIN,     $(PACKAGES))
-PACKAGES_INCLUDES = $(addsuffix _INCLUDE, $(PACKAGES))
-PACKAGES_LINKDIRS = $(addsuffix _LINKDIR, $(PACKAGES))
-PACKAGES_LINKLIBS = $(addsuffix _LINKLIB, $(PACKAGES))
-PACKAGES_LINKS    = $(addsuffix _LINK,    $(PACKAGES))
+PACKAGES_VERSIONS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_VERSION)
+PACKAGES_DIRS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_DIR)
+PACKAGES_BINS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_BIN)
+PACKAGES_INCLUDES = $(foreach i,$(PACKAGES),PACKAGE_$(i)_INCLUDE)
+PACKAGES_LINKDIRS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKDIR)
+PACKAGES_LINKLIBS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKLIB)
+PACKAGES_LINKS    = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINK)
 #}
 
 

@@ -22,9 +22,9 @@ dist: build-release
 dist-version #! Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'
 dist-version:
 ifeq ($(wildcard $(BINDIR)$(OSMODE)/*),)
-	@printf $(IO_RED)"ERROR"$(IO_RESET)": Cannot produce distributable archive for target '$(OSMODE)'\n"
+	@$(call print_error,"Cannot produce distributable archive for target '$(OSMODE)'")
 else
-	@printf $(IO_CYAN)"Preparing .zip archive: $(DISTRIBUTABLE)"$(IO_RESET)"\n"
+	@$(call print_message,"Preparing .zip archive: $(DISTRIBUTABLE)")
 	@rm -f $(DISTRIBUTABLE)
 	@rm -rf   $(TEMPDIR)
 	@mkdir -p $(TEMPDIR)

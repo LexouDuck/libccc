@@ -7,11 +7,12 @@
 #	@param 2	The shell command to check whether it exists (exit code 0 means it is ok)
 #	@param 3	The shell command to install the prerequisite (will only run if command $(2) fails)
 check_prereq = \
-	printf "\n\n"$(IO_CYAN)"|=> Checking prerequisite: $(1)"$(IO_RESET)"\n$$ $(2)\n" ; \
+	$(call print_message,"\n\n|=> Checking prerequisite: $(1)") ; \
+	echo "$$ $(2)\n" ; \
 	{ $(2) ; } || \
 	{ \
-		printf $(IO_YELLOW)"$(1) is not installed"$(IO_RESET)"\n" ; \
-		printf $(IO_MAGENTA)"Installing...\n" ; \
+		$(call print_warning,"$(1) is not installed") ; \
+		$(call print_message,"Installing prereq...") ; \
 		$(3) ; \
 	}
 
@@ -20,11 +21,11 @@ check_prereq = \
 #! The shell command to install a prerequisite program/library (uses the appropriate OS-specific package manager)
 #	@param 1	The name of the program/library/package to install
 install_prereq = \
-	printf $(IO_RED)"ERROR"$(IO_RESET)": Unknown platform. You must manually install: $(1)" \
+	$(call print_error,"Unknown platform. You must manually install: $(1)") \
 
 ifeq ($(OS),Windows_NT)
 install_prereq = \
-	printf $(IO_RED)"ERROR"$(IO_RESET)": Windows platform detected. You must manually install: " \
+	$(call print_error,"Windows platform detected. You must manually install: $(1)") \
 
 else ifeq ($(UNAME_S),Darwin)
 install_prereq = \
@@ -40,7 +41,7 @@ install_prereq = \
 	elif [ -x "`command -v zypp    `" ]; then $(SUDO) zypp    install    $(1) ; \
 	elif [ -x "`command -v zypper  `" ]; then $(SUDO) zypper  install    $(1) ; \
 	else \
-		printf $(IO_RED)"ERROR"$(IO_RESET)": Package manager not found. You must manually install: $(1)" >&2 ; \
+		$(call print_error,"Package manager not found. You must manually install: $(1)") >&2 ; \
 	fi \
 
 endif
@@ -77,7 +78,7 @@ prereq-build:
 prereq-tests #! Checks prerequisite installs to run the various tests
 prereq-tests:
 ifeq ($(OSMODE),other)
-	@printf $(IO_YELLOW)"WARNING"$(IO_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
+	@$(call print_warning,"'other' platform: memory leak checking tool must be configured manually")
 else ifeq ($(OSMODE),win32)
 	@-# TODO drmemory.exe ?
 else ifeq ($(OSMODE),win64)
@@ -85,7 +86,7 @@ else ifeq ($(OSMODE),win64)
 else ifeq ($(OSMODE),macos)
 	@-$(call check_prereq,\
 		(tests) Xcode leaks checker,\
-		leaks --help,\
+		which leaks,\
 		$(call install_prereq,leaks))
 else ifeq ($(OSMODE),linux)
 	@-$(call check_prereq,\
@@ -93,7 +94,7 @@ else ifeq ($(OSMODE),linux)
 		valgrind --version,\
 		$(call install_prereq,valgrind))
 else
-	@printf $(IO_YELLOW)"WARNING"$(IO_RESET)": Unsupported platform: memory leak checking tool must be configured manually""\n"
+	@$(call print_warning,"Unsupported platform: memory leak checking tool must be configured manually")
 endif
 
 .PHONY:\
@@ -113,7 +114,7 @@ prereq-lint:
 		$(call install_prereq,cppcheck))
 	@-$(call check_prereq,\
 		(lint) splint,\
-		splint --help,\
+		splint --help version,\
 		$(call install_prereq,splint))
 
 .PHONY:\
