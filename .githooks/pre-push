@@ -22,7 +22,7 @@ printf "new commit: $NEW\n"
 
 # get list of files with changes between the OLD and NEW commits
 FILES=`git diff $OLD..$NEW --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
-printf "Files changed:$C_CYAN\n$FILES\n$C_RESET"
+printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
 
 # TODO: run code style formatter ?
 
