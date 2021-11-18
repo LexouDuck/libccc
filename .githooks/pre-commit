@@ -10,21 +10,13 @@ IO_MAGENTA="\033[0;35m"
 
 
 
-
-
-
-
-
-
-
-
 # get list of files with changes in this commit
 FILES=`git diff  --cached  --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
 printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
 
 SRCS=`make show-lists`
 
-for i in $SRCS; do
+for i in "$SRCS"; do
 	if echo "$FILES" | grep -q "$i" ; then
 		match=1
 		FILES="$FILES $i"
@@ -32,7 +24,8 @@ for i in $SRCS; do
 done
 
 if [ "$match" ]; then
-	make version-build || exit 1
+	printf "Detected changes to source files."
+	make version-patch || exit 1
 	git add VERSION
 fi
 

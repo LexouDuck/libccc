@@ -8,6 +8,8 @@
 IO_MAGENTA="\033[0;35m"
    IO_CYAN="\033[0;36m"
 
+
+
 # get commit hashes from stdin
 while read line
 do
