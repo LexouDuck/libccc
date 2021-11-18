@@ -69,8 +69,15 @@ typedef struct array_T
 	T*		items;	//!< The pointer to the array (items can be of any one type)
 }			s_array_T;
 
+/* TODO find a way to avoid multiple definitions
 extern
 s_array_T const CONCAT(NULL_ARRAY,T_NAME);
+s_array_T const CONCAT(NULL_ARRAY,T_NAME) = (s_array_T)
+{
+	.length = 0,
+	.items = NULL,
+};
+*/
 
 
 #define foreach_s_array(_TYPE_, _VAR_, _ARRAY_)		foreach (_TYPE_, _VAR_, s_array, _ARRAY_)

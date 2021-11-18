@@ -73,8 +73,18 @@ typedef struct list_T
 	T				item;	//!< The content of this linked-list element
 }				s_list_T;
 
+/* TODO find a way to avoid multiple definitions
 extern
 s_list_T const CONCAT(NULL_LIST,T_NAME);
+s_list_T const CONCAT(NULL_LIST,T_NAME) = (s_list_T)
+{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	.prev = NULL,
+#endif
+	.next = NULL,
+	.item = T_DEFAULT,
+};
+*/
 
 
 
