@@ -24,7 +24,7 @@ for i in "$SRCS"; do
 done
 
 if [ "$match" ]; then
-	printf "Detected changes to source files."
+	printf "Detected changes to source files.\n"
 	make version-patch || exit 1
 	git add VERSION
 fi
