@@ -1,16 +1,40 @@
-#! This file holds rules to build dependencies (libraries, packages, binaries, etc)
+#! This file holds rules to download/update/version all dependency packages
+
+
+
+#! The folder which stores makefiles/scripts used for dependency package management
+PACKAGESDIR := make/packages/
 
 
 
 #! The file which stores all dependency package version info
-PACKAGESFILE = make/lists/packages.txt
+PACKAGESFILE = $(LISTSDIR)packages.txt
+#! The shell command to output the list of packages (from the set of .mk scripts in PACKAGESDIR)
+echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%=%)@0.0.0-?" ;)
 #! The shell command to generate the packages list file, if it doesn't exist
-make_PACKAGESFILE = $(foreach i,$(PACKAGES), echo "$(i)@0.0.0-?" >> $(PACKAGESFILE) ;)
+make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(PACKAGESFILE) ; echo $$?),1)
 $(warning NOTE: packages list file '$(PACKAGESFILE)' doesn't exist - creating now...)
+$(shell $(call mkdir -p $(PACKAGESDIR)))
 $(shell $(call make_PACKAGESFILE))
 endif
+#! The raw contents of the packages list file
+PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
+
+#! The list of names of each package (according to the packages list file)
+PACKAGES := $(shell cat $(PACKAGESFILE) | cut -d '@' -f 1)
+
+#! Here, we define necessary variables for each package
+#{
+PACKAGES_VERSIONS = $(addsuffix _VERSION, $(PACKAGES))
+PACKAGES_DIRS     = $(addsuffix _DIR,     $(PACKAGES))
+PACKAGES_BINS     = $(addsuffix _BIN,     $(PACKAGES))
+PACKAGES_INCLUDES = $(addsuffix _INCLUDE, $(PACKAGES))
+PACKAGES_LINKDIRS = $(addsuffix _LINKDIR, $(PACKAGES))
+PACKAGES_LINKLIBS = $(addsuffix _LINKLIB, $(PACKAGES))
+PACKAGES_LINKS    = $(addsuffix _LINK,    $(PACKAGES))
+#}
 
 
 
@@ -51,4 +75,4 @@ update-all: $(addprefix update-, $(PACKAGES))
 
 
 # include makefiles for each external package
-include $(foreach i,$(PACKAGES), make/packages/$(i).mk)
+include $(foreach i,$(PACKAGES), $(PACKAGESDIR)$(i).mk)

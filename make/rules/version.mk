@@ -2,17 +2,10 @@
 
 
 
-# the important folders (if a file is changed in one of these, then the version will auto-increment)
-VERSION_KEYFOLDERS = \
-	$(SRCDIR)	\
-	$(HDRDIR)	\
-
 #! Project metadata embedded in the version (by default, the date and commit, but it can be "alpha3", "beta", etc)
 VERSION_METADATA = $(VERSION_METADATA_DATE)_$(VERSION_METADATA_COMMIT)
 VERSION_METADATA_DATE   := $(shell date -u +%Y-%m-%d)
 VERSION_METADATA_COMMIT := $(shell git rev-parse HEAD)
-
-
 
 #! The filepath in which to store the version number
 VERSIONFILE = VERSION
@@ -26,7 +19,7 @@ $(warning NOTE: version file '$(VERSIONFILE)' doesn't exist - creating now...)
 $(shell $(call make_VERSION,0,0,1))
 endif
 #! The filepath in which to store the version number
-VERSIONFULL := $(shell cat $(VERSIONFILE))
+VERSIONINFO := $(shell cat $(VERSIONFILE))
 
 
 
@@ -35,11 +28,11 @@ REGEXP_VERSION  := [0-9]+(\.[0-9]+)+
 REGEXP_METADATA := (.*)$
 
 #! The project's name, as parsed from the VERSION file
-PARSED_NAME     := $(shell echo $(VERSIONFULL) | grep -Eo '$(REGEXP_NAME)')
+PARSED_NAME     := $(shell echo $(VERSIONINFO) | grep -Eo '$(REGEXP_NAME)')
 #! The project's version number, as parsed from the VERSION file
-PARSED_VERSION  := $(shell echo $(VERSIONFULL) | grep -Eo '$(REGEXP_VERSION)' )
+PARSED_VERSION  := $(shell echo $(VERSIONINFO) | grep -Eo '$(REGEXP_VERSION)' )
 #! The project's commit revision hash code, as parsed from the VERSION file
-PARSED_METADATA := $(shell echo $(VERSIONFULL) | cut -d'-' -f 2-)
+PARSED_METADATA := $(shell echo $(VERSIONINFO) | cut -d'-' -f 2-)
 
 VERSION_MAJOR := $(shell echo $(PARSED_VERSION) | cut -d'.' -f 1)
 VERSION_MINOR := $(shell echo $(PARSED_VERSION) | cut -d'.' -f 2)
@@ -53,7 +46,7 @@ VERSION = $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)
 define VERSION_ERRORMESSAGE
 
 The contents of the version file '$(VERSIONFILE)':
-$(VERSIONFULL)
+$(VERSIONINFO)
 The version should follow a semver-like format:
 (NAME)@(X).(Y).(Z)-(METADATA)
 where:
@@ -69,14 +62,14 @@ $(error Project name mismatch: NAME is "$(NAME)", but version file '$(VERSIONFIL
 	$(VERSION_ERRORMESSAGE))
 endif
 
-ifeq ($(shell echo "$(VERSIONFULL)" | grep -E '$(REGEXP_NAME)@$(REGEXP_VERSION)-$(REGEXP_METADATA)'),)
+ifeq ($(shell echo "$(VERSIONINFO)" | grep -E '$(REGEXP_NAME)@$(REGEXP_VERSION)-$(REGEXP_METADATA)'),)
 $(error Project version has invalid format.\
 	$(VERSION_ERRORMESSAGE))
 endif
 
 #ifneq ($(PARSED_METADATA),$(VERSION_METADATA))
 #$(info Project commit changed: updating version file "$(VERSIONFILE)"...)
-#VERSIONFULL := $(shell $(call make_VERSION,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_PATCH)))
+#VERSIONINFO := $(shell $(call make_VERSION,$(VERSION_MAJOR),$(VERSION_MINOR),$(VERSION_PATCH)))
 #endif
 
 

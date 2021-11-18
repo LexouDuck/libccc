@@ -59,6 +59,10 @@ GITHOOKSDIR = ./.githooks/
 
 
 
+LISTSDIR = ./make/lists/
+
+
+
 #######################################
 #     Included Makefile Variables     #
 #######################################
@@ -72,8 +76,7 @@ include make/utils/install.mk
 # project-specific rules
 include make/config/modes.mk
 include make/config/build.mk
-include make/config/tests.mk
-include make/config/packages.mk
+include make/config/build-tests.mk
 
 
 
@@ -83,7 +86,9 @@ include make/config/packages.mk
 
 # project-specific rules
 include make/rules/all.mk
+include make/rules/lists.mk
 include make/rules/build.mk
+include make/rules/lists-tests.mk
 include make/rules/build-tests.mk
 include make/rules/install.mk
 

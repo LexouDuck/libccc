@@ -23,7 +23,7 @@ lint: CFLAGS += -fanalyzer
 else ifeq (clang,$(findstring clang,$(CC)))
 lint: CFLAGS += -Wthread-safety --analyze --analyzer-output text
 else
-$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
+#$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
 endif
 lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete
