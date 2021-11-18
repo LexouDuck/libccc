@@ -1,4 +1,32 @@
 #!/bin/sh
 
-# run the source code auto-style-formatting tool
-#make format-all
+  IO_RESET="\033[0m"
+    IO_RED="\033[0;31m"
+  IO_GREEN="\033[0;32m"
+ IO_YELLOW="\033[0;33m"
+   IO_BLUE="\033[0;34m"
+IO_MAGENTA="\033[0;35m"
+   IO_CYAN="\033[0;36m"
+
+
+
+
+
+
+
+
+
+
+
+# get list of files with changes in this commit
+FILES=`git diff  --cached  --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
+printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
+
+# check if the checksum is now different
+if [ ! -z "$(echo "$FILES" | grep "(`printf "$folders" | xargs | tr ' ' '|'`)/")" ]
+then
+	make version-build || exit 1
+	git add VERSION
+fi
+
+exit 0
