@@ -63,7 +63,7 @@ $(error Project name mismatch: NAME is "$(NAME)", but version file '$(VERSIONFIL
 endif
 
 ifeq ($(shell echo "$(VERSIONINFO)" | grep -E '$(REGEXP_NAME)@$(REGEXP_VERSION)-$(REGEXP_METADATA)'),)
-$(error Project version has invalid format.\
+$(error Project version file has invalid format.\
 	$(VERSION_ERRORMESSAGE))
 endif
 

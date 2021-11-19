@@ -56,6 +56,8 @@ t_char**					String_Split_Char(t_char const* str, char sep);
 
 //! Splits a string into several new sub-strings, with `sep` as the delimiter char
 /*!
+**	@param	str		The string into split into several parts
+**	@param	sep		A charset string, listing all characters to be considered as separators
 **	@returns
 **	A string array made up of substrings of `str`, where each element
 **	is a section delimited by any of the `char_sep` separators, or the edges
@@ -67,6 +69,8 @@ t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
 
 //! Splits up the given string `str` into several parts in a string array, using `query` as separator
 /*!
+**	@param	str		The string into split into several parts
+**	@param	sep		The separator string used to determine where to split
 **	@returns
 **	A string array made up of substrings of `str`, where each element
 **	is a section delimited by the full string `query`, or the edges of the string.
@@ -81,14 +85,19 @@ _MALLOC()
 t_char**					String_Split_String(t_char const* str, t_char const* sep);
 #define c_strsplit_str		String_Split_String
 
+
+
+//! Splits up the given string `str` into a set of substrings which are all `n` characters long
 /*!
+**	@param	str		The string into split into several parts
+**	@param	n		The amount of characters contained in each substring
 **	@returns
 **	A string array which is the result of dividing str into chunks of
 **	equal size `n`, safe for the last chunk of `length <= n`.
 */
 _MALLOC()
-t_char**					String_Divide(t_char const* str, t_size n);
-#define c_strdivide			String_Divide
+t_char**				String_Divide(t_char const* str, t_size n);
+#define c_strdivide		String_Divide
 
 
 /*
@@ -97,13 +106,28 @@ t_char**					String_Divide(t_char const* str, t_size n);
 ** ************************************************************************** *|
 */
 
+//! Allocates a new string array with `n` elements, all set to NULL
 /*!
+**	@param	n		The amount of strings that can be stored in this string array
 **	@returns
 **	A null-terminated list of unset `t_char*`, of length `length`.
 */
 _MALLOC()
-t_char**				StringArray_New(t_uint length);
+t_char**				StringArray_New(t_uint n);
 #define c_strarrnew		StringArray_New
+
+//! Allocates a new string array with `n` strings, each filled with `length` characters of value `c`
+/*!
+**	@param	n		The amount of strings that are stored in this string array
+**	@param	length	The amount of characters in each allocated string of the array
+**	@param	c		The character used to fill up each allocated string
+**	@returns
+**	A newly allocated string array, which has `n` strings and `length` characters
+**	per string (excluding null-terminators), every character set to the value `c`.
+*/
+_MALLOC()
+t_char**				StringArray_New_C(t_uint n, t_size length, const char c);
+#define c_strarrcnew	StringArray_New_C
 
 //! Allocates a new string array which consists of `n` items, initialized from variadic arguments.
 /*!
@@ -115,23 +139,18 @@ t_char**				StringArray_New(t_uint length);
 t_char**				StringArray_Create(t_uint n, ...);
 #define c_strarrcreate	StringArray_Create
 
+//! Frees all allocated strings in a string array, and the string array itself.
 /*!
-**	@returns
-**	A newly allocated string array, which has `y` line and `x` characters
-**	per lines (`+1` for null-termination), every character set to the value `c`.
-*/
-_MALLOC()
-t_char**				StringArray_New_C(t_uint y, t_size x, const char c);
-#define c_strarrcnew	StringArray_New_C
-
-/*!
-**	Frees all allocations in a string array, then the string array itself.
+**	@param	a_strarr	The address of the string array to deallocate and set to NULL
 */
 void					StringArray_Delete(t_char** *a_strarr);
 #define c_strarrdel		StringArray_Delete
 
+//! Duplicates the contents of a string array, and returns the newly allocated copy.
 /*!
-**	Duplicates the contents of a string array, and returns the copy.
+**	@param	strarr		The string array to copy
+**	@returns
+**	A newly allocated string array with contents identical to the given `strarr`
 */
 _MALLOC()
 t_char**				StringArray_Duplicate(t_char const** strarr);
@@ -139,55 +158,30 @@ t_char**				StringArray_Duplicate(t_char const** strarr);
 
 
 
-/*!
-**	@returns
-**	A newly allocated string array, the result of mapping each string
-**	of `strarr` by `f`. `f` should be a function that allocates and returns a new
-**	string.
-*/
-_MALLOC()
-t_char**					StringArray_Map(t_char const** strarr, char *(*f)(t_char const*));
-#define c_strarrmap			StringArray_Map
+// TODO StringArray_Get()
+// TODO StringArray_Set()
+// TODO StringArray_Copy()
 
-/*!
-**	Transforms the content of the input string array, by mapping each string
-**	of `strarr` by `f`. `f` should be a function that does not allocate a new string;
-** 	but instead edits the string's content in place.
-*/
-void						StringArray_Map_InPlace(t_char** *a_strarr, char *(*f)(t_char*));
-#define c_strarrmap_inplace	StringArray_Map_InPlace
 
+//! Creates a new string array from a subsection of the given string array `strarr`
 /*!
+**	@param	strarr		The string array to copy
+**	@param	start		The index of the start of the subsection to extract
+**	@param	length		The length of the subsection to extract (the amount of strings in the result)
 **	@returns
-**	A newly allocated string array such that every string is now
-**	preceded by `n` times the character `c`.
-*/
-_MALLOC()
-t_char**					StringArray_Pad_L(t_char const** strarr, const char c, t_uint n);
-#define c_strarrpad_l		StringArray_Pad_L
-
-/*!
-**	@returns
-**	A newly allocated string array, which is the result of removing
-**	the lines from index `start` to `start + length` from `strarr`.
+**	A newly allocated string array, which is a copy of a subsection of `strarr`.
+**	The first string of the result is the string at index `start`  from `strarr`.
+**	The last string of the result is the string at index `start + length - 1` in `strarr`.
 */
 _MALLOC()
 t_char**					StringArray_Sub(t_char const** strarr, t_uint start, t_uint length);
 #define c_strarrsub			StringArray_Sub
 
-/*!
-**	@returns
-**	A newly allocated string which is the fold/reduce concatenation
-**	of all strings in `strarr`, with the string `sep` added between each string.
-*/
-_MALLOC()
-t_char*						StringArray_Fold(t_char const** strarr, t_char const* sep);
-#define c_strarrfold		StringArray_Fold
 
 
 /*
 ** ************************************************************************** *|
-**                        StringArray In Place Editors                        *|
+**                       StringArray editing operations                       *|
 ** ************************************************************************** *|
 */
 
@@ -202,22 +196,12 @@ t_char**						StringArray_Join(t_char const** strarr1, t_char const** strarr2);
 
 /*!
 **	@returns
-**	The concatenation of `strarr1` and `strarr2`, and deletes both
-**	inputs from memory. Also returns the result.
-*/
-_MALLOC()
-t_char**						StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2);
-#define c_strarrmerge			StringArray_Merge
-
-/*!
-**	@returns
 **	The concatenation of `dest` and `src`, and deletes `dest`, replacing
 **	it by the result. Also returns the result.
 */
 _MALLOC()
 t_char**						StringArray_Append(t_char** *a_dest, t_char const** src);
 #define c_strarrappend			StringArray_Append
-
 
 /*!
 **	@returns
@@ -227,6 +211,15 @@ t_char**						StringArray_Append(t_char** *a_dest, t_char const** src);
 _MALLOC()
 t_char**						StringArray_Prepend(t_char const** src, t_char** *a_dest);
 #define c_strarrprepend			StringArray_Prepend
+
+/*!
+**	@returns
+**	The concatenation of `strarr1` and `strarr2`, and deletes both
+**	inputs from memory. Also returns the result.
+*/
+_MALLOC()
+t_char**						StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2);
+#define c_strarrmerge			StringArray_Merge
 
 /*!
 **	Inserts the string array `src` at index `index` in `dest`; deletes `dest` and
@@ -270,6 +263,50 @@ t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query
 
 // TODO StringArray_Has()
 // TODO StringArray_HasOnly()
+
+
+
+/*
+** ************************************************************************** *|
+**                        StringArray Content Analysis                        *|
+** ************************************************************************** *|
+*/
+
+/*!
+**	@returns
+**	A newly allocated string array, the result of mapping each string
+**	of `strarr` by `f`. `f` should be a function that allocates and returns a new
+**	string.
+*/
+_MALLOC()
+t_char**					StringArray_Map(t_char const** strarr, char *(*f)(t_char const*));
+#define c_strarrmap			StringArray_Map
+
+/*!
+**	Transforms the content of the input string array, by mapping each string
+**	of `strarr` by `f`. `f` should be a function that does not allocate a new string;
+** 	but instead edits the string's content in place.
+*/
+void						StringArray_Map_InPlace(t_char** *a_strarr, char *(*f)(t_char*));
+#define c_strarrmap_inplace	StringArray_Map_InPlace
+
+/*!
+**	@returns
+**	A newly allocated string which is the fold/reduce concatenation
+**	of all strings in `strarr`, with the string `sep` added between each string.
+*/
+_MALLOC()
+t_char*						StringArray_Fold(t_char const** strarr, t_char const* sep);
+#define c_strarrfold		StringArray_Fold
+
+/*!
+**	@returns
+**	A newly allocated string array such that every string is now
+**	preceded by `n` times the character `c`.
+*/
+_MALLOC()
+t_char**					StringArray_Pad_L(t_char const** strarr, const char c, t_uint n);
+#define c_strarrpad_l		StringArray_Pad_L
 
 
 

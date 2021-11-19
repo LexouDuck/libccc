@@ -268,7 +268,7 @@ s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n
 
 /*
 ** ************************************************************************** *|
-**                            List Editing Operations                         *|
+**                            List editing operations                         *|
 ** ************************************************************************** *|
 */
 
@@ -323,6 +323,16 @@ s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index);
 
 //! TODO
 _GENERIC()
+s_list_T*				CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index);
+#define c_lstdelat		CONCAT(List_RemoveAt,T_NAME)
+
+//! TODO
+_GENERIC()
+s_list_T*				CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*delete)(T));
+#define c_lstfdelat		CONCAT(List_RemoveAt_F,T_NAME)
+
+//! TODO
+_GENERIC()
 s_list_T*				CONCAT(List_Remove,T_NAME)(s_list_T* list, T item);
 #define c_lstdelone		CONCAT(List_Remove,T_NAME)
 
@@ -341,19 +351,17 @@ _GENERIC()
 s_list_T*				CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*delete)(T));
 #define c_lstfdelall	CONCAT(List_RemoveAll_F,T_NAME)
 
-//! TODO
-_GENERIC()
-s_list_T*				CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index);
-#define c_lstdelat		CONCAT(List_RemoveAt,T_NAME)
-
-//! TODO
-_GENERIC()
-s_list_T*				CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*delete)(T));
-#define c_lstfdelat		CONCAT(List_RemoveAt_F,T_NAME)
 
 
-
-//! TODO
+//! Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`
+/*!
+**	@param	list	The list to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting list
+**	@returns
+**	A newly created list copied from `list`, in which in any item equal to `old`
+**	will instead have a value of `new`, or `NULL` if an error occurred.
+*/
 _MALLOC()
 _GENERIC()
 s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
@@ -367,6 +375,60 @@ s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
 **                            List Checking Operations                        *|
 ** ************************************************************************** *|
 */
+
+//! Checks if two lists have the same content
+/*!
+**	@param	list1	The first list to check for equality
+**	@param	list2	The second list to check for equality
+**	@returns
+**	`TRUE` if each item of both lists are equal, and the lists have the same amount of items.
+**	If both pointers given are identical, it simply returns `TRUE` without even checking.
+**	Otherwise, `FALSE` is returned.
+*/
+_GENERIC()
+t_bool					CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2);
+#define c_lstequ		CONCAT(List_Equals,T_NAME)
+
+//! Checks if two lists have the same content, for the `n` first items
+/*!
+**	@param	list1	The first list to check for equality
+**	@param	list2	The second list to check for equality
+**	@param	n		The amount of items to check for equality
+**	@returns
+**	`TRUE` if the first `n` items of both lists are equal.
+**	If both pointers given are identical, it simply returns `TRUE` without even checking.
+**	Otherwise, `FALSE` is returned.
+*/
+_GENERIC()
+t_bool					CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n);
+#define c_lstnequ		CONCAT(List_Equals_N,T_NAME)
+
+//! Compares two lists using the given `compare` function
+/*!
+**	@param	list1	The first list to compare
+**	@param	list2	The second list to compare
+**	@param	compare	The function used to determine whether items are considered "equal" or not
+**	@returns
+**	The first non-zero value returned by the `compare` function given.
+*/
+_GENERIC()
+t_sint					CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2));
+#define c_lstcmp		CONCAT(List_Compare,T_NAME)
+
+//! Compares two lists using the given `compare` function, for the `n` first items
+/*!
+**	@param	list1	The first list to compare
+**	@param	list2	The second list to compare
+**	@param	compare	The function used to determine whether items are considered "equal" or not
+**	@param	n		The amount of items to check for equality
+**	@returns
+**	The first non-zero value returned by the `compare` function given.
+*/
+_GENERIC()
+t_sint					CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2), t_uint n);
+#define c_lstncmp		CONCAT(List_Compare_N,T_NAME)
+
+
 
 //! Returns the first encountered item in the given `list` matching the given `item`
 /*!
@@ -418,47 +480,52 @@ t_sint					CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T
 
 
 
-//! TODO
+//! Gets the amount of occurences of the given `item` in the given `list`
+/*!
+**	@param	list	The list in which to check for occurences of `item`
+**	@param	item	The item to match with
+**	@returns
+**	The total amount of items in the given `list` which are equal to `item`
+*/
 _GENERIC()
 t_uint					CONCAT(List_Count,T_NAME)	(s_list_T const* list, T item);
 #define c_lstcount		CONCAT(List_Count,T_NAME)
 
-//! TODO
+//! Checks whether the given `list` contains the given `item`
+/*!
+**	@param	list	The list in which to check for an occurence of `item`
+**	@param	item	The item to check for
+**	@returns
+**	`TRUE` if the given `list` does contain an item which is equal to the given `item`,
+**	otherwise returns `FALSE`.
+*/
 _GENERIC()
 t_bool					CONCAT(List_Contains,T_NAME)(s_list_T const* list, T item);
 #define c_lstcontains	CONCAT(List_Contains,T_NAME)
 
-//! TODO
+//! Checks whether the given `list` contains any item from the given `targets` list
+/*!
+**	@param	list	The list in which to check for an occurence of items from `target`
+**	@param	targets	The list of items which are to be matched with `list`
+**	@returns
+**	`TRUE` if the given `list` does contain an item which is equal to any item in `targets`,
+**	otherwise returns `FALSE`.
+*/
 _GENERIC()
-t_bool					CONCAT(List_Has,T_NAME)		(s_list_T const* list, s_list_T const* target);
+t_bool					CONCAT(List_Has,T_NAME)		(s_list_T const* list, s_list_T const* targets);
 #define c_lsthas		CONCAT(List_Has,T_NAME)
 
-//! TODO
+//! Checks whether the given `list` only contains items which are present in the given `targets` list
+/*!
+**	@param	list	The list which which should only contain items from `target`
+**	@param	targets	The list of items which are to be matched with `list`
+**	@returns
+**	`TRUE` if the given `list` only contains items which are equal to any item in `targets`,
+**	otherwise returns `FALSE`.
+*/
 _GENERIC()
-t_bool					CONCAT(List_HasOnly,T_NAME)	(s_list_T const* list, s_list_T const* target);
+t_bool					CONCAT(List_HasOnly,T_NAME)	(s_list_T const* list, s_list_T const* targets);
 #define c_lsthasonly	CONCAT(List_HasOnly,T_NAME)
-
-
-
-//! TODO
-_GENERIC()
-t_bool					CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2);
-#define c_lstequ		CONCAT(List_Equals,T_NAME)
-
-//! TODO
-_GENERIC()
-t_bool					CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n);
-#define c_lstnequ		CONCAT(List_Equals_N,T_NAME)
-
-//! TODO
-_GENERIC()
-t_sint					CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2));
-#define c_lstcmp		CONCAT(List_Compare,T_NAME)
-
-//! TODO
-_GENERIC()
-t_sint					CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2), t_uint n);
-#define c_lstncmp		CONCAT(List_Compare_N,T_NAME)
 
 
 
@@ -468,31 +535,35 @@ t_sint					CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* 
 ** ************************************************************************** *|
 */
 
-//! Iterates upon each element of the given `list`, applying the given function `f` to each of its elements.
+//! Iterates upon each element of the given `list`, applying the given function `f` for each of its elements.
 /*!
-**	Iterates upon each element of the given `list`,
-**	applying the given function `f` to each of its elements.
+**	@param	list	The list whose items should be iterated upon
+**	@param	f		The function to call for each item of the given `list`
 */
 _GENERIC()
 void					CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item));
 #define c_lstiter		CONCAT(List_Iterate,T_NAME)
 
+//! @see List_Iterate()
 _GENERIC()
 void					CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint index));
 #define c_lstiteri		CONCAT(List_Iterate_I,T_NAME)
 
 
 
-//! Creates a new list which is the result of applying the given function `f` to each element of `list`.
+//! Creates a new list which is the result of applying the given function `f` for each element of `list`.
 /*!
-**	Creates a new list which is the result of applying
-**	the given function `f` to each element of `list`.
+**	@param	list	The list whose items should be iterated upon
+**	@param	map		The function to call for each item of the given `list`
+**	@returns
+**	A new list, created by storing the return values of each call to the given `map` function.
 */
 _MALLOC()
 _GENERIC()
 s_list_T*				CONCAT(List_Map,T_NAME)(s_list_T const* list, T (*map)(T item));
 #define c_lstmap		CONCAT(List_Map,T_NAME)
 
+//! @see List_Map()
 _MALLOC()
 _GENERIC()
 s_list_T*				CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_uint index));
@@ -500,12 +571,19 @@ s_list_T*				CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_
 
 
 
-//! TODO
+//! Creates a new list which is a subset of the given `list`, with only the items where `filter` returned `TRUE`.
+/*!
+**	@param	list	The list whose items should be iterated upon
+**	@param	filter	The function to call to check if an item of `list` should be added to the result
+**	@returns
+**	A new list, created by storing the return values of each call to the given `map` function.
+*/
 _MALLOC()
 _GENERIC()
 s_list_T*				CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T item));
 #define c_lstfilt		CONCAT(List_Filter,T_NAME)
 
+//! @see List_Filter()
 _MALLOC()
 _GENERIC()
 s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T item, t_uint index));
@@ -513,7 +591,8 @@ s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)
 
 
 
-//! TODO List_Reduce() ?
+//! TODO void* List_Reduce() ?
+//! TODO T     List_Fold() ?
 
 
 
