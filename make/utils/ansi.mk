@@ -74,7 +74,7 @@ ANSI_COLOR_FG_WHITE         :=$(call ANSI,97)#!< ANSI escape sequence to color t
 
 #! ANSI Color code (255-map, not supported on certain old terminals)
 #	@param 1	should be a string, containing number between 0 and 255
-ANSI_COLOR_FG=$(call ANSI,"38;5;$(1)")
+ANSI_COLOR_FG=$(call ANSI,38;5;$(1))
 
 #! ANSI escape sequence to color the terminal text output with the default color for this terminal
 ANSI_COLOR_FG_DEFAULT       :=$(call ANSI,39)
@@ -100,7 +100,7 @@ ANSI_COLOR_BG_WHITE         :=$(call ANSI,107)#!< ANSI escape sequence to color 
 
 #! ANSI Color code (255-map, not supported on certain old terminals)
 #	@param 1	should be a string, containing number between 0 and 255
-ANSI_COLOR_BG=$(call ANSI,"48;5;$(1)")
+ANSI_COLOR_BG=$(call ANSI,48;5;$(1))
 
 #! ANSI escape sequence to color the terminal text background with the default color for this terminal
 ANSI_COLOR_BG_DEFAULT       :=$(call ANSI,49)

@@ -112,3 +112,4 @@ include make/rules/doc.mk
 # general rules
 include make/utils/refactor.mk
 include make/utils/help.mk
+include make/rules/help-doc.mk
