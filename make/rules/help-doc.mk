@@ -6,21 +6,21 @@ HELPDOC_VARNAME = $(ANSI_TEXT_BOLD)
 HELPDOC_TYPEDEF = $(call ANSI_COLOR_FG,39)
 HELPDOC_KEYWORD = $(call ANSI_COLOR_FG,198)
 HELPDOC_PUNCTOP = $(call ANSI_COLOR_FG,208)
-HELPDOC_PREPROC = $(call ANSI_COLOR_FG,160)
+HELPDOC_PREPROC = $(call ANSI,1;38;5;198)
 HELPDOC_COMMENT = $(call ANSI_COLOR_FG,244)
 
 HELPDOC_AWK_SYNTAXCOLORS = \
 $$0 = gensub(/\<_[A-Z]+\(\)[ \t]*/, "", "g");\
-$$0 = gensub(/\<CONCAT\(([a-zA-Z_0-9]+),([A-Z])_NAME\)/,      "\\1<\\2>\t"                                 , "1");\
-$$0 = gensub(/(\/\/(.*)$$)/,                                      $(HELPDOC_COMMENT)"\\0"$(IO_RESET)       , "1");\
-$$0 = gensub(/[ \t]+([a-zA-Z_0-9]+(<.*>)?)[ \t]*(\(.*\);$$)/, "\t"$(HELPDOC_VARNAME)"\\1"$(IO_RESET)"\t\\3", "1");\
-$$0 = gensub(/^[ \t]*\#[ \t]*(define|undef|include)\>/,       "\#"$(HELPDOC_PREPROC)"\\1"$(IO_RESET)       , "g");\
-$$0 = gensub(/\<(const|restrict|typedef|volatile|atomic)\>/,      $(HELPDOC_KEYWORD)"\\0"$(IO_RESET)       , "g");\
-$$0 = gensub(/\<(void|char|short|int|long|float|double)\>/,       $(HELPDOC_TYPEDEF)"\\0"$(IO_RESET)       , "g");\
-$$0 = gensub(/\<(struct|union|enum)[ ]+[a-zA-Z_0-9]+\>/,          $(HELPDOC_TYPEDEF)"\\0"$(IO_RESET)       , "g");\
-$$0 = gensub(/\<([ptseuf]_[a-zA-Z_0-9]+)\>/,                      $(HELPDOC_TYPEDEF)"\\0"$(IO_RESET)       , "g");\
-$$0 = gensub(/\<([A-Z])\>/,                                       $(HELPDOC_TYPEDEF)"\\0"$(IO_RESET)       , "g");\
-$$0 = gensub(/[*<>.!&@$$]/,                                       $(HELPDOC_PUNCTOP)"\\0"$(IO_RESET)       , "g");\
+$$0 = gensub(/\<CONCAT\(([a-zA-Z_0-9]+),([A-Z])_NAME\)/, "\\1<\\2>\t", "1");\
+$$0 = gensub(/[ \t]+([a-zA-Z_0-9]+(<.*>)?)[ \t]*(\(.*\);$$)/,              "\t"$(HELPDOC_VARNAME) "\\1" $(IO_RESET)"\t\\3", "1");\
+$$0 = gensub(/^[ \t]*\#[ \t]*(define|undef|include)[ \t]+([a-zA-Z_0-9]+)/,     $(HELPDOC_PREPROC)"\#\\1"$(IO_RESET)"\t"$(HELPDOC_VARNAME)"\\2"$(IO_RESET), "g");\
+$$0 = gensub(/\<(const|restrict|typedef|volatile|atomic)\>/,                   $(HELPDOC_KEYWORD) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<(void|char|short|int|long|float|double)\>/,                    $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<(struct|union|enum)[ ]+[a-zA-Z_0-9]+\>/,                       $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<([ptseuf]_[a-zA-Z_0-9]+)\>/,                                   $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<([A-Z])\>/,                                                    $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/[*<>.!&@$$]/,                                                    $(HELPDOC_PUNCTOP) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/(\/\/(.*)$$)/,                                                   $(HELPDOC_COMMENT) "\\0" $(IO_RESET), "1");\
 
 
 
@@ -41,7 +41,7 @@ help-doc:
 				print;\
 			}\
 		}\
-		' "$${i}" ; \
+		' "$${i}" | expand -t 25 ; \
 		printf "\n" ; \
 	done
 
@@ -82,5 +82,5 @@ help-doc-find:
 				doc = doc "\n" $$0;\
 			}\
 		}\
-		' "$${i}" ; \
+		' "$${i}" | expand -t 4 ; \
 	done
