@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list, s_list_T* elem)
+void	CONCAT(List_Add,T_NAME)(s_list_T* list, s_list_T* elem)
 {
 	s_list_T*	i;
 

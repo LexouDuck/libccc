@@ -127,8 +127,9 @@ monad/array/replace.c
 monad/array/set.c
 monad/array/sub.c
 monad/convert/list.c
-monad/list/append.c
+monad/list/add.c
 monad/list/compare.c
+monad/list/concat.c
 monad/list/contains.c
 monad/list/copy.c
 monad/list/count.c
@@ -146,7 +147,7 @@ monad/list/iterate.c
 monad/list/length.c
 monad/list/map.c
 monad/list/new.c
-monad/list/prepend.c
+monad/list/reduce.c
 monad/list/remove.c
 monad/list/removeall.c
 monad/list/removeat.c
