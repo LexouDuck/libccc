@@ -804,6 +804,7 @@ t_char*					String_Prepend(t_char const* src, t_char* *dest);
 ** ************************************************************************** *|
 */
 
+//! Reallocates the given string `dest`, inserting the string `src` at the given `index`.
 /*!
 **	@nonstd
 **
