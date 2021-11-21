@@ -18,7 +18,9 @@ $(LINTDIR)%.html: $(SRCDIR)%.c
 .PHONY:\
 lint #! Runs a linter on all source files, giving useful additional warnings
 lint: MODE = debug
-ifeq (gcc,$(findstring gcc,$(CC)))
+ifeq ($(CC),)
+$(error C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
+else ifeq (gcc,$(findstring gcc,$(CC)))
 lint: CFLAGS += -fanalyzer
 else ifeq (clang,$(findstring clang,$(CC)))
 lint: CFLAGS += -Wthread-safety --analyze --analyzer-output text
@@ -27,6 +29,7 @@ else
 endif
 lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete
+	@# TODO
 	@echo "Linting finished."
 
 

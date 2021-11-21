@@ -471,7 +471,7 @@ void	test_lstfold(void)
 	n = 0;
 	c_lstfold(*a_ilst, &n, c_add);
 	c_putnbr(n);
-	c_putstr("\nExpected : 1488\n");
+	c_putstr("\nExpected : 1337\n");
 #endif
 }
 #endif

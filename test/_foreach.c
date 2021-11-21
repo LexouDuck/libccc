@@ -42,15 +42,6 @@
 
 
 
-// Disable certain GCC warnings temporarily
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wlanguage-extension-token"
-// Disable certain clang warnings temporarily
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wlanguage-extension-token"
-
-
-
 #define COUNT 10
 int main(int argc, char** argv)
 {
@@ -153,10 +144,3 @@ int main(int argc, char** argv)
 #endif
 	return (OK);
 }
-
-
-
-// Resets the GCC warning settings back to normal
-#pragma GCC diagnostic pop
-// Resets the clang warning settings back to normal
-#pragma clang diagnostic pop
