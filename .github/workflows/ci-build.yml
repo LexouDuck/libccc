@@ -1,10 +1,11 @@
-name: CI+CD
+name: CI - Build
 
 on:
   push:
     branches: [master]
   pull_request:
     branches: [master]
+
 
 defaults:
   run:
@@ -43,12 +44,21 @@ jobs:
 
 
     - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make CC=${{matrix.compiler}}
+      run: make build-release CC=${{matrix.compiler}}
 
     - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make test CC=${{matrix.compiler}} ARGS="-a"
+      run: make build-tests-release CC=${{matrix.compiler}}
 
-#    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
-#      run: make clean ; make build-release CC=${{matrix.compiler}}
 
-# TODO upload build artifacts and automate release tag for github ?
+
+    - name: Upload build binary artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
+        path: ./libccc.*
+
+    - name: Upload tests binary artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: libccc-tests_${{matrix.os}}_${{matrix.compiler}}
+        path: ./libccc-test
