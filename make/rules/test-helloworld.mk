@@ -11,9 +11,9 @@ test-helloworld: $(NAME_TEST_HELLOWORLD)
 	@ ./$(NAME_TEST_HELLOWORLD) $(ARGS)
 	@rm $(NAME_TEST_HELLOWORLD)
 
-$(NAME_TEST_HELLOWORLD): $(NAME_STATIC) $(NAME_DYNAMIC) $(SRCS_TEST_HELLOWORLD)
+$(NAME_TEST_HELLOWORLD): build-$(MODE) $(SRCS_TEST_HELLOWORLD)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) \
+	@$(CC) -o $@ $(CFLAGS) $(CFLAGS_DEBUG) \
 		-I$(HDRDIR) $(SRCS_TEST_HELLOWORLD) \
 		-L./ -lccc
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
