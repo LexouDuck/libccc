@@ -22,13 +22,13 @@ TEST_INCLUDES := $(TEST_INCLUDES) \
 build-tests-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-tests-debug: MODE = debug
 build-tests-debug: TEST_CFLAGS += $(TEST_CFLAGS_DEBUG)
-build-tests-debug: $(NAME_STATIC) $(NAME_DYNAMIC) $(NAME_TEST)
+build-tests-debug: build-debug $(NAME_TEST)
 
 .PHONY:\
 build-tests-release #! Builds the library, in 'release' mode (with optimization flags)
 build-tests-release: MODE = release
 build-tests-release: TEST_CFLAGS += $(TEST_CFLAGS_RELEASE)
-build-tests-release: $(NAME_STATIC) $(NAME_DYNAMIC) $(NAME_TEST)
+build-tests-release: build-release $(NAME_TEST)
 
 
 
@@ -44,7 +44,7 @@ $(OBJDIR)$(TESTDIR)%.o: $(TESTDIR)%.c
 #! Builds the testing/CI program
 $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_INCLUDES) $(TEST_OBJS) $(TEST_LDLIBS)
+	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 

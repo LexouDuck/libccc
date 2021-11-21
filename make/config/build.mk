@@ -17,7 +17,7 @@ CC_OS_OTHER = cc
 
 
 #! GNU conventional variable: C Compiler flags & settings
-CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
+CFLAGS = \
 	-Werror \
 	-Wall \
 	-Wextra \
@@ -28,6 +28,7 @@ CFLAGS = $(CFLAGS_OS) $(CFLAGS_EXTRA) \
 	-Wold-style-definition \
 	-Wno-format-extra-args \
 	-fstrict-aliasing \
+	$(CFLAGS_OS) $(CFLAGS_EXTRA)
 
 CFLAGS_DEBUG   = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
 CFLAGS_RELEASE = -O3
@@ -49,7 +50,8 @@ CFLAGS_EXTRA =
 
 
 #! GNU conventional variable: C Linker flags & settings
-LDFLAGS = $(LDFLAGS_OS) $(LDFLAGS_EXTRA) \
+LDFLAGS = \
+	$(LDFLAGS_OS) $(LDFLAGS_EXTRA)
 
 LDFLAGS_DEBUG   = 
 LDFLAGS_RELEASE = 
@@ -67,7 +69,8 @@ LDFLAGS_EXTRA =
 
 
 #! GNU conventional variable: List of libraries to link against
-LDLIBS = $(LDLIBS_OS) $(LDLIBS_EXTRA) \
+LDLIBS = \
+	$(LDLIBS_OS) $(LDLIBS_EXTRA)
 
 LDLIBS_DEBUG   = 
 LDLIBS_RELEASE = 
@@ -88,8 +91,9 @@ LDLIBS_EXTRA =
 
 
 #! GNU conventional variable: List of folders which store header code files
-INCLUDES = $(INCLUDES_OS) $(INCLUDES_EXTRA) \
+INCLUDES = \
 	-I$(HDRDIR) \
+	$(INCLUDES_OS) $(INCLUDES_EXTRA)
 
 INCLUDES_DEBUG   = 
 INCLUDES_RELEASE = 

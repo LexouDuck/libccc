@@ -43,10 +43,10 @@ jobs:
 
 
 
-    - name: Build (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build libccc (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make build-release CC=${{matrix.compiler}}
 
-    - name: Test (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make build-tests-release CC=${{matrix.compiler}}
 
 
