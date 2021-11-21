@@ -33,7 +33,7 @@ build-tests-release: $(NAME_STATIC) $(NAME_DYNAMIC) $(NAME_TEST)
 
 
 #! Compiles object files from source files
-$(OBJDIR)$(TEST_DIR)%.o: $(TEST_DIR)%.c
+$(OBJDIR)$(TESTDIR)%.o: $(TESTDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: "$@" -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) -MMD $(TEST_INCLUDES) -c $<

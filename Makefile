@@ -38,7 +38,7 @@ LIBDIR = ./lib/
 #! The directory for documentation (stores config and scripts to generate doc)
 DOCDIR = ./doc/
 #! The directory for testing programs (stores source/header code for the various testing programs)
-TEST_DIR = ./test/
+TESTDIR = ./test/
 #! The directory for git hooks scripts
 GITHOOKSDIR = ./.githooks/
 #! The directory for important list files (source files, packages)

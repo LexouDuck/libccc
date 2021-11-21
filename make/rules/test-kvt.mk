@@ -3,7 +3,7 @@
 
 
 NAME_TEST_KVT = libccc-test_kvt
-SRCS_TEST_KVT = $(TEST_DIR)_kvt.c
+SRCS_TEST_KVT = $(TESTDIR)_kvt.c
 
 .PHONY:\
 test-kvt #! Builds and runs a KVT (json,toml,yaml,xml) print/parse test program

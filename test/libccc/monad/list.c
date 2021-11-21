@@ -466,12 +466,13 @@ void	print_test_lstfold(char const* test_name, int can_segfault,
 void	test_lstfold(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
-//	TODO
+#if 0 //	TODO
 	c_putstr("\nft_lstfold : ");
 	n = 0;
 	c_lstfold(*a_ilst, &n, c_add);
 	c_putnbr(n);
 	c_putstr("\nExpected : 1488\n");
+#endif
 }
 #endif
 
