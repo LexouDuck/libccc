@@ -15,11 +15,11 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 /* ++C fix for variadic arg type promotion:
-#if (#typeof(T) is #float)
+#if #(typeof(T) is float)
 	#define T_VA_ARG	double
-#elif (#typeof(T) is #char)
+#elif #(typeof(T) is char)
 	#define T_VA_ARG	int
-#elif (#typeof(T) is #short)
+#elif #(typeof(T) is short)
 	#define T_VA_ARG	int
 #else
 	#define T_VA_ARG	T
@@ -29,23 +29,17 @@
 _GENERIC()
 s_array_T*	CONCAT(Array_Create,T_NAME)(t_uint n, ...)
 {
-	va_list		args;
 	T			item;
 	s_array_T*	result;
 
-	result = (s_array_T*)Memory_Allocate(sizeof(s_array_T));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
-	result->length = n;
-	result->items = NULL;
-	if (n == 0)
-		return (result);
-	result->items = (T*)Memory_Allocate(sizeof(T) * n);
-	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL), return (result);)
+	result = CONCAT(Array_New,T_NAME)(n, T_DEFAULT);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	va_list	args;
 	va_start(args, n);
-	for (t_uint i = 1; i <= n; ++i)
+	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(args, T);
-		result->items[i - 1] = item;
+		result->items[i] = item;
 	}
 	va_end(args);
 	return (result);

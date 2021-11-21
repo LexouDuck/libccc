@@ -11,13 +11,13 @@ s_list_T*	CONCAT(List_Add,T_NAME)(s_list_T* list, T item)
 	s_list_T*	i;
 
 	if (list == NULL)
-		return (List_Item(item));
+		return (CONCAT(List_Item,T_NAME)(item));
 	i = list;
 	while (i->next != NULL)
 	{
 		i = i->next;
 	}
-	i->next = List_Item(item);
+	i->next = CONCAT(List_Item,T_NAME)(item);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	i->next->prev = i;
 #endif
