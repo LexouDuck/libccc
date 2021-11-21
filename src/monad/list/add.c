@@ -6,20 +6,20 @@
 
 
 _GENERIC()
-void	CONCAT(List_Add,T_NAME)(s_list_T* list, s_list_T* elem)
+s_list_T*	CONCAT(List_Add,T_NAME)(s_list_T* list, T item)
 {
 	s_list_T*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (elem);)
-	HANDLE_ERROR(NULLPOINTER, (elem == NULL), return (list);)
+	if (list == NULL)
+		return (List_Item(item));
 	i = list;
 	while (i->next != NULL)
 	{
 		i = i->next;
 	}
+	i->next = List_Item(item);
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	elem->prev = i;
+	i->next->prev = i;
 #endif
-	i->next = elem;
 	return (list);
 }

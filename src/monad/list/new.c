@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_New,T_NAME)(t_uint n)
+s_list_T*	CONCAT(List_New,T_NAME)(t_uint n, T value)
 {
 	s_list_T*	result = NULL;
 	s_list_T*	elem;
@@ -22,7 +22,7 @@ s_list_T*	CONCAT(List_New,T_NAME)(t_uint n)
 		new->prev = NULL;
 #endif
 		new->next = NULL;
-		new->item = T_DEFAULT;
+		new->item = value;
 		if (i == 0)
 		{
 			elem = new;

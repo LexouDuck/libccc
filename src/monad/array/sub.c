@@ -7,21 +7,19 @@
 
 
 _GENERIC()
-s_array_T		CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n)
+s_array_T*	CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n)
 {
-	s_array_T	result;// = CONCAT(NULL_ARRAY,T_NAME);
+	s_array_T*	result;
 
-	Memory_Clear(&result, sizeof(s_array_T));
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
+	HANDLE_ERROR(NULLPOINTER, (array        == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
 	if (index > array->length || index + n > array->length)
-		return (result);
-	result.items = (T*)Memory_Allocate(sizeof(T) * n);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
-	result.length = n;
+		return (NULL);
+	result = CONCAT(Array_New,T_NAME)(n, T_DEFAULT);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; i < n; ++i)
 	{
-		result.items[i] = array->items[index + i];
+		result->items[i] = array->items[index + i];
 	}
 	return (result);
 }

@@ -102,8 +102,9 @@ memory/print.c
 memory/replace.c
 memory/set.c
 memory/swap.c
-monad/array/append.c
+monad/array/add.c
 monad/array/compare.c
+monad/array/concat.c
 monad/array/contains.c
 monad/array/copy.c
 monad/array/count.c
@@ -116,10 +117,11 @@ monad/array/find.c
 monad/array/get.c
 monad/array/has.c
 monad/array/insert.c
+monad/array/item.c
 monad/array/iterate.c
 monad/array/map.c
 monad/array/new.c
-monad/array/prepend.c
+monad/array/reduce.c
 monad/array/remove.c
 monad/array/removeall.c
 monad/array/removeat.c
