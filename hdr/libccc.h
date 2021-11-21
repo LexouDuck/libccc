@@ -23,10 +23,10 @@
 ** ************************************************************************** *|
 */
 
-#include "libccc_config.h"
 #include "libccc_define.h"
-#include "libccc_naming.h"
 #include "libccc_errors.h"
+#include "libccc_config.h"
+#include "libccc_naming.h"
 
 /*
 **	Here we include all the primitive type headers, but we define some important

@@ -33,10 +33,13 @@
 **		- `e_` for a typedef on an enum				ex: `e_httperror code = ERROR_HTTP_404;`
 **		- `u_` for a typedef on a union type		ex: `typedef union color { t_u8 channels[4]; t_u32 argb; } u_color;`
 **		- `f_` for a typedef on a function pointer	ex: `typedef char (*f_strmapi)(char c, t_size index);`
-**	This also allows most any text editor's syntax coloring to be able to match types with a simple regex rule:
-**		`\b([tseuf]_\w+)\b`
-**	Additionnally, the C-style standard function aliases are prefixed with `c_`, for example:
-**	The standard `memset()` function is named `Memory_Set()`, and has an alias `c_memset()`
+**		- `p_` for a typedef which hides a pointer	ex: `typedef char* p_string;`
+**	This also allows most any text editor's syntax coloring to be able to match and color
+**	any user-defined typedefs, with a very simple regular expression:
+**		`\b([tseufp]_\w+)\b`
+**	Additionnally, libccc provides function aliases which follow the C standard library's
+**	nomenclature style - to avoid clashing with existing names, these are prefixed with `c_`.
+**	For example, the `memset()` function is named `Memory_Set()` in libccc, and has an alias `c_memset()`.
 */
 
 /*

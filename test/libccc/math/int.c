@@ -72,12 +72,10 @@ void test_u64(void)	{}
 DEFINETEST_UINT_(64)
 #endif
 
-#if LIBCONFIG_USE_128BIT
 #ifndef c_u128
 void test_u128(void)	{}
 #else
 DEFINETEST_UINT_(128)
-#endif
 #endif
 
 
@@ -136,13 +134,11 @@ void test_u64mul(void)	{}
 void test_u64div(void)	{}
 void test_u64mod(void)	{}
 
-#if LIBCONFIG_USE_128BIT
 void test_u128add(void)	{}
 void test_u128sub(void)	{}
 void test_u128mul(void)	{}
 void test_u128div(void)	{}
 void test_u128mod(void)	{}
-#endif
 
 #else
 DEFINETEST_UINT_OPERATOR(+, add, 8)
@@ -175,6 +171,12 @@ DEFINETEST_UINT_OPERATOR(-, sub, 128)
 DEFINETEST_UINT_OPERATOR(*, mul, 128)
 DEFINETEST_UINT_OPERATOR(/, div, 128)
 DEFINETEST_UINT_OPERATOR(%, mod, 128)
+#else
+void test_u128add(void)	{}
+void test_u128sub(void)	{}
+void test_u128mul(void)	{}
+void test_u128div(void)	{}
+void test_u128mod(void)	{}
 #endif
 
 #endif
@@ -239,13 +241,11 @@ void test_s64mul(void)	{}
 void test_s64div(void)	{}
 void test_s64mod(void)	{}
 
-#if LIBCONFIG_USE_128BIT
 void test_s128add(void)	{}
 void test_s128sub(void)	{}
 void test_s128mul(void)	{}
 void test_s128div(void)	{}
 void test_s128mod(void)	{}
-#endif
 
 #else
 DEFINETEST_SINT_OPERATOR(+, add, 8)
@@ -278,6 +278,12 @@ DEFINETEST_SINT_OPERATOR(-, sub, 128)
 DEFINETEST_SINT_OPERATOR(*, mul, 128)
 DEFINETEST_SINT_OPERATOR(/, div, 128)
 DEFINETEST_SINT_OPERATOR(%, mod, 128)
+#else
+void test_s128add(void)	{}
+void test_s128sub(void)	{}
+void test_s128mul(void)	{}
+void test_s128div(void)	{}
+void test_s128mod(void)	{}
 #endif
 
 #endif

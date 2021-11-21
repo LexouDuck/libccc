@@ -245,5 +245,5 @@ int	main(int argc, char** argv)
 		}
 	}
 	print_totals(g_test.totals.tests, g_test.totals.failed, NULL);
-	return (g_test.totals.failed);
+	return (g_test.totals.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS);
 }

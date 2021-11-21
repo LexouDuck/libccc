@@ -498,19 +498,22 @@ typedef union float_cast
 */
 //!@{
 #define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
+#define c_itofloat		Float_FromInt 	//!< @alias{Float_FromInt}
+
 t_f32					F32_FromInt(t_sint number);
+#define c_itof32		F32_FromInt 	//!< @alias{F32_FromInt}
+
 t_f64					F64_FromInt(t_sint number);
+#define c_itof64		F64_FromInt 	//!< @alias{F64_FromInt}
+
 #ifdef __float80
 t_f80					F80_FromInt(t_sint number);
+#define c_itof80		F80_FromInt 	//!< @alias{F80_FromInt}
 #endif
 #ifdef __float128
 t_f128					F128_FromInt(t_sint number);
-#endif
-#define c_itofloat		Float_FromInt 	//!< @alias{Float_FromInt}
-#define c_itof32		F32_FromInt 	//!< @alias{F32_FromInt}
-#define c_itof64		F64_FromInt 	//!< @alias{F64_FromInt}
-#define c_itof80		F80_FromInt 	//!< @alias{F80_FromInt}
 #define c_itof128		F128_FromInt 	//!< @alias{F128_FromInt}
+#endif
 //!@}
 
 //! Returns the nearest floating-point value to the given fixed-point `number`
@@ -519,19 +522,22 @@ t_f128					F128_FromInt(t_sint number);
 */
 //!@{
 #define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+#define c_qtofloat		Float_FromFixed	//!< @alias{Float_FromFixed}
+
 t_f32					F32_FromFixed(t_fixed number);
+#define c_qtof32		F32_FromFixed	//!< @alias{F32_FromFixed}
+
 t_f64					F64_FromFixed(t_fixed number);
+#define c_qtof64		F64_FromFixed	//!< @alias{F64_FromFixed}
+
 #ifdef __float80
 t_f80					F80_FromFixed(t_fixed number);
+#define c_qtof80		F80_FromFixed	//!< @alias{F80_FromFixed}
 #endif
 #ifdef __float128
 t_f128					F128_FromFixed(t_fixed number);
-#endif
-#define c_qtofloat		Float_FromFixed	//!< @alias{Float_FromFixed}
-#define c_qtof32		F32_FromFixed	//!< @alias{F32_FromFixed}
-#define c_qtof64		F64_FromFixed	//!< @alias{F64_FromFixed}
-#define c_qtof80		F80_FromFixed	//!< @alias{F80_FromFixed}
 #define c_qtof128		F128_FromFixed	//!< @alias{F128_FromFixed}
+#endif
 //!@}
 
 //! Returns the nearest floating-point value to the given floating-point `number`
@@ -540,19 +546,22 @@ t_f128					F128_FromFixed(t_fixed number);
 */
 //!@{
 #define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
+#define c_ftofloat		Float_FromFloat	//!< @alias{Float_FromFloat}
+
 t_f32	 				F32_FromFloat(t_float number);
+#define c_ftof32		F32_FromFloat	//!< @alias{F32_FromFloat}
+
 t_f64	 				F64_FromFloat(t_float number);
+#define c_ftof64		F64_FromFloat	//!< @alias{F64_FromFloat}
+
 #ifdef __float80
 t_f80	 				F80_FromFloat(t_float number);
+#define c_ftof80		F80_FromFloat	//!< @alias{F80_FromFloat}
 #endif
 #ifdef __float128
 t_f128	 				F128_FromFloat(t_float number);
-#endif
-#define c_ftofloat		Float_FromFloat	//!< @alias{Float_FromFloat}
-#define c_ftof32		F32_FromFloat	//!< @alias{F32_FromFloat}
-#define c_ftof64		F64_FromFloat	//!< @alias{F64_FromFloat}
-#define c_ftof80		F80_FromFloat	//!< @alias{F80_FromFloat}
 #define c_ftof128		F128_FromFloat	//!< @alias{F128_FromFloat}
+#endif
 //!@}
 
 
@@ -570,19 +579,22 @@ t_f128	 				F128_FromFloat(t_float number);
 */
 //!@{
 #define					Float_From	CONCAT(FLOAT_TYPE,_From)
+#define c_tofloat		Float_From	//!< @alias{Float_From}
+
 t_f32					F32_From(t_sint integer, t_sint exponent);
+#define c_tof32			F32_From	//!< @alias{F32_From}
+
 t_f64					F64_From(t_sint integer, t_sint exponent);
+#define c_tof64			F64_From	//!< @alias{F64_From}
+
 #ifdef	__float80
 t_f80					F80_From(t_sint integer, t_sint exponent);
+#define c_tof80			F80_From	//!< @alias{F80_From}
 #endif
 #ifdef	__float128
 t_f128					F128_From(t_sint integer, t_sint exponent);
-#endif
-#define c_tofloat		Float_From	//!< @alias{Float_From}
-#define c_tof32			F32_From	//!< @alias{F32_From}
-#define c_tof64			F64_From	//!< @alias{F64_From}
-#define c_tof80			F80_From	//!< @alias{F80_From}
 #define c_tof128		F128_From	//!< @alias{F128_From}
+#endif
 //!@}
 
 
@@ -605,23 +617,25 @@ t_f128					F128_From(t_sint integer, t_sint exponent);
 */
 //!@{
 #define						Float_GetExp2	CONCAT(FLOAT_TYPE,_GetExp2)
+#define c_fgetexp2			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_filogb			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define c_filog2			Float_GetExp2	//!< @alias{Float_GetExp2}
+#define Float_GetExponent2	Float_GetExp2	//!< @alias{Float_GetExp2}
+
 t_sint						F32_GetExp2(t_f32 number);
+#define c_f32getexp2		F32_GetExp2		//!< @alias{F32_GetExp2}
+
 t_sint						F64_GetExp2(t_f64 number);
+#define c_f64getexp2		F64_GetExp2		//!< @alias{F64_GetExp2}
+
 #ifdef	__float80
 t_sint						F80_GetExp2(t_f80 number);
+#define c_f80getexp2		F80_GetExp2		//!< @alias{F80_GetExp2}
 #endif
 #ifdef	__float128
 t_sint						F128_GetExp2(t_f128 number);
-#endif
-#define c_fgetexp2			Float_GetExp2	//!< @alias{Float_GetExp2}
-#define c_f32getexp2		F32_GetExp2		//!< @alias{F32_GetExp2}
-#define c_f64getexp2		F64_GetExp2		//!< @alias{F64_GetExp2}
-#define c_f80getexp2		F80_GetExp2		//!< @alias{F80_GetExp2}
 #define c_f128getexp2		F128_GetExp2	//!< @alias{F128_GetExp2}
-
-#define Float_GetExponent2	Float_GetExp2	//!< @alias{Float_GetExp2}
-#define c_filogb			Float_GetExp2	//!< @alias{Float_GetExp2}
-#define c_filog2			Float_GetExp2	//!< @alias{Float_GetExp2}
+#endif
 //!@}
 
 //! Returns the base-10 exponent of the given number `x`, as an integer
@@ -630,23 +644,25 @@ t_sint						F128_GetExp2(t_f128 number);
 */
 //!@{
 #define						Float_GetExp10	CONCAT(FLOAT_TYPE,_GetExp10)
+#define c_fgetexp10			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_filogd			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define c_filog10			Float_GetExp10	//!< @alias{Float_GetExp10}
+#define Float_GetExponent10	Float_GetExp10	//!< @alias{Float_GetExp10}
+
 t_sint						F32_GetExp10(t_f32 number);
+#define c_f32getexp10		F32_GetExp10	//!< @alias{F32_GetExp10}
+
 t_sint						F64_GetExp10(t_f64 number);
+#define c_f64getexp10		F64_GetExp10	//!< @alias{F64_GetExp10}
+
 #ifdef	__float80
 t_sint						F80_GetExp10(t_f80 number);
+#define c_f80getexp10		F80_GetExp10	//!< @alias{F80_GetExp10}
 #endif
 #ifdef	__float128
 t_sint						F128_GetExp10(t_f128 number);
-#endif
-#define c_fgetexp10			Float_GetExp10	//!< @alias{Float_GetExp10}
-#define c_f32getexp10		F32_GetExp10	//!< @alias{F32_GetExp10}
-#define c_f64getexp10		F64_GetExp10	//!< @alias{F64_GetExp10}
-#define c_f80getexp10		F80_GetExp10	//!< @alias{F80_GetExp10}
 #define c_f128getexp10		F128_GetExp10	//!< @alias{F128_GetExp10}
-
-#define Float_GetExponent10	Float_GetExp10	//!< @alias{Float_GetExp10}
-#define c_filogd			Float_GetExp10	//!< @alias{Float_GetExp10}
-#define c_filog10			Float_GetExp10	//!< @alias{Float_GetExp10}
+#endif
 //!@}
 
 
@@ -670,19 +686,22 @@ t_sint						F128_GetExp10(t_f128 number);
 */
 //!@{
 #define					Float_ToString	CONCAT(FLOAT_TYPE,_ToString)
+#define c_ftostr		Float_ToString	//!< @alias{Float_ToString}
+
 _MALLOC()	t_char*		F32_ToString(t_f32 number, t_u8 precision);
+#define c_f32tostr		F32_ToString	//!< @alias{F32_ToString}
+
 _MALLOC()	t_char*		F64_ToString(t_f64 number, t_u8 precision);
+#define c_f64tostr		F64_ToString	//!< @alias{F64_ToString}
+
 #ifdef	__float80
 _MALLOC()	t_char*		F80_ToString(t_f80 number, t_u8 precision);
+#define c_f80tostr		F80_ToString	//!< @alias{F80_ToString}
 #endif
 #ifdef	__float128
 _MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
-#endif
-#define c_ftostr		Float_ToString	//!< @alias{Float_ToString}
-#define c_f32tostr		F32_ToString	//!< @alias{F32_ToString}
-#define c_f64tostr		F64_ToString	//!< @alias{F64_ToString}
-#define c_f80tostr		F80_ToString	//!< @alias{F80_ToString}
 #define c_f128tostr		F128_ToString	//!< @alias{F128_ToString}
+#endif
 //!@}
 
 
@@ -698,31 +717,32 @@ _MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
 */
 //!@{
 #define								Float_ToString_Exp	CONCAT(FLOAT_TYPE,_ToString_Exp)
+#define c_ftostrexp					Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
+#define c_ftostrsci					Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
+#define Float_ToString_Sci			Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
+
 _MALLOC()	t_char*					F32_ToString_Exp(t_f32 number, t_u8 precision);
+#define c_f32tostrexp				F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
+#define c_f32tostrsci				F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
+#define F32_ToString_Sci			F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
+
 _MALLOC()	t_char*					F64_ToString_Exp(t_f64 number, t_u8 precision);
+#define c_f64tostrexp				F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
+#define c_f64tostrsci				F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
+#define F64_ToString_Sci			F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
+
 #ifdef	__float80
 _MALLOC()	t_char*					F80_ToString_Exp(t_f80 number, t_u8 precision);
+#define c_f80tostrexp				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
+#define c_f80tostrsci				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
+#define F80_ToString_Sci			F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #endif
 #ifdef	__float128
 _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
-#endif
-#define c_ftostrexp					Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define c_f32tostrexp				F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define c_f64tostrexp				F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define c_f80tostrexp				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define c_f128tostrexp				F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
-
-#define c_ftostrsci					Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define c_f32tostrsci				F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define c_f64tostrsci				F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define c_f80tostrsci				F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define c_f128tostrsci				F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
-
-#define Float_ToString_Sci			Float_ToString_Exp	//!< @alias{Float_ToString_Exp}
-#define F32_ToString_Sci			F32_ToString_Exp	//!< @alias{F32_ToString_Exp}
-#define F64_ToString_Sci			F64_ToString_Exp	//!< @alias{F64_ToString_Exp}
-#define F80_ToString_Sci			F80_ToString_Exp	//!< @alias{F80_ToString_Exp}
 #define F128_ToString_Sci			F128_ToString_Exp	//!< @alias{F128_ToString_Exp}
+#endif
 //!@}
 
 
@@ -738,19 +758,22 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 */
 //!@{
 #define					Float_ToString_Dec	CONCAT(FLOAT_TYPE,_ToString_Dec)
+#define c_ftostrdec		Float_ToString_Dec	//!< @alias{Float_ToString_Dec}
+
 _MALLOC()	t_char*		F32_ToString_Dec(t_f32 number, t_u8 precision);
+#define c_f32tostrdec	F32_ToString_Dec	//!< @alias{F32_ToString_Dec}
+
 _MALLOC()	t_char*		F64_ToString_Dec(t_f64 number, t_u8 precision);
+#define c_f64tostrdec	F64_ToString_Dec	//!< @alias{F64_ToString_Dec}
+
 #ifdef	__float80
 _MALLOC()	t_char*		F80_ToString_Dec(t_f80 number, t_u8 precision);
+#define c_f80tostrdec	F80_ToString_Dec	//!< @alias{F80_ToString_Dec}
 #endif
 #ifdef	__float128
 _MALLOC()	t_char*		F128_ToString_Dec(t_f128 number, t_u8 precision);
-#endif
-#define c_ftostrdec		Float_ToString_Dec	//!< @alias{Float_ToString_Dec}
-#define c_f32tostrdec	F32_ToString_Dec	//!< @alias{F32_ToString_Dec}
-#define c_f64tostrdec	F64_ToString_Dec	//!< @alias{F64_ToString_Dec}
-#define c_f80tostrdec	F80_ToString_Dec	//!< @alias{F80_ToString_Dec}
 #define c_f128tostrdec	F128_ToString_Dec	//!< @alias{F128_ToString_Dec}
+#endif
 //!@}
 
 
@@ -766,19 +789,22 @@ _MALLOC()	t_char*		F128_ToString_Dec(t_f128 number, t_u8 precision);
 */
 //!@{
 #define					Float_ToString_Hex	CONCAT(FLOAT_TYPE,_ToString_Hex)
+#define c_ftostrhex		Float_ToString_Hex	//!< @alias{Float_ToString_Hex}
+
 _MALLOC()	t_char*		F32_ToString_Hex(t_f32 number, t_u8 precision);
+#define c_f32tostrhex	F32_ToString_Hex	//!< @alias{F32_ToString_Hex}
+
 _MALLOC()	t_char*		F64_ToString_Hex(t_f64 number, t_u8 precision);
+#define c_f64tostrhex	F64_ToString_Hex	//!< @alias{F64_ToString_Hex}
+
 #ifdef	__float80
 _MALLOC()	t_char*		F80_ToString_Hex(t_f80 number, t_u8 precision);
+#define c_f80tostrhex	F80_ToString_Hex	//!< @alias{F80_ToString_Hex}
 #endif
 #ifdef	__float128
 _MALLOC()	t_char*		F128_ToString_Hex(t_f128 number, t_u8 precision);
-#endif
-#define c_ftostrhex		Float_ToString_Hex	//!< @alias{Float_ToString_Hex}
-#define c_f32tostrhex	F32_ToString_Hex	//!< @alias{F32_ToString_Hex}
-#define c_f64tostrhex	F64_ToString_Hex	//!< @alias{F64_ToString_Hex}
-#define c_f80tostrhex	F80_ToString_Hex	//!< @alias{F80_ToString_Hex}
 #define c_f128tostrhex	F128_ToString_Hex	//!< @alias{F128_ToString_Hex}
+#endif
 //!@}
 
 
@@ -794,19 +820,22 @@ _MALLOC()	t_char*		F128_ToString_Hex(t_f128 number, t_u8 precision);
 */
 //!@{
 #define					Float_ToString_Bin	CONCAT(FLOAT_TYPE,_ToString_Bin)
+#define c_ftostrbin		Float_ToString_Bin	//!< @alias{Float_ToString_Bin}
+
 _MALLOC()	t_char*		F32_ToString_Bin(t_f32 number, t_u8 precision);
+#define c_f32tostrbin	F32_ToString_Bin	//!< @alias{F32_ToString_Bin}
+
 _MALLOC()	t_char*		F64_ToString_Bin(t_f64 number, t_u8 precision);
+#define c_f64tostrbin	F64_ToString_Bin	//!< @alias{F64_ToString_Bin}
+
 #ifdef	__float80
 _MALLOC()	t_char*		F80_ToString_Bin(t_f80 number, t_u8 precision);
+#define c_f80tostrbin	F80_ToString_Bin	//!< @alias{F80_ToString_Bin}
 #endif
 #ifdef	__float128
 _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
-#endif
-#define c_ftostrbin		Float_ToString_Bin	//!< @alias{Float_ToString_Bin}
-#define c_f32tostrbin	F32_ToString_Bin	//!< @alias{F32_ToString_Bin}
-#define c_f64tostrbin	F64_ToString_Bin	//!< @alias{F64_ToString_Bin}
-#define c_f80tostrbin	F80_ToString_Bin	//!< @alias{F80_ToString_Bin}
 #define c_f128tostrbin	F128_ToString_Bin	//!< @alias{F128_ToString_Bin}
+#endif
 //!@}
 
 
@@ -839,19 +868,22 @@ _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 */
 //!@{
 #define					Float_Parse	CONCAT(FIXED_TYPE,_Parse)
+#define c_fparse		Float_Parse	//!< @alias{Float_Parse}
+
 t_size					F32_Parse	(t_f32	*dest, t_char const* str, t_size n);
+#define c_f32parse		F32_Parse	//!< @alias{F32_Parse}
+
 t_size					F64_Parse	(t_f64	*dest, t_char const* str, t_size n);
+#define c_f64parse		F64_Parse	//!< @alias{F64_Parse}
+
 #ifdef __float80
 t_size					F80_Parse	(t_f80	*dest, t_char const* str, t_size n);
+#define c_f80parse		F80_Parse	//!< @alias{F80_Parse}
 #endif
 #ifdef __float128
 t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
-#endif
-#define c_fparse		Float_Parse	//!< @alias{Float_Parse}
-#define c_f32parse		F32_Parse	//!< @alias{F32_Parse}
-#define c_f64parse		F64_Parse	//!< @alias{F64_Parse}
-#define c_f80parse		F80_Parse	//!< @alias{F80_Parse}
 #define c_f128parse		F128_Parse	//!< @alias{F128_Parse}
+#endif
 //!@}
 
 //! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
@@ -864,19 +896,22 @@ t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
 */
 //!@{
 #define					Float_FromString	CONCAT(FLOAT_TYPE,_FromString)
+#define c_strtof		Float_FromString//!< @alias{Float_FromString}
+
 t_f32					F32_FromString(t_char const* str);
+#define c_strtof32		F32_FromString	//!< @alias{F32_FromString}
+
 t_f64					F64_FromString(t_char const* str);
+#define c_strtof64		F64_FromString	//!< @alias{F64_FromString}
+
 #ifdef	__float80
 t_f80					F80_FromString(t_char const* str);
+#define c_strtof80		F80_FromString	//!< @alias{F80_FromString}
 #endif
 #ifdef	__float128
 t_f128					F128_FromString(t_char const* str);
-#endif
-#define c_strtof		Float_FromString//!< @alias{Float_FromString}
-#define c_strtof32		F32_FromString	//!< @alias{F32_FromString}
-#define c_strtof64		F64_FromString	//!< @alias{F64_FromString}
-#define c_strtof80		F80_FromString	//!< @alias{F80_FromString}
 #define c_strtof128		F128_FromString	//!< @alias{F128_FromString}
+#endif
 //!@}
 
 
@@ -897,19 +932,22 @@ t_f128					F128_FromString(t_char const* str);
 */
 //!@{
 #define					Float_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
+#define c_fparsedec		Float_Parse_Dec	//!< @alias{Float_Parse_Dec}
+
 t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str, t_size n);
+#define c_f32parsedec	F32_Parse_Dec	//!< @alias{F32_Parse_Dec}
+
 t_size					F64_Parse_Dec	(t_f64	*dest, t_char const* str, t_size n);
+#define c_f64parsedec	F64_Parse_Dec	//!< @alias{F64_Parse_Dec}
+
 #ifdef __float80
 t_size					F80_Parse_Dec	(t_f80	*dest, t_char const* str, t_size n);
+#define c_f80parsedec	F80_Parse_Dec	//!< @alias{F80_Parse_Dec}
 #endif
 #ifdef __float128
 t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
-#endif
-#define c_fparsedec		Float_Parse_Dec	//!< @alias{Float_Parse_Dec}
-#define c_f32parsedec	F32_Parse_Dec	//!< @alias{F32_Parse_Dec}
-#define c_f64parsedec	F64_Parse_Dec	//!< @alias{F64_Parse_Dec}
-#define c_f80parsedec	F80_Parse_Dec	//!< @alias{F80_Parse_Dec}
 #define c_f128parsedec	F128_Parse_Dec	//!< @alias{F128_Parse_Dec}
+#endif
 //!@}
 
 //! Parse the decimal representation of a floating-point number
@@ -923,19 +961,22 @@ t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
 */
 //!@{
 #define					Float_FromString_Dec	CONCAT(FLOAT_TYPE,_FromString_Dec)
+#define c_strdectof		Float_FromString_Dec//!< @alias{Float_FromString_Dec}
+
 t_f32					F32_FromString_Dec(t_char const* str);
+#define c_strdectof32	F32_FromString_Dec	//!< @alias{F32_FromString_Dec}
+
 t_f64					F64_FromString_Dec(t_char const* str);
+#define c_strdectof64	F64_FromString_Dec	//!< @alias{F64_FromString_Dec}
+
 #ifdef	__float80
 t_f80					F80_FromString_Dec(t_char const* str);
+#define c_strdectof80	F80_FromString_Dec	//!< @alias{F80_FromString_Dec}
 #endif
 #ifdef	__float128
 t_f128					F128_FromString_Dec(t_char const* str);
-#endif
-#define c_strdectof		Float_FromString_Dec//!< @alias{Float_FromString_Dec}
-#define c_strdectof32	F32_FromString_Dec	//!< @alias{F32_FromString_Dec}
-#define c_strdectof64	F64_FromString_Dec	//!< @alias{F64_FromString_Dec}
-#define c_strdectof80	F80_FromString_Dec	//!< @alias{F80_FromString_Dec}
 #define c_strdectof128	F128_FromString_Dec	//!< @alias{F128_FromString_Dec}
+#endif
 //!@}
 
 
@@ -956,19 +997,22 @@ t_f128					F128_FromString_Dec(t_char const* str);
 */
 //!@{
 #define					Float_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
+#define c_fparsehex		Float_Parse_Hex	//!< @alias{Float_Parse_Hex}
+
 t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str, t_size n);
+#define c_f32parsehex	F32_Parse_Hex	//!< @alias{F32_Parse_Hex}
+
 t_size					F64_Parse_Hex	(t_f64	*dest, t_char const* str, t_size n);
+#define c_f64parsehex	F64_Parse_Hex	//!< @alias{F64_Parse_Hex}
+
 #ifdef __float80
 t_size					F80_Parse_Hex	(t_f80	*dest, t_char const* str, t_size n);
+#define c_f80parsehex	F80_Parse_Hex	//!< @alias{F80_Parse_Hex}
 #endif
 #ifdef __float128
 t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
-#endif
-#define c_fparsehex		Float_Parse_Hex	//!< @alias{Float_Parse_Hex}
-#define c_f32parsehex	F32_Parse_Hex	//!< @alias{F32_Parse_Hex}
-#define c_f64parsehex	F64_Parse_Hex	//!< @alias{F64_Parse_Hex}
-#define c_f80parsehex	F80_Parse_Hex	//!< @alias{F80_Parse_Hex}
 #define c_f128parsehex	F128_Parse_Hex	//!< @alias{F128_Parse_Hex}
+#endif
 //!@}
 
 //! Parse the hexadecimal representation of a floating-point number
@@ -982,19 +1026,22 @@ t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
 */
 //!@{
 #define					Float_FromString_Hex	CONCAT(FLOAT_TYPE,_FromString_Hex)
+#define c_strhextof		Float_FromString_Hex//!< @alias{Float_FromString_Hex}
+
 t_f32					F32_FromString_Hex(t_char const* str);
+#define c_strhextof32	F32_FromString_Hex	//!< @alias{F32_FromString_Hex}
+
 t_f64					F64_FromString_Hex(t_char const* str);
+#define c_strhextof64	F64_FromString_Hex	//!< @alias{F64_FromString_Hex}
+
 #ifdef	__float80
 t_f80					F80_FromString_Hex(t_char const* str);
+#define c_strhextof80	F80_FromString_Hex	//!< @alias{F80_FromString_Hex}
 #endif
 #ifdef	__float128
 t_f128					F128_FromString_Hex(t_char const* str);
-#endif
-#define c_strhextof		Float_FromString_Hex//!< @alias{Float_FromString_Hex}
-#define c_strhextof32	F32_FromString_Hex	//!< @alias{F32_FromString_Hex}
-#define c_strhextof64	F64_FromString_Hex	//!< @alias{F64_FromString_Hex}
-#define c_strhextof80	F80_FromString_Hex	//!< @alias{F80_FromString_Hex}
 #define c_strhextof128	F128_FromString_Hex	//!< @alias{F128_FromString_Hex}
+#endif
 //!@}
 
 
@@ -1015,19 +1062,22 @@ t_f128					F128_FromString_Hex(t_char const* str);
 */
 //!@{
 #define					Float_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
+#define c_fparseoct		Float_Parse_Oct	//!< @alias{Float_Parse_Oct}
+
 t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str, t_size n);
+#define c_f32parseoct	F32_Parse_Oct	//!< @alias{F32_Parse_Oct}
+
 t_size					F64_Parse_Oct	(t_f64	*dest, t_char const* str, t_size n);
+#define c_f64parseoct	F64_Parse_Oct	//!< @alias{F64_Parse_Oct}
+
 #ifdef __float80
 t_size					F80_Parse_Oct	(t_f80	*dest, t_char const* str, t_size n);
+#define c_f80parseoct	F80_Parse_Oct	//!< @alias{F80_Parse_Oct}
 #endif
 #ifdef __float128
 t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
-#endif
-#define c_fparseoct		Float_Parse_Oct	//!< @alias{Float_Parse_Oct}
-#define c_f32parseoct	F32_Parse_Oct	//!< @alias{F32_Parse_Oct}
-#define c_f64parseoct	F64_Parse_Oct	//!< @alias{F64_Parse_Oct}
-#define c_f80parseoct	F80_Parse_Oct	//!< @alias{F80_Parse_Oct}
 #define c_f128parseoct	F128_Parse_Oct	//!< @alias{F128_Parse_Oct}
+#endif
 //!@}
 
 //! Parse the octal representation of a floating-point number
@@ -1041,19 +1091,22 @@ t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
 */
 //!@{
 #define					Float_FromString_Oct	CONCAT(TYPE_FLOAT,_FromString_Oct)
+#define c_strocttof		Float_FromString_Oct//!< @alias{Float_FromString_Oct}
+
 t_f32					F32_FromString_Oct(t_char const* str);
+#define c_strocttof32	F32_FromString_Oct	//!< @alias{F32_FromString_Oct}
+
 t_f64					F64_FromString_Oct(t_char const* str);
+#define c_strocttof64	F64_FromString_Oct	//!< @alias{F64_FromString_Oct}
+
 #ifdef	__float80
 t_f80					F80_FromString_Oct(t_char const* str);
+#define c_strocttof80	F80_FromString_Oct	//!< @alias{F80_FromString_Oct}
 #endif
 #ifdef	__float128
 t_f128					F128_FromString_Oct(t_char const* str);
-#endif
-#define c_strocttof		Float_FromString_Oct//!< @alias{Float_FromString_Oct}
-#define c_strocttof32	F32_FromString_Oct	//!< @alias{F32_FromString_Oct}
-#define c_strocttof64	F64_FromString_Oct	//!< @alias{F64_FromString_Oct}
-#define c_strocttof80	F80_FromString_Oct	//!< @alias{F80_FromString_Oct}
 #define c_strocttof128	F128_FromString_Oct	//!< @alias{F128_FromString_Oct}
+#endif
 //!@}
 
 
@@ -1074,19 +1127,22 @@ t_f128					F128_FromString_Oct(t_char const* str);
 */
 //!@{
 #define					Float_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
+#define c_fparsebin		Float_Parse_Bin	//!< @alias{Float_Parse_Bin}
+
 t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str, t_size n);
+#define c_f32parsebin	F32_Parse_Bin	//!< @alias{F32_Parse_Bin}
+
 t_size					F64_Parse_Bin	(t_f64	*dest, t_char const* str, t_size n);
+#define c_f64parsebin	F64_Parse_Bin	//!< @alias{F64_Parse_Bin}
+
 #ifdef __float80
 t_size					F80_Parse_Bin	(t_f80	*dest, t_char const* str, t_size n);
+#define c_f80parsebin	F80_Parse_Bin	//!< @alias{F80_Parse_Bin}
 #endif
 #ifdef __float128
 t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
-#endif
-#define c_fparsebin		Float_Parse_Bin	//!< @alias{Float_Parse_Bin}
-#define c_f32parsebin	F32_Parse_Bin	//!< @alias{F32_Parse_Bin}
-#define c_f64parsebin	F64_Parse_Bin	//!< @alias{F64_Parse_Bin}
-#define c_f80parsebin	F80_Parse_Bin	//!< @alias{F80_Parse_Bin}
 #define c_f128parsebin	F128_Parse_Bin	//!< @alias{F128_Parse_Bin}
+#endif
 //!@}
 
 //! Parse the binary representation of a floating-point number
@@ -1100,19 +1156,22 @@ t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
 */
 //!@{
 #define					Float_FromString_Bin	CONCAT(TYPE_FLOAT,_FromString_Bin)
+#define c_strbintof		Float_FromString_Bin//!< @alias{Float_FromString_Bin}
+
 t_f32					F32_FromString_Bin(t_char const* str);
+#define c_strbintof32	F32_FromString_Bin	//!< @alias{F32_FromString_Bin}
+
 t_f64					F64_FromString_Bin(t_char const* str);
+#define c_strbintof64	F64_FromString_Bin	//!< @alias{F64_FromString_Bin}
+
 #ifdef	__float80
 t_f80					F80_FromString_Bin(t_char const* str);
+#define c_strbintof80	F80_FromString_Bin	//!< @alias{F80_FromString_Bin}
 #endif
 #ifdef	__float128
 t_f128					F128_FromString_Bin(t_char const* str);
-#endif
-#define c_strbintof		Float_FromString_Bin//!< @alias{Float_FromString_Bin}
-#define c_strbintof32	F32_FromString_Bin	//!< @alias{F32_FromString_Bin}
-#define c_strbintof64	F64_FromString_Bin	//!< @alias{F64_FromString_Bin}
-#define c_strbintof80	F80_FromString_Bin	//!< @alias{F80_FromString_Bin}
 #define c_strbintof128	F128_FromString_Bin	//!< @alias{F128_FromString_Bin}
+#endif
 //!@}
 
 

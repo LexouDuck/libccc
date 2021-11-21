@@ -186,7 +186,21 @@ HEADER_CPP
 
 
 
-//! This macro allows to check if the current platform supports 128-bit integers
+//! Check if this environment supports 128-bit integer types
+//!@{
+#ifdef __SIZEOF_INT128__
+#ifndef __int128
+#define __int128	__int128
+#endif
+//#pragma GCC diagnostic push
+//#pragma GCC diagnostic ignored "-Wpedantic"
+typedef unsigned __int128	_UInt128;
+typedef signed   __int128	_SInt128;
+//#pragma GCC diagnostic pop
+#endif
+//!@}
+
+//! This macro is set to `1` if the current platform supports 128-bit integers, or `0` otherwise
 //!@{
 #ifndef __int128
 #define _HAS_128BIT	0

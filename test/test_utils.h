@@ -92,9 +92,10 @@ char*	u32tostr(	t_u32	number);
 char*	s32tostr(	t_s32	number);
 char*	u64tostr(	t_u64	number);
 char*	s64tostr(	t_s64	number);
+#if LIBCONFIG_USE_128BIT
 char*	u128tostr(	t_u128	number);
 char*	s128tostr(	t_s128	number);
-
+#endif
 char*	ptrtostr(void const* ptr);
 
 
