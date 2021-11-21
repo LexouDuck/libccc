@@ -124,7 +124,7 @@ void test_u64tostr(void)	{}
 DEFINETEST_UINT_TO_STR(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_u128tostr
 void test_u128tostr(void)	{}
 #else
@@ -234,7 +234,7 @@ void test_s64tostr(void)	{}
 DEFINETEST_SINT_TO_STR(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_s128tostr
 void test_s128tostr(void)	{}
 #else
@@ -339,7 +339,7 @@ void test_u64tostrhex(void)	{}
 DEFINETEST_UINT_TO_STRHEX(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_u128tostrhex
 void test_u128tostrhex(void)	{}
 #else
@@ -490,7 +490,7 @@ void test_s64tostrbase(void)	{}
 DEFINETEST_SINT_TO_STRBASE(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_s128tostrbase
 void test_s128tostrbase(void)	{}
 #else
@@ -623,7 +623,7 @@ void test_u64tostrbase(void)	{}
 DEFINETEST_UINT_TO_STRBASE(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_u128tostrbase
 void test_u128tostrbase(void)	{}
 #else
@@ -815,7 +815,7 @@ void test_strtou64(void)	{}
 DEFINETEST_STR_TO_UINT(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_strtou128
 void test_strtou128(void)	{}
 #else
@@ -995,7 +995,7 @@ void test_strtos64(void)	{}
 DEFINETEST_STR_TO_SINT(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_strtos128
 void test_strtos128(void)	{}
 #else
@@ -1044,7 +1044,7 @@ void test_strhextou64(void)	{}
 DEFINETEST_STRHEX_TO_UINT(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_strhextou128
 void test_strhextou128(void)	{}
 #else
@@ -1192,7 +1192,7 @@ void test_strbasetou64(void)	{}
 DEFINETEST_STRBASE_TO_UINT(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_strbasetou128
 void test_strbasetou128(void)	{}
 #else
@@ -1341,7 +1341,7 @@ void test_strbasetos64(void)	{}
 DEFINETEST_STRBASE_TO_SINT(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_strbasetos128
 void test_strbasetos128(void)	{}
 #else

@@ -186,6 +186,17 @@ HEADER_CPP
 
 
 
+//! This macro allows to check if the current platform supports 128-bit integers
+//!@{
+#ifndef __int128
+#define _HAS_128BIT	0
+#else
+#define _HAS_128BIT	1
+#endif
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
 **                           Common Macro Definitions                         *|

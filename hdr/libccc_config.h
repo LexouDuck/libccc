@@ -305,6 +305,25 @@ HEADER_CPP
 
 
 
+//! Whether libccc will define/expose utility functions for 128-bit integer types
+/*!
+**	By default, this setting will be enabled if the `__int128` macro is defined.
+**	Since 128-bit integers are not supported by the standard, they are not
+**	consistently accessible/usable/similar across all (or even most) platforms.
+**	If you wish to make use of 128-bit types regardless, then set this value to `1`.
+**	Enabling this configuration setting will expose several types (and functions):
+**	- `t_u128`: unsigned integer type
+**	- `t_s128`: signed integer type
+**	- `t_q128`: fixed-point fraction type
+*/
+//!@{
+#ifndef LIBCONFIG_USE_128BIT
+#define LIBCONFIG_USE_128BIT		_HAS_128BIT
+#endif
+//!@}
+
+
+
 //! Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
 /*!
 **	This macro determines if the compiler should prefer function implementations
@@ -319,7 +338,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS		0
 #endif
 //!@}
 
@@ -376,7 +395,10 @@ HEADER_CPP
 
 #undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
-
+/*
+#undef	LIBCONFIG_USE_STD_MATH
+#define	LIBCONFIG_USE_STD_MATH			0
+*/
 #undef	LIBCONFIG_USE_STD_COMPLEX
 #define	LIBCONFIG_USE_STD_COMPLEX		0
 

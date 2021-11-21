@@ -51,7 +51,7 @@ s_kvt*	KVT_CreateArray_U8		(t_u8 const*	source, t_uint count)		{ KVT_CREATE_ARRA
 s_kvt*	KVT_CreateArray_U16		(t_u16 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 s_kvt*	KVT_CreateArray_U32		(t_u32 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 s_kvt*	KVT_CreateArray_U64		(t_u64 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 s_kvt*	KVT_CreateArray_U128	(t_u128 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 #endif
 
@@ -60,7 +60,7 @@ s_kvt*	KVT_CreateArray_S8		(t_s8 const*	source, t_uint count)		{ KVT_CREATE_ARRA
 s_kvt*	KVT_CreateArray_S16		(t_s16 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 s_kvt*	KVT_CreateArray_S32		(t_s32 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 s_kvt*	KVT_CreateArray_S64		(t_s64 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 s_kvt*	KVT_CreateArray_S128	(t_s128 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Integer)	}
 #endif
 

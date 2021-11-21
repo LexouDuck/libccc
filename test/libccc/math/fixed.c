@@ -41,7 +41,7 @@ void test_q64(void)	{}
 DEFINETEST_FIXED_(64)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_q128
 void test_q128(void)	{}
 #else

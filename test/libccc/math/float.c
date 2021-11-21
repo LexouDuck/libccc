@@ -41,7 +41,7 @@ void test_f80(void)	{}
 DEFINETEST_FLOAT_(80)
 #endif
 
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 #ifndef c_f128
 void test_f128(void)	{}
 #else

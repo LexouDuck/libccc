@@ -57,7 +57,7 @@ typedef union varuint // TODO refactor this and add similar types for fixed and 
 	t_u16	us;	//!< unsigned integer: 16-bit (short)
 	t_u32	ui;	//!< unsigned integer: 32-bit (int)
 	t_u64	ul;	//!< unsigned integer: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 	t_q128	uh;	//!< unsigned integer: 128-bit (huge) 
 #endif
 }		u_varuint;
@@ -68,7 +68,7 @@ typedef union varsint // TODO refactor this and add similar types for fixed and 
 	t_s16	ss;	//!< signed integer: 16-bit (short)
 	t_s32	si;	//!< signed integer: 32-bit (int)
 	t_s64	sl;	//!< signed integer: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 	t_q128	sh;	//!< signed integer: 128-bit (huge) 
 #endif
 }		u_varsint;
@@ -86,7 +86,7 @@ typedef union varfixed
 	t_q16	qs;	//!< fixed-point: 16-bit (short)
 	t_q32	qi;	//!< fixed-point: 32-bit (int)
 	t_q64	ql;	//!< fixed-point: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 	t_q128	qh;	//!< fixed-point: 128-bit (huge) 
 #endif
 }		u_varfixed;

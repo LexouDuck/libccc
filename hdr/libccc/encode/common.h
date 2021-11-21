@@ -260,7 +260,7 @@ s_kvt*	KVT_CreateArray_U8		(t_u8 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_U16		(t_u16 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_U32		(t_u32 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_U64		(t_u64 const*	numbers, t_uint count);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 s_kvt*	KVT_CreateArray_U128	(t_u128 const*	numbers, t_uint count);
 #endif
 
@@ -269,7 +269,7 @@ s_kvt*	KVT_CreateArray_S8		(t_s8 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_S16		(t_s16 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_S32		(t_s32 const*	numbers, t_uint count);
 s_kvt*	KVT_CreateArray_S64		(t_s64 const*	numbers, t_uint count);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 s_kvt*	KVT_CreateArray_S128	(t_s128 const*	numbers, t_uint count);
 #endif
 

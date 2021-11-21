@@ -183,7 +183,7 @@ HEADER_CPP
 	typedef	s64		t_q64;
 	TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 
-	#ifdef	__int128
+	#if LIBCONFIG_USE_128BIT
 	//! Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
 	/*!
 	**	@nonstd
@@ -264,7 +264,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
 	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
 
-	#ifdef __int128
+	#if LIBCONFIG_USE_128BIT
 	#define Q128_ERROR	((t_q128)0)
 	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
 	#define Q128_MIN	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The largest possible value that a 128-bit fixed-point can hold
@@ -298,7 +298,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define Q64_MAXINT	((t_s64)(Q64_MAX / FIXED_DENOMINATOR))
 	#define Q64_MININT	((t_s64)(Q64_MIN / FIXED_DENOMINATOR))
 
-	#ifdef __int128
+	#if LIBCONFIG_USE_128BIT
 	#define Q128_ERROR	((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
 	#define Q128_MAX	((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))  //!< The largest possible value that a 128-bit fixed-point can hold
 	#define Q128_MIN	((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
@@ -362,7 +362,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 t_q16					Q16_FromInt(t_sint number);
 t_q32					Q32_FromInt(t_sint number);
 t_q64					Q64_FromInt(t_sint number);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromInt(t_sint number);
 #endif
 #define c_itofixed		Fixed_FromInt 	//!< @alias{Fixed_FromInt}
@@ -381,7 +381,7 @@ t_q128					Q128_FromInt(t_sint number);
 t_q16					Q16_FromFixed(t_fixed number);
 t_q32					Q32_FromFixed(t_fixed number);
 t_q64					Q64_FromFixed(t_fixed number);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromFixed(t_fixed number);
 #endif
 #define c_qtofixed		Fixed_FromFixed	//!< @alias{Fixed_FromFixed}
@@ -400,7 +400,7 @@ t_q128					Q128_FromFixed(t_fixed number);
 t_q16	 				Q16_FromFloat(t_float number);
 t_q32	 				Q32_FromFloat(t_float number);
 t_q64	 				Q64_FromFloat(t_float number);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_q128	 				Q128_FromFloat(t_float number);
 #endif
 #define c_ftofixed		Fixed_FromFloat	//!< @alias{Fixed_FromFloat}
@@ -424,7 +424,7 @@ $$	@param	numerator		the numerator: number at the top of the fraction
 t_q16					Q16_From(t_s16 part_fraction, t_s16 denominator);
 t_q32					Q32_From(t_s32 part_fraction, t_s32 denominator);
 t_q64					Q64_From(t_s64 part_fraction, t_s64 denominator);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 #endif
 #define c_tofixed		Fixed_From	//!< @alias{Fixed_From}
@@ -443,7 +443,7 @@ t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 t_s16							Q16_IntegerPart(t_q16 number);
 t_s32							Q32_IntegerPart(t_q32 number);
 t_s64							Q64_IntegerPart(t_q64 number);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128							Q128_IntegerPart(t_q128 number);
 #endif
 #define c_fixed_integerpart		Fixed_IntegerPart 	//!< @alias{Fixed_IntegerPart}
@@ -462,7 +462,7 @@ t_s128							Q128_IntegerPart(t_q128 number);
 t_s16							Q16_FractionPart(t_q16 number);
 t_s32							Q32_FractionPart(t_q32 number);
 t_s64							Q64_FractionPart(t_q64 number);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128							Q128_FractionPart(t_q128 number);
 #endif
 #define c_fixed_fractionpart	Fixed_FractionPart	//!< @alias{Fixed_FractionPart}
@@ -493,7 +493,7 @@ t_s128							Q128_FractionPart(t_q128 number);
 _MALLOC()	t_char*		Q16_ToString(t_q16 number); // TODO implement
 _MALLOC()	t_char*		Q32_ToString(t_q32 number); // TODO implement
 _MALLOC()	t_char*		Q64_ToString(t_q64 number); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 #endif
 #define c_qtostr		Fixed_ToString	//!< @alias{Fixed_ToString}
@@ -516,7 +516,7 @@ _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 _MALLOC()	t_char*		Q16_ToString_Hex(t_q16 number); // TODO implement
 _MALLOC()	t_char*		Q32_ToString_Hex(t_q32 number); // TODO implement
 _MALLOC()	t_char*		Q64_ToString_Hex(t_q64 number); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 #endif
 #define c_qtostrhex		Fixed_ToString_Hex	//!< @alias{Fixed_ToString_Hex}
@@ -539,7 +539,7 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 _MALLOC()	t_char*		Q16_ToString_Oct(t_q16 number); // TODO implement
 _MALLOC()	t_char*		Q32_ToString_Oct(t_q32 number); // TODO implement
 _MALLOC()	t_char*		Q64_ToString_Oct(t_q64 number); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 _MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
 #endif
 #define c_qtostroct		Fixed_ToString_Oct	//!< @alias{Fixed_ToString_Oct}
@@ -562,7 +562,7 @@ _MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
 _MALLOC()	t_char*		Q16_ToString_Bin(t_q16 number); // TODO implement
 _MALLOC()	t_char*		Q32_ToString_Bin(t_q32 number); // TODO implement
 _MALLOC()	t_char*		Q64_ToString_Bin(t_q64 number); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 #endif
 #define c_qtostrbin		Fixed_ToString_Bin	//!< @alias{Fixed_ToString_Bin}
@@ -586,7 +586,7 @@ _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 _MALLOC()	t_char*		Q16_ToString_Base(t_q16 number, t_char const* base); // TODO implement
 _MALLOC()	t_char*		Q32_ToString_Base(t_q32 number, t_char const* base); // TODO implement
 _MALLOC()	t_char*		Q64_ToString_Base(t_q64 number, t_char const* base); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TODO implement
 #endif
 #define c_qtostrbase	Fixed_ToString_Base	//!< @alias{Fixed_ToString_Base}
@@ -625,7 +625,7 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 t_size					Q16_Parse	(t_q16	*dest, t_char const* str, t_size n);
 t_size					Q32_Parse	(t_q32	*dest, t_char const* str, t_size n);
 t_size					Q64_Parse	(t_q64	*dest, t_char const* str, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 #define c_qparse		Fixed_Parse	//!< @alias{Fixed_Parse}
@@ -647,7 +647,7 @@ t_size					Q128_Parse	(t_q128	*dest, t_char const* str, t_size n);
 t_q16					Q16_FromString(t_char const* str); // TODO implement
 t_q32					Q32_FromString(t_char const* str); // TODO implement
 t_q64					Q64_FromString(t_char const* str); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString(t_char const* str); // TODO implement
 #endif
 #define c_strtoq		Fixed_FromString//!< @alias{Fixed_FromString}
@@ -678,7 +678,7 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 t_size					Q16_Parse_Dec	(t_q16	*dest, t_char const* str, t_size n);
 t_size					Q32_Parse_Dec	(t_q32	*dest, t_char const* str, t_size n);
 t_size					Q64_Parse_Dec	(t_q64	*dest, t_char const* str, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 #define c_qparsedec		Fixed_Parse_Dec	//!< @alias{Fixed_Parse_Dec}
@@ -700,7 +700,7 @@ t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str, t_size n);
 t_q16					Q16_FromString_Dec(t_char const* str); // TODO implement
 t_q32					Q32_FromString_Dec(t_char const* str); // TODO implement
 t_q64					Q64_FromString_Dec(t_char const* str); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
 #endif
 #define c_strdectoq		Fixed_FromString_Dec//!< @alias{Fixed_FromString_Dec}
@@ -731,7 +731,7 @@ t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
 t_size					Q16_Parse_Hex	(t_q16	*dest, t_char const* str, t_size n);
 t_size					Q32_Parse_Hex	(t_q32	*dest, t_char const* str, t_size n);
 t_size					Q64_Parse_Hex	(t_q64	*dest, t_char const* str, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 #define c_qparsehex		Fixed_Parse_Hex	//!< @alias{Fixed_Parse_Hex}
@@ -753,7 +753,7 @@ t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str, t_size n);
 t_q16					Q16_FromString_Hex(t_char const* str); // TODO implement
 t_q32					Q32_FromString_Hex(t_char const* str); // TODO implement
 t_q64					Q64_FromString_Hex(t_char const* str); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 #endif
 #define c_strhextoq		Fixed_FromString_Hex//!< @alias{Fixed_FromString_Hex}
@@ -784,7 +784,7 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 t_size					Q16_Parse_Oct	(t_q16	*dest, t_char const* str, t_size n);
 t_size					Q32_Parse_Oct	(t_q32	*dest, t_char const* str, t_size n);
 t_size					Q64_Parse_Oct	(t_q64	*dest, t_char const* str, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 #define c_qparseoct		Fixed_Parse_Oct	//!< @alias{Fixed_Parse_Oct}
@@ -806,7 +806,7 @@ t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str, t_size n);
 t_q16					Q16_FromString_Oct(t_char const* str); // TODO implement
 t_q32					Q32_FromString_Oct(t_char const* str); // TODO implement
 t_q64					Q64_FromString_Oct(t_char const* str); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
 #endif
 #define c_strocttoq		Fixed_FromString_Oct//!< @alias{Fixed_FromString_Oct}
@@ -837,7 +837,7 @@ t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
 t_size					Q16_Parse_Bin	(t_q16	*dest, t_char const* str, t_size n);
 t_size					Q32_Parse_Bin	(t_q32	*dest, t_char const* str, t_size n);
 t_size					Q64_Parse_Bin	(t_q64	*dest, t_char const* str, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 #define c_qparsebin		Fixed_Parse_Bin	//!< @alias{Fixed_Parse_Bin}
@@ -859,7 +859,7 @@ t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str, t_size n);
 t_q16					Q16_FromString_Bin(t_char const* str); // TODO implement
 t_q32					Q32_FromString_Bin(t_char const* str); // TODO implement
 t_q64					Q64_FromString_Bin(t_char const* str); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 #endif
 #define c_strbintoq		Fixed_FromString_Bin//!< @alias{Fixed_FromString_Bin}
@@ -892,7 +892,7 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 t_size					Q16_Parse_Base	(t_q16	*dest, t_char const* str, t_char const* base, t_size n);
 t_size					Q32_Parse_Base	(t_q32	*dest, t_char const* str, t_char const* base, t_size n);
 t_size					Q64_Parse_Base	(t_q64	*dest, t_char const* str, t_char const* base, t_size n);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base, t_size n);
 #endif
 #define c_qparsebase	Fixed_Parse_Base	//!< @alias{Fixed_Parse_Base}
@@ -915,7 +915,7 @@ t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base,
 t_q16					Q16_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 t_q32					Q32_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 t_q64					Q64_FromString_Base(t_char const* str, t_char const* base); // TODO implement
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 #endif
 #define c_strbasetoq	Fixed_FromString_Base 	//!< @alias{Fixed_FromString_Base}

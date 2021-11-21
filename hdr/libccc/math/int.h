@@ -63,7 +63,7 @@ typedef		t_s32	(*f_s32_function)	(t_s32 x);
 
 typedef		t_u64	(*f_u64_function)	(t_u64 x);
 typedef		t_s64	(*f_s64_function)	(t_s64 x);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 typedef		t_u128	(*f_u128_function)	(t_u128 x);
 typedef		t_s128	(*f_s128_function)	(t_s128 x);
 #endif
@@ -82,7 +82,7 @@ typedef		t_s32	(*f_s32_operator)	(t_s32 x,	t_s32 y);
 
 typedef		t_u64	(*f_u64_operator)	(t_u64 x,	t_u64 y);
 typedef		t_s64	(*f_s64_operator)	(t_s64 x,	t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 typedef		t_u128	(*f_u128_operator)	(t_u128 x,	t_u128 y);
 typedef		t_s128	(*f_s128_operator)	(t_s128 x,	t_s128 y);
 #endif
@@ -106,7 +106,7 @@ t_s8				S8_Abs( t_s8  x);
 t_s16				S16_Abs(t_s16 x);
 t_s32				S32_Abs(t_s32 x);
 t_s64				S64_Abs(t_s64 x);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128				S128_Abs(t_s128 x);
 #endif
 #define c_sabs		SInt_Abs 	//!< @alias{SInt_Abs}
@@ -143,7 +143,7 @@ t_bool					S8_Equals( t_s8  x, t_s8  y);
 t_bool					S16_Equals(t_s16 x, t_s16 y);
 t_bool					S32_Equals(t_s32 x, t_s32 y);
 t_bool					S64_Equals(t_s64 x, t_s64 y);
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_bool					S128_Equals(t_s128 x, t_s128 y);
 #endif
 #define c_sequ			SInt_Equals	//!< @alias{SInt_Equals}
@@ -172,7 +172,7 @@ t_bool					S8_EqualsApprox( t_s8  x, t_s8  y);
 t_bool					S16_EqualsApprox(t_s16 x, t_s16 y);
 t_bool					S32_EqualsApprox(t_s32 x, t_s32 y);
 t_bool					S64_EqualsApprox(t_s64 x, t_s64 y);
-#ifdef	__int128
+#if LIBCONFIG_USE_128BIT
 t_bool					S128_EqualsApprox(t_s128 x, t_s128 y);
 #endif
 #define c_sequa			SInt_EqualsApprox	//!< @alias{SInt_EqualsApprox}
@@ -206,7 +206,7 @@ t_u8				U8_Add( t_u8  x, t_u8  y);
 t_u16				U16_Add(t_u16 x, t_u16 y);
 t_u32				U32_Add(t_u32 x, t_u32 y);
 t_u64				U64_Add(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128				U128_Add(t_u128 x, t_u128 y);
 #endif
 #define c_uadd		UInt_Add	//!< @alias{UInt_Add}
@@ -224,7 +224,7 @@ t_s8				S8_Add( t_s8  x, t_s8  y);
 t_s16				S16_Add(t_s16 x, t_s16 y);
 t_s32				S32_Add(t_s32 x, t_s32 y);
 t_s64				S64_Add(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128				S128_Add(t_s128 x, t_s128 y);
 #endif
 #define c_sadd		SInt_Add	//!< @alias{SInt_Add}
@@ -246,7 +246,7 @@ t_u8				U8_Sub( t_u8  x, t_u8  y);
 t_u16				U16_Sub(t_u16 x, t_u16 y);
 t_u32				U32_Sub(t_u32 x, t_u32 y);
 t_u64				U64_Sub(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128				U128_Sub(t_u128 x, t_u128 y);
 #endif
 #define c_usub		UInt_Sub	//!< @alias{UInt_Sub}
@@ -264,7 +264,7 @@ t_s8				S8_Sub( t_s8  x, t_s8  y);
 t_s16				S16_Sub(t_s16 x, t_s16 y);
 t_s32				S32_Sub(t_s32 x, t_s32 y);
 t_s64				S64_Sub(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128				S128_Sub(t_s128 x, t_s128 y);
 #endif
 #define c_ssub		SInt_Sub	//!< @alias{SInt_Sub}
@@ -286,7 +286,7 @@ t_u8				U8_Mul( t_u8  x, t_u8  y);
 t_u16				U16_Mul(t_u16 x, t_u16 y);
 t_u32				U32_Mul(t_u32 x, t_u32 y);
 t_u64				U64_Mul(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128				U128_Mul(t_u128 x, t_u128 y);
 #endif
 #define c_umul		UInt_Mul	//!< @alias{UInt_Mul}
@@ -304,7 +304,7 @@ t_s8				S8_Mul( t_s8  x, t_s8  y);
 t_s16				S16_Mul(t_s16 x, t_s16 y);
 t_s32				S32_Mul(t_s32 x, t_s32 y);
 t_s64				S64_Mul(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128				S128_Mul(t_s128 x, t_s128 y);
 #endif
 #define c_smul		SInt_Mul	//!< @alias{SInt_Mul}
@@ -326,7 +326,7 @@ t_u8				U8_Div( t_u8  x, t_u8  y);
 t_u16				U16_Div(t_u16 x, t_u16 y);
 t_u32				U32_Div(t_u32 x, t_u32 y);
 t_u64				U64_Div(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128				U128_Div(t_u128 x, t_u128 y);
 #endif
 #define c_udiv		UInt_Div	//!< @alias{UInt_Div}
@@ -344,7 +344,7 @@ t_s8				S8_Div( t_s8  x, t_s8  y);
 t_s16				S16_Div(t_s16 x, t_s16 y);
 t_s32				S32_Div(t_s32 x, t_s32 y);
 t_s64				S64_Div(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128				S128_Div(t_s128 x, t_s128 y);
 #endif
 #define c_sdiv		SInt_Div	//!< @alias{SInt_Div}
@@ -369,7 +369,7 @@ t_u8					U8_Mod( t_u8  x, t_u8  y);
 t_u16					U16_Mod(t_u16 x, t_u16 y);
 t_u32					U32_Mod(t_u32 x, t_u32 y);
 t_u64					U64_Mod(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128					U128_Mod(t_u128 x, t_u128 y);
 #endif
 #define c_umod			UInt_Mod
@@ -392,7 +392,7 @@ t_s8					S8_Mod( t_s8  x, t_s8  y);
 t_s16					S16_Mod(t_s16 x, t_s16 y);
 t_s32					S32_Mod(t_s32 x, t_s32 y);
 t_s64					S64_Mod(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128					S128_Mod(t_s128 x, t_s128 y);
 #endif
 #define c_smod			SInt_Mod
@@ -427,7 +427,7 @@ t_u8					U8_Pow( t_u8  x, t_u8  y);
 t_u16					U16_Pow(t_u16 x, t_u16 y);
 t_u32					U32_Pow(t_u32 x, t_u32 y);
 t_u64					U64_Pow(t_u64 x, t_u64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128					U128_Pow(t_u128 x, t_u128 y);
 #endif
 #define c_upow			UInt_Pow
@@ -450,7 +450,7 @@ t_s8					S8_Pow( t_s8  x, t_s8  y);
 t_s16					S16_Pow(t_s16 x, t_s16 y);
 t_s32					S32_Pow(t_s32 x, t_s32 y);
 t_s64					S64_Pow(t_s64 x, t_s64 y);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128					S128_Pow(t_s128 x, t_s128 y);
 #endif
 #define c_spow			SInt_Pow
@@ -477,7 +477,7 @@ t_u8						U8_Root2( t_u8  x);
 t_u16						U16_Root2(t_u16 x);
 t_u32						U32_Root2(t_u32 x);
 t_u64						U64_Root2(t_u64 x);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_u128						U128_Root2(t_u128 x);
 #endif
 #define c_usqrt				UInt_Root2
@@ -501,7 +501,7 @@ t_s8						S8_Root2( t_s8  x);
 t_s16						S16_Root2(t_s16 x);
 t_s32						S32_Root2(t_s32 x);
 t_s64						S64_Root2(t_s64 x);
-#ifdef __int128
+#if LIBCONFIG_USE_128BIT
 t_s128						S128_Root2(t_s128 x);
 #endif
 #define c_ssqrt				SInt_Root2
