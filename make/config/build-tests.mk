@@ -6,9 +6,12 @@
 TEST_CFLAGS = $(TEST_CFLAGS_OS) $(TEST_CFLAGS_EXTRA) \
 	-Wall \
 	-Wextra \
+	-Winline \
+	-Wpedantic \
 	-Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-format-extra-args \
+	-fstrict-aliasing \
 	-fno-inline \
 
 TEST_CFLAGS_DEBUG   = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1

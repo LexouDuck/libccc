@@ -13,7 +13,7 @@ test-kvt: $(NAME_TEST_KVT)
 
 $(NAME_TEST_KVT): build-$(MODE) $(SRCS_TEST_KVT)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
 		-I$(HDRDIR) $(SRCS_TEST_KVT) \
 		-L./ -lccc
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"

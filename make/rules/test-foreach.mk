@@ -13,7 +13,7 @@ test-foreach: $(NAME_TEST_FOREACH)
 
 $(NAME_TEST_FOREACH): build-$(MODE) $(SRCS_TEST_FOREACH)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
 		-I$(HDRDIR) $(SRCS_TEST_FOREACH) \
 		-L./ -lccc
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"

@@ -13,7 +13,7 @@ test-helloworld: $(NAME_TEST_HELLOWORLD)
 
 $(NAME_TEST_HELLOWORLD): build-$(MODE) $(SRCS_TEST_HELLOWORLD)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
 		-I$(HDRDIR) $(SRCS_TEST_HELLOWORLD) \
 		-L./ -lccc
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
