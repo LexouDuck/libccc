@@ -9,25 +9,37 @@ HELPDOC_PUNCTOP = $(call ANSI_COLOR_FG,208)
 HELPDOC_PREPROC = $(call ANSI,1;38;5;198)
 HELPDOC_COMMENT = $(call ANSI_COLOR_FG,244)
 
+
+
+HELPDOC_AWK_DECL_SPACING = \
+$$0 = gensub(/\<_[A-Z]+\(\)[ \t]*/,                           "",           "g");\
+$$0 = gensub(/\<CONCAT\(([a-zA-Z_0-9]+),([A-Z])_NAME\)/,      "\\1<\\2>\t", "1");\
+$$0 = gensub(/[ \t]+([a-zA-Z_0-9]+(<.*>)?)[ \t]*(\(.*\);$$)/, "\t\\1\t\\3", "1");\
+$$0 = gensub(/[ \t][ \t]+/,                                   "\t",         "g");\
+split($$0, line, "\t");\
+$$0 = sprintf("%-20s %-40s %s", line[1], line[2], line[3]);\
+
 HELPDOC_AWK_SYNTAXCOLORS = \
-$$0 = gensub(/\<_[A-Z]+\(\)[ \t]*/, "", "g");\
-$$0 = gensub(/\<CONCAT\(([a-zA-Z_0-9]+),([A-Z])_NAME\)/, "\\1<\\2>\t", "1");\
-$$0 = gensub(/[ \t]+([a-zA-Z_0-9]+(<.*>)?)[ \t]*(\(.*\);$$)/,              "\t"$(HELPDOC_VARNAME) "\\1" $(IO_RESET)"\t\\3", "1");\
-$$0 = gensub(/^[ \t]*\#[ \t]*(define|undef|include)[ \t]+([a-zA-Z_0-9]+)/,     $(HELPDOC_PREPROC)"\#\\1"$(IO_RESET)"\t"$(HELPDOC_VARNAME)"\\2"$(IO_RESET), "g");\
-$$0 = gensub(/\<(const|restrict|typedef|volatile|atomic)\>/,                   $(HELPDOC_KEYWORD) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/\<(void|char|short|int|long|float|double)\>/,                    $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/\<(struct|union|enum)[ ]+[a-zA-Z_0-9]+\>/,                       $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/\<([ptseuf]_[a-zA-Z_0-9]+)\>/,                                   $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/\<([A-Z])\>/,                                                    $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/[*<>.!&@$$]/,                                                    $(HELPDOC_PUNCTOP) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/(\/\/(.*)$$)/,                                                   $(HELPDOC_COMMENT) "\\0" $(IO_RESET), "1");\
+$$0 = gensub(/([a-zA-Z_0-9]+(<.*>)?)([ \t]*\(.*\);$$)/,                    $(HELPDOC_VARNAME) "\\1" $(IO_RESET)"\\3", "1");\
+$$0 = gensub(/^[ \t]*\#[ \t]*(define|undef|include)[ \t]+([a-zA-Z_0-9]+)/, $(HELPDOC_PREPROC)"\#\\1"$(IO_RESET)"\t"$(HELPDOC_VARNAME)"\\2"$(IO_RESET), "g");\
+$$0 = gensub(/\<(const|restrict|typedef|volatile|atomic)\>/,               $(HELPDOC_KEYWORD) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<(void|char|short|int|long|float|double)\>/,                $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<(struct|union|enum)[ ]+[a-zA-Z_0-9]+\>/,                   $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<([ptseuf]_[a-zA-Z_0-9]+)\>/,                               $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/\<([A-Z])\>/,                                                $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/[*<>.!&@$$]/,                                                $(HELPDOC_PUNCTOP) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/(\/\/(.*)$$)/,                                               $(HELPDOC_COMMENT) "\\0" $(IO_RESET), "1");\
 
 
 
 .PHONY:\
-help-doc #! Displays a summary of all functions provided by libccc (`$(HDRS)`)
+help-doc #! Displays a summary of all functions provided by libccc (all headers by default, or just the files given as `ARGS`)
 help-doc:
-	@for i in $(addprefix $(HDRDIR),$(HDRS)) ; do \
+	@files="$(ARGS)" ; \
+	if [ -z "$${files}" ]; then \
+		files="$(addprefix $(HDRDIR),$(HDRS))" ; \
+	fi ; \
+	for i in $${files} ; do \
 		$(call print_message,"$${i}") ; \
 		gawk '\
 		/[ \t]+[a-zA-Z_0-9]+[ \t]*\(.*\);$$/ \
@@ -36,12 +48,12 @@ help-doc:
 				!/^[ \t]*#[ \t]*define\>/ &&\
 				!/^[ \t]*\/\//)\
 			{\
+				$(HELPDOC_AWK_DECL_SPACING)\
 				$(HELPDOC_AWK_SYNTAXCOLORS)\
-				$$0 = gensub(/\t+/, "\t", "g");\
 				print;\
 			}\
 		}\
-		' "$${i}" | expand -t 25 ; \
+		' "$${i}" ; \
 		printf "\n" ; \
 	done
 
