@@ -161,7 +161,7 @@ HEADER_CPP
 
 #else
 	#warning "Unknown data model: this platform is unsupported, and may need some manual configuration to build." \
-		"\n""To be specific, the '_IS_[32/64]BIT' and '_SIZEOF_[SHORT/INT/LONG/LONGLONG/POINTER]' will not work." \
+		"\n""To be specific, the '_IS_[32/64]BIT' and '_SIZEOF_[SHORT/INT/LONG/LONGLONG/POINTER]' macros will not work." \
 		"\n""Please run the libccc 'make test-predef' simple test program, to check which macros are predefined in your environment." \
 
 #endif

@@ -76,7 +76,8 @@ int main(int argc, char** argv)
 		i = 0;
 		foreach (char*, str, s_array, tmp)
 		{
-			IO_Output_Format("i:%u,\t""iter:%u,\t""str:%p -> \"%s\"\n", i++, str_i, (void*)str, str);
+			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""str:%p -> \"%s\"\n",
+				i++, str_i, (void*)str, str);
 		}
 		Array_Delete_str(tmp);
 		tmp = NULL;
@@ -97,7 +98,8 @@ int main(int argc, char** argv)
 		i = 0;
 		foreach (char*, str, s_list, tmp)
 		{
-			IO_Output_Format("i:%u,\t""iter:%p,\t""str:%p -> \"%s\"\n", i++, (void*)str_i, (void*)str, str);
+			IO_Output_Format("\t""i:%u,\t""iter:%p,\t""str:%p -> \"%s\"\n",
+				i++, (void*)str_i, (void*)str, str);
 		}
 		List_Delete_str(tmp);
 		tmp = NULL;
@@ -116,20 +118,18 @@ int main(int argc, char** argv)
 		i = 0;
 		foreach (s_array_int, int_array, s_array, tmp)
 		{
-			IO_Output_Format("i:%u,\titer:%u,\t""length: %u\n", i++, int_array_i, int_array.length);
+			//IO_Output_Format("i:%u,\titer:%u,\t""length: %u\n", i++, int_array_i, int_array.length);
 			j = 0;
-			/*
 			foreach (int, integer, s_array, &int_array)
 			{
-				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%p,\t""int: %i\n", i++, j++,
-					integer_i, integer);
+				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%u,\t""int: %i\n",
+					i++, j++, integer_i, integer);
 			}
-			*/
 		}
 		Array_Delete_F_array_int(tmp, Array_Delete_int);
 	}
 #endif
-#if 0
+#if 1
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
 		s_list_list_int* tmp = List_Create_list_int(4,
@@ -144,8 +144,8 @@ int main(int argc, char** argv)
 			j = 0;
 			foreach (int, integer, s_list, &int_list)
 			{
-				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%p,\t""int: %i\n", i++, j++,
-					(void*)integer_i, integer);
+				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%p,\t""int: %i\n",
+					i++, j++, (void*)integer_i, integer);
 			}
 		}
 		List_Delete_F_list_int(tmp, List_Delete_int);
