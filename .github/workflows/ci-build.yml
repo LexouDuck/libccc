@@ -60,4 +60,4 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: libccc-tests_${{matrix.os}}_${{matrix.compiler}}
-        path: ./libccc-test
+        path: ./libccc-test*
