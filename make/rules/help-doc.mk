@@ -32,21 +32,25 @@ $$0 = gensub(/(\/\/(.*)$$)/,                                               $(HEL
 
 
 
+#! The list of files which should be parsed by the `help-doc` rules (by default, all source code headers)
+DOC_FILES = $(addprefix $(HDRDIR),$(HDRS))
+#! The awk condition to match a line (the default is an expression to match any c function declaration)
+DOC_MATCH = \
+	/[ \t]+[a-zA-Z_0-9]+[ \t]*\(.*\);$$/ && \
+	!/^[ \t]*\#[ \t]*define\>/ && \
+	!/\<typedef\>/ && \
+	!/^[ \t]*\/\// \
+
+
+
 .PHONY:\
-help-doc #! Displays a summary of all functions provided by libccc (all headers by default, or just the files given as `ARGS`)
+help-doc #! Displays a summary of any code declarations (uses `DOC_FILES` and `DOC_MATCH`)
 help-doc:
-	@files="$(ARGS)" ; \
-	if [ -z "$${files}" ]; then \
-		files="$(addprefix $(HDRDIR),$(HDRS))" ; \
-	fi ; \
-	for i in $${files} ; do \
+	@for i in $(DOC_FILES) ; do \
 		$(call print_message,"$${i}") ; \
 		gawk '\
-		/[ \t]+[a-zA-Z_0-9]+[ \t]*\(.*\);$$/ \
 		{\
-			if (!/\<typedef\>/ &&\
-				!/^[ \t]*#[ \t]*define\>/ &&\
-				!/^[ \t]*\/\//)\
+			if ($(DOC_MATCH))\
 			{\
 				$(HELPDOC_AWK_DECL_SPACING)\
 				$(HELPDOC_AWK_SYNTAXCOLORS)\
@@ -60,18 +64,15 @@ help-doc:
 
 
 .PHONY:\
-help-doc-find #! Displays documentation and code for any line matching the symbols given as `ARGS`
-help-doc-find:
-	@if [ -z "$(ARGS)" ]; then \
-		$(call print_error,"This command expects ARGS - call it like this: make $@ ARGS='...'") ; \
-	fi
-	@for i in $(addprefix $(HDRDIR),$(HDRS)) ; do \
+help-doc-full #! Displays documentation and code for any line matching the symbols given as `ARGS`
+help-doc-full:
+	@for i in $(DOC_FILES) ; do \
 		awk '\
 		BEGIN { doc = ""; docblock = 0; output = ""; }\
 		{\
 			if (docblock == 0)\
 			{\
-				if (/$(ARGS)/)\
+				if ($(DOC_MATCH))\
 				{\
 					$(HELPDOC_AWK_SYNTAXCOLORS)\
 					output = $(IO_CYAN) FILENAME $(IO_RESET) "\n";\
