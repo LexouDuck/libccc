@@ -213,21 +213,40 @@ s_array_T*			CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_ui
 ** ************************************************************************** *|
 */
 
-//! Deletes the allocated buffer contained within the given `array` (frees and sets to NULL)
+//! Deallocates the given `array`
 /*!
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
 */
 _GENERIC()
-void				CONCAT(Array_Delete,T_NAME)(s_array_T* array);
-#define c_arrdel	CONCAT(Array_Delete,T_NAME)
+void				CONCAT(Array_Free,T_NAME)(s_array_T* array);
+#define c_arrfree	CONCAT(Array_Free,T_NAME)
 
-//! Deletes the allocated buffer contained within the given `array` (frees and sets to NULL)
+//! Deallocates the given `array`, calling the given `delete` function for each item
 /*!
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
 _GENERIC()
-void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* array, void (*delete)(T* item));
+void				CONCAT(Array_Free_F,T_NAME)(s_array_T* array, void (*delete)(T* item));
+#define c_arrffree	CONCAT(Array_Free_F,T_NAME)
+
+
+
+//! Deletes the array inside the given address `a_array` (frees and sets to NULL)
+/*!
+**	@param	a_array	The address of the array whose `items` buffer should be deleted.
+*/
+_GENERIC()
+void				CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array);
+#define c_arrdel	CONCAT(Array_Delete,T_NAME)
+
+//! Deletes the array inside the given address `a_array` (frees and sets to NULL), calling the given `delete` function for each item
+/*!
+**	@param	a_array	The address of the array whose `items` buffer should be deleted.
+**	@param	delete	the function which should be executed for each item before deletion.
+*/
+_GENERIC()
+void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* item));
 #define c_arrfdel	CONCAT(Array_Delete_F,T_NAME)
 
 

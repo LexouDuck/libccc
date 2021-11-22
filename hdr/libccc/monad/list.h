@@ -267,21 +267,40 @@ s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n
 ** ************************************************************************** *|
 */
 
-//! Deletes all the items in the list starting at `*a_list`
+//! Deallocates all the items in the given `list`
+/*!
+**	@param	list	The first element of the list to delete.
+*/
+_GENERIC()
+void				CONCAT(List_Free,T_NAME)(s_list_T* list);
+#define c_lstfree	CONCAT(List_Free,T_NAME)
+
+//! Deallocates all the items in the given `list`, calling `delete()` for each item.
+/*!
+**	@param	list	The first element of the list to delete.
+**	@param	delete	the function which should be executed for each item before deletion.
+*/
+_GENERIC()
+void				CONCAT(List_Free_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
+#define c_lstffree	CONCAT(List_Free_F,T_NAME)
+
+
+
+//! Deletes all the items in the list starting at `*a_list`.
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 */
 _GENERIC()
-void				CONCAT(List_Delete,T_NAME)(s_list_T* list);
+void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
 #define c_lstdel	CONCAT(List_Delete,T_NAME)
 
-//! Deletes all the items in the list starting at `*a_list`, calling `delete()` for each item
+//! Deletes all the items in the list starting at `*a_list`, calling `delete()` for each item.
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
 _GENERIC()
-void				CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
+void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T* item));
 #define c_lstfdel	CONCAT(List_Delete_F,T_NAME)
 
 
