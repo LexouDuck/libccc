@@ -9,6 +9,8 @@ IO_MAGENTA="\033[0;35m"
    IO_CYAN="\033[0;36m"
 
 
+# filepath of the version file
+VERSIONFILE=VERSION
 
 # get list of files with changes in this commit
 FILES=`git diff  --cached  --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
@@ -16,7 +18,7 @@ printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
 
 SRCS=`make show-lists && make help-makefiles | cut -d' ' -f 1`
 
-for i in "$SRCS"; do
+for i in "$SRCS" ; do
 	if echo "$FILES" | grep -q "$i" ; then
 		match=1
 		FILES="$FILES $i"
@@ -25,8 +27,12 @@ done
 
 if [ "$match" ]; then
 	printf "Detected changes to source files.\n"
-	make version-patch || exit 1
-	git add VERSION
+	if echo "$FILES" | grep -q "$VERSIONFILE" ; then
+		printf "version file '$VERSIONFILE' has already been updated.\n"
+	else
+		make version-patch || exit 1
+		git add $VERSIONFILE
+	fi
 fi
 
 exit 0
