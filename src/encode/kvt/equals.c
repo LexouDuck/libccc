@@ -45,7 +45,7 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 		{
 			s_kvt* a_element = a->value.child;
 			s_kvt* b_element = b->value.child;
-			for (; (a_element != NULL) && (b_element != NULL);)
+			while (a_element != NULL && b_element != NULL)
 			{
 				if (!KVT_Equals(a_element, b_element, case_sensitive))
 					return (FALSE);
@@ -60,9 +60,10 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 		}
 		case DYNAMICTYPE_OBJECT:
 		{
-			s_kvt* a_element = NULL;
-			s_kvt* b_element = NULL;
-			foreach (s_kvt*, a_element, s_kvt, a)
+			s_kvt const* a_element = NULL;
+			s_kvt const* b_element = NULL;
+			a_element = a;
+			while (a_element)
 			{
 				// TODO This has O(n^2) runtime, which is horrible!
 				b_element = case_sensitive ?
@@ -72,10 +73,12 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 					return (FALSE);
 				if (!KVT_Equals(a_element, b_element, case_sensitive))
 					return (FALSE);
+				a_element = a_element->next;
 			}
 			// Doing this twice, once on a and b to prevent TRUE comparison if a subset of b
 			// TODO: Do this the proper way, this is just a fix for now */
-			foreach (s_kvt*, b_element, s_kvt, b)
+			b_element = b;
+			while (b_element)
 			{
 				a_element = case_sensitive ?
 					KVT_GetObjectItem_CaseSensitive(a, b_element->key) :
@@ -84,6 +87,7 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 					return (FALSE);
 				if (!KVT_Equals(b_element, a_element, case_sensitive))
 					return (FALSE);
+				b_element = b_element->next;
 			}
 			return (TRUE);
 		}

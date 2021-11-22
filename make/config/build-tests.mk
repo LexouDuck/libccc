@@ -25,7 +25,7 @@ TEST_CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 TEST_CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 TEST_CFLAGS_OS_OTHER = 
 ifeq ($(CC),clang)
-	TEST_CFLAGS += -Wno-missing-braces
+	TEST_CFLAGS += -Wno-missing-braces -Wno-gnu-zero-variadic-macro-arguments
 endif
 TEST_CFLAGS_EXTRA = 
 #	-fsanitize=address \
