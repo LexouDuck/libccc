@@ -430,7 +430,17 @@ s_list_T*				CONCAT(List_ReplaceAll,T_NAME)(s_list_T const* list, T old, T new);
 
 
 
-// TODO List_Reverse()
+//! Creates a new list from the given `list`, with each item's position being inverted
+/*!
+**	@param	list	The list to duplicate and invert
+**	@returns
+**	A newly created list copied from `list`, in which all items' positions have been
+**	reversed. This means that the last item will become the first item, and so on.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*				CONCAT(List_Reverse,T_NAME)(s_list_T const* list);
+#define c_lstrev		CONCAT(List_Reverse,T_NAME)
 
 
 

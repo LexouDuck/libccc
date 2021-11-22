@@ -1,5 +1,4 @@
 
-#include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

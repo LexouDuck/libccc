@@ -126,6 +126,7 @@ monad/array/reduce.c
 monad/array/remove.c
 monad/array/removeat.c
 monad/array/replace.c
+monad/array/reverse.c
 monad/array/set.c
 monad/array/sub.c
 monad/convert/list.c
@@ -154,6 +155,7 @@ monad/list/reduce.c
 monad/list/remove.c
 monad/list/removeat.c
 monad/list/replace.c
+monad/list/reverse.c
 monad/list/set.c
 monad/list/sub.c
 pointer/int_from_str.c

@@ -374,7 +374,17 @@ s_array_T*				CONCAT(Array_ReplaceAll,T_NAME)(s_array_T const* array, T old, T n
 
 
 
-// TODO: void	Array_Reverse(s_array_T* array);
+//! Creates a new array from the given `array`, with each item's position being inverted
+/*!
+**	@param	array	The array to duplicate and invert
+**	@returns
+**	A newly created array copied from `array`, in which all items' positions have been
+**	reversed. This means that the last item will become the first item, and so on.
+*/
+_MALLOC()
+_GENERIC()
+s_array_T*				CONCAT(List_Reverse,T_NAME)(s_array_T const* array);
+#define c_lstrev		CONCAT(List_Reverse,T_NAME)
 
 
 
