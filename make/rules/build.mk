@@ -58,9 +58,9 @@ $(NAME_DYNAMIC): $(OBJS)
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@printf    "Compiling dynamic library: $(NAME_DYNAMIC) -> "
 	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS) \
-	-Wl,--output-def,$(NAME).def \
-	-Wl,--out-implib,$(NAME).lib \
-	-Wl,--export-all-symbols
+		-Wl,--output-def,$(NAME).def \
+		-Wl,--out-implib,$(NAME).lib \
+		-Wl,--export-all-symbols
 	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
 	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)

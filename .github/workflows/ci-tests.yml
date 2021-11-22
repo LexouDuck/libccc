@@ -3,7 +3,6 @@ name: CI - Tests
 on:
   workflow_run:
     workflows: ["CI - Build"]
-    branches: [master]
     types:
       - completed
 
