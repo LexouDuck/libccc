@@ -347,27 +347,6 @@ s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index);
 
 
 
-//! Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`
-/*!
-**	@param	list	The list to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting list
-**	@returns
-**	A newly created list copied from `list`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
-*/
-_MALLOC()
-_GENERIC()
-s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
-#define c_lstrep		CONCAT(List_Replace,T_NAME)
-#define c_lstreplace	CONCAT(List_Replace,T_NAME)
-
-
-
-// TODO List_Reverse()
-
-
-
 //! Removes a single item from the given `list`, at the given `index`
 /*!
 **	@param	list	The list in which to remove an item
@@ -418,6 +397,40 @@ s_list_T*				CONCAT(List_RemoveAll,T_NAME)(s_list_T* list, T item);
 _GENERIC()
 s_list_T*				CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*delete)(T));
 #define c_lstfdelall	CONCAT(List_RemoveAll_F,T_NAME)
+
+
+
+//! Creates a new list from the given `list`, where the first occurence of `old` is replaced with `new`
+/*!
+**	@param	list	The list to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting list
+**	@returns
+**	A newly created list copied from `list`, in which in any item equal to `old`
+**	will instead have a value of `new`, or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
+#define c_lstrep		CONCAT(List_Replace,T_NAME)
+
+//! Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`
+/*!
+**	@param	list	The list to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting list
+**	@returns
+**	A newly created list copied from `list`, in which in any item equal to `old`
+**	will instead have a value of `new`, or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*				CONCAT(List_ReplaceAll,T_NAME)(s_list_T const* list, T old, T new);
+#define c_lstrepall		CONCAT(List_ReplaceAll,T_NAME)
+
+
+
+// TODO List_Reverse()
 
 
 

@@ -291,27 +291,6 @@ s_array_T*				CONCAT(Array_Insert,T_NAME)(s_array_T* array, T item, t_uint index
 
 
 
-//! Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
-/*!
-**	@param	array	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
-**	@returns
-**	A newly created array copied from `array`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
-*/
-_MALLOC()
-_GENERIC()
-s_array_T*				CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new);
-#define c_arrrep		CONCAT(Array_Replace,T_NAME)
-#define c_arrreplace	CONCAT(Array_Replace,T_NAME)
-
-
-
-// TODO: void	Array_Reverse(s_array_T* array);
-
-
-
 //! Removes a single item from the given `array`, at the given `index`
 /*!
 **	@param	array	The array in which to remove an item
@@ -362,6 +341,40 @@ void					CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item);
 _GENERIC()
 void					CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delete)(T));
 #define c_arrfdelall	CONCAT(Array_RemoveAll_F,T_NAME)
+
+
+
+//! Creates a new array from the given `array`, where the first occurence of `old` is replaced with `new`
+/*!
+**	@param	array	The array to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting array
+**	@returns
+**	A newly created array copied from `array`, in which in any item equal to `old`
+**	will instead have a value of `new`, or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_array_T*				CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new);
+#define c_arrrep		CONCAT(Array_Replace,T_NAME)
+
+//! Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
+/*!
+**	@param	array	The array to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting array
+**	@returns
+**	A newly created array copied from `array`, in which in any item equal to `old`
+**	will instead have a value of `new`, or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_array_T*				CONCAT(Array_ReplaceAll,T_NAME)(s_array_T const* array, T old, T new);
+#define c_arrrepall		CONCAT(Array_ReplaceAll,T_NAME)
+
+
+
+// TODO: void	Array_Reverse(s_array_T* array);
 
 
 

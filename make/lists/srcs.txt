@@ -114,6 +114,7 @@ monad/array/duplicate.c
 monad/array/equals.c
 monad/array/filter.c
 monad/array/find.c
+monad/array/free.c
 monad/array/get.c
 monad/array/has.c
 monad/array/insert.c
@@ -123,7 +124,6 @@ monad/array/map.c
 monad/array/new.c
 monad/array/reduce.c
 monad/array/remove.c
-monad/array/removeall.c
 monad/array/removeat.c
 monad/array/replace.c
 monad/array/set.c
@@ -141,6 +141,7 @@ monad/list/duplicate.c
 monad/list/equals.c
 monad/list/filter.c
 monad/list/find.c
+monad/list/free.c
 monad/list/get.c
 monad/list/has.c
 monad/list/insert.c
@@ -151,7 +152,6 @@ monad/list/map.c
 monad/list/new.c
 monad/list/reduce.c
 monad/list/remove.c
-monad/list/removeall.c
 monad/list/removeat.c
 monad/list/replace.c
 monad/list/set.c
