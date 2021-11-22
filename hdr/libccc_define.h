@@ -192,11 +192,11 @@ HEADER_CPP
 #ifndef __int128
 #define __int128	__int128
 #endif
-//#pragma GCC diagnostic push
-//#pragma GCC diagnostic ignored "-Wpedantic"
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
 typedef unsigned __int128	_UInt128;
 typedef signed   __int128	_SInt128;
-//#pragma GCC diagnostic pop
+#pragma GCC diagnostic pop
 #endif
 //!@}
 
