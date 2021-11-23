@@ -82,7 +82,67 @@ void (*g)(int, char* (*)(char*)); // pure C
 
 
 
-### Cross-platform fixes:
+### String literals:
+
+C supports regular string literals, as well as wide-char string literals - and since the C11 standard,
+unicode string literals are also supported:
+```c
+"hello world!"   // => char[N]     (ANSI C)
+L"hello world!"  // => wchar_t[N]  (ANSI C)
+u8"hello world!" // => char[N]     (C11)
+u"hello world!"  // => char16_t[N] (C11)
+U"hello world!"  // => char32_t[N] (C11)
+```
+In ++C, alternate prefixes are accepted, and any of these syntaxes will work and transpile/compile correctly, regardless of the target C standard chosen:
+```c
+"hello world!"      // => t_char[N]  (++C)
+w"hello world!"     // => t_sint[N]  (++C)
+utf8"hello world!"  // => t_utf8[N]  (++C)
+utf16"hello world!" // => t_utf16[N] (++C)
+utf32"hello world!" // => t_utf32[N] (++C)
+```
+In the case where a unicode string literal is used, for a target C standard version which predates C11, then its contents will be directly changed in the transpiled output:
+```c
+// ++C
+t_utf8 const* unicode = utf8"Any unicode character directly works: それは本当に作品";
+// with target set is C11 or above, transpiles to:
+t_utf8 const* unicode = u8"Any unicode character directly works: それは本当に作品";
+// with target set is C99, transpiles to:
+t_utf8 const* unicode = "Any unicode character directly works: \u305D\u308C\u306F\u672C\u5F53\u306B\u4F5C\u54C1";
+// with target set to less than C99, transpiles to:
+t_utf8 const* unicode = "Any unicode character directly works: \xE3\x81\x9D\xE3\x82\x8C\xE3\x81\xAF\xE6\x9C\xAC\xE5\xBD\x93\xE3\x81\xAB\xE4\xBD\x9C\xE5\x93\x81";
+```
+
+##### String Format literals:
+
+++C allows for formatted literal strings, prefixed with an `f` character:
+```c
+t_utf8 const* formatted = f"This is a formatted string containing a float: #{sqrt(2.0)}";
+t_utf8 const* formatted = f"This is a formatted string containing an escaped hashtag: \#";
+```
+Only constant expressions are allowed within the `#{}` format field. In ++C, the exact definition of a constant expression is more open-ended than it is in pure C (any pure function may be called in a constant expression - see "Transpile-time expressions" for more info).
+
+##### String RegExp literals:
+
+++C allows for regex literal strings, prefixed with an `r` character, and regex mode flags may be placed immediately after the ending double quote (no spaces between the ending quote and the flag characters):
+```c
+char const* regex1 = r"\b(My_\w*)\b"g;
+char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
+char const* regex3 = r"[a-zA-Z_]\w*"sg;
+```
+When writing a regex literal, the transpiled C output string literal will:
+- output errors/warnings if the underlying regular expression is malformed/invalid.
+- have double backquotes `\\` wherever necessary.
+- place the regex mode flags within the string, at the start, using `(?i)` notation (learn more about this here: https://www.regular-expressions.info/modifiers.html?wlr=1)
+
+Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other RegExp engines into one:
+- https://github.com/kkos/oniguruma
+- https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
+- http://www.greenend.org.uk/rjk/tech/regexp.html
+
+
+
+### Cross-platform keywords:
 
 - `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
 - `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
@@ -136,36 +196,6 @@ There is also an `is` operator, which allows for equality checks between types a
 ```
 A type equality check returns `1` if both types, when fully resolved (after following any nested `typedef`s), are the same.
 Essentially, any 2 types which would issue a warning when implicitly casted will have `is` between them return `0`.
-
-
-
-Also:
-
-
-
-### String literals:
-
-##### Unicode literals:
-```c
-t_utf8 const* unicode = u"Any unicode character directly works: それは本当に作品";
-```
-
-##### RegExp literals:
-
-regex literal strings are prefixed with an `r` character, and regex mode flags may be placed after the ending double quote:
-```c
-char const* regex1 = r"\b(My_\w*)\b"g;
-char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
-char const* regex3 = r"[a-zA-Z_]\w*"sg;
-```
-When writing a regex literal, the transpiled C output string literal will:
-- have double backquotes `\\` wherever necessary
-- place the regex mode flags within the string, at the start, using `(?i)` notation (learn more: https://www.regular-expressions.info/modifiers.html?wlr=1)
-
-Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other RegExp engines into one:
-- https://github.com/kkos/oniguruma
-- https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
-- http://www.greenend.org.uk/rjk/tech/regexp.html
 
 
 

@@ -134,7 +134,8 @@ contexts:
     - include: lex-newline
     - include: lex-literal-number
     - include: lex-literal-string
-    - include: lex-literal-regex
+    - include: lex-literal-string-format
+    - include: lex-literal-string-regexp
     - include: lex-keyword
     - include: lex-storage
     - include: lex-operator
@@ -440,19 +441,6 @@ contexts:
 
 
   lex-literal-string:
-    - match: '"'
-      captures:
-        0: punctuation.definition.string.begin.c
-      push:
-        - meta_scope: string.quoted.double.c
-        - match: '(")|(?<=^|[^\\])\s*(\n)'
-          captures:
-            1: punctuation.definition.string.end.c
-            2: invalid.illegal.unexpected-end-of-line.c
-          pop: true
-        - include: lex-continuation
-        - include: string-escape-sequence
-        - include: string-format-specifier
     - match: "'"
       captures:
         0: punctuation.definition.string.begin.c
@@ -465,6 +453,34 @@ contexts:
           pop: true
         - include: lex-continuation
         - include: string-escape-sequence
+    - match: '(L|u8|u|U)?(")'
+      captures:
+        1: string.prefix.c
+        2: punctuation.definition.string.begin.c
+      push:
+        - meta_scope: string.quoted.double.c
+        - match: '(")|(?<=^|[^\\])\s*(\n)'
+          captures:
+            1: punctuation.definition.string.end.c
+            2: invalid.illegal.unexpected-end-of-line.c
+          pop: true
+        - include: lex-continuation
+        - include: string-escape-sequence
+        - include: string-format-specifier
+    - match: '(w|utf8|utf16|utf32)?(")'
+      captures:
+        1: string.prefix.++c
+        2: punctuation.definition.string.begin.++c
+      push:
+        - meta_scope: string.quoted.double.c
+        - match: '(")|(?<=^|[^\\])\s*(\n)'
+          captures:
+            1: punctuation.definition.string.end.++c
+            2: invalid.illegal.unexpected-end-of-line.++c
+          pop: true
+        - include: lex-continuation
+        - include: string-escape-sequence
+        - include: string-format-specifier
 
   string-escape-sequence:
     - match: '\\(\\|[abefnprtv''"?]|[0-3]\d{,2}|[4-7]\d?|x[a-fA-F0-9]{,2}|u[a-fA-F0-9]{,4}|U[a-fA-F0-9]{,8})'
@@ -488,12 +504,71 @@ contexts:
 
 
 
+  lex-literal-string-format:
+    - match: '(f)?(")'
+      captures:
+        1: string.prefix.format.++c
+        2: punctuation.other.string.begin.++c
+      push:
+        - meta_scope: string.format.++c
+        - match: '(?<=[^\\])(#)\s*(?={)'
+          captures:
+            1: keyword.other.literal-string-format.expression.++c
+            2: punctuation.other.format.expression.begin.++c
+          push:
+            - meta_scope: string.format.expression.++c
+            - match: '(})'
+              captures:
+                1: punctuation.other.format.expression.end.++c
+              pop: true
+            - include: block-lookahead-end
+        - match: '(")|(?<=^|[^\\])\s*(\n)'
+          captures:
+            1: punctuation.definition.string.end.++c
+            2: invalid.illegal.unexpected-end-of-line.++c
+          pop: true
+        - match: \\#
+          scope: constant.character.escape.++c
+        - include: lex-continuation
+        - include: string-escape-sequence
+        - include: string-format-specifier
+
+
+
+  lex-literal-string-regexp:
+    - match: (?<!\+\+|--|})(?<=[=(:,\[?+!]|^return|[^\._$[:alnum:]]return|^case|[^\._$[:alnum:]]case|=>|&&|\|\||\*\/)\s*(r)(")(?![\/*])(?=(?:[^\/\\\[\()]|\\.|\[([^\]\\]|\\.)+\]|\(([^\)\\]|\\.)+\))+\"([gimsuy]+|(?![\/\*])|(?=\/\*))(?!\s*[a-zA-Z0-9_$]))
+      captures:
+        1: string.prefix.regexp.++c
+        2: punctuation.definition.string.begin.++c
+      push:
+        - meta_scope: string.regexp.++c
+        - match: (\")([gimsuy]*)
+          captures:
+            1: punctuation.definition.string.end.++c
+            2: string.suffix.regexp.++c
+          pop: true
+        - include: regexp
+    - match: ((?<![_$[:alnum:])\]]|\+\+|--|}|\*\/)|((?<=^return|[^\._$[:alnum:]]return|^case|[^\._$[:alnum:]]case))\s*)(r)(")(?![\/*])(?=(?:[^\/\\\[]|\\.|\[([^\]\\]|\\.)+\])+\"([gimsuy]+|(?![\/\*])|(?=\/\*))(?!\s*[a-zA-Z0-9_$]))
+      captures:
+        3: string.prefix.regexp.++c
+        4: punctuation.definition.string.begin.++c
+      push:
+        - meta_scope: string.regexp.++c
+        - match: (\")([gimsuy]*)
+          captures:
+            1: punctuation.definition.string.end.++c
+            2: string.suffix.regexp.++c
+          pop: true
+        - include: regexp
+
+
+
   typedef:
     - match: (?x) (?<= \A typedef | \W typedef ) \b
       push:
         - meta_scope: meta.typedef.c
         - match: (;)
-          scope: punctuation..terminator.c
+          scope: punctuation.other.terminator.c
           pop: true
         - include: lex
         - include: type-definition
@@ -1553,30 +1628,6 @@ contexts:
         4: comment.command.user.c
 
 
-
-  lex-literal-regex:
-    - match: (?<!\+\+|--|})(?<=[=(:,\[?+!]|^return|[^\._$[:alnum:]]return|^case|[^\._$[:alnum:]]case|=>|&&|\|\||\*\/)\s*(r\")(?![\/*])(?=(?:[^\/\\\[\()]|\\.|\[([^\]\\]|\\.)+\]|\(([^\)\\]|\\.)+\))+\"([gimsuy]+|(?![\/\*])|(?=\/\*))(?!\s*[a-zA-Z0-9_$]))
-      captures:
-        1: punctuation.definition.string.begin.c
-      push:
-        - meta_scope: string.regexp.c
-        - match: (\")([gimsuy]*)
-          captures:
-            1: punctuation.definition.string.end.c
-            2: keyword.other.c
-          pop: true
-        - include: regexp
-    - match: ((?<![_$[:alnum:])\]]|\+\+|--|}|\*\/)|((?<=^return|[^\._$[:alnum:]]return|^case|[^\._$[:alnum:]]case))\s*)r\"(?![\/*])(?=(?:[^\/\\\[]|\\.|\[([^\]\\]|\\.)+\])+\"([gimsuy]+|(?![\/\*])|(?=\/\*))(?!\s*[a-zA-Z0-9_$]))
-      captures:
-        0: punctuation.definition.string.begin.c
-      push:
-        - meta_scope: string.regexp.c
-        - match: (\")([gimsuy]*)
-          captures:
-            1: punctuation.definition.string.end.c
-            2: keyword.other.c
-          pop: true
-        - include: regexp
 
   regex-character-class:
     - match: \\[wWsSdDtrnvf]|\.
