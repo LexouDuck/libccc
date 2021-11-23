@@ -92,7 +92,35 @@ void (*g)(int, char* (*)(char*)); // pure C
 - `alignas(X)`: Transpiles to whatever logic makes sense for the given platform
 
 
-### Compile-time operators:
+
+### Transpile-time expressions:
+
+Any constant expression (including calls to pure functions) can be executed at transpile-time, using the
+constant expression function: `#(expression)`
+
+Here is an example:
+```c
+#if #(sqrt(4.0) == 2.0)
+typedef enum something
+{
+	SOMEVALUE = #(sqrt(8.0)),
+}	e_something;
+#endif
+```
+This will transpile to:
+```c
+#if 1
+typedef enum something
+{
+	SOMEVALUE = 4.0,
+}	e_something;
+#endif
+```
+Note that memory allocation/freeing are non-pure operations, so they cannot be performed at transpile-time.
+
+
+
+### Transpile-time operators:
 
 - `typeof(X)`: Transpiles to the fully resolved type of the variable/value/token `X`
 - `nullof(X)`: Transpiles to the user-defined default value of the variable/value/token `X`
@@ -101,9 +129,9 @@ void (*g)(int, char* (*)(char*)); // pure C
 There is also an `is` operator, which allows for equality checks between types at transpile-time:
 ```c
 #if #(typeof(size_t) is unsigned long)
-	// do something
+	#warning "memory size type is unsigned long"
 #elif #(!(typeof(size_t) is unsigned long long))
-	#error "unsupported size_t type"
+	#warning "memory size type is unsigned long long"
 #endif
 ```
 A type equality check returns `1` if both types, when fully resolved (after following any nested `typedef`s), are the same.
