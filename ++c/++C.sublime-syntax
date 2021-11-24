@@ -227,6 +227,8 @@ contexts:
     - match: \s*\b((__)?(typeof)(__)?)\b
       captures:
         1: keyword.operator.extension.c
+    - match: (#)(?=\()
+      scope: keyword.operator.constexpr.c
     - match: (\*|\$)(?=[A-Za-z_]\w*)
       scope: keyword.operator.getvalue.++c
     - match: (\&|\@)(?=[A-Za-z_]\w*)
@@ -895,7 +897,7 @@ contexts:
 
 
   ppline-plusplusc:
-    - match: ^\s*(#)\s*(namespace|operator|accessor)\b
+    - match: ^\s*(#)\s*(has|type|interface|namespace|operator|accessor)\b
       captures:
         0: keyword.other.preprocessor.++c
       push:
@@ -1198,7 +1200,7 @@ contexts:
       captures:
         1: support.type.C23.c
 
-    - match: \s*\b([tseuf]_\w+)\b # TODO more restrictive category here, to potentially differntiate system types from user types ?
+    - match: \s*\b([tseufpi]_\w+)\b # TODO more restrictive category here, to potentially differntiate system types from user types ?
       captures:
         1: support.type.libccc.++c
     - match: \s*\b(T)\b
