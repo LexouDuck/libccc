@@ -231,6 +231,25 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 
 
 
+//! Creates a new list from a subsection of the given `list`, starting at `index` and taking `n` items
+/*!
+**	@param	list	The list to copy a subsection from
+**	@param	index	The index in `array` at which to begin copying a subsection of items
+**	@param	n		The amount of items to copy - if `0`, then all items until the end are copied
+**	@returns
+**	A newly allocated subsection of the given `list`, starting at `index`,
+**	and copying at most `n` items from the given source `list`.
+**	Will return `NULL` if `index` is too large or if `(index + n > List_Length(list))`.
+**	If `index` is valid but the list is not large enough for `n`,
+**	then the resulting list will have fewer than `n` items.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n);
+#define c_lstsub	CONCAT(List_Sub,T_NAME)
+
+
+
 //! Copies over `n` items from the given `src` list into the given `dest` list
 /*!
 **	@param	dest	The destination list to copy to
@@ -239,27 +258,11 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 **	@param	src_i	The index in the source array from which to copy `n` items
 **	@param	n		The amount of list items to copy from `src` to `dest`
 **	@returns
-**	The given `dest` pointer. The `dest` list is modified in-place.
+**	The given `dest` pointer, or `NULL` if an error occurred. The `dest` list is modified in-place.
 */
 _GENERIC()
 s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, t_uint dest_i, s_list_T const* src, t_uint src_i, t_uint n);
 #define c_lstcpy	CONCAT(List_Copy,T_NAME)
-
-
-
-//! Creates a new list from a subsection of the given `list`, starting at `index` and taking `n` items
-/*!
-**	@returns
-**	A newly allocated subsection of the given `list`, starting at `index`,
-**	and copying at most `n` items from the given source `list`.
-**	Will return `NULL` if `index` is too large or if `(n == 0)`.
-**	If `index` is valid but the list is not large enough for `n`,
-**	then the resulting list will have fewer than `n` items.
-*/
-_MALLOC()
-_GENERIC()
-s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n);
-#define c_lstsub	CONCAT(List_Sub,T_NAME)
 
 
 
@@ -313,39 +316,55 @@ void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T* item))
 ** ************************************************************************** *|
 */
 
-//! Appends the given item `item` to the end of the given `list`.
+//! Appends the given item `item` to the end of the given list `dest`.
 /*!
-**	Appends the given item `item` to the end of the list starting at `list`.
-**	If `list` is NULL, it'll append `item` at index 0, creating a 1-item list.
+**	If `dest` is NULL, it'll append `item` at index 0, creating a 1-item list.
 **
-**	@param	list	The pointer to the beginning of the list (the address of the first item)
-**	@param	item	The list item to append to the given `list`
+**	@param	dest	list destination array to append an item to
+**	@param	item	The list item to append to the given list `dest`
 **	@returns
-**	The new beginning pointer for the given `list`. The list is modified in-place.
-**	This return will be the same as the given `list` argument, unless `list == NULL`.
+**	The new beginning pointer for the given list `dest`. The list is modified in-place.
+**	This return will be the same as the given list `dest` argument, unless `dest == NULL`.
 */
 _GENERIC()
-s_list_T*				CONCAT(List_Add,T_NAME)(s_list_T* list, T item);
+s_list_T*				CONCAT(List_Add,T_NAME)(s_list_T* dest, T item);
 #define c_lstadd		CONCAT(List_Add,T_NAME)
 
 
 
-//! Inserts the given `item` at the given `index` of the given `list`
+//! Inserts the given `item` at the given `index` of the given list `dest`
 /*!
-**	Inserts the given `item` at the given `index` of the given `list`.
-**	If `index` is greater than the length of the list, then nothing is done.
+**	If `index` is greater than the length of the array, then nothing is done and `NULL` is returned.
 **
-**	@param	list	The pointer to the beginning of the list (the address of the first item)
-**	@param	item	The item to insert into the given `list`
+**	@param	dest	The destination list in which to insert a new item
+**	@param	item	The item to insert into the given list `dest`
 **	@param	index	The index at which to insert the new list item
 **	@returns
-**	The new beginning pointer for the given `list`. The list is modified in-place.
-**	The return value will be the same as the given `list` argument,
-**	unless `list == NULL`, and the `index` given is zero.
+**	The new beginning pointer for the given list `dest`. The list is modified in-place.
+**	The return value will be the same as the given list `dest` argument,
+**	unless `dest == NULL`, and the `index` given is zero.
 */
 _GENERIC()
-s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index);
+s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index);
 #define c_lstinsert		CONCAT(List_Insert,T_NAME)
+
+
+
+//! Inserts all items from `src` at the given `index` of the given list `dest`
+/*!
+**	If `index` is greater than the length of the array, then nothing is done and `NULL` is returned.
+**
+**	@param	dest	The destination list in which to insert new items
+**	@param	src		The source list, whose items will be inserted into `dest`
+**	@param	index	The index at which to insert the new list item
+**	@returns
+**	The new beginning pointer for the given list `dest`. The list is modified in-place.
+**	The return value will be the same as the given list `dest` argument,
+**	unless `dest == NULL`, or the `index` given is zero.
+*/
+_GENERIC()
+s_list_T*				CONCAT(List_Wedge,T_NAME)(s_list_T* list, s_list_T const* src, t_uint index);
+#define c_lstwedge		CONCAT(List_Wedge,T_NAME)
 
 
 

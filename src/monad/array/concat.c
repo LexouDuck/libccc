@@ -35,7 +35,7 @@ s_array_T*	CONCAT(Array_Append,T_NAME)(s_array_T* array1, s_array_T const* array
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Delete,T_NAME)(array1);
+	CONCAT(Array_Free,T_NAME)(array1);
 	return (result);
 }
 
@@ -53,7 +53,7 @@ s_array_T*	CONCAT(Array_Prepend,T_NAME)(s_array_T const* array1, s_array_T* arra
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Delete,T_NAME)(array2);
+	CONCAT(Array_Free,T_NAME)(array2);
 	return (result);
 }
 
@@ -71,7 +71,7 @@ s_array_T*	CONCAT(Array_Merge,T_NAME)(s_array_T* array1, s_array_T* array2)
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Delete,T_NAME)(array1);
-	CONCAT(Array_Delete,T_NAME)(array2);
+	CONCAT(Array_Free,T_NAME)(array1);
+	CONCAT(Array_Free,T_NAME)(array2);
 	return (result);
 }

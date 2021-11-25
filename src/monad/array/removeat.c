@@ -20,7 +20,8 @@ void	CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index)
 	array->length -= 1;
 	if (array->length == 0)
 	{
-		Memory_Delete(&array->items);
+		Memory_Free(array->items);
+		array->items = NULL;
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);
@@ -50,7 +51,8 @@ void	CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*dele
 	array->length -= 1;
 	if (array->length == 0)
 	{
-		Memory_Delete(&array->items);
+		Memory_Free(array->items);
+		array->items = NULL;
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);

@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index)
+s_list_T*	CONCAT(List_Wedge,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint index)
 {
 	s_list_T*	before;
 	s_list_T*	after;
@@ -15,12 +15,17 @@ s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index)
 	s_list_T*	new;
 
 	//HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	new = (s_list_T*)Memory_Allocate(sizeof(s_list_T));
+	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
+	new = CONCAT(List_Duplicate,T_NAME)(src);
 	HANDLE_ERROR(ALLOCFAILURE, (new == NULL), return (dest);)
 	if (dest == NULL || index == 0)
 	{
-		new->item = item;
-		new->next = dest;
+		elem = new;
+		while (elem->next)
+		{
+			elem = elem->next;
+		}
+		elem->next = dest;
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		if (dest)
 		{
@@ -46,9 +51,19 @@ s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index)
 	after = elem;
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	new->prev = before;
-	after->prev = new;
+	elem = new;
+	while (elem->next)
+	{
+		elem = elem->next;
+	}
+	after->prev = elem;
 #endif
 	before->next = new;
-	new->next = after;
+	elem = new;
+	while (elem->next)
+	{
+		elem = elem->next;
+	}
+	elem->next = after;
 	return (dest);
 }

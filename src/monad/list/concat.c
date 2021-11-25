@@ -50,7 +50,7 @@ s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list1, s_list_T const* list2)
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Delete,T_NAME)(list1);
+	CONCAT(List_Free,T_NAME)(list1);
 	return (result);
 }
 
@@ -76,7 +76,7 @@ s_list_T*	CONCAT(List_Prepend,T_NAME)(s_list_T const* list1, s_list_T* list2)
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Delete,T_NAME)(list2);
+	CONCAT(List_Free,T_NAME)(list2);
 	return (result);
 }
 
@@ -102,7 +102,7 @@ s_list_T*	CONCAT(List_Merge,T_NAME)(s_list_T* list1, s_list_T* list2)
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Delete,T_NAME)(list1);
-	CONCAT(List_Delete,T_NAME)(list2);
+	CONCAT(List_Free,T_NAME)(list1);
+	CONCAT(List_Free,T_NAME)(list2);
 	return (result);
 }

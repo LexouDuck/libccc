@@ -1,13 +1,13 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/monad/array.h                     |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/monad/array.h                     |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MONAD_ARRAY_H
 #define __LIBCCC_MONAD_ARRAY_H
@@ -178,22 +178,6 @@ s_array_T*			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
 
 
 
-//! Copies over `n` items from the given `src` array into the given `dest` array
-/*!
-**	@param	dest	The destination array to copy to
-**	@param	dest_i	The index in the destination array at which to copy `n` items
-**	@param	src		The source array which should be copied
-**	@param	src_i	The index in the source array from which to copy `n` items
-**	@param	n		The amount of array items to copy from `src` to `dest` - if `0`, all items until the end if `src` are copied
-**	@returns
-**	The given `dest` pointer. The `dest` array is modified in-place.
-*/
-_GENERIC()
-s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T const* src, t_uint src_i, t_uint n);
-#define c_arrcpy	CONCAT(Array_Copy,T_NAME)
-
-
-
 //! Creates a new array from a subsection of the given `array`, starting at `index` and taking `n` elements
 /*!
 **	@param	array	The array to copy a subsection from
@@ -209,6 +193,22 @@ s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T
 _GENERIC()
 s_array_T*			CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n);
 #define c_arrsub	CONCAT(Array_Sub,T_NAME)
+
+
+
+//! Copies over `n` items from the given `src` array into the given `dest` array
+/*!
+**	@param	dest	The destination array to copy to
+**	@param	dest_i	The index in the destination array at which to copy `n` items
+**	@param	src		The source array which should be copied
+**	@param	src_i	The index in the source array from which to copy `n` items
+**	@param	n		The amount of array items to copy from `src` to `dest` - if `0`, all items until the end if `src` are copied
+**	@returns
+**	The given `dest` pointer, or `NULL` if an error occurred. The `dest` array is modified in-place.
+*/
+_GENERIC()
+s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T const* src, t_uint src_i, t_uint n);
+#define c_arrcpy	CONCAT(Array_Copy,T_NAME)
 
 
 
@@ -262,39 +262,55 @@ void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* ite
 ** ************************************************************************** *|
 */
 
-//! Appends the given item `item` to the end of the given `array`.
+//! Appends the given item `item` to the end of the given array `dest`.
 /*!
-**	Appends the given item `item` to the end of the given `array`, and increments its length.
-**	If `array` is NULL, it'll append `item` at index 0, creating a 1-item array.
+**	If `dest` is NULL, it'll append `item` at index 0, creating a 1-item array.
 **
-**	@param	array	The array to append an item to
-**	@param	item	The item to add to the given `array`
+**	@param	dest	The destination array to append an item to
+**	@param	item	The item to add to the given `dest`
 **	@returns
 **	The new pointer for the given `array`. The array is modified in-place.
-**	This return will be the same as the given `array` argument, unless `array == NULL`.
+**	This return will be the same as the given `dest` argument, unless `dest == NULL`.
 */
 _GENERIC()
-s_array_T*				CONCAT(Array_Add,T_NAME)(s_array_T* array, T item);
+s_array_T*				CONCAT(Array_Add,T_NAME)(s_array_T* dest, T item);
 #define c_arradd		CONCAT(Array_Add,T_NAME)
 
 
 
-//! Inserts the given `item` at the given `index` of the given `array`
+//! Inserts the given `item` at the given `index` of the given array `dest`
 /*!
-**	Inserts the given `item` at the given `index` of the given `array`.
-**	If `index` is greater than the length of the array, then nothing is done.
+**	If `index` is greater than the length of the array, then nothing is done and `NULL` is returned.
 **
-**	@param	array	The array in which to insert a new item
-**	@param	item	The array item to insert into the given `array`
+**	@param	dest	The destination array in which to insert a new item
+**	@param	item	The array item to insert into the given `dest`
 **	@param	index	The index at which to insert the new array item
 **	@returns
-**	The new beginning pointer for the given `array`. The array is modified in-place.
-**	The return value will be the same as the given `array` argument,
-**	unless `array == NULL`, and the `index` given is zero.
+**	The new beginning pointer for the given `dest`. The array is modified in-place.
+**	The return value will be the same as the given `dest` argument,
+**	unless `dest == NULL`, and the `index` given is zero.
 */
 _GENERIC()
-s_array_T*				CONCAT(Array_Insert,T_NAME)(s_array_T* array, T item, t_uint index);
+s_array_T*				CONCAT(Array_Insert,T_NAME)(s_array_T* dest, T item, t_uint index);
 #define c_arrinsert		CONCAT(Array_Insert,T_NAME)
+
+
+
+//! Inserts all items from `src` at the given `index` of the given array `dest`
+/*!
+**	If `index` is greater than the length of the array, then nothing is done and `NULL` is returned.
+**
+**	@param	dest	The destination array in which to insert new items
+**	@param	src		The source array, whose items will be inserted into `dest`
+**	@param	index	The index at which to insert the new array items
+**	@returns
+**	The new beginning pointer for the given array `dest`. The array is modified in-place.
+**	The return value will be the same as the given `dest` argument,
+**	unless `dest == NULL`, or the `index` given is zero.
+*/
+_GENERIC()
+s_array_T*				CONCAT(Array_Wedge,T_NAME)(s_array_T* dest, s_array_T const* src, t_uint index);
+#define c_arrwedge		CONCAT(Array_Wedge,T_NAME)
 
 
 
@@ -390,8 +406,8 @@ s_array_T*				CONCAT(Array_ReplaceAll,T_NAME)(s_array_T const* array, T old, T n
 */
 _MALLOC()
 _GENERIC()
-s_array_T*				CONCAT(List_Reverse,T_NAME)(s_array_T const* array);
-#define c_lstrev		CONCAT(List_Reverse,T_NAME)
+s_array_T*				CONCAT(Array_Reverse,T_NAME)(s_array_T const* array);
+#define c_arrrev		CONCAT(Array_Reverse,T_NAME)
 
 
 

@@ -129,6 +129,7 @@ monad/array/replace.c
 monad/array/reverse.c
 monad/array/set.c
 monad/array/sub.c
+monad/array/wedge.c
 monad/convert/list.c
 monad/list/add.c
 monad/list/compare.c
@@ -158,6 +159,7 @@ monad/list/replace.c
 monad/list/reverse.c
 monad/list/set.c
 monad/list/sub.c
+monad/list/wedge.c
 pointer/int_from_str.c
 pointer/ptr_to_str.c
 pointer/size_to_str.c
