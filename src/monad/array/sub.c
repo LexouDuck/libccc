@@ -1,5 +1,4 @@
 
-#include "libccc/memory.h"
 #include "libccc/monad/array.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -11,10 +10,11 @@ s_array_T*	CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint
 {
 	s_array_T*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array        == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
-	if (index > array->length || index + n > array->length)
-		return (NULL);
+	HANDLE_ERROR(NULLPOINTER, (array == NULL),             return (NULL);)
+	HANDLE_ERROR(INDEX2LARGE, (index >= array->length),    return (NULL);)
+	HANDLE_ERROR(LENGTH2LARGE, (index + n > array->length), return (NULL);)
+	if (n == 0)
+		n = array->length - index;
 	result = CONCAT(Array_New,T_NAME)(n, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; i < n; ++i)

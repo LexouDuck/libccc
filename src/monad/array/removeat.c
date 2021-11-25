@@ -18,6 +18,11 @@ void	CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index)
 		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
 		index, array->length)
 	array->length -= 1;
+	if (array->length == 0)
+	{
+		Memory_Delete(&array->items);
+		return;
+	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i < array->length; ++i)
@@ -43,6 +48,11 @@ void	CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*dele
 		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
 		index, array->length)
 	array->length -= 1;
+	if (array->length == 0)
+	{
+		Memory_Delete(&array->items);
+		return;
+	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
 	for (t_uint i = 0; i < array->length; ++i)

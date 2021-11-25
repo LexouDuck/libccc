@@ -234,13 +234,15 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 //! Copies over `n` items from the given `src` list into the given `dest` list
 /*!
 **	@param	dest	The destination list to copy to
+**	@param	dest_i	The index in the destination array at which to copy `n` items
 **	@param	src		The source list which should be copied
+**	@param	src_i	The index in the source array from which to copy `n` items
 **	@param	n		The amount of list items to copy from `src` to `dest`
 **	@returns
-**	The given `dest` pointer. The list is modified in-place.
+**	The given `dest` pointer. The `dest` list is modified in-place.
 */
 _GENERIC()
-s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint n);
+s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, t_uint dest_i, s_list_T const* src, t_uint src_i, t_uint n);
 #define c_lstcpy	CONCAT(List_Copy,T_NAME)
 
 
@@ -714,7 +716,8 @@ s_list_T*				CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_
 **	@param	list	The list whose items should be iterated upon
 **	@param	filter	The function to call to check if an item of `list` should be added to the result
 **	@returns
-**	A new list, created by storing the return values of each call to the given `map` function.
+**	A new list, created by only keeping the values of the given `list`
+**	for which the corresponding call to the `filter` function returned `TRUE`.
 */
 _MALLOC()
 _GENERIC()
@@ -731,7 +734,7 @@ s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)
 
 //! Creates a single value by executing the given function `f` for each item of the given `list` 
 /*!
-**	The difference between this List_Reduce() and List_Fold() is that with this function,
+**	The difference between List_Reduce() and List_Fold() is that with this function,
 **	the initial value which will be passed as the `acc` parameter is a `NULL` pointer.
 **
 **	@param	list	The list to iterate upon
@@ -751,7 +754,7 @@ void*					CONCAT(List_Reduce_I,T_NAME)(s_list_T const* list, void* (*f)(T item, 
 
 //! Creates a single value by executing the given function `f` for each item of the given `list` 
 /*!
-**	The difference between this List_Fold() and List_Reduce() is that with ,
+**	The difference between List_Fold() and List_Reduce() is that with this function,
 **	you can supply an initial value for the `acc` parameter, which will be passed to the first call of `f`.
 **
 **	@param	list	The list to iterate upon

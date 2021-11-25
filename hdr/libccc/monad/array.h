@@ -181,23 +181,28 @@ s_array_T*			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
 //! Copies over `n` items from the given `src` array into the given `dest` array
 /*!
 **	@param	dest	The destination array to copy to
+**	@param	dest_i	The index in the destination array at which to copy `n` items
 **	@param	src		The source array which should be copied
-**	@param	n		The amount of array items to copy from `src` to `dest`
+**	@param	src_i	The index in the source array from which to copy `n` items
+**	@param	n		The amount of array items to copy from `src` to `dest` - if `0`, all items until the end if `src` are copied
 **	@returns
-**	The given `dest` pointer. The array is modified in-place.
+**	The given `dest` pointer. The `dest` array is modified in-place.
 */
 _GENERIC()
-s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, s_array_T const* src, t_uint n);
+s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T const* src, t_uint src_i, t_uint n);
 #define c_arrcpy	CONCAT(Array_Copy,T_NAME)
 
 
 
 //! Creates a new array from a subsection of the given `array`, starting at `index` and taking `n` elements
 /*!
+**	@param	array	The array to copy a subsection from
+**	@param	index	The index in `array` at which to begin copying a subsection of items
+**	@param	n		The amount of items to copy - if `0`, then all items until the end are copied
 **	@returns
 **	A newly allocated subsection of the given `array`, starting at `index`,
 **	and copying at most `n` items from the given source `array`.
-**	Will return a `NULL` pointer in the `items` field, if `index` is too large or if `(n == 0)`.
+**	Will return a `NULL` pointer, if `index` is too large or if `(index + n > array->length)`.
 **	If `index` is valid but the array is not large enough for `n`,
 **	then the resulting array will have fewer than `n` elements.
 */
@@ -271,6 +276,8 @@ void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* ite
 _GENERIC()
 s_array_T*				CONCAT(Array_Add,T_NAME)(s_array_T* array, T item);
 #define c_arradd		CONCAT(Array_Add,T_NAME)
+
+
 
 //! Inserts the given `item` at the given `index` of the given `array`
 /*!
@@ -656,7 +663,8 @@ s_array_T*			CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item,
 **	@param	array	The array whose items should be iterated upon
 **	@param	filter	The function to call to check if an item of `array` should be added to the result
 **	@returns
-**	A new array, created by storing the return values of each call to the given `map` function.
+**	A new array, created by only keeping the values of the given `array`
+**	for which the corresponding call to the `filter` function returned `TRUE`.
 */
 _GENERIC()
 s_array_T*				CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item));
@@ -671,7 +679,7 @@ s_array_T*				CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*fil
 
 //! Creates a single value by executing the given function `f` for each item of the given `array` 
 /*!
-**	The difference between this Array_Reduce() and Array_Fold() is that with this function,
+**	The difference between Array_Reduce() and Array_Fold() is that with this function,
 **	the initial value which will be passed as the `acc` parameter is a `NULL` pointer.
 **
 **	@param	array	The array to iterate upon
@@ -691,7 +699,7 @@ void*					CONCAT(Array_Reduce_I,T_NAME)(s_array_T const* array, void* (*f)(T ite
 
 //! Creates a single value by executing the given function `f` for each item of the given `array` 
 /*!
-**	The difference between this Array_Fold() and Array_Reduce() is that with ,
+**	The difference between Array_Fold() and Array_Reduce() is that with this function,
 **	you can supply an initial value for the `acc` parameter, which will be passed to the first call of `f`.
 **
 **	@param	array	The array to iterate upon
