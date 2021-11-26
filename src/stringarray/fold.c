@@ -58,6 +58,8 @@ t_char*		StringArray_Fold(t_char const** strarr, t_char const* separator)
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (separator == NULL), return (NULL);)
+	if (strarr[0] == NULL)
+		return (String_Duplicate(""));
 	strarr_str_nb = 0;
 	strarr_char_nb = 0;
 	StringArray_GetWordAndCharCount(strarr, &strarr_str_nb, &strarr_char_nb);
