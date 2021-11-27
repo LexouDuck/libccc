@@ -54,8 +54,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define array_T		CONCAT(array, T_NAME)
-#define s_array_T	CONCAT(s_array, T_NAME)
+#define   array(T)	CONCAT(  array, T##_NAME)
+#define s_array(T)	CONCAT(s_array, T##_NAME)
 
 //! This struct holds an array of items which can be of any type
 /*!
@@ -63,16 +63,16 @@ HEADER_CPP
 **	of a single item in the array, and the total amount of items in this array.
 **	As such, a s_array can hold any number of items, but they must all share the same type.
 */
-typedef struct array_T
+typedef struct array(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the allocated contiguous array
-}			s_array_T;
+}	s_array(T);
 
 /* TODO find a way to avoid multiple definitions
 extern
-s_array_T const CONCAT(NULL_ARRAY,T_NAME);
-s_array_T const CONCAT(NULL_ARRAY,T_NAME) = (s_array_T)
+s_array(T) const CONCAT(NULL_ARRAY,T_NAME);
+s_array(T) const CONCAT(NULL_ARRAY,T_NAME) = (s_array(T))
 {
 	.length = 0,
 	.items = NULL,
@@ -103,9 +103,11 @@ s_array_T const CONCAT(NULL_ARRAY,T_NAME) = (s_array_T)
 **	@returns
 **	An array of length 1, whose `items` pointer contains the given `item`
 */
+#define Array_Item(T) \
+ CONCAT(Array_Item,T##_NAME)
 _GENERIC()
-s_array_T			CONCAT(Array_Item,T_NAME)(T item);
-#define c_arritem	CONCAT(Array_Item,T_NAME)
+s_array(T)				Array_Item(T)(T item);
+#define c_arritem(T)	Array_Item(T)
 
 
 
@@ -117,9 +119,11 @@ s_array_T			CONCAT(Array_Item,T_NAME)(T item);
 **	The `index`th item in the given `array`,
 **	or `NULL`, if the given `index` is beyond the last item.
 */
+#define Array_Get(T) \
+ CONCAT(Array_Get,T##_NAME)
 _GENERIC()
-T*					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
-#define c_arrget	CONCAT(Array_Get,T_NAME)
+T*						Array_Get(T)(s_array(T) const* array, t_uint index);
+#define c_arrget(T)		Array_Get(T)
 
 //! Sets the value of item at position `index` in the array, and returns the address of said item
 /*!
@@ -130,9 +134,11 @@ T*					CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index);
 **	The address of the `index`th item in the given `array`,
 **	or `NULL`, if the given `index` is beyond the last item.
 */
+#define Array_Set(T) \
+ CONCAT(Array_Set,T##_NAME)
 _GENERIC()
-T*					CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
-#define c_arrset	CONCAT(Array_Set,T_NAME)
+T*						Array_Set(T)(s_array(T)* array, t_uint index, T item);
+#define c_arrset(T)		Array_Set(T)
 
 
 
@@ -149,9 +155,11 @@ T*					CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item);
 **	@returns
 **	A newly allocated array containing `n` elements.
 */
+#define Array_New(T) \
+ CONCAT(Array_New,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, T value);
-#define c_arrnew	CONCAT(Array_New,T_NAME)
+s_array(T)*				Array_New(T)(t_uint n, T value);
+#define c_arrnew(T)		Array_New(T)
 
 //! Allocates a new array which consists of `n` items, initialized with variadic arguments.
 /*!
@@ -160,9 +168,11 @@ s_array_T*			CONCAT(Array_New,T_NAME)(t_uint n, T value);
 **	@returns
 **	A newly allocated array containing `n` elements (the given `...` varargs)
 */
+#define Array_Create(T) \
+ CONCAT(Array_Create,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Create,T_NAME)(t_uint n, ...);
-#define c_arrcreate	CONCAT(Array_Create,T_NAME)
+s_array(T)*				Array_Create(T)(t_uint n, ...);
+#define c_arrcreate(T)	Array_Create(T)
 
 
 
@@ -172,9 +182,11 @@ s_array_T*			CONCAT(Array_Create,T_NAME)(t_uint n, ...);
 **	@returns
 **	A newly allocated copy of the given linked `array`.
 */
+#define Array_Duplicate(T) \
+ CONCAT(Array_Duplicate,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
-#define c_arrdup	CONCAT(Array_Duplicate,T_NAME)
+s_array(T)*				Array_Duplicate(T)(s_array(T) const* array);
+#define c_arrdup(T)		Array_Duplicate(T)
 
 
 
@@ -190,9 +202,11 @@ s_array_T*			CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array);
 **	If `index` is valid but the array is not large enough for `n`,
 **	then the resulting array will have fewer than `n` elements.
 */
+#define Array_Sub(T) \
+ CONCAT(Array_Sub,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n);
-#define c_arrsub	CONCAT(Array_Sub,T_NAME)
+s_array(T)*				Array_Sub(T)(s_array(T) const* array, t_uint index, t_uint n);
+#define c_arrsub(T)		Array_Sub(T)
 
 
 
@@ -206,9 +220,11 @@ s_array_T*			CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_ui
 **	@returns
 **	The given `dest` pointer, or `NULL` if an error occurred. The `dest` array is modified in-place.
 */
+#define Array_Copy(T) \
+ CONCAT(Array_Copy,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T const* src, t_uint src_i, t_uint n);
-#define c_arrcpy	CONCAT(Array_Copy,T_NAME)
+s_array(T)*				Array_Copy(T)(s_array(T)* dest, t_uint dest_i, s_array(T) const* src, t_uint src_i, t_uint n);
+#define c_arrcpy(T)		Array_Copy(T)
 
 
 
@@ -222,18 +238,22 @@ s_array_T*			CONCAT(Array_Copy,T_NAME)(s_array_T* dest, t_uint dest_i, s_array_T
 /*!
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
 */
+#define Array_Free(T) \
+ CONCAT(Array_Free,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Free,T_NAME)(s_array_T* array);
-#define c_arrfree	CONCAT(Array_Free,T_NAME)
+void					Array_Free(T)(s_array(T)* array);
+#define c_arrfree(T)	Array_Free(T)
 
 //! Deallocates the given `array`, calling the given `delete` function for each item
 /*!
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
+#define Array_Free_F(T) \
+ CONCAT(Array_Free_F,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Free_F,T_NAME)(s_array_T* array, void (*delete)(T* item));
-#define c_arrffree	CONCAT(Array_Free_F,T_NAME)
+void					Array_Free_F(T)(s_array(T)* array, void (*delete)(T* item));
+#define c_arrffree(T)	Array_Free_F(T)
 
 
 
@@ -241,18 +261,22 @@ void				CONCAT(Array_Free_F,T_NAME)(s_array_T* array, void (*delete)(T* item));
 /*!
 **	@param	a_array	The address of the array whose `items` buffer should be deleted.
 */
+#define Array_Delete(T) \
+ CONCAT(Array_Delete,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array);
-#define c_arrdel	CONCAT(Array_Delete,T_NAME)
+void					Array_Delete(T)(s_array(T)* *a_array);
+#define c_arrdel(T)		Array_Delete(T)
 
 //! Deletes the array inside the given address `a_array` (frees and sets to NULL), calling the given `delete` function for each item
 /*!
 **	@param	a_array	The address of the array whose `items` buffer should be deleted.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
+#define Array_Delete_F(T) \
+ CONCAT(Array_Delete_F,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* item));
-#define c_arrfdel	CONCAT(Array_Delete_F,T_NAME)
+void					Array_Delete_F(T)(s_array(T)* *a_array, void (*delete)(T* item));
+#define c_arrfdel(T)	Array_Delete_F(T)
 
 
 
@@ -272,9 +296,11 @@ void				CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* ite
 **	The new pointer for the given `array`. The array is modified in-place.
 **	This return will be the same as the given `dest` argument, unless `dest == NULL`.
 */
+#define Array_Add(T) \
+ CONCAT(Array_Add,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Add,T_NAME)(s_array_T* dest, T item);
-#define c_arradd		CONCAT(Array_Add,T_NAME)
+s_array(T)*				Array_Add(T)(s_array(T)* dest, T item);
+#define c_arradd(T)		Array_Add(T)
 
 
 
@@ -290,9 +316,11 @@ s_array_T*				CONCAT(Array_Add,T_NAME)(s_array_T* dest, T item);
 **	The return value will be the same as the given `dest` argument,
 **	unless `dest == NULL`, and the `index` given is zero.
 */
+#define Array_Insert(T) \
+ CONCAT(Array_Insert,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Insert,T_NAME)(s_array_T* dest, T item, t_uint index);
-#define c_arrinsert		CONCAT(Array_Insert,T_NAME)
+s_array(T)*				Array_Insert(T)(s_array(T)* dest, T item, t_uint index);
+#define c_arrinsert(T)	Array_Insert(T)
 
 
 
@@ -308,9 +336,11 @@ s_array_T*				CONCAT(Array_Insert,T_NAME)(s_array_T* dest, T item, t_uint index)
 **	The return value will be the same as the given `dest` argument,
 **	unless `dest == NULL`, or the `index` given is zero.
 */
+#define Array_Wedge(T) \
+ CONCAT(Array_Wedge,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Wedge,T_NAME)(s_array_T* dest, s_array_T const* src, t_uint index);
-#define c_arrwedge		CONCAT(Array_Wedge,T_NAME)
+s_array(T)*				Array_Wedge(T)(s_array(T)* dest, s_array(T) const* src, t_uint index);
+#define c_arrwedge(T)	Array_Wedge(T)
 
 
 
@@ -322,14 +352,18 @@ s_array_T*				CONCAT(Array_Wedge,T_NAME)(s_array_T* dest, s_array_T const* src, 
 **	The array given as argument. The array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `array`, unless the `index` given is zero.
 */
+#define Array_RemoveAt(T) \
+ CONCAT(Array_RemoveAt,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_RemoveAt,T_NAME)(s_array_T* array, t_uint index);
-#define c_arrdelat		CONCAT(Array_RemoveAt,T_NAME)
+void					Array_RemoveAt(T)(s_array(T)* array, t_uint index);
+#define c_arrdelat(T)	Array_RemoveAt(T)
 
 //! Like Array_RemoveAt(), but you can supply a custom `delete` function
+#define Array_RemoveAt_F(T) \
+ CONCAT(Array_RemoveAt_F,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*delete)(T));
-#define c_arrfdelat		CONCAT(Array_RemoveAt_F,T_NAME)
+void					Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*delete)(T));
+#define c_arrfdelat(T)	Array_RemoveAt_F(T)
 
 //! Removes the first item from the given `array` which is equal to the given `item`
 /*!
@@ -339,14 +373,18 @@ void					CONCAT(Array_RemoveAt_F,T_NAME)(s_array_T* array, t_uint index, void (*
 **	The `array` given as argument. The array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `array`, unless the matched item is at position zero.
 */
+#define Array_Remove(T) \
+ CONCAT(Array_Remove,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item);
-#define c_arrdelone		CONCAT(Array_Remove,T_NAME)
+void					Array_Remove(T)(s_array(T)* array, T item);
+#define c_arrdelone(T)	Array_Remove(T)
 
 //! Like Array_Remove(), but you can supply a custom `delete` function
+#define Array_Remove_F(T) \
+ CONCAT(Array_Remove_F,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(T));
-#define c_arrfdelone	CONCAT(Array_Remove_F,T_NAME)
+void					Array_Remove_F(T)(s_array(T)* array, T item, void (*delete)(T));
+#define c_arrfdelone(T)	Array_Remove_F(T)
 
 //! Removes any items which are equal to the given `item` from the given `array`
 /*!
@@ -356,14 +394,18 @@ void					CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(
 **	The array given as argument. The array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `array`, unless a matched item is at position zero.
 */
+#define Array_RemoveAll(T) \
+ CONCAT(Array_RemoveAll,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item);
-#define c_arrdelall		CONCAT(Array_RemoveAll,T_NAME)
+void					Array_RemoveAll(T)(s_array(T)* array, T item);
+#define c_arrdelall(T)	Array_RemoveAll(T)
 
 //! Like Array_RemoveAll(), but you can supply a custom `delete` function
+#define Array_RemoveAll_F(T) \
+ CONCAT(Array_RemoveAll_F,T##_NAME)
 _GENERIC()
-void					CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delete)(T));
-#define c_arrfdelall	CONCAT(Array_RemoveAll_F,T_NAME)
+void					Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T));
+#define c_arrfdelall(T)	Array_RemoveAll_F(T)
 
 
 
@@ -377,9 +419,11 @@ void					CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delet
 **	will instead have a value of `new`, or `NULL` if an error occurred.
 */
 _MALLOC()
+#define Array_Replace(T) \
+ CONCAT(Array_Replace,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new);
-#define c_arrrep		CONCAT(Array_Replace,T_NAME)
+s_array(T)*					Array_Replace(T)(s_array(T) const* array, T old, T new);
+#define c_arrrep(T)			Array_Replace(T)
 
 //! Creates a new array from the given `array`, where the first `n` occurences of `old` are replaced with `new`.
 /*!
@@ -393,9 +437,11 @@ s_array_T*				CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new)
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
+#define Array_ReplaceFirst(T) \
+ CONCAT(Array_ReplaceFirst,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_ReplaceFirst,T_NAME)(s_array_T const* array, T old, T new, t_uint n);
-#define c_arrrepfirst	CONCAT(Array_ReplaceFirst,T_NAME)
+s_array(T)*					Array_ReplaceFirst(T)(s_array(T) const* array, T old, T new, t_uint n);
+#define c_arrrepfirst(T)	Array_ReplaceFirst(T)
 
 //! Creates a new array from the given `array`, where the last `n` occurences of `old` are replaced with `new`.
 /*!
@@ -409,9 +455,11 @@ s_array_T*				CONCAT(Array_ReplaceFirst,T_NAME)(s_array_T const* array, T old, T
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
+#define Array_ReplaceLast(T) \
+ CONCAT(Array_ReplaceLast,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_ReplaceLast,T_NAME)(s_array_T const* array, T old, T new, t_uint n);
-#define c_arrreplast	CONCAT(Array_ReplaceLast,T_NAME)
+s_array(T)*					Array_ReplaceLast(T)(s_array(T) const* array, T old, T new, t_uint n);
+#define c_arrreplast(T)		Array_ReplaceLast(T)
 
 
 
@@ -423,9 +471,11 @@ s_array_T*				CONCAT(Array_ReplaceLast,T_NAME)(s_array_T const* array, T old, T 
 **	reversed. This means that the last item will become the first item, and so on.
 */
 _MALLOC()
+#define Array_Reverse(T) \
+ CONCAT(Array_Reverse,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Reverse,T_NAME)(s_array_T const* array);
-#define c_arrrev		CONCAT(Array_Reverse,T_NAME)
+s_array(T)*				Array_Reverse(T)(s_array(T) const* array);
+#define c_arrrev(T)		Array_Reverse(T)
 
 
 
@@ -442,9 +492,12 @@ s_array_T*				CONCAT(Array_Reverse,T_NAME)(s_array_T const* array);
 **	@returns
 **	A newly allocated array, created by concatenating `array1` and `array2`.
 */
+_MALLOC()
+#define Array_Concat(T) \
+ CONCAT(Array_Concat,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Concat,T_NAME)(s_array_T const* array1, s_array_T const* array2);
-#define c_arrconcat		CONCAT(Array_Concat,T_NAME)
+s_array(T)*					Array_Concat(T)(s_array(T) const* array1, s_array(T) const* array2);
+#define c_arrconcat(T)		Array_Concat(T)
 
 //! Creates a new array which is the concatenation of `array1` and `array2`, and deletes `array1`
 /*!
@@ -454,9 +507,12 @@ s_array_T*				CONCAT(Array_Concat,T_NAME)(s_array_T const* array1, s_array_T con
 **	A newly allocated array, created by concatenating `array1` and `array2`.
 **	The `array1` argument will be deleted.
 */
+_MALLOC()
+#define Array_Append(T) \
+ CONCAT(Array_Append,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Append,T_NAME)(s_array_T* array1, s_array_T const* array2);
-#define c_arrappend		CONCAT(Array_Append,T_NAME)
+s_array(T)*					Array_Append(T)(s_array(T)* array1, s_array(T) const* array2);
+#define c_arrappend(T)		Array_Append(T)
 
 //! Creates a new array which is the concatenation of `array1` and `array2`, and deletes `array2`
 /*!
@@ -466,9 +522,12 @@ s_array_T*				CONCAT(Array_Append,T_NAME)(s_array_T* array1, s_array_T const* ar
 **	A newly allocated array, created by concatenating `array1` and `array2`.
 **	The `array2` argument will be deleted.
 */
+_MALLOC()
+#define Array_Prepend(T) \
+ CONCAT(Array_Prepend,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Prepend,T_NAME)(s_array_T const* array1, s_array_T* array2);
-#define c_arrprepend	CONCAT(Array_Prepend,T_NAME)
+s_array(T)*					Array_Prepend(T)(s_array(T) const* array1, s_array(T)* array2);
+#define c_arrprepend(T)		Array_Prepend(T)
 
 //! Creates a new array which is the concatenation of `array1` and `array2`, and deletes both arrays
 /*!
@@ -478,9 +537,12 @@ s_array_T*				CONCAT(Array_Prepend,T_NAME)(s_array_T const* array1, s_array_T* a
 **	A newly allocated array, created by concatenating `array1` and `array2`.
 **	Both `array1` and `array2` will be deleted.
 */
+_MALLOC()
+#define Array_Merge(T) \
+ CONCAT(Array_Merge,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Merge,T_NAME)(s_array_T* array1, s_array_T* array2);
-#define c_arrmerge		CONCAT(Array_Merge,T_NAME)
+s_array(T)*					Array_Merge(T)(s_array(T)* array1, s_array(T)* array2);
+#define c_arrmerge(T)		Array_Merge(T)
 
 
 
@@ -499,9 +561,11 @@ s_array_T*				CONCAT(Array_Merge,T_NAME)(s_array_T* array1, s_array_T* array2);
 **	If both pointers given are identical, it simply returns `TRUE` without even checking.
 **	Otherwise, `FALSE` is returned.
 */
+#define Array_Equals(T) \
+ CONCAT(Array_Equals,T##_NAME)
 _GENERIC()
-t_bool				CONCAT(Array_Equals,T_NAME)		(s_array_T const* array1, s_array_T const* array2);
-#define c_arrequ	CONCAT(Array_Equals,T_NAME)
+t_bool					Array_Equals(T)(s_array(T) const* array1, s_array(T) const* array2);
+#define c_arrequ(T)		Array_Equals(T)
 
 //! Checks if two arrays have the same content, for the `n` first items
 /*!
@@ -513,9 +577,11 @@ t_bool				CONCAT(Array_Equals,T_NAME)		(s_array_T const* array1, s_array_T const
 **	If both pointers given are identical, it simply returns `TRUE` without even checking.
 **	Otherwise, `FALSE` is returned.
 */
+#define Array_Equals_N(T) \
+ CONCAT(Array_Equals_N,T##_NAME)
 _GENERIC()
-t_bool				CONCAT(Array_Equals_N,T_NAME)	(s_array_T const* array1, s_array_T const* array2, t_uint n);
-#define c_arrnequ	CONCAT(Array_Equals_N,T_NAME)
+t_bool					Array_Equals_N(T)(s_array(T) const* array1, s_array(T) const* array2, t_uint n);
+#define c_arrnequ(T)	Array_Equals_N(T)
 
 
 
@@ -527,9 +593,11 @@ t_bool				CONCAT(Array_Equals_N,T_NAME)	(s_array_T const* array1, s_array_T cons
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
+#define Array_Compare(T) \
+ CONCAT(Array_Compare,T##_NAME)
 _GENERIC()
-t_sint				CONCAT(Array_Compare,T_NAME)	(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2));
-#define c_arrcmp	CONCAT(Array_Compare,T_NAME)
+t_sint					Array_Compare(T)(s_array(T) const* array1, s_array(T) const* array2, t_sint (*compare)(T item1, T item2));
+#define c_arrcmp(T)		Array_Compare(T)
 
 //! Compares two arrays using the given `compare` function, for the `n` first items
 /*!
@@ -540,9 +608,11 @@ t_sint				CONCAT(Array_Compare,T_NAME)	(s_array_T const* array1, s_array_T const
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
+#define Array_Compare_N(T) \
+ CONCAT(Array_Compare_N,T##_NAME)
 _GENERIC()
-t_sint				CONCAT(Array_Compare_N,T_NAME)	(s_array_T const* array1, s_array_T const* array2, t_sint (*compare)(T item1, T item2), t_uint n);
-#define c_arrncmp	CONCAT(Array_Compare_N,T_NAME)
+t_sint					Array_Compare_N(T)(s_array(T) const* array1, s_array(T) const* array2, t_sint (*compare)(T item1, T item2), t_uint n);
+#define c_arrncmp(T)	Array_Compare_N(T)
 
 
 
@@ -560,9 +630,11 @@ t_sint				CONCAT(Array_Compare_N,T_NAME)	(s_array_T const* array1, s_array_T con
 **	The first encountered item of the given linked `array` which is equal to `item`,
 **	or `NULL` if no such item was found.
 */
+#define Array_Find(T) \
+ CONCAT(Array_Find,T##_NAME)
 _GENERIC()
-T*					CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item);
-#define c_arrfind	CONCAT(Array_Find,T_NAME)
+T*						Array_Find(T)(s_array(T) const* array, T item);
+#define c_arrfind(T)	Array_Find(T)
 
 //! Returns the first encountered item in the given `array` matching the given `item`
 /*!
@@ -572,9 +644,11 @@ T*					CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item);
 **	The first encountered item of the given linked `array` for which the given `match` function
 **	returned `TRUE`. Otherwise, returns `NULL` if no such item was found.
 */
+#define Array_Find_F(T) \
+ CONCAT(Array_Find_F,T##_NAME)
 _GENERIC()
-T*					CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item));
-#define c_arrffind	CONCAT(Array_Find_F,T_NAME)
+T*						Array_Find_F(T)(s_array(T) const* array, t_bool (*match)(T item));
+#define c_arrffind(T)	Array_Find_F(T)
 
 //! Returns the index of the first encountered item in the given `array` matching the given `item`
 /*!
@@ -584,9 +658,11 @@ T*					CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T ite
 **	The first encountered item of the given linked `array` which is equal to `item`,
 **	or `-1` if no such item was found.
 */
+#define Array_IndexOf(T) \
+ CONCAT(Array_IndexOf,T##_NAME)
 _GENERIC()
-t_sint				CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item);
-#define c_arrfindi	CONCAT(Array_IndexOf,T_NAME)
+t_sint					Array_IndexOf(T)(s_array(T) const* array, T item);
+#define c_arrfindi(T)	Array_IndexOf(T)
 
 //! Returns the index of the first encountered item in the given `array` matching the given `item`
 /*!
@@ -596,9 +672,11 @@ t_sint				CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item);
 **	The first encountered item of the given linked `array` which is equal to `item`,
 **	or `-1` if no such item was found.
 */
+#define Array_IndexOf_F(T) \
+ CONCAT(Array_IndexOf_F,T##_NAME)
 _GENERIC()
-t_sint				CONCAT(Array_IndexOf_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item));
-#define c_arrffindi	CONCAT(Array_IndexOf_F,T_NAME)
+t_sint					Array_IndexOf_F(T)(s_array(T) const* array, t_bool (*match)(T item));
+#define c_arrffindi(T)	Array_IndexOf_F(T)
 
 
 
@@ -609,9 +687,11 @@ t_sint				CONCAT(Array_IndexOf_F,T_NAME)(s_array_T const* array, t_bool (*match)
 **	@returns
 **	The total amount of items in the given `array` which are equal to `item`
 */
+#define Array_Count(T) \
+ CONCAT(Array_Count,T##_NAME)
 _GENERIC()
-t_uint					CONCAT(Array_Count,T_NAME)	(s_array_T const* array, T item);
-#define c_arrcount		CONCAT(Array_Count,T_NAME)
+t_uint					Array_Count(T)	(s_array(T) const* array, T item);
+#define c_arrcount(T)	Array_Count(T)
 
 //! Checks whether the given `array` contains the given `item`
 /*!
@@ -621,9 +701,11 @@ t_uint					CONCAT(Array_Count,T_NAME)	(s_array_T const* array, T item);
 **	`TRUE` if the given `array` does contain an item which is equal to the given `item`,
 **	otherwise returns `FALSE`.
 */
+#define Array_Contains(T) \
+ CONCAT(Array_Contains,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(Array_Contains,T_NAME)(s_array_T const* array, T item);
-#define c_arrcontains	CONCAT(Array_Contains,T_NAME)
+t_bool						Array_Contains(T)(s_array(T) const* array, T item);
+#define c_arrcontains(T)	Array_Contains(T)
 
 //! Checks whether the given `array` contains any item from the given `targets` array
 /*!
@@ -633,9 +715,11 @@ t_bool					CONCAT(Array_Contains,T_NAME)(s_array_T const* array, T item);
 **	`TRUE` if the given `array` does contain an item which is equal to any item in `targets`,
 **	otherwise returns `FALSE`.
 */
+#define Array_Has(T) \
+ CONCAT(Array_Has,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(Array_Has,T_NAME)	(s_array_T const* array, s_array_T const* target);
-#define c_arrhas		CONCAT(Array_Has,T_NAME)
+t_bool					Array_Has(T)	(s_array(T) const* array, s_array(T) const* target);
+#define c_arrhas(T)		Array_Has(T)
 
 //! Checks whether the given `array` only contains items which are present in the given `targets` array
 /*!
@@ -645,9 +729,11 @@ t_bool					CONCAT(Array_Has,T_NAME)	(s_array_T const* array, s_array_T const* ta
 **	`TRUE` if the given `array` only contains items which are equal to any item in `targets`,
 **	otherwise returns `FALSE`.
 */
+#define Array_HasOnly(T) \
+ CONCAT(Array_HasOnly,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(Array_HasOnly,T_NAME)(s_array_T const* array, s_array_T const* target);
-#define c_arrhasonly	CONCAT(Array_HasOnly,T_NAME)
+t_bool					Array_HasOnly(T)(s_array(T) const* array, s_array(T) const* target);
+#define c_arrhasonly(T)	Array_HasOnly(T)
 
 
 
@@ -662,14 +748,18 @@ t_bool					CONCAT(Array_HasOnly,T_NAME)(s_array_T const* array, s_array_T const*
 **	@param	array	The array whose items should be iterated upon
 **	@param	f		The function to call for each item of the given `array`
 */
+#define Array_Iterate(T) \
+ CONCAT(Array_Iterate,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Iterate,T_NAME)(s_array_T* array, void (*f)(T item));
-#define c_arriter	CONCAT(Array_Iterate,T_NAME)
+void					Array_Iterate(T)(s_array(T)* array, void (*f)(T item));
+#define c_arriter(T)	Array_Iterate(T)
 
 //! Like Array_Iterate(), but the user-supplied function receives the current index
+#define Array_Iterate_I(T) \
+ CONCAT(Array_Iterate_I,T##_NAME)
 _GENERIC()
-void				CONCAT(Array_Iterate_I,T_NAME)(s_array_T* array, void (*f)(T item, t_uint index));
-#define c_arriiter	CONCAT(Array_Iterate_I,T_NAME)
+void					Array_Iterate_I(T)(s_array(T)* array, void (*f)(T item, t_uint index));
+#define c_arriiter(T)	Array_Iterate_I(T)
 
 
 
@@ -680,14 +770,20 @@ void				CONCAT(Array_Iterate_I,T_NAME)(s_array_T* array, void (*f)(T item, t_uin
 **	@returns
 **	A new array, created by storing the return values of each call to the given `map` function.
 */
+_MALLOC()
+#define Array_Map(T) \
+ CONCAT(Array_Map,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item));
-#define c_arrmap	CONCAT(Array_Map,T_NAME)
+s_array(T)*				Array_Map(T)(s_array(T) const* array, T (*map)(T item));
+#define c_arrmap(T)		Array_Map(T)
 
 //! Like Array_Map(), but the user-supplied function receives the current index
+_MALLOC()
+#define Array_Map_I(T) \
+ CONCAT(Array_Map_I,T##_NAME)
 _GENERIC()
-s_array_T*			CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_uint index));
-#define c_arrimap	CONCAT(Array_Map_I,T_NAME)
+s_array(T)*				Array_Map_I(T)(s_array(T) const* array, T (*map)(T item, t_uint index));
+#define c_arrimap(T)	Array_Map_I(T)
 
 
 
@@ -699,14 +795,20 @@ s_array_T*			CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item,
 **	A new array, created by only keeping the values of the given `array`
 **	for which the corresponding call to the `filter` function returned `TRUE`.
 */
+_MALLOC()
+#define Array_Filter(T) \
+ CONCAT(Array_Filter,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item));
-#define c_arrfilter		CONCAT(Array_Filter,T_NAME)
+s_array(T)*				Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item));
+#define c_arrfilter(T)	Array_Filter(T)
 
 //! Like Array_Filter(), but the user-supplied function receives the current index
+_MALLOC()
+#define Array_Filter_I(T) \
+ CONCAT(Array_Filter_I,T##_NAME)
 _GENERIC()
-s_array_T*				CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)(T item, t_uint index));
-#define c_arrifilter	CONCAT(Array_Filter_I,T_NAME)
+s_array(T)*				Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, t_uint index));
+#define c_arrifilter(T)	Array_Filter_I(T)
 
 
 
@@ -721,14 +823,18 @@ s_array_T*				CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*fil
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each item of the given `array`.
 */
+#define Array_Reduce(T) \
+ CONCAT(Array_Reduce,T##_NAME)
 _GENERIC()
-void*					CONCAT(Array_Reduce,T_NAME)(s_array_T const* array, void* (*f)(T item, void* acc));
-#define c_arrreduce		CONCAT(Array_Reduce,T_NAME)
+void*					Array_Reduce(T)(s_array(T) const* array, void* (*f)(T item, void* acc));
+#define c_arrreduce(T)	Array_Reduce(T)
 
 //! Like Array_Reduce(), but the user-supplied function receives the current index
+#define Array_Reduce_I(T) \
+ CONCAT(Array_Reduce_I,T##_NAME)
 _GENERIC()
-void*					CONCAT(Array_Reduce_I,T_NAME)(s_array_T const* array, void* (*f)(T item, void* acc, t_uint index));
-#define c_arrireduce	CONCAT(Array_Reduce_I,T_NAME)
+void*					Array_Reduce_I(T)(s_array(T) const* array, void* (*f)(T item, void* acc, t_uint index));
+#define c_arrireduce(T)	Array_Reduce_I(T)
 
 //! Creates a single value by executing the given function `f` for each item of the given `array` 
 /*!
@@ -741,14 +847,18 @@ void*					CONCAT(Array_Reduce_I,T_NAME)(s_array_T const* array, void* (*f)(T ite
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each item of the given `array`.
 */
+#define Array_Fold(T) \
+ CONCAT(Array_Fold,T##_NAME)
 _GENERIC()
-void*					CONCAT(Array_Fold,T_NAME)(s_array_T const* array, void* (*f)(T item, void* acc), void* initial);
-#define c_arrfold		CONCAT(Array_Fold,T_NAME)
+void*					Array_Fold(T)(s_array(T) const* array, void* (*f)(T item, void* acc), void* initial);
+#define c_arrfold(T)	Array_Fold(T)
 
 //! Like Array_Reduce(), but the user-supplied function receives the current index
+#define Array_Fold_I(T) \
+ CONCAT(Array_Fold_I,T##_NAME)
 _GENERIC()
-void*					CONCAT(Array_Fold_I,T_NAME)(s_array_T const* array, void* (*f)(T item, void* acc, t_uint index), void* initial);
-#define c_arrifold		CONCAT(Array_Fold_I,T_NAME)
+void*					Array_Fold_I(T)(s_array(T) const* array, void* (*f)(T item, void* acc, t_uint index), void* initial);
+#define c_arrifold(T)	Array_Fold_I(T)
 
 
 

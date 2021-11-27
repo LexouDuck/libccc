@@ -7,10 +7,10 @@
 
 
 _GENERIC()
-void	CONCAT(List_Delete,T_NAME)(s_list_T* *a_list)
+void	List_Delete(T)(s_list(T)* *a_list)
 {
-	s_list_T*	next;
-	s_list_T*	i;
+	s_list(T)*	next;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
@@ -27,10 +27,10 @@ void	CONCAT(List_Delete,T_NAME)(s_list_T* *a_list)
 
 
 _GENERIC()
-void	CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T* item))
+void	List_Delete_F(T)(s_list(T)* *a_list, void (*delete)(T* item))
 {
-	s_list_T*	next;
-	s_list_T*	i;
+	s_list(T)*	next;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (delete  == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)

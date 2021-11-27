@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-t_uint	CONCAT(Array_Count,T_NAME)(s_array_T const* array, T item)
+t_uint	Array_Count(T)(s_array(T) const* array, T item)
 {
 	t_uint	result = 0;
 

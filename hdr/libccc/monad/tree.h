@@ -49,19 +49,19 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define tree_T		CONCAT(tree, T_NAME)
-#define s_tree_T	CONCAT(s_tree, T_NAME)
+#define   tree(T)	CONCAT(  tree, T##_NAME)
+#define s_tree(T)	CONCAT(s_tree, T##_NAME)
 
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
-typedef struct tree_T
+typedef struct tree(T)
 {
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
-	struct tree_T*	nodes;		//!< The array of sub-nodes of this tree node
+	struct tree(T)*	nodes;		//!< The array of sub-nodes of this tree node
 	T				value;		//!< The value stored in this tree node
-}				s_tree_T;
+}	s_tree(T);
 
 
 

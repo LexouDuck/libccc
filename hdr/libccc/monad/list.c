@@ -47,9 +47,8 @@
 #include "libccc/../../src/monad/list/wedge.c"
 
 // remove all generic type macros
-#undef list_T
-#undef s_list_T
-
+#undef list
+#undef s_list
 #undef T
 #undef T_NAME
 #undef T_DEFAULT

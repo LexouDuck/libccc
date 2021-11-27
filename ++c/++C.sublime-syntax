@@ -34,8 +34,8 @@ contexts:
     - include: typedef
     - include: lex-type
     - include: lex
-    - include: function
     - include: support
+    - include: function
     - include: block
     - include: parens
 
@@ -905,8 +905,8 @@ contexts:
         - match: (?<=$\n)(?<!\\$\n)
           pop: true
         - include: lex-core
-        - include: function
         - include: support
+        - include: function
         - include: block
         - include: parens
 
@@ -923,8 +923,8 @@ contexts:
         - include: ppline-macro-head-object
         - include: lex-core
         - include: ppline-macro-operator
-        - include: function
         - include: support
+        - include: function
         - include: block
         - include: parens
         - include: macro

@@ -6,14 +6,14 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Reverse,T_NAME)(s_list_T const* list)
+s_list(T)*	List_Reverse(T)(s_list(T) const* list)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	previous;
-	s_list_T*	current;
+	s_list(T)*	result = NULL;
+	s_list(T)*	previous;
+	s_list(T)*	current;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	result = CONCAT(List_Duplicate,T_NAME)(list);
+	result = List_Duplicate(T)(list);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	previous = result;
 	result = result->next;

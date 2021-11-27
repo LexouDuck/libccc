@@ -70,8 +70,7 @@ int main(int argc, char** argv)
 			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""str:%p -> \"%s\"\n",
 				i++, str_i, (void*)str, str);
 		}
-		Array_Delete_str(tmp);
-		tmp = NULL;
+		Array_Delete_str(&tmp);
 	}
 	IO_Output_String("\n- s_list<char*>:\n");
 	{
@@ -92,8 +91,7 @@ int main(int argc, char** argv)
 			IO_Output_Format("\t""i:%u,\t""iter:%p,\t""str:%p -> \"%s\"\n",
 				i++, (void*)str_i, (void*)str, str);
 		}
-		List_Delete_str(tmp);
-		tmp = NULL;
+		List_Delete_str(&tmp);
 	}
 
 
@@ -117,7 +115,7 @@ int main(int argc, char** argv)
 					i++, j++, integer_i, integer);
 			}
 		}
-		Array_Delete_F_array_int(tmp, Array_Delete_int);
+		Array_Delete_F_array_int(&tmp, Array_Delete_int);
 	}
 #endif
 #if 1
@@ -139,7 +137,7 @@ int main(int argc, char** argv)
 					i++, j++, (void*)integer_i, integer);
 			}
 		}
-		List_Delete_F_list_int(tmp, List_Delete_int);
+		List_Delete_F_list_int(&tmp, List_Delete_int);
 	}
 #endif
 	return (OK);

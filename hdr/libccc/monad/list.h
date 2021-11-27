@@ -54,8 +54,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define list_T		CONCAT(list, T_NAME)
-#define s_list_T	CONCAT(s_list, T_NAME)
+#define   list(T)	CONCAT(  list, T##_NAME)
+#define s_list(T)	CONCAT(s_list, T##_NAME)
 
 //! This is a simple linked list struct, with dynamic content type
 /*!
@@ -64,19 +64,19 @@ HEADER_CPP
 **	all chained together via their `next` pointer, and the last item would
 **	have this `next` pointer set to `NULL`.
 */
-typedef struct list_T
+typedef struct list(T)
 {
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	struct list_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct list(T)*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
 #endif
-	struct list_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
+	struct list(T)*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
 	T				item;	//!< The content of this linked-list item
-}				s_list_T;
+}	s_list(T);
 
 /* TODO find a way to avoid multiple definitions
 extern
-s_list_T const CONCAT(NULL_LIST,T_NAME);
-s_list_T const CONCAT(NULL_LIST,T_NAME) = (s_list_T)
+s_list(T) const CONCAT(NULL_LIST,T_NAME);
+s_list(T) const CONCAT(NULL_LIST,T_NAME) = (s_list(T))
 {
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	.prev = NULL,
@@ -135,9 +135,11 @@ s_list_T const CONCAT(NULL_LIST,T_NAME) = (s_list_T)
 **	A newly allocated linked list item containing `item`
 */
 _MALLOC()
+#define List_Item(T) \
+ CONCAT(List_Item,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_Item,T_NAME)(T item);
-#define c_lstitem	CONCAT(List_Item,T_NAME)
+s_list(T)*				List_Item(T)(T item);
+#define c_lstitem(T)	List_Item(T)
 
 //! Returns the amount of items in the given `list`
 /*!
@@ -146,9 +148,11 @@ s_list_T*			CONCAT(List_Item,T_NAME)(T item);
 **	The amount of items in the given `list`,
 **	by traversing it, looping through every `next` pointer.
 */
+#define List_Length(T) \
+ CONCAT(List_Length,T##_NAME)
 _GENERIC()
-t_uint				CONCAT(List_Length,T_NAME)(s_list_T const* list);
-#define c_lstlen	CONCAT(List_Length,T_NAME)
+t_uint				List_Length(T)(s_list(T) const* list);
+#define c_lstlen(T)	List_Length(T)
 
 
 
@@ -160,9 +164,11 @@ t_uint				CONCAT(List_Length,T_NAME)(s_list_T const* list);
 **	The `index`th item in the given `list`,
 **	or `NULL`, if `index` is beyond the last item.
 */
+#define List_Get(T) \
+ CONCAT(List_Get,T##_NAME)
 _GENERIC()
-T*					CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
-#define c_lstget	CONCAT(List_Get,T_NAME)
+T*					List_Get(T)(s_list(T) const* list, t_uint index);
+#define c_lstget(T)	List_Get(T)
 
 //! Sets the value of the item at position `index` in the list, and returns that link chain
 /*!
@@ -173,9 +179,11 @@ T*					CONCAT(List_Get,T_NAME)(s_list_T const* list, t_uint index);
 **	The `index`th item in the given `list`,
 **	or `NULL`, if `index` is beyond the last item.
 */
+#define List_Set(T) \
+ CONCAT(List_Set,T##_NAME)
 _GENERIC()
-T*					CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
-#define c_lstset	CONCAT(List_Set,T_NAME)
+T*					List_Set(T)(s_list(T)* list, t_uint index, T item);
+#define c_lstset(T)	List_Set(T)
 
 
 
@@ -196,9 +204,11 @@ T*					CONCAT(List_Set,T_NAME)(s_list_T* list, t_uint index, T item);
 **	A newly allocated linked list which consists of `n` list structs chained together.
 */
 _MALLOC()
+#define List_New(T) \
+ CONCAT(List_New,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, T value);
-#define c_lstnew	CONCAT(List_New,T_NAME)
+s_list(T)*				List_New(T)(t_uint n, T value);
+#define c_lstnew(T)		List_New(T)
 
 
 
@@ -212,9 +222,11 @@ s_list_T*			CONCAT(List_New,T_NAME)(t_uint n, T value);
 **	A newly allocated linked list which consists of `n` structs chained together.
 */
 _MALLOC()
+#define List_Create(T) \
+ CONCAT(List_Create,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_Create,T_NAME)(t_uint n, ...);
-#define c_lstcreate	CONCAT(List_Create,T_NAME)
+s_list(T)*				List_Create(T)(t_uint n, ...);
+#define c_lstcreate(T)	List_Create(T)
 
 
 
@@ -225,9 +237,11 @@ s_list_T*			CONCAT(List_Create,T_NAME)(t_uint n, ...);
 **	A newly allocated copy of the given linked `list`.
 */
 _MALLOC()
+#define List_Duplicate(T) \
+ CONCAT(List_Duplicate,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
-#define c_lstdup	CONCAT(List_Duplicate,T_NAME)
+s_list(T)*				List_Duplicate(T)(s_list(T) const* list);
+#define c_lstdup(T)		List_Duplicate(T)
 
 
 
@@ -244,9 +258,11 @@ s_list_T*			CONCAT(List_Duplicate,T_NAME)(s_list_T const* list);
 **	then the resulting list will have fewer than `n` items.
 */
 _MALLOC()
+#define List_Sub(T) \
+ CONCAT(List_Sub,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n);
-#define c_lstsub	CONCAT(List_Sub,T_NAME)
+s_list(T)*				List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n);
+#define c_lstsub(T)		List_Sub(T)
 
 
 
@@ -260,9 +276,11 @@ s_list_T*			CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n
 **	@returns
 **	The given `dest` pointer, or `NULL` if an error occurred. The `dest` list is modified in-place.
 */
+#define List_Copy(T) \
+ CONCAT(List_Copy,T##_NAME)
 _GENERIC()
-s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, t_uint dest_i, s_list_T const* src, t_uint src_i, t_uint n);
-#define c_lstcpy	CONCAT(List_Copy,T_NAME)
+s_list(T)*				List_Copy(T)(s_list(T)* dest, t_uint dest_i, s_list(T) const* src, t_uint src_i, t_uint n);
+#define c_lstcpy(T)		List_Copy(T)
 
 
 
@@ -276,18 +294,22 @@ s_list_T*			CONCAT(List_Copy,T_NAME)(s_list_T* dest, t_uint dest_i, s_list_T con
 /*!
 **	@param	list	The first element of the list to delete.
 */
+#define List_Free(T) \
+ CONCAT(List_Free,T##_NAME)
 _GENERIC()
-void				CONCAT(List_Free,T_NAME)(s_list_T* list);
-#define c_lstfree	CONCAT(List_Free,T_NAME)
+void					List_Free(T)(s_list(T)* list);
+#define c_lstfree(T)	List_Free(T)
 
 //! Deallocates all the items in the given `list`, calling `delete()` for each item.
 /*!
 **	@param	list	The first element of the list to delete.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
+#define List_Free_F(T) \
+ CONCAT(List_Free_F,T##_NAME)
 _GENERIC()
-void				CONCAT(List_Free_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
-#define c_lstffree	CONCAT(List_Free_F,T_NAME)
+void					List_Free_F(T)(s_list(T)* list, void (*delete)(T* item));
+#define c_lstffree(T)	List_Free_F(T)
 
 
 
@@ -295,18 +317,22 @@ void				CONCAT(List_Free_F,T_NAME)(s_list_T* list, void (*delete)(T* item));
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 */
+#define List_Delete(T) \
+ CONCAT(List_Delete,T##_NAME)
 _GENERIC()
-void				CONCAT(List_Delete,T_NAME)(s_list_T* *a_list);
-#define c_lstdel	CONCAT(List_Delete,T_NAME)
+void					List_Delete(T)(s_list(T)* *a_list);
+#define c_lstdel(T)		List_Delete(T)
 
 //! Deletes all the items in the list starting at `*a_list`, calling `delete()` for each item.
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
 **	@param	delete	the function which should be executed for each item before deletion.
 */
+#define List_Delete_F(T) \
+ CONCAT(List_Delete_F,T##_NAME)
 _GENERIC()
-void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T* item));
-#define c_lstfdel	CONCAT(List_Delete_F,T_NAME)
+void					List_Delete_F(T)(s_list(T)* *a_list, void (*delete)(T* item));
+#define c_lstfdel(T)	List_Delete_F(T)
 
 
 
@@ -326,9 +352,11 @@ void				CONCAT(List_Delete_F,T_NAME)(s_list_T* *a_list, void (*delete)(T* item))
 **	The new beginning pointer for the given list `dest`. The list is modified in-place.
 **	This return will be the same as the given list `dest` argument, unless `dest == NULL`.
 */
+#define List_Add(T) \
+ CONCAT(List_Add,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Add,T_NAME)(s_list_T* dest, T item);
-#define c_lstadd		CONCAT(List_Add,T_NAME)
+s_list(T)*				List_Add(T)(s_list(T)* dest, T item);
+#define c_lstadd(T)		List_Add(T)
 
 
 
@@ -344,9 +372,11 @@ s_list_T*				CONCAT(List_Add,T_NAME)(s_list_T* dest, T item);
 **	The return value will be the same as the given list `dest` argument,
 **	unless `dest == NULL`, and the `index` given is zero.
 */
+#define List_Insert(T) \
+ CONCAT(List_Insert,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index);
-#define c_lstinsert		CONCAT(List_Insert,T_NAME)
+s_list(T)*				List_Insert(T)(s_list(T)* dest, T item, t_uint index);
+#define c_lstinsert(T)	List_Insert(T)
 
 
 
@@ -362,9 +392,11 @@ s_list_T*				CONCAT(List_Insert,T_NAME)(s_list_T* dest, T item, t_uint index);
 **	The return value will be the same as the given list `dest` argument,
 **	unless `dest == NULL`, or the `index` given is zero.
 */
+#define List_Wedge(T) \
+ CONCAT(List_Wedge,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Wedge,T_NAME)(s_list_T* list, s_list_T const* src, t_uint index);
-#define c_lstwedge		CONCAT(List_Wedge,T_NAME)
+s_list(T)*				List_Wedge(T)(s_list(T)* list, s_list(T) const* src, t_uint index);
+#define c_lstwedge(T)	List_Wedge(T)
 
 
 
@@ -376,14 +408,18 @@ s_list_T*				CONCAT(List_Wedge,T_NAME)(s_list_T* list, s_list_T const* src, t_ui
 **	The list given as argument. The list is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `list`, unless the `index` given is zero.
 */
+#define List_RemoveAt(T) \
+ CONCAT(List_RemoveAt,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_RemoveAt,T_NAME)(s_list_T* list, t_uint index);
-#define c_lstdelat		CONCAT(List_RemoveAt,T_NAME)
+s_list(T)*				List_RemoveAt(T)(s_list(T)* list, t_uint index);
+#define c_lstdelat(T)	List_RemoveAt(T)
 
 //! Like List_RemoveAt(), but you can supply a custom `delete` function
+#define List_RemoveAt_F(T) \
+ CONCAT(List_RemoveAt_F,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (*delete)(T));
-#define c_lstfdelat		CONCAT(List_RemoveAt_F,T_NAME)
+s_list(T)*				List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*delete)(T));
+#define c_lstfdelat(T)	List_RemoveAt_F(T)
 
 //! Removes the first item from the given `list` which is equal to the given `item`
 /*!
@@ -393,14 +429,18 @@ s_list_T*				CONCAT(List_RemoveAt_F,T_NAME)(s_list_T* list, t_uint index, void (
 **	The list given as argument. The list is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `list`, unless the matched item is at position zero.
 */
+#define List_Remove(T) \
+ CONCAT(List_Remove,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Remove,T_NAME)(s_list_T* list, T item);
-#define c_lstdelone		CONCAT(List_Remove,T_NAME)
+s_list(T)*				List_Remove(T)(s_list(T)* list, T item);
+#define c_lstdelone(T)	List_Remove(T)
 
 //! Like List_Remove(), but you can supply a custom `delete` function
+#define List_Remove_F(T) \
+ CONCAT(List_Remove_F,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Remove_F,T_NAME)(s_list_T* list, T item, void (*delete)(T));
-#define c_lstfdelone	CONCAT(List_Remove_F,T_NAME)
+s_list(T)*				List_Remove_F(T)(s_list(T)* list, T item, void (*delete)(T));
+#define c_lstfdelone(T)	List_Remove_F(T)
 
 //! Removes any items which are equal to the given `item` from the given `list`
 /*!
@@ -410,14 +450,18 @@ s_list_T*				CONCAT(List_Remove_F,T_NAME)(s_list_T* list, T item, void (*delete)
 **	The list given as argument. The list is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `list`, unless a matched item is at position zero.
 */
+#define List_RemoveAll(T) \
+ CONCAT(List_RemoveAll,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_RemoveAll,T_NAME)(s_list_T* list, T item);
-#define c_lstdelall		CONCAT(List_RemoveAll,T_NAME)
+s_list(T)*				List_RemoveAll(T)(s_list(T)* list, T item);
+#define c_lstdelall(T)	List_RemoveAll(T)
 
 //! Like List_RemoveAll(), but you can supply a custom `delete` function
+#define List_RemoveAll_F(T) \
+ CONCAT(List_RemoveAll_F,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*delete)(T));
-#define c_lstfdelall	CONCAT(List_RemoveAll_F,T_NAME)
+s_list(T)*				List_RemoveAll_F(T)(s_list(T)* list, T item, void (*delete)(T));
+#define c_lstfdelall(T)	List_RemoveAll_F(T)
 
 
 
@@ -431,9 +475,11 @@ s_list_T*				CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*dele
 **	will instead have a value of `new`, or `NULL` if an error occurred.
 */
 _MALLOC()
+#define List_Replace(T) \
+ CONCAT(List_Replace,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
-#define c_lstrep		CONCAT(List_Replace,T_NAME)
+s_list(T)*					List_Replace(T)(s_list(T) const* list, T old, T new);
+#define c_lstrep(T)			List_Replace(T)
 
 //! Creates a new list from the given `list`, where the `n` first occurences of `old` are replaced with `new`.
 /*!
@@ -447,9 +493,11 @@ s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
+#define List_ReplaceFirst(T) \
+ CONCAT(List_ReplaceFirst,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_ReplaceFirst,T_NAME)(s_list_T const* list, T old, T new, t_uint n);
-#define c_lstrepfirst	CONCAT(List_ReplaceFirst,T_NAME)
+s_list(T)*					List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n);
+#define c_lstrepfirst(T)	List_ReplaceFirst(T)
 
 //! Creates a new list from the given `list`, where the `n` last occurences of `old` are replaced with `new`.
 /*!
@@ -463,9 +511,11 @@ s_list_T*				CONCAT(List_ReplaceFirst,T_NAME)(s_list_T const* list, T old, T new
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
+#define List_ReplaceLast(T) \
+ CONCAT(List_ReplaceLast,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_ReplaceLast,T_NAME)(s_list_T const* list, T old, T new, t_uint n);
-#define c_lstreplast	CONCAT(List_ReplaceLast,T_NAME)
+s_list(T)*					List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n);
+#define c_lstreplast(T)		List_ReplaceLast(T)
 
 
 
@@ -477,9 +527,11 @@ s_list_T*				CONCAT(List_ReplaceLast,T_NAME)(s_list_T const* list, T old, T new,
 **	reversed. This means that the last item will become the first item, and so on.
 */
 _MALLOC()
+#define List_Reverse(T) \
+ CONCAT(List_Reverse,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Reverse,T_NAME)(s_list_T const* list);
-#define c_lstrev		CONCAT(List_Reverse,T_NAME)
+s_list(T)*				List_Reverse(T)(s_list(T) const* list);
+#define c_lstrev(T)		List_Reverse(T)
 
 
 
@@ -496,9 +548,11 @@ s_list_T*				CONCAT(List_Reverse,T_NAME)(s_list_T const* list);
 **	@returns
 **	A newly allocated list, created by concatenating `list1` and `list2`.
 */
+#define List_Concat(T) \
+ CONCAT(List_Concat,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Concat,T_NAME)(s_list_T const* list1, s_list_T const* list2);
-#define c_lstconcat		CONCAT(List_Concat,T_NAME)
+s_list(T)*				List_Concat(T)(s_list(T) const* list1, s_list(T) const* list2);
+#define c_lstconcat(T)	List_Concat(T)
 
 //! Creates a new list which is the concatenation of `list1` and `list2`, and deletes `list1`
 /*!
@@ -508,9 +562,11 @@ s_list_T*				CONCAT(List_Concat,T_NAME)(s_list_T const* list1, s_list_T const* l
 **	A newly allocated list, created by concatenating `list1` and `list2`.
 **	The `list1` argument will be deleted.
 */
+#define List_Append(T) \
+ CONCAT(List_Append,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Append,T_NAME)(s_list_T* list1, s_list_T const* list2);
-#define c_lstappend		CONCAT(List_Append,T_NAME)
+s_list(T)*				List_Append(T)(s_list(T)* list1, s_list(T) const* list2);
+#define c_lstappend(T)	List_Append(T)
 
 //! Creates a new list which is the concatenation of `list1` and `list2`, and deletes `list2`
 /*!
@@ -520,9 +576,11 @@ s_list_T*				CONCAT(List_Append,T_NAME)(s_list_T* list1, s_list_T const* list2);
 **	A newly allocated list, created by concatenating `list1` and `list2`.
 **	The `list2` argument will be deleted.
 */
+#define List_Prepend(T) \
+ CONCAT(List_Prepend,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Prepend,T_NAME)(s_list_T const* list1, s_list_T* list2);
-#define c_lstprepend	CONCAT(List_Prepend,T_NAME)
+s_list(T)*				List_Prepend(T)(s_list(T) const* list1, s_list(T)* list2);
+#define c_lstprepend(T)	List_Prepend(T)
 
 //! Creates a new list which is the concatenation of `list1` and `list2`, and deletes both lists
 /*!
@@ -532,9 +590,11 @@ s_list_T*				CONCAT(List_Prepend,T_NAME)(s_list_T const* list1, s_list_T* list2)
 **	A newly allocated list, created by concatenating `list1` and `list2`.
 **	Both `list1` and `list2` will be deleted.
 */
+#define List_Merge(T) \
+ CONCAT(List_Merge,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Merge,T_NAME)(s_list_T* list1, s_list_T* list2);
-#define c_lstmerge		CONCAT(List_Merge,T_NAME)
+s_list(T)*				List_Merge(T)(s_list(T)* list1, s_list(T)* list2);
+#define c_lstmerge(T)	List_Merge(T)
 
 
 
@@ -553,9 +613,11 @@ s_list_T*				CONCAT(List_Merge,T_NAME)(s_list_T* list1, s_list_T* list2);
 **	If both pointers given are identical, it simply returns `TRUE` without even checking.
 **	Otherwise, `FALSE` is returned.
 */
+#define List_Equals(T) \
+ CONCAT(List_Equals,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2);
-#define c_lstequ		CONCAT(List_Equals,T_NAME)
+t_bool					List_Equals(T)(s_list(T) const* list1, s_list(T) const* list2);
+#define c_lstequ(T)		List_Equals(T)
 
 //! Checks if two lists have the same content, for the `n` first items
 /*!
@@ -567,9 +629,11 @@ t_bool					CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* lis
 **	If both pointers given are identical, it simply returns `TRUE` without even checking.
 **	Otherwise, `FALSE` is returned.
 */
+#define List_Equals_N(T) \
+ CONCAT(List_Equals_N,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n);
-#define c_lstnequ		CONCAT(List_Equals_N,T_NAME)
+t_bool					List_Equals_N(T)(s_list(T) const* list1, s_list(T) const* list2, t_uint n);
+#define c_lstnequ(T)	List_Equals_N(T)
 
 
 
@@ -581,9 +645,11 @@ t_bool					CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* l
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
+#define List_Compare(T) \
+ CONCAT(List_Compare,T##_NAME)
 _GENERIC()
-t_sint					CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2));
-#define c_lstcmp		CONCAT(List_Compare,T_NAME)
+t_sint					List_Compare(T)(s_list(T) const* list1, s_list(T) const* list2, t_sint (*compare)(T item1, T item2));
+#define c_lstcmp(T)		List_Compare(T)
 
 //! Compares two lists using the given `compare` function, for the `n` first items
 /*!
@@ -594,9 +660,11 @@ t_sint					CONCAT(List_Compare,T_NAME)(s_list_T const* list1, s_list_T const* li
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
+#define List_Compare_N(T) \
+ CONCAT(List_Compare_N,T##_NAME)
 _GENERIC()
-t_sint					CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_sint (*compare)(T item1, T item2), t_uint n);
-#define c_lstncmp		CONCAT(List_Compare_N,T_NAME)
+t_sint					List_Compare_N(T)(s_list(T) const* list1, s_list(T) const* list2, t_sint (*compare)(T item1, T item2), t_uint n);
+#define c_lstncmp(T)	List_Compare_N(T)
 
 
 
@@ -614,9 +682,11 @@ t_sint					CONCAT(List_Compare_N,T_NAME)(s_list_T const* list1, s_list_T const* 
 **	The first encountered item of the given linked `list` which is equal to `item`,
 **	or `NULL` if no such item was found.
 */
+#define List_Find(T) \
+ CONCAT(List_Find,T##_NAME)
 _GENERIC()
-s_list_T const*			CONCAT(List_Find,T_NAME)(s_list_T const* list, T item);
-#define c_lstfind		CONCAT(List_Find,T_NAME)
+s_list(T) const*		List_Find(T)(s_list(T) const* list, T item);
+#define c_lstfind(T)	List_Find(T)
 
 //! Returns the first encountered item in the given `list` matching the given `item`
 /*!
@@ -626,9 +696,11 @@ s_list_T const*			CONCAT(List_Find,T_NAME)(s_list_T const* list, T item);
 **	The first encountered item of the given linked `list` for which the given `match` function
 **	returned `TRUE`. Otherwise, returns `NULL` if no such item was found.
 */
+#define List_Find_F(T) \
+ CONCAT(List_Find_F,T##_NAME)
 _GENERIC()
-s_list_T const*			CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item));
-#define c_lstffind		CONCAT(List_Find_F,T_NAME)
+s_list(T) const*		List_Find_F(T)(s_list(T) const* list, t_bool (*match)(T item));
+#define c_lstffind(T)	List_Find_F(T)
 
 //! Returns the index of the first encountered item in the given `list` matching the given `item`
 /*!
@@ -638,9 +710,11 @@ s_list_T const*			CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*matc
 **	The first encountered item of the given linked `list` which is equal to `item`,
 **	or `-1` if no such item was found.
 */
+#define List_IndexOf(T) \
+ CONCAT(List_IndexOf,T##_NAME)
 _GENERIC()
-t_sint					CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item);
-#define c_lstfindi		CONCAT(List_IndexOf,T_NAME)
+t_sint					List_IndexOf(T)(s_list(T) const* list, T item);
+#define c_lstfindi(T)	List_IndexOf(T)
 
 //! Returns the index of the first encountered item in the given `list` matching the given `item`
 /*!
@@ -650,9 +724,11 @@ t_sint					CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item);
 **	The first encountered item of the given linked `list` which is equal to `item`,
 **	or `-1` if no such item was found.
 */
+#define List_IndexOf_F(T) \
+ CONCAT(List_IndexOf_F,T##_NAME)
 _GENERIC()
-t_sint					CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item));
-#define c_lstffindi		CONCAT(List_IndexOf_F,T_NAME)
+t_sint					List_IndexOf_F(T)(s_list(T) const* list, t_bool (*match)(T item));
+#define c_lstffindi(T)	List_IndexOf_F(T)
 
 
 
@@ -663,9 +739,11 @@ t_sint					CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T
 **	@returns
 **	The total amount of items in the given `list` which are equal to `item`
 */
+#define List_Count(T) \
+ CONCAT(List_Count,T##_NAME)
 _GENERIC()
-t_uint					CONCAT(List_Count,T_NAME)	(s_list_T const* list, T item);
-#define c_lstcount		CONCAT(List_Count,T_NAME)
+t_uint					List_Count(T)	(s_list(T) const* list, T item);
+#define c_lstcount(T)	List_Count(T)
 
 //! Checks whether the given `list` contains the given `item`
 /*!
@@ -675,9 +753,11 @@ t_uint					CONCAT(List_Count,T_NAME)	(s_list_T const* list, T item);
 **	`TRUE` if the given `list` does contain an item which is equal to the given `item`,
 **	otherwise returns `FALSE`.
 */
+#define List_Contains(T) \
+ CONCAT(List_Contains,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(List_Contains,T_NAME)(s_list_T const* list, T item);
-#define c_lstcontains	CONCAT(List_Contains,T_NAME)
+t_bool						List_Contains(T)(s_list(T) const* list, T item);
+#define c_lstcontains(T)	List_Contains(T)
 
 //! Checks whether the given `list` contains any item from the given `targets` list
 /*!
@@ -687,9 +767,11 @@ t_bool					CONCAT(List_Contains,T_NAME)(s_list_T const* list, T item);
 **	`TRUE` if the given `list` does contain an item which is equal to any item in `targets`,
 **	otherwise returns `FALSE`.
 */
+#define List_Has(T) \
+ CONCAT(List_Has,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(List_Has,T_NAME)		(s_list_T const* list, s_list_T const* targets);
-#define c_lsthas		CONCAT(List_Has,T_NAME)
+t_bool					List_Has(T)		(s_list(T) const* list, s_list(T) const* targets);
+#define c_lsthas(T)		List_Has(T)
 
 //! Checks whether the given `list` only contains items which are present in the given `targets` list
 /*!
@@ -699,9 +781,11 @@ t_bool					CONCAT(List_Has,T_NAME)		(s_list_T const* list, s_list_T const* targe
 **	`TRUE` if the given `list` only contains items which are equal to any item in `targets`,
 **	otherwise returns `FALSE`.
 */
+#define List_HasOnly(T) \
+ CONCAT(List_HasOnly,T##_NAME)
 _GENERIC()
-t_bool					CONCAT(List_HasOnly,T_NAME)	(s_list_T const* list, s_list_T const* targets);
-#define c_lsthasonly	CONCAT(List_HasOnly,T_NAME)
+t_bool					List_HasOnly(T)	(s_list(T) const* list, s_list(T) const* targets);
+#define c_lsthasonly(T)	List_HasOnly(T)
 
 
 
@@ -716,14 +800,18 @@ t_bool					CONCAT(List_HasOnly,T_NAME)	(s_list_T const* list, s_list_T const* ta
 **	@param	list	The list whose items should be iterated upon
 **	@param	f		The function to call for each item of the given `list`
 */
+#define List_Iterate(T) \
+ CONCAT(List_Iterate,T##_NAME)
 _GENERIC()
-void					CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item));
-#define c_lstiter		CONCAT(List_Iterate,T_NAME)
+void					List_Iterate(T)(s_list(T)* list, void (*f)(T item));
+#define c_lstiter(T)	List_Iterate(T)
 
 //! Like List_Iterate(), but the user-supplied function receives the current index
+#define List_Iterate_I(T) \
+ CONCAT(List_Iterate_I,T##_NAME)
 _GENERIC()
-void					CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint index));
-#define c_lstiiter		CONCAT(List_Iterate_I,T_NAME)
+void					List_Iterate_I(T)(s_list(T)* list, void (*f)(T item, t_uint index));
+#define c_lstiiter(T)	List_Iterate_I(T)
 
 
 
@@ -735,15 +823,19 @@ void					CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint 
 **	A new list, created by storing the return values of each call to the given `map` function.
 */
 _MALLOC()
+#define List_Map(T) \
+ CONCAT(List_Map,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Map,T_NAME)(s_list_T const* list, T (*map)(T item));
-#define c_lstmap		CONCAT(List_Map,T_NAME)
+s_list(T)*				List_Map(T)(s_list(T) const* list, T (*map)(T item));
+#define c_lstmap(T)		List_Map(T)
 
 //! Like List_Map(), but the user-supplied function receives the current index
 _MALLOC()
+#define List_Map_I(T) \
+ CONCAT(List_Map_I,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_uint index));
-#define c_lstimap		CONCAT(List_Map_I,T_NAME)
+s_list(T)*				List_Map_I(T)(s_list(T) const* list, T (*map)(T item, t_uint index));
+#define c_lstimap(T)	List_Map_I(T)
 
 
 
@@ -756,15 +848,19 @@ s_list_T*				CONCAT(List_Map_I,T_NAME)(s_list_T const* list, T (*map)(T item, t_
 **	for which the corresponding call to the `filter` function returned `TRUE`.
 */
 _MALLOC()
+#define List_Filter(T) \
+ CONCAT(List_Filter,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T item));
-#define c_lstfilter		CONCAT(List_Filter,T_NAME)
+s_list(T)*				List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item));
+#define c_lstfilter(T)	List_Filter(T)
 
 //! Like List_Filter(), but the user-supplied function receives the current index
 _MALLOC()
+#define List_Filter_I(T) \
+ CONCAT(List_Filter_I,T##_NAME)
 _GENERIC()
-s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T item, t_uint index));
-#define c_lstifilter	CONCAT(List_Filter_I,T_NAME)
+s_list(T)*				List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_uint index));
+#define c_lstifilter(T)	List_Filter_I(T)
 
 
 
@@ -779,14 +875,18 @@ s_list_T*				CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each item of the given `list`.
 */
+#define List_Reduce(T) \
+ CONCAT(List_Reduce,T##_NAME)
 _GENERIC()
-void*					CONCAT(List_Reduce,T_NAME)(s_list_T const* list, void* (*f)(T item, void* acc));
-#define c_lstreduce		CONCAT(List_Reduce,T_NAME)
+void*					List_Reduce(T)(s_list(T) const* list, void* (*f)(T item, void* acc));
+#define c_lstreduce(T)	List_Reduce(T)
 
 //! Like List_Reduce(), but the user-supplied function receives the current index
+#define List_Reduce_I(T) \
+ CONCAT(List_Reduce_I,T##_NAME)
 _GENERIC()
-void*					CONCAT(List_Reduce_I,T_NAME)(s_list_T const* list, void* (*f)(T item, void* acc, t_uint index));
-#define c_lstireduce	CONCAT(List_Reduce_I,T_NAME)
+void*					List_Reduce_I(T)(s_list(T) const* list, void* (*f)(T item, void* acc, t_uint index));
+#define c_lstireduce(T)	List_Reduce_I(T)
 
 //! Creates a single value by executing the given function `f` for each item of the given `list` 
 /*!
@@ -799,14 +899,18 @@ void*					CONCAT(List_Reduce_I,T_NAME)(s_list_T const* list, void* (*f)(T item, 
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each item of the given `list`.
 */
+#define List_Fold(T) \
+ CONCAT(List_Fold,T##_NAME)
 _GENERIC()
-void*					CONCAT(List_Fold,T_NAME)(s_list_T const* list, void* (*f)(T item, void* acc), void* initial);
-#define c_lstfold		CONCAT(List_Fold,T_NAME)
+void*					List_Fold(T)(s_list(T) const* list, void* (*f)(T item, void* acc), void* initial);
+#define c_lstfold(T)	List_Fold(T)
 
 //! Like List_Reduce(), but the user-supplied function receives the current index
+#define List_Fold_I(T) \
+ CONCAT(List_Fold_I,T##_NAME)
 _GENERIC()
-void*					CONCAT(List_Fold_I,T_NAME)(s_list_T const* list, void* (*f)(T item, void* acc, t_uint index), void* initial);
-#define c_lstifold		CONCAT(List_Fold_I,T_NAME)
+void*					List_Fold_I(T)(s_list(T) const* list, void* (*f)(T item, void* acc, t_uint index), void* initial);
+#define c_lstifold(T)	List_Fold_I(T)
 
 
 

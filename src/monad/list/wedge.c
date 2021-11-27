@@ -7,16 +7,16 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Wedge,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint index)
+s_list(T)*	List_Wedge(T)(s_list(T)* dest, s_list(T) const* src, t_uint index)
 {
-	s_list_T*	before;
-	s_list_T*	after;
-	s_list_T*	elem;
-	s_list_T*	new;
+	s_list(T)*	before;
+	s_list(T)*	after;
+	s_list(T)*	elem;
+	s_list(T)*	new;
 
 	//HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
-	new = CONCAT(List_Duplicate,T_NAME)(src);
+	new = List_Duplicate(T)(src);
 	HANDLE_ERROR(ALLOCFAILURE, (new == NULL), return (dest);)
 	if (dest == NULL || index == 0)
 	{
@@ -44,7 +44,7 @@ s_list_T*	CONCAT(List_Wedge,T_NAME)(s_list_T* dest, s_list_T const* src, t_uint 
 	{
 		HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL), return (NULL);,
 			", index given ("SF_UINT") is beyond the end of the destination list (length: "SF_UINT")",
-			index, CONCAT(List_Length,T_NAME)(dest))
+			index, List_Length(T)(dest))
 		before = elem;
 		elem = elem->next;
 	}

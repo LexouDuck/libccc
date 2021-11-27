@@ -6,21 +6,21 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Concat,T_NAME)(s_list_T const* list1, s_list_T const* list2)
+s_list(T)*	List_Concat(T)(s_list(T) const* list1, s_list(T) const* list2)
 {
-	s_list_T*	result;
-	s_list_T*	i;
+	s_list(T)*	result;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list1 == NULL && list2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list2));)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list1));)
-	result = CONCAT(List_Duplicate,T_NAME)(list1);
+	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (List_Duplicate(T)(list2));)
+	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (List_Duplicate(T)(list1));)
+	result = List_Duplicate(T)(list1);
 	i = result;
 	while (i->next)
 	{
 		i = i->next;
 	}
-	i->next = CONCAT(List_Duplicate,T_NAME)(list2);
+	i->next = List_Duplicate(T)(list2);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	i->next->prev = i;
 	result->prev = i;
@@ -31,78 +31,78 @@ s_list_T*	CONCAT(List_Concat,T_NAME)(s_list_T const* list1, s_list_T const* list
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Append,T_NAME)(s_list_T* list1, s_list_T const* list2)
+s_list(T)*	List_Append(T)(s_list(T)* list1, s_list(T) const* list2)
 {
-	s_list_T*	result;
-	s_list_T*	i;
+	s_list(T)*	result;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list1 == NULL && list2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list2));)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list1));)
-	result = CONCAT(List_Duplicate,T_NAME)(list1);
+	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (List_Duplicate(T)(list2));)
+	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (List_Duplicate(T)(list1));)
+	result = List_Duplicate(T)(list1);
 	i = result;
 	while (i->next)
 	{
 		i = i->next;
 	}
-	i->next = CONCAT(List_Duplicate,T_NAME)(list2);
+	i->next = List_Duplicate(T)(list2);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Free,T_NAME)(list1);
+	List_Free(T)(list1);
 	return (result);
 }
 
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Prepend,T_NAME)(s_list_T const* list1, s_list_T* list2)
+s_list(T)*	List_Prepend(T)(s_list(T) const* list1, s_list(T)* list2)
 {
-	s_list_T*	result;
-	s_list_T*	i;
+	s_list(T)*	result;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list1 == NULL && list2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list2));)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list1));)
-	result = CONCAT(List_Duplicate,T_NAME)(list1);
+	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (List_Duplicate(T)(list2));)
+	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (List_Duplicate(T)(list1));)
+	result = List_Duplicate(T)(list1);
 	i = result;
 	while (i->next)
 	{
 		i = i->next;
 	}
-	i->next = CONCAT(List_Duplicate,T_NAME)(list2);
+	i->next = List_Duplicate(T)(list2);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Free,T_NAME)(list2);
+	List_Free(T)(list2);
 	return (result);
 }
 
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Merge,T_NAME)(s_list_T* list1, s_list_T* list2)
+s_list(T)*	List_Merge(T)(s_list(T)* list1, s_list(T)* list2)
 {
-	s_list_T*	result;
-	s_list_T*	i;
+	s_list(T)*	result;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list1 == NULL && list2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list2));)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (CONCAT(List_Duplicate,T_NAME)(list1));)
-	result = CONCAT(List_Duplicate,T_NAME)(list1);
+	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (List_Duplicate(T)(list2));)
+	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (List_Duplicate(T)(list1));)
+	result = List_Duplicate(T)(list1);
 	i = result;
 	while (i->next)
 	{
 		i = i->next;
 	}
-	i->next = CONCAT(List_Duplicate,T_NAME)(list2);
+	i->next = List_Duplicate(T)(list2);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	i->next->prev = i;
 	result->prev = i;
 #endif
-	CONCAT(List_Free,T_NAME)(list1);
-	CONCAT(List_Free,T_NAME)(list2);
+	List_Free(T)(list1);
+	List_Free(T)(list2);
 	return (result);
 }

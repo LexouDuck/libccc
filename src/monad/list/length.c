@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-t_uint	CONCAT(List_Length,T_NAME)(s_list_T const* list)
+t_uint	List_Length(T)(s_list(T) const* list)
 {
 	t_uint	result;
 

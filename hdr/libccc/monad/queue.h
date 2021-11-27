@@ -48,18 +48,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define queue_T		CONCAT(queue, T_NAME)
-#define s_queue_T	CONCAT(s_queue, T_NAME)
+#define   queue(T)	CONCAT(  queue, T##_NAME)
+#define s_queue(T)	CONCAT(s_queue, T##_NAME)
 
 //! A simple queue/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
-typedef struct queue_T
+typedef struct queue(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}				s_queue_T;
+}	s_queue(T);
 
 
 

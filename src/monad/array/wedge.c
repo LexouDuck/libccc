@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Wedge,T_NAME)(s_array_T* dest, s_array_T const* src, t_uint index)
+s_array(T)*	Array_Wedge(T)(s_array(T)* dest, s_array(T) const* src, t_uint index)
 {
 	T*	result;
 

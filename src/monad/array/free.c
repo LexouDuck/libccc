@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_Free,T_NAME)(s_array_T* array)
+void	Array_Free(T)(s_array(T)* array)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	Memory_Free(array->items);
@@ -19,7 +19,7 @@ void	CONCAT(Array_Free,T_NAME)(s_array_T* array)
 
 
 _GENERIC()
-void	CONCAT(Array_Free_F,T_NAME)(s_array_T* array, void (*delete)(T* item))
+void	Array_Free_F(T)(s_array(T)* array, void (*delete)(T* item))
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)

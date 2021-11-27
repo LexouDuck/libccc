@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(Array_Contains,T_NAME)(s_array_T const* array, T item)
+t_bool	Array_Contains(T)(s_array(T) const* array, T item)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (FALSE);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (FALSE);)

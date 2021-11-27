@@ -7,14 +7,14 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Concat,T_NAME)(s_array_T const* array1, s_array_T const* array2)
+s_array(T)*	Array_Concat(T)(s_array(T) const* array1, s_array(T) const* array2)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array1 == NULL && array2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array2));)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array1));)
-	result = CONCAT(Array_New,T_NAME)(array1->length + array2->length, T_DEFAULT);
+	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (Array_Duplicate(T)(array2));)
+	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (Array_Duplicate(T)(array1));)
+	result = Array_New(T)(array1->length + array2->length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
@@ -24,54 +24,54 @@ s_array_T*	CONCAT(Array_Concat,T_NAME)(s_array_T const* array1, s_array_T const*
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Append,T_NAME)(s_array_T* array1, s_array_T const* array2)
+s_array(T)*	Array_Append(T)(s_array(T)* array1, s_array(T) const* array2)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array1 == NULL && array2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array2));)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array1));)
-	result = CONCAT(Array_New,T_NAME)(array1->length + array2->length, T_DEFAULT);
+	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (Array_Duplicate(T)(array2));)
+	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (Array_Duplicate(T)(array1));)
+	result = Array_New(T)(array1->length + array2->length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Free,T_NAME)(array1);
+	Array_Free(T)(array1);
 	return (result);
 }
 
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Prepend,T_NAME)(s_array_T const* array1, s_array_T* array2)
+s_array(T)*	Array_Prepend(T)(s_array(T) const* array1, s_array(T)* array2)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array1 == NULL && array2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array2));)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array1));)
-	result = CONCAT(Array_New,T_NAME)(array1->length + array2->length, T_DEFAULT);
+	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (Array_Duplicate(T)(array2));)
+	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (Array_Duplicate(T)(array1));)
+	result = Array_New(T)(array1->length + array2->length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Free,T_NAME)(array2);
+	Array_Free(T)(array2);
 	return (result);
 }
 
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Merge,T_NAME)(s_array_T* array1, s_array_T* array2)
+s_array(T)*	Array_Merge(T)(s_array(T)* array1, s_array(T)* array2)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array1 == NULL && array2 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array2));)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (CONCAT(Array_Duplicate,T_NAME)(array1));)
-	result = CONCAT(Array_New,T_NAME)(array1->length + array2->length, T_DEFAULT);
+	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (Array_Duplicate(T)(array2));)
+	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (Array_Duplicate(T)(array1));)
+	result = Array_New(T)(array1->length + array2->length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	Memory_Copy(result->items, array1->items, array1->length);
 	Memory_Copy(result->items + array1->length, array2->items, array2->length);
-	CONCAT(Array_Free,T_NAME)(array1);
-	CONCAT(Array_Free,T_NAME)(array2);
+	Array_Free(T)(array1);
+	Array_Free(T)(array2);
 	return (result);
 }

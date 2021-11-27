@@ -19,9 +19,8 @@
 //#include "libccc/../../src/monad/stack/new.c"
 
 // remove all generic type macros
-#undef	stack_T
-#undef	s_stack_T
-
+#undef stack
+#undef s_stack
 #undef T
 #undef T_NAME
 #undef T_DEFAULT

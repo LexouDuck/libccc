@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array)
+void	Array_Delete(T)(s_array(T)* *a_array)
 {
 	HANDLE_ERROR(NULLPOINTER, (a_array  == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (*a_array == NULL), return;)
@@ -21,7 +21,7 @@ void	CONCAT(Array_Delete,T_NAME)(s_array_T* *a_array)
 
 
 _GENERIC()
-void	CONCAT(Array_Delete_F,T_NAME)(s_array_T* *a_array, void (*delete)(T* item))
+void	Array_Delete_F(T)(s_array(T)* *a_array, void (*delete)(T* item))
 {
 	HANDLE_ERROR(NULLPOINTER, (delete   == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (a_array  == NULL), return;)

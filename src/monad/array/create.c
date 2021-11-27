@@ -27,12 +27,12 @@
 */
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Create,T_NAME)(t_uint n, ...)
+s_array(T)*	Array_Create(T)(t_uint n, ...)
 {
 	T			item;
-	s_array_T*	result;
+	s_array(T)*	result;
 
-	result = CONCAT(Array_New,T_NAME)(n, T_DEFAULT);
+	result = Array_New(T)(n, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	va_list	args;
 	va_start(args, n);

@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Insert,T_NAME)(s_array_T* dest, T item, t_uint index)
+s_array(T)*	Array_Insert(T)(s_array(T)* dest, T item, t_uint index)
 {
 	T*	result;
 

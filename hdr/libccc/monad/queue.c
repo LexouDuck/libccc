@@ -19,9 +19,8 @@
 //#include "libccc/../../src/monad/queue/new.c"
 
 // remove all generic type macros
-#undef	queue_T
-#undef	s_queue_T
-
+#undef queue
+#undef s_queue
 #undef T
 #undef T_NAME
 #undef T_DEFAULT

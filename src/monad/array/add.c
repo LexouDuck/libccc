@@ -7,13 +7,13 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Add,T_NAME)(s_array_T* array, T item)
+s_array(T)*	Array_Add(T)(s_array(T)* array, T item)
 {
 	if (array == NULL)
 	{
-		array = (s_array_T*)Memory_New(sizeof(s_array_T));
+		array = (s_array(T)*)Memory_New(sizeof(s_array(T)));
 		HANDLE_ERROR(ALLOCFAILURE, (array == NULL), return (NULL);)
-		*array = CONCAT(Array_Item,T_NAME)(item);
+		*array = Array_Item(T)(item);
 		return (array);
 	}
 	array->length += 1;

@@ -6,13 +6,13 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new)
+s_list(T)*	List_Replace(T)(s_list(T) const* list, T old, T new)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	result = CONCAT(List_Duplicate,T_NAME)(list);
+	result = List_Duplicate(T)(list);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	elem = result;
 	while (elem)
@@ -29,13 +29,13 @@ s_list_T*	CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new)
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_ReplaceFirst,T_NAME)(s_list_T const* list, T old, T new, t_uint n)
+s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	result = CONCAT(List_Duplicate,T_NAME)(list);
+	result = List_Duplicate(T)(list);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	elem = result;
 	while (elem)
@@ -55,13 +55,13 @@ s_list_T*	CONCAT(List_ReplaceFirst,T_NAME)(s_list_T const* list, T old, T new, t
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_ReplaceLast,T_NAME)(s_list_T const* list, T old, T new, t_uint n)
+s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	result = CONCAT(List_Duplicate,T_NAME)(list);
+	result = List_Duplicate(T)(list);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	elem = result->prev;

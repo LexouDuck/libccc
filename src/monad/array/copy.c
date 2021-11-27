@@ -6,9 +6,9 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Copy,T_NAME)(
-	s_array_T* dest,      t_uint dest_i,
-	s_array_T const* src, t_uint src_i,
+s_array(T)*	Array_Copy(T)(
+	s_array(T)* dest,      t_uint dest_i,
+	s_array(T) const* src, t_uint src_i,
 	t_uint n)
 {
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)

@@ -48,18 +48,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define stack_T		CONCAT(stack, T_NAME)
-#define s_stack_T	CONCAT(s_stack, T_NAME)
+#define   stack(T)	CONCAT(  stack, T##_NAME)
+#define s_stack(T)	CONCAT(s_stack, T##_NAME)
 
 //! A simple stack/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
-typedef struct stack_T
+typedef struct stack(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}			s_stack_T;
+}			s_stack(T);
 
 
 

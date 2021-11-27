@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-T*	CONCAT(Array_Set,T_NAME)(s_array_T* array, t_uint index, T item)
+T*	Array_Set(T)(s_array(T)* array, t_uint index, T item)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)

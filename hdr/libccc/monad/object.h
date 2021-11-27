@@ -50,21 +50,21 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define object_T	CONCAT(object, T_NAME)
-#define s_object_T	CONCAT(s_object, T_NAME)
+#define   object(T)	CONCAT(  object, T##_NAME)
+#define s_object(T)	CONCAT(s_object, T##_NAME)
 
 //! A dynamic object struct, stores several key-value pairs
 /*
 **	TODO document this
 */
-typedef struct object_T
+typedef struct object(T)
 {
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	struct object_T*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
+	struct object(T)*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
 #endif
-	struct object_T*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
-	s_keyval_T*			items;	//!< The fields (key-value pairs) contained within this object
-}				s_object_T;
+	struct object(T)*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
+	s_keyval(T)*		items;	//!< The fields (key-value pairs) contained within this object
+}				s_object(T);
 
 
 

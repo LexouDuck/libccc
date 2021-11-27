@@ -6,13 +6,13 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new)
+s_array(T)*	Array_Replace(T)(s_array(T) const* array, T old, T new)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
-	result = CONCAT(Array_Duplicate,T_NAME)(array);
+	result = Array_Duplicate(T)(array);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result->items == NULL)
 		return (result);
@@ -30,13 +30,13 @@ s_array_T*	CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new)
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_ReplaceFirst,T_NAME)(s_array_T const* array, T old, T new, t_uint n)
+s_array(T)*	Array_ReplaceFirst(T)(s_array(T) const* array, T old, T new, t_uint n)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
-	result = CONCAT(Array_Duplicate,T_NAME)(array);
+	result = Array_Duplicate(T)(array);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result->items == NULL)
 		return (result);
@@ -57,13 +57,13 @@ s_array_T*	CONCAT(Array_ReplaceFirst,T_NAME)(s_array_T const* array, T old, T ne
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_ReplaceLast,T_NAME)(s_array_T const* array, T old, T new, t_uint n)
+s_array(T)*	Array_ReplaceLast(T)(s_array(T) const* array, T old, T new, t_uint n)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
-	result = CONCAT(Array_Duplicate,T_NAME)(array);
+	result = Array_Duplicate(T)(array);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result->items == NULL)
 		return (result);

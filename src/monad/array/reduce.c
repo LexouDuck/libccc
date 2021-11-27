@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-void*	CONCAT(Array_Reduce,T_NAME)(s_array_T const* array,
+void*	Array_Reduce(T)(s_array(T) const* array,
 	void* (*f)(T item, void* acc))
 {
 	void*		accumulator = NULL;
@@ -21,7 +21,7 @@ void*	CONCAT(Array_Reduce,T_NAME)(s_array_T const* array,
 }
 
 _GENERIC()
-void*	CONCAT(Array_Reduce_I,T_NAME)(s_array_T const* array,
+void*	Array_Reduce_I(T)(s_array(T) const* array,
 	void* (*f)(T item, void* acc, t_uint index))
 {
 	void*		accumulator = NULL;
@@ -38,7 +38,7 @@ void*	CONCAT(Array_Reduce_I,T_NAME)(s_array_T const* array,
 
 
 _GENERIC()
-void*	CONCAT(Array_Fold,T_NAME)(s_array_T const* array,
+void*	Array_Fold(T)(s_array(T) const* array,
 	void* (*f)(T item, void* acc), void* initial)
 {
 	void*		accumulator = initial;
@@ -53,7 +53,7 @@ void*	CONCAT(Array_Fold,T_NAME)(s_array_T const* array,
 }
 
 _GENERIC()
-void*	CONCAT(Array_Fold_I,T_NAME)(s_array_T const* array,
+void*	Array_Fold_I(T)(s_array(T) const* array,
 	void* (*f)(T item, void* acc, t_uint index), void* initial)
 {
 	void*		accumulator = initial;

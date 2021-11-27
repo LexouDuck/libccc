@@ -46,9 +46,8 @@
 #include "libccc/../../src/monad/array/wedge.c"
 
 // remove all generic type macros
-#undef	array_T
-#undef	s_array_T
-
+#undef array
+#undef s_array
 #undef T
 #undef T_NAME
 #undef T_DEFAULT

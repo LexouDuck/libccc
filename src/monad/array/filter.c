@@ -7,9 +7,9 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(T item))
+s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 	t_bool*	tmp;
 	t_uint	length;
 	t_uint	i;
@@ -17,7 +17,7 @@ s_array_T*	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array  == NULL), return (NULL);)
 	if (array->length == 0 || array->items == NULL)
-		return ((s_array_T*)Memory_New(sizeof(s_array_T)));
+		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
 	length = 0;
@@ -27,7 +27,7 @@ s_array_T*	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(
 		if (tmp[i])
 			++length;
 	}
-	result = CONCAT(Array_New,T_NAME)(length, T_DEFAULT);
+	result = Array_New(T)(length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL), return (result);)
 	if (result->items == NULL)
 		return (result);
@@ -47,9 +47,9 @@ s_array_T*	CONCAT(Array_Filter,T_NAME)(s_array_T const* array, t_bool (*filter)(
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter)(T item, t_uint index))
+s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, t_uint index))
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 	t_bool*	tmp;
 	t_uint	length;
 	t_uint	i;
@@ -57,7 +57,7 @@ s_array_T*	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array  == NULL), return (NULL);)
 	if (array->length == 0 || array->items == NULL)
-		return ((s_array_T*)Memory_New(sizeof(s_array_T)));
+		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
 	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
 	length = 0;
@@ -67,7 +67,7 @@ s_array_T*	CONCAT(Array_Filter_I,T_NAME)(s_array_T const* array, t_bool (*filter
 		if (tmp[i])
 			++length;
 	}
-	result = CONCAT(Array_New,T_NAME)(length, T_DEFAULT);
+	result = Array_New(T)(length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL), return (result);)
 	if (result->items == NULL)
 		return (result);

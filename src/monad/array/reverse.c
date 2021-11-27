@@ -6,14 +6,14 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Reverse,T_NAME)(s_array_T const* array)
+s_array(T)*	Array_Reverse(T)(s_array(T) const* array)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 	t_uint		index;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
-	result = CONCAT(Array_New,T_NAME)(array->length, T_DEFAULT);
+	result = Array_New(T)(array->length, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	index = array->length - 1;
 	for (t_uint i = 0; i < result->length; ++i, --index)

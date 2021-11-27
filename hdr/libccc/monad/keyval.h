@@ -48,18 +48,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-#define keyval_T	CONCAT(keyval, T_NAME)
-#define s_keyval_T	CONCAT(s_keyval, T_NAME)
+#define   keyval(T)	CONCAT(  keyval, T##_NAME)
+#define s_keyval(T)	CONCAT(s_keyval, T##_NAME)
 
 //! A simple key+value pair struct, used in the 's_dict' dictionary struct
 /*
 **	TODO document this
 */
-typedef struct keyval_T
+typedef struct keyval(T)
 {
-	t_char*	key;	//!< The key string associated with the `value`
-	T		value;	//!< The pointer to the data for the `value`
-}				s_keyval_T;
+	t_char*		key;	//!< The key string associated with the `value`
+	T			value;	//!< The pointer to the data for the `value`
+}				s_keyval(T);
 
 
 

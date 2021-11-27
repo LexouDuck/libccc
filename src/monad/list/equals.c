@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2)
+t_bool	List_Equals(T)(s_list(T) const* list1, s_list(T) const* list2)
 {
 	if (list1 == list2)
 		return (TRUE);
@@ -25,7 +25,7 @@ t_bool	CONCAT(List_Equals,T_NAME)(s_list_T const* list1, s_list_T const* list2)
 
 
 _GENERIC()
-t_bool	CONCAT(List_Equals_N,T_NAME)(s_list_T const* list1, s_list_T const* list2, t_uint n)
+t_bool	List_Equals_N(T)(s_list(T) const* list1, s_list(T) const* list2, t_uint n)
 {
 	if (list1 == list2)
 		return (TRUE);

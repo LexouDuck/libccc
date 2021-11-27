@@ -8,9 +8,9 @@
 
 #if 0
 _GENERIC()
-s_array_T	CONCAT(Array,T_NAME)(t_uint n)
+s_array(T)	CONCAT(Array,T_NAME)(t_uint n)
 {
-	s_array_T	result;
+	s_array(T)	result;
 
 	result.length = n;
 	result.items = NULL;
@@ -29,11 +29,11 @@ s_array_T	CONCAT(Array,T_NAME)(t_uint n)
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_New,T_NAME)(t_uint n, T value)
+s_array(T)*	Array_New(T)(t_uint n, T value)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
-	result = (s_array_T*)Memory_Allocate(sizeof(s_array_T));
+	result = (s_array(T)*)Memory_Allocate(sizeof(s_array(T)));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL),
 		return (NULL);)
 	result->length = n;

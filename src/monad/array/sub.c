@@ -6,16 +6,16 @@
 
 
 _GENERIC()
-s_array_T*	CONCAT(Array_Sub,T_NAME)(s_array_T const* array, t_uint index, t_uint n)
+s_array(T)*	Array_Sub(T)(s_array(T) const* array, t_uint index, t_uint n)
 {
-	s_array_T*	result;
+	s_array(T)*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL),             return (NULL);)
 	HANDLE_ERROR(INDEX2LARGE, (index >= array->length),    return (NULL);)
 	HANDLE_ERROR(LENGTH2LARGE, (index + n > array->length), return (NULL);)
 	if (n == 0)
 		n = array->length - index;
-	result = CONCAT(Array_New,T_NAME)(n, T_DEFAULT);
+	result = Array_New(T)(n, T_DEFAULT);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; i < n; ++i)
 	{

@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-void*	CONCAT(List_Reduce,T_NAME)(s_list_T const* list,
+void*	List_Reduce(T)(s_list(T) const* list,
 	void* (*f)(T item, void* acc))
 {
 	void*		accumulator = NULL;
@@ -22,7 +22,7 @@ void*	CONCAT(List_Reduce,T_NAME)(s_list_T const* list,
 }
 
 _GENERIC()
-void*	CONCAT(List_Reduce_I,T_NAME)(s_list_T const* list,
+void*	List_Reduce_I(T)(s_list(T) const* list,
 	void* (*f)(T item, void* acc, t_uint index))
 {
 	void*		accumulator = NULL;
@@ -41,7 +41,7 @@ void*	CONCAT(List_Reduce_I,T_NAME)(s_list_T const* list,
 
 
 _GENERIC()
-void*	CONCAT(List_Fold,T_NAME)(s_list_T const* list,
+void*	List_Fold(T)(s_list(T) const* list,
 	void* (*f)(T item, void* acc), void* initial)
 {
 	void*		accumulator = initial;
@@ -57,7 +57,7 @@ void*	CONCAT(List_Fold,T_NAME)(s_list_T const* list,
 }
 
 _GENERIC()
-void*	CONCAT(List_Fold_I,T_NAME)(s_list_T const* list,
+void*	List_Fold_I(T)(s_list(T) const* list,
 	void* (*f)(T item, void* acc, t_uint index), void* initial)
 {
 	void*		accumulator = initial;

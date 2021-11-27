@@ -7,35 +7,35 @@
 
 
 _GENERIC()
-void	CONCAT(Array_Remove,T_NAME)(s_array_T* array, T item)
+void	Array_Remove(T)(s_array(T)* array, T item)
 {
 	t_sint	index;
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
+	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
 		return;
-	CONCAT(Array_RemoveAt,T_NAME)(array, index);
+	Array_RemoveAt(T)(array, index);
 }
 
 
 
 _GENERIC()
-void	CONCAT(Array_Remove_F,T_NAME)(s_array_T* array, T item, void (*delete)(T))
+void	Array_Remove_F(T)(s_array(T)* array, T item, void (*delete)(T))
 {
 	t_sint	index;
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	index = CONCAT(Array_IndexOf,T_NAME)(array, item);
+	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
 		return;
-	CONCAT(Array_RemoveAt_F,T_NAME)(array, index, delete);
+	Array_RemoveAt_F(T)(array, index, delete);
 }
 
 
 
 _GENERIC()
-void	CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item)
+void	Array_RemoveAll(T)(s_array(T)* array, T item)
 {
 	T*	result;
 	t_uint	i;
@@ -80,7 +80,7 @@ void	CONCAT(Array_RemoveAll,T_NAME)(s_array_T* array, T item)
 
 
 _GENERIC()
-void	CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delete)(T))
+void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T))
 {
 	T*	result;
 	t_uint	i;
