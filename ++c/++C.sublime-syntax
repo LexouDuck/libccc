@@ -1309,6 +1309,7 @@ contexts:
         - match: '(?<=$\n)(?<!\\$\n)'
           pop: true
         - include: comment-documentation
+        - include: lex-continuation
 
     - match: '\s*(/\*)'
       captures:
@@ -1326,6 +1327,7 @@ contexts:
         - match: '(?<=$\n)(?<!\\$\n)'
           pop: true
         - include: comment
+        - include: lex-continuation
 
     - match: '\*/(?![/*])'
       scope: invalid.illegal.stray-comment-end.c
@@ -1333,13 +1335,11 @@ contexts:
   comment:
     - include: comment-note
     - include: comment-banner-line
-    - include: lex-continuation
     - include: lex-newline
 
   comment-documentation:
     - include: comment-note
     - include: comment-command
-    - include: lex-continuation
     - include: lex-newline
 
   comment-banner-line:
