@@ -1157,7 +1157,7 @@ void					String_Iterate(t_char* str, void (*f)(t_char* c));
 **	applying the function `f` to each of its chars.
 */
 void					String_Iterate_I(t_char* str, void (*f)(t_char* c, t_size index));
-#define c_striteri		String_Iterate_I //!< @alias{String_Iterate_I}
+#define c_striiter		String_Iterate_I //!< @alias{String_Iterate_I}
 
 
 
@@ -1183,7 +1183,7 @@ t_char*					String_Map(t_char const* str, t_char (*map)(t_char c));
 */
 _MALLOC()
 t_char*					String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index));
-#define c_strmapi		String_Map_I //!< @alias{String_Map_I}
+#define c_strimap		String_Map_I //!< @alias{String_Map_I}
 
 
 
@@ -1197,7 +1197,7 @@ t_char*					String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index
 */
 _MALLOC()
 t_char*					String_Filter(t_char const* str, t_bool (*filter)(t_char c)); // TODO implement
-#define c_strfilt		String_Filter //!< @alias{String_Map}
+#define c_strfilter		String_Filter //!< @alias{String_Filter}
 
 //! Creates a new string from `str`, only keeping chars when the custom function `filter` returns `TRUE`
 /*!
@@ -1209,7 +1209,7 @@ t_char*					String_Filter(t_char const* str, t_bool (*filter)(t_char c)); // TOD
 */
 _MALLOC()
 t_char*					String_Filter_I(t_char const* str, t_bool (*filter)(t_char c, t_size index)); // TODO implement
-#define c_strfilti		String_Filter_I //!< @alias{String_Map_I}
+#define c_strifilter	String_Filter_I //!< @alias{String_Filter_I}
 
 
 

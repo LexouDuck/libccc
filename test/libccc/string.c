@@ -1424,29 +1424,29 @@ void	test_striter(void)
 #endif
 
 
-#ifndef c_striteri
-void test_striteri(void)	{}
+#ifndef c_striiter
+void test_striiter(void)	{}
 #else
-void	print_test_striteri(char const* test_name, int can_segfault,
+void	print_test_striiter(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		void (*f)(t_char*, t_size))
 {
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
-	TEST_PERFORM_VOID(result_libccc, striteri, result_libccc, f)
-	TEST_PRINT(str,					 striteri, "str=\"%s\", f=%p", str, f)
+	TEST_PERFORM_VOID(result_libccc, striiter, result_libccc, f)
+	TEST_PRINT(str,					 striiter, "str=\"%s\", f=%p", str, f)
 	TEST_FREE()
 }
-void	test_striteri(void)
+void	test_striiter(void)
 {
 //	| TEST FUNCTION    | TEST NAME            | CAN SEGV       | EXPECTING               | TEST ARGS
-	print_test_striteri("striteri            ",	FALSE,			"sWeG",                   "SWEG",                   &strtolower_1on2);
-	print_test_striteri("striteri            ",	FALSE,			" Test dude ",            " TesT DuDe ",            &strtolower_1on2);
-	print_test_striteri("striteri            ",	FALSE,			"oMaE Wa mOu sHiNdEiRu.", "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
-	print_test_striteri("striteri (null str) ",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     &strtolower_1on2);
-	print_test_striteri("striteri (null func)",	SIGNAL_SIGSEGV,	NULL,                     "OMAE WA MOU SHINDEIRU.", NULL);
-	print_test_striteri("striteri (both null)",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     NULL);
+	print_test_striiter("striiter            ",	FALSE,			"sWeG",                   "SWEG",                   &strtolower_1on2);
+	print_test_striiter("striiter            ",	FALSE,			" Test dude ",            " TesT DuDe ",            &strtolower_1on2);
+	print_test_striiter("striiter            ",	FALSE,			"oMaE Wa mOu sHiNdEiRu.", "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
+	print_test_striiter("striiter (null str) ",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     &strtolower_1on2);
+	print_test_striiter("striiter (null func)",	SIGNAL_SIGSEGV,	NULL,                     "OMAE WA MOU SHINDEIRU.", NULL);
+	print_test_striiter("striiter (both null)",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     NULL);
 }
 #endif
 
@@ -1475,26 +1475,26 @@ void	test_strmap(void)
 #endif
 
 
-#ifndef c_strmapi
-void test_strmapi(void)	{}
+#ifndef c_strimap
+void test_strimap(void)	{}
 #else
-void	print_test_strmapi(char const* test_name, int can_segfault,
+void	print_test_strimap(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		t_char (*f)(t_char, t_size))
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strmapi, str, f)
-	TEST_PRINT(str,	strmapi, "str=\"%s\", f=%p", str, f)
+	TEST_PERFORM(	strimap, str, f)
+	TEST_PRINT(str,	strimap, "str=\"%s\", f=%p", str, f)
 	TEST_FREE()
 }
-void	test_strmapi(void)
+void	test_strimap(void)
 {
 //	| TEST FUNCTION   | TEST NAME             | CAN SEGV       | EXPECTING      | TEST ARGS
-	print_test_strmapi("strmapi            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.", "omae wa mou shindeiru.", &strtoupper_1on2);
-	print_test_strmapi("strmapi (null str) ",	SIGNAL_SIGSEGV,	NULL,            NULL,                     &strtoupper_1on2);
-	print_test_strmapi("strmapi (null func)",	SIGNAL_SIGSEGV,	NULL,            "omae wa mou shindeiru.", NULL);
-	print_test_strmapi("strmapi (both null)",	SIGNAL_SIGSEGV,	NULL,            NULL,                     NULL);
+	print_test_strimap("strimap            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.", "omae wa mou shindeiru.", &strtoupper_1on2);
+	print_test_strimap("strimap (null str) ",	SIGNAL_SIGSEGV,	NULL,            NULL,                     &strtoupper_1on2);
+	print_test_strimap("strimap (null func)",	SIGNAL_SIGSEGV,	NULL,            "omae wa mou shindeiru.", NULL);
+	print_test_strimap("strimap (both null)",	SIGNAL_SIGSEGV,	NULL,            NULL,                     NULL);
 }
 #endif
 
@@ -1539,9 +1539,11 @@ int		testsuite_string(void)
 	test_strset();
 	test_strclr();
 //	test_strdel();
+	test_strconcat();
 //	test_strmerge();
 //	test_strappend();
 //	test_strprepend();
+//	test_strjoin();
 
 	test_strequ();
 	test_strnequ();
@@ -1566,13 +1568,18 @@ int		testsuite_string(void)
 	test_strpad_r();
 
 	test_strrev();
-	test_strjoin();
 //	test_strinsert();
 	test_strsub();
 	test_striter();
-	test_striteri();
+	test_striiter();
 	test_strmap();
-	test_strmapi();
+	test_strimap();
+//	test_strfilter();
+//	test_strifilter();
+//	test_strreduce();
+//	test_strireduce();
+//	test_strfold();
+//	test_strifold();
 
 	return (0);
 }

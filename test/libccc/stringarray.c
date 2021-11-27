@@ -295,6 +295,7 @@ int		testsuite_stringarray(void)
 
 /*
 	test_strarrlen();
+	test_strarrstrlen();
 
 //	test_strarrnew();
 //	test_strarrcnew();
@@ -304,6 +305,7 @@ int		testsuite_stringarray(void)
 	test_strsplit_charset();
 	test_strsplit_str();
 //	test_strdivide();
+	test_strjoin();
 
 //	test_strarrcount_char();
 //	test_strarrcount_charset();
@@ -313,9 +315,17 @@ int		testsuite_stringarray(void)
 
 //	test_strarrsub();
 
+//	test_strarriter();
+//	test_strarriiter();
 //	test_strarrmap();
+//	test_strarrimap();
+//	test_strarrfilter();
+//	test_strarrifilter();
+//	test_strarrreduce();
+//	test_strarrireduce();
+//	test_strarrfold();
+//	test_strarrifold();
 
-	test_strarrfold();
 */
 	return (0);
 }
