@@ -367,7 +367,7 @@ void					CONCAT(Array_RemoveAll_F,T_NAME)(s_array_T* array, T item, void (*delet
 
 
 
-//! Creates a new array from the given `array`, where the first occurence of `old` is replaced with `new`
+//! Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
 /*!
 **	@param	array	The array to use as a basis for copy and item replacement
 **	@param	old		The item to be replaced
@@ -381,19 +381,37 @@ _GENERIC()
 s_array_T*				CONCAT(Array_Replace,T_NAME)(s_array_T const* array, T old, T new);
 #define c_arrrep		CONCAT(Array_Replace,T_NAME)
 
-//! Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
+//! Creates a new array from the given `array`, where the first `n` occurences of `old` are replaced with `new`.
 /*!
 **	@param	array	The array to use as a basis for copy and item replacement
 **	@param	old		The item to be replaced
 **	@param	new		The replacement for the resulting array
+**	@param	n		The amount of occurences of `old` to replace
 **	@returns
-**	A newly created array copied from `array`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created array copied from `strarr`, in which in the first (iterating forwards)
+**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	or `NULL` if an error occurred.
 */
 _MALLOC()
 _GENERIC()
-s_array_T*				CONCAT(Array_ReplaceAll,T_NAME)(s_array_T const* array, T old, T new);
-#define c_arrrepall		CONCAT(Array_ReplaceAll,T_NAME)
+s_array_T*				CONCAT(Array_ReplaceFirst,T_NAME)(s_array_T const* array, T old, T new, t_uint n);
+#define c_arrrepfirst	CONCAT(Array_ReplaceFirst,T_NAME)
+
+//! Creates a new array from the given `array`, where the last `n` occurences of `old` are replaced with `new`.
+/*!
+**	@param	array	The array to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting array
+**	@param	n		The amount of occurences of `old` to replace
+**	@returns
+**	A newly created array copied from `strarr`, in which in the first (iterating backwards)
+**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_array_T*				CONCAT(Array_ReplaceLast,T_NAME)(s_array_T const* array, T old, T new, t_uint n);
+#define c_arrreplast	CONCAT(Array_ReplaceLast,T_NAME)
 
 
 
@@ -426,7 +444,6 @@ s_array_T*				CONCAT(Array_Reverse,T_NAME)(s_array_T const* array);
 */
 _GENERIC()
 s_array_T*				CONCAT(Array_Concat,T_NAME)(s_array_T const* array1, s_array_T const* array2);
-#define c_arrcat		CONCAT(Array_Concat,T_NAME)
 #define c_arrconcat		CONCAT(Array_Concat,T_NAME)
 
 //! Creates a new array which is the concatenation of `array1` and `array2`, and deletes `array1`

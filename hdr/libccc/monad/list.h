@@ -421,7 +421,7 @@ s_list_T*				CONCAT(List_RemoveAll_F,T_NAME)(s_list_T* list, T item, void (*dele
 
 
 
-//! Creates a new list from the given `list`, where the first occurence of `old` is replaced with `new`
+//! Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`.
 /*!
 **	@param	list	The list to use as a basis for copy and item replacement
 **	@param	old		The item to be replaced
@@ -435,19 +435,37 @@ _GENERIC()
 s_list_T*				CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new);
 #define c_lstrep		CONCAT(List_Replace,T_NAME)
 
-//! Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`
+//! Creates a new list from the given `list`, where the `n` first occurences of `old` are replaced with `new`.
 /*!
 **	@param	list	The list to use as a basis for copy and item replacement
 **	@param	old		The item to be replaced
 **	@param	new		The replacement for the resulting list
+**	@param	n		The amount of occurences of `old` to replace
 **	@returns
-**	A newly created list copied from `list`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created list copied from `strarr`, in which in the first (iterating forwards)
+**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	or `NULL` if an error occurred.
 */
 _MALLOC()
 _GENERIC()
-s_list_T*				CONCAT(List_ReplaceAll,T_NAME)(s_list_T const* list, T old, T new);
-#define c_lstrepall		CONCAT(List_ReplaceAll,T_NAME)
+s_list_T*				CONCAT(List_ReplaceFirst,T_NAME)(s_list_T const* list, T old, T new, t_uint n);
+#define c_lstrepfirst	CONCAT(List_ReplaceFirst,T_NAME)
+
+//! Creates a new list from the given `list`, where the `n` last occurences of `old` are replaced with `new`.
+/*!
+**	@param	list	The list to use as a basis for copy and item replacement
+**	@param	old		The item to be replaced
+**	@param	new		The replacement for the resulting list
+**	@param	n		The amount of occurences of `old` to replace
+**	@returns
+**	A newly created list copied from `strarr`, in which in the first (iterating backwards)
+**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	or `NULL` if an error occurred.
+*/
+_MALLOC()
+_GENERIC()
+s_list_T*				CONCAT(List_ReplaceLast,T_NAME)(s_list_T const* list, T old, T new, t_uint n);
+#define c_lstreplast	CONCAT(List_ReplaceLast,T_NAME)
 
 
 
@@ -480,7 +498,6 @@ s_list_T*				CONCAT(List_Reverse,T_NAME)(s_list_T const* list);
 */
 _GENERIC()
 s_list_T*				CONCAT(List_Concat,T_NAME)(s_list_T const* list1, s_list_T const* list2);
-#define c_lstcat		CONCAT(List_Concat,T_NAME)
 #define c_lstconcat		CONCAT(List_Concat,T_NAME)
 
 //! Creates a new list which is the concatenation of `list1` and `list2`, and deletes `list1`
