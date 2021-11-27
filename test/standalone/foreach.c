@@ -4,7 +4,7 @@
 #include <libccc/string.h>
 #include <libccc/sys/io.h>
 
-#include <libccc/monad/list.c>
+
 #define T			char*
 #define T_NAME		_str
 #include <libccc/monad/array.c>
