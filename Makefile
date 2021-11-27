@@ -101,9 +101,7 @@ include make/rules/clean.mk
 
 include make/rules/debugging.mk
 include make/rules/test.mk
-include make/rules/test-helloworld.mk
-include make/rules/test-foreach.mk
-include make/rules/test-kvt.mk
+include make/rules/test-simple.mk
 include make/rules/test-env.mk
 include make/rules/lint.mk
 include make/rules/format.mk
