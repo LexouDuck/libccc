@@ -28,10 +28,10 @@ t_char**	StringArray_Create(t_uint n, ...)
 	if (n == 0)
 		return (result);
 	va_start(args, n);
-	for (t_uint i = 1; i <= n; ++i)
+	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(args, t_char*);
-		result[i - 1] = item;
+		result[i] = item;
 	}
 	va_end(args);
 	return (result);

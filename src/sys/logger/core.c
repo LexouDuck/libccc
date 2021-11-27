@@ -32,7 +32,7 @@ void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 {
 	t_char*	tmp;
 
-	tmp = String_Join("Could not write log message to ", output);
+	tmp = String_Concat("Could not write log message to ", output);
 //	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
 	if (tmp == NULL)
 		Log_FatalError(logger, "Could not write log message: allocation failure");

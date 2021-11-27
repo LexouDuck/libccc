@@ -7,31 +7,42 @@
 
 
 
-t_char**	StringArray_Join(t_char const** strarr1, t_char const** strarr2)
+t_char**	StringArray_Join(t_char const*** strarrs, t_char const** sep)
 {
 	t_char**	result;
-	t_size	length1;
-	t_size	length2;
-	t_size	i;
+	t_uint	total;
+	t_uint	length_strarrs;
+	t_uint	length_sep;
+	t_uint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr1 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (strarr2 == NULL), return (NULL);)
-	length1 = StringArray_Length(strarr1);
-	length2 = StringArray_Length(strarr2);
-	result = (t_char**)Memory_Allocate(sizeof(t_char*) * (length1 + length2 + 1));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	i = 0;
-	while (i < length1)
+	HANDLE_ERROR(NULLPOINTER, (strarrs == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (sep     == NULL), return (NULL);)
+	if (strarrs[0] == NULL)
+		return (StringArray_New(0));
+	total = 0;
+	length_sep = StringArray_Length(sep);
+	length_strarrs = 0;
+	while (strarrs[length_strarrs])
 	{
-		result[i] = String_Duplicate(strarr1[i]);
-		++i;
+		total += StringArray_Length(strarrs[length_strarrs]);
+		++length_strarrs;
+		if (strarrs[length_strarrs])
+			total += length_sep;
 	}
-	i = 0;
-	while (i < length2)
+	result = StringArray_New(total);
+	index = 0;
+	for (t_uint i = 0; i < length_strarrs; ++i)
 	{
-		result[length1 + i] = String_Duplicate(strarr2[i]);
-		++i;
+		for (t_uint j = 0; strarrs[i][j]; ++j)
+		{
+			result[index++] = String_Duplicate(strarrs[i][j]);
+		}
+		if (index == total)
+			break;
+		for (t_uint j = 0; j < length_sep; ++j)
+		{
+			result[index++] = String_Duplicate(sep[j]);
+		}
 	}
-	result[length1 + length2] = NULL;
 	return (result);
 }

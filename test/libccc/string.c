@@ -1275,31 +1275,31 @@ void	test_strrev(void)
 #endif
 
 
-#ifndef c_strjoin
-void test_strjoin(void)	{}
+#ifndef c_strconcat
+void test_strconcat(void)	{}
 #else
-void	print_test_strjoin(char const* test_name, int can_segfault,
+void	print_test_strconcat(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str1,
 		char const *str2)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strjoin, str1, str2)
-	TEST_PRINT(str,	strjoin, "str1=\"%s\", str2=\"%s\"", str1, str2)
+	TEST_PERFORM(	strconcat, str1, str2)
+	TEST_PRINT(str,	strconcat, "str1=\"%s\", str2=\"%s\"", str1, str2)
 	TEST_FREE()
 }
-void	test_strjoin(void)
+void	test_strconcat(void)
 {
 //	| TEST FUNCTION   | TEST NAME             | CAN SEGV       | EXPECTING                      | TEST ARGS
-	print_test_strjoin("strjoin             ", FALSE,			"Omae wa mou shindeiru.Nani???",  test1,  test2);
-	print_test_strjoin("strjoin             ", FALSE,			"test1test2",                    "test1", "test2");
-	print_test_strjoin("strjoin             ", FALSE,			"Whoa...",                       "Whoa.", "..");
-	print_test_strjoin("strjoin (empty str1)", FALSE,			"sweg",                          "sweg",  "");
-	print_test_strjoin("strjoin (empty str2)", FALSE,			"sweg",                          "",      "sweg");
-	print_test_strjoin("strjoin (both empty)", FALSE,			"",                              "",      "");
-	print_test_strjoin("strjoin (null str1) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  test2);
-	print_test_strjoin("strjoin (null str2) ", SIGNAL_SIGSEGV,	NULL,                            test1, NULL);
-	print_test_strjoin("strjoin (both null) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  NULL);
+	print_test_strconcat("strconcat             ", FALSE,			"Omae wa mou shindeiru.Nani???",  test1,  test2);
+	print_test_strconcat("strconcat             ", FALSE,			"test1test2",                    "test1", "test2");
+	print_test_strconcat("strconcat             ", FALSE,			"Whoa...",                       "Whoa.", "..");
+	print_test_strconcat("strconcat (empty str1)", FALSE,			"sweg",                          "sweg",  "");
+	print_test_strconcat("strconcat (empty str2)", FALSE,			"sweg",                          "",      "sweg");
+	print_test_strconcat("strconcat (both empty)", FALSE,			"",                              "",      "");
+	print_test_strconcat("strconcat (null str1) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  test2);
+	print_test_strconcat("strconcat (null str2) ", SIGNAL_SIGSEGV,	NULL,                            test1, NULL);
+	print_test_strconcat("strconcat (both null) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  NULL);
 }
 #endif
 

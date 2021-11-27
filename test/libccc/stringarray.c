@@ -226,20 +226,20 @@ void	test_strsplit_str()
 
 
 
-#ifndef c_strarrjoin
-void test_strarrjoin(void)	{}
+#ifndef c_strarrconcat
+void test_strarrconcat(void)	{}
 #else
-void	print_test_strarrjoin(char const* test_name, int can_segfault,
+void	print_test_strarrconcat(char const* test_name, int can_segfault,
 		char const**	expecting,
-		char const**	strarr1,
-		char const**	strarr2)
+		char const***	strarrs,
+		char const**	sep)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM(		strarrjoin, strarr1, strarr2)
-//	TEST_PRINT(strarr,	strarrjoin, "strarr1=[ %s ], strarr2=[ %s ]", strarr1, strarr2) // TODO
+	TEST_PERFORM(		strarrconcat, strarrs, sep)
+//	TEST_PRINT(strarr,	strarrconcat, "strarr1=[ %s ], strarr2=[ %s ]", strarr1, strarr2) // TODO
 	TEST_FREE_ARRAY_NULLTERM()
 }
-void	test_strarrjoin()
+void	test_strarrconcat()
 {
 //	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING			| TEST ARGS
 	// TODO
@@ -248,31 +248,31 @@ void	test_strarrjoin()
 
 
 
-#ifndef c_strarrfold
-void test_strarrfold(void)	{}
+#ifndef c_strjoin
+void test_strjoin(void)	{}
 #else
-void	print_test_strarrfold(char const* test_name, int can_segfault,
+void	print_test_strjoin(char const* test_name, int can_segfault,
 		char const*		expecting,
 		char const**	strarr,
 		char const*		sep)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strarrfold, strarr, sep)
-//	TEST_PRINT(str,	strarrfold, "strarr=[ %s ], sep=\"%s\", strarr, sep) // TODO
+	TEST_PERFORM(	strjoin, strarr, sep)
+//	TEST_PRINT(str,	strjoin, "strarr=[ %s ], sep=\"%s\", strarr, sep) // TODO
 	TEST_FREE()
 }
 void	test_strarrfold()
 {
 //	| TEST FUNCTION			| TEST NAME					| CAN SEGV	| EXPECTING			| TEST ARGS
-	print_test_strarrfold("strarrfold",					FALSE,			strarr1_as_str,		strarr1_A,	"\n");
-	print_test_strarrfold("strarrfold",					FALSE,			strarr1_as_str,		strarr1_C,	"\n\t");
-	print_test_strarrfold("strarrfold",					FALSE,			strarr2_as_str,		strarr2_A,	"ange");
-	print_test_strarrfold("strarrfold",					FALSE,			strarr2_as_str,		strarr2_B,	"a");
-	print_test_strarrfold("strarrfold",					FALSE,			strarr3_as_str_A,	strarr3,	" ");
-	print_test_strarrfold("strarrfold",					FALSE,			strarr4_as_str,		strarr4_B,	"aa");
-	print_test_strarrfold("strarrfold (null strarr)",	SIGNAL_SIGSEGV,	NULL,				NULL,		"");
-	print_test_strarrfold("strarrfold (null sep)",		SIGNAL_SIGSEGV,	NULL,				strarr3,	NULL);
-	print_test_strarrfold("strarrfold (both null)",		SIGNAL_SIGSEGV,	NULL,				NULL,		NULL);
+	print_test_strarrfold("strjoin",					FALSE,			strarr1_as_str,		strarr1_A,	"\n");
+	print_test_strarrfold("strjoin",					FALSE,			strarr1_as_str,		strarr1_C,	"\n\t");
+	print_test_strarrfold("strjoin",					FALSE,			strarr2_as_str,		strarr2_A,	"ange");
+	print_test_strarrfold("strjoin",					FALSE,			strarr2_as_str,		strarr2_B,	"a");
+	print_test_strarrfold("strjoin",					FALSE,			strarr3_as_str_A,	strarr3,	" ");
+	print_test_strarrfold("strjoin",					FALSE,			strarr4_as_str,		strarr4_B,	"aa");
+	print_test_strarrfold("strjoin (null strarr)",		SIGNAL_SIGSEGV,	NULL,				NULL,		"");
+	print_test_strarrfold("strjoin (null sep)",			SIGNAL_SIGSEGV,	NULL,				strarr3,	NULL);
+	print_test_strarrfold("strjoin (both null)",		SIGNAL_SIGSEGV,	NULL,				NULL,		NULL);
 }
 #endif
 

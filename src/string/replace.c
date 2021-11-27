@@ -85,7 +85,7 @@ t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char cons
 	if (old == new)
 		return (String_Duplicate(str));
 	strarr = String_Split_String(str, old);
-	result = StringArray_Fold((t_char const**)strarr, new);
+	result = String_Join((t_char const**)strarr, new);
 	StringArray_Delete(&strarr);
 	return (result);
 }

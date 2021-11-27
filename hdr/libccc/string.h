@@ -1,13 +1,13 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/string.h                          |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/string.h                          |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
@@ -88,9 +88,14 @@ t_char*				String_New_C(t_size n, t_char c);
 
 
 
-// TODO String_Free()
+//! Deallocates the given string `str`.
+/*!
+**	@nonstd
+*/
+void				String_Free(t_char* str);
+#define c_strfree	String_Free //!< @alias{String_Free}
 
-//! Deletes (deallocates) the string pointed to by `*a_str`, and sets the pointer to `NULL`.
+//! Deallocates the string pointed to by `*a_str`, and sets the pointer to `NULL`.
 /*!
 **	@nonstd
 */
@@ -236,8 +241,9 @@ t_size				String_Copy_L(t_char* dest, t_char const* src, t_size size);
 **	@returns
 **	`dest` (no allocation is performed).
 */
-t_char*				String_Concat(t_char* dest, t_char const* src);
-#define c_strcat	String_Concat //!< @alias{String_Concat}
+t_char*				String_Add(t_char* dest, t_char const* src);
+#define c_strcat	String_Add //!< @alias{String_Add}
+#define c_stradd	String_Add //!< @alias{String_Add}
 
 //! Concatenates the given string `src` to the end of `dest`
 /*!
@@ -248,8 +254,9 @@ t_char*				String_Concat(t_char* dest, t_char const* src);
 **	@returns
 **	`dest` (no allocation is performed).
 */
-t_char*				String_Concat_N(t_char* dest, t_char const* src, t_size n);
-#define c_strncat	String_Concat_N //!< @alias{String_Concat_N}
+t_char*				String_Add_N(t_char* dest, t_char const* src, t_size n);
+#define c_strncat	String_Add_N //!< @alias{String_Add_N}
+#define c_strnadd	String_Add_N //!< @alias{String_Add_N}
 
 //! Concatenates the given string `src` to the end of `dest`
 /*!
@@ -261,8 +268,9 @@ t_char*				String_Concat_N(t_char* dest, t_char const* src, t_size n);
 **	@returns
 **	The resulting size of `dest`.
 */
-t_size				String_Concat_L(t_char* dest, t_char const* src, t_size size);
-#define c_strlcat	String_Concat_L //!< @alias{String_Concat_L}
+t_size				String_Add_L(t_char* dest, t_char const* src, t_size size);
+#define c_strlcat	String_Add_L //!< @alias{String_Add_L}
+#define c_strladd	String_Add_L //!< @alias{String_Add_L}
 
 
 
@@ -685,7 +693,7 @@ t_sintmax							String_IndexOf_N_String(t_char const* str, t_char const* query, 
 ** ************************************************************************** *|
 */
 
-//! Removes all occurences of `query` within the givne `str`
+//! Removes all occurences of the given `query` string within the given string `str`.
 /*!
 **	@nonstd
 **
@@ -754,8 +762,32 @@ t_char*						String_Replace_String(t_char const* str, t_char const* str_old, t_c
 **	A new null-terminated string which is the concatenation of `str1` and `str2`.
 */
 _MALLOC()
-t_char*					String_Join(t_char const* str1, t_char const* str2);
-#define c_strjoin		String_Join //!< @alias{String_Join}
+t_char*					String_Concat(t_char const* str1, t_char const* str2);
+#define c_strconcat		String_Concat //!< @alias{String_Concat}
+
+//! Concatenates two strings into a new one, deleting the right-hand string
+/*!
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string which is the concatenation of `dest` and `src`.
+**	Deletes `dest`, replacing it with the newly allocated result.
+*/
+_MALLOC()
+t_char*					String_Append(t_char* *dest, t_char const* src);
+#define c_strappend		String_Append //!< @alias{String_Append}
+
+//! Concatenates two strings into a new one, deleting the left-hand string
+/*!
+**	@nonstd
+**
+**	@returns
+**	A newly allocated string which is the concatenation of `src` and `dest`.
+**	Deletes `dest`, replacing it with the newly allocated result.
+*/
+_MALLOC()
+t_char*					String_Prepend(t_char const* src, t_char* *dest);
+#define c_strprepend	String_Prepend //!< @alias{String_Prepend}
 
 //! Concatenates two strings into a new one, deleting both strings
 /*!
@@ -770,31 +802,23 @@ _MALLOC()
 t_char*					String_Merge(t_char* *a_str1, t_char* *a_str2);
 #define c_strmerge		String_Merge //!< @alias{String_Merge}
 
-//! Concatenates two strings into a new one, deleting the right-hand string
-/*!
-**	@nonstd
-**
-**	Deletes `dest`, replacing it with the result.
-**
-**	@returns
-**	A newly allocated string which is the concatenation of `dest` and `src`.
-*/
-_MALLOC()
-t_char*					String_Append(t_char* *dest, t_char const* src);
-#define c_strappend		String_Append //!< @alias{String_Append}
 
-//! Concatenates two strings into a new one, deleting the left-hand string
+
+//! Concatenates the given set of strings `strarr`, putting the given separator string `sep` between each
 /*!
 **	@nonstd
+**	
+**	This function is the inverse operation of the String_Split() function.
 **
-**	Deletes `dest`, replacing it with the result.
-**
+**	@param	strarr	The array of strings to join together (terminated by a `NULL` pointer).
+**	@param	sep		The separator string, which is to be added between eahc joined string.
 **	@returns
-**	A newly allocated string which is the concatenation of `src` and `dest`.
+**	A new null-terminated string which is the concatenation of all the strings contained in
+**	the given string array `strarr`, with the `sep` separator string in-between each string.
 */
 _MALLOC()
-t_char*					String_Prepend(t_char const* src, t_char* *dest);
-#define c_strprepend	String_Prepend //!< @alias{String_Prepend}
+t_char*					String_Join(t_char const** strarr, t_char const* sep);
+#define c_strjoin		String_Join //!< @alias{String_Join}
 
 
 
@@ -809,7 +833,7 @@ t_char*					String_Prepend(t_char const* src, t_char* *dest);
 **	@nonstd
 **
 **	Inserts the string `src` at index `index` in `dest`; deletes `dest` and
-**	replaces it by the result. Also returns the result.
+**	replaces it with the result. Also returns the result.
 */
 t_char*							String_Insert_InPlace(t_char* *dest, t_char const* src, t_u32 index);
 #define c_strinsert_inplace		String_Insert_InPlace //!< @alias{String_Insert_InPlace}
