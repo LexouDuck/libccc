@@ -19,11 +19,9 @@
 //#include "libccc/../../src/monad/keyval/new.c"
 
 // remove all generic type macros
-#undef keyval
-#undef s_keyval
 #undef T
 #undef T_NAME
-#undef T_DEFAULT
+#undef T_NULL
 #undef T_EQUALS
 
 // redefine the _GENERIC() macro as empty, so everything works as normal again

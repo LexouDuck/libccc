@@ -15,7 +15,7 @@ s_array(T)*	Array_Map(T)(s_array(T) const* array, T (*map)(T item))
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
-	result = Array_New(T)(array->length, T_DEFAULT);
+	result = Array_New(T)(array->length, T_NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
@@ -34,7 +34,7 @@ s_array(T)*	Array_Map_I(T)(s_array(T) const* array, T (*map)(T item, t_uint inde
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
-	result = Array_New(T)(array->length, T_DEFAULT);
+	result = Array_New(T)(array->length, T_NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; i < array->length; ++i)
 	{

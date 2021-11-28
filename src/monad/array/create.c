@@ -32,7 +32,7 @@ s_array(T)*	Array_Create(T)(t_uint n, ...)
 	T			item;
 	s_array(T)*	result;
 
-	result = Array_New(T)(n, T_DEFAULT);
+	result = Array_New(T)(n, T_NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	va_list	args;
 	va_start(args, n);

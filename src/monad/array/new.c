@@ -20,7 +20,7 @@ s_array(T)	CONCAT(Array,T_NAME)(t_uint n)
 	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
 	for (t_uint i = 0; i < n; ++i)
 	{
-		result.items[i] = T_DEFAULT;
+		result.items[i] = T_NULL;
 	}
 	return (result);
 }

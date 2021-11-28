@@ -24,8 +24,8 @@
 #ifndef T_NAME
 #define T_NAME	
 #endif
-#ifndef T_DEFAULT
-#define T_DEFAULT	NULL
+#ifndef T_NULL
+#define T_NULL	NULL
 #endif
 #ifndef T_EQUALS
 #define T_EQUALS(A, B)	((A) == (B))

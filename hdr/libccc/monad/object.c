@@ -19,11 +19,10 @@
 //#include "libccc/../../src/monad/object/new.c"
 
 // remove all generic type macros
-#undef object
-#undef s_object
 #undef T
+#undef T_TYPE
 #undef T_NAME
-#undef T_DEFAULT
+#undef T_NULL
 #undef T_EQUALS
 
 // redefine the _GENERIC() macro as empty, so everything works as normal again
