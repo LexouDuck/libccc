@@ -31,13 +31,13 @@
 
 typedef enum signal
 {
-	SIGNAL_NULL = 0,//!< No signal emitted by function tested
-	SIGNAL_SIGTERM	= (1 << 0),	//!< Signal emitted: termination request, sent to the program
-	SIGNAL_SIGSEGV	= (1 << 1),	//!< Signal emitted: invalid memory access (segmentation fault)
-	SIGNAL_SIGINT	= (1 << 2),	//!< Signal emitted: external interrupt, usually initiated by the user
-	SIGNAL_SIGILL	= (1 << 3),	//!< Signal emitted: invalid program image, such as invalid instruction
-	SIGNAL_SIGABRT	= (1 << 4),	//!< Signal emitted: abnormal termination condition, as is e.g. initiated by abort()
-	SIGNAL_SIGFPE	= (1 << 5),	//!< Signal emitted: erroneous arithmetic operation such as divide by zero
+	SIGNAL_NULL = 0, //!< No signal emitted by function tested
+	SIGNAL_SIGTERM	= (1 << 0),	//!< Signal emitted: termination request sent to the program
+	SIGNAL_SIGSEGV	= (1 << 1),	//!< Signal emitted: segmentation fault - invalid memory access/write
+	SIGNAL_SIGINT	= (1 << 2),	//!< Signal emitted: interrupt request - usually from the user (Ctrl+C)
+	SIGNAL_SIGILL	= (1 << 3),	//!< Signal emitted: illegal assembly instruction, or invalid program image
+	SIGNAL_SIGABRT	= (1 << 4),	//!< Signal emitted: aborted execution - abnormal termination condition
+	SIGNAL_SIGFPE	= (1 << 5),	//!< Signal emitted: floating point exception - e.g. `2.0 / 0` or `sqrt(NAN)`
 ENUMLENGTH_SIGNAL
 }			e_signal;
 
@@ -70,26 +70,25 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 
 
 
-/*
+/*!
 **	These macros are used to have signal handling/checking during tests which can crash the program
 */
-
+//!@{
 #define _TRY \
-	sig = setjmp(restore);				\
-	if (!sig)							\
+	sig = setjmp(restore);	if (!sig)
 
 #define _CATCH \
-	else								\
+	else
 
 #ifdef __MINGW32__
 #define _END \
-	if (sig)							\
-		signal(SIGSEGV,	signal_handler);\
+	if (sig) signal(SIGSEGV, signal_handler);
 
 #else
 #define _END	;
 
 #endif
+//!@}
 
 
 

@@ -7,6 +7,7 @@ lint/
 ref/
 doc/*/*
 doc/html/.doctrees
+log/coverage/
 log/**/*.log
 log/**/*.txt
 
