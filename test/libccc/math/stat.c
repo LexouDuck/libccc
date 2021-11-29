@@ -5,7 +5,7 @@
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
-#define T		t_sint
+#define T_TYPE	t_sint
 #define T_NAME	int
 #define T_NULL	0
 #include "libccc/monad/array.c"

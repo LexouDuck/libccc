@@ -2,6 +2,8 @@
 #include <time.h>
 #include <sys/time.h>
 
+#include "libccc.h"
+#include "libccc/bool.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"

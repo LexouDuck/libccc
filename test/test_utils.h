@@ -17,9 +17,11 @@
 #include "libccc/char.h"
 #include "libccc/text/ascii.h"
 #include "libccc/text/unicode.h"
-#include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
 #include "libccc/sys/time.h"
+
+typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
+typedef struct list_int 	s_list_int ;	//!< @see "libccc/monad/list.h"
 
 #include "test_catch.h"
 #include "test_timer.h"
@@ -181,7 +183,8 @@ DEFINEFUNC_PRINT_TEST(ptrarr,	void const**)
 DEFINEFUNC_PRINT_TEST(str,		char const*)
 DEFINEFUNC_PRINT_TEST(strarr,	char const**)
 
-DEFINEFUNC_PRINT_TEST(list,		s_list const*)
+DEFINEFUNC_PRINT_TEST(array,	s_array_int const*)
+DEFINEFUNC_PRINT_TEST(list,		s_list_int const*)
 
 DEFINEFUNC_PRINT_TEST(date,		s_date)
 

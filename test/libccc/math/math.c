@@ -6,9 +6,14 @@
 #include "libccc/math/math.h"
 #include "libccc/math/algebra.h"
 #include "libccc/math/stat.h"
-#define T		t_float
+
+#define T_TYPE	t_sint
+#define T_NAME	int
+#define T_NULL	0
+#include "libccc/monad/array.c"
+#define T_TYPE	t_float
 #define T_NAME	float
-#define T_NULL	0.
+#define T_NULL	0
 #include "libccc/monad/array.c"
 
 #include "test.h"

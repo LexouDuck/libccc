@@ -1,5 +1,6 @@
 
 #include "libccc.h"
+#include "libccc/bool.h"
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/math.h"
