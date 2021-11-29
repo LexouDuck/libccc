@@ -61,37 +61,85 @@ HEADER_CPP
 **	These "plural-named" can be used to activate or deactivate exception handling at will.
 */
 //!@{
+#ifndef HANDLE_ERRORS_UNSPECIFIED
 #define HANDLE_ERRORS_UNSPECIFIED  1
+#endif
 
+#ifndef HANDLE_ERRORS_SYSTEM
 #define HANDLE_ERRORS_SYSTEM       1
+#endif
+#ifndef HANDLE_ERRORS_ALLOCFAILURE
 #define HANDLE_ERRORS_ALLOCFAILURE 1
+#endif
 
+#ifndef HANDLE_ERRORS_PARSE
 #define HANDLE_ERRORS_PARSE        1
+#endif
+#ifndef HANDLE_ERRORS_PRINT
 #define HANDLE_ERRORS_PRINT        1
+#endif
+#ifndef HANDLE_ERRORS_NOTFOUND
 #define HANDLE_ERRORS_NOTFOUND     1
+#endif
 
+#ifndef HANDLE_ERRORS_INVALIDARGS
 #define HANDLE_ERRORS_INVALIDARGS  1
+#endif
+#ifndef HANDLE_ERRORS_NULLPOINTER
 #define HANDLE_ERRORS_NULLPOINTER  1
+#endif
+#ifndef HANDLE_ERRORS_MATHDOMAIN
 #define HANDLE_ERRORS_MATHDOMAIN   1
+#endif
+#ifndef HANDLE_ERRORS_RESULTRANGE
 #define HANDLE_ERRORS_RESULTRANGE  1
+#endif
+#ifndef HANDLE_ERRORS_NANARGUMENT
 #define HANDLE_ERRORS_NANARGUMENT  1
+#endif
+#ifndef HANDLE_ERRORS_ILLEGALBYTES
 #define HANDLE_ERRORS_ILLEGALBYTES 1
+#endif
+#ifndef HANDLE_ERRORS_INVALIDENUM
 #define HANDLE_ERRORS_INVALIDENUM  1
+#endif
+#ifndef HANDLE_ERRORS_INVALIDRANGE
 #define HANDLE_ERRORS_INVALIDRANGE 1
+#endif
+#ifndef HANDLE_ERRORS_INDEX2SMALL
 #define HANDLE_ERRORS_INDEX2SMALL  1
+#endif
+#ifndef HANDLE_ERRORS_INDEX2LARGE
 #define HANDLE_ERRORS_INDEX2LARGE  1
+#endif
+#ifndef HANDLE_ERRORS_LENGTH2SMALL
 #define HANDLE_ERRORS_LENGTH2SMALL 1
+#endif
+#ifndef HANDLE_ERRORS_LENGTH2LARGE
 #define HANDLE_ERRORS_LENGTH2LARGE 1
+#endif
+#ifndef HANDLE_ERRORS_KEYNOTFOUND
 #define HANDLE_ERRORS_KEYNOTFOUND  1
+#endif
+#ifndef HANDLE_ERRORS_WRONGTYPE
 #define HANDLE_ERRORS_WRONGTYPE    1
+#endif
+#ifndef HANDLE_ERRORS_DELETEREF
 #define HANDLE_ERRORS_DELETEREF    1
+#endif
 //!@}
 
 
 
-//! Comment out this `#define` to deactivate all error handling (not recommended)
-#define HANDLE_ERRORS	1
-#ifdef	HANDLE_ERRORS
+/*!
+**	This `#define` enables libccc error-handling when set to `1`.
+**	You can set this `#define` to `0` if you wish to deactivate all error checking/handling.
+**	This is not recommended, since no checks will be performed, so segfaults will happen.
+**	Only do so if your code is robust and thoroughly tested, and you really need some extra performance.
+*/
+#define CHECK_ERRORS	1
+
+#if CHECK_ERRORS // error-checking enabled
 
 /*!
 **	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
@@ -143,7 +191,7 @@ HEADER_CPP
 
 //!@}
 
-#else
+#else // error-checking disabled
 
 #define HANDLE_ERROR(			ERRORTYPE, CONDITION, ACTION) 
 #define HANDLE_ERROR_BEGIN(		ERRORTYPE, CONDITION) 
