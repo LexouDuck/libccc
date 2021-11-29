@@ -41,6 +41,12 @@ clean-bin:
 	@rm -rf $(BINDIR)
 
 .PHONY:\
+clean-test #! Deletes the ./obj/test folder
+clean-test:
+	@$(call print_message,"Deleting "$(OBJDIR)$(TESTDIR)" folder...")
+	@rm -rf $(OBJDIR)$(TESTDIR)
+
+.PHONY:\
 clean-logs #! Deletes the ./log folder
 clean-logs:
 	@$(call print_message,"Deleting "$(LOGDIR)" folder...")

@@ -78,3 +78,4 @@ coverage: test-coverage $(GCOVFILES_GCOV)
 			-o $(COVDIR) ; \
 	fi
 	@$(call print_success,"Generated all code coverage reports: open '$(COVDIR)index.html' to view results.")
+	@$(MAKE) clean

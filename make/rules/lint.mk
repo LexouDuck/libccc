@@ -10,8 +10,11 @@ LINT = $(SRCS:%.c=$(LINTDIR)%.html)
 $(LINTDIR)%.html: $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Linting file: "$@" -> "
-	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR) 2> $@
+	@$(CC) $(CFLAGS) -c $< -I$(HDRDIR)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+ifneq ($(findstring clang,$(CC)),)
+	@mv ./*.plist $(@D) 2> /dev/null || exit 0
+endif
 
 
 
@@ -20,17 +23,16 @@ lint #! Runs a linter on all source files, giving useful additional warnings
 lint: MODE = debug
 ifeq ($(CC),)
 $(warning C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
-else ifeq (gcc,$(findstring gcc,$(CC)))
+else ifneq ($(findstring gcc,$(CC)),)
 lint: CFLAGS += -fanalyzer
-else ifeq (clang,$(findstring clang,$(CC)))
-lint: CFLAGS += -Wthread-safety --analyze --analyzer-output text
+else ifneq ($(findstring clang,$(CC)),)
+lint: CFLAGS += -Wthread-safety --analyze --analyzer-output html
 else
 #$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
 endif
 lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete
-	@# TODO
-	@echo "Linting finished."
+	@$(call print_success,"Linting finished.")
 
 
 
