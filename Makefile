@@ -54,6 +54,8 @@ BINDIR = ./bin/
 DISTDIR = ./dist/
 #! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
+#! The directory for test-suite code-coverage output reports
+COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = ./lint/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
@@ -102,9 +104,9 @@ include make/rules/clean.mk
 include make/rules/debugging.mk
 include make/rules/test.mk
 include make/rules/test-simple.mk
-include make/rules/test-coverage.mk
 include make/rules/test-env.mk
 include make/rules/lint.mk
+include make/rules/coverage.mk
 include make/rules/format.mk
 include make/rules/doc.mk
 

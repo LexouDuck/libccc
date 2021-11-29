@@ -55,6 +55,7 @@ prereq #! Checks version numbers for all prerequisite tools
 prereq: init \
 prereq-build \
 prereq-tests \
+prereq-coverage \
 prereq-format \
 prereq-lint \
 prereq-doc
@@ -96,9 +97,17 @@ else ifeq ($(OSMODE),linux)
 else
 	@$(call print_warning,"Unsupported platform: memory leak checking tool must be configured manually")
 endif
+
+.PHONY:\
+prereq-coverage #! Checks prerequisite installs to run the automatic code style formatter
+prereq-coverage:
 	@-$(call check_prereq,\
-		(tests) lcov code-coverage tool,\
-		lcov --version,\
+		(coverage) gcov code-coverage tool,\
+		gcov --version,\
+		$(call install_prereq,gcov))
+	@-$(call check_prereq,\
+		(coverage) lcov code-coverage tool,\
+		lcov --version && genhtml --version,\
 		$(call install_prereq,lcov))
 
 .PHONY:\

@@ -19,7 +19,7 @@ $(LINTDIR)%.html: $(SRCDIR)%.c
 lint #! Runs a linter on all source files, giving useful additional warnings
 lint: MODE = debug
 ifeq ($(CC),)
-$(error C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
+$(warning C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
 else ifeq (gcc,$(findstring gcc,$(CC)))
 lint: CFLAGS += -fanalyzer
 else ifeq (clang,$(findstring clang,$(CC)))

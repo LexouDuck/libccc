@@ -2,9 +2,6 @@
 
 
 
-#! The directory in which to store code-coverage output reports
-COVDIR = $(LOGDIR)coverage/
-
 #! This is the tracefile which is output by lcov, to generate HTML code-coverage report
 LCOVFILE      = $(COVDIR)coverage.info
 LCOVFILE_BASE = $(COVDIR)coverage-base.info
@@ -42,7 +39,7 @@ GCOVFILES_GCOV = $(OBJS:%.o=%.gcov)
 test-coverage #! Generates human-readable HTML output reports for code-coverage tests
 test-coverage: CFLAGS       += --coverage
 test-coverage: TEST_LDFLAGS += --coverage
-test-coverage: # clean test
+test-coverage: clean test
 
 
 
@@ -80,4 +77,4 @@ coverage: test-coverage $(GCOVFILES_GCOV)
 		genhtml $(LCOVFILE) \
 			-o $(COVDIR) ; \
 	fi
-	@$(call print_success,"Generated all code coverage reports: open $(COVDIR)index.html")
+	@$(call print_success,"Generated all code coverage reports: open '$(COVDIR)index.html' to view results.")
