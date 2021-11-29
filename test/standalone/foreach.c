@@ -26,10 +26,10 @@
 #define T_NULL	0
 #include <libccc/monad/array.c>
 
-#define T_TYPE	s_array(int)
+#define T_TYPE	s_array_int
 #define T_NAME	array_int
-#define T_NULL	(s_array(int)){ .length = 0, .items = NULL }
-#define T_EQUALS(A, B)	(Array_Equals(int)(&(A), &(B)))
+#define T_NULL	(s_array_int){ .length = 0, .items = NULL }
+#define T_EQUALS(A, B)	(Array_Equals_int(&(A), &(B)))
 #include <libccc/monad/array.c>
 
 #define T_TYPE	int
@@ -37,10 +37,10 @@
 #define T_NULL	0
 #include <libccc/monad/list.c>
 
-#define T_TYPE	s_list(int)
+#define T_TYPE	s_list_int
 #define T_NAME	list_int
-#define T_NULL	(s_list(int)){ 0 }
-#define T_EQUALS(A, B)	(List_Equals(int)(&(A), &(B)))
+#define T_NULL	(s_list_int){ 0 }
+#define T_EQUALS(A, B)	(List_Equals_int(&(A), &(B)))
 #include <libccc/monad/list.c>
 
 //#include <libccc/monad/dict.c>
@@ -122,7 +122,7 @@ int main(int argc, char** argv)
 					i++, j++, integer_i, integer);
 			}
 		}
-		Array_Delete_F(array_int)(&tmp, Array_Delete_int);
+		Array_Delete_F(array_int)(&tmp, Array_Free(int));
 	}
 #endif
 #if 1
@@ -144,7 +144,7 @@ int main(int argc, char** argv)
 					i++, j++, (void*)integer_i, integer);
 			}
 		}
-		List_Delete_F(list_int)(&tmp, List_Delete_int);
+		List_Delete_F(list_int)(&tmp, List_Free(int));
 	}
 #endif
 	return (OK);

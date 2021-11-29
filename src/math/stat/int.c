@@ -2,7 +2,8 @@
 #include "libccc/memory.h"
 #include "libccc/math/math.h"
 #include "libccc/math/stat.h"
-#define T		t_sint
+
+#define T_TYPE	t_sint
 #define T_NAME	int
 #define T_NULL	0
 #include "libccc/monad/array.c"

@@ -18,19 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -44,14 +31,16 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/dict.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-#define   dict(T)	CONCAT(  dict, T##_NAME)
-#define s_dict(T)	CONCAT(s_dict, T##_NAME)
 
 //! A simple dictionary struct, stores an array of key/value pairs.
 /*

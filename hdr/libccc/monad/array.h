@@ -35,6 +35,11 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/array.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|

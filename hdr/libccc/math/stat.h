@@ -35,7 +35,7 @@ HEADER_CPP
 typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
 typedef struct array_float	s_array_float;	//!< @see "libccc/monad/array.h"
 
-// TODO implement stat unctions for `fixed` type
+// TODO implement stat functions for `fixed` type
 
 /*
 ** ************************************************************************** *|

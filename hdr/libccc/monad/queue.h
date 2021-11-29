@@ -18,19 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -42,14 +29,16 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/queue.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-#define   queue(T)	CONCAT(  queue, T##_NAME)
-#define s_queue(T)	CONCAT(s_queue, T##_NAME)
 
 //! A simple queue/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*

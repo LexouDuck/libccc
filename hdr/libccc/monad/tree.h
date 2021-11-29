@@ -18,19 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -43,14 +30,16 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/tree.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-#define   tree(T)	CONCAT(  tree, T##_NAME)
-#define s_tree(T)	CONCAT(s_tree, T##_NAME)
 
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*

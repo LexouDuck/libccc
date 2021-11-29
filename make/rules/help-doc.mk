@@ -80,7 +80,7 @@ help-doc:
 
 
 .PHONY:\
-help-doc-full #! Displays documentation and code for any line matching the symbols given as `ARGS`
+help-doc-full #! Displays documentation for any line matching the given regexp (uses `DOC_FILES` and `DOC_MATCH`)
 help-doc-full:
 	@for i in $(DOC_FILES) ; do \
 		gawk '\

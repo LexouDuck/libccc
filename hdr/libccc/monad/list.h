@@ -18,23 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	T_TYPE
-#endif
-
-#ifndef T_TYPE
-#define T_TYPE	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	any
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(_LHS_,_RHS_)	((_LHS_) == (_RHS_))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -51,6 +34,11 @@
 #include "libccc/int.h"
 
 HEADER_CPP
+
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/list.c"
 
 /*
 ** ************************************************************************** *|

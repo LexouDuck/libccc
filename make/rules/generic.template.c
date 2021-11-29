@@ -27,14 +27,12 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
-#undef queue
-#undef s_queue
+%%symbols:#undef %
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
-#define queue(X)	CONCAT(queue_,	X##_NAME)
-#define s_queue(X)	CONCAT(s_queue_,	X##_NAME)
+%%symbols:#define %(X)	CONCAT(%_,	X##_NAME)
 //!@}
 
 
@@ -65,12 +63,13 @@
 
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
-#undef __LIBCCC_MONAD_QUEUE_H
-#include "./hdr/libccc/monad/queue.h"
+#undef %header_guard%
+#include "%header%"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
 //!@{
+%%sources:#include "libccc/../../src/%"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -92,14 +91,12 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
-#undef queue
-#undef s_queue
+%%symbols:#undef %
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
-#define queue(T)	CONCAT(queue_,	T)
-#define s_queue(T)	CONCAT(s_queue_,	T)
+%%symbols:#define %(T)	CONCAT(%_,	T)
 //!@}
 
 

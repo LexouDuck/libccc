@@ -18,19 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -42,14 +29,16 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/stack.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-#define   stack(T)	CONCAT(  stack, T##_NAME)
-#define s_stack(T)	CONCAT(s_stack, T##_NAME)
 
 //! A simple stack/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*

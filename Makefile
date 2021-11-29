@@ -112,3 +112,6 @@ include make/rules/doc.mk
 include make/utils/refactor.mk
 include make/utils/help.mk
 include make/rules/help-doc.mk
+
+# libccc-specific rules
+include make/rules/generic.mk

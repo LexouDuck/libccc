@@ -18,19 +18,6 @@
 **	@file
 */
 
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_NULL
-#define T_NULL	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
-
 /*
 ** ************************************************************************** *|
 **                                   Includes                                 *|
@@ -44,14 +31,16 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/object.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
-
-#define   object(T)	CONCAT(  object, T##_NAME)
-#define s_object(T)	CONCAT(s_object, T##_NAME)
 
 //! A dynamic object struct, stores several key-value pairs
 /*

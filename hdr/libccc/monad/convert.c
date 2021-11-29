@@ -27,14 +27,10 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
-#undef queue
-#undef s_queue
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
-#define queue(X)	CONCAT(queue_,	X##_NAME)
-#define s_queue(X)	CONCAT(s_queue_,	X##_NAME)
 //!@}
 
 
@@ -65,12 +61,13 @@
 
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
-#undef __LIBCCC_MONAD_QUEUE_H
-#include "./hdr/libccc/monad/queue.h"
+#undef __LIBCCC_MONAD_CONVERT_H
+#include "./hdr/libccc/monad/convert.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
 //!@{
+#include "libccc/../../src/monad/convert/list.c"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -92,14 +89,10 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
-#undef queue
-#undef s_queue
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
-#define queue(T)	CONCAT(queue_,	T)
-#define s_queue(T)	CONCAT(s_queue_,	T)
 //!@}
 
 
