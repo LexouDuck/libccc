@@ -5,12 +5,27 @@
 #! The directory in which to store code-coverage output reports
 COVDIR = $(LOGDIR)coverage/
 
+#! This is the tracefile which is output by lcov, to generate HTML code-coverage report
+LCOVFILE      = $(COVDIR)coverage.info
+LCOVFILE_BASE = $(COVDIR)coverage-base.info
+LCOVFILE_TEST = $(COVDIR)coverage-test.info
+
 
 
 #! Shell command: used to read code-coverage files (.gcda and .gcno files next to the corresponding .o file)
 GCOV = gcov
 #! Shell command options: for code-coverage file reader tool
-GCOV_FLAGS = -f -b
+GCOV_FLAGS = \
+	--function-summaries \
+	--branch-probabilities \
+	--branch-counts \
+
+#! Shell command: used to make HTML summary of all code-coverage files
+LCOV = lcov
+#! Shell command options: for code-coverage file reader tool
+LCOV_FLAGS = \
+	--directory . \
+	--base-directory . \
 
 
 
@@ -21,43 +36,48 @@ GCOVFILES_GCDA = $(OBJS:%.o=%.gcda)
 #! List of files which store code-coverage results
 GCOVFILES_GCOV = $(OBJS:%.o=%.gcov)
 
-#! This is the tracefile which is output by lcov, to generate HTML code-coverage report
-LCOVFILE = $(COVDIR)coverage.info
 
 
-
-#! Compiles object files, with code-coverage metadata files
-$(OBJDIR)%.gcno : $(SRCDIR)%.c
-	@mkdir -p $(@D)
-	@printf "Compiling file for code-coverage test: "$@" -> "
-	@$(CC) --coverage -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
-	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+.PHONY:\
+test-coverage #! Generates human-readable HTML output reports for code-coverage tests
+test-coverage: CFLAGS       += --coverage
+test-coverage: TEST_LDFLAGS += --coverage
+test-coverage: # clean test
 
 
 
 #! Generates text output reports by calling gcov
-%.gcov : %.o %.gcno
+%.gcov: %.o
+	@$(call print_message,"Generating code coverage report for file: "$(IO_RESET)"$@")
 	@if [ ! -f `echo $@ | sed 's/.gcov$$/.gcda/' | sed 's/.gcov$$/.gcda/'` ] ; then \
-		$(call print_warning,"source file for '$<' does not have a .gcda file - ie: code was never run.") ; \
+		$(call print_warning,"source file does not have a .gcda file (code was never run): $<") ; \
+		touch $@ ; \
 	else \
 		mkdir -p $(@D) ; \
 		$(GCOV) $(GCOV_FLAGS) $< ; \
-		mv `basename $@ | sed 's/.gcov$$/.c.gcov/'` $@ ; \
+		mv `basename $@ | sed 's/.gcov$$/.c.gcov/'` $@ || exit 0 ; \
 	fi
 
 
 
 .PHONY:\
-test-coverage #! Generates human-readable HTML output reports for code-coverage tests
-test-coverage: $(GCOVFILES_GCOV)
+coverage #! Generates human-readable HTML output reports for code-coverage tests
+coverage: test-coverage $(GCOVFILES_GCOV)
 	@mkdir -p $(COVDIR)
-	@if lcov --version ; then \
-		$(call print_message,"lcov is installed: generating HTML output...") ; \
-		lcov --capture \
-			--directory . \
-			--base-directory . \
+	@if $(LCOV) --version ; then \
+		$(call print_message,"$(LCOV) is installed: generating HTML output...") ; \
+		$(LCOV) $(LCOV_FLAGS) \
+			--initial \
+			--capture \
+			-o $(LCOVFILE_BASE) ; \
+		$(LCOV) $(LCOV_FLAGS) \
+			--capture \
+			-o $(LCOVFILE_TEST) ; \
+		$(LCOV) $(LCOV_FLAGS) \
+			--add-tracefile $(LCOVFILE_BASE) \
+			--add-tracefile $(LCOVFILE_TEST) \
 			-o $(LCOVFILE) ; \
 		genhtml $(LCOVFILE) \
 			-o $(COVDIR) ; \
 	fi
-	@$(call print_success,"Generated all code coverage reports.") ; \
+	@$(call print_success,"Generated all code coverage reports: open $(COVDIR)index.html")

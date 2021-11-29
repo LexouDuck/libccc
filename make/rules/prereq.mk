@@ -96,6 +96,10 @@ else ifeq ($(OSMODE),linux)
 else
 	@$(call print_warning,"Unsupported platform: memory leak checking tool must be configured manually")
 endif
+	@-$(call check_prereq,\
+		(tests) lcov code-coverage tool,\
+		lcov --version,\
+		$(call install_prereq,lcov))
 
 .PHONY:\
 prereq-format #! Checks prerequisite installs to run the automatic code style formatter
