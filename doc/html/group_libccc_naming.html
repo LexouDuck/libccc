@@ -1,43 +1,26 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>03) libccc_naming.h &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="04) libccc_errors.h" href="group_libccc_errors.html" />
@@ -58,29 +41,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +55,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc.html">01) libccc.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
@@ -121,7 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_char.html">13) libccc/char.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
@@ -159,6 +115,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -167,74 +125,36 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="group_libccc.html">01) libccc.h</a> &raquo;</li>
-        
       <li>03) libccc_naming.h</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-naming-h">
-<span id="doxid-group-libccc-naming"></span><span id="index-0"></span><h1>03) libccc_naming.h<a class="headerlink" href="#libccc-naming-h" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-naming-h">
+<span id="doxid-group-libccc-naming"></span><span id="index-0"></span><h1>03) libccc_naming.h<a class="headerlink" href="#libccc-naming-h" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines alternate versions of all the type names of libccc. <a class="reference internal" href="#details-group-libccc-naming"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
 
@@ -253,9 +173,9 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-naming-1ga0ba8f334d91db523038a4632cd11d924"><span class="std std-ref">NAMINGSTYLE_SCREAMCASE</span></a><span></span>  <span class="mi">4</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-naming-1ga464b3782c27e67c5f8cbda53e6a88bb5"><span class="std std-ref">NAMINGSTYLE_SNAKECASE</span></a><span></span>   <span class="mi">1</span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-naming-1ga4d319b9aec474f87e5cbd66e82270714"><span></span><span class="n">TYPEDEF_ALIAS</span></span><span></span><span class="p">(</span><span class="n">TYPE</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">KIND</span><span class="p">)</span>  <span class="err">\</span></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-naming"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-naming"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines alternate versions of all the type names of libccc. This allows any user to have type names use the nomenclature style of their choice, by simply changing one configuration macro: <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1ga8ef160b822ec74fd6c6455647386e506"><span class="std std-ref">LIBCONFIG_NAMINGSTYLE_TYPES</span></a></p>
 <p>Here is a description of the nomenclature conventions used by libccc: <code class="docutils literal notranslate"><span class="pre">snake_case</span></code> for local variables, struct/union members, and types <code class="docutils literal notranslate"><span class="pre">PascalCase</span></code> for global variables, function names (there are also snake case c-style aliases) <code class="docutils literal notranslate"><span class="pre">SCREAMCASE</span></code> for macros, enum items <code class="docutils literal notranslate"><span class="pre">__HEADER_H</span></code> for header include guards <code class="docutils literal notranslate"><span class="pre">__DEFINE__</span></code> for macros defined outside the code (eg: by the compiler/environment)</p>
 <p>The naming convention for types is to always use a prefix to show its kind. These prefixes are always one letter followed by an underscore character. There are five such type prefixes that libccc uses:</p>
@@ -264,10 +184,11 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">s_</span></code> for a typedef on a struct ex: <code class="docutils literal notranslate"><span class="pre">s_point</span> <span class="pre">pos</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">.x</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">.y</span> <span class="pre">=</span> <span class="pre">0</span> <span class="pre">};</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">e_</span></code> for a typedef on an enum ex: <code class="docutils literal notranslate"><span class="pre">e_httperror</span> <span class="pre">code</span> <span class="pre">=</span> <span class="pre">ERROR_HTTP_404;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">u_</span></code> for a typedef on a union type ex: <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">union</span> <span class="pre">color</span> <span class="pre">{</span> <span class="pre">t_u8</span> <span class="pre">channels[4];</span> <span class="pre">t_u32</span> <span class="pre">argb;</span> <span class="pre">}</span> <span class="pre">u_color;</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">f_</span></code> for a typedef on a function pointer ex: <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">char</span> <span class="pre">(*f_strmapi)(char</span> <span class="pre">c,</span> <span class="pre">t_size</span> <span class="pre">index);</span></code> This also allows most any text editor’s syntax coloring to be able to match types with a simple regex rule: <code class="docutils literal notranslate"><span class="pre">\b([tseuf]_\w+)\b</span></code> Additionnally, the C-style standard function aliases are prefixed with <code class="docutils literal notranslate"><span class="pre">c_</span></code>, for example: The standard <code class="docutils literal notranslate"><span class="pre">memset()</span></code> function is named <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_memory.html#doxid-group-libccc-memory-1gaa859acf2af192ebcc5fcf30f63f1d3de"><span class="std std-ref"><span class="pre">Memory_Set()</span></span></a></code>, and has an alias <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_memory.html#doxid-group-libccc-memory-1ga6d0491fc7e398322517829009da1034f"><span class="std std-ref"><span class="pre">c_memset()</span></span></a></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">f_</span></code> for a typedef on a function pointer ex: <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">char</span> <span class="pre">(*f_strmapi)(char</span> <span class="pre">c,</span> <span class="pre">t_size</span> <span class="pre">index);</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_</span></code> for a typedef which hides a pointer ex: <code class="docutils literal notranslate"><span class="pre">typedef</span> <span class="pre">char*</span> <span class="pre">p_string;</span></code> This also allows most any text editor’s syntax coloring to be able to match and color any user-defined typedefs, with a very simple regular expression: <code class="docutils literal notranslate"><span class="pre">\b([tseufp]_\w+)\b</span></code> Additionnally, libccc provides function aliases which follow the C standard library’s nomenclature style - to avoid clashing with existing names, these are prefixed with <code class="docutils literal notranslate"><span class="pre">c_</span></code>. For example, the <code class="docutils literal notranslate"><span class="pre">memset()</span></code> function is named <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_memory.html#doxid-group-libccc-memory-1gaa859acf2af192ebcc5fcf30f63f1d3de"><span class="std std-ref"><span class="pre">Memory_Set()</span></span></a></code> in libccc, and has an alias <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_memory.html#doxid-group-libccc-memory-1ga6d0491fc7e398322517829009da1034f"><span class="std std-ref"><span class="pre">c_memset()</span></span></a></code>.</p></li>
 </ul>
-<div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-naming-1ga58990bff0dc5971dbfa1baeb2a5de57c"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">HUNGARIAN_ENUM</span>  <span class="cp">e</span></pre>
 <p>Hungarian type prefix/suffix for an enum typedef.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-naming-1ga7692350364cf399c014ef369fb846397"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="n">HUNGARIAN_FUNCTION</span>  <span class="cp">f</span></pre>
@@ -299,57 +220,39 @@
 <p>uppercase &amp; underscores: <code class="docutils literal notranslate"><span class="pre">EXAMPLE_TYPE</span></code></p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-naming-1ga464b3782c27e67c5f8cbda53e6a88bb5"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">NAMINGSTYLE_SNAKECASE</span>   <span class="cp">1</span></pre>
 <p>lowercase &amp; underscores: <code class="docutils literal notranslate"><span class="pre">example_type</span></code></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="group_libccc_errors.html" class="btn btn-neutral float-right" title="04) libccc_errors.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="group_libccc_config.html" class="btn btn-neutral float-left" title="02) libccc_config.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_config.html" class="btn btn-neutral float-left" title="02) libccc_config.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_errors.html" class="btn btn-neutral float-right" title="04) libccc_errors.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

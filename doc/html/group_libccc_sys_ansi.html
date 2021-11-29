@@ -1,43 +1,26 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>20) libccc/sys/ansi.h &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="23) libccc/sys/logger.h" href="group_libccc_sys_logger.html" />
@@ -58,29 +41,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +55,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc.html">01) libccc.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
@@ -114,7 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_char.html">13) libccc/char.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
@@ -159,6 +115,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -167,74 +125,36 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="group_libccc.html">01) libccc.h</a> &raquo;</li>
-        
       <li>20) libccc/sys/ansi.h</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-sys-ansi-h">
-<span id="doxid-group-libccc-sys-ansi"></span><span id="index-0"></span><h1>20) libccc/sys/ansi.h<a class="headerlink" href="#libccc-sys-ansi-h" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-sys-ansi-h">
+<span id="doxid-group-libccc-sys-ansi"></span><span id="index-0"></span><h1>20) libccc/sys/ansi.h<a class="headerlink" href="#libccc-sys-ansi-h" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines some useful ANSI text macros. <a class="reference internal" href="#details-group-libccc-sys-ansi"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
 
@@ -301,16 +221,16 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf80735fb21078a1e8095a22597092bd7"><span class="std std-ref">IO_TEXT_RESET_INVERTED</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;27&quot;</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga81de1ccbf55802dc11f2a8881d46a9eb"><span class="std std-ref">IO_TEXT_RESET_UNDERLINE</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;24&quot;</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span class="std std-ref">IO_TEXT_UNDERLINE</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">)</span></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-sys-ansi"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-sys-ansi"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines some useful ANSI text macros.</p>
 <p class="rubric">See also:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a></p></li>
 </ul>
-<div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">ANSI</span>(X) <span class="cp">&quot;\x1B[&quot;X&quot;m&quot;</span></pre>
 <p>ANSI text output display escape code macros.</p>
 <p>These are some useful string literals for commandline output colors. Can be used with any of the ‘IO_Output_*’ and ‘IO_Write_*’ functions.</p>
@@ -344,7 +264,7 @@
 </tbody>
 </table>
 <p class="rubric">See also:</p>
-<p>IO_GetColor() The string sequence to color the terminal text background with the default color for this terminal</p>
+<p>IO_GetColor()</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga0e6d9102bb7d8733d9739f058900564d"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_BLACK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;40&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text background/highlight black.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga250067e14725f2eceb20cc6bfd89e44b"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_BLUE</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;44&quot;</span><span class="p">)</span></pre>
@@ -356,9 +276,7 @@
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga83394539e8364d9e4fda0ef261f5c74c"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_CYAN_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;106&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text background/highlight light cyan.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga5766144a8d48ffe3bbdd0c8e3973df52"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_DEFAULT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;49&quot;</span><span class="p">)</span></pre>
-<p>ANSI text output display escape code macros.</p>
-<p>These are some useful string literals for commandline output colors. Can be used with any of the ‘IO_Output_*’ and ‘IO_Write_*’ functions.</p>
-<p>(Learn more here)[<a class="reference external" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">https://misc.flogisoft.com/bash/tip_colors_and_formatting</a>]</p>
+<p>The string sequence to color the terminal text background with the default color for this terminal.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga61b2d3daade64b5710ad3a06140cb8b8"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_GRAY_DARK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text background/highlight dark gray.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga312aa1c2d18fd6847c6d88e8c153092a"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_BG_GRAY_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;47&quot;</span><span class="p">)</span></pre>
@@ -397,7 +315,7 @@
 </table>
 <p class="rubric">See also:</p>
 <ul class="simple">
-<li><p>IO_GetColor() The string sequence to color the terminal text output with the default color for this terminal</p></li>
+<li><p>IO_GetColor()</p></li>
 </ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga178f7bd8aa2cb39a74171b24c3903bfa"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_FG_BLACK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;30&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text output black.</p>
@@ -410,9 +328,7 @@
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gabf7bcf19360b7e1922f8084ef0154288"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_FG_CYAN_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;96&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text output light cyan.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga162176136345f256f233e0ddd1c7a577"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_FG_DEFAULT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;39&quot;</span><span class="p">)</span></pre>
-<p>ANSI text output display escape code macros.</p>
-<p>These are some useful string literals for commandline output colors. Can be used with any of the ‘IO_Output_*’ and ‘IO_Write_*’ functions.</p>
-<p>(Learn more here)[<a class="reference external" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">https://misc.flogisoft.com/bash/tip_colors_and_formatting</a>]</p>
+<p>The string sequence to color the terminal text output with the default color for this terminal.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaf67ea146996f28af24a8aaddbc184fca"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_FG_GRAY_DARK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;90&quot;</span><span class="p">)</span></pre>
 <p>The string sequence to color the terminal text output dark gray.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad24c920ee4123d7133f44986918aefea"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="n">IO_COLOR_FG_GRAY_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;37&quot;</span><span class="p">)</span></pre>
@@ -473,57 +389,39 @@
 <p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span class="std std-ref">IO_TEXT_UNDERLINE</span></a>.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span id="index-63"></span><span></span><span class="cp">#define</span> <span class="n">IO_TEXT_UNDERLINE</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">)</span></pre>
 <p>Display terminal output text with an underline.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="group_libccc_sys_logger.html" class="btn btn-neutral float-right" title="23) libccc/sys/logger.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="group_libccc_sys_io.html" class="btn btn-neutral float-left" title="19) libccc/sys/io.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_sys_io.html" class="btn btn-neutral float-left" title="19) libccc/sys/io.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_sys_logger.html" class="btn btn-neutral float-right" title="23) libccc/sys/logger.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

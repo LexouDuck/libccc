@@ -146,10 +146,6 @@ prereq-doc:
 		lua -v,\
 		$(call install_prereq,lua))
 	@-$(call check_prereq,\
-		(doc) Python 3.7,\
-		python3.7 --version,\
-		$(call install_prereq,python@3.7))
-	@-$(call check_prereq,\
-		(doc) Python Sphinx doc generator,\
+		(doc) Sphinx python doc generator,\
 		sphinx-build --version,\
-		$(call install_prereq,sphinx))
+		$(call install_prereq,sphinx-doc))

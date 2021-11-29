@@ -1,46 +1,30 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Libccc_math &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="libccc" href="page_index.html" />
+    <link rel="next" title="array" href="group_libccc_stringstring.html" />
     <link rel="prev" title="Libccc_math_int" href="group_libccc_math_int.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
@@ -58,29 +42,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +56,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="group_libccc.html">01) libccc.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
@@ -110,6 +68,8 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -118,78 +78,41 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Libccc_math</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-math">
-<span id="doxid-group-libccc-math"></span><span id="index-0"></span><h1>Libccc_math<a class="headerlink" href="#libccc-math" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-math">
+<span id="doxid-group-libccc-math"></span><span id="index-0"></span><h1>Libccc_math<a class="headerlink" href="#libccc-math" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines the common standard math functions and macro defines. <a class="reference internal" href="#details-group-libccc-math"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
 
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1gadefab4344518e9d35a80d87c20c0fa48"><span class="std std-ref">ABS</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <span class="p">((</span><span class="n">X</span><span class="p">)</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">?</span> <span class="o">-</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">:</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span></span><span class="n">DEFINE_GENERIC_MATH_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>      <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_u8</span><span class="o">:</span>    <span class="n">U8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u16</span><span class="o">:</span>   <span class="n">U16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u32</span><span class="o">:</span>   <span class="n">U32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u64</span><span class="o">:</span>   <span class="n">U64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u128</span><span class="o">:</span>  <span class="n">U128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_uint</span><span class="o">:</span>  <span class="n">UInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s8</span><span class="o">:</span>    <span class="n">S8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s16</span><span class="o">:</span>   <span class="n">S16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s32</span><span class="o">:</span>   <span class="n">S32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s64</span><span class="o">:</span>   <span class="n">S64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s128</span><span class="o">:</span>  <span class="n">S128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_sint</span><span class="o">:</span>  <span class="n">SInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q128:  </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga7c2dc45e693e7cc789ed94fc949f50a3"><span class="std std-ref">Q128_</span></a><span></span> <span class="cp">##FUNCTION, \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_  ##FUNCTION,  \       t_f64:   F64_  ##FUNCTION,  \       t_f80:   F80_  ##FUNCTION,  \       t_f128:  F128_ ##FUNCTION,  \       t_float: Float_##FUNCTION,  \)(X)</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span></span><span class="n">DEFINE_GENERIC_MATH_OPERATOR</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>       <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_u8</span><span class="o">:</span>    <span class="n">U8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u16</span><span class="o">:</span>   <span class="n">U16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u32</span><span class="o">:</span>   <span class="n">U32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u64</span><span class="o">:</span>   <span class="n">U64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u128</span><span class="o">:</span>  <span class="n">U128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_uint</span><span class="o">:</span>  <span class="n">UInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s8</span><span class="o">:</span>    <span class="n">S8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s16</span><span class="o">:</span>   <span class="n">S16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s32</span><span class="o">:</span>   <span class="n">S32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s64</span><span class="o">:</span>   <span class="n">S64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s128</span><span class="o">:</span>  <span class="n">S128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_sint</span><span class="o">:</span>  <span class="n">SInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q128:  </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga7c2dc45e693e7cc789ed94fc949f50a3"><span class="std std-ref">Q128_</span></a><span></span> <span class="cp">##FUNCTION, \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_  ##FUNCTION,  \       t_f64:   F64_  ##FUNCTION,  \       t_f80:   F80_  ##FUNCTION,  \       t_f128:  F128_ ##FUNCTION,  \       t_float: Float_##FUNCTION,  \)(X, Y)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gac2f8add1e5d5c9c2e1622872d3d81085"><span></span><span class="n">DEFINE_GENERIC_MATH_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>      <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_u8</span><span class="o">:</span>    <span class="n">U8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u16</span><span class="o">:</span>   <span class="n">U16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u32</span><span class="o">:</span>   <span class="n">U32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u64</span><span class="o">:</span>   <span class="n">U64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u128</span><span class="o">:</span>  <span class="n">U128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_uint</span><span class="o">:</span>  <span class="n">UInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s8</span><span class="o">:</span>    <span class="n">S8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s16</span><span class="o">:</span>   <span class="n">S16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s32</span><span class="o">:</span>   <span class="n">S32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s64</span><span class="o">:</span>   <span class="n">S64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s128</span><span class="o">:</span>  <span class="n">S128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_sint</span><span class="o">:</span>  <span class="n">SInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q128:  Q128_ ##FUNCTION,  \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_  ##FUNCTION,  \       t_f64:   F64_  ##FUNCTION,  \       t_f80:   F80_  ##FUNCTION,  \       t_f128:  F128_ ##FUNCTION,  \       t_float: Float_##FUNCTION,  \)(X)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga5b7f9250ac1480dc15d6973242844730"><span></span><span class="n">DEFINE_GENERIC_MATH_OPERATOR</span></span><span></span><span class="p">(</span><span class="n">FUNCTION</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>       <span class="n">_Generic</span><span class="p">((</span><span class="n">X</span><span class="p">),</span>   <span class="err">\</span>       <span class="kt">t_u8</span><span class="o">:</span>    <span class="n">U8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u16</span><span class="o">:</span>   <span class="n">U16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u32</span><span class="o">:</span>   <span class="n">U32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u64</span><span class="o">:</span>   <span class="n">U64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_u128</span><span class="o">:</span>  <span class="n">U128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_uint</span><span class="o">:</span>  <span class="n">UInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s8</span><span class="o">:</span>    <span class="n">S8_</span>   <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s16</span><span class="o">:</span>   <span class="n">S16_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s32</span><span class="o">:</span>   <span class="n">S32_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s64</span><span class="o">:</span>   <span class="n">S64_</span>  <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_s128</span><span class="o">:</span>  <span class="n">S128_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_sint</span><span class="o">:</span>  <span class="n">SInt_</span> <span class="err">##</span><span class="n">FUNCTION</span><span class="p">,</span>  <span class="err">\</span>       <span class="kt">t_q16</span><span class="o">:</span>   <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga64b77b20b3432459a6cda6ca44f76f7e"><span class="std std-ref">Q16_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q32:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga27a0d8e449ef908f54841ee17c8b1a92"><span class="std std-ref">Q32_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q64:   </span><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gaa5368bd2beea18856b39190f3178dc0f"><span class="std std-ref">Q64_</span></a><span></span>  <span class="cp">##FUNCTION, \       t_q128:  Q128_ ##FUNCTION,  \       t_fixed: Fixed_##FUNCTION,  \       t_f32:   F32_  ##FUNCTION,  \       t_f64:   F64_  ##FUNCTION,  \       t_f80:   F80_  ##FUNCTION,  \       t_f128:  F128_ ##FUNCTION,  \       t_float: Float_##FUNCTION,  \)(X, Y)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-1ga2d657e7d0f2f750a9c6444549644e299"><span class="std std-ref">ISNEG</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>  <span class="p">(</span><span class="o">!</span><span class="p">((</span><span class="n">X</span><span class="p">)</span><span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">((</span><span class="n">X</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">))</span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga15ce5bb45fbd3c1ec09f0babee8c01b0"><span></span><span class="n">MATH_DECL_FUNCTION</span></span><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>        <a class="reference internal" href="#doxid-group-libccc-math-1ga4ad220d31bc2882f0d77eb0c34a5934e"><span class="std std-ref">MATH_DEFINE_FUNCTION_F32</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga7e54cce22618dfa746ec0b54345a6dc3"><span class="std std-ref">MATH_DEFINE_FUNCTION_F64</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gab351bf38b06962d9e405b9ce7e3e7660"><span class="std std-ref">MATH_DEFINE_FUNCTION_F80</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga50195d60b59de528854562cb5ca281c6"><span class="std std-ref">MATH_DEFINE_FUNCTION_F128</span></a><span></span><span class="p">(</span><span class="n">RETURN</span><span class="p">,</span> <span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>    \
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga1bda26f13eba63409816b53282c13103"><span></span><span class="n">MATH_DECL_REALFUNCTION</span></span><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>        <a class="reference internal" href="#doxid-group-libccc-math-1gaec826ffee4cc290ac8922bed49b02ca8"><span class="std std-ref">MATH_DEFINE_REALFUNCTION_F32</span></a><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1gadaf64c142454dedd4f15886017b969d2"><span class="std std-ref">MATH_DEFINE_REALFUNCTION_F64</span></a><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga5eba6180c0c65658df4ccda3924bc68c"><span class="std std-ref">MATH_DEFINE_REALFUNCTION_F80</span></a><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span> <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-math-1ga6eb28ed8a47b7dcbde53dc78d1f4adb0"><span class="std std-ref">MATH_DEFINE_REALFUNCTION_F128</span></a><span></span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">)</span>    \
@@ -342,16 +265,16 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga70ba56d882f4b5603fc71cdcaa670d50"><span></span><span class="n">c_tan</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-1gaba69fa3c396a390bf4a2764d064d83f1"><span class="std std-ref">Math_Tan</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1gaca4f29ed09665f3e6890b0eabebb1e9e"><span></span><span class="n">c_tanh</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-math-1ga0ad4e08b761330a3a0e05eea17a8c2cb"><span class="std std-ref">Math_TanH</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-1ga23ecdd8d3e74c0769b158d8e66024de9"><span></span><span class="n">c_trunc</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-1gab3232e80adb380b9be6d1447b71cf82f"><span class="std std-ref">Math_Trunc</span></a></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-math"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-math"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines the common standard math functions and macro defines.</p>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (<a class="reference external" href="https://en.cppreference.com/w/c/numeric/math">https://en.cppreference.com/w/c/numeric/math</a>) C89</p></li>
 <li><p><em>Standard library equivalent:</em> (<a class="reference external" href="https://en.cppreference.com/w/c/numeric/tgmath">https://en.cppreference.com/w/c/numeric/tgmath</a>) C99</p></li>
 </ul>
-<div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-1gadefab4344518e9d35a80d87c20c0fa48"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">ABS</span>(X)  <span class="cp">((X)&lt;0 ? -(X) :(X))</span></pre>
 <p>Computes to the absolute value of <code class="docutils literal notranslate"><span class="pre">X</span></code> (ie: gives the positive equivalent of <code class="docutils literal notranslate"><span class="pre">X</span></code>)</p>
 <ul class="simple">
@@ -566,57 +489,39 @@
 <li><p><em>Standard library equivalent:</em> (<a class="reference external" href="https://en.cppreference.com/w/c/numeric/math/signbit">https://en.cppreference.com/w/c/numeric/math/signbit</a>) C89 (differs)</p></li>
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{x}{|x|}}\)</span></p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="page_index.html" class="btn btn-neutral float-right" title="libccc" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="group_libccc_math_int.html" class="btn btn-neutral float-left" title="Libccc_math_int" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_math_int.html" class="btn btn-neutral float-left" title="Libccc_math_int" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_stringstring.html" class="btn btn-neutral float-right" title="array" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

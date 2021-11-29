@@ -1,43 +1,26 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>05) libccc_define.h &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="06) libccc/bool.h" href="group_libccc_bool.html" />
@@ -58,29 +41,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +55,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc.html">01) libccc.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
@@ -121,7 +78,6 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_char.html">13) libccc/char.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
@@ -159,6 +115,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -167,92 +125,66 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="group_libccc.html">01) libccc.h</a> &raquo;</li>
-        
       <li>05) libccc_define.h</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-define-h">
-<span id="doxid-group-libccc-define"></span><span id="index-0"></span><h1>05) libccc_define.h<a class="headerlink" href="#libccc-define-h" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-define-h">
+<span id="doxid-group-libccc-define"></span><span id="index-0"></span><h1>05) libccc_define.h<a class="headerlink" href="#libccc-define-h" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines all the common macros used to extend the C language. <a class="reference internal" href="#details-group-libccc-define"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
 
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">TOKEN1</span><span class="p">,</span> <span class="n">TOKEN2</span><span class="p">)</span>  <a class="reference internal" href="#doxid-group-libccc-define-1gadb10c29a9da48c842c88c208f731ea66"><span class="std std-ref">CONCAT_</span></a><span></span><span class="p">(</span><span class="n">TOKEN1</span><span class="p">,</span> <span class="n">TOKEN2</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gadb10c29a9da48c842c88c208f731ea66"><span class="std std-ref">CONCAT_</span></a><span></span><span class="p">(</span><span class="n">TOKEN1</span><span class="p">,</span> <span class="n">TOKEN2</span><span class="p">)</span> <span class="n">TOKEN1</span><span class="err">##</span><span class="n">TOKEN2</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga8fe83ac76edc595f6b98cd4a4127aed5"><span class="std std-ref">ERROR</span></a><span></span>   <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga73431ba9d27af74793901561ae448116"><span class="std std-ref">INCBIN</span></a><span></span><span class="p">(</span><span class="n">_NAME</span><span class="p">,</span> <span class="n">_FILEPATH</span><span class="p">)</span>    <span class="cm">/*extern t_u8 const _NAME[];*/</span>  <span class="err">\</span> <span class="cm">/*extern t_u8 const   _NAME##_end[];*/</span>    <span class="err">\</span> <span class="cm">/*extern int const    _NAME##_size[];*/</span>   <span class="err">\</span> <a class="reference internal" href="#doxid-group-libccc-define-1ga2ff2e12278c3cb56ce52e20f936a2d00"><span class="std std-ref">__asm__</span></a><span></span>                                   <span class="err">\</span><span class="p">(</span><span class="err">\</span>     <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_SECTION</span>                  <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span>             <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;:&quot;</span>          <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">.incbin </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="n">_FILEPATH</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;</span>       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;&quot;:&quot;</span>    <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">.byte 0&quot;</span>                       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_size&quot;</span>      <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_size&quot;&quot;:&quot;</span>   <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">&quot;</span><span class="n">INCBIN_INTEGER</span>                <span class="err">\</span>       <span class="s">&quot;(&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;</span>    <span class="err">\</span>       <span class="s">&quot; - &quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;)&quot;</span> <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_PREVIOUS</span>                 <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span><span class="p">);</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga73431ba9d27af74793901561ae448116"><span class="std std-ref">INCBIN</span></a><span></span><span class="p">(</span><span class="n">_NAME</span><span class="p">,</span> <span class="n">_FILEPATH</span><span class="p">)</span>    <span class="cm">/*extern t_u8 const _NAME[];*/</span>  <span class="err">\</span> <span class="cm">/*extern t_u8 const   _NAME##_end[];*/</span>    <span class="err">\</span> <span class="cm">/*extern int const    _NAME##_size[];*/</span>   <span class="err">\</span> <a class="reference internal" href="#doxid-group-libccc-define-1ga2ff2e12278c3cb56ce52e20f936a2d00"><span class="std std-ref">__asm__</span></a><span></span>                                   <span class="err">\</span><span class="p">(</span><span class="err">\</span>     <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_SECTION</span>                  <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME             \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="o">:</span><span class="s">&quot;          \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="p">.</span><span class="n">incbin</span> <span class="err">\</span><span class="s">&quot;&quot;</span><span class="n">_FILEPATH</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>       <span class="err">\</span>   <span class="s">&quot;\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;                               \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;       \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;   \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="p">.</span><span class="n">byte</span> <span class="mi">0</span><span class="s">&quot;                       \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;                               \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME&quot;</span><span class="n">_size</span><span class="s">&quot;      \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_size</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;  \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="s">&quot;INCBIN_INTEGER                \       &quot;</span><span class="p">(</span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;    \       &quot;</span> <span class="o">-</span> <span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="p">)</span><span class="s">&quot; \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;                                \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_PREVIOUS                    \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;                                \);</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gaba51915c87d64af47fb1cc59348961c9"><span class="std std-ref">OK</span></a><span></span>  <span class="p">(</span><span class="mi">0</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga272429706ecca49feb29cabc8b0697b2"><span class="std std-ref">STRING</span></a><span></span><span class="p">(</span><span class="n">TOKEN</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-define-1ga28848843dfe528e0157ac25571f7a140"><span class="std std-ref">STRING_</span></a><span></span><span class="p">(</span><span class="n">TOKEN</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga28848843dfe528e0157ac25571f7a140"><span class="std std-ref">STRING_</span></a><span></span><span class="p">(</span><span class="n">TOKEN</span><span class="p">)</span>  <span class="err">#</span><span class="n">TOKEN</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gadf33f17cc995534ffea6e27a44fc80d3"><span class="std std-ref">STRING_LENGTH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">X</span><span class="p">)</span> <span class="o">-</span> <span class="k">sizeof</span><span class="p">(</span><span class="s">&quot;&quot;</span><span class="p">))</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga63a91b51cde2e4bea944496395aa5ee4"><span class="std std-ref">STRLEN</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>   <a class="reference internal" href="#doxid-group-libccc-define-1gadf33f17cc995534ffea6e27a44fc80d3"><span class="std std-ref">STRING_LENGTH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga199cc34e01089a557c93cdca21843916"><span class="std std-ref">_HAS_128BIT</span></a><span></span> <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gad0ec54b19f880c580a5c0e73d37360f7"><span class="std std-ref">_IS_32BIT</span></a><span></span>   <span class="p">(</span><span class="n">__DATAMODEL__</span> <span class="o">==</span> <a class="reference internal" href="#doxid-group-libccc-define-1ga1605e9cd20acc0662762a4005d37fe18"><span class="std std-ref">__DATAMODEL_LP32__</span></a><span></span> <span class="o">||</span> <span class="n">__DATAMODEL__</span> <span class="o">==</span> <a class="reference internal" href="#doxid-group-libccc-define-1gac5d2b542dec904aadff1e06ecd8c28d7"><span class="std std-ref">__DATAMODEL_ILP32__</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-define-1gadb450f1db6ef4bfc552d1fbc7a22b6d9"><span></span><span class="n">_IS_64BIT</span></span><span></span>    <span class="p">(</span><span class="n">__DATAMODEL__</span> <span class="o">==</span> <a class="reference internal" href="#doxid-group-libccc-define-1ga90c05f002b017c3c24e6e2519f1578fc"><span class="std std-ref">__DATAMODEL_LP64__</span></a><span></span> <span class="o">||</span> <span class="n">__DATAMODEL__</span> <span class="o">==</span> <a class="reference internal" href="#doxid-group-libccc-define-1ga9336ef0ea3c1fba2f4dc1f1527359a02"><span class="std std-ref">__DATAMODEL_LLP64__</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga94cddb50dd8c3cf4def8a79394f2aed5"><span class="std std-ref">_SIZEOF_INT</span></a><span></span> <span class="p">((</span><span class="n">__DATAMODEL__</span><span class="o">&gt;&gt;</span> <span class="mi">16</span><span class="p">)</span><span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga6469e9af207b6aaa9ffcdba2a1177a0d"><span class="std std-ref">_SIZEOF_LONG</span></a><span></span>    <span class="p">((</span><span class="n">__DATAMODEL__</span><span class="o">&gt;&gt;</span>  <span class="mi">8</span><span class="p">)</span><span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga71ecfb94b366eae44ef2bae6fb49c351"><span class="std std-ref">_SIZEOF_LONGLONG</span></a><span></span>    <span class="p">((</span><span class="n">__DATAMODEL__</span><span class="o">&gt;&gt;</span>  <span class="mi">0</span><span class="p">)</span><span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gaacc0a27a078cdfd30cc71e0ce1f841c1"><span class="std std-ref">_SIZEOF_POINTER</span></a><span></span> <span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-define-1gad0ec54b19f880c580a5c0e73d37360f7"><span class="std std-ref">_IS_32BIT</span></a><span></span> <span class="o">?</span> <span class="mi">4</span> <span class="o">:</span> <span class="mi">8</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga548410d00012ef52a04fa39e184bbbb5"><span class="std std-ref">_SIZEOF_SHORT</span></a><span></span>   <span class="p">((</span><span class="n">__DATAMODEL__</span><span class="o">&gt;&gt;</span> <span class="mi">24</span><span class="p">)</span><span class="o">&amp;</span> <span class="mh">0xFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gac5d2b542dec904aadff1e06ecd8c28d7"><span class="std std-ref">__DATAMODEL_ILP32__</span></a><span></span> <span class="mh">0x02040404ul</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga9336ef0ea3c1fba2f4dc1f1527359a02"><span class="std std-ref">__DATAMODEL_LLP64__</span></a><span></span> <span class="mh">0x02040408ul</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga1605e9cd20acc0662762a4005d37fe18"><span class="std std-ref">__DATAMODEL_LP32__</span></a><span></span>  <span class="mh">0x02020404ul</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga90c05f002b017c3c24e6e2519f1578fc"><span class="std std-ref">__DATAMODEL_LP64__</span></a><span></span>  <span class="mh">0x02040808ul</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga5d4a79a26b9b0011f1644359ad954fee"><span class="std std-ref">__POSIX_VERSION_1990__</span></a><span></span>  <span class="mi">1</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gaab85c76f266d0fd0289828cccaf59165"><span class="std std-ref">__POSIX_VERSION_1992__</span></a><span></span>  <span class="mi">2</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga1ae28729286c4ec09d8590834f62e5ad"><span class="std std-ref">__POSIX_VERSION_1993__</span></a><span></span>  <span class="mi">199309L</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gab85e743ef3da371929f4b3060858b005"><span class="std std-ref">__POSIX_VERSION_1995__</span></a><span></span>  <span class="mi">199506L</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga12437782db92f509e7b2b89ae0a6b93a"><span class="std std-ref">__POSIX_VERSION_2001__</span></a><span></span>  <span class="mi">200112L</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gaeec1c3253e7dd24240f208655151b852"><span class="std std-ref">__POSIX_VERSION_2008__</span></a><span></span>  <span class="mi">200809L</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga1ae28729286c4ec09d8590834f62e5ad"><span class="std std-ref">__POSIX_VERSION_1993__</span></a><span></span>  <span class="mi">199309l</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gab85e743ef3da371929f4b3060858b005"><span class="std std-ref">__POSIX_VERSION_1995__</span></a><span></span>  <span class="mi">199506l</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga12437782db92f509e7b2b89ae0a6b93a"><span class="std std-ref">__POSIX_VERSION_2001__</span></a><span></span>  <span class="mi">200112l</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gaeec1c3253e7dd24240f208655151b852"><span class="std std-ref">__POSIX_VERSION_2008__</span></a><span></span>  <span class="mi">200809l</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gac75eb715078f79f41b411be67a854aa8"><span class="std std-ref">__STDC_VERSION_ANSI__</span></a><span></span>   <span class="mi">0l</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga37b4406248beee154972b866cc5237e4"><span class="std std-ref">__STDC_VERSION_C11__</span></a><span></span>    <span class="mi">201112l</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1gab07974c11c7bc83417ace1f7fd6f0981"><span class="std std-ref">__STDC_VERSION_C17__</span></a><span></span>    <span class="mi">201710l</span>
@@ -268,9 +200,9 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-define-1ga89cb516d35a6b3d9bcdc5af83fcfe08a"><span></span><span class="n">__sizeof__</span></span><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <span class="k">sizeof</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-define-1ga0d87623b896b72e97f764029b90cdfa8"><span></span><span class="n">__typeof__</span></span><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span>    <span class="n">typeof</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-define-1ga28ab025aeaec3b498d66e2b9cc43c74f"><span class="std std-ref">foreach</span></a><span></span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE_TYPE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">)</span>       <span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_init</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">)</span>           <span class="err">\</span>   <span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_exit</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">)</span>           <span class="err">\</span>   <span class="k">for</span><span class="p">(</span><span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_loop_init</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">);</span> <span class="err">\</span>       <span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_loop_exit</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">);</span> <span class="err">\</span>       <span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_loop_incr</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">),</span> <span class="err">\</span>       <span class="n">foreach_</span><span class="err">##</span><span class="n">ITERABLE_TYPE</span><span class="err">##</span><span class="n">_loop_setv</span><span class="p">(</span><span class="n">VARIABLE_TYPE</span><span class="p">,</span> <span class="n">VARIABLE</span><span class="p">,</span> <span class="n">ITERABLE</span><span class="p">))</span> <span class="err">\</span></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-define"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-define"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines all the common macros used to extend the C language.</p>
 <p>Important read - regarding identifiers, storage duration, alignment:</p>
 <ul class="simple">
@@ -280,8 +212,8 @@
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (<a class="reference external" href="https://en.cppreference.com/w/c/language/operator_alternative">https://en.cppreference.com/w/c/language/operator_alternative</a>) C</p></li>
 </ul>
-<div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="n">CONCAT</span>(TOKEN1, TOKEN2)  <a class="reference internal" href="#doxid-group-libccc-define-1gadb10c29a9da48c842c88c208f731ea66"><span class="std std-ref">CONCAT_</span></a><span></span><span class="p">(</span><span class="n">TOKEN1</span><span class="p">,</span> <span class="n">TOKEN2</span><span class="p">)</span></pre>
 <p>This macro function expands and merges the two given tokens <code class="docutils literal notranslate"><span class="pre">TOKEN1</span></code> and <code class="docutils literal notranslate"><span class="pre">TOKEN2</span></code> into a single token.</p>
 <p>NB: This is useful because the token-paste concatenation operator <code class="docutils literal notranslate"><span class="pre">##</span></code> merges tokens after expanding the macro’s arguments, but it happens before expanding their respective values. Here, an additional layer of macro indirection forces the expansion to occur before token-pasting.</p>
@@ -291,7 +223,7 @@
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga8fe83ac76edc595f6b98cd4a4127aed5"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="n">ERROR</span>   <span class="cp">(-1)</span></pre>
 <p>Represents a failure function return (expands to <code class="docutils literal notranslate"><span class="pre">(-1)</span></code>)</p>
 <p>Similar to the <a class="reference external" href="https://en.cppreference.com/w/c/program/EXIT_status">STD C exit() return macros</a>, This is a common general macro used for return values, used by several libccc functions.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga73431ba9d27af74793901561ae448116"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">INCBIN</span>(_NAME, _FILEPATH)    <span class="cm">/*extern t_u8 const _NAME[];*/</span><span class="cp">  \ </span><span class="cm">/*extern t_u8 const   _NAME##_end[];*/</span><span class="cp">    \ </span><span class="cm">/*extern int const    _NAME##_size[];*/</span><span class="cp">   \ </span><a class="reference internal" href="#doxid-group-libccc-define-1ga2ff2e12278c3cb56ce52e20f936a2d00"><span class="std std-ref">__asm__</span></a><span></span>                                   <span class="err">\</span><span class="p">(</span><span class="err">\</span>     <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_SECTION</span>                  <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span>             <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;:&quot;</span>          <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">.incbin </span><span class="se">\&quot;</span><span class="s">&quot;</span><span class="n">_FILEPATH</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;</span>       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;&quot;:&quot;</span>    <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">.byte 0&quot;</span>                       <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_GLOBAL</span><span class="s">&quot; &quot;</span>                <span class="err">\</span>       <span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_size&quot;</span>      <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_size&quot;&quot;:&quot;</span>   <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n\t</span><span class="s">&quot;</span><span class="n">INCBIN_INTEGER</span>                <span class="err">\</span>       <span class="s">&quot;(&quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;_end&quot;</span>    <span class="err">\</span>       <span class="s">&quot; - &quot;</span><span class="n">INCBIN_MANGLE</span><span class="err">#</span><span class="n">_NAME</span><span class="s">&quot;)&quot;</span> <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_PREVIOUS</span>                 <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span><span class="p">);</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga73431ba9d27af74793901561ae448116"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="n">INCBIN</span>(_NAME, _FILEPATH)    <span class="cm">/*extern t_u8 const _NAME[];*/</span><span class="cp">  \ </span><span class="cm">/*extern t_u8 const   _NAME##_end[];*/</span><span class="cp">    \ </span><span class="cm">/*extern int const    _NAME##_size[];*/</span><span class="cp">   \ </span><a class="reference internal" href="#doxid-group-libccc-define-1ga2ff2e12278c3cb56ce52e20f936a2d00"><span class="std std-ref">__asm__</span></a><span></span>                                   <span class="err">\</span><span class="p">(</span><span class="err">\</span>     <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span><span class="n">INCBIN_SECTION</span>                  <span class="err">\</span>   <span class="s">&quot;</span><span class="se">\n</span><span class="s">&quot;</span>                                <span class="err">\</span>   <span class="s">&quot;\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME             \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="o">:</span><span class="s">&quot;          \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="p">.</span><span class="n">incbin</span> <span class="err">\</span><span class="s">&quot;&quot;</span><span class="n">_FILEPATH</span><span class="s">&quot;</span><span class="se">\&quot;</span><span class="s">&quot;</span>       <span class="err">\</span>   <span class="s">&quot;\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;                               \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;       \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;   \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="p">.</span><span class="n">byte</span> <span class="mi">0</span><span class="s">&quot;                       \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;                               \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_GLOBAL&quot;</span> <span class="s">&quot;               \       INCBIN_MANGLE#_NAME&quot;</span><span class="n">_size</span><span class="s">&quot;      \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_size</span><span class="s">&quot;&quot;</span><span class="o">:</span><span class="s">&quot;  \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="err">\</span><span class="n">t</span><span class="s">&quot;INCBIN_INTEGER                \       &quot;</span><span class="p">(</span><span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="n">_end</span><span class="s">&quot;    \       &quot;</span> <span class="o">-</span> <span class="s">&quot;INCBIN_MANGLE#_NAME&quot;</span><span class="p">)</span><span class="s">&quot; \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;                                \   &quot;</span><span class="err">\</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span class="std std-ref">n</span></a><span></span><span class="s">&quot;INCBIN_PREVIOUS                    \   &quot;</span><span class="err">\</span><span class="n">n</span><span class="s">&quot;                                \);</span></pre>
 <p>This macro includes the given binary file at “_PATH” (string) into a global const variable named <code class="docutils literal notranslate"><span class="pre">_NAME</span></code> (token)</p>
 <p class="rubric">Parameters:</p>
 <table class="colwidths-given docutils align-default">
@@ -317,9 +249,6 @@
 </ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaba51915c87d64af47fb1cc59348961c9"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="n">OK</span>  <span class="cp">(0)</span></pre>
 <p>Represents a successful function return (expands to <code class="docutils literal notranslate"><span class="pre">(0)</span></code>)</p>
-<ul class="simple">
-<li><p><em>Standard library equivalent:</em> (<a class="reference external" href="https://en.cppreference.com/w/c/program">https://en.cppreference.com/w/c/program</a>) C</p></li>
-</ul>
 <p>Similar to the <a class="reference external" href="https://en.cppreference.com/w/c/program/EXIT_status">STD C exit() return macros</a>, This is a common general macro used for return values, used by several libccc functions.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga272429706ecca49feb29cabc8b0697b2"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="n">STRING</span>(TOKEN)   <a class="reference internal" href="#doxid-group-libccc-define-1ga28848843dfe528e0157ac25571f7a140"><span class="std std-ref">STRING_</span></a><span></span><span class="p">(</span><span class="n">TOKEN</span><span class="p">)</span></pre>
 <p>This macro function expands and stringizes the given <code class="docutils literal notranslate"><span class="pre">TOKEN</span></code> argument.</p>
@@ -331,37 +260,61 @@
 <p>Works like <code class="docutils literal notranslate"><span class="pre">strlen()</span></code> (aka <a class="reference internal" href="group_libccc_string.html#doxid-group-libccc-string-1ga037562e6d6d5dfa8437d5b1de3876694"><span class="std std-ref">String_Length()</span></a>) but is resolved at compile time</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga63a91b51cde2e4bea944496395aa5ee4"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="n">STRLEN</span>(X)   <a class="reference internal" href="#doxid-group-libccc-define-1gadf33f17cc995534ffea6e27a44fc80d3"><span class="std std-ref">STRING_LENGTH</span></a><span></span><span class="p">(</span><span class="n">X</span><span class="p">)</span></pre>
 <p>Works like <code class="docutils literal notranslate"><span class="pre">strlen()</span></code> (aka <a class="reference internal" href="group_libccc_string.html#doxid-group-libccc-string-1ga037562e6d6d5dfa8437d5b1de3876694"><span class="std std-ref">String_Length()</span></a>) but is resolved at compile time</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga5d4a79a26b9b0011f1644359ad954fee"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1990__</span>  <span class="cp">1</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga199cc34e01089a557c93cdca21843916"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="n">_HAS_128BIT</span> <span class="cp">1</span></pre>
+<p>Check if this environment supports 128-bit integer types This macro is set to <code class="docutils literal notranslate"><span class="pre">1</span></code> if the current platform supports 128-bit integers, or <code class="docutils literal notranslate"><span class="pre">0</span></code> otherwise</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gad0ec54b19f880c580a5c0e73d37360f7"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">_IS_32BIT</span>   <span class="cp">(__DATAMODEL__ == </span><a class="reference internal" href="#doxid-group-libccc-define-1ga1605e9cd20acc0662762a4005d37fe18"><span class="std std-ref">__DATAMODEL_LP32__</span></a><span></span> <span class="o">||</span> <span class="n">__DATAMODEL__</span> <span class="o">==</span> <a class="reference internal" href="#doxid-group-libccc-define-1gac5d2b542dec904aadff1e06ecd8c28d7"><span class="std std-ref">__DATAMODEL_ILP32__</span></a><span></span><span class="p">)</span></pre>
+<p>&lt; If this is a 32-bit platform, then this expands to <code class="docutils literal notranslate"><span class="pre">1</span></code>, otherwise <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<p>If this is a 64-bit platform, then this expands to <code class="docutils literal notranslate"><span class="pre">1</span></code>, otherwise <code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga94cddb50dd8c3cf4def8a79394f2aed5"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">_SIZEOF_INT</span> <span class="cp">((__DATAMODEL__&gt;&gt; 16)&amp; 0xFF)</span></pre>
+<p>These macros can be used to check native type sizes at preprocess-time, ie: in <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga6469e9af207b6aaa9ffcdba2a1177a0d"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">_SIZEOF_LONG</span>    <span class="cp">((__DATAMODEL__&gt;&gt;  8)&amp; 0xFF)</span></pre>
+<p>These macros can be used to check native type sizes at preprocess-time, ie: in <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga71ecfb94b366eae44ef2bae6fb49c351"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">_SIZEOF_LONGLONG</span>    <span class="cp">((__DATAMODEL__&gt;&gt;  0)&amp; 0xFF)</span></pre>
+<p>These macros can be used to check native type sizes at preprocess-time, ie: in <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaacc0a27a078cdfd30cc71e0ce1f841c1"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">_SIZEOF_POINTER</span> <span class="cp">(</span><a class="reference internal" href="#doxid-group-libccc-define-1gad0ec54b19f880c580a5c0e73d37360f7"><span class="std std-ref">_IS_32BIT</span></a><span></span> <span class="o">?</span> <span class="mi">4</span> <span class="o">:</span> <span class="mi">8</span><span class="p">)</span></pre>
+<p>These macros can be used to check native type sizes at preprocess-time, ie: in <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga548410d00012ef52a04fa39e184bbbb5"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">_SIZEOF_SHORT</span>   <span class="cp">((__DATAMODEL__&gt;&gt; 24)&amp; 0xFF)</span></pre>
+<p>These macros can be used to check native type sizes at preprocess-time, ie: in <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gac5d2b542dec904aadff1e06ecd8c28d7"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">__DATAMODEL_ILP32__</span> <span class="cp">0x02040404ul</span></pre>
+<p>(int, long, and pointer are all size 32-bit) 32bit: Win32 API, Unix and Unix-like systems (Linux, macOS)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga9336ef0ea3c1fba2f4dc1f1527359a02"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">__DATAMODEL_LLP64__</span> <span class="cp">0x02040408ul</span></pre>
+<p>(int and long are 32-bit, pointer is 64-bit) 64bit: Win64 API</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga1605e9cd20acc0662762a4005d37fe18"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">__DATAMODEL_LP32__</span>  <span class="cp">0x02020404ul</span></pre>
+<p>(int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API</p>
+<p>These are convienence macros, to check for different C data model standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga90c05f002b017c3c24e6e2519f1578fc"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="n">__DATAMODEL_LP64__</span>  <span class="cp">0x02040808ul</span></pre>
+<p>(int is 32-bit, long and pointer are 64-bit) 64bit: Unix and Unix-like systems (Linux, macOS)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga5d4a79a26b9b0011f1644359ad954fee"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1990__</span>  <span class="cp">1</span></pre>
 <p>The 1990 edition of the POSIX.1 standard (IEEE Standard 1003.1-1990)</p>
 <p>These are convienence macros, to check for different POSIX standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaab85c76f266d0fd0289828cccaf59165"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1992__</span>  <span class="cp">2</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaab85c76f266d0fd0289828cccaf59165"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1992__</span>  <span class="cp">2</span></pre>
 <p>The 1992 edition of the POSIX.2 standard (IEEE Standard 1003.2-1992)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga1ae28729286c4ec09d8590834f62e5ad"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1993__</span>  <span class="cp">199309L</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga1ae28729286c4ec09d8590834f62e5ad"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1993__</span>  <span class="cp">199309l</span></pre>
 <p>The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gab85e743ef3da371929f4b3060858b005"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1995__</span>  <span class="cp">199506L</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gab85e743ef3da371929f4b3060858b005"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_1995__</span>  <span class="cp">199506l</span></pre>
 <p>The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga12437782db92f509e7b2b89ae0a6b93a"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_2001__</span>  <span class="cp">200112L</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga12437782db92f509e7b2b89ae0a6b93a"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_2001__</span>  <span class="cp">200112l</span></pre>
 <p>The 2001 edition of the POSIX standard (IEEE Standard 1003.1-2001)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaeec1c3253e7dd24240f208655151b852"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_2008__</span>  <span class="cp">200809L</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaeec1c3253e7dd24240f208655151b852"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="n">__POSIX_VERSION_2008__</span>  <span class="cp">200809l</span></pre>
 <p>The 2008 edition of the POSIX standard (IEEE Standard 1003.1-2008)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gac75eb715078f79f41b411be67a854aa8"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_ANSI__</span>   <span class="cp">0l</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gac75eb715078f79f41b411be67a854aa8"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_ANSI__</span>   <span class="cp">0l</span></pre>
 <p>NOTE: when only ANSI/C89/C90 support is present, <strong>STDC_VERSION</strong> will not be defined !</p>
 <p>These are convienence macros, to check for different C standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga37b4406248beee154972b866cc5237e4"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C11__</span>    <span class="cp">201112l</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga37b4406248beee154972b866cc5237e4"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C11__</span>    <span class="cp">201112l</span></pre>
 <p>NOTE: when only ANSI/C89/C90 support is present, <strong>STDC_VERSION</strong> will not be defined !</p>
 <p>These are convienence macros, to check for different C standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gab07974c11c7bc83417ace1f7fd6f0981"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C17__</span>    <span class="cp">201710l</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gab07974c11c7bc83417ace1f7fd6f0981"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C17__</span>    <span class="cp">201710l</span></pre>
 <p>NOTE: when only ANSI/C89/C90 support is present, <strong>STDC_VERSION</strong> will not be defined !</p>
 <p>These are convienence macros, to check for different C standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga07472dc2dff5fcf13002cddb3f6c275b"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C23__</span>    <span class="cp">(-1)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga07472dc2dff5fcf13002cddb3f6c275b"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C23__</span>    <span class="cp">(-1)</span></pre>
 <p>TBD</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaf262083c9b04b89b609f30023cfcd84b"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C95__</span>    <span class="cp">199409l</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaf262083c9b04b89b609f30023cfcd84b"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C95__</span>    <span class="cp">199409l</span></pre>
 <p>NOTE: when only ANSI/C89/C90 support is present, <strong>STDC_VERSION</strong> will not be defined !</p>
 <p>These are convienence macros, to check for different C standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaa05b5ec912596ca50f368a7a53913dce"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C99__</span>    <span class="cp">199901l</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1gaa05b5ec912596ca50f368a7a53913dce"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="n">__STDC_VERSION_C99__</span>    <span class="cp">199901l</span></pre>
 <p>NOTE: when only ANSI/C89/C90 support is present, <strong>STDC_VERSION</strong> will not be defined !</p>
 <p>These are convienence macros, to check for different C standards in preprocessor <code class="docutils literal notranslate"><span class="pre">#if</span></code> statements.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga28ab025aeaec3b498d66e2b9cc43c74f"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="n">foreach</span>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)       <span class="cp">foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)           \   foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)           \   for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE); \       foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE); \       foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE), \       foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE)) \</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-define-1ga28ab025aeaec3b498d66e2b9cc43c74f"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">foreach</span>(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE)       <span class="cp">foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)           \   foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)           \   for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE); \       foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE); \       foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE), \       foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE)) \</span></pre>
 <p>A ‘foreach’ keyword macro, to use with any iterable types, rather than an index-based ‘for’ loop.</p>
 <p>Currently, the types that work with this ‘foreach’ keyword are: s_array, s_list, s_dict Here are some more details on how to use this macro:</p>
 <ul class="simple">
@@ -369,57 +322,39 @@
 <li><p>s_list&lt;t_char*&gt;: foreach (t_char*, my_str, s_list, my_list) { … }</p></li>
 <li><p>s_dict&lt;t_char*&gt;: foreach (t_char*, my_str, s_dict, my_dict) { … }</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="group_libccc_bool.html" class="btn btn-neutral float-right" title="06) libccc/bool.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="enum_cccerror.html" class="btn btn-neutral float-left" title="enum cccerror" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="enum_cccerror.html" class="btn btn-neutral float-left" title="enum cccerror" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_bool.html" class="btn btn-neutral float-right" title="06) libccc/bool.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

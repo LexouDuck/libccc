@@ -1,47 +1,30 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>48) libccc/monad/dict.h &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="struct dict_T" href="struct_dict_T.html" />
-    <link rel="prev" title="struct keyval_T" href="struct_keyval_T.html" />
+    <link rel="next" title="49) libccc/monad/tree.h" href="group_libccc_monad_tree.html" />
+    <link rel="prev" title="47) libccc/monad/keyval.h" href="group_libccc_monad_keyval.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
 	<meta name="Description" content="48) libccc/monad/dict.h">
@@ -58,29 +41,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +55,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc.html">01) libccc.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
@@ -114,7 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_char.html">13) libccc/char.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
@@ -143,11 +99,10 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_monad_list.html">45) libccc/monad/list.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_monad_keyval.html">47) libccc/monad/keyval.h</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">48) libccc/monad/dict.h</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="struct_dict_T.html">struct dict_T</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#typedefs">Typedefs</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#macros">Macros</a></li>
 </ul>
 </li>
 </ul>
@@ -161,6 +116,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -169,275 +126,91 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="group_libccc.html">01) libccc.h</a> &raquo;</li>
-        
       <li>48) libccc/monad/dict.h</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-monad-dict-h">
-<span id="doxid-group-libccc-monad-dict"></span><span id="index-0"></span><h1>48) libccc/monad/dict.h<a class="headerlink" href="#libccc-monad-dict-h" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-monad-dict-h">
+<span id="doxid-group-libccc-monad-dict"></span><span id="index-0"></span><h1>48) libccc/monad/dict.h<a class="headerlink" href="#libccc-monad-dict-h" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines a generic dictionary type and utility functions for it. <a class="reference internal" href="#details-group-libccc-monad-dict"><span class="std std-ref">More…</span></a></p>
-<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
 
-<span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_dict_T.html#doxid-structdict-t"><span class="std std-ref">dict_T</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="p">;</span>
-
-<span class="c1">// structs</span>
-
-<span class="k">struct</span> <a class="reference internal" href="struct_dict_T.html#doxid-structdict-t"><span class="std std-ref">dict_T</span></a><span></span><span class="p">;</span>
-
-<span class="c1">// global functions</span>
-
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga5df0a0d8a8314f3ef791fbd11580fc25"><span class="std std-ref">Dict_T</span></a><span></span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga0d7f7fdd2e1d955c806efbc50ed0281a"><span class="std std-ref">Dict_New_T</span></a><span></span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadb73e59a2b307a87cc728cb1463af72d"><span class="std std-ref">Dict_Delete_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga0b5a05c0c0a1440a2b7f5c65838c4c8a"><span class="std std-ref">Dict_Delete_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaeefcffdf3da77db7a21cc501394928c3"><span class="std std-ref">Dict_Duplicate_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gab072e1c1ea2ecbd6881fe235bb611bab"><span class="std std-ref">Dict_Get_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gad92423deac677ba98bfe276e9e14b144"><span class="std std-ref">Dict_Set_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaeed65042ac9d4a7f90c5aecae3ac56f2"><span class="std std-ref">Dict_Copy_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga1ee41bbb04c3064a31a99d2e360d1ca3"><span class="std std-ref">Dict_Sub_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga84b7503627d61ceda7e3a0fd495ef94c"><span class="std std-ref">Dict_Add_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaccf54303df0743e6b7249f9ea3a0d39a"><span class="std std-ref">Dict_Remove_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga034067ff64dadf89ab8e91f23027bb36"><span class="std std-ref">Dict_Remove_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga60a13e6ad31a0c44fe46f65458540714"><span class="std std-ref">Dict_RemoveAll_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga58e738dd9be1ce3a0174b1021f5d486a"><span class="std std-ref">Dict_RemoveAll_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga31842ed354550ddce80982a24f7076f6"><span class="std std-ref">Dict_RemoveMatch_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gafb22cb41455a6487a01c4c4a53374d12"><span class="std std-ref">Dict_RemoveMatch_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga65f2415f8ef406bde5a54a1c01ac7453"><span class="std std-ref">Dict_RemoveMatches_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga973ddee79e435cf09be2691ed9c7185c"><span class="std std-ref">Dict_RemoveMatches_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga9c713cc42489f03429e37aa324261ff3"><span class="std std-ref">Dict_Replace_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="k">new</span><span class="p">);</span>
-<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga65d6a9d33c98ec065decc39f2ad25f95"><span class="std std-ref">Dict_KeyOf_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gafd97e82cbb144135b5407cae04429fc0"><span class="std std-ref">Dict_Find_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga7b814d69ff634b02b0a4efa5043a787d"><span class="std std-ref">Dict_Find_F_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
-<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga0e669c3a119d5d7080e7409aa1d5494f"><span class="std std-ref">Dict_Count_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaa0166aad505e04c20d944f490a090809"><span class="std std-ref">Dict_Contains_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">);</span>
-<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga19d4d4ffab3d06c806f929192a29273f"><span class="std std-ref">Dict_Has_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
-<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga8f0c3a5b580f5ecef23ea252a54befb0"><span class="std std-ref">Dict_HasOnly_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
-<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga37defd4dcf555fad5309cdafc835e99d"><span class="std std-ref">Dict_Equals_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">);</span>
-<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf2225c248864cd8610185e6e9c8e1ce"><span class="std std-ref">Dict_Equals_K_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">);</span>
-<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gab1bdcc746a88f5f9de2a8dc0684436b8"><span class="std std-ref">Dict_Compare_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span> <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item1</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">);</span>
-
-<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga92e90a8c3edcf8c70bb73f9b82da8d2d"><span class="std std-ref">Dict_Compare_K_T</span></a><span></span><span class="p">(</span>
-    <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span>
-    <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span>
-    <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">,</span>
-    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item1</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span>
-    <span class="p">);</span>
-
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga859eb9f79467b5ff73453010c403dcb0"><span class="std std-ref">Dict_Iterate_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
-<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga9d8cc9ada492ec6b9366078c7cc491a9"><span class="std std-ref">Dict_Iterate_I_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga38a90876d10ba13c53524f8751f09835"><span class="std std-ref">Dict_Map_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga6de3bd2381c4fc91f00f4e5be14e45bd"><span class="std std-ref">Dict_Map_I_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga58010298b5c3e8c115ef9d25f92a9d09"><span class="std std-ref">Dict_Filter_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga9bcead20a8433d98b5c37a07f3cc9d78"><span class="std std-ref">Dict_Filter_I_T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
+<span class="k">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span class="std std-ref">dict</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga02a871260eaefbb3cbd238794a63eae9"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+<span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1gafa0ecdef65392488bfcbfab7b5d1ab25"><span></span><span class="kt">s_dict</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga02a871260eaefbb3cbd238794a63eae9"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1ga0acb682b8260ab1c60b918599864e2e5"><span></span><span class="n">T</span></span><span></span>   <span class="kt">void</span><span class="o">*</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1ga9b10f19a4f29fd2599888400adc48b0e"><span></span><span class="n">T_DEFAULT</span></span><span></span>   <span class="nb">NULL</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1gab0de29dd51b2d0bc92d331eafb977751"><span></span><span class="n">T_EQUALS</span></span><span></span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>  <span class="p">((</span><span class="n">A</span><span class="p">)</span> <span class="o">==</span><span class="p">(</span><span class="n">B</span><span class="p">))</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1ga26591b844c5145d6be2f6dacb90b01aa"><span></span><span class="n">dict_T</span></span><span></span>  <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">dict</span><span class="p">,</span> <span></span><span class="n">T_NAME</span><span></span><span class="p">)</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1gadd58f8547d0b1690b2640118fa46213f"><span></span><span class="kt">s_dict_T</span></span><span></span>    <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="kt">s_dict</span><span class="p">,</span> <span></span><span class="n">T_NAME</span><span></span><span class="p">)</span></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-monad-dict"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span>  <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-monad-dict"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines a generic dictionary type and utility functions for it.</p>
-<div class="section" id="typedefs">
-<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_dict_T.html#doxid-structdict-t"><span class="std std-ref">dict_T</span></a><span></span> <span class="kt">s_dict_T</span></pre>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span id="index-1"></span><span></span><span class="k">struct</span> <span class="n">dict</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga02a871260eaefbb3cbd238794a63eae9"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
 <p>A simple dictionary struct, stores an array of key/value pairs.</p>
-</div>
-<div class="section" id="global-functions">
-<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga5df0a0d8a8314f3ef791fbd11580fc25"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <span class="n">Dict_T</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga0d7f7fdd2e1d955c806efbc50ed0281a"><span id="index-3"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_New_T</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gadb73e59a2b307a87cc728cb1463af72d"><span id="index-4"></span><span></span><span class="kt">void</span> <span class="n">Dict_Delete_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga0b5a05c0c0a1440a2b7f5c65838c4c8a"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">Dict_Delete_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaeefcffdf3da77db7a21cc501394928c3"><span id="index-6"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <span class="n">Dict_Duplicate_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gab072e1c1ea2ecbd6881fe235bb611bab"><span id="index-7"></span><span></span><span class="kt">void</span> <span class="n">Dict_Get_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gad92423deac677ba98bfe276e9e14b144"><span id="index-8"></span><span></span><span class="kt">void</span> <span class="n">Dict_Set_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaeed65042ac9d4a7f90c5aecae3ac56f2"><span id="index-9"></span><span></span><span class="kt">void</span> <span class="n">Dict_Copy_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga1ee41bbb04c3064a31a99d2e360d1ca3"><span id="index-10"></span><span></span><span class="kt">void</span> <span class="n">Dict_Sub_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga84b7503627d61ceda7e3a0fd495ef94c"><span id="index-11"></span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Add_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaccf54303df0743e6b7249f9ea3a0d39a"><span id="index-12"></span><span></span><span class="kt">void</span> <span class="n">Dict_Remove_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga034067ff64dadf89ab8e91f23027bb36"><span id="index-13"></span><span></span><span class="kt">void</span> <span class="n">Dict_Remove_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga60a13e6ad31a0c44fe46f65458540714"><span id="index-14"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveAll_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga58e738dd9be1ce3a0174b1021f5d486a"><span id="index-15"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveAll_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga31842ed354550ddce80982a24f7076f6"><span id="index-16"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveMatch_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gafb22cb41455a6487a01c4c4a53374d12"><span id="index-17"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveMatch_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga65f2415f8ef406bde5a54a1c01ac7453"><span id="index-18"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveMatches_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga973ddee79e435cf09be2691ed9c7185c"><span id="index-19"></span><span></span><span class="kt">void</span> <span class="n">Dict_RemoveMatches_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span><span class="n">keyval</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga9c713cc42489f03429e37aa324261ff3"><span id="index-20"></span><span></span><span class="kt">void</span> <span class="n">Dict_Replace_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">*</span> <span class="n">key</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="k">new</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga65d6a9d33c98ec065decc39f2ad25f95"><span id="index-21"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Dict_KeyOf_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gafd97e82cbb144135b5407cae04429fc0"><span id="index-22"></span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Find_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga7b814d69ff634b02b0a4efa5043a787d"><span id="index-23"></span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Find_F_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga0e669c3a119d5d7080e7409aa1d5494f"><span id="index-24"></span><span></span><span class="kt">t_uint</span> <span class="n">Dict_Count_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaa0166aad505e04c20d944f490a090809"><span id="index-25"></span><span></span><span class="kt">t_bool</span> <span class="n">Dict_Contains_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">value</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga19d4d4ffab3d06c806f929192a29273f"><span id="index-26"></span><span></span><span class="kt">t_bool</span> <span class="n">Dict_Has_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga8f0c3a5b580f5ecef23ea252a54befb0"><span id="index-27"></span><span></span><span class="kt">t_bool</span> <span class="n">Dict_HasOnly_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga37defd4dcf555fad5309cdafc835e99d"><span id="index-28"></span><span></span><span class="kt">t_bool</span> <span class="n">Dict_Equals_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gadf2225c248864cd8610185e6e9c8e1ce"><span id="index-29"></span><span></span><span class="kt">t_bool</span> <span class="n">Dict_Equals_K_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span> <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gab1bdcc746a88f5f9de2a8dc0684436b8"><span id="index-30"></span><span></span><span class="kt">t_sint</span> <span class="n">Dict_Compare_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span> <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item1</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga92e90a8c3edcf8c70bb73f9b82da8d2d"><span id="index-31"></span><span></span><span class="kt">t_sint</span> <span class="n">Dict_Compare_K_T</span><span class="p">(</span>
-    <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict1</span><span class="p">,</span>
-    <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict2</span><span class="p">,</span>
-    <span class="kt">t_char</span><span class="o">**</span> <span class="n">keys</span><span class="p">,</span>
-    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item1</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span>
-    <span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga859eb9f79467b5ff73453010c403dcb0"><span id="index-32"></span><span></span><span class="kt">void</span> <span class="n">Dict_Iterate_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga9d8cc9ada492ec6b9366078c7cc491a9"><span id="index-33"></span><span></span><span class="kt">void</span> <span class="n">Dict_Iterate_I_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga38a90876d10ba13c53524f8751f09835"><span id="index-34"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Map_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga6de3bd2381c4fc91f00f4e5be14e45bd"><span id="index-35"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Map_I_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga58010298b5c3e8c115ef9d25f92a9d09"><span id="index-36"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Filter_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
-<p>TODO.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga9bcead20a8433d98b5c37a07f3cc9d78"><span id="index-37"></span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">Dict_Filter_I_T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-dict-1gadf86a35584d98de8cb28cfc654fb2bd2"><span class="std std-ref">s_dict_T</span></a><span></span><span class="o">*</span> <span class="n">dict</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><a class="reference internal" href="group_libccc_monad_keyval.html#doxid-group-libccc-monad-keyval-1ga3df370f1dc5759cb5f985d4ed6af268b"><span class="std std-ref">s_keyval_T</span></a><span></span> <span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
-<p>TODO.</p>
-</div>
-</div>
-</div>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga0acb682b8260ab1c60b918599864e2e5"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="n">T</span>   <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a></pre>
+<p>set up generic declaration macros, to have <code class="docutils literal notranslate"><span class="pre">mygeneric(T)</span></code> syntax</p>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="struct_dict_T.html" class="btn btn-neutral float-right" title="struct dict_T" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="struct_keyval_T.html" class="btn btn-neutral float-left" title="struct keyval_T" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_monad_keyval.html" class="btn btn-neutral float-left" title="47) libccc/monad/keyval.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_monad_tree.html" class="btn btn-neutral float-right" title="49) libccc/monad/tree.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>

@@ -1,43 +1,26 @@
-
-
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>32) libccc/math/stat.h &mdash; libccc 1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-
-  
-  
-  
-  
-
-  
-  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/target-highlight.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
         <script src="_static/js/custom.js"></script>
-    
-    <script type="text/javascript" src="_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="struct prob_mass" href="struct_prob_mass.html" />
@@ -58,29 +41,13 @@
 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
-
-          
             <a href="index.html" class="icon icon-home"> libccc
-          
-
-          
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -88,17 +55,7 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc.html">01) libccc.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_config.html">02) libccc_config.h</a></li>
@@ -114,7 +71,6 @@
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_memory.html">12) libccc/memory.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_char.html">13) libccc/char.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_string.html">14) libccc/string.h</a></li>
-<li class="toctree-l2"><a class="reference internal" href="group_libccc_stringarray.html">15) libccc/stringarray.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_format.html">16) libccc/format.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_color.html">17) libccc/color.h</a></li>
 <li class="toctree-l2"><a class="reference internal" href="group_libccc_error.html">18) libccc/error.h</a></li>
@@ -162,6 +118,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringstring.html">array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
@@ -170,74 +128,36 @@
 <li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
 </ul>
 
-            
-          
         </div>
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="index.html">libccc</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="index.html">Docs</a> &raquo;</li>
-        
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="group_libccc.html">01) libccc.h</a> &raquo;</li>
-        
       <li>32) libccc/math/stat.h</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
-  <div class="section" id="libccc-math-stat-h">
-<span id="doxid-group-libccc-math-stat"></span><span id="index-0"></span><h1>32) libccc/math/stat.h<a class="headerlink" href="#libccc-math-stat-h" title="Permalink to this headline">¶</a></h1>
+             
+  <section id="libccc-math-stat-h">
+<span id="doxid-group-libccc-math-stat"></span><span id="index-0"></span><h1>32) libccc/math/stat.h<a class="headerlink" href="#libccc-math-stat-h" title="Permalink to this headline"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
 <p>This header defines some common statistics functions, for lists of int/float <a class="reference internal" href="#details-group-libccc-math-stat"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
@@ -309,12 +229,12 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-stat-1gaf804d7889f5848af108fcac44ce4bc54"><span></span><span class="n">c_stat_stddev_i</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-stat-1gad854a86952efb585dffbcfd00fd81458"><span class="std std-ref">Stat_Int_StandardDeviation</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-stat-1ga8a1b434920699a192e2ab18c284a1f70"><span></span><span class="n">c_stat_variance_f</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-stat-1ga575291c9e867e0159efe4ba38cf2b4ed"><span class="std std-ref">Stat_Float_Variance</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-math-stat-1ga2ad43eeb3f5502c1bc4b60799bf8427d"><span></span><span class="n">c_stat_variance_i</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-stat-1ga3fe828f9b08eadee35013385e3065e32"><span class="std std-ref">Stat_Int_Variance</span></a></pre>
-</div>
-<div class="section" id="detailed-documentation">
-<span id="details-group-libccc-math-stat"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-math-stat"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines some common statistics functions, for lists of int/float</p>
-<div class="section" id="typedefs">
-<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline">¶</a></h3>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1gaad810dad37cac7009b25d8b83833545e"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="n">array_int</span> <span class="kt">s_array_int</span></pre>
 <p class="rubric">See also:</p>
 <p>“libccc/monad/array.h”</p>
@@ -331,9 +251,9 @@
 <p>This type represents a list of floats whose values are ordered from smallest to largest.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1ga9c4017a6022a830a6e962da21684e709"><span id="index-7"></span><span></span><span class="k">typedef</span> <span class="k">struct</span> <a class="reference internal" href="struct_prob_mass.html#doxid-structprob-mass"><span class="std std-ref">prob_mass</span></a><span></span> <span class="kt">s_prob_mass</span></pre>
 <p>A struct for the probability mass function describing a discrete random var.</p>
-</div>
-<div class="section" id="global-functions">
-<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1ga427aa3564febf3e851eb0f6a75da2cc7"><span id="index-8"></span><a class="reference internal" href="#doxid-group-libccc-math-stat-1gaad810dad37cac7009b25d8b83833545e"><span class="std std-ref">s_array_int</span></a><span></span> <span class="n">Stat_Int_NewList</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">length</span><span class="p">)</span></pre>
 <p>TODO document this.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1ga145de1981b0a0785732f6daaf704147c"><span id="index-9"></span><span></span><span class="kt">void</span> <span class="n">Stat_Int_FreeList</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-stat-1gaad810dad37cac7009b25d8b83833545e"><span class="std std-ref">s_array_int</span></a><span></span><span class="o">*</span> <span class="n">ilst</span><span class="p">)</span></pre>
@@ -389,62 +309,44 @@
 <p>TODO document this.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1ga5292cae593739e259bacf6a09c5491c7"><span id="index-32"></span><a class="reference internal" href="#doxid-group-libccc-math-stat-1ga9c4017a6022a830a6e962da21684e709"><span class="std std-ref">s_prob_mass</span></a><span></span> <span class="n">Stat_IntList_To_PMF</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-math-stat-1gaad810dad37cac7009b25d8b83833545e"><span class="std std-ref">s_array_int</span></a><span></span> <span class="k">const</span> <span class="n">ilst</span><span class="p">)</span></pre>
 <p>Returns the probability distribution of an array of integers.</p>
-</div>
-<div class="section" id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-stat-1ga686da736a84d82d8cd914fde8b71e35a"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="n">PROB_APPROX</span> <span class="cp">(0.000001)</span></pre>
 <p>The amount of probabilistic approximation for libccc/math/stat functions.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
-           
           </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="struct_prob_mass.html" class="btn btn-neutral float-right" title="struct prob_mass" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="group_libccc_math_sort.html" class="btn btn-neutral float-left" title="31) libccc/math/sort.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_math_sort.html" class="btn btn-neutral float-left" title="31) libccc/math/sort.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="struct_prob_mass.html" class="btn btn-neutral float-right" title="struct prob_mass" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &copy; Copyright Free &amp; Open Source: MIT License
-
-    </p>
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
-
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
