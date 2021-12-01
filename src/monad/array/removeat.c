@@ -43,6 +43,7 @@ void	Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*delete)(T))
 {
 	T*	result;
 
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,

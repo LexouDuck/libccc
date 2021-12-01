@@ -39,6 +39,7 @@ s_list(T)*	List_Remove_F(T)(s_list(T)* list, T item, void (*delete)(T))
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	while (elem)
@@ -93,6 +94,7 @@ s_list(T)*	List_RemoveAll_F(T)(s_list(T)* list, T item, void (*delete)(T))
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	while (elem)

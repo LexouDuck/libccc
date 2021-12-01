@@ -114,7 +114,6 @@ monad/array/duplicate.c
 monad/array/equals.c
 monad/array/filter.c
 monad/array/find.c
-monad/array/free.c
 monad/array/get.c
 monad/array/has.c
 monad/array/insert.c
@@ -143,7 +142,6 @@ monad/list/duplicate.c
 monad/list/equals.c
 monad/list/filter.c
 monad/list/find.c
-monad/list/free.c
 monad/list/get.c
 monad/list/has.c
 monad/list/insert.c
@@ -163,10 +161,19 @@ monad/list/wedge.c
 pointer/int_from_str.c
 pointer/ptr_to_str.c
 pointer/size_to_str.c
+pointerarray/add.c
+pointerarray/compare.c
 pointerarray/concat.c
+pointerarray/contains.c
+pointerarray/copy.c
+pointerarray/count.c
 pointerarray/create.c
 pointerarray/delete.c
 pointerarray/duplicate.c
+pointerarray/equals.c
+pointerarray/filter.c
+pointerarray/find.c
+pointerarray/has.c
 pointerarray/insert.c
 pointerarray/iterate.c
 pointerarray/join.c
@@ -174,6 +181,10 @@ pointerarray/length.c
 pointerarray/map.c
 pointerarray/new.c
 pointerarray/reduce.c
+pointerarray/remove.c
+pointerarray/removeat.c
+pointerarray/replace.c
+pointerarray/reverse.c
 pointerarray/sub.c
 pointerarray/wedge.c
 random/csprng.c

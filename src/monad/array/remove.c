@@ -10,6 +10,7 @@ _GENERIC()
 void	Array_Remove(T)(s_array(T)* array, T item)
 {
 	t_sint	index;
+
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	index = Array_IndexOf(T)(array, item);
@@ -24,6 +25,8 @@ _GENERIC()
 void	Array_Remove_F(T)(s_array(T)* array, T item, void (*delete)(T))
 {
 	t_sint	index;
+
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	index = Array_IndexOf(T)(array, item);
@@ -86,6 +89,7 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T))
 	t_uint	i;
 	t_uint	amount;
 
+	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	if (array->length == 0)

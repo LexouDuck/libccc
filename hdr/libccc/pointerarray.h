@@ -231,7 +231,7 @@ void					PointerArray_RemoveAt(void** ptrarr, t_uint index);
 #define c_ptrarrdelat	PointerArray_RemoveAt
 
 //! Like Array_RemoveAt(), but you can supply a custom `delete` function
-void					PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*delete)(void));
+void					PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*delete)(void*));
 #define c_ptrarrfdelat	PointerArray_RemoveAt_F
 
 //! Removes the first item from the given `array` which is equal to the given `item`
@@ -246,7 +246,7 @@ void					PointerArray_Remove(void** ptrarr, void const* ptr);
 #define c_ptrarrdelone	PointerArray_Remove
 
 //! Like Array_Remove(), but you can supply a custom `delete` function
-void					PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*delete)(void));
+void					PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*delete)(void*));
 #define c_ptrarrfdelone	PointerArray_Remove_F
 
 //! Removes any items which are equal to the given `item` from the given `array`
@@ -261,7 +261,7 @@ void					PointerArray_RemoveAll(void** ptrarr, void const* ptr);
 #define c_ptrarrdelall	PointerArray_RemoveAll
 
 //! Like Array_RemoveAll(), but you can supply a custom `delete` function
-void					PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*delete)(void));
+void					PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*delete)(void*));
 #define c_ptrarrfdelall	PointerArray_RemoveAll_F
 
 
@@ -465,7 +465,7 @@ t_sint					PointerArray_Compare_N(void* const* ptrarr1, void* const* ptrarr2, t_
 **	The first encountered item of the given linked `array` which is equal to `item`,
 **	or `NULL` if no such item was found.
 */
-void*					PointerArray_Find(void* const* ptrarr, void const* ptr);
+void* const*			PointerArray_Find(void* const* ptrarr, void const* ptr);
 #define c_ptrarrfind	PointerArray_Find
 
 //! Returns the first encountered item in the given `array` matching the given `item`
@@ -476,7 +476,7 @@ void*					PointerArray_Find(void* const* ptrarr, void const* ptr);
 **	The first encountered item of the given linked `array` for which the given `match` function
 **	returned `TRUE`. Otherwise, returns `NULL` if no such item was found.
 */
-void*					PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const* ptr));
+void* const*			PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const* ptr));
 #define c_ptrarrffind	PointerArray_Find_F
 
 //! Returns the index of the first encountered item in the given `array` matching the given `item`
