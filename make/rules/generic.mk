@@ -11,11 +11,6 @@ GENERIC_TEMPLATE = make/rules/generic.template.c
 
 
 
-REGEXP_C_SYMBOL  =[a-zA-Z_][a-zA-Z_0-9]*
-REGEXP_C_GENTYPE =[A-Z]
-REGEXP_C_GENARGS =$(REGEXP_C_GENTYPE)(,[ \t]*$(REGEXP_C_GENTYPE))?
-REGEXP_C_GENERIC =($(REGEXP_C_SYMBOL))\(($(REGEXP_C_GENARGS))\)
-
 define AWKSCRIPT_GETHEADERGUARD
 match($$0, /^[ \t]*#[ \t]*ifndef ($(REGEXP_C_SYMBOL))/, matched)\
 {\
@@ -33,7 +28,7 @@ BEGIN {\
 {\
 	if (/^typedef\>/) declaration = 1;\
 	if (/^\}/)        declaration = 1;\
-	if (declaration && match($$0, /\<($(REGEXP_C_GENERIC))[ \t]*(;|\(|$$)/, matched))\
+	if (declaration && match($$0, /\<(($(REGEXP_C_SYMBOL))\(($(REGEXP_C_GENERIC))\))[ \t]*(;|\(|$$)/, matched))\
 	{\
 		symbols[symbolcount++] = matched[1];\
 		declaration = 0;\

@@ -39,13 +39,15 @@ CFLAGS_OS_WIN64 = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 CFLAGS_OS_OTHER = 
-ifeq ($(CC),clang)
-	CFLAGS_OS_WIN += -Wno-missing-braces
-endif
+
 CFLAGS_EXTRA = 
 #	-fsanitize=address \
 #	-fsanitize=thread \
 #	-fanalyzer \
+
+ifeq ($(CC),clang)
+	CFLAGS_OS_WIN += -Wno-missing-braces
+endif
 
 
 
