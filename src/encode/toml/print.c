@@ -771,8 +771,7 @@ static
 t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 {
 	static const t_size default_buffer_size = 256;
-	s_toml_print print;
-	s_toml_print* p = &print;
+	s_toml_print p[1];
 	t_utf8* printed = NULL;
 
 	Memory_Clear(p, sizeof(p));
