@@ -299,12 +299,12 @@ t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 */
 _GENERIC()
 void					StringArray_RemoveAt(t_char** strarr, t_uint index);
-#define c_arrdelat		StringArray_RemoveAt
+#define c_strarrdelat	StringArray_RemoveAt
 
 //! Like Array_RemoveAt(), but you can supply a custom `delete` function
 _GENERIC()
 void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char*));
-#define c_arrfdelat		StringArray_RemoveAt_F
+#define c_strarrfdelat	StringArray_RemoveAt_F
 
 //! Removes the first string from the given `strarr` which is equal to the given `string`
 /*!
@@ -316,12 +316,12 @@ void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_
 */
 _GENERIC()
 void					StringArray_Remove(t_char** strarr, t_char const* str);
-#define c_arrdelone		StringArray_Remove
+#define c_strarrdelone	StringArray_Remove
 
 //! Like Array_Remove(), but you can supply a custom `delete` function
 _GENERIC()
 void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
-#define c_arrfdelone	StringArray_Remove_F
+#define c_strarrfdelone	StringArray_Remove_F
 
 //! Removes any strings which are equal to the given `string` from the given `strarr`
 /*!
@@ -333,12 +333,12 @@ void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)
 */
 _GENERIC()
 void					StringArray_RemoveAll(t_char** strarr, t_char const* str);
-#define c_arrdelall		StringArray_RemoveAll
+#define c_strarrdelall	StringArray_RemoveAll
 
 //! Like Array_RemoveAll(), but you can supply a custom `delete` function
 _GENERIC()
 void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
-#define c_arrfdelall	StringArray_RemoveAll_F
+#define c_strarrfdelall	StringArray_RemoveAll_F
 
 
 
@@ -400,7 +400,7 @@ t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char* old, t_char*
 _MALLOC()
 _GENERIC()
 t_char**				StringArray_Reverse(t_char const** strarr);
-#define c_arrrev		StringArray_Reverse
+#define c_strarrrev		StringArray_Reverse
 
 
 
