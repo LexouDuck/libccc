@@ -86,6 +86,8 @@ math/float/trig.c
 math/float/trig_h.c
 math/int/comparison.c
 math/int/operators.c
+math/int/pow.c
+math/int/root.c
 math/stat/float.c
 math/stat/int.c
 memory/allocate.c
