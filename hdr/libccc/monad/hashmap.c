@@ -27,14 +27,18 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
-#undef object
-#undef s_object
+#undef hashitem
+#undef s_hashitem
+#undef hashmap
+#undef s_hashmap
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
-#define object(X)	CONCAT(object_,	X##_NAME)
-#define s_object(X)	CONCAT(s_object_,	X##_NAME)
+#define hashitem(X)	CONCAT(hashitem_,	X##_NAME)
+#define s_hashitem(X)	CONCAT(s_hashitem_,	X##_NAME)
+#define hashmap(X)	CONCAT(hashmap_,	X##_NAME)
+#define s_hashmap(X)	CONCAT(s_hashmap_,	X##_NAME)
 //!@}
 
 
@@ -65,8 +69,8 @@
 
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
-#undef __LIBCCC_MONAD_OBJECT_H
-#include "./hdr/libccc/monad/object.h"
+#undef __LIBCCC_MONAD_HASHMAP_H
+#include "libccc/monad/hashmap.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
@@ -92,14 +96,18 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
-#undef object
-#undef s_object
+#undef hashitem
+#undef s_hashitem
+#undef hashmap
+#undef s_hashmap
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
-#define object(T)	CONCAT(object_,	T)
-#define s_object(T)	CONCAT(s_object_,	T)
+#define hashitem(T)	CONCAT(hashitem_,	T)
+#define s_hashitem(T)	CONCAT(s_hashitem_,	T)
+#define hashmap(T)	CONCAT(hashmap_,	T)
+#define s_hashmap(T)	CONCAT(s_hashmap_,	T)
 //!@}
 
 

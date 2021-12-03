@@ -66,7 +66,7 @@
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
 #undef __LIBCCC_MONAD_TREE_H
-#include "./hdr/libccc/monad/tree.h"
+#include "libccc/monad/tree.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions

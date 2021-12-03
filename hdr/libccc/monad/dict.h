@@ -27,14 +27,14 @@
 #include "libccc/bool.h"
 #include "libccc/int.h"
 
-#include "libccc/monad/keyval.h"
-
 HEADER_CPP
 
 //! set up generic declaration macros, to have `mygeneric(T)` syntax
 #undef	T
 #define	T	T_TYPE
 #include "libccc/monad/dict.c"
+#undef	T
+#include "libccc/monad/keyval.h"
 
 /*
 ** ************************************************************************** *|

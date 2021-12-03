@@ -25,13 +25,18 @@
 */
 
 #include "libccc.h"
+
+HEADER_CPP
+
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/convert.c"
+#undef	T
 #include "libccc/monad/array.h"
 #include "libccc/monad/list.h"
 #include "libccc/monad/dict.h"
 #include "libccc/monad/tree.h"
-#include "libccc/monad/object.h"
-
-HEADER_CPP
 
 /*
 ** ************************************************************************** *|
@@ -40,28 +45,19 @@ HEADER_CPP
 */
 
 /*!
-**
-**	Compound storage types:
-**	`Array`	indexed contiguous storage (fast access, slow for size-changes)
-**	`List`	indexed fragmented storage (slow access, fast for size-changes)
-**	`Hash`	unordered bucket-like storage (fast, slightly more memory-hungry) TODO
-**
-**	With key:
-**	`KeyVal`	key+value pair (simple struct with a string and value)
-**
-**	`Dict`	named storage (configurable) TODO
-**	`Dict<Array>`	
-**	`Dict<List>`	
-**	`Dict<Hash>`	
-**	`Tree`	nested storage (configurable) TODO
-**	`Tree<Array>`	
-**	`Tree<List>`	
-**	`Tree<Hash>`	
-**	`Object`	named nested storage (configurable) TODO
-**	`Object<Array>`	
-**	`Object<List>`	
-**	`Object<Hash>`	
-**	
+**	Monadic compound storage types:
+**	`Array`  indexed contiguous storage (fast access, slow for size-changes)
+**	`List`   indexed fragmented storage (slow access, fast for size-changes)
+**	`Hash`   unordered bucket-like storage (fast, slightly more memory-hungry) TODO
+**	`KeyVal` key+value pair (simple struct with a string and value)
+**	`Dict`   named storage (configurable) TODO
+**	`Dict<Array>`	?
+**	`Dict<List>`	?
+**	`Dict<Hash>`	?
+**	`Tree`   nested storage (configurable) TODO
+**	`Tree<Array>`	?
+**	`Tree<List>`	?
+**	`Tree<Hash>`	?
 */
 
 
@@ -79,7 +75,7 @@ HEADER_CPP
 
 /*
 ** ************************************************************************** *|
-**                              List Conversions                              *|
+**                               List Conversions                             *|
 ** ************************************************************************** *|
 */
 
@@ -93,7 +89,7 @@ HEADER_CPP
 **	The resulting `s_array` struct converted from the given list,
 **	or `NULL` if an error occurred.
 */
-s_array					List_To_Array(s_list const** a_lst);
+s_array(T)				List_To_Array(s_list(T) const** a_lst);
 #define c_lst_to_array	List_To_Array
 
 //! Converts the given list at address `a_lst` to a NULL-terminated pointer array
@@ -107,7 +103,7 @@ s_array					List_To_Array(s_list const** a_lst);
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
-void**					List_To_PointerArray(s_list const** a_lst);
+void**					List_To_PointerArray(s_list(T) const** a_lst);
 #define c_lst_to_ptrarr	List_To_PointerArray
 
 

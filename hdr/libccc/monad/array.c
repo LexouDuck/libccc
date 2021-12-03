@@ -168,7 +168,7 @@
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
 #undef __LIBCCC_MONAD_ARRAY_H
-#include "./hdr/libccc/monad/array.h"
+#include "libccc/monad/array.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions

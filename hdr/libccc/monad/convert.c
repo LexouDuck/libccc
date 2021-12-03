@@ -62,7 +62,7 @@
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
 #undef __LIBCCC_MONAD_CONVERT_H
-#include "./hdr/libccc/monad/convert.h"
+#include "libccc/monad/convert.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions

@@ -66,7 +66,7 @@
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
 #undef __LIBCCC_MONAD_DICT_H
-#include "./hdr/libccc/monad/dict.h"
+#include "libccc/monad/dict.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
