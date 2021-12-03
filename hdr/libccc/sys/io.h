@@ -244,9 +244,7 @@ e_cccerror					IO_ChangeMode	(t_char const* filepath, t_io_mode mode);
 
 //! Returns the file access mode permissions for the file at 'filepath'
 /*!
-**	Uses SYSCALL:
-**		int stat(const char *pathname, struct stat* stat_buffer);
-**		result = stat_buffer.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
+**	@isostd{POSIX,https://linux.die.net/man/2/stat}
 **
 **	@param	filepath	The path of the file whose access permissions should be queried
 **	@returns the 'user', 'group' and 'other' IO modes as a single octal value

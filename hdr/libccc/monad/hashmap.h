@@ -49,8 +49,8 @@ typedef t_u32	t_hash;
 */
 typedef struct hashitem(T)
 {
-	t_hash	hash;
-	T		value;
+	t_hash	hash;	//!< hash code used to index/identify this item
+	T		value;	//!< value stored for this item
 }	s_hashitem(T);
 
 //! A dynamic hashmap struct, stores several hash-value pairs

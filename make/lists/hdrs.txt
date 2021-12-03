@@ -27,9 +27,8 @@ libccc/memory.h
 libccc/monad/array.h
 libccc/monad/convert.h
 libccc/monad/dict.h
-libccc/monad/keyval.h
+libccc/monad/hashmap.h
 libccc/monad/list.h
-libccc/monad/object.h
 libccc/monad/queue.h
 libccc/monad/stack.h
 libccc/monad/tree.h

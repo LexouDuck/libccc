@@ -32,7 +32,7 @@ HEADER_CPP
 #undef	T
 #define	T	T_TYPE
 #include "libccc/monad/convert.c"
-#undef	T
+
 #include "libccc/monad/array.h"
 #include "libccc/monad/list.h"
 #include "libccc/monad/dict.h"
@@ -68,8 +68,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-// TODO Array_ToList
-// TODO Array_ToPointerArray
+// TODO: s_list(T)*	Array_ToList(s_array(T) const* array);
+// TODO: void**		Array_ToPointerArray(s_array(T) const* array);
 
 
 
@@ -79,7 +79,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Converts the given list at address `a_lst` to a array
+//! Converts the given `list` to an array
 /*!
 **	Creates a new contiguous memory array from the given linked list.
 **	It sets this array pointer to the `items` pointer of the given `array`.
@@ -89,10 +89,10 @@ HEADER_CPP
 **	The resulting `s_array` struct converted from the given list,
 **	or `NULL` if an error occurred.
 */
-s_array(T)				List_To_Array(s_list(T) const** a_lst);
-#define c_lst_to_array	List_To_Array
+s_array(T)*				List_ToArray(s_list(T) const* list);
+#define c_lst_to_array	List_ToArray
 
-//! Converts the given list at address `a_lst` to a NULL-terminated pointer array
+//! Converts the given `list` to a NULL-terminated pointer array
 /*!
 **	Creates a new jagged array (2D pointer array) from the given list `*a_lst`.
 **	The top-level pointer array is terminated by a NULL pointer.
@@ -103,8 +103,8 @@ s_array(T)				List_To_Array(s_list(T) const** a_lst);
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
-void**					List_To_PointerArray(s_list(T) const** a_lst);
-#define c_lst_to_ptrarr	List_To_PointerArray
+void**					List_ToPointerArray(s_list(T) const* list);
+#define c_lst_to_ptrarr	List_ToPointerArray
 
 
 

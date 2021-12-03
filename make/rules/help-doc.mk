@@ -37,12 +37,14 @@ REGEXP_C_GENERIC =($(REGEXP_C_TYPEGEN)(,[ \t]*$(REGEXP_C_TYPEGEN))?)
 
 
 
-HELPDOC_AWK_DECL_SPACING = \
+HELPDOC_AWK_DECL_CLEANUP = \
 $$0 = gensub(/\<_[A-Z]+\(\)[ \t]*/,                                  "",         "g");\
 $$0 = gensub(/$(REGEXP_C_TYPEDEF)\($(REGEXP_C_GENERIC)\)/,           "\\1<\\2>", "g");\
 $$0 = gensub(/$(REGEXP_C_SYMBOL)\($(REGEXP_C_GENERIC)\)/,            "\\1<\\2>", "1");\
 $$0 = gensub(/($(REGEXP_C_SYMBOL)(<$(REGEXP_C_GENERIC)>)?)[ \t]*\(/, "\\1\t(",   "1");\
 $$0 = gensub(/[ \t][ \t]+/,                                          "\t",       "g");\
+
+HELPDOC_AWK_DECL_SPACING = \
 split($$0, line, "\t");\
 $$0 = sprintf("%-20s %-40s %s", line[1], line[2], line[3]);\
 
@@ -65,12 +67,32 @@ help-doc:
 	@for i in $(DOC_FILES) ; do \
 		$(call print_message,"$${i}") ; \
 		gawk '\
+		BEGIN {\
+			skip = 0;\
+			docblock = 0;\
+		}\
 		{\
-			if ($(DOC_MATCH))\
+			if (skip)\
 			{\
-				$(HELPDOC_AWK_DECL_SPACING)\
-				$(HELPDOC_AWK_SYNTAXCOLORS)\
-				print;\
+				if (/^[ \t]*#[ \t]*(else|endif)/) { skip = 0; }\
+				next;\
+			}\
+			else if (docblock == 0)\
+			{\
+				if ($(DOC_MATCH))\
+				{\
+					$(HELPDOC_AWK_DECL_CLEANUP)\
+					$(HELPDOC_AWK_DECL_SPACING)\
+					$(HELPDOC_AWK_SYNTAXCOLORS)\
+					print;\
+				}\
+				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE)/) { skip = 1; }\
+				else if (/\/\//) { next; }\
+				else if (/\/\*/) { docblock = 1; }\
+			}\
+			else if (/\*\//)\
+			{\
+				docblock = 0;\
 			}\
 		}\
 		' "$${i}" ; \
@@ -84,9 +106,19 @@ help-doc-full #! Displays documentation for any line matching the given regexp (
 help-doc-full:
 	@for i in $(DOC_FILES) ; do \
 		gawk '\
-		BEGIN { doc = ""; docblock = 0; output = ""; }\
+		BEGIN {\
+			skip = 0;\
+			docblock = 0;\
+			doc = "";\
+			output = "";\
+		}\
 		{\
-			if (docblock == 0)\
+			if (skip)\
+			{\
+				if (/^[ \t]*#[ \t]*(else|endif)/) { skip = 0; }\
+				next;\
+			}\
+			else if (docblock == 0)\
 			{\
 				if ($(DOC_MATCH))\
 				{\
@@ -97,6 +129,7 @@ help-doc-full:
 					doc = "";\
 					docblock = 0;\
 				}\
+				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE)/) { skip = 1; }\
 				else if (/\/\/!/ || /\/\/\//) { doc = (!/@{/ ? $$0 : doc); }\
 				else if (/\/\*!/ || /\/\*\*/) { doc = doc "\n" $$0; docblock = 1; }\
 				else if (/^_[A-Z]+\(\)/) {  }\

@@ -48,7 +48,7 @@ typedef struct stack(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}			s_stack(T);
+}	s_stack(T);
 
 
 

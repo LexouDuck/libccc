@@ -95,11 +95,11 @@ endef
 generic #! This rule creates a generic import file for any files given as `GENERIC_HEADERS`
 generic:
 	@for i in $(GENERIC_HEADERS) ; do \
-		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||'`" ; \
-		output="`echo $${i} | sed 's|\.h$$|\.c|'`" ; \
+		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||' `" ; \
+		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
 		$(call print_message,"Generating generic import file:"$(IO_RESET)" $${output}") ; \
 		awk \
-			-v header="`echo $${i}`" \
+			-v header="`echo $${i} | sed 's|\./hdr/||' `" \
 			-v header_guard="`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`" \
 			-v sources="`grep "$${folder}" $(SRCSFILE)`" \
 			-v symbols="`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`" \

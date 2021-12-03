@@ -27,12 +27,16 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
+#undef keyval
+#undef s_keyval
 #undef dict
 #undef s_dict
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
+#define keyval(X)	CONCAT(keyval_,	X##_NAME)
+#define s_keyval(X)	CONCAT(s_keyval_,	X##_NAME)
 #define dict(X)	CONCAT(dict_,	X##_NAME)
 #define s_dict(X)	CONCAT(s_dict_,	X##_NAME)
 //!@}
@@ -92,12 +96,16 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
+#undef keyval
+#undef s_keyval
 #undef dict
 #undef s_dict
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
+#define keyval(T)	CONCAT(keyval_,	T)
+#define s_keyval(T)	CONCAT(s_keyval_,	T)
 #define dict(T)	CONCAT(dict_,	T)
 #define s_dict(T)	CONCAT(s_dict_,	T)
 //!@}

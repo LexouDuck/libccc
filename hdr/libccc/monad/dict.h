@@ -33,14 +33,22 @@ HEADER_CPP
 #undef	T
 #define	T	T_TYPE
 #include "libccc/monad/dict.c"
-#undef	T
-#include "libccc/monad/keyval.h"
 
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
+
+//! A simple key+value pair struct, used in the 's_dict' dictionary struct
+/*
+**	TODO document this
+*/
+typedef struct keyval(T)
+{
+	t_char*		key;	//!< The key string associated with the `value`
+	T			value;	//!< The pointer to the data for the `value`
+}	s_keyval(T);
 
 //! A simple dictionary struct, stores an array of key/value pairs.
 /*
@@ -60,6 +68,25 @@ typedef struct dict(T)
 #define foreach_s_dict_loop_exit(	_TYPE_, _VAR_, _DICT_)	(_VAR_##_i < (_DICT_)->length)
 #define foreach_s_dict_loop_incr(	_TYPE_, _VAR_, _DICT_)	++_VAR_##_i
 #define foreach_s_dict_loop_setv(	_TYPE_, _VAR_, _DICT_)	_VAR_ = (_VAR_##_i == (_DICT_)->length ? _VAR_ : (_DICT_)->items[_VAR_##_i])
+
+
+
+/*
+** ************************************************************************** *|
+**                            Basic KeyVal Operations                         *|
+** ************************************************************************** *|
+*/
+
+// TODO KeyVal
+// TODO KeyVal_New
+// TODO KeyVal_Delete
+// TODO KeyVal_Duplicate
+
+// TODO KeyVal_Get
+// TODO KeyVal_Set
+
+// TODO KeyVal_Equals
+// TODO KeyVal_Compare
 
 
 

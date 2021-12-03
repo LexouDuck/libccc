@@ -155,24 +155,24 @@ s_json*					JSON_FromString_Strict(t_utf8 const* str);
 **	@returns
 **	The amount of characters written to the given `dest` buffer
 */
-//!@{
 t_size					JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n);
 #define c_jsonprintfmt 	JSON_Print_Pretty
-
-//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
-t_size					JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n);
-#define c_jsonprintmin	JSON_Print_Minify
-//!@}
-
-// TODO alternate versions which can print BigInt numbers and comments ?
 
 //! Get a new string from the given JSON `item`, with readable formatting.
 t_utf8*					JSON_ToString_Pretty(s_json const* item);
 #define c_jsontostrfmt	JSON_ToString_Pretty
 
+
+
+//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+t_size					JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n);
+#define c_jsonprintmin	JSON_Print_Minify
+
 //! Get a new string from the given JSON `item`, without any formatting/whitespace.
 t_utf8*					JSON_ToString_Minify(s_json const* item);
 #define c_jsontostrmin	JSON_ToString_Minify
+
+// TODO alternate versions which can print BigInt numbers and comments ?
 
 
 

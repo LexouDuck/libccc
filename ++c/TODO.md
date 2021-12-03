@@ -914,6 +914,7 @@ void HelloWorld(void);
 The above example would transpile to the following C code output:
 ```c
 // C code
+#pragma once
 #ifndef __HEADER_H
 #define __HEADER_H
 
