@@ -219,12 +219,16 @@ string/set.c
 string/sub.c
 string/trim.c
 stringarray/add.c
+stringarray/compare.c
 stringarray/concat.c
+stringarray/copy.c
 stringarray/count.c
 stringarray/create.c
 stringarray/delete.c
 stringarray/divide.c
 stringarray/duplicate.c
+stringarray/equals.c
+stringarray/filter.c
 stringarray/insert.c
 stringarray/iterate.c
 stringarray/join.c
@@ -233,6 +237,10 @@ stringarray/map.c
 stringarray/new.c
 stringarray/pad.c
 stringarray/reduce.c
+stringarray/remove.c
+stringarray/removeat.c
+stringarray/replace.c
+stringarray/reverse.c
 stringarray/split_char.c
 stringarray/split_charset.c
 stringarray/split_str.c

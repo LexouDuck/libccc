@@ -1,34 +1,35 @@
 
 #include "libccc/memory.h"
-#include "libccc/pointerarray.h"
+#include "libccc/string.h"
+#include "libccc/stringarray.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr))
+t_char**	StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const* str))
 {
-	void**	result;
+	t_char**	result;
 	t_bool*	tmp;
 	t_uint	result_length;
 	t_uint	length;
 	t_uint	i;
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
-	if (length == 0 || ptrarr == NULL)
-		return ((void**)Memory_New(sizeof(void*)));
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	length = StringArray_Length(strarr);
+	if (length == 0 || strarr == NULL)
+		return ((t_char**)String_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
 	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
 	result_length = 0;
 	for (i = 0; i < length; ++i)
 	{
-		tmp[i] = filter(ptrarr[i]);
+		tmp[i] = filter(strarr[i]);
 		if (tmp[i])
 			++result_length;
 	}
-	result = PointerArray_New(result_length, NULL);
+	result = StringArray_New(result_length);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
 	if (result_length == 0)
 		return (result);
@@ -37,7 +38,7 @@ void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr
 	{
 		if (tmp[i])
 		{
-			result[index++] = ptrarr[i];
+			result[index++] = String_Duplicate(strarr[i]);
 		}
 		if (index >= result_length)
 			break;
@@ -47,29 +48,29 @@ void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr
 }
 
 
-void**	PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void const* ptr, t_uint index))
+t_char**	StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char const* str, t_uint index))
 {
-	void**	result;
+	t_char**	result;
 	t_bool*	tmp;
 	t_uint	result_length;
 	t_uint	length;
 	t_uint	i;
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
-	if (length == 0 || ptrarr == NULL)
-		return ((void**)Memory_New(sizeof(void*)));
+	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	length = StringArray_Length(strarr);
+	if (length == 0 || strarr == NULL)
+		return ((t_char**)String_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
 	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
 	result_length = 0;
 	for (i = 0; i < length; ++i)
 	{
-		tmp[i] = filter(ptrarr[i], i);
+		tmp[i] = filter(strarr[i], i);
 		if (tmp[i])
 			++result_length;
 	}
-	result = PointerArray_New(result_length, NULL);
+	result = StringArray_New(result_length);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
 	if (result_length == 0)
 		return (result);
@@ -78,7 +79,7 @@ void**	PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void const* p
 	{
 		if (tmp[i])
 		{
-			result[index++] = ptrarr[i];
+			result[index++] = String_Duplicate(strarr[i]);
 		}
 		if (index >= result_length)
 			break;

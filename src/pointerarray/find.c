@@ -5,7 +5,6 @@
 
 
 
-_GENERIC()
 void* const*	PointerArray_Find(void* const* ptrarr, void const* ptr)
 {
 	t_uint	length;
@@ -21,7 +20,6 @@ void* const*	PointerArray_Find(void* const* ptrarr, void const* ptr)
 }
 
 
-_GENERIC()
 void* const*	PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const* ptr))
 {
 	t_uint	length;
@@ -37,7 +35,6 @@ void* const*	PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const
 }
 
 
-_GENERIC()
 t_sint	PointerArray_IndexOf(void* const* ptrarr, void const* ptr)
 {
 	t_uint	length;
@@ -53,7 +50,6 @@ t_sint	PointerArray_IndexOf(void* const* ptrarr, void const* ptr)
 }
 
 
-_GENERIC()
 t_sint	PointerArray_IndexOf_F(void* const* ptrarr, t_bool (*match)(void const* ptr))
 {
 	t_uint	length;

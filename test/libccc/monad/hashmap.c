@@ -1,5 +1,5 @@
 
-#include "libccc/monad/object.h"
+#include "libccc/monad/hashmap.h"
 
 #include "test.h"
 
@@ -11,9 +11,9 @@
 ** ************************************************************************** *|
 */
 
-int		testsuite_monad_object(void)
+int		testsuite_monad_hashmap(void)
 {
-	print_suite_title("libccc/monad/object");
+	print_suite_title("libccc/monad/hashmap");
 
 	// TODO
 

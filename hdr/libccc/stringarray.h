@@ -297,12 +297,10 @@ t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 **	The string array given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless the `index` given is zero.
 */
-_GENERIC()
 void					StringArray_RemoveAt(t_char** strarr, t_uint index);
 #define c_strarrdelat	StringArray_RemoveAt
 
 //! Like Array_RemoveAt(), but you can supply a custom `delete` function
-_GENERIC()
 void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char*));
 #define c_strarrfdelat	StringArray_RemoveAt_F
 
@@ -314,12 +312,10 @@ void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_
 **	The `strarr` given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless the matched string is at position zero.
 */
-_GENERIC()
 void					StringArray_Remove(t_char** strarr, t_char const* str);
 #define c_strarrdelone	StringArray_Remove
 
 //! Like Array_Remove(), but you can supply a custom `delete` function
-_GENERIC()
 void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
 #define c_strarrfdelone	StringArray_Remove_F
 
@@ -331,12 +327,10 @@ void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)
 **	The string array given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless a matched string is at position zero.
 */
-_GENERIC()
 void					StringArray_RemoveAll(t_char** strarr, t_char const* str);
 #define c_strarrdelall	StringArray_RemoveAll
 
 //! Like Array_RemoveAll(), but you can supply a custom `delete` function
-_GENERIC()
 void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
 #define c_strarrfdelall	StringArray_RemoveAll_F
 
@@ -352,8 +346,7 @@ void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*dele
 **	will instead have a value of `new`, or `NULL` if an error occurred.
 */
 _MALLOC()
-_GENERIC()
-t_char**				StringArray_Replace(t_char const** strarr, t_char* old, t_char* new);
+t_char**				StringArray_Replace(t_char const** strarr, t_char const* old, t_char const* new);
 #define c_strarrrep		StringArray_Replace
 
 //! Creates a new string array from the given `strarr`, where the first `n` occurences of `old` are replaced with `new`.
@@ -368,8 +361,7 @@ t_char**				StringArray_Replace(t_char const** strarr, t_char* old, t_char* new)
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
-_GENERIC()
-t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char* old, t_char* new, t_uint n);
+t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrrepfirst	StringArray_ReplaceFirst
 
 //! Creates a new string array from the given `strarr`, where the last `n` occurences of `old` are replaced with `new`.
@@ -384,8 +376,7 @@ t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char* old, t_char
 **	or `NULL` if an error occurred.
 */
 _MALLOC()
-_GENERIC()
-t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char* old, t_char* new, t_uint n);
+t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrreplast		StringArray_ReplaceLast
 
 
@@ -398,7 +389,6 @@ t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char* old, t_char*
 **	reversed. This means that the last string will become the first string, and so on.
 */
 _MALLOC()
-_GENERIC()
 t_char**				StringArray_Reverse(t_char const** strarr);
 #define c_strarrrev		StringArray_Reverse
 
@@ -500,8 +490,7 @@ t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
 **	`TRUE` if each string of both string arrays are equal, and the string arrays have the same amount of strings.
 **	Otherwise, `FALSE` is returned.
 */
-_GENERIC()
-t_bool					StringArray_Equals(t_char const** strarr1, t_char const* strarr2);
+t_bool					StringArray_Equals(t_char const** strarr1, t_char const** strarr2);
 #define c_strarrequ		StringArray_Equals
 
 //! Checks if two string arrays have the same content (pointers may differ), for the `n` first strings
@@ -515,8 +504,7 @@ t_bool					StringArray_Equals(t_char const** strarr1, t_char const* strarr2);
 **	`TRUE` if the first `n` strings of both string arrays are equal.
 **	Otherwise, `FALSE` is returned.
 */
-_GENERIC()
-t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const* strarr2, t_uint n);
+t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, t_uint n);
 #define c_strarrnequ	StringArray_Equals_N
 
 
@@ -529,7 +517,6 @@ t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const* strarr2, t
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
-_GENERIC()
 t_sint					StringArray_Compare	(t_char const** strarr1, t_char const** strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2));
 #define c_strarrcmp		StringArray_Compare
 
@@ -542,7 +529,6 @@ t_sint					StringArray_Compare	(t_char const** strarr1, t_char const** strarr2, 
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
-_GENERIC()
 t_sint					StringArray_Compare_N	(t_char const** strarr1, t_char const** strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2), t_uint n);
 #define c_strarrncmp	StringArray_Compare_N
 
@@ -602,7 +588,6 @@ void					StringArray_Iterate(t_char** strarr, t_char* (*f)(t_char* str));
 #define c_strarriter	StringArray_Iterate
 
 //! Like StringArray_Iterate(), but the user-supplied function receives the current index
-_GENERIC()
 void					StringArray_Iterate_I(t_char** strarr, t_char* (*f)(t_char* str, t_uint index));
 #define c_strarriiter	StringArray_Iterate_I
 
@@ -622,7 +607,6 @@ t_char**				StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const* 
 #define c_strarrmap		StringArray_Map
 
 //! Like StringArray_Map(), but the user-supplied function receives the current index
-_GENERIC()
 t_char**				StringArray_Map_I(t_char const** strarr, t_char* (*map)(t_char const* str, t_uint index));
 #define c_strarrimap	StringArray_Map_I
 
@@ -635,12 +619,10 @@ t_char**				StringArray_Map_I(t_char const** strarr, t_char* (*map)(t_char const
 **	@returns
 **	A new string array, created by storing the return values of each call to the given `map` function.
 */
-_GENERIC()
 t_char**				StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const* str));
 #define c_strarrfilter	StringArray_Filter
 
 //! Like StringArray_Filter(), but the user-supplied function receives the current index
-_GENERIC()
 t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char const* str, t_uint index));
 #define c_strarrifilter	StringArray_Filter_I
 
@@ -657,12 +639,10 @@ t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char 
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
-_GENERIC()
 void*					StringArray_Reduce(t_char const** strarr, void* (*f)(t_char const* str, void* acc));
 #define c_strarrreduce	StringArray_Reduce
 
 //! Like StringArray_Reduce(), but the user-supplied function receives the current index
-_GENERIC()
 void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index));
 #define c_strarrireduce	StringArray_Reduce_I
 
@@ -677,12 +657,10 @@ void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* s
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
-_GENERIC()
 void*					StringArray_Fold(t_char const** strarr, void* (*f)(t_char const* str, void* acc), void* initial);
 #define c_strarrfold	StringArray_Fold
 
 //! Like StringArray_Reduce(), but the user-supplied function receives the current index
-_GENERIC()
 void*					StringArray_Fold_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index), void* initial);
 #define c_strarrifold	StringArray_Fold_I
 

@@ -5,7 +5,6 @@
 
 
 
-_GENERIC()
 t_bool	PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2)
 {
 	t_uint	length1;
@@ -26,7 +25,6 @@ t_bool	PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2)
 }
 
 
-_GENERIC()
 t_bool	PointerArray_Equals_N(void* const* ptrarr1, void* const* ptrarr2, t_uint n)
 {
 	t_uint	length1;

@@ -18,8 +18,8 @@
 ./test/libccc/memory.c
 ./test/libccc/monad/array.c
 ./test/libccc/monad/dict.c
+./test/libccc/monad/hashmap.c
 ./test/libccc/monad/list.c
-./test/libccc/monad/object.c
 ./test/libccc/monad/tree.c
 ./test/libccc/pointer.c
 ./test/libccc/pointerarray.c

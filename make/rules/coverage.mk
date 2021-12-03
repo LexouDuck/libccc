@@ -36,7 +36,7 @@ GCOVFILES_GCOV = $(OBJS:%.o=%.gcov)
 
 
 .PHONY:\
-test-coverage #! Generates human-readable HTML output reports for code-coverage tests
+test-coverage #! Generates simple text file output reports for code-coverage tests
 test-coverage: CFLAGS       += --coverage
 test-coverage: TEST_LDFLAGS += --coverage
 test-coverage: clean test

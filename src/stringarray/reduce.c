@@ -6,7 +6,6 @@
 
 
 
-_GENERIC()
 void*	StringArray_Reduce(t_char const** strarr,
 	void* (*f)(t_char const* str, void* acc))
 {
@@ -23,7 +22,6 @@ void*	StringArray_Reduce(t_char const** strarr,
 	return (accumulator);
 }
 
-_GENERIC()
 void*	StringArray_Reduce_I(t_char const** strarr,
 	void* (*f)(t_char const* str, void* acc, t_uint index))
 {
@@ -42,7 +40,6 @@ void*	StringArray_Reduce_I(t_char const** strarr,
 
 
 
-_GENERIC()
 void*	StringArray_Fold(t_char const** strarr,
 	void* (*f)(t_char const* str, void* acc), void* initial)
 {
@@ -59,7 +56,6 @@ void*	StringArray_Fold(t_char const** strarr,
 	return (accumulator);
 }
 
-_GENERIC()
 void*	StringArray_Fold_I(t_char const** strarr,
 	void* (*f)(t_char const* str, void* acc, t_uint index), void* initial)
 {
