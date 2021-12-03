@@ -606,7 +606,7 @@ _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 
 // Decimal printer functions
 
-
+#if 0
 
 //! Get the string decimal (base 10) representation of an unsigned integer
 /*!
@@ -666,7 +666,7 @@ _MALLOC()	t_char*		S128_ToString_Dec(t_s128 number);
 #endif
 //!@}
 
-
+#endif
 
 // Hexadecimal printer functions
 

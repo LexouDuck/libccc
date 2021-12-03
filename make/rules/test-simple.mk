@@ -78,7 +78,8 @@ $(NAME_TEST_UNDEFINED): build-$(MODE) $(SRCS_TEST_UNDEFINED)
 
 TEST_UNDEFINED_INCLUDES = $(HDRS:libccc/monad/%.h=libccc/monad/%.c)
 
-#! Generates a .c file which calls every function declared from every header in the project
+.PHONY:\
+$(SRCS_TEST_UNDEFINED) #! Generates a .c file which calls every function declared from every header in the project
 $(SRCS_TEST_UNDEFINED): HDRS := $(filter-out libccc/monad/convert.h,$(HDRS))
 $(SRCS_TEST_UNDEFINED): $(addprefix $(HDRDIR),$(TEST_UNDEFINED_INCLUDES))
 	@printf "Generating testing program: "$@" -> "
