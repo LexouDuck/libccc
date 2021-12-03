@@ -145,7 +145,7 @@ void						Logger_Init(s_logger *a_logger);
 #define c_log_init			Logger_Init
 #define InitializeLogger	Logger_Init
 
-//! Cleanly release logger (close file descriptors, etc)
+//! Cleanly release logger (close file descriptors, free internal memory)
 void						Logger_Exit(s_logger *a_logger);
 #define c_log_exit			Logger_Exit
 #define FinalizeLogger		Logger_Exit

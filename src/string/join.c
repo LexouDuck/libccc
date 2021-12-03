@@ -60,6 +60,8 @@ t_char*		String_Join(t_char const** strarr, t_char const* separator)
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (separator == NULL), return (NULL);)
+	if (strarr[0] == NULL)
+		return (String_Duplicate(""));
 	strarr_strs = 0;
 	strarr_chars = 0;
 	String_Join_GetWordAndCharCount(strarr, &strarr_strs, &strarr_chars);
