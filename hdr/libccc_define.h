@@ -189,23 +189,65 @@ HEADER_CPP
 //! Check if this environment supports 128-bit integer types
 //!@{
 #ifdef __SIZEOF_INT128__
-#ifndef __int128
-#define __int128	__int128
-#endif
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wpedantic"
-typedef unsigned __int128	_UInt128;
-typedef signed   __int128	_SInt128;
-#pragma GCC diagnostic pop
+	#ifndef __int128
+	#define __int128 \
+			__int128
+	#endif
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpedantic"
+	typedef unsigned __int128	_UInt128;
+	typedef signed   __int128	_SInt128;
+	#pragma GCC diagnostic pop
 #endif
 //!@}
 
 //! This macro is set to `1` if the current platform supports 128-bit integers, or `0` otherwise
 //!@{
 #ifndef __int128
-#define _HAS_128BIT	0
+#define _HAS_INT128	0
 #else
-#define _HAS_128BIT	1
+#define _HAS_INT128	1
+#endif
+//!@}
+
+
+
+//! Check if this environment supports extended-precision `long double` type
+//!@{
+#ifdef __LDBL_MANT_DIG__
+#if (__LDBL_MANT_DIG__ == 53) // long double is 64-bit
+	// nothing to do
+#elif (__LDBL_MANT_DIG__ == 64) // long double is 80-bit (mantissa:64bit, exponent:15bit)
+	#ifndef __float80
+	#define __float80 \
+			__float80
+	typedef long double	_Float80;
+	#endif
+#elif (__LDBL_MANT_DIG__ >= 112) // long double is 128-bit (mantissa:113bit, exponent:15bit)
+	#ifndef __float128
+	#define __float128 \
+			__float128
+	typedef long double	_Float128;
+	#endif
+#endif
+#endif
+//!@}
+
+//! This macro is set to `1` if the current platform supports 80-bit (96-bit) floats, or `0` otherwise
+//!@{
+#ifndef __float80
+#define _HAS_FLOAT80	0
+#else
+#define _HAS_FLOAT80	1
+#endif
+//!@}
+
+//! This macro is set to `1` if the current platform supports 128-bit floats, or `0` otherwise
+//!@{
+#ifndef __float128
+#define _HAS_FLOAT128	0
+#else
+#define _HAS_FLOAT128	1
 #endif
 //!@}
 

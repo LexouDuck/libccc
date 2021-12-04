@@ -32,25 +32,6 @@
 ** ************************************************************************** *|
 */
 
-//! Check if this environment supports extended-precision `long double` type
-//!@{
-#ifdef __LDBL_MANT_DIG__
-#if (__LDBL_MANT_DIG__ == 53) // long double is 64-bit
-
-#elif (__LDBL_MANT_DIG__ == 64) // long double is 80-bit (mantissa:64bit, exponent:15bit)
-	#ifndef __float80
-	#define __float80
-	typedef long double	_Float80;
-	#endif
-#elif (__LDBL_MANT_DIG__ >= 112) // long double is 128-bit (mantissa:113bit, exponent:15bit)
-	#ifndef __float128
-	#define __float128
-	typedef long double	_Float128;
-	#endif
-#endif
-#endif
-//!@}
-
 #include "libccc.h"
 
 HEADER_CPP
