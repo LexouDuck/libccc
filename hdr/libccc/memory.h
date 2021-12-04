@@ -36,6 +36,15 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Type definition for a pointer
+/*!
+**	This typedef is only provided for certain niche purposes, since it is typically
+**	not very good practice in C to hide pointers within `typedef` types.
+*/
+typedef void*	p_ptr;
+
+
+
 //! macros for byte sizes
 #define KB(X)	((X) * 1024)	//!< converts a value expressed in kilobytes to its equivalent in bytes
 #define MB(X)	(KB(X) * 1024)	//!< converts a value expressed in megabytes to its equivalent in bytes

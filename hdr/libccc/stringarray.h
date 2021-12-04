@@ -34,6 +34,13 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Type definition for an array of strings
+/*!
+**	This typedef is only provided for certain niche purposes, since it is typically
+**	not very good practice in C to hide pointers within `typedef` types.
+*/
+typedef t_char**	p_strarray;
+
 
 
 /*

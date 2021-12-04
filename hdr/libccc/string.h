@@ -38,11 +38,20 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Type definition for a string of characters
+/*!
+**	This typedef is only provided for certain niche purposes, since it is typically
+**	not very good practice in C to hide pointers within `typedef` types.
+*/
+typedef t_char*	p_str;
+
+
+
 /* TODO function pointers
-**	typedef void	(*f_string_iterate)		(t_char* )
-**	typedef void	(*f_string_iterate_i)	(unsigned int, t_char* )
-**	typedef t_char	(*f_string_map)			(t_char)
-**	typedef t_char	(*f_string_map_i)		(unsigned int, t_char)
+typedef void	(*f_string_iterate)		(t_char* )
+typedef void	(*f_string_iterate_i)	(unsigned int, t_char* )
+typedef t_char	(*f_string_map)			(t_char)
+typedef t_char	(*f_string_map_i)		(unsigned int, t_char)
 */
 
 
