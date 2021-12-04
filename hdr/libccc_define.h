@@ -203,10 +203,12 @@ HEADER_CPP
 
 //! This macro is set to `1` if the current platform supports 128-bit integers, or `0` otherwise
 //!@{
-#ifndef __int128
-#define _HAS_INT128	0
-#else
+#ifdef __int128
 #define _HAS_INT128	1
+#elif LIBCONFIG_USE_INT128
+#error "Current platform does not support native int128 type: please set LIBCONFIG_USE_INT128 to 0"
+#else
+#define _HAS_INT128	0
 #endif
 //!@}
 
@@ -235,19 +237,23 @@ HEADER_CPP
 
 //! This macro is set to `1` if the current platform supports 80-bit (96-bit) floats, or `0` otherwise
 //!@{
-#ifndef __float80
-#define _HAS_FLOAT80	0
-#else
+#ifdef __float80
 #define _HAS_FLOAT80	1
+#elif LIBCONFIG_USE_FLOAT80
+#error "Current platform does not support native float80 type: please set LIBCONFIG_USE_FLOAT80 to 0"
+#else
+#define _HAS_FLOAT80	0
 #endif
 //!@}
 
 //! This macro is set to `1` if the current platform supports 128-bit floats, or `0` otherwise
 //!@{
-#ifndef __float128
-#define _HAS_FLOAT128	0
-#else
+#ifdef __float128
 #define _HAS_FLOAT128	1
+#elif LIBCONFIG_USE_FLOAT128
+#error "Current platform does not support native float128 type: please set LIBCONFIG_USE_FLOAT128 to 0"
+#else
+#define _HAS_FLOAT128	0
 #endif
 //!@}
 

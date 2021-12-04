@@ -13,8 +13,7 @@ MATH_DECL_REALFUNCTION(Abs, fabs)
 #define DEFINEFUNC_FLOAT_ABS(BITS) \
 inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
 {												\
-	u_f##BITS##_cast	result;					\
-												\
+	u_float_cast	result;						\
 	result.value_float = x;						\
 	if (result.value_int & F##BITS##_SIGNED)	\
 	{											\
@@ -25,11 +24,12 @@ inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
 
 DEFINEFUNC_FLOAT_ABS(32)
 DEFINEFUNC_FLOAT_ABS(64)
+/* TODO fix
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_ABS(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_ABS(128)
 #endif
-
+*/
 #endif

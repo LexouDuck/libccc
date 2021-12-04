@@ -1,6 +1,8 @@
 
-#include "libccc/math/math.h"
 #include "libccc/memory.h"
+#include "libccc/float.h"
+#include "libccc/math/float.h"
+#include "libccc/math/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -9,7 +11,7 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Ln, log)
 #else
-#define DEFINEFUNC_FLOAT_LOG2(BITS) \
+#define DEFINEFUNC_FLOAT_LN(BITS) \
 /*																							\
 	The following pair of functions return the natural logarithm of x.						\
 	ln(x) = ln(x*2^n) = n*ln(2) + ln(x) with (1 <= x < 2) and (n = exp_b2)					\
@@ -28,10 +30,10 @@ t_f##BITS	F##BITS##_Ln_TaylorSeries(t_f##BITS x)											\
 	power = x;																				\
 	result = x;																				\
 	result_previous = NAN;																	\
-	while (ABS(power) > F##BITS##_APPROX)													\
+	while (ABS(power) > FLOAT_APPROX)														\
 	{																						\
 		power *= x;																			\
-		result += (((((t_s##BITS)i % 2)) * 2.) - 1.) * (power / i);							\
+		result += (((((t_sint)i % 2)) * 2.) - 1.) * (power / i);							\
 		if (result == result_previous)														\
 			break;																			\
 		result_previous = result;															\
@@ -73,13 +75,14 @@ t_f##BITS	F##BITS##_Ln(t_f##BITS x)														\
 
 DEFINEFUNC_FLOAT_LN(32)
 DEFINEFUNC_FLOAT_LN(64)
+/* TODO fix this
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_LN(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_LN(128)
 #endif
-
+*/
 #endif
 
 

@@ -13,7 +13,7 @@
 
 //! Returns the appropriate string if the given 'number' is either NaN or +/- infinity, otherwise returns NULL
 static
-t_char*	Float_ToString_CheckSpecial(t_f32 number)
+t_char*	Float_ToString_CheckSpecial(t_float number)
 {
 	if (IS_NAN(number))
 	{
@@ -121,21 +121,22 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 		return (result);													\
 	sign = (number < 0);													\
 	number = (sign ? -number : number);										\
-	HANDLE_ERROR(ALLOCFAILURE,												\
-		!(*result_exponent = S16_ToString(F##BITS##_GetExp10(&number))) ||	\
-		!(*result_mantissa = F##BITS##_ToString_Dec(number, precision)) ||	\
-		!(result = (t_char*)Memory_Allocate(2 + (t_u8)sign					\
-			+ String_Length(*result_mantissa)								\
-			+ String_Length(*result_exponent)))),							\
-		goto failure;)														\
+	result_exponent = S16_ToString(F##BITS##_GetExp10(number));				\
+	HANDLE_ERROR(ALLOCFAILURE, (result_exponent == NULL), goto failure;)	\
+	result_mantissa = F##BITS##_ToString_Dec(number, precision);			\
+	HANDLE_ERROR(ALLOCFAILURE, (result_mantissa == NULL), goto failure;)	\
+	result = (t_char*)Memory_Allocate(2 + (t_u8)sign						\
+			+ String_Length(result_mantissa)								\
+			+ String_Length(result_exponent));								\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)				\
 	i = 0;																	\
 	if (sign)																\
 		result[i++] = '-';													\
-	String_Copy(result + i, *result_mantissa);								\
-	i += String_Length(*result_mantissa);									\
+	String_Copy(result + i, result_mantissa);								\
+	i += String_Length(result_mantissa);									\
 	result[i++] = 'e';														\
-	String_Copy(result + i, *result_exponent);								\
-	i += String_Length(*result_exponent);									\
+	String_Copy(result + i, result_exponent);								\
+	i += String_Length(result_exponent);									\
 	result[i] = '\0';														\
 failure:																	\
 	if (result_exponent)	Memory_Free(result_exponent);					\
@@ -146,50 +147,50 @@ failure:																	\
 
 
 #define DEFINEFUNC_FLOAT_TOSTRDEC(BITS) \
-static t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
-{																			\
-	t_char*	result = NULL;													\
-	char	digits[BITS];													\
-	t_u8	i;																\
-	t_u64	n;																\
-	result = Float_ToString_CheckSpecial(number);							\
-	if (result)																\
-		return (result);													\
-	i = precision + 1;														\
-	while (--i)																\
-		number *= 10;														\
-	n = (t_u64)(number < 0 ? -number : number);								\
-	while (n > 0 || i < precision)											\
-	{																		\
-		digits[i++] = (n % 10) + '0';										\
-		n /= 10;															\
-		if (i == precision && (digits[i++] = '.'))							\
-			if (n == 0 && number != 0)										\
-				digits[i++] = '0';											\
-	}																		\
-	result = (t_char*)Memory_Allocate(i + 2);								\
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)			\
-	result[0] = (number == 0) ? '0' : '-';									\
-	n = (number <= 0) ? 1 : 0;												\
-	while (i--)																\
-		result[n++] = digits[i];											\
-	result[n] = '\0';														\
-	return (result);														\
+t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
+{																	\
+	t_char*	result = NULL;											\
+	char	digits[BITS];											\
+	t_u8	i;														\
+	t_u64	n;														\
+	result = Float_ToString_CheckSpecial(number);					\
+	if (result)														\
+		return (result);											\
+	i = precision + 1;												\
+	while (--i)														\
+		number *= 10;												\
+	n = (t_u64)(number < 0 ? -number : number);						\
+	while (n > 0 || i < precision)									\
+	{																\
+		digits[i++] = (n % 10) + '0';								\
+		n /= 10;													\
+		if (i == precision && (digits[i++] = '.'))					\
+			if (n == 0 && number != 0)								\
+				digits[i++] = '0';									\
+	}																\
+	result = (t_char*)Memory_Allocate(i + 2);						\
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)	\
+	result[0] = (number == 0) ? '0' : '-';							\
+	n = (number <= 0) ? 1 : 0;										\
+	while (i--)														\
+		result[n++] = digits[i];									\
+	result[n] = '\0';												\
+	return (result);												\
 }
 
 
 
 // TODO Float_ToString_Hex()
 #define DEFINEFUNC_FLOAT_TOSTRHEX(BITS) \
-static t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision)	\
-{ return (IS_NAN(number) ? NAN : precision); }
+t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision)	\
+{ return (IS_NAN(number) ? "NaN" : (precision == 0 ? "" : NULL)); }
 
 
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_FLOAT_TOSTRBIN(BITS) \
-static t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision)	\
-{ return (IS_NAN(number) ? NAN : precision); }
+t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision)	\
+{ return (IS_NAN(number) ? "NaN" : (precision == 0 ? "" : NULL)); }
 
 
 

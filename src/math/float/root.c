@@ -1,4 +1,6 @@
 
+#include "libccc/float.h"
+#include "libccc/math/float.h"
 #include "libccc/math/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -129,7 +131,7 @@ t_f##BITS	F##BITS##_Root2(t_f##BITS x)							\
 		return (0.);												\
 	if (x == 1.)													\
 		return (1.);												\
-	i = F##BITS##_GetExp(x);										\
+	i = F##BITS##_GetExp2(x);										\
 	result = (i < 0 ? 0.75 : 1.25);									\
 	result *= F##BITS##_Root2_2powN(i);								\
 	previous = INFINITY;											\
@@ -174,8 +176,8 @@ t_f##BITS	F##BITS##_Root3(t_f##BITS x)							\
 		return (0);													\
 	if (F##BITS##_Abs(x) == 1.)										\
 		return (SIGN(x));											\
-	i = F##BITS##_GetExp(x);										\
-	result = SIGN(x) * (i < 0 ? 0.75 : 1.25)						\
+	i = F##BITS##_GetExp2(x);										\
+	result = SIGN(x) * (i < 0 ? 0.75 : 1.25);						\
 	result *= F##BITS##_Root2_2powN(i * 2 / 3);						\
 	previous = INFINITY;											\
 	i = 0;															\

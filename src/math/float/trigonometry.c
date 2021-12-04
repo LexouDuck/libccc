@@ -360,7 +360,7 @@ DEFINEFUNC_FLOAT_ARCTAN(128)
 MATH_DECL_REALOPERATOR(ArcTan2, atan2)
 #else
 #define DEFINEFUNC_FLOAT_ARCTAN2(BITS) \
-t_f##BITS	F##BITS##_ArcTan(t_f##BITS y, t_f##BITS x)					\
+t_f##BITS	F##BITS##_ArcTan2(t_f##BITS y, t_f##BITS x)					\
 {																		\
 	HANDLE_ERROR(NANARGUMENT, (IS_NAN(x) || IS_NAN(y)), return (NAN);)	\
 	static const t_f##BITS pi_lo = 1.2246467991473531772E-16;			\
@@ -379,8 +379,8 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS y, t_f##BITS x)					\
 		return (HALF_PI * SIGN(y));										\
 	if (x == 1.0)														\
 		return (F##BITS##_ArcTan(y));									\
-	t_s32 exp_x = F##BITS##_GetExp(x);									\
-	t_s32 exp_y = F##BITS##_GetExp(y);									\
+	t_s32 exp_x = F##BITS##_GetExp2(x);									\
+	t_s32 exp_y = F##BITS##_GetExp2(y);									\
 	t_f##BITS result = F##BITS##_Abs(y / x);							\
 	if ((exp_y - exp_x) > 60)		/* |y / x| > +2^60 */				\
 		result = HALF_PI + 0.5 * pi_lo;									\
