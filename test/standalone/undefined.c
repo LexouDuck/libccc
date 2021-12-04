@@ -511,10 +511,10 @@ int main()
 	t_float              var_0446 = Complex_Abs                   (NULL);
 	s_complex            var_0447 = Complex_Conjugate             (NULL);
 	s_complex            var_0448 = Complex_Add                   (NULL, NULL);
-	s_complex            var_0449 = Complex_Subtract              (NULL, NULL);
-	s_complex            var_0450 = Complex_Multiply              (NULL, NULL);
-	s_complex            var_0451 = Complex_Divide                (NULL, NULL);
-	s_complex            var_0452 = Complex_Power                 (NULL, 0);
+	s_complex            var_0449 = Complex_Sub                   (NULL, NULL);
+	s_complex            var_0450 = Complex_Mul                   (NULL, NULL);
+	s_complex            var_0451 = Complex_Div                   (NULL, NULL);
+	s_complex            var_0452 = Complex_Pow                   (NULL, 0);
 	t_q16                var_0453 = Q16_Abs                       (0);
 	t_q32                var_0454 = Q32_Abs                       (0);
 	t_q64                var_0455 = Q64_Abs                       (0);

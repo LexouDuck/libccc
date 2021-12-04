@@ -13,12 +13,8 @@ inline t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
 	return (a / b);											\
 }
 
-
-
 DEFINEFUNC_FLOAT_DIV(32)
-
 DEFINEFUNC_FLOAT_DIV(64)
-
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_DIV(80)
 #endif

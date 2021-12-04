@@ -17,7 +17,6 @@ inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
 }
 #if 0 // crazy approximate method
 	u_float_cast result;
-
 	if (x <= 0.)
 		return (0.);
 	if (y == 0.)
@@ -25,7 +24,7 @@ inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
 	if (y == 1.)
 		return (x);
 	result.value_float = x;
-	result.value_int = (t_s32)(y * (result.v_int[1] - 1072632447) + 1072632447);
+	result.value_int = (t_s32)(y * (result.value_int[1] - 1072632447) + 1072632447);
 	result.value_int = 0;
 	return (result.value_float);
 #endif
@@ -68,10 +67,10 @@ t_f##BITS	F##BITS##_IntPow(t_f##BITS x, t_sint n)		\
 	}													\
 }
 #if 0 // lame and slow iterative method
-	t_float result = 1;
-	while (c_fabs(n) > FLOAT_APPROX)
+	t_f##BITS result = 1;
+	while (F##BITS##_Abs(n) > FLOAT_APPROX)
 	{
-		if (c_fabs(n & 1) > FLOAT_APPROX)
+		if (F##BITS##_Abs(n & 1) > FLOAT_APPROX)
 		{
 			result *= x;
 			n -= 1;

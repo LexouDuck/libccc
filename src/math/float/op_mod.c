@@ -16,12 +16,8 @@ inline t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b)	\
 	return (a - (F##BITS##_Round(a / b) * b));				\
 }
 
-
-
 DEFINEFUNC_FLOAT_MOD(32)
-
 DEFINEFUNC_FLOAT_MOD(64)
-
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_MOD(80)
 #endif

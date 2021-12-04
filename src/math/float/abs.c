@@ -23,16 +23,11 @@ inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
 	return (result.value_float);				\
 }
 
-
-
 DEFINEFUNC_FLOAT_ABS(32)
-
 DEFINEFUNC_FLOAT_ABS(64)
-
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_ABS(80)
 #endif
-
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_ABS(128)
 #endif
