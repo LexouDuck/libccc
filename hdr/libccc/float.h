@@ -466,11 +466,16 @@ typedef union float_cast
 		t_f128:	 FUNCTYPE##_FromFloat,	\
 		t_float: FUNCTYPE##_FromFloat,	\
 	)(X)
+
 #define Float(X)	DEFINEFUNC_Float(X, Fixed)
 #define F32(X)		DEFINEFUNC_Float(X, F32)
 #define F64(X)		DEFINEFUNC_Float(X, F64)
+#if LIBCONFIG_USE_FLOAT80
 #define F80(X)		DEFINEFUNC_Float(X, F80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
 #define F128(X)		DEFINEFUNC_Float(X, F128)
+#endif
 //!@}
 
 //! Returns the nearest floating-point value to the given integer `number`
@@ -479,7 +484,7 @@ typedef union float_cast
 */
 //!@{
 #define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-#define c_itofloat		Float_FromInt
+#define c_itof			Float_FromInt
 
 t_f32					F32_FromInt(t_sint number);
 #define c_itof32		F32_FromInt
@@ -503,7 +508,7 @@ t_f128					F128_FromInt(t_sint number);
 */
 //!@{
 #define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
-#define c_qtofloat		Float_FromFixed
+#define c_qtof			Float_FromFixed
 
 t_f32					F32_FromFixed(t_fixed number);
 #define c_qtof32		F32_FromFixed
@@ -527,7 +532,7 @@ t_f128					F128_FromFixed(t_fixed number);
 */
 //!@{
 #define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-#define c_ftofloat		Float_FromFloat
+#define c_ftof			Float_FromFloat
 
 t_f32	 				F32_FromFloat(t_float number);
 #define c_ftof32		F32_FromFloat
@@ -560,7 +565,7 @@ t_f128	 				F128_FromFloat(t_float number);
 */
 //!@{
 #define					Float_From	CONCAT(FLOAT_TYPE,_From)
-#define c_tofloat		Float_From
+#define c_tof			Float_From
 
 t_f32					F32_From(t_sint integer, t_sint exponent);
 #define c_tof32			F32_From
@@ -585,7 +590,7 @@ t_f128					F128_From(t_sint integer, t_sint exponent);
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
 */
 
-// TODO t_float	Float_Infinity(void)
+// TODO t_float	Float_Inf(void)
 /* 
 **	@nonstd
 */

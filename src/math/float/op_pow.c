@@ -15,7 +15,8 @@ inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
 	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)		\
 	return (F##BITS##_Exp(y * F##BITS##_Ln(x)));			\
 }
-#if 0 // crazy approximate method
+// crazy approximate method
+#if 0
 	u_float_cast result;
 	if (x <= 0.)
 		return (0.);
@@ -42,10 +43,6 @@ DEFINEFUNC_MATH_FLOAT_POW(128)
 
 
 
-#if LIBCONFIG_USE_STD_MATH
-// TODO fix this
-//MATH_DECL_REALOPERATOR(IntPow, pow)
-#else
 #define DEFINEFUNC_MATH_FLOAT_INTPOW(BITS) \
 t_f##BITS	F##BITS##_IntPow(t_f##BITS x, t_sint n)		\
 {														\
@@ -66,7 +63,8 @@ t_f##BITS	F##BITS##_IntPow(t_f##BITS x, t_sint n)		\
 			return (tmp * tmp / x);						\
 	}													\
 }
-#if 0 // lame and slow iterative method
+// lame and slow iterative method
+#if 0
 	t_f##BITS result = 1;
 	while (F##BITS##_Abs(n) > FLOAT_APPROX)
 	{
@@ -88,6 +86,4 @@ DEFINEFUNC_MATH_FLOAT_INTPOW(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_MATH_FLOAT_INTPOW(128)
-#endif
-
 #endif

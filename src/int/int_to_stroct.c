@@ -45,7 +45,7 @@ t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 	}																\
 	result[n] = '\0';												\
 	return (result);												\
-}																	\
+}
 
 DEFINEFUNC_UINT_TOSTROCT(8)
 DEFINEFUNC_UINT_TOSTROCT(16)
@@ -90,7 +90,7 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 	}																\
 	result[n] = '\0';												\
 	return (result);												\
-}																	\
+}
 
 DEFINEFUNC_SINT_TOSTROCT(8)
 DEFINEFUNC_SINT_TOSTROCT(16)

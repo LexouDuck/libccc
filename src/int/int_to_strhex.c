@@ -37,7 +37,7 @@ t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRHEX(8)
 DEFINEFUNC_UINT_TOSTRHEX(16)
@@ -82,7 +82,7 @@ t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRHEX(8)
 DEFINEFUNC_SINT_TOSTRHEX(16)

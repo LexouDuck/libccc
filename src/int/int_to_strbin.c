@@ -37,7 +37,7 @@ t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRBIN(8)
 DEFINEFUNC_UINT_TOSTRBIN(16)
@@ -82,7 +82,7 @@ t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRBIN(8)
 DEFINEFUNC_SINT_TOSTRBIN(16)

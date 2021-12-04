@@ -56,7 +56,7 @@ $$0 = gensub(/$(REGEXP_C_TYPE)/,                                           $(HEL
 $$0 = gensub(/$(REGEXP_C_TYPE_KW)[ ]+$(REGEXP_C_SYMBOL)/,                  $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
 $$0 = gensub(/$(REGEXP_C_TYPEDEF)/,                                        $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
 $$0 = gensub(/$(REGEXP_C_TYPEGEN)/,                                        $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/[*+-\/!&@$$]/,                                               $(HELPDOC_OPERATOR)"\\0" $(IO_RESET), "g");\
+$$0 = gensub(/[*\/\-+!&@$$]/,                                              $(HELPDOC_OPERATOR)"\\0" $(IO_RESET), "g");\
 $$0 = gensub(/(\/\/(.*)$$)/,                                               $(HELPDOC_COMMENT) "\\0" $(IO_RESET), "1");\
 
 
@@ -86,7 +86,7 @@ help-doc:
 					$(HELPDOC_AWK_SYNTAXCOLORS)\
 					print;\
 				}\
-				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE)/) { skip = 1; }\
+				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE|LIBCONFIG)/) { skip = 1; }\
 				else if (/\/\//) { next; }\
 				else if (/\/\*/) { docblock = 1; }\
 			}\
@@ -129,7 +129,7 @@ help-doc-full:
 					doc = "";\
 					docblock = 0;\
 				}\
-				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE)/) { skip = 1; }\
+				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE|LIBCONFIG)/) { skip = 1; }\
 				else if (/\/\/!/ || /\/\/\//) { doc = (!/@{/ ? $$0 : doc); }\
 				else if (/\/\*!/ || /\/\*\*/) { doc = doc "\n" $$0; docblock = 1; }\
 				else if (/^_[A-Z]+\(\)/) {  }\

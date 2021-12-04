@@ -62,7 +62,7 @@ inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Hex(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_UINT_FROMSTRHEX(8)
 DEFINEFUNC_UINT_FROMSTRHEX(16)
@@ -124,7 +124,7 @@ inline t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)						\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Hex(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_SINT_FROMSTRHEX(8)
 DEFINEFUNC_SINT_FROMSTRHEX(16)

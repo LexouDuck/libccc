@@ -45,6 +45,7 @@ int/int_from_stroct.c
 int/int_to_str.c
 int/int_to_strbase.c
 int/int_to_strbin.c
+int/int_to_strdec.c
 int/int_to_strhex.c
 int/int_to_stroct.c
 math/algebra/calculus.c

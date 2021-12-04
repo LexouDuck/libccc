@@ -43,7 +43,7 @@ inline t_u##BITS	U##BITS##_FromString(t_char const* str)							\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse(&result, str, 0);												\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_UINT_FROMSTR(8)
 DEFINEFUNC_UINT_FROMSTR(16)
@@ -89,7 +89,7 @@ inline t_s##BITS	S##BITS##_FromString(t_char const* str)							\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse(&result, str, 0);												\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_SINT_FROMSTR(8)
 DEFINEFUNC_SINT_FROMSTR(16)

@@ -363,7 +363,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 */
 //!@{
 #define					Fixed_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-#define c_itofixed		Fixed_FromInt
+#define c_itoq			Fixed_FromInt
 
 t_q16					Q16_FromInt(t_sint number);
 #define c_itoq16		Q16_FromInt
@@ -385,7 +385,7 @@ t_q128					Q128_FromInt(t_sint number);
 */
 //!@{
 #define					Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
-#define c_qtofixed		Fixed_FromFixed
+#define c_qtoq			Fixed_FromFixed
 
 t_q16					Q16_FromFixed(t_fixed number);
 #define c_qtoq16		Q16_FromFixed
@@ -407,7 +407,7 @@ t_q128					Q128_FromFixed(t_fixed number);
 */
 //!@{
 #define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-#define c_ftofixed		Fixed_FromFloat
+#define c_ftoq			Fixed_FromFloat
 
 t_q16	 				Q16_FromFloat(t_float number);
 #define c_ftoq16		Q16_FromFloat
@@ -434,7 +434,7 @@ $$	@param	numerator		the numerator: number at the top of the fraction
 */
 //!@{
 #define					Fixed_From	CONCAT(FIXED_TYPE,_From)
-#define c_tofixed		Fixed_From
+#define c_toq			Fixed_From
 
 t_q16					Q16_From(t_s16 part_fraction, t_s16 denominator);
 #define c_toq16			Q16_From

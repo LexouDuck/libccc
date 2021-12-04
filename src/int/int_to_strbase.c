@@ -63,7 +63,7 @@ t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRBASE(8)
 DEFINEFUNC_UINT_TOSTRBASE(16)
@@ -106,7 +106,7 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRBASE(8)
 DEFINEFUNC_SINT_TOSTRBASE(16)
