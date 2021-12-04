@@ -314,24 +314,25 @@ t_float		c_atan2(t_float y, t_float x)
 	static const t_float pi_lo = 1.2246467991473531772E-16;
 
 	HANDLE_ERROR(NANARGUMENT, (IS_NAN(x) || IS_NAN(y)), return (NAN);)
-	else if (y == 0.0)
+	if (y == 0.0)
 		return ((x < 0 ? PI : 0) * SIGN(x));
-	else if (x == 0.0)
+	if (x == 0.0)
 		return (HALF_PI * SIGN(y));
-	else if (IS_INFINITY(x))
+	if (IS_INFINITY(x))
 	{
 		if (IS_INFINITY(y))
 			return ((x < 0 ? 3 * QUARTER_PI : QUARTER_PI) * SIGN(y));
 		else
 			return ((x < 0 ? PI : 0) * SIGN(y));
 	}
-	else if (IS_INFINITY(y))
+	if (IS_INFINITY(y))
 	{
 		return (HALF_PI * SIGN(y));
 	}
-	else if (x == 1.0)
+	if (x == 1.0)
+	{
 		return (c_atan(y));
-
+	}
 	t_s32 exp_x = c_getexp(x);
 	t_s32 exp_y = c_getexp(y);
 	t_float result = c_fabs(y / x);
