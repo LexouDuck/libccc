@@ -102,10 +102,10 @@ typedef union varfloat
 {
 	t_f32	fs;	//!< floating-point: single precision
 	t_f64	fd;	//!< floating-point: double precision
-#ifdef	__float80
+#if LIBCONFIG_USE_FLOAT80
 	t_f80	fe;	//!< floating-point: extended precision
 #endif
-#ifdef	__float128
+#if LIBCONFIG_USE_FLOAT128
 	t_f128	fq;	//!< floating-point: quadruple precision
 #endif
 }		u_varfloat;

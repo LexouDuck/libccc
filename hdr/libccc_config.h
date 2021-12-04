@@ -310,7 +310,7 @@ HEADER_CPP
 **	By default, this setting will be enabled if the `__int128` macro is defined.
 **	Since 128-bit integers are not supported by the standard, they are not
 **	consistently accessible/usable/similar across all (or even most) platforms.
-**	If you wish to make use of 128-bit types regardless, then set this value to `1`.
+**	If you wish to make use of 128-bit integers regardless, then set this value to `1`.
 **	Enabling this configuration setting will expose several types (and functions):
 **	- `t_u128`: unsigned integer type
 **	- `t_s128`: signed integer type
@@ -319,6 +319,26 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_USE_INT128
 #define LIBCONFIG_USE_INT128	0 // _HAS_INT128
+#endif
+//!@}
+
+//! Whether libccc will define/expose utility functions for extended-precision floating-point types
+/*!
+**	By default, this setting will be enabled if the `__float80`/`__float128` macro is defined.
+**	Since 80/96/128-bit floating-point numbers are only partly supported by the standard,
+**	(as `long double`) they are not consistently accessible/usable/similar across all platforms.
+**	If you wish to make use of extended floats regardless, then set this value to `1`.
+**	Enabling this configuration setting will expose several types (and functions):
+**	- `t_f80`: extended-precision floating-point type
+**	- `t_f128`: quadruple-precision floating-point type
+*/
+//!@{
+#ifndef LIBCONFIG_USE_FLOAT80
+#define LIBCONFIG_USE_FLOAT80	_HAS_FLOAT80
+#endif
+
+#ifndef LIBCONFIG_USE_FLOAT128
+#define LIBCONFIG_USE_FLOAT128	_HAS_FLOAT128
 #endif
 //!@}
 

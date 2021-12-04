@@ -67,10 +67,10 @@ s_kvt*	KVT_CreateArray_S128	(t_s128 const*	source, t_uint count)		{ KVT_CREATE_A
 s_kvt*	KVT_CreateArray_Float	(t_float const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Float)	}
 s_kvt*	KVT_CreateArray_F32		(t_f32 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Float)	}
 s_kvt*	KVT_CreateArray_F64		(t_f64 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Float)	}
-#ifdef __float80
+#if LIBCONFIG_USE_FLOAT80
 s_kvt*	KVT_CreateArray_F80		(t_f80 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Float)	}
 #endif
-#ifdef __float128
+#if LIBCONFIG_USE_FLOAT128
 s_kvt*	KVT_CreateArray_F128	(t_f128 const*	source, t_uint count)		{ KVT_CREATE_ARRAY(Float)	}
 #endif
 
