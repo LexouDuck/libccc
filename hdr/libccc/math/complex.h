@@ -100,9 +100,25 @@ _MALLOC()
 s_complex*				Complex_New(t_float re, t_float im);
 #define c_cplxnew		Complex_New
 
+
+
+/*
+** ************************************************************************** *|
+**                        Complex: comparison operations                      *|
+** ************************************************************************** *|
+*/
+
 //! Returns TRUE if the two given complex numbers are equal
 t_bool					Complex_Equals(s_complex const* z1, s_complex const* z2);
 #define c_cplxequ		Complex_Equals
+
+
+
+/*
+** ************************************************************************** *|
+**                          Complex: unary operators                          *|
+** ************************************************************************** *|
+*/
 
 //! Returns the absolute value |z| of the given complex number 'z' (its distance from zero)
 t_float					Complex_Abs(s_complex const* z1);
@@ -114,54 +130,81 @@ s_complex				Complex_Conjugate(s_complex const* z1);
 #define c_cplxconj		Complex_Conjugate
 #define Complex_Conj	Complex_Conjugate
 
+
+
+/*
+** ************************************************************************** *|
+**                          Complex: binary operators                         *|
+** ************************************************************************** *|
+*/
+
 //! Returns the result of the addition of the two given complex numbers
-s_complex				Complex_Add(s_complex const* z1, s_complex const* z2);
-#define c_cplxadd		Complex_Add
+s_complex					Complex_Add(s_complex const* z1, s_complex const* z2);
+#define c_cplxadd			Complex_Add
 
 //! Returns the result of the subtraction of the two given complex numbers
-s_complex				Complex_Subtract(s_complex const* z1, s_complex const* z2);
-#define c_cplxsub		Complex_Subtract
-#define Complex_Sub		Complex_Subtract
+s_complex					Complex_Sub(s_complex const* z1, s_complex const* z2);
+#define c_cplxsub			Complex_Sub
+#define Complex_Subtract	Complex_Sub
 
 //! Returns the result of the multiplication of the two given complex numbers
-s_complex				Complex_Multiply(s_complex const* z1, s_complex const* z2);
-#define c_cplxmul		Complex_Multiply
-#define Complex_Mul		Complex_Multiply
+s_complex					Complex_Mul(s_complex const* z1, s_complex const* z2);
+#define c_cplxmul			Complex_Mul
+#define Complex_Multiply	Complex_Mul
 
 //! Returns the result of the divide of the two given complex numbers
-s_complex				Complex_Divide(s_complex const* z1, s_complex const* z2);
-#define c_cplxdiv		Complex_Divide
-#define Complex_Div		Complex_Divide
+s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
+#define c_cplxdiv			Complex_Div
+#define Complex_Divide		Complex_Div
+
+// TODO cplxmod
+
+
 
 //! Returns the given complex number, to the power of 'n'
-s_complex				Complex_Power(s_complex const* z, t_u8 n);
-#define c_cplxpow		Complex_Power
-#define Complex_Pow		Complex_Power
+s_complex					Complex_Pow(s_complex const* z, t_u8 n);
+#define c_cplxpow			Complex_Pow
+#define Complex_Power		Complex_Pow
 
-// TODO cabs
-// TODO carg
-// TODO conj
-// TODO cproj
+// TODO cplxsqrt
+// TODO cplxcbrt
+// TODO cplxnrt
 
-// TODO cexp
-// TODO clog
 
-// TODO cpow
-// TODO csqrt
 
-// TODO ccos
-// TODO csin
-// TODO ctan
-// TODO cacos
-// TODO casin
-// TODO catan
+/*
+** ************************************************************************** *|
+**                       Complex: exponentiation functions                    *|
+** ************************************************************************** *|
+*/
 
-// TODO ccosh
-// TODO csinh
-// TODO ctanh
-// TODO cacosh
-// TODO casinh
-// TODO catanh
+// TODO cplxarg
+// TODO cplxproj
+
+// TODO cplxexp
+// TODO cplxlog
+
+
+
+/*
+** ************************************************************************** *|
+**                       Complex: trigonometry functions                      *|
+** ************************************************************************** *|
+*/
+
+// TODO cplxcos
+// TODO cplxsin
+// TODO cplxtan
+// TODO cplxacos
+// TODO cplxasin
+// TODO cplxatan
+
+// TODO cplxcosh
+// TODO cplxsinh
+// TODO cplxtanh
+// TODO cplxacosh
+// TODO cplxasinh
+// TODO cplxatanh
 
 // TODO add polar form operations
 
