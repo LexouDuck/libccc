@@ -97,7 +97,7 @@ TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 typedef _Float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 #elif (LIBCONFIG_FLOAT_BITS == 80)
-	#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
+#error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
@@ -115,7 +115,7 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 typedef _Float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 #elif (LIBCONFIG_FLOAT_BITS == 128)
-	#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
+#error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
 
