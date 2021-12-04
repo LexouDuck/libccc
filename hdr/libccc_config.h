@@ -317,8 +317,8 @@ HEADER_CPP
 **	- `t_q128`: fixed-point fraction type
 */
 //!@{
-#ifndef LIBCONFIG_USE_128BIT
-#define LIBCONFIG_USE_128BIT	0 // _HAS_INT128
+#ifndef LIBCONFIG_USE_INT128
+#define LIBCONFIG_USE_INT128	0 // _HAS_INT128
 #endif
 //!@}
 

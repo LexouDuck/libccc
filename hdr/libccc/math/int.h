@@ -64,7 +64,7 @@ typedef		t_s32	(*f_s32_function)	(t_s32 a);
 typedef		t_u64	(*f_u64_function)	(t_u64 a);
 typedef		t_s64	(*f_s64_function)	(t_s64 a);
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef		t_u128	(*f_u128_function)	(t_u128 a);
 typedef		t_s128	(*f_s128_function)	(t_s128 a);
 #endif
@@ -84,7 +84,7 @@ typedef		t_s32	(*f_s32_operator)	(t_s32 a,	t_s32 b);
 typedef		t_u64	(*f_u64_operator)	(t_u64 a,	t_u64 b);
 typedef		t_s64	(*f_s64_operator)	(t_s64 a,	t_s64 b);
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef		t_u128	(*f_u128_operator)	(t_u128 a,	t_u128 b);
 typedef		t_s128	(*f_s128_operator)	(t_s128 a,	t_s128 b);
 #endif
@@ -119,7 +119,7 @@ t_s32				S32_Abs(t_s32 a);
 t_s64				S64_Abs(t_s64 a);
 #define c_s64abs	S64_Abs
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128				S128_Abs(t_s128 a);
 #define c_s128abs	S128_Abs
 #endif
@@ -159,7 +159,7 @@ t_bool					S32_Equals(t_s32 a, t_s32 b);
 t_bool					S64_Equals(t_s64 a, t_s64 b);
 #define c_s64equ		S64_Equals
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_bool					S128_Equals(t_s128 a, t_s128 b);
 #define c_s128equ		S128_Equals
 #endif
@@ -193,7 +193,7 @@ t_bool					S32_EqualsApprox(t_s32 a, t_s32 b);
 t_bool					S64_EqualsApprox(t_s64 a, t_s64 b);
 #define c_s64equa		S64_EqualsApprox
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_bool					S128_EqualsApprox(t_s128 a, t_s128 b);
 #define c_s128equa		S128_EqualsApprox
 #endif
@@ -232,7 +232,7 @@ t_u32				U32_Add(t_u32 a, t_u32 b);
 t_u64				U64_Add(t_u64 a, t_u64 b);
 #define c_u64add	U64_Add
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128				U128_Add(t_u128 a, t_u128 b);
 #define c_u128add	U128_Add
 #endif
@@ -255,7 +255,7 @@ t_s32				S32_Add(t_s32 a, t_s32 b);
 t_s64				S64_Add(t_s64 a, t_s64 b);
 #define c_s64add	S64_Add
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128				S128_Add(t_s128 a, t_s128 b);
 #define c_s128add	S128_Add
 #endif
@@ -283,7 +283,7 @@ t_u32				U32_Sub(t_u32 a, t_u32 b);
 t_u64				U64_Sub(t_u64 a, t_u64 b);
 #define c_u64sub	U64_Sub
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128				U128_Sub(t_u128 a, t_u128 b);
 #define c_u128sub	U128_Sub
 #endif
@@ -307,7 +307,7 @@ t_s32				S32_Sub(t_s32 a, t_s32 b);
 t_s64				S64_Sub(t_s64 a, t_s64 b);
 #define c_s64sub	S64_Sub
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128				S128_Sub(t_s128 a, t_s128 b);
 #define c_s128sub	S128_Sub
 #endif
@@ -335,7 +335,7 @@ t_u32				U32_Mul(t_u32 a, t_u32 b);
 t_u64				U64_Mul(t_u64 a, t_u64 b);
 #define c_u64mul	U64_Mul
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128				U128_Mul(t_u128 a, t_u128 b);
 #define c_u128mul	U128_Mul
 #endif
@@ -359,7 +359,7 @@ t_s32				S32_Mul(t_s32 a, t_s32 b);
 t_s64				S64_Mul(t_s64 a, t_s64 b);
 #define c_s64mul	S64_Mul
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128				S128_Mul(t_s128 a, t_s128 b);
 #define c_s128mul	S128_Mul
 #endif
@@ -387,7 +387,7 @@ t_u32				U32_Div(t_u32 a, t_u32 b);
 t_u64				U64_Div(t_u64 a, t_u64 b);
 #define c_u64div	U64_Div
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128				U128_Div(t_u128 a, t_u128 b);
 #define c_u128div	U128_Div
 #endif
@@ -411,7 +411,7 @@ t_s32				S32_Div(t_s32 a, t_s32 b);
 t_s64				S64_Div(t_s64 a, t_s64 b);
 #define c_s64div	S64_Div
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128				S128_Div(t_s128 a, t_s128 b);
 #define c_s128div	S128_Div
 #endif
@@ -442,7 +442,7 @@ t_u32					U32_Mod(t_u32 a, t_u32 b);
 t_u64					U64_Mod(t_u64 a, t_u64 b);
 #define c_u64mod		U64_Mod
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_Mod(t_u128 a, t_u128 b);
 #define c_u128mod		U128_Mod
 #endif
@@ -469,7 +469,7 @@ t_s32					S32_Mod(t_s32 a, t_s32 b);
 t_s64					S64_Mod(t_s64 a, t_s64 b);
 #define c_s64mod		S64_Mod
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_Mod(t_s128 a, t_s128 b);
 #define c_s128mod		S128_Mod
 #endif
@@ -508,7 +508,7 @@ t_u32					U32_Pow(t_u32 a, t_u32 b);
 t_u64					U64_Pow(t_u64 a, t_u64 b);
 #define c_u64pow		U64_Pow
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_Pow(t_u128 a, t_u128 b);
 #define c_u128pow		U128_Pow
 #endif
@@ -535,7 +535,7 @@ t_s32					S32_Pow(t_s32 a, t_s32 b);
 t_s64					S64_Pow(t_s64 a, t_s64 b);
 #define c_s64pow		S64_Pow
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_Pow(t_s128 a, t_s128 b);
 #define c_s128pow		S128_Pow
 #endif
@@ -567,7 +567,7 @@ t_u32						U32_Root2(t_u32 a);
 t_u64						U64_Root2(t_u64 a);
 #define c_u64sqrt			U64_Root2
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128						U128_Root2(t_u128 a);
 #define c_u128sqrt			U128_Root2
 #endif
@@ -595,7 +595,7 @@ t_s32						S32_Root2(t_s32 a);
 t_s64						S64_Root2(t_s64 a);
 #define c_s64sqrt			S64_Root2
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128						S128_Root2(t_s128 a);
 #define c_s128sqrt			S128_Root2
 #endif

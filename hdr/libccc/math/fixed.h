@@ -53,7 +53,7 @@ typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
 typedef		t_q16	(*f_q16_function)	(t_q16 x);
 typedef		t_q32	(*f_q32_function)	(t_q32 x);
 typedef		t_q64	(*f_q64_function)	(t_q64 x);
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef		t_q128	(*f_q128_function)	(t_q128 x);
 #endif
 //!@}
@@ -64,7 +64,7 @@ typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
 typedef		t_q16	(*f_q16_operator)	(t_q16 x,	t_q16 y);
 typedef		t_q32	(*f_q32_operator)	(t_q32 x,	t_q32 y);
 typedef		t_q64	(*f_q64_operator)	(t_q64 x,	t_q64 y);
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 #endif
 //!@}
@@ -95,7 +95,7 @@ t_q32						Q32_Abs(t_q32 x);
 t_q64						Q64_Abs(t_q64 x);
 #define c_q64abs			Q64_Abs
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128						Q128_Abs(t_q128 x);
 #define c_q128abs			Q128_Abs
 #endif
@@ -118,7 +118,7 @@ t_q32					Q32_Round(t_q32 x);
 t_q64					Q64_Round(t_q64 x);
 #define c_q64round		Q64_Round
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Round(t_q128 x);
 #define c_q128round		Q128_Round
 #endif
@@ -142,7 +142,7 @@ t_q32					Q32_Trunc(t_q32 x);
 t_q64					Q64_Trunc(t_q64 x);
 #define c_q64trunc		Q64_Trunc
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Trunc(t_q128 x);
 #define c_q128trunc		Q128_Trunc
 #endif
@@ -165,7 +165,7 @@ t_q32					Q32_Floor(t_q32 x);
 t_q64					Q64_Floor(t_q64 x);
 #define c_q64floor		Q64_Floor
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Floor(t_q128 x);
 #define c_q128floor		Q128_Floor
 #endif
@@ -189,7 +189,7 @@ t_q32					Q32_Ceil(t_q32 x);
 t_q64					Q64_Ceil(t_q64 x);
 #define c_q64ceil		Q64_Ceil
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Ceil(t_q128 x);
 #define c_q128ceil		Q128_Ceil
 #endif
@@ -226,7 +226,7 @@ t_bool					Q32_Equals(t_q32 x, t_q32 y);
 t_bool					Q64_Equals(t_q64 x, t_q64 y);
 #define c_q64equ		Q64_Equals
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_bool					Q128_Equals(t_q128 x, t_q128 y);
 #define c_q128equ		Q128_Equals
 #endif
@@ -257,7 +257,7 @@ t_bool					Q32_EqualsApprox(t_q32 x, t_q32 y);
 t_bool					Q64_EqualsApprox(t_q64 x, t_q64 y);
 #define c_q64equa		Q64_EqualsApprox
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
 #define c_q128equa		Q128_EqualsApprox
 #endif
@@ -293,7 +293,7 @@ t_q32					Q32_Add(t_q32 x, t_q32 y);
 t_q64					Q64_Add(t_q64 x, t_q64 y);
 #define c_q64add		Q64_Add
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Add(t_q128 x, t_q128 y);
 #define c_q128add		Q128_Add
 #endif
@@ -316,7 +316,7 @@ t_q32					Q32_Sub(t_q32 x, t_q32 y);
 t_q64					Q64_Sub(t_q64 x, t_q64 y);
 #define c_q64sub		Q64_Sub
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Sub(t_q128 x, t_q128 y);
 #define c_q128sub		Q128_Sub
 #endif
@@ -339,7 +339,7 @@ t_q32					Q32_Mul(t_q32 x, t_q32 y);
 t_q64					Q64_Mul(t_q64 x, t_q64 y);
 #define c_q64mul		Q64_Mul
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Mul(t_q128 x, t_q128 y);
 #define c_q128mul		Q128_Mul
 #endif
@@ -362,7 +362,7 @@ t_q32					Q32_Div(t_q32 x, t_q32 y);
 t_q64					Q64_Div(t_q64 x, t_q64 y);
 #define c_q64div		Q64_Div
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Div(t_q128 x, t_q128 y);
 #define c_q128div		Q128_Div
 #endif
@@ -388,7 +388,7 @@ t_q32					Q32_Mod(t_q32 x, t_q32 y);
 t_q64					Q64_Mod(t_q64 x, t_q64 y);
 #define c_q64mod		Q64_Mod
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Mod(t_q128 x, t_q128 y);
 #define c_q128mod		Q128_Mod
 #endif
@@ -422,7 +422,7 @@ t_q32					Q32_Pow(t_q32 x, t_q32 y);
 t_q64					Q64_Pow(t_q64 x, t_q64 y);
 #define c_q64pow		Q64_Pow
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_Pow(t_q128 x, t_q128 y);
 #define c_q128pow		Q128_Pow
 #endif
@@ -446,7 +446,7 @@ t_q32					Q32_IntPow(t_q32 x, t_sint n);
 t_q64					Q64_IntPow(t_q64 x, t_sint n);
 #define c_q64intpow		Q64_IntPow
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128					Q128_IntPow(t_q128 x, t_sint n);
 #define c_q128intpow	Q128_IntPow
 #endif
@@ -473,7 +473,7 @@ t_q32						Q32_Root2(t_q32 x);
 t_q64						Q64_Root2(t_q64 x);
 #define c_q64sqrt			Q64_Root2
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128						Q128_Root2(t_q128 x);
 #define c_q128sqrt			Q128_Root2
 #endif
@@ -498,7 +498,7 @@ t_q32						Q32_Root3(t_q32 x);
 t_q64						Q64_Root3(t_q64 x);
 #define c_q64cbrt			Q64_Root3
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128						Q128_Root3(t_q128 x);
 #define c_q128cbrt			Q128_Root3
 #endif
@@ -523,7 +523,7 @@ t_q32						Q32_RootN(t_q32 x, t_u8 n);
 t_q64						Q64_RootN(t_q64 x, t_u8 n);
 #define c_q64nrt			Q64_RootN
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128						Q128_RootN(t_q128 x, t_u8 n);
 #define c_q128nrt			Q128_RootN
 #endif
@@ -559,7 +559,7 @@ t_q32							Q32_Exp(t_q32 x);
 t_q64							Q64_Exp(t_q64 x);
 #define c_q64exp				Q64_Exp
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Exp(t_q128 x);
 #define c_q128exp				Q128_Exp
 #endif
@@ -585,7 +585,7 @@ t_q32							Q32_Ln(t_q32 x);
 t_q64							Q64_Ln(t_q64 x);
 #define c_q64ln					Q64_Ln
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Ln(t_q128 x);
 #define c_q128ln				Q128_Ln
 #endif
@@ -614,7 +614,7 @@ t_q64							Q64_Log2(t_q64 x);
 #define c_q64log2				Q64_Log2
 
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Log2(t_q128 x);
 #define c_q128lg				Q128_Log2
 #define c_q128log2				Q128_Log2
@@ -643,7 +643,7 @@ t_q64							Q64_Log10(t_q64 x);
 #define c_q64log				Q64_Log10
 #define c_q64log10				Q64_Log10
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Log10(t_q128 x);
 #define c_q128log				Q128_Log10
 #define c_q128log10				Q128_Log10
@@ -668,7 +668,7 @@ t_q32							Q32_LogN(t_q32 x, t_q32 y);
 t_q64							Q64_LogN(t_q64 x, t_q64 y);
 #define c_q64logn				Q64_LogN
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_LogN(t_q128 x, t_q128 y);
 #define c_q128logn				Q128_LogN
 #endif
@@ -702,7 +702,7 @@ t_q32							Q32_Cos(t_q32 x);
 t_q64							Q64_Cos(t_q64 x);
 #define c_q64cos				Q64_Cos
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Cos(t_q128 x);
 #define c_q128cos				Q128_Cos
 #endif
@@ -726,7 +726,7 @@ t_q32							Q32_Sin(t_q32 x);
 t_q64							Q64_Sin(t_q64 x);
 #define c_q64sin				Q64_Sin
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Sin(t_q128 x);
 #define c_q128sin				Q128_Sin
 #endif
@@ -750,7 +750,7 @@ t_q32							Q32_Tan(t_q32 x);
 t_q64							Q64_Tan(t_q64 x);
 #define c_q64tan				Q64_Tan
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_Tan(t_q128 x);
 #define c_q128tan				Q128_Tan
 #endif
@@ -777,7 +777,7 @@ t_q32							Q32_ArcCos(t_q32 x);
 t_q64							Q64_ArcCos(t_q64 x);
 #define c_q64acos				Q64_ArcCos
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_ArcCos(t_q128 x);
 #define c_q128acos				Q128_ArcCos
 #endif
@@ -802,7 +802,7 @@ t_q32							Q32_ArcSin(t_q32 x);
 t_q64							Q64_ArcSin(t_q64 x);
 #define c_q64asin				Q64_ArcSin
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_ArcSin(t_q128 x);
 #define c_q128asin				Q128_ArcSin
 #endif
@@ -827,7 +827,7 @@ t_q32							Q32_ArcTan(t_q32 x);
 t_q64							Q64_ArcTan(t_q64 x);
 #define c_q64atan				Q64_ArcTan
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128							Q128_ArcTan(t_q128 x);
 #define c_q128atan				Q128_ArcTan
 #endif
@@ -855,7 +855,7 @@ t_q32								Q32_(t_q32 x, t_q32 y);
 t_q64								Q64_(t_q64 x, t_q64 y);
 #define c_q64atan2					Q64_ArcTan2
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_(t_q128 x, t_q128 y);
 #define c_q128atan2					Q128_ArcTan2
 #endif
@@ -882,7 +882,7 @@ t_q32								Q32_CosH(t_q32 x);
 t_q64								Q64_CosH(t_q64 x);
 #define c_q64cosh					Q64_CosH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_CosH(t_q128 x);
 #define c_q128cosh					Q128_CosH
 #endif
@@ -907,7 +907,7 @@ t_q32								Q32_SinH(t_q32 x);
 t_q64								Q64_SinH(t_q64 x);
 #define c_q64sinh					Q64_SinH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_SinH(t_q128 x);
 #define c_q128sinh					Q128_SinH
 #endif
@@ -932,7 +932,7 @@ t_q32								Q32_TanH(t_q32 x);
 t_q64								Q64_TanH(t_q64 x);
 #define c_q64tanh					Q64_TanH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_TanH(t_q128 x);
 #define c_q128tanh					Q128_TanH
 #endif
@@ -959,7 +959,7 @@ t_q32								Q32_InvCosH(t_q32 x);
 t_q64								Q64_InvCosH(t_q64 x);
 #define c_q64acosh					Q64_InvCosH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_InvCosH(t_q128 x);
 #define c_q128acosh					Q128_InvCosH
 #endif
@@ -984,7 +984,7 @@ t_q32								Q32_InvSinH(t_q32 x);
 t_q64								Q64_InvSinH(t_q64 x);
 #define c_q64asinh					Q64_InvSinH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_InvSinH(t_q128 x);
 #define c_q128asinh					Q128_InvSinH
 #endif
@@ -1009,7 +1009,7 @@ t_q32								Q32_InvTanH(t_q32 x);
 t_q64								Q64_InvTanH(t_q64 x);
 #define c_q64atanh					Q64_InvTanH
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_q128								Q128_InvTanH(t_q128 x);
 #define c_q128atanh					Q128_InvTanH
 #endif

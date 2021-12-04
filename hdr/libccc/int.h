@@ -78,14 +78,14 @@ typedef STDINT(uint, 8)	u8;
 typedef STDINT(uint,16)	u16;
 typedef STDINT(uint,32)	u32;
 typedef	STDINT(uint,64)	u64;
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef _UInt128	u128;
 #endif
 typedef STDINT(int,  8)	s8;
 typedef STDINT(int, 16)	s16;
 typedef STDINT(int, 32)	s32;
 typedef	STDINT(int, 64)	s64;
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 typedef _SInt128	s128;
 #endif
 
@@ -166,7 +166,7 @@ TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 typedef	u64		t_u64;
 TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 //! Primitive type: 128-bit unsigned integer (only available on certain platforms)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/types/integer}
@@ -253,7 +253,7 @@ TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 typedef	s64		t_s64;
 TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 //! Primitive type: 128-bit signed integer (only available on certain platforms)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/types/integer}
@@ -354,7 +354,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The largest representable value for at least size 64-bit, signed integer type
 	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum representable value for at least size 64-bit, signed integer type
 
-	#if LIBCONFIG_USE_128BIT
+	#if LIBCONFIG_USE_INT128
 	#define U128_MAX ((t_u128)-1)					//!< The largest representable value for at least size 128-bit, unsigned integer type
 	#define S128_MAX ((t_s128)(U128_MAX >> 1))		//!< The largest representable value for at least size 128-bit, signed integer type
 	#define S128_MIN ((t_s128)((U128_MAX >> 1) + 1))//!< The minimum representable value for at least size 128-bit, signed integer type
@@ -384,7 +384,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define U64_ERROR	0
 	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551615)
 
-	#if LIBCONFIG_USE_128BIT
+	#if LIBCONFIG_USE_INT128
 	#define U128_ERROR	0
 	#define U128_MAX	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211455)
 	#endif
@@ -406,7 +406,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define U64_ERROR	((t_u64)0xFFFFFFFFFFFFFFFF)
 	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551614)
 
-	#if LIBCONFIG_USE_128BIT
+	#if LIBCONFIG_USE_INT128
 	#define U128_ERROR	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)
 	#define U128_MAX	(t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#endif
@@ -436,7 +436,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
 	#define S64_MIN		((t_s64)0x8000000000000000)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775808)
 
-	#if LIBCONFIG_USE_128BIT
+	#if LIBCONFIG_USE_INT128
 	#define S128_ERROR	((t_s128)0)
 	#define S128_MAX	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
 	#define S128_MIN	((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
@@ -464,7 +464,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)		//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
 	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
 
-	#if LIBCONFIG_USE_128BIT
+	#if LIBCONFIG_USE_INT128
 	#define S128_ERROR	((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
 	#define S128_MAX	((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
 	#define S128_MIN	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
@@ -567,7 +567,7 @@ _MALLOC()	t_char*		U32_ToString(t_u32 number);
 
 _MALLOC()	t_char*		U64_ToString(t_u64 number);
 #define c_u64tostr		U64_ToString 	//!< @alias{U64_ToString}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString(t_u128 number); // TODO implement
 #define c_u128tostr		U128_ToString 	//!< @alias{U128_ToString}
 #endif
@@ -596,7 +596,7 @@ _MALLOC()	t_char*		S32_ToString(t_s32 number);
 
 _MALLOC()	t_char*		S64_ToString(t_s64 number);
 #define c_s64tostr		S64_ToString 	//!< @alias{S64_ToString}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString(t_s128 number); // TODO implement
 #define c_s128tostr		S128_ToString 	//!< @alias{S128_ToString}
 #endif
@@ -631,7 +631,7 @@ _MALLOC()	t_char*		U32_ToString_Dec(t_u32 number);
 
 _MALLOC()	t_char*		U64_ToString_Dec(t_u64 number);
 #define c_u64tostrdec	U64_ToString_Dec 	//!< @alias{U64_ToString_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString_Dec(t_u128 number);
 #define c_u128tostrdec	U128_ToString_Dec 	//!< @alias{U128_ToString_Dec}
 #endif
@@ -660,7 +660,7 @@ _MALLOC()	t_char*		S32_ToString_Dec(t_s32 number);
 
 _MALLOC()	t_char*		S64_ToString_Dec(t_s64 number);
 #define c_s64tostrdec	S64_ToString_Dec 	//!< @alias{S64_ToString_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString_Dec(t_s128 number);
 #define c_s128tostrdec	S128_ToString_Dec 	//!< @alias{S128_ToString_Dec}
 #endif
@@ -696,7 +696,7 @@ _MALLOC()	t_char*		U32_ToString_Hex(t_u32 number, t_bool prefix);
 
 _MALLOC()	t_char*		U64_ToString_Hex(t_u64 number, t_bool prefix);
 #define c_u64tostrhex	U64_ToString_Hex 	//!< @alias{U64_ToString_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString_Hex(t_u128 number, t_bool prefix); // TODO implement
 #define c_u128tostrhex	U128_ToString_Hex 	//!< @alias{U128_ToString_Hex}
 #endif
@@ -726,7 +726,7 @@ _MALLOC()	t_char*		S32_ToString_Hex(t_s32 number, t_bool prefix);
 
 _MALLOC()	t_char*		S64_ToString_Hex(t_s64 number, t_bool prefix);
 #define c_s64tostrhex	S64_ToString_Hex 	//!< @alias{S64_ToString_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString_Hex(t_s128 number, t_bool prefix); // TODO implement
 #define c_s128tostrhex	S128_ToString_Hex 	//!< @alias{S128_ToString_Hex}
 #endif
@@ -762,7 +762,7 @@ _MALLOC()	t_char*		U32_ToString_Oct(t_u32 number, t_bool prefix);
 
 _MALLOC()	t_char*		U64_ToString_Oct(t_u64 number, t_bool prefix);
 #define c_u64tostroct	U64_ToString_Oct 	//!< @alias{U64_ToString_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString_Oct(t_u128 number, t_bool prefix); // TODO implement
 #define c_u128tostroct	U128_ToString_Oct 	//!< @alias{U128_ToString_Oct}
 #endif
@@ -792,7 +792,7 @@ _MALLOC()	t_char*		S32_ToString_Oct(t_s32 number, t_bool prefix);
 
 _MALLOC()	t_char*		S64_ToString_Oct(t_s64 number, t_bool prefix);
 #define c_s64tostroct	S64_ToString_Oct 	//!< @alias{S64_ToString_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString_Oct(t_s128 number, t_bool prefix); // TODO implement
 #define c_s128tostroct	S128_ToString_Oct 	//!< @alias{S128_ToString_Oct}
 #endif
@@ -828,7 +828,7 @@ _MALLOC()	t_char*		U32_ToString_Bin(t_u32 number, t_bool prefix);
 
 _MALLOC()	t_char*		U64_ToString_Bin(t_u64 number, t_bool prefix);
 #define c_u64tostrbin	U64_ToString_Bin 	//!< @alias{U64_ToString_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString_Bin(t_u128 number, t_bool prefix); // TODO implement
 #define c_u128tostrbin	U128_ToString_Bin 	//!< @alias{U128_ToString_Bin}
 #endif
@@ -858,7 +858,7 @@ _MALLOC()	t_char*		S32_ToString_Bin(t_s32 number, t_bool prefix);
 
 _MALLOC()	t_char*		S64_ToString_Bin(t_s64 number, t_bool prefix);
 #define c_s64tostrbin	S64_ToString_Bin 	//!< @alias{S64_ToString_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString_Bin(t_s128 number, t_bool prefix); // TODO implement
 #define c_s128tostrbin	S128_ToString_Bin 	//!< @alias{S128_ToString_Bin}
 #endif
@@ -893,7 +893,7 @@ _MALLOC()	t_char*		U32_ToString_Base	(t_u32 number, t_char const* base);
 
 _MALLOC()	t_char*		U64_ToString_Base	(t_u64 number, t_char const* base);
 #define c_u64tostrbase	U64_ToString_Base 	//!< @alias{U64_ToString_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		U128_ToString_Base	(t_u128 number, t_char const* base); // TODO implement
 #define c_u128tostrbase	U128_ToString_Base 	//!< @alias{U128_ToString_Base}
 #endif
@@ -922,7 +922,7 @@ _MALLOC()	t_char*		S32_ToString_Base	(t_s32 number, t_char const* base);
 
 _MALLOC()	t_char*		S64_ToString_Base	(t_s64 number, t_char const* base);
 #define c_s64tostrbase	S64_ToString_Base	//!< @alias{S64_ToString_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 _MALLOC()	t_char*		S128_ToString_Base	(t_s128 number, t_char const* base); // TODO implement
 #define c_s128tostrbase	S128_ToString_Base 	//!< @alias{S128_ToString_Base}
 #endif
@@ -967,7 +967,7 @@ t_size					U32_Parse	(t_u32	*dest, t_char const* str, t_size n);
 
 t_size					U64_Parse	(t_u64	*dest, t_char const* str, t_size n);
 #define c_u64parse		U64_Parse	//!< @alias{U64_Parse}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse	(t_u128	*dest, t_char const* str, t_size n);
 #define c_u128parse		U128_Parse	//!< @alias{U128_Parse}
 #endif
@@ -996,7 +996,7 @@ t_u32					U32_FromString(t_char const* str);
 
 t_u64					U64_FromString(t_char const* str);
 #define c_strtou64		U64_FromString	//!< @alias{U64_FromString}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString(t_char const* str);
 #define c_strtou128		U128_FromString	//!< @alias{U128_FromString}
 #endif
@@ -1027,7 +1027,7 @@ t_size					S32_Parse	(t_s32	*dest, t_char const* str, t_size n);
 
 t_size					S64_Parse	(t_s64	*dest, t_char const* str, t_size n);
 #define c_s64parse		S64_Parse	//!< @alias{S64_Parse}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse	(t_s128	*dest, t_char const* str, t_size n);
 #define c_s128parse		S128_Parse	//!< @alias{S128_Parse}
 #endif
@@ -1056,7 +1056,7 @@ t_s32					S32_FromString(t_char const* str);
 
 t_s64					S64_FromString(t_char const* str);
 #define c_strtos64		S64_FromString	//!< @alias{S64_FromString}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString(t_char const* str);
 #define c_strtos128		S128_FromString	//!< @alias{S128_FromString}
 #endif
@@ -1093,7 +1093,7 @@ t_size					U32_Parse_Dec	(t_u32	*dest, t_char const* str, t_size n);
 
 t_size					U64_Parse_Dec	(t_u64	*dest, t_char const* str, t_size n);
 #define c_u64parsedec	U64_Parse_Dec	//!< @alias{U64_Parse_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse_Dec	(t_u128	*dest, t_char const* str, t_size n);
 #define c_u128parsedec	U128_Parse_Dec	//!< @alias{U128_Parse_Dec}
 #endif
@@ -1122,7 +1122,7 @@ t_u32					U32_FromString_Dec(t_char const* str);
 
 t_u64					U64_FromString_Dec(t_char const* str);
 #define c_strdectou64	U64_FromString_Dec	//!< @alias{U64_FromString_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString_Dec(t_char const* str);
 #define c_strdectou128	U128_FromString_Dec	//!< @alias{U128_FromString_Dec}
 #endif
@@ -1153,7 +1153,7 @@ t_size					S32_Parse_Dec	(t_s32	*dest, t_char const* str, t_size n);
 
 t_size					S64_Parse_Dec	(t_s64	*dest, t_char const* str, t_size n);
 #define c_s64parsedec	S64_Parse_Dec	//!< @alias{S64_Parse_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse_Dec	(t_s128	*dest, t_char const* str, t_size n);
 #define c_s128parsedec	S128_Parse_Dec	//!< @alias{S128_Parse_Dec}
 #endif
@@ -1182,7 +1182,7 @@ t_s32					S32_FromString_Dec(t_char const* str);
 
 t_s64					S64_FromString_Dec(t_char const* str);
 #define c_strdectos64	S64_FromString_Dec	//!< @alias{S64_FromString_Dec}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString_Dec(t_char const* str);
 #define c_strdectos128	S128_FromString_Dec	//!< @alias{S128_FromString_Dec}
 #endif
@@ -1219,7 +1219,7 @@ t_size					U32_Parse_Hex	(t_u32	*dest, t_char const* str, t_size n);
 
 t_size					U64_Parse_Hex	(t_u64	*dest, t_char const* str, t_size n);
 #define c_u64parsehex	U64_Parse_Hex	//!< @alias{U64_Parse_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse_Hex	(t_u128	*dest, t_char const* str, t_size n);
 #define c_u128parsehex	U128_Parse_Hex	//!< @alias{U128_Parse_Hex}
 #endif
@@ -1248,7 +1248,7 @@ t_u32					U32_FromString_Hex(t_char const* str);
 
 t_u64					U64_FromString_Hex(t_char const* str);
 #define c_strhextou64	U64_FromString_Hex	//!< @alias{U64_FromString_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString_Hex(t_char const* str);
 #define c_strhextou128	U128_FromString_Hex	//!< @alias{U128_FromString_Hex}
 #endif
@@ -1279,7 +1279,7 @@ t_size					S32_Parse_Hex	(t_s32	*dest, t_char const* str, t_size n);
 
 t_size					S64_Parse_Hex	(t_s64	*dest, t_char const* str, t_size n);
 #define c_s64parsehex	S64_Parse_Hex	//!< @alias{S64_Parse_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse_Hex	(t_s128	*dest, t_char const* str, t_size n);
 #define c_s128parsehex	S128_Parse_Hex	//!< @alias{S128_Parse_Hex}
 #endif
@@ -1308,7 +1308,7 @@ t_s32					S32_FromString_Hex(t_char const* str);
 
 t_s64					S64_FromString_Hex(t_char const* str);
 #define c_strhextos64	S64_FromString_Hex	//!< @alias{S64_FromString_Hex}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString_Hex(t_char const* str);
 #define c_strhextos128	S128_FromString_Hex	//!< @alias{S128_FromString_Hex}
 #endif
@@ -1345,7 +1345,7 @@ t_size					U32_Parse_Oct	(t_u32	*dest, t_char const* str, t_size n);
 
 t_size					U64_Parse_Oct	(t_u64	*dest, t_char const* str, t_size n);
 #define c_u64parseoct	U64_Parse_Oct	//!< @alias{U64_Parse_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse_Oct	(t_u128	*dest, t_char const* str, t_size n);
 #define c_u128parseoct	U128_Parse_Oct	//!< @alias{U128_Parse_Oct}
 #endif
@@ -1374,7 +1374,7 @@ t_u32					U32_FromString_Oct(t_char const* str);
 
 t_u64					U64_FromString_Oct(t_char const* str);
 #define c_strocttou64	U64_FromString_Oct	//!< @alias{U64_FromString_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString_Oct(t_char const* str);
 #define c_strocttou128	U128_FromString_Oct	//!< @alias{U128_FromString_Oct}
 #endif
@@ -1405,7 +1405,7 @@ t_size					S32_Parse_Oct	(t_s32	*dest, t_char const* str, t_size n);
 
 t_size					S64_Parse_Oct	(t_s64	*dest, t_char const* str, t_size n);
 #define c_s64parseoct	S64_Parse_Oct	//!< @alias{S64_Parse_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse_Oct	(t_s128	*dest, t_char const* str, t_size n);
 #define c_s128parseoct	S128_Parse_Oct	//!< @alias{S128_Parse_Oct}
 #endif
@@ -1434,7 +1434,7 @@ t_s32					S32_FromString_Oct(t_char const* str);
 
 t_s64					S64_FromString_Oct(t_char const* str);
 #define c_strocttos64	S64_FromString_Oct	//!< @alias{S64_FromString_Oct}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString_Oct(t_char const* str);
 #define c_strocttos128	S128_FromString_Oct	//!< @alias{S128_FromString_Oct}
 #endif
@@ -1471,7 +1471,7 @@ t_size					U32_Parse_Bin	(t_u32	*dest, t_char const* str, t_size n);
 
 t_size					U64_Parse_Bin	(t_u64	*dest, t_char const* str, t_size n);
 #define c_u64parsebin	U64_Parse_Bin	//!< @alias{U64_Parse_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse_Bin	(t_u128	*dest, t_char const* str, t_size n);
 #define c_u128parsebin	U128_Parse_Bin	//!< @alias{U128_Parse_Bin}
 #endif
@@ -1500,7 +1500,7 @@ t_u32					U32_FromString_Bin(t_char const* str);
 
 t_u64					U64_FromString_Bin(t_char const* str);
 #define c_strbintou64	U64_FromString_Bin	//!< @alias{U64_FromString_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString_Bin(t_char const* str);
 #define c_strbintou128	U128_FromString_Bin	//!< @alias{U128_FromString_Bin}
 #endif
@@ -1531,7 +1531,7 @@ t_size					S32_Parse_Bin	(t_s32	*dest, t_char const* str, t_size n);
 
 t_size					S64_Parse_Bin	(t_s64	*dest, t_char const* str, t_size n);
 #define c_s64parsebin	S64_Parse_Bin	//!< @alias{S64_Parse_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse_Bin	(t_s128	*dest, t_char const* str, t_size n);
 #define c_s128parsebin	S128_Parse_Bin	//!< @alias{S128_Parse_Bin}
 #endif
@@ -1560,7 +1560,7 @@ t_s32					S32_FromString_Bin(t_char const* str);
 
 t_s64					S64_FromString_Bin(t_char const* str);
 #define c_strbintos64	S64_FromString_Bin	//!< @alias{S64_FromString_Bin}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString_Bin(t_char const* str);
 #define c_strbintos128	S128_FromString_Bin	//!< @alias{S128_FromString_Bin}
 #endif
@@ -1599,7 +1599,7 @@ t_size					U32_Parse_Base	(t_u32	*dest, t_char const* str, t_char const* base, t
 
 t_size					U64_Parse_Base	(t_u64	*dest, t_char const* str, t_char const* base, t_size n);
 #define c_u64parsebase	U64_Parse_Base	//!< @alias{U64_Parse_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					U128_Parse_Base	(t_u128	*dest, t_char const* str, t_char const* base, t_size n);
 #define c_u128parsebase	U128_Parse_Base	//!< @alias{U128_Parse_Base}
 #endif
@@ -1630,7 +1630,7 @@ t_u32					U32_FromString_Base	(t_char const* str, t_char const* base);
 
 t_u64					U64_FromString_Base	(t_char const* str, t_char const* base);
 #define c_strbasetou64	U64_FromString_Base		//!< @alias{U64_FromString_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_u128					U128_FromString_Base(t_char const* str, t_char const* base);
 #define c_strbasetou128	U128_FromString_Base	//!< @alias{U128_FromString_Base}
 #endif
@@ -1663,7 +1663,7 @@ t_size					S32_Parse_Base	(t_s32	*dest, t_char const* str, t_char const* base, t
 
 t_size					S64_Parse_Base	(t_s64	*dest, t_char const* str, t_char const* base, t_size n);
 #define c_s64parsebase	S64_Parse_Base	//!< @alias{S64_Parse_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_size					S128_Parse_Base	(t_s128	*dest, t_char const* str, t_char const* base, t_size n);
 #define c_s128parsebase	S128_Parse_Base	//!< @alias{S128_Parse_Base}
 #endif
@@ -1694,7 +1694,7 @@ t_s32					S32_FromString_Base	(t_char const* str, t_char const* base);
 
 t_s64					S64_FromString_Base	(t_char const* str, t_char const* base);
 #define c_strbasetos64	S64_FromString_Base		//!< @alias{S64_FromString_Base}
-#if LIBCONFIG_USE_128BIT
+#if LIBCONFIG_USE_INT128
 t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 #define c_strbasetos128	S128_FromString_Base	//!< @alias{S128_FromString_Base}
 #endif
