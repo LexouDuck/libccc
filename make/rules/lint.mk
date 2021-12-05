@@ -36,9 +36,14 @@ lint: $(LINT)
 
 
 
-# CCPcheck: http://cppcheck.sourceforge.net/
+CPPCHECK = cppcheck
+CPPCHECK_FLAGS = 
+
+.PHONY:\
+lint-cppcheck #! Runs code linter on source code: cppcheck (http://cppcheck.sourceforge.net/)
 lint-cppcheck:
-	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
+	@$(CPPCHECK) $(SRCDIR) $(HDRDIR) $(CPPCHECK_FLAGS) \
+		--quiet --std=c99 --enable=all \
 		-DTRUE=1 -DFALSE=0 -DERROR=-1 -DOK=0 -D__GNUC__ \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
@@ -48,8 +53,13 @@ lint-cppcheck:
 
 
 
-# splint: http://splint.org/
-#	@splint
+SPLINT = splint
+SPLINT_FLAGS = 
+
+.PHONY:\
+lint-splint #! Runs code linter on source code: splint (http://splint.org/)
+lint-splint:
+	@$(call print_error,"splint not configured yet") # $(SPLINT) $(SPLINT_FLAGS)
 
 
 
@@ -58,3 +68,15 @@ clean-lint #! Deletes the ./lint folder
 clean-lint:
 	@$(call print_message,"Deleting "$(LINTDIR)" folder...")
 	@rm -rf $(LINTDIR)
+
+
+
+.PHONY:\
+prereq-lint #! Checks prerequisite installs to run the linters/static analyzers
+prereq-lint:
+	@-$(call check_prereq,'(lint) cppcheck',\
+		cppcheck --version,\
+		$(call install_prereq,cppcheck))
+	@-$(call check_prereq,'(lint) splint',\
+		splint --help version,\
+		$(call install_prereq,splint))

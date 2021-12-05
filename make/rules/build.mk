@@ -109,3 +109,15 @@ clean-build-bin:
 	@rm -f $(NAME_STATIC)
 	@$(call print_message,"Deleting dynamic library: $(NAME_DYNAMIC)")
 	@rm -f $(NAME_DYNAMIC)
+
+
+
+.PHONY:\
+prereq-build #! Checks prerequisite installs to build the library/program
+prereq-build:
+	@-$(call check_prereq,'(build) C compiler: $(CC)',\
+		$(CC) --version,\
+		$(call install_prereq,$(CC)))
+	@-$(call check_prereq,'(build) C archiver: $(AR)',\
+		which $(AR),\
+		$(call install_prereq,binutils))

@@ -49,3 +49,26 @@ else ifeq ($(OSMODE),macos)
 	@leaks --fullContent -atExit -- ./$(NAME_TEST) $(ARGS) > $(LOGDIR)leaks/xcode_$(NAME_TEST).txt
 	@$(SUDO) rm "/usr/local/lib/libLeaksAtExit.dylib"
 endif
+
+
+
+.PHONY:\
+prereq-tests #! Checks prerequisite installs to run the various tests
+prereq-tests:
+ifeq ($(OSMODE),other)
+	@$(call print_warning,"'other' platform: memory leak checking tool must be configured manually")
+else ifeq ($(OSMODE),win32)
+	@-# TODO drmemory.exe ?
+else ifeq ($(OSMODE),win64)
+	@-# TODO drmemory.exe ?
+else ifeq ($(OSMODE),macos)
+	@-$(call check_prereq,'(tests) Xcode leaks checker',\
+		which leaks,\
+		$(call install_prereq,leaks))
+else ifeq ($(OSMODE),linux)
+	@-$(call check_prereq,'(tests) Valgrind',\
+		valgrind --version,\
+		$(call install_prereq,valgrind))
+else
+	@$(call print_warning,"Unsupported platform: memory leak checking tool must be configured manually")
+endif
