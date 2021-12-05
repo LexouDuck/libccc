@@ -103,8 +103,8 @@ include make/rules/clean.mk
 
 include make/rules/debugging.mk
 include make/rules/test.mk
-include make/rules/test-simple.mk
 include make/rules/test-env.mk
+include make/rules/test-standalone.mk
 include make/rules/lint.mk
 include make/rules/coverage.mk
 include make/rules/format.mk
