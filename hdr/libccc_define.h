@@ -57,44 +57,53 @@ HEADER_CPP
 */
 
 /*! @file libccc.h
-**	NB: The following macros listed here exist on almost any platform/compiler:
+**	NOTE: The following macros listed here exist as predefined builtins on almost any platform/compiler:
 **
-**	Here is the list of all the predefined ANSI C macros
-**	__cplusplus	Defined only when a C++ compiler is being used.
-**	__OBJC__	Defined as 1 when the compiler is Objective-C.
-**	__DATE__	String literal: The current date, in "MMM DD YYYY" format.
-**	__TIME__	String literal: The current time, in "HH:MM:SS" format.
-**	__FILE__	String literal: This contains the current source code filename.
-**	__LINE__	Integer constant: the current source code line number.
-**	__STDC__	Defined as 1 when the compiler complies with the ISO C standard.
-**	__STDC_VERSION__	Defined as a `long` literal value, in the format `YYYYMMl`, eg: 199901l means the C99 standard
+**	Here is the list of all the standard predefined ANSI C macros
+**	| Macro name          | Description
+**	|---------------------|--------------
+**	| `__cplusplus`       | Defined only when a C++ compiler is being used.
+**	| `__OBJC__`          | Defined as 1 when the compiler is Objective-C.
+**	| `__DATE__`          | String literal: The current date, in "MMM DD YYYY" format.
+**	| `__TIME__`          | String literal: The current time, in "HH:MM:SS" format.
+**	| `__FILE__`          | String literal: This contains the current source code filename.
+**	| `__LINE__`          | Integer constant: the current source code line number.
+**	| `__STDC__`          | Defined as 1 when the compiler complies with the ISO C standard.
+**	| `__STDC_VERSION__`  | Defined as a `long` literal value, in the format `YYYYMMl`, eg: 199901l means the C99 standard
 **
 **	There's also this very useful (non-macro) identifier, only defined in C99/C++:
-**	__func__	String constant: The current function name.
+**	| Macro name          | Description
+**	|---------------------|--------------
+**	| `__func__`          | String constant: The current function name.
 **
-**	Here are some of the many common GNU C macros (only present with GNU-compliant compilers):
-**	__GNUC__			Integer constant (with value = GCC version), if the compiler is GNU-compliant.
-**	__COUNTER__			Starts as 0, increments every time it is expanded - can be useful to generate names with token-paste '##' operator
-**	__BASE_FILE__		String literal: the source entry point filename (the file which holds the 'main()' function)
-**	__INCLUDE_LEVEL__	Integer constant: The current depth of nesting within `#include` directives.
+**	Also, here are some of the many common GNU C macros (only present with GNU-compliant compilers):
+**	| Macro name          | Description
+**	|---------------------|--------------
+**	| `__GNUC__`          | Integer constant (with value = GCC version), if the compiler is GNU-compliant.
+**	| `__COUNTER__`       | Starts as 0, increments every time it is expanded - can be useful to generate names with token-paste '##' operator
+**	| `__BASE_FILE__`     | String literal: the source entry point filename (the file which holds the 'main()' function)
+**	| `__INCLUDE_LEVEL__` | Integer constant: The current depth of nesting within `#include` directives.
 **
-**	      __BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores integers in reverse byte ordering (least-to-most signficant)
-**	      __BYTE_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores integers in regular byte ordering (most-to-least signficant)
-**	      __BYTE_ORDER__ == __ORDER_PDP_ENDIAN__	If TRUE, this machine stores integers in strange byte ordering (word-reverse + byte-reverse)
-**	__FLOAT_WORD_ORDER__ == __ORDER_LITTLE_ENDIAN__	If TRUE, this machine stores multi-word floats in reverse ordering (least-to-most signficant)
-**	__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__	If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
+**	There is also the `__BYTE_ORDER__` and `__FLOAT_WORD_ORDER__`, which describe the storage endianness of native numeric types.
+**	| Macro name and value                              | Description
+**	|---------------------------------------------------|--------------
+**	|       `__BYTE_ORDER__ == __ORDER_LITTLE_ENDIAN__` | If TRUE, this machine stores integers in reverse byte ordering (least-to-most signficant)
+**	|       `__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__`    | If TRUE, this machine stores integers in regular byte ordering (most-to-least signficant)
+**	|       `__BYTE_ORDER__ == __ORDER_PDP_ENDIAN__`    | If TRUE, this machine stores integers in strange byte ordering (word-reverse + byte-reverse)
+**	| `__FLOAT_WORD_ORDER__ == __ORDER_LITTLE_ENDIAN__` | If TRUE, this machine stores multi-word floats in reverse ordering (least-to-most signficant)
+**	| `__FLOAT_WORD_ORDER__ == __ORDER_BIG_ENDIAN__`    | If TRUE, this machine stores multi-word floats in regular ordering (most-to-least signficant)
 */
 
 
 
 //! These are convienence macros, to check for different C standards in preprocessor `#if` statements.
 //!@{
-#define __STDC_VERSION_ANSI__	0l	//!< NOTE: when only ANSI/C89/C90 support is present, __STDC_VERSION__ will not be defined !
+#define __STDC_VERSION_ANSI__	0l	//!< NOTE: when only ANSI/C89/C90 support is present, `__STDC_VERSION__` will not be defined !
 #define __STDC_VERSION_C95__	199409l
 #define __STDC_VERSION_C99__	199901l
 #define __STDC_VERSION_C11__	201112l
 #define __STDC_VERSION_C17__	201710l
-#define __STDC_VERSION_C23__	(-1)	//!< TBD
+#define __STDC_VERSION_C23__	(-1)	//!< TBD: this is set to `-1` for now, since its final value (exact date) is not known
 //!@}
 
 
@@ -212,7 +221,7 @@ HEADER_CPP
 
 
 
-//! Check if this environment supports extended-precision `long double` type
+//! Check if the current platform supports any extended-precision `long double` types
 //!@{
 #ifdef __LDBL_MANT_DIG__
 #if (__LDBL_MANT_DIG__ == 53) // long double is 64-bit
@@ -287,10 +296,10 @@ HEADER_CPP
 
 //! This macro function expands and merges the two given tokens `TOKEN1` and `TOKEN2` into a single token
 /*!
-**	NB: This is useful because the token-paste concatenation operator `##`
-**		merges tokens after expanding the macro's arguments, but it happens
-**		before expanding their respective values. Here, an additional layer
-**		of macro indirection forces the expansion to occur before token-pasting.
+**	This is useful because the token-paste concatenation operator `##`
+**	merges tokens after expanding the macro's arguments, but it happens
+**	before expanding their respective values. Here, an additional layer
+**	of macro indirection forces the expansion to occur before token-pasting.
 */
 //!@{
 #define CONCAT(TOKEN1, TOKEN2)	CONCAT_(TOKEN1, TOKEN2)
@@ -299,10 +308,10 @@ HEADER_CPP
 
 //! This macro function expands and stringizes the given `TOKEN` argument
 /*!
-**	NB: This is useful because the stringization operator `#` converts
-**		the tokens after expanding the macro's arguments, but it happens
-**		before expanding their respective values. Here, an additional layer
-**		of macro indirection forces the expansion to occur before stringizing.
+**	This is useful because the stringization operator `#` converts
+**	the tokens after expanding the macro's arguments, but it happens
+**	before expanding their respective values. Here, an additional layer
+**	of macro indirection forces the expansion to occur before stringizing.
 */
 //!@{
 #define STRING(TOKEN)		STRING_(TOKEN)
@@ -477,9 +486,9 @@ HEADER_CPP
 /*!
 **	Currently, the types that work with this 'foreach' keyword are: s_array, s_list, s_dict
 **	Here are some more details on how to use this macro:
-**	- s_array<t_char*>:	foreach (t_char*, my_str, s_array, my_array) { ... }
-**	- s_list<t_char*>:	foreach (t_char*, my_str, s_list,  my_list)  { ... }
-**	- s_dict<t_char*>:	foreach (t_char*, my_str, s_dict,  my_dict)  { ... }
+**	- for `s_array<t_char*>`:	`foreach (t_char*, my_str, s_array, my_array) { ... }`
+**	- for `s_list<t_char*>`:	`foreach (t_char*, my_str, s_list,  my_list)  { ... }`
+**	- for `s_dict<t_char*>`:	`foreach (t_char*, my_str, s_dict,  my_dict)  { ... }`
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
 	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\

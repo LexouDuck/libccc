@@ -120,17 +120,17 @@ void	print_test_strarrlen(char const* test_name, int can_segfault,
 }
 void	test_strarrlen()
 {
-//	| TEST FUNCTION			| TEST NAME				| CAN SEGV	| EXPECTING					| TEST ARGS
-	print_test_strarrlen("strarrlen",				FALSE,		18,							strarr1_A);
-	print_test_strarrlen("strarrlen",				FALSE,		18,							strarr1_B);
-	print_test_strarrlen("strarrlen",				FALSE,		7,							strarr1_C);
-	print_test_strarrlen("strarrlen",				FALSE,		4,							strarr2_A);
-	print_test_strarrlen("strarrlen",				FALSE,		5,							strarr2_B);
-	print_test_strarrlen("strarrlen",				FALSE,		4,							strarr3);
-	print_test_strarrlen("strarrlen",				FALSE,		2,							strarr4_A);
-	print_test_strarrlen("strarrlen",				FALSE,		4,							strarr4_B);
-	print_test_strarrlen("strarrlen",				FALSE,		8,							strarr4_C);
-	print_test_strarrlen("strarrlen (null strarr)",	TRUE,		-1,							NULL);
+//	| TEST FUNCTION			| TEST NAME				| CAN SEGV	| EXPECTING | TEST ARGS
+	print_test_strarrlen("strarrlen",				FALSE,		18,         strarr1_A);
+	print_test_strarrlen("strarrlen",				FALSE,		18,         strarr1_B);
+	print_test_strarrlen("strarrlen",				FALSE,		 7,         strarr1_C);
+	print_test_strarrlen("strarrlen",				FALSE,		 4,         strarr2_A);
+	print_test_strarrlen("strarrlen",				FALSE,		 5,         strarr2_B);
+	print_test_strarrlen("strarrlen",				FALSE,		 4,         strarr3);
+	print_test_strarrlen("strarrlen",				FALSE,		 2,         strarr4_A);
+	print_test_strarrlen("strarrlen",				FALSE,		 4,         strarr4_B);
+	print_test_strarrlen("strarrlen",				FALSE,		 8,         strarr4_C);
+	print_test_strarrlen("strarrlen (null strarr)",	TRUE,		-1,         NULL);
 }
 #endif
 
