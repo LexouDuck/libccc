@@ -14,7 +14,7 @@ $(OBJDIR)%.c: $(SRCDIR)%.c
 .PHONY:\
 debug-macros #! Preprocesses all source files and stores them in the obj folder
 debug-macros: all $(SRCS_PREPROCESSED)
-	@$(call print_message,"Outputting preprocessed code...")
+	@$(call print_success,"All source files have been preprocessed (in $(OBJDIR)).")
 
 
 

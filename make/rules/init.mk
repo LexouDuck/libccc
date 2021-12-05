@@ -3,7 +3,7 @@
 
 
 .PHONY:\
-init #! Should be executed once, after cloning the repo
+init #! Performs initial project setup (should be executed once, after cloning the repo)
 init:
 	@git submodule update --init --recursive
 	@git config core.hooksPath $(GITHOOKSDIR)

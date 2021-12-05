@@ -3,30 +3,40 @@
 
 
 .PHONY:\
-clean #! Deletes all intermediary build files
-clean:
-	@$(call print_message,"Deleting all .o files...")
-	@rm -f $(OBJS)
-	@rm -f $(TEST_OBJS)
-	@$(call print_message,"Deleting all .d files...")
-	@rm -f $(DEPS)
-	@rm -f $(TEST_DEPS)
-	@rm -f *.d
+clean #! Deletes any intermediary build files
+clean: \
+	clean-all-obj \
+	clean-all-dep \
 
 
 
 .PHONY:\
-clean-exe #! Deletes any libraries/executables
-clean-exe:
-	@rm -f $(NAME)
-	@rm -f $(NAME).*
-	@$(call print_message,"Deleting library: "$(NAME_STATIC)"")
-	@rm -f $(NAME_STATIC)
-	@$(call print_message,"Deleting library: "$(NAME_DYNAMIC)"")
-	@rm -f $(NAME_DYNAMIC)
-	@$(call print_message,"Deleting test program: "$(NAME_TEST)"")
-	@rm -f $(NAME_TEST)
-	@rm -f $(NAME_TEST).d
+clean-all #! Deletes every generated file
+clean-all: \
+	clean-build \
+	clean-tests \
+
+
+
+.PHONY:\
+clean-all-obj #! Deletes all .o files
+clean-all-obj: \
+	clean-build-obj \
+	clean-tests-obj \
+
+.PHONY:\
+clean-all-dep #! Deletes all .d files
+clean-all-dep: \
+	clean-build-dep \
+	clean-tests-dep \
+
+.PHONY:\
+clean-all-bin #! Deletes any built libraries/executables
+clean-all-bin: \
+	clean-build-bin \
+	clean-tests-bin \
+
+
 
 .PHONY:\
 clean-obj #! Deletes the ./obj folder
@@ -41,25 +51,7 @@ clean-bin:
 	@rm -rf $(BINDIR)
 
 .PHONY:\
-clean-test #! Deletes the ./obj/test folder
-clean-test:
-	@$(call print_message,"Deleting "$(OBJDIR)$(TESTDIR)" folder...")
-	@rm -rf $(OBJDIR)$(TESTDIR)
-
-.PHONY:\
-clean-logs #! Deletes the ./log folder
-clean-logs:
+clean-log #! Deletes the ./log folder
+clean-log:
 	@$(call print_message,"Deleting "$(LOGDIR)" folder...")
 	@rm -rf $(LOGDIR)
-
-.PHONY:\
-clean-lint #! Deletes the ./lint folder
-clean-lint:
-	@$(call print_message,"Deleting "$(LINTDIR)" folder...")
-	@rm -rf $(LINTDIR)
-
-
-
-.PHONY:\
-clean-full #! Deletes every generated file
-clean-full: clean clean-exe

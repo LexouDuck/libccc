@@ -3,17 +3,24 @@
 
 
 .PHONY:\
-test #! Builds and runs the test suite program with the given 'ARGS'
+test #! Runs the test suite program, with the given 'ARGS'
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
 
 
+TEST_LOGDIR = $(LOGDIR)test/
+
 .PHONY:\
-test-log #! Builds and runs the test suite program with the given 'ARGS', logging all results to files
-test-log: $(NAME_TEST)
-	@mkdir -p $(LOGDIR)test/$(OSMODE)/
-	@./$(NAME_TEST) $(ARGS) -var --test-all >> $(LOGDIR)test/$(OSMODE)/$(NAME_TEST).txt
+test-logs #! Builds and runs the test suite program with the given 'ARGS', logging all results to files
+test-logs: $(NAME_TEST)
+	@mkdir -p $(TEST_LOGDIR)$(OSMODE)/
+	@./$(NAME_TEST) -var --test-all $(ARGS) >> $(TEST_LOGDIR)$(OSMODE)/$(NAME_TEST).txt
+
+.PHONY:\
+clean-test-logs #! Deletes any test suite logs
+clean-test-logs:
+	@rm -rf $(TEST_LOGDIR)
 
 
 

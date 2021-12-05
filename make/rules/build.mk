@@ -80,3 +80,32 @@ endif
 
 # The following line is for `.d` dependency file handling
 -include $(DEPS)
+
+
+
+.PHONY:\
+clean-build #! Deletes all intermediary build-related files
+clean-build: \
+clean-build-obj \
+clean-build-dep \
+clean-build-bin \
+
+.PHONY:\
+clean-build-obj #! Deletes all .o build object files
+clean-build-obj:
+	@$(call print_message,"Deleting all build .o files...")
+	@rm -f $(TEST_OBJS)
+
+.PHONY:\
+clean-build-dep #! Deletes all .d build dependency files
+clean-build-dep:
+	@$(call print_message,"Deleting all build .d files...")
+	@rm -f $(TEST_DEPS)
+
+.PHONY:\
+clean-build-bin #! Deletes all build binaries
+clean-build-bin:
+	@$(call print_message,"Deleting static library: $(NAME_STATIC)")
+	@rm -f $(NAME_STATIC)
+	@$(call print_message,"Deleting dynamic library: $(NAME_DYNAMIC)")
+	@rm -f $(NAME_DYNAMIC)

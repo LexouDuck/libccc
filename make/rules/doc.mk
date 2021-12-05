@@ -2,6 +2,18 @@
 
 
 
+#! The list of output formats of the documentation (doubles as list of folders)
+DOC_OUTPUTS = \
+	xml \
+	rst \
+	man \
+	rtf \
+	pdf \
+	html \
+	latex \
+
+
+
 #! Shell command: doxygen
 DOXYGEN = doxygen
 #! Shell command: doxygen options
@@ -20,18 +32,29 @@ SPHINX_FLAGS =
 
 
 .PHONY:\
-doc #! Generates documentation for libccc
-doc:
+doc #! Generates documentation for the project
+doc: clean-doc mkdir-doc
 	@$(call print_message,"Generating documentation...")
-	@rm -rf $(DOCDIR)xml/*
-	@rm -rf $(DOCDIR)rst/*
-	@rm -rf $(DOCDIR)man/*
-	@rm -rf $(DOCDIR)rtf/*
-	@rm -rf $(DOCDIR)pdf/*
-	@rm -rf $(DOCDIR)html/*
-	@rm -rf $(DOCDIR)latex/*
 	@$(DOXYGEN)  $(DOXYGEN_FLAGS)     $(DOCDIR)doxygen-config.doxygen
 	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOCDIR)doxyrest-config.lua
 	@$(SPHINX)   $(SPHINX_FLAGS) -b html $(DOCDIR)rst $(DOCDIR)html -c $(DOCDIR)
 	@#$(SPHINX)   $(SPHINX_FLAGS) -M latexpdf $(DOCDIR)rst $(DOCDIR)pdf  -c $(DOCDIR)
 	@#$(MAKE) -C $(DOCDIR)pdf/latex/ all
+
+
+
+.PHONY:\
+mkdir-doc #! Creates all the build folders in the ./doc folder (according to `DOC_OUTPUTS`)
+mkdir-doc:
+	@$(call print_message,"Creating documentation build folders...")
+	@for i in $(DOC_OUTPUTS); do \
+		mkdir -p $(DOCDIR)$(i) ; \
+	done
+
+.PHONY:\
+clean-doc #! Deletes any previous builds of documentation website in ./doc folder
+clean-doc:
+	@$(call print_message,"Deleting documentation build folders...")
+	@for i in $(DOC_OUTPUTS); do \
+		rm -rf $(DOCDIR)$(i) ; \
+	done

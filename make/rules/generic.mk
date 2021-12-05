@@ -92,7 +92,7 @@ endef
 
 
 .PHONY:\
-generic #! This rule creates a generic import file for any files given as `GENERIC_HEADERS`
+generic #! Creates a generic import file for any files given as `GENERIC_HEADERS`
 generic:
 	@for i in $(GENERIC_HEADERS) ; do \
 		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||' `" ; \
@@ -106,4 +106,13 @@ generic:
 			'$(AWKSCRIPT_FILEFROMTEMPLATE)' \
 			"$(GENERIC_TEMPLATE)" \
 			> $${output} ; \
+	done
+
+.PHONY:\
+clean-generic #! Deletes any generated C importable generic code files (uses `GENERIC_HEADERS`)
+clean-generic:
+	@$(call print_message,"Deleting all generic import files...")
+	@for i in $(GENERIC_HEADERS) ; do \
+		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
+		rm -f $${output}
 	done

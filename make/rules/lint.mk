@@ -39,7 +39,7 @@ lint: $(LINT)
 # CCPcheck: http://cppcheck.sourceforge.net/
 lint-cppcheck:
 	@cppcheck $(SRCDIR) $(HDRDIR) --quiet --std=c99 --enable=all \
-		-DTRUE=1 -DFALSE=0 -DERROR=1 -DOK=0 -D__GNUC__ \
+		-DTRUE=1 -DFALSE=0 -DERROR=-1 -DOK=0 -D__GNUC__ \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
 		--suppress=memleak \
@@ -50,3 +50,11 @@ lint-cppcheck:
 
 # splint: http://splint.org/
 #	@splint
+
+
+
+.PHONY:\
+clean-lint #! Deletes the ./lint folder
+clean-lint:
+	@$(call print_message,"Deleting "$(LINTDIR)" folder...")
+	@rm -rf $(LINTDIR)

@@ -51,3 +51,30 @@ $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 
 # The following line is for `.d` dependency file handling
 -include $(TEST_DEPS)
+
+
+
+.PHONY:\
+clean-tests #! Deletes all intermediary tests-related files
+clean-tests: \
+clean-tests-obj \
+clean-tests-dep \
+clean-tests-bin \
+
+.PHONY:\
+clean-tests-obj #! Deletes all .o tests object files
+clean-tests-obj:
+	@$(call print_message,"Deleting all tests .o files...")
+	@rm -f $(TEST_OBJS)
+
+.PHONY:\
+clean-tests-dep #! Deletes all .d tests dependency files
+clean-tests-dep:
+	@$(call print_message,"Deleting all tests .d files...")
+	@rm -f $(TEST_DEPS)
+
+.PHONY:\
+clean-tests-bin #! Deletes all tests binaries
+clean-tests-bin:
+	@$(call print_message,"Deleting test program: "$(NAME_TEST)"")
+	@rm -f $(NAME_TEST)
