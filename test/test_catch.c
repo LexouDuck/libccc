@@ -66,7 +66,7 @@ void	init_segfault_handler(void)
 	signal(SIGABRT,	signal_handler);
 	signal(SIGFPE,	signal_handler);
 #else
-	memset(&signal_action, 0, sizeof(sigaction));
+	memset(&signal_action, 0, sizeof(struct sigaction));
 	sigemptyset(&signal_action.sa_mask);
 	signal_action.sa_flags     = SA_NODEFER;
 	signal_action.sa_sigaction = signal_handler;

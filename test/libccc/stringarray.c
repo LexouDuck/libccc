@@ -145,9 +145,10 @@ void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char			separator)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM(		strsplit_char, str, separator)
+	TEST_PERFORM_(result, (char**)c_strsplit_char, str, separator)
+	test.expect = (char**)expecting;
 	TEST_PRINT(strarr,	strsplit_char, "str=\"%s\", sep='%c'/0x%2X", str, separator, separator)
-	TEST_FREE_ARRAY_NULLTERM()
+	TEST_FREE_RESULT(c_strarrfree)
 }
 void	test_strsplit_char()
 {
@@ -171,9 +172,10 @@ void	print_test_strsplit_charset(char const* test_name, int can_segfault,
 		char const*		separators)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM(		strsplit_charset, str, separators)
+	TEST_PERFORM_(result, (char**)c_strsplit_charset, str, separators)
+	test.expect = (char**)expecting;
 	TEST_PRINT(strarr,	strsplit_charset, "str=\"%s\", seps=\"%s\"", str, separators)
-	TEST_FREE_ARRAY_NULLTERM()
+	TEST_FREE_RESULT(c_strarrfree)
 }
 void	test_strsplit_charset()
 {
@@ -204,9 +206,10 @@ void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const*		separator)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM(		strsplit_str, str, separator)
+	TEST_PERFORM_(result, (char**)c_strsplit_str, str, separator)
+	test.expect = (char**)expecting;
 	TEST_PRINT(strarr,	strsplit_str, "str=\"%s\", sep=\"%s\"", str, separator)
-	TEST_FREE_ARRAY_NULLTERM()
+	TEST_FREE_RESULT(c_strarrfree)
 }
 void	test_strsplit_str()
 {
@@ -231,13 +234,14 @@ void test_strarrconcat(void)	{}
 #else
 void	print_test_strarrconcat(char const* test_name, int can_segfault,
 		char const**	expecting,
-		char const***	strarrs,
-		char const**	sep)
+		char const**	strarr1,
+		char const**	strarr2)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM(		strarrconcat, strarrs, sep)
-//	TEST_PRINT(strarr,	strarrconcat, "strarr1=[ %s ], strarr2=[ %s ]", strarr1, strarr2) // TODO
-	TEST_FREE_ARRAY_NULLTERM()
+	TEST_PERFORM_(result, (char**)c_strarrconcat, strarr1, strarr2)
+	test.expect = (char**)expecting;
+	TEST_PRINT(strarr,	strarrconcat, "strarr1=[ %p ], strarr2=[ %p ]", (void*)strarr1, (void*)strarr2) // TODO
+	TEST_FREE_RESULT(c_strarrfree)
 }
 void	test_strarrconcat()
 {

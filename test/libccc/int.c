@@ -703,7 +703,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\255 5"                     );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\\//\v/789"                 );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                       0x123, "0x123"                      );	\
-	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                      0b1101, "0b1101"                     );	\
+	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                         0xD, "0b1101"                     );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\33124578"                  );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "[124578"                    );	\
@@ -877,7 +877,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\255 5"                     );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\\//\v/789"                 );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                       0x123, "0x123"                      );	\
-	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                      0b1101, "0b1101"                     );	\
+	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                         0xD, "0b1101"                     );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\33124578"                  );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\

@@ -19,8 +19,8 @@ void	print_test_f##BITS##(char const* test_name, int can_segfault,		\
 }																			\
 void	test_f##BITS##(void)												\
 {																			\
-//	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS //	\
-	print_test_f##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	\
+/*	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS */	\
+/*	print_test_f##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/	\
 }
 
 #ifndef c_f32

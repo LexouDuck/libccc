@@ -505,7 +505,9 @@ HEADER_CPP
 **	all the while suppressing the annoying "static function never used" warnings,
 **	and still have the compiler/linker perform dead code elimination as appropriate.
 */
+#ifndef _GENERIC
 #define _GENERIC()	
+#endif
 
 
 

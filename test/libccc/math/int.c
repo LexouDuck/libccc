@@ -44,8 +44,8 @@ void	print_test_u##BITS##(char const* test_name, int can_segfault,		\
 }																			\
 void	test_u##BITS##(void)												\
 {																			\
-//	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS //	\
-	print_test_u##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	\
+/*	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS */	\
+/*	print_test_u##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/	\
 }
 
 #ifndef c_u8

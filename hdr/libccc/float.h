@@ -191,8 +191,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #ifndef NAN
 #define NAN			(0. / 0.)
 #endif
-#ifndef NOTNUMBER
-#define NOTNUMBER	NAN
+#ifndef NOTANUMBER
+#define NOTANUMBER	NAN
 #endif
 //!@}
 
@@ -209,8 +209,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #ifndef IS_NAN
 #define IS_NAN(X)		isnan(X)
 #endif
-#ifndef IS_NOTNUMBER
-#define IS_NOTNUMBER(X)	isnan(X)
+#ifndef IS_NOTANUMBER
+#define IS_NOTANUMBER(X)	isnan(X)
 #endif
 //!@}
 

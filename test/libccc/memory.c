@@ -93,7 +93,7 @@ void	print_test_memdel(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_VOID_LIBC(*ptr, memdel, ptr) // TODO fix this
-	TEST_PRINT(ptr, memdel, "ptr=%p", ptr)
+	TEST_PRINT(ptr, memdel, "ptr=%p", (void*)ptr)
 }
 void	test_memdel(void)
 {
@@ -378,7 +378,7 @@ void	print_test_memcmp(char const* test_name, int can_segfault,
 {
 	TEST_INIT(sign)
 	TEST_PERFORM_LIBC(	memcmp, ptr1, ptr2, n)
-	TEST_PRINT(sign,	memcmp, "ptr1=%p, ptr2=%p, n=%zu", ptr1, ptr2, n)
+	TEST_PRINT(sign,	memcmp, "ptr1=%p, ptr2=%p, n=%zu", (void*)ptr1, (void*)ptr2, n)
 }
 void	test_memcmp(void)
 {

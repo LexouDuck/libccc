@@ -107,7 +107,7 @@ void	print_test_strdel(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_VOID(*dest_libccc,	strdel, dest_libccc)
-	TEST_PRINT(ptr,					strdel, "str=%p/\"%s\"", dest_libccc, *dest_libccc)
+	TEST_PRINT(ptr,					strdel, "str=%p/\"%s\"", (void*)dest_libccc, *dest_libccc)
 	TEST_FREE()
 }
 void	test_strdel(void)
@@ -707,7 +707,7 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strchr, str, c)
-	TEST_PRINT(ptr,		strchr, "str=%p/\"%s\", c='%c'/0x%X", str, str, c, c)
+	TEST_PRINT(ptr,		strchr, "str=%p/\"%s\", c='%c'/0x%X", (void*)str, str, c, c)
 }
 void	test_strchr(void)
 {
@@ -733,7 +733,7 @@ void	print_test_strstr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strstr, str, query)
-	TEST_PRINT(ptr,		strstr, "str=%p/\"%s\", query=\"%s\"", str, str, query)
+	TEST_PRINT(ptr,		strstr, "str=%p/\"%s\", query=\"%s\"", (void*)str, str, query)
 }
 void	test_strstr(void)
 {
@@ -761,7 +761,7 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strrchr, str, c)
-	TEST_PRINT(ptr,		strrchr, "str=%p/\"%s\", c='%c'/0x%X", str, str, c, c)
+	TEST_PRINT(ptr,		strrchr, "str=%p/\"%s\", c='%c'/0x%X", (void*)str, str, c, c)
 }
 void	test_strrchr(void)
 {
@@ -788,7 +788,7 @@ void	print_test_strrstr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM(	strrstr, str, query)
-	TEST_PRINT(ptr,	strrstr, "str=%p/\"%s\", query=\"%s\"", str, str, query)
+	TEST_PRINT(ptr,	strrstr, "str=%p/\"%s\", query=\"%s\"", (void*)str, str, query)
 }
 void	test_strrstr(void)
 {
@@ -822,7 +822,7 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM(	strnchr, str, c, n)
-	TEST_PRINT(ptr,	strnchr, "str=%p/\"%s\", c='%c'/0x%X, n=%zu", str, str, c, c, n)
+	TEST_PRINT(ptr,	strnchr, "str=%p/\"%s\", c='%c'/0x%X, n=%zu", (void*)str, str, c, c, n)
 }
 void	test_strnchr(void)
 {
@@ -862,7 +862,7 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 #else
 	TEST_PERFORM(	strnstr, str, query, n)
 #endif
-	TEST_PRINT(ptr,	strnstr, "str=%p/\"%s\", query=\"%s\", n=%zu", str, str, query, n)
+	TEST_PRINT(ptr,	strnstr, "str=%p/\"%s\", query=\"%s\", n=%zu", (void*)str, str, query, n)
 }
 void	test_strnstr(void)
 {
@@ -1408,7 +1408,7 @@ void	print_test_striter(char const* test_name, int can_segfault,
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM_VOID(result_libccc, striter, result_libccc, f)
-	TEST_PRINT(str,					 striter, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,					 striter, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_striter(void)
@@ -1435,7 +1435,7 @@ void	print_test_striiter(char const* test_name, int can_segfault,
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM_VOID(result_libccc, striiter, result_libccc, f)
-	TEST_PRINT(str,					 striiter, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,					 striiter, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_striiter(void)
@@ -1461,7 +1461,7 @@ void	print_test_strmap(char const* test_name, int can_segfault,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strmap, str, f)
-	TEST_PRINT(str,	strmap, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,	strmap, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_strmap(void)
@@ -1485,7 +1485,7 @@ void	print_test_strimap(char const* test_name, int can_segfault,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strimap, str, f)
-	TEST_PRINT(str,	strimap, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,	strimap, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_strimap(void)

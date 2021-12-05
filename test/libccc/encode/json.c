@@ -150,7 +150,7 @@ JSON_TEST(json_string_empty		, "\"\"")
 JSON_TEST(json_string			, "\"Hello World!\"")
 JSON_TEST(json_string_cc_c0		, "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"")
 JSON_TEST(json_string_cc_c1		, "\"\"")
-JSON_TEST(json_string_utf8_fr	, "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"")
+JSON_TEST(json_string_utf8_fr	, "\"Être à même de ça, d'air sûr — manger du maïs à l'œil… D'où la paix sur l'île de son âme…\"")
 JSON_TEST(json_string_utf8_ru	, "\"Яцк Ничолсон\"")
 JSON_TEST(json_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 JSON_TEST(json_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
@@ -248,7 +248,7 @@ t_utf8*	json_strange_sot	= "\1{\"hello\":\1\"world\"\1}\n";
 t_utf8*	json_strange_stx	= "\2{\"hello\":\2\"world\"\2}\n";
 t_utf8*	json_strange_etx	= "\3{\"hello\":\3\"world\"\3}\n";
 t_utf8*	json_strange_eot	= "\4{\"hello\":\4\"world\"\4}\n";
-t_utf8*	json_strange_esc	= "\e{\"hello\":\e\"world\"\e}\n";
+t_utf8*	json_strange_esc	= "\x1B{\"hello\":\x1B\"world\"\x1B}\n";
 t_utf8*	json_strange_bs		= "\b{\"hello\":\b\"world\"\b}\n";
 
 

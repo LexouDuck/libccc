@@ -179,9 +179,9 @@ DEFINEFUNC_PRINT_TEST(uintmax,	t_uintmax)
 
 DEFINEFUNC_PRINT_TEST(mem,		void const*)
 DEFINEFUNC_PRINT_TEST(ptr,		void const*)
-DEFINEFUNC_PRINT_TEST(ptrarr,	void const**)
+DEFINEFUNC_PRINT_TEST(ptrarr,	void**)
 DEFINEFUNC_PRINT_TEST(str,		char const*)
-DEFINEFUNC_PRINT_TEST(strarr,	char const**)
+DEFINEFUNC_PRINT_TEST(strarr,	char**)
 
 DEFINEFUNC_PRINT_TEST(array,	s_array_int const*)
 DEFINEFUNC_PRINT_TEST(list,		s_list_int const*)
@@ -366,25 +366,6 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 		test.KIND = NULL;				\
 	}									\
 
-/*!
-**	This macro frees the result variable for a test, if it is appropriate to do so,
-**	knowing this is an array of sub-results which should also be freed, and that
-**	this array is a null-terminated pointer array.
-**	@param	KIND	The name of the array result variable to freed
-*/
-#define TEST_FREE_ARRAY_NULLTERM_(KIND) \
-	if (test.KIND &&						\
-		test.KIND##_sig == SIGNAL_NULL)		\
-	{										\
-		for (int i = 0; test.KIND[i]; ++i)	\
-		{									\
-			free((void*)test.KIND[i]);		\
-			test.KIND[i] = NULL;			\
-		}									\
-		free((void*)test.KIND);				\
-		test.KIND = NULL;					\
-	}										\
-
 //! Frees the 'result_libccc' variable, if appropriate
 #define TEST_FREE() \
 	TEST_FREE_(result)	\
@@ -394,9 +375,14 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_FREE_(result)	\
 	TEST_FREE_(expect)	\
 
-//! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
-#define TEST_FREE_ARRAY_NULLTERM() \
-	TEST_FREE_ARRAY_NULLTERM_(result)	\
+//! Frees the 'result_libccc', if appropriate, with a user-supplied function
+#define TEST_FREE_RESULT(DELETE_FUNCTION) \
+	if (test.result &&							\
+		test.result##_sig == SIGNAL_NULL)		\
+	{											\
+		DELETE_FUNCTION(test.result);			\
+		test.result = NULL;						\
+	}											\
 
 
 

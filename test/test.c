@@ -448,8 +448,8 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 
 void	print_test_strarr(s_test_strarr* test, char const* args)
 {
-	char*	str_result;
-	char*	str_expect;
+	char*	str_result = NULL;
+	char*	str_expect = NULL;
 	int		error = FALSE;
 	int		length;
 	size_t	i;
