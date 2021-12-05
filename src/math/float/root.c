@@ -7,58 +7,166 @@
 
 
 
-#define POWERS_LENGTH	16
+/* Some lookup tables for fast newton method initial guess */
+static const t_f32 f32_powers_pos[] =
+{
+	SQRT_2,
+	(t_f32)0x1.0p+1,
+	(t_f32)0x1.0p+2,
+	(t_f32)0x1.0p+4,
+	(t_f32)0x1.0p+8,
+	(t_f32)0x1.0p+16,
+	(t_f32)0x1.0p+32,
+	(t_f32)0x1.0p+64,
+	(t_f32)0x1.0p+128,
+	(t_f32)0x1.0p+256,
+	(t_f32)0x1.0p+512,
+	INFINITY,
+};
+static const t_f32 f32_powers_neg[] =
+{
+	INV_SQRT_2,
+	(t_f32)0x1.0p-1,
+	(t_f32)0x1.0p-2,
+	(t_f32)0x1.0p-4,
+	(t_f32)0x1.0p-8,
+	(t_f32)0x1.0p-16,
+	(t_f32)0x1.0p-32,
+	(t_f32)0x1.0p-64,
+	(t_f32)0x1.0p-128,
+	(t_f32)0x1.0p-256,
+	(t_f32)0x1.0p-512,
+	0.
+};
+
+static const t_f64 f64_powers_pos[] =
+{
+	SQRT_2,
+	(t_f64)0x1.0p+1,
+	(t_f64)0x1.0p+2,
+	(t_f64)0x1.0p+4,
+	(t_f64)0x1.0p+8,
+	(t_f64)0x1.0p+16,
+	(t_f64)0x1.0p+32,
+	(t_f64)0x1.0p+64,
+	(t_f64)0x1.0p+128,
+	(t_f64)0x1.0p+256,
+	(t_f64)0x1.0p+512,
+	INFINITY,
+};
+static const t_f64 f64_powers_neg[] =
+{
+	INV_SQRT_2,
+	(t_f64)0x1.0p-1,
+	(t_f64)0x1.0p-2,
+	(t_f64)0x1.0p-4,
+	(t_f64)0x1.0p-8,
+	(t_f64)0x1.0p-16,
+	(t_f64)0x1.0p-32,
+	(t_f64)0x1.0p-64,
+	(t_f64)0x1.0p-128,
+	(t_f64)0x1.0p-256,
+	(t_f64)0x1.0p-512,
+	(t_f64)0x1.0p-1024,
+	0.
+};
+
+#if LIBCONFIG_USE_FLOAT80
+static const t_f80 f80_powers_pos[] =
+{
+	SQRT_2,
+	(t_f80)0x1.0p+1,
+	(t_f80)0x1.0p+2,
+	(t_f80)0x1.0p+4,
+	(t_f80)0x1.0p+8,
+	(t_f80)0x1.0p+16,
+	(t_f80)0x1.0p+32,
+	(t_f80)0x1.0p+64,
+	(t_f80)0x1.0p+128,
+	(t_f80)0x1.0p+256,
+	(t_f80)0x1.0p+512,
+	(t_f80)0x1.0p+1024,
+	(t_f80)0x1.0p+2048,
+	(t_f80)0x1.0p+4096,
+	(t_f80)0x1.0p+8192,
+	INFINITY,
+};
+static const t_f80 f80_powers_neg[] =
+{
+	INV_SQRT_2,
+	(t_f80)0x1.0p-1,
+	(t_f80)0x1.0p-2,
+	(t_f80)0x1.0p-4,
+	(t_f80)0x1.0p-8,
+	(t_f80)0x1.0p-16,
+	(t_f80)0x1.0p-32,
+	(t_f80)0x1.0p-64,
+	(t_f80)0x1.0p-128,
+	(t_f80)0x1.0p-256,
+	(t_f80)0x1.0p-512,
+	(t_f80)0x1.0p-1024,
+	(t_f80)0x1.0p-2048,
+	(t_f80)0x1.0p-4096,
+	(t_f80)0x1.0p-8192,
+	0.
+};
+#endif
+
+#if LIBCONFIG_USE_FLOAT128
+static const t_f128 f128_powers_pos[] =
+{
+	SQRT_2,
+	(t_f128)0x1.0p+1,
+	(t_f128)0x1.0p+2,
+	(t_f128)0x1.0p+4,
+	(t_f128)0x1.0p+8,
+	(t_f128)0x1.0p+16,
+	(t_f128)0x1.0p+32,
+	(t_f128)0x1.0p+64,
+	(t_f128)0x1.0p+128,
+	(t_f128)0x1.0p+256,
+	(t_f128)0x1.0p+512,
+	(t_f128)0x1.0p+1024,
+	(t_f128)0x1.0p+2048,
+	(t_f128)0x1.0p+4096,
+	(t_f128)0x1.0p+8192,
+	INFINITY,
+};
+static const t_f128 f128_powers_neg[] =
+{
+	INV_SQRT_2,
+	(t_f128)0x1.0p-1,
+	(t_f128)0x1.0p-2,
+	(t_f128)0x1.0p-4,
+	(t_f128)0x1.0p-8,
+	(t_f128)0x1.0p-16,
+	(t_f128)0x1.0p-32,
+	(t_f128)0x1.0p-64,
+	(t_f128)0x1.0p-128,
+	(t_f128)0x1.0p-256,
+	(t_f128)0x1.0p-512,
+	(t_f128)0x1.0p-1024,
+	(t_f128)0x1.0p-2048,
+	(t_f128)0x1.0p-4096,
+	(t_f128)0x1.0p-8192,
+	0.
+};
+#endif
+
+
 
 #define DEFINEFUNC_FLOAT_ROOT2PN(BITS) \
-static t_f##BITS	F##BITS##_Root2_2powN(t_s32 n)				\
-{ /* Some lookup tables for fast newton method initial guess */	\
-	static const t_f##BITS powers_pos[POWERS_LENGTH] =			\
-	{															\
-		SQRT_2,													\
-		(t_f##BITS)0x1.0p+1,									\
-		(t_f##BITS)0x1.0p+2,									\
-		(t_f##BITS)0x1.0p+4,									\
-		(t_f##BITS)0x1.0p+8,									\
-		(t_f##BITS)0x1.0p+16,									\
-		(t_f##BITS)0x1.0p+32,									\
-		(t_f##BITS)0x1.0p+64,									\
-		(t_f##BITS)0x1.0p+128,									\
-		(t_f##BITS)0x1.0p+256,									\
-		(t_f##BITS)0x1.0p+512,									\
-		(t_f##BITS)0x1.0p+1024,									\
-		(t_f##BITS)0x1.0p+2048,									\
-		(t_f##BITS)0x1.0p+4096,									\
-		(t_f##BITS)0x1.0p+8192,									\
-		INFINITY,												\
-	};															\
-	static const t_f##BITS powers_neg[POWERS_LENGTH] =			\
-	{															\
-		INV_SQRT_2,												\
-		(t_f##BITS)0x1.0p-1,									\
-		(t_f##BITS)0x1.0p-2,									\
-		(t_f##BITS)0x1.0p-4,									\
-		(t_f##BITS)0x1.0p-8,									\
-		(t_f##BITS)0x1.0p-16,									\
-		(t_f##BITS)0x1.0p-32,									\
-		(t_f##BITS)0x1.0p-64,									\
-		(t_f##BITS)0x1.0p-128,									\
-		(t_f##BITS)0x1.0p-256,									\
-		(t_f##BITS)0x1.0p-512,									\
-		(t_f##BITS)0x1.0p-1024,									\
-		(t_f##BITS)0x1.0p-2048,									\
-		(t_f##BITS)0x1.0p-4096,									\
-		(t_f##BITS)0x1.0p-8192,									\
-		0.,														\
-	};															\
+static t_f##BITS	F##BITS##_Root2_2pN(t_s32 n)				\
+{																\
 	if (n > 0 && (n >> 11))										\
 		return (INFINITY);										\
-	const t_f##BITS* powers = powers_pos;						\
+	const t_f##BITS* powers = f##BITS##_powers_pos;				\
 	if (n == 0)													\
 		return (1.);											\
 	else if (n < 0)												\
 	{															\
 		n = -n;													\
-		powers = powers_neg;									\
+		powers = f##BITS##_powers_neg;							\
 	}															\
 	t_f##BITS result = 1.;										\
 	if (n & 0x0001) { result *= powers[0x0]; }					\
@@ -79,11 +187,6 @@ static t_f##BITS	F##BITS##_Root2_2powN(t_s32 n)				\
 	return (result);											\
 }
 
-#pragma GCC   diagnostic push
-#pragma GCC   diagnostic ignored "-Wliteral-range"
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wliteral-range"
-
 DEFINEFUNC_FLOAT_ROOT2PN(32)
 DEFINEFUNC_FLOAT_ROOT2PN(64)
 #if LIBCONFIG_USE_FLOAT80
@@ -92,9 +195,6 @@ DEFINEFUNC_FLOAT_ROOT2PN(80)
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_ROOT2PN(128)
 #endif
-
-#pragma GCC   diagnostic pop
-#pragma clang diagnostic pop
 
 
 
@@ -133,7 +233,7 @@ t_f##BITS	F##BITS##_Root2(t_f##BITS x)							\
 		return (1.);												\
 	i = F##BITS##_GetExp2(x);										\
 	result = (i < 0 ? 0.75 : 1.25);									\
-	result *= F##BITS##_Root2_2powN(i);								\
+	result *= F##BITS##_Root2_2pN(i);								\
 	previous = INFINITY;											\
 	i = 0;															\
 	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX)			\
@@ -178,7 +278,7 @@ t_f##BITS	F##BITS##_Root3(t_f##BITS x)							\
 		return (SIGN(x));											\
 	i = F##BITS##_GetExp2(x);										\
 	result = SIGN(x) * (i < 0 ? 0.75 : 1.25);						\
-	result *= F##BITS##_Root2_2powN(i * 2 / 3);						\
+	result *= F##BITS##_Root2_2pN(i * 2 / 3);						\
 	previous = INFINITY;											\
 	i = 0;															\
 	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX)			\
@@ -226,7 +326,7 @@ t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n)					\
 		return (SIGN(x));											\
 	i = F##BITS##_GetExp2(x);										\
 	result = SIGN(x) * (i < 0 ? 1 : 1.25);							\
-	result *= F##BITS##_Root2_2powN(i * 2 / (t_s32)n);				\
+	result *= F##BITS##_Root2_2pN(i * 2 / (t_s32)n);				\
 	previous = 0.;													\
 	i = 0;															\
 	n -= 1;															\
