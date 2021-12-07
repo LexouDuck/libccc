@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_SYS_TIME_H
 #define __LIBCCC_SYS_TIME_H
 /*!@group{libccc_sys_time}
-** @{
+**
 **	This header defines all the functions for date & time related functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/chrono}
@@ -765,6 +765,6 @@ t_bool		Date_HasLeapSecond(e_month month, t_s32 year);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

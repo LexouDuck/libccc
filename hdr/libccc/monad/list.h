@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_LIST_H
 #define __LIBCCC_MONAD_LIST_H
 /*!@group{libccc_monad_list}
-** @{
+**
 **	This header defines a generic linked list type and utility functions for it.
 **
 **	@file
@@ -799,6 +799,6 @@ void*					List_Fold_I(T)(s_list(T) const* list, void* (*f)(T item, void* acc, t_
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_SYS_IO_H
 #define __LIBCCC_SYS_IO_H
 /*!@group{libccc_sys_io}
-** @{
+**
 **	This header defines all the functions for OS-level input/output, read/write.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/io}
@@ -501,6 +501,6 @@ t_size					IO_Output_Format(t_char const* format, ...);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

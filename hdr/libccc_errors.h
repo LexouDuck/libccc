@@ -11,9 +11,8 @@
 
 #ifndef __LIBCCC_ERRORS_H
 #define __LIBCCC_ERRORS_H
-/*! @file libccc_errors.h
-**	@addtogroup libccc_errors
-**	@{
+/*!@group{libccc_errors}
+**
 **	This header defines all the primitive types and common macros to use.
 */
 
@@ -408,6 +407,6 @@ typedef struct stdglobal
 #endif
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_QUEUE_H
 #define __LIBCCC_MONAD_QUEUE_H
 /*!@group{libccc_monad_queue}
-** @{
+**
 **	This header defines a simple queue (LIFO) type and utility functions for it.
 **
 **	@file
@@ -81,6 +81,6 @@ typedef struct queue(T)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

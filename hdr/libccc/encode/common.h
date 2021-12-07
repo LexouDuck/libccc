@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_ENCODE_COMMON_H
 #define __LIBCCC_ENCODE_COMMON_H
 /*!@group{libccc_encode_common}
-** @{
+**
 **	This header defines a dynamic runtime "object" type, which is called "KVT",
 **	as in "Key Value Tree" - it stores key/value pairs in a tree-like structure.
 **
@@ -352,16 +352,16 @@ _FORMAT(printf, 2, 3);
 #define c_kvtget	KVT_Get
 //!@}
 
-//! Returns the boolean value contained within the given `item`, or `FALSE` if type is not #KVT_TYPE_BOOLEAN.
+//! Returns the boolean value contained within the given `item`, or `FALSE` if type is not #DYNAMICTYPE_BOOLEAN.
 t_bool					KVT_GetValue_Boolean(s_kvt const* item);
 #define c_kvtget_bool	KVT_GetValue_Boolean
-//! Returns the integer value contained within the given `item`, or `0` if type is not #KVT_TYPE_INTEGER.
+//! Returns the integer value contained within the given `item`, or `0` if type is not #DYNAMICTYPE_INTEGER.
 t_s64					KVT_GetValue_Integer(s_kvt const* item);
 #define c_kvtget_int	KVT_GetValue_Integer
-//! Returns the number value contained within the given `item`, or `NAN` if type is not #KVT_TYPE_FLOAT.
+//! Returns the number value contained within the given `item`, or `NAN` if type is not #DYNAMICTYPE_FLOAT.
 t_f64					KVT_GetValue_Float	(s_kvt const* item);
 #define c_kvtget_float	KVT_GetValue_Float
-//! Returns the string value contained within the given `item`, or `NULL` if type is not #KVT_TYPE_STRING.
+//! Returns the string value contained within the given `item`, or `NULL` if type is not #DYNAMICTYPE_STRING.
 t_char*					KVT_GetValue_String	(s_kvt const* item);
 #define c_kvtget_string	KVT_GetValue_String
 
@@ -373,16 +373,16 @@ t_char*					KVT_GetValue_String	(s_kvt const* item);
 ** ************************************************************************** *|
 */
 
-//! Change the `value` of a #KVT_TYPE_BOOLEAN object, only takes effect when `object->type == KVT_TYPE_BOOLEAN`.
+//! Change the `value` of a #DYNAMICTYPE_BOOLEAN object, only takes effect when `object->type == DYNAMICTYPE_BOOLEAN`.
 e_cccerror				KVT_SetValue_Boolean(s_kvt* object, t_bool value);
 #define c_kvtset_bool	KVT_SetValue_Boolean
-//! Change the `value` of a #KVT_TYPE_INTEGER object, only takes effect when `object->type == KVT_TYPE_INTEGER`.
+//! Change the `value` of a #DYNAMICTYPE_INTEGER object, only takes effect when `object->type == DYNAMICTYPE_INTEGER`.
 e_cccerror				KVT_SetValue_Integer(s_kvt* object, t_s64 value);
 #define c_kvtset_int	KVT_SetValue_Integer
-//! Change the `value` of a #KVT_TYPE_FLOAT object, only takes effect when `object->type == KVT_TYPE_FLOAT`.
+//! Change the `value` of a #DYNAMICTYPE_FLOAT object, only takes effect when `object->type == DYNAMICTYPE_FLOAT`.
 e_cccerror				KVT_SetValue_Float	(s_kvt* object, t_f64 value);
 #define c_kvtset_float	KVT_SetValue_Float
-//! Change the `value` of a #KVT_TYPE_STRING object, only takes effect when `object->type == KVT_TYPE_STRING`.
+//! Change the `value` of a #DYNAMICTYPE_STRING object, only takes effect when `object->type == DYNAMICTYPE_STRING`.
 e_cccerror				KVT_SetValue_String	(s_kvt* object, t_char* value);
 #define c_kvtset_string	KVT_SetValue_String
 
@@ -576,6 +576,6 @@ s_kvt*				KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_monad_convert &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_monad_dict" href="group_libccc_monad_dict.html" />
+    <link rel="prev" title="struct array_any" href="struct_array_any.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_monad_convert">
+	<meta property="og:description" content="Libccc_monad_convert">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_monad_convert">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_monad_convert.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_monad_convert</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_monad_convert</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-monad-convert">
+<span id="doxid-group-libccc-monad-convert"></span><span id="index-0"></span><h1>Libccc_monad_convert<a class="headerlink" href="#libccc-monad-convert" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines conversions functions between the generic monad types. <a class="reference internal" href="#details-group-libccc-monad-convert"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<a class="reference internal" href="group_libccc_monad_array.html#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-convert-1gab3b65f18e9f8be07b1972cb997307fdc"><span class="std std-ref">List_ToArray</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaa7eb47825e5c8a394de0ece3b7e4a575"><span class="std std-ref">s_list_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga43e9a5bc0bdff1486b691ba52b1f2730"><span class="std std-ref">List_ToPointerArray</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaa7eb47825e5c8a394de0ece3b7e4a575"><span class="std std-ref">s_list_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span>   <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-convert-1ga18d05db4a8d68b46d2c9f4b8c4538cca"><span></span><span class="n">c_lst_to_array</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-monad-convert-1gab3b65f18e9f8be07b1972cb997307fdc"><span class="std std-ref">List_ToArray</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-convert-1ga4a224d0ab89c926791ff25a7bccb9efb"><span></span><span class="n">c_lst_to_ptrarr</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga43e9a5bc0bdff1486b691ba52b1f2730"><span class="std std-ref">List_ToPointerArray</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-monad-convert"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines conversions functions between the generic monad types.</p>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1gab3b65f18e9f8be07b1972cb997307fdc"><span id="index-1"></span><a class="reference internal" href="group_libccc_monad_array.html#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">List_ToArray</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaa7eb47825e5c8a394de0ece3b7e4a575"><span class="std std-ref">s_list_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
+<p>Converts the given <code class="docutils literal notranslate"><span class="pre">list</span></code> to an array.</p>
+<p>Monadic compound storage types: <code class="docutils literal notranslate"><span class="pre">Array</span></code> indexed contiguous storage (fast access, slow for size-changes) <code class="docutils literal notranslate"><span class="pre">List</span></code> indexed fragmented storage (slow access, fast for size-changes) <code class="docutils literal notranslate"><span class="pre">Hash</span></code> unordered bucket-like storage (fast, slightly more memory-hungry) TODO <code class="docutils literal notranslate"><span class="pre">KeyVal</span></code> key+value pair (simple struct with a string and value) <code class="docutils literal notranslate"><span class="pre">Dict</span></code> named storage (configurable) TODO <code class="docutils literal notranslate"><span class="pre">Dict&lt;Array&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Dict&lt;List&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Dict&lt;Hash&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree</span></code> nested storage (configurable) TODO <code class="docutils literal notranslate"><span class="pre">Tree&lt;Array&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree&lt;List&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree&lt;Hash&gt;</span></code>?</p>
+<p>Creates a new contiguous memory array from the given linked list. It sets this array pointer to the <code class="docutils literal notranslate"><span class="pre">items</span></code> pointer of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>. It also sets the <code class="docutils literal notranslate"><span class="pre">item_size</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> fields of this <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<p class="rubric">Returns:</p>
+<p>The resulting <code class="docutils literal notranslate"><span class="pre">s_array</span></code> struct converted from the given list, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1ga43e9a5bc0bdff1486b691ba52b1f2730"><span id="index-2"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">List_ToPointerArray</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaa7eb47825e5c8a394de0ece3b7e4a575"><span class="std std-ref">s_list_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
+<p>Converts the given <code class="docutils literal notranslate"><span class="pre">list</span></code> to a NULL-terminated pointer array.</p>
+<p>Creates a new jagged array (2D pointer array) from the given list <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>. The top-level pointer array is terminated by a NULL pointer. The underlying <code class="docutils literal notranslate"><span class="pre">lst.item</span></code> data is not copied, only the pointers are.</p>
+<p class="rubric">Returns:</p>
+<p>The resulting pointer array converted from the given list, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1ga0acb682b8260ab1c60b918599864e2e5"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">T</span>   <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a></pre>
+<p>set up generic declaration macros, to have <code class="docutils literal notranslate"><span class="pre">mygeneric(T)</span></code> syntax</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="struct_array_any.html" class="btn btn-neutral float-left" title="struct array_any" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_monad_dict.html" class="btn btn-neutral float-right" title="Libccc_monad_dict" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

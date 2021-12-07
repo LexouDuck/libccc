@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_TEXT_REGEX_H
 #define __LIBCCC_TEXT_REGEX_H
 /*!@group{libccc_text_regex}
-** @{
+**
 **	This header defines functions for regular expression matching/replacing.
 **
 **	- http://www.greenend.org.uk/rjk/tech/regexp.html#matchmulti
@@ -54,6 +54,6 @@ HEADER_CPP
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

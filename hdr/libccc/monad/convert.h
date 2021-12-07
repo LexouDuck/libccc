@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_CONVERT_H
 #define __LIBCCC_MONAD_CONVERT_H
 /*!@group{libccc_monad_convert}
-** @{
+**
 **	This header defines conversions functions between the generic monad types.
 **
 **	@file
@@ -108,6 +108,6 @@ void**					List_ToPointerArray(s_list(T) const* list);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

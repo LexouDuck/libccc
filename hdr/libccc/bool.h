@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_BOOL_H
 #define __LIBCCC_BOOL_H
 /*!@group{libccc_bool}
-** @{
+**
 **	This header defines the boolean (TRUE/FALSE) primitive type and functions.
 **
 **	@file
@@ -161,6 +161,6 @@ t_bool					Bool_FromString(t_char const* str);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -1,0 +1,28 @@
+var group__libccc__math__constants =
+[
+    [ "constants.h", "constants_8h.html", null ],
+    [ "QUARTER_PI", "group__libccc__math__constants.html#ga5727947dfa0f901d1415a6e7233bc61b", null ],
+    [ "HALF_PI", "group__libccc__math__constants.html#gae3ec3219e4eee3b0992bfd59c2e2bc42", null ],
+    [ "DIV_PI_4", "group__libccc__math__constants.html#ga7496d253a45e07baba042c41a5ad2b18", null ],
+    [ "DIV_PI_2", "group__libccc__math__constants.html#ga67d18553da9ad796b35f6a2068c089ca", null ],
+    [ "PI", "group__libccc__math__constants.html#ga598a3330b3c21701223ee0ca14316eca", null ],
+    [ "TAU", "group__libccc__math__constants.html#ga3d8c9c145887af5174ba4cc6789862ad", null ],
+    [ "INV_PI", "group__libccc__math__constants.html#gaebad45bfa06a5d66805c5813fbc59f4b", null ],
+    [ "INV_TAU", "group__libccc__math__constants.html#ga6749b4f22cea97620a9a04e83534c72e", null ],
+    [ "E", "group__libccc__math__constants.html#ga07484107e6d9fdf38b53edf631d6511d", null ],
+    [ "LN_2", "group__libccc__math__constants.html#gaa94d5c40b9f567f0bb88c23634f9d106", null ],
+    [ "LN_10", "group__libccc__math__constants.html#gada0599f7ce9a633571e3073fc008091a", null ],
+    [ "SQRT_2", "group__libccc__math__constants.html#gabc63ab2a8e7782de38a5dbdfc33da717", null ],
+    [ "INV_SQRT_2", "group__libccc__math__constants.html#ga00ce1546c572fa40f917142388f0c22a", null ],
+    [ "SQRT_3", "group__libccc__math__constants.html#ga4c7cca717941f9eb5c7f90f44ac8746b", null ],
+    [ "INV_SQRT_3", "group__libccc__math__constants.html#gaf222396c3647ae6759c49030cf77f32a", null ],
+    [ "SQRT_5", "group__libccc__math__constants.html#gab6073a2630d7c65369c70c5f8c03a132", null ],
+    [ "INV_SQRT_5", "group__libccc__math__constants.html#ga1203d1632ed7e5e9c4f4ada3142183a1", null ],
+    [ "PHI", "group__libccc__math__constants.html#ga2203853edabc3de5f785e54b55eb5e3c", null ],
+    [ "CBRT_2", "group__libccc__math__constants.html#ga3489469a334310ae0afa8cebf666b0fb", null ],
+    [ "CBRT_3", "group__libccc__math__constants.html#gae636b3a8f1888a75dced410e1a5fc0b9", null ],
+    [ "EGAMMA", "group__libccc__math__constants.html#ga694331d48949e5e45c779dc913666535", null ],
+    [ "GGAUSS", "group__libccc__math__constants.html#ga913fd45c3d26c73f7a37c245f25137cd", null ],
+    [ "FEIGENBAUM_DELTA", "group__libccc__math__constants.html#ga2a175aabf9d6f8f8684bb0bece7bc55d", null ],
+    [ "FEIGENBAUM_ALPHA", "group__libccc__math__constants.html#ga3ead96ace17f17b0a1ff9dd6527b6bea", null ]
+];

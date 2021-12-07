@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_FIXED_H
 #define __LIBCCC_MATH_FIXED_H
 /*!@group{libccc_math_fixed}
-** @{
+**
 **	This header defines the common standard math functions for fixed-point numbers.
 **
 **	@nonstd
@@ -1023,6 +1023,6 @@ t_q128								Q128_InvTanH(t_q128 x);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

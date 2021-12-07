@@ -22,26 +22,24 @@
 
 import re
 
-from pygments.lexer import RegexLexer, include, bygroups, using, \
-    this, inherit, default, words
+from pygments.lexer import RegexLexer, include, bygroups, using, this, inherit, default, words
 from pygments.util import get_bool_opt
-from pygments.token import Text, Comment, Operator, Keyword, Name, String, \
-    Number, Punctuation, Error
+from pygments.token import Text, Comment, Operator, Keyword, Name, String, Number, Punctuation, Error
 from sphinx.highlighting import lexers
 
 
 class CFamilyLexer(RegexLexer):
     """
-    For C family source code.  This is used as a base class to avoid repetitious
-    definitions.
+    For C family source code.
+    This is used as a base class to avoid repetitious definitions.
     """
 
     #: optional Comment or Whitespace
-    _ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
-
-    # The trailing ?, rather than *, avoids a geometric performance drop here.
-    #: only one /* */ style comment
-    _ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
+    c_ws = r'(?:\s|//.*?\n|/[*].*?[*]/)+'
+    # The trailing ?, rather than *, avoids a geometric performance drop here. : only one /* */ style comment
+    c_ws1 = r'\s*(?:/[*].*?[*]/\s*)?'
+    # The regex for a user-defined symbol in any C-like language
+    c_symbol = r'([a-zA-Z_]\w*)'
 
     tokens = {
         'whitespace': [
@@ -49,9 +47,9 @@ class CFamilyLexer(RegexLexer):
             (r'^#\s*if\s+0', Comment.Preproc, 'if0'),
             (r'^#\s*', Comment.Preproc, 'macro'),
             # or with whitespace
-            (r'^(' + _ws1 + r')(#\s*if\s+0)',
+            (r'^(' + c_ws1 + r')(#\s*if\s+0)',
              bygroups(using(this), Comment.Preproc), 'if0'),
-            (r'^(' + _ws1 + r')(#\s*)',
+            (r'^(' + c_ws1 + r')(#\s*)',
              bygroups(using(this), Comment.Preproc), 'macro'),
             (r'\n', Text),
             (r'\s+', Text),
@@ -60,56 +58,137 @@ class CFamilyLexer(RegexLexer):
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
-            (r'L?"', String, 'string'),
-            (r"L?'", String.Char, 'char'),
-            (r'(\d+\.\d*|\.\d+|\d+)([eE])([+-]?)(\d+[LlUu]*)', bygroups(Number.Float, Keyword, Text, Number.Float)),
-            (r'(\d+\.\d*|\.\d+|\d+[fF])[fF]?', Number.Float),
-            (r'(0x[0-9a-fA-F]+\.[0-9a-fA-F]*|\.[0-9a-fA-F]+|[0-9a-fA-F]+)([pP])([+-]?)([0-9a-fA-F]+[LlUu]*)', bygroups(Number.Hex, Keyword, Text, Number.Hex)),
-            (r'0x[0-9a-fA-F]+[LlUu]*', Number.Hex),
-            (r'0[0-7]+[LlUu]*', Number.Oct),
-            (r'\d+[LlUu]*', Number.Integer),
+            (r'(L|u|U|u8)?(\")', bygroups(Keyword.Type, String), 'string'),
+            (r'(L|u|U|u8)?(\')', bygroups(Keyword.Type, String.Char), 'char'),
+            (r'([0-9]+\.[0-9]*|\.[0-9]+|[0-9]+)([eE])([+-]?)([0-9]+)([LlFf]?)\b', bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
+            (r'([0-9]+\.[0-9]*|\.[0-9]+)([LlFf]?)\b',                             bygroups(Number.Float, Keyword.Type)),
+            (r'([0-9]+)([LlFf])\b',                                               bygroups(Number.Float, Keyword.Type)),
+            (r'(0x[0-9a-fA-F]+\.[0-9a-fA-F]*|\.[0-9a-fA-F]+|[0-9a-fA-F]+)([pP])([+-]?)([0-9]+)([LlFf]*)',
+                bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
+            (r'(0x[0-9a-fA-F]+)([LlUu]*)', bygroups(Number.Hex,     Keyword.Type)),
+            (r'(0b[01]+)([LlUu]*)',        bygroups(Number.Bin,     Keyword.Type)), # GNU extension: binary literals
+            (r'(0[0-7]+)([LlUu]*)',        bygroups(Number.Oct,     Keyword.Type)),
+            (r'([0-9]+)([LlUu]*)',         bygroups(Number.Integer, Keyword.Type)),
             (r'\*/', Error),
             (r'[~!%^&*+=|?:<>/-]', Operator),
-            (r'[()\[\],.]', Punctuation),
-            (words(('auto', 'break', 'case', 'const', 'continue', 'default', 'do',
-                    'else', 'enum', 'extern', 'for', 'goto', 'if', 'register',
-                    'restricted', 'return', 'sizeof', 'static', 'struct',
-                    'switch', 'typedef', 'union', 'volatile', 'while'),
-                   suffix=r'\b'), Keyword),
-            (r'(bool|char|short|int|long|float|double|unsigned|signed|void)\b', Keyword.Type),
-            (r'\b([tseuf]_\w+)\b', Keyword.Type),
-            (words(('inline', '_inline', '__inline', 'naked', 'restrict',
-                    'thread', 'typename', '__asm__', '__attribute__'), suffix=r'\b'), Keyword.Reserved),
-            (r'\b__attribute__\s*\(\s*\((alias|aligned|delete|format|malloc|packed|pure|unused|always_inline)', Name.Attribute),
+            (words((
+                'sizeof',
+                'typeof',
+                'alignof',
+                'alignas',
+                'offsetof'),
+                prefix=r'\b',
+                suffix=r'\b'), Operator.Word),
+            (words((
+                'extern',
+                'static',
+                'const',
+                'restricted',
+                'auto',
+                'register',
+                'volatile',
+                'return',
+                'goto',
+                'if',
+                'else',
+                'while',
+                'do',
+                'for',
+                'break',
+                'continue',
+                'switch',
+                'case',
+                'default',
+                'typedef'),
+                prefix=r'\b',
+                suffix=r'\b'), Keyword),
+            (words((
+                'unsigned',
+                'signed',
+                'void',
+                'bool',
+                'char',
+                'short',
+                'int',
+                'long',
+                'float',
+                'double'),
+                prefix=r'\b',
+                suffix=r'\b'), Keyword.Type),
+            (words((
+                'struct',
+                'union',
+                'enum'),
+                prefix=r'\b',
+                suffix=r'\b'), Keyword.Declaration),
+            (words((
+                'inline', '_inline', '__inline',
+                'naked',
+                'restrict',
+                'thread',
+                'typename',
+                '__asm__',
+                '__attribute__'), suffix=r'\b'), Keyword.Reserved),
+            #(r'\b__attribute__\s*\(\s*\((alias|aligned|delete|format|malloc|packed|pure|unused|always_inline)', Name.Attribute),
             # Vector intrinsics
             (r'(__m(128i|128d|128|64))\b', Keyword.Reserved),
             # Microsoft-isms
             (words((
-                'asm', 'int8', 'based', 'except', 'int16', 'stdcall', 'cdecl',
-                'fastcall', 'int32', 'declspec', 'finally', 'int64', 'try',
-                'leave', 'wchar_t', 'w64', 'unaligned', 'raise', 'noop',
-                'identifier', 'forceinline', 'assume'),
-                prefix=r'__', suffix=r'\b'), Keyword.Reserved),
-            (r'(TRUE|FALSE|true|false|NULL)\b', Name.Builtin),
-            (r'([a-zA-Z_]\w*)(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
-            (r'[a-zA-Z_]\w*', Name),
+                'asm',
+                'int8',
+                'int16',
+                'int32',
+                'int64',
+                'w64',
+                'cdecl',
+                'stdcall',
+                'fastcall',
+                'declspec',
+                'unaligned',
+                'identifier',
+                'forceinline',
+                'based',
+                'noop',
+                'try',
+                'catch',
+                'except',
+                'finally',
+                'raise',
+                'leave',
+                'assume'),
+                prefix=r'__',
+                suffix=r'\b'), Keyword.Reserved),
+            (words((
+                'true',
+                'TRUE',
+                'false',
+                'FALSE',
+                'null',
+                'NULL',
+                'EXIT_FAILURE',
+                'EXIT_SUCCESS',
+                '__func__'),
+                prefix=r'\b',
+                suffix=r'\b'), Name.Constant),
+            (r'[()\[\],.]', Punctuation),
+            (c_symbol + r'(\s*)(:)(?!:)', bygroups(Name.Label, Text, Punctuation)),
+            (c_symbol, Name),
         ],
         'root': [
             include('whitespace'),
             # functions
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return type
+             + c_symbol +                  # function name
+             r'(\s*\([^;]*?\))'            # function args
              r'([^;{]*)(\{)',
              bygroups(using(this), Name.Function, using(this), using(this), Punctuation),
              'function'),
             # function declarations
-            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return arguments
-             r'([a-zA-Z_]\w*)'             # method name
-             r'(\s*\([^;]*?\))'            # signature
+            (r'((?:[\w*\s])+?(?:\s|[*]))'  # return type
+             + c_symbol +                  # function name
+             r'(\s*\([^;]*?\))'            # function args
              r'([^;]*)(;)',
-             bygroups(using(this), Name.Function, using(this), using(this),
-                      Punctuation)),
+             bygroups(using(this), Name.Function, using(this), using(this), Punctuation)),
             default('statement'),
         ],
         'statement': [
@@ -141,27 +220,45 @@ class CFamilyLexer(RegexLexer):
             (r'\\', String.Char),  # stray backslash
         ],
         'macro': [
-            (r'(include)(' + _ws1 + r')([^\n]+)', bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
-            (r'(define)(' + _ws1 + r')(\w+)(\([^)]*\))?(\s+)', bygroups(Comment.Preproc, Text, Name, Text, Text)),
+            (r'(include)(' + c_ws1 + r')([^\n]+)',
+                bygroups(Comment.Preproc, Text, Comment.PreprocFile)),
+            (r'(define)(' + c_ws1 + r')(\w+)(\([^)]*\))?(\s+)',
+                bygroups(Comment.Preproc, Text, Name.Function.Magic, Text, Text), '#pop'),
             (r'[^/\n]+', Comment.Preproc),
             (r'/[*](.|\n)*?[*]/', Comment.Multiline),
-            (r'//.*?\n', Comment.Single, '#pop'),
-            (r'/', Comment.Preproc),
-            (r'(?<=\\)\n', Comment.Preproc),
-            (r'\n', Comment.Preproc, '#pop'),
+            (r'//.*?\n',          Comment.Single, '#pop'),
+            (r'/',                Comment.Preproc),
+            (r'(?<=\\)\n',        Comment.Preproc),
+            (r'\n',               Comment.Preproc, '#pop'),
         ],
         'if0': [
-            (r'^\s*#\s*if.*?(?<!\\)\n', Comment.Preproc, '#push'),
-            (r'^\s*#\s*el(?:se|if).*\n', Comment.Preproc, '#pop'),
+            (r'^\s*#\s*if.*?(?<!\\)\n',    Comment.Preproc, '#push'),
+            (r'^\s*#\s*el(?:se|if).*\n',   Comment.Preproc, '#pop'),
             (r'^\s*#\s*endif.*?(?<!\\)\n', Comment.Preproc, '#pop'),
             (r'.*?\n', Comment),
         ]
     }
 
     stdlib_types = set((
-        'size_t', 'ssize_t', 'off_t', 'wchar_t', 'ptrdiff_t', 'sig_atomic_t', 'fpos_t',
-        'clock_t', 'time_t', 'va_list', 'jmp_buf', 'FILE', 'DIR', 'div_t', 'ldiv_t',
-        'mbstate_t', 'wctrans_t', 'wint_t', 'wctype_t'))
+        'size_t',
+        'ssize_t',
+        'fpos_t',
+        'off_t',
+        'ptrdiff_t',
+        'sig_atomic_t',
+        'clock_t',
+        'time_t',
+        'va_list',
+        'jmp_buf',
+        'div_t',
+        'ldiv_t',
+        'mbstate_t',
+        'wint_t',
+        'wchar_t',
+        'wctrans_t',
+        'wctype_t',
+        'FILE',
+        'DIR'))
     c99_types = set((
         '_Bool', '_Complex', '_Imaginary',
         'int8_t',   'int_least8_t',   'int_fast8_t',
@@ -177,9 +274,26 @@ class CFamilyLexer(RegexLexer):
         'intmax_t',
         'uintmax_t'))
     linux_types = set((
-        'clockid_t', 'cpu_set_t', 'cpumask_t', 'dev_t', 'gid_t', 'id_t', 'ino_t', 'key_t',
-        'mode_t', 'nfds_t', 'pid_t', 'rlim_t', 'sig_t', 'sighandler_t', 'siginfo_t',
-        'sigset_t', 'sigval_t', 'socklen_t', 'timer_t', 'uid_t'))
+        'cpu_set_t',
+        'cpumask_t',
+        'dev_t',
+        'id_t',
+        'ino_t',
+        'key_t',
+        'mode_t',
+        'nfds_t',
+        'gid_t',
+        'pid_t',
+        'uid_t',
+        'rlim_t',
+        'sig_t',
+        'sighandler_t',
+        'siginfo_t',
+        'sigset_t',
+        'sigval_t',
+        'socklen_t',
+        'timer_t',
+        'clockid_t'))
 
     def __init__(self, **options):
         self.stdlibhighlighting = get_bool_opt(options, 'stdlibhighlighting', True)
@@ -197,6 +311,10 @@ class CFamilyLexer(RegexLexer):
                     token = Keyword.Type
                 elif self.platformhighlighting and value in self.linux_types:
                     token = Keyword.Type
+                elif re.match(r'\b([tseufpi]_\w+)\b', value):
+                    token = Keyword.Type # libccc typedef
+                elif re.match(r'\b([A-Z])\b', value):
+                    token = Keyword.Type # libccc generic type macro
             yield index, token, value
 
 
@@ -214,9 +332,9 @@ class CLexer(CFamilyLexer):
         CFamilyLexer.__init__(self, **options)
 
     def analyse_text(text):
-        if re.search('^\s*#include [<"]', text, re.MULTILINE):
+        if re.search(r'^\s*#include [<"]', text, re.MULTILINE):
             return 0.1
-        if re.search('^\s*#ifn?def ', text, re.MULTILINE):
+        if re.search(r'^\s*#ifn?def ', text, re.MULTILINE):
             return 0.1
 
 

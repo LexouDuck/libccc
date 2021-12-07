@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_ALGEBRA_VECTOR_H
 #define __LIBCCC_MATH_ALGEBRA_VECTOR_H
 /*!@group{libccc_math_algebra_vector}
-** @{
+**
 **	This header defines vector type and functions, in several dimensions (2d/3d/4d)
 **
 **	@file
@@ -226,6 +226,6 @@ s_vector3d						Vector3D_Cross(s_vector3d const* v1, s_vector3d const* v2);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

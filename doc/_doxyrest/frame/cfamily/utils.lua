@@ -142,6 +142,20 @@ function getLinkedTextString(text, isRef)
 	return s
 end
 
+function findLinkedTextEnum(text)
+	for i = 1, #text.refTextArray do
+		local refText = text.refTextArray[i]
+		if refText.id ~= "" then
+			local member = findMemberById(refText.id)
+			if member ~= nil and member.memberKind == "enum" then
+				return member
+			end
+		end
+	end
+
+	return nil
+end
+
 -------------------------------------------------------------------------------
 
 -- param array formatting
@@ -207,18 +221,19 @@ function getParamArrayString_ml(paramArray, isRef, lbrace, rbrace, indent, nl)
 	elseif count == 1  then
 		s = lbrace .. getParamString(paramArray[1], isRef) .. rbrace
 	else
-		s = lbrace .. nl .. indent .. "\t"
+		s = lbrace .. nl
 
 		for i = 1, count do
-			s = s .. getParamString(paramArray[i], isRef)
+			s = s .. indent .. "\t" .. getParamString(paramArray[i], isRef)
 
 			if i ~= count then
 				s = s .. ","
 			end
 
-			s = s .. nl .. indent .. "\t"
+			s = s .. nl
 		end
-		s = s .. rbrace
+
+		s = s .. indent .. rbrace
 	end
 
 	return s
@@ -785,8 +800,9 @@ function filterDefineArray(defineArray)
 
 		local isExcluded =
 			isItemExcludedByLocationFilter(item) or
-			EXCLUDE_EMPTY_DEFINES and item.initializer.isEmpty or
-			EXCLUDE_DEFINE_PATTERN and string.match(item.name, EXCLUDE_DEFINE_PATTERN)
+			EXCLUDE_DEFINE_PATTERN and string.match(item.name, EXCLUDE_DEFINE_PATTERN) or
+			EXCLUDE_EMPTY_DEFINES and item.initializer.isEmpty and
+			item.briefDescription.isEmpty and item.detailedDescription.isEmpty
 
 		if isExcluded then
 			table.remove(defineArray, i)

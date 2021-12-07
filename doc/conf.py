@@ -23,7 +23,7 @@ author = "Alexis Duquesne, Tristan Duquesne"
 
 # The full version, including alpha/beta/rc tags
 release = "?"
-with open("VERSION") as f:
+with open("../VERSION") as f:
     release = f.readline() # only keep the first line of the VERSION file
 
 

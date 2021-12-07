@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_SYS_ANSI_H
 #define __LIBCCC_SYS_ANSI_H
 /*!@group{libccc_sys_ansi}
-** @{
+**
 **	This header defines some useful ANSI text macros.
 **
 **	@see
@@ -141,6 +141,6 @@ HEADER_CPP
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

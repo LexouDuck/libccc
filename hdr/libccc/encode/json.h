@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_ENCODE_JSON_H
 #define __LIBCCC_ENCODE_JSON_H
 /*!@group{libccc_encode_json}
-** @{
+**
 **	This header defines a dynamic runtime object type, similar to objects in JS.
 **	- JSON spec: https://www.json.org/json-en.html
 **
@@ -407,6 +407,6 @@ void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), an
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_VLQ_H
 #define __LIBCCC_MATH_VLQ_H
 /*!@group{libccc_math_vlq}
-** @{
+**
 **	This header defines variable-length numeric types, and utility functions for them.
 **
 **	@file
@@ -112,6 +112,6 @@ typedef union varfloat
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

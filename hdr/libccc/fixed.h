@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_FIXED_H
 #define __LIBCCC_FIXED_H
 /*!@group{libccc_fixed}
-** @{
+**
 **	This header defines the fixed-point number primitive types and functions.
 **
 **	There has been a draft proposal to include fixed-point number types and
@@ -1002,6 +1002,6 @@ t_q128					Q128_FromString_Base(t_char const* str, t_char const* base); // TODO 
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

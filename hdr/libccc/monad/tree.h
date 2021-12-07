@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_TREE_H
 #define __LIBCCC_MONAD_TREE_H
 /*!@group{libccc_monad_tree}
-** @{
+**
 **	This header defines a simple tree/node/leaf type and utility functions for it.
 **
 **	@file
@@ -110,6 +110,6 @@ typedef struct tree(T)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

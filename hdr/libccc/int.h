@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_INT_H
 #define __LIBCCC_INT_H
 /*!@group{libccc_int}
-** @{
+**
 **	This header defines the integer number primitive types and functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Integer_types}
@@ -1704,6 +1704,6 @@ t_s128					S128_FromString_Base(t_char const* str, t_char const* base);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

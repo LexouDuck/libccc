@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_RANDOM_CSPRNG_H
 #define __LIBCCC_RANDOM_CSPRNG_H
 /*!@group{libccc_random_csprng}
-** @{
+**
 **	This header defines cryptographically-secure pseudo-random number generator functions.
 **
 **  @nonstd
@@ -179,6 +179,6 @@ t_float					CSPRNG_Float_Get_Range	(t_float min, t_float max);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

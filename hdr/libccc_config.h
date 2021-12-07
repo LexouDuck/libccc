@@ -11,9 +11,8 @@
 
 #ifndef __LIBCCC_CONFIG_H
 #define __LIBCCC_CONFIG_H
-/*! @file libccc_config.h
-**	@addtogroup libccc_config
-**	@{
+/*!@group{libccc_config}
+**
 **	This header defines all the configuration macros which alter how libccc works.
 */
 
@@ -71,7 +70,7 @@ HEADER_CPP
 //	if (dest)	*dest = VALUE;	return (i);
 #endif
 
-// TODO implement configurable overflow-case return values with this macro
+// TODO implement configurable return values in cases of number overflow with this macro
 #define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
 	CONCAT(TYPE,_ERROR)	//!< configurable error value
 //	(VALUE)				//!< saturated type
@@ -101,7 +100,7 @@ HEADER_CPP
 **	There are 2 possible values for this setting:
 **	- `0`	Will return `0`: this is how the C standard library works, though it can lead to confusions.
 **	- `1`	Will use the largest representable unsigned int value for the bitsize in question.
-**		NB: When using this option, the #UINT_MAX macros will be different !
+**	  NOTE: When using this option, the #UINT_MAX macros will be different !
 **			For example, `U8_MAX` will become `254`, rather than the usual `255`
 */
 //!@{
@@ -248,7 +247,7 @@ HEADER_CPP
 
 
 //! Defines which type the `t_char` default text character type will be
-/*!
+/*! @subgroup
 **	This macro sets the default `t_char` text string character type and methods to use.
 **	With the default settings, `t_char` resolves to `t_ascii`, and its functions work accordingly
 **	(ie: the `Char_ToUpper()` function is really an alias for the `ASCII_IsUpper()` function)
@@ -439,6 +438,6 @@ HEADER_CPP
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

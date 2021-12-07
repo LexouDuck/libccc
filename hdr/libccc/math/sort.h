@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_SORT_H
 #define __LIBCCC_MATH_SORT_H
 /*!@group{libccc_math_sort}
-** @{
+**
 **	This header defines functions for sorting arrays/lists of any type.
 **	There are several different kinds of sorting algorithms provided.
 **	Some of these algorithms are better suited for arrays, others for lists -
@@ -96,6 +96,6 @@ void	QuickSort_##COMPARE(TYPE* array, t_size items)													\
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

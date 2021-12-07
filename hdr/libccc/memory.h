@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MEMORY_H
 #define __LIBCCC_MEMORY_H
 /*!@group{libccc_memory}
-** @{
+**
 **	This header defines the common standard memory manipulation functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/memory}
@@ -509,6 +509,6 @@ void*	memmove(void* dest, void const* src, t_size n)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

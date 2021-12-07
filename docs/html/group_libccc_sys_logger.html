@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_sys_logger &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="enum logformat" href="enum_logformat.html" />
+    <link rel="prev" title="Libccc_sys_io" href="group_libccc_sys_io.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_sys_logger">
+	<meta property="og:description" content="Libccc_sys_logger">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_sys_logger">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_sys_logger.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_sys_logger</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_logformat.html">enum logformat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_logger.html">struct logger</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_sys_logger</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-sys-logger">
+<span id="doxid-group-libccc-sys-logger"></span><span id="index-0"></span><h1>Libccc_sys_logger<a class="headerlink" href="#libccc-sys-logger" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines a simple yet useful set of functions to do program logging <a class="reference internal" href="#details-group-libccc-sys-logger"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="kd">enum</span> <a class="reference internal" href="enum_logformat.html#doxid-group-libccc-sys-logger-1gaaaa102a69c535707178d0d4abae95414"><span class="std std-ref">logformat</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga6d2588ccfd1d80f695a78a7baef2b325"><span class="std std-ref">e_logformat</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <span class="kd">struct</span> <a class="reference internal" href="struct_logger.html#doxid-structlogger"><span class="std std-ref">logger</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="p">;</span>
+<span class="k">typedef</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// enums</span>
+
+<span class="kd">enum</span> <a class="reference internal" href="enum_logformat.html#doxid-group-libccc-sys-logger-1gaaaa102a69c535707178d0d4abae95414"><span class="std std-ref">logformat</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// structs</span>
+
+<span class="kd">struct</span> <a class="reference internal" href="struct_logger.html#doxid-structlogger"><span class="std std-ref">logger</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga47c4a4313e7a399114c24171076f8785"><span class="std std-ref">Logger_Init</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga10e1fbdd193b1d2754a5f930c7d6f176"><span class="std std-ref">Logger_Exit</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf23b81013bb9a26e5d741032d99b65c5"><span class="std std-ref">Logger_DeleteMemory</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3fb0db925e427a5eba3fb1a3d6953b05"><span class="std std-ref">Logger_GetSettings</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga5fadee1691617b5fdedb74f325a59cd9"><span class="std std-ref">Logger_LogSettings</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga994e5dba227c16fa68f64ae69263a83a"><span class="std std-ref">Logger_GetTimestamp</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gac18942bf2f3dc9acba993dd65cca3aca"><span class="std std-ref">t_time</span></a><span></span> <span class="n">utc</span><span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga1041ed1acfb6c5636207298f25d9ae97"><span class="std std-ref">Log</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">is_verbose_only</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">use_errno</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">is_error</span><span class="p">,</span>
+    <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span>
+    <span class="p">...</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gae25dce800343a2e138855dfd1c300161"><span></span><span class="n">Log_VA</span></span><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">verbose_only</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">use_errno</span><span class="p">,</span>
+    <span class="kt">int</span> <span class="n">is_error</span><span class="p">,</span>
+    <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">prefix</span><span class="p">,</span>
+    <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">prefix_color</span><span class="p">,</span>
+    <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span>
+    <span class="kt">va_list</span> <span class="n">args</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga5bd0c8744e4c65c70b3aac49dddf780b"><span class="std std-ref">Log_Fatal</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab45552d0fbdd2fa489b55a5864454413"><span class="std std-ref">LogAll_Error_IO</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf212090e2ac3ed72e1be7cef08927aca"><span class="std std-ref">LogAll_Error</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3852240ddace6d329e7afcf9fe0b62b5"><span class="std std-ref">LogAll_Warning</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gada1c2e6098403aad92d3a936dc5e7900"><span class="std std-ref">LogAll_Success</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gacd928861038e38a033a22efaf137017d"><span class="std std-ref">LogAll_Message</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga617cbaa0ad977d079c9814b798a21c9c"><span class="std std-ref">LogAll_Message_Verbose</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga576447913af0a6de21be4de0c832b5fe"><span class="std std-ref">Log_Error_IO</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga15c1ab9fd03a32c5077e15ccd1bac574"><span class="std std-ref">Log_Error</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab141a3065bef3ff514e7e908ee3774be"><span class="std std-ref">Log_Warning</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gad0b1fce0dce6333c7a29eecc4615a1fa"><span class="std std-ref">Log_Success</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gad06e03b4c289226c7f4b589fc8df8416"><span class="std std-ref">Log_Message</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga96df3867fc0d537b522f736acdd2c1e6"><span class="std std-ref">Log_Message_Verbose</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga0a0e26df7c51c849a427108b6679f81e"><span></span><span class="n">DEFAULT_LOGGER_STDERR</span></span><span></span>   <span class="p">((</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="p">){</span> <span class="cm">/*.in_use = FALSE,*/</span> <span class="p">.</span><span class="n">silence_logs</span> <span class="o">=</span> <span class="no">TRUE</span><span class="p">,</span>  <span class="p">.</span><span class="n">silence_errors</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="no">TRUE</span><span class="p">,</span>  <span class="p">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span>  <span class="p">.</span><span class="n">obfuscated</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">append</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">format</span> <span class="o">=</span> <a class="reference internal" href="enum_logformat.html#doxid-group-libccc-sys-logger-1ggaaaa102a69c535707178d0d4abae95414ab70526b8d47a051cf1b2ed036500042c"><span class="std std-ref">LOGFORMAT_ANSI</span></a><span></span><span class="p">,</span> <span class="p">.</span><span class="n">fd</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga3a540e3eef339eec06aff31c4ba1eb25"><span class="std std-ref">STDERR</span></a><span></span><span class="p">,</span> <span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="no">NULL</span> <span class="p">})</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga4150064d5ec9dd8779c14783e265c476"><span></span><span class="n">DEFAULT_LOGGER_STDOUT</span></span><span></span>   <span class="p">((</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="p">){</span> <span class="cm">/*.in_use = FALSE,*/</span> <span class="p">.</span><span class="n">silence_logs</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">silence_errors</span> <span class="o">=</span> <span class="no">TRUE</span><span class="p">,</span>  <span class="p">.</span><span class="n">timestamp</span> <span class="o">=</span> <span class="no">TRUE</span><span class="p">,</span>  <span class="p">.</span><span class="n">verbose</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span>  <span class="p">.</span><span class="n">obfuscated</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">append</span> <span class="o">=</span> <span class="no">FALSE</span><span class="p">,</span> <span class="p">.</span><span class="n">format</span> <span class="o">=</span> <a class="reference internal" href="enum_logformat.html#doxid-group-libccc-sys-logger-1ggaaaa102a69c535707178d0d4abae95414ab70526b8d47a051cf1b2ed036500042c"><span class="std std-ref">LOGFORMAT_ANSI</span></a><span></span><span class="p">,</span> <span class="p">.</span><span class="n">fd</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga8875037d0772a4fc34516f1e03d7e238"><span class="std std-ref">STDOUT</span></a><span></span><span class="p">,</span> <span class="p">.</span><span class="n">path</span> <span class="o">=</span> <span class="no">NULL</span> <span class="p">})</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga63fcdd8a8b026daa74c484a7ebe70226"><span></span><span class="n">DeleteMemory_Logger</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf23b81013bb9a26e5d741032d99b65c5"><span class="std std-ref">Logger_DeleteMemory</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga976c2b8d097d7fcfe9e3d84559d41ec5"><span></span><span class="n">FinalizeLogger</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga10e1fbdd193b1d2754a5f930c7d6f176"><span class="std std-ref">Logger_Exit</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga3dbb03135c17628f6c77d5f51e9a9895"><span></span><span class="n">InitializeLogger</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga47c4a4313e7a399114c24171076f8785"><span class="std std-ref">Logger_Init</span></a><span></span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga92ffd46c3b8e30b7d5265ed04ef51375"><span></span><span class="n">LOGALL_FUNCTION_CONTENT</span></span><span></span><span class="p">(</span> \
+    <span class="n">VERBOSE_ONLY</span><span class="p">,</span> \
+    <span class="n">IS_ERROR</span><span class="p">,</span> \
+    <span class="n">USE_ERRNO</span><span class="p">,</span> \
+    <span class="n">PREFIX</span><span class="p">,</span> \
+    <span class="n">PREFIX_COLOR</span> \
+<span class="p">)</span>       <a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span>  <span class="n">result</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gaba51915c87d64af47fb1cc59348961c9"><span class="std std-ref">OK</span></a><span></span><span class="p">;</span>                    <span class="err">\</span>   <span class="kt">va_list</span>     <span class="n">args</span><span class="p">;</span>                           <span class="err">\</span>                                               <span class="err">\</span>   <span class="k">for</span><span class="p">(</span><span class="kt">t_u32</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">loggers</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>           <span class="err">\</span>   <span class="p">{</span>                                           <span class="err">\</span>       <span class="n">va_start</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">format_str</span><span class="p">);</span>             <span class="err">\</span>       <span class="n">result</span> <span class="o">=</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gae25dce800343a2e138855dfd1c300161"><span class="std std-ref">Log_VA</span></a><span></span><span class="p">(</span><span class="n">loggers</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>                <span class="err">\</span>       <span class="n">VERBOSE_ONLY</span><span class="p">,</span> <span class="n">IS_ERROR</span><span class="p">,</span> <span class="n">USE_ERRNO</span><span class="p">,</span>      <span class="err">\</span>       <span class="n">PREFIX</span><span class="p">,</span> <span class="n">PREFIX_COLOR</span><span class="p">,</span>                   <span class="err">\</span>           <span class="n">format_str</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>                  <span class="err">\</span>       <span class="n">va_end</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>                           <span class="err">\</span>   <span class="p">}</span>                                           <span class="err">\</span>   <span class="k">return</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>                         \
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gab88c677395cbf6801b15bd4a859a9080"><span></span><span class="n">LOGFORMAT_STRING_ANSI</span></span><span></span>   <span class="s">&quot;ANSI&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gafbba8a3bab56c384d01fe094addff5fc"><span></span><span class="n">LOGFORMAT_STRING_JSON</span></span><span></span>   <span class="s">&quot;JSON&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga1eb4cffffbf46889d20c23ec81198830"><span></span><span class="n">LOGFORMAT_STRING_TEXT</span></span><span></span>   <span class="s">&quot;TEXT&quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gac90b52a5aa9af32b594ac9225ba42d18"><span></span><span class="n">LOGFORMAT_STRING_XML</span></span><span></span>    <span class="s">&quot;XML&quot;</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga63c3de50d77deebd22a9fd8b59fc4a43"><span></span><span class="n">LOGONE_FUNCTION_CONTENT</span></span><span></span><span class="p">(</span> \
+    <span class="n">VERBOSE_ONLY</span><span class="p">,</span> \
+    <span class="n">IS_ERROR</span><span class="p">,</span> \
+    <span class="n">USE_ERRNO</span><span class="p">,</span> \
+    <span class="n">PREFIX</span><span class="p">,</span> \
+    <span class="n">PREFIX_COLOR</span> \
+<span class="p">)</span>       <a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span>  <span class="n">result</span> <span class="o">=</span> <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gaba51915c87d64af47fb1cc59348961c9"><span class="std std-ref">OK</span></a><span></span><span class="p">;</span>                    <span class="err">\</span>   <span class="kt">va_list</span>     <span class="n">args</span><span class="p">;</span>                           <span class="err">\</span>                                               <span class="err">\</span>   <span class="n">va_start</span><span class="p">(</span><span class="n">args</span><span class="p">,</span> <span class="n">format_str</span><span class="p">);</span>                 <span class="err">\</span>   <span class="n">result</span> <span class="o">=</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gae25dce800343a2e138855dfd1c300161"><span class="std std-ref">Log_VA</span></a><span></span><span class="p">(</span><a class="reference internal" href="struct_logger.html#doxid-structlogger"><span class="std std-ref">logger</span></a><span></span><span class="p">,</span>                     <span class="err">\</span>       <span class="n">VERBOSE_ONLY</span><span class="p">,</span> <span class="n">IS_ERROR</span><span class="p">,</span> <span class="n">USE_ERRNO</span><span class="p">,</span>      <span class="err">\</span>       <span class="n">PREFIX</span><span class="p">,</span> <span class="n">PREFIX_COLOR</span><span class="p">,</span>                   <span class="err">\</span>       <span class="n">format_str</span><span class="p">,</span> <span class="n">args</span><span class="p">);</span>                      <span class="err">\</span>   <span class="n">va_end</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>                               <span class="err">\</span>   <span class="k">return</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>                         \
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga70a419fd2cd69fce858219a1677aa092"><span></span><span class="n">LOG_JSON_INDENT</span></span><span></span> <span class="s">&quot;        &quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf8a4b7b69c077ba6862ef81badcbaacc"><span class="std std-ref">LOG_TIMESTAMP_FORMAT</span></a><span></span>   <a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1ga8b4271c0eec06f6c76e5fe1554a83971"><span class="std std-ref">SF_DATE_UNIX</span></a><span></span><span class="s">&quot; &quot;</span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1ga45545439752f4d491abadeea3871f75f"><span class="std std-ref">SF_TIME_UNIX</span></a><span></span><span class="s">&quot; | &quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga016fd9fef8c6d3b4c7f085ca63dfa402"><span class="std std-ref">LOG_TIMESTAMP_INDENT</span></a><span></span>   <span class="s">&quot;                    | &quot;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gaa0373e0af14c49d02ce89dfef92b6021"><span></span><span class="n">LogAll_SystemError</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab45552d0fbdd2fa489b55a5864454413"><span class="std std-ref">LogAll_Error_IO</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga1ef54b434bc304d3626d3b78cba737fc"><span></span><span class="n">LogAll_Verbose</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga617cbaa0ad977d079c9814b798a21c9c"><span class="std std-ref">LogAll_Message_Verbose</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga8af63972719d757fd37d0253ef7d5c0c"><span></span><span class="n">Log_FatalError</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga5bd0c8744e4c65c70b3aac49dddf780b"><span class="std std-ref">Log_Fatal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga09b65d258775cbbd577d3457d1b7bb8c"><span></span><span class="n">Log_SystemError</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga576447913af0a6de21be4de0c832b5fe"><span class="std std-ref">Log_Error_IO</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gac4598727ed57c656e288f113ed345712"><span></span><span class="n">Log_Verbose</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga96df3867fc0d537b522f736acdd2c1e6"><span class="std std-ref">Log_Message_Verbose</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gada3edae0070ddc1c761ab45e69e79168"><span></span><span class="n">NULL_LOGGER</span></span><span></span> <span class="p">((</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="p">){</span> <span class="mi">0</span> <span class="p">})</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga9da6d45997feaa13958f4ac48856502f"><span></span><span class="n">c_log_</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga1041ed1acfb6c5636207298f25d9ae97"><span class="std std-ref">Log</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga6fdc75cfd4ff25de303c6a42556afcbe"><span></span><span class="n">c_log_delmemory</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf23b81013bb9a26e5d741032d99b65c5"><span class="std std-ref">Logger_DeleteMemory</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gae4ea9c37d07a15715d6428807b5c09fd"><span></span><span class="n">c_log_error</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga15c1ab9fd03a32c5077e15ccd1bac574"><span class="std std-ref">Log_Error</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga9e02f02c8e50d7a87d17d8719c407ad6"><span></span><span class="n">c_log_error_io</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga576447913af0a6de21be4de0c832b5fe"><span class="std std-ref">Log_Error_IO</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga5c52e007d79653c5dc4295d32df7526d"><span></span><span class="n">c_log_exit</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga10e1fbdd193b1d2754a5f930c7d6f176"><span class="std std-ref">Logger_Exit</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga25f4b487319631d9e19e276e07b55de1"><span></span><span class="n">c_log_fatal</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga5bd0c8744e4c65c70b3aac49dddf780b"><span class="std std-ref">Log_Fatal</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga560be122806a511d8ab0f6c8d7dd9555"><span></span><span class="n">c_log_getsettings</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3fb0db925e427a5eba3fb1a3d6953b05"><span class="std std-ref">Logger_GetSettings</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gafa309f127526016dbb4acf72c944f81d"><span></span><span class="n">c_log_init</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga47c4a4313e7a399114c24171076f8785"><span class="std std-ref">Logger_Init</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga29a1a01457e6797b622445395ee2d9b7"><span></span><span class="n">c_log_logsettings</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga5fadee1691617b5fdedb74f325a59cd9"><span class="std std-ref">Logger_LogSettings</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gad7cdf766667ab7619ebf390f36472320"><span></span><span class="n">c_log_message</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gad06e03b4c289226c7f4b589fc8df8416"><span class="std std-ref">Log_Message</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga0c5b66bf8be55a16e706548dc758e98d"><span></span><span class="n">c_log_success</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gad0b1fce0dce6333c7a29eecc4615a1fa"><span class="std std-ref">Log_Success</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gac5359363d79c3a6740a8781f00f4ba8d"><span></span><span class="n">c_log_va</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gae25dce800343a2e138855dfd1c300161"><span class="std std-ref">Log_VA</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga83969c4a157f63fd0281544eeb552ec4"><span></span><span class="n">c_log_verbose</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga96df3867fc0d537b522f736acdd2c1e6"><span class="std std-ref">Log_Message_Verbose</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gac5c57cabb50396f7628cc0955124df49"><span></span><span class="n">c_log_warning</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab141a3065bef3ff514e7e908ee3774be"><span class="std std-ref">Log_Warning</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga91975d6623be9c4376debaecd712b0c7"><span></span><span class="n">c_logall_error</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gaf212090e2ac3ed72e1be7cef08927aca"><span class="std std-ref">LogAll_Error</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gabb83a31b7f009bf115eb11c7f19e82bb"><span></span><span class="n">c_logall_error_io</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab45552d0fbdd2fa489b55a5864454413"><span class="std std-ref">LogAll_Error_IO</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga7d0138a5b26f4c2de1119dd317fb5544"><span></span><span class="n">c_logall_message</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gacd928861038e38a033a22efaf137017d"><span class="std std-ref">LogAll_Message</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1ga245ceffcae02731dfab487eb350a3c07"><span></span><span class="n">c_logall_success</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gada1c2e6098403aad92d3a936dc5e7900"><span class="std std-ref">LogAll_Success</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gaa22edf819d3cd64698820ef60bd5cdcc"><span></span><span class="n">c_logall_verbose</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga617cbaa0ad977d079c9814b798a21c9c"><span class="std std-ref">LogAll_Message_Verbose</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-logger-1gafbfa2151b1bd1aa5e582331c957e8ab4"><span></span><span class="n">c_logall_warning</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3852240ddace6d329e7afcf9fe0b62b5"><span class="std std-ref">LogAll_Warning</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-sys-logger"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines a simple yet useful set of functions to do program logging</p>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga6d2588ccfd1d80f695a78a7baef2b325"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kd">enum</span> <a class="reference internal" href="enum_logformat.html#doxid-group-libccc-sys-logger-1gaaaa102a69c535707178d0d4abae95414"><span class="std std-ref">logformat</span></a><span></span> <span class="kt">e_logformat</span></pre>
+<p>This enum specifies a specific text formatting wrapper.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="kd">struct</span> <a class="reference internal" href="struct_logger.html#doxid-structlogger"><span class="std std-ref">logger</span></a><span></span> <span class="kt">s_logger</span></pre>
+<p>This struct stores all the settings and internal state needed for a basic logging system.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span id="index-3"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="kt">t_logptrarr</span></pre>
+<p>A null-terminated pointer array of instantiated, active, read-only logger structs. Internals should be set through the internals of a void**.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga47c4a4313e7a399114c24171076f8785"><span id="index-4"></span><span></span><span class="kt">void</span> <span class="n">Logger_Init</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">)</span></pre>
+<p>Create a new logger. If logfile_path is required, but NULL, a default macro is used.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga10e1fbdd193b1d2754a5f930c7d6f176"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">Logger_Exit</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">)</span></pre>
+<p>Cleanly release logger (close file descriptors, free internal memory)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gaf23b81013bb9a26e5d741032d99b65c5"><span id="index-6"></span><span></span><span class="kt">void</span> <span class="n">Logger_DeleteMemory</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span><span class="o">*</span> <span class="n">a_logger</span><span class="p">)</span></pre>
+<p>Free all memory in logger, but do not release sockets; useful when a duplicated memory instance exists.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga3fb0db925e427a5eba3fb1a3d6953b05"><span id="index-7"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Logger_GetSettings</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">)</span></pre>
+<p>Util function to help debug the logger.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga5fadee1691617b5fdedb74f325a59cd9"><span id="index-8"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Logger_LogSettings</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">)</span></pre>
+<p>Util function to help debug the logger.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga994e5dba227c16fa68f64ae69263a83a"><span id="index-9"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Logger_GetTimestamp</span><span class="p">(</span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1gac18942bf2f3dc9acba993dd65cca3aca"><span class="std std-ref">t_time</span></a><span></span> <span class="n">utc</span><span class="p">)</span></pre>
+<p>Returns a UNIX-format string representation of the given ‘utc’ date/time number.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga1041ed1acfb6c5636207298f25d9ae97"><span id="index-10"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log</span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">is_verbose_only</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">use_errno</span><span class="p">,</span>
+    <span class="kt">t_bool</span> <span class="n">is_error</span><span class="p">,</span>
+    <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span>
+    <span class="p">...</span>
+<span class="p">)</span></pre>
+<p>Send a printf-like string to logfile.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga5bd0c8744e4c65c70b3aac49dddf780b"><span id="index-11"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Fatal</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Used to log a fundamental error where even the logger itself doesn’t work: calls the STD C perror() function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gab45552d0fbdd2fa489b55a5864454413"><span id="index-12"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Error_IO</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging (perror-style) to both stderr and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gaf212090e2ac3ed72e1be7cef08927aca"><span id="index-13"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Error</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging perror-style to both stderr and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga3852240ddace6d329e7afcf9fe0b62b5"><span id="index-14"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Warning</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>To be called when there is an important warning to show to the user.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gada1c2e6098403aad92d3a936dc5e7900"><span id="index-15"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Success</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>To be called when there is an successful operation (or result) of which to notify the user.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gacd928861038e38a033a22efaf137017d"><span id="index-16"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Message</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging printf-style of message to both stdout and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga617cbaa0ad977d079c9814b798a21c9c"><span id="index-17"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">LogAll_Message_Verbose</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1ga3ee217e6560a550b1f4d3edfc9c20aaf"><span class="std std-ref">t_logptrarr</span></a><span></span> <span class="k">const</span> <span class="n">loggers</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging printf-style of verbose message to both stdout and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga576447913af0a6de21be4de0c832b5fe"><span id="index-18"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Error_IO</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging (perror-style) to both stderr and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga15c1ab9fd03a32c5077e15ccd1bac574"><span id="index-19"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Error</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">int</span> <span class="n">error_code</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging perror-style to both stderr and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gab141a3065bef3ff514e7e908ee3774be"><span id="index-20"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Warning</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>To be called when there is an important warning to show to the user.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gad0b1fce0dce6333c7a29eecc4615a1fa"><span id="index-21"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Success</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>To be called when there is an successful operation (or result) of which to notify the user.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gad06e03b4c289226c7f4b589fc8df8416"><span id="index-22"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Message</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging printf-style of message to both stdout and logfile (if applicable)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga96df3867fc0d537b522f736acdd2c1e6"><span id="index-23"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Log_Message_Verbose</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-logger-1gab15c9f05733ed3b0515563beaec76518"><span class="std std-ref">s_logger</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">logger</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">format_str</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Logging printf-style of verbose message to both stdout and logfile (if applicable)</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1gaf8a4b7b69c077ba6862ef81badcbaacc"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">LOG_TIMESTAMP_FORMAT</span>    <a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1ga8b4271c0eec06f6c76e5fe1554a83971"><span class="std std-ref">SF_DATE_UNIX</span></a><span></span><span class="s">&quot; &quot;</span><a class="reference internal" href="group_libccc_sys_time.html#doxid-group-libccc-sys-time-1ga45545439752f4d491abadeea3871f75f"><span class="std std-ref">SF_TIME_UNIX</span></a><span></span><span class="s">&quot; | &quot;</span></pre>
+<p>The format with which to display timestamps at the beginning of log lines.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-logger-1ga016fd9fef8c6d3b4c7f085ca63dfa402"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="fm">LOG_TIMESTAMP_INDENT</span>    <span class="s">&quot;                    | &quot;</span></pre>
+<p>The string to display at the beginning of each new line when outputting text that is multiline As such, the amount of spaces here is equivalent to the size of a console log timestamp</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_sys_io.html" class="btn btn-neutral float-left" title="Libccc_sys_io" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="enum_logformat.html" class="btn btn-neutral float-right" title="enum logformat" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

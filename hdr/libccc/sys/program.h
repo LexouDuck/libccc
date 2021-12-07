@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_SYS_PROGRAM_H
 #define __LIBCCC_SYS_PROGRAM_H
 /*!@group{libccc_sys_program}
-** @{
+**
 **	This header defines all the functions for OS-level input/output, read/write.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/program}
@@ -64,7 +64,7 @@ HEADER_CPP
 */
 _NORETURN()
 void				Program_Abort(void);
-#define c_abort		Program_Abort //!< @alias{Program_Abort}
+#define c_abort		Program_Abort
 
 
 
@@ -74,7 +74,7 @@ void				Program_Abort(void);
 */
 _NORETURN()
 void				Program_Exit(int exit_code);
-#define c_exit		Program_Exit //!< @alias{Program_Exit}
+#define c_exit		Program_Exit
 
 
 
@@ -83,8 +83,8 @@ void				Program_Exit(int exit_code);
 **	@isostd{C89,https://en.cppreference.com/w/c/program/atexit}
 */
 e_cccerror			Program_OnExit(void (*f)(void));
-#define c_atexit	Program_OnExit //!< @alias{Program_OnExit}
-#define c_on_exit	Program_OnExit //!< @alias{Program_OnExit}
+#define c_atexit	Program_OnExit
+#define c_on_exit	Program_OnExit
 
 
 
@@ -129,6 +129,6 @@ t_char*				Program_GetCWD(void);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

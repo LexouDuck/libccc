@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_FLOAT_H
 #define __LIBCCC_FLOAT_H
 /*!@group{libccc_float}
-** @{
+**
 **	This header defines the floating-point number primitive types and functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
@@ -1168,6 +1168,6 @@ t_f128					F128_FromString_Bin(t_char const* str);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

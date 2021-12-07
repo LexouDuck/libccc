@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
 /*!@group{libccc_math}
-** @{
+**
 **	This header defines the common standard math functions and macro defines.
 **
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math}
@@ -584,6 +584,6 @@ HEADER_CPP
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

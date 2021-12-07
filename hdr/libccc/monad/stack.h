@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_STACK_H
 #define __LIBCCC_MONAD_STACK_H
 /*!@group{libccc_monad_stack}
-** @{
+**
 **	This header defines a simple stack (FIFO) type and utility functions for it.
 **
 **	@file
@@ -81,6 +81,6 @@ typedef struct stack(T)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

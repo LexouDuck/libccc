@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_TEXT_UNICODE_H
 #define __LIBCCC_TEXT_UNICODE_H
 /*!@group{libccc_text_unicode}
-** @{
+**
 **	This header defines all the functions related to Unicode text encodings.
 **
 **	- https://en.wikipedia.org/wiki/UTF-8
@@ -819,6 +819,6 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

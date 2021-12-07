@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_ALGEBRA_INTERVAL_H
 #define __LIBCCC_MATH_ALGEBRA_INTERVAL_H
 /*!@group{libccc_math_algebra_interval}
-** @{
+**
 **	This header defines useful algebra and calculus types, and functions.
 **
 **	@file
@@ -141,6 +141,6 @@ t_s64		c_distance_s64 (t_s64 x, t_s64 y);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

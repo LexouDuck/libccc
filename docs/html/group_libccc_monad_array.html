@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_monad_array &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct array_any" href="struct_array_any.html" />
+    <link rel="prev" title="Libccc_memory" href="group_libccc_memory.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_monad_array">
+	<meta property="og:description" content="Libccc_monad_array">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_monad_array">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_monad_array.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_monad_array</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="struct_array_any.html">struct array_any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_monad_array</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-monad-array">
+<span id="doxid-group-libccc-monad-array"></span><span id="index-0"></span><h1>Libccc_monad_array<a class="headerlink" href="#libccc-monad-array" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines a generic array type and utility functions for it. <a class="reference internal" href="#details-group-libccc-monad-array"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="kd">struct</span> <a class="reference internal" href="struct_array_any.html#doxid-structarray-any"><span class="std std-ref">array_any</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// structs</span>
+
+<span class="kd">struct</span> <a class="reference internal" href="struct_array_any.html#doxid-structarray-any"><span class="std std-ref">array_any</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga9467250732fbe90b59ff4b1aeb5799f7"><span class="std std-ref">Array_Item_any</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga995c62b49c2ff817df3a201777a290a3"><span class="std std-ref">Array_Get_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga858c856f83f9cd0c0a1f99801e2929e2"><span class="std std-ref">Array_Set_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga1f1eba52e498109912410df9ef40a5ef"><span class="std std-ref">Array_New_any</span></a><span></span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">value</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga352ecedc73ac32fc9f570a46e8d95c63"><span class="std std-ref">Array_Create_any</span></a><span></span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gab22dc8f6dad07595e703cc3c7728b222"><span class="std std-ref">Array_Duplicate_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0debf31681b05dddfd8159b4805c4606"><span class="std std-ref">Array_Sub_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">);</span>
+
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga18d43e97b30c62ef99d5d6786f06fb18"><span class="std std-ref">Array_Copy_any</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">dest_i</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">src_i</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">n</span>
+<span class="p">);</span>
+
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gaf7999e7cb76e0d91deeeed52efee0164"><span class="std std-ref">Array_Free_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga8fe12d50348af52ecac40ee01ee2ab86"><span class="std std-ref">Array_Free_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga2aaa6268834e8e5340e43cd1911d76da"><span class="std std-ref">Array_Delete_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">**</span> <span class="n">a_array</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga714aac70298da13c7422aac3c624a5f0"><span class="std std-ref">Array_Delete_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">**</span> <span class="n">a_array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga26dc6def1818bc4eb206dd40f678f3fe"><span class="std std-ref">Array_Add_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga1b2871cf275943959db9b568799c64be"><span class="std std-ref">Array_Insert_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0c611e9b699beed795e81babe4612741"><span class="std std-ref">Array_Wedge_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gaed9b07ca58c1907ee5d493adeca52668"><span class="std std-ref">Array_RemoveAt_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga3e85df5265d3729b91c7183ca435d541"><span class="std std-ref">Array_RemoveAt_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gaddc7d01283dfa5c6cb1dc992724f912c"><span class="std std-ref">Array_Remove_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gac3ea83a1f804de718a1b6e68806ba54a"><span class="std std-ref">Array_Remove_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga49748308f24596fadae42cc8b3f0115b"><span class="std std-ref">Array_RemoveAll_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga8e5613205b32007822b7c1178449596e"><span class="std std-ref">Array_RemoveAll_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gafbf9596ad128e72351e19d6eb7955230"><span class="std std-ref">Array_Replace_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga296825ecabcd42aefd76b3cc22906999"><span class="std std-ref">Array_ReplaceFirst_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0d343e4bb6b3343d54ebf9c8b2bd0ead"><span class="std std-ref">Array_ReplaceLast_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6e286e7147b3aed082ceb32efaf5fa1f"><span class="std std-ref">Array_Reverse_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga1aa6b9ab3abad4f8e28a1f190840067c"><span class="std std-ref">Array_Concat_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0408478f299004a53a69a06fc703eea5"><span class="std std-ref">Array_Append_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga2b7b32d1fdd93eb7013c4377f985af7c"><span class="std std-ref">Array_Prepend_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array2</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga76b826c9361fbcf284eb5bdb1d5d6084"><span class="std std-ref">Array_Merge_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array2</span><span class="p">);</span>
+<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0793b8fb4a00236bb8fb199e029706e7"><span class="std std-ref">Array_Equals_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">);</span>
+<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga815418e5617bfa8edce06c20f956dec0"><span class="std std-ref">Array_Equals_N_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">);</span>
+
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gad3124d63e0e4d1f8f99ce4a0b5703fd4"><span class="std std-ref">Array_Compare_any</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span>
+    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">item2</span><span class="p">)</span> <span class="n">compare</span>
+<span class="p">);</span>
+
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga1c21209b6e517d36ced040b650e9f37d"><span class="std std-ref">Array_Compare_N_any</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span>
+    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">n</span>
+<span class="p">);</span>
+
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga3511dc4bbc73d1ec1214ff087a0a6c65"><span class="std std-ref">Array_Find_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga260e7efa0f7fde80e19c0917ac7c046c"><span class="std std-ref">Array_Find_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gad79ec64ccd7b6710512f934ce3cd2468"><span class="std std-ref">Array_IndexOf_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gaa0041089664be8c832b48baf08378b6d"><span class="std std-ref">Array_IndexOf_F_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
+<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga013d43c546444eedee5a2ec6404c3278"><span class="std std-ref">Array_Count_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gaaad72a07627533e1e39131e0e606bf50"><span class="std std-ref">Array_Contains_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga82c289ebd1522c74afb3c9b8e600aa78"><span class="std std-ref">Array_Has_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
+<span class="kt">t_bool</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga5978636d96775a939f126a00712b132b"><span class="std std-ref">Array_HasOnly_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga9e4ed268f26ab42775f59e61b19df7c8"><span class="std std-ref">Array_Iterate_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gad31bd057e2405a70acc4102fea3485c8"><span class="std std-ref">Array_Iterate_I_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga8f59f43f1f5f89735ce3453f41aff3ed"><span class="std std-ref">Array_Map_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga77e71d426534bd8734a04b18d3971c4d"><span class="std std-ref">Array_Map_I_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0cdfc94d62c040567867cc72f3386f8d"><span class="std std-ref">Array_Filter_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gabf0e7f2951908cc27171fd81c0a98495"><span class="std std-ref">Array_Filter_I_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga925fb6d29c81847e3fe152c0bf2d12b8"><span class="std std-ref">Array_Reduce_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gad95903a2d7e37c4f0733f3995a763ad8"><span class="std std-ref">Array_Reduce_I_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gad2c8279ca240ba0de12b79f149a1aa50"><span class="std std-ref">Array_Fold_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1gae6d5fbb7fb347199944448bbda464395"><span class="std std-ref">Array_Fold_I_any</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span> <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaf1cf8d25cbcec9e2a58b9d95ee513fe3"><span></span><span class="n">c_arradd</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a57c1caa6c06ded05730818b7459f1866"><span class="std std-ref">Array_Add</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga9196541309b38141d7bac7de118e4d3a"><span></span><span class="n">c_arrappend</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a6c36407ee855036c28962807ff817490"><span class="std std-ref">Array_Append</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gacf31cc53080dc1934984311d77bb0177"><span></span><span class="n">c_arrcmp</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1ad5f526b3160252f25bca0e7edefa3a70"><span class="std std-ref">Array_Compare</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gabcfa189f86da54e5bccee332ca8fa523"><span></span><span class="n">c_arrconcat</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a3c8733d8fae594ea7a142d9dd424b492"><span class="std std-ref">Array_Concat</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gabce336f62d9e75533e366e2d21a74a92"><span></span><span class="n">c_arrcontains</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1ae291502b74da0fa078513b70b5d3f745"><span class="std std-ref">Array_Contains</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga0816dc5690a3fa476528a4b0a903876f"><span></span><span class="n">c_arrcount</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a5ee7232a9f0525988fc9a70ee5cd48a6"><span class="std std-ref">Array_Count</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gabb92db6123c98d2a98bb394955d10db2"><span></span><span class="n">c_arrcpy</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a78d6e66a5dcd84d19d317388e5abba1b"><span class="std std-ref">Array_Copy</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga9b0d5dc57b918c6cc532006fea5fd647"><span></span><span class="n">c_arrcreate</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a24e5cbc042b2b4d856823b7316b6dbc2"><span class="std std-ref">Array_Create</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga502bb9566cc7fd3312d7ce03a12994a2"><span></span><span class="n">c_arrdel</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a85b1ae478fc5d2ce75a3b8705ea7fdb2"><span class="std std-ref">Array_Delete</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga5c86a14475c8ce3aa1415e353e64284a"><span></span><span class="n">c_arrdelall</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a593cf2fd5c791ea7ecc7eaa803e515eb"><span class="std std-ref">Array_RemoveAll</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga3c0e3340e96d29599f85d112d66f40e1"><span></span><span class="n">c_arrdelat</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a83ff7e7330229171a518a56d5fb26e9a"><span class="std std-ref">Array_RemoveAt</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga2c57e4c7c7d1627a1ec2b4aec30a1ad5"><span></span><span class="n">c_arrdelone</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1ab28d6d9f75a5e222bc0a8513aaad1f88"><span class="std std-ref">Array_Remove</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga837b770c0b46d4047aac9f879237bd26"><span></span><span class="n">c_arrdup</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a6275f5674c672298fd15cd585d5238ad"><span class="std std-ref">Array_Duplicate</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga21afa78d153c2f6733b01bd954c1a8b6"><span></span><span class="n">c_arrequ</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a297777c85c0896a454e596663f18b355"><span class="std std-ref">Array_Equals</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gadbb1d705bb42e3dbc299760dacd226ce"><span></span><span class="n">c_arrfdel</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a310a6c3549ad9addad76b5ab8451b390"><span class="std std-ref">Array_Delete_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga6f268a0b28b2d63a082763bba29a5cd5"><span></span><span class="n">c_arrfdelall</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a0099a102e957c81ad27ceca5c9da8581"><span class="std std-ref">Array_RemoveAll_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga6762089513ddda3ecbc3090ebd461c7f"><span></span><span class="n">c_arrfdelat</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a639df61ccb4e582e739836fd7dadbfb4"><span class="std std-ref">Array_RemoveAt_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga2066dc49ce8c929dc93ca27cf067224f"><span></span><span class="n">c_arrfdelone</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a99e8db056cee5ebc9a14227e41287b8e"><span class="std std-ref">Array_Remove_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaa9a280dd454ec20de174d9287515c21b"><span></span><span class="n">c_arrffind</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a42e75a45627a2e7e5baef09a030fe560"><span class="std std-ref">Array_Find_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gadbb9c78c36913be69b02bed8ec2e3dd3"><span></span><span class="n">c_arrffindi</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1ab958ec21a45a5cb72c706751b66b8735"><span class="std std-ref">Array_IndexOf_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga3b948b70cb0243ddd0cc2e6fb2e64785"><span></span><span class="n">c_arrffree</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a5bd2afe3198007af738f75b845fab32b"><span class="std std-ref">Array_Free_F</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gac14be65405f453eab0d4c168d9b24aa9"><span></span><span class="n">c_arrfilter</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a7f76e28234707e43f2e0b9c3be7e3256"><span class="std std-ref">Array_Filter</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga3329f967112a0c21dac71748ce1b83b0"><span></span><span class="n">c_arrfind</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a37328dcd739fb388803a0f5f1376ceef"><span class="std std-ref">Array_Find</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga8430116c02a41e76d3eb1fd4cf8b1f44"><span></span><span class="n">c_arrfindi</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1aad4fadc3ecf497fc28ded101b422d327"><span class="std std-ref">Array_IndexOf</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaecb5436a2795a4e97e60fd4f2afa3d59"><span></span><span class="n">c_arrfold</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1aa1e8a4e5dce7588cde34005a19580837"><span class="std std-ref">Array_Fold</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaeeec9c745364db2d8a0d6827813f06ef"><span></span><span class="n">c_arrfree</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1abe0a72a280b7ce40163a30e3d5ee8fc4"><span class="std std-ref">Array_Free</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaee1fb46140424917641178c761375ded"><span></span><span class="n">c_arrget</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a896619a0372a5f8dfb386d76329b091a"><span class="std std-ref">Array_Get</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga6b49f5d7d456957cb79044dfe61d4e6f"><span></span><span class="n">c_arrhas</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1aee964264cdef356d8b54e51d2e4c4bc9"><span class="std std-ref">Array_Has</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga815683260c76c9c9b66ba8513651cff0"><span></span><span class="n">c_arrhasonly</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a21573aa4c9424ecccec64067ccf6523d"><span class="std std-ref">Array_HasOnly</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga87463801347bb3ac0d786233a64154cb"><span></span><span class="n">c_arrifilter</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1ad14ed27a0622c0c83ae55fa57e8d1efa"><span class="std std-ref">Array_Filter_I</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gab48741b167c95bb1ccf05e22f6ceecaf"><span></span><span class="n">c_arrifold</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a075c3782143edc2f25281597c6d741d3"><span class="std std-ref">Array_Fold_I</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gabcc2edca7ea8b236fb4133fdfdd47e9f"><span></span><span class="n">c_arriiter</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a735728cd65810a32acab1df9859fab99"><span class="std std-ref">Array_Iterate_I</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga36dea674f6251ff29eb3ba9aa568954a"><span></span><span class="n">c_arrimap</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a7865a2ac624e3a1a5d834f51d26b3318"><span class="std std-ref">Array_Map_I</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga0cddc9e74ee597502c3665984f2b99ff"><span></span><span class="n">c_arrinsert</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1aa3634a3c2ad72cfe0c4b0795a44dc417"><span class="std std-ref">Array_Insert</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga63094793e47bb8672aa6352b443095ae"><span></span><span class="n">c_arrireduce</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1ab54f69809229a7a6c2b28d4ece4cd139"><span class="std std-ref">Array_Reduce_I</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gad00f12f3b40ffc8a9b8c554223ea3c8d"><span></span><span class="n">c_arritem</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1af3b4d4b09e22423e770164d3218e438a"><span class="std std-ref">Array_Item</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaedc1b5f7ea45542e169c2a93724a6b0e"><span></span><span class="n">c_arriter</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a5e4c3f9e4b047d214806fd1313e89ae8"><span class="std std-ref">Array_Iterate</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gab2cefe34502e2c3cb94f31cd07d42584"><span></span><span class="n">c_arrmap</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a7a32b300d3cab01fd81b2bcb21b65443"><span class="std std-ref">Array_Map</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga467216aaa539666492746dbec43549cd"><span></span><span class="n">c_arrmerge</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1a3cbe44aca10221091cf5d3e963d25a19"><span class="std std-ref">Array_Merge</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gad4741be78f59def1adb0f1177cf2d5bd"><span></span><span class="n">c_arrncmp</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a13a77ec7ff949dd848f96bcf3e218853"><span class="std std-ref">Array_Compare_N</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga6675ebfc485829f7a42aa0636afd0356"><span></span><span class="n">c_arrnequ</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1a1a3a86a78bc00d68ea8178e727a2a0dc"><span class="std std-ref">Array_Equals_N</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga951d07bca982d97899f8ef29c54af543"><span></span><span class="n">c_arrnew</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a503091c5fb30473b8137c7cc7553b439"><span class="std std-ref">Array_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga6577990c8c89e5ea943ce281b442e80b"><span></span><span class="n">c_arrprepend</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1ac04bb3602bbbbdc5c2ad6e9033a0709c"><span class="std std-ref">Array_Prepend</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga2ff5f95dd11129bc351b88b2304991c0"><span></span><span class="n">c_arrreduce</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <a class="reference internal" href="global.html#doxid-array-8c-1a4d2ea7c577290cc58d227a4fb641aac8"><span class="std std-ref">Array_Reduce</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaa23e1b7955141451caae9bc6f2e9d3b5"><span></span><span class="n">c_arrrep</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a0c1d4d9a06f06f590ab1b423c7c4acb6"><span class="std std-ref">Array_Replace</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga15802c84b2193521712dbca9ae73f057"><span></span><span class="n">c_arrrepfirst</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>   <a class="reference internal" href="global.html#doxid-array-8c-1aff8dd7883e8501d056c5df03f77563b7"><span class="std std-ref">Array_ReplaceFirst</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gafaaabdf6a30177826ca6efc2ddf73927"><span></span><span class="n">c_arrreplast</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1aea6c90fcf9b6b7d5227cd69fd88dae2a"><span class="std std-ref">Array_ReplaceLast</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga569b08f29df6c19662b9ae3825a65304"><span></span><span class="n">c_arrrev</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a9098fdd3da8ecada43dfb7937f18e708"><span class="std std-ref">Array_Reverse</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga7559e8f3a31a6e862514efb08aaba1f8"><span></span><span class="n">c_arrset</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1a81482e4e05e01e3e317e42b380cc9d14"><span class="std std-ref">Array_Set</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1ga53552599df7bc04c78f6359088261301"><span></span><span class="n">c_arrsub</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>    <a class="reference internal" href="global.html#doxid-array-8c-1afa16c690533d166b035df00c651263dd"><span class="std std-ref">Array_Sub</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-array-1gaa7f2d5b946e00815bc374cd873699aa8"><span></span><span class="n">c_arrwedge</span></span><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span>  <a class="reference internal" href="global.html#doxid-array-8c-1af87cc83aa015d026359fb1b62170b8a5"><span class="std std-ref">Array_Wedge</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_tree.html#doxid-group-libccc-monad-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-monad-array"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines a generic array type and utility functions for it.</p>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kd">struct</span> <a class="reference internal" href="struct_array_any.html#doxid-structarray-any"><span class="std std-ref">array_any</span></a><span></span> <span class="kt">s_array_any</span></pre>
+<p>This struct holds an array of items which can be of any type.</p>
+<p>The ‘s_array’ struct holds a <code class="docutils literal notranslate"><span class="pre">void*</span></code> pointer to the array of items, the size of a single item in the array, and the total amount of items in this array. As such, a s_array can hold any number of items, but they must all share the same type.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga9467250732fbe90b59ff4b1aeb5799f7"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="n">Array_Item_any</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Allocates a single-item array from the given <code class="docutils literal notranslate"><span class="pre">item</span></code> value.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>The value to store within the array’s single item</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>An array of length 1, whose <code class="docutils literal notranslate"><span class="pre">items</span></code> pointer contains the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga995c62b49c2ff817df3a201777a290a3"><span id="index-3"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">Array_Get_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Gets the item at position <code class="docutils literal notranslate"><span class="pre">index</span></code> in the array (returns the address of said item)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>the array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>the index in the array of the item to get</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">index</span></code> th item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, if the given <code class="docutils literal notranslate"><span class="pre">index</span></code> is beyond the last item.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga858c856f83f9cd0c0a1f99801e2929e2"><span id="index-4"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">Array_Set_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Sets the value of item at position <code class="docutils literal notranslate"><span class="pre">index</span></code> in the array, and returns the address of said item.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>the array in which an item should be set</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>the index in the array of the item to set</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>the new value to assign</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The address of the <code class="docutils literal notranslate"><span class="pre">index</span></code> th item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, if the given <code class="docutils literal notranslate"><span class="pre">index</span></code> is beyond the last item.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga1f1eba52e498109912410df9ef40a5ef"><span id="index-5"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_New_any</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">value</span><span class="p">)</span></pre>
+<p>Allocates a new array which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> items, each set to the given <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items in this array</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>The initial value to set for each of the <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array containing <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga352ecedc73ac32fc9f570a46e8d95c63"><span id="index-6"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Create_any</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">n</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Allocates a new array which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> items, initialized with variadic arguments.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items in this array (amount of variadic args)</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>The variadic array of arguments: there must be <code class="docutils literal notranslate"><span class="pre">n</span></code> arguments, of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array containing <code class="docutils literal notranslate"><span class="pre">n</span></code> elements (the given <code class="docutils literal notranslate"><span class="pre">...</span></code> varargs)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gab22dc8f6dad07595e703cc3c7728b222"><span id="index-7"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Duplicate_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">)</span></pre>
+<p>Returns a newly allocated copy of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to duplicate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated copy of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0debf31681b05dddfd8159b4805c4606"><span id="index-8"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Sub_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from a subsection of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code> and taking <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to copy a subsection from</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index in <code class="docutils literal notranslate"><span class="pre">array</span></code> at which to begin copying a subsection of items</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to copy - if <code class="docutils literal notranslate"><span class="pre">0</span></code>, then all items until the end are copied</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated subsection of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code>, and copying at most <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given source <code class="docutils literal notranslate"><span class="pre">array</span></code>. Will return a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer, if <code class="docutils literal notranslate"><span class="pre">index</span></code> is too large or if <code class="docutils literal notranslate"><span class="pre">(index</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">array-&gt;length)</span></code>. If <code class="docutils literal notranslate"><span class="pre">index</span></code> is valid but the array is not large enough for <code class="docutils literal notranslate"><span class="pre">n</span></code>, then the resulting array will have fewer than <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga18d43e97b30c62ef99d5d6786f06fb18"><span id="index-9"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Copy_any</span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">dest_i</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">src_i</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">n</span>
+<span class="p">)</span></pre>
+<p>Copies over <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given <code class="docutils literal notranslate"><span class="pre">src</span></code> array into the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> array.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array to copy to</p></td>
+</tr>
+<tr class="row-even"><td><p>dest_i</p></td>
+<td><p>The index in the destination array at which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-odd"><td><p>src</p></td>
+<td><p>The source array which should be copied</p></td>
+</tr>
+<tr class="row-even"><td><p>src_i</p></td>
+<td><p>The index in the source array from which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of array items to copy from <code class="docutils literal notranslate"><span class="pre">src</span></code> to <code class="docutils literal notranslate"><span class="pre">dest</span></code> - if <code class="docutils literal notranslate"><span class="pre">0</span></code>, all items until the end if <code class="docutils literal notranslate"><span class="pre">src</span></code> are copied</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The given <code class="docutils literal notranslate"><span class="pre">dest</span></code> pointer, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred. The <code class="docutils literal notranslate"><span class="pre">dest</span></code> array is modified in-place.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gaf7999e7cb76e0d91deeeed52efee0164"><span id="index-10"></span><span></span><span class="kt">void</span> <span class="n">Array_Free_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">)</span></pre>
+<p>Deallocates the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted - its <code class="docutils literal notranslate"><span class="pre">length</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga8fe12d50348af52ecac40ee01ee2ab86"><span id="index-11"></span><span></span><span class="kt">void</span> <span class="n">Array_Free_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deallocates the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, calling the given <code class="docutils literal notranslate"><span class="pre">delete</span></code> function for each item.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted - its <code class="docutils literal notranslate"><span class="pre">length</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga2aaa6268834e8e5340e43cd1911d76da"><span id="index-12"></span><span></span><span class="kt">void</span> <span class="n">Array_Delete_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">**</span> <span class="n">a_array</span><span class="p">)</span></pre>
+<p>Deletes the array inside the given address <code class="docutils literal notranslate"><span class="pre">a_array</span></code> (frees and sets to NULL)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_array</p></td>
+<td><p>The address of the array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga714aac70298da13c7422aac3c624a5f0"><span id="index-13"></span><span></span><span class="kt">void</span> <span class="n">Array_Delete_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">**</span> <span class="n">a_array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">**</span><span class="n">item</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deletes the array inside the given address <code class="docutils literal notranslate"><span class="pre">a_array</span></code> (frees and sets to NULL), calling the given <code class="docutils literal notranslate"><span class="pre">delete</span></code> function for each item.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_array</p></td>
+<td><p>The address of the array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga26dc6def1818bc4eb206dd40f678f3fe"><span id="index-14"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Add_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Appends the given item <code class="docutils literal notranslate"><span class="pre">item</span></code> to the end of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">dest</span></code> is NULL, it’ll append <code class="docutils literal notranslate"><span class="pre">item</span></code> at index 0, creating a 1-item array.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array to append an item to</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to add to the given <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new pointer for the given <code class="docutils literal notranslate"><span class="pre">array</span></code>. The array is modified in-place. This return will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga1b2871cf275943959db9b568799c64be"><span id="index-15"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Insert_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts the given <code class="docutils literal notranslate"><span class="pre">item</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the array, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array in which to insert a new item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The array item to insert into the given <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td><p>The index at which to insert the new array item</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new beginning pointer for the given <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The array is modified in-place. The return value will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, and the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0c611e9b699beed795e81babe4612741"><span id="index-16"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Wedge_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts all items from <code class="docutils literal notranslate"><span class="pre">src</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the array, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array in which to insert new items</p></td>
+</tr>
+<tr class="row-even"><td><p>src</p></td>
+<td><p>The source array, whose items will be inserted into <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td><p>The index at which to insert the new array items</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new beginning pointer for the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The array is modified in-place. The return value will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, or the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gaed9b07ca58c1907ee5d493adeca52668"><span id="index-17"></span><span></span><span class="kt">void</span> <span class="n">Array_RemoveAt_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Removes a single item from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, at the given <code class="docutils literal notranslate"><span class="pre">index</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index of the item to delete from the array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The array given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga3e85df5265d3729b91c7183ca435d541"><span id="index-18"></span><span></span><span class="kt">void</span> <span class="n">Array_RemoveAt_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1a65eb9f5dbb2d99793dc3e76030681cf2"><span class="std std-ref">Array_RemoveAt()</span></a>, but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gaddc7d01283dfa5c6cb1dc992724f912c"><span id="index-19"></span><span></span><span class="kt">void</span> <span class="n">Array_Remove_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Removes the first item from the given <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value which is to be removed from <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">array</span></code> given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless the matched item is at position zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gac3ea83a1f804de718a1b6e68806ba54a"><span id="index-20"></span><span></span><span class="kt">void</span> <span class="n">Array_Remove_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1abd4f446cb467e2a93cb807cc01885681"><span class="std std-ref">Array_Remove()</span></a>, but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga49748308f24596fadae42cc8b3f0115b"><span id="index-21"></span><span></span><span class="kt">void</span> <span class="n">Array_RemoveAll_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Removes any items which are equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code> from the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to remove items</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value for which any occurrences are to be removed from <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The array given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless a matched item is at position zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga8e5613205b32007822b7c1178449596e"><span id="index-22"></span><span></span><span class="kt">void</span> <span class="n">Array_RemoveAll_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1aeb8466e079b61abd201b61593746dbb4"><span class="std std-ref">Array_RemoveAll()</span></a>, but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gafbf9596ad128e72351e19d6eb7955230"><span id="index-23"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Replace_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where any occurence of <code class="docutils literal notranslate"><span class="pre">old</span></code> is replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">array</span></code>, in which in any item equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga296825ecabcd42aefd76b3cc22906999"><span id="index-24"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_ReplaceFirst_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where the first <code class="docutils literal notranslate"><span class="pre">n</span></code> occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating forwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0d343e4bb6b3343d54ebf9c8b2bd0ead"><span id="index-25"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_ReplaceLast_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where the last <code class="docutils literal notranslate"><span class="pre">n</span></code> occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating backwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga6e286e7147b3aed082ceb32efaf5fa1f"><span id="index-26"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Reverse_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, with each item’s position being inverted.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to duplicate and invert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">array</span></code>, in which all items’ positions have been reversed. This means that the last item will become the first item, and so on.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga1aa6b9ab3abad4f8e28a1f190840067c"><span id="index-27"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Concat_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array, created by concatenating <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0408478f299004a53a69a06fc703eea5"><span id="index-28"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Append_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">array1</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array, created by concatenating <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>. The <code class="docutils literal notranslate"><span class="pre">array1</span></code> argument will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga2b7b32d1fdd93eb7013c4377f985af7c"><span id="index-29"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Prepend_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">array2</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array, created by concatenating <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>. The <code class="docutils literal notranslate"><span class="pre">array2</span></code> argument will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga76b826c9361fbcf284eb5bdb1d5d6084"><span id="index-30"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Merge_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>, and deletes both arrays.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array, created by concatenating <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code>. Both <code class="docutils literal notranslate"><span class="pre">array1</span></code> and <code class="docutils literal notranslate"><span class="pre">array2</span></code> will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0793b8fb4a00236bb8fb199e029706e7"><span id="index-31"></span><span></span><span class="kt">t_bool</span> <span class="n">Array_Equals_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">)</span></pre>
+<p>Checks if two arrays have the same content.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The first array to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The second array to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if each item of both arrays are equal, and the arrays have the same amount of items. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga815418e5617bfa8edce06c20f956dec0"><span id="index-32"></span><span></span><span class="kt">t_bool</span> <span class="n">Array_Equals_N_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Checks if two arrays have the same content, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The first array to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The second array to check for equality</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the first <code class="docutils literal notranslate"><span class="pre">n</span></code> items of both arrays are equal. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gad3124d63e0e4d1f8f99ce4a0b5703fd4"><span id="index-33"></span><span></span><span class="kt">t_sint</span> <span class="n">Array_Compare_any</span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span>
+    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">item2</span><span class="p">)</span> <span class="n">compare</span>
+<span class="p">)</span></pre>
+<p>Compares two arrays using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The first array to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The second array to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga1c21209b6e517d36ced040b650e9f37d"><span id="index-34"></span><span></span><span class="kt">t_sint</span> <span class="n">Array_Compare_N_any</span><span class="p">(</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array1</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array2</span><span class="p">,</span>
+    <span class="kt">t_sint</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span>
+    <span class="kt">t_uint</span> <span class="n">n</span>
+<span class="p">)</span></pre>
+<p>Compares two arrays using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array1</p></td>
+<td><p>The first array to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>array2</p></td>
+<td><p>The second array to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga3511dc4bbc73d1ec1214ff087a0a6c65"><span id="index-35"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">Array_Find_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga260e7efa0f7fde80e19c0917ac7c046c"><span id="index-36"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">Array_Find_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> for which the given <code class="docutils literal notranslate"><span class="pre">match</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>. Otherwise, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gad79ec64ccd7b6710512f934ce3cd2468"><span id="index-37"></span><span></span><span class="kt">t_sint</span> <span class="n">Array_IndexOf_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>the linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gaa0041089664be8c832b48baf08378b6d"><span id="index-38"></span><span></span><span class="kt">t_sint</span> <span class="n">Array_IndexOf_F_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>the linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga013d43c546444eedee5a2ec6404c3278"><span id="index-39"></span><span></span><span class="kt">t_uint</span> <span class="n">Array_Count_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Gets the amount of occurences of the given <code class="docutils literal notranslate"><span class="pre">item</span></code> in the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to check for occurences of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to match with</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The total amount of items in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> which are equal to <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gaaad72a07627533e1e39131e0e606bf50"><span id="index-40"></span><span></span><span class="kt">t_bool</span> <span class="n">Array_Contains_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> contains the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to check for an occurence of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to check for</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> does contain an item which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga82c289ebd1522c74afb3c9b8e600aa78"><span id="index-41"></span><span></span><span class="kt">t_bool</span> <span class="n">Array_Has_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> contains any item from the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> array.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array in which to check for an occurence of items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The array of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> does contain an item which is equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga5978636d96775a939f126a00712b132b"><span id="index-42"></span><span></span><span class="kt">t_bool</span> <span class="n">Array_HasOnly_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> only contains items which are present in the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> array.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array which which should only contain items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The array of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> only contains items which are equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga9e4ed268f26ab42775f59e61b19df7c8"><span id="index-43"></span><span></span><span class="kt">void</span> <span class="n">Array_Iterate_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Iterates upon each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each of its items.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gad31bd057e2405a70acc4102fea3485c8"><span id="index-44"></span><span></span><span class="kt">void</span> <span class="n">Array_Iterate_I_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1ac81a14b238aa661bad6b33ae4e9cd187"><span class="std std-ref">Array_Iterate()</span></a>, but the user-supplied function receives the current index.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga8f59f43f1f5f89735ce3453f41aff3ed"><span id="index-45"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Map_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
+<p>Creates a new array which is the result of applying the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>map</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A new array, created by storing the return values of each call to the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga77e71d426534bd8734a04b18d3971c4d"><span id="index-46"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Map_I_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1addbabcdc0cf35117bb39913ad028163e"><span class="std std-ref">Array_Map()</span></a>, but the user-supplied function receives the current index.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0cdfc94d62c040567867cc72f3386f8d"><span id="index-47"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Filter_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
+<p>Creates a new array which is a subset of <code class="docutils literal notranslate"><span class="pre">array</span></code>, with only the items where the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>filter</p></td>
+<td><p>The function to call to check if an item of <code class="docutils literal notranslate"><span class="pre">array</span></code> should be added to the result</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A new array, created by only keeping the values of the given <code class="docutils literal notranslate"><span class="pre">array</span></code> for which the corresponding call to the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gabf0e7f2951908cc27171fd81c0a98495"><span id="index-48"></span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span><span class="o">*</span> <span class="n">Array_Filter_I_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">t_bool</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1a29f5fdcdec2dff78d18b3b53aa9002cd"><span class="std std-ref">Array_Filter()</span></a>, but the user-supplied function receives the current index.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga925fb6d29c81847e3fe152c0bf2d12b8"><span id="index-49"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Array_Reduce_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p>The difference between <a class="reference internal" href="global.html#doxid-array-8c-1a22ca549cb15e08a65947978b7df2eabe"><span class="std std-ref">Array_Reduce()</span></a> and <a class="reference internal" href="global.html#doxid-array-8c-1a0f36005acaa99c2abac98356e94d3532"><span class="std std-ref">Array_Fold()</span></a> is that with this function, the initial value which will be passed as the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter is a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>reduce</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gad95903a2d7e37c4f0733f3995a763ad8"><span id="index-50"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Array_Reduce_I_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1a22ca549cb15e08a65947978b7df2eabe"><span class="std std-ref">Array_Reduce()</span></a>, but the user-supplied function receives the current index.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gad2c8279ca240ba0de12b79f149a1aa50"><span id="index-51"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Array_Fold_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p>The difference between <a class="reference internal" href="global.html#doxid-array-8c-1a0f36005acaa99c2abac98356e94d3532"><span class="std std-ref">Array_Fold()</span></a> and <a class="reference internal" href="global.html#doxid-array-8c-1a22ca549cb15e08a65947978b7df2eabe"><span class="std std-ref">Array_Reduce()</span></a> is that with this function, you can supply an initial value for the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter, which will be passed to the first call of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>array</p></td>
+<td><p>The array to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>reduce</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1gae6d5fbb7fb347199944448bbda464395"><span id="index-52"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">Array_Fold_I_any</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-array-1ga6f7fd8f9e7f28e79a0511c4b1615452e"><span class="std std-ref">s_array_any</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">array</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">item</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">index</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Like <a class="reference internal" href="global.html#doxid-array-8c-1a22ca549cb15e08a65947978b7df2eabe"><span class="std std-ref">Array_Reduce()</span></a>, but the user-supplied function receives the current index.</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-array-1ga0acb682b8260ab1c60b918599864e2e5"><span id="index-53"></span><span></span><span class="cp">#define</span> <span class="fm">T</span>   <a class="reference internal" href="global.html#doxid-tree-8c-1aaec2c3b3a9d313249405662fbec344ac"><span class="std std-ref">T_TYPE</span></a></pre>
+<p>set up generic declaration macros, to have <code class="docutils literal notranslate"><span class="pre">mygeneric(T)</span></code> syntax</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_memory.html" class="btn btn-neutral float-left" title="Libccc_memory" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="struct_array_any.html" class="btn btn-neutral float-right" title="struct array_any" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

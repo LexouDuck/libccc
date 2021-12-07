@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_SYS_LOGGER_H
 #define __LIBCCC_SYS_LOGGER_H
 /*!@group{libccc_sys_logger}
-** @{
+**
 **	This header defines a simple yet useful set of functions to do program logging
 **
 **	@file
@@ -272,6 +272,6 @@ e_cccerror					Log_Message_Verbose		(s_logger const* logger,                 t_c
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

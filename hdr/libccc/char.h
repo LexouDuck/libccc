@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_CHAR_H
 #define __LIBCCC_CHAR_H
 /*!@group{libccc_char}
-** @{
+**
 **	This header defines all the functions/sets related to single ASCII chars.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte}
@@ -293,6 +293,6 @@ TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

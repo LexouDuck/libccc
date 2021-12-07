@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_ENCODE_TOML_H
 #define __LIBCCC_ENCODE_TOML_H
 /*!@group{libccc_encode_toml}
-** @{
+**
 **	This header defines a simple API to manipulate TOML and/or INI files.
 **	- TOML spec: https://toml.io/en/v1.0.0#spec
 **	- INI files: https://en.wikipedia.org/wiki/INI_file
@@ -408,6 +408,6 @@ void				TOML_Minify(t_utf8* toml); //!< TODO rename to TOML_Minify_InPlace(), an
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

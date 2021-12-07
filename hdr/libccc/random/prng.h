@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_RANDOM_PRNG_H
 #define __LIBCCC_RANDOM_PRNG_H
 /*!@group{libccc_random_prng}
-** @{
+**
 **	This header defines some simple pseudo-random number generator functions.
 **
 **	@file
@@ -216,6 +216,6 @@ t_float				PRNG_Float_Get_Range(t_float min, t_float max);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

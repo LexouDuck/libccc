@@ -11,8 +11,8 @@
 
 #ifndef __LIBCCC_STRINGARRAY_H
 #define __LIBCCC_STRINGARRAY_H
-/*!@group{libccc_stringstring array}
-** @{
+/*!@group{libccc_stringarray}
+**
 **	This header defines some useful functions for string array (t_char**) handling.
 **
 **	@file
@@ -673,6 +673,6 @@ void*					StringArray_Fold_I(t_char const** strarr, void* (*f)(t_char const* str
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

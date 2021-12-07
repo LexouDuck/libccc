@@ -1,0 +1,656 @@
+doc/DoxygenLayout.xml:169: warning: Unexpected start tag 'includes' found in scope='group/'!
+
+doc/DoxygenLayout.xml:170: warning: Unexpected start tag 'includegraph' found in scope='group/'!
+
+doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in scope='group/'!
+
+/Users/alexis/Projects/libccc/hdr/libccc.h:102: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc.h:102: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:296: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:296: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/bool.h:164: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/bool.h:164: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/color.h:464: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/color.h:464: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/encode/common.h:579: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/encode/common.h:579: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:411: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:411: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:1005: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:1005: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/float.h:1171: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/float.h:1171: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/int.h:1707: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/int.h:1707: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/error.h:123: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/error.h:123: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/format.h:554: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/format.h:554: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:410: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:410: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/interval.h:144: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/interval.h:144: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/matrix.h:272: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/matrix.h:272: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/constants.h:221: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/constants.h:221: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/complex.h:235: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/complex.h:235: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra.h:40: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra.h:40: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/vector.h:229: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/algebra/vector.h:229: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/float.h:1074: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/float.h:1074: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/sort.h:99: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/sort.h:99: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/math.h:587: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/math.h:587: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/int.h:606: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/int.h:606: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/vlq.h:115: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/vlq.h:115: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/stat.h:233: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/stat.h:233: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/math/fixed.h:1026: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/math/fixed.h:1026: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/memory.h:512: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/memory.h:512: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:752: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:752: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/dict.h:265: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/dict.h:265: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/convert.h:111: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/convert.h:111: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/hashmap.h:144: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/hashmap.h:144: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/queue.h:84: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/queue.h:84: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:802: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:802: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/stack.h:84: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/stack.h:84: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/monad/tree.h:113: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/monad/tree.h:113: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/pointer.h:333: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/pointer.h:333: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/random/csprng.h:182: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/random/csprng.h:182: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:653: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:653: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/random/prng.h:219: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/random/prng.h:219: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/random/random.h:111: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/random/random.h:111: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1249: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1249: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/sys/ansi.h:144: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/sys/ansi.h:144: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:676: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:676: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/sys/io.h:504: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/sys/io.h:504: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/sys/program.h:132: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/sys/program.h:132: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/sys/logger.h:275: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/sys/logger.h:275: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:442: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:442: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:768: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:768: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc_errors.h:410: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc_errors.h:410: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc_naming.h:407: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc_naming.h:407: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:718: warning: Documentation block ended in the middle of a conditional section!
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:718: warning: found \endif without matching start command
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:133: warning: documentation for unknown define <strong>WINDOWS</strong> found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:142: warning: documentation for unknown define <strong>MSVC</strong> found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:563: warning: documentation for unknown define _FORMAT   Before a function def: make the compiler give warnings for a variadic-args function with a format string found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:564: warning: documentation for unknown define _ALIAS    Before a function or variable def: sets the token to be an alias for the one given as arg found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:566: warning: documentation for unknown define _PURE     Before a function def: indicates that the function has no side-effects found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:567: warning: documentation for unknown define _MALLOC   Before a function def: indicates that it returns newly allocated ptr found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:570: warning: documentation for unknown define _NOINLINE Before a function def: makes the function be always inlined regardless of compiler config found.
+
+/Users/alexis/Projects/libccc/hdr/libccc_define.h:572: warning: documentation for unknown define _PACKED   Before a struct/union def: do not perform byte-padding on this struct/union type found.
+
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:21: warning: explicit link request to 'libccc_sys_ascii' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:22: warning: explicit link request to 'libccc_sys_unicode' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:34: warning: explicit link request to 'Q16_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:34: warning: explicit link request to 'Q16_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:35: warning: explicit link request to 'Q32_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:35: warning: explicit link request to 'Q32_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:36: warning: explicit link request to 'Q64_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:36: warning: explicit link request to 'Q64_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:37: warning: explicit link request to 'Q128_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:37: warning: explicit link request to 'Q128_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:38: warning: explicit link request to 'FIXED_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:38: warning: explicit link request to 'FIXED_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/math/float.h:46: warning: explicit link request to 'FLOAT_EPSILON' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/memory.h:419: warning: documented empty return type of Memory_SetBits
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:315: warning: documented empty return type of Array_RemoveAt_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:332: warning: documented empty return type of Array_Remove_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:349: warning: documented empty return type of Array_RemoveAll_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:623: warning: argument 'targets' of command @param is not found in the argument list of Array_Has_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:630: warning: The following parameter of Array_Has_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:635: warning: argument 'targets' of command @param is not found in the argument list of Array_HasOnly_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:642: warning: The following parameter of Array_HasOnly_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:712: warning: argument 'reduce' of command @param is not found in the argument list of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:722: warning: The following parameter of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:732: warning: argument 'reduce' of command @param is not found in the argument list of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:742: warning: The following parameters of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:344: warning: argument 'dest' of command @param is not found in the argument list of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:355: warning: The following parameter of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index) is not documented:
+  parameter 'list'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:762: warning: argument 'reduce' of command @param is not found in the argument list of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:772: warning: The following parameter of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:782: warning: argument 'reduce' of command @param is not found in the argument list of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:792: warning: The following parameters of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:182: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Add(void **dest, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:190: warning: The following parameter of PointerArray_Add(void **dest, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:197: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Insert(void **dest, void const *ptr, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:207: warning: The following parameter of PointerArray_Insert(void **dest, void const *ptr, t_uint index) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:237: warning: documented empty return type of PointerArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:246: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Remove(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: The following parameter of PointerArray_Remove(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: documented empty return type of PointerArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:261: warning: argument 'item' of command @param is not found in the argument list of PointerArray_RemoveAll(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: The following parameter of PointerArray_RemoveAll(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: documented empty return type of PointerArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:353: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:360: warning: The following parameter of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2) is not documented:
+  parameter 'a_ptrarr1'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:365: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:372: warning: The following parameter of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2) is not documented:
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:384: warning: The following parameters of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2) are not documented:
+  parameter 'a_ptrarr1'
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:469: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Find(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:475: warning: The following parameter of PointerArray_Find(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:491: warning: argument 'item' of command @param is not found in the argument list of PointerArray_IndexOf(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:497: warning: The following parameter of PointerArray_IndexOf(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:515: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Count(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:520: warning: The following parameter of PointerArray_Count(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:525: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Contains(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:531: warning: The following parameter of PointerArray_Contains(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:536: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_Has(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:542: warning: The following parameter of PointerArray_Has(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:547: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_HasOnly(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:553: warning: The following parameter of PointerArray_HasOnly(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:644: warning: The following parameter of PointerArray_Fold(void *const *ptrarr, void *(*f)(void const *ptr, void *acc), void *initial) is not documented:
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1030: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1031: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1032: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1034: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1035: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1036: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1037: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1038: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1039: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1040: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1084: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1085: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1086: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1088: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1089: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1090: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1091: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1092: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1093: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1094: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:66: warning: argument 'sep' of command @param is not found in the argument list of String_Split_Charset(t_char const *str, t_char const *sep_chars)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:74: warning: The following parameter of String_Split_Charset(t_char const *str, t_char const *sep_chars) is not documented:
+  parameter 'sep_chars'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:209: warning: argument 'n' of command @param is not found in the argument list of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:217: warning: The following parameter of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length) is not documented:
+  parameter 'length'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:254: warning: argument 'string' of command @param is not found in the argument list of StringArray_Add(t_char **dest, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:262: warning: The following parameter of StringArray_Add(t_char **dest, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:267: warning: argument 'string' of command @param is not found in the argument list of StringArray_Insert(t_char **dest, t_char const *str, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:277: warning: The following parameter of StringArray_Insert(t_char **dest, t_char const *str, t_uint index) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:307: warning: documented empty return type of StringArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:316: warning: argument 'string' of command @param is not found in the argument list of StringArray_Remove(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: The following parameter of StringArray_Remove(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: documented empty return type of StringArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:331: warning: argument 'string' of command @param is not found in the argument list of StringArray_RemoveAll(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: The following parameter of StringArray_RemoveAll(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: documented empty return type of StringArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:441: warning: The following parameters of StringArray_Append(t_char ***a_dest, t_char const **src) are not documented:
+  parameter 'a_dest'
+  parameter 'src'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:453: warning: The following parameters of StringArray_Prepend(t_char const **src, t_char ***a_dest) are not documented:
+  parameter 'src'
+  parameter 'a_dest'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:465: warning: The following parameters of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2) are not documented:
+  parameter 'a_strarr1'
+  parameter 'a_strarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:640: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:649: warning: The following parameter of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:658: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:667: warning: The following parameters of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:623: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:679: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:691: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:85: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:111: warning: explicit link request to 'UINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:115: warning: explicit link request to 'UINT_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:118: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:144: warning: explicit link request to 'SINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:148: warning: explicit link request to 'SINT_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:170: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:180: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:194: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:198: warning: explicit link request to 'FIXED_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:217: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:240: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/math/float.h:46: warning: explicit link request to 'FLOAT_EPSILON' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/memory.h:419: warning: documented empty return type of Memory_SetBits
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:315: warning: documented empty return type of Array_RemoveAt_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:332: warning: documented empty return type of Array_Remove_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:349: warning: documented empty return type of Array_RemoveAll_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:623: warning: argument 'targets' of command @param is not found in the argument list of Array_Has_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:630: warning: The following parameter of Array_Has_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:635: warning: argument 'targets' of command @param is not found in the argument list of Array_HasOnly_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:642: warning: The following parameter of Array_HasOnly_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:712: warning: argument 'reduce' of command @param is not found in the argument list of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:722: warning: The following parameter of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:732: warning: argument 'reduce' of command @param is not found in the argument list of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:742: warning: The following parameters of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:344: warning: argument 'dest' of command @param is not found in the argument list of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:355: warning: The following parameter of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index) is not documented:
+  parameter 'list'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:762: warning: argument 'reduce' of command @param is not found in the argument list of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:772: warning: The following parameter of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:782: warning: argument 'reduce' of command @param is not found in the argument list of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:792: warning: The following parameters of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:182: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Add(void **dest, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:190: warning: The following parameter of PointerArray_Add(void **dest, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:197: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Insert(void **dest, void const *ptr, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:207: warning: The following parameter of PointerArray_Insert(void **dest, void const *ptr, t_uint index) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:237: warning: documented empty return type of PointerArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:246: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Remove(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: The following parameter of PointerArray_Remove(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: documented empty return type of PointerArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:261: warning: argument 'item' of command @param is not found in the argument list of PointerArray_RemoveAll(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: The following parameter of PointerArray_RemoveAll(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: documented empty return type of PointerArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:353: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:360: warning: The following parameter of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2) is not documented:
+  parameter 'a_ptrarr1'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:365: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:372: warning: The following parameter of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2) is not documented:
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:384: warning: The following parameters of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2) are not documented:
+  parameter 'a_ptrarr1'
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:469: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Find(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:475: warning: The following parameter of PointerArray_Find(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:491: warning: argument 'item' of command @param is not found in the argument list of PointerArray_IndexOf(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:497: warning: The following parameter of PointerArray_IndexOf(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:515: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Count(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:520: warning: The following parameter of PointerArray_Count(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:525: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Contains(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:531: warning: The following parameter of PointerArray_Contains(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:536: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_Has(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:542: warning: The following parameter of PointerArray_Has(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:547: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_HasOnly(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:553: warning: The following parameter of PointerArray_HasOnly(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:644: warning: The following parameter of PointerArray_Fold(void *const *ptrarr, void *(*f)(void const *ptr, void *acc), void *initial) is not documented:
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1030: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1031: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1032: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1034: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1035: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1036: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1037: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1038: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1039: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1040: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1084: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1085: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1086: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1088: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1089: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1090: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1091: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1092: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1093: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1094: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:66: warning: argument 'sep' of command @param is not found in the argument list of String_Split_Charset(t_char const *str, t_char const *sep_chars)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:74: warning: The following parameter of String_Split_Charset(t_char const *str, t_char const *sep_chars) is not documented:
+  parameter 'sep_chars'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:209: warning: argument 'n' of command @param is not found in the argument list of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:217: warning: The following parameter of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length) is not documented:
+  parameter 'length'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:254: warning: argument 'string' of command @param is not found in the argument list of StringArray_Add(t_char **dest, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:262: warning: The following parameter of StringArray_Add(t_char **dest, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:267: warning: argument 'string' of command @param is not found in the argument list of StringArray_Insert(t_char **dest, t_char const *str, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:277: warning: The following parameter of StringArray_Insert(t_char **dest, t_char const *str, t_uint index) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:307: warning: documented empty return type of StringArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:316: warning: argument 'string' of command @param is not found in the argument list of StringArray_Remove(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: The following parameter of StringArray_Remove(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: documented empty return type of StringArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:331: warning: argument 'string' of command @param is not found in the argument list of StringArray_RemoveAll(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: The following parameter of StringArray_RemoveAll(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: documented empty return type of StringArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:441: warning: The following parameters of StringArray_Append(t_char ***a_dest, t_char const **src) are not documented:
+  parameter 'a_dest'
+  parameter 'src'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:453: warning: The following parameters of StringArray_Prepend(t_char const **src, t_char ***a_dest) are not documented:
+  parameter 'src'
+  parameter 'a_dest'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:465: warning: The following parameters of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2) are not documented:
+  parameter 'a_strarr1'
+  parameter 'a_strarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:640: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:649: warning: The following parameter of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:658: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:667: warning: The following parameters of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:623: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:679: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:691: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:111: warning: explicit link request to 'UINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:115: warning: explicit link request to 'UINT_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:118: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:144: warning: explicit link request to 'SINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:148: warning: explicit link request to 'SINT_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:170: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:180: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:194: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:198: warning: explicit link request to 'FIXED_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:217: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:240: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:85: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:159: warning: explicit link request to 'CHARSET_DEC' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:171: warning: explicit link request to 'CHARSET_HEX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:182: warning: explicit link request to 'CHARSET_OCT' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:21: warning: explicit link request to 'libccc_sys_ascii' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/char.h:22: warning: explicit link request to 'libccc_sys_unicode' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:198: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:229: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/json.h:231: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:199: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:230: warning: explicit link request to 'KVT_GetError' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/encode/toml.h:232: warning: explicit link request to 'KVT_GetErrorMessage' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:34: warning: explicit link request to 'Q16_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:34: warning: explicit link request to 'Q16_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:35: warning: explicit link request to 'Q32_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:35: warning: explicit link request to 'Q32_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:36: warning: explicit link request to 'Q64_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:36: warning: explicit link request to 'Q64_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:37: warning: explicit link request to 'Q128_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:37: warning: explicit link request to 'Q128_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:38: warning: explicit link request to 'FIXED_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/fixed.h:38: warning: explicit link request to 'FIXED_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/math/float.h:46: warning: explicit link request to 'FLOAT_EPSILON' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc/memory.h:419: warning: documented empty return type of Memory_SetBits
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:315: warning: documented empty return type of Array_RemoveAt_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:332: warning: documented empty return type of Array_Remove_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:349: warning: documented empty return type of Array_RemoveAll_any
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:623: warning: argument 'targets' of command @param is not found in the argument list of Array_Has_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:630: warning: The following parameter of Array_Has_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:635: warning: argument 'targets' of command @param is not found in the argument list of Array_HasOnly_any(s_array_any const *array, s_array_any const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:642: warning: The following parameter of Array_HasOnly_any(s_array_any const *array, s_array_any const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:712: warning: argument 'reduce' of command @param is not found in the argument list of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:722: warning: The following parameter of Array_Reduce_any(s_array_any const *array, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:732: warning: argument 'reduce' of command @param is not found in the argument list of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/array.h:742: warning: The following parameters of Array_Fold_any(s_array_any const *array, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:344: warning: argument 'dest' of command @param is not found in the argument list of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:355: warning: The following parameter of List_Wedge_any(s_list_any *list, s_list_any const *src, t_uint index) is not documented:
+  parameter 'list'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:762: warning: argument 'reduce' of command @param is not found in the argument list of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:772: warning: The following parameter of List_Reduce_any(s_list_any const *list, void *(*f)(void *item, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:782: warning: argument 'reduce' of command @param is not found in the argument list of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/monad/list.h:792: warning: The following parameters of List_Fold_any(s_list_any const *list, void *(*f)(void *item, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:182: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Add(void **dest, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:190: warning: The following parameter of PointerArray_Add(void **dest, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:197: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Insert(void **dest, void const *ptr, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:207: warning: The following parameter of PointerArray_Insert(void **dest, void const *ptr, t_uint index) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:237: warning: documented empty return type of PointerArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:246: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Remove(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: The following parameter of PointerArray_Remove(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:252: warning: documented empty return type of PointerArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:261: warning: argument 'item' of command @param is not found in the argument list of PointerArray_RemoveAll(void **ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: The following parameter of PointerArray_RemoveAll(void **ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:267: warning: documented empty return type of PointerArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:353: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:360: warning: The following parameter of PointerArray_Append(void ***a_ptrarr1, void *const *ptrarr2) is not documented:
+  parameter 'a_ptrarr1'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:365: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:372: warning: The following parameter of PointerArray_Prepend(void *const *ptrarr1, void ***a_ptrarr2) is not documented:
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr1' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:377: warning: argument 'ptrarr2' of command @param is not found in the argument list of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:384: warning: The following parameters of PointerArray_Merge(void ***a_ptrarr1, void ***a_ptrarr2) are not documented:
+  parameter 'a_ptrarr1'
+  parameter 'a_ptrarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:469: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Find(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:475: warning: The following parameter of PointerArray_Find(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:491: warning: argument 'item' of command @param is not found in the argument list of PointerArray_IndexOf(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:497: warning: The following parameter of PointerArray_IndexOf(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:515: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Count(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:520: warning: The following parameter of PointerArray_Count(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:525: warning: argument 'item' of command @param is not found in the argument list of PointerArray_Contains(void *const *ptrarr, void const *ptr)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:531: warning: The following parameter of PointerArray_Contains(void *const *ptrarr, void const *ptr) is not documented:
+  parameter 'ptr'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:536: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_Has(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:542: warning: The following parameter of PointerArray_Has(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:547: warning: argument 'targets' of command @param is not found in the argument list of PointerArray_HasOnly(void *const *ptrarr, void *const *target)
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:553: warning: The following parameter of PointerArray_HasOnly(void *const *ptrarr, void *const *target) is not documented:
+  parameter 'target'
+/Users/alexis/Projects/libccc/hdr/libccc/pointerarray.h:644: warning: The following parameter of PointerArray_Fold(void *const *ptrarr, void *(*f)(void const *ptr, void *acc), void *initial) is not documented:
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1030: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1031: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1032: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1034: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1035: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1036: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1037: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1038: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1039: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1040: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1084: warning: expected whitespace after \a command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1085: warning: expected whitespace after \b command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1086: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1088: warning: Found unknown command '\v'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1089: warning: Found unknown command '\f'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1090: warning: Found unknown command '\r'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1091: warning: expected whitespace after \e command
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1092: warning: Found unknown command '\x'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1093: warning: Found unknown command '\u'
+/Users/alexis/Projects/libccc/hdr/libccc/string.h:1094: warning: Found unknown command '\U'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:66: warning: argument 'sep' of command @param is not found in the argument list of String_Split_Charset(t_char const *str, t_char const *sep_chars)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:74: warning: The following parameter of String_Split_Charset(t_char const *str, t_char const *sep_chars) is not documented:
+  parameter 'sep_chars'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:209: warning: argument 'n' of command @param is not found in the argument list of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:217: warning: The following parameter of StringArray_Copy(t_char **dest, t_uint dest_i, t_char const **src, t_uint src_i, t_uint length) is not documented:
+  parameter 'length'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:254: warning: argument 'string' of command @param is not found in the argument list of StringArray_Add(t_char **dest, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:262: warning: The following parameter of StringArray_Add(t_char **dest, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:267: warning: argument 'string' of command @param is not found in the argument list of StringArray_Insert(t_char **dest, t_char const *str, t_uint index)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:277: warning: The following parameter of StringArray_Insert(t_char **dest, t_char const *str, t_uint index) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:307: warning: documented empty return type of StringArray_RemoveAt
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:316: warning: argument 'string' of command @param is not found in the argument list of StringArray_Remove(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: The following parameter of StringArray_Remove(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:322: warning: documented empty return type of StringArray_Remove
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:331: warning: argument 'string' of command @param is not found in the argument list of StringArray_RemoveAll(t_char **strarr, t_char const *str)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: The following parameter of StringArray_RemoveAll(t_char **strarr, t_char const *str) is not documented:
+  parameter 'str'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:337: warning: documented empty return type of StringArray_RemoveAll
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:434: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Append(t_char ***a_dest, t_char const **src)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:441: warning: The following parameters of StringArray_Append(t_char ***a_dest, t_char const **src) are not documented:
+  parameter 'a_dest'
+  parameter 'src'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:446: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Prepend(t_char const **src, t_char ***a_dest)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:453: warning: The following parameters of StringArray_Prepend(t_char const **src, t_char ***a_dest) are not documented:
+  parameter 'src'
+  parameter 'a_dest'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr1' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:458: warning: argument 'strarr2' of command @param is not found in the argument list of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:465: warning: The following parameters of StringArray_Merge(t_char ***a_strarr1, t_char ***a_strarr2) are not documented:
+  parameter 'a_strarr1'
+  parameter 'a_strarr2'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:640: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc))
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:649: warning: The following parameter of StringArray_Reduce(t_char const **strarr, void *(*f)(t_char const *str, void *acc)) is not documented:
+  parameter 'f'
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:658: warning: argument 'reduce' of command @param is not found in the argument list of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial)
+/Users/alexis/Projects/libccc/hdr/libccc/stringarray.h:667: warning: The following parameters of StringArray_Fold(t_char const **strarr, void *(*f)(t_char const *str, void *acc), void *initial) are not documented:
+  parameter 'f'
+  parameter 'initial'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:623: warning: Found unknown command '\t'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:679: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc/sys/time.h:691: warning: Found unknown command '@isostd'
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:111: warning: explicit link request to 'UINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:115: warning: explicit link request to 'UINT_MAX' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:118: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:144: warning: explicit link request to 'SINT_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:148: warning: explicit link request to 'SINT_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:170: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:180: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:194: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:198: warning: explicit link request to 'FIXED_MIN' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:217: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:240: warning: explicit link request to 'FIXED_ERROR' could not be resolved
+/Users/alexis/Projects/libccc/hdr/libccc_config.h:85: warning: explicit link request to 'define' could not be resolved

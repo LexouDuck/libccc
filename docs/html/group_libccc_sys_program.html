@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_sys_program &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_sys_time" href="group_libccc_sys_time.html" />
+    <link rel="prev" title="struct logger" href="struct_logger.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_sys_program">
+	<meta property="og:description" content="Libccc_sys_program">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_sys_program">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_sys_program.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_sys_program</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_sys_program</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-sys-program">
+<span id="doxid-group-libccc-sys-program"></span><span id="index-0"></span><h1>Libccc_sys_program<a class="headerlink" href="#libccc-sys-program" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines all the functions for OS-level input/output, read/write. <a class="reference internal" href="#details-group-libccc-sys-program"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga9657a2049c95f082d86456a98e057d58"><span class="std std-ref">Program_Abort</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga70077775c4e69e9c01c9ea014d6be9c2"><span class="std std-ref">Program_Exit</span></a><span></span><span class="p">(</span><span class="kt">int</span> <span class="n">exit_code</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga8196c4a43316c7b547049c7d1db293ad"><span class="std std-ref">Program_OnExit</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga3e90c6422fafb835893c3ca2f5400fd6"><span class="std std-ref">Program_Run</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">command</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga95bb210e94d80710d3481fc841070d45"><span class="std std-ref">Program_GetEnv</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">name</span><span class="p">);</span>
+<span class="kt">int</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1gac6b6f758419fc42cd5e9ea10dffdd555"><span class="std std-ref">Program_SetEnv</span></a><span></span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">value</span><span class="p">,</span> <span class="kt">t_bool</span> <span class="n">overwrite</span><span class="p">);</span>
+<span class="kt">t_char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga2018a48d6a0b64d12ac8bfb345811e95"><span class="std std-ref">Program_GetCWD</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1ga33f6c6d53190a1cde24b312c2159c245"><span></span><span class="n">c_abort</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga9657a2049c95f082d86456a98e057d58"><span class="std std-ref">Program_Abort</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1gabdb2dce49675ca0ef5a93430612bfaf3"><span></span><span class="n">c_atexit</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga8196c4a43316c7b547049c7d1db293ad"><span class="std std-ref">Program_OnExit</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1gae58a963b7f09d3035846272e06e078d2"><span></span><span class="n">c_exit</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga70077775c4e69e9c01c9ea014d6be9c2"><span class="std std-ref">Program_Exit</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1ga5a4ea8f73b370a0e51fb68434a7d5819"><span></span><span class="n">c_getcwd</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga2018a48d6a0b64d12ac8bfb345811e95"><span class="std std-ref">Program_GetCWD</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1ga8be310e4fa3fd9e32faec78196b1bf43"><span></span><span class="n">c_getenv</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga95bb210e94d80710d3481fc841070d45"><span class="std std-ref">Program_GetEnv</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1ga00e2e41e6dc5d8d1bbe9e9c097e7cbad"><span></span><span class="n">c_on_exit</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga8196c4a43316c7b547049c7d1db293ad"><span class="std std-ref">Program_OnExit</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1ga185ac08609091572ce12e8f6395b9ec4"><span></span><span class="n">c_setenv</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-program-1gac6b6f758419fc42cd5e9ea10dffdd555"><span class="std std-ref">Program_SetEnv</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-program-1gab5148c5e7147330308491717889d1c29"><span></span><span class="n">c_system</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-program-1ga3e90c6422fafb835893c3ca2f5400fd6"><span class="std std-ref">Program_Run</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-sys-program"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines all the functions for OS-level input/output, read/write.</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C) <a class="reference external" href="https://en.cppreference.com/w/c/program">https://en.cppreference.com/w/c/program</a></p></li>
+</ul>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga9657a2049c95f082d86456a98e057d58"><span id="index-1"></span><span></span><span class="kt">void</span> <span class="n">Program_Abort</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>TODO wrapper function for abort()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/program/abort">https://en.cppreference.com/w/c/program/abort</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga70077775c4e69e9c01c9ea014d6be9c2"><span id="index-2"></span><span></span><span class="kt">void</span> <span class="n">Program_Exit</span><span class="p">(</span><span class="kt">int</span> <span class="n">exit_code</span><span class="p">)</span></pre>
+<p>TODO wrapper function for exit()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/program/exit">https://en.cppreference.com/w/c/program/exit</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga8196c4a43316c7b547049c7d1db293ad"><span id="index-3"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">Program_OnExit</span><span class="p">(</span><span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>TODO wrapper function for atexit()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/program/atexit">https://en.cppreference.com/w/c/program/atexit</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga3e90c6422fafb835893c3ca2f5400fd6"><span id="index-4"></span><span></span><span class="kt">int</span> <span class="n">Program_Run</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">command</span><span class="p">)</span></pre>
+<p>TODO wrapper function for system()</p>
+<p>TODO wrapper function for quick_exit() - <em>Standard library equivalent:</em> (C11) <a class="reference external" href="https://en.cppreference.com/w/c/program/quick_exit">https://en.cppreference.com/w/c/program/quick_exit</a> TODO wrapper function for at_quick_exit() - <em>Standard library equivalent:</em> (C11) <a class="reference external" href="https://en.cppreference.com/w/c/program/at_quick_exit">https://en.cppreference.com/w/c/program/at_quick_exit</a></p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/program/system">https://en.cppreference.com/w/c/program/system</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga95bb210e94d80710d3481fc841070d45"><span id="index-5"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Program_GetEnv</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">name</span><span class="p">)</span></pre>
+<p>TODO wrapper function for getenv()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/program/getenv">https://en.cppreference.com/w/c/program/getenv</a> TODO make it safe with a strdup()</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1gac6b6f758419fc42cd5e9ea10dffdd555"><span id="index-6"></span><span></span><span class="kt">int</span> <span class="n">Program_SetEnv</span><span class="p">(</span><span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">t_char</span> <span class="k">const</span><span class="o">*</span> <span class="n">value</span><span class="p">,</span> <span class="kt">t_bool</span> <span class="n">overwrite</span><span class="p">)</span></pre>
+<p>TODO wrapper function for setenv()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (POSIX) <a class="reference external" href="https://linux.die.net/man/3/setenv">https://linux.die.net/man/3/setenv</a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-program-1ga2018a48d6a0b64d12ac8bfb345811e95"><span id="index-7"></span><span></span><span class="kt">t_char</span><span class="o">*</span> <span class="n">Program_GetCWD</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>TODO wrapper function for getcwd()</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (POSIX) <a class="reference external" href="https://linux.die.net/man/3/getcwd">https://linux.die.net/man/3/getcwd</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="struct_logger.html" class="btn btn-neutral float-left" title="struct logger" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_sys_time.html" class="btn btn-neutral float-right" title="Libccc_sys_time" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

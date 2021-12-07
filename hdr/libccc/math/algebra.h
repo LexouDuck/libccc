@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_ALGEBRA_H
 #define __LIBCCC_MATH_ALGEBRA_H
 /*!@group{libccc_math_algebra}
-** @{
+**
 **	This header defines useful algebra and calculus types, and functions.
 **
 **	@file
@@ -37,6 +37,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

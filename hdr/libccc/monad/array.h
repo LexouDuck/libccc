@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_ARRAY_H
 #define __LIBCCC_MONAD_ARRAY_H
 /*!@group{libccc_monad_array}
-** @{
+**
 **	This header defines a generic array type and utility functions for it.
 **
 **	@file
@@ -749,6 +749,6 @@ void*					Array_Fold_I(T)(s_array(T) const* array, void* (*f)(T item, void* acc,
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_ALGEBRA_MATRIX_H
 #define __LIBCCC_MATH_ALGEBRA_MATRIX_H
 /*!@group{libccc_math_algebra_matrix}
-** @{
+**
 **	This header defines matrix type and functions, in several dimensions (2d/3d/4d)
 **
 **	@file
@@ -269,6 +269,6 @@ s_matrix3d				Matrix3D_Multiply(s_matrix3d const* m1, s_matrix3d const* m2);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

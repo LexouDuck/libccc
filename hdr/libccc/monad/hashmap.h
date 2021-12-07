@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MONAD_HASHMAP_H
 #define __LIBCCC_MONAD_HASHMAP_H
 /*!@group{libccc_monad_hashmap}
-** @{
+**
 **	This header defines a generic hashmap type and utility functions for it.
 **
 **	@file
@@ -141,6 +141,6 @@ typedef struct hashmap(T)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

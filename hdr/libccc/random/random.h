@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_RANDOM_RANDOM_H
 #define __LIBCCC_RANDOM_RANDOM_H
 /*!@group{libccc_random_random}
-** @{
+**
 **	This header defines some simple pseudo-random number generator functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/random}
@@ -108,6 +108,6 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

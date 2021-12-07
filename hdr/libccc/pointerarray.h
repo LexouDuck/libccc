@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_POINTERARRAY_H
 #define __LIBCCC_POINTERARRAY_H
 /*!@group{libccc_pointerarray}
-** @{
+**
 **	This header defines the common standard memory manipulation functions.
 **
 **	@file
@@ -650,6 +650,6 @@ void*					PointerArray_Fold_I(void* const* ptrarr, void* (*f)(void const* ptr, v
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

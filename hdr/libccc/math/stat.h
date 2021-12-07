@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_STAT_H
 #define __LIBCCC_MATH_STAT_H
 /*!@group{libccc_math_stat}
-** @{
+**
 **	This header defines some common statistics functions, for lists of int/float
 **
 **	@file
@@ -230,6 +230,6 @@ s_prob_mass						Stat_IntList_To_PMF(s_array_int const ilst);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

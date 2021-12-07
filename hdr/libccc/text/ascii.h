@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_TEXT_ASCII_H
 #define __LIBCCC_TEXT_ASCII_H
 /*!@group{libccc_text_ascii}
-** @{
+**
 **	This header defines all the functions related to ASCII text (7-bit chars).
 **
 **	@isostd{C,https://en.cppreference.com/w/c/language/ascii}
@@ -372,6 +372,6 @@ t_ascii					ASCII_ToLowercase(t_ascii c);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

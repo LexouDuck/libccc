@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_fixed &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_float" href="group_libccc_float.html" />
+    <link rel="prev" title="enum cccerror" href="enum_cccerror.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_fixed">
+	<meta property="og:description" content="Libccc_fixed">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_fixed">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_fixed.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_fixed</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_fixed</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-fixed">
+<span id="doxid-group-libccc-fixed"></span><span id="index-0"></span><h1>Libccc_fixed<a class="headerlink" href="#libccc-fixed" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This header defines the fixed-point number primitive types and functions.</p>
+<p>There has been a draft proposal to include fixed-point number types and all the relevant operators to the C standard, but it has not gone through. You can read it here: <a class="reference external" href="http://www.open-std.org/jtc1/sc22/wg14/www/docs/n968.pdf">http://www.open-std.org/jtc1/sc22/wg14/www/docs/n968.pdf</a></p>
+<p>This means that despite being older than the IEEE-754 floating-point standard, fixed-point number types are not yet defined in the C ISO standard, and the compilers that do implement some fixed-point type vary greatly in how they do it.</p>
+<p>As such, it is not really recommended to use the “standard” fixed-point types, but you can nevertheless use them with the <a class="reference internal" href="group_libccc_config.html#doxid-group-libccc-config-1gaaa6bb8eb6ebe31ebf0fce3b39f0db81e"><span class="std std-ref">LIBCONFIG_USE_STD_FIXEDPOINT</span></a> setting.</p>
+<p>NB: The <code class="docutils literal notranslate"><span class="pre">typedef</span></code> s here are “saturated” number types, what this means is that operations will not make the value overflow like they would with a typical <code class="docutils literal notranslate"><span class="pre">int</span></code> type. Instead, the fixed-point value is constrained to the largest and smallest possible values that it can hold, ie:</p>
+<ul class="simple">
+<li><p>#Q16_MIN &amp; #Q16_MAX</p></li>
+<li><p>#Q32_MIN &amp; #Q32_MAX</p></li>
+<li><p>#Q64_MIN &amp; #Q64_MAX</p></li>
+<li><p>#Q128_MIN &amp; #Q128_MAX</p></li>
+<li><p>#FIXED_MIN &amp; #FIXED_MAX</p></li>
+</ul>
+<p>It also worth noting another difference with integers, the minimum possible value here is reserved to represent a NAN-like value, which is the result of 0-division. So, instead of having the negative value range be 1 greater than the positive range, The <code class="docutils literal notranslate"><span class="pre">0x800000...</span></code> value is set aside to represent NAN/not a number.</p>
+<p>Finally there’s the question of choosing a denominator value for the fixed-point number type. There are several advantages that come with choosing a denominator number which is a power of 2: many operations can be optimized, and there is a clear separation of the two parts of the number, in terms of bits. On the other hand, it can be useful to choose whichever arbitrary denominator one wishes (for instance, having 100 fractions, to represent currency cents). For this reason, the literal notation that is chosen to represent fixed-point numbers is the following: <code class="docutils literal notranslate"><span class="pre">123.(456/789)</span></code> It should appear obvious that the first part is the integer, and after the decimal point, inside the parentheses, the first number is the fractional part, and the last number is the denominator chosen. For another example: $42.75 would be <code class="docutils literal notranslate"><span class="pre">42.(75/100)</span></code> This notation was chosen because it allows any kind of configuration for a fixed-point number to be represented in an inter-compatible “lossless” fashion.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="enum_cccerror.html" class="btn btn-neutral float-left" title="enum cccerror" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_float.html" class="btn btn-neutral float-right" title="Libccc_float" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

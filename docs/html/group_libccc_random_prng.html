@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_random_prng &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_random_random" href="group_libccc_random_random.html" />
+    <link rel="prev" title="Libccc_random_csprng" href="group_libccc_random_csprng.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_random_prng">
+	<meta property="og:description" content="Libccc_random_prng">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_random_prng">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_random_prng.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">Libccc_config</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_random_prng</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_random_prng</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-random-prng">
+<span id="doxid-group-libccc-random-prng"></span><span id="index-0"></span><h1>Libccc_random_prng<a class="headerlink" href="#libccc-random-prng" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines some simple pseudo-random number generator functions. <a class="reference internal" href="#details-group-libccc-random-prng"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="kt">t_u32</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gaf7b8714ff52e69c0e84484e8fe5b4ad6"><span class="std std-ref">PRNG_SetSeed</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">seed</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga18b28e0aed9a8c05226294d1d965f2fc"><span class="std std-ref">PRNG_NewSeed</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga8ba09388052908d0057aeba2a3fcb259"><span class="std std-ref">PRNG_New</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga43455ad126030fa57f9579129379aa65"><span class="std std-ref">PRNG_Delete</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">**</span> <span class="n">a_state</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga40c9991de2b5e1f60946519c9dc72531"><span class="std std-ref">PRNG_Next</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_size</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga79a5aca469f6456b5a42b69fb01a459e"><span class="std std-ref">PRNG_UInt</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gafb7a0fe6c5d1cb6d5ecdb29370d52d41"><span class="std std-ref">PRNG_UInt_Range</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga43fd27d2fde2aac206854647842b7d86"><span class="std std-ref">PRNG_SInt</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gadb161619b00c673802123d16f65eb81a"><span class="std std-ref">PRNG_SInt_Range</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_fixed</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga3c81186337ce7e08ac751b9ca3a97388"><span class="std std-ref">PRNG_Fixed</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+<span class="kt">t_fixed</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga2fadbc88a22202c5964cceb49c586e25"><span class="std std-ref">PRNG_Fixed_Range</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_float</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gae7d9829a86ce87a1755308ae13cb5d6e"><span class="std std-ref">PRNG_Float</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">);</span>
+<span class="kt">t_float</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga52008e38a7d7237e6b1b6ce25f620938"><span class="std std-ref">PRNG_Float_Range</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1f9c28140e79d7e9ef65d59925322936"><span class="std std-ref">PRNG_Get</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_size</span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga70286691477f19063b13f2ea018c6f29"><span class="std std-ref">PRNG_UInt_Get</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">t_uint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga85e865b2a2e62757ce289dc9c0bb05e4"><span class="std std-ref">PRNG_UInt_Get_Range</span></a><span></span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1b20e987360fc4b66496c9bd75017151"><span class="std std-ref">PRNG_SInt_Get</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">t_sint</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga0b44b76f4ebde600832e95e911594c1f"><span class="std std-ref">PRNG_SInt_Get_Range</span></a><span></span><span class="p">(</span><span class="kt">t_sint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_fixed</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gaf1ccdbb536796c454b22232e5d646348"><span class="std std-ref">PRNG_Fixed_Get</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">t_fixed</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1902ff05d3012bdd398651df1ea5e12e"><span class="std std-ref">PRNG_Fixed_Get_Range</span></a><span></span><span class="p">(</span><span class="kt">t_fixed</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">max</span><span class="p">);</span>
+<span class="kt">t_float</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga8c40485fabec5d96d60ead88d46a3683"><span class="std std-ref">PRNG_Float_Get</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">t_float</span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga57698363fd5fc266918b1fe7a87d6902"><span class="std std-ref">PRNG_Float_Get_Range</span></a><span></span><span class="p">(</span><span class="kt">t_float</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">max</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab46616278b8a9e86c686e8adfc852761"><span class="std std-ref">PRNG_CEIL_SQRT_MOD</span></a><span></span>    <span class="p">(</span><span class="mi">46341</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-random-prng-1ga21ab581238d74bc4fe0b8d4fe7002abc"><span class="std std-ref">PRNG_MODULUS</span></a><span></span>  <span class="p">(</span><span class="mh">0x7FFFFFFF</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-random-prng-1ga6b34f0a207bb68dde6d4eefe0f2ca3a2"><span class="std std-ref">PRNG_OFFSET</span></a><span></span>   <span class="p">(</span><span class="mi">2835</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab464986124ca330c70510af0f29facd5"><span class="std std-ref">PRNG_SEED_DEFAULT</span></a><span></span> <span class="p">(</span><span class="mh">0x93E21FD5</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1gab9029e88a9d84eeb36cee289550de73e"><span></span><span class="n">c_nprng</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga18b28e0aed9a8c05226294d1d965f2fc"><span class="std std-ref">PRNG_NewSeed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga5e8bf2baede28ac8393def3aab8e8460"><span></span><span class="n">c_prng</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga40c9991de2b5e1f60946519c9dc72531"><span class="std std-ref">PRNG_Next</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga50367424bae0cb2c8c9bad6e6f7a21f0"><span></span><span class="n">c_prngdel</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga43455ad126030fa57f9579129379aa65"><span class="std std-ref">PRNG_Delete</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga4b52a658c52dbc2e14bd8aa614a0420e"><span></span><span class="n">c_prngf</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1gae7d9829a86ce87a1755308ae13cb5d6e"><span class="std std-ref">PRNG_Float</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga1fefdface8600986d218b791fb960c4a"><span></span><span class="n">c_prngfi</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga52008e38a7d7237e6b1b6ce25f620938"><span class="std std-ref">PRNG_Float_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga38da4379081f7da2cc1ef94f5ba7d041"><span></span><span class="n">c_prngget</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1f9c28140e79d7e9ef65d59925322936"><span class="std std-ref">PRNG_Get</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga67551c9ec0be5a3bf97eb95b8e2ce86c"><span></span><span class="n">c_prnggetf</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga8c40485fabec5d96d60ead88d46a3683"><span class="std std-ref">PRNG_Float_Get</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga0effacec2ed446c74c14d8fc5b50ac47"><span></span><span class="n">c_prnggetfi</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga57698363fd5fc266918b1fe7a87d6902"><span class="std std-ref">PRNG_Float_Get_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga4fff7116e4bf4cda0064529f507535fd"><span></span><span class="n">c_prnggetq</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1gaf1ccdbb536796c454b22232e5d646348"><span class="std std-ref">PRNG_Fixed_Get</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga6d7f66fee25fb511a83e247209004aba"><span></span><span class="n">c_prnggetqi</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1902ff05d3012bdd398651df1ea5e12e"><span class="std std-ref">PRNG_Fixed_Get_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga237422090a0a8e7d6d0ab50dc8c82da5"><span></span><span class="n">c_prnggets</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga1b20e987360fc4b66496c9bd75017151"><span class="std std-ref">PRNG_SInt_Get</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga4f50527b7f37d3056d458b4d41e45184"><span></span><span class="n">c_prnggetsi</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga0b44b76f4ebde600832e95e911594c1f"><span class="std std-ref">PRNG_SInt_Get_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga74e4d0da721ce460dc63abd8273ca1a7"><span></span><span class="n">c_prnggetu</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga70286691477f19063b13f2ea018c6f29"><span class="std std-ref">PRNG_UInt_Get</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga42404385b3500c8edb8021f4f02256cd"><span></span><span class="n">c_prnggetui</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga85e865b2a2e62757ce289dc9c0bb05e4"><span class="std std-ref">PRNG_UInt_Get_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1gaff335221dc73b390c31c581b5e1e2442"><span></span><span class="n">c_prngnew</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga8ba09388052908d0057aeba2a3fcb259"><span class="std std-ref">PRNG_New</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga0b5f5c7b138066a351de544cd931de76"><span></span><span class="n">c_prngq</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga3c81186337ce7e08ac751b9ca3a97388"><span class="std std-ref">PRNG_Fixed</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga4da2aefab48170d07fbb8cbd2475944b"><span></span><span class="n">c_prngqi</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga2fadbc88a22202c5964cceb49c586e25"><span class="std std-ref">PRNG_Fixed_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga6eb06d42af12a8019d205896360bba86"><span></span><span class="n">c_prngs</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga43fd27d2fde2aac206854647842b7d86"><span class="std std-ref">PRNG_SInt</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1gaefad770b6691da7426102cc32e54bb8c"><span></span><span class="n">c_prngsi</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-random-prng-1gadb161619b00c673802123d16f65eb81a"><span class="std std-ref">PRNG_SInt_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1gac2ff2e42665e66ecb838b2f4f58f04cf"><span></span><span class="n">c_prngu</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1ga79a5aca469f6456b5a42b69fb01a459e"><span class="std std-ref">PRNG_UInt</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1gaa8adf7912be2aee76b3a0768c8f9ab52"><span></span><span class="n">c_prngui</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-random-prng-1gafb7a0fe6c5d1cb6d5ecdb29370d52d41"><span class="std std-ref">PRNG_UInt_Range</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-random-prng-1ga4517b6ecd1e776ef78edcc49e891640f"><span></span><span class="n">c_sprng</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-random-prng-1gaf7b8714ff52e69c0e84484e8fe5b4ad6"><span class="std std-ref">PRNG_SetSeed</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-random-prng"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines some simple pseudo-random number generator functions.</p>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">t_u32</span> <span class="kt">t_prng</span></pre>
+<p>This type stores the current state of the random number generator.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gaf7b8714ff52e69c0e84484e8fe5b4ad6"><span id="index-2"></span><span></span><span class="kt">void</span> <span class="n">PRNG_SetSeed</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_u32</span> <span class="n">seed</span><span class="p">)</span></pre>
+<p>TODO document this.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga18b28e0aed9a8c05226294d1d965f2fc"><span id="index-3"></span><span></span><span class="kt">void</span> <span class="n">PRNG_NewSeed</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">)</span></pre>
+<p>Randomizes the current seed, using PRNG_Shuffle()</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga8ba09388052908d0057aeba2a3fcb259"><span id="index-4"></span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">PRNG_New</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>Creates a new PRNG state.</p>
+<p class="rubric">Returns:</p>
+<p>A new PRNG state, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga43455ad126030fa57f9579129379aa65"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">PRNG_Delete</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">**</span> <span class="n">a_state</span><span class="p">)</span></pre>
+<p>Deletes (free and nullify) an existing PRNG state.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_state</p></td>
+<td><p>The address of the PRNG state to free and nullify</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga40c9991de2b5e1f60946519c9dc72531"><span id="index-6"></span><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span> <span class="n">PRNG_Next</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_size</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Writes <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of random data to <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>state</p></td>
+<td><p>The PRNG state to use</p></td>
+</tr>
+<tr class="row-even"><td><p>dest</p></td>
+<td><p>The destination memory buffer to write to</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of bytes of random data to write into <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">0</span></code> (<a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gaba51915c87d64af47fb1cc59348961c9"><span class="std std-ref">OK</span></a>) if successful, otherwise a non-zero error code</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga79a5aca469f6456b5a42b69fb01a459e"><span id="index-7"></span><span></span><span class="kt">t_uint</span> <span class="n">PRNG_UInt</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">)</span></pre>
+<p>Get a random unsigned integer value.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gafb7a0fe6c5d1cb6d5ecdb29370d52d41"><span id="index-8"></span><span></span><span class="kt">t_uint</span> <span class="n">PRNG_UInt_Range</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random unsigned integer value, in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga43fd27d2fde2aac206854647842b7d86"><span id="index-9"></span><span></span><span class="kt">t_sint</span> <span class="n">PRNG_SInt</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">)</span></pre>
+<p>Get a random integer value.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gadb161619b00c673802123d16f65eb81a"><span id="index-10"></span><span></span><span class="kt">t_sint</span> <span class="n">PRNG_SInt_Range</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random integer value, in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga3c81186337ce7e08ac751b9ca3a97388"><span id="index-11"></span><span></span><span class="kt">t_fixed</span> <span class="n">PRNG_Fixed</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">)</span></pre>
+<p>Get a random fixed-point value.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga2fadbc88a22202c5964cceb49c586e25"><span id="index-12"></span><span></span><span class="kt">t_fixed</span> <span class="n">PRNG_Fixed_Range</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random fixed-point value, in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gae7d9829a86ce87a1755308ae13cb5d6e"><span id="index-13"></span><span></span><span class="kt">t_float</span> <span class="n">PRNG_Float</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">)</span></pre>
+<p>Get a random floating-point value.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga52008e38a7d7237e6b1b6ce25f620938"><span id="index-14"></span><span></span><span class="kt">t_float</span> <span class="n">PRNG_Float_Range</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span><span class="o">*</span> <span class="n">state</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random floating-point value, in the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga1f9c28140e79d7e9ef65d59925322936"><span id="index-15"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PRNG_Get</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_size</span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Writes <code class="docutils literal notranslate"><span class="pre">n</span></code> bytes of random data to <code class="docutils literal notranslate"><span class="pre">dest</span></code> (creating and deleting a state).</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination memory buffer to write to</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of bytes of random data to write into <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">dest</span></code> if successful, otherwise a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga70286691477f19063b13f2ea018c6f29"><span id="index-16"></span><span></span><span class="kt">t_uint</span> <span class="n">PRNG_UInt_Get</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>Get a random unsigned integer, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga85e865b2a2e62757ce289dc9c0bb05e4"><span id="index-17"></span><span></span><span class="kt">t_uint</span> <span class="n">PRNG_UInt_Get_Range</span><span class="p">(</span><span class="kt">t_uint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_uint</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random unsigned integer, within the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code>, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga1b20e987360fc4b66496c9bd75017151"><span id="index-18"></span><span></span><span class="kt">t_sint</span> <span class="n">PRNG_SInt_Get</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>Get a random integer value, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga0b44b76f4ebde600832e95e911594c1f"><span id="index-19"></span><span></span><span class="kt">t_sint</span> <span class="n">PRNG_SInt_Get_Range</span><span class="p">(</span><span class="kt">t_sint</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_sint</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random integer value, within the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code>, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gaf1ccdbb536796c454b22232e5d646348"><span id="index-20"></span><span></span><span class="kt">t_fixed</span> <span class="n">PRNG_Fixed_Get</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>Get a random fixed-point value, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga1902ff05d3012bdd398651df1ea5e12e"><span id="index-21"></span><span></span><span class="kt">t_fixed</span> <span class="n">PRNG_Fixed_Get_Range</span><span class="p">(</span><span class="kt">t_fixed</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_fixed</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random fixed-point value, within the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code>, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga8c40485fabec5d96d60ead88d46a3683"><span id="index-22"></span><span></span><span class="kt">t_float</span> <span class="n">PRNG_Float_Get</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span></pre>
+<p>Get a random floating-point value, statelessly.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga57698363fd5fc266918b1fe7a87d6902"><span id="index-23"></span><span></span><span class="kt">t_float</span> <span class="n">PRNG_Float_Get_Range</span><span class="p">(</span><span class="kt">t_float</span> <span class="n">min</span><span class="p">,</span> <span class="kt">t_float</span> <span class="n">max</span><span class="p">)</span></pre>
+<p>Get a random floating-point value, within the range <code class="docutils literal notranslate"><span class="pre">[min,</span> <span class="pre">max[</span></code>, statelessly.</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gab46616278b8a9e86c686e8adfc852761"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">PRNG_CEIL_SQRT_MOD</span>  <span class="p">(</span><span class="mi">46341</span><span class="p">)</span></pre>
+<p>The value of the multiplier for the Linear Congruential RNG.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga21ab581238d74bc4fe0b8d4fe7002abc"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="fm">PRNG_MODULUS</span>    <span class="p">(</span><span class="mh">0x7FFFFFFF</span><span class="p">)</span></pre>
+<p>Modulus for the Linear Congruential RNG.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1ga6b34f0a207bb68dde6d4eefe0f2ca3a2"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="fm">PRNG_OFFSET</span> <span class="p">(</span><span class="mi">2835</span><span class="p">)</span></pre>
+<p>The value of the increment for the Linear Congruential RNG.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-random-prng-1gab464986124ca330c70510af0f29facd5"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="fm">PRNG_SEED_DEFAULT</span>   <span class="p">(</span><span class="mh">0x93E21FD5</span><span class="p">)</span></pre>
+<p>The default random seed for pseudo-random number generation.</p>
+<p>Pseudo-random number generator (Linear Congruential Generator). Modulus is <code class="docutils literal notranslate"><span class="pre">2^31</span></code></p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PRNG_OFFSET</span></code> and <code class="docutils literal notranslate"><span class="pre">PRNG_MODULUS</span></code> are mutually prime.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRNG_CEIL_SQRT_MOD</span> <span class="pre">%</span> <span class="pre">4</span></code> should be equal to 1 because <code class="docutils literal notranslate"><span class="pre">PRNG_MODULUS</span></code> is a multiple of 4</p></li>
+<li><p>For all P prime divisors of <code class="docutils literal notranslate"><span class="pre">PRNG_MODULUS</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span> <span class="pre">%</span> <span class="pre">p</span> <span class="pre">=</span> <span class="pre">1</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PRNG_OFFSET</span></code> should be small compared to the two other parameters</p></li>
+<li><p>The bitwise AND <code class="docutils literal notranslate"><span class="pre">&amp;</span></code> operator is applied, which explains the choice of modulus to be <code class="docutils literal notranslate"><span class="pre">2^31</span> <span class="pre">-</span> <span class="pre">1</span></code> in implementation (could also be called <code class="docutils literal notranslate"><span class="pre">RAND_MAX</span></code>)</p></li>
+</ul>
+<p>Basic RNG formula is: <code class="docutils literal notranslate"><span class="pre">next_value</span> <span class="pre">=</span> <span class="pre">(PRNG_CEIL_SQRT_MOD</span> <span class="pre">*</span> <span class="pre">old_nb</span> <span class="pre">+</span> <span class="pre">PRNG_OFFSET)</span> <span class="pre">%</span> <span class="pre">PRNG_MODULUS</span></code></p>
+<p class="rubric">See also:</p>
+<p><a class="reference external" href="https://www.freecodecamp.org/news/random-number-generator/">https://www.freecodecamp.org/news/random-number-generator/</a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_random_csprng.html" class="btn btn-neutral float-left" title="Libccc_random_csprng" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_random_random.html" class="btn btn-neutral float-right" title="Libccc_random_random" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

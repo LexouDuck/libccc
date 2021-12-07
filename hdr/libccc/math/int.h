@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_INT_H
 #define __LIBCCC_MATH_INT_H
 /*!@group{libccc_math_int}
-** @{
+**
 **	This header defines the common standard math functions for integer numbers.
 **
 **	@nonstd
@@ -603,6 +603,6 @@ t_s128						S128_Root2(t_s128 a);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

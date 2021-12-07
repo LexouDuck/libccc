@@ -98,7 +98,7 @@ INTRO_FILE = "rst/page_index.rst"
 --! being sorted by ``title``.
 --!
 
-SORT_GROUPS_BY = "originalIdx"
+SORT_GROUPS_BY = "id"
 
 --[[!
 	By default, the page for the global namespace page will be called
@@ -143,7 +143,7 @@ FOOTNOTE_MEMBER_PREFIX = nil
 --! formatting of module item declarations.
 --!
 
-LANGUAGE = c
+LANGUAGE = cpp
 
 --!
 --! Convert ``\verbatim`` sections in doxy-comments to ``.. code-block::``
@@ -153,7 +153,7 @@ LANGUAGE = c
 --! no syntax highlighting. To disable conversion at all, use ``nil``.
 --!
 
-VERBATIM_TO_CODE_BLOCK = "c"
+VERBATIM_TO_CODE_BLOCK = "cpp"
 
 --!
 --! If the original doxy comments contain asterisks, they have to be escaped in
@@ -364,7 +364,7 @@ PRE_BODY_NL = true
 			);
 ]]
 
-ML_PARAM_LIST_COUNT_THRESHOLD = 5
+ML_PARAM_LIST_COUNT_THRESHOLD = 4
 
 --[[!
 	Use multi-line parameter lists in function declarations if single-line

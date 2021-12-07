@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_FORMAT_H
 #define __LIBCCC_FORMAT_H
 /*!@group{libccc_format}
-** @{
+**
 **	This header defines printf-style functions, and their format specifiers
 **
 **	@isostd{C,https://en.cppreference.com/w/c/variadic}
@@ -422,10 +422,11 @@ HEADER_CPP
 **	certain specific text characters, documented below).
 **	A format specifier has the following syntax (items between brackets are optional):
 **
-**	`%[flags][minsize][.precision][bitsize]char`
+**	`%[flags][min_size][.precision][bitsize]char`
 **
-**	Here is a description of the valid possible choices for each of these 5 fields: (flags,minsize,precision,bitsize,char)
-**	 ________________________________________________________________________
+**	Here is a description of the valid possible choices for each of these 5 fields:
+**
+**	`char`:
 **	| char  | Output                                        | Output Example |
 **	|:-----:|-----------------------------------------------|----------------|
 **	|`d`,`i`| Signed decimal integer                        |`"392"`         |
@@ -445,37 +446,32 @@ HEADER_CPP
 **	| `s`   | String of characters                          |`"example"`     |
 **	| `p`   | Pointer address                               |`"b8000000"`    |
 **	| `%`   | A `%%` specifier will write a single '%' char |`"%"`           |
-**	| `n`   | Nothing printed: the corresponding argument must be a pointer to a signed int. The number of characters written so far is stored in the pointed location.	|
-**	 _____________________________________________________________________________________________________________________
-**	| flags	| Description                                                                                                 |
-**	|:-----:|-------------------------------------------------------------------------------------------------------------|
-**	| `-`   | The output is left-justified within the field (by default, it is right-justified)                           |
-**	|-------|-------------------------------------------------------------------------------------------------------------|
-**	| `+`   | Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.                   |
-**	|       | By default, only negative numbers are preceded with a minus '-' sign.                                       |
-**	|-------|-------------------------------------------------------------------------------------------------------------|
-**	| `#`   | With `o`,`x`,`X`: the value is preceded with `0`, `0x` or `0X` respectively, for values other than zero.    |
-**	|       | With `a`,`A`,`e`,`E`,`f`,`F`,`g`,`G`: forces the written output number to contain a decimal point.          |
-**	|-------|-------------------------------------------------------------------------------------------------------------|
-**	| `0`   | For number-type format specifiers, leading zeros will be used to pad the field instead of space characters. |
-**	|       | Is ignored if `-` flag is present. Undefined behavior will occur for any non-number format specifiers.      |
-**	|-------|-------------------------------------------------------------------------------------------------------------|
-**	|(space)| If no sign is going to be written, a blank space is inserted before the value.                              |
-**	|-------|-------------------------------------------------------------------------------------------------------------|
-**	 ______________________________________________________________________________________________________
-**	| minsize   | is a number (so, decimal numerical digit chars) or `*`.                                  |
-**	|-----------|------------------------------------------------------------------------------------------|
-**	|| The minimum amount of characters to be printed for this specifier.
-**	|| The value is not truncated, even if the result is larger.
-**	|| If the value is shorter than this number, the result is padded with blank spaces.
-**	 ______________________________________________________________________________________________________
-**	| precision | is a number (so, decimal numerical digit chars) or `*`, preceded by a '.' period.        |
-**	|-----------|------------------------------------------------------------------------------------------|
-**	|| With `a`,`A`,`e`,`E`,`f`,`F`: the amount of digits to be printed after the decimal point (by default, this is 6).
-**	|| With `g`,`G`: the maximum number of significant digits to be printed for the mantissa.
-**	|| With `s`: this is the maximum number of characters to be printed (by default, all chars are printed until the `'\0'` terminator).
-**	|| If the period is specified without an explicit value for precision, 0 is assumed.
-**	 ______________________________________________________________________________________________________
+**	| `n`   | Nothing printed: the corresponding argument must be a pointer to a signed int.<br/> The number of characters written so far is stored in the pointed location.	| `""` |
+**
+**	`flags`: (optional)
+**	- `-`: The output is left-justified within the field (by default, it is right-justified)
+**	- `+`: Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.
+**	       By default, only negative numbers are preceded with a minus '-' sign.
+**	- `#`: With `o`,`x`,`X`: the value is preceded with `0`, `0x` or `0X` respectively, for values other than zero.
+**	       With `a`,`A`,`e`,`E`,`f`,`F`,`g`,`G`: forces the written output number to contain a decimal point.
+**	- `0`: For number-type format specifiers, leading zeros will be used to pad the field instead of space characters.
+**	       Is ignored if `-` flag is present. Undefined behavior will occur for any non-number format specifiers.
+**	- (space): If no sign is going to be written, a blank space is inserted before the value.
+**
+**	`min_size`: (optional)
+**	- Is a number (so, decimal numerical digit chars) or `*`).
+**	- The minimum amount of characters to be printed for this specifier.
+**	- NOTE: The value is not truncated, even if the result is larger.
+**	- NOTE: If the value is shorter than this number, the result is padded with blank spaces.
+**
+**	`precision`: (optional)
+**	- Is a number (so, decimal numerical digit chars) or `*`, preceded by a '.' period.
+**	- If the period is specified without an explicit value for precision, 0 is assumed.
+**	- With `a`,`A`,`e`,`E`,`f`,`F`: the amount of digits to be printed after the decimal point (by default, this is 6).
+**	- With `g`,`G`: the maximum number of significant digits to be printed for the mantissa.
+**	- With `s`: this is the maximum number of characters to be printed (by default, all chars are printed until the `'\0'` terminator).
+**
+**	`bitsize`: (optional)
 **	| size | `d`/`i`       | `u`, `o`, `x`/`X`      |`f`,`e`,`g`,`a`| `c`  | `s`    | `p` | `n`			   |
 **	|:----:|---------------|------------------------|---------------|------|--------|-----|----------------|
 **	|(none)| int           | unsigned int           | double        | int  | char*  |void*| int*           |
@@ -555,6 +551,6 @@ int						IO_Output_Format(t_char const* format, ...);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Libccc_config &mdash; libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Libccc_define" href="group_libccc_define.html" />
+    <link rel="prev" title="struct argb" href="struct_argb.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="Libccc_config">
+	<meta property="og:description" content="Libccc_config">
+	<meta property="og:title" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation - Libccc_config">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_config.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.29-2021-12-05_101eaa1af4ee4c8024fa6f1f0ef7375c38d284fc
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">Libccc</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">Libccc_bool</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">Libccc_char</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">Libccc_color</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Libccc_config</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">Libccc_define</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">Libccc_encode_common</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">Libccc_encode_json</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">Libccc_encode_toml</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">Libccc_error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">Libccc_errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">Libccc_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">Libccc_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">Libccc_format</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">Libccc_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">Libccc_math</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">Libccc_math_algebra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">Libccc_math_algebra_interval</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">Libccc_math_algebra_matrix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">Libccc_math_algebra_vector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">Libccc_math_complex</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">Libccc_math_constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">Libccc_math_fixed</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">Libccc_math_float</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">Libccc_math_int</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">Libccc_math_sort</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">Libccc_math_stat</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">Libccc_math_vlq</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">Libccc_memory</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">Libccc_monad_array</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">Libccc_monad_convert</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">Libccc_monad_dict</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">Libccc_monad_hashmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">Libccc_monad_list</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">Libccc_monad_queue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">Libccc_monad_stack</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">Libccc_monad_tree</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">Libccc_naming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">Libccc_pointer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">Libccc_pointerarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">Libccc_random_csprng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">Libccc_random_prng</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">Libccc_random_random</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">Libccc_string</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">Libccc_stringarray</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">Libccc_sys_ansi</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">Libccc_sys_io</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">Libccc_sys_logger</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">Libccc_sys_program</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">Libccc_sys_time</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Libccc_config</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-config">
+<span id="doxid-group-libccc-config"></span><span id="index-0"></span><h1>Libccc_config<a class="headerlink" href="#libccc-config" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines all the configuration macros which alter how libccc works. <a class="reference internal" href="#details-group-libccc-config"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga4521abc8a5fd562816f906e5e230ce69"><span class="std std-ref">LIBCONFIG_CHAR_NAME</span></a><span></span> <span class="n">ASCII</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga9bcf9a1f27ed0f7f2c3e3179d73c28f5"><span class="std std-ref">LIBCONFIG_CHAR_TYPE</span></a><span></span> <span class="kt">t_ascii</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gafc0b80a84cf9fa8bbbbe9c2c2af02faa"><span class="std std-ref">LIBCONFIG_ERROR_HANDLEOVERFLOW</span></a><span></span><span class="p">(</span><span class="n">VALUE</span><span class="p">)</span>   \
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga381cd02c20f593718c25eb94eb01dd5b"><span class="std std-ref">LIBCONFIG_ERROR_INCLUDE</span></a><span></span> <span class="s">&quot;libccc/error.h&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga6828a236efba31c97cd16e9265945b1e"><span class="std std-ref">LIBCONFIG_ERROR_OVERFLOW</span></a><span></span><span class="p">(</span><span class="n">TYPE</span><span class="p">,</span> <span class="n">VALUE</span><span class="p">)</span>       <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">TYPE</span><span class="p">,</span><span class="n">_ERROR</span><span class="p">)</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-config-1ga69367a8a0e32d46fed7db95dfb98c53d"><span></span><span class="n">LIBCONFIG_ERROR_PARSEROVERFLOW</span></span><span></span><span class="p">(</span><span class="n">VALUE</span><span class="p">)</span>    \
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gac3559624016adae60fd6f2985c393fe2"><span class="std std-ref">LIBCONFIG_FIXED_APPROX</span></a><span></span>  <span class="p">((</span><span class="kt">t_fixed</span><span class="p">)(</span><a class="reference internal" href="#doxid-group-libccc-config-1gaef7d6e8fe1fecaa9965f877178c9e48e"><span class="std std-ref">LIBCONFIG_FIXED_DENOMINATOR</span></a><span></span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gad7eedca7c0c8c0a111bedd2ede0e6ea5"><span class="std std-ref">LIBCONFIG_FIXED_BITS</span></a><span></span>    <span class="mi">64</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gaef7d6e8fe1fecaa9965f877178c9e48e"><span class="std std-ref">LIBCONFIG_FIXED_DENOMINATOR</span></a><span></span> <span class="p">(</span><span class="mi">256</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga7acefcf022bcd54c8d240707b855074b"><span class="std std-ref">LIBCONFIG_FIXED_ERROR</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gaf37b6635173f4ae68dbc9a04aba88802"><span class="std std-ref">LIBCONFIG_FLOAT_APPROX</span></a><span></span>  <span class="p">(</span><span class="mf">1.0</span><span class="kc">e</span><span class="o">-</span><span class="m">10</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gac5bb8057f443ef1852cc529475d266f1"><span class="std std-ref">LIBCONFIG_FLOAT_BITS</span></a><span></span>    <span class="mi">64</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga6d096c6a0b5c2249efdc02b8bb54ccb3"><span class="std std-ref">LIBCONFIG_FLOAT_ERROR</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga2dbec267fbf6efd24e1efc6d21d1ff68"><span class="std std-ref">LIBCONFIG_LIST_DOUBLYLINKED</span></a><span></span> <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga8ef160b822ec74fd6c6455647386e506"><span class="std std-ref">LIBCONFIG_NAMINGSTYLE_TYPES</span></a><span></span> <span class="mi">0</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-config-1ga81334ddd6ec8669a12bdd364ce816aa5"><span></span><span class="n">LIBCONFIG_RANDOM_NAME</span></span><span></span>    <span class="n">PRNG</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga9edc466e73bedc86d3508d767885b250"><span class="std std-ref">LIBCONFIG_RANDOM_TYPE</span></a><span></span>   <a class="reference internal" href="group_libccc_random_prng.html#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga1a9558d537e683386d61b5eea4e0c38d"><span class="std std-ref">LIBCONFIG_SINT_BITS</span></a><span></span> <span class="mi">32</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga44ec62e5be0341ca61ead41cd4065b8d"><span class="std std-ref">LIBCONFIG_SINT_ERROR</span></a><span></span>    <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga766292ddd3c8a457033e97315863d008"><span class="std std-ref">LIBCONFIG_UINT_BITS</span></a><span></span> <span class="mi">32</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga047eb3af34e880e4421fe4fb1c54e553"><span class="std std-ref">LIBCONFIG_UINT_ERROR</span></a><span></span>    <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga70e5ad90076999fac5205baf90d96e90"><span class="std std-ref">LIBCONFIG_USE_STD_COMPLEX</span></a><span></span>   <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1gaaa6bb8eb6ebe31ebf0fce3b39f0db81e"><span class="std std-ref">LIBCONFIG_USE_STD_FIXEDPOINT</span></a><span></span>    <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga1020a8568fd919f9da80aa0c2bffbab7"><span class="std std-ref">LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</span></a><span></span>  <span class="mi">0</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-config-1ga12fe911c9d36aee752a77ca0245f50f0"><span class="std std-ref">LIBCONFIG_USE_STD_MATH</span></a><span></span>  <span class="mi">1</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-config"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines all the configuration macros which alter how libccc works.</p>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<span class="target" id="doxid-group-libccc-config-1ga9bcf9a1f27ed0f7f2c3e3179d73c28f5"><span id="index-1"></span></span><pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga4521abc8a5fd562816f906e5e230ce69"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_CHAR_TYPE</span> <span class="kt">t_ascii</span>
+<span class="cp">#define</span> <span class="fm">LIBCONFIG_CHAR_NAME</span> <span class="n">ASCII</span></pre>
+<p>Defines which type the <code class="docutils literal notranslate"><span class="pre">t_char</span></code> default text character type will be.</p>
+<p>This macro sets the default <code class="docutils literal notranslate"><span class="pre">t_char</span></code> text string character type and methods to use. With the default settings, <code class="docutils literal notranslate"><span class="pre">t_char</span></code> resolves to <code class="docutils literal notranslate"><span class="pre">t_ascii</span></code>, and its functions work accordingly (ie: the <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gae1f09f692036dd972b9820e3faa3a7cf"><span class="std std-ref"><span class="pre">Char_ToUpper()</span></span></a></code> function is really an alias for the <code class="docutils literal notranslate"><span class="pre">ASCII_IsUpper()</span></code> function) There are 2 possible accepted values for these: | <code class="docutils literal notranslate"><span class="pre">TYPE_CHAR</span></code> | <code class="docutils literal notranslate"><span class="pre">NAME_CHAR</span></code> |__________________________________________</p>
+<ul class="simple">
+<li><p>| <code class="docutils literal notranslate"><span class="pre">t_ascii</span></code> | <code class="docutils literal notranslate"><span class="pre">ASCII</span></code> | for simple 8-bit ASCII character strings</p></li>
+<li><p>| <code class="docutils literal notranslate"><span class="pre">t_utf32</span></code> | <code class="docutils literal notranslate"><span class="pre">UTF32</span></code> | for unicode 32-bit wide character strings</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gafc0b80a84cf9fa8bbbbe9c2c2af02faa"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_ERROR_HANDLEOVERFLOW</span>(VALUE)   <span class="err">\</span></pre>
+<p>The action to take when there is an integer overflow (by default, let it continue)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga381cd02c20f593718c25eb94eb01dd5b"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_ERROR_INCLUDE</span> <span class="s">&quot;libccc/error.h&quot;</span></pre>
+<p>The file to include in source files which use <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_errors.html#doxid-group-libccc-errors-1gaddd022277bec63d7897c65d6850ce843"><span class="std std-ref"><span class="pre">HANDLE_ERROR()</span></span></a></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga6828a236efba31c97cd16e9265945b1e"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_ERROR_OVERFLOW</span>(TYPE, VALUE)       <a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1gae7be8d94ef3433b06c349d722941d3b0"><span class="std std-ref">CONCAT</span></a><span></span><span class="p">(</span><span class="n">TYPE</span><span class="p">,</span><span class="n">_ERROR</span><span class="p">)</span></pre>
+<p>configurable error value</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gac3559624016adae60fd6f2985c393fe2"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FIXED_APPROX</span>  <span class="p">((</span><span class="kt">t_fixed</span><span class="p">)(</span><a class="reference internal" href="#doxid-group-libccc-config-1gaef7d6e8fe1fecaa9965f877178c9e48e"><span class="std std-ref">LIBCONFIG_FIXED_DENOMINATOR</span></a><span></span> <span class="o">/</span> <span class="mi">2</span><span class="p">))</span></pre>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1ga266db56fdf369a93492d1a5b9bb87b86"><span class="std std-ref">FIXED_APPROX</span></a> and <a class="reference internal" href="group_libccc_math_fixed.html#doxid-group-libccc-math-fixed-1gafa2ab546f5038c8e124abce044cec448"><span class="std std-ref">Fixed_EqualsApprox()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gad7eedca7c0c8c0a111bedd2ede0e6ea5"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FIXED_BITS</span>    <span class="mi">64</span></pre>
+<p>If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64.</p>
+<p>This macro configures which <code class="docutils literal notranslate"><span class="pre">&lt;stdint.h&gt;</span></code> integer types are used by default, as well as setting the corresponding appropriate <code class="docutils literal notranslate"><span class="pre">[INT]_MAX</span></code> and <code class="docutils literal notranslate"><span class="pre">[INT]_MIN</span></code> values. There are 3 possible values for this #define:</p>
+<ul class="simple">
+<li><p>(undefined) EXACT: This is the default - uses the ‘exact size’ integer types (int8_t, etc) This is the recommended option, as it ensures consistent overflow behavior on ints. Unfortunately, certain platforms do not have these types, so the others can also be of use.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_least</span></code> LEAST: Uses the smallest available integer type with at least <code class="docutils literal notranslate"><span class="pre">n</span></code> bits (<code class="docutils literal notranslate"><span class="pre">int_least8_t</span></code>, etc)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">_fast</span></code> FAST: Uses the fastest available integer type with at least <code class="docutils literal notranslate"><span class="pre">n</span></code> bits (<code class="docutils literal notranslate"><span class="pre">int_fast8_t</span></code>, etc) Defines which type/bit size the <code class="docutils literal notranslate"><span class="pre">t_fixed</span></code> default fixed-point number type will be</p></li>
+</ul>
+<p>This macro sets what the <code class="docutils literal notranslate"><span class="pre">t_fixed</span></code> default fixed-point type should be. There are 4 possible accepted values for this #define:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">16</span></code> for 16-bit fixed-point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">32</span></code> for 32-bit fixed-point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">64</span></code> for 64-bit fixed-point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">128</span></code> for 128-bit fixed-point number (not present on all platforms)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gaef7d6e8fe1fecaa9965f877178c9e48e"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FIXED_DENOMINATOR</span> <span class="p">(</span><span class="mi">256</span><span class="p">)</span></pre>
+<p>The amount of subdivisions dedicated to the fraction part of the fixed-point types</p>
+<p>This can be any signed integer value which is representable. TODO make this more configurable, ie: set each bitsize type individually ?</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga7acefcf022bcd54c8d240707b855074b"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FIXED_ERROR</span>   <span class="mi">1</span></pre>
+<p>The fixed-point value which is used for error returns</p>
+<p>This macro sets what value is returned when a function which returns a fixed-point number has an error NOTE: The value for the macro #FIXED_ERROR depends on this setting There are 2 possible values for this setting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> Will return <code class="docutils literal notranslate"><span class="pre">0</span></code> : this mimics how the C standard library works (even though there is no std fixed-point type in stdlib)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> Will use the smallest representable fixed-point value for the bitsize in question NB: When using this option, the #FIXED_MIN macros will be different ! For example, <code class="docutils literal notranslate"><span class="pre">Q16_MIN</span></code> will become <code class="docutils literal notranslate"><span class="pre">-0x7FFF</span></code>, rather than the usual <code class="docutils literal notranslate"><span class="pre">-0x8000</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gaf37b6635173f4ae68dbc9a04aba88802"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FLOAT_APPROX</span>  <span class="p">(</span><span class="mf">1.0</span><span class="kc">e</span><span class="o">-</span><span class="m">10</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="group_libccc_math_float.html#doxid-group-libccc-math-float-1ga68c500b80cd3f997b066c05a019960e6"><span class="std std-ref">FLOAT_APPROX</span></a> and <a class="reference internal" href="group_libccc_math_float.html#doxid-group-libccc-math-float-1ga5a4421b1462e36ce690763f7724c482f"><span class="std std-ref">Float_EqualsApprox()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gac5bb8057f443ef1852cc529475d266f1"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FLOAT_BITS</span>    <span class="mi">64</span></pre>
+<p>Defines which type/bit size the <code class="docutils literal notranslate"><span class="pre">t_float</span></code> default floating-point number type will be.</p>
+<p>This macro sets what the <code class="docutils literal notranslate"><span class="pre">t_float</span></code> default floating-point type should be. There are 4 possible accepted values for this #define:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">32</span></code> for 32-bit IEEE 754 single-precision floating-point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">64</span></code> for 64-bit IEEE 754 double-precision floating-point number</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">80</span></code> for 80-bit x86 extended-precision floating-point number (not present on all platforms)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">128</span></code> for 128-bit IEEE 754 quadruple-precision floating-point number (not present on all platforms)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga6d096c6a0b5c2249efdc02b8bb54ccb3"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_FLOAT_ERROR</span>   <span class="mi">1</span></pre>
+<p>The floating-point value which is used for error returns</p>
+<p>This macro sets what value is returned when a function which returns a floating-point number has an error NOTE: The value for the macro #FIXED_ERROR depends on this setting There are 2 possible values for this setting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> Will return <code class="docutils literal notranslate"><span class="pre">0</span></code> : this is how the C standard library works (except for math functions, eg: <code class="docutils literal notranslate"><span class="pre">sqrt(-1)</span></code> returns <code class="docutils literal notranslate"><span class="pre">nan</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> Will use the not-a-number float value for error returns for any float-return function.</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga2dbec267fbf6efd24e1efc6d21d1ff68"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_LIST_DOUBLYLINKED</span> <span class="mi">0</span></pre>
+<p>Whether the <code class="docutils literal notranslate"><span class="pre">s_list</span></code> linked-list types in “libccc/monad/” will be doubly-linked.</p>
+<p>This macro configures whether the <code class="docutils literal notranslate"><span class="pre">s_list</span></code> type is singly-linked or doubly-linked. NOTE: This must be set BEFORE including the <code class="docutils literal notranslate"><span class="pre">&lt;libccc/monad/list.(c|h)&gt;</span></code> header files</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">s_list</span></code> is singly-linked (that is, the struct only holds a <code class="docutils literal notranslate"><span class="pre">.next</span></code> pointer)</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">s_list</span></code> is doubly-linked (that is, the struct has both a <code class="docutils literal notranslate"><span class="pre">.prev</span></code> and <code class="docutils literal notranslate"><span class="pre">.next</span></code> pointer)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga8ef160b822ec74fd6c6455647386e506"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_NAMINGSTYLE_TYPES</span> <span class="mi">0</span></pre>
+<p>Configures the nomenclature style used by libccc for <code class="docutils literal notranslate"><span class="pre">typedef</span></code> statements.</p>
+<p>This macro sets the nomenclature style that libccc uses for <code class="docutils literal notranslate"><span class="pre">typedef</span></code> s. The value works like both an enum and a bitflag simultaneously: you can learn more about how this by looking at “libccc_naming.h”.</p>
+<p>The style used throughout libccc’s code is <code class="docutils literal notranslate"><span class="pre">(NAMINGSTYLE_SNAKECASE</span> <span class="pre">|</span> <span class="pre">NAMINGSTYLE_FLAG_HUNGARIAN_PREFIX)</span></code> You can set another style, it will actually generate a typedef alias above the existing typedef. For example, having <code class="docutils literal notranslate"><span class="pre">(NAMINGSTYLE_SCREAMCASE)</span></code> will create a typedef for <code class="docutils literal notranslate"><span class="pre">t_bool</span></code> which is <code class="docutils literal notranslate"><span class="pre">BOOL</span></code> Here, by default, the value is zero (no typedef aliases are generated).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga9edc466e73bedc86d3508d767885b250"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_RANDOM_TYPE</span>   <a class="reference internal" href="group_libccc_random_prng.html#doxid-group-libccc-random-prng-1gab09779d7f227a700d8b0e9b0b68ad885"><span class="std std-ref">t_prng</span></a></pre>
+<p>Defines which type the <code class="docutils literal notranslate"><span class="pre">t_rand</span></code> default random state type will be.</p>
+<p>This macro sets the default <code class="docutils literal notranslate"><span class="pre">t_rand</span></code> RNG type and methods to use. With the default settings, <code class="docutils literal notranslate"><span class="pre">t_rand</span></code> resolves to <code class="docutils literal notranslate"><span class="pre">t_prng</span></code>, and its functions work accordingly (ie: the <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_random_random.html#doxid-group-libccc-random-random-1ga6a496704d4463c972b4f3a1bf8b1c09b"><span class="std std-ref"><span class="pre">Random_UInt()</span></span></a></code> function is really an alias for the <code class="docutils literal notranslate"><a class="reference internal" href="group_libccc_random_prng.html#doxid-group-libccc-random-prng-1ga79a5aca469f6456b5a42b69fb01a459e"><span class="std std-ref"><span class="pre">PRNG_UInt()</span></span></a></code> function) There are 2 possible accepted values for these: | <code class="docutils literal notranslate"><span class="pre">TYPE_RANDOM</span></code> | <code class="docutils literal notranslate"><span class="pre">NAME_RANDOM</span></code> |__________________________________________</p>
+<ul class="simple">
+<li><p>| <code class="docutils literal notranslate"><span class="pre">t_prng</span></code> | <code class="docutils literal notranslate"><span class="pre">PRNG</span></code> | for simple pseudo-random number algorithm</p></li>
+<li><p>| <code class="docutils literal notranslate"><span class="pre">t_csprng</span></code> | <code class="docutils literal notranslate"><span class="pre">CSPRNG</span></code> | for cryptographically-secure RNG (OS native)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga1a9558d537e683386d61b5eea4e0c38d"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_SINT_BITS</span> <span class="mi">32</span></pre>
+<p>Defines which type/bit size the <code class="docutils literal notranslate"><span class="pre">t_sint</span></code> default signed integer type will be.</p>
+<p>This macro sets the default <code class="docutils literal notranslate"><span class="pre">t_sint</span></code> default signed integer type to use: There are 5 possible accepted values for this #define:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> for 8-bit int [-128, 127]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">16</span></code> for 16-bit int [-32648, 32647]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">32</span></code> for 32-bit int [-2147483648, 2147483647]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">64</span></code> for 64-bit int [-9223372036854775808, +9223372036854775807]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">128</span></code> for 128-bit int (not present on all platforms)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga44ec62e5be0341ca61ead41cd4065b8d"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_SINT_ERROR</span>    <span class="mi">0</span></pre>
+<p>The signed integer value which is used for error returns</p>
+<p>This macro sets what value is returned when a function which returns an unsigned int has an error NOTE: The value for the macro #SINT_ERROR depends on this setting There are 2 possible values for this setting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> Will return <code class="docutils literal notranslate"><span class="pre">0</span></code> : this is how the C standard library works, though it can lead to confusions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> Will use the smallest representable signed int value for the bitsize in question. NB: When using this option, the #SINT_MIN macros will be different ! For example, <code class="docutils literal notranslate"><span class="pre">S8_MIN</span></code> will become <code class="docutils literal notranslate"><span class="pre">-127</span></code>, rather than the usual <code class="docutils literal notranslate"><span class="pre">-128</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga766292ddd3c8a457033e97315863d008"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_UINT_BITS</span> <span class="mi">32</span></pre>
+<p>Defines which type/bit size the <code class="docutils literal notranslate"><span class="pre">t_uint</span></code> default unsigned integer type will be.</p>
+<p>This macro sets the default <code class="docutils literal notranslate"><span class="pre">t_uint</span></code> default unsigned integer type to use. There are 5 possible accepted values for this #define:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">8</span></code> for 8-bit uint [0, 255]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">16</span></code> for 16-bit uint [0, 65535]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">32</span></code> for 32-bit uint [0, 2147483647]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">64</span></code> for 64-bit uint [0, 18446744073709551615]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">128</span></code> for 128-bit uint (not present on all platforms)</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga047eb3af34e880e4421fe4fb1c54e553"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_UINT_ERROR</span>    <span class="mi">0</span></pre>
+<p>The unsigned integer value which is used for error returns</p>
+<p>This macro sets what value is returned when a function which returns an unsigned int has an error NOTE: The value for the macro #UINT_ERROR depends on this setting There are 2 possible values for this setting:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> Will return <code class="docutils literal notranslate"><span class="pre">0</span></code> : this is how the C standard library works, though it can lead to confusions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> Will use the largest representable unsigned int value for the bitsize in question. NOTE: When using this option, the #UINT_MAX macros will be different ! For example, <code class="docutils literal notranslate"><span class="pre">U8_MAX</span></code> will become <code class="docutils literal notranslate"><span class="pre">254</span></code>, rather than the usual <code class="docutils literal notranslate"><span class="pre">255</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga70e5ad90076999fac5205baf90d96e90"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_USE_STD_COMPLEX</span>   <span class="mi">0</span></pre>
+<p>Whether libccc will make the <code class="docutils literal notranslate"><span class="pre">t_complex</span></code> types use the STD C99 <code class="docutils literal notranslate"><span class="pre">_Complex</span></code> / <code class="docutils literal notranslate"><span class="pre">_Imaginary</span></code> types.</p>
+<p>TODO implement &amp; document this</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1gaaa6bb8eb6ebe31ebf0fce3b39f0db81e"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_USE_STD_FIXEDPOINT</span>    <span class="mi">0</span></pre>
+<p>Whether libccc will make the fixed point types <code class="docutils literal notranslate"><span class="pre">t_g*</span></code> and <code class="docutils literal notranslate"><span class="pre">t_fixed</span></code> use the STD ext <code class="docutils literal notranslate"><span class="pre">_Sat</span></code> / <code class="docutils literal notranslate"><span class="pre">_Fract</span></code> / <code class="docutils literal notranslate"><span class="pre">_Accum</span></code> types.</p>
+<p>It is recommended to keep this set to <code class="docutils literal notranslate"><span class="pre">0</span></code>, as the STD C fixed-point types are not yet standard (ie: <code class="docutils literal notranslate"><span class="pre">_Accum</span></code>, <code class="docutils literal notranslate"><span class="pre">_Fract</span></code>, and <code class="docutils literal notranslate"><span class="pre">_Sat</span></code> are not present on all platforms, only GCC implements them). Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which may leverage the platform’s full capacities, but it does offer the signficant advantage of being entirely configurable, regarding what portion of the fixed-point number type is dedicated to the integer part and the fraction part.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga1020a8568fd919f9da80aa0c2bffbab7"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS</span>  <span class="mi">0</span></pre>
+<p>Whether libccc will define/expose utility functions for 128-bit integer types.</p>
+<p>By default, this setting will be enabled if the <code class="docutils literal notranslate"><span class="pre">__int128</span></code> macro is defined. Since 128-bit integers are not supported by the standard, they are not consistently accessible/usable/similar across all (or even most) platforms. If you wish to make use of 128-bit integers regardless, then set this value to <code class="docutils literal notranslate"><span class="pre">1</span></code>. Enabling this configuration setting will expose several types (and functions):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">t_u128</span></code> : unsigned integer type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_s128</span></code> : signed integer type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_q128</span></code> : fixed-point fraction type Whether libccc will define/expose utility functions for extended-precision floating-point types</p></li>
+</ul>
+<p>By default, this setting will be enabled if the <code class="docutils literal notranslate"><span class="pre">__float80</span></code> / <code class="docutils literal notranslate"><span class="pre">__float128</span></code> macro is defined. Since 80/96/128-bit floating-point numbers are only partly supported by the standard, (as <code class="docutils literal notranslate"><span class="pre">long</span> <span class="pre">double</span></code>) they are not consistently accessible/usable/similar across all platforms. If you wish to make use of extended floats regardless, then set this value to <code class="docutils literal notranslate"><span class="pre">1</span></code>. Enabling this configuration setting will expose several types (and functions):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">t_f80</span></code> : extended-precision floating-point type</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">t_f128</span></code> : quadruple-precision floating-point type Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.</p></li>
+</ul>
+<p>This macro determines if the compiler should prefer function implementations from the platform’s standard library, or the implementation from libccc.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">0</span></code>, use libccc function implementations everywhere</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">1</span></code>, call stdlib implementations rather than libccc wherever possible</p></li>
+</ul>
+<p>NOTE: Setting this to 1 can make your code run faster, but it may introduce undefined behaviors depending on the platform (for edge-case arguments). Also, it invalidates the error-handling settings (<code class="docutils literal notranslate"><span class="pre">DEFAULT_HANDLER</span></code>, etc): Argument handling is implementation-dependent for STD C functions.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-config-1ga12fe911c9d36aee752a77ca0245f50f0"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_USE_STD_MATH</span>  <span class="mi">1</span></pre>
+<p>Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.</p>
+<p>This macro determines which math function implementations should be used.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">0</span></code>, the libccc fast approximate functions will be used (precision error margin is <code class="docutils literal notranslate"><span class="pre">10^-4</span></code>)</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">1</span></code>, the builtin FPU-call libc math functions will be used (eg: <code class="docutils literal notranslate"><span class="pre">__builtin_powf()</span></code>, etc) This is the recommended option, and is on by default (since the standard math functions are typically well-implemented for the given platform: they’re both precise, and fast)</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="struct_argb.html" class="btn btn-neutral float-left" title="struct argb" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_define.html" class="btn btn-neutral float-right" title="Libccc_define" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

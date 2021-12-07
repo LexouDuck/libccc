@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
 /*!@group{libccc_string}
-** @{
+**
 **	This header defines the common standard string (t_char*) manipulation functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte#String_manipulation}
@@ -1246,6 +1246,6 @@ char*	strchr(char const* str, int c)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

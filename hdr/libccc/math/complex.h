@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_MATH_COMPLEX_H
 #define __LIBCCC_MATH_COMPLEX_H
 /*!@group{libccc_math_complex}
-** @{
+**
 **	This header defines useful algebra and calculus types, and functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/complex}
@@ -232,6 +232,6 @@ TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_COLOR_H
 #define __LIBCCC_COLOR_H
 /*!@group{libccc_color}
-** @{
+**
 **	This header defines all the functions/bitmasks for encoding colors in ints.
 **
 **	@file
@@ -461,6 +461,6 @@ s_ahsl const*					Color_AHSL_GetNearest(s_ahsl target, s_ahsl const* colors, t_s
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

@@ -11,9 +11,8 @@
 
 #ifndef __LIBCCC_ERROR_H
 #define __LIBCCC_ERROR_H
-/*! @file libccc_error.h
-**	@addtogroup libccc_error
-**	@{
+/*!@group{libccc_error}
+**
 **	This header defines the utility functions for error handling
 */
 
@@ -121,6 +120,6 @@ void			Error_SetAllHandlers(f_ccchandler handler);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

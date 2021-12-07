@@ -12,7 +12,7 @@
 #ifndef __LIBCCC_POINTER_H
 #define __LIBCCC_POINTER_H
 /*!@group{libccc_pointer}
-** @{
+**
 **	This header defines the standard memory size and pointer integer types.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/types/integer}
@@ -330,6 +330,6 @@ t_sintptr				SIntPtr_FromString(t_char const* str);
 
 #endif
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif
