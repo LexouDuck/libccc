@@ -104,7 +104,7 @@ t_uint				CSPRNG_UInt(t_csprng* state);
 //!@doc	Get a cryptographically secure random unsigned integer value, in the range `[min, max[`
 //!@{
 t_uint				CSPRNG_UInt_Range(t_csprng* state, t_uint  min, t_uint  max);
-#define c_csprngui	CSPRNG_UInt_Range
+#define c_csprngxu	CSPRNG_UInt_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random integer value
@@ -115,7 +115,7 @@ t_sint				CSPRNG_SInt(t_csprng* state);
 //!@doc	Get a cryptographically secure random integer value, in the range `[min, max[`
 //!@{
 t_sint				CSPRNG_SInt_Range(t_csprng* state, t_sint  min, t_sint  max);
-#define c_csprngsi	CSPRNG_SInt_Range
+#define c_csprngxs	CSPRNG_SInt_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random fixed-point value
@@ -126,7 +126,7 @@ t_fixed				CSPRNG_Fixed(t_csprng* state);
 //!@doc	Get a cryptographically secure random fixed-point value, in the range `[min, max[`
 //!@{
 t_fixed				CSPRNG_Fixed_Range(t_csprng* state, t_fixed min, t_fixed max);
-#define c_csprngqi	CSPRNG_Fixed_Range
+#define c_csprngxq	CSPRNG_Fixed_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random floating-point value
@@ -137,7 +137,7 @@ t_float				CSPRNG_Float(t_csprng* state);
 //!@doc	Get a cryptographically secure random floating-point value, in the range `[min, max[`
 //!@{
 t_float				CSPRNG_Float_Range(t_csprng* state, t_float min, t_float max);
-#define c_csprngfi	CSPRNG_Float_Range
+#define c_csprngxf	CSPRNG_Float_Range
 //!@}
 
 
@@ -169,7 +169,7 @@ t_uint					CSPRNG_UInt_Get(void);
 //!@doc	Get a cryptographically secure random unsigned integer, within the range `[min, max[`, statelessly.
 //!@{
 t_uint					CSPRNG_UInt_Get_Range(t_uint  min, t_uint  max);
-#define c_csprnggetui	CSPRNG_UInt_Get_Range
+#define c_csprnggetxu	CSPRNG_UInt_Get_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random integer value, statelessly.
@@ -180,7 +180,7 @@ t_sint					CSPRNG_SInt_Get	(void);
 //!@doc	Get a cryptographically secure random integer value, within the range `[min, max[`, statelessly.
 //!@{
 t_sint					CSPRNG_SInt_Get_Range(t_sint  min, t_sint  max);
-#define c_csprnggetsi	CSPRNG_SInt_Get_Range
+#define c_csprnggetxs	CSPRNG_SInt_Get_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random fixed-point value, statelessly.
@@ -191,7 +191,7 @@ t_fixed					CSPRNG_Fixed_Get(void);
 //!@doc	Get a cryptographically secure random fixed-point value, within the range `[min, max[`, statelessly.
 //!@{
 t_fixed					CSPRNG_Fixed_Get_Range(t_fixed min, t_fixed max);
-#define c_csprnggetqi	CSPRNG_Fixed_Get_Range
+#define c_csprnggetxq	CSPRNG_Fixed_Get_Range
 //!@}
 
 //!@doc	Get a cryptographically secure random floating-point value, statelessly.
@@ -202,7 +202,7 @@ t_float					CSPRNG_Float_Get(void);
 //!@doc	Get a cryptographically secure random floating-point value, within the range `[min, max[`, statelessly.
 //!@{
 t_float					CSPRNG_Float_Get_Range(t_float min, t_float max);
-#define c_csprnggetfi	CSPRNG_Float_Get_Range
+#define c_csprnggetxf	CSPRNG_Float_Get_Range
 //!@}
 
 

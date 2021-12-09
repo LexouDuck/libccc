@@ -150,21 +150,21 @@ typedef s_logger const* const*	t_logptrarr;
 //!@doc Create a new logger. If logfile_path is required, but NULL, a default macro is used
 //!@{
 void						Logger_Init(s_logger *a_logger);
-#define c_log_init			Logger_Init
+#define c_loginit			Logger_Init
 #define InitializeLogger	Logger_Init
 //!@}
 
 //!@doc Cleanly release logger (close file descriptors, free internal memory)
 //!@{
 void						Logger_Exit(s_logger *a_logger);
-#define c_log_exit			Logger_Exit
+#define c_logexit			Logger_Exit
 #define FinalizeLogger		Logger_Exit
 //!@}
 
 //!@doc Free all memory in logger, but do not release sockets; useful when a duplicated memory instance exists
 //!@{
 void						Logger_DeleteMemory(s_logger *a_logger);
-#define c_log_delmemory		Logger_DeleteMemory
+#define c_logdelmem			Logger_DeleteMemory
 #define DeleteMemory_Logger	Logger_DeleteMemory
 //!@}
 

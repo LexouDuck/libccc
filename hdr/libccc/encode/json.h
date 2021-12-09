@@ -64,7 +64,7 @@ typedef s_kvt	s_json;
 #define c_jsonparse		JSON_Parse
 
 #define 				JSON_Parse_N	JSON_Parse_Lenient_N
-#define c_jsonparsen	JSON_Parse_N
+#define c_jsonnparse	JSON_Parse_N
 
 #define 				JSON_FromString	JSON_FromString_Lenient
 #define c_strtojson		JSON_FromString

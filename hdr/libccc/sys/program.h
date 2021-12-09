@@ -87,7 +87,7 @@ void				Program_Exit(int exit_code);
 //!@{
 e_cccerror			Program_OnExit(void (*f)(void));
 #define c_atexit	Program_OnExit
-#define c_on_exit	Program_OnExit
+#define c_onexit	Program_OnExit
 //!@}
 
 

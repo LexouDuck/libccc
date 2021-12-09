@@ -140,7 +140,7 @@ t_uint				PRNG_UInt(t_prng* state);
 //!@doc	Get a random unsigned integer value, in the range `[min, max[`
 //!@{
 t_uint				PRNG_UInt_Range(t_prng* state, t_uint  min, t_uint  max);
-#define c_prngui	PRNG_UInt_Range
+#define c_prngxu	PRNG_UInt_Range
 //!@}
 
 //!@doc	Get a random integer value
@@ -151,7 +151,7 @@ t_sint				PRNG_SInt(t_prng* state);
 //!@doc	Get a random integer value, in the range `[min, max[`
 //!@{
 t_sint				PRNG_SInt_Range(t_prng* state, t_sint  min, t_sint  max);
-#define c_prngsi	PRNG_SInt_Range
+#define c_prngxs	PRNG_SInt_Range
 //!@}
 
 //!@doc	Get a random fixed-point value
@@ -162,7 +162,7 @@ t_fixed				PRNG_Fixed(t_prng* state);
 //!@doc	Get a random fixed-point value, in the range `[min, max[`
 //!@{
 t_fixed				PRNG_Fixed_Range(t_prng* state, t_fixed min, t_fixed max);
-#define c_prngqi	PRNG_Fixed_Range
+#define c_prngxq	PRNG_Fixed_Range
 //!@}
 
 //!@doc	Get a random floating-point value
@@ -173,7 +173,7 @@ t_float				PRNG_Float(t_prng* state);
 //!@doc	Get a random floating-point value, in the range `[min, max[`
 //!@{
 t_float				PRNG_Float_Range(t_prng* state, t_float min, t_float max);
-#define c_prngfi	PRNG_Float_Range
+#define c_prngxf	PRNG_Float_Range
 //!@}
 
 
@@ -205,7 +205,7 @@ t_uint				PRNG_UInt_Get(void);
 //!@doc	Get a random unsigned integer, within the range `[min, max[`, statelessly.
 //!@{
 t_uint				PRNG_UInt_Get_Range(t_uint  min, t_uint  max);
-#define c_prnggetui	PRNG_UInt_Get_Range
+#define c_prnggetxu	PRNG_UInt_Get_Range
 //!@}
 
 //!@doc	Get a random integer value, statelessly.
@@ -216,7 +216,7 @@ t_sint				PRNG_SInt_Get(void);
 //!@doc	Get a random integer value, within the range `[min, max[`, statelessly.
 //!@{
 t_sint				PRNG_SInt_Get_Range	(t_sint  min, t_sint  max);
-#define c_prnggetsi	PRNG_SInt_Get_Range
+#define c_prnggetxs	PRNG_SInt_Get_Range
 //!@}
 
 //!@doc	Get a random fixed-point value, statelessly.
@@ -227,7 +227,7 @@ t_fixed				PRNG_Fixed_Get(void);
 //!@doc	Get a random fixed-point value, within the range `[min, max[`, statelessly.
 //!@{
 t_fixed				PRNG_Fixed_Get_Range(t_fixed min, t_fixed max);
-#define c_prnggetqi	PRNG_Fixed_Get_Range
+#define c_prnggetxq	PRNG_Fixed_Get_Range
 //!@}
 
 //!@doc	Get a random floating-point value, statelessly.
@@ -238,7 +238,7 @@ t_float				PRNG_Float_Get(void);
 //!@doc	Get a random floating-point value, within the range `[min, max[`, statelessly.
 //!@{
 t_float				PRNG_Float_Get_Range(t_float min, t_float max);
-#define c_prnggetfi	PRNG_Float_Get_Range
+#define c_prnggetxf	PRNG_Float_Get_Range
 //!@}
 
 

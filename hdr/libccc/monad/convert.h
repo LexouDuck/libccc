@@ -89,7 +89,7 @@ HEADER_CPP
 */
 //!@{
 s_array(T)*				List_ToArray(s_list(T) const* list);
-#define c_lst_to_array	List_ToArray
+#define c_lsttoarr		List_ToArray
 //!@}
 
 //!@doc Converts the given `list` to a NULL-terminated pointer array
@@ -105,7 +105,7 @@ s_array(T)*				List_ToArray(s_list(T) const* list);
 //!@{
 _MALLOC()
 void**					List_ToPointerArray(s_list(T) const* list);
-#define c_lst_to_ptrarr	List_ToPointerArray
+#define c_lsttoptrarr	List_ToPointerArray
 //!@}
 
 

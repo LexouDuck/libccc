@@ -843,7 +843,7 @@ t_char*						String_Replace_Char(t_char const* str, t_char const char_old, t_cha
 //!@{
 _MALLOC()
 t_char*						String_Replace_Charset(t_char const* str, t_char const* charset_old, t_char const* charset_new);
-#define c_strrep_charset	String_Replace_Charset
+#define c_strrep_cset		String_Replace_Charset
 //!@}
 
 //!@doc Replaces every occurence inside `str` of the given string `str_old` with `str_new`
@@ -993,7 +993,7 @@ void								String_Replace_Char_InPlace(t_char* str, t_char const char_old, t_ch
 */
 //!@{
 void								String_Replace_Charset_InPlace(t_char* str, t_char const* charset_old, t_char const* charset_new);
-#define c_strrep_charset_inplace	String_Replace_Charset_InPlace
+#define c_strrep_cset_inplace		String_Replace_Charset_InPlace
 //!@}
 
 //!@doc Replaces every occurence in `str` of `str_old` with `str_new`
@@ -1057,7 +1057,7 @@ t_char*					String_Trim(t_char const* str, t_char const* charset);
 //!@{
 _MALLOC()
 t_char*					String_Trim_L(t_char const* str, t_char const* charset);
-#define c_strtrim_l		String_Trim_L
+#define c_strtriml		String_Trim_L
 //!@}
 
 //!@doc Trims any char from `charset` from the right side of the given string `str`
@@ -1071,7 +1071,7 @@ t_char*					String_Trim_L(t_char const* str, t_char const* charset);
 //!@{
 _MALLOC()
 t_char*					String_Trim_R(t_char const* str, t_char const* charset);
-#define c_strtrim_r		String_Trim_R
+#define c_strtrimr		String_Trim_R
 //!@}
 
 
@@ -1103,7 +1103,7 @@ t_char*					String_Pad(t_char const* str, t_char c, t_size length);
 //!@{
 _MALLOC()
 t_char*					String_Pad_L(t_char const* str, t_char c, t_size length);
-#define c_strpad_l		String_Pad_L
+#define c_strpadl		String_Pad_L
 //!@}
 
 //!@doc Pads the given `str` to be `length` chars long, adding `c` chars on the right side, if needed
@@ -1118,7 +1118,7 @@ t_char*					String_Pad_L(t_char const* str, t_char c, t_size length);
 //!@{
 _MALLOC()
 t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
-#define c_strpad_r		String_Pad_R
+#define c_strpadr		String_Pad_R
 //!@}
 
 

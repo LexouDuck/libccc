@@ -100,7 +100,7 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 //!@doc TODO document this macro alias
 //!@{
 #define				Random_UInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_UInt_Range)
-#define c_randui	Random_UInt_Range
+#define c_randxu	Random_UInt_Range
 //!@}
 
 
@@ -114,7 +114,7 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 //!@doc TODO document this macro alias
 //!@{
 #define				Random_SInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_SInt_Range)
-#define c_randsi	Random_SInt_Range
+#define c_randxs	Random_SInt_Range
 //!@}
 
 
@@ -128,7 +128,7 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 //!@doc TODO document this macro alias
 //!@{
 #define				Random_Fixed_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed_Range)
-#define c_randqi	Random_Fixed_Range
+#define c_randxq	Random_Fixed_Range
 //!@}
 
 
@@ -142,7 +142,7 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 //!@doc TODO document this macro alias
 //!@{
 #define				Random_Float_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Float_Range)
-#define c_randfi	Random_Float_Range
+#define c_randxf	Random_Float_Range
 //!@}
 
 

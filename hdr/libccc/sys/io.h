@@ -178,7 +178,7 @@ TYPEDEF_ALIAS(			t_io_open, IO_OPEN, PRIMITIVE)
 */
 //!@{
 t_u8						IO_GetColor(t_argb32 color);
-#define c_io_getcolor		IO_GetColor
+#define c_iocolor			IO_GetColor
 #define IO_GetANSIColor		IO_GetColor
 //!@}
 
@@ -430,7 +430,7 @@ t_size					IO_Write_Char(t_fd fd, t_char c);
 */
 //!@{
 t_size					IO_Write_String(t_fd fd, t_char const* str);
-#define c_write_string	IO_Write_String
+#define c_write_str		IO_Write_String
 //!@}
 
 //!@doc Writes the given data buffer `data` of size `n` to the given file descriptor `fd`
@@ -466,7 +466,7 @@ t_size					IO_Write_Lines(t_fd fd, t_char const** strarr);
 */
 //!@{
 t_size					IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
-#define c_write_memory	IO_Write_Memory
+#define c_write_mem		IO_Write_Memory
 //!@}
 
 //!@doc Writes the given formatted string to the standard output - equivalent to `dprintf()`
@@ -476,7 +476,7 @@ t_size					IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 cols);
 //!@{
 _FORMAT(printf, 2, 3)
 t_size					IO_Write_Format(t_fd fd, t_char const* format, ...);
-#define c_write_format	IO_Write_Format
+#define c_write_fmt		IO_Write_Format
 #define c_dprintf		IO_Write_Format
 //!@}
 
@@ -504,7 +504,7 @@ t_size					IO_Output_Char(t_char c);
 */
 //!@{
 t_size					IO_Output_String(t_char const* str);
-#define c_output_string	IO_Output_String
+#define c_output_str	IO_Output_String
 #define c_putstr		IO_Output_String
 //!@}
 
@@ -534,7 +534,7 @@ t_size					IO_Output_Lines(t_char const** strarr);
 */
 //!@{
 t_size					IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
-#define c_output_memory	IO_Output_Memory
+#define c_output_mem	IO_Output_Memory
 #define c_putmem		IO_Output_Memory
 //!@}
 
@@ -545,7 +545,7 @@ t_size					IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols);
 //!@{
 _FORMAT(printf, 1, 2)
 t_size					IO_Output_Format(t_char const* format, ...);
-#define c_output_format	IO_Output_Format
+#define c_output_fmt	IO_Output_Format
 #define c_printf		IO_Output_Format
 //!@}
 

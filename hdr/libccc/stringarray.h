@@ -73,7 +73,7 @@ t_char**					String_Split_Char(t_char const* str, t_char sep);
 //!@{
 _MALLOC()
 t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
-#define c_strsplit_charset	String_Split_Charset
+#define c_strsplit_cset		String_Split_Charset
 //!@}
 
 //!@doc Splits up the given string `str` into several parts in a string array, using `query` as separator
@@ -627,7 +627,7 @@ t_uint							StringArray_Count_Char(t_char const** strarr, t_char const c);
 */
 //!@{
 t_uint							StringArray_Count_Charset(t_char const** strarr, t_char const* cset);
-#define c_strarrcount_charset	StringArray_Count_Charset
+#define c_strarrcount_cset		StringArray_Count_Charset
 //!@}
 
 //!	Counts the amount of occurences of the string `query` in the given string array `strarr`.

@@ -224,14 +224,14 @@ s_kvt*	KVT_CreateArray(void);
 s_kvt*	KVT_CreateObject(void);
 s_kvt*	KVT_CreateRaw(t_char const* raw);
 
-#define c_kvt_null		KVT_CreateNull
-#define c_kvt_bool		KVT_CreateBoolean
-#define c_kvt_int		KVT_CreateInteger
-#define c_kvt_float		KVT_CreateFloat
-#define c_kvt_string	KVT_CreateString
-#define c_kvt_array		KVT_CreateArray
-#define c_kvt_object	KVT_CreateObject
-#define c_kvt_raw		KVT_CreateRaw
+#define c_kvtnew_null   KVT_CreateNull
+#define c_kvtnew_bool   KVT_CreateBoolean
+#define c_kvtnew_int    KVT_CreateInteger
+#define c_kvtnew_float  KVT_CreateFloat
+#define c_kvtnew_string KVT_CreateString
+#define c_kvtnew_array  KVT_CreateArray
+#define c_kvtnew_object KVT_CreateObject
+#define c_kvtnew_raw    KVT_CreateRaw
 //!@}
 
 
@@ -239,19 +239,19 @@ s_kvt*	KVT_CreateRaw(t_char const* raw);
 //!@doc Create a string where `value_string` references a string, so it will not be freed by KVT_Delete()
 //!@{
 s_kvt*					KVT_CreateStringReference(t_char const* string);
-#define c_kvt_stringref	KVT_CreateStringReference
+#define c_kvtref_string	KVT_CreateStringReference
 //!@}
 
 //!@doc Create an array that only references it's elements, so they will not be freed by KVT_Delete()
 //!@{
 s_kvt*					KVT_CreateArrayReference(s_kvt const* child);
-#define c_kvt_arrayref	KVT_CreateArrayReference
+#define c_kvtref_array	KVT_CreateArrayReference
 //!@}
 
 //!@doc Create an object that only references it's elements, so they will not be freed by KVT_Delete()
 //!@{
 s_kvt*					KVT_CreateObjectReference(s_kvt const* child);
-#define c_kvt_objectref	KVT_CreateObjectReference
+#define c_kvtref_object	KVT_CreateObjectReference
 //!@}
 
 

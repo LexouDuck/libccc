@@ -130,19 +130,19 @@ TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
 //!@{
 //! Gets the alpha channel value for the given 16-bit `color`
 t_u8							Color_ARGB16_Get_A(t_argb16 color);
-#define c_argb16get_a			Color_ARGB16_Get_A
+#define c_argb16geta			Color_ARGB16_Get_A
 #define Color_ARGB16_Get_Alpha	Color_ARGB16_Get_A
 //! Gets the red channel value for the given 16-bit `color`
 t_u8							Color_ARGB16_Get_R(t_argb16 color);
-#define c_argb16get_r			Color_ARGB16_Get_R
+#define c_argb16getr			Color_ARGB16_Get_R
 #define Color_ARGB16_Get_Red	Color_ARGB16_Get_R
 //! Gets the green channel value for the given 16-bit `color`
 t_u8							Color_ARGB16_Get_G(t_argb16 color);
-#define c_argb16get_g			Color_ARGB16_Get_G
+#define c_argb16getg			Color_ARGB16_Get_G
 #define Color_ARGB16_Get_Green	Color_ARGB16_Get_G
 //! Gets the blue channel value for the given 16-bit `color`
 t_u8							Color_ARGB16_Get_B(t_argb16 color);
-#define c_argb16get_b			Color_ARGB16_Get_B
+#define c_argb16getb			Color_ARGB16_Get_B
 #define Color_ARGB16_Get_Blue	Color_ARGB16_Get_B
 //!@}
 
@@ -169,19 +169,19 @@ t_argb16					Color_ARGB16_Set(t_bool a, t_u8 r, t_u8 g, t_u8 b);
 //!@{
 //! Returns the given 16-bit `color`, with the `a` alpha channel value changed
 t_argb16						Color_ARGB16_Set_A(t_argb16 color, t_bool a);
-#define c_argb16set_a			Color_ARGB16_Set_A
+#define c_argb16seta			Color_ARGB16_Set_A
 #define Color_ARGB16_Set_Alpha	Color_ARGB16_Set_A
 //! Returns the given 16-bit `color`, with the `r` red channel value changed
 t_argb16						Color_ARGB16_Set_R(t_argb16 color, t_u8 r);
-#define c_argb16set_r			Color_ARGB16_Set_R
+#define c_argb16setr			Color_ARGB16_Set_R
 #define Color_ARGB16_Set_Red	Color_ARGB16_Set_R
 //! Returns the given 16-bit `color`, with the `g` green channel value changed
 t_argb16						Color_ARGB16_Set_G(t_argb16 color, t_u8 g);
-#define c_argb16set_g			Color_ARGB16_Set_G
+#define c_argb16setg			Color_ARGB16_Set_G
 #define Color_ARGB16_Set_Green	Color_ARGB16_Set_G
 //! Returns the given 16-bit `color`, with the `b` blue channel value changed
 t_argb16						Color_ARGB16_Set_B(t_argb16 color, t_u8 b);
-#define c_argb16set_b			Color_ARGB16_Set_B
+#define c_argb16setb			Color_ARGB16_Set_B
 #define Color_ARGB16_Set_Blue	Color_ARGB16_Set_B
 //!@}
 
@@ -252,19 +252,19 @@ t_argb16 const*				Color_ARGB16_GetNearest(t_argb16 target, t_argb16 const* colo
 //!@{
 //! Gets the alpha channel value for the given 32-bit `color`
 t_u8							Color_ARGB32_Get_A(t_argb32 color);
-#define c_argb32get_a			Color_ARGB32_Get_A
+#define c_argb32geta			Color_ARGB32_Get_A
 #define Color_ARGB32_Get_Alpha	Color_ARGB32_Get_A
 //! Gets the red channel value for the given 32-bit `color`
 t_u8							Color_ARGB32_Get_R(t_argb32 color);
-#define c_argb32get_r			Color_ARGB32_Get_R
+#define c_argb32getr			Color_ARGB32_Get_R
 #define Color_ARGB32_Get_Red	Color_ARGB32_Get_R
 //! Gets the green channel value for the given 32-bit `color`
 t_u8							Color_ARGB32_Get_G(t_argb32 color);
-#define c_argb32get_g			Color_ARGB32_Get_G
+#define c_argb32getg			Color_ARGB32_Get_G
 #define Color_ARGB32_Get_Green	Color_ARGB32_Get_G
 //! Gets the blue channel value for the given 32-bit `color`
 t_u8							Color_ARGB32_Get_B(t_argb32 color);
-#define c_argb32get_b			Color_ARGB32_Get_B
+#define c_argb32getb			Color_ARGB32_Get_B
 #define Color_ARGB32_Get_Blue	Color_ARGB32_Get_B
 //!@}
 
@@ -291,19 +291,19 @@ t_argb32					Color_ARGB32_Set(t_u8 a, t_u8 r, t_u8 g, t_u8 b);
 //!@{
 //! Returns the given 32-bit `color`, with the `a` alpha channel value changed
 t_argb32						Color_ARGB32_Set_A(t_argb32 color, t_u8 a);
-#define c_argb32set_a			Color_ARGB32_Set_A
+#define c_argb32seta			Color_ARGB32_Set_A
 #define Color_ARGB32_Set_Alpha	Color_ARGB32_Set_A
 //! Returns the given 32-bit `color`, with the `r` red channel value changed
 t_argb32						Color_ARGB32_Set_R(t_argb32 color, t_u8 r);
-#define c_argb32set_r			Color_ARGB32_Set_R
+#define c_argb32setr			Color_ARGB32_Set_R
 #define Color_ARGB32_Set_Red	Color_ARGB32_Set_R
 //! Returns the given 32-bit `color`, with the `g` green channel value changed
 t_argb32						Color_ARGB32_Set_G(t_argb32 color, t_u8 g);
-#define c_argb32set_g			Color_ARGB32_Set_G
+#define c_argb32setg			Color_ARGB32_Set_G
 #define Color_ARGB32_Set_Green	Color_ARGB32_Set_G
 //! Returns the given 32-bit `color`, with the `b` blue channel value changed
 t_argb32						Color_ARGB32_Set_B(t_argb32 color, t_u8 b);
-#define c_argb32set_b			Color_ARGB32_Set_B
+#define c_argb32setb			Color_ARGB32_Set_B
 #define Color_ARGB32_Set_Blue	Color_ARGB32_Set_B
 //!@}
 
@@ -391,19 +391,19 @@ s_argb							Color_ARGB_Set(t_float a, t_float r, t_float g, t_float b);
 //!@{
 //! Sets the given `a` alpha channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_ARGB_Set_A(s_argb* color, t_float a);
-#define c_argbset_a				Color_ARGB_Set_A
+#define c_argbseta				Color_ARGB_Set_A
 #define Color_ARGB_Set_Alpha	Color_ARGB_Set_A
 //! Sets the given `r` red channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_ARGB_Set_R(s_argb* color, t_float r);
-#define c_argbset_r				Color_ARGB_Set_R
+#define c_argbsetr				Color_ARGB_Set_R
 #define Color_ARGB_Set_Red		Color_ARGB_Set_R
 //! Sets the given `g` green channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_ARGB_Set_G(s_argb* color, t_float g);
-#define c_argbset_g				Color_ARGB_Set_G
+#define c_argbsetg				Color_ARGB_Set_G
 #define Color_ARGB_Set_Green	Color_ARGB_Set_G
 //! Sets the given `b` blue channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_ARGB_Set_B(s_argb* color, t_float b);
-#define c_argbset_b				Color_ARGB_Set_B
+#define c_argbsetb				Color_ARGB_Set_B
 #define Color_ARGB_Set_Blue		Color_ARGB_Set_B
 //!@}
 
@@ -489,19 +489,19 @@ s_ahsl							Color_AHSL_Set(t_float a, t_float hue, t_float sat, t_float lum);
 //!@{
 //! Sets the given `a` channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_AHSL_Set_A(s_ahsl* color, t_float a);
-#define c_ahslset_a				Color_AHSL_Set_A
+#define c_ahslseta				Color_AHSL_Set_A
 #define Color_AHSL_Set_Alpha	Color_AHSL_Set_A
 //! Sets the given `r` channel value in the given struct `color` (constraining it between 0 and #TAU, ie: `PI * 2`)
 void							Color_AHSL_Set_H(s_ahsl* color, t_float hue);
-#define c_ahslset_h				Color_AHSL_Set_H
+#define c_ahslseth				Color_AHSL_Set_H
 #define Color_AHSL_Set_Hue		Color_AHSL_Set_H
 //! Sets the given `g` channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_AHSL_Set_S(s_ahsl* color, t_float sat);
-#define c_ahslset_s				Color_AHSL_Set_S
+#define c_ahslsets				Color_AHSL_Set_S
 #define Color_AHSL_Set_Sat		Color_AHSL_Set_S
 //! Sets the given `b` channel value in the given struct `color` (constraining it between 0 and 1)
 void							Color_AHSL_Set_L(s_ahsl* color, t_float lum);
-#define c_ahslset_l				Color_AHSL_Set_L
+#define c_ahslsetl				Color_AHSL_Set_L
 #define Color_AHSL_Set_Lum		Color_AHSL_Set_L
 //!@}
 
