@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_ENCODE_COMMON_H
 #define __LIBCCC_ENCODE_COMMON_H
-/*!@group{libccc_encode_common}
+/*!@group{libccc_encode_common,40,libccc/encode/common.h}
 **
 **	This header defines a dynamic runtime "object" type, which is called "KVT",
 **	as in "Key Value Tree" - it stores key/value pairs in a tree-like structure.
@@ -87,8 +87,8 @@ typedef struct kvt
 		t_f64		number;		//!< #DYNAMICTYPE_FLOAT
 		t_utf8*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
 		struct kvt*	child;		//!< #DYNAMICTYPE_ARRAY or #DYNAMICTYPE_OBJECT
-	}			value;	//!< The item's stored value (can be of any type)
-}		s_kvt;
+	}	value;	//!< The item's stored value (can be of any type)
+}	s_kvt;
 
 
 
@@ -421,13 +421,13 @@ e_cccerror				KVT_SetValue_String	(s_kvt* object, t_char* value);
 //!@doc Appends the given `item` to the given `array`.
 //!@{
 e_cccerror				KVT_AddToArray_Item(s_kvt* array, s_kvt* item);
-#define c_kvtaddvref	KVT_
+#define c_kvtaddv		KVT_AddToArray_Item
 //!@}
 
 //!@doc Append a reference to `item` to the given `array`.
 //!@{
 e_cccerror				KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
-#define c_kvtaddvref	KVT_
+#define c_kvtaddvref	KVT_AddToArray_ItemReference
 //!@}
 
 
@@ -435,13 +435,13 @@ e_cccerror				KVT_AddToArray_ItemReference(s_kvt* array, s_kvt* item);
 //!@doc Appends the given `item` to the given `object`, with the given `key`.
 //!@{
 e_cccerror				KVT_AddToObject_Item(s_kvt* object, t_char const* key, s_kvt* item);
-#define c_kvtaddkv		KVT_
+#define c_kvtaddkv		KVT_AddToObject_Item
 //!@}
 
 //!@doc Append reference to item to the given object.
 //!@{
 e_cccerror				KVT_AddToObject_ItemReference(s_kvt* object, t_char const* key, s_kvt* item);
-#define c_kvtaddkvref	KVT_
+#define c_kvtaddkvref	KVT_AddToObject_ItemReference
 //!@}
 
 

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_CONFIG_H
 #define __LIBCCC_CONFIG_H
-/*!@group{libccc_config}
+/*!@group{libccc_config,3,libccc_config.h}
 **
 **	This header defines all the configuration macros which alter how libccc works.
 */

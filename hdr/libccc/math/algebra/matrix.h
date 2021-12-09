@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_ALGEBRA_MATRIX_H
 #define __LIBCCC_MATH_ALGEBRA_MATRIX_H
-/*!@group{libccc_math_algebra_matrix}
+/*!@group{libccc_math_algebra_matrix,62,libccc/math/algebra/matrix.h}
 **
 **	This header defines matrix type and functions, in several dimensions (2d/3d/4d)
 */

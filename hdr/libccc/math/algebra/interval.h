@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_ALGEBRA_INTERVAL_H
 #define __LIBCCC_MATH_ALGEBRA_INTERVAL_H
-/*!@group{libccc_math_algebra_interval}
+/*!@group{libccc_math_algebra_interval,65,libccc/math/algebra/interval.h}
 **
 **	This header defines useful algebra and calculus types, and functions.
 */

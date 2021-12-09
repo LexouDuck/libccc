@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_RANDOM_PRNG_H
 #define __LIBCCC_RANDOM_PRNG_H
-/*!@group{libccc_random_prng}
+/*!@group{libccc_random_prng,27,libccc/random/prng.h}
 **
 **	This header defines some simple pseudo-random number generator functions.
 */

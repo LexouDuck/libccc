@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_DEFINE_H
 #define __LIBCCC_DEFINE_H
-/*!@group{libccc_define}
+/*!@group{libccc_define,2,libccc_define.h}
 **
 **	This header defines all the common macros used to extend the C language.
 **

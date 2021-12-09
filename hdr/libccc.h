@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_H
 #define __LIBCCC_H
-/*!@group{libccc}
+/*!@group{libccc,1,libccc.h}
 **
 **	This file is simply meant to include all of the basic primitive types.
 **	
@@ -43,7 +43,9 @@
 
 HEADER_CPP
 
-/*! @subgroup
+#ifndef __DOXYGEN__
+
+/*!
 **	Here we include all the primitive type headers, but we preemptively define some
 **	important header macros beforehand, so as to have the header define only the types,
 **	and not any of their functions. As such, `libccc.h` only includes important builtins.
@@ -98,6 +100,8 @@ HEADER_CPP
 //#include "libccc/error.h"
 //#include "libccc/memory.h"
 //#include "libccc/string.h"
+
+#endif
 
 /*! @endgroup */
 HEADER_END

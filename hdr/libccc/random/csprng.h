@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_RANDOM_CSPRNG_H
 #define __LIBCCC_RANDOM_CSPRNG_H
-/*!@group{libccc_random_csprng}
+/*!@group{libccc_random_csprng,28,libccc/random/csprng.h}
 **
 **	This header defines cryptographically-secure pseudo-random number generator functions.
 **

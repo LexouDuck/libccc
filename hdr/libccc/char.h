@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_CHAR_H
 #define __LIBCCC_CHAR_H
-/*!@group{libccc_char, libccc/char.h}
+/*!@group{libccc_char,10,libccc/char.h}
 **
 **	This header defines all the functions/sets related to single ASCII chars.
 **

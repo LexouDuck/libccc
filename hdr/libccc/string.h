@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
-/*!@group{libccc_string}
+/*!@group{libccc_string,18,libccc/string.h}
 **
 **	This header defines the common standard text string manipulation functions.
 **

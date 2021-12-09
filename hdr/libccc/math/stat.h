@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_STAT_H
 #define __LIBCCC_MATH_STAT_H
-/*!@group{libccc_math_stat}
+/*!@group{libccc_math_stat,57,libccc/math/stat.h}
 **
 **	This header defines some common statistics functions, for lists of int/float
 **

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_HASHMAP_H
 #define __LIBCCC_MONAD_HASHMAP_H
-/*!@group{libccc_monad_hashmap}
+/*!@group{libccc_monad_hashmap,32,libccc/monad/hashmap.h}
 **
 **	This header defines a generic hashmap type and utility functions for it.
 */

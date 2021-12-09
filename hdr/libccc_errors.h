@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_ERRORS_H
 #define __LIBCCC_ERRORS_H
-/*!@group{libccc_errors}
+/*!@group{libccc_errors,4,libccc_errors.h}
 **
 **	This header defines all the primitive types and common macros to use.
 */

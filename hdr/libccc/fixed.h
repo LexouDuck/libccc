@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_FIXED_H
 #define __LIBCCC_FIXED_H
-/*!@group{libccc_fixed}
+/*!@group{libccc_fixed,13,libccc/fixed.h}
 **
 **	This header defines the fixed-point number primitive types and functions.
 **

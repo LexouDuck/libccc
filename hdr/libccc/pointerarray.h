@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_POINTERARRAY_H
 #define __LIBCCC_POINTERARRAY_H
-/*!@group{libccc_pointerarray}
+/*!@group{libccc_pointerarray,17,libccc/pointerarray.h}
 **
 **	This header defines the common standard memory manipulation functions.
 */
@@ -739,7 +739,6 @@ void*					PointerArray_Fold(void* const* ptrarr, void* (*f)(void const* ptr, voi
 //!@doc Like Array_Reduce(), but the user-supplied function receives the current index
 //!@{
 void*					PointerArray_Fold_I(void* const* ptrarr, void* (*f)(void const* ptr, void* acc, t_uint index), void* initial);
-#define c_ptrarrifold	PointerArray_Fold_I
 #define c_ptrarrifold	PointerArray_Fold_I
 //!@}
 

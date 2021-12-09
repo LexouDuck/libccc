@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_DICT_H
 #define __LIBCCC_MONAD_DICT_H
-/*!@group{libccc_monad_dict}
+/*!@group{libccc_monad_dict,33,libccc/monad/dict.h}
 **
 **	This header defines a generic dictionary type and utility functions for it.
 */

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_COLOR_H
 #define __LIBCCC_COLOR_H
-/*!@group{libccc_color, libccc/color.h}
+/*!@group{libccc_color,20,libccc/color.h}
 **
 **	This header defines all the functions/bitmasks for encoding colors in ints.
 */

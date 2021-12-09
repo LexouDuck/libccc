@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_FLOAT_H
 #define __LIBCCC_FLOAT_H
-/*!@group{libccc_float}
+/*!@group{libccc_float,14,libccc/float.h}
 **
 **	This header defines the floating-point number primitive types and functions.
 **

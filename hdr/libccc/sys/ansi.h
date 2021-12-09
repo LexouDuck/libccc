@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_SYS_ANSI_H
 #define __LIBCCC_SYS_ANSI_H
-/*!@group{libccc_sys_ansi}
+/*!@group{libccc_sys_ansi,21,libccc/sys/ansi.h}
 **
 **	This header defines some useful ANSI text macros.
 **

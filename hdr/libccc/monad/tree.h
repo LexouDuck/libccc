@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_TREE_H
 #define __LIBCCC_MONAD_TREE_H
-/*!@group{libccc_monad_tree}
+/*!@group{libccc_monad_tree,34,libccc/monad/tree.h}
 **
 **	This header defines a simple tree/node/leaf type and utility functions for it.
 */

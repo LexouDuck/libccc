@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_H
 #define __LIBCCC_MATH_H
-/*!@group{libccc_math}
+/*!@group{libccc_math,50,libccc/math.h}
 **
 **	This header defines the common standard math functions and macro defines.
 **

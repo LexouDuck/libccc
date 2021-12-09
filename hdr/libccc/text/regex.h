@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_TEXT_REGEX_H
 #define __LIBCCC_TEXT_REGEX_H
-/*!@group{libccc_text_regex}
+/*!@group{libccc_text_regex,20,libccc/text/regex.h}
 **
 **	This header defines functions for regular expression matching/replacing.
 **

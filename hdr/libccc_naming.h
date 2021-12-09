@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_NAMING_H
 #define __LIBCCC_NAMING_H
-/*!@group{libccc_naming}
+/*!@group{libccc_naming,5,libccc_naming.h}
 **
 **	This header defines alternate versions of all the type names of libccc.
 **	This allows any user to have type names use the nomenclature style of their

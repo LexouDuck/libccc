@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MEMORY_H
 #define __LIBCCC_MEMORY_H
-/*!@group{libccc_memory}
+/*!@group{libccc_memory,15,libccc/memory.h}
 **
 **	This header defines the common standard memory manipulation functions.
 **

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_INT_H
 #define __LIBCCC_MATH_INT_H
-/*!@group{libccc_math_int}
+/*!@group{libccc_math_int,51,libccc/math/int.h}
 **
 **	This header defines the common standard math functions for integer numbers.
 **

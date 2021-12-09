@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_ENCODE_TOML_H
 #define __LIBCCC_ENCODE_TOML_H
-/*!@group{libccc_encode_toml}
+/*!@group{libccc_encode_toml,42,libccc/encode/toml.h}
 **
 **	This header defines a simple API to manipulate TOML and/or INI files.
 **	- TOML spec: https://toml.io/en/v1.0.0#spec

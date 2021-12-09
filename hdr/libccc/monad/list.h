@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_LIST_H
 #define __LIBCCC_MONAD_LIST_H
-/*!@group{libccc_monad_list}
+/*!@group{libccc_monad_list,31,libccc/monad/list.h}
 **
 **	This header defines a generic linked list type and utility functions for it.
 */

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_FIXED_H
 #define __LIBCCC_MATH_FIXED_H
-/*!@group{libccc_math_fixed}
+/*!@group{libccc_math_fixed,52,libccc/math/fixed.h}
 **
 **	This header defines the common standard math functions for fixed-point numbers.
 **

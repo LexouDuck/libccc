@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_TEXT_UNICODE_H
 #define __LIBCCC_TEXT_UNICODE_H
-/*!@group{libccc_text_unicode}
+/*!@group{libccc_text_unicode,7,libccc/text/unicode.h}
 **
 **	This header defines all the functions related to Unicode text encodings.
 **

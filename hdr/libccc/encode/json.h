@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_ENCODE_JSON_H
 #define __LIBCCC_ENCODE_JSON_H
-/*!@group{libccc_encode_json}
+/*!@group{libccc_encode_json,41,libccc/encode/json.h}
 **
 **	This header defines a dynamic runtime object type, similar to objects in JS.
 **	- JSON spec: https://www.json.org/json-en.html

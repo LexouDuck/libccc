@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_FORMAT_H
 #define __LIBCCC_FORMAT_H
-/*!@group{libccc_format}
+/*!@group{libccc_format,10,libccc/format.h}
 **
 **	This header defines printf-style functions, and their format specifiers.
 **

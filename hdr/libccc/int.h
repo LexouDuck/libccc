@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_INT_H
 #define __LIBCCC_INT_H
-/*!@group{libccc_int, libccc/int.h}
+/*!@group{libccc_int,12,libccc/int.h}
 **
 **	This header defines the integer number primitive types and functions.
 **

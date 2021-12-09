@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_SORT_H
 #define __LIBCCC_MATH_SORT_H
-/*!@group{libccc_math_sort}
+/*!@group{libccc_math_sort,58,libccc/math/sort.h}
 **
 **	This header defines functions for sorting arrays/lists of any type.
 **	There are several different kinds of sorting algorithms provided.

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_FLOAT_H
 #define __LIBCCC_MATH_FLOAT_H
-/*!@group{libccc_math_float}
+/*!@group{libccc_math_float,53,libccc/math/float.h}
 **
 **	This header defines the common standard math functions for floating-point numbers.
 **
@@ -153,8 +153,6 @@ t_f80						F80_Trunc(t_f80 x);
 t_f128						F128_Trunc(t_f128 x);
 #define c_f128trunc			F128_Trunc
 #endif
-
-#define Float_Truncate		Float_Trunc
 //!@}
 
 //!@doc Returns the value of `x`, rounded to the superior integer
@@ -204,8 +202,6 @@ t_f80						F80_Ceil(t_f80 x);
 t_f128						F128_Ceil(t_f128 x);
 #define c_f128ceil			F128_Ceil
 #endif
-
-#define Float_Ceiling		Float_Ceil
 //!@}
 
 

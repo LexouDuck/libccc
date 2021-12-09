@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_TEXT_ASCII_H
 #define __LIBCCC_TEXT_ASCII_H
-/*!@group{libccc_text_ascii}
+/*!@group{libccc_text_ascii,6,libccc/text/ascii.h}
 **
 **	This header defines all the functions related to ASCII text (7-bit chars).
 **

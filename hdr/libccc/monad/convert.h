@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_CONVERT_H
 #define __LIBCCC_MONAD_CONVERT_H
-/*!@group{libccc_monad_convert}
+/*!@group{libccc_monad_convert,39,libccc/monad/convert.h}
 **
 **	This header defines conversions functions between the generic monad types.
 */

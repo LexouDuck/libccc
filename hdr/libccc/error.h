@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_ERROR_H
 #define __LIBCCC_ERROR_H
-/*!@group{libccc_error}
+/*!@group{libccc_error,10,libccc/error.h}
 **
 **	This header defines the utility functions for error handling
 */

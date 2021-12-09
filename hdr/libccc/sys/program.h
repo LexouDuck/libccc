@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_SYS_PROGRAM_H
 #define __LIBCCC_SYS_PROGRAM_H
-/*!@group{libccc_sys_program}
+/*!@group{libccc_sys_program,24,libccc/sys/program.h}
 **
 **	This header defines all the functions for OS-level input/output, read/write.
 **

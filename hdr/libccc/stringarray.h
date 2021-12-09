@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_STRINGARRAY_H
 #define __LIBCCC_STRINGARRAY_H
-/*!@group{libccc_stringarray}
+/*!@group{libccc_stringarray,19,libccc/stringarray.h}
 **
 **	This header defines some useful functions for string array (t_char**) handling.
 */

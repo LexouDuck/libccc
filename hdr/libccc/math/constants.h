@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_CONSTANTS_H
 #define __LIBCCC_MATH_CONSTANTS_H
-/*!@group{libccc_math_constants}
+/*!@group{libccc_math_constants,55,libccc/math/constants.h}
 **
 **	This header defines the common standard math constants and macro defines.
 **

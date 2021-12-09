@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_ARRAY_H
 #define __LIBCCC_MONAD_ARRAY_H
-/*!@group{libccc_monad_array}
+/*!@group{libccc_monad_array,30,libccc/monad/array.h}
 **
 **	This header defines a generic array type and utility functions for it.
 */

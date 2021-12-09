@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MONAD_STACK_H
 #define __LIBCCC_MONAD_STACK_H
-/*!@group{libccc_monad_stack}
+/*!@group{libccc_monad_stack,35,libccc/monad/stack.h}
 **
 **	This header defines a simple stack (FIFO) type and utility functions for it.
 */

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_COMPLEX_H
 #define __LIBCCC_MATH_COMPLEX_H
-/*!@group{libccc_math_complex}
+/*!@group{libccc_math_complex,34,libccc/math/complex.h}
 **
 **	This header defines useful algebra and calculus types, and functions.
 **

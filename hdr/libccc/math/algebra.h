@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_ALGEBRA_H
 #define __LIBCCC_MATH_ALGEBRA_H
-/*!@group{libccc_math_algebra}
+/*!@group{libccc_math_algebra,60,libccc/math/algebra.h}
 **
 **	This header defines useful algebra and calculus types, and functions.
 */

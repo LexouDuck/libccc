@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_VLQ_H
 #define __LIBCCC_MATH_VLQ_H
-/*!@group{libccc_math_vlq}
+/*!@group{libccc_math_vlq,56,libccc/math/vlq.h}
 **
 **	This header defines variable-length numeric types, and utility functions for them.
 */

@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_POINTER_H
 #define __LIBCCC_POINTER_H
-/*!@group{libccc_pointer}
+/*!@group{libccc_pointer,16,libccc/pointer.h}
 **
 **	This header defines the standard memory size and pointer integer types.
 **

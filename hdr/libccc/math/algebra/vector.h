@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_MATH_ALGEBRA_VECTOR_H
 #define __LIBCCC_MATH_ALGEBRA_VECTOR_H
-/*!@group{libccc_math_algebra_vector}
+/*!@group{libccc_math_algebra_vector,61,libccc/math/algebra/vector.h}
 **
 **	This header defines vector type and functions, in several dimensions (2d/3d/4d)
 */
