@@ -56,8 +56,6 @@
 **	For another example: $42.75 would be `42.(75/100)`
 **	This notation was chosen because it allows any kind of configuration for a
 **	fixed-point number to be represented in an inter-compatible "lossless" fashion.
-**
-**	@file
 */
 
 /*
@@ -104,7 +102,7 @@ HEADER_CPP
 	#error "Cannot use standard fixed-point library, __NOSTD__ macro is defined"
 #endif
 
-//! Primitive type: 16-bit signed fixed-point rational number (s4.7)
+//!@doc Primitive type: 16-bit signed fixed-point rational number (s4.7)
 /*!
 **	@nonstd
 **
@@ -113,10 +111,12 @@ HEADER_CPP
 **	- 7 bits dedicated to the fractional part
 **	The largest possible value for this type is #Q16_MAX.
 */
+//!@{
 typedef _Sat short _Accum		t_q16;
 TYPEDEF_ALIAS(					t_q16,	FIXED_16,	PRIMITIVE)
+//!@}
 
-//! Primitive type: 32-bit signed fixed-point rational numbers(s4.15)
+//!@doc Primitive type: 32-bit signed fixed-point rational numbers (s4.15)
 /*!
 **	@nonstd
 **
@@ -125,10 +125,12 @@ TYPEDEF_ALIAS(					t_q16,	FIXED_16,	PRIMITIVE)
 **	- 15 bits dedicated to the fractional part
 **	The largest possible value for this type is #Q32_MAX.
 */
+//!@{
 typedef _Sat _Accum				t_q32;
 TYPEDEF_ALIAS(					t_q32,	FIXED_32,	PRIMITIVE)
+//!@}
 
-//! Primitive type: 64-bit signed fixed-point rational numbers(s4.24)
+//!@doc Primitive type: 64-bit signed fixed-point rational numbers (s4.24)
 /*!
 **	@nonstd
 **
@@ -137,8 +139,10 @@ TYPEDEF_ALIAS(					t_q32,	FIXED_32,	PRIMITIVE)
 **	- 24 bits dedicated to the fractional part
 **	The largest possible value for this type is #Q64_MAX.
 */
+//!@{
 typedef	_Sat long _Accum		t_q64;
 TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
+//!@}
 
 #if (LIBCONFIG_FIXED_BITS == 128)
 	#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
@@ -148,7 +152,7 @@ TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 
 #else
 
-//! Primitive type: 16-bit signed fixed-point rational number (configurable bit portions)
+//!@doc Primitive type: 16-bit signed fixed-point rational number (configurable bit portions)
 /*!
 **	@nonstd
 **
@@ -158,10 +162,12 @@ TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 **	All the other `#define`s depend on this one macro.
 **	The largest possible value for this type is #Q16_MAX.
 */
+//!@{
 typedef s16		t_q16;
 TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
+//!@}
 
-//! Primitive type: 32-bit signed fixed-point rational number (configurable bit portions)
+//!@doc Primitive type: 32-bit signed fixed-point rational number (configurable bit portions)
 /*!
 **	@nonstd
 **
@@ -171,10 +177,12 @@ TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 **	All the other `#define`s depend on this one macro.
 **	The largest possible value for this type is #Q32_MAX.
 */
+//!@{
 typedef s32		t_q32;
 TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
+//!@}
 
-//! Primitive type: 64-bit signed fixed-point rational number (configurable bit portions)
+//!@doc Primitive type: 64-bit signed fixed-point rational number (configurable bit portions)
 /*!
 **	@nonstd
 **
@@ -184,11 +192,13 @@ TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 **	All the other `#define`s depend on this one macro.
 **	The largest possible value for this type is #Q64_MAX.
 */
+//!@{
 typedef	s64		t_q64;
 TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
+//!@}
 
 #if LIBCONFIG_USE_INT128
-//! Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
+//!@doc Primitive type: 128-bit signed fixed-point rational number (only certain platforms)
 /*!
 **	@nonstd
 **
@@ -198,8 +208,11 @@ TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 **	All the other `#define`s depend on this one macro.
 **	The largest possible value for this type is #Q128_MAX.
 */
+//!@{
 typedef s128	t_q128;
 TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
+//!@}
+
 #elif (LIBCONFIG_FIXED_BITS == 128)
 	#error "Cannot set default 't_fixed' to 128-bit size, unavailable on this platform"
 #endif
@@ -216,7 +229,7 @@ TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
 #define FIXED_DENOMINATOR	LIBCONFIG_FIXED_DENOMINATOR
 
 
-//! The configurable-size fixed-point number primitive type.
+//!@doc The configurable-size fixed-point number primitive type.
 /*!
 **	@nonstd
 **
@@ -226,8 +239,10 @@ TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
 **	All the other important `#define`s depend on this one macro (FIXED_BITS_FRACTIONPART).
 **	This type can express a number between #FIXED_MIN and #FIXED_MAX.
 */
+//!@{
 typedef	FIXED_T	t_fixed;
 TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
+//!@}
 
 
 
@@ -330,7 +345,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//!@doc A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Fixed(X, FUNCTYPE) \
 	_Generic((X),	\
@@ -357,7 +372,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define Q128(X)		DEFINEFUNC_Fixed(X, Q128)
 //!@}
 
-//! Returns the nearest fixed-point value to the given integer `number`
+//!@doc Returns the nearest fixed-point value to the given integer `number`
 /*!
 **	TODO document this
 */
@@ -379,7 +394,7 @@ t_q128					Q128_FromInt(t_sint number);
 #endif
 //!@}
 
-//! Returns the nearest fixed-point value to the given fixed-point `number`
+//!@doc Returns the nearest fixed-point value to the given fixed-point `number`
 /*!
 **	TODO document this
 */
@@ -401,7 +416,7 @@ t_q128					Q128_FromFixed(t_fixed number);
 #endif
 //!@}
 
-//! Returns the nearest fixed-point value to the given floating-point `number`
+//!@doc Returns the nearest fixed-point value to the given floating-point `number`
 /*!
 **	TODO document this
 */
@@ -425,7 +440,7 @@ t_q128	 				Q128_FromFloat(t_float number);
 
 
 
-//! Get the nearest fixed-point value from the given fraction/rational number
+//!@doc Get the nearest fixed-point value from the given fraction/rational number
 /*!
 **	TODO document
 $$	@param	numerator		the numerator: number at the top of the fraction
@@ -450,7 +465,7 @@ t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 #endif
 //!@}
 
-//! Returns the integer portion of the given fixed-point `number`
+//!@doc Returns the integer portion of the given fixed-point `number`
 /*!
 **	TODO document
 */
@@ -472,7 +487,7 @@ t_s128							Q128_IntegerPart(t_q128 number);
 #endif
 //!@}
 
-//! Returns the fractional portion of the given fixed-point `number`
+//!@doc Returns the fractional portion of the given fixed-point `number`
 /*!
 **	TODO document
 */
@@ -504,7 +519,7 @@ t_s128							Q128_FractionPart(t_q128 number);
 
 
 
-//! Get the string decimal representation of a signed fixed-point number
+//!@doc Get the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -530,7 +545,7 @@ _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 
 
 
-//! Get the string hexadecimal representation of a signed fixed-point number
+//!@doc Get the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -556,7 +571,7 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 
 
 
-//! Get the string octal representation of a signed fixed-point number
+//!@doc Get the string octal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -582,7 +597,7 @@ _MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
 
 
 
-//! Get the string binary representation of a signed fixed-point number
+//!@doc Get the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -608,7 +623,7 @@ _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 
 
 
-//! Get the custom-base representation of a signed fixed-point number
+//!@doc Get the custom-base representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base to use to represent the given `number`
@@ -647,7 +662,7 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 
 
 
-//! Parse a fixed-point number from the given number string `str`
+//!@doc Parse a fixed-point number from the given number string `str`
 /*!
 **	@nonstd
 **
@@ -675,7 +690,7 @@ t_size					Q128_Parse	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parses the string representation of a signed fixed-point number
+//!@doc Parses the string representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -706,7 +721,7 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 
 
 
-//! Parse a fixed-point number from the given decimal number string
+//!@doc Parse a fixed-point number from the given decimal number string
 /*!
 **	@nonstd
 **
@@ -734,7 +749,7 @@ t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parses the string decimal representation of a signed fixed-point number
+//!@doc Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -765,7 +780,7 @@ t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
 
 
 
-//! Parse a fixed-point number from the given hexadecimal (base 16) number string
+//!@doc Parse a fixed-point number from the given hexadecimal (base 16) number string
 /*!
 **	@nonstd
 **
@@ -793,7 +808,7 @@ t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parses the string hexadecimal representation of a signed fixed-point number
+//!@doc Parses the string hexadecimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -824,7 +839,7 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 
 
 
-//! Parse a fixed-point number from the given octal (base 8) number string
+//!@doc Parse a fixed-point number from the given octal (base 8) number string
 /*!
 **	@nonstd
 **
@@ -852,7 +867,7 @@ t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parses the string octal representation of a signed fixed-point number
+//!@doc Parses the string octal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -883,7 +898,7 @@ t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
 
 
 
-//! Parse a fixed-point number from the given binary (base 2) number string
+//!@doc Parse a fixed-point number from the given binary (base 2) number string
 /*!
 **	@nonstd
 **
@@ -911,7 +926,7 @@ t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parses the string binary representation of a signed fixed-point number
+//!@doc Parses the string binary representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@returns
@@ -942,7 +957,7 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 
 
 
-//! Parse a fixed-point number from a custom-base number string
+//!@doc Parse a fixed-point number from a custom-base number string
 /*!
 **	@nonstd
 **
@@ -972,7 +987,7 @@ t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base,
 #endif
 //!@}
 
-//! Parses the string decimal representation of a signed fixed-point number
+//!@doc Parses the string decimal representation of a signed fixed-point number
 /*!
 **	@param	number	The number to convert to string
 **	@param	base	The numerical base used to represent the given `number`

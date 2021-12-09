@@ -38,7 +38,7 @@
 **		`\b([tseufp]_\w+)\b`
 **	Additionnally, libccc provides function aliases which follow the C standard library's
 **	nomenclature style - to avoid clashing with existing names, these are prefixed with `c_`.
-**	For example, the `memset()` function is named `Memory_Set()` in libccc, and has an alias `c_memset()`.
+**	For example, the C `memset()` function is named Memory_Set() in libccc, and has an alias c_memset().
 */
 
 /*

@@ -264,10 +264,10 @@ TAB_SIZE               = 4
 ALIASES                = "nonstd=- <i>This function is not defined in the C ISO standard.</i>^^" \
                       "isostd{2}=- <i>Standard library equivalent: </i>(\1) \2^^" \
                        "alias{1}=[<i>Alias for</i> #\1]" \
-                       "endgroup=@if DOXYREST^^@}^^@endif^^" \
-                       "group{1}=@if DOXYREST^^@addtogroup \1^^@{^^@else^^@file^^@endif^^" \
-                  "grouporder{1}=@if DOXYREST^^@internal :grouporder(\1) @endinternal^^@endif^^" \
-                       "subgroup=@if DOXYREST^^@internal :subgroup: @endinternal^^@else^^@name^^@endif^^" \
+                       "group{1}=^^@if DOXYREST^^@addtogroup \1^^@{^^@else^^@file^^@endif^^" \
+                       "endgroup=^^@if DOXYREST^^@}^^@endif^^" \
+                  "grouporder{1}=^^@if DOXYREST^^@internal :grouporder(\1) @endinternal^^@endif^^" \
+                            "doc=^^@if DOXYREST^^@internal :subgroup: @endinternal^^@else^^@name^^@endif^^" \
 
 # Set the OPTIMIZE_OUTPUT_FOR_C tag to YES if your project consists of C sources
 # only. Doxygen will then generate output that is more tailored for C. For
@@ -2272,7 +2272,7 @@ EXPAND_AS_DEFINED      = STRING \
 # The default value is: YES.
 # This tag requires that the tag ENABLE_PREPROCESSING is set to YES.
 
-SKIP_FUNCTION_MACROS   = NO
+SKIP_FUNCTION_MACROS   = YES
 
 #---------------------------------------------------------------------------
 # Configuration options related to external references

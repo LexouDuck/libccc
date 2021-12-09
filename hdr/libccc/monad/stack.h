@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_stack}
 **
 **	This header defines a simple stack (FIFO) type and utility functions for it.
-**
-**	@file
 */
 
 /*

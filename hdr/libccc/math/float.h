@@ -16,8 +16,6 @@
 **	This header defines the common standard math functions for floating-point numbers.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
-**
-**	@file
 */
 
 /*
@@ -49,7 +47,7 @@ HEADER_CPP
 
 
 
-//! The type of function which takes one real number and outputs one real number
+//!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_float	(*f_float_function)	(t_float x);
 typedef		t_f32	(*f_f32_function)	(t_f32 x);
@@ -62,7 +60,7 @@ typedef		t_f128	(*f_f128_function)	(t_f128 x);
 #endif
 //!@}
 
-//! The type of function which takes two real numbers and outputs one real number
+//!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
 typedef		t_float	(*f_float_operator)	(t_float x, t_float y);
 typedef		t_f32	(*f_f32_operator)	(t_f32 x,	t_f32 y);
@@ -83,7 +81,7 @@ typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value of `x` (makes `x` positive)
+//!@doc Returns the absolute value of `x` (makes `x` positive)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
 */
@@ -108,7 +106,7 @@ t_f128						F128_Abs(t_f128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded to the nearest integer
+//!@doc Returns the value of `x`, rounded to the nearest integer
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/round}
 */
@@ -132,7 +130,7 @@ t_f128						F128_Round(t_f128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded towards 0
+//!@doc Returns the value of `x`, rounded towards 0
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/trunc}
 */
@@ -159,7 +157,7 @@ t_f128						F128_Trunc(t_f128 x);
 #define Float_Truncate		Float_Trunc
 //!@}
 
-//! Returns the value of `x`, rounded to the superior integer
+//!@doc Returns the value of `x`, rounded to the superior integer
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/floor}
 */
@@ -183,7 +181,7 @@ t_f128						F128_Floor(t_f128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded to the inferior integer
+//!@doc Returns the value of `x`, rounded to the inferior integer
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/ceil}
 */
@@ -218,7 +216,7 @@ t_f128						F128_Ceil(t_f128 x);
 ** ************************************************************************** *|
 */
 
-//! Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
+//!@doc Returns `TRUE` if the 2 given floating-point values are exactly equal (operator: `==`)
 /*!
 **	@nonstd
 **
@@ -250,7 +248,7 @@ t_bool					F128_Equals(t_f128 x, t_f128 y);
 
 
 
-//! Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
+//!@doc Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
 **
@@ -296,7 +294,7 @@ t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
 
 
 
-//! Performs an addition with the 2 given floating-point values (operator: `+`)
+//!@doc Performs an addition with the 2 given floating-point values (operator: `+`)
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
 #define c_fadd			Float_Add
@@ -319,7 +317,7 @@ t_f128					F128_Add(t_f128 x, t_f128 y);
 
 
 
-//! Performs a subtraction with the 2 given floating-point values (operator: `-`)
+//!@doc Performs a subtraction with the 2 given floating-point values (operator: `-`)
 //!@{
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
 #define c_fsub			Float_Sub
@@ -343,7 +341,7 @@ t_f128					F128_Sub(t_f128 x, t_f128 y);
 
 
 
-//! Performs a multiplication with the 2 given floating-point values (operator: `*`)
+//!@doc Performs a multiplication with the 2 given floating-point values (operator: `*`)
 //!@{
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
 #define c_fmul			Float_Mul
@@ -367,7 +365,7 @@ t_f128					F128_Mul(t_f128 x, t_f128 y);
 
 
 
-//! Performs a division with the 2 given floating-point values (operator: `/`)
+//!@doc Performs a division with the 2 given floating-point values (operator: `/`)
 //!@{
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
 #define c_fdiv			Float_Div
@@ -399,7 +397,7 @@ t_f128					F128_Div(t_f128 x, t_f128 y);
 
 
 
-//! Returns the remainder of euclidian division of `x` by `y`
+//!@doc Returns the remainder of euclidian division of `x` by `y`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmod}
 */
@@ -426,7 +424,7 @@ t_f128						F128_Mod(t_f128 x, t_f128 y);
 
 
 
-//! Returns the value of `x` to the power of `y` (float)
+//!@doc Returns the value of `x` to the power of `y` (float)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/pow}
 */
@@ -451,7 +449,7 @@ t_f128						F128_Pow(t_f128 x, t_f128 y);
 #endif
 //!@}
 
-//! Returns the value of `x` to the power of `n` (integer)
+//!@doc Returns the value of `x` to the power of `n` (integer)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/pow}
 */
@@ -478,7 +476,7 @@ t_f128						F128_IntPow(t_f128 x, t_sint n);
 
 
 
-//! Returns the square root of `x` (inverse of power of 2)
+//!@doc Returns the square root of `x` (inverse of power of 2)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sqrt}
 */
@@ -504,7 +502,7 @@ t_f128						F128_Root2(t_f128 x);
 #endif
 //!@}
 
-//! Returns the cubic root of `x` (inverse of power of 3)
+//!@doc Returns the cubic root of `x` (inverse of power of 3)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cbrt}
 */
@@ -530,7 +528,7 @@ t_f128						F128_Root3(t_f128 x);
 #endif
 //!@}
 
-//! Returns the n-ic root of `x` (inverse of power of `n`)
+//!@doc Returns the n-ic root of `x` (inverse of power of `n`)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/nrt}
 */
@@ -568,7 +566,7 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 
 
 
-//! Returns the exponential function's value for `x`
+//!@doc Returns the exponential function's value for `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/exp}
 */
@@ -593,7 +591,7 @@ t_f128							F128_Exp(t_f128 x);
 #endif
 //!@}
 
-//! Returns the natural logarithm of `x`
+//!@doc Returns the natural logarithm of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log}
 */
@@ -618,7 +616,7 @@ t_f128							F128_Ln(t_f128 x);
 #endif
 //!@}
 
-//! Returns the binary (base-2) logarithm of `x`
+//!@doc Returns the binary (base-2) logarithm of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log2}
 */
@@ -648,7 +646,7 @@ t_f128							F128_Log2(t_f128 x);
 #endif
 //!@}
 
-//! Returns the decimal (base-10) logarithm of `x`
+//!@doc Returns the decimal (base-10) logarithm of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log10}
 */
@@ -678,7 +676,7 @@ t_f128							F128_Log10(t_f128 x);
 #endif
 //!@}
 
-//! Returns the base-`n` logarithm of `x`
+//!@doc Returns the base-`n` logarithm of `x`
 /*!
 **	@nonstd
 */
@@ -713,7 +711,7 @@ t_f128							F128_LogN(t_f128 x, t_f128 n);
 
 
 
-//! Returns the cosine of `x` (horizontal trigonometry coordinate)
+//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cos}
 */
@@ -738,7 +736,7 @@ t_f128						F128_Cos(t_f128 x);
 #endif
 //!@}
 
-//! Returns the sine of `x` (vertical trigonometry coordinate)
+//!@doc Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sin}
 */
@@ -763,7 +761,7 @@ t_f128						F128_Sin(t_f128 x);
 #endif
 //!@}
 
-//! Returns the tangent of `x` (trigonometry tangent line)
+//!@doc Returns the tangent of `x` (trigonometry tangent line)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/tan}
 */
@@ -790,7 +788,7 @@ t_f128						F128_Tan(t_f128 x);
 
 
 
-//! Returns the arc-cosine of `x` (inverse of the cos function)
+//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acos}
 */
@@ -816,7 +814,7 @@ t_f128							F128_ArcCos(t_f128 x);
 #endif
 //!@}
 
-//! Returns the arc-sine of `x` (inverse of the sin function)
+//!@doc Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/asin}
 */
@@ -842,7 +840,7 @@ t_f128							F128_ArcSin(t_f128 x);
 #endif
 //!@}
 
-//! Returns the arc-tangent of `x` (inverse of the tan function)
+//!@doc Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan}
 */
@@ -870,7 +868,7 @@ t_f128							F128_ArcTan(t_f128 x);
 
 
 
-//! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
+//!@doc Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan2}
 */
@@ -905,7 +903,7 @@ t_f128								F128_ArcTan2(t_f128 y, t_f128 x);
 ** ************************************************************************** *|
 */
 
-//! Returns the hyperbolic cosine of `x`
+//!@doc Returns the hyperbolic cosine of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cosh}
 */
@@ -931,7 +929,7 @@ t_f128								F128_CosH(t_f128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic sine of `x`
+//!@doc Returns the hyperbolic sine of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sinh}
 */
@@ -957,7 +955,7 @@ t_f128								F128_SinH(t_f128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic tangent of `x`
+//!@doc Returns the hyperbolic tangent of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/tanh}
 */
@@ -985,7 +983,7 @@ t_f128								F128_TanH(t_f128 x);
 
 
 
-//! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
+//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acosh}
 */
@@ -1011,7 +1009,7 @@ t_f128								F128_InvCosH(t_f128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
+//!@doc Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/asinh}
 */
@@ -1037,7 +1035,7 @@ t_f128								F128_InvSinH(t_f128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
+//!@doc Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atanh}
 */

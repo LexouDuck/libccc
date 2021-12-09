@@ -14,8 +14,6 @@
 /*!@group{libccc_stringarray}
 **
 **	This header defines some useful functions for string array (t_char**) handling.
-**
-**	@file
 */
 
 /*
@@ -49,7 +47,7 @@ typedef t_char**	p_strarray;
 ** ************************************************************************** *|
 */
 
-//! Splits a string into several new sub-strings, with `sep` as the delimiter char
+//!@doc Splits a string into several new sub-strings, with `sep` as the delimiter char
 /*!
 **	@param	str		The string into split into several parts
 **	@param	sep		The separator character used to determine where to split
@@ -57,11 +55,13 @@ typedef t_char**	p_strarray;
 **	A string array made up of substrings of `str`, where each element
 **	is a section delimited by `c` separators, or the edges of the string.
 */
+//!@{
 _MALLOC()
 t_char**					String_Split_Char(t_char const* str, t_char sep);
 #define c_strsplit_char		String_Split_Char
+//!@}
 
-//! Splits a string into several new sub-strings, with `sep` as the delimiter char
+//!@doc Splits a string into several new sub-strings, with `sep` as the delimiter char
 /*!
 **	@param	str		The string into split into several parts
 **	@param	sep		A charset string, listing all characters to be considered as separators
@@ -70,11 +70,13 @@ t_char**					String_Split_Char(t_char const* str, t_char sep);
 **	is a section delimited by any of the `char_sep` separators, or the edges
 **	of the string.
 */
+//!@{
 _MALLOC()
 t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
 #define c_strsplit_charset	String_Split_Charset
+//!@}
 
-//! Splits up the given string `str` into several parts in a string array, using `query` as separator
+//!@doc Splits up the given string `str` into several parts in a string array, using `query` as separator
 /*!
 **	@param	str		The string into split into several parts
 **	@param	sep		The separator string used to determine where to split
@@ -88,13 +90,15 @@ t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
 **		and call replace twice, without the pattern the second time.
 **		Ex: "enenen" --s/enen/HIen/-> "HIenen" --s/enen/HI/--> "HIHI"
 */
+//!@{
 _MALLOC()
 t_char**					String_Split_String(t_char const* str, t_char const* sep);
 #define c_strsplit_str		String_Split_String
+//!@}
 
 
 
-//! Splits up the given string `str` into a set of substrings which are all `n` characters long
+//!@doc Splits up the given string `str` into a set of substrings which are all `n` characters long
 /*!
 **	@param	str		The string into split into several parts
 **	@param	n		The amount of characters contained in each substring
@@ -102,9 +106,11 @@ t_char**					String_Split_String(t_char const* str, t_char const* sep);
 **	A string array which is the result of dividing str into chunks of
 **	equal size `n`, safe for the last chunk of `length <= n`.
 */
+//!@{
 _MALLOC()
 t_char**				String_Divide(t_char const* str, t_size n);
 #define c_strdivide		String_Divide
+//!@}
 
 
 
@@ -114,16 +120,18 @@ t_char**				String_Divide(t_char const* str, t_size n);
 ** ************************************************************************** *|
 */
 
-//! Gets the amount of strings contained in the given string array `strarr`
+//!@doc Gets the amount of strings contained in the given string array `strarr`
 /*!
 **	@param	strarr	The string array whose length shall be counted
 **	@returns
 **	The amount of strings in the given string array `strarr` (before the first NULL pointer).
 */
+//!@{
 t_uint					StringArray_Length(t_char const** strarr);
 #define c_strarrlen		StringArray_Length
+//!@}
 
-//! Gets the combined length of some or all strings in the given string array `strarr`
+//!@doc Gets the combined length of some or all strings in the given string array `strarr`
 /*!
 **	@param	strarr	The string array whose strings' total length shall be counted
 **	@param	n		The amount of string lengths to sum (if `0`, all string lengths are summed)
@@ -132,8 +140,10 @@ t_uint					StringArray_Length(t_char const** strarr);
 **	If `n == 0`, returns the combined length of all strings in `strarr`.
 **	This total does not include the `\0` null-terminator characters at the end of each string.
 */
+//!@{
 t_size					StringArray_TotalLength(t_char const** strarr, t_uint n);
 #define c_strarrlens	StringArray_TotalLength
+//!@}
 
 
 
@@ -143,17 +153,19 @@ t_size					StringArray_TotalLength(t_char const** strarr, t_uint n);
 ** ************************************************************************** *|
 */
 
-//! Allocates a new string array with `n` elements, all set to NULL
+//!@doc Allocates a new string array with `n` elements, all set to NULL
 /*!
 **	@param	n		The amount of strings that can be stored in this string array
 **	@returns
 **	A null-terminated list of unset `t_char*`, of length `length`.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_New(t_uint n);
 #define c_strarrnew		StringArray_New
+//!@}
 
-//! Allocates a new string array with `n` strings, each filled with `length` characters of value `c`
+//!@doc Allocates a new string array with `n` strings, each filled with `length` characters of value `c`
 /*!
 **	@param	n		The amount of strings that are stored in this string array
 **	@param	length	The amount of characters in each allocated string of the string array
@@ -162,33 +174,39 @@ t_char**				StringArray_New(t_uint n);
 **	A newly allocated string array, which has `n` strings and `length` characters
 **	per string (excluding null-terminators), every character set to the value `c`.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_New_C(t_uint n, t_size length, t_char c);
 #define c_strarrcnew	StringArray_New_C
+//!@}
 
-//! Allocates a new string array which consists of `n` strings, initialized from variadic arguments.
+//!@doc Allocates a new string array which consists of `n` strings, initialized from variadic arguments.
 /*!
 **	@param	n		The amount of strings in this string array (amount of variadic args)
 **	@param	...		The variadic list of arguments: there must be `n` arguments, all of type string
 **	@returns
 **	A newly allocated string array containing `n` elements (the given `...` varargs)
 */
+//!@{
 t_char**				StringArray_Create(t_uint n, ...);
 #define c_strarrcreate	StringArray_Create
+//!@}
 
-//! Duplicates the contents of a string array, and returns the newly allocated copy.
+//!@doc Duplicates the contents of a string array, and returns the newly allocated copy.
 /*!
 **	@param	strarr		The string array to copy
 **	@returns
 **	A newly allocated string array with contents identical to the given `strarr`
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Duplicate(t_char const** strarr);
 #define c_strarrdup		StringArray_Duplicate
+//!@}
 
 
 
-//! Creates a new string array from a subsection of the given string array `strarr`
+//!@doc Creates a new string array from a subsection of the given string array `strarr`
 /*!
 **	@param	strarr		The string array to copy
 **	@param	start		The index of the start of the subsection to extract
@@ -198,13 +216,15 @@ t_char**				StringArray_Duplicate(t_char const** strarr);
 **	The first string of the result is the string at index `start`  from `strarr`.
 **	The last string of the result is the string at index `start + length - 1` in `strarr`.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Sub(t_char const** strarr, t_uint start, t_uint length);
 #define c_strarrsub		StringArray_Sub
+//!@}
 
 
 
-//! Copies over `n` strings from the given `src` string array into the given `dest` string array
+//!@doc Copies over `n` strings from the given `src` string array into the given `dest` string array
 /*!
 **	@param	dest	The destination string array to copy to
 **	@param	dest_i	The index in the destination string array at which to copy `n` strings
@@ -214,8 +234,10 @@ t_char**				StringArray_Sub(t_char const** strarr, t_uint start, t_uint length);
 **	@returns
 **	The given `dest` pointer, or `NULL` if an error occurred. The `dest` string array is modified in-place.
 */
+//!@{
 t_char**				StringArray_Copy(t_char** dest, t_uint dest_i, t_char const** src, t_uint src_i, t_uint length);
 #define c_strarrcpy		StringArray_Copy
+//!@}
 
 
 
@@ -225,21 +247,25 @@ t_char**				StringArray_Copy(t_char** dest, t_uint dest_i, t_char const** src, t
 ** ************************************************************************** *|
 */
 
-//! Frees all allocated strings in a string array, and the string array itself.
+//!@doc Frees all allocated strings in a string array, and the string array itself.
 /*!
 **	@param	strarr		The address of the string array to deallocate
 */
+//!@{
 void					StringArray_Free(t_char** strarr);
 #define c_strarrfree	StringArray_Free
+//!@}
 
 
 
-//! Frees all allocated strings in a string array, and the string array itself.
+//!@doc Frees all allocated strings in a string array, and the string array itself.
 /*!
 **	@param	a_strarr	The address of the string array to deallocate and set to NULL
 */
+//!@{
 void					StringArray_Delete(t_char** *a_strarr);
 #define c_strarrdel		StringArray_Delete
+//!@}
 
 
 
@@ -249,7 +275,7 @@ void					StringArray_Delete(t_char** *a_strarr);
 ** ************************************************************************** *|
 */
 
-//! Appends the given string `string` to the end of the given string array `dest`.
+//!@doc Appends the given string `string` to the end of the given string array `dest`.
 /*!
 **	If `dest` is NULL, it'll append `string` at index 0, creating a 1-string string array.
 **
@@ -259,10 +285,12 @@ void					StringArray_Delete(t_char** *a_strarr);
 **	The new pointer for the given `strarr`. The string array is modified in-place.
 **	This return will be the same as the given `dest` argument, unless `dest == NULL`.
 */
+//!@{
 t_char**					StringArray_Add(t_char** dest, t_char const* str);
 #define c_strarradd			StringArray_Add
+//!@}
 
-//! Inserts the given `string` at the given `index` of the given string array `dest`
+//!@doc Inserts the given `string` at the given `index` of the given string array `dest`
 /*!
 **	If `index` is greater than the length of the string array, then nothing is done and `NULL` is returned.
 **
@@ -274,12 +302,14 @@ t_char**					StringArray_Add(t_char** dest, t_char const* str);
 **	The return value will be the same as the given `dest` argument,
 **	unless `dest == NULL`, and the `index` given is zero.
 */
+//!@{
 t_char**					StringArray_Insert(t_char** dest, t_char const* str, t_uint index);
 #define c_strarrinsert		StringArray_Insert
+//!@}
 
 
 
-//! Inserts all strings from `src` at the given `index` of the given string array `dest`
+//!@doc Inserts all strings from `src` at the given `index` of the given string array `dest`
 /*!
 **	If `index` is greater than the length of the string array, then nothing is done and `NULL` is returned.
 **
@@ -291,12 +321,14 @@ t_char**					StringArray_Insert(t_char** dest, t_char const* str, t_uint index);
 **	The return value will be the same as the given `dest` argument,
 **	unless `dest == NULL`, or the `index` given is zero.
 */
+//!@{
 t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 #define c_strarrwedge		StringArray_Wedge
+//!@}
 
 
 
-//! Removes a single string from the given `strarr`, at the given `index`
+//!@doc Removes a single string from the given `strarr`, at the given `index`
 /*!
 **	@param	strarr	The string array in which to remove an string
 **	@param	index	The index of the string to delete from the string array
@@ -304,14 +336,17 @@ t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 **	The string array given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless the `index` given is zero.
 */
+//!@{
 void					StringArray_RemoveAt(t_char** strarr, t_uint index);
 #define c_strarrdelat	StringArray_RemoveAt
-
-//! Like Array_RemoveAt(), but you can supply a custom `delete` function
+//!@}
+//!@doc Like Array_RemoveAt(), but you can supply a custom `delete` function
+//!@{
 void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char*));
 #define c_strarrfdelat	StringArray_RemoveAt_F
+//!@}
 
-//! Removes the first string from the given `strarr` which is equal to the given `string`
+//!@doc Removes the first string from the given `strarr` which is equal to the given `string`
 /*!
 **	@param	strarr	The string array in which to remove an string
 **	@param	string	The string value which is to be removed from `strarr`
@@ -319,14 +354,17 @@ void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_
 **	The `strarr` given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless the matched string is at position zero.
 */
+//!@{
 void					StringArray_Remove(t_char** strarr, t_char const* str);
 #define c_strarrdelone	StringArray_Remove
-
-//! Like Array_Remove(), but you can supply a custom `delete` function
+//!@}
+//!@doc Like Array_Remove(), but you can supply a custom `delete` function
+//!@{
 void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
 #define c_strarrfdelone	StringArray_Remove_F
+//!@}
 
-//! Removes any strings which are equal to the given `string` from the given `strarr`
+//!@doc Removes any strings which are equal to the given `string` from the given `strarr`
 /*!
 **	@param	strarr	The string array in which to remove strings
 **	@param	string	The string value for which any occurrences are to be removed from `strarr`
@@ -334,16 +372,19 @@ void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)
 **	The string array given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless a matched string is at position zero.
 */
+//!@{
 void					StringArray_RemoveAll(t_char** strarr, t_char const* str);
 #define c_strarrdelall	StringArray_RemoveAll
-
-//! Like Array_RemoveAll(), but you can supply a custom `delete` function
+//!@}
+//!@doc Like Array_RemoveAll(), but you can supply a custom `delete` function
+//!@{
 void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
 #define c_strarrfdelall	StringArray_RemoveAll_F
+//!@}
 
 
 
-//! Creates a new string array from the given `strarr`, where any occurence of `old` is replaced with `new`
+//!@doc Creates a new string array from the given `strarr`, where any occurence of `old` is replaced with `new`
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
 **	@param	old		The string to be replaced
@@ -352,11 +393,13 @@ void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*dele
 **	A newly created string array copied from `strarr`, in which in any string equal to `old`
 **	will instead have a value of `new`, or `NULL` if an error occurred.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Replace(t_char const** strarr, t_char const* old, t_char const* new);
 #define c_strarrrep		StringArray_Replace
+//!@}
 
-//! Creates a new string array from the given `strarr`, where the first `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new string array from the given `strarr`, where the first `n` occurences of `old` are replaced with `new`.
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
 **	@param	old		The string to be replaced
@@ -367,11 +410,13 @@ t_char**				StringArray_Replace(t_char const** strarr, t_char const* old, t_char
 **	`n` encountered strings which are equal to `old` will instead have a value of `new`,
 **	or `NULL` if an error occurred.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrrepfirst	StringArray_ReplaceFirst
+//!@}
 
-//! Creates a new string array from the given `strarr`, where the last `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new string array from the given `strarr`, where the last `n` occurences of `old` are replaced with `new`.
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
 **	@param	old		The string to be replaced
@@ -382,34 +427,40 @@ t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, 
 **	`n` encountered strings which are equal to `old` will instead have a value of `new`,
 **	or `NULL` if an error occurred.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrreplast		StringArray_ReplaceLast
+//!@}
 
 
 
-//! Creates a new string array from the given `strarr`, with each string's position being inverted
+//!@doc Creates a new string array from the given `strarr`, with each string's position being inverted
 /*!
 **	@param	strarr	The string array to duplicate and invert
 **	@returns
 **	A newly created string array copied from `strarr`, in which all strings' positions have been
 **	reversed. This means that the last string will become the first string, and so on.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Reverse(t_char const** strarr);
 #define c_strarrrev		StringArray_Reverse
+//!@}
 
 
 
-//! TODO redesign
+//!@doc TODO redesign
 /*!
 **	@returns
 **	A newly allocated string array such that every string is now
 **	preceded by `n` times the character `c`.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Pad_L(t_char const** strarr, t_char c, t_uint n);
 #define c_strarrpadl	StringArray_Pad_L
+//!@}
 
 
 /*
@@ -418,18 +469,20 @@ t_char**				StringArray_Pad_L(t_char const** strarr, t_char c, t_uint n);
 ** ************************************************************************** *|
 */
 
-//! Concatenates two string arrays together
+//!@doc Concatenates two string arrays together
 /*!
 **	@param	strarr1	The left-hand string array to concatenate
 **	@param	strarr2 The right-hand string array to concatenate
 **	@returns
 **	A newly created string array which is the concatenation of `strarr1` and `strarr2`.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_Concat(t_char const** strarr1, t_char const** strarr2);
 #define c_strarrconcat		StringArray_Concat
+//!@}
 
-//! Concatenates two string arrays together, and deletes the left-hand string array given
+//!@doc Concatenates two string arrays together, and deletes the left-hand string array given
 /*!
 **	@param	strarr1	The left-hand string array to concatenate
 **	@param	strarr2 The right-hand string array to concatenate
@@ -437,11 +490,13 @@ t_char**					StringArray_Concat(t_char const** strarr1, t_char const** strarr2);
 **	A newly created string array which is the concatenation of `dest` and `src`,
 **	and deletes `dest`, replacing it with the resulting new string array.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_Append(t_char** *a_dest, t_char const** src);
 #define c_strarrappend		StringArray_Append
+//!@}
 
-//! Concatenates two string arrays together, and deletes the right-hand string array given
+//!@doc Concatenates two string arrays together, and deletes the right-hand string array given
 /*!
 **	@param	strarr1	The left-hand string array to concatenate
 **	@param	strarr2 The right-hand string array to concatenate
@@ -449,11 +504,13 @@ t_char**					StringArray_Append(t_char** *a_dest, t_char const** src);
 **	A newly created string array which is the concatenation of `src` and `dest`,
 **	and deletes `dest`, replacing it with the resulting new string array.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_Prepend(t_char const** src, t_char** *a_dest);
 #define c_strarrprepend		StringArray_Prepend
+//!@}
 
-//! Concatenates two string arrays together, and deletes both string arrays given
+//!@doc Concatenates two string arrays together, and deletes both string arrays given
 /*!
 **	@param	strarr1	The left-hand string array to concatenate
 **	@param	strarr2 The right-hand string array to concatenate
@@ -461,13 +518,15 @@ t_char**					StringArray_Prepend(t_char const** src, t_char** *a_dest);
 **	A newly created string array which is the concatenation of `strarr1` and `strarr2`,
 **	and deletes both input string arrays.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2);
 #define c_strarrmerge		StringArray_Merge
+//!@}
 
 
 
-//! Concatenates a set of string arrays together, adding the given set of strings `sep` between each
+//!@doc Concatenates a set of string arrays together, adding the given set of strings `sep` between each
 /*!
 **	@param	strarrs	The set of string arrays which should be joined together
 **	@param	sep		The separator string array, to be added in between each string array of `strarrs`
@@ -475,9 +534,11 @@ t_char**					StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2);
 **	A newly allocated string array, which is the fold/reduce concatenation
 **	of all string arrays in `strarrs`, with the strings of `sep` added between each string array.
 */
+//!@{
 _MALLOC()
 t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
 #define c_strarrjoin		StringArray_Join
+//!@}
 
 
 
@@ -487,7 +548,7 @@ t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
 ** ************************************************************************** *|
 */
 
-//! Checks if two string arrays have the same content (pointers may differ)
+//!@doc Checks if two string arrays have the same content (pointers may differ)
 /*!
 **	If both pointers given are identical, this function returns `TRUE` without value-checking.
 **
@@ -497,10 +558,12 @@ t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
 **	`TRUE` if each string of both string arrays are equal, and the string arrays have the same amount of strings.
 **	Otherwise, `FALSE` is returned.
 */
+//!@{
 t_bool					StringArray_Equals(t_char const** strarr1, t_char const** strarr2);
 #define c_strarrequ		StringArray_Equals
+//!@}
 
-//! Checks if two string arrays have the same content (pointers may differ), for the `n` first strings
+//!@doc Checks if two string arrays have the same content (pointers may differ), for the `n` first strings
 /*!
 **	If both pointers given are identical, this function returns `TRUE` without value-checking.
 **
@@ -511,12 +574,14 @@ t_bool					StringArray_Equals(t_char const** strarr1, t_char const** strarr2);
 **	`TRUE` if the first `n` strings of both string arrays are equal.
 **	Otherwise, `FALSE` is returned.
 */
+//!@{
 t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, t_uint n);
 #define c_strarrnequ	StringArray_Equals_N
+//!@}
 
 
 
-//! Compares two string arrays using the given `compare` function
+//!@doc Compares two string arrays using the given `compare` function
 /*!
 **	@param	strarr1	The first string array to compare
 **	@param	strarr2	The second string array to compare
@@ -527,7 +592,7 @@ t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, 
 t_sint					StringArray_Compare	(t_char const** strarr1, t_char const** strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2));
 #define c_strarrcmp		StringArray_Compare
 
-//! Compares two string arrays using the given `compare` function, for the `n` first strings
+//!@doc Compares two string arrays using the given `compare` function, for the `n` first strings
 /*!
 **	@param	strarr1	The first string array to compare
 **	@param	strarr2	The second string array to compare
@@ -549,24 +614,30 @@ t_sint					StringArray_Compare_N	(t_char const** strarr1, t_char const** strarr2
 
 //!	Counts the amount of occurences of the char `c` in the given string array `strarr`.
 /*!
-**	
+**	TODO document this
 */
+//!@{
 t_uint							StringArray_Count_Char(t_char const** strarr, t_char const c);
 #define c_strarrcount_char		StringArray_Count_Char
+//!@}
 
 //!	Counts the amount of occurences of any of the chars in the given `charset` in the given string array `strarr`.
 /*!
-**	
+**	TODO document this
 */
+//!@{
 t_uint							StringArray_Count_Charset(t_char const** strarr, t_char const* cset);
 #define c_strarrcount_charset	StringArray_Count_Charset
+//!@}
 
 //!	Counts the amount of occurences of the string `query` in the given string array `strarr`.
 /*!
-**	
+**	TODO document this
 */
+//!@{
 t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query);
 #define c_strarrcount_str		StringArray_Count_String
+//!@}
 
 
 
@@ -581,7 +652,7 @@ t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query
 ** ************************************************************************** *|
 */
 
-//! Executes the given function `f` for each string contained in the given string array `strarr`.
+//!@doc Executes the given function `f` for each string contained in the given string array `strarr`.
 /*!
 **	NOTE: the return value of this `f` function will be assigned to the string in `strarr`
 **	This means that if you wish for your `f` function to return a newly allocated string,
@@ -591,16 +662,19 @@ t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query
 **	@param	f		The function to execute for each string in the string array.
 **					The returned value will replace the corresponding string in the string array.
 */
+//!@{
 void					StringArray_Iterate(t_char** strarr, t_char* (*f)(t_char* str));
 #define c_strarriter	StringArray_Iterate
-
-//! Like StringArray_Iterate(), but the user-supplied function receives the current index
+//!@}
+//!@doc Like StringArray_Iterate(), but the user-supplied function receives the current index
+//!@{
 void					StringArray_Iterate_I(t_char** strarr, t_char* (*f)(t_char* str, t_uint index));
 #define c_strarriiter	StringArray_Iterate_I
+//!@}
 
 
 
-//! Creates a new string array from the given `strarr`, creating each string by calling the given `map` function.
+//!@doc Creates a new string array from the given `strarr`, creating each string by calling the given `map` function.
 /*!
 **	@param	strarr	The string array to iterate upon
 **	@param	map		The function to execute for each string in the string array.
@@ -609,33 +683,39 @@ void					StringArray_Iterate_I(t_char** strarr, t_char* (*f)(t_char* str, t_uint
 **	A newly allocated string array, the result of mapping each string of `strarr`
 **	to a corresponding result by calling `map()`, or `NULL` if an error occurred.
 */
+//!@{
 _MALLOC()
 t_char**				StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const* str));
 #define c_strarrmap		StringArray_Map
-
-//! Like StringArray_Map(), but the user-supplied function receives the current index
+//!@}
+//!@doc Like StringArray_Map(), but the user-supplied function receives the current index
+//!@{
 t_char**				StringArray_Map_I(t_char const** strarr, t_char* (*map)(t_char const* str, t_uint index));
 #define c_strarrimap	StringArray_Map_I
+//!@}
 
 
 
-//! Creates a new string array which is a subset of `strarr`, with only the strings where the `filter` function returned `TRUE`
+//!@doc Creates a new string array which is a subset of `strarr`, with only the strings where the `filter` function returned `TRUE`
 /*!
 **	@param	strarr	The string array whose strings should be iterated upon
 **	@param	filter	The function to call to check if an string of `strarr` should be added to the result
 **	@returns
 **	A new string array, created by storing the return values of each call to the given `map` function.
 */
+//!@{
 t_char**				StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const* str));
 #define c_strarrfilter	StringArray_Filter
-
-//! Like StringArray_Filter(), but the user-supplied function receives the current index
+//!@}
+//!@doc Like StringArray_Filter(), but the user-supplied function receives the current index
+//!@{
 t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char const* str, t_uint index));
 #define c_strarrifilter	StringArray_Filter_I
+//!@}
 
 
 
-//! Creates a single value by executing the given function `f` for each string of the given string array `strarr`.
+//!@doc Creates a single value by executing the given function `f` for each string of the given string array `strarr`.
 /*!
 **	The difference between StringArray_Reduce() and StringArray_Fold() is that with this function,
 **	the initial value which will be passed as the `acc` parameter is a `NULL` pointer.
@@ -646,14 +726,17 @@ t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char 
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
+//!@{
 void*					StringArray_Reduce(t_char const** strarr, void* (*f)(t_char const* str, void* acc));
 #define c_strarrreduce	StringArray_Reduce
-
-//! Like StringArray_Reduce(), but the user-supplied function receives the current index
+//!@}
+//!@doc Like StringArray_Reduce(), but the user-supplied function receives the current index
+//!@{
 void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index));
 #define c_strarrireduce	StringArray_Reduce_I
+//!@}
 
-//! Creates a single value by executing the given function `f` for each string of the given string array `strarr`.
+//!@doc Creates a single value by executing the given function `f` for each string of the given string array `strarr`.
 /*!
 **	The difference between StringArray_Fold() and StringArray_Reduce() is that with this function,
 **	you can supply an initial value for the `acc` parameter, which will be passed to the first call of `f`.
@@ -664,12 +747,15 @@ void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* s
 **	@returns
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
+//!@{
 void*					StringArray_Fold(t_char const** strarr, void* (*f)(t_char const* str, void* acc), void* initial);
 #define c_strarrfold	StringArray_Fold
-
-//! Like StringArray_Reduce(), but the user-supplied function receives the current index
+//!@}
+//!@doc Like StringArray_Reduce(), but the user-supplied function receives the current index
+//!@{
 void*					StringArray_Fold_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index), void* initial);
 #define c_strarrifold	StringArray_Fold_I
+//!@}
 
 
 

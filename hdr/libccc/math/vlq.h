@@ -14,8 +14,6 @@
 /*!@group{libccc_math_vlq}
 **
 **	This header defines variable-length numeric types, and utility functions for them.
-**
-**	@file
 */
 
 /*

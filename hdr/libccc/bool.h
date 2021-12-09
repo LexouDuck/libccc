@@ -11,11 +11,9 @@
 
 #ifndef __LIBCCC_BOOL_H
 #define __LIBCCC_BOOL_H
-/*!@group{libccc_bool}
+/*!@group{libccc_bool, libccc/bool.h}
 **
 **	This header defines the boolean (TRUE/FALSE) primitive type and functions.
-**
-**	@file
 */
 
 /*
@@ -37,7 +35,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Primitve type: The boolean type (`TRUE` or `FALSE`)
+//!@doc Primitve type: The boolean type (`TRUE` or `FALSE`)
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/types/boolean}
 **
@@ -68,7 +66,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-//! Represents a boolean false value (0)
+//!@doc Represents a boolean false value (0)
 //!@{
 #undef	FALSE
 #define FALSE	(0)
@@ -77,7 +75,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 #define false	FALSE
 //!@}
 
-//! Represents a boolean true value  (1)
+//!@doc Represents a boolean true value  (1)
 //!@{
 #undef	TRUE
 #define TRUE	(1)
@@ -88,7 +86,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-//! Boolean logical operator macros
+//!@doc Boolean logical operator macros
 //!@{
 #ifndef and
 #define and	&&
@@ -104,7 +102,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 #endif
 //!@}
 
-//! Boolean bitwise operator macros
+//!@doc Boolean bitwise operator macros
 //!@{
 #ifndef bitand
 #define bitand	&
@@ -142,20 +140,26 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-//! Get the string representation of a boolean value (TRUE or FALSE)
+//!@doc Get the string representation of a boolean value (TRUE or FALSE)
+//!@{
 _MALLOC()
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 #define c_booltostr		Bool_ToString //!< @alias{Bool_ToString}
+//!@}
 
 
 
-//! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
+//!@doc Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
+//!@{
 t_size					Bool_Parse(t_bool *dest, t_char const* str);
 #define c_boolparse		Bool_Parse //!< @alias{Bool_Parse}
+//!@}
 
-//! Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
+//!@doc Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
+//!@{
 t_bool					Bool_FromString(t_char const* str);
 #define c_strtobool		Bool_FromString //!< @alias{Bool_FromString}
+//!@}
 
 
 

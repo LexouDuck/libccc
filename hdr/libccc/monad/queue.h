@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_queue}
 **
 **	This header defines a simple queue (LIFO) type and utility functions for it.
-**
-**	@file
 */
 
 /*

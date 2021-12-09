@@ -16,8 +16,6 @@
 **	This header defines all the functions for OS-level input/output, read/write.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/program}
-**
-**	@file
 */
 
 /*
@@ -58,33 +56,39 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! TODO wrapper function for abort()
+//!@doc TODO wrapper function for abort()
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/program/abort}
 */
+//!@{
 _NORETURN()
 void				Program_Abort(void);
 #define c_abort		Program_Abort
+//!@}
 
 
 
-//! TODO wrapper function for exit()
+//!@doc TODO wrapper function for exit()
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/program/exit}
 */
+//!@{
 _NORETURN()
 void				Program_Exit(int exit_code);
 #define c_exit		Program_Exit
+//!@}
 
 
 
-//! TODO wrapper function for atexit()
+//!@doc TODO wrapper function for atexit()
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/program/atexit}
 */
+//!@{
 e_cccerror			Program_OnExit(void (*f)(void));
 #define c_atexit	Program_OnExit
 #define c_on_exit	Program_OnExit
+//!@}
 
 
 
@@ -93,37 +97,45 @@ e_cccerror			Program_OnExit(void (*f)(void));
 
 
 
-//! TODO wrapper function for system()
+//!@doc TODO wrapper function for system()
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/program/system}
 */
+//!@{
 int					Program_Run(t_char const* command);
 #define c_system	Program_Run
+//!@}
 
 
 
-//! TODO wrapper function for getenv()
+//!@doc TODO wrapper function for getenv()
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/program/getenv} TODO make it safe with a strdup()
 */
+//!@{
 t_char*				Program_GetEnv(t_char const* name);
 #define c_getenv	Program_GetEnv
+//!@}
 
-//! TODO wrapper function for setenv()
+//!@doc TODO wrapper function for setenv()
 /*!
 **	@isostd{POSIX,https://linux.die.net/man/3/setenv}
 */
+//!@{
 int					Program_SetEnv(t_char const* name, t_char const* value, t_bool overwrite);
 #define c_setenv	Program_SetEnv
+//!@}
 
 
 
-//! TODO wrapper function for getcwd()
+//!@doc TODO wrapper function for getcwd()
 /*!
 **	@isostd{POSIX,https://linux.die.net/man/3/getcwd}
 */
+//!@{
 t_char*				Program_GetCWD(void);
 #define c_getcwd	Program_GetCWD
+//!@}
 
 
 

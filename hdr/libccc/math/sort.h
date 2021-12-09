@@ -19,8 +19,6 @@
 **	some are better for small sizes, others for large sizes, etc.
 **
 **	TODO other algorithms than quicksort
-**
-**	@file
 */
 
 /*

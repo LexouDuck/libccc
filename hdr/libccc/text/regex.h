@@ -17,8 +17,6 @@
 **
 **	- http://www.greenend.org.uk/rjk/tech/regexp.html#matchmulti
 **	- https://www.regular-expressions.info/modifiers.html
-**
-**	@file
 */
 
 /*

@@ -33,7 +33,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Configures the nomenclature style used by libccc for `typedef` statements.
+//!@doc Configures the nomenclature style used by libccc for `typedef` statements.
 /*!
 **	This macro sets the nomenclature style that libccc uses for `typedef`s.
 **	The value works like both an enum and a bitflag simultaneously:
@@ -52,14 +52,14 @@ HEADER_CPP
 
 
 
-//! The file to include in source files which use `HANDLE_ERROR()`
+//!@doc The file to include in source files which use `HANDLE_ERROR()`
 //!@{
 #ifndef LIBCONFIG_ERROR_INCLUDE
 #define LIBCONFIG_ERROR_INCLUDE	"libccc/error.h"
 #endif
 //!@}
 
-//! The action to take when there is an integer overflow (by default, let it continue)
+//!@doc The action to take when there is an integer overflow (by default, let it continue)
 //!@{
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
 #define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
@@ -78,7 +78,7 @@ HEADER_CPP
 
 
 
-//! Defines which type/bit size the `t_uint` default unsigned integer type will be.
+//!@doc Defines which type/bit size the `t_uint` default unsigned integer type will be.
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.
 **	There are 5 possible accepted values for this #define:
@@ -93,7 +93,7 @@ HEADER_CPP
 #define LIBCONFIG_UINT_BITS		32
 #endif
 //!@}
-//! The unsigned integer value which is used for error returns
+//!@doc The unsigned integer value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
 **	NOTE: The value for the macro #UINT_ERROR depends on this setting
@@ -111,7 +111,7 @@ HEADER_CPP
 
 
 
-//! Defines which type/bit size the `t_sint` default signed integer type will be
+//!@doc Defines which type/bit size the `t_sint` default signed integer type will be
 /*!
 **	This macro sets the default `t_sint` default signed integer type to use:
 **	There are 5 possible accepted values for this #define:
@@ -126,7 +126,7 @@ HEADER_CPP
 #define LIBCONFIG_SINT_BITS		32
 #endif
 //!@}
-//! The signed integer value which is used for error returns
+//!@doc The signed integer value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
 **	NOTE: The value for the macro #SINT_ERROR depends on this setting
@@ -144,7 +144,7 @@ HEADER_CPP
 
 
 
-//! If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
+//!@doc If 1, libccc uses exact bit length for t_s8, t_s16, t_s32, t_s64, t_u8, t_u16, t_u32, and t_u64
 /*!
 **	This macro configures which `<stdint.h>` integer types are used by default,
 **	as well as setting the corresponding appropriate `[INT]_MAX` and `[INT]_MIN` values.
@@ -156,13 +156,17 @@ HEADER_CPP
 **	- `_fast`	FAST: Uses the fastest available integer type with at least `n` bits (`int_fast8_t`, etc)
 */
 //!@{
+#if defined(__DOXYGEN__)
+#define LIBCONFIG_INTEGER_TYPES	
+#else
 //#define LIBCONFIG_INTEGER_TYPES _least //!< uncomment this line to use LEAST int types
 //#define LIBCONFIG_INTEGER_TYPES _fast  //!< uncomment this line to use FAST int types
+#endif
 //!@}
 
 
 
-//! Defines which type/bit size the `t_fixed` default fixed-point number type will be
+//!@doc Defines which type/bit size the `t_fixed` default fixed-point number type will be
 /*!
 **	This macro sets what the `t_fixed` default fixed-point type should be.
 **	There are 4 possible accepted values for this #define:
@@ -176,7 +180,7 @@ HEADER_CPP
 #define LIBCONFIG_FIXED_BITS	64
 #endif
 //!@}
-//! The fixed-point value which is used for error returns
+//!@doc The fixed-point value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns a fixed-point number has an error
 **	NOTE: The value for the macro #FIXED_ERROR depends on this setting
@@ -197,7 +201,8 @@ HEADER_CPP
 #define LIBCONFIG_FIXED_APPROX	((t_fixed)(LIBCONFIG_FIXED_DENOMINATOR / 2))
 #endif
 //!@}
-//! The amount of subdivisions dedicated to the fraction part of the fixed-point types
+
+//!@doc The amount of subdivisions dedicated to the fraction part of the fixed-point types
 /*!
 **	This can be any signed integer value which is representable.
 **	TODO make this more configurable, ie: set each bitsize type individually ?
@@ -210,7 +215,7 @@ HEADER_CPP
 
 
 
-//! Defines which type/bit size the `t_float` default floating-point number type will be
+//!@doc Defines which type/bit size the `t_float` default floating-point number type will be
 /*!
 **	This macro sets what the `t_float` default floating-point type should be.
 **	There are 4 possible accepted values for this #define:
@@ -224,7 +229,7 @@ HEADER_CPP
 #define LIBCONFIG_FLOAT_BITS	64
 #endif
 //!@}
-//! The floating-point value which is used for error returns
+//!@doc The floating-point value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns a floating-point number has an error
 **	NOTE: The value for the macro #FIXED_ERROR depends on this setting
@@ -237,7 +242,7 @@ HEADER_CPP
 #define LIBCONFIG_FLOAT_ERROR	1
 #endif
 //!@}
-//! @see #FLOAT_APPROX and Float_EqualsApprox()
+//!@doc @see #FLOAT_APPROX and Float_EqualsApprox()
 //!@{
 #ifndef LIBCONFIG_FLOAT_APPROX
 #define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
@@ -246,15 +251,18 @@ HEADER_CPP
 
 
 
-//! Defines which type the `t_char` default text character type will be
-/*! @subgroup
+//!@doc Defines which type the `t_char` default text character type will be
+/*!
 **	This macro sets the default `t_char` text string character type and methods to use.
 **	With the default settings, `t_char` resolves to `t_ascii`, and its functions work accordingly
-**	(ie: the `Char_ToUpper()` function is really an alias for the `ASCII_IsUpper()` function)
+**	(ie: the `Char_ToUpper()` function is really an alias for the `ASCII_IsUpper()` function).
+**
 **	There are 2 possible accepted values for these:
-**		|`TYPE_CHAR`|`NAME_CHAR`|__________________________________________
-**	-	| `t_ascii` | `ASCII`   | for simple 8-bit ASCII character strings
-**	-	| `t_utf32` | `UTF32`   | for unicode 32-bit wide character strings
+**
+**	|`TYPE_CHAR`|`NAME_CHAR`| Value pair description                    |
+**	|-----------|-----------|-------------------------------------------|
+**	| `t_ascii` | `ASCII`   | for simple 8-bit ASCII character strings  |
+**	| `t_utf32` | `UTF32`   | for unicode 32-bit wide character strings |
 */
 //!@{
 #ifndef LIBCONFIG_CHAR_TYPE
@@ -267,15 +275,18 @@ HEADER_CPP
 
 
 
-//! Defines which type the `t_rand` default random state type will be
+//!@doc Defines which type the `t_rand` default random state type will be
 /*!
 **	This macro sets the default `t_rand` RNG type and methods to use.
 **	With the default settings, `t_rand` resolves to `t_prng`, and its functions work accordingly
 **	(ie: the `Random_UInt()` function is really an alias for the `PRNG_UInt()` function)
+**
 **	There are 2 possible accepted values for these:
-**		|`TYPE_RANDOM`|`NAME_RANDOM`|__________________________________________
-**	-	| `t_prng`    | `PRNG`      | for simple pseudo-random number algorithm
-**	-	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native)
+**
+**	|`TYPE_RANDOM`|`NAME_RANDOM`| Value pair description                       |
+**	|-------------|-------------|----------------------------------------------|
+**	| `t_prng`    | `PRNG`      | for simple pseudo-random number algorithm    |
+**	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native) |
 */
 //!@{
 #ifndef LIBCONFIG_RANDOM_TYPE
@@ -288,7 +299,7 @@ HEADER_CPP
 
 
 
-//! Whether the `s_list` linked-list types in "libccc/monad/" will be doubly-linked
+//!@doc Whether the `s_list` linked-list types in "libccc/monad/" will be doubly-linked
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
 **	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
@@ -304,7 +315,7 @@ HEADER_CPP
 
 
 
-//! Whether libccc will define/expose utility functions for 128-bit integer types
+//!@doc Whether libccc will define/expose utility functions for 128-bit integer types
 /*!
 **	By default, this setting will be enabled if the `__int128` macro is defined.
 **	Since 128-bit integers are not supported by the standard, they are not
@@ -324,7 +335,7 @@ HEADER_CPP
 #endif
 //!@}
 
-//! Whether libccc will define/expose utility functions for extended-precision floating-point types
+//!@doc Whether libccc will define/expose utility functions for extended-precision floating-point types
 /*!
 **	By default, this setting will be enabled if the `__float80`/`__float128` macro is defined.
 **	Since 80/96/128-bit floating-point numbers are only partly supported by the standard,
@@ -352,7 +363,7 @@ HEADER_CPP
 
 
 
-//! Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
+//!@doc Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
 /*!
 **	This macro determines if the compiler should prefer function implementations
 **	from the platform's standard library, or the implementation from libccc.
@@ -372,7 +383,7 @@ HEADER_CPP
 
 
 
-//! Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.
+//!@doc Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.
 /*!
 **	This macro determines which math function implementations should be used.
 **	- If `0`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
@@ -388,7 +399,7 @@ HEADER_CPP
 
 
 
-//! Whether libccc will make the `t_complex` types use the STD C99 `_Complex`/`_Imaginary` types
+//!@doc Whether libccc will make the `t_complex` types use the STD C99 `_Complex`/`_Imaginary` types
 /*!
 **	TODO implement & document this
 */
@@ -400,7 +411,7 @@ HEADER_CPP
 
 
 
-//! Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STD ext `_Sat`/`_Fract`/`_Accum` types
+//!@doc Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STD ext `_Sat`/`_Fract`/`_Accum` types
 /*!
 **	It is recommended to keep this set to `0`, as the STD C fixed-point types are not yet standard
 **	(ie: `_Accum`, `_Fract`, and `_Sat` are not present on all platforms, only GCC implements them).
@@ -417,7 +428,7 @@ HEADER_CPP
 
 
 
-//! if `__NOSTD__` flag is active, force-disable all the `LIBCONFIG_USE_STD_*` macros
+//!@doc if `__NOSTD__` flag is active, force-disable all the `LIBCONFIG_USE_STD_*` macros
 //!@{
 #ifdef	__NOSTD__
 

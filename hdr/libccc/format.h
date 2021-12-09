@@ -13,11 +13,19 @@
 #define __LIBCCC_FORMAT_H
 /*!@group{libccc_format}
 **
-**	This header defines printf-style functions, and their format specifiers
+**	This header defines printf-style functions, and their format specifiers.
 **
-**	@isostd{C,https://en.cppreference.com/w/c/variadic}
+**	The cross-platform `"%"` format specifier macros in this header can either
+**	be used individually, or you can use the SF() macro function if you wish to
+**	have further customization potential for the exact format of the output string.
 **
-**	@file
+**	NOTE: the "SF" abbreviation used here stands for "String Format".
+**
+**	@see
+**	- String_Format()
+**	- String_Format_N()
+**	- IO_Write_Format()
+**	- IO_Output_Format()
 */
 
 /*
@@ -26,11 +34,14 @@
 ** ************************************************************************** *|
 */
 
+//!@doc @isostd{C,https://en.cppreference.com/w/c/variadic}
+//!@{
 #ifndef __NOSTD__
 	#include <stdarg.h>
 #else
 	typedef __builtin_va_list va_list;
 #endif
+//!@}
 
 #include "libccc.h"
 
@@ -40,18 +51,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
-*/
-
-/*!
-**	Cross-platform '%' format specifiers for `printf()`-like function calls:
-**	@see
-**	- String_Format()
-**	- IO_Write_Format()
-**	- IO_Output_Format()
-**
-**	NOTE: the "SF_" stands for "String Format"
-**
-**	@file
 */
 
 //! This macro is used to make custom "SF_" string format macros
@@ -65,19 +64,19 @@ HEADER_CPP
 
 
 
-//! @see libccc/bool.h
+//!@doc String format specifier macros for libccc/bool.h
 //!@{
 #define SF_BOOL  "%"SF_BOOL_
 #define SF_BOOL_ "d" // TODO `%B` boolean format specifier
 //!@}
 
-//! @see libccc/enum.h
+//!@doc String format specifier macros for libccc/enum.h
 //!@{
 #define SF_ENUM  "%"SF_ENUM_
 #define SF_ENUM_ "d" // TODO fancy type reflection (++C) ?
 //!@}
 
-//! @see libccc/char.h
+//!@doc String format specifier macros for libccc/char.h
 //!@{
 #define SF_CHAR     "%"SF_CHAR_
 #define SF_CHAR_    CONCAT(SF_,CONCAT(LIBCONFIG_CHAR_NAME,_))
@@ -99,7 +98,7 @@ HEADER_CPP
 #define SF_UTF32_CODE_  "8.8X"
 //!@}
 
-//! @see libccc/string.h
+//!@doc String format specifier macros for libccc/string.h
 //!@{
 #define SF_STRING   "%"SF_STRING_
 #define SF_STRING_  CONCAT(SF_STRING_,CONCAT(LIBCONFIG_CHAR_NAME,_))
@@ -117,7 +116,7 @@ HEADER_CPP
 #define SF_STRING_UTF32_ "ls"
 //!@}
 
-//! @see libccc/int.h
+//!@doc String format specifier macros for libccc/int.h
 //!@{
 #define SF_UINT      "%"SF_UINT_
 #define SF_UINT_     CONCAT(SF_U,CONCAT(LIBCONFIG_UINT_BITS,_))
@@ -213,7 +212,7 @@ HEADER_CPP
 #define SF_S128_OCT_ "Lo" // TODO
 //!@}
 
-//! @see libccc/fixed.h
+//!@doc String format specifier macros for libccc/fixed.h
 //!@{
 #define SF_FIXED      "%"SF_FIXED_
 #define SF_FIXED_     CONCAT(SF_Q,CONCAT(LIBCONFIG_FIXED_BITS,_))
@@ -241,7 +240,7 @@ HEADER_CPP
 #define SF_Q128_HEX_  "llK" // TODO
 //!@}
 
-//! @see libccc/float.h
+//!@doc String format specifier macros for libccc/float.h
 //!@{
 #define SF_FLOAT       "%"SF_FLOAT_
 #define SF_FLOAT_      CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_))
@@ -273,7 +272,7 @@ HEADER_CPP
 #define SF_F128_FULL  "%#.36LE"
 //!@}
 
-//! @see libccc/pointer.h
+//!@doc String format specifier macros for libccc/pointer.h
 //!@{
 #define SF_POINTER      "$0x%"SF_POINTER_
 #define SF_POINTER_     "p"
@@ -307,13 +306,13 @@ HEADER_CPP
 #define SF_UINTMAX_HEX_ "jX"
 //!@}
 
-//! @see libccc/memory.h
+//!@doc String format specifier macros for libccc/memory.h
 //!@{
 #define SF_MEMORY     "%"SF_MEMORY_
 #define SF_MEMORY_    "m" //
 //!@}
 
-//! @see libccc/color.h
+//!@doc String format specifier macros for libccc/color.h
 //!@{
 #define SF_COLOR_ARGB16  "#%"SF_COLOR_ARGB16_
 #define SF_COLOR_ARGB16_ "X"
@@ -342,7 +341,7 @@ HEADER_CPP
 	"L:"SF(COLOR_AHSL_CHANNEL,PREFIX)")"
 //!@}
 
-//! @see libccc/math/complex.h
+//!@doc String format specifier macros for libccc/math/complex.h
 //!@{
 #define SF_COMPLEX          SF_COMPLEX_()
 #define SF_COMPLEX_(PREFIX) "("SF(COMPLEX_RE_,PREFIX)" + "SF(COMPLEX_IM_,PREFIX)"*i)"
@@ -354,7 +353,7 @@ HEADER_CPP
 #define SF_COMPLEX_IM_ "g"
 //!@}
 
-//! @see libccc/math/algebra/vector.h
+//!@doc String format specifier macros for libccc/math/algebra/vector.h
 //!@{
 #define SF_VECTOR_AXIS  "%"SF_VECTOR_AXIS_
 #define SF_VECTOR_AXIS_ "g"
@@ -380,7 +379,7 @@ HEADER_CPP
 		"("SF(VECTOR_AXIS_,PREFIX)", "SF(VECTOR_AXIS_,PREFIX)", "SF(VECTOR_AXIS_,PREFIX)", "SF(VECTOR_AXIS_,PREFIX)")"
 //!@}
 
-//! @see libccc/math/algebra/matrix.h
+//!@doc String format specifier macros for libccc/math/algebra/matrix.h
 //!@{
 #define SF_MATRIX1D \
 		SF_MATRIX1D_()
@@ -411,10 +410,8 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
+//!@doc Constructs a string from the given `format` string and multiple args (equivalent to `asprintf()`)
 /*!
-**	@isostd{BSD,https://linux.die.net/man/3/asprintf}
-**
 **	Constructs a new null-terminated string, which is generated from the given `format` string,
 **	as well as any relevant variadic arguments - it is equivalent to the `asprintf()` function.
 **
@@ -427,6 +424,7 @@ HEADER_CPP
 **	Here is a description of the valid possible choices for each of these 5 fields:
 **
 **	`char`:
+**	
 **	| char  | Output                                        | Output Example |
 **	|:-----:|-----------------------------------------------|----------------|
 **	|`d`,`i`| Signed decimal integer                        |`"392"`         |
@@ -449,6 +447,7 @@ HEADER_CPP
 **	| `n`   | Nothing printed: the corresponding argument must be a pointer to a signed int.<br/> The number of characters written so far is stored in the pointed location.	| `""` |
 **
 **	`flags`: (optional)
+**	
 **	- `-`: The output is left-justified within the field (by default, it is right-justified)
 **	- `+`: Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers.
 **	       By default, only negative numbers are preceded with a minus '-' sign.
@@ -459,12 +458,14 @@ HEADER_CPP
 **	- (space): If no sign is going to be written, a blank space is inserted before the value.
 **
 **	`min_size`: (optional)
+**	
 **	- Is a number (so, decimal numerical digit chars) or `*`).
 **	- The minimum amount of characters to be printed for this specifier.
 **	- NOTE: The value is not truncated, even if the result is larger.
 **	- NOTE: If the value is shorter than this number, the result is padded with blank spaces.
 **
 **	`precision`: (optional)
+**	
 **	- Is a number (so, decimal numerical digit chars) or `*`, preceded by a '.' period.
 **	- If the period is specified without an explicit value for precision, 0 is assumed.
 **	- With `a`,`A`,`e`,`E`,`f`,`F`: the amount of digits to be printed after the decimal point (by default, this is 6).
@@ -472,6 +473,7 @@ HEADER_CPP
 **	- With `s`: this is the maximum number of characters to be printed (by default, all chars are printed until the `'\0'` terminator).
 **
 **	`bitsize`: (optional)
+**	
 **	| size | `d`/`i`       | `u`, `o`, `x`/`X`      |`f`,`e`,`g`,`a`| `c`  | `s`    | `p` | `n`			   |
 **	|:----:|---------------|------------------------|---------------|------|--------|-----|----------------|
 **	|(none)| int           | unsigned int           | double        | int  | char*  |void*| int*           |
@@ -484,70 +486,65 @@ HEADER_CPP
 **	| `t`  | ptrdiff_t     | ptrdiff_t              |               |      |        |     | ptrdiff_t*     |
 **	| `L`  |               |                        | long double   |      |        |     |                |
 **
+**	@param	format	The format string: may contain `%` argument specifiers, as described above.
+**	@param	...		The list of variadic arguments, corresponding to the `%` specifiers in the `format` string.
 **	@returns
 **	A newly allocated string, constructed from the given `format` string and arguments
 */
+//!@{
+
+//! @isostd{BSD,https://linux.die.net/man/3/asprintf}
 _FORMAT(printf, 1, 2)
 _MALLOC()
 t_char*					String_Format(t_char const* format, ...);
-#define c_asprintf		String_Format //!< @alias{String_Format}
-#define c_strfmt		String_Format //!< @alias{String_Format}
-#define c_strformat		String_Format //!< @alias{String_Format}
-#define String_Build	String_Format //!< @alias{String_Format}
+#define c_asprintf		String_Format
+#define c_strfmt		String_Format
+#define c_strformat		String_Format
+#define String_Build	String_Format
 
-//! @see				String_Format
+//! @isostd{BSD,https://linux.die.net/man/3/vasprintf}
 _MALLOC()
 t_char*					String_Format_VA(t_char const* format, va_list args);
-#define c_vasprintf		String_Format_VA //!< @alias{String_Format_VA}
-#define c_strfmt_va		String_Format_VA //!< @alias{String_Format_VA}
-#define c_strformat_va	String_Format_VA //!< @alias{String_Format_VA}
-#define String_Build_VA	String_Format_VA //!< @alias{String_Format_VA}
+#define c_vasprintf		String_Format_VA
+#define c_strfmt_va		String_Format_VA
+#define c_strformat_va	String_Format_VA
+#define String_Build_VA	String_Format_VA
+
+//!@}
 
 
 
-//! Constructs a string from the given `format` string and multiple args, writing at most `max` chars into `dest` (equivalent to `snprintf()`)
+//!@doc Constructs a string from the given `format` string and multiple args, writing at most `max` chars into `dest` (equivalent to `snprintf()`)
 /*!
-**	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
-**
 **	@param	dest	The destination buffer, in which to write the resulting string
 **					NOTE: if `NULL`, does not write anything and simply returns the length
 **	@param	max		The maximum amount of characters to write to `dest`,
 **					including the `'\0'` null terminator
-**	@param	format	The format string used to construct the resulting date string.
-**					You can learn more here: https://www.cplusplus.com/reference/cstdio/printf/
+**	@param	format	The format string used to construct the resulting output string.
+**					You can learn more about how this works in the doc for String_Format()
+**	@param	...		The list of variadic arguments, corresponding to the `%` specifiers in the `format` string.
 **	@returns
-**	The amount of characters in the constructed format string, regardless of `max` size
+**	The amount of characters written to `dest`, or `0` if there was an error.
+**	You may assume that the returned size will always be less than or equal to `max`.
 */
+//!@{
+
+//!	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
-#define c_snprintf			String_Format_N //!< @alias{String_Format_N}
-#define c_strnfmt			String_Format_N //!< @alias{String_Format_N}
-#define c_strnformat		String_Format_N //!< @alias{String_Format_N}
-#define String_Build_N		String_Format_N //!< @alias{String_Format_N}
+#define c_snprintf			String_Format_N
+#define c_strnfmt			String_Format_N
+#define c_strnformat		String_Format_N
+#define String_Build_N		String_Format_N
 
-//! @see					String_Format_N
+//!	@isostd{C89,https://en.cppreference.com/w/c/io/vsnprintf}
 t_size						String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args);
-#define c_vsnprintf			String_Format_N_VA //!< @alias{String_Format_N_VA}
-#define c_strnfmt_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
-#define c_strnformat_va		String_Format_N_VA //!< @alias{String_Format_N_VA}
-#define String_Build_N_VA	String_Format_N_VA //!< @alias{String_Format_N_VA}
+#define c_vsnprintf			String_Format_N_VA
+#define c_strnfmt_va		String_Format_N_VA
+#define c_strnformat_va		String_Format_N_VA
+#define String_Build_N_VA	String_Format_N_VA
 
-
-
-/* NB: SEE ALSO (in libccc/sys/io.h)
-
-//! Writes the given formatted string to the standard output - equivalent to `fprintf()`, or rather `dprintf()`
-_FORMAT(printf, 2, 3)
-int						IO_Write_Format(t_fd fd, t_char const* format, ...);
-#define c_write_format	IO_Write_Format
-#define c_dprintf		IO_Write_Format
-
-//! Writes the given formatted string to the standard output - equivalent to `printf()`
-_FORMAT(printf, 1, 2)
-int						IO_Output_Format(t_char const* format, ...);
-#define c_output_format	IO_Output_Format
-#define c_printf		IO_Output_Format
-*/
+//!@}
 
 
 

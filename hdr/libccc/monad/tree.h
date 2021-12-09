@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_tree}
 **
 **	This header defines a simple tree/node/leaf type and utility functions for it.
-**
-**	@file
 */
 
 /*

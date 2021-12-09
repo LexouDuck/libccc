@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_hashmap}
 **
 **	This header defines a generic hashmap type and utility functions for it.
-**
-**	@file
 */
 
 /*

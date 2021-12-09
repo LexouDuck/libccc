@@ -16,8 +16,6 @@
 **	This header defines the common standard math functions for integer numbers.
 **
 **	@nonstd
-**
-**	@file
 */
 
 /*
@@ -36,8 +34,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-
-
+//!@doc Macros which store small threshold value for approximate equaity checks
 /*!
 **	@see
 **	- UInt_EqualsApprox()
@@ -50,7 +47,7 @@ HEADER_CPP
 
 
 
-//! The type of function which takes one real number and outputs one real number
+//!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_uint	(*f_uint_function)	(t_uint a);
 typedef		t_sint	(*f_sint_function)	(t_sint a);
@@ -70,7 +67,7 @@ typedef		t_s128	(*f_s128_function)	(t_s128 a);
 #endif
 //!@}
 
-//! The type of function which takes two real numbers and outputs one real number
+//!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
 typedef		t_uint	(*f_uint_operator)	(t_uint a,	t_uint b);
 typedef		t_sint	(*f_sint_operator)	(t_sint a,	t_sint b);
@@ -98,7 +95,7 @@ typedef		t_s128	(*f_s128_operator)	(t_s128 a,	t_s128 b);
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value of `a` (makes `a` positive)
+//!@doc Returns the absolute value of `a` (makes `a` positive)
 /*!
 **	@nonstd
 */
@@ -133,7 +130,7 @@ t_s128				S128_Abs(t_s128 a);
 ** ************************************************************************** *|
 */
 
-//! Returns `TRUE` if the 2 given integer values are exactly equal (operator: `==`)
+//!@doc Returns `TRUE` if the 2 given integer values are exactly equal (operator: `==`)
 /*!
 **	@nonstd
 **
@@ -167,7 +164,7 @@ t_bool					S128_Equals(t_s128 a, t_s128 b);
 
 
 
-//! Returns `TRUE` if the 2 given integer values are close to equal (operator: `~=`)
+//!@doc Returns `TRUE` if the 2 given integer values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
 **
@@ -215,7 +212,7 @@ t_bool					S128_EqualsApprox(t_s128 a, t_s128 b);
 
 
 
-//! Performs an addition between the 2 given integer values (operator: `+`)
+//!@doc Performs an addition between the 2 given integer values (operator: `+`)
 //!@{
 #define				UInt_Add	CONCAT(UINT_TYPE,_Add)
 #define c_uadd		UInt_Add
@@ -238,7 +235,7 @@ t_u128				U128_Add(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Performs an addition between the 2 given integer values (operator: `+`)
+//!@doc Performs an addition between the 2 given integer values (operator: `+`)
 //!@{
 #define				SInt_Add	CONCAT(SINT_TYPE,_Add)
 #define c_sadd		SInt_Add
@@ -265,7 +262,7 @@ t_s128				S128_Add(t_s128 a, t_s128 b);
 
 
 
-//! Performs an addition between the 2 given integer values (operator: `-`)
+//!@doc Performs an addition between the 2 given integer values (operator: `-`)
 //!@{
 #define					UInt_Sub	CONCAT(UINT_TYPE,_Sub)
 #define c_usub			UInt_Sub
@@ -289,7 +286,7 @@ t_u128				U128_Sub(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Performs an addition between the 2 given integer values (operator: `-`)
+//!@doc Performs an addition between the 2 given integer values (operator: `-`)
 //!@{
 #define					SInt_Sub	CONCAT(SINT_TYPE,_Sub)
 #define c_ssub			SInt_Sub
@@ -317,7 +314,7 @@ t_s128				S128_Sub(t_s128 a, t_s128 b);
 
 
 
-//! Performs an addition between the 2 given integer values (operator: `*`)
+//!@doc Performs an addition between the 2 given integer values (operator: `*`)
 //!@{
 #define					UInt_Mul	CONCAT(UINT_TYPE,_Mul)
 #define c_umul			UInt_Mul
@@ -341,7 +338,7 @@ t_u128				U128_Mul(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Performs an addition between the 2 given integer values (operator: `*`)
+//!@doc Performs an addition between the 2 given integer values (operator: `*`)
 //!@{
 #define					SInt_Mul	CONCAT(SINT_TYPE,_Mul)
 #define c_smul			SInt_Mul
@@ -369,7 +366,7 @@ t_s128				S128_Mul(t_s128 a, t_s128 b);
 
 
 
-//! Performs a division between the 2 given integer values (operator: `/`)
+//!@doc Performs a division between the 2 given integer values (operator: `/`)
 //!@{
 #define				UInt_Div	CONCAT(UINT_TYPE,_Div)
 #define c_udiv		UInt_Div
@@ -393,7 +390,7 @@ t_u128				U128_Div(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Performs a division between the 2 given integer values (operator: `/`)
+//!@doc Performs a division between the 2 given integer values (operator: `/`)
 //!@{
 #define				SInt_Div	CONCAT(SINT_TYPE,_Div)
 #define c_sdiv		SInt_Div
@@ -421,7 +418,7 @@ t_s128				S128_Div(t_s128 a, t_s128 b);
 
 
 
-//! Returns the remainder of euclidian division of `a` by `b`
+//!@doc Returns the remainder of euclidian division of `a` by `b`
 /*!
 **	@nonstd
 */
@@ -448,7 +445,7 @@ t_u128					U128_Mod(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Returns the remainder of euclidian division of `a` by `b`
+//!@doc Returns the remainder of euclidian division of `a` by `b`
 /*!
 **	@nonstd
 */
@@ -487,7 +484,7 @@ t_s128					S128_Mod(t_s128 a, t_s128 b);
 
 
 
-//! Returns the value of `a` to the power of `b` (int)
+//!@doc Returns the value of `a` to the power of `b` (int)
 /*!
 **	@nonstd
 */
@@ -514,7 +511,7 @@ t_u128					U128_Pow(t_u128 a, t_u128 b);
 #endif
 //!@}
 
-//! Returns the value of `a` to the power of `b` (int)
+//!@doc Returns the value of `a` to the power of `b` (int)
 /*!
 **	@nonstd
 */
@@ -545,7 +542,7 @@ t_s128					S128_Pow(t_s128 a, t_s128 b);
 
 
 
-//! Returns the nearest integer to the square root of `a` (truncated, ie: rounded down)
+//!@doc Returns the nearest integer to the square root of `a` (truncated, ie: rounded down)
 /*!
 **	@nonstd
 */
@@ -573,7 +570,7 @@ t_u128						U128_Root2(t_u128 a);
 #endif
 //!@}
 
-//! Returns the square root of `a` (inverse of power of 2)
+//!@doc Returns the square root of `a` (inverse of power of 2)
 /*!
 **	@nonstd
 */

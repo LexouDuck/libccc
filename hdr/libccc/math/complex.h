@@ -17,8 +17,6 @@
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/complex}
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/tgmath}
-**
-**	@file
 */
 
 /*
@@ -51,33 +49,36 @@ HEADER_CPP
 		#error "Cannot use standard fixed-point library, __NOSTD__ macro is defined"
 	#endif
 
-	typedef _Complex	s_complex;
-	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)
-
-	//!	A complex number value of zero (both real and imaginary parts are zero)
+	//!@doc @isostd{C99,https://en.cppreference.com/w/c/numeric/complex/complex}
 	/*!
 	**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/complex}
 	**	@isostd{C99,https://en.cppreference.com/w/c/numeric/complex/imaginary}
 	**
 	**	The two parts of the complex number are stored as two fields in the struct.
 	*/
+	//!@{
+	typedef _Complex	s_complex;
+	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)
+	//!@}
+	//!	A complex number value of zero (both real and imaginary parts are zero)
 	#define COMPLEX_NULL	(0.0 + 0.0*I)
 
 #else
 
-	//! A struct to store complex/imaginary number values
+	//!@doc A struct to store complex/imaginary number values
 	/*!
 	**	@nonstd
 	**
 	**	The two parts of the complex number are stored as two fields in the struct.
 	*/
+	//!@{
 	typedef struct complex
 	{
 		t_float		re;		//!< The "real" part of this complex number
 		t_float		im;		//!< The "imaginary" part of this complex number
 	}				s_complex;
 	TYPEDEF_ALIAS(	s_complex, COMPLEX, STRUCT)
-
+	//!@}
 	//!	A complex number value of zero (both real and imaginary parts are zero)
 	#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
 
@@ -91,14 +92,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns a complex number struct, with the given 're' real part and 'im' imaginary part
+//!@doc Returns a complex number struct, with the given 're' real part and 'im' imaginary part
+//!@{
 s_complex				Complex(t_float re, t_float im);
 #define c_cplx			Complex
+//!@}
 
-//! Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part
+//!@doc Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part
+//!@{
 _MALLOC()
 s_complex*				Complex_New(t_float re, t_float im);
 #define c_cplxnew		Complex_New
+//!@}
 
 
 
@@ -108,9 +113,11 @@ s_complex*				Complex_New(t_float re, t_float im);
 ** ************************************************************************** *|
 */
 
-//! Returns TRUE if the two given complex numbers are equal
+//!@doc Returns TRUE if the two given complex numbers are equal
+//!@{
 t_bool					Complex_Equals(s_complex const* z1, s_complex const* z2);
 #define c_cplxequ		Complex_Equals
+//!@}
 
 
 
@@ -120,15 +127,19 @@ t_bool					Complex_Equals(s_complex const* z1, s_complex const* z2);
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value |z| of the given complex number 'z' (its distance from zero)
+//!@doc Returns the absolute value |z| of the given complex number 'z' (its distance from zero)
+//!@{
 t_float					Complex_Abs(s_complex const* z1);
 #define c_cplxabs		Complex_Abs
 #define Complex_Modulus	Complex_Abs
+//!@}
 
-//! Returns the conjugate of the given complex number (inverts the sign of its imaginary part)
+//!@doc Returns the conjugate of the given complex number (inverts the sign of its imaginary part)
+//!@{
 s_complex				Complex_Conjugate(s_complex const* z1);
 #define c_cplxconj		Complex_Conjugate
 #define Complex_Conj	Complex_Conjugate
+//!@}
 
 
 
@@ -138,33 +149,43 @@ s_complex				Complex_Conjugate(s_complex const* z1);
 ** ************************************************************************** *|
 */
 
-//! Returns the result of the addition of the two given complex numbers
+//!@doc Returns the result of the addition of the two given complex numbers
+//!@{
 s_complex					Complex_Add(s_complex const* z1, s_complex const* z2);
 #define c_cplxadd			Complex_Add
+//!@}
 
-//! Returns the result of the subtraction of the two given complex numbers
+//!@doc Returns the result of the subtraction of the two given complex numbers
+//!@{
 s_complex					Complex_Sub(s_complex const* z1, s_complex const* z2);
 #define c_cplxsub			Complex_Sub
 #define Complex_Subtract	Complex_Sub
+//!@}
 
-//! Returns the result of the multiplication of the two given complex numbers
+//!@doc Returns the result of the multiplication of the two given complex numbers
+//!@{
 s_complex					Complex_Mul(s_complex const* z1, s_complex const* z2);
 #define c_cplxmul			Complex_Mul
 #define Complex_Multiply	Complex_Mul
+//!@}
 
-//! Returns the result of the divide of the two given complex numbers
+//!@doc Returns the result of the divide of the two given complex numbers
+//!@{
 s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
 #define c_cplxdiv			Complex_Div
 #define Complex_Divide		Complex_Div
+//!@}
 
 // TODO cplxmod
 
 
 
-//! Returns the given complex number, to the power of 'n'
+//!@doc Returns the given complex number, to the power of 'n'
+//!@{
 s_complex					Complex_Pow(s_complex const* z, t_u8 n);
 #define c_cplxpow			Complex_Pow
 #define Complex_Power		Complex_Pow
+//!@}
 
 // TODO cplxsqrt
 // TODO cplxcbrt
@@ -217,6 +238,7 @@ s_complex					Complex_Pow(s_complex const* z, t_u8 n);
 */
 
 //! A struct for storing quaternions
+//!@{
 typedef struct quaternion
 {
 	t_float		s;		//!< The S value of this quaternion
@@ -225,6 +247,7 @@ typedef struct quaternion
 	t_float		k;		//!< The K value of this quaternion
 }					s_quaternion;
 TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
+//!@}
 
 
 

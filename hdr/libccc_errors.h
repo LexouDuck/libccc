@@ -32,7 +32,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! These macros allow you to configure how libccc handles exceptions/error cases.
+//!@doc These macros allow you to configure how libccc handles exceptions/error cases.
 /*!
 **	These macro functions determine how exception cases are to be handled by libccc.
 **	You may change the logic here (to implement custom exception handling for example).
@@ -55,7 +55,7 @@ HEADER_CPP
 
 
 
-//! These macros allow you to configure how libccc handles exceptions/error cases.
+//!@doc These macros allow you to configure how libccc handles exceptions/error cases.
 /*!
 **	These "plural-named" can be used to activate or deactivate exception handling at will.
 */
@@ -254,7 +254,7 @@ typedef enum cccerror
 //	ERROR_,
 
 	ENUMLENGTH_CCCERROR,
-}		e_cccerror;
+}	e_cccerror;
 
 /*
 // TODO thread-safe global, like 'errno'

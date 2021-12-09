@@ -71,7 +71,7 @@
 ** ************************************************************************** *|
 */
 
-//! @subgroup Convenience macro: C++ header code guards
+//!@doc Convenience macro: C++ header code guards
 /*!
 **	This macro is a more succinct way to write the typical `extern "C" {...}`
 **	C++ header guards - mostly to prevent C++ compilers from doing symbol name mangling.
@@ -104,8 +104,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup
-//! Convienence macros, use these to check for different C standards in preprocessor `#if` statements.
+//!@doc Convienence macros, use these to check for different C standards in preprocessor `#if` statements.
 //!@{
 #define __STDC_VERSION_ANSI__	0l	//!< NOTE: when only ANSI/C89/C90 support is present, `__STDC_VERSION__` will not be defined !
 #define __STDC_VERSION_C95__	199409l
@@ -117,8 +116,7 @@ HEADER_CPP
 
 
 
-//! @subgroup
-//! Convienence macros, use these to check for different POSIX standards in preprocessor `#if` statements.
+//!@doc Convienence macros, use these to check for different POSIX standards in preprocessor `#if` statements.
 //!@{
 #define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
 #define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
@@ -130,37 +128,27 @@ HEADER_CPP
 
 
 
-/*! @def __WINDOWS__
-**	Platform-defined macro to check if the current environment is windows (regardless of compiler)
-*/
+//!@doc Platform-defined macro to check if the current environment is windows
+//!@{
 #if (defined(_WIN32) || defined(_WIN64) || defined(_MSC_VER))
 #ifndef __WINDOWS__
 #define __WINDOWS__	1
 #endif
 #endif
+//!@}
 
-/*! @def __MSVC__
-**	Platform-defined macro to check if the current compiler is microsoft-like
-*/
+//!@doc Platform-defined macro to check if the current compiler is microsoft-like
+//!@{
 #if (defined(_MSC_VER))
 #define __MSVC__	1
 #endif
-
-
-
-//! @subgroup Platform-specific C integer type data model
-/*!
-**	Convienence macros which describe the various different data model standards, ie: integer type sizes
-*/
-//!@{
-#define __DATAMODEL_LP32__	0x02020404ul //!< (int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API
-#define __DATAMODEL_ILP32__	0x02040404ul //!< (int, long, and pointer are all size 32-bit) 32bit: Win32 API, Unix and Unix-like systems (Linux, macOS)
-#define __DATAMODEL_LLP64__	0x02040408ul //!< (int and long are 32-bit, pointer is 64-bit) 64bit: Win64 API
-#define __DATAMODEL_LP64__	0x02040808ul //!< (int is 32-bit, long and pointer are 64-bit) 64bit: Unix and Unix-like systems (Linux, macOS)
 //!@}
 
-// Check platform data model (Windows)
-#if (__WINDOWS__)
+
+
+//!@doc The data model for this platform (ie: the sizes of the c builtin integer types)
+//!@{
+#if (__WINDOWS__) // Check platform data model (Windows)
 	#if (defined(_WIN64))
 		#define __DATAMODEL__	__DATAMODEL_LLP64__
 	#elif (defined(_WIN32))
@@ -169,8 +157,7 @@ HEADER_CPP
 		#define __DATAMODEL__	__DATAMODEL_LP32__
 	#endif
 
-// Check platform data model (Unix)
-#elif (__GNUC__)
+#elif (__GNUC__) // Check platform data model (Unix)
 	#if (__x86_64__ || __ppc64__)
 		#define __DATAMODEL__	__DATAMODEL_LP64__
 	#else
@@ -183,27 +170,38 @@ HEADER_CPP
 		"\n""Please run the libccc 'make test-predef' simple test program, to check which macros are predefined in your environment." \
 
 #endif
+//!@}
 
-
-
-//! @subgroup Platform bitness checking macros
+//!@doc Macros for the various C integer type data models
 /*!
-**	These macros are always defined: their value expands to `0` or `1` depending on the platform bitness.
+**	Convienence macros which describe the various different data model standards, ie: integer type sizes
 */
 //!@{
-
-//! If this is a 32-bit platform, then this macro's value will resolve to `1`, otherwise `0`
-#define _IS_32BIT	(__DATAMODEL__ == __DATAMODEL_LP32__ || __DATAMODEL__ == __DATAMODEL_ILP32__)
-
-//! If this is a 64-bit platform, then this macro's value will resolve to `1`, otherwise `0`
-#define _IS_64BIT	(__DATAMODEL__ == __DATAMODEL_LP64__ || __DATAMODEL__ == __DATAMODEL_LLP64__)
-
+#define __DATAMODEL_LP32__	0x02020404ul //!< (int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API
+#define __DATAMODEL_ILP32__	0x02040404ul //!< (int, long, and pointer are all size 32-bit) 32bit: Win32 API, Unix and Unix-like systems (Linux, macOS)
+#define __DATAMODEL_LLP64__	0x02040408ul //!< (int and long are 32-bit, pointer is 64-bit) 64bit: Win64 API
+#define __DATAMODEL_LP64__	0x02040808ul //!< (int is 32-bit, long and pointer are 64-bit) 64bit: Unix and Unix-like systems (Linux, macOS)
 //!@}
 
 
 
-//! @subgroup
-//! These macros can be used to check native type sizes at preprocess-time, ie: in `#if` statements.
+//!@doc Platform bitness checking macros
+/*!
+**	These macros are always defined: their value expands to `0` or `1` depending on the platform bitness.
+*/
+//!@{
+//! If this is a 32-bit platform, then this macro's value will resolve to `1`, otherwise `0`
+#define _IS_32BIT	(__DATAMODEL__ == __DATAMODEL_LP32__ || __DATAMODEL__ == __DATAMODEL_ILP32__)
+//! If this is a 64-bit platform, then this macro's value will resolve to `1`, otherwise `0`
+#define _IS_64BIT	(__DATAMODEL__ == __DATAMODEL_LP64__ || __DATAMODEL__ == __DATAMODEL_LLP64__)
+//!@}
+
+
+
+//!@doc Macros for preprocessor integer size checking
+/*!
+**	These macros can be used to check native type sizes at preprocess-time, ie: in `#if` statements.
+*/
 //!@{
 #define _SIZEOF_SHORT     ((__DATAMODEL__ >> 24) & 0xFF)
 #define _SIZEOF_INT       ((__DATAMODEL__ >> 16) & 0xFF)
@@ -214,7 +212,7 @@ HEADER_CPP
 
 
 
-//! @subgroup Platform-specific 128-bit integer types
+//!@doc Platform-specific 128-bit integer types
 //!@{
 
 #if defined(__SIZEOF_INT128__) \
@@ -245,7 +243,7 @@ HEADER_CPP
 
 
 
-//! @subgroup Platform-specific extended-precision `long double` floating-point types
+//!@doc Platform-specific extended-precision `long double` floating-point types
 //!@{
 
 #if defined(__LDBL_MANT_DIG__) \
@@ -266,14 +264,16 @@ HEADER_CPP
 	#ifndef __float80
 	#define __float80	long double
 	#endif
-	typedef long double	_Float80;	//!< Harmonized type for 80-bit extended-precision floating-point numbers.
+	//! Harmonized type for 80-bit extended-precision floating-point numbers.
+	typedef long double	_Float80;
 
 #elif (__LDBL_MANT_DIG__ <= 112) || defined(__float128)
 // `long double` is 128-bit (mantissa: 113 bits, exponent: 15 bits)
 	#ifndef __float128
 	#define __float128	long double
 	#endif
-	typedef long double	_Float128;	//!< Harmonized type for 128-bit quadruple-precision floating-point numbers.
+	//! Harmonized type for 128-bit quadruple-precision floating-point numbers.
+	typedef long double	_Float128;
 
 #else
 #warning "This platform provides an unknown `long double` type (neither 80-bit not 128-bit).\
@@ -305,7 +305,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup General convienence macro constants for function return values
+//!@doc General convienence macro constants for function return values
 /*!
 **	These are similar in nature to the [STD C exit() return macros](https://en.cppreference.com/w/c/program/EXIT_status).
 **	This is a common general macro used for return values, used by several libccc functions.
@@ -324,7 +324,7 @@ HEADER_CPP
 
 
 
-//! @subgroup Macro operator: token concatenation
+//!@doc Macro operator: token concatenation
 /*!
 **	This macro function concatenates the two given tokens `TOKEN1` and `TOKEN2` into a single token.
 **
@@ -340,7 +340,7 @@ HEADER_CPP
 
 
 
-//! @subgroup Macro operator: token stringization
+//!@doc Macro operator: token stringization
 /*!
 **	This macro function expands and stringizes the given `TOKEN` argument
 **
@@ -356,7 +356,7 @@ HEADER_CPP
 
 
 
-//! @subgroup Macro operator: get string literal's length
+//!@doc Macro operator: get string literal's length
 /*!
 **	Works like `strlen()` (aka String_Length()) but is resolved at compile time
 */
@@ -373,7 +373,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup Cross-platform C keyword function macros
+//!@doc Cross-platform C keyword function macros
 //!@{
 
 //! Cross-platform keyword macro: `__asm__`
@@ -422,7 +422,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup Cross-platform C operator function macros
+//!@doc Cross-platform C operator function macros
 //!@{
 
 //! Cross-platform operator macro: `__sizeof__`
@@ -512,7 +512,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup C extension: `foreach` keyword, to use with iterable types
+//!@doc C extension: `foreach` keyword, to use with iterable types
 /*!
 **	A 'foreach' keyword macro, to use with any iterable types, rather than an index-based 'for' loop
 **
@@ -538,7 +538,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup Cross-platform generic-typed function declaration specifier
+//!@doc Cross-platform generic-typed function declaration specifier
 /*!
 **	This macro is used before any generic-type function's declaration:
 **	it is used to perform dead code elimination on unused functions automatically.
@@ -557,36 +557,35 @@ HEADER_CPP
 
 
 
-//! @subgroup Cross-platform function attribute macros
+//!@doc Cross-platform function attribute macros
 //!@{
 
-#undef _FORMAT   //!< @def _FORMAT   Before a function def: make the compiler give warnings for a variadic-args function with a format string
-#undef _ALIAS    //!< @def _ALIAS    Before a function or variable def: sets the token to be an alias for the one given as arg
-#undef _ALIGN    //!< @def _ALIGN    Before a function or variable def: sets minimum byte alignment size (power of 2)
-#undef _PURE     //!< @def _PURE     Before a function def: indicates that the function has no side-effects
-#undef _MALLOC   //!< @def _MALLOC   Before a function def: indicates that it returns newly allocated ptr
-#undef _UNUSED   //!< @def _UNUSED   Before a function def: suppresses warnings for empty/incomplete function
-#undef _INLINE   //!< @def _INLINE   Before a function def: makes the function be always inlined regardless of compiler config
-#undef _NOINLINE //!< @def _NOINLINE Before a function def: makes the function be always inlined regardless of compiler config
-#undef _NORETURN //!< @def _NORETURN Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
-#undef _PACKED   //!< @def _PACKED   Before a struct/union def: do not perform byte-padding on this struct/union type
-//#undef _EXPORT //!< @def _EXPORT   Before a function def: always export the symbol (regardless of static/dynamic linking)
+#undef _FORMAT
+#undef _ALIAS
+#undef _ALIGN
+#undef _PURE
+#undef _MALLOC
+#undef _UNUSED
+#undef _INLINE
+#undef _NOINLINE
+#undef _NORETURN
+#undef _PACKED
+//#undef _EXPORT
 
 #if defined(__NOSTD__) || defined(__DOXYGEN__)
-
-	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
-	#define _ALIAS(FUNCTION)	
-	#define _ALIGN(MINIMUM)		
-	#define _PURE()				
-	#define _MALLOC()			
-	#define _UNUSED()			
-	#define _INLINE()			
-	#define _NOINLINE()			
-	#define _NORETURN()			
-	#define _PACKED()			
+	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS) //!< Before a function def: make the compiler give warnings for a variadic-args function with a format string
+	#define _ALIAS(FUNCTION) //!< Before a function or variable def: sets the token to be an alias for the one given as arg
+	#define _ALIGN(MINIMUM)  //!< Before a function or variable def: sets minimum byte alignment size (power of 2)
+	#define _PURE()          //!< Before a function def: indicates that the function has no side-effects
+	#define _MALLOC()        //!< Before a function def: indicates that it returns newly allocated ptr
+	#define _UNUSED()        //!< Before a function def: suppresses warnings for empty/incomplete function
+	#define _INLINE()        //!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _NOINLINE()      //!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _NORETURN()      //!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
+	#define _PACKED()        //!< Before a struct/union def: do not perform byte-padding on this struct/union type
+//	#define _EXPORT()        //!< Before a function def: always export the symbol (regardless of static/dynamic linking)
 
 #elif defined(__GNUC__)
-
 	#if (defined(__MINGW32__) && !defined(__clang__))
 		#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	__attribute__((format(gnu_##FUNCTION, POS_FORMAT, POS_VARARGS)))
 	#else
@@ -603,7 +602,6 @@ HEADER_CPP
 	#define _PACKED()			__attribute__((packed))
 
 #elif defined(__MSVC__)
-
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
 	#define _ALIAS(FUNCTION)	define ALIAS	FUNCTION
 	#define _ALIGN(MINIMUM)		__declspec(align(MINIMUM))
@@ -616,7 +614,6 @@ HEADER_CPP
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop)) // TODO find a way to make this work in pure C ?
 
 #else
-
 	#define _FORMAT(FUNCTION, POS_FORMAT, POS_VARARGS)	
 	#define _ALIAS(FUNCTION)	
 	#define _ALIGN(MINIMUM)		
@@ -640,62 +637,70 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! @subgroup INCBIN(): include a binary file directly as a global variable.
+//!@doc INCBIN(): include a binary file directly as a global variable.
 /*!
-**	This macro embeds the given binary file at `_FILEPATH` into a global const variable named `_NAME`.
+**	This macro embeds the given binary file at `FILEPATH` into a global const variable named `NAME`.
 **
-**	@param	_NAME		The name to give to the global variable(s) which will be created
-**	@param	_FILEPATH	The relative or oabsolute path of the file to include
+**	@param	NAME		The name to give to the global variable(s) which will be created
+**	@param	FILEPATH	The relative or oabsolute path of the file to include
 **	@returns	This macro doesn't return anything per se, but it declares 3 global variables within its ASM code:
-**	- `t_u8 const*	_NAME`			The statically allocated byte array containing the binary file data
-**	- `t_u8 const*	_NAME##_end`	The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
-**	- `int const*	_NAME##_size`	The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
+**	- `t_u8 const*	NAME`        : The statically allocated byte array containing the binary file data
+**	- `t_u8 const*	NAME##_end`  : The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)
+**	- `int const*	NAME##_size` : The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
 */
-#define INCBIN(_NAME, _FILEPATH) \
-/*extern t_u8 const	_NAME[];		*/	\
-/*extern t_u8 const	_NAME##_end[];	*/	\
-/*extern int const	_NAME##_size[];	*/	\
+#define INCBIN(NAME, FILEPATH) \
+/*extern t_u8 const	NAME[];        */	\
+/*extern t_u8 const	NAME##_end[];  */	\
+/*extern int const	NAME##_size[]; */	\
 __asm__									\
 (										\
 	"\n"INCBIN_SECTION					\
 	"\n"								\
 	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE#_NAME				\
-	"\n"INCBIN_MANGLE#_NAME":"			\
-	"\n\t.incbin \""_FILEPATH"\""		\
+		INCBIN_MANGLE(#NAME)			\
+	"\n"INCBIN_MANGLE(#NAME)":"			\
+	"\n\t.incbin \""FILEPATH"\""		\
 	"\n"								\
 	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE#_NAME"_end"		\
-	"\n"INCBIN_MANGLE#_NAME"_end"":"	\
-	"\n\t.byte 0"						\
+		INCBIN_MANGLE(#NAME)"_end"		\
+	"\n"INCBIN_MANGLE(#NAME)"_end"":"	\
+	"\n\t"INCBIN_BYTE" 0"				\
 	"\n"								\
 	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE#_NAME"_size"		\
-	"\n"INCBIN_MANGLE#_NAME"_size"":"	\
-	"\n\t"INCBIN_INTEGER				\
-		" ( "INCBIN_MANGLE#_NAME"_end"	\
-		" - "INCBIN_MANGLE#_NAME" )"	\
+		INCBIN_MANGLE(#NAME)"_size"		\
+	"\n"INCBIN_MANGLE(#NAME)"_size"":"	\
+	"\n\t"INCBIN_SIZE					\
+		" ( "INCBIN_MANGLE(#NAME)"_end"	\
+		" - "INCBIN_MANGLE(#NAME)" )"	\
 	"\n"								\
 	"\n"INCBIN_PREVIOUS					\
 	"\n"								\
 );
 
-// TODO add .align pseudo-instruction ?
-// TODO use .equ or .set rather than .int/.long ?
-
-//! @subgroup INCBIN() support macros
+//!@doc Cross-platform ASM support macros for INCBIN()
 /*!
-**	These are cross-platform macros used to implement the INCBIN() macro function
+**	These are cross-platform helper macros used to abstract away
+**	GAS asmimplement the INCBIN() macro function
 */
 //!@{
-#ifdef __APPLE__
+#if defined(__DOXYGEN__)
+	#define INCBIN_SECTION      //!< The ASM directive to set the assembly section in which the file is embedded.
+	#define INCBIN_PREVIOUS     //!< The ASM directive to return to the previous section.
+	#define INCBIN_GLOBAL       //!< The ASM directive to make an address label globally visible.
+	#define INCBIN_MANGLE(NAME) //!< The C symbol-mangling in the GAS ASM code.
+	#define INCBIN_BYTE         //!< The ASM directive to output a single byte (for the _end label).
+	#define INCBIN_SIZE         //!< The ASM directive to output an integer (for the _size label).
+
+#elif defined(__APPLE__)
 	#define INCBIN_SECTION	".section __DATA,__const"
 	#define INCBIN_PREVIOUS	".previous"
 	#define INCBIN_GLOBAL	".globl"
-	#define INCBIN_MANGLE	"_"
-	#define INCBIN_INTEGER	".long"
+	#define INCBIN_MANGLE(NAME)	"_"NAME
+	#define INCBIN_BYTE	".byte"
+	#define INCBIN_SIZE	".long"
+
 #else
-	#ifdef __ELF__
+	#if defined(__ELF__)
 		#define INCBIN_SECTION	".section \".rodata\", \"a\", @progbits"
 		#define INCBIN_PREVIOUS	".previous"
 	#else
@@ -703,15 +708,15 @@ __asm__									\
 		#define INCBIN_PREVIOUS	""
 	#endif
 	#define INCBIN_GLOBAL	".global"
-	#define INCBIN_MANGLE	""
-	#define INCBIN_INTEGER	".int"
+	#define INCBIN_MANGLE(NAME)	""NAME
+	#define INCBIN_BYTE	".byte"
+	#define INCBIN_SIZE	".int"
+
 #endif
-//! @def INCBIN_SECTION  The ASM directive to set the assembly section in which the file is embedded
-//! @def INCBIN_PREVIOUS The ASM directive to return to the previous section
-//! @def INCBIN_MANGLE   The C symbol-mangling prefix in the ASM code.
-//! @def INCBIN_GLOBAL   The ASM directive to make an address label globally visible.
-//! @def INCBIN_INTEGER  The ASM directive to output an integer (for the size).
 //!@}
+
+// TODO add .align pseudo-instruction ?
+// TODO use .equ or .set rather than .int/.long ?
 
 
 

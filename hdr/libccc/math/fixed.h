@@ -16,8 +16,6 @@
 **	This header defines the common standard math functions for fixed-point numbers.
 **
 **	@nonstd
-**
-**	@file
 */
 
 /*
@@ -47,7 +45,7 @@ HEADER_CPP
 
 
 
-//! The type of function which takes one real number and outputs one real number
+//!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
 typedef		t_q16	(*f_q16_function)	(t_q16 x);
@@ -58,7 +56,7 @@ typedef		t_q128	(*f_q128_function)	(t_q128 x);
 #endif
 //!@}
 
-//! The type of function which takes two real numbers and outputs one real number
+//!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
 typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
 typedef		t_q16	(*f_q16_operator)	(t_q16 x,	t_q16 y);
@@ -77,7 +75,7 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value of `x` (makes `x` positive)
+//!@doc Returns the absolute value of `x` (makes `x` positive)
 /*!
 **	@nonstd
 */
@@ -101,7 +99,7 @@ t_q128						Q128_Abs(t_q128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded to the nearest integer
+//!@doc Returns the value of `x`, rounded to the nearest integer
 /*!
 **	@nonstd
 */
@@ -124,7 +122,7 @@ t_q128					Q128_Round(t_q128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded towards 0
+//!@doc Returns the value of `x`, rounded towards 0
 /*!
 **	@nonstd
 */
@@ -148,7 +146,7 @@ t_q128					Q128_Trunc(t_q128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded to the superior integer
+//!@doc Returns the value of `x`, rounded to the superior integer
 /*!
 **	@nonstd
 */
@@ -171,7 +169,7 @@ t_q128					Q128_Floor(t_q128 x);
 #endif
 //!@}
 
-//! Returns the value of `x`, rounded to the inferior integer
+//!@doc Returns the value of `x`, rounded to the inferior integer
 /*!
 **	@nonstd
 */
@@ -203,7 +201,7 @@ t_q128					Q128_Ceil(t_q128 x);
 ** ************************************************************************** *|
 */
 
-//! Returns `TRUE` if the 2 given fixed-point values are exactly equal (operator: `==`)
+//!@doc Returns `TRUE` if the 2 given fixed-point values are exactly equal (operator: `==`)
 /*!
 **	@nonstd
 **
@@ -234,7 +232,7 @@ t_bool					Q128_Equals(t_q128 x, t_q128 y);
 
 
 
-//! Returns `TRUE` if the 2 given fixed-point values are close to equal (operator: `~=`)
+//!@doc Returns `TRUE` if the 2 given fixed-point values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
 **
@@ -279,7 +277,7 @@ t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given fixed-point values (operator: `+`)
+//!@doc Performs an addition between the 2 given fixed-point values (operator: `+`)
 //!@{
 #define					Fixed_Add	CONCAT(FIXED_TYPE,_Add)
 #define c_qadd			Fixed_Add
@@ -301,7 +299,7 @@ t_q128					Q128_Add(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given fixed-point values (operator: `-`)
+//!@doc Performs an addition between the 2 given fixed-point values (operator: `-`)
 //!@{
 #define					Fixed_Sub	CONCAT(FIXED_TYPE,_Sub)
 #define c_qsub			Fixed_Sub
@@ -324,7 +322,7 @@ t_q128					Q128_Sub(t_q128 x, t_q128 y);
 
 
 
-//! Performs an addition between the 2 given fixed-point values (operator: `*`)
+//!@doc Performs an addition between the 2 given fixed-point values (operator: `*`)
 //!@{
 #define					Fixed_Mul	CONCAT(FIXED_TYPE,_Mul)
 #define c_qmul			Fixed_Mul
@@ -347,7 +345,7 @@ t_q128					Q128_Mul(t_q128 x, t_q128 y);
 
 
 
-//! Performs a division between the 2 given fixed-point values (operator: `/`)
+//!@doc Performs a division between the 2 given fixed-point values (operator: `/`)
 //!@{
 #define					Fixed_Div	CONCAT(FIXED_TYPE,_Div)
 #define c_qdiv			Fixed_Div
@@ -370,7 +368,7 @@ t_q128					Q128_Div(t_q128 x, t_q128 y);
 
 
 
-//! Returns the remainder of euclidian division of `x` by `y`
+//!@doc Returns the remainder of euclidian division of `x` by `y`
 /*!
 **	@nonstd
 */
@@ -404,7 +402,7 @@ t_q128					Q128_Mod(t_q128 x, t_q128 y);
 
 
 
-//! Returns the value of `x` to the power of `y` (fixed)
+//!@doc Returns the value of `x` to the power of `y` (fixed)
 /*!
 **	@nonstd
 */
@@ -428,7 +426,7 @@ t_q128					Q128_Pow(t_q128 x, t_q128 y);
 #endif
 //!@}
 
-//! Returns the value of `x` to the power of `n` (integer)
+//!@doc Returns the value of `x` to the power of `n` (integer)
 /*!
 **	@nonstd
 */
@@ -454,7 +452,7 @@ t_q128					Q128_IntPow(t_q128 x, t_sint n);
 
 
 
-//! Returns the square root of `x` (inverse of power of 2)
+//!@doc Returns the square root of `x` (inverse of power of 2)
 /*!
 **	@nonstd
 */
@@ -479,7 +477,7 @@ t_q128						Q128_Root2(t_q128 x);
 #endif
 //!@}
 
-//! Returns the cubic root of `x` (inverse of power of 3)
+//!@doc Returns the cubic root of `x` (inverse of power of 3)
 /*!
 **	@nonstd
 */
@@ -504,7 +502,7 @@ t_q128						Q128_Root3(t_q128 x);
 #endif
 //!@}
 
-//! Returns the n-ic root of `x` (inverse of power of `n`)
+//!@doc Returns the n-ic root of `x` (inverse of power of `n`)
 /*!
 **	@nonstd
 */
@@ -541,7 +539,7 @@ t_q128						Q128_RootN(t_q128 x, t_u8 n);
 
 
 
-//! Returns the exponential function's value for `x`
+//!@doc Returns the exponential function's value for `x`
 /*!
 **	@nonstd
 */
@@ -567,7 +565,7 @@ t_q128							Q128_Exp(t_q128 x);
 
 
 
-//! Returns the natural logarithm of `x`
+//!@doc Returns the natural logarithm of `x`
 /*!
 **	@nonstd
 */
@@ -591,7 +589,7 @@ t_q128							Q128_Ln(t_q128 x);
 #endif
 //!@}
 
-//! Returns the binary (base-2) logarithm of `x`
+//!@doc Returns the binary (base-2) logarithm of `x`
 /*!
 **	@nonstd
 */
@@ -621,7 +619,7 @@ t_q128							Q128_Log2(t_q128 x);
 #endif
 //!@}
 
-//! Returns the decimal (base-10) logarithm of `x`
+//!@doc Returns the decimal (base-10) logarithm of `x`
 /*!
 **	@nonstd
 */
@@ -650,7 +648,7 @@ t_q128							Q128_Log10(t_q128 x);
 #endif
 //!@}
 
-//! Returns the base-`n` logarithm of `x`
+//!@doc Returns the base-`n` logarithm of `x`
 /*!
 **	@nonstd
 */
@@ -684,7 +682,7 @@ t_q128							Q128_LogN(t_q128 x, t_q128 y);
 
 
 
-//! Returns the cosine of `x` (horizontal trigonometry coordinate)
+//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
 **	@nonstd
 */
@@ -708,7 +706,7 @@ t_q128							Q128_Cos(t_q128 x);
 #endif
 //!@}
 
-//! Returns the sine of `x` (vertical trigonometry coordinate)
+//!@doc Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@nonstd
 */
@@ -732,7 +730,7 @@ t_q128							Q128_Sin(t_q128 x);
 #endif
 //!@}
 
-//! Returns the tangent of `x` (trigonometry tangent line)
+//!@doc Returns the tangent of `x` (trigonometry tangent line)
 /*!
 **	@nonstd
 */
@@ -758,7 +756,7 @@ t_q128							Q128_Tan(t_q128 x);
 
 
 
-//! Returns the arc-cosine of `x` (inverse of the cos function)
+//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
 **	@nonstd
 */
@@ -783,7 +781,7 @@ t_q128							Q128_ArcCos(t_q128 x);
 #endif
 //!@}
 
-//! Returns the arc-sine of `x` (inverse of the sin function)
+//!@doc Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@nonstd
 */
@@ -808,7 +806,7 @@ t_q128							Q128_ArcSin(t_q128 x);
 #endif
 //!@}
 
-//! Returns the arc-tangent of `x` (inverse of the tan function)
+//!@doc Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
 **	@nonstd
 */
@@ -835,7 +833,7 @@ t_q128							Q128_ArcTan(t_q128 x);
 
 
 
-//! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
+//!@doc Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
 **	@nonstd
 */
@@ -863,7 +861,7 @@ t_q128								Q128_(t_q128 x, t_q128 y);
 
 
 
-//! Returns the hyperbolic cosine of `x`
+//!@doc Returns the hyperbolic cosine of `x`
 /*!
 **	@nonstd
 */
@@ -888,7 +886,7 @@ t_q128								Q128_CosH(t_q128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic sine of `x`
+//!@doc Returns the hyperbolic sine of `x`
 /*!
 **	@nonstd
 */
@@ -913,7 +911,7 @@ t_q128								Q128_SinH(t_q128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic tangent of `x`
+//!@doc Returns the hyperbolic tangent of `x`
 /*!
 **	@nonstd
 */
@@ -940,7 +938,7 @@ t_q128								Q128_TanH(t_q128 x);
 
 
 
-//! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
+//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
 **	@nonstd
 */
@@ -965,7 +963,7 @@ t_q128								Q128_InvCosH(t_q128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
+//!@doc Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	@nonstd
 */
@@ -990,7 +988,7 @@ t_q128								Q128_InvSinH(t_q128 x);
 #endif
 //!@}
 
-//! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
+//!@doc Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
 **	@nonstd
 */

@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_convert}
 **
 **	This header defines conversions functions between the generic monad types.
-**
-**	@file
 */
 
 /*
@@ -79,7 +77,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Converts the given `list` to an array
+//!@doc Converts the given `list` to an array
 /*!
 **	Creates a new contiguous memory array from the given linked list.
 **	It sets this array pointer to the `items` pointer of the given `array`.
@@ -89,10 +87,12 @@ HEADER_CPP
 **	The resulting `s_array` struct converted from the given list,
 **	or `NULL` if an error occurred.
 */
+//!@{
 s_array(T)*				List_ToArray(s_list(T) const* list);
 #define c_lst_to_array	List_ToArray
+//!@}
 
-//! Converts the given `list` to a NULL-terminated pointer array
+//!@doc Converts the given `list` to a NULL-terminated pointer array
 /*!
 **	Creates a new jagged array (2D pointer array) from the given list `*a_lst`.
 **	The top-level pointer array is terminated by a NULL pointer.
@@ -102,9 +102,11 @@ s_array(T)*				List_ToArray(s_list(T) const* list);
 **	The resulting pointer array converted from the given list,
 **	or `NULL` if an error occurred.
 */
+//!@{
 _MALLOC()
 void**					List_ToPointerArray(s_list(T) const* list);
 #define c_lst_to_ptrarr	List_ToPointerArray
+//!@}
 
 
 

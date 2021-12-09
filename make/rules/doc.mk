@@ -79,6 +79,11 @@ doc-html:
 		echo "GENERATE_LATEX = NO" ; \
 		echo "GENERATE_DOCBOOK = NO" ) \
 		| $(DOXYGEN) $(DOXYGEN_FLAGS) -
+	@awk '{ $$0 = gensub(/<\/?computeroutput>/, "``", "g"); print; }' \
+		$(call DOC_OUTPUT,xml)group__libccc__format.xml > \
+		$(call DOC_OUTPUT,xml)group__libccc__format.tmp && mv \
+		$(call DOC_OUTPUT,xml)group__libccc__format.tmp \
+		$(call DOC_OUTPUT,xml)group__libccc__format.xml
 	@$(call print_message,"Generating RST documentation...")
 	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOXYREST_CONFIG) \
 		   $(call DOC_OUTPUT,xml)index.xml \

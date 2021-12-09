@@ -19,8 +19,6 @@
 **	- https://en.wikipedia.org/wiki/UTF-16
 **	- https://en.wikipedia.org/wiki/UTF-32
 **	- https://unicode-table.com/en/#
-**
-**	@file
 */
 
 /*
@@ -42,32 +40,38 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
+//!@doc Primitive type: Unicode UTF-8 character (variable length: 1 to 4 bytes)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
 */
+//!@{
 typedef char			t_utf8;
 TYPEDEF_ALIAS(			t_utf8, UTF8, PRIMITIVE)
+//!@}
 
 
 
-//! Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
+//!@doc Primitive type: Unicode UTF-16 character (variable length: 2 or 4 bytes)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char16_t}
 **	@isostd{C,https://en.cppreference.com/w/c/string/multibyte}
 */
+//!@{
 typedef uint_least16_t	t_utf16; // TODO add option to use C11 `char16_t`
 TYPEDEF_ALIAS(			t_utf16, UTF16, PRIMITIVE)
+//!@}
 
 
 
-//! Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
+//!@doc Primitive type: Unicode UTF-32 character code point value (fixed length: 4 bytes)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/string/multibyte/char32_t}
 **	@isostd{C,https://en.cppreference.com/w/c/string/wide}
 */
+//!@{
 typedef uint_least32_t	t_utf32; // TODO add option to use C11 `char32_t`
 TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
+//!@}
 
 
 
@@ -79,9 +83,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
-/*!
-**	These macros are used to encode/decode UTF-8 strings.
-*/
+//!@doc Support macros, used to encode/decode UTF-8 strings.
 //!@{
 #define UTF8_1BYTE	0x00000080	//!< Beneath this code point, UTF-8 encodes this as a 1-byte character
 #define UTF8_2BYTE	0x00000800	//!< Beneath this code point, UTF-8 encodes this as a 2-byte character
@@ -91,9 +93,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
-/*!
-**	These macros are used to encode/decode UTF-16 strings.
-*/
+//!@doc Support macros, used to encode/decode UTF-16 strings.
 //!@{
 #define UTF16_BIAS		0x10000
 #define UTF16_SURROGATE_HI	0xD800
@@ -104,8 +104,8 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 
+//!@doc Unicode byte order mark (https://en.wikipedia.org/wiki/Byte_order_mark) macros.
 /*!
-**	The Unicode byte order mark (https://en.wikipedia.org/wiki/Byte_order_mark) macros.
 **	A byte order mark is used at the beginning of a string, to indicate that the string is
 **	indeed a Unicode string, the type of Unicode encoding, and the byte endian-ness used.
 */
@@ -136,7 +136,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 ** ************************************************************************** *|
 */
 
-//! Check if the given char `c` is a letter character
+//!@doc Check if the given char `c` is a letter character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswalpha}
 **
@@ -145,11 +145,13 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 **	`TRUE` if the given char `c` is a letter (lowercase or uppercase),
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsLetter(t_utf32 c);
 #define c_wcisalpha		UTF32_IsLetter
 #define UTF32_IsAlpha	UTF32_IsLetter
+//!@}
 
-//! Check if the given char `c` is a uppercase letter character
+//!@doc Check if the given char `c` is a uppercase letter character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswupper}
 **
@@ -158,11 +160,13 @@ t_bool					UTF32_IsLetter(t_utf32 c);
 **	`TRUE` if the given char `c` is a uppercase letter character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsUppercase(t_utf32 c);
 #define c_wcisupper		UTF32_IsUppercase
 #define UTF32_IsUpper	UTF32_IsUppercase
+//!@}
 
-//! Check if the given char `c` is an lowercase letter character
+//!@doc Check if the given char `c` is an lowercase letter character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswlower}
 **
@@ -171,11 +175,13 @@ t_bool					UTF32_IsUppercase(t_utf32 c);
 **	`TRUE` if the given char `c` is an lowercase letter character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsLowercase(t_utf32 c);
 #define c_wcislower		UTF32_IsLowercase
 #define UTF32_IsLower	UTF32_IsLowercase
+//!@}
 
-//! Check if the given char `c` is alphanumeric (letter or digit) character
+//!@doc Check if the given char `c` is alphanumeric (letter or digit) character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswalnum}
 **
@@ -184,13 +190,15 @@ t_bool					UTF32_IsLowercase(t_utf32 c);
 **	`TRUE` if the given char `c` is alphanumeric (letter or digit),
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsAlphaNumeric(t_utf32 c);
 #define c_wcisalnum		UTF32_IsAlphaNumeric
 #define UTF32_IsAlNum	UTF32_IsAlphaNumeric
+//!@}
 
 
 
-//! Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
+//!@doc Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswdigit}
 **
@@ -199,12 +207,14 @@ t_bool					UTF32_IsAlphaNumeric(t_utf32 c);
 **	`TRUE` if the given char `c` is a decimal digit character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
 #define c_wcisdigit			UTF32_IsDigit_Decimal
 #define UTF32_IsDigit		UTF32_IsDigit_Decimal
 #define UTF32_IsDigit_Dec	ASCII_IsDigit_Decimal
+//!@}
 
-//! Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789ABCDEFabcdef`)
+//!@doc Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789ABCDEFabcdef`)
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswxdigit}
 **
@@ -213,11 +223,13 @@ t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
 **	`TRUE` if the given char `c` is a hexadecimal digit character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool						UTF32_IsDigit_Hexadecimal(t_utf32 c);
 #define c_wcisxdigit		UTF32_IsDigit_Hexadecimal
 #define UTF32_IsDigit_Hex	UTF32_IsDigit_Hexadecimal
+//!@}
 
-//! Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
+//!@doc Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
 /*!
 **	@nonstd
 **
@@ -226,11 +238,13 @@ t_bool						UTF32_IsDigit_Hexadecimal(t_utf32 c);
 **	`TRUE` if the given char `c` is an octal digit character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool						UTF32_IsDigit_Octal(t_utf32 c);
 #define c_wcisodigit		UTF32_IsDigit_Octal
 #define UTF32_IsDigit_Oct	UTF32_IsDigit_Octal
+//!@}
 
-//! Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
+//!@doc Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
 /*!
 **	@nonstd
 **
@@ -239,13 +253,15 @@ t_bool						UTF32_IsDigit_Octal(t_utf32 c);
 **	`TRUE` if the given char `c` is a binary digit character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool						UTF32_IsDigit_Binary(t_utf32 c);
 #define c_wcisbdigit		UTF32_IsDigit_Binary
 #define UTF32_IsDigit_Bin	UTF32_IsDigit_Binary
+//!@}
 
 
 
-//! Check if the given char `c` is whitespace character (prints nothing)
+//!@doc Check if the given char `c` is whitespace character (prints nothing)
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswspace}
 **
@@ -254,11 +270,13 @@ t_bool						UTF32_IsDigit_Binary(t_utf32 c);
 **	`TRUE` if the given char `c` is whitespace character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsWhiteSpace(t_utf32 c);
 #define c_wcisspace		UTF32_IsWhiteSpace
 #define UTF32_IsSpace	UTF32_IsWhiteSpace
+//!@}
 
-//! Check if the given char `c` is a punctuation character
+//!@doc Check if the given char `c` is a punctuation character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswpunct}
 **
@@ -267,13 +285,15 @@ t_bool					UTF32_IsWhiteSpace(t_utf32 c);
 **	`TRUE` if the given char `c` is a punctuation character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsPunctuation(t_utf32 c);
 #define c_wcispunct		UTF32_IsPunctuation
 #define UTF32_IsPunct	UTF32_IsPunctuation
+//!@}
 
 // TODO https://en.cppreference.com/w/c/string/wide/iswcntrl
 
-//! Check if the given char `c` is a printable Unicode character
+//!@doc Check if the given char `c` is a printable Unicode character
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswprint}
 **
@@ -282,11 +302,13 @@ t_bool					UTF32_IsPunctuation(t_utf32 c);
 **	`TRUE` if the given char `c` is a printable Unicode character,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsPrintable(t_utf32 c);
 #define c_wcisprint		UTF32_IsPrintable
 #define UTF32_IsPrint	UTF32_IsPrintable
+//!@}
 
-//! Check if the given char `c` is an ASCII-compatible char (non-Unicode)
+//!@doc Check if the given char `c` is an ASCII-compatible char (non-Unicode)
 /*!
 **	@nonstd
 **
@@ -295,10 +317,12 @@ t_bool					UTF32_IsPrintable(t_utf32 c);
 **	`TRUE` if the given char `c` has a value between 0 and 127,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsASCII(t_utf32 c);
 #define c_wcisascii		UTF32_IsASCII
+//!@}
 
-//! Check if the given char `c` is a valid Unicode code point
+//!@doc Check if the given char `c` is a valid Unicode code point
 /*!
 **	@nonstd
 **
@@ -307,12 +331,14 @@ t_bool					UTF32_IsASCII(t_utf32 c);
 **	`TRUE` if the given char `c` is a valid UTF-32 code point,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool					UTF32_IsValid(t_utf32 c);
 #define c_wcisvalid		UTF32_IsValid
+//!@}
 
 
 
-//! Check if the given char `c` is contained in the given 'charset'
+//!@doc Check if the given char `c` is contained in the given 'charset'
 /*!
 **	Check if the given char `c` is contained in the given 'charset'
 **
@@ -322,9 +348,11 @@ t_bool					UTF32_IsValid(t_utf32 c);
 **	`TRUE` if the given char `c` is contained within the given `charset` array,
 **	otherwise returns `FALSE`.
 */
+//!@{
 t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 #define c_wcincharset		UTF32_IsInCharset
 #define Unicode_IsInCharset	UTF32_IsInCharset
+//!@}
 
 
 
@@ -338,7 +366,7 @@ t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 ** ************************************************************************** *|
 */
 
-//! Get the uppercase version of the given char `c`, if possible
+//!@doc Get the uppercase version of the given char `c`, if possible
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/towupper}
 **
@@ -347,11 +375,13 @@ t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 **	The uppercase equivalent of the given character,
 **	or returns `c` itself if it is not a letter character.
 */
+//!@{
 t_utf32						UTF32_ToUppercase(t_utf32 c);
 #define c_wctoupper			UTF32_ToUppercase
 #define UTF32_ToUpper		UTF32_ToUppercase
+//!@}
 
-//! Get the lowercase version of the given char `c`, if possible
+//!@doc Get the lowercase version of the given char `c`, if possible
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/towlower}
 **
@@ -360,9 +390,11 @@ t_utf32						UTF32_ToUppercase(t_utf32 c);
 **	The lowercase equivalent of the given character,
 **	or returns `c` itself if it is not a letter character.
 */
+//!@{
 t_utf32						UTF32_ToLowercase(t_utf32 c);
 #define c_wctolower			UTF32_ToLowercase
 #define UTF32_ToLower		UTF32_ToLowercase
+//!@}
 
 // TODO UTF32_ToASCII()
 
@@ -378,7 +410,7 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 
 
 
-//! Converts the given Unicode char `c` to its UTF-8 equivalent representation
+//!@doc Converts the given Unicode char `c` to its UTF-8 equivalent representation
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/wctomb}
 **
@@ -389,11 +421,13 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 **	@returns
 **	The size (in bytes) of the character written (can be 0, 1, 2, 3, or 4)
 */
+//!@{
 t_size						UTF32_ToUTF8(t_utf8* dest, t_utf32 c);
 #define c_wctomb			UTF32_ToUTF8
 #define c_wctoutf8			UTF32_ToUTF8
+//!@}
 
-//! Converts the given Unicode char `c` to its UTF-16 equivalent representation
+//!@doc Converts the given Unicode char `c` to its UTF-16 equivalent representation
 /*!
 **	@nonstd
 **
@@ -404,13 +438,15 @@ t_size						UTF32_ToUTF8(t_utf8* dest, t_utf32 c);
 **	@returns
 **	The size (in bytes) of the character written (can be 0, 2, or 4)
 */
+//!@{
 t_size						UTF32_ToUTF16(t_utf16* dest, t_utf32 c);
 #define c_wctomb2			UTF32_ToUTF16
 #define c_wctoutf16			UTF32_ToUTF16
+//!@}
 
 
 
-//! Returns the Unicode code point value (UTF-32) for the first UTF-8 character in `str`
+//!@doc Returns the Unicode code point value (UTF-32) for the first UTF-8 character in `str`
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mbtowc}
 **
@@ -419,11 +455,13 @@ t_size						UTF32_ToUTF16(t_utf16* dest, t_utf32 c);
 **	@returns
 **	The Unicode code point value for the character pointed to by `str`
 */
+//!@{
 t_utf32						UTF32_FromUTF8(t_utf8 const* str);
 #define c_mbtowc			UTF32_FromUTF8
 #define c_utf8towc			UTF32_FromUTF8
+//!@}
 
-//! Returns the Unicode code point value (UTF-32) for the first UTF-16 character in `str`
+//!@doc Returns the Unicode code point value (UTF-32) for the first UTF-16 character in `str`
 /*!
 **	@nonstd
 **
@@ -432,13 +470,15 @@ t_utf32						UTF32_FromUTF8(t_utf8 const* str);
 **	@returns
 **	The Unicode code point value for the character pointed to by `str`
 */
+//!@{
 t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 #define c_mb2towc			UTF32_FromUTF16
 #define c_utf16towc			UTF32_FromUTF16
+//!@}
 
 
 
-//! Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
+//!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
 /*!
 **	@nonstd
 **
@@ -447,10 +487,12 @@ t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 **	The UTF-32 code point for the parsed unicode character,
 **	or `-1`(#ERROR) if there was a parsing error.
 */
+//!@{
 t_utf32					UTF32_FromEscape(t_ascii const* str);
 #define c_wcparse		UTF32_FromEscape
+//!@}
 
-//! Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
+//!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
 /*!
 **	@nonstd
 **
@@ -461,8 +503,10 @@ t_utf32					UTF32_FromEscape(t_ascii const* str);
 **	@returns
 **	The total amount of bytes read from the given `str` buffer.
 */
+//!@{
 t_size					UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
 #define c_wcnparse		UTF32_Parse
+//!@}
 
 
 
@@ -472,34 +516,40 @@ t_size					UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
 ** ************************************************************************** *|
 */
 
-//! Parses a UTF-8 BOM (byte order mark) in `str`
+//!@doc Parses a UTF-8 BOM (byte order mark) in `str`
 /*!
 **	@returns
 **	`0` if there is no UTF-8 byte order mark at `str`,
 **	or the length of the UTF-8 byte order mark (ie: `3`)
 */
+//!@{
 t_sint				UTF8_ByteOrderMark(t_utf8 const* str);
 #define c_mbbom		UTF8_ByteOrderMark
+//!@}
 
-//! Parses a UTF-16 BOM (byte order mark) in `str`
+//!@doc Parses a UTF-16 BOM (byte order mark) in `str`
 /*!
 **	@returns
 **	`0` if there is no UTF-16 byte order mark at `str`,
 **	or the length of the UTF-16 byte order mark (ie: `2`) -
 **	also note: the return is negative for a big-endian BOM (ie: `-2`)
 */
+//!@{
 t_sint				UTF16_ByteOrderMark(t_utf16 const* str);
 #define c_mb2bom	UTF16_ByteOrderMark
+//!@}
 
-//! Parses a UTF-32 BOM (byte order mark) in `str`
+//!@doc Parses a UTF-32 BOM (byte order mark) in `str`
 /*!
 **	@returns
 **	`0` if there is no UTF-32 byte order mark at `str`,
 **	or the length of the UTF-32 byte order mark (ie: `4`) -
 **	also note: the return is negative for a big-endian BOM (ie: `-4`)
 */
+//!@{
 t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 #define c_wcbom		UTF32_ByteOrderMark
+//!@}
 
 
 

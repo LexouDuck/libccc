@@ -16,8 +16,6 @@
 **	This header defines all the functions for date & time related functions.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/chrono}
-**
-**	@file
 */
 
 /*
@@ -66,7 +64,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! The standard type used to represent a date and time, normal precision (seconds)
+//!@doc The standard type used to represent a date and time, normal precision (seconds)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/chrono/time_t}
 **
@@ -74,14 +72,16 @@ HEADER_CPP
 **	That means that a `t_time` value holds a the number of seconds since
 **	midnight (00:00:00), January 1, 1970, UTC (Coordinated Universal Time)
 */
+//!@{
 typedef time_t		t_time;
 TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
-
+//!@}
+//! The default/null/zero value for a #t_time integer
 #define TIME_NULL	((t_time)0)
 
 
 
-//! This struct is used to store a duration/interval with high precision (nanoseconds)
+//!@doc This struct is used to store a duration/interval with high precision (nanoseconds)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/chrono/timespec}
 **
@@ -95,6 +95,7 @@ TYPEDEF_ALIAS(		t_time, TIME, PRIMITIVE)
 **		tv_sec	->	sec
 **		tv_nsec	->	nanosec
 */
+//!@{
 typedef struct nanotime
 {
 	t_time		sec;		//!< The amount of seconds: only positive values are valid
@@ -102,7 +103,8 @@ typedef struct nanotime
 }				s_nanotime;
 TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
 // typedef struct timespec	s_nanotime;
-
+//!@}
+//! The default/null/zero value for a #s_nanotime struct
 #define NANOTIME_NULL	((s_nanotime){ .sec=0, .nanosec=0 })
 
 
@@ -115,7 +117,8 @@ TYPEDEF_ALIAS(	s_nanotime, TIMESPEC, STRUCT)
 
 
 
-//! This enum lists each day of the week, Sunday counting as zero
+//!@doc This enum lists each day of the week, Sunday counting as zero
+//!@{
 typedef enum weekday
 {
 	WEEKDAY_SUNDAY,
@@ -126,9 +129,11 @@ typedef enum weekday
 	WEEKDAY_FRIDAY,
 	WEEKDAY_SATURDAY,
 	ENUMLENGTH_WEEKDAY
-}				e_weekday;
-TYPEDEF_ALIAS(	e_weekday, WEEKDAY, ENUM)
-
+}	e_weekday;
+TYPEDEF_ALIAS(e_weekday, WEEKDAY, ENUM)
+//!@}
+//!@doc Alias macros, for the short 3-letter versions of weekday names
+//!@{
 #define WEEKDAY_SUN		WEEKDAY_SUNDAY
 #define WEEKDAY_MON		WEEKDAY_MONDAY
 #define WEEKDAY_TUE		WEEKDAY_TUESDAY
@@ -136,6 +141,7 @@ TYPEDEF_ALIAS(	e_weekday, WEEKDAY, ENUM)
 #define WEEKDAY_THU		WEEKDAY_THURSDAY
 #define WEEKDAY_FRI		WEEKDAY_FRIDAY
 #define WEEKDAY_SAT		WEEKDAY_SATURDAY
+//!@}
 
 //! This global constant stores all the string names of the WEEKDAY enum, in lowercase
 extern t_char const* const g_weekday[ENUMLENGTH_WEEKDAY];
@@ -144,7 +150,8 @@ extern t_char const* const g_weekday_abbreviated[ENUMLENGTH_WEEKDAY];
 
 
 
-//! This enum lists each month of the year, January counting as zero
+//!@doc This enum lists each month of the year, January counting as zero
+//!@{
 typedef enum month
 {
 	MONTH_JANUARY,
@@ -160,9 +167,11 @@ typedef enum month
 	MONTH_NOVEMBER,
 	MONTH_DECEMBER,
 	ENUMLENGTH_MONTH
-}				e_month;
-TYPEDEF_ALIAS(	e_month, MONTH, ENUM)
-
+}	e_month;
+TYPEDEF_ALIAS(e_month, MONTH, ENUM)
+//!@}
+//!@doc Alias macros, for the short 3-letter versions of month names
+//!@{
 #define MONTH_JAN	MONTH_JANUARY
 #define MONTH_FEB	MONTH_FEBRUARY
 #define MONTH_MAR	MONTH_MARCH
@@ -175,6 +184,7 @@ TYPEDEF_ALIAS(	e_month, MONTH, ENUM)
 #define MONTH_OCT	MONTH_OCTOBER
 #define MONTH_NOV	MONTH_NOVEMBER
 #define MONTH_DEC	MONTH_DECEMBER
+//!@}
 
 //! This global constant stores all the string names of the MONTH enum, in lowercase
 extern t_char const* const g_month[ENUMLENGTH_MONTH];
@@ -183,7 +193,7 @@ extern t_char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 
 
 
-//! This signed int represents a timezone offset (expressed in seconds)
+//!@doc This signed int represents a timezone offset (expressed in seconds)
 /*!
 **	@nonstd
 **
@@ -198,24 +208,26 @@ extern t_char const* const g_month_abbreviated[ENUMLENGTH_MONTH];
 **	- #TIMEZONE_NA_MST, #TIMEZONE_NA_MDT
 **	- #TIMEZONE_NA_PST, #TIMEZONE_NA_PDT
 */
+//!@{
 typedef t_s32	t_timezone;
 TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
+//!@}
 
-// Commonly used timezones
+// Timezones: Commonly used standard timezones
 #define TIMEZONE_UTC(X)	(3600 * (X))		//!< Timezone (UTC 00): Universal Coordinated Time (same as GMT)
 #define TIMEZONE_GMT	TIMEZONE_UTC(0)		//!< Timezone (UTC 00): Greenwich Mean Time (same as UTC)
 #define TIMEZONE_UTCMIN	TIMEZONE_UTC(-12)	//!< Timezone (UTC-12): The minimum UTC timezone (most late)
 #define TIMEZONE_UTCMAX	TIMEZONE_UTC(+12)	//!< Timezone (UTC+12): The maximum UTC timezone (most early)
-// NAST
+// Timezones: North-American Standard Time (NAST)
 #define TIMEZONE_NA_EST	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Eastern Standard Time
 #define TIMEZONE_NA_CST	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Central Standard Time
 #define TIMEZONE_NA_MST	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Mountain Standard Time
 #define TIMEZONE_NA_PST	TIMEZONE_UTC(-8)	//!< Timezone (UTC-08): North American Pacific Standard Time
-// NADT
-#define TIMEZONE_NA_EDT	TIMEZONE_UTC(-4)	//!< Timezone (UTC-04): North American Eastern Daylight Time
-#define TIMEZONE_NA_CDT	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Central Daylight Time
-#define TIMEZONE_NA_MDT	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Mountain Daylight Time
-#define TIMEZONE_NA_PDT	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Pacific Daylight Time
+// Timezones: North-American Daylight-savings Time (NADT)
+#define TIMEZONE_NA_EDT	TIMEZONE_UTC(-4)	//!< Timezone (UTC-04): North American Eastern Daylight-savings Time
+#define TIMEZONE_NA_CDT	TIMEZONE_UTC(-5)	//!< Timezone (UTC-05): North American Central Daylight-savings Time
+#define TIMEZONE_NA_MDT	TIMEZONE_UTC(-6)	//!< Timezone (UTC-06): North American Mountain Daylight-savings Time
+#define TIMEZONE_NA_PDT	TIMEZONE_UTC(-7)	//!< Timezone (UTC-07): North American Pacific Daylight-savings Time
 
 
 
@@ -224,7 +236,7 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 
 
 
-//! This struct is used to store all aspects about a certain date/time (equivalent to `struct tm`)
+//!@doc This struct is used to store all aspects about a certain date/time (equivalent to `struct tm`)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/chrono/tm}
 **
@@ -241,6 +253,7 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 **		`tm_isdst`	->	`is_dst`
 **		`tm_gmtoff`	->	`offset` (`tm_gmtoff` is not standard, GNU extension)
 */
+//!@{
 typedef struct date
 {
 	t_u8		hour;		//!< [0,23] Amount of hours since midnight
@@ -256,7 +269,8 @@ typedef struct date
 }				s_date;
 TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 // typedef struct tm	s_time
-
+//!@}
+//! The default/null value for a #s_date struct (all fields set to zero)
 #define DATE_NULL \
 	((s_date){			\
 		.hour      = 0,	\
@@ -273,7 +287,7 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
-//! The various time range maximum numbers, used in several calculations
+//!@doc The various time range maximum numbers, used in several calculations
 /*!
 **	These macros are used to indicate a maximum range for a time unit.
 **	NOTE: There are some exceptions to these maximums, notably:
@@ -294,7 +308,7 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 
 
 
-//! Common time string format macro definitions (to be used with Date_Print() and Date_Parse() functions)
+//!@doc Common time string format macro definitions (to be used with Date_Print() and Date_Parse() functions)
 /*!
 **	These macros are used to indicate a maximum range for a time unit.
 **	@see
@@ -327,42 +341,50 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 ** ************************************************************************** *|
 */
 
-//! Returns the current UTC timestamp, according to the system clock
+//!@doc Returns the current UTC timestamp, according to the system clock
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/time}
 */
+//!@{
 t_time					Time_Now(void);
 #define c_time			Time_Now
 #define c_time_now		Time_Now
+//!@}
 
 
 
-//! Configurable function (default: "_UTC")
+//!@doc Configurable function (default: "_UTC")
 /*!
 **	@see
 **	- Time_ToDate_UTC()
 **	- Time_ToDate_LocalTime()
 */
+//!@{
 #define 					Time_ToDate			Time_ToDate_UTC
 #define c_timetodate		Time_ToDate
+//!@}
 
-//! Converts the given `t_time value` to its equivalent `s_date` representation (in UTC)
+//!@doc Converts the given `t_time value` to its equivalent `s_date` representation (in UTC)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/gmtime}
 **	@isostd{POSIX,https://linux.die.net/man/3/gmtime}
 */
+//!@{
 s_date						Time_ToDate_UTC(t_time const value);
 #define c_gmtime			Time_ToDate_UTC
 #define c_timetodate_utc	Time_ToDate_UTC
+//!@}
 
-//! Converts the given `t_time value` to its equivalent `s_date` representation (according to the system timezone)
+//!@doc Converts the given `t_time value` to its equivalent `s_date` representation (according to the system timezone)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/localtime}
 **	@isostd{POSIX,https://linux.die.net/man/3/localtime}
 */
+//!@{
 s_date						Time_ToDate_LocalTime(t_time const value);
 #define c_localtime			Time_ToDate_LocalTime
 #define c_timetodate_local	Time_ToDate_LocalTime
+//!@}
 
 
 
@@ -372,21 +394,25 @@ s_date						Time_ToDate_LocalTime(t_time const value);
 ** ************************************************************************** *|
 */
 
-//! Converts the given `s_date` struct to its ISO STD LIBC `struct tm` equivalent
+//!@doc Converts the given `s_date` struct to its ISO STD LIBC `struct tm` equivalent
 /*!
 **	@nonstd
 */
+//!@{
 struct timespec					NanoTime_ToSTDC(s_nanotime const* value);
 #define c_nanotimetostdc		NanoTime_ToSTDC
 #define c_nanotimetotimespec	NanoTime_ToSTDC
+//!@}
 
-//! Converts the given ISO STD LIBC `struct tm` to its `s_date` struct equivalent
+//!@doc Converts the given ISO STD LIBC `struct tm` to its `s_date` struct equivalent
 /*!
 **	@nonstd
 */
+//!@{
 s_nanotime						NanoTime_FromSTDC(struct timespec const* value);
 #define c_stdctonanotime		NanoTime_FromSTDC
 #define c_timespectonanotime	NanoTime_FromSTDC
+//!@}
 
 
 
@@ -396,93 +422,107 @@ s_nanotime						NanoTime_FromSTDC(struct timespec const* value);
 ** ************************************************************************** *|
 */
 
-//! Returns the current UTC timestamp, according to the system clock
+//!@doc Returns the current UTC timestamp, according to the system clock
 /*!
 **	@nonstd
 **
 **	This equivalent to doing `gmtime(time(NULL))`
 **	@see Time_Now() and Time_ToDate()
 */
+//!@{
 s_date					Date_Now(void);
 #define c_date			Date_Now
 #define c_datenow		Date_Now
+//!@}
 
 
 
-//! Configurable function (default: "_UTC")
+//!@doc Configurable function (default: "_UTC")
 /*!
 **	@nonstd
 */
+//!@{
 #define 					Date_ToTime			Date_ToTime_UTC
 #define c_datetotime		Date_ToTime
+//!@}
 
-//! Converts the given 's_date value' to its equivalent 't_time' representation (in UTC)
+//!@doc Converts the given 's_date value' to its equivalent 't_time' representation (in UTC)
 /*!
 **	@isostd{BSD,https://linux.die.net/man/3/timegm}
 */
+//!@{
 t_time						Date_ToTime_UTC(s_date const* value);
 #define c_datetotime_utc	Date_ToTime_UTC
+//!@}
 
-//! Converts the given 's_date value' to its equivalent 't_time' representation (according to the system timezone)
+//!@doc Converts the given 's_date value' to its equivalent 't_time' representation (according to the system timezone)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/mktime}
 */
+//!@{
 t_time						Date_ToTime_LocalTime(s_date const* value);
 #define c_mktime			Date_ToTime_LocalTime
 #define c_datetotime_local	Date_ToTime_LocalTime
+//!@}
 
 
 
-//! Converts the given 's_date' struct to its ISO STD LIBC `struct tm` equivalent
+//!@doc Converts the given 's_date' struct to its ISO STD LIBC `struct tm` equivalent
 /*!
 **	@nonstd
 */
+//!@{
 struct tm					Date_ToSTDC(s_date const* date);
 #define c_datetostdc		Date_ToSTDC
+//!@}
 
-//! Converts the given ISO STD LIBC `struct tm` to its 's_date' struct equivalent
+//!@doc Converts the given ISO STD LIBC `struct tm` to its 's_date' struct equivalent
 /*!
 **	@nonstd
 */
+//!@{
 s_date						Date_FromSTDC(struct tm const* value);
 #define c_stdctodate		Date_FromSTDC
+//!@}
 
 
 
-//! Parses the given string representation of a date/time, and returns the resulting 's_date' struct
+//!@doc Parses the given string representation of a date/time, and returns the resulting 's_date' struct
 /*!
 **	@isostd{POSIX,https://linux.die.net/man/3/strptime}
 **
 **	NOTE: The `tm` argument should be cleared (zeroed out) before being passed to this function.
 **
-**	`%%`			The `'%'` (percent) character.
-**	`%a`,`%A`		The name of the day of the week according to the current locale, in abbreviated form or the full name.
-**	`%b`,`%B`,`%h`	The month name according to the current locale, in abbreviated form or the full name.
-**	`%c`			The date and time representation for the current locale.
-**	`%C`			[0,99] The century number .
-**	`%d`,`%e`		[1,31] The day of month .
-**	`%D`			Equivalent to `"%m/%d/%y"`. (This is the American style date, very confusing to non-Americans.. The ISO 8601 standard format is `"%Y-%m-%d"`.)
-**	`%H`			[0,23] The hour .
-**	`%I`			[1,12] The hour on a 12-hour clock .
-**	`%j`			[1,366] The day number in the year .
-**	`%m`			[1,12] The month number .
-**	`%M`			[0,59] The minute .
-**	`%n`			Arbitrary whitespace.
-**	`%p`			The locale's equivalent of AM or PM. (NOTE: there may be none.)
-**	`%r`			The 12-hour clock time (using the locale's AM or PM). In the POSIX locale equivalent to `"%I:%M:%S %p"` (NOTE: If the locale's `t_fmt_ampm` is empty, then the behavior is undefined).
-**	`%R`			Equivalent to `%H:%M`.
-**	`%S`			[0,60] The second (60 may occur for leap seconds; earlier also 61 was allowed).
-**	`%t`			Arbitrary whitespace.
-**	`%T`			Equivalent to `%H:%M:%S`.
-**	`%U`			[0,53] The week number with Sunday the first day of the week. The first Sunday of January is the first day of week 1.
-**	`%W`			[0,53] The week number with Monday the first day of the week. The first Monday of January is the first day of week 1.
-**	`%w`			[0,6] The ordinal number of the day of the week, with Sunday = 0.
-**	`%X`			The time, using the locale's time format.
-**	`%x`			The date, using the locale's date format.
-**	`%Y`			The year, including century (for example, 1991).
-**	`%y`			[0,99] The year within century. When a century is not otherwise specified,
-**					values in the range [69,99] refer to years in the twentieth century: [1969,1999];
-**					values in the range [00,68] refer to years in the twenty-first century: [2000,2068].
+**	| Specifier char | Description |
+**	|----------------|-------------|
+**	| `%%`           | The `'%'` (percent) character. |
+**	| `%a`,`%A`      | The name of the day of the week according to the current locale, in abbreviated form or the full name. |
+**	| `%b`,`%B`,`%h` | The month name according to the current locale, in abbreviated form or the full name. |
+**	| `%c`           | The date and time representation for the current locale. |
+**	| `%C`           | [0,99] The century number . |
+**	| `%d`,`%e`      | [1,31] The day of month . |
+**	| `%D`           | Equivalent to `"%m/%d/%y"`. (This is the American style date, very confusing to non-Americans.. The ISO 8601 standard format is `"%Y-%m-%d"`.) |
+**	| `%H`           | [0,23] The hour . |
+**	| `%I`           | [1,12] The hour on a 12-hour clock . |
+**	| `%j`           | [1,366] The day number in the year . |
+**	| `%m`           | [1,12] The month number . |
+**	| `%M`           | [0,59] The minute . |
+**	| `%n`           | Arbitrary whitespace. |
+**	| `%p`           | The locale's equivalent of AM or PM. (NOTE: there may be none.) |
+**	| `%r`           | The 12-hour clock time (using the locale's AM or PM). In the POSIX locale equivalent to `"%I:%M:%S %p"` (NOTE: If the locale's `t_fmt_ampm` is empty, then the behavior is undefined). |
+**	| `%R`           | Equivalent to `%H:%M`. |
+**	| `%S`           | [0,60] The second (60 may occur for leap seconds; earlier also 61 was allowed). |
+**	| `%t`           | Arbitrary whitespace. |
+**	| `%T`           | Equivalent to `%H:%M:%S`. |
+**	| `%U`           | [0,53] The week number with Sunday the first day of the week. The first Sunday of January is the first day of week 1. |
+**	| `%W`           | [0,53] The week number with Monday the first day of the week. The first Monday of January is the first day of week 1. |
+**	| `%w`           | [0,6] The ordinal number of the day of the week, with Sunday = 0. |
+**	| `%X`           | The time, using the locale's time format. |
+**	| `%x`           | The date, using the locale's date format. |
+**	| `%Y`           | The year, including century (for example, 1991). |
+**	| `%y`           | [0,99] The year within century. When a century is not otherwise specified,
+**	                    values in the range [69,99] refer to years in the twentieth century: [1969,1999];
+**	                    values in the range [00,68] refer to years in the twenty-first century: [2000,2068].
 **
 **	Some field descriptors can be modified by the E or O modifier characters
 **	to indicate that an alternative format or specification should be used.
@@ -492,48 +532,57 @@ s_date						Date_FromSTDC(struct tm const* value);
 **	The `E` modifier specifies that the input string may contain alternative
 **	locale-dependent versions of the date and time representation:
 **
-**	`%Ec`			The locale's alternative date and time representation.
-**	`%EC`			The name of the base year (period) in the locale's alternative representation.
-**	`%Ex`			The locale's alternative date representation.
-**	`%EX`			The locale's alternative time representation.
-**	`%Ey`			The offset from `%EC` (year only) in the locale's alternative representation.
-**	`%EY`			The full alternative year representation.
+**	| Specifier   | Description |
+**	|-------------|-------------|
+**	| `%Ec`       | The locale's alternative date and time representation. |
+**	| `%EC`       | The name of the base year (period) in the locale's alternative representation. |
+**	| `%Ex`       | The locale's alternative date representation. |
+**	| `%EX`       | The locale's alternative time representation. |
+**	| `%Ey`       | The offset from `%EC` (year only) in the locale's alternative representation. |
+**	| `%EY`       | The full alternative year representation. |
 **
 **	The `O` modifier specifies that the numerical input may be in an alternative locale-dependent format:
 **
-**	`%Od`,`%Oe`		The day of the month using the locale's alternative numeric symbols; leading zeros are permitted but not required.
-**	`%OH`			The hour (24-hour clock) using the locale's alternative numeric symbols.
-**	`%OI`			The hour (12-hour clock) using the locale's alternative numeric symbols.
-**	`%Om`			The month using the locale's alternative numeric symbols.
-**	`%OM`			The minutes using the locale's alternative numeric symbols.
-**	`%OS`			The seconds using the locale's alternative numeric symbols.
-**	`%OU`			The week number of the year (Sunday as the first day of the week) using the locale's alternative numeric symbols.
-**	`%Ow`			The ordinal number of the day of the week (Sunday=0), using the locale's alternative numeric symbols.
-**	`%OW`			The week number of the year (Monday as the first day of the week) using the locale's alternative numeric symbols.
-**	`%Oy`			The year (offset from `%C`) using the locale's alternative numeric symbols.
+**	| Specifier   | Description |
+**	|-------------|-------------|
+**	| `%Od`,`%Oe` | The day of the month using the locale's alternative numeric symbols; leading zeros are permitted but not required. |
+**	| `%OH`       | The hour (24-hour clock) using the locale's alternative numeric symbols. |
+**	| `%OI`       | The hour (12-hour clock) using the locale's alternative numeric symbols. |
+**	| `%Om`       | The month using the locale's alternative numeric symbols. |
+**	| `%OM`       | The minutes using the locale's alternative numeric symbols. |
+**	| `%OS`       | The seconds using the locale's alternative numeric symbols. |
+**	| `%OU`       | The week number of the year (Sunday as the first day of the week) using the locale's alternative numeric symbols. |
+**	| `%Ow`       | The ordinal number of the day of the week (Sunday=0), using the locale's alternative numeric symbols. |
+**	| `%OW`       | The week number of the year (Monday as the first day of the week) using the locale's alternative numeric symbols. |
+**	| `%Oy`       | The year (offset from `%C`) using the locale's alternative numeric symbols. |
 */
 //!@{
 //_FORMAT(strptime, 2, 0) // TODO check if this format() attribute exists even
 t_size						Date_Parse(s_date* dest, t_char const* str, t_char const* format);
 #define c_strptime			Date_Parse
 #define c_dateparse			Date_Parse
+//!@}
+//!@doc Like Date_Parse(), but directly returns the result
+//!@{
+s_date						Date_FromString(t_char const* str, t_char const* format);
+#define c_strtodate			Date_FromString
+//!@}
 
-//! Like Date_Parse(), but will not set every field in the `s_date` struct, only those directly parsed
+//!@doc Like Date_Parse(), but will not set every field in the `s_date` struct, only those directly parsed
+//!@{
 t_size						Date_Parse_Min(s_date* dest, t_char const* str, t_char const* format);
 #define c_strmptime			Date_Parse_Min
 #define c_dateparsem		Date_Parse_Min
-
-s_date						Date_FromString(t_char const* str, t_char const* format);
-#define c_strtodate			Date_FromString
-
-//! Like Date_FromString(), but will not set every field in the `s_date` struct, only those directly parsed
+//!@}
+//!@doc Like Date_FromString(), but will not set every field in the `s_date` struct, only those directly parsed
+//!@{
 s_date						Date_FromString_Min(t_char const* str, t_char const* format);
 #define c_strmtodate		Date_FromString_Min
 //!@}
 
 
 
-//! Creates a string representation of the given 'date', according to the given 'format' string
+//!@doc Creates a string representation of the given 'date', according to the given 'format' string
 /*!
 **	@nonstd, see Date_Print_N() https://www.gnu.org/software/libc/manual/html_node/Formatting-Calendar-Time.html
 **
@@ -651,6 +700,7 @@ s_date						Date_FromString_Min(t_char const* str, t_char const* format);
 **		(ISO C99 and POSIX.1-2001 but was previously available as a GNU extension)
 **	%Z	The time zone abbreviation (empty if the time zone can't be determined).
 */
+//!@{
 _FORMAT(strftime, 2, 0)
 _MALLOC()
 t_char*						Date_ToString(s_date const* date, t_char const* format);
@@ -659,13 +709,15 @@ t_char*						Date_ToString(s_date const* date, t_char const* format);
 #define c_datefmt			Date_ToString
 #define Date_Format			Date_ToString
 #define Date_Print			Date_ToString
+//!@}
 
-//! Creates a string representation of the given 'date', according to the given 'format' string
+//!@doc Creates a string representation of the given 'date', according to the given 'format' string
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/chrono/strftime}
 **
 **	@see Date_ToString
 */
+//!@{
 _FORMAT(strftime, 4, 0)
 t_size						Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char const* format);
 #define c_strnftime			Date_ToString_N
@@ -673,25 +725,29 @@ t_size						Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char
 #define c_datefmtn			Date_ToString_N
 #define Date_Format_N		Date_ToString_N
 #define Date_Print_N		Date_ToString_N
+//!@}
 
-//! Creates a string representation of the given 'date', in standard (sortable) Unix format
+//!@doc Creates a string representation of the given 'date', in standard (sortable) Unix format
 /*!
 **	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
 **
 **	@see Date_Print
 */
+//!@{
 t_char*						Date_ToString_Unix(s_date const* date);
 #define c_strftime_unix		Date_ToString_Unix
 #define c_datetostr_unix	Date_ToString_Unix
 #define c_dateunix			Date_ToString_Unix
 #define Date_Format_Unix	Date_ToString_Unix
+//!@}
 
-//! Creates a string representation of the current time in UTC, in standard (sortable) Unix format
+//!@doc Creates a string representation of the current time in UTC, in standard (sortable) Unix format
 /*!
 **	@isostd{https://en.cppreference.com/w/c/chrono/strftime}
 **
 **	@see Date_Print
 */
+//!@{
 t_char*						DateNow_ToString_Unix(void);
 #define c_datenow_unix		DateNow_ToString_Unix
 #define c_utcnow_unix		DateNow_ToString_Unix
@@ -699,6 +755,7 @@ t_char*						DateNow_ToString_Unix(void);
 #define c_utcnowtostr_unix	DateNow_ToString_Unix
 #define DateNow_Format_Unix	DateNow_ToString_Unix
 #define UTCNow_Format_Unix	DateNow_ToString_Unix
+//!@}
 
 
 /*
@@ -707,21 +764,27 @@ t_char*						DateNow_ToString_Unix(void);
 ** ************************************************************************** *|
 */
 
-//! Returns `TRUE` if the given `date` is indeed a valid date according to the Gregorian/Astronomical calendar
+//!@doc Returns `TRUE` if the given `date` is indeed a valid date according to the Gregorian/Astronomical calendar
 /*!
 **	@nonstd
 */
-t_bool	Date_IsValid(s_date const* date);
+//!@{
+t_bool					Date_IsValid(s_date const* date);
+#define c_dateisvalid	Date_IsValid
+//!@}
 
-//! Modifies the given `date`, to force its values to be constrained to their correct ranges
+//!@doc Modifies the given `date`, to force its values to be constrained to their correct ranges
 /*!
 **	@nonstd
 */
-void	Date_MakeValid(s_date* date);
+//!@{
+void					Date_MakeValid(s_date* date);
+#define c_datetovalid	Date_MakeValid
+//!@}
 
 
 
-//! Returns the amount of days in the given `month`
+//!@doc Returns the amount of days in the given `month`
 /*!
 **	@nonstd, see https://en.wikipedia.org/wiki/Leap_year
 **
@@ -731,35 +794,47 @@ void	Date_MakeValid(s_date* date);
 **	`30` or `31` for most `month` values, the one exception being february:
 **	when `month == MONTH_FEBRUARY`, will return `28`, or `29` if `Date_IsLeapYear(year)`.
 */
-t_uint		Date_DaysInMonth(e_month month, t_s32 year);
+//!@{
+t_uint					Date_DaysInMonth(e_month month, t_s32 year);
+#define c_daysinmonth	Date_DaysInMonth
+//!@}
 
-//! Returns the day of the week (according to `date->day_month` or `date->day_year`, as available)
+//!@doc Returns the day of the week (according to `date->day_month` or `date->day_year`, as available)
 /*!
 **	@nonstd
 **
 **	@returns
 **	The day of the week for the given `date` (according to `date->day_month` or `date->day_year`, as available)
 */
-e_weekday	Date_DayOfTheWeek(s_date* date);
+//!@{
+e_weekday				Date_DayOfTheWeek(s_date* date);
+#define c_dayofweek		Date_DayOfTheWeek
+//!@}
 
 
 
-//! Returns `TRUE` if the given year is a leap year
+//!@doc Returns `TRUE` if the given year is a leap year
 /*!
 **	@nonstd
 **
 **	@param	year	The year to check
 */
-t_bool		Date_IsLeapYear(t_s32 year);
+//!@{
+t_bool					Date_IsLeapYear(t_s32 year);
+#define c_isleapyear	Date_IsLeapYear
+//!@}
 
-//! Returns `TRUE` if the given has a leap second on its last day
+//!@doc Returns `TRUE` if the given has a leap second on its last day
 /*!
 **	@nonstd, see https://en.wikipedia.org/wiki/Leap_second
 **
 **	@param	month	The month to check (typically June 30th, or December 31st)
 **	@param	year	The year to check (leap seconds for future dates are not known)
 */
-t_bool		Date_HasLeapSecond(e_month month, t_s32 year);
+//!@{
+t_bool					Date_HasLeapSecond(e_month month, t_s32 year);
+#define c_hasleapsec	Date_HasLeapSecond
+//!@}
 
 
 

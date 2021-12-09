@@ -17,8 +17,6 @@
 **
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math}
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/tgmath}
-**
-**	@file
 */
 
 // TODO add PCGD() and PPCM() functions
@@ -100,9 +98,9 @@ HEADER_CPP
 **	@param	X	The number to exponentiate (can be a value of any numeric type)
 **	@param	Y	The exponent (must be an integer literal, in the range `[0,16]`)
 */
+//!@{
 #ifndef POW
 #define POW(X, Y)		POW_##Y(X)
-
 // TODO make more optimized with log2n method
 #define POW_0(X)	(1)
 #define POW_1(X)	(X)
@@ -122,6 +120,7 @@ HEADER_CPP
 #define POW_15(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X * X * X)
 #define POW_16(X)	(X * X * X * X * X * X * X * X * X * X * X * X * X * X * X * X)
 #endif
+//!@}
 
 
 
@@ -253,35 +252,43 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the value of `x`, rounded to the nearest integer
+//!@doc Returns the value of `x`, rounded to the nearest integer
 /*!
 **	- Math: @f$ {round{x}} @f$ or @f$ {\lfloor{x}\rceil} @f$
 */
+//!@{
 #define						Math_Round(X)		DEFINE_GENERIC_MATH_FUNCTION(Round, X)
 #define c_round				Math_Round
+//!@}
 
-//! Returns the value of `x`, rounded towards 0
+//!@doc Returns the value of `x`, rounded towards 0
 /*!
 **	- Math: @f$ {trunc{x}} @f$
 */
+//!@{
 #define						Math_Trunc(X)	DEFINE_GENERIC_MATH_FUNCTION(Truncate, X)
 #define c_trunc				Math_Trunc
 #define Math_Truncate		Math_Trunc
+//!@}
 
-//! Returns the value of `x`, rounded to the superior integer
+//!@doc Returns the value of `x`, rounded to the superior integer
 /*!
 **	- Math: @f$ {floor{x}} @f$ or @f$ {\lfloor{x}\rfloor} @f$
 */
+//!@{
 #define						Math_Floor(X)		DEFINE_GENERIC_MATH_FUNCTION(Floor, X)
 #define c_floor				Math_Floor
+//!@}
 
-//! Returns the value of `x`, rounded to the inferior integer
+//!@doc Returns the value of `x`, rounded to the inferior integer
 /*!
 **	- Math: @f$ {ceil{x}} @f$ or @f$ {\lceil{x}\rceil} @f$
 */
+//!@{
 #define						Math_Ceil(X)		DEFINE_GENERIC_MATH_FUNCTION(Ceiling, X)
 #define c_ceil				Math_Ceil
 #define Math_Ceiling		Math_Ceil
+//!@}
 
 
 
@@ -291,44 +298,54 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the addition result of `x` and `y`
+//!@doc Returns the addition result of `x` and `y`
 /*!
 **	- Math: @f$ {x + y} @f$
 */
+//!@{
 #define						Math_Add(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Add, X, Y)
 #define c_add				Math_Add
+//!@}
 
-//! Returns the subtraction result of `x` by `y`
+//!@doc Returns the subtraction result of `x` by `y`
 /*!
 **	- Math: @f$ {x - y} @f$
 */
+//!@{
 #define						Math_Sub(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Sub, X, Y)
 #define c_sub				Math_Sub
 #define Math_Subtract		Math_Sub
+//!@}
 
-//! Returns the multiplication result of `x` and `y`
+//!@doc Returns the multiplication result of `x` and `y`
 /*!
 **	- Math: @f$ {x \times y} @f$
 */
+//!@{
 #define						Math_Mul(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mul, X, Y)
 #define c_mul				Math_Mul
 #define Math_Multiply		Math_Mul
+//!@}
 
-//! Returns the quotient of euclidian division of `x` by `y`
+//!@doc Returns the quotient of euclidian division of `x` by `y`
 /*!
 **	- Math: @f$ {\frac{x}{y}} @f$
 */
+//!@{
 #define						Math_Div(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Div, X, Y)
 #define c_div				Math_Div
 #define Math_Divide			Math_Div
+//!@}
 
-//! Returns the remainder of euclidian division of `x` by `y`
+//!@doc Returns the remainder of euclidian division of `x` by `y`
 /*!
 **	- Math: @f$ {x \mod y} @f$
 */
+//!@{
 #define						Math_Mod(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Mod, X, Y)
 #define c_mod				Math_Mod
 #define Math_Modulo			Math_Mod
+//!@}
 
 /*
 ** ************************************************************************** *|
@@ -336,60 +353,72 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the absolute value of `x` (makes `x` positive)
+//!@doc Returns the absolute value of `x` (makes `x` positive)
 /*!
 **	- Math: @f$ {|x|} @f$
 */
+//!@{
 #define						Math_Abs(X)		DEFINE_GENERIC_MATH_FUNCTION(Abs, X)
 #define c_abs				Math_Abs
 #define Math_AbsoluteValue	Math_Abs
+//!@}
 
 
 
-//! Returns the value of `x` to the power of `y`
+//!@doc Returns the value of `x` to the power of `y`
 /*!
 **	- Math: @f$ {x^y} @f$
 */
+//!@{
 #define						Math_Pow(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(Pow, X, Y)
 #define c_pow				Math_Pow
 #define Math_Power			Math_Pow
+//!@}
 
-//! Returns the value of `x` to the power of `n` (integer)
+//!@doc Returns the value of `x` to the power of `n` (integer)
 /*!
 **	- Math: @f$ {x^n} @f$
 */
+//!@{
 #define						Math_IntPow(X, N);	DEFINE_GENERIC_MATH_OPERATOR(IntPow, X, N)
 #define c_intpow			Math_IntPow
 #define Math_IntPower		Math_IntPow
+//!@}
 
 
 
-//! Returns the square root of `x` (inverse of power of 2)
+//!@doc Returns the square root of `x` (inverse of power of 2)
 /*!
 **	- Math: @f$ {\sqrt{x}} @f$
 */
+//!@{
 #define						Math_Root2(X)	DEFINE_GENERIC_MATH_FUNCTION(Root2, X)
 #define c_sqrt				Math_Root2
 #define Math_SqRt			Math_Root2
 #define Math_SquareRoot		Math_Root2
+//!@}
 
-//! Returns the cubic root of `x` (inverse of power of 3)
+//!@doc Returns the cubic root of `x` (inverse of power of 3)
 /*!
 **	- Math: @f$ {\sqrt[3]{x}} @f$
 */
+//!@{
 #define						Math_Root3(X)	DEFINE_GENERIC_MATH_FUNCTION(Root3, X)
 #define c_cbrt				Math_Root3
 #define Math_CbRt			Math_Root3
 #define Math_CubeRoot		Math_Root3
+//!@}
 
-//! Returns the power-n-ic root of `x` (inverse of power of `n`)
+//!@doc Returns the power-n-ic root of `x` (inverse of power of `n`)
 /*!
 **	- Math: @f$ {\sqrt[n]{x}} @f$
 */
+//!@{
 #define						Math_RootN(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(RootN, X, Y)
 #define c_nrt				Math_RootN
 #define Math_NRt			Math_RootN
 #define Math_NRoot			Math_RootN
+//!@}
 
 // TODO hypot: {\sqrt{x^2+y^2}}
 
@@ -401,47 +430,57 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the exponential function's value for `x`
+//!@doc Returns the exponential function's value for `x`
 /*!
 **	- Math: @f$ {e^x} @f$
 */
+//!@{
 #define							Math_Exp(X)		DEFINE_GENERIC_MATH_FUNCTION(Exp, X)
 #define c_exp					Math_Exp
 #define Math_Exponential		Math_Exp
+//!@}
 
-//! Returns the natural logarithm of `x`
+//!@doc Returns the natural logarithm of `x`
 /*!
 **	- Math: @f$ {\ln {x}} @f$
 */
+//!@{
 #define							Math_Ln(X)		DEFINE_GENERIC_MATH_FUNCTION(Ln, X)
 #define c_ln					Math_Ln
 #define Math_NaturalLogarithm	Math_Ln
+//!@}
 
-//! Returns the binary (base-2) logarithm of `x`
+//!@doc Returns the binary (base-2) logarithm of `x`
 /*!
 **	- Math: @f$ {\log_{2} {x}} @f$
 */
+//!@{
 #define							Math_Log2(X)	DEFINE_GENERIC_MATH_FUNCTION(Log2, X)
 #define c_lg					Math_Log2
 #define c_log2					Math_Log2
 #define Math_Logarithm_Base2	Math_Log2
+//!@}
 
-//! Returns the decimal (base-10) logarithm of `x`
+//!@doc Returns the decimal (base-10) logarithm of `x`
 /*!
 **	- Math: @f$ {\log_{10} {x}} @f$
 */
+//!@{
 #define							Math_Log10(X)	DEFINE_GENERIC_MATH_FUNCTION(Log10, X)
 #define c_log					Math_Log10
 #define c_log10					Math_Log10
 #define Math_Logarithm_Base10	Math_Log10
+//!@}
 
-//! Returns the base-`n` logarithm of `x`
+//!@doc Returns the base-`n` logarithm of `x`
 /*!
 **	- Math: @f$ {\log_{n} {x}} @f$
 */
+//!@{
 #define							Math_LogN(X, Y)	DEFINE_GENERIC_MATH_OPERATOR(LogN, X, Y)
 #define c_logn					Math_LogN
 #define Math_Logarithm_BaseN	Math_LogN
+//!@}
 
 
 
@@ -451,68 +490,82 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the cosine of `x` (horizontal trigonometry coordinate)
+//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
 /*!
 **	- Math: @f$ {\cos {x}} @f$
 */
+//!@{
 #define						Math_Cos(X)		DEFINE_GENERIC_MATH_FUNCTION(Cos, X)
 #define c_cos				Math_Cos
 #define Math_Cosine			Math_Cos
+//!@}
 
-//! Returns the sine of `x` (vertical trigonometry coordinate)
+//!@doc Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	- Math: @f$ {\sin {x}} @f$
 */
+//!@{
 #define						Math_Sin(X)		DEFINE_GENERIC_MATH_FUNCTION(Sin, X)
 #define c_sin				Math_Sin
 #define Math_Sine			Math_Sin
+//!@}
 
-//! Returns the tangent of `x` (trigonometry tangent line)
+//!@doc Returns the tangent of `x` (trigonometry tangent line)
 /*!
 **	- Math: @f$ {\tan {x}} @f$
 */
+//!@{
 #define						Math_Tan(X)		DEFINE_GENERIC_MATH_FUNCTION(Tan, X)
 #define c_tan				Math_Tan
 #define Math_Tangent		Math_Tan
+//!@}
 
-//! Returns the arc-cosine of `x` (inverse of the cos function)
+//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
 /*!
 **	- Math: @f$ {\cos^{-1} {x}} @f$
 */
+//!@{
 #define						Math_ArcCos(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcCos, X)
 #define c_acos				Math_ArcCos
 #define Math_Cos_1			Math_ArcCos
 #define Math_InvCosine		Math_ArcCos
+//!@}
 
-//! Returns the arc-sine of `x` (inverse of the sin function)
+//!@doc Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	- Math: @f$ {\sin^{-1} {x}} @f$
 */
+//!@{
 #define						Math_ArcSin(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcSin, X)
 #define c_asin				Math_ArcSin
 #define Math_Sin_1			Math_ArcSin
 #define Math_InvSine		Math_ArcSin
+//!@}
 
-//! Returns the arc-tangent of `x` (inverse of the tan function)
+//!@doc Returns the arc-tangent of `x` (inverse of the tan function)
 /*!
 **	- Math: @f$ {\tan^{-1} {x}} @f$
 */
+//!@{
 #define						Math_ArcTan(X)		DEFINE_GENERIC_MATH_FUNCTION(ArcTan, X)
 #define c_atan				Math_ArcTan
 #define Math_Tan_1			Math_ArcTan
 #define Math_InvTangent		Math_ArcTan
+//!@}
 
 
 
-//! Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
+//!@doc Returns the arc-tangent of (`y` / `x`), used to find an angle from coordinates
 /*!
 **	- Math: @f$ {\arctan(\frac{y}{x})} @f$, in the range @f$ {[-\pi;+\pi]} @f$
 */
+//!@{
 #define							Math_ArcTan2(Y, X)	DEFINE_GENERIC_MATH_FUNCTION(ArcTan2, Y, X)
 #define c_atan2					Math_ArcTan2
 #define Math_ArcTan_YoverX		Math_ArcTan2
 #define Math_ArcTangent2		Math_ArcTan2
 #define Math_ArcTangent_YoverX	Math_ArcTan2
+//!@}
 
 
 
@@ -522,59 +575,71 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Returns the hyperbolic cosine of `x`
+//!@doc Returns the hyperbolic cosine of `x`
 /*!
 **	- Math: @f$ {\cosh {x}} @f$
 */
+//!@{
 #define								Math_CosH(X)	DEFINE_GENERIC_MATH_FUNCTION(CosH, X)
 #define c_cosh						Math_CosH
 #define Math_Cos_H					Math_CosH
 #define Math_Cosine_Hyperbolic		Math_CosH
+//!@}
 
-//! Returns the hyperbolic sine of `x`
+//!@doc Returns the hyperbolic sine of `x`
 /*!
 **	- Math: @f$ {\sinh {x}} @f$
 */
+//!@{
 #define								Math_SinH(X)	DEFINE_GENERIC_MATH_FUNCTION(SinH, X)
 #define c_sinh						Math_SinH
 #define Math_Sin_H					Math_SinH
 #define Math_Sine_Hyperbolic		Math_SinH
+//!@}
 
-//! Returns the hyperbolic tangent of `x`
+//!@doc Returns the hyperbolic tangent of `x`
 /*!
 **	- Math: @f$ {\tanh {x}} @f$
 */
+//!@{
 #define								Math_TanH(X)	DEFINE_GENERIC_MATH_FUNCTION(TanH, X)
 #define c_tanh						Math_TanH
 #define Math_Tan_H					Math_TanH
 #define Math_Tangent_Hyperbolic		Math_TanH
+//!@}
 
-//! Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
+//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
 /*!
 **	- Math: @f$ {\cosh^{-1} {x}} @f$
 */
+//!@{
 #define								Math_InvCosH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvCosH, X)
 #define c_acosh						Math_InvCosH
 #define Math_Cos_1_H				Math_InvCosH
 #define Math_InvCosine_Hyperbolic	Math_InvCosH
+//!@}
 
-//! Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
+//!@doc Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	- Math: @f$ {\sinh^{-1} {x}} @f$
 */
+//!@{
 #define								Math_InvSinH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvSinH, X)
 #define c_asinh						Math_InvSinH
 #define Math_Sin_1_H				Math_InvSinH
 #define Math_InvSine_Hyperbolic		Math_InvSinH
+//!@}
 
-//! Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
+//!@doc Returns the hyperbolic arc-tangent of `x` (inverse of the tanh function)
 /*!
 **	- Math: @f$ {\tanh^{-1} {x}} @f$
 */
+//!@{
 #define								Math_InvTanH(X)	DEFINE_GENERIC_MATH_FUNCTION(InvTanH, X)
 #define c_atanh						Math_InvTanH
 #define Math_Tan_1_H				Math_InvTanH
 #define Math_InvTangent_Hyperbolic	Math_InvTanH
+//!@}
 
 
 

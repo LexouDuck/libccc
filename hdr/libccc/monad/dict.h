@@ -14,8 +14,6 @@
 /*!@group{libccc_monad_dict}
 **
 **	This header defines a generic dictionary type and utility functions for it.
-**
-**	@file
 */
 
 /*

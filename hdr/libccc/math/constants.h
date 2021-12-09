@@ -17,7 +17,9 @@
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **
-**	@file
+**	This file holds various relevant mathematical constants.
+**	Many of these constants are used to speed up the fast-approximate versions
+**	of some fundamental algorithms and math functions.
 */
 
 /*
@@ -34,12 +36,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
-*/
-
-/*
-**	Various relevant mathematical constants.
-**	Many of these constants are used to speed up the fast-approximate versions
-**	of some fundamental algorithms and math functions.
 */
 
 //! Alias for #DIV_PI_4

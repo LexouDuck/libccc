@@ -14,9 +14,8 @@
 /*!@group{libccc_math_algebra}
 **
 **	This header defines useful algebra and calculus types, and functions.
-**
-**	@file
 */
+
 // TODO add other function macros for integral, distance, etc
 
 /*

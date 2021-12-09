@@ -20,8 +20,6 @@
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/fenv}
 **	- https://en.wikipedia.org/wiki/IEEE_754
-**
-**	@file
 */
 
 // TODO subnormal float util functions/macros ?
@@ -45,7 +43,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
+//!@doc Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
@@ -56,10 +54,12 @@ HEADER_CPP
 **	- 8 exponent bits
 **	- 23 fraction bits
 */
+//!@{
 typedef float		t_f32;
 TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
+//!@}
 
-//! Primitive type: 64-bit 'double precision' IEEE-754 floating-point numbers
+//!@doc Primitive type: 64-bit 'double precision' IEEE-754 floating-point numbers
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
@@ -70,11 +70,13 @@ TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
 **	- 11 exponent bits
 **	- 52 fraction bits
 */
+//!@{
 typedef double		t_f64;
 TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
+//!@}
 
 #if LIBCONFIG_USE_FLOAT80
-//! Primitive type: 80-bit 'extended precision' x86 floating-point numbers (only certain platforms)
+//!@doc Primitive type: 80-bit 'extended precision' x86 floating-point numbers (only certain platforms)
 /*!
 **	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
@@ -94,14 +96,16 @@ TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
 **	- 1 integer bit
 **	- 63 fraction bits
 */
+//!@{
 typedef _Float80	t_f80;
 TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
+//!@}
 #elif (LIBCONFIG_FLOAT_BITS == 80)
 #error "Cannot set default float to 80-bit extended-precision, unavailable on this platform"
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-//! Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
+//!@doc Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
 /*!
 **	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
@@ -112,20 +116,22 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 **	- 15 exponent bits
 **	- 112 fraction bits
 */
+//!@{
 typedef _Float128	t_f128;
 TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
+//!@}
 #elif (LIBCONFIG_FLOAT_BITS == 128)
 #error "Cannot set default float to 128-bit quadruple-precision, unavailable on this platform"
 #endif
 
 
 
-//! The actual underlying type for the `t_float` configurable type
+//! The actual underlying type for the `t_float` configurable-size type
 #define FLOAT_T		CONCAT(t_f,LIBCONFIG_FLOAT_BITS)
-//! The actual underlying type for the `t_float` configurable type, in uppercase
+//! The actual underlying type for the `t_float` configurable-size type, in uppercase
 #define FLOAT_TYPE	CONCAT(F,LIBCONFIG_FLOAT_BITS)
 
-//! The configurable-size floating-point number primitive type.
+//!@doc The configurable-size floating-point number primitive type.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
 **
@@ -146,8 +152,10 @@ TYPEDEF_ALIAS(		t_f128,	FLOAT_128,	PRIMITIVE)
 **	- #t_f80
 **	- #t_f128
 */
+//!@{
 typedef CONCAT(t_f,LIBCONFIG_FLOAT_BITS)	t_float;
 TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
+//!@}
 
 
 
@@ -183,7 +191,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//! The floating-point "not a number" value.
+//!@doc The floating-point "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
 */
@@ -196,7 +204,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 //!@}
 
-//! Checks if the given 'x' has a "not a number" value.
+//!@doc Checks if the given 'x' has a "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isnan}
 **
@@ -216,7 +224,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//! The floating-point infinity value (use `-INF` for negative)
+//!@doc The floating-point infinity value (use `-INF` for negative)
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/INFINITY}
 */
@@ -229,7 +237,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 //!@}
 
-//! Checks if the given 'x' is either +INFINITY or -INFINITY
+//!@doc Checks if the given 'x' is either +INFINITY or -INFINITY
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isinf}
 **
@@ -305,16 +313,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//! If `(value >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation rather than decimal notation
-#define FLOAT_THRESHOLD_HUGE	(1e+9)
-//! If `(value <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
-#define FLOAT_THRESHOLD_TINY	(1e-9)
-
-// TODO add IS_NORMAL() and IS_SUBNORMAL()
-
 // TODO instead of using FLT_MIN/FLT_MAX/FLT_EPSILON, calculate them manually (in a cross-platform manner)
 
-/*! @name 32-bit float bitwise constants
+//!@doc 32-bit float bitwise constants
+/*!
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
 //!@{
@@ -333,7 +335,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F32_EPSILON			(FLT_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
-/*! @name 64-bit float bitwise constants
+//!@doc 64-bit float bitwise constants
+/*!
 **	IEEE 754 64-bit floating point double-precision bitwise macros
 */
 //!@{
@@ -352,7 +355,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F64_EPSILON			(DBL_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
-/*! @name 80-bit float bitwise constants
+//!@doc 80-bit float bitwise constants
+/*!
 **	x86 80-bit floating point extended precision bitwise macros
 */
 //!@{
@@ -371,7 +375,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F80_EPSILON			(LDBL_EPSILON)				//!< Difference between 1 and the least value greater than 1 that is representable.
 //!@}
 
-/*! @name 128-bit float bitwise constants
+//!@doc 128-bit float bitwise constants
+/*!
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
 //!@{
@@ -392,7 +397,8 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-/*! @name float bitwise constants
+//!@doc Float bitwise constants
+/*!
 **	Depending on the 't_float' type (_FLOAT_32_ or _FLOAT_64_, etc) chosen,
 **	the appropriate bitwise macros will be used by the math functions.
 **	It is often better to only use one type of floating-point precision
@@ -414,6 +420,17 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define FLOAT_MAX				CONCAT(FLOAT_TYPE,_MAX)
 #define FLOAT_EPSILON			CONCAT(FLOAT_TYPE,_EPSILON)
 //!@}
+
+
+
+//! If `(ABS(value) >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation rather than decimal notation
+#define FLOAT_THRESHOLD_HUGE	(1e+9)
+//! If `(ABS(value) <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
+#define FLOAT_THRESHOLD_TINY	(1e-9)
+
+
+
+// TODO add IS_NORMAL() and IS_SUBNORMAL()
 
 
 
@@ -446,7 +463,7 @@ typedef union float_cast
 ** ************************************************************************** *|
 */
 
-//! A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
+//!@doc A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Float(X, FUNCTYPE) \
 	_Generic((X),	\
@@ -478,9 +495,9 @@ typedef union float_cast
 #endif
 //!@}
 
-//! Returns the nearest floating-point value to the given integer `number`
+//!@doc Returns the nearest floating-point value to the given integer `number`
 /*!
-**	TODO document
+**	TODO document this
 */
 //!@{
 #define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
@@ -502,9 +519,9 @@ t_f128					F128_FromInt(t_sint number);
 #endif
 //!@}
 
-//! Returns the nearest floating-point value to the given fixed-point `number`
+//!@doc Returns the nearest floating-point value to the given fixed-point `number`
 /*!
-**	TODO document
+**	TODO document this
 */
 //!@{
 #define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
@@ -526,9 +543,9 @@ t_f128					F128_FromFixed(t_fixed number);
 #endif
 //!@}
 
-//! Returns the nearest floating-point value to the given floating-point `number`
+//!@doc Returns the nearest floating-point value to the given floating-point `number`
 /*!
-**	TODO document
+**	TODO document this
 */
 //!@{
 #define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
@@ -552,7 +569,7 @@ t_f128	 				F128_FromFloat(t_float number);
 
 
 
-//! Creates a float value from its individual component parts.
+//!@doc Creates a float value from its individual component parts.
 /*!
 **	@nonstd
 **
@@ -597,7 +614,7 @@ t_f128					F128_From(t_sint integer, t_sint exponent);
 
 
 
-//! Returns the base-2 exponent of the given number `x`, as an integer
+//!@doc Returns the base-2 exponent of the given number `x`, as an integer
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/ilogb}
 */
@@ -624,7 +641,7 @@ t_sint						F128_GetExp2(t_f128 number);
 #endif
 //!@}
 
-//! Returns the base-10 exponent of the given number `x`, as an integer
+//!@doc Returns the base-10 exponent of the given number `x`, as an integer
 /*!
 **	@nonstd
 */
@@ -661,7 +678,7 @@ t_sint						F128_GetExp10(t_f128 number);
 
 
 
-//! Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
+//!@doc Get the shortest string representation of the given floating-point number (dec or exp), with 'precision' fractional digits
 /*!
 **	@nonstd `ftoa()`
 **
@@ -692,7 +709,7 @@ _MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
 
 
 
-//! Get the string scientific notation of a floating-point number, with 'precision' fractional digits
+//!@doc Get the string scientific notation of a floating-point number, with 'precision' fractional digits
 /*!
 **	@nonstd
 **
@@ -733,7 +750,7 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 
 
 
-//! Get the string decimal representation of a floating-point number, with 'precision' fractional digits
+//!@doc Get the string decimal representation of a floating-point number, with 'precision' fractional digits
 /*!
 **	@nonstd
 **
@@ -764,7 +781,7 @@ _MALLOC()	t_char*		F128_ToString_Dec(t_f128 number, t_u8 precision);
 
 
 
-//! Get the string hexadecimal representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
+//!@doc Get the string hexadecimal representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 /*!
 **	@nonstd
 **
@@ -795,7 +812,7 @@ _MALLOC()	t_char*		F128_ToString_Hex(t_f128 number, t_u8 precision);
 
 
 
-//! Get the string binary representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
+//!@doc Get the string binary representation of a floating-point number, with 'precision' fractional digits (if 0, max precision)
 /*!
 **	@nonstd
 **
@@ -842,7 +859,7 @@ _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 
 
 
-//! Parse a floating-point number from the given number string `str`
+//!@doc Parse a floating-point number from the given number string `str`
 /*!
 **	@nonstd
 **
@@ -872,7 +889,7 @@ t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
+//!@doc Parse a floating-point number from the given string (can be decimal/exponential/hexdecimal)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/atof}
 **
@@ -906,7 +923,7 @@ t_f128					F128_FromString(t_char const* str);
 
 
 
-//! Parse a floating-point number from the given decimal number string
+//!@doc Parse a floating-point number from the given decimal number string
 /*!
 **	@nonstd
 **
@@ -936,7 +953,7 @@ t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parse the decimal representation of a floating-point number
+//!@doc Parse the decimal representation of a floating-point number
 /*!
 **	@nonstd
 **
@@ -971,7 +988,7 @@ t_f128					F128_FromString_Dec(t_char const* str);
 
 
 
-//! Parse a floating-point number from the given hexadecimal (base 16) number string
+//!@doc Parse a floating-point number from the given hexadecimal (base 16) number string
 /*!
 **	@nonstd
 **
@@ -1001,7 +1018,7 @@ t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parse the hexadecimal representation of a floating-point number
+//!@doc Parse the hexadecimal representation of a floating-point number
 /*!
 **	@nonstd
 **
@@ -1036,7 +1053,7 @@ t_f128					F128_FromString_Hex(t_char const* str);
 
 
 
-//! Parse a floating-point number from the given octal (base 8) number string
+//!@doc Parse a floating-point number from the given octal (base 8) number string
 /*!
 **	@nonstd
 **
@@ -1066,7 +1083,7 @@ t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parse the octal representation of a floating-point number
+//!@doc Parse the octal representation of a floating-point number
 /*!
 **	@nonstd
 **
@@ -1101,7 +1118,7 @@ t_f128					F128_FromString_Oct(t_char const* str);
 
 
 
-//! Parse a floating-point number from the given binary (base 2) number string
+//!@doc Parse a floating-point number from the given binary (base 2) number string
 /*!
 **	@nonstd
 **
@@ -1131,7 +1148,7 @@ t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
 #endif
 //!@}
 
-//! Parse the binary representation of a floating-point number
+//!@doc Parse the binary representation of a floating-point number
 /*!
 **	@nonstd
 **
