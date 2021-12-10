@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/math/vlq.h File Reference</title>
+<title>libccc: libccc/math/vlq.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -108,7 +108,8 @@ $(document).ready(function(){initNavTree('vlq_8h.html',''); initResizable(); });
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="vlq_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="vlq_8h__incl.svg" width="459" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="vlq_8h_source.html">Go to the source code of this file.</a></p>
@@ -136,14 +137,14 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:af5eb64eb7b34187ae48c5914af573e68"><td class="mdescLeft">&#160;</td><td class="mdescRight">A union storing a floating-point number of any common size/precision.  <a href="vlq_8h.html#af5eb64eb7b34187ae48c5914af573e68">More...</a><br /></td></tr>
 <tr class="separator:af5eb64eb7b34187ae48c5914af573e68"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a524134c1b51b25568611b9cab5ffdc5b"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="vlq_8h.html#unionvaruint">varuint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vlq_8h.html#a524134c1b51b25568611b9cab5ffdc5b">u_varuint</a></td></tr>
-<tr class="memdesc:a524134c1b51b25568611b9cab5ffdc5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">A union storing an integer (signed or unsigned) of any common storage size.  <a href="vlq_8h.html#a524134c1b51b25568611b9cab5ffdc5b">More...</a><br /></td></tr>
-<tr class="separator:a524134c1b51b25568611b9cab5ffdc5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adc0e7cfa8e6158e95dfc22c409a70853"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> union <a class="el" href="vlq_8h.html#unionvaruint">varuint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vlq_8h.html#adc0e7cfa8e6158e95dfc22c409a70853">u_varuint</a></td></tr>
+<tr class="memdesc:adc0e7cfa8e6158e95dfc22c409a70853"><td class="mdescLeft">&#160;</td><td class="mdescRight">A union storing an integer (signed or unsigned) of any common storage size.  <a href="vlq_8h.html#adc0e7cfa8e6158e95dfc22c409a70853">More...</a><br /></td></tr>
+<tr class="separator:adc0e7cfa8e6158e95dfc22c409a70853"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a027e4313c2dc835f807702a020c93548"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="vlq_8h.html#unionvarsint">varsint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="vlq_8h.html#a027e4313c2dc835f807702a020c93548">u_varsint</a></td></tr>
 <tr class="separator:a027e4313c2dc835f807702a020c93548"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines variable-length numeric types, and utility functions for them.</p>
+<div class="textblock"><p >This header defines variable-length numeric types, and utility functions for them. </p>
 
 <p class="definition">Definition in file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
 </div><hr/><h2 class="groupheader">Data Structure Documentation</h2>
@@ -161,35 +162,35 @@ Typedefs</h2></td></tr>
 <div class="textblock"><p >A union storing an integer (signed or unsigned) of any common storage size. </p>
 <p >These unions are used for certain difficult casting conditions. They are used in particular when casting an &lt;stdarg.h&gt; va_arg to the right type. </p>
 
-<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00054">54</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00052">52</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a51e6c9d6ef3205303946da30a6affeb0" name="a51e6c9d6ef3205303946da30a6affeb0"></a>t_u8</td>
+<a id="a51e6c9d6ef3205303946da30a6affeb0" name="a51e6c9d6ef3205303946da30a6affeb0"></a><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a></td>
 <td class="fieldname">
 uc</td>
 <td class="fielddoc">
 unsigned integer: 8-bit (char) </td></tr>
 <tr><td class="fieldtype">
-<a id="ae6e3cb3dc8cf90ced51588c9fcd1682d" name="ae6e3cb3dc8cf90ced51588c9fcd1682d"></a>t_u16</td>
+<a id="ae6e3cb3dc8cf90ced51588c9fcd1682d" name="ae6e3cb3dc8cf90ced51588c9fcd1682d"></a><a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a></td>
 <td class="fieldname">
 us</td>
 <td class="fielddoc">
 unsigned integer: 16-bit (short) </td></tr>
 <tr><td class="fieldtype">
-<a id="ad5d38adb8c2aa65cc689eae75412d831" name="ad5d38adb8c2aa65cc689eae75412d831"></a>t_u32</td>
+<a id="ad5d38adb8c2aa65cc689eae75412d831" name="ad5d38adb8c2aa65cc689eae75412d831"></a><a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a></td>
 <td class="fieldname">
 ui</td>
 <td class="fielddoc">
 unsigned integer: 32-bit (int) </td></tr>
 <tr><td class="fieldtype">
-<a id="a5d821c8194488322f4ffd10057ba31ea" name="a5d821c8194488322f4ffd10057ba31ea"></a>t_u64</td>
+<a id="a5d821c8194488322f4ffd10057ba31ea" name="a5d821c8194488322f4ffd10057ba31ea"></a><a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a></td>
 <td class="fieldname">
 ul</td>
 <td class="fielddoc">
 unsigned integer: 64-bit (long) </td></tr>
 <tr><td class="fieldtype">
-<a id="a21da6d9731bededf93a355d0410e8103" name="a21da6d9731bededf93a355d0410e8103"></a>t_q128</td>
+<a id="a21da6d9731bededf93a355d0410e8103" name="a21da6d9731bededf93a355d0410e8103"></a><a class="el" href="fixed_8h.html#ac6f190204ed3268a7dd69951dbe5c583">t_q128</a></td>
 <td class="fieldname">
 uh</td>
 <td class="fielddoc">
@@ -210,35 +211,35 @@ unsigned integer: 128-bit (huge) </td></tr>
       </table>
 </div><div class="memdoc">
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00065">65</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00063">63</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a448bc235fa3ed6a58fee1c06f0c0aa98" name="a448bc235fa3ed6a58fee1c06f0c0aa98"></a>t_s8</td>
+<a id="a448bc235fa3ed6a58fee1c06f0c0aa98" name="a448bc235fa3ed6a58fee1c06f0c0aa98"></a><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a></td>
 <td class="fieldname">
 sc</td>
 <td class="fielddoc">
 signed integer: 8-bit (char) </td></tr>
 <tr><td class="fieldtype">
-<a id="a13629bfbfa27e4409d27c060e613d78c" name="a13629bfbfa27e4409d27c060e613d78c"></a>t_s16</td>
+<a id="a13629bfbfa27e4409d27c060e613d78c" name="a13629bfbfa27e4409d27c060e613d78c"></a><a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a></td>
 <td class="fieldname">
 ss</td>
 <td class="fielddoc">
 signed integer: 16-bit (short) </td></tr>
 <tr><td class="fieldtype">
-<a id="a059c701c898db958d49ac0e66999ed34" name="a059c701c898db958d49ac0e66999ed34"></a>t_s32</td>
+<a id="a059c701c898db958d49ac0e66999ed34" name="a059c701c898db958d49ac0e66999ed34"></a><a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a></td>
 <td class="fieldname">
 si</td>
 <td class="fielddoc">
 signed integer: 32-bit (int) </td></tr>
 <tr><td class="fieldtype">
-<a id="ad19a95ecb4172fc7d738374d826061bd" name="ad19a95ecb4172fc7d738374d826061bd"></a>t_s64</td>
+<a id="ad19a95ecb4172fc7d738374d826061bd" name="ad19a95ecb4172fc7d738374d826061bd"></a><a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a></td>
 <td class="fieldname">
 sl</td>
 <td class="fielddoc">
 signed integer: 64-bit (long) </td></tr>
 <tr><td class="fieldtype">
-<a id="aeab220f2c49dc723e87ceae3ed332266" name="aeab220f2c49dc723e87ceae3ed332266"></a>t_q128</td>
+<a id="aeab220f2c49dc723e87ceae3ed332266" name="aeab220f2c49dc723e87ceae3ed332266"></a><a class="el" href="fixed_8h.html#ac6f190204ed3268a7dd69951dbe5c583">t_q128</a></td>
 <td class="fieldname">
 sh</td>
 <td class="fielddoc">
@@ -261,29 +262,29 @@ signed integer: 128-bit (huge) </td></tr>
 <div class="textblock"><p >A union storing a fixed-point number of any common size/precision. </p>
 <p >These unions are used for certain difficult casting conditions. They are used in particular when casting an &lt;stdarg.h&gt; va_arg to the right type. </p>
 
-<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00084">84</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00082">82</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a97ec52ed6902e9ee05748107c96cf01f" name="a97ec52ed6902e9ee05748107c96cf01f"></a>t_q16</td>
+<a id="a97ec52ed6902e9ee05748107c96cf01f" name="a97ec52ed6902e9ee05748107c96cf01f"></a><a class="el" href="fixed_8h.html#ad9e96eb947eb134246c577050407841f">t_q16</a></td>
 <td class="fieldname">
 qs</td>
 <td class="fielddoc">
 fixed-point: 16-bit (short) </td></tr>
 <tr><td class="fieldtype">
-<a id="a2a5398fb49dbf24d56ce9a2d6c267179" name="a2a5398fb49dbf24d56ce9a2d6c267179"></a>t_q32</td>
+<a id="a2a5398fb49dbf24d56ce9a2d6c267179" name="a2a5398fb49dbf24d56ce9a2d6c267179"></a><a class="el" href="fixed_8h.html#af8d53003fbb972bfb79b33ef3619ecef">t_q32</a></td>
 <td class="fieldname">
 qi</td>
 <td class="fielddoc">
 fixed-point: 32-bit (int) </td></tr>
 <tr><td class="fieldtype">
-<a id="aed6ed289363b8c8ba8d7650fbd13e9ee" name="aed6ed289363b8c8ba8d7650fbd13e9ee"></a>t_q64</td>
+<a id="aed6ed289363b8c8ba8d7650fbd13e9ee" name="aed6ed289363b8c8ba8d7650fbd13e9ee"></a><a class="el" href="fixed_8h.html#a15504ae9fb9c2cd6cb65ebbee4b688f0">t_q64</a></td>
 <td class="fieldname">
 ql</td>
 <td class="fielddoc">
 fixed-point: 64-bit (long) </td></tr>
 <tr><td class="fieldtype">
-<a id="a09ca81c57bcec9473c2042ba06bc48a7" name="a09ca81c57bcec9473c2042ba06bc48a7"></a>t_q128</td>
+<a id="a09ca81c57bcec9473c2042ba06bc48a7" name="a09ca81c57bcec9473c2042ba06bc48a7"></a><a class="el" href="fixed_8h.html#ac6f190204ed3268a7dd69951dbe5c583">t_q128</a></td>
 <td class="fieldname">
 qh</td>
 <td class="fielddoc">
@@ -306,29 +307,29 @@ fixed-point: 128-bit (huge) </td></tr>
 <div class="textblock"><p >A union storing a floating-point number of any common size/precision. </p>
 <p >These unions are used for certain difficult casting conditions. They are used in particular when casting an &lt;stdarg.h&gt; va_arg to the right type. </p>
 
-<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00101">101</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="vlq_8h_source.html#l00099">99</a> of file <a class="el" href="vlq_8h_source.html">vlq.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a315e297adbfd331cc42965fcd5dd0407" name="a315e297adbfd331cc42965fcd5dd0407"></a>t_f32</td>
+<a id="a315e297adbfd331cc42965fcd5dd0407" name="a315e297adbfd331cc42965fcd5dd0407"></a><a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a></td>
 <td class="fieldname">
 fs</td>
 <td class="fielddoc">
 floating-point: single precision </td></tr>
 <tr><td class="fieldtype">
-<a id="a145a63c6aa14d7ae47d8faa4b1f3da99" name="a145a63c6aa14d7ae47d8faa4b1f3da99"></a>t_f64</td>
+<a id="a145a63c6aa14d7ae47d8faa4b1f3da99" name="a145a63c6aa14d7ae47d8faa4b1f3da99"></a><a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a></td>
 <td class="fieldname">
 fd</td>
 <td class="fielddoc">
 floating-point: double precision </td></tr>
 <tr><td class="fieldtype">
-<a id="a025675532f68e89da9210140103a614f" name="a025675532f68e89da9210140103a614f"></a>t_f80</td>
+<a id="a025675532f68e89da9210140103a614f" name="a025675532f68e89da9210140103a614f"></a><a class="el" href="float_8h.html#a55635c32b4c4b7df92e6139f3644b027">t_f80</a></td>
 <td class="fieldname">
 fe</td>
 <td class="fielddoc">
 floating-point: extended precision </td></tr>
 <tr><td class="fieldtype">
-<a id="a217339e23b9e59023310a91e6b80d2a5" name="a217339e23b9e59023310a91e6b80d2a5"></a>t_f128</td>
+<a id="a217339e23b9e59023310a91e6b80d2a5" name="a217339e23b9e59023310a91e6b80d2a5"></a><a class="el" href="float_8h.html#af2b68484b4b754b360d35fe49488cad7">t_f128</a></td>
 <td class="fieldname">
 fq</td>
 <td class="fielddoc">
@@ -338,14 +339,14 @@ floating-point: quadruple precision </td></tr>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a524134c1b51b25568611b9cab5ffdc5b" name="a524134c1b51b25568611b9cab5ffdc5b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a524134c1b51b25568611b9cab5ffdc5b">&#9670;&nbsp;</a></span>u_varuint</h2>
+<a id="adc0e7cfa8e6158e95dfc22c409a70853" name="adc0e7cfa8e6158e95dfc22c409a70853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adc0e7cfa8e6158e95dfc22c409a70853">&#9670;&nbsp;</a></span>u_varuint</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef union <a class="el" href="vlq_8h.html#unionvaruint">varuint</a> <a class="el" href="vlq_8h.html#a524134c1b51b25568611b9cab5ffdc5b">u_varuint</a></td>
+          <td class="memname">typedef <a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> union <a class="el" href="vlq_8h.html#unionvaruint">varuint</a> <a class="el" href="vlq_8h.html#adc0e7cfa8e6158e95dfc22c409a70853">u_varuint</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -408,7 +409,7 @@ floating-point: quadruple precision </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_95a5c7608f44570f25f009355c401eb3.html">math</a></li><li class="navelem"><a class="el" href="vlq_8h.html">vlq.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="vlq_8h.html">vlq.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

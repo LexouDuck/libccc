@@ -1,9 +1,6 @@
 var stack_8h =
 [
-    [ "stack_any", "stack_8h.html#structstack__any", [
-      [ "length", "stack_8h.html#af254525fd5a51671ebf256c83a7571ba", null ],
-      [ "items", "stack_8h.html#a7799fbde8d179edc54d74b00356461cb", null ]
-    ] ],
     [ "T", "stack_8h.html#a0acb682b8260ab1c60b918599864e2e5", null ],
-    [ "s_stack_any", "stack_8h.html#ac92ddfbcbcbff780eef9c5baa6c6c6e8", null ]
+    [ "stack", "stack_8h.html#ad0caf3a016470a929dde9b29bf0e6775", null ],
+    [ "s_stack", "stack_8h.html#a4178a0132b973303126452730254925f", null ]
 ];

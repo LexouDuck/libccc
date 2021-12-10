@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/monad/convert.h Source File</title>
+<title>libccc: libccc/monad/convert.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -109,82 +109,80 @@ $(document).ready(function(){initNavTree('convert_8h_source.html',''); initResiz
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBCCC_MONAD_CONVERT_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBCCC_MONAD_CONVERT_H</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">**                                   Includes                                 *|</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">**                                   Includes                                 *|</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="libccc_8h.html">libccc.h</a>&quot;</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="libccc_8h.html">libccc.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#undef  T</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">   33</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="convert_8c.html">libccc/monad/convert.c</a>&quot;</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="array_8h.html">libccc/monad/array.h</a>&quot;</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">libccc/monad/list.h</a>&quot;</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &quot;<a class="code" href="dict_8h.html">libccc/monad/dict.h</a>&quot;</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">#include &quot;<a class="code" href="tree_8h.html">libccc/monad/tree.h</a>&quot;</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#undef  T</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">   31</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &quot;libccc/monad/convert.c&quot;</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;<a class="code" href="array_8h.html">libccc/monad/array.h</a>&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="list_8h.html">libccc/monad/list.h</a>&quot;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="dict_8h.html">libccc/monad/dict.h</a>&quot;</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">#include &quot;<a class="code" href="tree_8h.html">libccc/monad/tree.h</a>&quot;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">**                                 Definitions                                *|</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">**                                 Definitions                                *|</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">**                              Array Conversions                             *|</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">**                              Array Conversions                             *|</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// TODO: s_list(T)* Array_ToList(s_array(T) const* array);</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// TODO: void**     Array_ToPointerArray(s_array(T) const* array);</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// TODO: s_list(T)* Array_ToList(s_array(T) const* array);</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// TODO: void**     Array_ToPointerArray(s_array(T) const* array);</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
 <div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">**                               List Conversions                             *|</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">**                               List Conversions                             *|</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="convert_8h.html#ab3b65f18e9f8be07b1972cb997307fdc">   92</a></span><a class="code hl_define" href="array_8c.html#a05a34329f5ca55e574a8d211f0f750c8">s_array</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>)*             <a class="code hl_function" href="convert_8h.html#ab3b65f18e9f8be07b1972cb997307fdc">List_ToArray</a>(<a class="code hl_define" href="list_8c.html#a5f793f98f52e271448da0a5714fef9bb">s_list</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>) <span class="keyword">const</span>* <a class="code hl_define" href="list_8c.html#a30ec3facd8b48c8dcc93df8ddf8771f9">list</a>);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="convert_8h.html#a18d05db4a8d68b46d2c9f4b8c4538cca">   93</a></span><span class="preprocessor">#define c_lst_to_array  List_ToArray</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">   91</a></span><a class="code hl_function" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>)*             List_ToArray(<a class="code hl_function" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>) <span class="keyword">const</span>* <a class="code hl_function" href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="convert_8h.html#a4b35dcb35d6e6052480f748d0b21d613">   92</a></span><span class="preprocessor">#define c_lsttoarr      List_ToArray</span></div>
 <div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="convert_8h.html#a43e9a5bc0bdff1486b691ba52b1f2730">  106</a></span>void**                  <a class="code hl_function" href="convert_8h.html#a43e9a5bc0bdff1486b691ba52b1f2730">List_ToPointerArray</a>(<a class="code hl_define" href="list_8c.html#a5f793f98f52e271448da0a5714fef9bb">s_list</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>) const* <a class="code hl_define" href="list_8c.html#a30ec3facd8b48c8dcc93df8ddf8771f9">list</a>);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="convert_8h.html#a4a224d0ab89c926791ff25a7bccb9efb">  107</a></span><span class="preprocessor">#define c_lst_to_ptrarr List_ToPointerArray</span></div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="convert_8h.html#a8590eae2d5513fea66c23c1885b1f8cd">  107</a></span>void**                  <a class="code hl_function" href="convert_8h.html#a8590eae2d5513fea66c23c1885b1f8cd">List_ToPointerArray</a>(<a class="code hl_function" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(<a class="code hl_define" href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>) const* <a class="code hl_function" href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a>);</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="convert_8h.html#afcbfe8a3e073f2cf7aa7ea02a8a7e151">  108</a></span><span class="preprocessor">#define c_lsttoptrarr   List_ToPointerArray</span></div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aarray_8c_html_a05a34329f5ca55e574a8d211f0f750c8"><div class="ttname"><a href="array_8c.html#a05a34329f5ca55e574a8d211f0f750c8">s_array</a></div><div class="ttdeci">#define s_array(X)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00282">array.c:282</a></div></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aarray_8h_html"><div class="ttname"><a href="array_8h.html">array.h</a></div></div>
-<div class="ttc" id="aconvert_8c_html"><div class="ttname"><a href="convert_8c.html">convert.c</a></div></div>
-<div class="ttc" id="aconvert_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="convert_8h_source.html#l00033">convert.h:33</a></div></div>
-<div class="ttc" id="aconvert_8h_html_a43e9a5bc0bdff1486b691ba52b1f2730"><div class="ttname"><a href="convert_8h.html#a43e9a5bc0bdff1486b691ba52b1f2730">List_ToPointerArray</a></div><div class="ttdeci">void ** List_ToPointerArray(s_list_any const *list)</div><div class="ttdoc">Converts the given list to a NULL-terminated pointer array.</div></div>
-<div class="ttc" id="aconvert_8h_html_ab3b65f18e9f8be07b1972cb997307fdc"><div class="ttname"><a href="convert_8h.html#ab3b65f18e9f8be07b1972cb997307fdc">List_ToArray</a></div><div class="ttdeci">s_array_any * List_ToArray(s_list_any const *list)</div><div class="ttdoc">Converts the given list to an array.</div></div>
+<div class="ttc" id="aconvert_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="convert_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="convert_8h_source.html#l00031">convert.h:31</a></div></div>
+<div class="ttc" id="aconvert_8h_html_a8590eae2d5513fea66c23c1885b1f8cd"><div class="ttname"><a href="convert_8h.html#a8590eae2d5513fea66c23c1885b1f8cd">List_ToPointerArray</a></div><div class="ttdeci">void ** List_ToPointerArray(s_list(T) const *list)</div></div>
+<div class="ttc" id="aconvert_8h_html_ae193341a74416208e94eaa51f0726861"><div class="ttname"><a href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a></div><div class="ttdeci">s_array(T) *List_ToArray(s_list(T) const *list)</div></div>
 <div class="ttc" id="adict_8h_html"><div class="ttname"><a href="dict_8h.html">dict.h</a></div></div>
 <div class="ttc" id="alibccc_8h_html"><div class="ttname"><a href="libccc_8h.html">libccc.h</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00577">libccc_define.h:577</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
-<div class="ttc" id="alist_8c_html_a30ec3facd8b48c8dcc93df8ddf8771f9"><div class="ttname"><a href="list_8c.html#a30ec3facd8b48c8dcc93df8ddf8771f9">list</a></div><div class="ttdeci">#define list(X)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00285">list.c:285</a></div></div>
-<div class="ttc" id="alist_8c_html_a5f793f98f52e271448da0a5714fef9bb"><div class="ttname"><a href="list_8c.html#a5f793f98f52e271448da0a5714fef9bb">s_list</a></div><div class="ttdeci">#define s_list(X)</div><div class="ttdef"><b>Definition:</b> <a href="list_8c_source.html#l00286">list.c:286</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdoc">Before a function def: indicates that it returns newly allocated ptr.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00580">libccc_define.h:580</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="alist_8h_html"><div class="ttname"><a href="list_8h.html">list.h</a></div></div>
+<div class="ttc" id="alist_8h_html_a5fd2869c0a2f0db6a7e1fbfa03378a0b"><div class="ttname"><a href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a></div><div class="ttdeci">s_list(T)</div></div>
+<div class="ttc" id="alist_8h_html_aed8b01b7c6138ddc179c95e2836df1c2"><div class="ttname"><a href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a></div><div class="ttdeci">struct list(T)</div><div class="ttdoc">This is a basic linked list struct, with dynamic content type.</div><div class="ttdef"><b>Definition:</b> <a href="list_8h_source.html#l00034">list.h:54</a></div></div>
 <div class="ttc" id="atree_8h_html"><div class="ttname"><a href="tree_8h.html">tree.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_e24cf0de90354a2d5cfac55fe9be57d6.html">monad</a></li><li class="navelem"><a class="el" href="convert_8h.html">convert.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_6ab6982fc79c074882a5f665edcf2594.html">monad</a></li><li class="navelem"><a class="el" href="convert_8h.html">convert.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

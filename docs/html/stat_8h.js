@@ -31,7 +31,7 @@ var stat_8h =
     [ "c_stat_ilst_to_iset", "stat_8h.html#a72d9501776f5095455b49af3e92a833b", null ],
     [ "c_stat_ilst_count", "stat_8h.html#a99ba4802136c892362e4245122144f65", null ],
     [ "c_stat_ilst_to_pmf", "stat_8h.html#ad57cb93dc93282034066d650f082d77f", null ],
-    [ "s_array_int", "stat_8h.html#aad810dad37cac7009b25d8b83833545e", null ],
+    [ "s_array_int", "stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc", null ],
     [ "s_array_float", "stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3", null ],
     [ "s_set_int", "stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1", null ],
     [ "s_set_float", "stat_8h.html#a996f48a690de01af95c5f1a6e9e7a8a5", null ],

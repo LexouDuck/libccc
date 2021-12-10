@@ -50,7 +50,7 @@ doc: \
 
 .PHONY:\
 doc-base #! Generates documentation for the project (doxygen)
-doc-base:
+doc-base: doc-preprocess
 	@$(call print_message,"Generating HTML + RTF + MAN + LaTeX documentation...")
 	@(cat $(DOXYGEN_CONFIG) ; \
 		echo "PROJECT_NUMBER = $(VERSION)" ; \
@@ -66,7 +66,7 @@ doc-base:
 
 .PHONY:\
 doc-html #! Generates documentation for the project (doxyrest + sphinx)
-doc-html:
+doc-html: doc-preprocess
 	@$(call print_message,"Generating XML documentation...")
 	# run it a second time, only to generate XML output for doxyrest
 	@(cat $(DOXYGEN_CONFIG) ; \
@@ -97,7 +97,22 @@ doc-html:
 		#$(call DOC_OUTPUT,rst) \
 		#$(call DOC_OUTPUT,pdf)
 	@#$(MAKE) -C $(call DOC_OUTPUT,pdf)latex/ all
+	@mv $(call DOC_OUTPUT,html)page_index.html \
+		$(call DOC_OUTPUT,html)index.html
 	@$(call print_success,"Generated documentation (doxyrest + sphinx)")
+
+
+
+.PHONY:\
+doc-preprocess #! This rule is used to pre-process .h files for the doxygen parser to understand them
+doc-preprocess:
+	@$(call print_message,"Preprocessing headers for documentation...")
+	@mkdir -p ./docs/$(HDRDIR)
+	@cp -rf $(HDRDIR)* ./docs/$(HDRDIR)
+	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/monad/%.h, $(HDRS))) ; do \
+		awk '/^#define/ { gsub(/\(T\)/, "<T>"); } { print; }' $$i > $$i.tmp && mv $$i.tmp $$i ; \
+	done
+	@$(call print_success,"Successfully pre-processed header files")
 
 
 

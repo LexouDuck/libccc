@@ -15,18 +15,18 @@ var random_8h =
     [ "Random_UInt", "random_8h.html#a6a496704d4463c972b4f3a1bf8b1c09b", null ],
     [ "c_randu", "random_8h.html#aacede7b0389e4f7cf2a7bb571e1f6d7c", null ],
     [ "Random_UInt_Range", "random_8h.html#a480df493e75b9714ce6c1ff53b38d77f", null ],
-    [ "c_randui", "random_8h.html#a3019faf1530133452c897c2456bbb12c", null ],
+    [ "c_randxu", "random_8h.html#a4d16339a10ca9460817479687413e943", null ],
     [ "Random_SInt", "random_8h.html#abb6e06434adc1acc07836b15b8b2f49c", null ],
     [ "c_rands", "random_8h.html#a0d49f8b798b679f952c197f079f6330e", null ],
     [ "Random_SInt_Range", "random_8h.html#ae77bc5bb07489c6ef77b04144c78dd9d", null ],
-    [ "c_randsi", "random_8h.html#ab1eaa9dc7493536ee27a04d1567243b2", null ],
+    [ "c_randxs", "random_8h.html#a622838c52be26149ec33e7201eed6a4c", null ],
     [ "Random_Fixed", "random_8h.html#a463de940a7527dbfda9b2bdf44db2cd0", null ],
     [ "c_randq", "random_8h.html#a48dc94cfac7a45556645370dea386a3a", null ],
     [ "Random_Fixed_Range", "random_8h.html#a92538d7067ce975c07b92b684d505ff2", null ],
-    [ "c_randqi", "random_8h.html#a8310f6aeecb60990666ad2d0b5a855e6", null ],
+    [ "c_randxq", "random_8h.html#aa9ea7b71338999ddc5705527ceebc676", null ],
     [ "Random_Float", "random_8h.html#ae7bb9377a08ece552e28d36a96d4b766", null ],
     [ "c_randf", "random_8h.html#ab26fd30a687256f9730357448afbca74", null ],
     [ "Random_Float_Range", "random_8h.html#ae69d4a98e98d6c1794b95586955384eb", null ],
-    [ "c_randfi", "random_8h.html#a1f7a1a2529e0dae76c26e7a5428e940e", null ],
-    [ "t_rand", "random_8h.html#a80a2940ba1a569c25e077dd72f82bd75", null ]
+    [ "c_randxf", "random_8h.html#abd813ceaeb9586c42a699316ff3cf107", null ],
+    [ "t_rand", "random_8h.html#a844b13c1cac7708b317c8fa633a4ed28", null ]
 ];

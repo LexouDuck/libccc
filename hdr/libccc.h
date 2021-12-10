@@ -45,7 +45,7 @@ HEADER_CPP
 
 #ifndef __DOXYGEN__
 
-/*!
+/*!@doc
 **	Here we include all the primitive type headers, but we preemptively define some
 **	important header macros beforehand, so as to have the header define only the types,
 **	and not any of their functions. As such, `libccc.h` only includes important builtins.

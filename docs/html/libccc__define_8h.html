@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc_define.h File Reference</title>
+<title>libccc: libccc_define.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -102,7 +102,8 @@ $(document).ready(function(){initNavTree('libccc__define_8h.html',''); initResiz
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="libccc__define_8h__incl.svg" width="142" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="libccc__define_8h__incl.svg" width="120" height="112"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="libccc__define_8h_source.html">Go to the source code of this file.</a></p>
@@ -153,7 +154,7 @@ Macros</h2></td></tr>
 <tr class="memitem:aeec1c3253e7dd24240f208655151b852"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#aeec1c3253e7dd24240f208655151b852">__POSIX_VERSION_2008__</a>&#160;&#160;&#160;200809l</td></tr>
 <tr class="separator:aeec1c3253e7dd24240f208655151b852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Platform-specific C integer type data model </p>
+<tr><td colspan="2"><div class="groupText"><p >Macros for the various C integer type data models </p>
 </div></td></tr>
 <tr class="memitem:a1605e9cd20acc0662762a4005d37fe18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a1605e9cd20acc0662762a4005d37fe18">__DATAMODEL_LP32__</a>&#160;&#160;&#160;0x02020404ul</td></tr>
 <tr class="memdesc:a1605e9cd20acc0662762a4005d37fe18"><td class="mdescLeft">&#160;</td><td class="mdescRight">(int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API  <a href="libccc__define_8h.html#a1605e9cd20acc0662762a4005d37fe18">More...</a><br /></td></tr>
@@ -170,13 +171,12 @@ Macros</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Platform bitness checking macros </p>
 </div></td></tr>
 <tr class="memitem:ad0ec54b19f880c580a5c0e73d37360f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#ad0ec54b19f880c580a5c0e73d37360f7">_IS_32BIT</a>&#160;&#160;&#160;(__DATAMODEL__ == <a class="el" href="libccc__define_8h.html#a1605e9cd20acc0662762a4005d37fe18">__DATAMODEL_LP32__</a> || __DATAMODEL__ == <a class="el" href="libccc__define_8h.html#ac5d2b542dec904aadff1e06ecd8c28d7">__DATAMODEL_ILP32__</a>)</td></tr>
-<tr class="memdesc:ad0ec54b19f880c580a5c0e73d37360f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this is a 32-bit platform, then this macro's value will resolve to <code>1</code>, otherwise <code>0</code>  <a href="libccc__define_8h.html#ad0ec54b19f880c580a5c0e73d37360f7">More...</a><br /></td></tr>
 <tr class="separator:ad0ec54b19f880c580a5c0e73d37360f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adb450f1db6ef4bfc552d1fbc7a22b6d9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#adb450f1db6ef4bfc552d1fbc7a22b6d9">_IS_64BIT</a>&#160;&#160;&#160;(__DATAMODEL__ == <a class="el" href="libccc__define_8h.html#a90c05f002b017c3c24e6e2519f1578fc">__DATAMODEL_LP64__</a> || __DATAMODEL__ == <a class="el" href="libccc__define_8h.html#a9336ef0ea3c1fba2f4dc1f1527359a02">__DATAMODEL_LLP64__</a>)</td></tr>
 <tr class="memdesc:adb450f1db6ef4bfc552d1fbc7a22b6d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">If this is a 64-bit platform, then this macro's value will resolve to <code>1</code>, otherwise <code>0</code>  <a href="libccc__define_8h.html#adb450f1db6ef4bfc552d1fbc7a22b6d9">More...</a><br /></td></tr>
 <tr class="separator:adb450f1db6ef4bfc552d1fbc7a22b6d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >These macros can be used to check native type sizes at preprocess-time, ie: in <code>#if</code> statements. </p>
+<tr><td colspan="2"><div class="groupText"><p >Macros for preprocessor integer size checking </p>
 </div></td></tr>
 <tr class="memitem:a548410d00012ef52a04fa39e184bbbb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a548410d00012ef52a04fa39e184bbbb5">_SIZEOF_SHORT</a>&#160;&#160;&#160;((__DATAMODEL__ &gt;&gt; 24) &amp; 0xFF)</td></tr>
 <tr class="separator:a548410d00012ef52a04fa39e184bbbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -270,31 +270,41 @@ Macros</h2></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Cross-platform function attribute macros </p>
 </div></td></tr>
 <tr class="memitem:a522161b3594f2e7a25396132d9e2f267"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a522161b3594f2e7a25396132d9e2f267">_FORMAT</a>(FUNCTION,  POS_FORMAT,  POS_VARARGS)</td></tr>
+<tr class="memdesc:a522161b3594f2e7a25396132d9e2f267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: make the compiler give warnings for a variadic-args function with a format string.  <a href="libccc__define_8h.html#a522161b3594f2e7a25396132d9e2f267">More...</a><br /></td></tr>
 <tr class="separator:a522161b3594f2e7a25396132d9e2f267"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae53a1f108ffb1a83e37ccc2168904b72"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#ae53a1f108ffb1a83e37ccc2168904b72">_ALIAS</a>(FUNCTION)</td></tr>
+<tr class="memdesc:ae53a1f108ffb1a83e37ccc2168904b72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function or variable def: sets the token to be an alias for the one given as arg.  <a href="libccc__define_8h.html#ae53a1f108ffb1a83e37ccc2168904b72">More...</a><br /></td></tr>
 <tr class="separator:ae53a1f108ffb1a83e37ccc2168904b72"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab39cb78776973cfb0fde58512d4e7298"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#ab39cb78776973cfb0fde58512d4e7298">_ALIGN</a>(MINIMUM)</td></tr>
+<tr class="memdesc:ab39cb78776973cfb0fde58512d4e7298"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function or variable def: sets minimum byte alignment size (power of 2)  <a href="libccc__define_8h.html#ab39cb78776973cfb0fde58512d4e7298">More...</a><br /></td></tr>
 <tr class="separator:ab39cb78776973cfb0fde58512d4e7298"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2f8536da63f58142f608da7b8aa8eeb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a2f8536da63f58142f608da7b8aa8eeb5">_PURE</a>()</td></tr>
+<tr class="memdesc:a2f8536da63f58142f608da7b8aa8eeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: indicates that the function has no side-effects.  <a href="libccc__define_8h.html#a2f8536da63f58142f608da7b8aa8eeb5">More...</a><br /></td></tr>
 <tr class="separator:a2f8536da63f58142f608da7b8aa8eeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a651950e6134e00bc771947f298d148c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</td></tr>
+<tr class="memdesc:a651950e6134e00bc771947f298d148c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: indicates that it returns newly allocated ptr.  <a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">More...</a><br /></td></tr>
 <tr class="separator:a651950e6134e00bc771947f298d148c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5f027d285413c8866f56382500a75f40"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a5f027d285413c8866f56382500a75f40">_UNUSED</a>()</td></tr>
+<tr class="memdesc:a5f027d285413c8866f56382500a75f40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: suppresses warnings for empty/incomplete function.  <a href="libccc__define_8h.html#a5f027d285413c8866f56382500a75f40">More...</a><br /></td></tr>
 <tr class="separator:a5f027d285413c8866f56382500a75f40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2359d700da2e1722d779b765d82eb347"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a2359d700da2e1722d779b765d82eb347">_INLINE</a>()</td></tr>
+<tr class="memdesc:a2359d700da2e1722d779b765d82eb347"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: makes the function be always inlined regardless of compiler config.  <a href="libccc__define_8h.html#a2359d700da2e1722d779b765d82eb347">More...</a><br /></td></tr>
 <tr class="separator:a2359d700da2e1722d779b765d82eb347"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50375d101e271f013900d57a181467e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a50375d101e271f013900d57a181467e0">_NOINLINE</a>()</td></tr>
+<tr class="memdesc:a50375d101e271f013900d57a181467e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: makes the function be always inlined regardless of compiler config.  <a href="libccc__define_8h.html#a50375d101e271f013900d57a181467e0">More...</a><br /></td></tr>
 <tr class="separator:a50375d101e271f013900d57a181467e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a168a0af6303a3f1dfae8ffac0e813083"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a168a0af6303a3f1dfae8ffac0e813083">_NORETURN</a>()</td></tr>
+<tr class="memdesc:a168a0af6303a3f1dfae8ffac0e813083"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())  <a href="libccc__define_8h.html#a168a0af6303a3f1dfae8ffac0e813083">More...</a><br /></td></tr>
 <tr class="separator:a168a0af6303a3f1dfae8ffac0e813083"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a87f2008814364facc78ee21953ac5b12"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a87f2008814364facc78ee21953ac5b12">_PACKED</a>()</td></tr>
+<tr class="memdesc:a87f2008814364facc78ee21953ac5b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Before a struct/union def: do not perform byte-padding on this struct/union type.  <a href="libccc__define_8h.html#a87f2008814364facc78ee21953ac5b12">More...</a><br /></td></tr>
 <tr class="separator:a87f2008814364facc78ee21953ac5b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p ><a class="el" href="libccc__define_8h.html#a73431ba9d27af74793901561ae448116">INCBIN()</a>: include a binary file directly as a global variable. </p>
+<tr><td colspan="2"><div class="groupText"><p ><a class="el" href="libccc__define_8h.html#a706407fb919d09ca1b241536feb1dbd7">INCBIN()</a>: include a binary file directly as a global variable. </p>
 </div></td></tr>
-<tr class="memitem:a73431ba9d27af74793901561ae448116"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a73431ba9d27af74793901561ae448116">INCBIN</a>(_NAME,  _FILEPATH)</td></tr>
-<tr class="separator:a73431ba9d27af74793901561ae448116"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>  Platform-specific 128-bit integer types </p>
+<tr class="memitem:a706407fb919d09ca1b241536feb1dbd7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a706407fb919d09ca1b241536feb1dbd7">INCBIN</a>(NAME,  FILEPATH)</td></tr>
+<tr class="separator:a706407fb919d09ca1b241536feb1dbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Platform-specific 128-bit integer types </p>
 </td></tr>
 <tr class="memitem:a59d6886dac843353eb96d75d7c2cf989"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__define_8h.html#a59d6886dac843353eb96d75d7c2cf989">_HAS_INT128</a>&#160;&#160;&#160;1</td></tr>
 <tr class="memdesc:a59d6886dac843353eb96d75d7c2cf989"><td class="mdescLeft">&#160;</td><td class="mdescRight">This macro is set to <code>1</code> if the current platform supports 128-bit integers, or <code>0</code> otherwise.  <a href="libccc__define_8h.html#a59d6886dac843353eb96d75d7c2cf989">More...</a><br /></td></tr>
@@ -316,7 +326,8 @@ Macros</h2></td></tr>
 </ul>
 <hr  />
 <dl class="section note"><dt>Note</dt><dd>The following macros listed here exist as predefined builtins on almost any platform/compiler:</dd></dl>
-<p>Here is the list of all the standard predefined ANSI C macros: </p><table class="markdownTable">
+<p>Here is the list of all the standard predefined ANSI C macros:</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Macro name   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -336,13 +347,15 @@ Macros</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>__STDC_VERSION__</code>   </td><td class="markdownTableBodyNone">Defined as a <code>long</code> literal value, in the format <code>YYYYMMl</code>, eg: 199901l means the C99 standard   </td></tr>
 </table>
-<p >There's also this very useful (non-macro) identifier, only defined in C99/C++: </p><table class="markdownTable">
+<p >There's also this very useful (non-macro) identifier, only defined in C99/C++:</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Macro name   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><code>__func__</code>   </td><td class="markdownTableBodyNone">String constant: The current function name.   </td></tr>
 </table>
-<p >Also, here are some of the many common GNU C macros (only present with GNU-compliant compilers): </p><table class="markdownTable">
+<p >Also, here are some of the many common GNU C macros (only present with GNU-compliant compilers):</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Macro name   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -354,7 +367,8 @@ Macros</h2></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><code>__INCLUDE_LEVEL__</code>   </td><td class="markdownTableBodyNone">Integer constant: The current depth of nesting within <code>#include</code> directives.   </td></tr>
 </table>
-<p >There is also the <code>__BYTE_ORDER__</code> and <code>__FLOAT_WORD_ORDER__</code>, which describe the storage endianness of native numeric types. </p><table class="markdownTable">
+<p >There is also the <code>__BYTE_ORDER__</code> and <code>__FLOAT_WORD_ORDER__</code>, which describe the storage endianness of native numeric types.</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Macro name and value   </th><th class="markdownTableHeadNone">Description    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -384,7 +398,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p >This macro is a more succinct way to write the typical <code>extern "C" {...}</code> C++ header guards - mostly to prevent C++ compilers from doing symbol name mangling. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00085">85</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00089">89</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -400,7 +414,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00088">88</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00092">92</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +432,7 @@ Macros</h2></td></tr>
 
 <p>NOTE: when only ANSI/C89/C90 support is present, <code>__STDC_VERSION__</code> will not be defined ! </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00106">106</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00109">109</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -434,7 +448,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00107">107</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00110">110</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -450,7 +464,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00108">108</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00111">111</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +480,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00109">109</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00112">112</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -482,7 +496,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00110">110</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00113">113</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -499,7 +513,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p >TBD: this is set to <code>-1</code> for now, since its final value (C2x date) is not yet known </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00111">111</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00114">114</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -517,7 +531,7 @@ Macros</h2></td></tr>
 
 <p>The 1990 edition of the POSIX.1 standard (IEEE Standard 1003.1-1990) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00119">119</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00121">121</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -535,7 +549,7 @@ Macros</h2></td></tr>
 
 <p>The 1992 edition of the POSIX.2 standard (IEEE Standard 1003.2-1992) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00120">120</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00122">122</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +567,7 @@ Macros</h2></td></tr>
 
 <p>The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00121">121</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00123">123</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +585,7 @@ Macros</h2></td></tr>
 
 <p>The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00122">122</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00124">124</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -589,7 +603,7 @@ Macros</h2></td></tr>
 
 <p>The 2001 edition of the POSIX standard (IEEE Standard 1003.1-2001) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00123">123</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00125">125</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -606,7 +620,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p >The 2008 edition of the POSIX standard (IEEE Standard 1003.1-2008) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00124">124</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00126">126</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -625,7 +639,7 @@ Macros</h2></td></tr>
 <p>(int is 16-bit, long and pointer are 32-bit) 32bit: Win16 API </p>
 <p >Convienence macros which describe the various different data model standards, ie: integer type sizes </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00152">152</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00180">180</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -643,7 +657,7 @@ Macros</h2></td></tr>
 
 <p>(int, long, and pointer are all size 32-bit) 32bit: Win32 API, Unix and Unix-like systems (Linux, macOS) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00153">153</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00181">181</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -661,7 +675,7 @@ Macros</h2></td></tr>
 
 <p>(int and long are 32-bit, pointer is 64-bit) 64bit: Win64 API </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00154">154</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00182">182</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +692,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p >(int is 32-bit, long and pointer are 64-bit) 64bit: Unix and Unix-like systems (Linux, macOS) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00155">155</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00183">183</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -693,11 +707,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >These macros are always defined: their value expands to <code>0</code> or <code>1</code> depending on the platform bitness. If this is a 32-bit platform, then this macro's value will resolve to <code>1</code>, otherwise <code>0</code> </p>
 
-<p>If this is a 32-bit platform, then this macro's value will resolve to <code>1</code>, otherwise <code>0</code> </p>
-<p >These macros are always defined: their value expands to <code>0</code> or <code>1</code> depending on the platform bitness. </p>
-
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00192">192</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00194">194</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +727,7 @@ Macros</h2></td></tr>
 
 <p>If this is a 64-bit platform, then this macro's value will resolve to <code>1</code>, otherwise <code>0</code> </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00195">195</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00196">196</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -730,8 +742,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >These macros can be used to check native type sizes at preprocess-time, ie: in <code>#if</code> statements. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00204">204</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00206">206</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -747,7 +760,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00205">205</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00207">207</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -763,7 +776,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00206">206</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00208">208</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -779,7 +792,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00207">207</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00209">209</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -795,7 +808,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00208">208</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00210">210</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -813,7 +826,7 @@ Macros</h2></td></tr>
 
 <p>This macro is set to <code>1</code> if the current platform supports 128-bit integers, or <code>0</code> otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00235">235</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00237">237</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -831,7 +844,7 @@ Macros</h2></td></tr>
 
 <p>This macro is set to <code>1</code> if the current platform supports 80-bit (96-bit) floats, or <code>0</code> otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00282">282</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00286">286</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -849,7 +862,7 @@ Macros</h2></td></tr>
 
 <p>This macro is set to <code>1</code> if the current platform supports 128-bit floats, or <code>0</code> otherwise. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00289">289</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00293">293</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -868,7 +881,7 @@ Macros</h2></td></tr>
 <p>Represents a successful function return (expands to <code>(0)</code>) </p>
 <p >These are similar in nature to the <a href="https://en.cppreference.com/w/c/program/EXIT_status">STD C exit() return macros</a>. This is a common general macro used for return values, used by several libccc functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00313">313</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00317">317</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -885,7 +898,7 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <p >Represents a failure function return (expands to <code>(-1)</code>, ie: every bit set to 1) </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00318">318</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00322">322</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -917,7 +930,7 @@ Macros</h2></td></tr>
 <p >This macro function concatenates the two given tokens <code>TOKEN1</code> and <code>TOKEN2</code> into a single token.</p>
 <p >This is useful because the token-paste concatenation operator <code>A##B</code> merges its operand tokens immediately after expanding the macro's arguments, but it happens before expanding their respective values. With this macro function, not only can this be done anywhere (not just in a <code>#define</code> directive), but an additional layer of macro indirection forces the macro expansion to occur before token-pasting. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00333">333</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00337">337</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -947,7 +960,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00334">334</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00338">338</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -969,7 +982,7 @@ Macros</h2></td></tr>
 <p >This macro function expands and stringizes the given <code>TOKEN</code> argument</p>
 <p >This is useful because the macro stringization operator <code>#A</code> transforms its operand into a string literal immediately after expanding the macro's arguments, but it happens before expanding their respective values. With this macro function, not only can this be done anywhere (not just in a <code>#define</code> directive), but an additional layer of macro indirection forces the macro expansion to occur before stringization. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00349">349</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00353">353</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -989,7 +1002,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00350">350</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00354">354</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1008,9 +1021,9 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >Works like <code>strlen()</code> (aka <a class="el" href="string_8h.html#a037562e6d6d5dfa8437d5b1de3876694" title="Get the length (in bytes) of a string.">String_Length()</a>) but is resolved at compile time </p>
+<p >Works like <code>strlen()</code> (aka <a class="el" href="string_8h.html#a037562e6d6d5dfa8437d5b1de3876694">String_Length()</a>) but is resolved at compile time </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00360">360</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00364">364</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1030,7 +1043,7 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00361">361</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00365">365</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1064,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/language/asm">https://en.cppreference.com/w/c/language/asm</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00383">383</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00387">387</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1072,7 +1085,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C99) <a href="https://en.cppreference.com/w/c/language/inline">https://en.cppreference.com/w/c/language/inline</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00395">395</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00399">399</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1093,7 +1106,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C99) <a href="https://en.cppreference.com/w/c/language/restrict">https://en.cppreference.com/w/c/language/restrict</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00407">407</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00411">411</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1119,7 +1132,7 @@ Macros</h2></td></tr>
 </ul>
 <p >The sizeof() function is a builtin C operator: this macro is only defined here purely for the sake of completeness/exhaustiveness. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00432">432</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00436">436</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1144,7 +1157,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(GNU) <a href="https://gcc.gnu.org/onlinedocs/gcc/Typeof.html">https://gcc.gnu.org/onlinedocs/gcc/Typeof.html</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00443">443</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00447">447</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1179,7 +1192,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/types/offsetof">https://en.cppreference.com/w/c/types/offsetof</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00452">452</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00456">456</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1204,7 +1217,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C11) <a href="https://en.cppreference.com/w/c/language/_Alignof">https://en.cppreference.com/w/c/language/_Alignof</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00476">476</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00480">480</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1229,7 +1242,7 @@ Macros</h2></td></tr>
 <li><em>Standard library equivalent: </em>(C11) <a href="https://en.cppreference.com/w/c/language/_Alignas">https://en.cppreference.com/w/c/language/_Alignas</a> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00495">495</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00499">499</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1283,7 +1296,7 @@ Macros</h2></td></tr>
 <li>for <code>s_dict&lt;t_char*&gt;</code>: <code>foreach (t_char*, my_str, s_dict, my_dict) { ... }</code> </li>
 </ul>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00521">521</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00525">525</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1304,7 +1317,7 @@ Macros</h2></td></tr>
 <p >This macro is used before any generic-type function's declaration: it is used to perform dead code elimination on unused functions automatically.</p>
 <p >To be more precise, this macro is used when including a generic-type file (ie: the files located in <code>hdr/libccc/monad/</code> with the file extension <code>.c</code>), to make all generic-type functions be declared as <code>static</code> (so they are local to a unit), all the while suppressing the annoying "static function never used" warnings, and still have the compiler/linker perform dead code elimination as appropriate. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00550">550</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00554">554</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1340,7 +1353,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00573">573</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: make the compiler give warnings for a variadic-args function with a format string. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00576">576</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1360,7 +1375,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00574">574</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function or variable def: sets the token to be an alias for the one given as arg. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00577">577</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1380,7 +1397,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00575">575</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function or variable def: sets minimum byte alignment size (power of 2) </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00578">578</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1399,7 +1418,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00576">576</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: indicates that the function has no side-effects. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00579">579</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1418,7 +1439,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00577">577</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: indicates that it returns newly allocated ptr. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00580">580</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1437,7 +1460,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00578">578</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: suppresses warnings for empty/incomplete function. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00581">581</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1456,7 +1481,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00579">579</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: makes the function be always inlined regardless of compiler config. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00582">582</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1475,7 +1502,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00580">580</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: makes the function be always inlined regardless of compiler config. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00583">583</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1494,7 +1523,9 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00581">581</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit()) </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00584">584</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1513,12 +1544,14 @@ Macros</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00582">582</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p>Before a struct/union def: do not perform byte-padding on this struct/union type. </p>
+
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00585">585</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
-<a id="a73431ba9d27af74793901561ae448116" name="a73431ba9d27af74793901561ae448116"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73431ba9d27af74793901561ae448116">&#9670;&nbsp;</a></span>INCBIN</h2>
+<a id="a706407fb919d09ca1b241536feb1dbd7" name="a706407fb919d09ca1b241536feb1dbd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a706407fb919d09ca1b241536feb1dbd7">&#9670;&nbsp;</a></span>INCBIN</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1527,13 +1560,13 @@ Macros</h2></td></tr>
           <td class="memname">#define INCBIN</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">_NAME, </td>
+          <td class="paramname">NAME, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">_FILEPATH&#160;</td>
+          <td class="paramname">FILEPATH&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1542,49 +1575,49 @@ Macros</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="comment">/*extern t_u8 const _NAME[];        */</span>  \</div>
-<div class="line"><span class="comment">/*extern t_u8 const _NAME##_end[];  */</span>  \</div>
-<div class="line"><span class="comment">/*extern int const  _NAME##_size[]; */</span>  \</div>
+<b>Value:</b><div class="fragment"><div class="line"><span class="comment">/*extern t_u8 const NAME[];        */</span>   \</div>
+<div class="line"><span class="comment">/*extern t_u8 const NAME##_end[];  */</span>   \</div>
+<div class="line"><span class="comment">/*extern int const  NAME##_size[]; */</span>   \</div>
 <div class="line">__asm__                                 \</div>
 <div class="line">(                                       \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_SECTION                  \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>                                \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_GLOBAL<span class="stringliteral">&quot; &quot;</span>                \</div>
-<div class="line">        INCBIN_MANGLE#_NAME             \</div>
-<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;:&quot;</span>          \</div>
-<div class="line">    <span class="stringliteral">&quot;\n\t.incbin \&quot;&quot;</span>_FILEPATH<span class="stringliteral">&quot;\&quot;&quot;</span>       \</div>
+<div class="line">        INCBIN_MANGLE(#NAME)            \</div>
+<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;:&quot;</span>         \</div>
+<div class="line">    <span class="stringliteral">&quot;\n\t.incbin \&quot;&quot;</span>FILEPATH<span class="stringliteral">&quot;\&quot;&quot;</span>        \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>                                \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_GLOBAL<span class="stringliteral">&quot; &quot;</span>                \</div>
-<div class="line">        INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;_end&quot;</span>       \</div>
-<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;_end&quot;</span><span class="stringliteral">&quot;:&quot;</span>    \</div>
-<div class="line">    <span class="stringliteral">&quot;\n\t.byte 0&quot;</span>                       \</div>
+<div class="line">        INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;_end&quot;</span>      \</div>
+<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;_end&quot;</span><span class="stringliteral">&quot;:&quot;</span>   \</div>
+<div class="line">    <span class="stringliteral">&quot;\n\t&quot;</span>INCBIN_BYTE<span class="stringliteral">&quot; 0&quot;</span>               \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>                                \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_GLOBAL<span class="stringliteral">&quot; &quot;</span>                \</div>
-<div class="line">        INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;_size&quot;</span>      \</div>
-<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;_size&quot;</span><span class="stringliteral">&quot;:&quot;</span>   \</div>
-<div class="line">    <span class="stringliteral">&quot;\n\t&quot;</span>INCBIN_INTEGER                \</div>
-<div class="line">        <span class="stringliteral">&quot; ( &quot;</span>INCBIN_MANGLE#_NAME<span class="stringliteral">&quot;_end&quot;</span>  \</div>
-<div class="line">        <span class="stringliteral">&quot; - &quot;</span>INCBIN_MANGLE#_NAME<span class="stringliteral">&quot; )&quot;</span>    \</div>
+<div class="line">        INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;_size&quot;</span>     \</div>
+<div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;_size&quot;</span><span class="stringliteral">&quot;:&quot;</span>  \</div>
+<div class="line">    <span class="stringliteral">&quot;\n\t&quot;</span>INCBIN_SIZE                   \</div>
+<div class="line">        <span class="stringliteral">&quot; ( &quot;</span>INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot;_end&quot;</span> \</div>
+<div class="line">        <span class="stringliteral">&quot; - &quot;</span>INCBIN_MANGLE(#NAME)<span class="stringliteral">&quot; )&quot;</span>   \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>                                \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>INCBIN_PREVIOUS                 \</div>
 <div class="line">    <span class="stringliteral">&quot;\n&quot;</span>                                \</div>
 <div class="line">);</div>
-</div><!-- fragment --><p >This macro embeds the given binary file at <code>_FILEPATH</code> into a global const variable named <code>_NAME</code>.</p>
+</div><!-- fragment --><p >This macro embeds the given binary file at <code>FILEPATH</code> into a global const variable named <code>NAME</code>.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">_NAME</td><td>The name to give to the global variable(s) which will be created </td></tr>
-    <tr><td class="paramname">_FILEPATH</td><td>The relative or oabsolute path of the file to include </td></tr>
+    <tr><td class="paramname">NAME</td><td>The name to give to the global variable(s) which will be created </td></tr>
+    <tr><td class="paramname">FILEPATH</td><td>The relative or oabsolute path of the file to include </td></tr>
   </table>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>This macro doesn't return anything per se, but it declares 3 global variables within its ASM code:<ul>
-<li><code>t_u8 const* _NAME</code> The statically allocated byte array containing the binary file data</li>
-<li><code>t_u8 const* _NAME##_end</code> The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)</li>
-<li><code>int const* _NAME##_size</code> The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size); </li>
+<li><code>t_u8 const* NAME</code> : The statically allocated byte array containing the binary file data</li>
+<li><code>t_u8 const* NAME##_end</code> : The pointer to the end of the file data byte array: contains 1 byte set to zero (works like a string null-terminator)</li>
+<li><code>int const* NAME##_size</code> : The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size); </li>
 </ul>
 </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00650">650</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00651">651</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1603,7 +1636,7 @@ Macros</h2></td></tr>
 
 <p>Harmonized type for 128-bit unsigned integers. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00228">228</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00230">230</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1621,7 +1654,7 @@ Macros</h2></td></tr>
 
 <p>Harmonized type for 128-bit signed integers. </p>
 
-<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00229">229</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="libccc__define_8h_source.html#l00231">231</a> of file <a class="el" href="libccc__define_8h_source.html">libccc_define.h</a>.</p>
 
 </div>
 </div>
@@ -1630,7 +1663,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="libccc__define_8h.html">libccc_define.h</a></li>
+    <li class="navelem"><a class="el" href="libccc__define_8h.html">libccc_define.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

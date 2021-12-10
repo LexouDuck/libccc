@@ -5,7 +5,7 @@ var program_8h =
     [ "c_abort", "program_8h.html#a33f6c6d53190a1cde24b312c2159c245", null ],
     [ "c_exit", "program_8h.html#ae58a963b7f09d3035846272e06e078d2", null ],
     [ "c_atexit", "program_8h.html#abdb2dce49675ca0ef5a93430612bfaf3", null ],
-    [ "c_on_exit", "program_8h.html#a00e2e41e6dc5d8d1bbe9e9c097e7cbad", null ],
+    [ "c_onexit", "program_8h.html#ac9cb70e56892d1551425730b467f284e", null ],
     [ "c_system", "program_8h.html#ab5148c5e7147330308491717889d1c29", null ],
     [ "c_getenv", "program_8h.html#a8be310e4fa3fd9e32faec78196b1bf43", null ],
     [ "c_setenv", "program_8h.html#a185ac08609091572ce12e8f6395b9ec4", null ],

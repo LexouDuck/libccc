@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/math/complex.h File Reference</title>
+<title>libccc: libccc/math/complex.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -95,9 +95,7 @@ $(document).ready(function(){initNavTree('complex_8h.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">complex.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,7 +107,8 @@ $(document).ready(function(){initNavTree('complex_8h.html',''); initResizable();
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="complex_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="complex_8h__incl.svg" width="379" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="complex_8h_source.html">Go to the source code of this file.</a></p>
@@ -117,97 +116,103 @@ $(document).ready(function(){initNavTree('complex_8h.html',''); initResizable();
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:structcomplex"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#structcomplex">complex</a></td></tr>
-<tr class="memdesc:structcomplex"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to store complex/imaginary number values.  <a href="complex_8h.html#structcomplex">More...</a><br /></td></tr>
 <tr class="separator:structcomplex"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structquaternion"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#structquaternion">quaternion</a></td></tr>
-<tr class="memdesc:structquaternion"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct for storing quaternions.  <a href="complex_8h.html#structquaternion">More...</a><br /></td></tr>
 <tr class="separator:structquaternion"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
 <tr class="memitem:a6fbbbe01fed7f3a7bb2966d10dad2a44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a6fbbbe01fed7f3a7bb2966d10dad2a44">COMPLEX_NULL</a>&#160;&#160;&#160;(<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>){ .re = 0, .im = 0 }</td></tr>
-<tr class="memdesc:a6fbbbe01fed7f3a7bb2966d10dad2a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">A complex number value of zero (both real and imaginary parts are zero)  <a href="complex_8h.html#a6fbbbe01fed7f3a7bb2966d10dad2a44">More...</a><br /></td></tr>
 <tr class="separator:a6fbbbe01fed7f3a7bb2966d10dad2a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >A struct to store complex/imaginary number values </p>
+</div></td></tr>
+<tr class="memitem:a68a450946fad805abbfa88912745f8a0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="complex_8h.html#structcomplex">complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a></td></tr>
+<tr class="separator:a68a450946fad805abbfa88912745f8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a4fa03871db3f5f497fadc56cd722c3e3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="complex_8h.html#structquaternion">quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a4fa03871db3f5f497fadc56cd722c3e3">s_quaternion</a></td></tr>
+<tr class="separator:a4fa03871db3f5f497fadc56cd722c3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a complex number struct, with the given 're' real part and 'im' imaginary part </p>
+</td></tr>
 <tr class="memitem:ad65498c7b7d48b61396c64994a57a427"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#ad65498c7b7d48b61396c64994a57a427">c_cplx</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a3fb0610728feeec8ee6a2d0fdf2e4b86">Complex</a></td></tr>
 <tr class="separator:ad65498c7b7d48b61396c64994a57a427"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fb0610728feeec8ee6a2d0fdf2e4b86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a3fb0610728feeec8ee6a2d0fdf2e4b86">Complex</a> (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> re, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> im)</td></tr>
+<tr class="separator:a3fb0610728feeec8ee6a2d0fdf2e4b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part </p>
+</td></tr>
 <tr class="memitem:a7c583003ea1e0670514c3530d69f851e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a7c583003ea1e0670514c3530d69f851e">c_cplxnew</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a9d64424bf742aa41b31dcd6bf3349d32">Complex_New</a></td></tr>
 <tr class="separator:a7c583003ea1e0670514c3530d69f851e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d64424bf742aa41b31dcd6bf3349d32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a9d64424bf742aa41b31dcd6bf3349d32">Complex_New</a> (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> re, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> im)</td></tr>
+<tr class="separator:a9d64424bf742aa41b31dcd6bf3349d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns TRUE if the two given complex numbers are equal </p>
+</td></tr>
 <tr class="memitem:a7ae66cb14bcbc5a55667a58e2e7fab0f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a7ae66cb14bcbc5a55667a58e2e7fab0f">c_cplxequ</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a64aa8727d5f8c577393004fbd158d8f8">Complex_Equals</a></td></tr>
 <tr class="separator:a7ae66cb14bcbc5a55667a58e2e7fab0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a64aa8727d5f8c577393004fbd158d8f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a64aa8727d5f8c577393004fbd158d8f8">Complex_Equals</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
+<tr class="separator:a64aa8727d5f8c577393004fbd158d8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the absolute value |z| of the given complex number 'z' (its distance from zero) </p>
+</td></tr>
 <tr class="memitem:aea396201bf4c09a15ea1754da338098a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#aea396201bf4c09a15ea1754da338098a">c_cplxabs</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#aef2137203f80dff3867d224e214bb212">Complex_Abs</a></td></tr>
 <tr class="separator:aea396201bf4c09a15ea1754da338098a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab50249335d6d24a65ff6efe4939aa589"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#ab50249335d6d24a65ff6efe4939aa589">Complex_Modulus</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#aef2137203f80dff3867d224e214bb212">Complex_Abs</a></td></tr>
 <tr class="separator:ab50249335d6d24a65ff6efe4939aa589"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aef2137203f80dff3867d224e214bb212"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#aef2137203f80dff3867d224e214bb212">Complex_Abs</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1)</td></tr>
+<tr class="separator:aef2137203f80dff3867d224e214bb212"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the conjugate of the given complex number (inverts the sign of its imaginary part) </p>
+</td></tr>
 <tr class="memitem:a0cbe17de5111fa23d72c8bd55d721a80"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a0cbe17de5111fa23d72c8bd55d721a80">c_cplxconj</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f">Complex_Conjugate</a></td></tr>
 <tr class="separator:a0cbe17de5111fa23d72c8bd55d721a80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6224f2e147eff02270ad85515572685d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a6224f2e147eff02270ad85515572685d">Complex_Conj</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f">Complex_Conjugate</a></td></tr>
 <tr class="separator:a6224f2e147eff02270ad85515572685d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a02c3f8e0fe099df17cef8c5d8239a41f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f">Complex_Conjugate</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1)</td></tr>
+<tr class="separator:a02c3f8e0fe099df17cef8c5d8239a41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the result of the addition of the two given complex numbers </p>
+</td></tr>
 <tr class="memitem:a355cafca23dfd7480d1cea10b0047c3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a355cafca23dfd7480d1cea10b0047c3b">c_cplxadd</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a54f72120d0a2f341b5c63b2539e98f98">Complex_Add</a></td></tr>
 <tr class="separator:a355cafca23dfd7480d1cea10b0047c3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54f72120d0a2f341b5c63b2539e98f98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a54f72120d0a2f341b5c63b2539e98f98">Complex_Add</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
+<tr class="separator:a54f72120d0a2f341b5c63b2539e98f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the result of the subtraction of the two given complex numbers </p>
+</td></tr>
 <tr class="memitem:a6418444f027a35848c2a19e04325b8c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a6418444f027a35848c2a19e04325b8c6">c_cplxsub</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a29690585ccdb5b436419941cd6d357b2">Complex_Sub</a></td></tr>
 <tr class="separator:a6418444f027a35848c2a19e04325b8c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a608a2698c20b57907acb40460318bf91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a608a2698c20b57907acb40460318bf91">Complex_Subtract</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a29690585ccdb5b436419941cd6d357b2">Complex_Sub</a></td></tr>
 <tr class="separator:a608a2698c20b57907acb40460318bf91"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a29690585ccdb5b436419941cd6d357b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a29690585ccdb5b436419941cd6d357b2">Complex_Sub</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
+<tr class="separator:a29690585ccdb5b436419941cd6d357b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the result of the multiplication of the two given complex numbers </p>
+</td></tr>
 <tr class="memitem:a544a0bcc9ab319ddd8f98148bfc664bc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a544a0bcc9ab319ddd8f98148bfc664bc">c_cplxmul</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a330d90f8b1666ce309d921027eb81668">Complex_Mul</a></td></tr>
 <tr class="separator:a544a0bcc9ab319ddd8f98148bfc664bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a526a59c31314563196da9a7f6803ede7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a526a59c31314563196da9a7f6803ede7">Complex_Multiply</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a330d90f8b1666ce309d921027eb81668">Complex_Mul</a></td></tr>
 <tr class="separator:a526a59c31314563196da9a7f6803ede7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a330d90f8b1666ce309d921027eb81668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a330d90f8b1666ce309d921027eb81668">Complex_Mul</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
+<tr class="separator:a330d90f8b1666ce309d921027eb81668"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the result of the divide of the two given complex numbers </p>
+</td></tr>
 <tr class="memitem:ad718cfefc9c12ec75a0a92fabf5cbd04"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#ad718cfefc9c12ec75a0a92fabf5cbd04">c_cplxdiv</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#ab0effe168b2f3ec3ab360b61d0b92111">Complex_Div</a></td></tr>
 <tr class="separator:ad718cfefc9c12ec75a0a92fabf5cbd04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a00024d6827d9e3b57602e1db2b6c25a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a00024d6827d9e3b57602e1db2b6c25a9">Complex_Divide</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#ab0effe168b2f3ec3ab360b61d0b92111">Complex_Div</a></td></tr>
 <tr class="separator:a00024d6827d9e3b57602e1db2b6c25a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0effe168b2f3ec3ab360b61d0b92111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#ab0effe168b2f3ec3ab360b61d0b92111">Complex_Div</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
+<tr class="separator:ab0effe168b2f3ec3ab360b61d0b92111"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the given complex number, to the power of 'n' </p>
+</td></tr>
 <tr class="memitem:a8b313992dc5de01445a3c64494541e26"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a8b313992dc5de01445a3c64494541e26">c_cplxpow</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a99e00287c0f3c504f7e5a73f3c89c9f8">Complex_Pow</a></td></tr>
 <tr class="separator:a8b313992dc5de01445a3c64494541e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a428fcbd7f7b13bcec732e61265e5fc79"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a428fcbd7f7b13bcec732e61265e5fc79">Complex_Power</a>&#160;&#160;&#160;<a class="el" href="complex_8h.html#a99e00287c0f3c504f7e5a73f3c89c9f8">Complex_Pow</a></td></tr>
 <tr class="separator:a428fcbd7f7b13bcec732e61265e5fc79"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a68a450946fad805abbfa88912745f8a0"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="complex_8h.html#structcomplex">complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a></td></tr>
-<tr class="memdesc:a68a450946fad805abbfa88912745f8a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct to store complex/imaginary number values.  <a href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">More...</a><br /></td></tr>
-<tr class="separator:a68a450946fad805abbfa88912745f8a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fa03871db3f5f497fadc56cd722c3e3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="complex_8h.html#structquaternion">quaternion</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a4fa03871db3f5f497fadc56cd722c3e3">s_quaternion</a></td></tr>
-<tr class="memdesc:a4fa03871db3f5f497fadc56cd722c3e3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct for storing quaternions.  <a href="complex_8h.html#a4fa03871db3f5f497fadc56cd722c3e3">More...</a><br /></td></tr>
-<tr class="separator:a4fa03871db3f5f497fadc56cd722c3e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a3fb0610728feeec8ee6a2d0fdf2e4b86"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a3fb0610728feeec8ee6a2d0fdf2e4b86">Complex</a> (t_float re, t_float im)</td></tr>
-<tr class="memdesc:a3fb0610728feeec8ee6a2d0fdf2e4b86"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a complex number struct, with the given 're' real part and 'im' imaginary part.  <a href="complex_8h.html#a3fb0610728feeec8ee6a2d0fdf2e4b86">More...</a><br /></td></tr>
-<tr class="separator:a3fb0610728feeec8ee6a2d0fdf2e4b86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d64424bf742aa41b31dcd6bf3349d32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a9d64424bf742aa41b31dcd6bf3349d32">Complex_New</a> (t_float re, t_float im)</td></tr>
-<tr class="memdesc:a9d64424bf742aa41b31dcd6bf3349d32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part.  <a href="complex_8h.html#a9d64424bf742aa41b31dcd6bf3349d32">More...</a><br /></td></tr>
-<tr class="separator:a9d64424bf742aa41b31dcd6bf3349d32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64aa8727d5f8c577393004fbd158d8f8"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a64aa8727d5f8c577393004fbd158d8f8">Complex_Equals</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
-<tr class="memdesc:a64aa8727d5f8c577393004fbd158d8f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns TRUE if the two given complex numbers are equal.  <a href="complex_8h.html#a64aa8727d5f8c577393004fbd158d8f8">More...</a><br /></td></tr>
-<tr class="separator:a64aa8727d5f8c577393004fbd158d8f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef2137203f80dff3867d224e214bb212"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#aef2137203f80dff3867d224e214bb212">Complex_Abs</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1)</td></tr>
-<tr class="memdesc:aef2137203f80dff3867d224e214bb212"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the absolute value |z| of the given complex number 'z' (its distance from zero)  <a href="complex_8h.html#aef2137203f80dff3867d224e214bb212">More...</a><br /></td></tr>
-<tr class="separator:aef2137203f80dff3867d224e214bb212"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a02c3f8e0fe099df17cef8c5d8239a41f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f">Complex_Conjugate</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1)</td></tr>
-<tr class="memdesc:a02c3f8e0fe099df17cef8c5d8239a41f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the conjugate of the given complex number (inverts the sign of its imaginary part)  <a href="complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f">More...</a><br /></td></tr>
-<tr class="separator:a02c3f8e0fe099df17cef8c5d8239a41f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54f72120d0a2f341b5c63b2539e98f98"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a54f72120d0a2f341b5c63b2539e98f98">Complex_Add</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
-<tr class="memdesc:a54f72120d0a2f341b5c63b2539e98f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result of the addition of the two given complex numbers.  <a href="complex_8h.html#a54f72120d0a2f341b5c63b2539e98f98">More...</a><br /></td></tr>
-<tr class="separator:a54f72120d0a2f341b5c63b2539e98f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a29690585ccdb5b436419941cd6d357b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a29690585ccdb5b436419941cd6d357b2">Complex_Sub</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
-<tr class="memdesc:a29690585ccdb5b436419941cd6d357b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result of the subtraction of the two given complex numbers.  <a href="complex_8h.html#a29690585ccdb5b436419941cd6d357b2">More...</a><br /></td></tr>
-<tr class="separator:a29690585ccdb5b436419941cd6d357b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a330d90f8b1666ce309d921027eb81668"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a330d90f8b1666ce309d921027eb81668">Complex_Mul</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
-<tr class="memdesc:a330d90f8b1666ce309d921027eb81668"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result of the multiplication of the two given complex numbers.  <a href="complex_8h.html#a330d90f8b1666ce309d921027eb81668">More...</a><br /></td></tr>
-<tr class="separator:a330d90f8b1666ce309d921027eb81668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0effe168b2f3ec3ab360b61d0b92111"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#ab0effe168b2f3ec3ab360b61d0b92111">Complex_Div</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z1, <a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z2)</td></tr>
-<tr class="memdesc:ab0effe168b2f3ec3ab360b61d0b92111"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the result of the divide of the two given complex numbers.  <a href="complex_8h.html#ab0effe168b2f3ec3ab360b61d0b92111">More...</a><br /></td></tr>
-<tr class="separator:ab0effe168b2f3ec3ab360b61d0b92111"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99e00287c0f3c504f7e5a73f3c89c9f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a99e00287c0f3c504f7e5a73f3c89c9f8">Complex_Pow</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z, t_u8 n)</td></tr>
-<tr class="memdesc:a99e00287c0f3c504f7e5a73f3c89c9f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the given complex number, to the power of 'n'.  <a href="complex_8h.html#a99e00287c0f3c504f7e5a73f3c89c9f8">More...</a><br /></td></tr>
+<tr class="memitem:a99e00287c0f3c504f7e5a73f3c89c9f8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="complex_8h.html#a99e00287c0f3c504f7e5a73f3c89c9f8">Complex_Pow</a> (<a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *z, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a99e00287c0f3c504f7e5a73f3c89c9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This header defines useful algebra and calculus types, and functions.</p>
 <ul>
 <li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/numeric/complex">https://en.cppreference.com/w/c/numeric/complex</a></li>
-<li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/numeric/tgmath">https://en.cppreference.com/w/c/numeric/tgmath</a></li>
+<li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/numeric/tgmath">https://en.cppreference.com/w/c/numeric/tgmath</a> </li>
 </ul>
 
 <p class="definition">Definition in file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
@@ -223,23 +228,22 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >A struct to store complex/imaginary number values. </p>
-<ul>
+<div class="textblock"><ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
 <p >The two parts of the complex number are stored as two fields in the struct. </p>
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00074">74</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00075">75</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a6bdb130efc5ffbe7408a1c9b515c4b72" name="a6bdb130efc5ffbe7408a1c9b515c4b72"></a>t_float</td>
+<a id="a6bdb130efc5ffbe7408a1c9b515c4b72" name="a6bdb130efc5ffbe7408a1c9b515c4b72"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 re</td>
 <td class="fielddoc">
 The "real" part of this complex number. </td></tr>
 <tr><td class="fieldtype">
-<a id="ad167d5b7ff928c842bf1482e058bd1d7" name="ad167d5b7ff928c842bf1482e058bd1d7"></a>t_float</td>
+<a id="ad167d5b7ff928c842bf1482e058bd1d7" name="ad167d5b7ff928c842bf1482e058bd1d7"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 im</td>
 <td class="fielddoc">
@@ -259,31 +263,31 @@ The "imaginary" part of this complex number. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >A struct for storing quaternions. </p>
+<div class="textblock"><p >A struct for storing quaternions </p>
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00220">220</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00242">242</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a0311e4489e46bec97407e77482b3a224" name="a0311e4489e46bec97407e77482b3a224"></a>t_float</td>
+<a id="a0311e4489e46bec97407e77482b3a224" name="a0311e4489e46bec97407e77482b3a224"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 s</td>
 <td class="fielddoc">
 The S value of this quaternion. </td></tr>
 <tr><td class="fieldtype">
-<a id="a45cb5e76b53700f812d234bf6ac80644" name="a45cb5e76b53700f812d234bf6ac80644"></a>t_float</td>
+<a id="a45cb5e76b53700f812d234bf6ac80644" name="a45cb5e76b53700f812d234bf6ac80644"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 i</td>
 <td class="fielddoc">
 The I value of this quaternion. </td></tr>
 <tr><td class="fieldtype">
-<a id="aa14858bf990a341bbf6e6f02c4b5bb72" name="aa14858bf990a341bbf6e6f02c4b5bb72"></a>t_float</td>
+<a id="aa14858bf990a341bbf6e6f02c4b5bb72" name="aa14858bf990a341bbf6e6f02c4b5bb72"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 j</td>
 <td class="fielddoc">
 The J value of this quaternion. </td></tr>
 <tr><td class="fieldtype">
-<a id="a7d2d5289b503886f53d7b945d1b28370" name="a7d2d5289b503886f53d7b945d1b28370"></a>t_float</td>
+<a id="a7d2d5289b503886f53d7b945d1b28370" name="a7d2d5289b503886f53d7b945d1b28370"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 k</td>
 <td class="fielddoc">
@@ -304,10 +308,9 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >A complex number value of zero (both real and imaginary parts are zero) </p>
 
-<p>A complex number value of zero (both real and imaginary parts are zero) </p>
-
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00082">82</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00083">83</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -323,7 +326,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00096">96</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00098">98</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -339,7 +342,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00101">101</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00105">105</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -355,7 +358,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00113">113</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00119">119</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -371,7 +374,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00125">125</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00133">133</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -387,7 +390,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00126">126</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00134">134</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -403,7 +406,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00130">130</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00140">140</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -419,7 +422,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00131">131</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00141">141</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -435,7 +438,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00143">143</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00155">155</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -451,7 +454,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00147">147</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00161">161</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -467,7 +470,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00148">148</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00162">162</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -483,7 +486,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00152">152</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00168">168</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -499,7 +502,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00153">153</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00169">169</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -515,7 +518,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00157">157</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00175">175</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -531,7 +534,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00158">158</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00176">176</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -547,7 +550,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00166">166</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00186">186</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -563,7 +566,7 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00167">167</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="complex_8h_source.html#l00187">187</a> of file <a class="el" href="complex_8h_source.html">complex.h</a>.</p>
 
 </div>
 </div>
@@ -579,8 +582,6 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>A struct to store complex/imaginary number values. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -599,8 +600,7 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>A struct for storing quaternions. </p>
+<p >A struct for storing quaternions </p>
 
 </div>
 </div>
@@ -614,13 +614,13 @@ The K value of this quaternion. </td></tr>
         <tr>
           <td class="memname"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> Complex </td>
           <td>(</td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>re</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>im</em>&#160;</td>
         </tr>
         <tr>
@@ -630,8 +630,6 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns a complex number struct, with the given 're' real part and 'im' imaginary part. </p>
 
 </div>
 </div>
@@ -644,13 +642,13 @@ The K value of this quaternion. </td></tr>
         <tr>
           <td class="memname"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> * Complex_New </td>
           <td>(</td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>re</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>im</em>&#160;</td>
         </tr>
         <tr>
@@ -661,8 +659,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allocates a new complex number struct, with the given 're' real part and 'im' imaginary part. </p>
-
 </div>
 </div>
 <a id="a64aa8727d5f8c577393004fbd158d8f8" name="a64aa8727d5f8c577393004fbd158d8f8"></a>
@@ -672,7 +668,7 @@ The K value of this quaternion. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Complex_Equals </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Complex_Equals </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *&#160;</td>
           <td class="paramname"><em>z1</em>, </td>
@@ -691,8 +687,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns TRUE if the two given complex numbers are equal. </p>
-
 </div>
 </div>
 <a id="aef2137203f80dff3867d224e214bb212" name="aef2137203f80dff3867d224e214bb212"></a>
@@ -702,7 +696,7 @@ The K value of this quaternion. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Complex_Abs </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Complex_Abs </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="complex_8h.html#a68a450946fad805abbfa88912745f8a0">s_complex</a> const *&#160;</td>
           <td class="paramname"><em>z1</em></td><td>)</td>
@@ -710,8 +704,6 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the absolute value |z| of the given complex number 'z' (its distance from zero) </p>
 
 </div>
 </div>
@@ -730,8 +722,6 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the conjugate of the given complex number (inverts the sign of its imaginary part) </p>
 
 </div>
 </div>
@@ -761,8 +751,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the result of the addition of the two given complex numbers. </p>
-
 </div>
 </div>
 <a id="a29690585ccdb5b436419941cd6d357b2" name="a29690585ccdb5b436419941cd6d357b2"></a>
@@ -790,8 +778,6 @@ The K value of this quaternion. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the result of the subtraction of the two given complex numbers. </p>
 
 </div>
 </div>
@@ -821,8 +807,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the result of the multiplication of the two given complex numbers. </p>
-
 </div>
 </div>
 <a id="ab0effe168b2f3ec3ab360b61d0b92111" name="ab0effe168b2f3ec3ab360b61d0b92111"></a>
@@ -851,8 +835,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the result of the divide of the two given complex numbers. </p>
-
 </div>
 </div>
 <a id="a99e00287c0f3c504f7e5a73f3c89c9f8" name="a99e00287c0f3c504f7e5a73f3c89c9f8"></a>
@@ -870,7 +852,7 @@ The K value of this quaternion. </td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -881,8 +863,6 @@ The K value of this quaternion. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns the given complex number, to the power of 'n'. </p>
-
 </div>
 </div>
 </div><!-- contents -->
@@ -890,7 +870,7 @@ The K value of this quaternion. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_95a5c7608f44570f25f009355c401eb3.html">math</a></li><li class="navelem"><a class="el" href="complex_8h.html">complex.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="complex_8h.html">complex.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

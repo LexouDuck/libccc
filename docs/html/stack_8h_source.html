@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/monad/stack.h Source File</title>
+<title>libccc: libccc/monad/stack.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -109,84 +109,82 @@ $(document).ready(function(){initNavTree('stack_8h_source.html',''); initResizab
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBCCC_MONAD_STACK_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBCCC_MONAD_STACK_H</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">**                                   Includes                                 *|</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">**                                   Includes                                 *|</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="bool_8h.html">libccc/bool.h</a>&quot;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="int_8h.html">libccc/int.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="bool_8h.html">libccc/bool.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="int_8h.html">libccc/int.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="stack_8h.html#ad0caf3a016470a929dde9b29bf0e6775">   28</a></span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#undef  T</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno"><a class="line" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">   34</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &quot;<a class="code" href="stack_8c.html">libccc/monad/stack.c</a>&quot;</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="preprocessor">#undef  T</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">   32</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &quot;libccc/monad/stack.c&quot;</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">**                                 Definitions                                *|</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">**                                 Definitions                                *|</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">**  TODO document this</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="stack_8h.html">   47</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>stack(T)</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="stack_8h.html#af254525fd5a51671ebf256c83a7571ba">   49</a></span>    t_uint  <a class="code hl_variable" href="stack_8h.html#af254525fd5a51671ebf256c83a7571ba">length</a>; </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="stack_8h.html#a7799fbde8d179edc54d74b00356461cb">   50</a></span>    <a class="code hl_define" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>*      <a class="code hl_variable" href="stack_8h.html#a7799fbde8d179edc54d74b00356461cb">items</a>;  </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="stack_8h.html#ac92ddfbcbcbff780eef9c5baa6c6c6e8">   51</a></span>}   <a class="code hl_define" href="stack_8c.html#ae295d6ea24601db4ebc198c9e7a4812f">s_stack</a>(<a class="code hl_define" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">**  TODO document this</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="keyword">typedef</span> <span class="keyword">struct </span>stack(T)</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>{</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_typedef" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>  length; </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_define" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>*      items;  </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="stack_8h.html#a4178a0132b973303126452730254925f">   49</a></span>}   <a class="code hl_function" href="stack_8h.html#a4178a0132b973303126452730254925f">s_stack</a>(<a class="code hl_define" href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define foreach_s_stack_init(       _TYPE_, _VAR_, _STACK_) </span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define foreach_s_stack_exit(       _TYPE_, _VAR_, _STACK_) </span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define foreach_s_stack_loop_init(  _TYPE_, _VAR_, _STACK_) </span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define foreach_s_stack_loop_exit(  _TYPE_, _VAR_, _STACK_) </span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define foreach_s_stack_loop_incr(  _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#define foreach_s_stack_init(       _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span><span class="preprocessor">#define foreach_s_stack_exit(       _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define foreach_s_stack_loop_init(  _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define foreach_s_stack_loop_exit(  _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define foreach_s_stack_loop_incr(  _TYPE_, _VAR_, _STACK_) </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">**                             Basic Stack Operations                         *|</span></div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">**                             Basic Stack Operations                         *|</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// TODO Stack</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// TODO Stack_New</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// TODO Stack_Delete</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// TODO Stack_Delete_F</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// TODO Stack_Duplicate</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// TODO Stack</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">// TODO Stack_New</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// TODO Stack_Delete</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// TODO Stack_Delete_F</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// TODO Stack_Duplicate</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// TODO Stack_Read</span></div>
 <div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// TODO Stack_Read</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// TODO Stack_Pop</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// TODO Stack_Pop_F</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// TODO Stack_Push</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// TODO Stack_Push_F</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// TODO Stack_Pop</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// TODO Stack_Pop_F</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// TODO Stack_Push</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// TODO Stack_Push_F</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="abool_8h_html"><div class="ttname"><a href="bool_8h.html">bool.h</a></div></div>
 <div class="ttc" id="aint_8h_html"><div class="ttname"><a href="int_8h.html">int.h</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
-<div class="ttc" id="astack_8c_html"><div class="ttname"><a href="stack_8c.html">stack.c</a></div></div>
-<div class="ttc" id="astack_8c_html_ae295d6ea24601db4ebc198c9e7a4812f"><div class="ttname"><a href="stack_8c.html#ae295d6ea24601db4ebc198c9e7a4812f">s_stack</a></div><div class="ttdeci">#define s_stack(X)</div><div class="ttdef"><b>Definition:</b> <a href="stack_8c_source.html#l00102">stack.c:102</a></div></div>
-<div class="ttc" id="astack_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="stack_8h_source.html#l00034">stack.h:34</a></div></div>
-<div class="ttc" id="astack_8h_html_a7799fbde8d179edc54d74b00356461cb"><div class="ttname"><a href="stack_8h.html#a7799fbde8d179edc54d74b00356461cb">stack_any::items</a></div><div class="ttdeci">void ** items</div><div class="ttdoc">The pointer to the array (items can be of any one type)</div><div class="ttdef"><b>Definition:</b> <a href="stack_8h_source.html#l00050">stack.h:50</a></div></div>
-<div class="ttc" id="astack_8h_html_af254525fd5a51671ebf256c83a7571ba"><div class="ttname"><a href="stack_8h.html#af254525fd5a51671ebf256c83a7571ba">stack_any::length</a></div><div class="ttdeci">t_uint length</div><div class="ttdoc">The amount of elements in the 'items' array.</div><div class="ttdef"><b>Definition:</b> <a href="stack_8h_source.html#l00049">stack.h:49</a></div></div>
+<div class="ttc" id="aint_8h_html_a24081be54642dc3413a6201c070cf224"><div class="ttname"><a href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a></div><div class="ttdeci">UINT_T t_uint</div><div class="ttdef"><b>Definition:</b> <a href="int_8h_source.html#l00315">int.h:315</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
+<div class="ttc" id="astack_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="stack_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="stack_8h_source.html#l00032">stack.h:32</a></div></div>
+<div class="ttc" id="astack_8h_html_a4178a0132b973303126452730254925f"><div class="ttname"><a href="stack_8h.html#a4178a0132b973303126452730254925f">s_stack</a></div><div class="ttdeci">s_stack(T)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_e24cf0de90354a2d5cfac55fe9be57d6.html">monad</a></li><li class="navelem"><a class="el" href="stack_8h.html">stack.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_6ab6982fc79c074882a5f665edcf2594.html">monad</a></li><li class="navelem"><a class="el" href="stack_8h.html">stack.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

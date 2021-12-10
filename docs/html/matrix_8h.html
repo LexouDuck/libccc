@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/math/algebra/matrix.h File Reference</title>
+<title>libccc: libccc/math/algebra/matrix.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -95,9 +95,7 @@ $(document).ready(function(){initNavTree('matrix_8h.html',''); initResizable(); 
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">matrix.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -111,7 +109,8 @@ $(document).ready(function(){initNavTree('matrix_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="matrix_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="matrix_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="matrix_8h_source.html">Go to the source code of this file.</a></p>
@@ -119,22 +118,16 @@ $(document).ready(function(){initNavTree('matrix_8h.html',''); initResizable(); 
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Data Structures</h2></td></tr>
 <tr class="memitem:structmat2d"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#structmat2d">mat2d</a></td></tr>
-<tr class="memdesc:structmat2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors.  <a href="matrix_8h.html#structmat2d">More...</a><br /></td></tr>
 <tr class="separator:structmat2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionmatrix2d"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#unionmatrix2d">matrix2d</a></td></tr>
-<tr class="memdesc:unionmatrix2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 2x2 matrix which can be accessed in several ways.  <a href="matrix_8h.html#unionmatrix2d">More...</a><br /></td></tr>
 <tr class="separator:unionmatrix2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structmat3d"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#structmat3d">mat3d</a></td></tr>
-<tr class="memdesc:structmat3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors.  <a href="matrix_8h.html#structmat3d">More...</a><br /></td></tr>
 <tr class="separator:structmat3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionmatrix3d"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#unionmatrix3d">matrix3d</a></td></tr>
-<tr class="memdesc:unionmatrix3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 3x3 matrix which can be accessed in several ways.  <a href="matrix_8h.html#unionmatrix3d">More...</a><br /></td></tr>
 <tr class="separator:unionmatrix3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:structmat4d"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#structmat4d">mat4d</a></td></tr>
-<tr class="memdesc:structmat4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors.  <a href="matrix_8h.html#structmat4d">More...</a><br /></td></tr>
 <tr class="separator:structmat4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:unionmatrix4d"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#unionmatrix4d">matrix4d</a></td></tr>
-<tr class="memdesc:unionmatrix4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 4x4 matrix which can be accessed in several ways.  <a href="matrix_8h.html#unionmatrix4d">More...</a><br /></td></tr>
 <tr class="separator:unionmatrix4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
@@ -160,22 +153,6 @@ Macros</h2></td></tr>
 <tr class="memitem:a67cc134dce42525818c4823bcbf43a29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a67cc134dce42525818c4823bcbf43a29">MATRIX2D_ROTATE</a>(ANGLE)</td></tr>
 <tr class="memdesc:a67cc134dce42525818c4823bcbf43a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'.  <a href="matrix_8h.html#a67cc134dce42525818c4823bcbf43a29">More...</a><br /></td></tr>
 <tr class="separator:a67cc134dce42525818c4823bcbf43a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c16bf8172f8db2e7755dd731fb0e75f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a7c16bf8172f8db2e7755dd731fb0e75f">c_mat2</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a91abd189e5c9137b581d1486e55fddd0">Matrix2D</a></td></tr>
-<tr class="separator:a7c16bf8172f8db2e7755dd731fb0e75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af30ecaf0ac9ce90077b590bbdd478e45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#af30ecaf0ac9ce90077b590bbdd478e45">c_mat2new</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a31f003cf79e31736d1f9fb2c8fe863d0">Matrix2D_New</a></td></tr>
-<tr class="separator:af30ecaf0ac9ce90077b590bbdd478e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8357b975751665bea30d78652c92686e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a8357b975751665bea30d78652c92686e">c_mat2equ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a39a2c65c8b687d07500bed4676a4409a">Matrix2D_Equals</a></td></tr>
-<tr class="separator:a8357b975751665bea30d78652c92686e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a967aeae812596f4b555f3c111c827073"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a967aeae812596f4b555f3c111c827073">c_mat2apply</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a72942691a1aeb7603021373b8830a63c">Matrix2D_Apply</a></td></tr>
-<tr class="separator:a967aeae812596f4b555f3c111c827073"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaaad9c6a73d61ad8d9ac07098db8194c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#aaaad9c6a73d61ad8d9ac07098db8194c">c_mat2determ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2235669c2f1db58804c97462dc09610b">Matrix2D_Determinant</a></td></tr>
-<tr class="separator:aaaad9c6a73d61ad8d9ac07098db8194c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a28f3d9e2e69d704e03212be59ee669fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a28f3d9e2e69d704e03212be59ee669fb">c_mat2inverse</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a5db4047001297a4c87d5fd6af281b1ad">Matrix2D_Inverse</a></td></tr>
-<tr class="separator:a28f3d9e2e69d704e03212be59ee669fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9816fab16cb5376ba12f55eee9c9e5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab9816fab16cb5376ba12f55eee9c9e5f">c_mat2transp</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#ab15f5d4967009d51bff3bc21ff408d46">Matrix2D_Transpose</a></td></tr>
-<tr class="separator:ab9816fab16cb5376ba12f55eee9c9e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae63fca97a13056e1329593b78e2826a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ae63fca97a13056e1329593b78e2826a3">c_mat2mult</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a1ffbe95ddd05575c7acc0662360e323a">Matrix2D_Multiply</a></td></tr>
-<tr class="separator:ae63fca97a13056e1329593b78e2826a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7d31ca6447e1a4519e754da123214b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#af7d31ca6447e1a4519e754da123214b9">MATRIX3D_ROTATE_X</a>(ANGLE)</td></tr>
 <tr class="memdesc:af7d31ca6447e1a4519e754da123214b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'.  <a href="matrix_8h.html#af7d31ca6447e1a4519e754da123214b9">More...</a><br /></td></tr>
 <tr class="separator:af7d31ca6447e1a4519e754da123214b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,97 +162,138 @@ Macros</h2></td></tr>
 <tr class="memitem:a82d255fb0fe99483c7a4236f8c051a7e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a82d255fb0fe99483c7a4236f8c051a7e">MATRIX3D_ROTATE_Z</a>(ANGLE)</td></tr>
 <tr class="memdesc:a82d255fb0fe99483c7a4236f8c051a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'.  <a href="matrix_8h.html#a82d255fb0fe99483c7a4236f8c051a7e">More...</a><br /></td></tr>
 <tr class="separator:a82d255fb0fe99483c7a4236f8c051a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0563e105de2f5912bb74479db7cbd44e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a0563e105de2f5912bb74479db7cbd44e">c_mat3</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a685bbd812db22ef3de18cbfa05211526">Matrix3D</a></td></tr>
-<tr class="separator:a0563e105de2f5912bb74479db7cbd44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f69dab13bc5fcd2a07868a144e7cf21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a7f69dab13bc5fcd2a07868a144e7cf21">c_mat3new</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a74de7c64b792546c6876bf6227db36d4">Matrix3D_New</a></td></tr>
-<tr class="separator:a7f69dab13bc5fcd2a07868a144e7cf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b7cf40950ec2b96a4c3b463391e0eaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a0b7cf40950ec2b96a4c3b463391e0eaa">c_mat3equ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#ab0e5cb0b5dc3552100bc01685ae2e922">Matrix3D_Equals</a></td></tr>
-<tr class="separator:a0b7cf40950ec2b96a4c3b463391e0eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a892895f6c8398aa004d866e6fa76dff6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a892895f6c8398aa004d866e6fa76dff6">c_mat3apply</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#aab33e892a9167898922dd72bce3dcafe">Matrix3D_Apply</a></td></tr>
-<tr class="separator:a892895f6c8398aa004d866e6fa76dff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afb0b19b3a124d30d9580d45128f910ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#afb0b19b3a124d30d9580d45128f910ab">c_mat3determ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a6ecd84a206c2a115cb3ac4a38b12089a">Matrix3D_Determinant</a></td></tr>
-<tr class="separator:afb0b19b3a124d30d9580d45128f910ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9fef098e7d96b53a9239105811e08cd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a9fef098e7d96b53a9239105811e08cd3">c_mat3inverse</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2b251ff544dfb49994204f8ec6b26b15">Matrix3D_Inverse</a></td></tr>
-<tr class="separator:a9fef098e7d96b53a9239105811e08cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e0ca1fe23b2b9fb2803980ed3e6354"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab9e0ca1fe23b2b9fb2803980ed3e6354">c_mat3transp</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2dd332869f5605b52fdd839f557436d2">Matrix3D_Transpose</a></td></tr>
-<tr class="separator:ab9e0ca1fe23b2b9fb2803980ed3e6354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9a021c61bb3d2445e0252722aa9fbf38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a9a021c61bb3d2445e0252722aa9fbf38">c_mat3mult</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a65eafbfec4172e277902bbd69cb5c0c8">Matrix3D_Multiply</a></td></tr>
-<tr class="separator:a9a021c61bb3d2445e0252722aa9fbf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors </p>
+</div></td></tr>
 <tr class="memitem:af6b51a3246873273e2334f4ebc367444"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="matrix_8h.html#structmat2d">mat2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a></td></tr>
-<tr class="memdesc:af6b51a3246873273e2334f4ebc367444"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors.  <a href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">More...</a><br /></td></tr>
 <tr class="separator:af6b51a3246873273e2334f4ebc367444"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >This union stores a 2x2 matrix which can be accessed in several ways </p>
+</div></td></tr>
 <tr class="memitem:a91969a7fa3cf7eccca13c61d1bf6f991"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="matrix_8h.html#unionmatrix2d">matrix2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a91969a7fa3cf7eccca13c61d1bf6f991">u_matrix2d</a></td></tr>
-<tr class="memdesc:a91969a7fa3cf7eccca13c61d1bf6f991"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 2x2 matrix which can be accessed in several ways.  <a href="matrix_8h.html#a91969a7fa3cf7eccca13c61d1bf6f991">More...</a><br /></td></tr>
 <tr class="separator:a91969a7fa3cf7eccca13c61d1bf6f991"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors </p>
+</div></td></tr>
 <tr class="memitem:a806e5d8d7644be4b925d04152590a7cf"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="matrix_8h.html#structmat3d">mat3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a></td></tr>
-<tr class="memdesc:a806e5d8d7644be4b925d04152590a7cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors.  <a href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">More...</a><br /></td></tr>
 <tr class="separator:a806e5d8d7644be4b925d04152590a7cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >This union stores a 3x3 matrix which can be accessed in several ways </p>
+</div></td></tr>
 <tr class="memitem:a52836aa1b6553f76a90400116d76f6c3"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="matrix_8h.html#unionmatrix3d">matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a52836aa1b6553f76a90400116d76f6c3">u_matrix3d</a></td></tr>
-<tr class="memdesc:a52836aa1b6553f76a90400116d76f6c3"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 3x3 matrix which can be accessed in several ways.  <a href="matrix_8h.html#a52836aa1b6553f76a90400116d76f6c3">More...</a><br /></td></tr>
 <tr class="separator:a52836aa1b6553f76a90400116d76f6c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors </p>
+</div></td></tr>
 <tr class="memitem:a8d2a9056b4358acd119bf88b6afd0977"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="matrix_8h.html#structmat4d">mat4d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a8d2a9056b4358acd119bf88b6afd0977">s_matrix4d</a></td></tr>
-<tr class="memdesc:a8d2a9056b4358acd119bf88b6afd0977"><td class="mdescLeft">&#160;</td><td class="mdescRight">A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors.  <a href="matrix_8h.html#a8d2a9056b4358acd119bf88b6afd0977">More...</a><br /></td></tr>
 <tr class="separator:a8d2a9056b4358acd119bf88b6afd0977"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >This union stores a 4x4 matrix which can be accessed in several ways </p>
+</div></td></tr>
 <tr class="memitem:a51b22bf298dbc8a10dc675c6b4cf0cf2"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="matrix_8h.html#unionmatrix4d">matrix4d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a51b22bf298dbc8a10dc675c6b4cf0cf2">u_matrix4d</a></td></tr>
-<tr class="memdesc:a51b22bf298dbc8a10dc675c6b4cf0cf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union stores a 4x4 matrix which can be accessed in several ways.  <a href="matrix_8h.html#a51b22bf298dbc8a10dc675c6b4cf0cf2">More...</a><br /></td></tr>
 <tr class="separator:a51b22bf298dbc8a10dc675c6b4cf0cf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a matrix struct, setting its values from the given vectors </p>
+</td></tr>
+<tr class="memitem:a7c16bf8172f8db2e7755dd731fb0e75f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a7c16bf8172f8db2e7755dd731fb0e75f">c_mat2</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a91abd189e5c9137b581d1486e55fddd0">Matrix2D</a></td></tr>
+<tr class="separator:a7c16bf8172f8db2e7755dd731fb0e75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91abd189e5c9137b581d1486e55fddd0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a91abd189e5c9137b581d1486e55fddd0">Matrix2D</a> (<a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a> const *u, <a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a> const *v)</td></tr>
-<tr class="memdesc:a91abd189e5c9137b581d1486e55fddd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix struct, setting its values from the given vectors.  <a href="matrix_8h.html#a91abd189e5c9137b581d1486e55fddd0">More...</a><br /></td></tr>
 <tr class="separator:a91abd189e5c9137b581d1486e55fddd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Allocates a new matrix struct, setting its values from the given vectors </p>
+</td></tr>
+<tr class="memitem:af30ecaf0ac9ce90077b590bbdd478e45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#af30ecaf0ac9ce90077b590bbdd478e45">c_mat2new</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a31f003cf79e31736d1f9fb2c8fe863d0">Matrix2D_New</a></td></tr>
+<tr class="separator:af30ecaf0ac9ce90077b590bbdd478e45"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a31f003cf79e31736d1f9fb2c8fe863d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a31f003cf79e31736d1f9fb2c8fe863d0">Matrix2D_New</a> (<a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a> const *u, <a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a> const *v)</td></tr>
-<tr class="memdesc:a31f003cf79e31736d1f9fb2c8fe863d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new matrix struct, setting its values from the given vectors.  <a href="matrix_8h.html#a31f003cf79e31736d1f9fb2c8fe863d0">More...</a><br /></td></tr>
 <tr class="separator:a31f003cf79e31736d1f9fb2c8fe863d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39a2c65c8b687d07500bed4676a4409a"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a39a2c65c8b687d07500bed4676a4409a">Matrix2D_Equals</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m1, <a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m2)</td></tr>
-<tr class="memdesc:a39a2c65c8b687d07500bed4676a4409a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns TRUE if the two given matrices are equal (all their values are identical)  <a href="matrix_8h.html#a39a2c65c8b687d07500bed4676a4409a">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns TRUE if the two given matrices are equal (all their values are identical) </p>
+</td></tr>
+<tr class="memitem:a8357b975751665bea30d78652c92686e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a8357b975751665bea30d78652c92686e">c_mat2equ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a39a2c65c8b687d07500bed4676a4409a">Matrix2D_Equals</a></td></tr>
+<tr class="separator:a8357b975751665bea30d78652c92686e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39a2c65c8b687d07500bed4676a4409a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a39a2c65c8b687d07500bed4676a4409a">Matrix2D_Equals</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m1, <a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m2)</td></tr>
 <tr class="separator:a39a2c65c8b687d07500bed4676a4409a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it </p>
+</td></tr>
+<tr class="memitem:a967aeae812596f4b555f3c111c827073"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a967aeae812596f4b555f3c111c827073">c_mat2apply</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a72942691a1aeb7603021373b8830a63c">Matrix2D_Apply</a></td></tr>
+<tr class="separator:a967aeae812596f4b555f3c111c827073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a72942691a1aeb7603021373b8830a63c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a72942691a1aeb7603021373b8830a63c">Matrix2D_Apply</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *matrix, <a class="el" href="vector_8h.html#ac94b53e630e6f9ba8942324c779ad180">s_vector2d</a> const *vector)</td></tr>
-<tr class="memdesc:a72942691a1aeb7603021373b8830a63c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it.  <a href="matrix_8h.html#a72942691a1aeb7603021373b8830a63c">More...</a><br /></td></tr>
 <tr class="separator:a72942691a1aeb7603021373b8830a63c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2235669c2f1db58804c97462dc09610b"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a2235669c2f1db58804c97462dc09610b">Matrix2D_Determinant</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *matrix)</td></tr>
-<tr class="memdesc:a2235669c2f1db58804c97462dc09610b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the determinant value for the given 'matrix'.  <a href="matrix_8h.html#a2235669c2f1db58804c97462dc09610b">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the determinant value for the given 'matrix' </p>
+</td></tr>
+<tr class="memitem:aaaad9c6a73d61ad8d9ac07098db8194c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#aaaad9c6a73d61ad8d9ac07098db8194c">c_mat2determ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2235669c2f1db58804c97462dc09610b">Matrix2D_Determinant</a></td></tr>
+<tr class="separator:aaaad9c6a73d61ad8d9ac07098db8194c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2235669c2f1db58804c97462dc09610b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a2235669c2f1db58804c97462dc09610b">Matrix2D_Determinant</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *matrix)</td></tr>
 <tr class="separator:a2235669c2f1db58804c97462dc09610b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Changes the values of the given 'matrix' to those of its inverse matrix </p>
+</td></tr>
+<tr class="memitem:a28f3d9e2e69d704e03212be59ee669fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a28f3d9e2e69d704e03212be59ee669fb">c_mat2inverse</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a5db4047001297a4c87d5fd6af281b1ad">Matrix2D_Inverse</a></td></tr>
+<tr class="separator:a28f3d9e2e69d704e03212be59ee669fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5db4047001297a4c87d5fd6af281b1ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a5db4047001297a4c87d5fd6af281b1ad">Matrix2D_Inverse</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *matrix)</td></tr>
-<tr class="memdesc:a5db4047001297a4c87d5fd6af281b1ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the values of the given 'matrix' to those of its inverse matrix.  <a href="matrix_8h.html#a5db4047001297a4c87d5fd6af281b1ad">More...</a><br /></td></tr>
 <tr class="separator:a5db4047001297a4c87d5fd6af281b1ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the transpose the given 'matrix', flipping its values across its diagonal </p>
+</td></tr>
+<tr class="memitem:ab9816fab16cb5376ba12f55eee9c9e5f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab9816fab16cb5376ba12f55eee9c9e5f">c_mat2transp</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#ab15f5d4967009d51bff3bc21ff408d46">Matrix2D_Transpose</a></td></tr>
+<tr class="separator:ab9816fab16cb5376ba12f55eee9c9e5f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab15f5d4967009d51bff3bc21ff408d46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab15f5d4967009d51bff3bc21ff408d46">Matrix2D_Transpose</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *matrix)</td></tr>
-<tr class="memdesc:ab15f5d4967009d51bff3bc21ff408d46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the transpose the given 'matrix', flipping its values across its diagonal.  <a href="matrix_8h.html#ab15f5d4967009d51bff3bc21ff408d46">More...</a><br /></td></tr>
 <tr class="separator:ab15f5d4967009d51bff3bc21ff408d46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Performs a matrix multiplication on the two given matrices 'm1' and 'm2' </p>
+</td></tr>
+<tr class="memitem:ae63fca97a13056e1329593b78e2826a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ae63fca97a13056e1329593b78e2826a3">c_mat2mult</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a1ffbe95ddd05575c7acc0662360e323a">Matrix2D_Multiply</a></td></tr>
+<tr class="separator:ae63fca97a13056e1329593b78e2826a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1ffbe95ddd05575c7acc0662360e323a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a1ffbe95ddd05575c7acc0662360e323a">Matrix2D_Multiply</a> (<a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m1, <a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *m2)</td></tr>
-<tr class="memdesc:a1ffbe95ddd05575c7acc0662360e323a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a matrix multiplication on the two given matrices 'm1' and 'm2'.  <a href="matrix_8h.html#a1ffbe95ddd05575c7acc0662360e323a">More...</a><br /></td></tr>
 <tr class="separator:a1ffbe95ddd05575c7acc0662360e323a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a matrix struct, setting its values from the given vectors </p>
+</td></tr>
+<tr class="memitem:a0563e105de2f5912bb74479db7cbd44e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a0563e105de2f5912bb74479db7cbd44e">c_mat3</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a685bbd812db22ef3de18cbfa05211526">Matrix3D</a></td></tr>
+<tr class="separator:a0563e105de2f5912bb74479db7cbd44e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a685bbd812db22ef3de18cbfa05211526"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a685bbd812db22ef3de18cbfa05211526">Matrix3D</a> (<a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *u, <a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *v, <a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *w)</td></tr>
-<tr class="memdesc:a685bbd812db22ef3de18cbfa05211526"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a matrix struct, setting its values from the given vectors.  <a href="matrix_8h.html#a685bbd812db22ef3de18cbfa05211526">More...</a><br /></td></tr>
 <tr class="separator:a685bbd812db22ef3de18cbfa05211526"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Allocates a new matrix struct, setting its values from the given vectors </p>
+</td></tr>
+<tr class="memitem:a7f69dab13bc5fcd2a07868a144e7cf21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a7f69dab13bc5fcd2a07868a144e7cf21">c_mat3new</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a74de7c64b792546c6876bf6227db36d4">Matrix3D_New</a></td></tr>
+<tr class="separator:a7f69dab13bc5fcd2a07868a144e7cf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a74de7c64b792546c6876bf6227db36d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a74de7c64b792546c6876bf6227db36d4">Matrix3D_New</a> (<a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *u, <a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *v, <a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *w)</td></tr>
-<tr class="memdesc:a74de7c64b792546c6876bf6227db36d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a new matrix struct, setting its values from the given vectors.  <a href="matrix_8h.html#a74de7c64b792546c6876bf6227db36d4">More...</a><br /></td></tr>
 <tr class="separator:a74de7c64b792546c6876bf6227db36d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0e5cb0b5dc3552100bc01685ae2e922"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab0e5cb0b5dc3552100bc01685ae2e922">Matrix3D_Equals</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m1, <a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m2)</td></tr>
-<tr class="memdesc:ab0e5cb0b5dc3552100bc01685ae2e922"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns TRUE if the two given matrices are equal (all their values are identical)  <a href="matrix_8h.html#ab0e5cb0b5dc3552100bc01685ae2e922">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns TRUE if the two given matrices are equal (all their values are identical) </p>
+</td></tr>
+<tr class="memitem:a0b7cf40950ec2b96a4c3b463391e0eaa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a0b7cf40950ec2b96a4c3b463391e0eaa">c_mat3equ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#ab0e5cb0b5dc3552100bc01685ae2e922">Matrix3D_Equals</a></td></tr>
+<tr class="separator:a0b7cf40950ec2b96a4c3b463391e0eaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0e5cb0b5dc3552100bc01685ae2e922"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab0e5cb0b5dc3552100bc01685ae2e922">Matrix3D_Equals</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m1, <a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m2)</td></tr>
 <tr class="separator:ab0e5cb0b5dc3552100bc01685ae2e922"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it </p>
+</td></tr>
+<tr class="memitem:a892895f6c8398aa004d866e6fa76dff6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a892895f6c8398aa004d866e6fa76dff6">c_mat3apply</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#aab33e892a9167898922dd72bce3dcafe">Matrix3D_Apply</a></td></tr>
+<tr class="separator:a892895f6c8398aa004d866e6fa76dff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aab33e892a9167898922dd72bce3dcafe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#aab33e892a9167898922dd72bce3dcafe">Matrix3D_Apply</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *matrix, <a class="el" href="vector_8h.html#acf1d5c3450fd2c6108c42f0b12dd0efa">s_vector3d</a> const *vector)</td></tr>
-<tr class="memdesc:aab33e892a9167898922dd72bce3dcafe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it.  <a href="matrix_8h.html#aab33e892a9167898922dd72bce3dcafe">More...</a><br /></td></tr>
 <tr class="separator:aab33e892a9167898922dd72bce3dcafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ecd84a206c2a115cb3ac4a38b12089a"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a6ecd84a206c2a115cb3ac4a38b12089a">Matrix3D_Determinant</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *matrix)</td></tr>
-<tr class="memdesc:a6ecd84a206c2a115cb3ac4a38b12089a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the determinant value for the given 'matrix'.  <a href="matrix_8h.html#a6ecd84a206c2a115cb3ac4a38b12089a">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the determinant value for the given 'matrix' </p>
+</td></tr>
+<tr class="memitem:afb0b19b3a124d30d9580d45128f910ab"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#afb0b19b3a124d30d9580d45128f910ab">c_mat3determ</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a6ecd84a206c2a115cb3ac4a38b12089a">Matrix3D_Determinant</a></td></tr>
+<tr class="separator:afb0b19b3a124d30d9580d45128f910ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6ecd84a206c2a115cb3ac4a38b12089a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a6ecd84a206c2a115cb3ac4a38b12089a">Matrix3D_Determinant</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *matrix)</td></tr>
 <tr class="separator:a6ecd84a206c2a115cb3ac4a38b12089a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Changes the values of the given 'matrix' to those of its inverse matrix </p>
+</td></tr>
+<tr class="memitem:a9fef098e7d96b53a9239105811e08cd3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a9fef098e7d96b53a9239105811e08cd3">c_mat3inverse</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2b251ff544dfb49994204f8ec6b26b15">Matrix3D_Inverse</a></td></tr>
+<tr class="separator:a9fef098e7d96b53a9239105811e08cd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b251ff544dfb49994204f8ec6b26b15"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a2b251ff544dfb49994204f8ec6b26b15">Matrix3D_Inverse</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *matrix)</td></tr>
-<tr class="memdesc:a2b251ff544dfb49994204f8ec6b26b15"><td class="mdescLeft">&#160;</td><td class="mdescRight">Changes the values of the given 'matrix' to those of its inverse matrix.  <a href="matrix_8h.html#a2b251ff544dfb49994204f8ec6b26b15">More...</a><br /></td></tr>
 <tr class="separator:a2b251ff544dfb49994204f8ec6b26b15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the transpose the given 'matrix', flipping its values across its diagonal </p>
+</td></tr>
+<tr class="memitem:ab9e0ca1fe23b2b9fb2803980ed3e6354"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#ab9e0ca1fe23b2b9fb2803980ed3e6354">c_mat3transp</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a2dd332869f5605b52fdd839f557436d2">Matrix3D_Transpose</a></td></tr>
+<tr class="separator:ab9e0ca1fe23b2b9fb2803980ed3e6354"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2dd332869f5605b52fdd839f557436d2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a2dd332869f5605b52fdd839f557436d2">Matrix3D_Transpose</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *matrix)</td></tr>
-<tr class="memdesc:a2dd332869f5605b52fdd839f557436d2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the transpose the given 'matrix', flipping its values across its diagonal.  <a href="matrix_8h.html#a2dd332869f5605b52fdd839f557436d2">More...</a><br /></td></tr>
 <tr class="separator:a2dd332869f5605b52fdd839f557436d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Performs a matrix multiplication on the two given matrices 'm1' and 'm2' </p>
+</td></tr>
+<tr class="memitem:a9a021c61bb3d2445e0252722aa9fbf38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a9a021c61bb3d2445e0252722aa9fbf38">c_mat3mult</a>&#160;&#160;&#160;<a class="el" href="matrix_8h.html#a65eafbfec4172e277902bbd69cb5c0c8">Matrix3D_Multiply</a></td></tr>
+<tr class="separator:a9a021c61bb3d2445e0252722aa9fbf38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a65eafbfec4172e277902bbd69cb5c0c8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="matrix_8h.html#a65eafbfec4172e277902bbd69cb5c0c8">Matrix3D_Multiply</a> (<a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m1, <a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *m2)</td></tr>
-<tr class="memdesc:a65eafbfec4172e277902bbd69cb5c0c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs a matrix multiplication on the two given matrices 'm1' and 'm2'.  <a href="matrix_8h.html#a65eafbfec4172e277902bbd69cb5c0c8">More...</a><br /></td></tr>
 <tr class="separator:a65eafbfec4172e277902bbd69cb5c0c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines matrix type and functions, in several dimensions (2d/3d/4d)</p>
+<div class="textblock"><p >This header defines matrix type and functions, in several dimensions (2d/3d/4d) </p>
 
 <p class="definition">Definition in file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><hr/><h2 class="groupheader">Data Structure Documentation</h2>
@@ -290,9 +308,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00043">43</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00042">42</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -322,13 +339,12 @@ v</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >This union stores a 2x2 matrix which can be accessed in several ways. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00051">51</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00052">52</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a57b97217bfeb7319edbd85797d507d10" name="a57b97217bfeb7319edbd85797d507d10"></a>t_float</td>
+<a id="a57b97217bfeb7319edbd85797d507d10" name="a57b97217bfeb7319edbd85797d507d10"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 values[2 *2]</td>
 <td class="fielddoc">
@@ -354,9 +370,8 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00075">75</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00078">78</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -392,13 +407,12 @@ w</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >This union stores a 3x3 matrix which can be accessed in several ways. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00084">84</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00089">89</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a5b538d70bd25319045c940eccee9ae4b" name="a5b538d70bd25319045c940eccee9ae4b"></a>t_float</td>
+<a id="a5b538d70bd25319045c940eccee9ae4b" name="a5b538d70bd25319045c940eccee9ae4b"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 values[3 *3]</td>
 <td class="fielddoc">
@@ -424,9 +438,8 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00110">110</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00117">117</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -468,13 +481,12 @@ t</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><p >This union stores a 4x4 matrix which can be accessed in several ways. </p>
-
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00120">120</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00129">129</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="acc2f603fc73b9f9877bb0e9eda72d48b" name="acc2f603fc73b9f9877bb0e9eda72d48b"></a>t_float</td>
+<a id="acc2f603fc73b9f9877bb0e9eda72d48b" name="acc2f603fc73b9f9877bb0e9eda72d48b"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 values[4 *4]</td>
 <td class="fielddoc">
@@ -508,7 +520,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 2-dimensional matrix in which every number is zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00059">59</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00061">61</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -530,7 +542,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00066">66</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00068">68</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -553,7 +565,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 3-dimensional matrix in which every number is zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00092">92</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00098">98</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -576,7 +588,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00100">100</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00106">106</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -600,7 +612,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 4-dimensional matrix in which every number is zero. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00128">128</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00138">138</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -624,7 +636,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00137">137</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00147">147</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -647,12 +659,12 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <div class="line">    .u={ <a class="code hl_define" href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a>(ANGLE), -<a class="code hl_define" href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a>(ANGLE) }, \</div>
 <div class="line">    .v={ <a class="code hl_define" href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a>(ANGLE),  <a class="code hl_define" href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a>(ANGLE) }, \</div>
 <div class="line">}</div>
-<div class="ttc" id="amath_8h_html_a09ee15332598b0dc582c1c5ee19a0f84"><div class="ttname"><a href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a></div><div class="ttdeci">#define c_sin</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00467">math.h:467</a></div></div>
-<div class="ttc" id="amath_8h_html_a25372d72105ca8cb35fc5a8e3bbbd354"><div class="ttname"><a href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a></div><div class="ttdeci">#define c_cos</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00459">math.h:459</a></div></div>
+<div class="ttc" id="amath_8h_html_a09ee15332598b0dc582c1c5ee19a0f84"><div class="ttname"><a href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a></div><div class="ttdeci">#define c_sin</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00509">math.h:509</a></div></div>
+<div class="ttc" id="amath_8h_html_a25372d72105ca8cb35fc5a8e3bbbd354"><div class="ttname"><a href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a></div><div class="ttdeci">#define c_cos</div><div class="ttdef"><b>Definition:</b> <a href="math_8h_source.html#l00499">math.h:499</a></div></div>
 </div><!-- fragment -->
 <p>A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00154">154</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00164">164</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -668,7 +680,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00164">164</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00175">175</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -684,7 +696,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00169">169</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00182">182</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -700,7 +712,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00173">173</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00188">188</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -716,7 +728,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00177">177</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00194">194</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -732,7 +744,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00181">181</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00200">200</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -748,7 +760,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00185">185</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00206">206</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -764,7 +776,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00189">189</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00212">212</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -780,7 +792,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00193">193</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00218">218</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -807,7 +819,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00204">204</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00230">230</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -834,7 +846,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00211">211</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00237">237</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -861,7 +873,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 </div><!-- fragment -->
 <p>A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'. </p>
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00218">218</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00244">244</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -877,7 +889,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00229">229</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00256">256</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -893,7 +905,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00234">234</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00263">263</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -909,7 +921,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00238">238</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00269">269</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -925,7 +937,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00242">242</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00275">275</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -941,7 +953,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00246">246</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00281">281</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -957,7 +969,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00250">250</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00287">287</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -973,7 +985,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00254">254</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00293">293</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -989,7 +1001,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00258">258</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="matrix_8h_source.html#l00299">299</a> of file <a class="el" href="matrix_8h_source.html">matrix.h</a>.</p>
 
 </div>
 </div>
@@ -1006,8 +1018,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A simple struct which stores a 2x2 matrix of real numbers, arranged in 2 rows of 2D vectors. </p>
-
 </div>
 </div>
 <a id="a91969a7fa3cf7eccca13c61d1bf6f991" name="a91969a7fa3cf7eccca13c61d1bf6f991"></a>
@@ -1021,8 +1031,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This union stores a 2x2 matrix which can be accessed in several ways. </p>
 
 </div>
 </div>
@@ -1038,8 +1046,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A simple struct which stores a 3x3 matrix of real numbers, arranged in 3 rows of 3D vectors. </p>
-
 </div>
 </div>
 <a id="a52836aa1b6553f76a90400116d76f6c3" name="a52836aa1b6553f76a90400116d76f6c3"></a>
@@ -1053,8 +1059,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This union stores a 3x3 matrix which can be accessed in several ways. </p>
 
 </div>
 </div>
@@ -1070,8 +1074,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>A simple struct which stores a 4x4 matrix of real numbers, arranged in 3 rows of 3D vectors. </p>
-
 </div>
 </div>
 <a id="a51b22bf298dbc8a10dc675c6b4cf0cf2" name="a51b22bf298dbc8a10dc675c6b4cf0cf2"></a>
@@ -1085,8 +1087,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>This union stores a 4x4 matrix which can be accessed in several ways. </p>
 
 </div>
 </div>
@@ -1117,8 +1117,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a matrix struct, setting its values from the given vectors. </p>
-
 </div>
 </div>
 <a id="a31f003cf79e31736d1f9fb2c8fe863d0" name="a31f003cf79e31736d1f9fb2c8fe863d0"></a>
@@ -1147,8 +1145,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allocates a new matrix struct, setting its values from the given vectors. </p>
-
 </div>
 </div>
 <a id="a39a2c65c8b687d07500bed4676a4409a" name="a39a2c65c8b687d07500bed4676a4409a"></a>
@@ -1158,7 +1154,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Matrix2D_Equals </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Matrix2D_Equals </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *&#160;</td>
           <td class="paramname"><em>m1</em>, </td>
@@ -1176,8 +1172,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns TRUE if the two given matrices are equal (all their values are identical) </p>
 
 </div>
 </div>
@@ -1207,8 +1201,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it. </p>
-
 </div>
 </div>
 <a id="a2235669c2f1db58804c97462dc09610b" name="a2235669c2f1db58804c97462dc09610b"></a>
@@ -1218,7 +1210,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Matrix2D_Determinant </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Matrix2D_Determinant </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="matrix_8h.html#af6b51a3246873273e2334f4ebc367444">s_matrix2d</a> const *&#160;</td>
           <td class="paramname"><em>matrix</em></td><td>)</td>
@@ -1226,8 +1218,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the determinant value for the given 'matrix'. </p>
 
 </div>
 </div>
@@ -1247,8 +1237,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Changes the values of the given 'matrix' to those of its inverse matrix. </p>
-
 </div>
 </div>
 <a id="ab15f5d4967009d51bff3bc21ff408d46" name="ab15f5d4967009d51bff3bc21ff408d46"></a>
@@ -1266,8 +1254,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the transpose the given 'matrix', flipping its values across its diagonal. </p>
 
 </div>
 </div>
@@ -1296,8 +1282,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Performs a matrix multiplication on the two given matrices 'm1' and 'm2'. </p>
 
 </div>
 </div>
@@ -1333,8 +1317,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Returns a matrix struct, setting its values from the given vectors. </p>
-
 </div>
 </div>
 <a id="a74de7c64b792546c6876bf6227db36d4" name="a74de7c64b792546c6876bf6227db36d4"></a>
@@ -1369,8 +1351,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Allocates a new matrix struct, setting its values from the given vectors. </p>
-
 </div>
 </div>
 <a id="ab0e5cb0b5dc3552100bc01685ae2e922" name="ab0e5cb0b5dc3552100bc01685ae2e922"></a>
@@ -1380,7 +1360,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Matrix3D_Equals </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Matrix3D_Equals </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *&#160;</td>
           <td class="paramname"><em>m1</em>, </td>
@@ -1398,8 +1378,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns TRUE if the two given matrices are equal (all their values are identical) </p>
 
 </div>
 </div>
@@ -1429,8 +1407,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Applies the transformation stored by the given 'matrix' onto the given 'vector' and returns it. </p>
-
 </div>
 </div>
 <a id="a6ecd84a206c2a115cb3ac4a38b12089a" name="a6ecd84a206c2a115cb3ac4a38b12089a"></a>
@@ -1440,7 +1416,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Matrix3D_Determinant </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Matrix3D_Determinant </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="matrix_8h.html#a806e5d8d7644be4b925d04152590a7cf">s_matrix3d</a> const *&#160;</td>
           <td class="paramname"><em>matrix</em></td><td>)</td>
@@ -1448,8 +1424,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the determinant value for the given 'matrix'. </p>
 
 </div>
 </div>
@@ -1469,8 +1443,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Changes the values of the given 'matrix' to those of its inverse matrix. </p>
-
 </div>
 </div>
 <a id="a2dd332869f5605b52fdd839f557436d2" name="a2dd332869f5605b52fdd839f557436d2"></a>
@@ -1488,8 +1460,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the transpose the given 'matrix', flipping its values across its diagonal. </p>
 
 </div>
 </div>
@@ -1519,8 +1489,6 @@ A struct, to access the matrix values as several row vectors. </td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Performs a matrix multiplication on the two given matrices 'm1' and 'm2'. </p>
-
 </div>
 </div>
 </div><!-- contents -->
@@ -1528,7 +1496,7 @@ A struct, to access the matrix values as several row vectors. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_95a5c7608f44570f25f009355c401eb3.html">math</a></li><li class="navelem"><a class="el" href="dir_7057632cbdeba673196786c8ec308fdd.html">algebra</a></li><li class="navelem"><a class="el" href="matrix_8h.html">matrix.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="dir_ba5cfe30e86ca78869418cdc64c54755.html">algebra</a></li><li class="navelem"><a class="el" href="matrix_8h.html">matrix.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

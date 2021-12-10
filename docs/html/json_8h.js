@@ -3,7 +3,7 @@ var json_8h =
     [ "JSON_Parse", "json_8h.html#a71726a1f1860d3396b64cddc6803e4b6", null ],
     [ "c_jsonparse", "json_8h.html#a4b1c02287daf74c6ef1e8f1624a24213", null ],
     [ "JSON_Parse_N", "json_8h.html#ab032892873af1964261b5097aaca8082", null ],
-    [ "c_jsonparsen", "json_8h.html#a9d6bb30f90f4926b3fe5f87991f0c03e", null ],
+    [ "c_jsonnparse", "json_8h.html#ad2edfcc147d0d4d6e6ba0fbe48eaef52", null ],
     [ "JSON_FromString", "json_8h.html#a85467f20c533550a792249dbe43b15c4", null ],
     [ "c_strtojson", "json_8h.html#a4e83e2b7e94fd757180463df6b1f4eac", null ],
     [ "c_jsonparse_l", "json_8h.html#a509468822283e838c4b8f1652b2967a9", null ],
@@ -25,8 +25,6 @@ var json_8h =
     [ "JSON_Concat", "json_8h.html#aa3650ba2c64cf1716dda39d32dff4188", null ],
     [ "JSON_Concat_Array", "json_8h.html#a4d51fde089f8f8e8214c47e637175e66", null ],
     [ "JSON_Concat_Object", "json_8h.html#a57ff4f1771c9f38e5ea279957e8fc055", null ],
-    [ "JSON_GetError", "json_8h.html#ace71a6d0cd278e8a5d92fff7ff778e4f", null ],
-    [ "JSON_GetErrorMessage", "json_8h.html#ac4a73979b5563087ab8a6eb8666be420", null ],
     [ "JSON_CreateNull", "json_8h.html#acc81a0cc515be390eafb5753d8085603", null ],
     [ "JSON_CreateBoolean", "json_8h.html#a0ddf79e344eea91d4f8db9948785f2a2", null ],
     [ "JSON_CreateInteger", "json_8h.html#a4de60e83909ae102f866264af976bffc", null ],
@@ -112,7 +110,6 @@ var json_8h =
     [ "JSON_Replace_InObject_CaseSensitive", "json_8h.html#a49a11e7fcf2865b36dc5fa4f2a17e2b0", null ],
     [ "JSON_Replace_InObject_IgnoreCase", "json_8h.html#a8b6c287fac9d72b7c888c594a6de0b8d", null ],
     [ "TOML_Merge", "json_8h.html#a95bca67e8517d98efbd4222d97552765", null ],
-    [ "s_json", "json_8h.html#a6f517a113ceed63650a8780feb7ae74e", null ],
     [ "JSON_Parse_Lenient", "json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e", null ],
     [ "JSON_FromString_Lenient", "json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62", null ],
     [ "JSON_Parse_Strict", "json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7", null ],
@@ -121,5 +118,6 @@ var json_8h =
     [ "JSON_ToString_Pretty", "json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431", null ],
     [ "JSON_Print_Minify", "json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b", null ],
     [ "JSON_ToString_Minify", "json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b", null ],
-    [ "JSON_Minify", "json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30", null ]
+    [ "JSON_Minify", "json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30", null ],
+    [ "s_json", "json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e", null ]
 ];

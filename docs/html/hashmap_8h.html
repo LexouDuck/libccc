@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/monad/hashmap.h File Reference</title>
+<title>libccc: libccc/monad/hashmap.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,123 +93,45 @@ $(document).ready(function(){initNavTree('hashmap_8h.html',''); initResizable();
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
   <div class="headertitle"><div class="title">hashmap.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="bool_8h_source.html">libccc/bool.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="int_8h_source.html">libccc/int.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="hashmap_8c_source.html">libccc/monad/hashmap.c</a>&quot;</code><br />
+<code>#include &quot;libccc/monad/hashmap.c&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for hashmap.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="hashmap_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="hashmap_8h__incl.svg" width="432" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="hashmap_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:structhashitem__any"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#structhashitem__any">hashitem_any</a></td></tr>
-<tr class="memdesc:structhashitem__any"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap item struct, stores a single hash-value pair.  <a href="hashmap_8h.html#structhashitem__any">More...</a><br /></td></tr>
-<tr class="separator:structhashitem__any"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:structhashmap__any"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#structhashmap__any">hashmap_any</a></td></tr>
-<tr class="memdesc:structhashmap__any"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap struct, stores several hash-value pairs.  <a href="hashmap_8h.html#structhashmap__any">More...</a><br /></td></tr>
-<tr class="separator:structhashmap__any"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a0acb682b8260ab1c60b918599864e2e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>&#160;&#160;&#160;<a class="el" href="tree_8c.html#aaec2c3b3a9d313249405662fbec344ac">T_TYPE</a></td></tr>
+<tr class="memitem:a0acb682b8260ab1c60b918599864e2e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>&#160;&#160;&#160;T_TYPE</td></tr>
 <tr class="memdesc:a0acb682b8260ab1c60b918599864e2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up generic declaration macros, to have <code>mygeneric(T)</code> syntax  <a href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">More...</a><br /></td></tr>
 <tr class="separator:a0acb682b8260ab1c60b918599864e2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a3b77877456fdf96730b60162f70b5e26"><td class="memItemLeft" align="right" valign="top">typedef t_u32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></td></tr>
+<tr class="memitem:a3b77877456fdf96730b60162f70b5e26"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></td></tr>
 <tr class="memdesc:a3b77877456fdf96730b60162f70b5e26"><td class="mdescLeft">&#160;</td><td class="mdescRight">The integer type used to store a hash key.  <a href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">More...</a><br /></td></tr>
 <tr class="separator:a3b77877456fdf96730b60162f70b5e26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c86a9c9c32c9a754fae71cec4aab1b9"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="hashmap_8h.html#structhashitem__any">hashitem_any</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a5c86a9c9c32c9a754fae71cec4aab1b9">s_hashitem_any</a></td></tr>
-<tr class="memdesc:a5c86a9c9c32c9a754fae71cec4aab1b9"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap item struct, stores a single hash-value pair.  <a href="hashmap_8h.html#a5c86a9c9c32c9a754fae71cec4aab1b9">More...</a><br /></td></tr>
-<tr class="separator:a5c86a9c9c32c9a754fae71cec4aab1b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c364fa77ab2e1365655c1fa18913da3"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="hashmap_8h.html#structhashmap__any">hashmap_any</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a7c364fa77ab2e1365655c1fa18913da3">s_hashmap_any</a></td></tr>
-<tr class="memdesc:a7c364fa77ab2e1365655c1fa18913da3"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap struct, stores several hash-value pairs.  <a href="hashmap_8h.html#a7c364fa77ab2e1365655c1fa18913da3">More...</a><br /></td></tr>
-<tr class="separator:a7c364fa77ab2e1365655c1fa18913da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad598c700e515d2bb4bbcad5e88bd81ff"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#ad598c700e515d2bb4bbcad5e88bd81ff">hashitem</a> (<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)</td></tr>
+<tr class="memdesc:ad598c700e515d2bb4bbcad5e88bd81ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap item struct, stores a single hash-value pair.  <a href="hashmap_8h.html#ad598c700e515d2bb4bbcad5e88bd81ff">More...</a><br /></td></tr>
+<tr class="separator:ad598c700e515d2bb4bbcad5e88bd81ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d8a1e369b4f208200921298068945cd"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a8d8a1e369b4f208200921298068945cd">s_hashitem</a> (<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)</td></tr>
+<tr class="separator:a8d8a1e369b4f208200921298068945cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af327f2367a4e75e77bb961220d7077b5"><td class="memItemLeft" align="right" valign="top">struct&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#af327f2367a4e75e77bb961220d7077b5">hashmap</a> (<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)</td></tr>
+<tr class="memdesc:af327f2367a4e75e77bb961220d7077b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">A dynamic hashmap struct, stores several hash-value pairs.  <a href="hashmap_8h.html#af327f2367a4e75e77bb961220d7077b5">More...</a><br /></td></tr>
+<tr class="separator:af327f2367a4e75e77bb961220d7077b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a92945476d4ee00071ed0a2d801c6ff34"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="hashmap_8h.html#a92945476d4ee00071ed0a2d801c6ff34">s_hashmap</a> (<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)</td></tr>
+<tr class="separator:a92945476d4ee00071ed0a2d801c6ff34"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines a generic hashmap type and utility functions for it.</p>
+<div class="textblock"><p >This header defines a generic hashmap type and utility functions for it. </p>
 
 <p class="definition">Definition in file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
-</div><hr/><h2 class="groupheader">Data Structure Documentation</h2>
-<a name="structhashitem__any" id="structhashitem__any"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structhashitem__any">&#9670;&nbsp;</a></span>hashitem_any</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct hashitem_any</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p >A dynamic hashmap item struct, stores a single hash-value pair. </p>
-
-<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00050">50</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="a3b1a4fabfef4707e07b8665c06f433ea" name="a3b1a4fabfef4707e07b8665c06f433ea"></a><a class="el" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></td>
-<td class="fieldname">
-hash</td>
-<td class="fielddoc">
-hash code used to index/identify this item </td></tr>
-<tr><td class="fieldtype">
-<a id="a0f61d63b009d0880a89c843bd50d8d76" name="a0f61d63b009d0880a89c843bd50d8d76"></a>void *</td>
-<td class="fieldname">
-value</td>
-<td class="fielddoc">
-value stored for this item </td></tr>
-</table>
-
-</div>
-</div>
-<a name="structhashmap__any" id="structhashmap__any"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structhashmap__any">&#9670;&nbsp;</a></span>hashmap_any</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">struct hashmap_any</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<div class="textblock"><p >A dynamic hashmap struct, stores several hash-value pairs. </p>
-
-<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00060">60</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
-</div><table class="fieldtable">
-<tr><th colspan="3">Data Fields</th></tr>
-<tr><td class="fieldtype">
-<a id="af254525fd5a51671ebf256c83a7571ba" name="af254525fd5a51671ebf256c83a7571ba"></a>t_uint</td>
-<td class="fieldname">
-length</td>
-<td class="fielddoc">
-The pointer to the next item in the hashmap (or NULL if this is the last item) </td></tr>
-<tr><td class="fieldtype">
-<a id="a1ace61c8efdf56f653460dcee417ffa8" name="a1ace61c8efdf56f653460dcee417ffa8"></a><a class="el" href="hashmap_8h.html#a5c86a9c9c32c9a754fae71cec4aab1b9">s_hashitem_any</a> *</td>
-<td class="fieldname">
-items</td>
-<td class="fielddoc">
-The fields (key-value pairs) contained within this hashmap. </td></tr>
-</table>
-
-</div>
-</div>
-<h2 class="groupheader">Macro Definition Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a0acb682b8260ab1c60b918599864e2e5" name="a0acb682b8260ab1c60b918599864e2e5"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a0acb682b8260ab1c60b918599864e2e5">&#9670;&nbsp;</a></span>T</h2>
 
@@ -217,14 +139,14 @@ The fields (key-value pairs) contained within this hashmap. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define T&#160;&#160;&#160;<a class="el" href="tree_8c.html#aaec2c3b3a9d313249405662fbec344ac">T_TYPE</a></td>
+          <td class="memname">#define T&#160;&#160;&#160;T_TYPE</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>set up generic declaration macros, to have <code>mygeneric(T)</code> syntax </p>
 
-<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00034">34</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00032">32</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
 
 </div>
 </div>
@@ -236,46 +158,113 @@ The fields (key-value pairs) contained within this hashmap. </td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef t_u32 <a class="el" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></td>
+          <td class="memname">typedef <a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a> <a class="el" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The integer type used to store a hash key. </p>
 
-<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00044">44</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00042">42</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
 
 </div>
 </div>
-<a id="a5c86a9c9c32c9a754fae71cec4aab1b9" name="a5c86a9c9c32c9a754fae71cec4aab1b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c86a9c9c32c9a754fae71cec4aab1b9">&#9670;&nbsp;</a></span>s_hashitem_any</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ad598c700e515d2bb4bbcad5e88bd81ff" name="ad598c700e515d2bb4bbcad5e88bd81ff"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad598c700e515d2bb4bbcad5e88bd81ff">&#9670;&nbsp;</a></span>hashitem()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="hashmap_8h.html#structhashitem__any">hashitem_any</a> <a class="el" href="hashmap_8h.html#a5c86a9c9c32c9a754fae71cec4aab1b9">s_hashitem_any</a></td>
+          <td class="memname">struct hashitem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A dynamic hashmap item struct, stores a single hash-value pair. </p>
+<p >&lt; hash code used to index/identify this item</p>
+<p >&lt; value stored for this item</p>
 
+<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00042">42</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
+<div class="fragment"><div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_typedef" href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a>  hash;   </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <a class="code hl_define" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>       <a class="code hl_variable" href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>;  </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>}   <a class="code hl_function" href="hashmap_8h.html#a8d8a1e369b4f208200921298068945cd">s_hashitem</a>(<a class="code hl_define" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="ttc" id="aarray_8h_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a></div><div class="ttdeci">T value</div><div class="ttdef"><b>Definition:</b> <a href="array_8h_source.html#l00151">array.h:151</a></div></div>
+<div class="ttc" id="ahashmap_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="hashmap_8h_source.html#l00032">hashmap.h:32</a></div></div>
+<div class="ttc" id="ahashmap_8h_html_a3b77877456fdf96730b60162f70b5e26"><div class="ttname"><a href="hashmap_8h.html#a3b77877456fdf96730b60162f70b5e26">t_hash</a></div><div class="ttdeci">t_u32 t_hash</div><div class="ttdoc">The integer type used to store a hash key.</div><div class="ttdef"><b>Definition:</b> <a href="hashmap_8h_source.html#l00042">hashmap.h:42</a></div></div>
+<div class="ttc" id="ahashmap_8h_html_a8d8a1e369b4f208200921298068945cd"><div class="ttname"><a href="hashmap_8h.html#a8d8a1e369b4f208200921298068945cd">s_hashitem</a></div><div class="ttdeci">s_hashitem(T)</div></div>
+</div><!-- fragment -->
 </div>
 </div>
-<a id="a7c364fa77ab2e1365655c1fa18913da3" name="a7c364fa77ab2e1365655c1fa18913da3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c364fa77ab2e1365655c1fa18913da3">&#9670;&nbsp;</a></span>s_hashmap_any</h2>
+<a id="a8d8a1e369b4f208200921298068945cd" name="a8d8a1e369b4f208200921298068945cd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d8a1e369b4f208200921298068945cd">&#9670;&nbsp;</a></span>s_hashitem()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="hashmap_8h.html#structhashmap__any">hashmap_any</a> <a class="el" href="hashmap_8h.html#a7c364fa77ab2e1365655c1fa18913da3">s_hashmap_any</a></td>
+          <td class="memname">s_hashitem </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af327f2367a4e75e77bb961220d7077b5" name="af327f2367a4e75e77bb961220d7077b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af327f2367a4e75e77bb961220d7077b5">&#9670;&nbsp;</a></span>hashmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">struct hashmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>A dynamic hashmap struct, stores several hash-value pairs. </p>
+<p >&lt; The pointer to the next item in the hashmap (or NULL if this is the last item)</p>
+<p >&lt; The fields (key-value pairs) contained within this hashmap</p>
+
+<p class="definition">Definition at line <a class="el" href="hashmap_8h_source.html#l00052">52</a> of file <a class="el" href="hashmap_8h_source.html">hashmap.h</a>.</p>
+<div class="fragment"><div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>{</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <a class="code hl_typedef" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>          length; </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_function" href="hashmap_8h.html#a8d8a1e369b4f208200921298068945cd">s_hashitem</a>(<a class="code hl_define" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>)*  items;  </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}   <a class="code hl_function" href="hashmap_8h.html#a92945476d4ee00071ed0a2d801c6ff34">s_hashmap</a>(<a class="code hl_define" href="hashmap_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="ttc" id="ahashmap_8h_html_a92945476d4ee00071ed0a2d801c6ff34"><div class="ttname"><a href="hashmap_8h.html#a92945476d4ee00071ed0a2d801c6ff34">s_hashmap</a></div><div class="ttdeci">s_hashmap(T)</div></div>
+<div class="ttc" id="aint_8h_html_a24081be54642dc3413a6201c070cf224"><div class="ttname"><a href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a></div><div class="ttdeci">UINT_T t_uint</div><div class="ttdef"><b>Definition:</b> <a href="int_8h_source.html#l00315">int.h:315</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a92945476d4ee00071ed0a2d801c6ff34" name="a92945476d4ee00071ed0a2d801c6ff34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a92945476d4ee00071ed0a2d801c6ff34">&#9670;&nbsp;</a></span>s_hashmap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">s_hashmap </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -284,7 +273,7 @@ The fields (key-value pairs) contained within this hashmap. </td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_e24cf0de90354a2d5cfac55fe9be57d6.html">monad</a></li><li class="navelem"><a class="el" href="hashmap_8h.html">hashmap.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_6ab6982fc79c074882a5f665edcf2594.html">monad</a></li><li class="navelem"><a class="el" href="hashmap_8h.html">hashmap.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/encode/json.h File Reference</title>
+<title>libccc: libccc/encode/json.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -94,9 +94,7 @@ $(document).ready(function(){initNavTree('json_8h.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">json.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -106,67 +104,32 @@ $(document).ready(function(){initNavTree('json_8h.html',''); initResizable(); })
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="json_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="json_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="json_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a71726a1f1860d3396b64cddc6803e4b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a71726a1f1860d3396b64cddc6803e4b6">JSON_Parse</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">JSON_Parse_Lenient</a></td></tr>
-<tr class="separator:a71726a1f1860d3396b64cddc6803e4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b1c02287daf74c6ef1e8f1624a24213"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4b1c02287daf74c6ef1e8f1624a24213">c_jsonparse</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a71726a1f1860d3396b64cddc6803e4b6">JSON_Parse</a></td></tr>
-<tr class="separator:a4b1c02287daf74c6ef1e8f1624a24213"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab032892873af1964261b5097aaca8082"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a>&#160;&#160;&#160;JSON_Parse_Lenient_N</td></tr>
-<tr class="separator:ab032892873af1964261b5097aaca8082"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d6bb30f90f4926b3fe5f87991f0c03e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9d6bb30f90f4926b3fe5f87991f0c03e">c_jsonparsen</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a></td></tr>
-<tr class="separator:a9d6bb30f90f4926b3fe5f87991f0c03e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a85467f20c533550a792249dbe43b15c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a85467f20c533550a792249dbe43b15c4">JSON_FromString</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a></td></tr>
-<tr class="separator:a85467f20c533550a792249dbe43b15c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4e83e2b7e94fd757180463df6b1f4eac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4e83e2b7e94fd757180463df6b1f4eac">c_strtojson</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a85467f20c533550a792249dbe43b15c4">JSON_FromString</a></td></tr>
-<tr class="separator:a4e83e2b7e94fd757180463df6b1f4eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09c5a722c0f3545f404c055c511f9ce0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a09c5a722c0f3545f404c055c511f9ce0">JSON_Print</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a></td></tr>
-<tr class="separator:a09c5a722c0f3545f404c055c511f9ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa965eabfa8f97f05c37f38f51f378b55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aa965eabfa8f97f05c37f38f51f378b55">c_jsonprint</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a09c5a722c0f3545f404c055c511f9ce0">JSON_Print</a></td></tr>
-<tr class="separator:aa965eabfa8f97f05c37f38f51f378b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2f6d3ea215007c958d5c0d748fb93c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae2f6d3ea215007c958d5c0d748fb93c5">JSON_ToString</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a></td></tr>
-<tr class="separator:ae2f6d3ea215007c958d5c0d748fb93c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1c05bec01662d354a416cb1ca377aa3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad1c05bec01662d354a416cb1ca377aa3">c_jsontostr</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ae2f6d3ea215007c958d5c0d748fb93c5">JSON_ToString</a></td></tr>
-<tr class="separator:ad1c05bec01662d354a416cb1ca377aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9416b1418286270167b956597b99896b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9416b1418286270167b956597b99896b">c_jsonprintfmt</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a></td></tr>
-<tr class="separator:a9416b1418286270167b956597b99896b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62bc447e6f9d0c31546875f9ee0700aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a62bc447e6f9d0c31546875f9ee0700aa">c_jsontostrfmt</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a></td></tr>
-<tr class="separator:a62bc447e6f9d0c31546875f9ee0700aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac462463818291b6fff971146652bfdc2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac462463818291b6fff971146652bfdc2">c_jsonprintmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b">JSON_Print_Minify</a></td></tr>
-<tr class="separator:ac462463818291b6fff971146652bfdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ff97a5f14919192972cff6a6eb1e0e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3ff97a5f14919192972cff6a6eb1e0e0">c_jsontostrmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b">JSON_ToString_Minify</a></td></tr>
-<tr class="separator:a3ff97a5f14919192972cff6a6eb1e0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9e5da12dff5ac5775bf730cf6c15072"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab9e5da12dff5ac5775bf730cf6c15072">c_jsonmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">JSON_Minify</a></td></tr>
-<tr class="separator:ab9e5da12dff5ac5775bf730cf6c15072"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b91aef50cf46bbe206cfa17afad885d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a8b91aef50cf46bbe206cfa17afad885d">JSON_Item</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a4a5c2e92ddc95733e556d2120454e545">KVT_Item</a></td></tr>
-<tr class="memdesc:a8b91aef50cf46bbe206cfa17afad885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a4a5c2e92ddc95733e556d2120454e545" title="Allocates one single KVT struct.">KVT_Item</a>]  <a href="json_8h.html#a8b91aef50cf46bbe206cfa17afad885d">More...</a><br /></td></tr>
+<tr class="memdesc:a8b91aef50cf46bbe206cfa17afad885d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a4a5c2e92ddc95733e556d2120454e545">KVT_Item</a>]  <a href="json_8h.html#a8b91aef50cf46bbe206cfa17afad885d">More...</a><br /></td></tr>
 <tr class="separator:a8b91aef50cf46bbe206cfa17afad885d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac222a35f3857f6d638e43a2686c6ecf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac222a35f3857f6d638e43a2686c6ecf1">JSON_Duplicate</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a6fbff5747a3aa11da2ef3b2bdb45dd2b">KVT_Duplicate</a></td></tr>
-<tr class="memdesc:ac222a35f3857f6d638e43a2686c6ecf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a6fbff5747a3aa11da2ef3b2bdb45dd2b" title="Duplicates a KVT object.">KVT_Duplicate</a>]  <a href="json_8h.html#ac222a35f3857f6d638e43a2686c6ecf1">More...</a><br /></td></tr>
+<tr class="memdesc:ac222a35f3857f6d638e43a2686c6ecf1"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a6fbff5747a3aa11da2ef3b2bdb45dd2b">KVT_Duplicate</a>]  <a href="json_8h.html#ac222a35f3857f6d638e43a2686c6ecf1">More...</a><br /></td></tr>
 <tr class="separator:ac222a35f3857f6d638e43a2686c6ecf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a770eb6a0d473cfc46a51177576c38d52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a770eb6a0d473cfc46a51177576c38d52">JSON_Equals</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a37fd755f63fcd79305320b3ec4d57311">KVT_Equals</a></td></tr>
-<tr class="memdesc:a770eb6a0d473cfc46a51177576c38d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a37fd755f63fcd79305320b3ec4d57311" title="Recursively compare two s_kvt items for equality.">KVT_Equals</a>]  <a href="json_8h.html#a770eb6a0d473cfc46a51177576c38d52">More...</a><br /></td></tr>
+<tr class="memdesc:a770eb6a0d473cfc46a51177576c38d52"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a37fd755f63fcd79305320b3ec4d57311">KVT_Equals</a>]  <a href="json_8h.html#a770eb6a0d473cfc46a51177576c38d52">More...</a><br /></td></tr>
 <tr class="separator:a770eb6a0d473cfc46a51177576c38d52"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa3650ba2c64cf1716dda39d32dff4188"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aa3650ba2c64cf1716dda39d32dff4188">JSON_Concat</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ac0fc275c535e3422b6e863ad7deb1b97">KVT_Concat</a></td></tr>
-<tr class="memdesc:aa3650ba2c64cf1716dda39d32dff4188"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ac0fc275c535e3422b6e863ad7deb1b97" title="Creates a new KVT object by concatenating two existing ones.">KVT_Concat</a>]  <a href="json_8h.html#aa3650ba2c64cf1716dda39d32dff4188">More...</a><br /></td></tr>
+<tr class="memdesc:aa3650ba2c64cf1716dda39d32dff4188"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ac0fc275c535e3422b6e863ad7deb1b97">KVT_Concat</a>]  <a href="json_8h.html#aa3650ba2c64cf1716dda39d32dff4188">More...</a><br /></td></tr>
 <tr class="separator:aa3650ba2c64cf1716dda39d32dff4188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4d51fde089f8f8e8214c47e637175e66"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4d51fde089f8f8e8214c47e637175e66">JSON_Concat_Array</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a22ed35a1cfbeb345b4db21f2c797dee9">KVT_Concat_Array</a></td></tr>
-<tr class="memdesc:a4d51fde089f8f8e8214c47e637175e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a22ed35a1cfbeb345b4db21f2c797dee9" title="TODO document.">KVT_Concat_Array</a>]  <a href="json_8h.html#a4d51fde089f8f8e8214c47e637175e66">More...</a><br /></td></tr>
+<tr class="memdesc:a4d51fde089f8f8e8214c47e637175e66"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a22ed35a1cfbeb345b4db21f2c797dee9">KVT_Concat_Array</a>]  <a href="json_8h.html#a4d51fde089f8f8e8214c47e637175e66">More...</a><br /></td></tr>
 <tr class="separator:a4d51fde089f8f8e8214c47e637175e66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57ff4f1771c9f38e5ea279957e8fc055"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a57ff4f1771c9f38e5ea279957e8fc055">JSON_Concat_Object</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a70f74f8d2ff238792726a648ee997081">KVT_Concat_Object</a></td></tr>
-<tr class="memdesc:a57ff4f1771c9f38e5ea279957e8fc055"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a70f74f8d2ff238792726a648ee997081" title="TODO document.">KVT_Concat_Object</a>]  <a href="json_8h.html#a57ff4f1771c9f38e5ea279957e8fc055">More...</a><br /></td></tr>
+<tr class="memdesc:a57ff4f1771c9f38e5ea279957e8fc055"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a70f74f8d2ff238792726a648ee997081">KVT_Concat_Object</a>]  <a href="json_8h.html#a57ff4f1771c9f38e5ea279957e8fc055">More...</a><br /></td></tr>
 <tr class="separator:a57ff4f1771c9f38e5ea279957e8fc055"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace71a6d0cd278e8a5d92fff7ff778e4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ace71a6d0cd278e8a5d92fff7ff778e4f">JSON_GetError</a>&#160;&#160;&#160;KVT_GetError</td></tr>
-<tr class="memdesc:ace71a6d0cd278e8a5d92fff7ff778e4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> #KVT_GetError]  <a href="json_8h.html#ace71a6d0cd278e8a5d92fff7ff778e4f">More...</a><br /></td></tr>
-<tr class="separator:ace71a6d0cd278e8a5d92fff7ff778e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4a73979b5563087ab8a6eb8666be420"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac4a73979b5563087ab8a6eb8666be420">JSON_GetErrorMessage</a>&#160;&#160;&#160;KVT_GetErrorMessage</td></tr>
-<tr class="memdesc:ac4a73979b5563087ab8a6eb8666be420"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> #KVT_GetErrorMessage]  <a href="json_8h.html#ac4a73979b5563087ab8a6eb8666be420">More...</a><br /></td></tr>
-<tr class="separator:ac4a73979b5563087ab8a6eb8666be420"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc81a0cc515be390eafb5753d8085603"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#acc81a0cc515be390eafb5753d8085603">JSON_CreateNull</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a9e26585db119b9992636f792a54b19e7">KVT_CreateNull</a></td></tr>
 <tr class="memdesc:acc81a0cc515be390eafb5753d8085603"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9e26585db119b9992636f792a54b19e7">KVT_CreateNull</a>]  <a href="json_8h.html#acc81a0cc515be390eafb5753d8085603">More...</a><br /></td></tr>
 <tr class="separator:acc81a0cc515be390eafb5753d8085603"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -192,16 +155,16 @@ Macros</h2></td></tr>
 <tr class="memdesc:a3ffed5180b8b9e6645299213a6f2e5df"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#af6c8a9d15f509e2541da1c3385ee8a03">KVT_CreateRaw</a>]  <a href="json_8h.html#a3ffed5180b8b9e6645299213a6f2e5df">More...</a><br /></td></tr>
 <tr class="separator:a3ffed5180b8b9e6645299213a6f2e5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abb27dee720dd50e0b63b344432ab8a21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#abb27dee720dd50e0b63b344432ab8a21">JSON_CreateArrayReference</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a390706f77d93c02628916fcfd59bf7c6">KVT_CreateArrayReference</a></td></tr>
-<tr class="memdesc:abb27dee720dd50e0b63b344432ab8a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a390706f77d93c02628916fcfd59bf7c6" title="Create an array that only references it&#39;s elements, so they will not be freed by KVT_Delete()">KVT_CreateArrayReference</a>]  <a href="json_8h.html#abb27dee720dd50e0b63b344432ab8a21">More...</a><br /></td></tr>
+<tr class="memdesc:abb27dee720dd50e0b63b344432ab8a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a390706f77d93c02628916fcfd59bf7c6">KVT_CreateArrayReference</a>]  <a href="json_8h.html#abb27dee720dd50e0b63b344432ab8a21">More...</a><br /></td></tr>
 <tr class="separator:abb27dee720dd50e0b63b344432ab8a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a108c8fa9d5f0d0821762e1c3f7ea6a4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a108c8fa9d5f0d0821762e1c3f7ea6a4a">JSON_CreateObjectReference</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a21274b1343ba5cef9c35ec69ddde53f7">KVT_CreateObjectReference</a></td></tr>
-<tr class="memdesc:a108c8fa9d5f0d0821762e1c3f7ea6a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a21274b1343ba5cef9c35ec69ddde53f7" title="Create an object that only references it&#39;s elements, so they will not be freed by KVT_Delete()">KVT_CreateObjectReference</a>]  <a href="json_8h.html#a108c8fa9d5f0d0821762e1c3f7ea6a4a">More...</a><br /></td></tr>
+<tr class="memdesc:a108c8fa9d5f0d0821762e1c3f7ea6a4a"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a21274b1343ba5cef9c35ec69ddde53f7">KVT_CreateObjectReference</a>]  <a href="json_8h.html#a108c8fa9d5f0d0821762e1c3f7ea6a4a">More...</a><br /></td></tr>
 <tr class="separator:a108c8fa9d5f0d0821762e1c3f7ea6a4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7c07a6bcc1f856afd0b252eb25fcf44"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad7c07a6bcc1f856afd0b252eb25fcf44">JSON_CreateStringReference</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#abe8ea9bd30286dd84dcc4bcf0eec55d2">KVT_CreateStringReference</a></td></tr>
-<tr class="memdesc:ad7c07a6bcc1f856afd0b252eb25fcf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#abe8ea9bd30286dd84dcc4bcf0eec55d2" title="Create a string where value_string references a string, so it will not be freed by KVT_Delete()">KVT_CreateStringReference</a>]  <a href="json_8h.html#ad7c07a6bcc1f856afd0b252eb25fcf44">More...</a><br /></td></tr>
+<tr class="memdesc:ad7c07a6bcc1f856afd0b252eb25fcf44"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#abe8ea9bd30286dd84dcc4bcf0eec55d2">KVT_CreateStringReference</a>]  <a href="json_8h.html#ad7c07a6bcc1f856afd0b252eb25fcf44">More...</a><br /></td></tr>
 <tr class="separator:ad7c07a6bcc1f856afd0b252eb25fcf44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abc4e8d2efec09358c82042a4da7de694"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#abc4e8d2efec09358c82042a4da7de694">JSON_CreateArray_Boolean</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a50dc813a7d5a248503340514349916c8">KVT_CreateArray_Boolean</a></td></tr>
-<tr class="memdesc:abc4e8d2efec09358c82042a4da7de694"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a50dc813a7d5a248503340514349916c8" title="Create and fill a KVT array.">KVT_CreateArray_Boolean</a>]  <a href="json_8h.html#abc4e8d2efec09358c82042a4da7de694">More...</a><br /></td></tr>
+<tr class="memdesc:abc4e8d2efec09358c82042a4da7de694"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a50dc813a7d5a248503340514349916c8">KVT_CreateArray_Boolean</a>]  <a href="json_8h.html#abc4e8d2efec09358c82042a4da7de694">More...</a><br /></td></tr>
 <tr class="separator:abc4e8d2efec09358c82042a4da7de694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae42663d7375b2089b28f8d2bb2775dda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae42663d7375b2089b28f8d2bb2775dda">JSON_CreateArray_UInt</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#aa87d5bee66141b5349d955072a3066ac">KVT_CreateArray_UInt</a></td></tr>
 <tr class="memdesc:ae42663d7375b2089b28f8d2bb2775dda"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#aa87d5bee66141b5349d955072a3066ac">KVT_CreateArray_UInt</a>]  <a href="json_8h.html#ae42663d7375b2089b28f8d2bb2775dda">More...</a><br /></td></tr>
@@ -258,10 +221,10 @@ Macros</h2></td></tr>
 <tr class="memdesc:a4a6ad044d50dfbc8dc50f5e63015cea7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#af08c16848168fe83f4d63d3d44d3b3b2">KVT_CreateArray_String</a>]  <a href="json_8h.html#a4a6ad044d50dfbc8dc50f5e63015cea7">More...</a><br /></td></tr>
 <tr class="separator:a4a6ad044d50dfbc8dc50f5e63015cea7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7d48d0892ee9653f9602ba0e00d927a3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a7d48d0892ee9653f9602ba0e00d927a3">JSON_GetArrayLength</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a833e402bdd40c00b4924da436649d86e">KVT_GetArrayLength</a></td></tr>
-<tr class="memdesc:a7d48d0892ee9653f9602ba0e00d927a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a833e402bdd40c00b4924da436649d86e" title="Returns the amount of items in the given array (or object).">KVT_GetArrayLength</a>]  <a href="json_8h.html#a7d48d0892ee9653f9602ba0e00d927a3">More...</a><br /></td></tr>
+<tr class="memdesc:a7d48d0892ee9653f9602ba0e00d927a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a833e402bdd40c00b4924da436649d86e">KVT_GetArrayLength</a>]  <a href="json_8h.html#a7d48d0892ee9653f9602ba0e00d927a3">More...</a><br /></td></tr>
 <tr class="separator:a7d48d0892ee9653f9602ba0e00d927a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2704e620f88b115037f8d094fa6d4315"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a2704e620f88b115037f8d094fa6d4315">JSON_GetArrayItem</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a9bad9d418bd0848e91b99d21ce653baa">KVT_GetArrayItem</a></td></tr>
-<tr class="memdesc:a2704e620f88b115037f8d094fa6d4315"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9bad9d418bd0848e91b99d21ce653baa" title="Retrieve item number index from the given array. Returns NULL if unsuccessful.">KVT_GetArrayItem</a>]  <a href="json_8h.html#a2704e620f88b115037f8d094fa6d4315">More...</a><br /></td></tr>
+<tr class="memdesc:a2704e620f88b115037f8d094fa6d4315"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9bad9d418bd0848e91b99d21ce653baa">KVT_GetArrayItem</a>]  <a href="json_8h.html#a2704e620f88b115037f8d094fa6d4315">More...</a><br /></td></tr>
 <tr class="separator:a2704e620f88b115037f8d094fa6d4315"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae855132f9a20f7cb4a462e3d1f959ac3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae855132f9a20f7cb4a462e3d1f959ac3">JSON_GetObjectItem</a>&#160;&#160;&#160;		<a class="el" href="json_8h.html#a4860293fa452ee8449e4df1f85651008">JSON_GetObjectItem_CaseSensitive</a></td></tr>
 <tr class="separator:ae855132f9a20f7cb4a462e3d1f959ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -280,43 +243,43 @@ Macros</h2></td></tr>
 <tr class="memdesc:ab3aefbd4772ecaf71f9c6fc3210fb0ef"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ada636e9433be06e2738922401170c7d4">KVT_HasObjectItem_IgnoreCase</a>]  <a href="json_8h.html#ab3aefbd4772ecaf71f9c6fc3210fb0ef">More...</a><br /></td></tr>
 <tr class="separator:ab3aefbd4772ecaf71f9c6fc3210fb0ef"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8a4a8060f55739f3b4efb3bd1a98477"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac8a4a8060f55739f3b4efb3bd1a98477">JSON_Get</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ab3ead48f2f59d055d37b6ccde87bef95">KVT_Get</a></td></tr>
-<tr class="memdesc:ac8a4a8060f55739f3b4efb3bd1a98477"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ab3ead48f2f59d055d37b6ccde87bef95" title="Access the contents of a KVT with a &#39;KVT path&#39;, ie: a format string of &#39;accessors&#39; (ie: strings or nu...">KVT_Get</a>]  <a href="json_8h.html#ac8a4a8060f55739f3b4efb3bd1a98477">More...</a><br /></td></tr>
+<tr class="memdesc:ac8a4a8060f55739f3b4efb3bd1a98477"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ab3ead48f2f59d055d37b6ccde87bef95">KVT_Get</a>]  <a href="json_8h.html#ac8a4a8060f55739f3b4efb3bd1a98477">More...</a><br /></td></tr>
 <tr class="separator:ac8a4a8060f55739f3b4efb3bd1a98477"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5905f067b937a63e440a64f03dcaf061"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a5905f067b937a63e440a64f03dcaf061">JSON_GetValue_Boolean</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a81ad32c87f5df47d25c2656e9f4a230f">KVT_GetValue_Boolean</a></td></tr>
-<tr class="memdesc:a5905f067b937a63e440a64f03dcaf061"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a81ad32c87f5df47d25c2656e9f4a230f" title="Returns the boolean value contained within the given item, or FALSE if type is not DYNAMICTYPE_BOOLEA...">KVT_GetValue_Boolean</a>]  <a href="json_8h.html#a5905f067b937a63e440a64f03dcaf061">More...</a><br /></td></tr>
+<tr class="memdesc:a5905f067b937a63e440a64f03dcaf061"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a81ad32c87f5df47d25c2656e9f4a230f">KVT_GetValue_Boolean</a>]  <a href="json_8h.html#a5905f067b937a63e440a64f03dcaf061">More...</a><br /></td></tr>
 <tr class="separator:a5905f067b937a63e440a64f03dcaf061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3dd82c14d8af64d649764ca94627c958"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3dd82c14d8af64d649764ca94627c958">JSON_GetValue_Integer</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a13b1b15c5b45d98d52bc2ddbbf4f535e">KVT_GetValue_Integer</a></td></tr>
-<tr class="memdesc:a3dd82c14d8af64d649764ca94627c958"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a13b1b15c5b45d98d52bc2ddbbf4f535e" title="Returns the integer value contained within the given item, or 0 if type is not DYNAMICTYPE_INTEGER.">KVT_GetValue_Integer</a>]  <a href="json_8h.html#a3dd82c14d8af64d649764ca94627c958">More...</a><br /></td></tr>
+<tr class="memdesc:a3dd82c14d8af64d649764ca94627c958"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a13b1b15c5b45d98d52bc2ddbbf4f535e">KVT_GetValue_Integer</a>]  <a href="json_8h.html#a3dd82c14d8af64d649764ca94627c958">More...</a><br /></td></tr>
 <tr class="separator:a3dd82c14d8af64d649764ca94627c958"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa472d31c7e81a3f68218ded5dd1eff2b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aa472d31c7e81a3f68218ded5dd1eff2b">JSON_GetValue_Float</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a00b2d552f19d5547d9287163e2a1870d">KVT_GetValue_Float</a></td></tr>
-<tr class="memdesc:aa472d31c7e81a3f68218ded5dd1eff2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a00b2d552f19d5547d9287163e2a1870d" title="Returns the number value contained within the given item, or NAN if type is not DYNAMICTYPE_FLOAT.">KVT_GetValue_Float</a>]  <a href="json_8h.html#aa472d31c7e81a3f68218ded5dd1eff2b">More...</a><br /></td></tr>
+<tr class="memdesc:aa472d31c7e81a3f68218ded5dd1eff2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a00b2d552f19d5547d9287163e2a1870d">KVT_GetValue_Float</a>]  <a href="json_8h.html#aa472d31c7e81a3f68218ded5dd1eff2b">More...</a><br /></td></tr>
 <tr class="separator:aa472d31c7e81a3f68218ded5dd1eff2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a791527dbb783da761dbe3c74605d652d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a791527dbb783da761dbe3c74605d652d">JSON_GetValue_String</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#afb6831b661499ed3267ce4d999bb1436">KVT_GetValue_String</a></td></tr>
-<tr class="memdesc:a791527dbb783da761dbe3c74605d652d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#afb6831b661499ed3267ce4d999bb1436" title="Returns the string value contained within the given item, or NULL if type is not DYNAMICTYPE_STRING.">KVT_GetValue_String</a>]  <a href="json_8h.html#a791527dbb783da761dbe3c74605d652d">More...</a><br /></td></tr>
+<tr class="memdesc:a791527dbb783da761dbe3c74605d652d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#afb6831b661499ed3267ce4d999bb1436">KVT_GetValue_String</a>]  <a href="json_8h.html#a791527dbb783da761dbe3c74605d652d">More...</a><br /></td></tr>
 <tr class="separator:a791527dbb783da761dbe3c74605d652d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d88e345ef46f3ec8ccc136857bfd9de"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a5d88e345ef46f3ec8ccc136857bfd9de">JSON_SetValue_Boolean</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a90c250bdb61e25b01ee74d13136b7656">KVT_SetValue_Boolean</a></td></tr>
-<tr class="memdesc:a5d88e345ef46f3ec8ccc136857bfd9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a90c250bdb61e25b01ee74d13136b7656" title="Change the value of a DYNAMICTYPE_BOOLEAN object, only takes effect when object-&gt;type == DYNAMICTYPE_...">KVT_SetValue_Boolean</a>]  <a href="json_8h.html#a5d88e345ef46f3ec8ccc136857bfd9de">More...</a><br /></td></tr>
+<tr class="memdesc:a5d88e345ef46f3ec8ccc136857bfd9de"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a90c250bdb61e25b01ee74d13136b7656">KVT_SetValue_Boolean</a>]  <a href="json_8h.html#a5d88e345ef46f3ec8ccc136857bfd9de">More...</a><br /></td></tr>
 <tr class="separator:a5d88e345ef46f3ec8ccc136857bfd9de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8a38720e4dc1f8fea6b44f35edbb37e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a8a38720e4dc1f8fea6b44f35edbb37e4">JSON_SetValue_Integer</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#aabccb0776e48d14fab0abb2848ff6c04">KVT_SetValue_Integer</a></td></tr>
-<tr class="memdesc:a8a38720e4dc1f8fea6b44f35edbb37e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#aabccb0776e48d14fab0abb2848ff6c04" title="Change the value of a DYNAMICTYPE_INTEGER object, only takes effect when object-&gt;type == DYNAMICTYPE_...">KVT_SetValue_Integer</a>]  <a href="json_8h.html#a8a38720e4dc1f8fea6b44f35edbb37e4">More...</a><br /></td></tr>
+<tr class="memdesc:a8a38720e4dc1f8fea6b44f35edbb37e4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#aabccb0776e48d14fab0abb2848ff6c04">KVT_SetValue_Integer</a>]  <a href="json_8h.html#a8a38720e4dc1f8fea6b44f35edbb37e4">More...</a><br /></td></tr>
 <tr class="separator:a8a38720e4dc1f8fea6b44f35edbb37e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c7802ed93dee62afa8d286f0a41467e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a7c7802ed93dee62afa8d286f0a41467e">JSON_SetValue_Float</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a5073454a813d43079d41c425da79f8ef">KVT_SetValue_Float</a></td></tr>
-<tr class="memdesc:a7c7802ed93dee62afa8d286f0a41467e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a5073454a813d43079d41c425da79f8ef" title="Change the value of a DYNAMICTYPE_FLOAT object, only takes effect when object-&gt;type == DYNAMICTYPE_FL...">KVT_SetValue_Float</a>]  <a href="json_8h.html#a7c7802ed93dee62afa8d286f0a41467e">More...</a><br /></td></tr>
+<tr class="memdesc:a7c7802ed93dee62afa8d286f0a41467e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a5073454a813d43079d41c425da79f8ef">KVT_SetValue_Float</a>]  <a href="json_8h.html#a7c7802ed93dee62afa8d286f0a41467e">More...</a><br /></td></tr>
 <tr class="separator:a7c7802ed93dee62afa8d286f0a41467e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4234e8b1243a8323ff3f2dc097aea181"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4234e8b1243a8323ff3f2dc097aea181">JSON_SetValue_String</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ae12b8da08526570539d4e7f340adadfd">KVT_SetValue_String</a></td></tr>
-<tr class="memdesc:a4234e8b1243a8323ff3f2dc097aea181"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ae12b8da08526570539d4e7f340adadfd" title="Change the value of a DYNAMICTYPE_STRING object, only takes effect when object-&gt;type == DYNAMICTYPE_S...">KVT_SetValue_String</a>]  <a href="json_8h.html#a4234e8b1243a8323ff3f2dc097aea181">More...</a><br /></td></tr>
+<tr class="memdesc:a4234e8b1243a8323ff3f2dc097aea181"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ae12b8da08526570539d4e7f340adadfd">KVT_SetValue_String</a>]  <a href="json_8h.html#a4234e8b1243a8323ff3f2dc097aea181">More...</a><br /></td></tr>
 <tr class="separator:a4234e8b1243a8323ff3f2dc097aea181"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d0f6bbe3ad2f584adf092f0a3e072d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a5d0f6bbe3ad2f584adf092f0a3e072d8">JSON_AddToArray_Item</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ad362ffd6debe3b634aee171816679e58">KVT_AddToArray_Item</a></td></tr>
-<tr class="memdesc:a5d0f6bbe3ad2f584adf092f0a3e072d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ad362ffd6debe3b634aee171816679e58" title="Appends the given item to the given array.">KVT_AddToArray_Item</a>]  <a href="json_8h.html#a5d0f6bbe3ad2f584adf092f0a3e072d8">More...</a><br /></td></tr>
+<tr class="memdesc:a5d0f6bbe3ad2f584adf092f0a3e072d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ad362ffd6debe3b634aee171816679e58">KVT_AddToArray_Item</a>]  <a href="json_8h.html#a5d0f6bbe3ad2f584adf092f0a3e072d8">More...</a><br /></td></tr>
 <tr class="separator:a5d0f6bbe3ad2f584adf092f0a3e072d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a28cfdd012a5b33e9b8f58b80192ad040"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a28cfdd012a5b33e9b8f58b80192ad040">JSON_AddToArray_ItemReference</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a5012f94cd37b5b31ae009e1595e11e22">KVT_AddToArray_ItemReference</a></td></tr>
-<tr class="memdesc:a28cfdd012a5b33e9b8f58b80192ad040"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a5012f94cd37b5b31ae009e1595e11e22" title="Append a reference to item to the given array.">KVT_AddToArray_ItemReference</a>]  <a href="json_8h.html#a28cfdd012a5b33e9b8f58b80192ad040">More...</a><br /></td></tr>
+<tr class="memdesc:a28cfdd012a5b33e9b8f58b80192ad040"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a5012f94cd37b5b31ae009e1595e11e22">KVT_AddToArray_ItemReference</a>]  <a href="json_8h.html#a28cfdd012a5b33e9b8f58b80192ad040">More...</a><br /></td></tr>
 <tr class="separator:a28cfdd012a5b33e9b8f58b80192ad040"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8db3c4c17183fac1db00cf8c6ff7ebc7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a8db3c4c17183fac1db00cf8c6ff7ebc7">JSON_AddToObject_Item</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a9097f5b4957d72c2fd6d2818daa26a2d">KVT_AddToObject_Item</a></td></tr>
-<tr class="memdesc:a8db3c4c17183fac1db00cf8c6ff7ebc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9097f5b4957d72c2fd6d2818daa26a2d" title="Appends the given item to the given object, with the given key.">KVT_AddToObject_Item</a>]  <a href="json_8h.html#a8db3c4c17183fac1db00cf8c6ff7ebc7">More...</a><br /></td></tr>
+<tr class="memdesc:a8db3c4c17183fac1db00cf8c6ff7ebc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9097f5b4957d72c2fd6d2818daa26a2d">KVT_AddToObject_Item</a>]  <a href="json_8h.html#a8db3c4c17183fac1db00cf8c6ff7ebc7">More...</a><br /></td></tr>
 <tr class="separator:a8db3c4c17183fac1db00cf8c6ff7ebc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a78e506d603e50e8603426f9d855a5150"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a78e506d603e50e8603426f9d855a5150">JSON_AddToObject_ItemReference</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a97916346cbbe4d887c797158bd895445">KVT_AddToObject_ItemReference</a></td></tr>
-<tr class="memdesc:a78e506d603e50e8603426f9d855a5150"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a97916346cbbe4d887c797158bd895445" title="Append reference to item to the given object.">KVT_AddToObject_ItemReference</a>]  <a href="json_8h.html#a78e506d603e50e8603426f9d855a5150">More...</a><br /></td></tr>
+<tr class="memdesc:a78e506d603e50e8603426f9d855a5150"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a97916346cbbe4d887c797158bd895445">KVT_AddToObject_ItemReference</a>]  <a href="json_8h.html#a78e506d603e50e8603426f9d855a5150">More...</a><br /></td></tr>
 <tr class="separator:a78e506d603e50e8603426f9d855a5150"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a33f90df9fba0e006a07c65c8b34292f8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a33f90df9fba0e006a07c65c8b34292f8">JSON_AddToObject_Null</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#aba8fc18becbeca4834f5a03103c3a9f2">KVT_AddToObject_Null</a></td></tr>
 <tr class="memdesc:a33f90df9fba0e006a07c65c8b34292f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#aba8fc18becbeca4834f5a03103c3a9f2">KVT_AddToObject_Null</a>]  <a href="json_8h.html#a33f90df9fba0e006a07c65c8b34292f8">More...</a><br /></td></tr>
@@ -370,95 +333,146 @@ Macros</h2></td></tr>
 <tr class="memdesc:ab0c1a6b0c9b23df8cf338a821885e3ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a2eebaeb9afecf1980d0bee6b79148fc9">KVT_IsRaw</a>]  <a href="json_8h.html#ab0c1a6b0c9b23df8cf338a821885e3ad">More...</a><br /></td></tr>
 <tr class="separator:ab0c1a6b0c9b23df8cf338a821885e3ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9a87921fc187cd1aa8f9f8fa4663ebe8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9a87921fc187cd1aa8f9f8fa4663ebe8">JSON_Delete</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a1626b86dca2393fd077a6b3d871cd8aa">KVT_Delete</a></td></tr>
-<tr class="memdesc:a9a87921fc187cd1aa8f9f8fa4663ebe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a1626b86dca2393fd077a6b3d871cd8aa" title="Delete a s_kvt entity and all subentities.">KVT_Delete</a>]  <a href="json_8h.html#a9a87921fc187cd1aa8f9f8fa4663ebe8">More...</a><br /></td></tr>
+<tr class="memdesc:a9a87921fc187cd1aa8f9f8fa4663ebe8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a1626b86dca2393fd077a6b3d871cd8aa">KVT_Delete</a>]  <a href="json_8h.html#a9a87921fc187cd1aa8f9f8fa4663ebe8">More...</a><br /></td></tr>
 <tr class="separator:a9a87921fc187cd1aa8f9f8fa4663ebe8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b724bed6885c6c3cc26dc132563b931"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a2b724bed6885c6c3cc26dc132563b931">JSON_Detach</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#af1950684e47e62258baed96af0cee0f2">KVT_Detach</a></td></tr>
-<tr class="memdesc:a2b724bed6885c6c3cc26dc132563b931"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#af1950684e47e62258baed96af0cee0f2" title="Removes (without deleting) the given item from the given parent object.">KVT_Detach</a>]  <a href="json_8h.html#a2b724bed6885c6c3cc26dc132563b931">More...</a><br /></td></tr>
+<tr class="memdesc:a2b724bed6885c6c3cc26dc132563b931"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#af1950684e47e62258baed96af0cee0f2">KVT_Detach</a>]  <a href="json_8h.html#a2b724bed6885c6c3cc26dc132563b931">More...</a><br /></td></tr>
 <tr class="separator:a2b724bed6885c6c3cc26dc132563b931"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac7e6ca41df4c5fff5af256ed567bfaf0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac7e6ca41df4c5fff5af256ed567bfaf0">JSON_Replace</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a9e79ded461e3a5beafb56a9a910fc1c0">KVT_Replace</a></td></tr>
-<tr class="memdesc:ac7e6ca41df4c5fff5af256ed567bfaf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9e79ded461e3a5beafb56a9a910fc1c0" title="Replaces the given item from the given parent object, with the given newitem.">KVT_Replace</a>]  <a href="json_8h.html#ac7e6ca41df4c5fff5af256ed567bfaf0">More...</a><br /></td></tr>
+<tr class="memdesc:ac7e6ca41df4c5fff5af256ed567bfaf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a9e79ded461e3a5beafb56a9a910fc1c0">KVT_Replace</a>]  <a href="json_8h.html#ac7e6ca41df4c5fff5af256ed567bfaf0">More...</a><br /></td></tr>
 <tr class="separator:ac7e6ca41df4c5fff5af256ed567bfaf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70302e8ab57267fbf7e3b200679aab33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a70302e8ab57267fbf7e3b200679aab33">JSON_Delete_FromArray</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ac3f47d63dae9d0073bf3eff8ee12d29a">KVT_Delete_FromArray</a></td></tr>
-<tr class="memdesc:a70302e8ab57267fbf7e3b200679aab33"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ac3f47d63dae9d0073bf3eff8ee12d29a" title="Deletes the item at the given index from the given array.">KVT_Delete_FromArray</a>]  <a href="json_8h.html#a70302e8ab57267fbf7e3b200679aab33">More...</a><br /></td></tr>
+<tr class="memdesc:a70302e8ab57267fbf7e3b200679aab33"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ac3f47d63dae9d0073bf3eff8ee12d29a">KVT_Delete_FromArray</a>]  <a href="json_8h.html#a70302e8ab57267fbf7e3b200679aab33">More...</a><br /></td></tr>
 <tr class="separator:a70302e8ab57267fbf7e3b200679aab33"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a83e1cf46fb352e73e33481178b80df63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a83e1cf46fb352e73e33481178b80df63">JSON_Detach_FromArray</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a91afe7e9bd6e12cb1cf4ff1f95e629c9">KVT_Detach_FromArray</a></td></tr>
-<tr class="memdesc:a83e1cf46fb352e73e33481178b80df63"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a91afe7e9bd6e12cb1cf4ff1f95e629c9" title="Removes (without deleting) the given item from the given array.">KVT_Detach_FromArray</a>]  <a href="json_8h.html#a83e1cf46fb352e73e33481178b80df63">More...</a><br /></td></tr>
+<tr class="memdesc:a83e1cf46fb352e73e33481178b80df63"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a91afe7e9bd6e12cb1cf4ff1f95e629c9">KVT_Detach_FromArray</a>]  <a href="json_8h.html#a83e1cf46fb352e73e33481178b80df63">More...</a><br /></td></tr>
 <tr class="separator:a83e1cf46fb352e73e33481178b80df63"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f0ed5dedc6778d12edf8fd5258019aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a8f0ed5dedc6778d12edf8fd5258019aa">JSON_Replace_InArray</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a7a856e9a72769f21105c11dd1180453e">KVT_Replace_InArray</a></td></tr>
-<tr class="memdesc:a8f0ed5dedc6778d12edf8fd5258019aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a7a856e9a72769f21105c11dd1180453e" title="Replaces the given item from the given array, with the given newitem.">KVT_Replace_InArray</a>]  <a href="json_8h.html#a8f0ed5dedc6778d12edf8fd5258019aa">More...</a><br /></td></tr>
+<tr class="memdesc:a8f0ed5dedc6778d12edf8fd5258019aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a7a856e9a72769f21105c11dd1180453e">KVT_Replace_InArray</a>]  <a href="json_8h.html#a8f0ed5dedc6778d12edf8fd5258019aa">More...</a><br /></td></tr>
 <tr class="separator:a8f0ed5dedc6778d12edf8fd5258019aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a495a7585c3e3332912d5fd3d2c24b109"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a495a7585c3e3332912d5fd3d2c24b109">JSON_Insert_InArray</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ae7543aa7808c92de710fab4387bdf992">KVT_Insert_InArray</a></td></tr>
-<tr class="memdesc:a495a7585c3e3332912d5fd3d2c24b109"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ae7543aa7808c92de710fab4387bdf992" title="Inserts the given newitem in the givne array, shifting pre-existing items to the right.">KVT_Insert_InArray</a>]  <a href="json_8h.html#a495a7585c3e3332912d5fd3d2c24b109">More...</a><br /></td></tr>
+<tr class="memdesc:a495a7585c3e3332912d5fd3d2c24b109"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ae7543aa7808c92de710fab4387bdf992">KVT_Insert_InArray</a>]  <a href="json_8h.html#a495a7585c3e3332912d5fd3d2c24b109">More...</a><br /></td></tr>
 <tr class="separator:a495a7585c3e3332912d5fd3d2c24b109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6d5a22ee0d484e7ef28b0715532cb906"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a6d5a22ee0d484e7ef28b0715532cb906">JSON_Delete_FromObject</a>&#160;&#160;&#160;		<a class="el" href="json_8h.html#aca8ed58e7a90126c56364cba33391224">JSON_Delete_FromObject_CaseSensitive</a></td></tr>
 <tr class="separator:a6d5a22ee0d484e7ef28b0715532cb906"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aca8ed58e7a90126c56364cba33391224"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aca8ed58e7a90126c56364cba33391224">JSON_Delete_FromObject_CaseSensitive</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ac0acfd2be9364dbb5ff9d3694d5eb33a">KVT_Delete_FromObject_CaseSensitive</a></td></tr>
+<tr class="memdesc:aca8ed58e7a90126c56364cba33391224"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ac0acfd2be9364dbb5ff9d3694d5eb33a" title="(case-sensitive)">KVT_Delete_FromObject_CaseSensitive</a>]  <a href="json_8h.html#aca8ed58e7a90126c56364cba33391224">More...</a><br /></td></tr>
 <tr class="separator:aca8ed58e7a90126c56364cba33391224"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a79899210bd0a74dbe6b4b3eca6fbf957"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a79899210bd0a74dbe6b4b3eca6fbf957">JSON_Delete_FromObject_IgnoreCase</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a969960cf1bf965dab6c7f4906a11789b">KVT_Delete_FromObject_IgnoreCase</a></td></tr>
+<tr class="memdesc:a79899210bd0a74dbe6b4b3eca6fbf957"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a969960cf1bf965dab6c7f4906a11789b">KVT_Delete_FromObject_IgnoreCase</a>]  <a href="json_8h.html#a79899210bd0a74dbe6b4b3eca6fbf957">More...</a><br /></td></tr>
 <tr class="separator:a79899210bd0a74dbe6b4b3eca6fbf957"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af43764beab77923c98e2ab9b0a664edd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#af43764beab77923c98e2ab9b0a664edd">JSON_Detach_FromObject</a>&#160;&#160;&#160;		<a class="el" href="json_8h.html#a37ebd241fa818c1df1862097a5d25fe0">JSON_Detach_FromObject_CaseSensitive</a></td></tr>
 <tr class="separator:af43764beab77923c98e2ab9b0a664edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a37ebd241fa818c1df1862097a5d25fe0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a37ebd241fa818c1df1862097a5d25fe0">JSON_Detach_FromObject_CaseSensitive</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#af936dd481cf5f95022e3796d24781055">KVT_Detach_FromObject_CaseSensitive</a></td></tr>
+<tr class="memdesc:a37ebd241fa818c1df1862097a5d25fe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#af936dd481cf5f95022e3796d24781055" title="(case-sensitive)">KVT_Detach_FromObject_CaseSensitive</a>]  <a href="json_8h.html#a37ebd241fa818c1df1862097a5d25fe0">More...</a><br /></td></tr>
 <tr class="separator:a37ebd241fa818c1df1862097a5d25fe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af2f0c606b97c98d8f4067c7d7f9fabf9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#af2f0c606b97c98d8f4067c7d7f9fabf9">JSON_Detach_FromObject_IgnoreCase</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#ab872cb4f00ff49f7b04457a0e73fcce5">KVT_Detach_FromObject_IgnoreCase</a></td></tr>
+<tr class="memdesc:af2f0c606b97c98d8f4067c7d7f9fabf9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#ab872cb4f00ff49f7b04457a0e73fcce5">KVT_Detach_FromObject_IgnoreCase</a>]  <a href="json_8h.html#af2f0c606b97c98d8f4067c7d7f9fabf9">More...</a><br /></td></tr>
 <tr class="separator:af2f0c606b97c98d8f4067c7d7f9fabf9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a661ea95249fc90858be379cd61177bea"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a661ea95249fc90858be379cd61177bea">JSON_Replace_InObject</a>&#160;&#160;&#160;		<a class="el" href="json_8h.html#a49a11e7fcf2865b36dc5fa4f2a17e2b0">JSON_Replace_InObject_CaseSensitive</a></td></tr>
 <tr class="separator:a661ea95249fc90858be379cd61177bea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49a11e7fcf2865b36dc5fa4f2a17e2b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a49a11e7fcf2865b36dc5fa4f2a17e2b0">JSON_Replace_InObject_CaseSensitive</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#a29818994eb731d1c4d297f0eda78fc7d">KVT_Replace_InObject_CaseSensitive</a></td></tr>
+<tr class="memdesc:a49a11e7fcf2865b36dc5fa4f2a17e2b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#a29818994eb731d1c4d297f0eda78fc7d" title="(case-sensitive)">KVT_Replace_InObject_CaseSensitive</a>]  <a href="json_8h.html#a49a11e7fcf2865b36dc5fa4f2a17e2b0">More...</a><br /></td></tr>
 <tr class="separator:a49a11e7fcf2865b36dc5fa4f2a17e2b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8b6c287fac9d72b7c888c594a6de0b8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a8b6c287fac9d72b7c888c594a6de0b8d">JSON_Replace_InObject_IgnoreCase</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#aaccce49299a2b2c395fc39eebaad56a4">KVT_Replace_InObject_IgnoreCase</a></td></tr>
+<tr class="memdesc:a8b6c287fac9d72b7c888c594a6de0b8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#aaccce49299a2b2c395fc39eebaad56a4">KVT_Replace_InObject_IgnoreCase</a>]  <a href="json_8h.html#a8b6c287fac9d72b7c888c594a6de0b8d">More...</a><br /></td></tr>
 <tr class="separator:a8b6c287fac9d72b7c888c594a6de0b8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a95bca67e8517d98efbd4222d97552765"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a95bca67e8517d98efbd4222d97552765">TOML_Merge</a>&#160;&#160;&#160;<a class="el" href="common_8h.html#afae920813b9b81f23f3a73b26afb9d40">KVT_Merge</a></td></tr>
-<tr class="memdesc:a95bca67e8517d98efbd4222d97552765"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#afae920813b9b81f23f3a73b26afb9d40" title="Creates a new object by syncing the fields of both given objects kvt1 and kvt2">KVT_Merge</a>]  <a href="json_8h.html#a95bca67e8517d98efbd4222d97552765">More...</a><br /></td></tr>
+<tr class="memdesc:a95bca67e8517d98efbd4222d97552765"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="common_8h.html#afae920813b9b81f23f3a73b26afb9d40">KVT_Merge</a>]  <a href="json_8h.html#a95bca67e8517d98efbd4222d97552765">More...</a><br /></td></tr>
 <tr class="separator:a95bca67e8517d98efbd4222d97552765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Macros which configure the default behavior of the JSON parsing functions (<code>Strict</code> or <code>Lenient</code>) </p>
+</div></td></tr>
+<tr class="memitem:a71726a1f1860d3396b64cddc6803e4b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a71726a1f1860d3396b64cddc6803e4b6">JSON_Parse</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">JSON_Parse_Lenient</a></td></tr>
+<tr class="separator:a71726a1f1860d3396b64cddc6803e4b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b1c02287daf74c6ef1e8f1624a24213"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4b1c02287daf74c6ef1e8f1624a24213">c_jsonparse</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a71726a1f1860d3396b64cddc6803e4b6">JSON_Parse</a></td></tr>
+<tr class="separator:a4b1c02287daf74c6ef1e8f1624a24213"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab032892873af1964261b5097aaca8082"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a>&#160;&#160;&#160;JSON_Parse_Lenient_N</td></tr>
+<tr class="separator:ab032892873af1964261b5097aaca8082"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2edfcc147d0d4d6e6ba0fbe48eaef52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad2edfcc147d0d4d6e6ba0fbe48eaef52">c_jsonnparse</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a></td></tr>
+<tr class="separator:ad2edfcc147d0d4d6e6ba0fbe48eaef52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85467f20c533550a792249dbe43b15c4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a85467f20c533550a792249dbe43b15c4">JSON_FromString</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a></td></tr>
+<tr class="separator:a85467f20c533550a792249dbe43b15c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e83e2b7e94fd757180463df6b1f4eac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a4e83e2b7e94fd757180463df6b1f4eac">c_strtojson</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a85467f20c533550a792249dbe43b15c4">JSON_FromString</a></td></tr>
+<tr class="separator:a4e83e2b7e94fd757180463df6b1f4eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Macros which configure the default behavior of the <a class="el" href="json_8h.html#a09c5a722c0f3545f404c055c511f9ce0">JSON_Print()</a> function (<code>Pretty</code> or <code>Minify</code>) </p>
+</div></td></tr>
+<tr class="memitem:a09c5a722c0f3545f404c055c511f9ce0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a09c5a722c0f3545f404c055c511f9ce0">JSON_Print</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a></td></tr>
+<tr class="separator:a09c5a722c0f3545f404c055c511f9ce0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa965eabfa8f97f05c37f38f51f378b55"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#aa965eabfa8f97f05c37f38f51f378b55">c_jsonprint</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a09c5a722c0f3545f404c055c511f9ce0">JSON_Print</a></td></tr>
+<tr class="separator:aa965eabfa8f97f05c37f38f51f378b55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2f6d3ea215007c958d5c0d748fb93c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ae2f6d3ea215007c958d5c0d748fb93c5">JSON_ToString</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a></td></tr>
+<tr class="separator:ae2f6d3ea215007c958d5c0d748fb93c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad1c05bec01662d354a416cb1ca377aa3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad1c05bec01662d354a416cb1ca377aa3">c_jsontostr</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ae2f6d3ea215007c958d5c0d748fb93c5">JSON_ToString</a></td></tr>
+<tr class="separator:ad1c05bec01662d354a416cb1ca377aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a6f517a113ceed63650a8780feb7ae74e"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">s_kvt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a></td></tr>
-<tr class="separator:a6f517a113ceed63650a8780feb7ae74e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:ab7e0e5047817042006b9c3ff0626386e"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a> (t_utf8 *dest, <a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *item, t_size n)</td></tr>
-<tr class="memdesc:ab7e0e5047817042006b9c3ff0626386e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print a <code>s_json</code> item to string buffer <code>dest</code>, writing at most <code>n</code> characters.  <a href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">More...</a><br /></td></tr>
-<tr class="separator:ab7e0e5047817042006b9c3ff0626386e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac871f6953d9d65cc7ea6e30f72ea1431"><td class="memItemLeft" align="right" valign="top">t_utf8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a> (<a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *item)</td></tr>
-<tr class="memdesc:ac871f6953d9d65cc7ea6e30f72ea1431"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a new string from the given JSON <code>item</code>, with readable formatting.  <a href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">More...</a><br /></td></tr>
-<tr class="separator:ac871f6953d9d65cc7ea6e30f72ea1431"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a522ac27cf1e07a35c0c135459e58ee6b"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b">JSON_Print_Minify</a> (t_utf8 *dest, <a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *item, t_size n)</td></tr>
-<tr class="memdesc:a522ac27cf1e07a35c0c135459e58ee6b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e" title="Print a s_json item to string buffer dest, writing at most n characters.">JSON_Print_Pretty()</a>, but this prints the minimum amount of characters possible.  <a href="json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b">More...</a><br /></td></tr>
-<tr class="separator:a522ac27cf1e07a35c0c135459e58ee6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a84366f3bac35f20dd6c16ca447b2e06b"><td class="memItemLeft" align="right" valign="top">t_utf8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b">JSON_ToString_Minify</a> (<a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *item)</td></tr>
-<tr class="memdesc:a84366f3bac35f20dd6c16ca447b2e06b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a new string from the given JSON <code>item</code>, without any formatting/whitespace.  <a href="json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b">More...</a><br /></td></tr>
-<tr class="separator:a84366f3bac35f20dd6c16ca447b2e06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90e3d038a51ac2d3935a5e7937adfa30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">JSON_Minify</a> (t_utf8 *json)</td></tr>
-<tr class="memdesc:a90e3d038a51ac2d3935a5e7937adfa30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minify a JSON string, to make it more lightweight: removes all whitespace characters.  <a href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">More...</a><br /></td></tr>
-<tr class="separator:a90e3d038a51ac2d3935a5e7937adfa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a3a4c8ec4182bdd2ab7da004d0851354e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">s_kvt</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a></td></tr>
+<tr class="memdesc:a3a4c8ec4182bdd2ab7da004d0851354e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like other libccc/encode/ types, JSON is simply an alias for the KVT type.  <a href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">More...</a><br /></td></tr>
+<tr class="separator:a3a4c8ec4182bdd2ab7da004d0851354e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a509468822283e838c4b8f1652b2967a9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a509468822283e838c4b8f1652b2967a9">c_jsonparse_l</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">JSON_Parse_Lenient</a></td></tr>
 <tr class="separator:a509468822283e838c4b8f1652b2967a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f58a16bfc583c029cc771271c77fd4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3f58a16bfc583c029cc771271c77fd4f">c_strtojson_l</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a></td></tr>
-<tr class="separator:a3f58a16bfc583c029cc771271c77fd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">JSON_Parse_Lenient</a> (<a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> **dest, t_utf8 const *str, t_size n)</td></tr>
+<tr class="memitem:ade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">JSON_Parse_Lenient</a> (<a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> **dest, t_utf8 const *str, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="memdesc:ade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new <code>s_json</code> object, parsed from a (valid) JSON string.  <a href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e">More...</a><br /></td></tr>
 <tr class="separator:ade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d5dcbe9aa2b0c07977231a3277d2e62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a> (t_utf8 const *str)</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e" title="Create a new s_json object, parsed from a (valid) JSON string.">JSON_Parse_Lenient()</a> </dd></dl>
+</td></tr>
+<tr class="memitem:a3f58a16bfc583c029cc771271c77fd4f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3f58a16bfc583c029cc771271c77fd4f">c_strtojson_l</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a></td></tr>
+<tr class="separator:a3f58a16bfc583c029cc771271c77fd4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d5dcbe9aa2b0c07977231a3277d2e62"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a7d5dcbe9aa2b0c07977231a3277d2e62">JSON_FromString_Lenient</a> (t_utf8 const *str)</td></tr>
 <tr class="separator:a7d5dcbe9aa2b0c07977231a3277d2e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1dc65498c1223b8c9152d5c0c9b5f913"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a1dc65498c1223b8c9152d5c0c9b5f913">c_jsonparse_s</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7">JSON_Parse_Strict</a></td></tr>
 <tr class="separator:a1dc65498c1223b8c9152d5c0c9b5f913"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35030a6d66b0832d882a82376c164d96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a35030a6d66b0832d882a82376c164d96">c_strtojson_s</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ad0aee8e2d79409f9c4190fb9af8fc01d">JSON_FromString_Strict</a></td></tr>
-<tr class="separator:a35030a6d66b0832d882a82376c164d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a243bd8536bcbbf44d5ab3ef5267560b7"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7">JSON_Parse_Strict</a> (<a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> **dest, t_utf8 const *str, t_size n)</td></tr>
+<tr class="memitem:a243bd8536bcbbf44d5ab3ef5267560b7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7">JSON_Parse_Strict</a> (<a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> **dest, t_utf8 const *str, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="memdesc:a243bd8536bcbbf44d5ab3ef5267560b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create a new <code>s_json</code> object, parsed from a (valid) JSON string.  <a href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7">More...</a><br /></td></tr>
 <tr class="separator:a243bd8536bcbbf44d5ab3ef5267560b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad0aee8e2d79409f9c4190fb9af8fc01d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad0aee8e2d79409f9c4190fb9af8fc01d">JSON_FromString_Strict</a> (t_utf8 const *str)</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7" title="Create a new s_json object, parsed from a (valid) JSON string.">JSON_Parse_Strict()</a> </dd></dl>
+</td></tr>
+<tr class="memitem:a35030a6d66b0832d882a82376c164d96"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a35030a6d66b0832d882a82376c164d96">c_strtojson_s</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ad0aee8e2d79409f9c4190fb9af8fc01d">JSON_FromString_Strict</a></td></tr>
+<tr class="separator:a35030a6d66b0832d882a82376c164d96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad0aee8e2d79409f9c4190fb9af8fc01d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ad0aee8e2d79409f9c4190fb9af8fc01d">JSON_FromString_Strict</a> (t_utf8 const *str)</td></tr>
 <tr class="separator:ad0aee8e2d79409f9c4190fb9af8fc01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Print a <code>s_json</code> item to string buffer <code>dest</code>, writing at most <code>n</code> characters. </p>
+</td></tr>
+<tr class="memitem:a9416b1418286270167b956597b99896b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a9416b1418286270167b956597b99896b">c_jsonprintfmt</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a></td></tr>
+<tr class="separator:a9416b1418286270167b956597b99896b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7e0e5047817042006b9c3ff0626386e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty</a> (t_utf8 *dest, <a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:ab7e0e5047817042006b9c3ff0626386e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a new string from the given JSON <code>item</code>, with readable formatting. </p>
+</td></tr>
+<tr class="memitem:a62bc447e6f9d0c31546875f9ee0700aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a62bc447e6f9d0c31546875f9ee0700aa">c_jsontostrfmt</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a></td></tr>
+<tr class="separator:a62bc447e6f9d0c31546875f9ee0700aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac871f6953d9d65cc7ea6e30f72ea1431"><td class="memItemLeft" align="right" valign="top">t_utf8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac871f6953d9d65cc7ea6e30f72ea1431">JSON_ToString_Pretty</a> (<a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)</td></tr>
+<tr class="separator:ac871f6953d9d65cc7ea6e30f72ea1431"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Like <a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e">JSON_Print_Pretty()</a>, but this prints the minimum amount of characters possible </p>
+</td></tr>
+<tr class="memitem:ac462463818291b6fff971146652bfdc2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ac462463818291b6fff971146652bfdc2">c_jsonprintmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b">JSON_Print_Minify</a></td></tr>
+<tr class="separator:ac462463818291b6fff971146652bfdc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a522ac27cf1e07a35c0c135459e58ee6b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a522ac27cf1e07a35c0c135459e58ee6b">JSON_Print_Minify</a> (t_utf8 *dest, <a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:a522ac27cf1e07a35c0c135459e58ee6b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a new string from the given JSON <code>item</code>, without any formatting/whitespace. </p>
+</td></tr>
+<tr class="memitem:a3ff97a5f14919192972cff6a6eb1e0e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a3ff97a5f14919192972cff6a6eb1e0e0">c_jsontostrmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b">JSON_ToString_Minify</a></td></tr>
+<tr class="separator:a3ff97a5f14919192972cff6a6eb1e0e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84366f3bac35f20dd6c16ca447b2e06b"><td class="memItemLeft" align="right" valign="top">t_utf8 *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a84366f3bac35f20dd6c16ca447b2e06b">JSON_ToString_Minify</a> (<a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)</td></tr>
+<tr class="separator:a84366f3bac35f20dd6c16ca447b2e06b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Minify a JSON string, to make it more lightweight: removes all whitespace characters </p>
+</td></tr>
+<tr class="memitem:ab9e5da12dff5ac5775bf730cf6c15072"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#ab9e5da12dff5ac5775bf730cf6c15072">c_jsonmin</a>&#160;&#160;&#160;<a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">JSON_Minify</a></td></tr>
+<tr class="separator:ab9e5da12dff5ac5775bf730cf6c15072"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90e3d038a51ac2d3935a5e7937adfa30"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">JSON_Minify</a> (t_utf8 *json)</td></tr>
+<tr class="memdesc:a90e3d038a51ac2d3935a5e7937adfa30"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO rename to JSON_Minify_InPlace(), and add <a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30" title="TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate.">JSON_Minify()</a>, which would allocate.  <a href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30">More...</a><br /></td></tr>
+<tr class="separator:a90e3d038a51ac2d3935a5e7937adfa30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This header defines a dynamic runtime object type, similar to objects in JS.</p><ul>
 <li>JSON spec: <a href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a></li>
 </ul>
 <p >In particular, much of the code in this header was inspired by cJSON:</p><ul>
-<li><a href="https://github.com/DaveGamble/cJSON">https://github.com/DaveGamble/cJSON</a></li>
+<li><a href="https://github.com/DaveGamble/cJSON">https://github.com/DaveGamble/cJSON</a> </li>
 </ul>
 
 <p class="definition">Definition in file <a class="el" href="json_8h_source.html">json.h</a>.</p>
@@ -475,7 +489,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00062">62</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00063">63</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -491,7 +505,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00063">63</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00064">64</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -507,23 +521,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00065">65</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00066">66</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
-<a id="a9d6bb30f90f4926b3fe5f87991f0c03e" name="a9d6bb30f90f4926b3fe5f87991f0c03e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d6bb30f90f4926b3fe5f87991f0c03e">&#9670;&nbsp;</a></span>c_jsonparsen</h2>
+<a id="ad2edfcc147d0d4d6e6ba0fbe48eaef52" name="ad2edfcc147d0d4d6e6ba0fbe48eaef52"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2edfcc147d0d4d6e6ba0fbe48eaef52">&#9670;&nbsp;</a></span>c_jsonnparse</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_jsonparsen&#160;&#160;&#160;<a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a></td>
+          <td class="memname">#define c_jsonnparse&#160;&#160;&#160;<a class="el" href="json_8h.html#ab032892873af1964261b5097aaca8082">JSON_Parse_N</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00066">66</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00067">67</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -539,7 +553,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00068">68</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00069">69</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -555,7 +569,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00069">69</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00070">70</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -571,7 +585,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00099">99</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00102">102</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -587,7 +601,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00103">103</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00108">108</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -603,7 +617,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00127">127</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00135">135</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -619,7 +633,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00131">131</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00141">141</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -635,7 +649,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00142">142</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00156">156</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -651,7 +665,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00143">143</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00157">157</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -667,7 +681,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00145">145</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00159">159</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -683,7 +697,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00146">146</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00160">160</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -699,7 +713,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00159">159</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00175">175</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -715,7 +729,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00163">163</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00181">181</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -731,7 +745,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00169">169</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00189">189</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -747,7 +761,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00173">173</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00195">195</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -763,7 +777,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00203">203</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00229">229</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -779,9 +793,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a4a5c2e92ddc95733e556d2120454e545" title="Allocates one single KVT struct.">KVT_Item</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a4a5c2e92ddc95733e556d2120454e545">KVT_Item</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00217">217</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00244">244</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -797,9 +811,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a6fbff5747a3aa11da2ef3b2bdb45dd2b" title="Duplicates a KVT object.">KVT_Duplicate</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a6fbff5747a3aa11da2ef3b2bdb45dd2b">KVT_Duplicate</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00219">219</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00246">246</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -815,9 +829,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a37fd755f63fcd79305320b3ec4d57311" title="Recursively compare two s_kvt items for equality.">KVT_Equals</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a37fd755f63fcd79305320b3ec4d57311">KVT_Equals</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00221">221</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00248">248</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -833,9 +847,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ac0fc275c535e3422b6e863ad7deb1b97" title="Creates a new KVT object by concatenating two existing ones.">KVT_Concat</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ac0fc275c535e3422b6e863ad7deb1b97">KVT_Concat</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00223">223</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00250">250</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -851,9 +865,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a22ed35a1cfbeb345b4db21f2c797dee9" title="TODO document.">KVT_Concat_Array</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a22ed35a1cfbeb345b4db21f2c797dee9">KVT_Concat_Array</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00224">224</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00251">251</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -869,45 +883,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a70f74f8d2ff238792726a648ee997081" title="TODO document.">KVT_Concat_Object</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a70f74f8d2ff238792726a648ee997081">KVT_Concat_Object</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00225">225</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
-
-</div>
-</div>
-<a id="ace71a6d0cd278e8a5d92fff7ff778e4f" name="ace71a6d0cd278e8a5d92fff7ff778e4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ace71a6d0cd278e8a5d92fff7ff778e4f">&#9670;&nbsp;</a></span>JSON_GetError</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define JSON_GetError&#160;&#160;&#160;KVT_GetError</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[<em>Alias for</em> #KVT_GetError] </p>
-
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00229">229</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
-
-</div>
-</div>
-<a id="ac4a73979b5563087ab8a6eb8666be420" name="ac4a73979b5563087ab8a6eb8666be420"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac4a73979b5563087ab8a6eb8666be420">&#9670;&nbsp;</a></span>JSON_GetErrorMessage</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define JSON_GetErrorMessage&#160;&#160;&#160;KVT_GetErrorMessage</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>[<em>Alias for</em> #KVT_GetErrorMessage] </p>
-
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00231">231</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00252">252</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -925,7 +903,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9e26585db119b9992636f792a54b19e7">KVT_CreateNull</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00241">241</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00262">262</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -943,7 +921,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a989059b15a54c485239aedf0dd45b023">KVT_CreateBoolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00242">242</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00263">263</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -961,7 +939,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab361b89b7edfa3a19b65c9712e521377">KVT_CreateInteger</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00243">243</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00264">264</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -979,7 +957,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aedfb1b6843668bb61790766a41f106b2">KVT_CreateFloat</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00244">244</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00265">265</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -997,7 +975,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aed207f556dfd213275a0723c039067ec">KVT_CreateString</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00245">245</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00266">266</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1015,7 +993,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#af765af31cf6c46672cc91642a588f46e">KVT_CreateArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00246">246</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00267">267</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1033,7 +1011,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a0308fba51cbc2193af5aee5dd7ede80a">KVT_CreateObject</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00247">247</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00268">268</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1051,7 +1029,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#af6c8a9d15f509e2541da1c3385ee8a03">KVT_CreateRaw</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00248">248</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00269">269</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1067,9 +1045,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a390706f77d93c02628916fcfd59bf7c6" title="Create an array that only references it&#39;s elements, so they will not be freed by KVT_Delete()">KVT_CreateArrayReference</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a390706f77d93c02628916fcfd59bf7c6">KVT_CreateArrayReference</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00252">252</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00273">273</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1085,9 +1063,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a21274b1343ba5cef9c35ec69ddde53f7" title="Create an object that only references it&#39;s elements, so they will not be freed by KVT_Delete()">KVT_CreateObjectReference</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a21274b1343ba5cef9c35ec69ddde53f7">KVT_CreateObjectReference</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00253">253</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00274">274</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1103,9 +1081,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#abe8ea9bd30286dd84dcc4bcf0eec55d2" title="Create a string where value_string references a string, so it will not be freed by KVT_Delete()">KVT_CreateStringReference</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#abe8ea9bd30286dd84dcc4bcf0eec55d2">KVT_CreateStringReference</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00254">254</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00275">275</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1121,9 +1099,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a50dc813a7d5a248503340514349916c8" title="Create and fill a KVT array.">KVT_CreateArray_Boolean</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a50dc813a7d5a248503340514349916c8">KVT_CreateArray_Boolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00258">258</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00279">279</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1141,7 +1119,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aa87d5bee66141b5349d955072a3066ac">KVT_CreateArray_UInt</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00259">259</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00280">280</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1137,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a46391dc759b17e11b985b8291d609337">KVT_CreateArray_U8</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00260">260</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00281">281</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1177,7 +1155,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a18ab24508cad41bec7111ea4bcabbaf0">KVT_CreateArray_U16</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00261">261</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00282">282</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1195,7 +1173,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a3fe419cf7b15d1605cea1e34f2ff2c31">KVT_CreateArray_U32</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00262">262</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00283">283</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1213,7 +1191,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aca5779213d0b036cf2445aec5d9ba184">KVT_CreateArray_U64</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00263">263</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00284">284</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1231,7 +1209,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a37c51e94f6f9a392cdd0f927f856c5d3">KVT_CreateArray_U128</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00264">264</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00285">285</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1249,7 +1227,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#accfda4230a981951769ebeac4aa75ced">KVT_CreateArray_SInt</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00265">265</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00286">286</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1267,7 +1245,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ad16328bee9f551eb72340459a9b3b06e">KVT_CreateArray_S8</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00266">266</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00287">287</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1285,7 +1263,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aa4ac9ed1c3cd0ee632c779d5b15edfa0">KVT_CreateArray_S16</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00267">267</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00288">288</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1303,7 +1281,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ad4fd950ffb3acafd6a82e8fba0ca5b25">KVT_CreateArray_S32</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00268">268</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00289">289</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1321,7 +1299,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a677b83fdbb2d64769284a3a4c10306bb">KVT_CreateArray_S64</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00269">269</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00290">290</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1339,7 +1317,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae03f0af8699cf6bd4cad53003623e206">KVT_CreateArray_S128</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00270">270</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00291">291</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1357,7 +1335,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#afd30f36313903763b6753d51a362db8d">KVT_CreateArray_Float</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00271">271</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00292">292</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1375,7 +1353,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a397d32fcc31cd5ed0977d03616ef3074">KVT_CreateArray_F32</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00272">272</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00293">293</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1393,7 +1371,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a7cee6ea084a20e9bc43890a24964abb6">KVT_CreateArray_F64</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00273">273</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00294">294</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1411,7 +1389,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a151491f6c82de8d3427a428c75fa4c20">KVT_CreateArray_F80</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00274">274</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00295">295</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1429,7 +1407,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a57970de33a00bce461dd409bfa84ce3e">KVT_CreateArray_F128</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00275">275</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00296">296</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1447,7 +1425,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#af08c16848168fe83f4d63d3d44d3b3b2">KVT_CreateArray_String</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00276">276</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00297">297</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1463,9 +1441,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a833e402bdd40c00b4924da436649d86e" title="Returns the amount of items in the given array (or object).">KVT_GetArrayLength</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a833e402bdd40c00b4924da436649d86e">KVT_GetArrayLength</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00286">286</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00307">307</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1481,9 +1459,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9bad9d418bd0848e91b99d21ce653baa" title="Retrieve item number index from the given array. Returns NULL if unsuccessful.">KVT_GetArrayItem</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9bad9d418bd0848e91b99d21ce653baa">KVT_GetArrayItem</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00288">288</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00309">309</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1499,7 +1477,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00292">292</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00313">313</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1517,7 +1495,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab41a2be99d9e3e1b6ee4c28aeff137fb" title="(case-sensitive)">KVT_GetObjectItem_CaseSensitive</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00294">294</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00315">315</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1535,7 +1513,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a754b161be9c381081836b1134b23d956">KVT_GetObjectItem_IgnoreCase</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00295">295</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00316">316</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1551,7 +1529,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00299">299</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00320">320</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1569,7 +1547,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae044584929614773cbd582b2cb87ec26" title="(case-sensitive)">KVT_HasObjectItem_CaseSensitive</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00301">301</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00322">322</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1587,7 +1565,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ada636e9433be06e2738922401170c7d4">KVT_HasObjectItem_IgnoreCase</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00302">302</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00323">323</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1603,9 +1581,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab3ead48f2f59d055d37b6ccde87bef95" title="Access the contents of a KVT with a &#39;KVT path&#39;, ie: a format string of &#39;accessors&#39; (ie: strings or nu...">KVT_Get</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab3ead48f2f59d055d37b6ccde87bef95">KVT_Get</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00306">306</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00327">327</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1621,9 +1599,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a81ad32c87f5df47d25c2656e9f4a230f" title="Returns the boolean value contained within the given item, or FALSE if type is not DYNAMICTYPE_BOOLEA...">KVT_GetValue_Boolean</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a81ad32c87f5df47d25c2656e9f4a230f">KVT_GetValue_Boolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00308">308</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00329">329</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1639,9 +1617,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a13b1b15c5b45d98d52bc2ddbbf4f535e" title="Returns the integer value contained within the given item, or 0 if type is not DYNAMICTYPE_INTEGER.">KVT_GetValue_Integer</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a13b1b15c5b45d98d52bc2ddbbf4f535e">KVT_GetValue_Integer</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00309">309</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00330">330</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1657,9 +1635,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a00b2d552f19d5547d9287163e2a1870d" title="Returns the number value contained within the given item, or NAN if type is not DYNAMICTYPE_FLOAT.">KVT_GetValue_Float</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a00b2d552f19d5547d9287163e2a1870d">KVT_GetValue_Float</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00310">310</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00331">331</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1675,9 +1653,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#afb6831b661499ed3267ce4d999bb1436" title="Returns the string value contained within the given item, or NULL if type is not DYNAMICTYPE_STRING.">KVT_GetValue_String</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#afb6831b661499ed3267ce4d999bb1436">KVT_GetValue_String</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00311">311</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00332">332</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1693,9 +1671,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a90c250bdb61e25b01ee74d13136b7656" title="Change the value of a DYNAMICTYPE_BOOLEAN object, only takes effect when object-&gt;type == DYNAMICTYPE_...">KVT_SetValue_Boolean</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a90c250bdb61e25b01ee74d13136b7656">KVT_SetValue_Boolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00321">321</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00342">342</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1711,9 +1689,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#aabccb0776e48d14fab0abb2848ff6c04" title="Change the value of a DYNAMICTYPE_INTEGER object, only takes effect when object-&gt;type == DYNAMICTYPE_...">KVT_SetValue_Integer</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#aabccb0776e48d14fab0abb2848ff6c04">KVT_SetValue_Integer</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00322">322</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00343">343</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1729,9 +1707,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a5073454a813d43079d41c425da79f8ef" title="Change the value of a DYNAMICTYPE_FLOAT object, only takes effect when object-&gt;type == DYNAMICTYPE_FL...">KVT_SetValue_Float</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a5073454a813d43079d41c425da79f8ef">KVT_SetValue_Float</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00323">323</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00344">344</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1747,9 +1725,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae12b8da08526570539d4e7f340adadfd" title="Change the value of a DYNAMICTYPE_STRING object, only takes effect when object-&gt;type == DYNAMICTYPE_S...">KVT_SetValue_String</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae12b8da08526570539d4e7f340adadfd">KVT_SetValue_String</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00324">324</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00345">345</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1765,9 +1743,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ad362ffd6debe3b634aee171816679e58" title="Appends the given item to the given array.">KVT_AddToArray_Item</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ad362ffd6debe3b634aee171816679e58">KVT_AddToArray_Item</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00328">328</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00349">349</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1783,9 +1761,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a5012f94cd37b5b31ae009e1595e11e22" title="Append a reference to item to the given array.">KVT_AddToArray_ItemReference</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a5012f94cd37b5b31ae009e1595e11e22">KVT_AddToArray_ItemReference</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00329">329</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00350">350</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1801,9 +1779,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9097f5b4957d72c2fd6d2818daa26a2d" title="Appends the given item to the given object, with the given key.">KVT_AddToObject_Item</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9097f5b4957d72c2fd6d2818daa26a2d">KVT_AddToObject_Item</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00331">331</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00352">352</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1819,9 +1797,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a97916346cbbe4d887c797158bd895445" title="Append reference to item to the given object.">KVT_AddToObject_ItemReference</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a97916346cbbe4d887c797158bd895445">KVT_AddToObject_ItemReference</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00332">332</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00353">353</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1839,7 +1817,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aba8fc18becbeca4834f5a03103c3a9f2">KVT_AddToObject_Null</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00336">336</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00357">357</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1857,7 +1835,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aaeb6896a9cb7e3925788dcfa97cedfb1">KVT_AddToObject_Boolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00337">337</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00358">358</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1875,7 +1853,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a8be92bb2f7ae5a79da85c3f50b57f30d">KVT_AddToObject_Integer</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00338">338</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00359">359</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1893,7 +1871,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a0e31565f1c02566d9c6d4df96e7c0717">KVT_AddToObject_Float</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00339">339</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00360">360</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1911,7 +1889,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a1ec3375348e4034134b6c781672f686e">KVT_AddToObject_String</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00340">340</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00361">361</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1929,7 +1907,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a207580c708b73f6780b71215c2fdd0dd">KVT_AddToObject_Object</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00341">341</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00362">362</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1947,7 +1925,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#aff2f406c05c8075d6e06a962d584cf22">KVT_AddToObject_Array</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00342">342</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00363">363</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1965,7 +1943,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ad2113c3cc6d7dfb6532c607a05e55054">KVT_AddToObject_Raw</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00343">343</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00364">364</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -1983,7 +1961,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a404f04616cb71c818e798afd24c5be8e">KVT_IsInvalid</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00353">353</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00374">374</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2001,7 +1979,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a8ddef92b0cc55b72462ab75aca24100b">KVT_IsNull</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00354">354</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00375">375</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2019,7 +1997,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a5f59621de0bf0f084b6f7d0e5181373f">KVT_IsBoolean</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00355">355</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00376">376</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2037,7 +2015,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a050a209ad59205dedbda7abd040837c7">KVT_IsInteger</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00356">356</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00377">377</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2055,7 +2033,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a026ab7374c22b84b627e3ce2db0f5d61">KVT_IsFloat</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00357">357</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00378">378</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2073,7 +2051,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a1157f150a1fda778313e768c66c44f57">KVT_IsString</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00358">358</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00379">379</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2091,7 +2069,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab6d7af22d81fff3e9d74c4c27c18746a">KVT_IsArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00359">359</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00380">380</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2109,7 +2087,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a13aa13d654762eb56960fa75a10da4d4">KVT_IsObject</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00360">360</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00381">381</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2127,7 +2105,7 @@ Functions</h2></td></tr>
 
 <p>[<em>Alias for</em> <a class="el" href="common_8h.html#a2eebaeb9afecf1980d0bee6b79148fc9">KVT_IsRaw</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00361">361</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00382">382</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2143,9 +2121,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a1626b86dca2393fd077a6b3d871cd8aa" title="Delete a s_kvt entity and all subentities.">KVT_Delete</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a1626b86dca2393fd077a6b3d871cd8aa">KVT_Delete</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00371">371</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00392">392</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2161,9 +2139,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#af1950684e47e62258baed96af0cee0f2" title="Removes (without deleting) the given item from the given parent object.">KVT_Detach</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#af1950684e47e62258baed96af0cee0f2">KVT_Detach</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00373">373</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00394">394</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2179,9 +2157,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9e79ded461e3a5beafb56a9a910fc1c0" title="Replaces the given item from the given parent object, with the given newitem.">KVT_Replace</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a9e79ded461e3a5beafb56a9a910fc1c0">KVT_Replace</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00375">375</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00396">396</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2197,9 +2175,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ac3f47d63dae9d0073bf3eff8ee12d29a" title="Deletes the item at the given index from the given array.">KVT_Delete_FromArray</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ac3f47d63dae9d0073bf3eff8ee12d29a">KVT_Delete_FromArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00379">379</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00400">400</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2215,9 +2193,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a91afe7e9bd6e12cb1cf4ff1f95e629c9" title="Removes (without deleting) the given item from the given array.">KVT_Detach_FromArray</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a91afe7e9bd6e12cb1cf4ff1f95e629c9">KVT_Detach_FromArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00381">381</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00402">402</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2233,9 +2211,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a7a856e9a72769f21105c11dd1180453e" title="Replaces the given item from the given array, with the given newitem.">KVT_Replace_InArray</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a7a856e9a72769f21105c11dd1180453e">KVT_Replace_InArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00383">383</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00404">404</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2251,9 +2229,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae7543aa7808c92de710fab4387bdf992" title="Inserts the given newitem in the givne array, shifting pre-existing items to the right.">KVT_Insert_InArray</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ae7543aa7808c92de710fab4387bdf992">KVT_Insert_InArray</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00385">385</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00406">406</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2269,7 +2247,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00389">389</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00410">410</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2285,7 +2263,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00391">391</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ac0acfd2be9364dbb5ff9d3694d5eb33a" title="(case-sensitive)">KVT_Delete_FromObject_CaseSensitive</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00412">412</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2301,7 +2281,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00392">392</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a969960cf1bf965dab6c7f4906a11789b">KVT_Delete_FromObject_IgnoreCase</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00413">413</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2317,7 +2299,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00394">394</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00415">415</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2333,7 +2315,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00396">396</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#af936dd481cf5f95022e3796d24781055" title="(case-sensitive)">KVT_Detach_FromObject_CaseSensitive</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00417">417</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2349,7 +2333,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00397">397</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#ab872cb4f00ff49f7b04457a0e73fcce5">KVT_Detach_FromObject_IgnoreCase</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00418">418</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2365,7 +2351,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00399">399</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00420">420</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2381,7 +2367,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00401">401</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#a29818994eb731d1c4d297f0eda78fc7d" title="(case-sensitive)">KVT_Replace_InObject_CaseSensitive</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00422">422</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2397,7 +2385,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00402">402</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#aaccce49299a2b2c395fc39eebaad56a4">KVT_Replace_InObject_IgnoreCase</a>] </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00423">423</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2413,26 +2403,9 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="common_8h.html#afae920813b9b81f23f3a73b26afb9d40" title="Creates a new object by syncing the fields of both given objects kvt1 and kvt2">KVT_Merge</a>] </p>
+<p>[<em>Alias for</em> <a class="el" href="common_8h.html#afae920813b9b81f23f3a73b26afb9d40">KVT_Merge</a>] </p>
 
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00406">406</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a6f517a113ceed63650a8780feb7ae74e" name="a6f517a113ceed63650a8780feb7ae74e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f517a113ceed63650a8780feb7ae74e">&#9670;&nbsp;</a></span>s_json</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef <a class="el" href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">s_kvt</a> <a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00041">41</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00427">427</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2444,9 +2417,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size JSON_Parse_Lenient </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> JSON_Parse_Lenient </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> **&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -2458,7 +2431,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2501,7 +2474,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> * JSON_FromString_Lenient </td>
+          <td class="memname"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> * JSON_FromString_Lenient </td>
           <td>(</td>
           <td class="paramtype">t_utf8 const *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -2509,7 +2482,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="json_8h.html#ade72aa3ef1d2a8dcf8b9a7e67bb7d39e" title="Create a new s_json object, parsed from a (valid) JSON string.">JSON_Parse_Lenient()</a> </dd></dl>
 
 </div>
 </div>
@@ -2520,9 +2492,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size JSON_Parse_Strict </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> JSON_Parse_Strict </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> **&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -2534,7 +2506,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2567,7 +2539,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> * JSON_FromString_Strict </td>
+          <td class="memname"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> * JSON_FromString_Strict </td>
           <td>(</td>
           <td class="paramtype">t_utf8 const *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
@@ -2575,7 +2547,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="json_8h.html#a243bd8536bcbbf44d5ab3ef5267560b7" title="Create a new s_json object, parsed from a (valid) JSON string.">JSON_Parse_Strict()</a> </dd></dl>
 
 </div>
 </div>
@@ -2586,7 +2557,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size JSON_Print_Pretty </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> JSON_Print_Pretty </td>
           <td>(</td>
           <td class="paramtype">t_utf8 *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
@@ -2594,13 +2565,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *&#160;</td>
           <td class="paramname"><em>item</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2610,8 +2581,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Print a <code>s_json</code> item to string buffer <code>dest</code>, writing at most <code>n</code> characters. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dest</td><td>The pre-allocated string buffer to write to </td></tr>
@@ -2633,14 +2602,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">t_utf8 * JSON_ToString_Pretty </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *&#160;</td>
           <td class="paramname"><em>item</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a new string from the given JSON <code>item</code>, with readable formatting. </p>
 
 </div>
 </div>
@@ -2651,7 +2618,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size JSON_Print_Minify </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> JSON_Print_Minify </td>
           <td>(</td>
           <td class="paramtype">t_utf8 *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
@@ -2659,13 +2626,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *&#160;</td>
           <td class="paramname"><em>item</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2675,8 +2642,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Like <a class="el" href="json_8h.html#ab7e0e5047817042006b9c3ff0626386e" title="Print a s_json item to string buffer dest, writing at most n characters.">JSON_Print_Pretty()</a>, but this prints the minimum amount of characters possible. </p>
 
 </div>
 </div>
@@ -2689,14 +2654,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">t_utf8 * JSON_ToString_Minify </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="json_8h.html#a6f517a113ceed63650a8780feb7ae74e">s_json</a> const *&#160;</td>
+          <td class="paramtype"><a class="el" href="json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e">s_json</a> const *&#160;</td>
           <td class="paramname"><em>item</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a new string from the given JSON <code>item</code>, without any formatting/whitespace. </p>
 
 </div>
 </div>
@@ -2716,9 +2679,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Minify a JSON string, to make it more lightweight: removes all whitespace characters. </p>
+<p>TODO rename to JSON_Minify_InPlace(), and add <a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30" title="TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate.">JSON_Minify()</a>, which would allocate. </p>
 <p >Minify a JSON, removing blank characters (such as ' ', '\t', '\r', '<br  />
-') from strings. The input pointer json cannot point to a read-only address area, such as a string constant, but should point to a readable and writable address area. TODO rename to JSON_Minify_InPlace(), and add <a class="el" href="json_8h.html#a90e3d038a51ac2d3935a5e7937adfa30" title="Minify a JSON string, to make it more lightweight: removes all whitespace characters.">JSON_Minify()</a>, which would allocate </p>
+') from strings. The input pointer json cannot point to a read-only address area, such as a string constant, but should point to a readable and writable address area. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a3a4c8ec4182bdd2ab7da004d0851354e" name="a3a4c8ec4182bdd2ab7da004d0851354e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a4c8ec4182bdd2ab7da004d0851354e">&#9670;&nbsp;</a></span>s_json</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">s_kvt</a> s_json</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Like other libccc/encode/ types, JSON is simply an alias for the KVT type. </p>
+
+<p class="definition">Definition at line <a class="el" href="json_8h_source.html#l00040">40</a> of file <a class="el" href="json_8h_source.html">json.h</a>.</p>
 
 </div>
 </div>
@@ -2727,7 +2709,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_30a2f238cb724f787293ed63dd2d7966.html">encode</a></li><li class="navelem"><a class="el" href="json_8h.html">json.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_d6df185c05155cc25a6063b3ffec8107.html">encode</a></li><li class="navelem"><a class="el" href="json_8h.html">json.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/math/stat.h File Reference</title>
+<title>libccc: libccc/math/stat.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -94,10 +94,7 @@ $(document).ready(function(){initNavTree('stat_8h.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Data Structures</a>  </div>
   <div class="headertitle"><div class="title">stat.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,7 +106,8 @@ $(document).ready(function(){initNavTree('stat_8h.html',''); initResizable(); })
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="stat_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="stat_8h__incl.svg" width="371" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="stat_8h_source.html">Go to the source code of this file.</a></p>
@@ -119,76 +117,20 @@ Data Structures</h2></td></tr>
 <tr class="memitem:structprob__mass"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#structprob__mass">prob_mass</a></td></tr>
 <tr class="memdesc:structprob__mass"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct for the probability mass function describing a discrete random var.  <a href="stat_8h.html#structprob__mass">More...</a><br /></td></tr>
 <tr class="separator:structprob__mass"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
 <tr class="memitem:a686da736a84d82d8cd914fde8b71e35a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a686da736a84d82d8cd914fde8b71e35a">PROB_APPROX</a>&#160;&#160;&#160;(0.000001)</td></tr>
 <tr class="memdesc:a686da736a84d82d8cd914fde8b71e35a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The amount of probabilistic approximation for libccc/math/stat functions.  <a href="stat_8h.html#a686da736a84d82d8cd914fde8b71e35a">More...</a><br /></td></tr>
 <tr class="separator:a686da736a84d82d8cd914fde8b71e35a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae9060cbb359c467a0d2993772cb3de1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ae9060cbb359c467a0d2993772cb3de1a">c_stat_new_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a427aa3564febf3e851eb0f6a75da2cc7">Stat_Int_NewList</a></td></tr>
-<tr class="separator:ae9060cbb359c467a0d2993772cb3de1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a797e87c32c0408917a84d49fa047b733"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a797e87c32c0408917a84d49fa047b733">c_stat_free_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a145de1981b0a0785732f6daaf704147c">Stat_Int_FreeList</a></td></tr>
-<tr class="separator:a797e87c32c0408917a84d49fa047b733"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa462e9e586546d1dcbd40e77a3264840"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa462e9e586546d1dcbd40e77a3264840">c_stat_merge_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad830b879869ea75504b4eecaa1643a71">Stat_Int_MergeList</a></td></tr>
-<tr class="separator:aa462e9e586546d1dcbd40e77a3264840"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f100c9c6d950173a55e1e6aab7ada3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3f100c9c6d950173a55e1e6aab7ada3f">c_stat_quicksort_i_new</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad64ef11bf6d1670ce3c72e59a3f3a776">Stat_Int_Quicksort</a></td></tr>
-<tr class="separator:a3f100c9c6d950173a55e1e6aab7ada3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af754dfa01a493fe39e63e101df011714"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af754dfa01a493fe39e63e101df011714">c_stat_quicksort_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a8293ed18975e114b2d22849bdad29669">Stat_Int_Quicksort_InPlace</a></td></tr>
-<tr class="separator:af754dfa01a493fe39e63e101df011714"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef1486df87f90edf651d74766b177a77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aef1486df87f90edf651d74766b177a77">c_stat_median_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a81e77fe950d8755017992d079b954e0a">Stat_Int_Median</a></td></tr>
-<tr class="separator:aef1486df87f90edf651d74766b177a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9f12ce8bbe479d13fb619c755dd3684"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ac9f12ce8bbe479d13fb619c755dd3684">c_stat_average_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#aeb0b829e7e60b1b33a6dc5c4092d28c9">Stat_Int_Average</a></td></tr>
-<tr class="separator:ac9f12ce8bbe479d13fb619c755dd3684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2ad43eeb3f5502c1bc4b60799bf8427d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a2ad43eeb3f5502c1bc4b60799bf8427d">c_stat_variance_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a3fe828f9b08eadee35013385e3065e32">Stat_Int_Variance</a></td></tr>
-<tr class="separator:a2ad43eeb3f5502c1bc4b60799bf8427d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af804d7889f5848af108fcac44ce4bc54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af804d7889f5848af108fcac44ce4bc54">c_stat_stddev_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad854a86952efb585dffbcfd00fd81458">Stat_Int_StandardDeviation</a></td></tr>
-<tr class="separator:af804d7889f5848af108fcac44ce4bc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b13787ba0468653687fdcd1bd2eec8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a7b13787ba0468653687fdcd1bd2eec8a">c_stat_decile_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#af8d8a46ec879d6914cf83db0691067b1">Stat_Int_Decile</a></td></tr>
-<tr class="separator:a7b13787ba0468653687fdcd1bd2eec8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afd530a4440f67c3567f42f9b3dffd7dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#afd530a4440f67c3567f42f9b3dffd7dd">c_stat_new_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a8121d117cf0da20d6a6c222a09d724ea">Stat_Float_NewList</a></td></tr>
-<tr class="separator:afd530a4440f67c3567f42f9b3dffd7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae821786adf01cc872c5f9b7a97731e83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ae821786adf01cc872c5f9b7a97731e83">c_stat_free_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#aa7f2b9e255f21c86e11d824a0909640c">Stat_Float_FreeList</a></td></tr>
-<tr class="separator:ae821786adf01cc872c5f9b7a97731e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63bf80410f60e69066ddc3777b5864f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a63bf80410f60e69066ddc3777b5864f9">c_stat_merge_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a9654fb8f99a4cd755b821034d5aef939">Stat_Float_MergeList</a></td></tr>
-<tr class="separator:a63bf80410f60e69066ddc3777b5864f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3d79394b38f9aee569a57782f8efc593"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3d79394b38f9aee569a57782f8efc593">c_stat_quicksort_f_new</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a505832e7f8945c1c10cd2afb0bab5e2f">Stat_Float_Quicksort</a></td></tr>
-<tr class="separator:a3d79394b38f9aee569a57782f8efc593"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6580288b0af13074ca861a295f13981"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad6580288b0af13074ca861a295f13981">c_stat_quicksort_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a2305d01c4a6d45969b8c09d803ae0c9c">Stat_Float_Quicksort_InPlace</a></td></tr>
-<tr class="separator:ad6580288b0af13074ca861a295f13981"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a630328a1536ad7a5ea65b2fafe5760ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a630328a1536ad7a5ea65b2fafe5760ad">c_stat_median_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a90d7149be0949cc269a387ec1e0a1e7f">Stat_Float_Median</a></td></tr>
-<tr class="separator:a630328a1536ad7a5ea65b2fafe5760ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab58d7be511b6d8f1c1858f3c4e42f41a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ab58d7be511b6d8f1c1858f3c4e42f41a">c_stat_average_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a953d7b843b19507e03aaa516bc6f38da">Stat_Float_Average</a></td></tr>
-<tr class="separator:ab58d7be511b6d8f1c1858f3c4e42f41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a1b434920699a192e2ab18c284a1f70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8a1b434920699a192e2ab18c284a1f70">c_stat_variance_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a575291c9e867e0159efe4ba38cf2b4ed">Stat_Float_Variance</a></td></tr>
-<tr class="separator:a8a1b434920699a192e2ab18c284a1f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7798d5ea9a766b76f846e92bbc30f01d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a7798d5ea9a766b76f846e92bbc30f01d">c_stat_stddev_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a392a9758ddf9c1719f095dfb984b61b6">Stat_Float_StandardDeviation</a></td></tr>
-<tr class="separator:a7798d5ea9a766b76f846e92bbc30f01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc17ee36bf63a542f016b72072cab623"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#abc17ee36bf63a542f016b72072cab623">c_stat_decile_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a62d7444168611ab7045116198f35a5be">Stat_Float_Decile</a></td></tr>
-<tr class="separator:abc17ee36bf63a542f016b72072cab623"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa07de592dbf3304dcd212d8929231692"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa07de592dbf3304dcd212d8929231692">c_stat_new_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a17b5c7ce73244f7754b2750644bc6b31">Stat_NewPMF</a></td></tr>
-<tr class="separator:aa07de592dbf3304dcd212d8929231692"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab9da7247bc1cc2f2313f4011f717c8ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ab9da7247bc1cc2f2313f4011f717c8ac">c_stat_free_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a88b8945e06c464616cfffc452bc7701b">Stat_FreePMF</a></td></tr>
-<tr class="separator:ab9da7247bc1cc2f2313f4011f717c8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a72d9501776f5095455b49af3e92a833b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a72d9501776f5095455b49af3e92a833b">c_stat_ilst_to_iset</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#af83fc37c47316438118bf65888468d74">Stat_IntList_To_Set</a></td></tr>
-<tr class="separator:a72d9501776f5095455b49af3e92a833b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a99ba4802136c892362e4245122144f65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a99ba4802136c892362e4245122144f65">c_stat_ilst_count</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a0b7f0137cf2a2b5d0e3bfec0ee8b56d5">Stat_IntList_Count</a></td></tr>
-<tr class="separator:a99ba4802136c892362e4245122144f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad57cb93dc93282034066d650f082d77f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad57cb93dc93282034066d650f082d77f">c_stat_ilst_to_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a5292cae593739e259bacf6a09c5491c7">Stat_IntList_To_PMF</a></td></tr>
-<tr class="separator:ad57cb93dc93282034066d650f082d77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:aad810dad37cac7009b25d8b83833545e"><td class="memItemLeft" align="right" valign="top">typedef struct array_int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a></td></tr>
-<tr class="separator:aad810dad37cac7009b25d8b83833545e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae59c1c16a95ea19d53512d017e1472dc"><td class="memItemLeft" align="right" valign="top">typedef typedefHEADER_CPP struct array_int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a></td></tr>
+<tr class="separator:ae59c1c16a95ea19d53512d017e1472dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a82a0711746b22ffa15878ae4f05c00d3"><td class="memItemLeft" align="right" valign="top">typedef struct array_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a></td></tr>
 <tr class="separator:a82a0711746b22ffa15878ae4f05c00d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ae3c06690d740e3b68c7ffd9896b0d1"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1">s_set_int</a></td></tr>
+<tr class="memitem:a6ae3c06690d740e3b68c7ffd9896b0d1"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1">s_set_int</a></td></tr>
 <tr class="memdesc:a6ae3c06690d740e3b68c7ffd9896b0d1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type represents a list of integers with no duplicate values.  <a href="stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1">More...</a><br /></td></tr>
 <tr class="separator:a6ae3c06690d740e3b68c7ffd9896b0d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a996f48a690de01af95c5f1a6e9e7a8a5"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a996f48a690de01af95c5f1a6e9e7a8a5">s_set_float</a></td></tr>
 <tr class="memdesc:a996f48a690de01af95c5f1a6e9e7a8a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type represents a list of floats with no duplicate values.  <a href="stat_8h.html#a996f48a690de01af95c5f1a6e9e7a8a5">More...</a><br /></td></tr>
 <tr class="separator:a996f48a690de01af95c5f1a6e9e7a8a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a663e1203714a7ca8e4f12b3201e6c304"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a></td></tr>
+<tr class="memitem:a663e1203714a7ca8e4f12b3201e6c304"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a></td></tr>
 <tr class="memdesc:a663e1203714a7ca8e4f12b3201e6c304"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type represents a list of integers whose values are ordered from smallest to largest.  <a href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">More...</a><br /></td></tr>
 <tr class="separator:a663e1203714a7ca8e4f12b3201e6c304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f95521addb2851c4f0ee786743543fd"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a7f95521addb2851c4f0ee786743543fd">s_sorted_float</a></td></tr>
@@ -197,83 +139,157 @@ Typedefs</h2></td></tr>
 <tr class="memitem:a9c4017a6022a830a6e962da21684e709"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="stat_8h.html#structprob__mass">prob_mass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a></td></tr>
 <tr class="memdesc:a9c4017a6022a830a6e962da21684e709"><td class="mdescLeft">&#160;</td><td class="mdescRight">A struct for the probability mass function describing a discrete random var.  <a href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">More...</a><br /></td></tr>
 <tr class="separator:a9c4017a6022a830a6e962da21684e709"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a427aa3564febf3e851eb0f6a75da2cc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a427aa3564febf3e851eb0f6a75da2cc7">Stat_Int_NewList</a> (t_uint length)</td></tr>
-<tr class="memdesc:a427aa3564febf3e851eb0f6a75da2cc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a427aa3564febf3e851eb0f6a75da2cc7">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ae9060cbb359c467a0d2993772cb3de1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ae9060cbb359c467a0d2993772cb3de1a">c_stat_new_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a427aa3564febf3e851eb0f6a75da2cc7">Stat_Int_NewList</a></td></tr>
+<tr class="separator:ae9060cbb359c467a0d2993772cb3de1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a427aa3564febf3e851eb0f6a75da2cc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a427aa3564febf3e851eb0f6a75da2cc7">Stat_Int_NewList</a> (<a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> length)</td></tr>
 <tr class="separator:a427aa3564febf3e851eb0f6a75da2cc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a145de1981b0a0785732f6daaf704147c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a145de1981b0a0785732f6daaf704147c">Stat_Int_FreeList</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *ilst)</td></tr>
-<tr class="memdesc:a145de1981b0a0785732f6daaf704147c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a145de1981b0a0785732f6daaf704147c">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a797e87c32c0408917a84d49fa047b733"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a797e87c32c0408917a84d49fa047b733">c_stat_free_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a145de1981b0a0785732f6daaf704147c">Stat_Int_FreeList</a></td></tr>
+<tr class="separator:a797e87c32c0408917a84d49fa047b733"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a145de1981b0a0785732f6daaf704147c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a145de1981b0a0785732f6daaf704147c">Stat_Int_FreeList</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *ilst)</td></tr>
 <tr class="separator:a145de1981b0a0785732f6daaf704147c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad830b879869ea75504b4eecaa1643a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad830b879869ea75504b4eecaa1643a71">Stat_Int_MergeList</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *start, <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *append)</td></tr>
-<tr class="memdesc:ad830b879869ea75504b4eecaa1643a71"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#ad830b879869ea75504b4eecaa1643a71">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:aa462e9e586546d1dcbd40e77a3264840"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa462e9e586546d1dcbd40e77a3264840">c_stat_merge_ilst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad830b879869ea75504b4eecaa1643a71">Stat_Int_MergeList</a></td></tr>
+<tr class="separator:aa462e9e586546d1dcbd40e77a3264840"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad830b879869ea75504b4eecaa1643a71"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad830b879869ea75504b4eecaa1643a71">Stat_Int_MergeList</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *start, <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *append)</td></tr>
 <tr class="separator:ad830b879869ea75504b4eecaa1643a71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad64ef11bf6d1670ce3c72e59a3f3a776"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad64ef11bf6d1670ce3c72e59a3f3a776">Stat_Int_Quicksort</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:ad64ef11bf6d1670ce3c72e59a3f3a776"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#ad64ef11bf6d1670ce3c72e59a3f3a776">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a3f100c9c6d950173a55e1e6aab7ada3f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3f100c9c6d950173a55e1e6aab7ada3f">c_stat_quicksort_i_new</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad64ef11bf6d1670ce3c72e59a3f3a776">Stat_Int_Quicksort</a></td></tr>
+<tr class="separator:a3f100c9c6d950173a55e1e6aab7ada3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad64ef11bf6d1670ce3c72e59a3f3a776"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad64ef11bf6d1670ce3c72e59a3f3a776">Stat_Int_Quicksort</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:ad64ef11bf6d1670ce3c72e59a3f3a776"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8293ed18975e114b2d22849bdad29669"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8293ed18975e114b2d22849bdad29669">Stat_Int_Quicksort_InPlace</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> ilst)</td></tr>
-<tr class="memdesc:a8293ed18975e114b2d22849bdad29669"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a8293ed18975e114b2d22849bdad29669">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:af754dfa01a493fe39e63e101df011714"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af754dfa01a493fe39e63e101df011714">c_stat_quicksort_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a8293ed18975e114b2d22849bdad29669">Stat_Int_Quicksort_InPlace</a></td></tr>
+<tr class="separator:af754dfa01a493fe39e63e101df011714"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8293ed18975e114b2d22849bdad29669"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8293ed18975e114b2d22849bdad29669">Stat_Int_Quicksort_InPlace</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> ilst)</td></tr>
 <tr class="separator:a8293ed18975e114b2d22849bdad29669"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81e77fe950d8755017992d079b954e0a"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a81e77fe950d8755017992d079b954e0a">Stat_Int_Median</a> (<a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a> const ilst)</td></tr>
-<tr class="memdesc:a81e77fe950d8755017992d079b954e0a"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a81e77fe950d8755017992d079b954e0a">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:aef1486df87f90edf651d74766b177a77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aef1486df87f90edf651d74766b177a77">c_stat_median_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a81e77fe950d8755017992d079b954e0a">Stat_Int_Median</a></td></tr>
+<tr class="separator:aef1486df87f90edf651d74766b177a77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81e77fe950d8755017992d079b954e0a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a81e77fe950d8755017992d079b954e0a">Stat_Int_Median</a> (<a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a> const ilst)</td></tr>
 <tr class="separator:a81e77fe950d8755017992d079b954e0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb0b829e7e60b1b33a6dc5c4092d28c9"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aeb0b829e7e60b1b33a6dc5c4092d28c9">Stat_Int_Average</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:aeb0b829e7e60b1b33a6dc5c4092d28c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#aeb0b829e7e60b1b33a6dc5c4092d28c9">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ac9f12ce8bbe479d13fb619c755dd3684"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ac9f12ce8bbe479d13fb619c755dd3684">c_stat_average_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#aeb0b829e7e60b1b33a6dc5c4092d28c9">Stat_Int_Average</a></td></tr>
+<tr class="separator:ac9f12ce8bbe479d13fb619c755dd3684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb0b829e7e60b1b33a6dc5c4092d28c9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aeb0b829e7e60b1b33a6dc5c4092d28c9">Stat_Int_Average</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:aeb0b829e7e60b1b33a6dc5c4092d28c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3fe828f9b08eadee35013385e3065e32"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3fe828f9b08eadee35013385e3065e32">Stat_Int_Variance</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:a3fe828f9b08eadee35013385e3065e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a3fe828f9b08eadee35013385e3065e32">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a2ad43eeb3f5502c1bc4b60799bf8427d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a2ad43eeb3f5502c1bc4b60799bf8427d">c_stat_variance_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a3fe828f9b08eadee35013385e3065e32">Stat_Int_Variance</a></td></tr>
+<tr class="separator:a2ad43eeb3f5502c1bc4b60799bf8427d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fe828f9b08eadee35013385e3065e32"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3fe828f9b08eadee35013385e3065e32">Stat_Int_Variance</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:a3fe828f9b08eadee35013385e3065e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad854a86952efb585dffbcfd00fd81458"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad854a86952efb585dffbcfd00fd81458">Stat_Int_StandardDeviation</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:ad854a86952efb585dffbcfd00fd81458"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#ad854a86952efb585dffbcfd00fd81458">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:af804d7889f5848af108fcac44ce4bc54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af804d7889f5848af108fcac44ce4bc54">c_stat_stddev_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#ad854a86952efb585dffbcfd00fd81458">Stat_Int_StandardDeviation</a></td></tr>
+<tr class="separator:af804d7889f5848af108fcac44ce4bc54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad854a86952efb585dffbcfd00fd81458"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad854a86952efb585dffbcfd00fd81458">Stat_Int_StandardDeviation</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:ad854a86952efb585dffbcfd00fd81458"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8d8a46ec879d6914cf83db0691067b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af8d8a46ec879d6914cf83db0691067b1">Stat_Int_Decile</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:af8d8a46ec879d6914cf83db0691067b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#af8d8a46ec879d6914cf83db0691067b1">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a7b13787ba0468653687fdcd1bd2eec8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a7b13787ba0468653687fdcd1bd2eec8a">c_stat_decile_i</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#af8d8a46ec879d6914cf83db0691067b1">Stat_Int_Decile</a></td></tr>
+<tr class="separator:a7b13787ba0468653687fdcd1bd2eec8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8d8a46ec879d6914cf83db0691067b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af8d8a46ec879d6914cf83db0691067b1">Stat_Int_Decile</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:af8d8a46ec879d6914cf83db0691067b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8121d117cf0da20d6a6c222a09d724ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8121d117cf0da20d6a6c222a09d724ea">Stat_Float_NewList</a> (t_uint length)</td></tr>
-<tr class="memdesc:a8121d117cf0da20d6a6c222a09d724ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO implement &amp; document this.  <a href="stat_8h.html#a8121d117cf0da20d6a6c222a09d724ea">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>TODO implement &amp; document this</p>
+<p >TODO document this </p>
+</td></tr>
+<tr class="memitem:afd530a4440f67c3567f42f9b3dffd7dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#afd530a4440f67c3567f42f9b3dffd7dd">c_stat_new_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a8121d117cf0da20d6a6c222a09d724ea">Stat_Float_NewList</a></td></tr>
+<tr class="separator:afd530a4440f67c3567f42f9b3dffd7dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8121d117cf0da20d6a6c222a09d724ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8121d117cf0da20d6a6c222a09d724ea">Stat_Float_NewList</a> (<a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> length)</td></tr>
 <tr class="separator:a8121d117cf0da20d6a6c222a09d724ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ae821786adf01cc872c5f9b7a97731e83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ae821786adf01cc872c5f9b7a97731e83">c_stat_free_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#aa7f2b9e255f21c86e11d824a0909640c">Stat_Float_FreeList</a></td></tr>
+<tr class="separator:ae821786adf01cc872c5f9b7a97731e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7f2b9e255f21c86e11d824a0909640c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa7f2b9e255f21c86e11d824a0909640c">Stat_Float_FreeList</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> *flst)</td></tr>
-<tr class="memdesc:aa7f2b9e255f21c86e11d824a0909640c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#aa7f2b9e255f21c86e11d824a0909640c">More...</a><br /></td></tr>
 <tr class="separator:aa7f2b9e255f21c86e11d824a0909640c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a63bf80410f60e69066ddc3777b5864f9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a63bf80410f60e69066ddc3777b5864f9">c_stat_merge_flst</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a9654fb8f99a4cd755b821034d5aef939">Stat_Float_MergeList</a></td></tr>
+<tr class="separator:a63bf80410f60e69066ddc3777b5864f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9654fb8f99a4cd755b821034d5aef939"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a9654fb8f99a4cd755b821034d5aef939">Stat_Float_MergeList</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> *start, <a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> *append)</td></tr>
-<tr class="memdesc:a9654fb8f99a4cd755b821034d5aef939"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a9654fb8f99a4cd755b821034d5aef939">More...</a><br /></td></tr>
 <tr class="separator:a9654fb8f99a4cd755b821034d5aef939"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a3d79394b38f9aee569a57782f8efc593"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a3d79394b38f9aee569a57782f8efc593">c_stat_quicksort_f_new</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a505832e7f8945c1c10cd2afb0bab5e2f">Stat_Float_Quicksort</a></td></tr>
+<tr class="separator:a3d79394b38f9aee569a57782f8efc593"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a505832e7f8945c1c10cd2afb0bab5e2f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a505832e7f8945c1c10cd2afb0bab5e2f">Stat_Float_Quicksort</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
-<tr class="memdesc:a505832e7f8945c1c10cd2afb0bab5e2f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a505832e7f8945c1c10cd2afb0bab5e2f">More...</a><br /></td></tr>
 <tr class="separator:a505832e7f8945c1c10cd2afb0bab5e2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ad6580288b0af13074ca861a295f13981"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad6580288b0af13074ca861a295f13981">c_stat_quicksort_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a2305d01c4a6d45969b8c09d803ae0c9c">Stat_Float_Quicksort_InPlace</a></td></tr>
+<tr class="separator:ad6580288b0af13074ca861a295f13981"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2305d01c4a6d45969b8c09d803ae0c9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a2305d01c4a6d45969b8c09d803ae0c9c">Stat_Float_Quicksort_InPlace</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> flst)</td></tr>
-<tr class="memdesc:a2305d01c4a6d45969b8c09d803ae0c9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a2305d01c4a6d45969b8c09d803ae0c9c">More...</a><br /></td></tr>
 <tr class="separator:a2305d01c4a6d45969b8c09d803ae0c9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90d7149be0949cc269a387ec1e0a1e7f"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a90d7149be0949cc269a387ec1e0a1e7f">Stat_Float_Median</a> (<a class="el" href="stat_8h.html#a7f95521addb2851c4f0ee786743543fd">s_sorted_float</a> const flst)</td></tr>
-<tr class="memdesc:a90d7149be0949cc269a387ec1e0a1e7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a90d7149be0949cc269a387ec1e0a1e7f">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a630328a1536ad7a5ea65b2fafe5760ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a630328a1536ad7a5ea65b2fafe5760ad">c_stat_median_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a90d7149be0949cc269a387ec1e0a1e7f">Stat_Float_Median</a></td></tr>
+<tr class="separator:a630328a1536ad7a5ea65b2fafe5760ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90d7149be0949cc269a387ec1e0a1e7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a90d7149be0949cc269a387ec1e0a1e7f">Stat_Float_Median</a> (<a class="el" href="stat_8h.html#a7f95521addb2851c4f0ee786743543fd">s_sorted_float</a> const flst)</td></tr>
 <tr class="separator:a90d7149be0949cc269a387ec1e0a1e7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a953d7b843b19507e03aaa516bc6f38da"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a953d7b843b19507e03aaa516bc6f38da">Stat_Float_Average</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
-<tr class="memdesc:a953d7b843b19507e03aaa516bc6f38da"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a953d7b843b19507e03aaa516bc6f38da">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ab58d7be511b6d8f1c1858f3c4e42f41a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ab58d7be511b6d8f1c1858f3c4e42f41a">c_stat_average_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a953d7b843b19507e03aaa516bc6f38da">Stat_Float_Average</a></td></tr>
+<tr class="separator:ab58d7be511b6d8f1c1858f3c4e42f41a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a953d7b843b19507e03aaa516bc6f38da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a953d7b843b19507e03aaa516bc6f38da">Stat_Float_Average</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
 <tr class="separator:a953d7b843b19507e03aaa516bc6f38da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a575291c9e867e0159efe4ba38cf2b4ed"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a575291c9e867e0159efe4ba38cf2b4ed">Stat_Float_Variance</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
-<tr class="memdesc:a575291c9e867e0159efe4ba38cf2b4ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a575291c9e867e0159efe4ba38cf2b4ed">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a8a1b434920699a192e2ab18c284a1f70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a8a1b434920699a192e2ab18c284a1f70">c_stat_variance_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a575291c9e867e0159efe4ba38cf2b4ed">Stat_Float_Variance</a></td></tr>
+<tr class="separator:a8a1b434920699a192e2ab18c284a1f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a575291c9e867e0159efe4ba38cf2b4ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a575291c9e867e0159efe4ba38cf2b4ed">Stat_Float_Variance</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
 <tr class="separator:a575291c9e867e0159efe4ba38cf2b4ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a392a9758ddf9c1719f095dfb984b61b6"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a392a9758ddf9c1719f095dfb984b61b6">Stat_Float_StandardDeviation</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
-<tr class="memdesc:a392a9758ddf9c1719f095dfb984b61b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a392a9758ddf9c1719f095dfb984b61b6">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a7798d5ea9a766b76f846e92bbc30f01d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a7798d5ea9a766b76f846e92bbc30f01d">c_stat_stddev_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a392a9758ddf9c1719f095dfb984b61b6">Stat_Float_StandardDeviation</a></td></tr>
+<tr class="separator:a7798d5ea9a766b76f846e92bbc30f01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a392a9758ddf9c1719f095dfb984b61b6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a392a9758ddf9c1719f095dfb984b61b6">Stat_Float_StandardDeviation</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
 <tr class="separator:a392a9758ddf9c1719f095dfb984b61b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:abc17ee36bf63a542f016b72072cab623"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#abc17ee36bf63a542f016b72072cab623">c_stat_decile_f</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a62d7444168611ab7045116198f35a5be">Stat_Float_Decile</a></td></tr>
+<tr class="separator:abc17ee36bf63a542f016b72072cab623"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a62d7444168611ab7045116198f35a5be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a62d7444168611ab7045116198f35a5be">Stat_Float_Decile</a> (<a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const flst)</td></tr>
-<tr class="memdesc:a62d7444168611ab7045116198f35a5be"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a62d7444168611ab7045116198f35a5be">More...</a><br /></td></tr>
 <tr class="separator:a62d7444168611ab7045116198f35a5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a17b5c7ce73244f7754b2750644bc6b31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a17b5c7ce73244f7754b2750644bc6b31">Stat_NewPMF</a> (t_uint length)</td></tr>
-<tr class="memdesc:a17b5c7ce73244f7754b2750644bc6b31"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO implement &amp; document this.  <a href="stat_8h.html#a17b5c7ce73244f7754b2750644bc6b31">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>TODO implement &amp; document this</p>
+<p >TODO document this </p>
+</td></tr>
+<tr class="memitem:aa07de592dbf3304dcd212d8929231692"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#aa07de592dbf3304dcd212d8929231692">c_stat_new_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a17b5c7ce73244f7754b2750644bc6b31">Stat_NewPMF</a></td></tr>
+<tr class="separator:aa07de592dbf3304dcd212d8929231692"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a17b5c7ce73244f7754b2750644bc6b31"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a17b5c7ce73244f7754b2750644bc6b31">Stat_NewPMF</a> (<a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> length)</td></tr>
 <tr class="separator:a17b5c7ce73244f7754b2750644bc6b31"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:ab9da7247bc1cc2f2313f4011f717c8ac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ab9da7247bc1cc2f2313f4011f717c8ac">c_stat_free_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a88b8945e06c464616cfffc452bc7701b">Stat_FreePMF</a></td></tr>
+<tr class="separator:ab9da7247bc1cc2f2313f4011f717c8ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a88b8945e06c464616cfffc452bc7701b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a88b8945e06c464616cfffc452bc7701b">Stat_FreePMF</a> (<a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a> *drv)</td></tr>
-<tr class="memdesc:a88b8945e06c464616cfffc452bc7701b"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a88b8945e06c464616cfffc452bc7701b">More...</a><br /></td></tr>
 <tr class="separator:a88b8945e06c464616cfffc452bc7701b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af83fc37c47316438118bf65888468d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af83fc37c47316438118bf65888468d74">Stat_IntList_To_Set</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:af83fc37c47316438118bf65888468d74"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#af83fc37c47316438118bf65888468d74">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a72d9501776f5095455b49af3e92a833b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a72d9501776f5095455b49af3e92a833b">c_stat_ilst_to_iset</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#af83fc37c47316438118bf65888468d74">Stat_IntList_To_Set</a></td></tr>
+<tr class="separator:a72d9501776f5095455b49af3e92a833b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af83fc37c47316438118bf65888468d74"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#af83fc37c47316438118bf65888468d74">Stat_IntList_To_Set</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:af83fc37c47316438118bf65888468d74"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b7f0137cf2a2b5d0e3bfec0ee8b56d5"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a0b7f0137cf2a2b5d0e3bfec0ee8b56d5">Stat_IntList_Count</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> ilst, t_sint elem)</td></tr>
-<tr class="memdesc:a0b7f0137cf2a2b5d0e3bfec0ee8b56d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO document this.  <a href="stat_8h.html#a0b7f0137cf2a2b5d0e3bfec0ee8b56d5">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   TODO document this </p>
+</td></tr>
+<tr class="memitem:a99ba4802136c892362e4245122144f65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a99ba4802136c892362e4245122144f65">c_stat_ilst_count</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a0b7f0137cf2a2b5d0e3bfec0ee8b56d5">Stat_IntList_Count</a></td></tr>
+<tr class="separator:a99ba4802136c892362e4245122144f65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b7f0137cf2a2b5d0e3bfec0ee8b56d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a0b7f0137cf2a2b5d0e3bfec0ee8b56d5">Stat_IntList_Count</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> ilst, <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> elem)</td></tr>
 <tr class="separator:a0b7f0137cf2a2b5d0e3bfec0ee8b56d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5292cae593739e259bacf6a09c5491c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a5292cae593739e259bacf6a09c5491c7">Stat_IntList_To_PMF</a> (<a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const ilst)</td></tr>
-<tr class="memdesc:a5292cae593739e259bacf6a09c5491c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the probability distribution of an array of integers.  <a href="stat_8h.html#a5292cae593739e259bacf6a09c5491c7">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns the probability distribution of an array of integers. </p>
+</td></tr>
+<tr class="memitem:ad57cb93dc93282034066d650f082d77f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#ad57cb93dc93282034066d650f082d77f">c_stat_ilst_to_pmf</a>&#160;&#160;&#160;<a class="el" href="stat_8h.html#a5292cae593739e259bacf6a09c5491c7">Stat_IntList_To_PMF</a></td></tr>
+<tr class="separator:ad57cb93dc93282034066d650f082d77f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5292cae593739e259bacf6a09c5491c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="stat_8h.html#a5292cae593739e259bacf6a09c5491c7">Stat_IntList_To_PMF</a> (<a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const ilst)</td></tr>
 <tr class="separator:a5292cae593739e259bacf6a09c5491c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -314,23 +330,23 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <div class="textblock"><p >A struct for the probability mass function describing a discrete random var. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00101">101</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00097">97</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="a14ca3334cb8327ceccbaba1d975a9e4f" name="a14ca3334cb8327ceccbaba1d975a9e4f"></a>t_float *</td>
+<a id="a14ca3334cb8327ceccbaba1d975a9e4f" name="a14ca3334cb8327ceccbaba1d975a9e4f"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> *</td>
 <td class="fieldname">
 value</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a582601eee66e559cca81ee99c78ad4e1" name="a582601eee66e559cca81ee99c78ad4e1"></a>t_float *</td>
+<a id="a582601eee66e559cca81ee99c78ad4e1" name="a582601eee66e559cca81ee99c78ad4e1"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> *</td>
 <td class="fieldname">
 prob</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="af254525fd5a51671ebf256c83a7571ba" name="af254525fd5a51671ebf256c83a7571ba"></a>t_uint</td>
+<a id="af254525fd5a51671ebf256c83a7571ba" name="af254525fd5a51671ebf256c83a7571ba"></a><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a></td>
 <td class="fieldname">
 length</td>
 <td class="fielddoc">
@@ -354,7 +370,7 @@ length</td>
 
 <p>The amount of probabilistic approximation for libccc/math/stat functions. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00098">98</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00094">94</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -370,7 +386,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00118">118</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00115">115</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -386,7 +402,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00122">122</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00121">121</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -402,7 +418,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00126">126</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00127">127</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -418,7 +434,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00130">130</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00133">133</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -434,7 +450,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00137">137</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00142">142</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -450,7 +466,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00141">141</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00148">148</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -466,7 +482,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00145">145</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00154">154</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -482,7 +498,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00149">149</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00160">160</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +514,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00153">153</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00166">166</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -514,7 +530,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00157">157</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00172">172</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -530,7 +546,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00167">167</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00184">184</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -546,7 +562,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00171">171</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00190">190</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -562,7 +578,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00175">175</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00196">196</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -578,7 +594,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00179">179</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00202">202</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -594,7 +610,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00183">183</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00208">208</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -610,7 +626,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00187">187</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00214">214</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -626,7 +642,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00191">191</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00220">220</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -642,7 +658,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00195">195</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00226">226</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -658,7 +674,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00199">199</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00232">232</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -674,7 +690,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00203">203</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00238">238</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -690,7 +706,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00213">213</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00250">250</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -706,7 +722,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00217">217</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00256">256</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -722,7 +738,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00221">221</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00262">262</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -738,7 +754,7 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00225">225</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00268">268</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -754,25 +770,25 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00229">229</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00274">274</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="aad810dad37cac7009b25d8b83833545e" name="aad810dad37cac7009b25d8b83833545e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aad810dad37cac7009b25d8b83833545e">&#9670;&nbsp;</a></span>s_array_int</h2>
+<a id="ae59c1c16a95ea19d53512d017e1472dc" name="ae59c1c16a95ea19d53512d017e1472dc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae59c1c16a95ea19d53512d017e1472dc">&#9670;&nbsp;</a></span>s_array_int</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct array_int <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a></td>
+          <td class="memname">typedef typedefHEADER_CPP struct array_int <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>"libccc/monad/array.h" </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00035">35</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00074">74</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -789,7 +805,7 @@ length</td>
 </div><div class="memdoc">
 <dl class="section see"><dt>See also</dt><dd>"libccc/monad/array.h" </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00036">36</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00075">75</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -800,14 +816,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> <a class="el" href="stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1">s_set_int</a></td>
+          <td class="memname">typedef <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> <a class="el" href="stat_8h.html#a6ae3c06690d740e3b68c7ffd9896b0d1">s_set_int</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>This type represents a list of integers with no duplicate values. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00046">46</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00085">85</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -825,7 +841,7 @@ length</td>
 
 <p>This type represents a list of floats with no duplicate values. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00047">47</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00086">86</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -836,14 +852,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> <a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a></td>
+          <td class="memname">typedef <a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> <a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>This type represents a list of integers whose values are ordered from smallest to largest. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00049">49</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00088">88</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -861,7 +877,7 @@ length</td>
 
 <p>This type represents a list of floats whose values are ordered from smallest to largest. </p>
 
-<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00050">50</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="stat_8h_source.html#l00089">89</a> of file <a class="el" href="stat_8h_source.html">stat.h</a>.</p>
 
 </div>
 </div>
@@ -889,16 +905,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> Stat_Int_NewList </td>
+          <td class="memname"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> Stat_Int_NewList </td>
           <td>(</td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>length</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -911,14 +925,12 @@ length</td>
         <tr>
           <td class="memname">void Stat_Int_FreeList </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -929,15 +941,15 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> Stat_Int_MergeList </td>
+          <td class="memname"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> Stat_Int_MergeList </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *&#160;</td>
           <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> *&#160;</td>
           <td class="paramname"><em>append</em>&#160;</td>
         </tr>
         <tr>
@@ -948,8 +960,6 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p>TODO document this. </p>
-
 </div>
 </div>
 <a id="ad64ef11bf6d1670ce3c72e59a3f3a776" name="ad64ef11bf6d1670ce3c72e59a3f3a776"></a>
@@ -959,16 +969,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> Stat_Int_Quicksort </td>
+          <td class="memname"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> Stat_Int_Quicksort </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -981,14 +989,12 @@ length</td>
         <tr>
           <td class="memname">void Stat_Int_Quicksort_InPlace </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/algorithm/qsort">https://en.cppreference.com/w/c/algorithm/qsort</a> </li>
 </ul>
@@ -1002,7 +1008,7 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Int_Median </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Int_Median </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="stat_8h.html#a663e1203714a7ca8e4f12b3201e6c304">s_sorted_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
@@ -1010,8 +1016,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1022,16 +1026,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Int_Average </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Int_Average </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1042,16 +1044,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Int_Variance </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Int_Variance </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1062,16 +1062,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Int_StandardDeviation </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Int_StandardDeviation </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1084,14 +1082,12 @@ length</td>
         <tr>
           <td class="memname">void Stat_Int_Decile </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1104,15 +1100,12 @@ length</td>
         <tr>
           <td class="memname"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> Stat_Float_NewList </td>
           <td>(</td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>length</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO implement &amp; document this. </p>
-<p >TODO document this </p>
 
 </div>
 </div>
@@ -1131,8 +1124,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1162,8 +1153,6 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p>TODO document this. </p>
-
 </div>
 </div>
 <a id="a505832e7f8945c1c10cd2afb0bab5e2f" name="a505832e7f8945c1c10cd2afb0bab5e2f"></a>
@@ -1181,8 +1170,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1202,8 +1189,6 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p>TODO document this. </p>
-
 </div>
 </div>
 <a id="a90d7149be0949cc269a387ec1e0a1e7f" name="a90d7149be0949cc269a387ec1e0a1e7f"></a>
@@ -1213,7 +1198,7 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Float_Median </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Float_Median </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="stat_8h.html#a7f95521addb2851c4f0ee786743543fd">s_sorted_float</a> const&#160;</td>
           <td class="paramname"><em>flst</em></td><td>)</td>
@@ -1221,8 +1206,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1233,7 +1216,7 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Float_Average </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Float_Average </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const&#160;</td>
           <td class="paramname"><em>flst</em></td><td>)</td>
@@ -1241,8 +1224,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1253,7 +1234,7 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Float_Variance </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Float_Variance </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const&#160;</td>
           <td class="paramname"><em>flst</em></td><td>)</td>
@@ -1261,8 +1242,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1273,7 +1252,7 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float Stat_Float_StandardDeviation </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> Stat_Float_StandardDeviation </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="stat_8h.html#a82a0711746b22ffa15878ae4f05c00d3">s_array_float</a> const&#160;</td>
           <td class="paramname"><em>flst</em></td><td>)</td>
@@ -1281,8 +1260,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1302,8 +1279,6 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p>TODO document this. </p>
-
 </div>
 </div>
 <a id="a17b5c7ce73244f7754b2750644bc6b31" name="a17b5c7ce73244f7754b2750644bc6b31"></a>
@@ -1315,15 +1290,12 @@ length</td>
         <tr>
           <td class="memname"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a> Stat_NewPMF </td>
           <td>(</td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>length</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO implement &amp; document this. </p>
-<p >TODO document this </p>
 
 </div>
 </div>
@@ -1343,8 +1315,6 @@ length</td>
       </table>
 </div><div class="memdoc">
 
-<p>TODO document this. </p>
-
 </div>
 </div>
 <a id="af83fc37c47316438118bf65888468d74" name="af83fc37c47316438118bf65888468d74"></a>
@@ -1354,16 +1324,14 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> Stat_IntList_To_Set </td>
+          <td class="memname"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> Stat_IntList_To_Set </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1374,15 +1342,15 @@ length</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint Stat_IntList_Count </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> Stat_IntList_Count </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a>&#160;</td>
           <td class="paramname"><em>ilst</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>elem</em>&#160;</td>
         </tr>
         <tr>
@@ -1392,8 +1360,6 @@ length</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>TODO document this. </p>
 
 </div>
 </div>
@@ -1406,14 +1372,12 @@ length</td>
         <tr>
           <td class="memname"><a class="el" href="stat_8h.html#a9c4017a6022a830a6e962da21684e709">s_prob_mass</a> Stat_IntList_To_PMF </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="stat_8h.html#aad810dad37cac7009b25d8b83833545e">s_array_int</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="stat_8h.html#ae59c1c16a95ea19d53512d017e1472dc">s_array_int</a> const&#160;</td>
           <td class="paramname"><em>ilst</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns the probability distribution of an array of integers. </p>
 
 </div>
 </div>
@@ -1422,7 +1386,7 @@ length</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_95a5c7608f44570f25f009355c401eb3.html">math</a></li><li class="navelem"><a class="el" href="stat_8h.html">stat.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="stat_8h.html">stat.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

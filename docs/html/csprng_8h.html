@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/random/csprng.h File Reference</title>
+<title>libccc: libccc/random/csprng.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,10 +93,6 @@ $(document).ready(function(){initNavTree('csprng_8h.html',''); initResizable(); 
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">csprng.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,121 +105,121 @@ $(document).ready(function(){initNavTree('csprng_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="csprng_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="csprng_8h__incl.svg" width="484" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="csprng_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:ab94d3253967e73b712bd46ec9471b0c1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a></td></tr>
+<tr class="memdesc:ab94d3253967e73b712bd46ec9471b0c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type stores the current state of the random number generator.  <a href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">More...</a><br /></td></tr>
+<tr class="separator:ab94d3253967e73b712bd46ec9471b0c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Creates a new CSPRNG state </p>
+</td></tr>
 <tr class="memitem:a3bb414668444e5bf807f9948305e33df"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a3bb414668444e5bf807f9948305e33df">c_csprngnew</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af4fb55232603a6f869cc7169f7375fdb">CSPRNG_New</a></td></tr>
 <tr class="separator:a3bb414668444e5bf807f9948305e33df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af4fb55232603a6f869cc7169f7375fdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af4fb55232603a6f869cc7169f7375fdb">CSPRNG_New</a> (void)</td></tr>
+<tr class="separator:af4fb55232603a6f869cc7169f7375fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Deletes (free and nullify) an existing CSPRNG state </p>
+</td></tr>
 <tr class="memitem:ae6589d4742c40eb87fa77029d59b36ee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ae6589d4742c40eb87fa77029d59b36ee">c_csprngdel</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#abcac4902708de8f4033926e92e103c69">CSPRNG_Delete</a></td></tr>
 <tr class="separator:ae6589d4742c40eb87fa77029d59b36ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcac4902708de8f4033926e92e103c69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#abcac4902708de8f4033926e92e103c69">CSPRNG_Delete</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> **a_state)</td></tr>
+<tr class="separator:abcac4902708de8f4033926e92e103c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Writes <code>n</code> bytes of random data to <code>dest</code>. </p>
+</td></tr>
 <tr class="memitem:a730b5e783895c7374ce9881601fa4203"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a730b5e783895c7374ce9881601fa4203">c_csprng</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aa0a2efb5c4b91ff6f7af3681e20f5540">CSPRNG_Next</a></td></tr>
 <tr class="separator:a730b5e783895c7374ce9881601fa4203"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0a2efb5c4b91ff6f7af3681e20f5540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa0a2efb5c4b91ff6f7af3681e20f5540">CSPRNG_Next</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state, void *dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:aa0a2efb5c4b91ff6f7af3681e20f5540"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random unsigned integer value </p>
+</td></tr>
 <tr class="memitem:afe828e03a10f486a1a3a6ec10f2ba96c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#afe828e03a10f486a1a3a6ec10f2ba96c">c_csprngu</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aa32a7012eb353625d4f423df9c7f7b6c">CSPRNG_UInt</a></td></tr>
 <tr class="separator:afe828e03a10f486a1a3a6ec10f2ba96c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a8fa613656d7f080a810788051ab85f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a8a8fa613656d7f080a810788051ab85f">c_csprngui</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a></td></tr>
-<tr class="separator:a8a8fa613656d7f080a810788051ab85f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa32a7012eb353625d4f423df9c7f7b6c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa32a7012eb353625d4f423df9c7f7b6c">CSPRNG_UInt</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state)</td></tr>
+<tr class="separator:aa32a7012eb353625d4f423df9c7f7b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547ac23daf4014e0ac5ca644206256c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a547ac23daf4014e0ac5ca644206256c7">c_csprngxu</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a></td></tr>
+<tr class="separator:a547ac23daf4014e0ac5ca644206256c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6245b3f3a095bce8d1e3a6418762b801"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> min, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> max)</td></tr>
+<tr class="separator:a6245b3f3a095bce8d1e3a6418762b801"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random integer value </p>
+</td></tr>
 <tr class="memitem:ac79ad1cee2901865c051a6808a2d879f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ac79ad1cee2901865c051a6808a2d879f">c_csprngs</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aa253ad79d8bb8e8d920e5cae674459e7">CSPRNG_SInt</a></td></tr>
 <tr class="separator:ac79ad1cee2901865c051a6808a2d879f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac9e2701dbff14da4a94080309ab5a20e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ac9e2701dbff14da4a94080309ab5a20e">c_csprngsi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a></td></tr>
-<tr class="separator:ac9e2701dbff14da4a94080309ab5a20e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa253ad79d8bb8e8d920e5cae674459e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa253ad79d8bb8e8d920e5cae674459e7">CSPRNG_SInt</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state)</td></tr>
+<tr class="separator:aa253ad79d8bb8e8d920e5cae674459e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff88621b9675d4de62d3128ce368c333"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aff88621b9675d4de62d3128ce368c333">c_csprngxs</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a></td></tr>
+<tr class="separator:aff88621b9675d4de62d3128ce368c333"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9d9a2ea5e4806b708f55c9ee0fa73b6d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state, <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> min, <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> max)</td></tr>
+<tr class="separator:a9d9a2ea5e4806b708f55c9ee0fa73b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random fixed-point value </p>
+</td></tr>
 <tr class="memitem:a0c0f979fbddb3b5a0d0cdfb8fbe42a45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a0c0f979fbddb3b5a0d0cdfb8fbe42a45">c_csprngq</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a7311666e80e86d22eac3ed070843a853">CSPRNG_Fixed</a></td></tr>
 <tr class="separator:a0c0f979fbddb3b5a0d0cdfb8fbe42a45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0f951549f3e12bc87fef5920446ea5e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a0f951549f3e12bc87fef5920446ea5e6">c_csprngqi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a></td></tr>
-<tr class="separator:a0f951549f3e12bc87fef5920446ea5e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7311666e80e86d22eac3ed070843a853"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a7311666e80e86d22eac3ed070843a853">CSPRNG_Fixed</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state)</td></tr>
+<tr class="separator:a7311666e80e86d22eac3ed070843a853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae3ef26363b4528acf649a69fb5356eac"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ae3ef26363b4528acf649a69fb5356eac">c_csprngxq</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a></td></tr>
+<tr class="separator:ae3ef26363b4528acf649a69fb5356eac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accd006859b931b6dcb17f8b337aa0220"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state, <a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> min, <a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> max)</td></tr>
+<tr class="separator:accd006859b931b6dcb17f8b337aa0220"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random floating-point value </p>
+</td></tr>
 <tr class="memitem:a3e27fb4a50a55d0b64fd91fa6e434e2a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a3e27fb4a50a55d0b64fd91fa6e434e2a">c_csprngf</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af945d95c922f05f86437c4d1aa336d7f">CSPRNG_Float</a></td></tr>
 <tr class="separator:a3e27fb4a50a55d0b64fd91fa6e434e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f4db6fff9d696c292eada6581cb5a54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a2f4db6fff9d696c292eada6581cb5a54">c_csprngfi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a></td></tr>
-<tr class="separator:a2f4db6fff9d696c292eada6581cb5a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af945d95c922f05f86437c4d1aa336d7f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af945d95c922f05f86437c4d1aa336d7f">CSPRNG_Float</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state)</td></tr>
+<tr class="separator:af945d95c922f05f86437c4d1aa336d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6a920d5cb6053249a9eb906f9a54638"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa6a920d5cb6053249a9eb906f9a54638">c_csprngxf</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a></td></tr>
+<tr class="separator:aa6a920d5cb6053249a9eb906f9a54638"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaea1b185771ba21dff24b66b14c1045a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a> (<a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *state, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> min, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> max)</td></tr>
+<tr class="separator:aaea1b185771ba21dff24b66b14c1045a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Writes <code>n</code> bytes of random data to <code>dest</code> (creating and deleting a state). </p>
+</td></tr>
 <tr class="memitem:a503b960c7e49b1616b47b6d26a5d13d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a503b960c7e49b1616b47b6d26a5d13d2">c_csprngget</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a577173ae69b934efe388475a4acf2518">CSPRNG_Get</a></td></tr>
 <tr class="separator:a503b960c7e49b1616b47b6d26a5d13d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a577173ae69b934efe388475a4acf2518"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a577173ae69b934efe388475a4acf2518">CSPRNG_Get</a> (void *dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:a577173ae69b934efe388475a4acf2518"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random unsigned integer, statelessly. </p>
+</td></tr>
 <tr class="memitem:a5dcf5e93c796c0a04e8d1a1562534717"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a5dcf5e93c796c0a04e8d1a1562534717">c_csprnggetu</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a13911c53794f0952b0d1e88996ab0b06">CSPRNG_UInt_Get</a></td></tr>
 <tr class="separator:a5dcf5e93c796c0a04e8d1a1562534717"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77f170b259e1ad3e9d6bcdb7b8129a15"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a77f170b259e1ad3e9d6bcdb7b8129a15">c_csprnggetui</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a></td></tr>
-<tr class="separator:a77f170b259e1ad3e9d6bcdb7b8129a15"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a13911c53794f0952b0d1e88996ab0b06"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a13911c53794f0952b0d1e88996ab0b06">CSPRNG_UInt_Get</a> (void)</td></tr>
+<tr class="separator:a13911c53794f0952b0d1e88996ab0b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a043faf8ab414cfd7dd3dff267ec06a59"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a043faf8ab414cfd7dd3dff267ec06a59">c_csprnggetxu</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a></td></tr>
+<tr class="separator:a043faf8ab414cfd7dd3dff267ec06a59"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70feaf1f33da08c5f79c849e0a45620f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a> (<a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> min, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> max)</td></tr>
+<tr class="separator:a70feaf1f33da08c5f79c849e0a45620f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random integer value, statelessly. </p>
+</td></tr>
 <tr class="memitem:a167f03c22f143fcba8746ec95ea91bfe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a167f03c22f143fcba8746ec95ea91bfe">c_csprnggets</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a2d6c76e29cbdd31ef39284a03c5cce78">CSPRNG_SInt_Get</a></td></tr>
 <tr class="separator:a167f03c22f143fcba8746ec95ea91bfe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a142cf75932462a103e24578e08154f99"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a142cf75932462a103e24578e08154f99">c_csprnggetsi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a></td></tr>
-<tr class="separator:a142cf75932462a103e24578e08154f99"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d6c76e29cbdd31ef39284a03c5cce78"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a2d6c76e29cbdd31ef39284a03c5cce78">CSPRNG_SInt_Get</a> (void)</td></tr>
+<tr class="separator:a2d6c76e29cbdd31ef39284a03c5cce78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7790d375562e07b1f8d1aea4feb8dd69"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a7790d375562e07b1f8d1aea4feb8dd69">c_csprnggetxs</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a></td></tr>
+<tr class="separator:a7790d375562e07b1f8d1aea4feb8dd69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af5d33bf2c19ca514e8127698cd5911b4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a> (<a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> min, <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> max)</td></tr>
+<tr class="separator:af5d33bf2c19ca514e8127698cd5911b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random fixed-point value, statelessly. </p>
+</td></tr>
 <tr class="memitem:a609a5641b6c3bfee308096decc776198"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a609a5641b6c3bfee308096decc776198">c_csprnggetq</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a7e56fe9cbf7f02cf69b4d6fb0c610ab6">CSPRNG_Fixed_Get</a></td></tr>
 <tr class="separator:a609a5641b6c3bfee308096decc776198"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a54b5f0dbb291eb406ac6732a6e29346c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a54b5f0dbb291eb406ac6732a6e29346c">c_csprnggetqi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a></td></tr>
-<tr class="separator:a54b5f0dbb291eb406ac6732a6e29346c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e56fe9cbf7f02cf69b4d6fb0c610ab6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a7e56fe9cbf7f02cf69b4d6fb0c610ab6">CSPRNG_Fixed_Get</a> (void)</td></tr>
+<tr class="separator:a7e56fe9cbf7f02cf69b4d6fb0c610ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac71049b19724b1f12813be4f7df75e62"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ac71049b19724b1f12813be4f7df75e62">c_csprnggetxq</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a></td></tr>
+<tr class="separator:ac71049b19724b1f12813be4f7df75e62"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a031119b7f3c7bf37a7edb7454a075a2c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a> (<a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> min, <a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> max)</td></tr>
+<tr class="separator:a031119b7f3c7bf37a7edb7454a075a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a cryptographically secure random floating-point value, statelessly. </p>
+</td></tr>
 <tr class="memitem:abba4f45f7a397ef9a68c3b50547eea49"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#abba4f45f7a397ef9a68c3b50547eea49">c_csprnggetf</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#ae32751775458526c2e8a7f0820844955">CSPRNG_Float_Get</a></td></tr>
 <tr class="separator:abba4f45f7a397ef9a68c3b50547eea49"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a88bb4d9c0d52c846b16848aea1730cca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a88bb4d9c0d52c846b16848aea1730cca">c_csprnggetfi</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a></td></tr>
-<tr class="separator:a88bb4d9c0d52c846b16848aea1730cca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
-Typedefs</h2></td></tr>
-<tr class="memitem:a712e1ad1079979c42a9b6f6c6f09ffb2"><td class="memItemLeft" align="right" valign="top">typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a></td></tr>
-<tr class="memdesc:a712e1ad1079979c42a9b6f6c6f09ffb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">This type stores the current state of the random number generator.  <a href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">More...</a><br /></td></tr>
-<tr class="separator:a712e1ad1079979c42a9b6f6c6f09ffb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:af4fb55232603a6f869cc7169f7375fdb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af4fb55232603a6f869cc7169f7375fdb">CSPRNG_New</a> (void)</td></tr>
-<tr class="memdesc:af4fb55232603a6f869cc7169f7375fdb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new CSPRNG state.  <a href="csprng_8h.html#af4fb55232603a6f869cc7169f7375fdb">More...</a><br /></td></tr>
-<tr class="separator:af4fb55232603a6f869cc7169f7375fdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abcac4902708de8f4033926e92e103c69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#abcac4902708de8f4033926e92e103c69">CSPRNG_Delete</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> **a_state)</td></tr>
-<tr class="memdesc:abcac4902708de8f4033926e92e103c69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deletes (free and nullify) an existing CSPRNG state.  <a href="csprng_8h.html#abcac4902708de8f4033926e92e103c69">More...</a><br /></td></tr>
-<tr class="separator:abcac4902708de8f4033926e92e103c69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0a2efb5c4b91ff6f7af3681e20f5540"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa0a2efb5c4b91ff6f7af3681e20f5540">CSPRNG_Next</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state, void *dest, t_size n)</td></tr>
-<tr class="memdesc:aa0a2efb5c4b91ff6f7af3681e20f5540"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>n</code> bytes of random data to <code>dest</code>.  <a href="csprng_8h.html#aa0a2efb5c4b91ff6f7af3681e20f5540">More...</a><br /></td></tr>
-<tr class="separator:aa0a2efb5c4b91ff6f7af3681e20f5540"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa32a7012eb353625d4f423df9c7f7b6c"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa32a7012eb353625d4f423df9c7f7b6c">CSPRNG_UInt</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state)</td></tr>
-<tr class="memdesc:aa32a7012eb353625d4f423df9c7f7b6c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random unsigned integer value.  <a href="csprng_8h.html#aa32a7012eb353625d4f423df9c7f7b6c">More...</a><br /></td></tr>
-<tr class="separator:aa32a7012eb353625d4f423df9c7f7b6c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6245b3f3a095bce8d1e3a6418762b801"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state, t_uint min, t_uint max)</td></tr>
-<tr class="memdesc:a6245b3f3a095bce8d1e3a6418762b801"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random unsigned integer value, in the range <code>[min, max[</code>  <a href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">More...</a><br /></td></tr>
-<tr class="separator:a6245b3f3a095bce8d1e3a6418762b801"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa253ad79d8bb8e8d920e5cae674459e7"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aa253ad79d8bb8e8d920e5cae674459e7">CSPRNG_SInt</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state)</td></tr>
-<tr class="memdesc:aa253ad79d8bb8e8d920e5cae674459e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random integer value.  <a href="csprng_8h.html#aa253ad79d8bb8e8d920e5cae674459e7">More...</a><br /></td></tr>
-<tr class="separator:aa253ad79d8bb8e8d920e5cae674459e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9d9a2ea5e4806b708f55c9ee0fa73b6d"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state, t_sint min, t_sint max)</td></tr>
-<tr class="memdesc:a9d9a2ea5e4806b708f55c9ee0fa73b6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random integer value, in the range <code>[min, max[</code>  <a href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">More...</a><br /></td></tr>
-<tr class="separator:a9d9a2ea5e4806b708f55c9ee0fa73b6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7311666e80e86d22eac3ed070843a853"><td class="memItemLeft" align="right" valign="top">t_fixed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a7311666e80e86d22eac3ed070843a853">CSPRNG_Fixed</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state)</td></tr>
-<tr class="memdesc:a7311666e80e86d22eac3ed070843a853"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random fixed-point value.  <a href="csprng_8h.html#a7311666e80e86d22eac3ed070843a853">More...</a><br /></td></tr>
-<tr class="separator:a7311666e80e86d22eac3ed070843a853"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:accd006859b931b6dcb17f8b337aa0220"><td class="memItemLeft" align="right" valign="top">t_fixed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state, t_fixed min, t_fixed max)</td></tr>
-<tr class="memdesc:accd006859b931b6dcb17f8b337aa0220"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random fixed-point value, in the range <code>[min, max[</code>  <a href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">More...</a><br /></td></tr>
-<tr class="separator:accd006859b931b6dcb17f8b337aa0220"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af945d95c922f05f86437c4d1aa336d7f"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af945d95c922f05f86437c4d1aa336d7f">CSPRNG_Float</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state)</td></tr>
-<tr class="memdesc:af945d95c922f05f86437c4d1aa336d7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random floating-point value.  <a href="csprng_8h.html#af945d95c922f05f86437c4d1aa336d7f">More...</a><br /></td></tr>
-<tr class="separator:af945d95c922f05f86437c4d1aa336d7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaea1b185771ba21dff24b66b14c1045a"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a> (<a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *state, t_float min, t_float max)</td></tr>
-<tr class="memdesc:aaea1b185771ba21dff24b66b14c1045a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random floating-point value, in the range <code>[min, max[</code>  <a href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">More...</a><br /></td></tr>
-<tr class="separator:aaea1b185771ba21dff24b66b14c1045a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a577173ae69b934efe388475a4acf2518"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a577173ae69b934efe388475a4acf2518">CSPRNG_Get</a> (void *dest, t_size n)</td></tr>
-<tr class="memdesc:a577173ae69b934efe388475a4acf2518"><td class="mdescLeft">&#160;</td><td class="mdescRight">Writes <code>n</code> bytes of random data to <code>dest</code> (creating and deleting a state).  <a href="csprng_8h.html#a577173ae69b934efe388475a4acf2518">More...</a><br /></td></tr>
-<tr class="separator:a577173ae69b934efe388475a4acf2518"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13911c53794f0952b0d1e88996ab0b06"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a13911c53794f0952b0d1e88996ab0b06">CSPRNG_UInt_Get</a> (void)</td></tr>
-<tr class="memdesc:a13911c53794f0952b0d1e88996ab0b06"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random unsigned integer, statelessly.  <a href="csprng_8h.html#a13911c53794f0952b0d1e88996ab0b06">More...</a><br /></td></tr>
-<tr class="separator:a13911c53794f0952b0d1e88996ab0b06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70feaf1f33da08c5f79c849e0a45620f"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a> (t_uint min, t_uint max)</td></tr>
-<tr class="memdesc:a70feaf1f33da08c5f79c849e0a45620f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random unsigned integer, within the range <code>[min, max[</code>, statelessly.  <a href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">More...</a><br /></td></tr>
-<tr class="separator:a70feaf1f33da08c5f79c849e0a45620f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d6c76e29cbdd31ef39284a03c5cce78"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a2d6c76e29cbdd31ef39284a03c5cce78">CSPRNG_SInt_Get</a> (void)</td></tr>
-<tr class="memdesc:a2d6c76e29cbdd31ef39284a03c5cce78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random integer value, statelessly.  <a href="csprng_8h.html#a2d6c76e29cbdd31ef39284a03c5cce78">More...</a><br /></td></tr>
-<tr class="separator:a2d6c76e29cbdd31ef39284a03c5cce78"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af5d33bf2c19ca514e8127698cd5911b4"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a> (t_sint min, t_sint max)</td></tr>
-<tr class="memdesc:af5d33bf2c19ca514e8127698cd5911b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random integer value, within the range <code>[min, max[</code>, statelessly.  <a href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">More...</a><br /></td></tr>
-<tr class="separator:af5d33bf2c19ca514e8127698cd5911b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e56fe9cbf7f02cf69b4d6fb0c610ab6"><td class="memItemLeft" align="right" valign="top">t_fixed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a7e56fe9cbf7f02cf69b4d6fb0c610ab6">CSPRNG_Fixed_Get</a> (void)</td></tr>
-<tr class="memdesc:a7e56fe9cbf7f02cf69b4d6fb0c610ab6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random fixed-point value, statelessly.  <a href="csprng_8h.html#a7e56fe9cbf7f02cf69b4d6fb0c610ab6">More...</a><br /></td></tr>
-<tr class="separator:a7e56fe9cbf7f02cf69b4d6fb0c610ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a031119b7f3c7bf37a7edb7454a075a2c"><td class="memItemLeft" align="right" valign="top">t_fixed&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a> (t_fixed min, t_fixed max)</td></tr>
-<tr class="memdesc:a031119b7f3c7bf37a7edb7454a075a2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random fixed-point value, within the range <code>[min, max[</code>, statelessly.  <a href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">More...</a><br /></td></tr>
-<tr class="separator:a031119b7f3c7bf37a7edb7454a075a2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae32751775458526c2e8a7f0820844955"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ae32751775458526c2e8a7f0820844955">CSPRNG_Float_Get</a> (void)</td></tr>
-<tr class="memdesc:ae32751775458526c2e8a7f0820844955"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random floating-point value, statelessly.  <a href="csprng_8h.html#ae32751775458526c2e8a7f0820844955">More...</a><br /></td></tr>
+<tr class="memitem:ae32751775458526c2e8a7f0820844955"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ae32751775458526c2e8a7f0820844955">CSPRNG_Float_Get</a> (void)</td></tr>
 <tr class="separator:ae32751775458526c2e8a7f0820844955"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec580454264ec80c8dbf6d58fdf40c92"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a> (t_float min, t_float max)</td></tr>
-<tr class="memdesc:aec580454264ec80c8dbf6d58fdf40c92"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a cryptographically secure random floating-point value, within the range <code>[min, max[</code>, statelessly.  <a href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">More...</a><br /></td></tr>
+<tr class="memitem:ab1603e4a99cdb0185dcc32b9d8b96ca0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#ab1603e4a99cdb0185dcc32b9d8b96ca0">c_csprnggetxf</a>&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a></td></tr>
+<tr class="separator:ab1603e4a99cdb0185dcc32b9d8b96ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec580454264ec80c8dbf6d58fdf40c92"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a> (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> min, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> max)</td></tr>
 <tr class="separator:aec580454264ec80c8dbf6d58fdf40c92"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -247,7 +243,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00064">64</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00065">65</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -263,7 +259,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00071">71</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00074">74</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -279,7 +275,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00089">89</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00094">94</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -295,23 +291,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00094">94</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00102">102</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a8a8fa613656d7f080a810788051ab85f" name="a8a8fa613656d7f080a810788051ab85f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8a8fa613656d7f080a810788051ab85f">&#9670;&nbsp;</a></span>c_csprngui</h2>
+<a id="a547ac23daf4014e0ac5ca644206256c7" name="a547ac23daf4014e0ac5ca644206256c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547ac23daf4014e0ac5ca644206256c7">&#9670;&nbsp;</a></span>c_csprngxu</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprngui&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a></td>
+          <td class="memname">#define c_csprngxu&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a6245b3f3a095bce8d1e3a6418762b801">CSPRNG_UInt_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00098">98</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00107">107</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -327,23 +323,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00103">103</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00113">113</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="ac9e2701dbff14da4a94080309ab5a20e" name="ac9e2701dbff14da4a94080309ab5a20e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac9e2701dbff14da4a94080309ab5a20e">&#9670;&nbsp;</a></span>c_csprngsi</h2>
+<a id="aff88621b9675d4de62d3128ce368c333" name="aff88621b9675d4de62d3128ce368c333"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff88621b9675d4de62d3128ce368c333">&#9670;&nbsp;</a></span>c_csprngxs</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprngsi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a></td>
+          <td class="memname">#define c_csprngxs&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a9d9a2ea5e4806b708f55c9ee0fa73b6d">CSPRNG_SInt_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00107">107</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00118">118</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -359,23 +355,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00112">112</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00124">124</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a0f951549f3e12bc87fef5920446ea5e6" name="a0f951549f3e12bc87fef5920446ea5e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0f951549f3e12bc87fef5920446ea5e6">&#9670;&nbsp;</a></span>c_csprngqi</h2>
+<a id="ae3ef26363b4528acf649a69fb5356eac" name="ae3ef26363b4528acf649a69fb5356eac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3ef26363b4528acf649a69fb5356eac">&#9670;&nbsp;</a></span>c_csprngxq</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprngqi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a></td>
+          <td class="memname">#define c_csprngxq&#160;&#160;&#160;<a class="el" href="csprng_8h.html#accd006859b931b6dcb17f8b337aa0220">CSPRNG_Fixed_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00116">116</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00129">129</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -391,23 +387,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00121">121</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00135">135</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a2f4db6fff9d696c292eada6581cb5a54" name="a2f4db6fff9d696c292eada6581cb5a54"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f4db6fff9d696c292eada6581cb5a54">&#9670;&nbsp;</a></span>c_csprngfi</h2>
+<a id="aa6a920d5cb6053249a9eb906f9a54638" name="aa6a920d5cb6053249a9eb906f9a54638"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a920d5cb6053249a9eb906f9a54638">&#9670;&nbsp;</a></span>c_csprngxf</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprngfi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a></td>
+          <td class="memname">#define c_csprngxf&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aaea1b185771ba21dff24b66b14c1045a">CSPRNG_Float_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00125">125</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00140">140</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -423,7 +419,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00142">142</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00159">159</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -439,23 +435,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00147">147</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00167">167</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a77f170b259e1ad3e9d6bcdb7b8129a15" name="a77f170b259e1ad3e9d6bcdb7b8129a15"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a77f170b259e1ad3e9d6bcdb7b8129a15">&#9670;&nbsp;</a></span>c_csprnggetui</h2>
+<a id="a043faf8ab414cfd7dd3dff267ec06a59" name="a043faf8ab414cfd7dd3dff267ec06a59"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a043faf8ab414cfd7dd3dff267ec06a59">&#9670;&nbsp;</a></span>c_csprnggetxu</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprnggetui&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a></td>
+          <td class="memname">#define c_csprnggetxu&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a70feaf1f33da08c5f79c849e0a45620f">CSPRNG_UInt_Get_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00151">151</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00172">172</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -471,23 +467,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00156">156</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00178">178</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a142cf75932462a103e24578e08154f99" name="a142cf75932462a103e24578e08154f99"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a142cf75932462a103e24578e08154f99">&#9670;&nbsp;</a></span>c_csprnggetsi</h2>
+<a id="a7790d375562e07b1f8d1aea4feb8dd69" name="a7790d375562e07b1f8d1aea4feb8dd69"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7790d375562e07b1f8d1aea4feb8dd69">&#9670;&nbsp;</a></span>c_csprnggetxs</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprnggetsi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a></td>
+          <td class="memname">#define c_csprnggetxs&#160;&#160;&#160;<a class="el" href="csprng_8h.html#af5d33bf2c19ca514e8127698cd5911b4">CSPRNG_SInt_Get_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00160">160</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00183">183</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -503,23 +499,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00165">165</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00189">189</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a54b5f0dbb291eb406ac6732a6e29346c" name="a54b5f0dbb291eb406ac6732a6e29346c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a54b5f0dbb291eb406ac6732a6e29346c">&#9670;&nbsp;</a></span>c_csprnggetqi</h2>
+<a id="ac71049b19724b1f12813be4f7df75e62" name="ac71049b19724b1f12813be4f7df75e62"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac71049b19724b1f12813be4f7df75e62">&#9670;&nbsp;</a></span>c_csprnggetxq</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprnggetqi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a></td>
+          <td class="memname">#define c_csprnggetxq&#160;&#160;&#160;<a class="el" href="csprng_8h.html#a031119b7f3c7bf37a7edb7454a075a2c">CSPRNG_Fixed_Get_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00169">169</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00194">194</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -535,43 +531,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00174">174</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00200">200</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
-<a id="a88bb4d9c0d52c846b16848aea1730cca" name="a88bb4d9c0d52c846b16848aea1730cca"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a88bb4d9c0d52c846b16848aea1730cca">&#9670;&nbsp;</a></span>c_csprnggetfi</h2>
+<a id="ab1603e4a99cdb0185dcc32b9d8b96ca0" name="ab1603e4a99cdb0185dcc32b9d8b96ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1603e4a99cdb0185dcc32b9d8b96ca0">&#9670;&nbsp;</a></span>c_csprnggetxf</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_csprnggetfi&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a></td>
+          <td class="memname">#define c_csprnggetxf&#160;&#160;&#160;<a class="el" href="csprng_8h.html#aec580454264ec80c8dbf6d58fdf40c92">CSPRNG_Float_Get_Range</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00178">178</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
-
-</div>
-</div>
-<h2 class="groupheader">Typedef Documentation</h2>
-<a id="a712e1ad1079979c42a9b6f6c6f09ffb2" name="a712e1ad1079979c42a9b6f6c6f09ffb2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a712e1ad1079979c42a9b6f6c6f09ffb2">&#9670;&nbsp;</a></span>t_csprng</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef void <a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>This type stores the current state of the random number generator. </p>
-<p >This type is intentionally opaque (it is platform-dependent) </p>
-
-<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00048">48</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00205">205</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -583,7 +559,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> * CSPRNG_New </td>
+          <td class="memname"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> * CSPRNG_New </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -591,8 +567,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Creates a new CSPRNG state. </p>
 <dl class="section return"><dt>Returns</dt><dd>A new CSPRNG state, or <code>NULL</code> if an error occurred. </dd></dl>
 
 </div>
@@ -606,14 +580,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void CSPRNG_Delete </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> **&#160;</td>
           <td class="paramname"><em>a_state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Deletes (free and nullify) an existing CSPRNG state. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a_state</td><td>The address of the CSPRNG state to free and nullify </td></tr>
@@ -632,7 +604,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> CSPRNG_Next </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
@@ -644,7 +616,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -654,8 +626,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Writes <code>n</code> bytes of random data to <code>dest</code>. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>The CSPRNG state to use </td></tr>
@@ -675,16 +645,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint CSPRNG_UInt </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> CSPRNG_UInt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random unsigned integer value. </p>
 
 </div>
 </div>
@@ -695,21 +663,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint CSPRNG_UInt_Range </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> CSPRNG_UInt_Range </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -719,8 +687,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random unsigned integer value, in the range <code>[min, max[</code> </p>
+<p >@doc Get a cryptographically secure random unsigned integer value, in the range <code>[min, max[</code> </p>
 
 </div>
 </div>
@@ -731,16 +698,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint CSPRNG_SInt </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> CSPRNG_SInt </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random integer value. </p>
 
 </div>
 </div>
@@ -751,21 +716,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint CSPRNG_SInt_Range </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> CSPRNG_SInt_Range </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -775,8 +740,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random integer value, in the range <code>[min, max[</code> </p>
+<p >@doc Get a cryptographically secure random integer value, in the range <code>[min, max[</code> </p>
 
 </div>
 </div>
@@ -787,16 +751,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_fixed CSPRNG_Fixed </td>
+          <td class="memname"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> CSPRNG_Fixed </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random fixed-point value. </p>
 
 </div>
 </div>
@@ -807,21 +769,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_fixed CSPRNG_Fixed_Range </td>
+          <td class="memname"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> CSPRNG_Fixed_Range </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_fixed&#160;</td>
+          <td class="paramtype"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_fixed&#160;</td>
+          <td class="paramtype"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -831,8 +793,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random fixed-point value, in the range <code>[min, max[</code> </p>
+<p >@doc Get a cryptographically secure random fixed-point value, in the range <code>[min, max[</code> </p>
 
 </div>
 </div>
@@ -843,16 +804,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float CSPRNG_Float </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> CSPRNG_Float </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random floating-point value. </p>
 
 </div>
 </div>
@@ -863,21 +822,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float CSPRNG_Float_Range </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> CSPRNG_Float_Range </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="csprng_8h.html#a712e1ad1079979c42a9b6f6c6f09ffb2">t_csprng</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="csprng_8h.html#ab94d3253967e73b712bd46ec9471b0c1">t_csprng</a> *&#160;</td>
           <td class="paramname"><em>state</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -887,8 +846,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random floating-point value, in the range <code>[min, max[</code> </p>
+<p >@doc Get a cryptographically secure random floating-point value, in the range <code>[min, max[</code> </p>
 
 </div>
 </div>
@@ -907,7 +865,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -917,8 +875,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Writes <code>n</code> bytes of random data to <code>dest</code> (creating and deleting a state). </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dest</td><td>The destination memory buffer to write to </td></tr>
@@ -937,7 +893,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint CSPRNG_UInt_Get </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> CSPRNG_UInt_Get </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -945,8 +901,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random unsigned integer, statelessly. </p>
 
 </div>
 </div>
@@ -957,15 +911,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint CSPRNG_UInt_Get_Range </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> CSPRNG_UInt_Get_Range </td>
           <td>(</td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -975,8 +929,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random unsigned integer, within the range <code>[min, max[</code>, statelessly. </p>
+<p >@doc Get a cryptographically secure random unsigned integer, within the range <code>[min, max[</code>, statelessly. </p>
 
 </div>
 </div>
@@ -987,7 +940,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint CSPRNG_SInt_Get </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> CSPRNG_SInt_Get </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -995,8 +948,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random integer value, statelessly. </p>
 
 </div>
 </div>
@@ -1007,15 +958,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint CSPRNG_SInt_Get_Range </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> CSPRNG_SInt_Get_Range </td>
           <td>(</td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -1025,8 +976,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random integer value, within the range <code>[min, max[</code>, statelessly. </p>
+<p >@doc Get a cryptographically secure random integer value, within the range <code>[min, max[</code>, statelessly. </p>
 
 </div>
 </div>
@@ -1037,7 +987,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_fixed CSPRNG_Fixed_Get </td>
+          <td class="memname"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> CSPRNG_Fixed_Get </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1045,8 +995,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random fixed-point value, statelessly. </p>
 
 </div>
 </div>
@@ -1057,15 +1005,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_fixed CSPRNG_Fixed_Get_Range </td>
+          <td class="memname"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a> CSPRNG_Fixed_Get_Range </td>
           <td>(</td>
-          <td class="paramtype">t_fixed&#160;</td>
+          <td class="paramtype"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_fixed&#160;</td>
+          <td class="paramtype"><a class="el" href="fixed_8h.html#a1cb3f647dd924b1151ec5c29200e0c4a">t_fixed</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -1075,8 +1023,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random fixed-point value, within the range <code>[min, max[</code>, statelessly. </p>
+<p >@doc Get a cryptographically secure random fixed-point value, within the range <code>[min, max[</code>, statelessly. </p>
 
 </div>
 </div>
@@ -1087,7 +1034,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float CSPRNG_Float_Get </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> CSPRNG_Float_Get </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1095,8 +1042,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a cryptographically secure random floating-point value, statelessly. </p>
 
 </div>
 </div>
@@ -1107,15 +1052,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float CSPRNG_Float_Get_Range </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> CSPRNG_Float_Get_Range </td>
           <td>(</td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>min</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>max</em>&#160;</td>
         </tr>
         <tr>
@@ -1125,8 +1070,27 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >@doc Get a cryptographically secure random floating-point value, within the range <code>[min, max[</code>, statelessly. </p>
 
-<p>Get a cryptographically secure random floating-point value, within the range <code>[min, max[</code>, statelessly. </p>
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="ab94d3253967e73b712bd46ec9471b0c1" name="ab94d3253967e73b712bd46ec9471b0c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab94d3253967e73b712bd46ec9471b0c1">&#9670;&nbsp;</a></span>t_csprng</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef void t_csprng</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>This type stores the current state of the random number generator. </p>
+<p >This type is intentionally opaque (it is platform-dependent) </p>
+
+<p class="definition">Definition at line <a class="el" href="csprng_8h_source.html#l00048">48</a> of file <a class="el" href="csprng_8h_source.html">csprng.h</a>.</p>
 
 </div>
 </div>
@@ -1135,7 +1099,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_71ecd33d167cbecc24fcd8dae37d6c8f.html">random</a></li><li class="navelem"><a class="el" href="csprng_8h.html">csprng.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_4f2944236d2c525a0d023b83029b43e5.html">random</a></li><li class="navelem"><a class="el" href="csprng_8h.html">csprng.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

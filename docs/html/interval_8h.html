@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/math/algebra/interval.h File Reference</title>
+<title>libccc: libccc/math/algebra/interval.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -110,7 +110,8 @@ $(document).ready(function(){initNavTree('interval_8h.html',''); initResizable()
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="interval_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="interval_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+</div>
 </div>
 </div>
 <p><a href="interval_8h_source.html">Go to the source code of this file.</a></p>
@@ -132,25 +133,25 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a82b306c684e81ecbbb813970d7b94181"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a></td></tr>
+<tr class="memitem:a82b306c684e81ecbbb813970d7b94181"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a></td></tr>
 <tr class="memdesc:a82b306c684e81ecbbb813970d7b94181"><td class="mdescLeft">&#160;</td><td class="mdescRight">An interval/range, defined by a 'start' number and 'end' number.  <a href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">More...</a><br /></td></tr>
 <tr class="separator:a82b306c684e81ecbbb813970d7b94181"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5186df6923414fa8e710d6138a4e9157"><td class="memItemLeft" align="right" valign="top">typedef t_float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">f_scalar_func1</a>) (t_float const v)</td></tr>
+<tr class="memitem:a5186df6923414fa8e710d6138a4e9157"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">f_scalar_func1</a>) (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> const v)</td></tr>
 <tr class="memdesc:a5186df6923414fa8e710d6138a4e9157"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of function which takes a 1-dimensional vector as input, and returns a real number.  <a href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">More...</a><br /></td></tr>
 <tr class="separator:a5186df6923414fa8e710d6138a4e9157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39a31ee739e0aceb11e2a390af338029"><td class="memItemLeft" align="right" valign="top">typedef t_float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">f_scalar_func2</a>) (<a class="el" href="vector_8h.html#a6bd85cc7867aeeed024d45105c6b37a6">u_vector2d</a> const v)</td></tr>
+<tr class="memitem:a39a31ee739e0aceb11e2a390af338029"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">f_scalar_func2</a>) (<a class="el" href="vector_8h.html#a6bd85cc7867aeeed024d45105c6b37a6">u_vector2d</a> const v)</td></tr>
 <tr class="memdesc:a39a31ee739e0aceb11e2a390af338029"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of function which takes a 2-dimensional vector as input, and returns a real number.  <a href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">More...</a><br /></td></tr>
 <tr class="separator:a39a31ee739e0aceb11e2a390af338029"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3398253d21b78a68d2584373129c369"><td class="memItemLeft" align="right" valign="top">typedef t_float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ae3398253d21b78a68d2584373129c369">f_scalar_func3</a>) (<a class="el" href="vector_8h.html#a7513bba85a41a8aa114f7c797205d04e">u_vector3d</a> const v)</td></tr>
+<tr class="memitem:ae3398253d21b78a68d2584373129c369"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ae3398253d21b78a68d2584373129c369">f_scalar_func3</a>) (<a class="el" href="vector_8h.html#a7513bba85a41a8aa114f7c797205d04e">u_vector3d</a> const v)</td></tr>
 <tr class="memdesc:ae3398253d21b78a68d2584373129c369"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of function which takes a 3-dimensional vector as input, and returns a real number.  <a href="interval_8h.html#ae3398253d21b78a68d2584373129c369">More...</a><br /></td></tr>
 <tr class="separator:ae3398253d21b78a68d2584373129c369"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0611ee62bac265eba119d2f622ed69fd"><td class="memItemLeft" align="right" valign="top">typedef t_float(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">f_scalar_func4</a>) (<a class="el" href="vector_8h.html#a3438cbcb742340754f0d906fb5794790">u_vector4d</a> const v)</td></tr>
+<tr class="memitem:a0611ee62bac265eba119d2f622ed69fd"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">f_scalar_func4</a>) (<a class="el" href="vector_8h.html#a3438cbcb742340754f0d906fb5794790">u_vector4d</a> const v)</td></tr>
 <tr class="memdesc:a0611ee62bac265eba119d2f622ed69fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">The type of function which takes a 4-dimensional vector as input, and returns a real number.  <a href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">More...</a><br /></td></tr>
 <tr class="separator:a0611ee62bac265eba119d2f622ed69fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr class="memitem:a6392f924cc459b950c7a9d64a55c6f1e"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="interval_8h.html#structbox1d">box1d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a></td></tr>
-<tr class="memdesc:a6392f924cc459b950c7a9d64a55c6f1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 1-dimensional interval of coordinates, defined by two corner-point vectors.  <a href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">More...</a><br /></td></tr>
-<tr class="separator:a6392f924cc459b950c7a9d64a55c6f1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5be995c48d505ec9f73409da6449dddc"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> struct <a class="el" href="interval_8h.html#structbox1d">box1d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a></td></tr>
+<tr class="memdesc:a5be995c48d505ec9f73409da6449dddc"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 1-dimensional interval of coordinates, defined by two corner-point vectors.  <a href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">More...</a><br /></td></tr>
+<tr class="separator:a5be995c48d505ec9f73409da6449dddc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9875c126ed94ca81cf92a6cb49179923"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="interval_8h.html#structbox2d">box2d</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a9875c126ed94ca81cf92a6cb49179923">s_box2d</a></td></tr>
 <tr class="memdesc:a9875c126ed94ca81cf92a6cb49179923"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2-dimensional area of coordinates, defined by two corner-point vectors.  <a href="interval_8h.html#a9875c126ed94ca81cf92a6cb49179923">More...</a><br /></td></tr>
 <tr class="separator:a9875c126ed94ca81cf92a6cb49179923"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -163,45 +164,45 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a7ca8cb5126d9af299e90a43c03d048b2"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a7ca8cb5126d9af299e90a43c03d048b2">c_integrate</a> (<a class="el" href="math_2float_8h.html#a70286c1d9b85fe9c109dd54c1d02dc88">f_float_function</a> const f, <a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a> const domain, t_float step)</td></tr>
+<tr class="memitem:a7ca8cb5126d9af299e90a43c03d048b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a7ca8cb5126d9af299e90a43c03d048b2">c_integrate</a> (<a class="el" href="math_2float_8h.html#a70286c1d9b85fe9c109dd54c1d02dc88">f_float_function</a> const f, <a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a> const domain, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> step)</td></tr>
 <tr class="separator:a7ca8cb5126d9af299e90a43c03d048b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19bf580ff58ac7a45ee63a95166ad516"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a19bf580ff58ac7a45ee63a95166ad516">c_mc_integrate_1d</a> (<a class="el" href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">f_scalar_func1</a> const sf, <a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a> const domain)</td></tr>
+<tr class="memitem:a19bf580ff58ac7a45ee63a95166ad516"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a19bf580ff58ac7a45ee63a95166ad516">c_mc_integrate_1d</a> (<a class="el" href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">f_scalar_func1</a> const sf, <a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a> const domain)</td></tr>
 <tr class="separator:a19bf580ff58ac7a45ee63a95166ad516"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a04d47a97e05bc0347837113e76700ac3"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a04d47a97e05bc0347837113e76700ac3">c_mc_integrate_2d</a> (<a class="el" href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">f_scalar_func2</a> const sf, <a class="el" href="interval_8h.html#a9875c126ed94ca81cf92a6cb49179923">s_box2d</a> const domain)</td></tr>
+<tr class="memitem:a04d47a97e05bc0347837113e76700ac3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a04d47a97e05bc0347837113e76700ac3">c_mc_integrate_2d</a> (<a class="el" href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">f_scalar_func2</a> const sf, <a class="el" href="interval_8h.html#a9875c126ed94ca81cf92a6cb49179923">s_box2d</a> const domain)</td></tr>
 <tr class="separator:a04d47a97e05bc0347837113e76700ac3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1a8902ae51f38c814943652f48bbcf26"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a1a8902ae51f38c814943652f48bbcf26">c_mc_integrate_3d</a> (<a class="el" href="interval_8h.html#ae3398253d21b78a68d2584373129c369">f_scalar_func3</a> const sf, <a class="el" href="interval_8h.html#a4297ebebc3a2abcc90073f447059fa7f">s_box3d</a> const domain)</td></tr>
+<tr class="memitem:a1a8902ae51f38c814943652f48bbcf26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a1a8902ae51f38c814943652f48bbcf26">c_mc_integrate_3d</a> (<a class="el" href="interval_8h.html#ae3398253d21b78a68d2584373129c369">f_scalar_func3</a> const sf, <a class="el" href="interval_8h.html#a4297ebebc3a2abcc90073f447059fa7f">s_box3d</a> const domain)</td></tr>
 <tr class="separator:a1a8902ae51f38c814943652f48bbcf26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c8e631b817dc69213556c2a8a867556"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a6c8e631b817dc69213556c2a8a867556">c_mc_integrate_4d</a> (<a class="el" href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">f_scalar_func4</a> const sf, <a class="el" href="interval_8h.html#a0d4684df807309f655ee28b0ed57f0f9">s_box4d</a> const domain)</td></tr>
+<tr class="memitem:a6c8e631b817dc69213556c2a8a867556"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a6c8e631b817dc69213556c2a8a867556">c_mc_integrate_4d</a> (<a class="el" href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">f_scalar_func4</a> const sf, <a class="el" href="interval_8h.html#a0d4684df807309f655ee28b0ed57f0f9">s_box4d</a> const domain)</td></tr>
 <tr class="separator:a6c8e631b817dc69213556c2a8a867556"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d9ac99a1eb427fb14eb0054b895e92a"><td class="memItemLeft" align="right" valign="top">t_float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a2d9ac99a1eb427fb14eb0054b895e92a">c_distance_float</a> (t_float x, t_float y)</td></tr>
+<tr class="memitem:a2d9ac99a1eb427fb14eb0054b895e92a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a2d9ac99a1eb427fb14eb0054b895e92a">c_distance_float</a> (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> x, <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> y)</td></tr>
 <tr class="separator:a2d9ac99a1eb427fb14eb0054b895e92a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50979520ab14e404f999f4fd31c9ff4d"><td class="memItemLeft" align="right" valign="top">t_f32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a50979520ab14e404f999f4fd31c9ff4d">c_distance_f32</a> (t_f32 x, t_f32 y)</td></tr>
+<tr class="memitem:a50979520ab14e404f999f4fd31c9ff4d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a50979520ab14e404f999f4fd31c9ff4d">c_distance_f32</a> (<a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a> x, <a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a> y)</td></tr>
 <tr class="separator:a50979520ab14e404f999f4fd31c9ff4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8a9827d3b09dbf2063e57bdee084de76"><td class="memItemLeft" align="right" valign="top">t_f64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a8a9827d3b09dbf2063e57bdee084de76">c_distance_f64</a> (t_f64 x, t_f64 y)</td></tr>
+<tr class="memitem:a8a9827d3b09dbf2063e57bdee084de76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a8a9827d3b09dbf2063e57bdee084de76">c_distance_f64</a> (<a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a> x, <a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a> y)</td></tr>
 <tr class="separator:a8a9827d3b09dbf2063e57bdee084de76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace8f873f8324c8b5a0fa6fd6788bea20"><td class="memItemLeft" align="right" valign="top">t_uint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ace8f873f8324c8b5a0fa6fd6788bea20">c_distance_uint</a> (t_uint x, t_uint y)</td></tr>
+<tr class="memitem:ace8f873f8324c8b5a0fa6fd6788bea20"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ace8f873f8324c8b5a0fa6fd6788bea20">c_distance_uint</a> (<a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> x, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> y)</td></tr>
 <tr class="separator:ace8f873f8324c8b5a0fa6fd6788bea20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a560024e1c942a34490cc39888118a11d"><td class="memItemLeft" align="right" valign="top">t_u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a560024e1c942a34490cc39888118a11d">c_distance_u8</a> (t_u8 x, t_u8 y)</td></tr>
+<tr class="memitem:a560024e1c942a34490cc39888118a11d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a560024e1c942a34490cc39888118a11d">c_distance_u8</a> (<a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> x, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> y)</td></tr>
 <tr class="separator:a560024e1c942a34490cc39888118a11d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26d3f6b9de3fe79bb79d588de6697978"><td class="memItemLeft" align="right" valign="top">t_u16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a26d3f6b9de3fe79bb79d588de6697978">c_distance_u16</a> (t_u16 x, t_u16 y)</td></tr>
+<tr class="memitem:a26d3f6b9de3fe79bb79d588de6697978"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a26d3f6b9de3fe79bb79d588de6697978">c_distance_u16</a> (<a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a> x, <a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a> y)</td></tr>
 <tr class="separator:a26d3f6b9de3fe79bb79d588de6697978"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4430f9167616ab94bce5cb15f2520222"><td class="memItemLeft" align="right" valign="top">t_u32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a4430f9167616ab94bce5cb15f2520222">c_distance_u32</a> (t_u32 x, t_u32 y)</td></tr>
+<tr class="memitem:a4430f9167616ab94bce5cb15f2520222"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a4430f9167616ab94bce5cb15f2520222">c_distance_u32</a> (<a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a> x, <a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a> y)</td></tr>
 <tr class="separator:a4430f9167616ab94bce5cb15f2520222"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3966deb12f376ee15a3082cafd784bbe"><td class="memItemLeft" align="right" valign="top">t_u64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a3966deb12f376ee15a3082cafd784bbe">c_distance_u64</a> (t_u64 x, t_u64 y)</td></tr>
+<tr class="memitem:a3966deb12f376ee15a3082cafd784bbe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a3966deb12f376ee15a3082cafd784bbe">c_distance_u64</a> (<a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a> x, <a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a> y)</td></tr>
 <tr class="separator:a3966deb12f376ee15a3082cafd784bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c87bf7e1eeee701a8c0cb58cdf64874"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a9c87bf7e1eeee701a8c0cb58cdf64874">c_distance_int</a> (t_sint x, t_sint y)</td></tr>
+<tr class="memitem:a9c87bf7e1eeee701a8c0cb58cdf64874"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a9c87bf7e1eeee701a8c0cb58cdf64874">c_distance_int</a> (<a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> x, <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> y)</td></tr>
 <tr class="separator:a9c87bf7e1eeee701a8c0cb58cdf64874"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dfa16a4bda42255ca5920cf5d9f0bee"><td class="memItemLeft" align="right" valign="top">t_s8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a6dfa16a4bda42255ca5920cf5d9f0bee">c_distance_s8</a> (t_s8 x, t_s8 y)</td></tr>
+<tr class="memitem:a6dfa16a4bda42255ca5920cf5d9f0bee"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a6dfa16a4bda42255ca5920cf5d9f0bee">c_distance_s8</a> (<a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a> x, <a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a> y)</td></tr>
 <tr class="separator:a6dfa16a4bda42255ca5920cf5d9f0bee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ace24a9c452e0814f0c6a621a9097c960"><td class="memItemLeft" align="right" valign="top">t_s16&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ace24a9c452e0814f0c6a621a9097c960">c_distance_s16</a> (t_s16 x, t_s16 y)</td></tr>
+<tr class="memitem:ace24a9c452e0814f0c6a621a9097c960"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#ace24a9c452e0814f0c6a621a9097c960">c_distance_s16</a> (<a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a> x, <a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a> y)</td></tr>
 <tr class="separator:ace24a9c452e0814f0c6a621a9097c960"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1663941e5c86968e4c2f66aaa350cc55"><td class="memItemLeft" align="right" valign="top">t_s32&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a1663941e5c86968e4c2f66aaa350cc55">c_distance_s32</a> (t_s32 x, t_s32 y)</td></tr>
+<tr class="memitem:a1663941e5c86968e4c2f66aaa350cc55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a1663941e5c86968e4c2f66aaa350cc55">c_distance_s32</a> (<a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a> x, <a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a> y)</td></tr>
 <tr class="separator:a1663941e5c86968e4c2f66aaa350cc55"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d7c6535f661fc7d2adc1b25e8e64994"><td class="memItemLeft" align="right" valign="top">t_s64&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a4d7c6535f661fc7d2adc1b25e8e64994">c_distance_s64</a> (t_s64 x, t_s64 y)</td></tr>
+<tr class="memitem:a4d7c6535f661fc7d2adc1b25e8e64994"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interval_8h.html#a4d7c6535f661fc7d2adc1b25e8e64994">c_distance_s64</a> (<a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a> x, <a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a> y)</td></tr>
 <tr class="separator:a4d7c6535f661fc7d2adc1b25e8e64994"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines useful algebra and calculus types, and functions.</p>
+<div class="textblock"><p >This header defines useful algebra and calculus types, and functions. </p>
 
 <p class="definition">Definition in file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 </div><hr/><h2 class="groupheader">Data Structure Documentation</h2>
@@ -219,17 +220,17 @@ Functions</h2></td></tr>
 <div class="textblock"><p >A 1-dimensional interval of coordinates, defined by two corner-point vectors. </p>
 <p >Definitions of axis-aligned bounding-box are assumed to be entirely composed of orthogonal edges (brick shaped), which is why only two vectors are necessary to define it. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00049">49</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00047">47</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
-<a id="ac41cc0ab7ee354533f81a23f070276ea" name="ac41cc0ab7ee354533f81a23f070276ea"></a>t_float</td>
+<a id="ac41cc0ab7ee354533f81a23f070276ea" name="ac41cc0ab7ee354533f81a23f070276ea"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 start</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="abfadf9201b673d08f80337bbbb33e6ec" name="abfadf9201b673d08f80337bbbb33e6ec"></a>t_float</td>
+<a id="abfadf9201b673d08f80337bbbb33e6ec" name="abfadf9201b673d08f80337bbbb33e6ec"></a><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a></td>
 <td class="fieldname">
 end</td>
 <td class="fielddoc">
@@ -251,7 +252,7 @@ end</td>
 </div><div class="memdoc">
 <div class="textblock"><p >A 2-dimensional area of coordinates, defined by two corner-point vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00057">57</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00055">55</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -283,7 +284,7 @@ end</td>
 </div><div class="memdoc">
 <div class="textblock"><p >A 3-dimensional volume of coordinates, defined by two corner-point vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00065">65</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00063">63</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -315,7 +316,7 @@ end</td>
 </div><div class="memdoc">
 <div class="textblock"><p >A 4-dimensional hypervolume of coordinates, defined by two corner-point vectors. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00073">73</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00071">71</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 </div><table class="fieldtable">
 <tr><th colspan="3">Data Fields</th></tr>
 <tr><td class="fieldtype">
@@ -335,14 +336,14 @@ end</td>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a6392f924cc459b950c7a9d64a55c6f1e" name="a6392f924cc459b950c7a9d64a55c6f1e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6392f924cc459b950c7a9d64a55c6f1e">&#9670;&nbsp;</a></span>s_box1d</h2>
+<a id="a5be995c48d505ec9f73409da6449dddc" name="a5be995c48d505ec9f73409da6449dddc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5be995c48d505ec9f73409da6449dddc">&#9670;&nbsp;</a></span>s_box1d</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef struct <a class="el" href="interval_8h.html#structbox1d">box1d</a> <a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a></td>
+          <td class="memname">typedef <a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> struct <a class="el" href="interval_8h.html#structbox1d">box1d</a> <a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -407,14 +408,14 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef <a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a> <a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a></td>
+          <td class="memname">typedef <a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a> <a class="el" href="interval_8h.html#a82b306c684e81ecbbb813970d7b94181">s_interval</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>An interval/range, defined by a 'start' number and 'end' number. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00085">85</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00083">83</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 
 </div>
 </div>
@@ -425,14 +426,14 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef t_float(* f_scalar_func1) (t_float const v)</td>
+          <td class="memname">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(* f_scalar_func1) (<a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> const v)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The type of function which takes a 1-dimensional vector as input, and returns a real number. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00091">91</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00089">89</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 
 </div>
 </div>
@@ -443,14 +444,14 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef t_float(* f_scalar_func2) (<a class="el" href="vector_8h.html#a6bd85cc7867aeeed024d45105c6b37a6">u_vector2d</a> const v)</td>
+          <td class="memname">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(* f_scalar_func2) (<a class="el" href="vector_8h.html#a6bd85cc7867aeeed024d45105c6b37a6">u_vector2d</a> const v)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The type of function which takes a 2-dimensional vector as input, and returns a real number. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00093">93</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00091">91</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 
 </div>
 </div>
@@ -461,14 +462,14 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef t_float(* f_scalar_func3) (<a class="el" href="vector_8h.html#a7513bba85a41a8aa114f7c797205d04e">u_vector3d</a> const v)</td>
+          <td class="memname">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(* f_scalar_func3) (<a class="el" href="vector_8h.html#a7513bba85a41a8aa114f7c797205d04e">u_vector3d</a> const v)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The type of function which takes a 3-dimensional vector as input, and returns a real number. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00095">95</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00093">93</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 
 </div>
 </div>
@@ -479,14 +480,14 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">typedef t_float(* f_scalar_func4) (<a class="el" href="vector_8h.html#a3438cbcb742340754f0d906fb5794790">u_vector4d</a> const v)</td>
+          <td class="memname">typedef <a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>(* f_scalar_func4) (<a class="el" href="vector_8h.html#a3438cbcb742340754f0d906fb5794790">u_vector4d</a> const v)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>The type of function which takes a 4-dimensional vector as input, and returns a real number. </p>
 
-<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00097">97</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="interval_8h_source.html#l00095">95</a> of file <a class="el" href="interval_8h_source.html">interval.h</a>.</p>
 
 </div>
 </div>
@@ -498,7 +499,7 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_integrate </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_integrate </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="math_2float_8h.html#a70286c1d9b85fe9c109dd54c1d02dc88">f_float_function</a> const&#160;</td>
           <td class="paramname"><em>f</em>, </td>
@@ -512,7 +513,7 @@ end</td>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>step</em>&#160;</td>
         </tr>
         <tr>
@@ -533,7 +534,7 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_mc_integrate_1d </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_mc_integrate_1d </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interval_8h.html#a5186df6923414fa8e710d6138a4e9157">f_scalar_func1</a> const&#160;</td>
           <td class="paramname"><em>sf</em>, </td>
@@ -541,7 +542,7 @@ end</td>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="interval_8h.html#a6392f924cc459b950c7a9d64a55c6f1e">s_box1d</a> const&#160;</td>
+          <td class="paramtype"><a class="el" href="interval_8h.html#a5be995c48d505ec9f73409da6449dddc">s_box1d</a> const&#160;</td>
           <td class="paramname"><em>domain</em>&#160;</td>
         </tr>
         <tr>
@@ -561,7 +562,7 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_mc_integrate_2d </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_mc_integrate_2d </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interval_8h.html#a39a31ee739e0aceb11e2a390af338029">f_scalar_func2</a> const&#160;</td>
           <td class="paramname"><em>sf</em>, </td>
@@ -589,7 +590,7 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_mc_integrate_3d </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_mc_integrate_3d </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interval_8h.html#ae3398253d21b78a68d2584373129c369">f_scalar_func3</a> const&#160;</td>
           <td class="paramname"><em>sf</em>, </td>
@@ -617,7 +618,7 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_mc_integrate_4d </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_mc_integrate_4d </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="interval_8h.html#a0611ee62bac265eba119d2f622ed69fd">f_scalar_func4</a> const&#160;</td>
           <td class="paramname"><em>sf</em>, </td>
@@ -645,15 +646,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_float c_distance_float </td>
+          <td class="memname"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a> c_distance_float </td>
           <td>(</td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_float&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#a7b5858905ce13f425aa5df28e3754f93">t_float</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -673,15 +674,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_f32 c_distance_f32 </td>
+          <td class="memname"><a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a> c_distance_f32 </td>
           <td>(</td>
-          <td class="paramtype">t_f32&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_f32&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#ab4ca326c12ad2a26dbfe81c3d798bcdf">t_f32</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -701,15 +702,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_f64 c_distance_f64 </td>
+          <td class="memname"><a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a> c_distance_f64 </td>
           <td>(</td>
-          <td class="paramtype">t_f64&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_f64&#160;</td>
+          <td class="paramtype"><a class="el" href="float_8h.html#ad103913585e225d474d7bd173154f4e8">t_f64</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -729,15 +730,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uint c_distance_uint </td>
+          <td class="memname"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> c_distance_uint </td>
           <td>(</td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_uint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -757,15 +758,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_u8 c_distance_u8 </td>
+          <td class="memname"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> c_distance_u8 </td>
           <td>(</td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -785,15 +786,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_u16 c_distance_u16 </td>
+          <td class="memname"><a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a> c_distance_u16 </td>
           <td>(</td>
-          <td class="paramtype">t_u16&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u16&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a9c92761b4dd6cb0e59388a31169104d7">t_u16</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -813,15 +814,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_u32 c_distance_u32 </td>
+          <td class="memname"><a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a> c_distance_u32 </td>
           <td>(</td>
-          <td class="paramtype">t_u32&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u32&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#aa7590a5fe5898685586e486b914bd4f4">t_u32</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -841,15 +842,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_u64 c_distance_u64 </td>
+          <td class="memname"><a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a> c_distance_u64 </td>
           <td>(</td>
-          <td class="paramtype">t_u64&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u64&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a83dd5dbdceb4b01e80cf7e1cf815057f">t_u64</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -869,15 +870,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint c_distance_int </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> c_distance_int </td>
           <td>(</td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_sint&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -897,15 +898,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s8 c_distance_s8 </td>
+          <td class="memname"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a> c_distance_s8 </td>
           <td>(</td>
-          <td class="paramtype">t_s8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_s8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -925,15 +926,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s16 c_distance_s16 </td>
+          <td class="memname"><a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a> c_distance_s16 </td>
           <td>(</td>
-          <td class="paramtype">t_s16&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_s16&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#afc899f1bf55ef29fff2fbdfbf671059f">t_s16</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -953,15 +954,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s32 c_distance_s32 </td>
+          <td class="memname"><a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a> c_distance_s32 </td>
           <td>(</td>
-          <td class="paramtype">t_s32&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_s32&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a35f7d2148a614c00e64d05d48e445a3b">t_s32</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -981,15 +982,15 @@ end</td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s64 c_distance_s64 </td>
+          <td class="memname"><a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a> c_distance_s64 </td>
           <td>(</td>
-          <td class="paramtype">t_s64&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a>&#160;</td>
           <td class="paramname"><em>x</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_s64&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a239729fce900f13ba62c38808aa6a8b6">t_s64</a>&#160;</td>
           <td class="paramname"><em>y</em>&#160;</td>
         </tr>
         <tr>
@@ -1007,7 +1008,7 @@ end</td>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_95a5c7608f44570f25f009355c401eb3.html">math</a></li><li class="navelem"><a class="el" href="dir_7057632cbdeba673196786c8ec308fdd.html">algebra</a></li><li class="navelem"><a class="el" href="interval_8h.html">interval.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="dir_ba5cfe30e86ca78869418cdc64c54755.html">algebra</a></li><li class="navelem"><a class="el" href="interval_8h.html">interval.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

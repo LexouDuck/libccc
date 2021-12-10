@@ -1,7 +1,7 @@
 var stringarray_8h =
 [
     [ "c_strsplit_char", "stringarray_8h.html#aaf1ecb2878cc901b1565c4d6390d9f16", null ],
-    [ "c_strsplit_charset", "stringarray_8h.html#aaff1a42659acf960a13b8923548c5e5c", null ],
+    [ "c_strsplit_cset", "stringarray_8h.html#a86b7647f33c541fe33263cceddb63acc", null ],
     [ "c_strsplit_str", "stringarray_8h.html#af076504f93f0c48539f5f2d7dc9ab3ff", null ],
     [ "c_strdivide", "stringarray_8h.html#a0963f1f53b529c88e13a62a69f208940", null ],
     [ "c_strarrlen", "stringarray_8h.html#a76398dab1c86bb3c7485bd550834de76", null ],
@@ -38,7 +38,7 @@ var stringarray_8h =
     [ "c_strarrcmp", "stringarray_8h.html#a26f2ed618155ccfeece8c98467a71747", null ],
     [ "c_strarrncmp", "stringarray_8h.html#a370a37f29a68240bab2247cea93df13c", null ],
     [ "c_strarrcount_char", "stringarray_8h.html#a795af70d9ef1e594bd4ca27bb1e58931", null ],
-    [ "c_strarrcount_charset", "stringarray_8h.html#a82796598f6356381d492712912c4dc56", null ],
+    [ "c_strarrcount_cset", "stringarray_8h.html#a9d2a7c24aeff3fa2b14aa4bef823cf38", null ],
     [ "c_strarrcount_str", "stringarray_8h.html#ad8378cb25508900961101ea2c3dca66b", null ],
     [ "c_strarriter", "stringarray_8h.html#af9dde070b8f8bf558d1647aa6cf0b0d2", null ],
     [ "c_strarriiter", "stringarray_8h.html#ac4ecd315a1520b1e9acdfd3cacf49549", null ],
@@ -50,7 +50,6 @@ var stringarray_8h =
     [ "c_strarrireduce", "stringarray_8h.html#afc2ab05d619aa000a49fe20f26372eff", null ],
     [ "c_strarrfold", "stringarray_8h.html#a3b2957e6214d92e9cdfb52af18bc51f3", null ],
     [ "c_strarrifold", "stringarray_8h.html#afbc990b65f727a271df5867780802e9a", null ],
-    [ "p_strarray", "stringarray_8h.html#ac4ce4b8654d54ad8f0498957aaf04892", null ],
     [ "String_Split_Char", "stringarray_8h.html#a424c92ee172e4e174b154550fc220309", null ],
     [ "String_Split_Charset", "stringarray_8h.html#a4047c3216810a47abaaba4e0b466efe3", null ],
     [ "String_Split_String", "stringarray_8h.html#a6a3c7dc68f4e3bd64517a6f58de1f247", null ],
@@ -100,5 +99,6 @@ var stringarray_8h =
     [ "StringArray_Reduce", "stringarray_8h.html#a87af74f420c2be414da366ed88b17c08", null ],
     [ "StringArray_Reduce_I", "stringarray_8h.html#a72e73be3523985ed5ecb60abbd8da819", null ],
     [ "StringArray_Fold", "stringarray_8h.html#a8f637da261b80abb5b371511dec67459", null ],
-    [ "StringArray_Fold_I", "stringarray_8h.html#a557e4aafa6112643fd654f7579dce898", null ]
+    [ "StringArray_Fold_I", "stringarray_8h.html#a557e4aafa6112643fd654f7579dce898", null ],
+    [ "p_strarray", "stringarray_8h.html#a8d98861071594e186a6e670884c78bbc", null ]
 ];

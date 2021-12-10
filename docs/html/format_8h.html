@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/format.h File Reference</title>
+<title>libccc: libccc/format.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -94,8 +94,7 @@ $(document).ready(function(){initNavTree('format_8h.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">format.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -106,7 +105,8 @@ $(document).ready(function(){initNavTree('format_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="format_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="format_8h__incl.svg" width="339" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="format_8h_source.html">Go to the source code of this file.</a></p>
@@ -116,65 +116,23 @@ Macros</h2></td></tr>
 <tr class="memitem:aa6f3e6f8018ac638cbecd00c070067c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(TYPE,  PREFIX)&#160;&#160;&#160;&quot;%&quot; PREFIX SF_##TYPE##_</td></tr>
 <tr class="memdesc:aa6f3e6f8018ac638cbecd00c070067c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">This macro is used to make custom "SF_" string format macros.  <a href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">More...</a><br /></td></tr>
 <tr class="separator:aa6f3e6f8018ac638cbecd00c070067c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afae038f477a52abad1c3db5215bf9d50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#afae038f477a52abad1c3db5215bf9d50">c_asprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
-<tr class="memdesc:afae038f477a52abad1c3db5215bf9d50"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>]  <a href="format_8h.html#afae038f477a52abad1c3db5215bf9d50">More...</a><br /></td></tr>
-<tr class="separator:afae038f477a52abad1c3db5215bf9d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547b820d07e6b57ec93c4069217656b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a547b820d07e6b57ec93c4069217656b5">c_strfmt</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
-<tr class="memdesc:a547b820d07e6b57ec93c4069217656b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>]  <a href="format_8h.html#a547b820d07e6b57ec93c4069217656b5">More...</a><br /></td></tr>
-<tr class="separator:a547b820d07e6b57ec93c4069217656b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aec22df63b1874a7497781018cbf878ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#aec22df63b1874a7497781018cbf878ed">c_strformat</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
-<tr class="memdesc:aec22df63b1874a7497781018cbf878ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>]  <a href="format_8h.html#aec22df63b1874a7497781018cbf878ed">More...</a><br /></td></tr>
-<tr class="separator:aec22df63b1874a7497781018cbf878ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc97b00fd8f86c2e590b7fc53b9ebf21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#acc97b00fd8f86c2e590b7fc53b9ebf21">String_Build</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
-<tr class="memdesc:acc97b00fd8f86c2e590b7fc53b9ebf21"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>]  <a href="format_8h.html#acc97b00fd8f86c2e590b7fc53b9ebf21">More...</a><br /></td></tr>
-<tr class="separator:acc97b00fd8f86c2e590b7fc53b9ebf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3ebb60ff16369cd2d55992a39b1cd9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ad3ebb60ff16369cd2d55992a39b1cd9d">c_vasprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
-<tr class="memdesc:ad3ebb60ff16369cd2d55992a39b1cd9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>]  <a href="format_8h.html#ad3ebb60ff16369cd2d55992a39b1cd9d">More...</a><br /></td></tr>
-<tr class="separator:ad3ebb60ff16369cd2d55992a39b1cd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8702bd0fce53ba9c47f75931af94cacd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a8702bd0fce53ba9c47f75931af94cacd">c_strfmt_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
-<tr class="memdesc:a8702bd0fce53ba9c47f75931af94cacd"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>]  <a href="format_8h.html#a8702bd0fce53ba9c47f75931af94cacd">More...</a><br /></td></tr>
-<tr class="separator:a8702bd0fce53ba9c47f75931af94cacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21a6e87039779b39aed5cf0578da4f52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a21a6e87039779b39aed5cf0578da4f52">c_strformat_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
-<tr class="memdesc:a21a6e87039779b39aed5cf0578da4f52"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>]  <a href="format_8h.html#a21a6e87039779b39aed5cf0578da4f52">More...</a><br /></td></tr>
-<tr class="separator:a21a6e87039779b39aed5cf0578da4f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a164c8fcd4f8b160918efd724f7370683"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a164c8fcd4f8b160918efd724f7370683">String_Build_VA</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
-<tr class="memdesc:a164c8fcd4f8b160918efd724f7370683"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>]  <a href="format_8h.html#a164c8fcd4f8b160918efd724f7370683">More...</a><br /></td></tr>
-<tr class="separator:a164c8fcd4f8b160918efd724f7370683"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0a5026241da51c0a778c47aafcce5d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ab0a5026241da51c0a778c47aafcce5d8">c_snprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
-<tr class="memdesc:ab0a5026241da51c0a778c47aafcce5d8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>]  <a href="format_8h.html#ab0a5026241da51c0a778c47aafcce5d8">More...</a><br /></td></tr>
-<tr class="separator:ab0a5026241da51c0a778c47aafcce5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abe340a7004bdbe20915ebe92a4192c42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#abe340a7004bdbe20915ebe92a4192c42">c_strnfmt</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
-<tr class="memdesc:abe340a7004bdbe20915ebe92a4192c42"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>]  <a href="format_8h.html#abe340a7004bdbe20915ebe92a4192c42">More...</a><br /></td></tr>
-<tr class="separator:abe340a7004bdbe20915ebe92a4192c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a339619f37269bf313930b607d2eb086b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a339619f37269bf313930b607d2eb086b">c_strnformat</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
-<tr class="memdesc:a339619f37269bf313930b607d2eb086b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>]  <a href="format_8h.html#a339619f37269bf313930b607d2eb086b">More...</a><br /></td></tr>
-<tr class="separator:a339619f37269bf313930b607d2eb086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade57a00d12aac06b9768603513a10410"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ade57a00d12aac06b9768603513a10410">String_Build_N</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
-<tr class="memdesc:ade57a00d12aac06b9768603513a10410"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>]  <a href="format_8h.html#ade57a00d12aac06b9768603513a10410">More...</a><br /></td></tr>
-<tr class="separator:ade57a00d12aac06b9768603513a10410"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a87a6991aa4af588a65550ca5675fd385"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a87a6991aa4af588a65550ca5675fd385">c_vsnprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
-<tr class="memdesc:a87a6991aa4af588a65550ca5675fd385"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>]  <a href="format_8h.html#a87a6991aa4af588a65550ca5675fd385">More...</a><br /></td></tr>
-<tr class="separator:a87a6991aa4af588a65550ca5675fd385"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acad3650aa3c96b0300609c2365b6fab0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#acad3650aa3c96b0300609c2365b6fab0">c_strnfmt_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
-<tr class="memdesc:acad3650aa3c96b0300609c2365b6fab0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>]  <a href="format_8h.html#acad3650aa3c96b0300609c2365b6fab0">More...</a><br /></td></tr>
-<tr class="separator:acad3650aa3c96b0300609c2365b6fab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeeb1d520f3a7545291703c4c55fd75e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#aeeb1d520f3a7545291703c4c55fd75e8">c_strnformat_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
-<tr class="memdesc:aeeb1d520f3a7545291703c4c55fd75e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>]  <a href="format_8h.html#aeeb1d520f3a7545291703c4c55fd75e8">More...</a><br /></td></tr>
-<tr class="separator:aeeb1d520f3a7545291703c4c55fd75e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b927e0f29d106ed722ce8d7fd61b7c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a0b927e0f29d106ed722ce8d7fd61b7c9">String_Build_N_VA</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
-<tr class="memdesc:a0b927e0f29d106ed722ce8d7fd61b7c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>]  <a href="format_8h.html#a0b927e0f29d106ed722ce8d7fd61b7c9">More...</a><br /></td></tr>
-<tr class="separator:a0b927e0f29d106ed722ce8d7fd61b7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="bool_8h.html">libccc/bool.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a7511f5bd480842a3d5a630060e4c9ba4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a7511f5bd480842a3d5a630060e4c9ba4">SF_BOOL</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#abdf53bf1df6494373a49b2569db955aa">SF_BOOL_</a></td></tr>
 <tr class="separator:a7511f5bd480842a3d5a630060e4c9ba4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abdf53bf1df6494373a49b2569db955aa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#abdf53bf1df6494373a49b2569db955aa">SF_BOOL_</a>&#160;&#160;&#160;&quot;d&quot;</td></tr>
 <tr class="separator:abdf53bf1df6494373a49b2569db955aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for libccc/enum.h </p>
+</div></td></tr>
 <tr class="memitem:ad3ae398f8265d2ec1b652350198b0953"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ad3ae398f8265d2ec1b652350198b0953">SF_ENUM</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a9271bb0834b3192df77ad32532e462e5">SF_ENUM_</a></td></tr>
 <tr class="separator:ad3ae398f8265d2ec1b652350198b0953"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9271bb0834b3192df77ad32532e462e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a9271bb0834b3192df77ad32532e462e5">SF_ENUM_</a>&#160;&#160;&#160;&quot;d&quot;</td></tr>
 <tr class="separator:a9271bb0834b3192df77ad32532e462e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="char_8h.html">libccc/char.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a149ffa34e567ed0196ea6498f01f179e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a149ffa34e567ed0196ea6498f01f179e">SF_CHAR</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a9dcdf8af5243e086b684f2aa2b88abe2">SF_CHAR_</a></td></tr>
 <tr class="separator:a149ffa34e567ed0196ea6498f01f179e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dcdf8af5243e086b684f2aa2b88abe2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a9dcdf8af5243e086b684f2aa2b88abe2">SF_CHAR_</a>&#160;&#160;&#160;<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(SF_,<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(<a class="el" href="libccc__config_8h.html#a4521abc8a5fd562816f906e5e230ce69">LIBCONFIG_CHAR_NAME</a>,_))</td></tr>
@@ -204,6 +162,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a4e83cdb5b4a580530819835e20f38800"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a4e83cdb5b4a580530819835e20f38800">SF_UTF32_CODE_</a>&#160;&#160;&#160;&quot;8.8X&quot;</td></tr>
 <tr class="separator:a4e83cdb5b4a580530819835e20f38800"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="string_8h.html">libccc/string.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a8f0e5a6c0ee0236585ce7ab3a77c7fd5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a8f0e5a6c0ee0236585ce7ab3a77c7fd5">SF_STRING</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a8e39dc2decd90c601f8fb648bf2a9b4b">SF_STRING_</a></td></tr>
 <tr class="separator:a8f0e5a6c0ee0236585ce7ab3a77c7fd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8e39dc2decd90c601f8fb648bf2a9b4b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a8e39dc2decd90c601f8fb648bf2a9b4b">SF_STRING_</a>&#160;&#160;&#160;<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(SF_STRING_,<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(<a class="el" href="libccc__config_8h.html#a4521abc8a5fd562816f906e5e230ce69">LIBCONFIG_CHAR_NAME</a>,_))</td></tr>
@@ -225,6 +185,8 @@ Macros</h2></td></tr>
 <tr class="memitem:abfa9401bdd33b16b41fd85f0f4e83292"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#abfa9401bdd33b16b41fd85f0f4e83292">SF_STRING_UTF32_</a>&#160;&#160;&#160;&quot;ls&quot;</td></tr>
 <tr class="separator:abfa9401bdd33b16b41fd85f0f4e83292"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="int_8h.html">libccc/int.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a7723a6a3ee6dc5bca4ef0cf7cdf5167b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a7723a6a3ee6dc5bca4ef0cf7cdf5167b">SF_UINT</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a394425f5777fd8a2917716fe6e244ee6">SF_UINT_</a></td></tr>
 <tr class="separator:a7723a6a3ee6dc5bca4ef0cf7cdf5167b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a394425f5777fd8a2917716fe6e244ee6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a394425f5777fd8a2917716fe6e244ee6">SF_UINT_</a>&#160;&#160;&#160;<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(SF_U,<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(<a class="el" href="libccc__config_8h.html#a766292ddd3c8a457033e97315863d008">LIBCONFIG_UINT_BITS</a>,_))</td></tr>
@@ -370,6 +332,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a06c9df0cc166f4cdaa2df8e86b266513"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a06c9df0cc166f4cdaa2df8e86b266513">SF_S128_OCT_</a>&#160;&#160;&#160;&quot;Lo&quot;</td></tr>
 <tr class="separator:a06c9df0cc166f4cdaa2df8e86b266513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="fixed_8h.html">libccc/fixed.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a23aa64928e35a03b2a8a640d518f37c0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a23aa64928e35a03b2a8a640d518f37c0">SF_FIXED</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#ad7b15919b2d2ca51877e5caa6dcd25cd">SF_FIXED_</a></td></tr>
 <tr class="separator:a23aa64928e35a03b2a8a640d518f37c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad7b15919b2d2ca51877e5caa6dcd25cd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ad7b15919b2d2ca51877e5caa6dcd25cd">SF_FIXED_</a>&#160;&#160;&#160;<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(SF_Q,<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(<a class="el" href="libccc__config_8h.html#ad7eedca7c0c8c0a111bedd2ede0e6ea5">LIBCONFIG_FIXED_BITS</a>,_))</td></tr>
@@ -411,6 +375,8 @@ Macros</h2></td></tr>
 <tr class="memitem:ab8e44fd6bf6851166cd132e998f0a5e0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ab8e44fd6bf6851166cd132e998f0a5e0">SF_Q128_HEX_</a>&#160;&#160;&#160;&quot;llK&quot;</td></tr>
 <tr class="separator:ab8e44fd6bf6851166cd132e998f0a5e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="float_8h.html">libccc/float.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a2c7bb6a144f56715a791e16fceb44d29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a2c7bb6a144f56715a791e16fceb44d29">SF_FLOAT</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a57c7b67714eee9329c68e92421b8fd4a">SF_FLOAT_</a></td></tr>
 <tr class="separator:a2c7bb6a144f56715a791e16fceb44d29"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57c7b67714eee9329c68e92421b8fd4a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a57c7b67714eee9329c68e92421b8fd4a">SF_FLOAT_</a>&#160;&#160;&#160;<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(SF_F,<a class="el" href="libccc__define_8h.html#ae7be8d94ef3433b06c349d722941d3b0">CONCAT</a>(<a class="el" href="libccc__config_8h.html#ac5bb8057f443ef1852cc529475d266f1">LIBCONFIG_FLOAT_BITS</a>,_))</td></tr>
@@ -460,6 +426,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a6555732cd4a75fee72e3868cb56db801"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a6555732cd4a75fee72e3868cb56db801">SF_F128_FULL</a>&#160;&#160;&#160;&quot;%#.36LE&quot;</td></tr>
 <tr class="separator:a6555732cd4a75fee72e3868cb56db801"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="pointer_8h.html">libccc/pointer.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a65cb4956955303181cf64d6cd3f59039"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a65cb4956955303181cf64d6cd3f59039">SF_POINTER</a>&#160;&#160;&#160;&quot;$0x%&quot;SF_POINTER_</td></tr>
 <tr class="separator:a65cb4956955303181cf64d6cd3f59039"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b1a72dee2105f395012d433580ce574"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a7b1a72dee2105f395012d433580ce574">SF_POINTER_</a>&#160;&#160;&#160;&quot;p&quot;</td></tr>
@@ -513,11 +481,15 @@ Macros</h2></td></tr>
 <tr class="memitem:a7deaa9944f3aed88369c4ed8c8b7464e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a7deaa9944f3aed88369c4ed8c8b7464e">SF_UINTMAX_HEX_</a>&#160;&#160;&#160;&quot;jX&quot;</td></tr>
 <tr class="separator:a7deaa9944f3aed88369c4ed8c8b7464e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="memory_8h.html">libccc/memory.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a55be1a1a7f9ecf9e2193319efcdf0753"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a55be1a1a7f9ecf9e2193319efcdf0753">SF_MEMORY</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#a40a95b838f3f995776b2c52b60f92b43">SF_MEMORY_</a></td></tr>
 <tr class="separator:a55be1a1a7f9ecf9e2193319efcdf0753"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40a95b838f3f995776b2c52b60f92b43"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a40a95b838f3f995776b2c52b60f92b43">SF_MEMORY_</a>&#160;&#160;&#160;&quot;m&quot;</td></tr>
 <tr class="separator:a40a95b838f3f995776b2c52b60f92b43"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="color_8h.html">libccc/color.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a5e51c5832bd2240fdeb8af1a419352c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a5e51c5832bd2240fdeb8af1a419352c1">SF_COLOR_ARGB16</a>&#160;&#160;&#160;&quot;#%&quot;<a class="el" href="format_8h.html#a2c35416ceb9558ea92b58bfafdbce893">SF_COLOR_ARGB16_</a></td></tr>
 <tr class="separator:a5e51c5832bd2240fdeb8af1a419352c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c35416ceb9558ea92b58bfafdbce893"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a2c35416ceb9558ea92b58bfafdbce893">SF_COLOR_ARGB16_</a>&#160;&#160;&#160;&quot;X&quot;</td></tr>
@@ -543,6 +515,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a836f0b3eb78a8a23668f595ebab0be65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a836f0b3eb78a8a23668f595ebab0be65">SF_COLOR_AHSL_</a>(PREFIX)</td></tr>
 <tr class="separator:a836f0b3eb78a8a23668f595ebab0be65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="complex_8h.html">libccc/math/complex.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a052d2600a9be8d578c5f50eefd9cce38"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a052d2600a9be8d578c5f50eefd9cce38">SF_COMPLEX</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a55f63d3b5485770d2c56eb1e9b0a32a0">SF_COMPLEX_</a>()</td></tr>
 <tr class="separator:a052d2600a9be8d578c5f50eefd9cce38"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a55f63d3b5485770d2c56eb1e9b0a32a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a55f63d3b5485770d2c56eb1e9b0a32a0">SF_COMPLEX_</a>(PREFIX)&#160;&#160;&#160;&quot;(&quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COMPLEX_RE_,PREFIX)&quot; + &quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COMPLEX_IM_,PREFIX)&quot;*i)&quot;</td></tr>
@@ -556,6 +530,8 @@ Macros</h2></td></tr>
 <tr class="memitem:a0ff4d8f2b865410739f8073791ef0044"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a0ff4d8f2b865410739f8073791ef0044">SF_COMPLEX_IM_</a>&#160;&#160;&#160;&quot;g&quot;</td></tr>
 <tr class="separator:a0ff4d8f2b865410739f8073791ef0044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="vector_8h.html">libccc/math/algebra/vector.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a24ca7ab2485d3ad27fd389be3370aa75"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a24ca7ab2485d3ad27fd389be3370aa75">SF_VECTOR_AXIS</a>&#160;&#160;&#160;&quot;%&quot;<a class="el" href="format_8h.html#afac7ba88530886630d83d6393e1a88f5">SF_VECTOR_AXIS_</a></td></tr>
 <tr class="separator:a24ca7ab2485d3ad27fd389be3370aa75"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afac7ba88530886630d83d6393e1a88f5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#afac7ba88530886630d83d6393e1a88f5">SF_VECTOR_AXIS_</a>&#160;&#160;&#160;&quot;g&quot;</td></tr>
@@ -577,6 +553,8 @@ Macros</h2></td></tr>
 <tr class="memitem:ad7d5eadf644ae91d36d349364cc9582e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ad7d5eadf644ae91d36d349364cc9582e">SF_VECTOR4D_</a>(PREFIX)&#160;&#160;&#160;		&quot;(&quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(VECTOR_AXIS_,PREFIX)&quot;, &quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(VECTOR_AXIS_,PREFIX)&quot;, &quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(VECTOR_AXIS_,PREFIX)&quot;, &quot;<a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(VECTOR_AXIS_,PREFIX)&quot;)&quot;</td></tr>
 <tr class="separator:ad7d5eadf644ae91d36d349364cc9582e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >String format specifier macros for <a class="el" href="matrix_8h.html">libccc/math/algebra/matrix.h</a> </p>
+</div></td></tr>
 <tr class="memitem:a3456ac9454aefbfb05a52f777b404779"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a3456ac9454aefbfb05a52f777b404779">SF_MATRIX1D</a>&#160;&#160;&#160;		<a class="el" href="format_8h.html#a8f4627e73dcc1c25b7a6059d3b3d9ee9">SF_MATRIX1D_</a>()</td></tr>
 <tr class="separator:a3456ac9454aefbfb05a52f777b404779"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f4627e73dcc1c25b7a6059d3b3d9ee9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a8f4627e73dcc1c25b7a6059d3b3d9ee9">SF_MATRIX1D_</a>(PREFIX)&#160;&#160;&#160;		<a class="el" href="format_8h.html#ac61464f3f53290906e706e87bca40f74">SF_VECTOR1D_</a>(PREFIX)&quot;\n&quot;</td></tr>
@@ -593,32 +571,62 @@ Macros</h2></td></tr>
 <tr class="separator:abdabc3dac3755bbfb1593767a24f7040"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a887c57f450e0e492b06fa5bfbe2daafe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a887c57f450e0e492b06fa5bfbe2daafe">SF_MATRIX4D_</a>(PREFIX)&#160;&#160;&#160;		<a class="el" href="format_8h.html#ad7d5eadf644ae91d36d349364cc9582e">SF_VECTOR4D_</a>(PREFIX)&quot;\n&quot;SF_VECTOR4D_(PREFIX)&quot;\n&quot;SF_VECTOR4D_(PREFIX)&quot;\n&quot;SF_VECTOR4D_(PREFIX)&quot;\n&quot;</td></tr>
 <tr class="separator:a887c57f450e0e492b06fa5bfbe2daafe"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a9ba6ad3bf2cfc927edd126e83f27bcc3"><td class="memItemLeft" align="right" valign="top">t_char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a> (t_char const *format,...)</td></tr>
-<tr class="memdesc:a9ba6ad3bf2cfc927edd126e83f27bcc3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a string from the given <code>format</code> string and multiple args (equivalent to <code>asprintf()</code>)  <a href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Constructs a string from the given <code>format</code> string and multiple args (equivalent to <code>asprintf()</code>) </p>
+</td></tr>
+<tr class="memitem:afae038f477a52abad1c3db5215bf9d50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#afae038f477a52abad1c3db5215bf9d50">c_asprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
+<tr class="separator:afae038f477a52abad1c3db5215bf9d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547b820d07e6b57ec93c4069217656b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a547b820d07e6b57ec93c4069217656b5">c_strfmt</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
+<tr class="separator:a547b820d07e6b57ec93c4069217656b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec22df63b1874a7497781018cbf878ed"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#aec22df63b1874a7497781018cbf878ed">c_strformat</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
+<tr class="separator:aec22df63b1874a7497781018cbf878ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc97b00fd8f86c2e590b7fc53b9ebf21"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#acc97b00fd8f86c2e590b7fc53b9ebf21">String_Build</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></td></tr>
+<tr class="separator:acc97b00fd8f86c2e590b7fc53b9ebf21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad3ebb60ff16369cd2d55992a39b1cd9d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ad3ebb60ff16369cd2d55992a39b1cd9d">c_vasprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
+<tr class="separator:ad3ebb60ff16369cd2d55992a39b1cd9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8702bd0fce53ba9c47f75931af94cacd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a8702bd0fce53ba9c47f75931af94cacd">c_strfmt_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
+<tr class="separator:a8702bd0fce53ba9c47f75931af94cacd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21a6e87039779b39aed5cf0578da4f52"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a21a6e87039779b39aed5cf0578da4f52">c_strformat_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
+<tr class="separator:a21a6e87039779b39aed5cf0578da4f52"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a164c8fcd4f8b160918efd724f7370683"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a164c8fcd4f8b160918efd724f7370683">String_Build_VA</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a></td></tr>
+<tr class="separator:a164c8fcd4f8b160918efd724f7370683"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ba6ad3bf2cfc927edd126e83f27bcc3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *format,...)</td></tr>
 <tr class="separator:a9ba6ad3bf2cfc927edd126e83f27bcc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6b219d2479766f9726fb714f1b70f4e2"><td class="memItemLeft" align="right" valign="top">t_char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a> (t_char const *format, va_list args)</td></tr>
+<tr class="memitem:a6b219d2479766f9726fb714f1b70f4e2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *format, va_list args)</td></tr>
 <tr class="separator:a6b219d2479766f9726fb714f1b70f4e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40bcaf6a3b1c791ad9474afefbe44890"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a> (t_char *dest, t_size max, t_char const *format,...)</td></tr>
-<tr class="memdesc:a40bcaf6a3b1c791ad9474afefbe44890"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a string from the given <code>format</code> string and multiple args, writing at most <code>max</code> chars into <code>dest</code> (equivalent to <code>snprintf()</code>)  <a href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Constructs a string from the given <code>format</code> string and multiple args, writing at most <code>max</code> chars into <code>dest</code> (equivalent to <code>snprintf()</code>) </p>
+</td></tr>
+<tr class="memitem:ab0a5026241da51c0a778c47aafcce5d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ab0a5026241da51c0a778c47aafcce5d8">c_snprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
+<tr class="separator:ab0a5026241da51c0a778c47aafcce5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe340a7004bdbe20915ebe92a4192c42"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#abe340a7004bdbe20915ebe92a4192c42">c_strnfmt</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
+<tr class="separator:abe340a7004bdbe20915ebe92a4192c42"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a339619f37269bf313930b607d2eb086b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a339619f37269bf313930b607d2eb086b">c_strnformat</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
+<tr class="separator:a339619f37269bf313930b607d2eb086b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade57a00d12aac06b9768603513a10410"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#ade57a00d12aac06b9768603513a10410">String_Build_N</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a></td></tr>
+<tr class="separator:ade57a00d12aac06b9768603513a10410"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87a6991aa4af588a65550ca5675fd385"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a87a6991aa4af588a65550ca5675fd385">c_vsnprintf</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
+<tr class="separator:a87a6991aa4af588a65550ca5675fd385"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acad3650aa3c96b0300609c2365b6fab0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#acad3650aa3c96b0300609c2365b6fab0">c_strnfmt_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
+<tr class="separator:acad3650aa3c96b0300609c2365b6fab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeeb1d520f3a7545291703c4c55fd75e8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#aeeb1d520f3a7545291703c4c55fd75e8">c_strnformat_va</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
+<tr class="separator:aeeb1d520f3a7545291703c4c55fd75e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b927e0f29d106ed722ce8d7fd61b7c9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a0b927e0f29d106ed722ce8d7fd61b7c9">String_Build_N_VA</a>&#160;&#160;&#160;<a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a></td></tr>
+<tr class="separator:a0b927e0f29d106ed722ce8d7fd61b7c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40bcaf6a3b1c791ad9474afefbe44890"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> max, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *format,...)</td></tr>
 <tr class="separator:a40bcaf6a3b1c791ad9474afefbe44890"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af792fdbd3c5bb0f54eef99462c8b80c7"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a> (t_char *dest, t_size max, t_char const *format, va_list args)</td></tr>
+<tr class="memitem:af792fdbd3c5bb0f54eef99462c8b80c7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> max, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *format, va_list args)</td></tr>
 <tr class="separator:af792fdbd3c5bb0f54eef99462c8b80c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines printf-style functions, and their format specifiers</p>
-<ul>
-<li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/variadic">https://en.cppreference.com/w/c/variadic</a></li>
-</ul>
-<p >Cross-platform '' format specifiers for <code>printf()</code>-like function calls: </p><dl class="section see"><dt>See also</dt><dd><ul>
-<li><a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format()</a></li>
-<li><a class="el" href="io_8h.html#a41a634cb9578e51b7c9ce4ed79567941" title="Writes the given formatted string to the standard output - equivalent to dprintf()">IO_Write_Format()</a></li>
-<li><a class="el" href="io_8h.html#a94268d4b33af1cae230c72c289b10a98" title="Writes the given formatted string to the standard output - equivalent to printf()">IO_Output_Format()</a></li>
+<div class="textblock"><p >This header defines printf-style functions, and their format specifiers.</p>
+<p >The cross-platform <code>"%"</code> format specifier macros in this header can either be used individually, or you can use the <a class="el" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7" title="This macro is used to make custom &quot;SF_&quot; string format macros.">SF()</a> macro function if you wish to have further customization potential for the exact format of the output string.</p>
+<p >NOTE: the "SF" abbreviation used here stands for "String Format".</p>
+<dl class="section see"><dt>See also</dt><dd><ul>
+<li><a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format()</a></li>
+<li><a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890">String_Format_N()</a></li>
+<li><a class="el" href="io_8h.html#a41a634cb9578e51b7c9ce4ed79567941">IO_Write_Format()</a></li>
+<li><a class="el" href="io_8h.html#a94268d4b33af1cae230c72c289b10a98">IO_Output_Format()</a> </li>
 </ul>
 </dd></dl>
-<p>NOTE: the "SF_" stands for "String Format" </p>
 
 <p class="definition">Definition in file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
@@ -658,7 +666,7 @@ Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A concatenated custom format specifier, like so: <code>"%[PREFIX]"SF_[TYPE]_</code> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00064">64</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00063">63</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -673,9 +681,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="bool_8h.html">libccc/bool.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00070">70</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00069">69</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -691,7 +698,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00071">71</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00070">70</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -706,9 +713,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd>libccc/enum.h </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00076">76</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00075">75</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -724,7 +730,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00077">77</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00076">76</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -739,9 +745,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="char_8h.html">libccc/char.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00082">82</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00081">81</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -757,7 +762,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00083">83</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00082">82</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -773,7 +778,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00085">85</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00084">84</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -789,7 +794,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00086">86</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00085">85</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -805,7 +810,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00088">88</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00087">87</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -821,7 +826,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00089">89</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00088">88</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -837,7 +842,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00091">91</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00090">90</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -853,7 +858,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00092">92</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00091">91</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -869,7 +874,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00093">93</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00092">92</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -885,7 +890,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00094">94</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00093">93</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -901,7 +906,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00096">96</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00095">95</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -917,7 +922,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00097">97</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00096">96</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -933,7 +938,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00098">98</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00097">97</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -949,7 +954,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00099">99</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00098">98</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -964,9 +969,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="string_8h.html">libccc/string.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00104">104</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00103">103</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -982,7 +986,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00105">105</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00104">104</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -998,7 +1002,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00107">107</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00106">106</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1014,7 +1018,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00108">108</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00107">107</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1030,7 +1034,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00110">110</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00109">109</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1046,7 +1050,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00111">111</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00110">110</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1062,7 +1066,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00113">113</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00112">112</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1078,7 +1082,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00114">114</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00113">113</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1094,7 +1098,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00116">116</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00115">115</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1110,7 +1114,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00117">117</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00116">116</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1125,9 +1129,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="int_8h.html">libccc/int.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00122">122</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00121">121</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1143,7 +1146,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00123">123</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00122">122</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1159,7 +1162,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00124">124</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00123">123</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1175,7 +1178,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00125">125</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00124">124</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1191,7 +1194,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00126">126</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00125">125</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1207,7 +1210,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00127">127</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00126">126</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1223,7 +1226,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00128">128</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00127">127</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1239,7 +1242,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00129">129</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00128">128</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1255,7 +1258,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00130">130</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00129">129</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1271,7 +1274,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00131">131</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00130">130</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1287,7 +1290,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00132">132</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00131">131</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1303,7 +1306,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00133">133</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00132">132</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1319,7 +1322,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00135">135</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00134">134</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1335,7 +1338,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00136">136</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00135">135</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1351,7 +1354,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00137">137</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00136">136</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1367,7 +1370,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00138">138</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00137">137</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1383,7 +1386,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00139">139</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00138">138</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1399,7 +1402,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00140">140</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00139">139</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1415,7 +1418,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00141">141</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00140">140</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1431,7 +1434,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00142">142</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00141">141</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1447,7 +1450,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00143">143</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00142">142</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1463,7 +1466,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00144">144</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00143">143</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1479,7 +1482,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00145">145</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00144">144</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1495,7 +1498,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00146">146</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00145">145</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1511,7 +1514,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00148">148</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00147">147</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1527,7 +1530,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00149">149</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00148">148</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1543,7 +1546,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00150">150</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00149">149</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1559,7 +1562,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00151">151</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00150">150</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1575,7 +1578,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00152">152</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00151">151</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1591,7 +1594,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00153">153</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00152">152</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1607,7 +1610,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00154">154</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00153">153</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1623,7 +1626,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00155">155</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00154">154</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1639,7 +1642,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00156">156</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00155">155</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1655,7 +1658,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00157">157</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00156">156</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1671,7 +1674,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00158">158</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00157">157</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1687,7 +1690,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00159">159</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00158">158</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1703,7 +1706,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00161">161</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00160">160</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1719,7 +1722,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00162">162</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00161">161</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1735,7 +1738,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00163">163</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00162">162</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1751,7 +1754,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00164">164</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00163">163</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1767,7 +1770,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00165">165</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00164">164</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1783,7 +1786,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00166">166</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00165">165</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1799,7 +1802,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00167">167</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00166">166</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1815,7 +1818,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00168">168</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00167">167</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1831,7 +1834,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00169">169</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00168">168</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1847,7 +1850,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00170">170</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00169">169</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1863,7 +1866,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00171">171</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00170">170</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1879,7 +1882,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00172">172</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00171">171</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1895,7 +1898,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00188">188</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00187">187</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1911,7 +1914,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00189">189</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00188">188</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1927,7 +1930,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00190">190</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00189">189</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1943,7 +1946,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00191">191</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00190">190</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1959,7 +1962,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00192">192</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00191">191</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1975,7 +1978,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00193">193</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00192">192</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -1991,7 +1994,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00194">194</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00193">193</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2007,7 +2010,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00195">195</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00194">194</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2023,7 +2026,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00196">196</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00195">195</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2039,7 +2042,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00197">197</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00196">196</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2055,7 +2058,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00198">198</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00197">197</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2071,7 +2074,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00199">199</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00198">198</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2087,7 +2090,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00202">202</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00201">201</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2103,7 +2106,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00203">203</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00202">202</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2119,7 +2122,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00204">204</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00203">203</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2135,7 +2138,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00205">205</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00204">204</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2151,7 +2154,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00206">206</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00205">205</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2167,7 +2170,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00207">207</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00206">206</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2183,7 +2186,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00208">208</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00207">207</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2199,7 +2202,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00209">209</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00208">208</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2215,7 +2218,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00210">210</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00209">209</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2231,7 +2234,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00211">211</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00210">210</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2247,7 +2250,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00212">212</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00211">211</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2263,7 +2266,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00213">213</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00212">212</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2278,9 +2281,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="fixed_8h.html">libccc/fixed.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00218">218</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00217">217</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2296,7 +2298,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00219">219</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00218">218</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2312,7 +2314,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00220">220</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00219">219</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2328,7 +2330,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00221">221</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00220">220</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2344,7 +2346,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00223">223</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00222">222</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2360,7 +2362,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00224">224</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00223">223</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2376,7 +2378,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00225">225</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00224">224</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2392,7 +2394,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00226">226</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00225">225</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2408,7 +2410,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00228">228</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00227">227</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2424,7 +2426,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00229">229</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00228">228</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2440,7 +2442,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00230">230</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00229">229</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2456,7 +2458,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00231">231</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00230">230</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2472,7 +2474,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00233">233</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00232">232</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2488,7 +2490,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00234">234</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00233">233</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2504,7 +2506,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00235">235</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00234">234</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2520,7 +2522,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00236">236</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00235">235</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2536,7 +2538,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00238">238</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00237">237</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2552,7 +2554,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00239">239</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00238">238</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2568,7 +2570,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00240">240</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00239">239</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2584,7 +2586,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00241">241</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00240">240</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2599,9 +2601,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="float_8h.html">libccc/float.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00246">246</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00245">245</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2617,7 +2618,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00247">247</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00246">246</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2633,7 +2634,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00248">248</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00247">247</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2649,7 +2650,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00249">249</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00248">248</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2665,7 +2666,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00251">251</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00250">250</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2681,7 +2682,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00252">252</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00251">251</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2697,7 +2698,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00253">253</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00252">252</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2713,7 +2714,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00254">254</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00253">253</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2729,7 +2730,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00255">255</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00254">254</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2745,7 +2746,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00257">257</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00256">256</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2761,7 +2762,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00258">258</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00257">257</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2777,7 +2778,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00259">259</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00258">258</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2793,7 +2794,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00260">260</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00259">259</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2809,7 +2810,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00261">261</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00260">260</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2825,7 +2826,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00263">263</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00262">262</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2841,7 +2842,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00264">264</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00263">263</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2857,7 +2858,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00265">265</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00264">264</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2873,7 +2874,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00266">266</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00265">265</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2889,7 +2890,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00267">267</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00266">266</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2905,7 +2906,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00269">269</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00268">268</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2921,7 +2922,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00270">270</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00269">269</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2937,7 +2938,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00271">271</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00270">270</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2953,7 +2954,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00272">272</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00271">271</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2969,7 +2970,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00273">273</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00272">272</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -2984,9 +2985,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="pointer_8h.html">libccc/pointer.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00278">278</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00277">277</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3002,7 +3002,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00279">279</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00278">278</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3018,7 +3018,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00281">281</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00280">280</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3034,7 +3034,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00282">282</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00281">281</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3050,7 +3050,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00283">283</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00282">282</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3066,7 +3066,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00284">284</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00283">283</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3082,7 +3082,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00286">286</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00285">285</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3098,7 +3098,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00287">287</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00286">286</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3114,7 +3114,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00288">288</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00287">287</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3130,7 +3130,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00289">289</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00288">288</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3146,7 +3146,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00291">291</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00290">290</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3162,7 +3162,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00292">292</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00291">291</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3178,7 +3178,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00293">293</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00292">292</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3194,7 +3194,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00294">294</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00293">293</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3210,7 +3210,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00295">295</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00294">294</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3226,7 +3226,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00296">296</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00295">295</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3242,7 +3242,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00297">297</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00296">296</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3258,7 +3258,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00298">298</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00297">297</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3274,7 +3274,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00300">300</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00299">299</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3290,7 +3290,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00301">301</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00300">300</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3306,7 +3306,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00302">302</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00301">301</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3322,7 +3322,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00303">303</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00302">302</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3338,7 +3338,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00304">304</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00303">303</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3354,7 +3354,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00305">305</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00304">304</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3370,7 +3370,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00306">306</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00305">305</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3386,7 +3386,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00307">307</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00306">306</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3401,9 +3401,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="memory_8h.html">libccc/memory.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00312">312</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00311">311</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3419,7 +3418,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00313">313</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00312">312</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3434,9 +3433,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="color_8h.html">libccc/color.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00318">318</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00317">317</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3452,7 +3450,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00319">319</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00318">318</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3468,7 +3466,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00321">321</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00320">320</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3484,7 +3482,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00322">322</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00321">321</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3500,7 +3498,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00324">324</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00323">323</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3516,7 +3514,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00325">325</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00324">324</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3532,7 +3530,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00326">326</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00325">325</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3556,9 +3554,9 @@ Functions</h2></td></tr>
 <div class="line">    <span class="stringliteral">&quot;R:&quot;</span><a class="code hl_define" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COLOR_ARGB_CHANNEL,PREFIX)<span class="stringliteral">&quot;, &quot;</span>\</div>
 <div class="line">    <span class="stringliteral">&quot;G:&quot;</span><a class="code hl_define" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COLOR_ARGB_CHANNEL,PREFIX)<span class="stringliteral">&quot;, &quot;</span>\</div>
 <div class="line">    <span class="stringliteral">&quot;B:&quot;</span><a class="code hl_define" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COLOR_ARGB_CHANNEL,PREFIX)<span class="stringliteral">&quot;)&quot;</span></div>
-<div class="ttc" id="aformat_8h_html_aa6f3e6f8018ac638cbecd00c070067c7"><div class="ttname"><a href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a></div><div class="ttdeci">#define SF(TYPE, PREFIX)</div><div class="ttdoc">This macro is used to make custom &quot;SF_&quot; string format macros.</div><div class="ttdef"><b>Definition:</b> <a href="format_8h_source.html#l00064">format.h:64</a></div></div>
+<div class="ttc" id="aformat_8h_html_aa6f3e6f8018ac638cbecd00c070067c7"><div class="ttname"><a href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a></div><div class="ttdeci">#define SF(TYPE, PREFIX)</div><div class="ttdoc">This macro is used to make custom &quot;SF_&quot; string format macros.</div><div class="ttdef"><b>Definition:</b> <a href="format_8h_source.html#l00063">format.h:63</a></div></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00328">328</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00327">327</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3574,7 +3572,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00334">334</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00333">333</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3590,7 +3588,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00335">335</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00334">334</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3606,7 +3604,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00336">336</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00335">335</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3631,7 +3629,7 @@ Functions</h2></td></tr>
 <div class="line">    <span class="stringliteral">&quot;S:&quot;</span><a class="code hl_define" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COLOR_AHSL_CHANNEL,PREFIX)<span class="stringliteral">&quot;, &quot;</span>\</div>
 <div class="line">    <span class="stringliteral">&quot;L:&quot;</span><a class="code hl_define" href="format_8h.html#aa6f3e6f8018ac638cbecd00c070067c7">SF</a>(COLOR_AHSL_CHANNEL,PREFIX)<span class="stringliteral">&quot;)&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00338">338</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00337">337</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3646,9 +3644,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="complex_8h.html">libccc/math/complex.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00347">347</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00346">346</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3668,7 +3665,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00348">348</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00347">347</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3684,7 +3681,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00350">350</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00349">349</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3700,7 +3697,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00351">351</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00350">350</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3716,7 +3713,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00353">353</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00352">352</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3732,7 +3729,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00354">354</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00353">353</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3747,9 +3744,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="vector_8h.html">libccc/math/algebra/vector.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00359">359</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00358">358</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3765,7 +3761,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00360">360</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00359">359</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3781,7 +3777,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00362">362</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00361">361</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3801,7 +3797,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00364">364</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00363">363</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3817,7 +3813,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00367">367</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00366">366</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3837,7 +3833,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00369">369</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00368">368</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3853,7 +3849,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00372">372</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00371">371</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3873,7 +3869,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00374">374</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00373">373</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3889,7 +3885,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00377">377</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00376">376</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3909,7 +3905,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00379">379</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00378">378</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3924,9 +3920,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="matrix_8h.html">libccc/math/algebra/matrix.h</a> </dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00385">385</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00384">384</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3946,7 +3941,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00387">387</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00386">386</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3962,7 +3957,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00390">390</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00389">389</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3982,7 +3977,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00392">392</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00391">391</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -3998,7 +3993,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00395">395</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00394">394</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4018,7 +4013,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00397">397</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00396">396</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4034,7 +4029,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00400">400</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00399">399</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4054,7 +4049,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00402">402</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00401">401</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4070,9 +4065,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00493">493</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00500">500</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4088,9 +4081,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00494">494</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00501">501</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4106,9 +4097,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00495">495</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00502">502</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4124,9 +4113,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00496">496</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00503">503</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4142,9 +4129,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00501">501</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00508">508</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4160,9 +4145,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00502">502</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00509">509</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4178,9 +4161,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00503">503</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00510">510</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4196,9 +4177,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a6b219d2479766f9726fb714f1b70f4e2">String_Format_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00504">504</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00511">511</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4214,9 +4193,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00523">523</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00535">535</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4232,9 +4209,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00524">524</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00536">536</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4250,9 +4225,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00525">525</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00537">537</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4268,9 +4241,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00526">526</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00538">538</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4286,9 +4257,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00530">530</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00542">542</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4304,9 +4273,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00531">531</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00543">543</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4322,9 +4289,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00532">532</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00544">544</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4340,9 +4305,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7">String_Format_N_VA</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00533">533</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="format_8h_source.html#l00545">545</a> of file <a class="el" href="format_8h_source.html">format.h</a>.</p>
 
 </div>
 </div>
@@ -4354,9 +4317,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_char * String_Format </td>
+          <td class="memname"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> * String_Format </td>
           <td>(</td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>format</em>, </td>
         </tr>
         <tr>
@@ -4372,16 +4335,12 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructs a string from the given <code>format</code> string and multiple args (equivalent to <code>asprintf()</code>) </p>
-<ul>
-<li><em>Standard library equivalent: </em>(BSD) <a href="https://linux.die.net/man/3/asprintf">https://linux.die.net/man/3/asprintf</a></li>
-</ul>
 <p >Constructs a new null-terminated string, which is generated from the given <code>format</code> string, as well as any relevant variadic arguments - it is equivalent to the <code>asprintf()</code> function.</p>
 <p >The <code>format</code> string may contain format specifiers (ie: a '%' followed by certain specific text characters, documented below). A format specifier has the following syntax (items between brackets are optional):</p>
 <p ><code>%[flags][min_size][.precision][bitsize]char</code></p>
 <p >Here is a description of the valid possible choices for each of these 5 fields:</p>
-<p ><code>char</code>: </p><table class="markdownTable">
+<p ><code>char</code>:</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter">char   </th><th class="markdownTableHeadNone">Output   </th><th class="markdownTableHeadNone">Output Example    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -4422,27 +4381,31 @@ Functions</h2></td></tr>
 <td class="markdownTableBodyCenter"><code>n</code>   </td><td class="markdownTableBodyNone">Nothing printed: the corresponding argument must be a pointer to a signed int.<br  />
  The number of characters written so far is stored in the pointed location.   </td><td class="markdownTableBodyNone"><code>""</code>   </td></tr>
 </table>
-<p ><code>flags</code>: (optional)</p><ul>
+<p ><code>flags</code>: (optional)</p>
+<ul>
 <li><code>-</code>: The output is left-justified within the field (by default, it is right-justified)</li>
 <li><code>+</code>: Precede the result with a plus '+' or minus '-' sign, even for positive/unsigned numbers. By default, only negative numbers are preceded with a minus '-' sign.</li>
 <li><code>#</code>: With <code>o</code>,<code>x</code>,<code>X</code>: the value is preceded with <code>0</code>, <code>0x</code> or <code>0X</code> respectively, for values other than zero. With <code>a</code>,<code>A</code>,<code>e</code>,<code>E</code>,<code>f</code>,<code>F</code>,<code>g</code>,<code>G</code>: forces the written output number to contain a decimal point.</li>
 <li><code>0</code>: For number-type format specifiers, leading zeros will be used to pad the field instead of space characters. Is ignored if <code>-</code> flag is present. Undefined behavior will occur for any non-number format specifiers.</li>
 <li>(space): If no sign is going to be written, a blank space is inserted before the value.</li>
 </ul>
-<p ><code>min_size</code>: (optional)</p><ul>
+<p ><code>min_size</code>: (optional)</p>
+<ul>
 <li>Is a number (so, decimal numerical digit chars) or <code>*</code>).</li>
 <li>The minimum amount of characters to be printed for this specifier.</li>
 <li>NOTE: The value is not truncated, even if the result is larger.</li>
 <li>NOTE: If the value is shorter than this number, the result is padded with blank spaces.</li>
 </ul>
-<p ><code>precision</code>: (optional)</p><ul>
+<p ><code>precision</code>: (optional)</p>
+<ul>
 <li>Is a number (so, decimal numerical digit chars) or <code>*</code>, preceded by a '.' period.</li>
 <li>If the period is specified without an explicit value for precision, 0 is assumed.</li>
 <li>With <code>a</code>,<code>A</code>,<code>e</code>,<code>E</code>,<code>f</code>,<code>F</code>: the amount of digits to be printed after the decimal point (by default, this is 6).</li>
 <li>With <code>g</code>,<code>G</code>: the maximum number of significant digits to be printed for the mantissa.</li>
 <li>With <code>s</code>: this is the maximum number of characters to be printed (by default, all chars are printed until the &lsquo;&rsquo;\0'` terminator).</li>
 </ul>
-<p ><code>bitsize</code>: (optional) </p><table class="markdownTable">
+<p ><code>bitsize</code>: (optional)</p>
+<table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadCenter">size   </th><th class="markdownTableHeadNone"><code>d</code>/<code>i</code>   </th><th class="markdownTableHeadNone"><code>u</code>, <code>o</code>, <code>x</code>/<code>X</code>   </th><th class="markdownTableHeadNone"><code>f</code>,<code>e</code>,<code>g</code>,<code>a</code>   </th><th class="markdownTableHeadNone"><code>c</code>   </th><th class="markdownTableHeadNone"><code>s</code>   </th><th class="markdownTableHeadNone"><code>p</code>   </th><th class="markdownTableHeadNone"><code>n</code>    </th></tr>
 <tr class="markdownTableRowOdd">
@@ -4464,7 +4427,14 @@ Functions</h2></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyCenter"><code>L</code>   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone">long double   </td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td><td class="markdownTableBodyNone"></td></tr>
 </table>
-<dl class="section return"><dt>Returns</dt><dd>A newly allocated string, constructed from the given <code>format</code> string and arguments </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">format</td><td>The format string: may contain <code>%</code> argument specifiers, as described above. </td></tr>
+    <tr><td class="paramname">...</td><td>The list of variadic arguments, corresponding to the <code>%</code> specifiers in the <code>format</code> string. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly allocated string, constructed from the given <code>format</code> string and arguments- <em>Standard library equivalent: </em>(BSD) <a href="https://linux.die.net/man/3/asprintf">https://linux.die.net/man/3/asprintf</a> </dd></dl>
 
 </div>
 </div>
@@ -4475,9 +4445,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_char * String_Format_VA </td>
+          <td class="memname"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> * String_Format_VA </td>
           <td>(</td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>format</em>, </td>
         </tr>
         <tr>
@@ -4493,7 +4463,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3" title="Constructs a string from the given format string and multiple args (equivalent to asprintf())">String_Format</a> </dd></dl>
+<ul>
+<li><em>Standard library equivalent: </em>(BSD) <a href="https://linux.die.net/man/3/vasprintf">https://linux.die.net/man/3/vasprintf</a> </li>
+</ul>
 
 </div>
 </div>
@@ -4504,21 +4476,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size String_Format_N </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> String_Format_N </td>
           <td>(</td>
-          <td class="paramtype">t_char *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>max</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>format</em>, </td>
         </tr>
         <tr>
@@ -4534,20 +4506,16 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Constructs a string from the given <code>format</code> string and multiple args, writing at most <code>max</code> chars into <code>dest</code> (equivalent to <code>snprintf()</code>) </p>
-<ul>
-<li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/io/snprintf">https://en.cppreference.com/w/c/io/snprintf</a></li>
-</ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">dest</td><td>The destination buffer, in which to write the resulting string NOTE: if <code>NULL</code>, does not write anything and simply returns the length </td></tr>
     <tr><td class="paramname">max</td><td>The maximum amount of characters to write to <code>dest</code>, including the &lsquo;&rsquo;\0'` null terminator </td></tr>
-    <tr><td class="paramname">format</td><td>The format string used to construct the resulting date string. You can learn more here: <a href="https://www.cplusplus.com/reference/cstdio/printf/">https://www.cplusplus.com/reference/cstdio/printf/</a> </td></tr>
+    <tr><td class="paramname">format</td><td>The format string used to construct the resulting output string. You can learn more about how this works in the doc for <a class="el" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format()</a> </td></tr>
+    <tr><td class="paramname">...</td><td>The list of variadic arguments, corresponding to the <code>%</code> specifiers in the <code>format</code> string. </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>The amount of characters in the constructed format string, regardless of <code>max</code> size </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The amount of characters written to <code>dest</code>, or <code>0</code> if there was an error. You may assume that the returned size will always be less than or equal to <code>max</code>.- <em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/io/snprintf">https://en.cppreference.com/w/c/io/snprintf</a> </dd></dl>
 
 </div>
 </div>
@@ -4558,21 +4526,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size String_Format_N_VA </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> String_Format_N_VA </td>
           <td>(</td>
-          <td class="paramtype">t_char *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>max</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>format</em>, </td>
         </tr>
         <tr>
@@ -4588,7 +4556,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890" title="Constructs a string from the given format string and multiple args, writing at most max chars into de...">String_Format_N</a> </dd></dl>
+<ul>
+<li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/io/vsnprintf">https://en.cppreference.com/w/c/io/vsnprintf</a> </li>
+</ul>
 
 </div>
 </div>
@@ -4597,7 +4567,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="format_8h.html">format.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="format_8h.html">format.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

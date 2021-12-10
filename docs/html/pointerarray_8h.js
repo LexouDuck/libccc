@@ -50,7 +50,6 @@ var pointerarray_8h =
     [ "c_ptrarrireduce", "pointerarray_8h.html#ae864e04eea603d1d96f34ab666f084f9", null ],
     [ "c_ptrarrfold", "pointerarray_8h.html#a19dfd7ae3362f2a83a6b32254bd2c54c", null ],
     [ "c_ptrarrifold", "pointerarray_8h.html#a57f52930d3b54d42096cd0886c142ca8", null ],
-    [ "p_ptrarray", "pointerarray_8h.html#af1625009fa610471a4533ea6d3651c0a", null ],
     [ "PointerArray_Length", "pointerarray_8h.html#ae9b3f6905f992c594962127afe9e39f8", null ],
     [ "PointerArray_New", "pointerarray_8h.html#afbcf9fc17497d6add3720211aa28e0c8", null ],
     [ "PointerArray_Create", "pointerarray_8h.html#a34099db1f1826bcc4edbbf9142a6170c", null ],
@@ -100,5 +99,6 @@ var pointerarray_8h =
     [ "PointerArray_Reduce", "pointerarray_8h.html#a767d7dcad63055a70ab8818b6c859ce8", null ],
     [ "PointerArray_Reduce_I", "pointerarray_8h.html#a4d8fa468d36d2b1688cf06f5d4b2f550", null ],
     [ "PointerArray_Fold", "pointerarray_8h.html#a340fa7193b6b78542522b814db58bdae", null ],
-    [ "PointerArray_Fold_I", "pointerarray_8h.html#a68477419864f964dfe69f8538cb8c33b", null ]
+    [ "PointerArray_Fold_I", "pointerarray_8h.html#a68477419864f964dfe69f8538cb8c33b", null ],
+    [ "p_ptrarray", "pointerarray_8h.html#a62f3aa19ee4b1d7e93953b05d810d0bf", null ]
 ];

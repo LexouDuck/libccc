@@ -1,5 +1,27 @@
 var char_8h =
 [
+    [ "__LIBCCC_CHAR_T", "char_8h.html#a157f99a100af05604624250968953e7f", null ],
+    [ "CHARSET_SPACE", "char_8h.html#a3d6703863ed0954246cc438f0e74a4e3", null ],
+    [ "CHARSET_WHITESPACE", "char_8h.html#ae27a61cbdccaa5260ab703b6bf112fb0", null ],
+    [ "CHARSET_PUNCT", "char_8h.html#ada4fe8772a3172c09dc3f0d0017505cc", null ],
+    [ "CHARSET_PUNCTUATION", "char_8h.html#aefdb6940cc9eed8254ebb910a44b44b6", null ],
+    [ "CHARSET_LOWER", "char_8h.html#a5c9d76d9cbd9368ffd5b079ab16a1a38", null ],
+    [ "CHARSET_LOWERCASE", "char_8h.html#a296d0f6bc2fcd076b01c75ebc1ed4c52", null ],
+    [ "CHARSET_UPPER", "char_8h.html#ad60611fc14771481a8336c7166c5b973", null ],
+    [ "CHARSET_UPPERCASE", "char_8h.html#a8e080b043ff5316a0ebc839d641a5390", null ],
+    [ "CHARSET_ALPHA", "char_8h.html#a42487cc12db660571d340027b434ec7f", null ],
+    [ "CHARSET_ALPHABET", "char_8h.html#a557e3be923c99149ece646196d31d034", null ],
+    [ "CHARSET_BIN", "char_8h.html#a7b7396142d3e6d2a0751466e9e1de31a", null ],
+    [ "CHARSET_BINARY", "char_8h.html#a3ed1ae4210f17ae75c8450f2fb629050", null ],
+    [ "CHARSET_OCT", "char_8h.html#a26a48296cdaa177e6f0693a03d52b58f", null ],
+    [ "CHARSET_OCTAL", "char_8h.html#aa0d07af5b799976a0b85c8c4e5d3e2b5", null ],
+    [ "CHARSET_DEC", "char_8h.html#a8d6087686ef6f058a846d0f3de6f8c84", null ],
+    [ "CHARSET_DECIMAL", "char_8h.html#afe6581912d031b0568e13fe9ba93d6a7", null ],
+    [ "CHARSET_DIGIT", "char_8h.html#ab6d4d72d3253ddec47f643906c980086", null ],
+    [ "CHARSET_HEX", "char_8h.html#abb97af58e7abddeda21eb9f2349ef1a4", null ],
+    [ "CHARSET_HEXADECIMAL", "char_8h.html#a5c76eb97dfc709695ff75cf1732b09b4", null ],
+    [ "CHARSET_HEX_LOWER", "char_8h.html#a272b456db69ac899c0e50990f7539225", null ],
+    [ "CHARSET_HEX_UPPER", "char_8h.html#a2a6814726ef5cdec271f172ee371cf2c", null ],
     [ "__LIBCCC_CHAR_F", "char_8h.html#aacd13ecbfd25e7ddb3b686493a42967b", null ],
     [ "Char_IsLetter", "char_8h.html#af104bafc3b1ce38f123200d9524b1dbf", null ],
     [ "c_isalpha", "char_8h.html#ac50127404adc3420890b06152813af91", null ],
@@ -49,5 +71,6 @@ var char_8h =
     [ "Char_ToUpper", "char_8h.html#ae1f09f692036dd972b9820e3faa3a7cf", null ],
     [ "Char_ToLowercase", "char_8h.html#a5c1dd9839f2f946230dec6e07b46843b", null ],
     [ "c_tolower", "char_8h.html#a15853ee81720da7e4d1c61702473daba", null ],
-    [ "Char_ToLower", "char_8h.html#a0b881067b33fe7a8485e4d47fe9315e1", null ]
+    [ "Char_ToLower", "char_8h.html#a0b881067b33fe7a8485e4d47fe9315e1", null ],
+    [ "t_char", "char_8h.html#a37138ccbd005311d3dbe85f90b484980", null ]
 ];

@@ -26,7 +26,7 @@ var vlq_8h =
       [ "fe", "vlq_8h.html#a025675532f68e89da9210140103a614f", null ],
       [ "fq", "vlq_8h.html#a217339e23b9e59023310a91e6b80d2a5", null ]
     ] ],
-    [ "u_varuint", "vlq_8h.html#a524134c1b51b25568611b9cab5ffdc5b", null ],
+    [ "u_varuint", "vlq_8h.html#adc0e7cfa8e6158e95dfc22c409a70853", null ],
     [ "u_varsint", "vlq_8h.html#a027e4313c2dc835f807702a020c93548", null ],
     [ "u_varfixed", "vlq_8h.html#a0aa8b3a6008638919b026aa9ada8ee55", null ],
     [ "u_varfloat", "vlq_8h.html#af5eb64eb7b34187ae48c5914af573e68", null ]

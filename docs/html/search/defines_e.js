@@ -9,6 +9,10 @@ var searchData=
   ['namingstyle_5fpascalcase_6',['NAMINGSTYLE_PASCALCASE',['../libccc__naming_8h.html#a649921843596cfc968b83afcace9ae29',1,'libccc_naming.h']]],
   ['namingstyle_5fscreamcase_7',['NAMINGSTYLE_SCREAMCASE',['../libccc__naming_8h.html#a0ba8f334d91db523038a4632cd11d924',1,'libccc_naming.h']]],
   ['namingstyle_5fsnakecase_8',['NAMINGSTYLE_SNAKECASE',['../libccc__naming_8h.html#a464b3782c27e67c5f8cbda53e6a88bb5',1,'libccc_naming.h']]],
-  ['nanotime_5fnull_9',['NANOTIME_NULL',['../time_8h.html#a6ddbf1a67282143d7090eaf7b6c783ef',1,'time.h']]],
-  ['null_5flogger_10',['NULL_LOGGER',['../logger_8h.html#ada3edae0070ddc1c761ab45e69e79168',1,'logger.h']]]
+  ['nan_9',['NAN',['../float_8h.html#a8abfcc76130f3f991d124dd22d7e69bc',1,'float.h']]],
+  ['nanotime_5fnull_10',['NANOTIME_NULL',['../time_8h.html#a6ddbf1a67282143d7090eaf7b6c783ef',1,'time.h']]],
+  ['not_11',['not',['../bool_8h.html#a31739c27bdcfdac9faae7bf7a5df49e4',1,'bool.h']]],
+  ['notanumber_12',['NOTANUMBER',['../float_8h.html#a9e06ca68adac12d28704cefa9f46595d',1,'float.h']]],
+  ['null_13',['NULL',['../pointer_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4',1,'pointer.h']]],
+  ['null_5flogger_14',['NULL_LOGGER',['../logger_8h.html#ada3edae0070ddc1c761ab45e69e79168',1,'logger.h']]]
 ];

@@ -8,5 +8,6 @@ var searchData=
   ['open_5fnoexisting_5',['OPEN_NOEXISTING',['../io_8h.html#aabe27d730300bbc3bafaef77f053fa8c',1,'io.h']]],
   ['open_5freadonly_6',['OPEN_READONLY',['../io_8h.html#a539ab42161cd89c863e88d26c5321cd6',1,'io.h']]],
   ['open_5freadwrite_7',['OPEN_READWRITE',['../io_8h.html#ac9a9feabf3a1ac151c0ffd29753a95fe',1,'io.h']]],
-  ['open_5fwriteonly_8',['OPEN_WRITEONLY',['../io_8h.html#aae689ff0d3c80212647035624b64072a',1,'io.h']]]
+  ['open_5fwriteonly_8',['OPEN_WRITEONLY',['../io_8h.html#aae689ff0d3c80212647035624b64072a',1,'io.h']]],
+  ['or_9',['or',['../bool_8h.html#a339a611d7f9dc3a59c359f0da7beaf3c',1,'bool.h']]]
 ];

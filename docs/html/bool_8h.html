@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/bool.h File Reference</title>
+<title>libccc: libccc/bool.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -94,18 +94,19 @@ $(document).ready(function(){initNavTree('bool_8h.html',''); initResizable(); })
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">bool.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="libccc_8h_source.html">libccc.h</a>&quot;</code><br />
+<code>#include &lt;stdbool.h&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for bool.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="bool_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="bool_8h__incl.svg" width="330" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="bool_8h_source.html">Go to the source code of this file.</a></p>
@@ -116,39 +117,294 @@ Macros</h2></td></tr>
 <tr class="separator:a79459aa0bd6002a73ea6662f0bd918b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2adc2fa99e101db17d90524fe0c09a26"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a2adc2fa99e101db17d90524fe0c09a26">BOOL_TOSTRING</a>&#160;&#160;&#160;		<a class="el" href="bool_8h.html#af35219b0d86aa8bc31acae527eb0a808">BOOL_TOSTRING_UPPER</a></td></tr>
 <tr class="separator:a2adc2fa99e101db17d90524fe0c09a26"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af35219b0d86aa8bc31acae527eb0a808"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#af35219b0d86aa8bc31acae527eb0a808">BOOL_TOSTRING_UPPER</a>(VALUE)&#160;&#160;&#160;((VALUE) ? &quot;TRUE&quot; : &quot;FALSE&quot;)</td></tr>
+<tr class="memitem:af35219b0d86aa8bc31acae527eb0a808"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#af35219b0d86aa8bc31acae527eb0a808">BOOL_TOSTRING_UPPER</a>(VALUE)&#160;&#160;&#160;((VALUE) ? &quot;TRUE&quot; : &quot;<a class="el" href="bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&quot;)</td></tr>
 <tr class="separator:af35219b0d86aa8bc31acae527eb0a808"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a35de16f48289c04f92dac3404870b5fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a35de16f48289c04f92dac3404870b5fa">BOOL_TOSTRING_LOWER</a>(VALUE)&#160;&#160;&#160;((VALUE) ? &quot;true&quot; : &quot;false&quot;)</td></tr>
+<tr class="memitem:a35de16f48289c04f92dac3404870b5fa"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a35de16f48289c04f92dac3404870b5fa">BOOL_TOSTRING_LOWER</a>(VALUE)&#160;&#160;&#160;((VALUE) ? &quot;true&quot; : &quot;<a class="el" href="bool_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>&quot;)</td></tr>
 <tr class="separator:a35de16f48289c04f92dac3404870b5fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6292ad85691e988fc3776741c73f60ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a6292ad85691e988fc3776741c73f60ec">BOOL_TOSTRING_MIXED</a>(VALUE)&#160;&#160;&#160;((VALUE) ? &quot;True&quot; : &quot;False&quot;)</td></tr>
 <tr class="separator:a6292ad85691e988fc3776741c73f60ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a305d53c2f3bb24a8dd85e7c43c7fbaca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a305d53c2f3bb24a8dd85e7c43c7fbaca">c_booltostr</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4">Bool_ToString</a></td></tr>
-<tr class="memdesc:a305d53c2f3bb24a8dd85e7c43c7fbaca"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4" title="Get the string representation of a boolean value (TRUE or FALSE)">Bool_ToString</a>]  <a href="bool_8h.html#a305d53c2f3bb24a8dd85e7c43c7fbaca">More...</a><br /></td></tr>
-<tr class="separator:a305d53c2f3bb24a8dd85e7c43c7fbaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a471b3762f1564c628736af2a0b50345e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a471b3762f1564c628736af2a0b50345e">c_boolparse</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125">Bool_Parse</a></td></tr>
-<tr class="memdesc:a471b3762f1564c628736af2a0b50345e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125" title="Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)">Bool_Parse</a>]  <a href="bool_8h.html#a471b3762f1564c628736af2a0b50345e">More...</a><br /></td></tr>
-<tr class="separator:a471b3762f1564c628736af2a0b50345e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123120e3638bf37a2be1fd7a27117a37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a123120e3638bf37a2be1fd7a27117a37">c_strtobool</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25">Bool_FromString</a></td></tr>
-<tr class="memdesc:a123120e3638bf37a2be1fd7a27117a37"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25" title="Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)">Bool_FromString</a>]  <a href="bool_8h.html#a123120e3638bf37a2be1fd7a27117a37">More...</a><br /></td></tr>
-<tr class="separator:a123120e3638bf37a2be1fd7a27117a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr class="memitem:a7d2a5103caf0bd2a6a2f91f97ec4a053"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a7d2a5103caf0bd2a6a2f91f97ec4a053">__LIBCCC_BOOL_T</a></td></tr>
+<tr class="separator:a7d2a5103caf0bd2a6a2f91f97ec4a053"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Represents a boolean false value (0) </p>
+</div></td></tr>
+<tr class="memitem:aa93f0eb578d23995850d61f7d61c55c1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&#160;&#160;&#160;(0)</td></tr>
+<tr class="separator:aa93f0eb578d23995850d61f7d61c55c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a65e9886d74aaee76545e83dd09011727"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></td></tr>
+<tr class="separator:a65e9886d74aaee76545e83dd09011727"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Represents a boolean true value (1) </p>
+</div></td></tr>
+<tr class="memitem:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a>&#160;&#160;&#160;(1)</td></tr>
+<tr class="separator:aa8cecfc5c5c054d2875c03e77b7be15d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41f9c5fb8b08eb5dc3edce4dcb37fee7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a41f9c5fb8b08eb5dc3edce4dcb37fee7">true</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></td></tr>
+<tr class="separator:a41f9c5fb8b08eb5dc3edce4dcb37fee7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Boolean logical operator macros </p>
+</div></td></tr>
+<tr class="memitem:aa3d7d535cf450b91b9cb6d9cee2edbb9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa3d7d535cf450b91b9cb6d9cee2edbb9">and</a>&#160;&#160;&#160;&amp;&amp;</td></tr>
+<tr class="separator:aa3d7d535cf450b91b9cb6d9cee2edbb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a339a611d7f9dc3a59c359f0da7beaf3c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a339a611d7f9dc3a59c359f0da7beaf3c">or</a>&#160;&#160;&#160;||</td></tr>
+<tr class="separator:a339a611d7f9dc3a59c359f0da7beaf3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2c0034f069be96cc3a251db7226139f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa2c0034f069be96cc3a251db7226139f">xor</a>&#160;&#160;&#160;^</td></tr>
+<tr class="memdesc:aa2c0034f069be96cc3a251db7226139f"><td class="mdescLeft">&#160;</td><td class="mdescRight">TODO create boolean operator <code>^^</code> for this operator.  <a href="bool_8h.html#aa2c0034f069be96cc3a251db7226139f">More...</a><br /></td></tr>
+<tr class="separator:aa2c0034f069be96cc3a251db7226139f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a31739c27bdcfdac9faae7bf7a5df49e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a31739c27bdcfdac9faae7bf7a5df49e4">not</a>&#160;&#160;&#160;!</td></tr>
+<tr class="separator:a31739c27bdcfdac9faae7bf7a5df49e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Boolean bitwise operator macros </p>
+</div></td></tr>
+<tr class="memitem:ac05a9032db99912bfe12598fe9bff255"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#ac05a9032db99912bfe12598fe9bff255">bitand</a>&#160;&#160;&#160;&amp;</td></tr>
+<tr class="separator:ac05a9032db99912bfe12598fe9bff255"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa4f212a39c93f99337cc4c06666dd165"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa4f212a39c93f99337cc4c06666dd165">bitor</a>&#160;&#160;&#160;|</td></tr>
+<tr class="separator:aa4f212a39c93f99337cc4c06666dd165"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae1a598153045756a07a96c69e914deb5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#ae1a598153045756a07a96c69e914deb5">bitxor</a>&#160;&#160;&#160;^</td></tr>
+<tr class="separator:ae1a598153045756a07a96c69e914deb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a511ada718d93e93b90522f3184fdbb18"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a511ada718d93e93b90522f3184fdbb18">bitnot</a>&#160;&#160;&#160;~</td></tr>
+<tr class="separator:a511ada718d93e93b90522f3184fdbb18"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a95ec08002d49c95fb34068d162908da4"><td class="memItemLeft" align="right" valign="top">t_char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4">Bool_ToString</a> (t_bool value, t_bool uppercase)</td></tr>
-<tr class="memdesc:a95ec08002d49c95fb34068d162908da4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the string representation of a boolean value (TRUE or FALSE)  <a href="bool_8h.html#a95ec08002d49c95fb34068d162908da4">More...</a><br /></td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Primitve type: The boolean type (<code>TRUE</code> or <code>FALSE</code>) </p>
+</div></td></tr>
+<tr class="memitem:ae02c68c70680b999c74ccda6c6be3af2"><td class="memItemLeft" align="right" valign="top">typedef bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a></td></tr>
+<tr class="separator:ae02c68c70680b999c74ccda6c6be3af2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get the string representation of a boolean value (TRUE or FALSE) </p>
+</td></tr>
+<tr class="memitem:a305d53c2f3bb24a8dd85e7c43c7fbaca"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a305d53c2f3bb24a8dd85e7c43c7fbaca">c_booltostr</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4">Bool_ToString</a></td></tr>
+<tr class="separator:a305d53c2f3bb24a8dd85e7c43c7fbaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95ec08002d49c95fb34068d162908da4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4">Bool_ToString</a> (<a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>, <a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> uppercase)</td></tr>
 <tr class="separator:a95ec08002d49c95fb34068d162908da4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62488783726cc91f09321f8d62c37125"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125">Bool_Parse</a> (t_bool *dest, t_char const *str)</td></tr>
-<tr class="memdesc:a62488783726cc91f09321f8d62c37125"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)  <a href="bool_8h.html#a62488783726cc91f09321f8d62c37125">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false) </p>
+</td></tr>
+<tr class="memitem:a471b3762f1564c628736af2a0b50345e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a471b3762f1564c628736af2a0b50345e">c_boolparse</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125">Bool_Parse</a></td></tr>
+<tr class="separator:a471b3762f1564c628736af2a0b50345e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62488783726cc91f09321f8d62c37125"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125">Bool_Parse</a> (<a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> *dest, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str)</td></tr>
 <tr class="separator:a62488783726cc91f09321f8d62c37125"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa62afccb1c0fffff793588cc49ec9e25"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25">Bool_FromString</a> (t_char const *str)</td></tr>
-<tr class="memdesc:aa62afccb1c0fffff793588cc49ec9e25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)  <a href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false) </p>
+</td></tr>
+<tr class="memitem:a123120e3638bf37a2be1fd7a27117a37"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#a123120e3638bf37a2be1fd7a27117a37">c_strtobool</a>&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25">Bool_FromString</a></td></tr>
+<tr class="separator:a123120e3638bf37a2be1fd7a27117a37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa62afccb1c0fffff793588cc49ec9e25"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25">Bool_FromString</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str)</td></tr>
 <tr class="separator:aa62afccb1c0fffff793588cc49ec9e25"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p >This header defines the boolean (TRUE/FALSE) primitive type and functions.</p>
+<div class="textblock"><p >This header defines the boolean (TRUE/FALSE) primitive type and functions. </p>
 
 <p class="definition">Definition in file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 </div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a7d2a5103caf0bd2a6a2f91f97ec4a053" name="a7d2a5103caf0bd2a6a2f91f97ec4a053"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d2a5103caf0bd2a6a2f91f97ec4a053">&#9670;&nbsp;</a></span>__LIBCCC_BOOL_T</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define __LIBCCC_BOOL_T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00030">30</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="aa93f0eb578d23995850d61f7d61c55c1" name="aa93f0eb578d23995850d61f7d61c55c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa93f0eb578d23995850d61f7d61c55c1">&#9670;&nbsp;</a></span>FALSE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define FALSE&#160;&#160;&#160;(0)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00072">72</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="a65e9886d74aaee76545e83dd09011727" name="a65e9886d74aaee76545e83dd09011727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65e9886d74aaee76545e83dd09011727">&#9670;&nbsp;</a></span>false</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define false&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00075">75</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="aa8cecfc5c5c054d2875c03e77b7be15d" name="aa8cecfc5c5c054d2875c03e77b7be15d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8cecfc5c5c054d2875c03e77b7be15d">&#9670;&nbsp;</a></span>TRUE</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define TRUE&#160;&#160;&#160;(1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00081">81</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="a41f9c5fb8b08eb5dc3edce4dcb37fee7" name="a41f9c5fb8b08eb5dc3edce4dcb37fee7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41f9c5fb8b08eb5dc3edce4dcb37fee7">&#9670;&nbsp;</a></span>true</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define true&#160;&#160;&#160;<a class="el" href="bool_8h.html#aa8cecfc5c5c054d2875c03e77b7be15d">TRUE</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00084">84</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="aa3d7d535cf450b91b9cb6d9cee2edbb9" name="aa3d7d535cf450b91b9cb6d9cee2edbb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3d7d535cf450b91b9cb6d9cee2edbb9">&#9670;&nbsp;</a></span>and</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define and&#160;&#160;&#160;&amp;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00092">92</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="a339a611d7f9dc3a59c359f0da7beaf3c" name="a339a611d7f9dc3a59c359f0da7beaf3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a339a611d7f9dc3a59c359f0da7beaf3c">&#9670;&nbsp;</a></span>or</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define or&#160;&#160;&#160;||</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00095">95</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="aa2c0034f069be96cc3a251db7226139f" name="aa2c0034f069be96cc3a251db7226139f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa2c0034f069be96cc3a251db7226139f">&#9670;&nbsp;</a></span>xor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define xor&#160;&#160;&#160;^</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>TODO create boolean operator <code>^^</code> for this operator. </p>
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00098">98</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="a31739c27bdcfdac9faae7bf7a5df49e4" name="a31739c27bdcfdac9faae7bf7a5df49e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a31739c27bdcfdac9faae7bf7a5df49e4">&#9670;&nbsp;</a></span>not</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define not&#160;&#160;&#160;!</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00101">101</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="ac05a9032db99912bfe12598fe9bff255" name="ac05a9032db99912bfe12598fe9bff255"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac05a9032db99912bfe12598fe9bff255">&#9670;&nbsp;</a></span>bitand</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitand&#160;&#160;&#160;&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00108">108</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="aa4f212a39c93f99337cc4c06666dd165" name="aa4f212a39c93f99337cc4c06666dd165"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4f212a39c93f99337cc4c06666dd165">&#9670;&nbsp;</a></span>bitor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitor&#160;&#160;&#160;|</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00111">111</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="ae1a598153045756a07a96c69e914deb5" name="ae1a598153045756a07a96c69e914deb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae1a598153045756a07a96c69e914deb5">&#9670;&nbsp;</a></span>bitxor</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitxor&#160;&#160;&#160;^</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00114">114</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
+<a id="a511ada718d93e93b90522f3184fdbb18" name="a511ada718d93e93b90522f3184fdbb18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a511ada718d93e93b90522f3184fdbb18">&#9670;&nbsp;</a></span>bitnot</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define bitnot&#160;&#160;&#160;~</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00117">117</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+
+</div>
+</div>
 <a id="a79459aa0bd6002a73ea6662f0bd918b9" name="a79459aa0bd6002a73ea6662f0bd918b9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a79459aa0bd6002a73ea6662f0bd918b9">&#9670;&nbsp;</a></span>__LIBCCC_BOOL_F</h2>
 
@@ -161,7 +417,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00127">127</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00125">125</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -177,7 +433,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00135">135</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00133">133</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -192,12 +448,12 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">VALUE</td><td>)</td>
-          <td>&#160;&#160;&#160;((VALUE) ? &quot;TRUE&quot; : &quot;FALSE&quot;)</td>
+          <td>&#160;&#160;&#160;((VALUE) ? &quot;TRUE&quot; : &quot;<a class="el" href="bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1">FALSE</a>&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00137">137</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00135">135</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -212,12 +468,12 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">VALUE</td><td>)</td>
-          <td>&#160;&#160;&#160;((VALUE) ? &quot;true&quot; : &quot;false&quot;)</td>
+          <td>&#160;&#160;&#160;((VALUE) ? &quot;true&quot; : &quot;<a class="el" href="bool_8h.html#a65e9886d74aaee76545e83dd09011727">false</a>&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00138">138</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00136">136</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -237,7 +493,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00139">139</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00137">137</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -253,9 +509,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="bool_8h.html#a95ec08002d49c95fb34068d162908da4" title="Get the string representation of a boolean value (TRUE or FALSE)">Bool_ToString</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00148">148</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00147">147</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -271,9 +525,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="bool_8h.html#a62488783726cc91f09321f8d62c37125" title="Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)">Bool_Parse</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00154">154</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00155">155</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -289,9 +541,28 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25" title="Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)">Bool_FromString</a>] </p>
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00161">161</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00158">158</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
+</div>
+</div>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ae02c68c70680b999c74ccda6c6be3af2" name="ae02c68c70680b999c74ccda6c6be3af2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae02c68c70680b999c74ccda6c6be3af2">&#9670;&nbsp;</a></span>t_bool</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef bool <a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<ul>
+<li><em>Standard library equivalent: </em>(C99) <a href="https://en.cppreference.com/w/c/types/boolean">https://en.cppreference.com/w/c/types/boolean</a></li>
+</ul>
+<p >Here, we use the native (since the C99 standard) <code>_Bool</code> boolean type. This type is useful because its value will always be 0 or 1, never more. This means you will not have strange behaviors caused by the use of integer arithmetic operations on booleans - do not assume <code>t_bool</code> works like int types. NOTE: Conversion to <code>_Bool</code> does not work the same as conversion to integer types: any non-zero value will become <code>1</code> once it is casted to the <code>_Bool</code> type. So, for example, <code>(bool)0.5</code> gives <code>1</code>, whereas <code>(int)0.5</code> gives <code>0</code>. </p>
+
+<p class="definition">Definition at line <a class="el" href="bool_8h_source.html#l00061">61</a> of file <a class="el" href="bool_8h_source.html">bool.h</a>.</p>
 
 </div>
 </div>
@@ -303,15 +574,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_char * Bool_ToString </td>
+          <td class="memname"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> * Bool_ToString </td>
           <td>(</td>
-          <td class="paramtype">t_bool&#160;</td>
+          <td class="paramtype"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td>
           <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_bool&#160;</td>
+          <td class="paramtype"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td>
           <td class="paramname"><em>uppercase</em>&#160;</td>
         </tr>
         <tr>
@@ -322,8 +593,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Get the string representation of a boolean value (TRUE or FALSE) </p>
-
 </div>
 </div>
 <a id="a62488783726cc91f09321f8d62c37125" name="a62488783726cc91f09321f8d62c37125"></a>
@@ -333,15 +602,15 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size Bool_Parse </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> Bool_Parse </td>
           <td>(</td>
-          <td class="paramtype">t_bool *&#160;</td>
+          <td class="paramtype"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> *&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>str</em>&#160;</td>
         </tr>
         <tr>
@@ -352,8 +621,6 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false) </p>
-
 </div>
 </div>
 <a id="aa62afccb1c0fffff793588cc49ec9e25" name="aa62afccb1c0fffff793588cc49ec9e25"></a>
@@ -363,16 +630,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Bool_FromString </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Bool_FromString </td>
           <td>(</td>
-          <td class="paramtype">t_char const *&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>str</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false) </p>
 
 </div>
 </div>
@@ -381,7 +646,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="bool_8h.html">bool.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="bool_8h.html">bool.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

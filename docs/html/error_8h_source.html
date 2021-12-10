@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/error.h Source File</title>
+<title>libccc: libccc/error.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -132,86 +132,98 @@ $(document).ready(function(){initNavTree('error_8h_source.html',''); initResizab
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">** ************************************************************************** *|</span></div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">*/</span></div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">   43</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a>)(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>, t_char <span class="keyword">const</span>*);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">   43</a></span><span class="keyword">typedef</span> void (*<a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a>)(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>*);</div>
 <div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
 <div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="error_8h.html#aa53c06980079f4a39df2f81b9419c40f">   47</a></span><span class="preprocessor">#define PARSE_RETURN(VALUE) \</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">    {   if (dest)   *dest = (VALUE);    return (i); }</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="error_8h.html#ae97d48232f53efeb5012e62a3438a321">   50</a></span><span class="preprocessor">#define PRINT_RETURN(VALUE) \</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="preprocessor">    {   if (dest)   *dest = (VALUE);    return (i); }</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">// TODO document this</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="error_8h.html#aa53c06980079f4a39df2f81b9419c40f">   48</a></span><span class="preprocessor">#define PARSE_RETURN(VALUE) \</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    {   if (dest)   *dest = (VALUE);    return (i); }</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">// TODO document this</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="error_8h.html#ae97d48232f53efeb5012e62a3438a321">   51</a></span><span class="preprocessor">#define PRINT_RETURN(VALUE) \</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">    {   if (dest)   *dest = (VALUE);    return (i); }</span></div>
 <div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#ifndef __LIBCCC_ERROR_F</span></div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="error_8h.html#a9403997d11c407870e8782282c9243e5">   57</a></span><span class="preprocessor">#define __LIBCCC_ERROR_F</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">**                           Error globals (errno-like)                       *|</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">   75</a></span>t_char*                         <a class="code hl_function" href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">Error_STDC</a>(<span class="keywordtype">int</span> errno_value);</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="error_8h.html#a7eaf62f4ec1abea4d11f9f1d4aab6ae9">   76</a></span><span class="preprocessor">#define c_strerror              Error_STDC</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="error_8h.html#a865b297a009d3b300e13925f3167974a">   77</a></span><span class="preprocessor">#define c_strerror_r            Error_STDC</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="error_8h.html#ad4bec659a2b4a3499b72ff00db48143c">   78</a></span><span class="preprocessor">#define c_strerror_s            Error_STDC</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="error_8h.html#a5f54acd83695bf80059da13d9e0202e4">   79</a></span><span class="preprocessor">#define Error_STDC_GetMessage   Error_STDC</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno"><a class="line" href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">   84</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>  <a class="code hl_function" href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">Error_Get</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#ifndef __LIBCCC_ERROR_F</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="error_8h.html#a9403997d11c407870e8782282c9243e5">   58</a></span><span class="preprocessor">#define __LIBCCC_ERROR_F</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">**                           Error globals (errno-like)                       *|</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">   77</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                         <a class="code hl_function" href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">Error_STDC</a>(<span class="keywordtype">int</span> errno_value);</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="error_8h.html#a7eaf62f4ec1abea4d11f9f1d4aab6ae9">   78</a></span><span class="preprocessor">#define c_strerror              Error_STDC</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="error_8h.html#a865b297a009d3b300e13925f3167974a">   79</a></span><span class="preprocessor">#define c_strerror_r            Error_STDC</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="error_8h.html#ad4bec659a2b4a3499b72ff00db48143c">   80</a></span><span class="preprocessor">#define c_strerror_s            Error_STDC</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="error_8h.html#a5f54acd83695bf80059da13d9e0202e4">   81</a></span><span class="preprocessor">#define Error_STDC_GetMessage   Error_STDC</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">   87</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>  <a class="code hl_function" href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">Error_Set</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno"><a class="line" href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">   92</a></span>t_char*     <a class="code hl_function" href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">Error_GetMessage</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">   95</a></span>t_char*     <a class="code hl_function" href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">Error_GetName</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">   98</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>  <a class="code hl_function" href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">Error_GetCode</a>(t_char <span class="keyword">const</span>* name);</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">   88</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>          <a class="code hl_function" href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">Error_Get</a>(<span class="keywordtype">void</span>);</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="error_8h.html#aa081a7c63cc6f68afbb6de2882ee37c5">   89</a></span><span class="preprocessor">#define c_errorget  Error_Get</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">   94</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>          <a class="code hl_function" href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">Error_Set</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="error_8h.html#ac6975b1a613faf7248a7926ac8dec641">   95</a></span><span class="preprocessor">#define c_errorset  Error_Set</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">  103</a></span><span class="keywordtype">void</span>    <a class="code hl_function" href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">Error_Handle</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, t_char <span class="keyword">const</span>* funcname, t_char* message);</div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="error_8h.html#a224c7af49405190664152dc7efc4ae20">  106</a></span><span class="keywordtype">void</span>    <a class="code hl_function" href="error_8h.html#a224c7af49405190664152dc7efc4ae20">Error_Handler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, t_char <span class="keyword">const</span>* message);</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">  111</a></span><a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a>    <a class="code hl_function" href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">Error_GetHandler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="error_8h.html#a7a0846928ebb77e3330de165436901ad">  114</a></span><span class="keywordtype">void</span>            <a class="code hl_function" href="error_8h.html#a7a0846928ebb77e3330de165436901ad">Error_SetHandler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, <a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a> handler);</div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="error_8h.html#a7d5a33ad617754de4361c324504026a6">  117</a></span><span class="keywordtype">void</span>            <a class="code hl_function" href="error_8h.html#a7d5a33ad617754de4361c324504026a6">Error_SetAllHandlers</a>(<a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a> handler);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">  102</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">Error_GetMessage</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="error_8h.html#a53ca18f665fe72a005acc04e369ba38c">  103</a></span><span class="preprocessor">#define c_errorgetmsg   Error_GetMessage</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">  108</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">Error_GetName</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="error_8h.html#a49a7da4d70e3d1099cdcc97e51db594d">  109</a></span><span class="preprocessor">#define c_errorgetname  Error_GetName</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno"><a class="line" href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">  114</a></span><a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>              <a class="code hl_function" href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">Error_GetCode</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* name);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="error_8h.html#a33fdfa51857c6db88348712e762946b2">  115</a></span><span class="preprocessor">#define c_errorgetcode  Error_GetCode</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
 <div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
-<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aerror_8h_html_a224c7af49405190664152dc7efc4ae20"><div class="ttname"><a href="error_8h.html#a224c7af49405190664152dc7efc4ae20">Error_Handler</a></div><div class="ttdeci">void Error_Handler(e_cccerror error, t_char const *message)</div><div class="ttdoc">The default error handler function (its body can be configured, see LIBCONFIG_ERROR_DEFAULTHANDLER)</div></div>
-<div class="ttc" id="aerror_8h_html_a3c5645c6fe1e149dccf86c07a41808dc"><div class="ttname"><a href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">Error_GetHandler</a></div><div class="ttdeci">f_ccchandler Error_GetHandler(e_cccerror error)</div><div class="ttdoc">Get the currently set handler function for the given error code.</div></div>
-<div class="ttc" id="aerror_8h_html_a4afe5f5a133b275e413af6ea0ec5c2cd"><div class="ttname"><a href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">Error_Handle</a></div><div class="ttdeci">void Error_Handle(e_cccerror error, t_char const *funcname, t_char *message)</div><div class="ttdoc">The parent function which handles any error: is called when an error check is TRUE</div></div>
-<div class="ttc" id="aerror_8h_html_a598851df6c16da4fbb047dfb6c03e5ad"><div class="ttname"><a href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">Error_Set</a></div><div class="ttdeci">e_cccerror Error_Set(e_cccerror error)</div><div class="ttdoc">Sets the global error code (thread-safe)</div></div>
-<div class="ttc" id="aerror_8h_html_a71117dafe78ee6ffd6759182080199d6"><div class="ttname"><a href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">Error_GetMessage</a></div><div class="ttdeci">t_char * Error_GetMessage(e_cccerror error)</div><div class="ttdoc">Returns newly allocated error message corresponding to the given error number.</div></div>
-<div class="ttc" id="aerror_8h_html_a77b6d74719daaf5c6750125333f1e458"><div class="ttname"><a href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">Error_GetCode</a></div><div class="ttdeci">e_cccerror Error_GetCode(t_char const *name)</div><div class="ttdoc">Returns the error code corresponding the the given error name (or)</div></div>
-<div class="ttc" id="aerror_8h_html_a7a0846928ebb77e3330de165436901ad"><div class="ttname"><a href="error_8h.html#a7a0846928ebb77e3330de165436901ad">Error_SetHandler</a></div><div class="ttdeci">void Error_SetHandler(e_cccerror error, f_ccchandler handler)</div><div class="ttdoc">Set the handler function to call for a certain error code.</div></div>
-<div class="ttc" id="aerror_8h_html_a7d5a33ad617754de4361c324504026a6"><div class="ttname"><a href="error_8h.html#a7d5a33ad617754de4361c324504026a6">Error_SetAllHandlers</a></div><div class="ttdeci">void Error_SetAllHandlers(f_ccchandler handler)</div><div class="ttdoc">Set the handler function for every kind of error, at once.</div></div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">  122</a></span><span class="keywordtype">void</span>                    <a class="code hl_function" href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">Error_Handle</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* funcname, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>* message);</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno"><a class="line" href="error_8h.html#a6f24c3f55f178bf27457c83dc8472c30">  123</a></span><span class="preprocessor">#define c_errorhandle   Error_Handle</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span> </div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno"><a class="line" href="error_8h.html#a224c7af49405190664152dc7efc4ae20">  128</a></span><span class="keywordtype">void</span>                    <a class="code hl_function" href="error_8h.html#a224c7af49405190664152dc7efc4ae20">Error_Handler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* message);</div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno"><a class="line" href="error_8h.html#aaf50253b5f04331b53411c92bdaac284">  129</a></span><span class="preprocessor">#define c_errorhandler  Error_Handler</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span> </div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno"><a class="line" href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">  136</a></span><a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a>                <a class="code hl_function" href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">Error_GetHandler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error);</div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno"><a class="line" href="error_8h.html#a6f0273452c81c31c26a0a4dc12c3a5c4">  137</a></span><span class="preprocessor">#define c_gethandler        Error_GetHandler</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno"><a class="line" href="error_8h.html#a7a0846928ebb77e3330de165436901ad">  142</a></span><span class="keywordtype">void</span>                        <a class="code hl_function" href="error_8h.html#a7a0846928ebb77e3330de165436901ad">Error_SetHandler</a>(<a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> error, <a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a> handler);</div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="error_8h.html#afc5695774c50fcee6dd28e750767ddb8">  143</a></span><span class="preprocessor">#define c_sethandler        Error_SetHandler</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="error_8h.html#a7d5a33ad617754de4361c324504026a6">  148</a></span><span class="keywordtype">void</span>                        <a class="code hl_function" href="error_8h.html#a7d5a33ad617754de4361c324504026a6">Error_SetAllHandlers</a>(<a class="code hl_typedef" href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a> handler);</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno"><a class="line" href="error_8h.html#a6595730108cd059ec590ca7bb69e5e99">  149</a></span><span class="preprocessor">#define c_setallhandlers    Error_SetAllHandlers</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span> </div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span> </div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="achar_8h_html_a37138ccbd005311d3dbe85f90b484980"><div class="ttname"><a href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a></div><div class="ttdeci">t_ascii t_char</div><div class="ttdoc">Primitive type: char, configurable (ASCII or UTF8)</div><div class="ttdef"><b>Definition:</b> <a href="char_8h_source.html#l00058">char.h:58</a></div></div>
+<div class="ttc" id="aerror_8h_html_a224c7af49405190664152dc7efc4ae20"><div class="ttname"><a href="error_8h.html#a224c7af49405190664152dc7efc4ae20">Error_Handler</a></div><div class="ttdeci">void Error_Handler(e_cccerror error, t_char const *message)</div></div>
+<div class="ttc" id="aerror_8h_html_a3c5645c6fe1e149dccf86c07a41808dc"><div class="ttname"><a href="error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc">Error_GetHandler</a></div><div class="ttdeci">f_ccchandler Error_GetHandler(e_cccerror error)</div></div>
+<div class="ttc" id="aerror_8h_html_a4afe5f5a133b275e413af6ea0ec5c2cd"><div class="ttname"><a href="error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd">Error_Handle</a></div><div class="ttdeci">void Error_Handle(e_cccerror error, t_char const *funcname, t_char *message)</div></div>
+<div class="ttc" id="aerror_8h_html_a598851df6c16da4fbb047dfb6c03e5ad"><div class="ttname"><a href="error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad">Error_Set</a></div><div class="ttdeci">e_cccerror Error_Set(e_cccerror error)</div></div>
+<div class="ttc" id="aerror_8h_html_a71117dafe78ee6ffd6759182080199d6"><div class="ttname"><a href="error_8h.html#a71117dafe78ee6ffd6759182080199d6">Error_GetMessage</a></div><div class="ttdeci">t_char * Error_GetMessage(e_cccerror error)</div></div>
+<div class="ttc" id="aerror_8h_html_a77b6d74719daaf5c6750125333f1e458"><div class="ttname"><a href="error_8h.html#a77b6d74719daaf5c6750125333f1e458">Error_GetCode</a></div><div class="ttdeci">e_cccerror Error_GetCode(t_char const *name)</div></div>
+<div class="ttc" id="aerror_8h_html_a7a0846928ebb77e3330de165436901ad"><div class="ttname"><a href="error_8h.html#a7a0846928ebb77e3330de165436901ad">Error_SetHandler</a></div><div class="ttdeci">void Error_SetHandler(e_cccerror error, f_ccchandler handler)</div></div>
+<div class="ttc" id="aerror_8h_html_a7d5a33ad617754de4361c324504026a6"><div class="ttname"><a href="error_8h.html#a7d5a33ad617754de4361c324504026a6">Error_SetAllHandlers</a></div><div class="ttdeci">void Error_SetAllHandlers(f_ccchandler handler)</div></div>
 <div class="ttc" id="aerror_8h_html_a81d109bfa058895c1e3b4bf5416d0235"><div class="ttname"><a href="error_8h.html#a81d109bfa058895c1e3b4bf5416d0235">f_ccchandler</a></div><div class="ttdeci">void(* f_ccchandler)(e_cccerror, t_char const *)</div><div class="ttdoc">The function pointer type for an error-handling function.</div><div class="ttdef"><b>Definition:</b> <a href="error_8h_source.html#l00043">error.h:43</a></div></div>
-<div class="ttc" id="aerror_8h_html_ad94c866af5ac844bc1505ded6c93aa83"><div class="ttname"><a href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">Error_Get</a></div><div class="ttdeci">e_cccerror Error_Get(void)</div><div class="ttdoc">Returns the latest global error code (thread-safe)</div></div>
-<div class="ttc" id="aerror_8h_html_ad9c1970e6a5b0d1eaa8d271119d9572b"><div class="ttname"><a href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">Error_GetName</a></div><div class="ttdeci">t_char * Error_GetName(e_cccerror error)</div><div class="ttdoc">Returns newly allocated error enum item name (ie: ERROR_UNKNOWN)</div></div>
-<div class="ttc" id="aerror_8h_html_aeed19ee6aa481dfaa137c7c762272b71"><div class="ttname"><a href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">Error_STDC</a></div><div class="ttdeci">t_char * Error_STDC(int errno_value)</div><div class="ttdoc">Returns a newly allocated error message from the given errno_value</div></div>
+<div class="ttc" id="aerror_8h_html_ad94c866af5ac844bc1505ded6c93aa83"><div class="ttname"><a href="error_8h.html#ad94c866af5ac844bc1505ded6c93aa83">Error_Get</a></div><div class="ttdeci">e_cccerror Error_Get(void)</div></div>
+<div class="ttc" id="aerror_8h_html_ad9c1970e6a5b0d1eaa8d271119d9572b"><div class="ttname"><a href="error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b">Error_GetName</a></div><div class="ttdeci">t_char * Error_GetName(e_cccerror error)</div></div>
+<div class="ttc" id="aerror_8h_html_aeed19ee6aa481dfaa137c7c762272b71"><div class="ttname"><a href="error_8h.html#aeed19ee6aa481dfaa137c7c762272b71">Error_STDC</a></div><div class="ttdeci">t_char * Error_STDC(int errno_value)</div></div>
 <div class="ttc" id="aformat_8h_html"><div class="ttname"><a href="format_8h.html">format.h</a></div></div>
 <div class="ttc" id="aio_8h_html"><div class="ttname"><a href="io_8h.html">io.h</a></div></div>
 <div class="ttc" id="alibccc_8h_html"><div class="ttname"><a href="libccc_8h.html">libccc.h</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="alibccc__errors_8h_html_a54dc030d7c8bbb1e03a6311fd02fa127"><div class="ttname"><a href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a></div><div class="ttdeci">enum cccerror e_cccerror</div><div class="ttdoc">This type represents an error code for a libccc function (ie: a value for the 'errno' global variable...</div></div>
 <div class="ttc" id="astring_8h_html"><div class="ttname"><a href="string_8h.html">string.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -219,7 +231,7 @@ $(document).ready(function(){initNavTree('error_8h_source.html',''); initResizab
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="error_8h.html">error.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="error_8h.html">error.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

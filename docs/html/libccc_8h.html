@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc.h File Reference</title>
+<title>libccc: libccc.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -100,44 +100,16 @@ $(document).ready(function(){initNavTree('libccc_8h.html',''); initResizable(); 
 <code>#include &quot;<a class="el" href="libccc__errors_8h_source.html">libccc_errors.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="libccc__config_8h_source.html">libccc_config.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="libccc__naming_8h_source.html">libccc_naming.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="bool_8h_source.html">libccc/bool.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="char_8h_source.html">libccc/char.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="int_8h_source.html">libccc/int.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="fixed_8h_source.html">libccc/fixed.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="float_8h_source.html">libccc/float.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="pointer_8h_source.html">libccc/pointer.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for libccc.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="libccc_8h__incl.svg" width="100%" height="552"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="libccc_8h__incl.svg" width="330" height="336"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="libccc_8h_source.html">Go to the source code of this file.</a></p>
-<table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Here we include all the primitive type headers, but we preemptively define some important header macros beforehand, so as to have the header define only the types, and not any of their functions. As such, <code><a class="el" href="libccc_8h.html">libccc.h</a></code> only includes important builtins. </p>
-</div></td></tr>
-<tr class="memitem:aacd13ecbfd25e7ddb3b686493a42967b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#aacd13ecbfd25e7ddb3b686493a42967b">__LIBCCC_CHAR_F</a></td></tr>
-<tr class="separator:aacd13ecbfd25e7ddb3b686493a42967b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa8586439833f21144c67a2aa439f0fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#aaa8586439833f21144c67a2aa439f0fd">__LIBCCC_TEXT_ASCII_F</a></td></tr>
-<tr class="separator:aaa8586439833f21144c67a2aa439f0fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae205cbe076966331e262b5a125d9a04e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#ae205cbe076966331e262b5a125d9a04e">__LIBCCC_TEXT_UNICODE_F</a></td></tr>
-<tr class="separator:ae205cbe076966331e262b5a125d9a04e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79459aa0bd6002a73ea6662f0bd918b9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#a79459aa0bd6002a73ea6662f0bd918b9">__LIBCCC_BOOL_F</a></td></tr>
-<tr class="separator:a79459aa0bd6002a73ea6662f0bd918b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7dca626a4e1ab666ab5bdbe9a8abcdb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#aa7dca626a4e1ab666ab5bdbe9a8abcdb">__LIBCCC_INT_F</a></td></tr>
-<tr class="separator:aa7dca626a4e1ab666ab5bdbe9a8abcdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a916ea55892d7ea8f93331512e619434d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#a916ea55892d7ea8f93331512e619434d">__LIBCCC_FIXED_F</a></td></tr>
-<tr class="separator:a916ea55892d7ea8f93331512e619434d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a788015b0385be39939b12464308549a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#a788015b0385be39939b12464308549a1">__LIBCCC_FLOAT_F</a></td></tr>
-<tr class="separator:a788015b0385be39939b12464308549a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a558ff5ddb24eb156a79ef7a37d59c281"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc_8h.html#a558ff5ddb24eb156a79ef7a37d59c281">__LIBCCC_POINTER_F</a></td></tr>
-<tr class="separator:a558ff5ddb24eb156a79ef7a37d59c281"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This file is simply meant to include all of the basic primitive types.</p>
 <p >To be precise, this file exposes the type definitions and macros from:</p><ul>
@@ -150,144 +122,15 @@ Macros</h2></td></tr>
 <li><code>libccc/text/ascii.h</code></li>
 <li><code>libccc/text/unicode.h</code></li>
 </ul>
-<p >Note that none of the functions from these headers are included/exposed. If you wish to use the utility functions from a header, you must manually include it: for instance, you must <code>#include &lt;<a class="el" href="int_8h.html">libccc/int.h</a>&gt;</code> to use, say, <code>UInt_ToString()</code>. </p>
+<p >Note that none of the functions from these headers are included/exposed. If you wish to use the utility functions from a header, you must manually include it: for instance, you must <code>#include &lt;<a class="el" href="int_8h.html">libccc/int.h</a>&gt;</code> to use, say, <code><a class="el" href="int_8h.html#a132d4dd29818fa808c4208cc6e5b20f1">UInt_ToString()</a></code>. </p>
 
 <p class="definition">Definition in file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="aacd13ecbfd25e7ddb3b686493a42967b" name="aacd13ecbfd25e7ddb3b686493a42967b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aacd13ecbfd25e7ddb3b686493a42967b">&#9670;&nbsp;</a></span>__LIBCCC_CHAR_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_CHAR_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00052">52</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="aaa8586439833f21144c67a2aa439f0fd" name="aaa8586439833f21144c67a2aa439f0fd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaa8586439833f21144c67a2aa439f0fd">&#9670;&nbsp;</a></span>__LIBCCC_TEXT_ASCII_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_TEXT_ASCII_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00053">53</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="ae205cbe076966331e262b5a125d9a04e" name="ae205cbe076966331e262b5a125d9a04e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae205cbe076966331e262b5a125d9a04e">&#9670;&nbsp;</a></span>__LIBCCC_TEXT_UNICODE_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_TEXT_UNICODE_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00054">54</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="a79459aa0bd6002a73ea6662f0bd918b9" name="a79459aa0bd6002a73ea6662f0bd918b9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a79459aa0bd6002a73ea6662f0bd918b9">&#9670;&nbsp;</a></span>__LIBCCC_BOOL_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_BOOL_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00055">55</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="aa7dca626a4e1ab666ab5bdbe9a8abcdb" name="aa7dca626a4e1ab666ab5bdbe9a8abcdb"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa7dca626a4e1ab666ab5bdbe9a8abcdb">&#9670;&nbsp;</a></span>__LIBCCC_INT_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_INT_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00056">56</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="a916ea55892d7ea8f93331512e619434d" name="a916ea55892d7ea8f93331512e619434d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a916ea55892d7ea8f93331512e619434d">&#9670;&nbsp;</a></span>__LIBCCC_FIXED_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_FIXED_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00057">57</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="a788015b0385be39939b12464308549a1" name="a788015b0385be39939b12464308549a1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a788015b0385be39939b12464308549a1">&#9670;&nbsp;</a></span>__LIBCCC_FLOAT_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_FLOAT_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00058">58</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-<a id="a558ff5ddb24eb156a79ef7a37d59c281" name="a558ff5ddb24eb156a79ef7a37d59c281"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a558ff5ddb24eb156a79ef7a37d59c281">&#9670;&nbsp;</a></span>__LIBCCC_POINTER_F</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define __LIBCCC_POINTER_F</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="libccc_8h_source.html#l00059">59</a> of file <a class="el" href="libccc_8h_source.html">libccc.h</a>.</p>
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="libccc_8h.html">libccc.h</a></li>
+    <li class="navelem"><a class="el" href="libccc_8h.html">libccc.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

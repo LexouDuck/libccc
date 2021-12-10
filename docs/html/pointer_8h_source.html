@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/pointer.h Source File</title>
+<title>libccc: libccc/pointer.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -109,262 +109,283 @@ $(document).ready(function(){initNavTree('pointer_8h_source.html',''); initResiz
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBCCC_POINTER_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBCCC_POINTER_H</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">**                                   Includes                                 *|</span></div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">**                                   Includes                                 *|</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#ifndef __NOSTD__</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="preprocessor">    #include &lt;stddef.h&gt;</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>   size_t;</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> ptrdiff_t;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">    #define SIZE_MAX    (size_t)-1</span></div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">    #define PTRDIFF_MIN ((ptrdiff_t)(SIZE_MAX &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">    #define PTRDIFF_MAX ((ptrdiff_t)((SIZE_MAX &gt;&gt; 1) + 1))</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#ifndef __NOSTD__</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">    #include &lt;stdint.h&gt;</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  uintmax_t;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  uintptr_t;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>    intmax_t;</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>    intptr_t;</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifndef __NOSTD__</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    #include &lt;stddef.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>   size_t;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> ptrdiff_t;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">    #define SIZE_MAX    (size_t)-1</span></div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">    #define PTRDIFF_MIN ((ptrdiff_t)(SIZE_MAX &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="preprocessor">    #define PTRDIFF_MAX ((ptrdiff_t)((SIZE_MAX &gt;&gt; 1) + 1))</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="preprocessor">#ifndef __NOSTD__</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="preprocessor">    #include &lt;stdint.h&gt;</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  uintmax_t;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  uintptr_t;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>    intmax_t;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>    intptr_t;</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#include &quot;<a class="code" href="libccc_8h.html">libccc.h</a>&quot;</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#include &quot;<a class="code" href="libccc_8h.html">libccc.h</a>&quot;</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#ifndef __LIBCCC_POINTER_T</span></div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="preprocessor">#define __LIBCCC_POINTER_T</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#ifndef __LIBCCC_POINTER_T</span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="pointer_8h.html#a22566a0cb92819b980c4dd0ad5f2372b">   60</a></span><span class="preprocessor">#define __LIBCCC_POINTER_T</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">**                                 Definitions                                *|</span></div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">**                                 Definitions                                *|</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#ifndef NULL</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="preprocessor">#define NULL    ((void*)0)</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="preprocessor">#ifndef NULL</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="pointer_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">   75</a></span><span class="preprocessor">#define NULL    ((void*)0)</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="keyword">typedef</span> <span class="keywordtype">size_t</span>      t_size;</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_size, SIZE, PRIMITIVE)</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno"><a class="line" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">   91</a></span><span class="keyword">typedef</span> <span class="keywordtype">size_t</span>      <a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>;</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>, SIZE, PRIMITIVE)</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
 <div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="keyword">typedef</span> ptrdiff_t   t_ptrdiff;</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_ptrdiff, PTRDIFF, PRIMITIVE)</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">  100</a></span>typedef ptrdiff_t   <a class="code hl_typedef" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a>, PTRDIFF, PRIMITIVE)</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
 <div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
 <div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="keyword">typedef</span> intmax_t    t_sintmax;</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_sintmax, SINTMAX, PRIMITIVE)</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span><span class="keyword">typedef</span> uintmax_t   t_uintmax;</div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_uintmax, UINTMAX, PRIMITIVE)</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno"><a class="line" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">  112</a></span>typedef intptr_t    <a class="code hl_typedef" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a>, SINTPTR, PRIMITIVE)</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno"><a class="line" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">  115</a></span>typedef uintptr_t   <a class="code hl_typedef" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">t_uintptr</a>;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">t_uintptr</a>, UINTPTR, PRIMITIVE)</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span> </div>
 <div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
 <div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
-<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
 <div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
-<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="keyword">typedef</span> intptr_t    t_sintptr;</div>
-<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_sintptr, SINTPTR, PRIMITIVE)</div>
-<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span> </div>
-<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span> </div>
-<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span><span class="keyword">typedef</span> uintptr_t   t_uintptr;</div>
-<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      t_uintptr, UINTPTR, PRIMITIVE)</div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno"><a class="line" href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">  127</a></span>typedef intmax_t    <a class="code hl_typedef" href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">t_sintmax</a>;</div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">t_sintmax</a>, SINTMAX, PRIMITIVE)</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">  130</a></span>typedef uintmax_t   <a class="code hl_typedef" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>;</div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno">  131</span><a class="code hl_define" href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a>(      <a class="code hl_typedef" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>, UINTMAX, PRIMITIVE)</div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
 <div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
-<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span><span class="preprocessor">#if (LIBCONFIG_UINT_ERROR == 0)</span></div>
 <div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span> </div>
-<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span><span class="preprocessor">#if (LIBCONFIG_UINT_ERROR == 0)</span></div>
-<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span> </div>
-<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span><span class="preprocessor">    #define SIZE_ERROR  0</span></div>
-<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">    #ifndef SIZE_MAX</span></div>
-<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span><span class="preprocessor">    #define SIZE_MAX    ((t_size)-1)</span></div>
-<div class="line"><a id="l00143" name="l00143"></a><span class="lineno">  143</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span> </div>
-<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span><span class="preprocessor">    #define UINTMAX_ERROR   0</span></div>
-<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">    #ifndef UINTMAX_MAX</span></div>
-<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span><span class="preprocessor">    #define UINTMAX_MAX ((t_uintmax)-1)</span></div>
-<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span><span class="preprocessor">    #endif</span></div>
-<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
-<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span><span class="preprocessor">    #define UINTPTR_ERROR   0</span></div>
-<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">    #ifndef UINTPTR_MAX</span></div>
-<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><span class="preprocessor">    #define UINTPTR_MAX ((t_uintptr)-1)</span></div>
-<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa99e75d66bf033b090aa390c8ed25d0b">  138</a></span><span class="preprocessor">    #define SIZE_ERROR  0</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno">  139</span><span class="preprocessor">    #ifndef SIZE_MAX</span></div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno"><a class="line" href="pointer_8h.html#a3c75bb398badb69c7577b21486f9963f">  140</a></span><span class="preprocessor">    #define SIZE_MAX    ((t_size)-1)</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a id="l00142" name="l00142"></a><span class="lineno">  142</span> </div>
+<div class="line"><a id="l00143" name="l00143"></a><span class="lineno"><a class="line" href="pointer_8h.html#a05ab674c282a62606722ea1dbaab5183">  143</a></span><span class="preprocessor">    #define UINTMAX_ERROR   0</span></div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno">  144</span><span class="preprocessor">    #ifndef UINTMAX_MAX</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa54fd5210434219e9027bfa0f0e325c8">  145</a></span><span class="preprocessor">    #define UINTMAX_MAX ((t_uintmax)-1)</span></div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno"><a class="line" href="pointer_8h.html#ae3a0bd705855032c0b77661564489446">  148</a></span><span class="preprocessor">    #define UINTPTR_ERROR   0</span></div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span><span class="preprocessor">    #ifndef UINTPTR_MAX</span></div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno"><a class="line" href="pointer_8h.html#ab2355300ea19395357e62d780f4dd073">  150</a></span><span class="preprocessor">    #define UINTPTR_MAX ((t_uintptr)-1)</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span><span class="preprocessor">    #endif</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
-<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
-<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">    #define SIZE_ERROR      ((t_size)-1)</span></div>
-<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span><span class="preprocessor">    #undef  SIZE_MAX</span></div>
-<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">    #define SIZE_MAX        ((t_size)-2)</span></div>
-<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span> </div>
-<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">    #define UINTMAX_ERROR   ((t_uintmax)-1)</span></div>
-<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span><span class="preprocessor">    #undef  UINTMAX_MAX</span></div>
-<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    #define UINTMAX_MAX     ((t_uintmax)-2)</span></div>
-<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span> </div>
-<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">    #define UINTPTR_ERROR   ((t_uintptr)-1)</span></div>
-<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="preprocessor">    #undef  UINTPTR_MAX</span></div>
-<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">    #define UINTPTR_MAX     ((t_uintptr)-2)</span></div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span><span class="preprocessor">    #define SIZE_ERROR      ((t_size)-1)</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span><span class="preprocessor">    #undef  SIZE_MAX</span></div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span><span class="preprocessor">    #define SIZE_MAX        ((t_size)-2)</span></div>
+<div class="line"><a id="l00158" name="l00158"></a><span class="lineno">  158</span> </div>
+<div class="line"><a id="l00159" name="l00159"></a><span class="lineno">  159</span><span class="preprocessor">    #define UINTMAX_ERROR   ((t_uintmax)-1)</span></div>
+<div class="line"><a id="l00160" name="l00160"></a><span class="lineno">  160</span><span class="preprocessor">    #undef  UINTMAX_MAX</span></div>
+<div class="line"><a id="l00161" name="l00161"></a><span class="lineno">  161</span><span class="preprocessor">    #define UINTMAX_MAX     ((t_uintmax)-2)</span></div>
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno">  162</span> </div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span><span class="preprocessor">    #define UINTPTR_ERROR   ((t_uintptr)-1)</span></div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span><span class="preprocessor">    #undef  UINTPTR_MAX</span></div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span><span class="preprocessor">    #define UINTPTR_MAX     ((t_uintptr)-2)</span></div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span> </div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span> </div>
-<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span> </div>
 <div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span> </div>
-<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span><span class="preprocessor">#if (LIBCONFIG_SINT_ERROR == 0)</span></div>
 <div class="line"><a id="l00172" name="l00172"></a><span class="lineno">  172</span> </div>
-<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span><span class="preprocessor">#if (LIBCONFIG_SINT_ERROR == 0)</span></div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno"><a class="line" href="pointer_8h.html#a33081f420af10a2a703e2f9b7df0c7e2">  173</a></span><span class="preprocessor">    #define PTRDIFF_ERROR   0</span></div>
 <div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
-<div class="line"><a id="l00175" name="l00175"></a><span class="lineno">  175</span><span class="preprocessor">    #define PTRDIFF_ERROR   0</span></div>
+<div class="line"><a id="l00175" name="l00175"></a><span class="lineno"><a class="line" href="pointer_8h.html#a4adbfb225d91194d0a3bc7a156f27d13">  175</a></span><span class="preprocessor">    #define SINTMAX_ERROR   0</span></div>
 <div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span> </div>
-<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span><span class="preprocessor">    #define SINTMAX_ERROR   0</span></div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno"><a class="line" href="pointer_8h.html#ac091911a644ef6a001dcc27ddfb88c7e">  177</a></span><span class="preprocessor">    #define SINTPTR_ERROR   0</span></div>
 <div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span> </div>
-<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">    #define SINTPTR_ERROR   0</span></div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span><span class="preprocessor">#else</span></div>
 <div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span> </div>
-<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
-<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">    #define PTRDIFF_ERROR   ((t_ptrdiff)((~(t_size)0) &gt;&gt; 1) + 1))</span></div>
-<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">    #undef  PTRDIFF_MAX</span></div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">    #define PTRDIFF_MAX     ((t_ptrdiff)((~(t_size)0) &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span><span class="preprocessor">    #undef  PTRDIFF_MIN</span></div>
-<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">    #define PTRDIFF_MIN     ((t_ptrdiff)-((~(t_size)0) &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span> </div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">    #define SINTMAX_ERROR   ((t_sintmax)((~(t_uintmax)0) &gt;&gt; 1) + 1))</span></div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">    #undef  INTMAX_MAX</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">    #define INTMAX_MAX      ((t_sintmax)((~(t_uintmax)0) &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span><span class="preprocessor">    #undef  INTMAX_MIN</span></div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">    #define INTMAX_MIN      ((t_sintmax)-((~(t_uintmax)0) &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span> </div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">    #define SINTPTR_ERROR   ((t_sintptr)((~(t_uintptr)0) &gt;&gt; 1) + 1))</span></div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">    #undef  INTPTR_MAX</span></div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">    #define INTPTR_MAX      ((t_sintptr)((~(t_uintptr)0) &gt;&gt; 1))</span></div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span><span class="preprocessor">    #undef  INTPTR_MIN</span></div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">    #define INTPTR_MIN      ((t_sintptr)-((~(t_uintptr)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span><span class="preprocessor">    #define PTRDIFF_ERROR   ((t_ptrdiff)((~(t_size)0) &gt;&gt; 1) + 1))</span></div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span><span class="preprocessor">    #undef  PTRDIFF_MAX</span></div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span><span class="preprocessor">    #define PTRDIFF_MAX     ((t_ptrdiff)((~(t_size)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span><span class="preprocessor">    #undef  PTRDIFF_MIN</span></div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span><span class="preprocessor">    #define PTRDIFF_MIN     ((t_ptrdiff)-((~(t_size)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span> </div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span><span class="preprocessor">    #define SINTMAX_ERROR   ((t_sintmax)((~(t_uintmax)0) &gt;&gt; 1) + 1))</span></div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span><span class="preprocessor">    #undef  INTMAX_MAX</span></div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span><span class="preprocessor">    #define INTMAX_MAX      ((t_sintmax)((~(t_uintmax)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span><span class="preprocessor">    #undef  INTMAX_MIN</span></div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span><span class="preprocessor">    #define INTMAX_MIN      ((t_sintmax)-((~(t_uintmax)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span><span class="preprocessor">    #define SINTPTR_ERROR   ((t_sintptr)((~(t_uintptr)0) &gt;&gt; 1) + 1))</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span><span class="preprocessor">    #undef  INTPTR_MAX</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span><span class="preprocessor">    #define INTPTR_MAX      ((t_sintptr)((~(t_uintptr)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span><span class="preprocessor">    #undef  INTPTR_MIN</span></div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span><span class="preprocessor">    #define INTPTR_MIN      ((t_sintptr)-((~(t_uintptr)0) &gt;&gt; 1))</span></div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span><span class="preprocessor">#endif</span></div>
 <div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span> </div>
-<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span><span class="preprocessor">#define SINTMAX_MIN     INTMAX_MIN</span></div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span><span class="preprocessor">#define SINTMAX_MAX     INTMAX_MAX</span></div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span> </div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span><span class="preprocessor">#define SINTPTR_MIN     INTPTR_MIN</span></div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span><span class="preprocessor">#define SINTPTR_MAX     INTPTR_MAX</span></div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa67f536d457065e53b46f4b2f14d4621">  201</a></span><span class="preprocessor">#define SINTMAX_MIN     INTMAX_MIN</span></div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno"><a class="line" href="pointer_8h.html#a26c7ed1f8f84c63e583ac8029633bb06">  202</a></span><span class="preprocessor">#define SINTMAX_MAX     INTMAX_MAX</span></div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa69eda0bbd0f1d23e95c7e96059bf199">  204</a></span><span class="preprocessor">#define SINTPTR_MIN     INTPTR_MIN</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno"><a class="line" href="pointer_8h.html#afec5f4f7e2068573f2fba2bd1c0fd026">  205</a></span><span class="preprocessor">#define SINTPTR_MAX     INTPTR_MAX</span></div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span> </div>
 <div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span> </div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span><span class="preprocessor">#ifndef __LIBCCC_POINTER_F</span></div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="preprocessor">#define __LIBCCC_POINTER_F</span></div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span> </div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span><span class="preprocessor">#ifndef __LIBCCC_POINTER_F</span></div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno"><a class="line" href="pointer_8h.html#a558ff5ddb24eb156a79ef7a37d59c281">  211</a></span><span class="preprocessor">#define __LIBCCC_POINTER_F</span></div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span><span class="comment">**                        String Conversion Functions                         *|</span></div>
 <div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">**                        String Conversion Functions                         *|</span></div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
 <div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span> </div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span> </div>
-<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>t_char*                 Size_ToString(t_size value);</div>
-<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span><span class="preprocessor">#define c_sizetostr     Size_ToString </span></div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="pointer_8h.html#a58ec5161a41962e1efe77d03f70f07c3">  225</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="pointer_8h.html#a58ec5161a41962e1efe77d03f70f07c3">Size_ToString</a>(<a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="code hl_variable" href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno"><a class="line" href="pointer_8h.html#a52f7b392e4f43e6c09794a749086d353">  226</a></span><span class="preprocessor">#define c_sizetostr     Size_ToString</span></div>
 <div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span> </div>
 <div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span> </div>
-<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>t_char*                 Size_ToString_Hex(t_size value);</div>
-<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span><span class="preprocessor">#define c_sizetostrhex  Size_ToString_Hex </span></div>
-<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno"><a class="line" href="pointer_8h.html#ab35c0dec215805e8a817020e09e8ab4d">  235</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="pointer_8h.html#ab35c0dec215805e8a817020e09e8ab4d">Size_ToString_Hex</a>(<a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="code hl_variable" href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno"><a class="line" href="pointer_8h.html#a5565630e6baf4563320cbfa688eeec7d">  236</a></span><span class="preprocessor">#define c_sizetostrhex  Size_ToString_Hex</span></div>
 <div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
-<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>t_char*                         Size_ToString_Pretty(t_size value);</div>
-<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span><span class="preprocessor">#define c_sizetostr_readable    Size_ToString_Pretty </span></div>
-<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span> </div>
-<div class="line"><a id="l00245" name="l00245"></a><span class="lineno">  245</span> </div>
-<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span> </div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span> </div>
+<div class="line"><a id="l00244" name="l00244"></a><span class="lineno">  244</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00245" name="l00245"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa2faeefdb091e4af7e3b8b74ae509e5f">  245</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                         <a class="code hl_function" href="pointer_8h.html#aa2faeefdb091e4af7e3b8b74ae509e5f">Size_ToString_Pretty</a>(<a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="code hl_variable" href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>);</div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno"><a class="line" href="pointer_8h.html#a52dad6f09d1470c8e410fec0602e06f2">  246</a></span><span class="preprocessor">#define c_sizetostr_readable    Size_ToString_Pretty</span></div>
 <div class="line"><a id="l00248" name="l00248"></a><span class="lineno">  248</span> </div>
-<div class="line"><a id="l00251" name="l00251"></a><span class="lineno">  251</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span>t_char*                 Pointer_ToString(<span class="keywordtype">void</span> const* ptr);</div>
-<div class="line"><a id="l00253" name="l00253"></a><span class="lineno">  253</span><span class="preprocessor">#define c_ptrtostr      Pointer_ToString </span></div>
-<div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span> </div>
-<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
-<div class="line"><a id="l00259" name="l00259"></a><span class="lineno">  259</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
-<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span>t_char*                 Pointer_ToString_Hex(<span class="keywordtype">void</span> const* ptr);</div>
-<div class="line"><a id="l00261" name="l00261"></a><span class="lineno">  261</span><span class="preprocessor">#define c_ptrtostrhex   Pointer_ToString_Hex </span></div>
+<div class="line"><a id="l00249" name="l00249"></a><span class="lineno">  249</span> </div>
+<div class="line"><a id="l00250" name="l00250"></a><span class="lineno">  250</span> </div>
+<div class="line"><a id="l00252" name="l00252"></a><span class="lineno">  252</span> </div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno"><a class="line" href="pointer_8h.html#a1c6b0f3b5156a289eefe2ceacd1f4dd7">  257</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="pointer_8h.html#a1c6b0f3b5156a289eefe2ceacd1f4dd7">Pointer_ToString</a>(<span class="keywordtype">void</span> const* ptr);</div>
+<div class="line"><a id="l00258" name="l00258"></a><span class="lineno"><a class="line" href="pointer_8h.html#aee7ce198e34637931241b1e0c3913061">  258</a></span><span class="preprocessor">#define c_ptrtostr      Pointer_ToString</span></div>
+<div class="line"><a id="l00260" name="l00260"></a><span class="lineno">  260</span> </div>
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span> </div>
-<div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span> </div>
-<div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span> </div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span><span class="comment">**                        String Conversion Functions                         *|</span></div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span><a class="code hl_define" href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a>()</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno"><a class="line" href="pointer_8h.html#afbcc5dfb2ec61e3a7b164db34ef1f88a">  267</a></span><a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a>*                 <a class="code hl_function" href="pointer_8h.html#afbcc5dfb2ec61e3a7b164db34ef1f88a">Pointer_ToString_Hex</a>(<span class="keywordtype">void</span> const* ptr);</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno"><a class="line" href="pointer_8h.html#ab3880db68e85db0b694265e2340dd710">  268</a></span><span class="preprocessor">#define c_ptrtostrhex   Pointer_ToString_Hex</span></div>
 <div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span> </div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span><span class="comment">// TODO define macro alias functions UIntMax_Parse() and SIntMax_Parse()</span></div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span> </div>
 <div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span> </div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span> </div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>t_size                  Size_Parse(t_size *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="preprocessor">#define c_sizeparse     Size_Parse </span></div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span><span class="comment">**                        String Conversion Functions                         *|</span></div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span><span class="comment">*/</span></div>
 <div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>t_size                  Size_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span><span class="preprocessor">#define c_strtosize     Size_FromString </span></div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span><span class="comment">// TODO define macro alias functions UIntMax_Parse() and SIntMax_Parse()</span></div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
 <div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span> </div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span> </div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span> </div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>t_size                  PtrDiff_Parse(t_ptrdiff *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span><span class="preprocessor">#define c_ptrdiffparse  PtrDiff_Parse </span></div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno"><a class="line" href="pointer_8h.html#a2b5851d0b77cc80e378baade629e5147">  285</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a2b5851d0b77cc80e378baade629e5147">Size_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno"><a class="line" href="pointer_8h.html#a8d4f24749ce0b1f3e54fdce0b26ea517">  286</a></span><span class="preprocessor">#define c_sizeparse     Size_Parse</span></div>
 <div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span> </div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>t_ptrdiff               PtrDiff_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span><span class="preprocessor">#define c_strtoptrdiff  PtrDiff_FromString </span></div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span> </div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span> </div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno"><a class="line" href="pointer_8h.html#a25071695db2f94e10280bf7cf3ab120a">  291</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a25071695db2f94e10280bf7cf3ab120a">Size_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno"><a class="line" href="pointer_8h.html#a95d737281b1ac5c01b7b47ec72bc4848">  292</a></span><span class="preprocessor">#define c_strtosize     Size_FromString</span></div>
 <div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span> </div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>t_size                  UIntMax_Parse(t_uintmax *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span><span class="preprocessor">#define c_uintmaxparse  UIntMax_Parse </span></div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>t_uintmax               UIntMax_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span><span class="preprocessor">#define c_strtouintmax  UIntMax_FromString </span></div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno"><a class="line" href="pointer_8h.html#a28f7a328079675cd795db22c515d29f1">  299</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a28f7a328079675cd795db22c515d29f1">PtrDiff_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno"><a class="line" href="pointer_8h.html#a50b2f30f731be73ed34d0aab5486180b">  300</a></span><span class="preprocessor">#define c_ptrdiffparse  PtrDiff_Parse</span></div>
 <div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>t_size                  SIntMax_Parse(t_sintmax *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span><span class="preprocessor">#define c_sintmaxparse  SIntMax_Parse </span></div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>t_sintmax               SIntMax_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span><span class="preprocessor">#define c_strtosintmax  SIntMax_FromString </span></div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno"><a class="line" href="pointer_8h.html#aabcafa30c8027c83a9faa1d55b0c2626">  305</a></span><a class="code hl_typedef" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a>               <a class="code hl_function" href="pointer_8h.html#aabcafa30c8027c83a9faa1d55b0c2626">PtrDiff_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno"><a class="line" href="pointer_8h.html#aeb77a628c112180581f3a3523ef67442">  306</a></span><span class="preprocessor">#define c_strtoptrdiff  PtrDiff_FromString</span></div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span> </div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span> </div>
 <div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span> </div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>t_size                  UIntPtr_Parse(t_uintptr *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span><span class="preprocessor">#define c_uintptrparse  UIntPtr_Parse </span></div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno"><a class="line" href="pointer_8h.html#a04ba9c49fd2d657ac2ef5d721deeed9c">  313</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a04ba9c49fd2d657ac2ef5d721deeed9c">UIntMax_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno"><a class="line" href="pointer_8h.html#ab4bb91b64bb084c6f204beab75655931">  314</a></span><span class="preprocessor">#define c_uintmaxparse  UIntMax_Parse</span></div>
 <div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span> </div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>t_uintptr               UIntPtr_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span><span class="preprocessor">#define c_strtouintptr  UIntPtr_FromString </span></div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span> </div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>t_size                  SIntPtr_Parse(t_sintptr *dest, t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span><span class="preprocessor">#define c_sintptrparse  SIntPtr_Parse </span></div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>t_sintptr               SIntPtr_FromString(t_char <span class="keyword">const</span>* str);</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span><span class="preprocessor">#define c_strtosintptr  SIntPtr_FromString </span></div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno"><a class="line" href="pointer_8h.html#a35af2bf615310a0e970748df294f79af">  319</a></span><a class="code hl_typedef" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>               <a class="code hl_function" href="pointer_8h.html#a35af2bf615310a0e970748df294f79af">UIntMax_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno"><a class="line" href="pointer_8h.html#a9e3a585742919f4f32fd93310fbc953f">  320</a></span><span class="preprocessor">#define c_strtouintmax  UIntMax_FromString</span></div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno"><a class="line" href="pointer_8h.html#a901d5f0d357119fb6d0e762910e68229">  325</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a901d5f0d357119fb6d0e762910e68229">SIntMax_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">t_sintmax</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno"><a class="line" href="pointer_8h.html#a85336a599a2c705d72039e7d031f718c">  326</a></span><span class="preprocessor">#define c_sintmaxparse  SIntMax_Parse</span></div>
 <div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span> </div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span> </div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno"><a class="line" href="pointer_8h.html#a3d8d14e1e22fa428d809ff7c7e654eb2">  331</a></span><a class="code hl_typedef" href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">t_sintmax</a>               <a class="code hl_function" href="pointer_8h.html#a3d8d14e1e22fa428d809ff7c7e654eb2">SIntMax_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno"><a class="line" href="pointer_8h.html#ae4b7e2606c8d4ffc0e35584b34d256ff">  332</a></span><span class="preprocessor">#define c_strtosintmax  SIntMax_FromString</span></div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno"><a class="line" href="pointer_8h.html#aa886f0ba8c982897ad6be566ce4c0e72">  339</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#aa886f0ba8c982897ad6be566ce4c0e72">UIntPtr_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">t_uintptr</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno"><a class="line" href="pointer_8h.html#adfac8ab8d5ef2af93d6a6ad95db8d78a">  340</a></span><span class="preprocessor">#define c_uintptrparse  UIntPtr_Parse</span></div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span> </div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno"><a class="line" href="pointer_8h.html#af562705502fcba11cea95834d0a3ff3a">  345</a></span><a class="code hl_typedef" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">t_uintptr</a>               <a class="code hl_function" href="pointer_8h.html#af562705502fcba11cea95834d0a3ff3a">UIntPtr_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno"><a class="line" href="pointer_8h.html#a68903ca0466623245b56d655893b8b14">  346</a></span><span class="preprocessor">#define c_strtouintptr  UIntPtr_FromString</span></div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span> </div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno"><a class="line" href="pointer_8h.html#a79afa7d9c048a40accb4c7d76d761e24">  351</a></span><a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>                  <a class="code hl_function" href="pointer_8h.html#a79afa7d9c048a40accb4c7d76d761e24">SIntPtr_Parse</a>(<a class="code hl_typedef" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a> *dest, <a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno"><a class="line" href="pointer_8h.html#a54d35ed4e5e1d9d0e170b1b79e59d765">  352</a></span><span class="preprocessor">#define c_sintptrparse  SIntPtr_Parse</span></div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno"><a class="line" href="pointer_8h.html#a703e60dc0c611f34817ffcfff52fc280">  357</a></span><a class="code hl_typedef" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a>               <a class="code hl_function" href="pointer_8h.html#a703e60dc0c611f34817ffcfff52fc280">SIntPtr_FromString</a>(<a class="code hl_typedef" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> <span class="keyword">const</span>* str);</div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="pointer_8h.html#a9c90fe9dadb1727871ee553dbfb23e36">  358</a></span><span class="preprocessor">#define c_strtosintptr  SIntPtr_FromString</span></div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span> </div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span> </div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span> </div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aarray_8h_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a></div><div class="ttdeci">T value</div><div class="ttdef"><b>Definition:</b> <a href="array_8h_source.html#l00151">array.h:151</a></div></div>
+<div class="ttc" id="achar_8h_html_a37138ccbd005311d3dbe85f90b484980"><div class="ttname"><a href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a></div><div class="ttdeci">t_ascii t_char</div><div class="ttdoc">Primitive type: char, configurable (ASCII or UTF8)</div><div class="ttdef"><b>Definition:</b> <a href="char_8h_source.html#l00058">char.h:58</a></div></div>
 <div class="ttc" id="alibccc_8h_html"><div class="ttname"><a href="libccc_8h.html">libccc.h</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00577">libccc_define.h:577</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdoc">Before a function def: indicates that it returns newly allocated ptr.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00580">libccc_define.h:580</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="alibccc__naming_8h_html_a4d319b9aec474f87e5cbd66e82270714"><div class="ttname"><a href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a></div><div class="ttdeci">#define TYPEDEF_ALIAS(TYPE, NAME, KIND)</div><div class="ttdef"><b>Definition:</b> <a href="libccc__naming_8h_source.html#l00098">libccc_naming.h:98</a></div></div>
+<div class="ttc" id="apointer_8h_html_a04ba9c49fd2d657ac2ef5d721deeed9c"><div class="ttname"><a href="pointer_8h.html#a04ba9c49fd2d657ac2ef5d721deeed9c">UIntMax_Parse</a></div><div class="ttdeci">t_size UIntMax_Parse(t_uintmax *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a1c6b0f3b5156a289eefe2ceacd1f4dd7"><div class="ttname"><a href="pointer_8h.html#a1c6b0f3b5156a289eefe2ceacd1f4dd7">Pointer_ToString</a></div><div class="ttdeci">t_char * Pointer_ToString(void const *ptr)</div></div>
+<div class="ttc" id="apointer_8h_html_a25071695db2f94e10280bf7cf3ab120a"><div class="ttname"><a href="pointer_8h.html#a25071695db2f94e10280bf7cf3ab120a">Size_FromString</a></div><div class="ttdeci">t_size Size_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a28f7a328079675cd795db22c515d29f1"><div class="ttname"><a href="pointer_8h.html#a28f7a328079675cd795db22c515d29f1">PtrDiff_Parse</a></div><div class="ttdeci">t_size PtrDiff_Parse(t_ptrdiff *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a2b5851d0b77cc80e378baade629e5147"><div class="ttname"><a href="pointer_8h.html#a2b5851d0b77cc80e378baade629e5147">Size_Parse</a></div><div class="ttdeci">t_size Size_Parse(t_size *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a35af2bf615310a0e970748df294f79af"><div class="ttname"><a href="pointer_8h.html#a35af2bf615310a0e970748df294f79af">UIntMax_FromString</a></div><div class="ttdeci">t_uintmax UIntMax_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a3d8d14e1e22fa428d809ff7c7e654eb2"><div class="ttname"><a href="pointer_8h.html#a3d8d14e1e22fa428d809ff7c7e654eb2">SIntMax_FromString</a></div><div class="ttdeci">t_sintmax SIntMax_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a3feee0b4ea86f11374f27fdf15a71b70"><div class="ttname"><a href="pointer_8h.html#a3feee0b4ea86f11374f27fdf15a71b70">t_sintmax</a></div><div class="ttdeci">intmax_t t_sintmax</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00127">pointer.h:127</a></div></div>
+<div class="ttc" id="apointer_8h_html_a58ec5161a41962e1efe77d03f70f07c3"><div class="ttname"><a href="pointer_8h.html#a58ec5161a41962e1efe77d03f70f07c3">Size_ToString</a></div><div class="ttdeci">t_char * Size_ToString(t_size value)</div></div>
+<div class="ttc" id="apointer_8h_html_a703e60dc0c611f34817ffcfff52fc280"><div class="ttname"><a href="pointer_8h.html#a703e60dc0c611f34817ffcfff52fc280">SIntPtr_FromString</a></div><div class="ttdeci">t_sintptr SIntPtr_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a79afa7d9c048a40accb4c7d76d761e24"><div class="ttname"><a href="pointer_8h.html#a79afa7d9c048a40accb4c7d76d761e24">SIntPtr_Parse</a></div><div class="ttdeci">t_size SIntPtr_Parse(t_sintptr *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a901d5f0d357119fb6d0e762910e68229"><div class="ttname"><a href="pointer_8h.html#a901d5f0d357119fb6d0e762910e68229">SIntMax_Parse</a></div><div class="ttdeci">t_size SIntMax_Parse(t_sintmax *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_a99f60fa8c0b01452e12df739f000a5c4"><div class="ttname"><a href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4">t_uintptr</a></div><div class="ttdeci">uintptr_t t_uintptr</div><div class="ttdoc">Pointer-sized unsigned integer type.</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00115">pointer.h:115</a></div></div>
+<div class="ttc" id="apointer_8h_html_aa2faeefdb091e4af7e3b8b74ae509e5f"><div class="ttname"><a href="pointer_8h.html#aa2faeefdb091e4af7e3b8b74ae509e5f">Size_ToString_Pretty</a></div><div class="ttdeci">t_char * Size_ToString_Pretty(t_size value)</div></div>
+<div class="ttc" id="apointer_8h_html_aa886f0ba8c982897ad6be566ce4c0e72"><div class="ttname"><a href="pointer_8h.html#aa886f0ba8c982897ad6be566ce4c0e72">UIntPtr_Parse</a></div><div class="ttdeci">t_size UIntPtr_Parse(t_uintptr *dest, t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_aabcafa30c8027c83a9faa1d55b0c2626"><div class="ttname"><a href="pointer_8h.html#aabcafa30c8027c83a9faa1d55b0c2626">PtrDiff_FromString</a></div><div class="ttdeci">t_ptrdiff PtrDiff_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_aaf13bc256e9c704039e08ec061508a0c"><div class="ttname"><a href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a></div><div class="ttdeci">ptrdiff_t t_ptrdiff</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00100">pointer.h:100</a></div></div>
+<div class="ttc" id="apointer_8h_html_ab26ea4b5e8504781be1c368c28967472"><div class="ttname"><a href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a></div><div class="ttdeci">size_t t_size</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00091">pointer.h:91</a></div></div>
+<div class="ttc" id="apointer_8h_html_ab35c0dec215805e8a817020e09e8ab4d"><div class="ttname"><a href="pointer_8h.html#ab35c0dec215805e8a817020e09e8ab4d">Size_ToString_Hex</a></div><div class="ttdeci">t_char * Size_ToString_Hex(t_size value)</div></div>
+<div class="ttc" id="apointer_8h_html_ac0aecea9015652a32969ae48f1e6bd2c"><div class="ttname"><a href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a></div><div class="ttdeci">uintmax_t t_uintmax</div><div class="ttdoc">Maximum-width unsigned integer type.</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00130">pointer.h:130</a></div></div>
+<div class="ttc" id="apointer_8h_html_acbd1c0307c55e5f81a2e837cb6c5541e"><div class="ttname"><a href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a></div><div class="ttdeci">intptr_t t_sintptr</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00112">pointer.h:112</a></div></div>
+<div class="ttc" id="apointer_8h_html_af562705502fcba11cea95834d0a3ff3a"><div class="ttname"><a href="pointer_8h.html#af562705502fcba11cea95834d0a3ff3a">UIntPtr_FromString</a></div><div class="ttdeci">t_uintptr UIntPtr_FromString(t_char const *str)</div></div>
+<div class="ttc" id="apointer_8h_html_afbcc5dfb2ec61e3a7b164db34ef1f88a"><div class="ttname"><a href="pointer_8h.html#afbcc5dfb2ec61e3a7b164db34ef1f88a">Pointer_ToString_Hex</a></div><div class="ttdeci">t_char * Pointer_ToString_Hex(void const *ptr)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="pointer_8h.html">pointer.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="pointer_8h.html">pointer.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

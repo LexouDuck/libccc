@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/random/random.h Source File</title>
+<title>libccc: libccc/random/random.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -109,105 +109,105 @@ $(document).ready(function(){initNavTree('random_8h_source.html',''); initResiza
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBCCC_RANDOM_RANDOM_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBCCC_RANDOM_RANDOM_H</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">**                                   Includes                                 *|</span></div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">**                                   Includes                                 *|</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="prng_8h.html">libccc/random/prng.h</a>&quot;</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#include &quot;<a class="code" href="csprng_8h.html">libccc/random/csprng.h</a>&quot;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="prng_8h.html">libccc/random/prng.h</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="csprng_8h.html">libccc/random/csprng.h</a>&quot;</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="comment">**                                 Definitions                                *|</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">**                                 Definitions                                *|</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="random_8h.html#a80a2940ba1a569c25e077dd72f82bd75">   44</a></span><span class="keyword">typedef</span> <a class="code hl_define" href="libccc__config_8h.html#a9edc466e73bedc86d3508d767885b250">LIBCONFIG_RANDOM_TYPE</a>   <a class="code hl_typedef" href="random_8h.html#a80a2940ba1a569c25e077dd72f82bd75">t_rand</a>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="random_8h.html#a844b13c1cac7708b317c8fa633a4ed28">   42</a></span><span class="keyword">typedef</span> <a class="code hl_define" href="libccc__config_8h.html#a9edc466e73bedc86d3508d767885b250">LIBCONFIG_RANDOM_TYPE</a>   <a class="code hl_variable" href="random_8h.html#a844b13c1cac7708b317c8fa633a4ed28">t_rand</a>;</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
 <div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="comment">**                               Random Functions                             *|</span></div>
 <div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">**                               Random Functions                             *|</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno"><a class="line" href="random_8h.html#ac7a5df35a413291028348e33049c01d7">   54</a></span><span class="preprocessor">#define             Random_SetSeed  CONCAT(LIBCONFIG_RANDOM_NAME,_SetSeed)</span></div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="random_8h.html#a947343383726284209f32e594b375c06">   55</a></span><span class="preprocessor">#define c_srand     Random_SetSeed</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="random_8h.html#a23ae1eec24606a56a5d55a7f5f7a9c2d">   57</a></span><span class="preprocessor">#define             Random_NewSeed  CONCAT(LIBCONFIG_RANDOM_NAME,_NewSeed)</span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno"><a class="line" href="random_8h.html#a0434513bd0f5e4d66cf716ce300ebcd0">   58</a></span><span class="preprocessor">#define c_nrand     Random_NewSeed</span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno"><a class="line" href="random_8h.html#ae61436f4673d6e4c238cae295abaed41">   62</a></span><span class="preprocessor">#define             Random_New      CONCAT(LIBCONFIG_RANDOM_NAME,_New)</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="random_8h.html#ad8a7cdb737dcf4b77f36fd885380a601">   63</a></span><span class="preprocessor">#define c_randnew   Random_New</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="random_8h.html#a23ae1eec24606a56a5d55a7f5f7a9c2d">   60</a></span><span class="preprocessor">#define             Random_NewSeed  CONCAT(LIBCONFIG_RANDOM_NAME,_NewSeed)</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="random_8h.html#a0434513bd0f5e4d66cf716ce300ebcd0">   61</a></span><span class="preprocessor">#define c_nrand     Random_NewSeed</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="random_8h.html#a6a95e8fbbbe0a10fbab208a53bddb5f8">   65</a></span><span class="preprocessor">#define             Random_Delete   CONCAT(LIBCONFIG_RANDOM_NAME,_Delete)</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="random_8h.html#a5ac272ed5f54780ec1b0073566599e77">   66</a></span><span class="preprocessor">#define c_randdel   Random_Delete</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="random_8h.html#a9ba6d55749930239debbc169f7dbfeff">   70</a></span><span class="preprocessor">#define             Random_Next     CONCAT(LIBCONFIG_RANDOM_NAME,_Next)</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno"><a class="line" href="random_8h.html#ab3c2e061651575a7449eedd9b5340214">   71</a></span><span class="preprocessor">#define c_rand      Random_Next</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="random_8h.html#a956739fac730b77a7d114eb652fc63ca">   73</a></span><span class="preprocessor">#define             Random_Get      CONCAT(LIBCONFIG_RANDOM_NAME,_Get)</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="random_8h.html#ae81cc084f6a1d3fa1ce0bdcedfca12ae">   74</a></span><span class="preprocessor">#define c_randget   Random_Get</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="random_8h.html#ae61436f4673d6e4c238cae295abaed41">   68</a></span><span class="preprocessor">#define             Random_New      CONCAT(LIBCONFIG_RANDOM_NAME,_New)</span></div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="random_8h.html#ad8a7cdb737dcf4b77f36fd885380a601">   69</a></span><span class="preprocessor">#define c_randnew   Random_New</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno"><a class="line" href="random_8h.html#a6a95e8fbbbe0a10fbab208a53bddb5f8">   74</a></span><span class="preprocessor">#define             Random_Delete   CONCAT(LIBCONFIG_RANDOM_NAME,_Delete)</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="random_8h.html#a5ac272ed5f54780ec1b0073566599e77">   75</a></span><span class="preprocessor">#define c_randdel   Random_Delete</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="random_8h.html#a6a496704d4463c972b4f3a1bf8b1c09b">   78</a></span><span class="preprocessor">#define             Random_UInt         CONCAT(LIBCONFIG_RANDOM_NAME,_UInt)</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="random_8h.html#aacede7b0389e4f7cf2a7bb571e1f6d7c">   79</a></span><span class="preprocessor">#define c_randu     Random_UInt</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="random_8h.html#a480df493e75b9714ce6c1ff53b38d77f">   81</a></span><span class="preprocessor">#define             Random_UInt_Range   CONCAT(LIBCONFIG_RANDOM_NAME,_UInt_Range)</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="random_8h.html#a3019faf1530133452c897c2456bbb12c">   82</a></span><span class="preprocessor">#define c_randui    Random_UInt_Range</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno"><a class="line" href="random_8h.html#a9ba6d55749930239debbc169f7dbfeff">   82</a></span><span class="preprocessor">#define             Random_Next     CONCAT(LIBCONFIG_RANDOM_NAME,_Next)</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno"><a class="line" href="random_8h.html#ab3c2e061651575a7449eedd9b5340214">   83</a></span><span class="preprocessor">#define c_rand      Random_Next</span></div>
 <div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno"><a class="line" href="random_8h.html#abb6e06434adc1acc07836b15b8b2f49c">   86</a></span><span class="preprocessor">#define             Random_SInt         CONCAT(LIBCONFIG_RANDOM_NAME,_SInt)</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="random_8h.html#a0d49f8b798b679f952c197f079f6330e">   87</a></span><span class="preprocessor">#define c_rands     Random_SInt</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="random_8h.html#ae77bc5bb07489c6ef77b04144c78dd9d">   89</a></span><span class="preprocessor">#define             Random_SInt_Range   CONCAT(LIBCONFIG_RANDOM_NAME,_SInt_Range)</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="random_8h.html#ab1eaa9dc7493536ee27a04d1567243b2">   90</a></span><span class="preprocessor">#define c_randsi    Random_SInt_Range</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="random_8h.html#a956739fac730b77a7d114eb652fc63ca">   88</a></span><span class="preprocessor">#define             Random_Get      CONCAT(LIBCONFIG_RANDOM_NAME,_Get)</span></div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno"><a class="line" href="random_8h.html#ae81cc084f6a1d3fa1ce0bdcedfca12ae">   89</a></span><span class="preprocessor">#define c_randget   Random_Get</span></div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
 <div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
 <div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="random_8h.html#a463de940a7527dbfda9b2bdf44db2cd0">   94</a></span><span class="preprocessor">#define             Random_Fixed        CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed)</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="random_8h.html#a48dc94cfac7a45556645370dea386a3a">   95</a></span><span class="preprocessor">#define c_randq     Random_Fixed</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="random_8h.html#a92538d7067ce975c07b92b684d505ff2">   97</a></span><span class="preprocessor">#define             Random_Fixed_Range  CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed_Range)</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno"><a class="line" href="random_8h.html#a8310f6aeecb60990666ad2d0b5a855e6">   98</a></span><span class="preprocessor">#define c_randqi    Random_Fixed_Range</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno"><a class="line" href="random_8h.html#a6a496704d4463c972b4f3a1bf8b1c09b">   96</a></span><span class="preprocessor">#define             Random_UInt         CONCAT(LIBCONFIG_RANDOM_NAME,_UInt)</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno"><a class="line" href="random_8h.html#aacede7b0389e4f7cf2a7bb571e1f6d7c">   97</a></span><span class="preprocessor">#define c_randu     Random_UInt</span></div>
 <div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span> </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="random_8h.html#ae7bb9377a08ece552e28d36a96d4b766">  102</a></span><span class="preprocessor">#define             Random_Float        CONCAT(LIBCONFIG_RANDOM_NAME,_Float)</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="random_8h.html#ab26fd30a687256f9730357448afbca74">  103</a></span><span class="preprocessor">#define c_randf     Random_Float</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="random_8h.html#ae69d4a98e98d6c1794b95586955384eb">  105</a></span><span class="preprocessor">#define             Random_Float_Range  CONCAT(LIBCONFIG_RANDOM_NAME,_Float_Range)</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno"><a class="line" href="random_8h.html#a1f7a1a2529e0dae76c26e7a5428e940e">  106</a></span><span class="preprocessor">#define c_randfi    Random_Float_Range</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="random_8h.html#a480df493e75b9714ce6c1ff53b38d77f">  102</a></span><span class="preprocessor">#define             Random_UInt_Range   CONCAT(LIBCONFIG_RANDOM_NAME,_UInt_Range)</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno"><a class="line" href="random_8h.html#a4d16339a10ca9460817479687413e943">  103</a></span><span class="preprocessor">#define c_randxu    Random_UInt_Range</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span> </div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
 <div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span> </div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="random_8h.html#abb6e06434adc1acc07836b15b8b2f49c">  110</a></span><span class="preprocessor">#define             Random_SInt         CONCAT(LIBCONFIG_RANDOM_NAME,_SInt)</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="random_8h.html#a0d49f8b798b679f952c197f079f6330e">  111</a></span><span class="preprocessor">#define c_rands     Random_SInt</span></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span> </div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno"><a class="line" href="random_8h.html#ae77bc5bb07489c6ef77b04144c78dd9d">  116</a></span><span class="preprocessor">#define             Random_SInt_Range   CONCAT(LIBCONFIG_RANDOM_NAME,_SInt_Range)</span></div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="random_8h.html#a622838c52be26149ec33e7201eed6a4c">  117</a></span><span class="preprocessor">#define c_randxs    Random_SInt_Range</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span> </div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno"><a class="line" href="random_8h.html#a463de940a7527dbfda9b2bdf44db2cd0">  124</a></span><span class="preprocessor">#define             Random_Fixed        CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed)</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="random_8h.html#a48dc94cfac7a45556645370dea386a3a">  125</a></span><span class="preprocessor">#define c_randq     Random_Fixed</span></div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span> </div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno"><a class="line" href="random_8h.html#a92538d7067ce975c07b92b684d505ff2">  130</a></span><span class="preprocessor">#define             Random_Fixed_Range  CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed_Range)</span></div>
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="random_8h.html#aa9ea7b71338999ddc5705527ceebc676">  131</a></span><span class="preprocessor">#define c_randxq    Random_Fixed_Range</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span> </div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span> </div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno"><a class="line" href="random_8h.html#ae7bb9377a08ece552e28d36a96d4b766">  138</a></span><span class="preprocessor">#define             Random_Float        CONCAT(LIBCONFIG_RANDOM_NAME,_Float)</span></div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="random_8h.html#ab26fd30a687256f9730357448afbca74">  139</a></span><span class="preprocessor">#define c_randf     Random_Float</span></div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="random_8h.html#ae69d4a98e98d6c1794b95586955384eb">  144</a></span><span class="preprocessor">#define             Random_Float_Range  CONCAT(LIBCONFIG_RANDOM_NAME,_Float_Range)</span></div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno"><a class="line" href="random_8h.html#abd813ceaeb9586c42a699316ff3cf107">  145</a></span><span class="preprocessor">#define c_randxf    Random_Float_Range</span></div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span> </div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span> </div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span> </div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="acsprng_8h_html"><div class="ttname"><a href="csprng_8h.html">csprng.h</a></div></div>
-<div class="ttc" id="alibccc__config_8h_html_a9edc466e73bedc86d3508d767885b250"><div class="ttname"><a href="libccc__config_8h.html#a9edc466e73bedc86d3508d767885b250">LIBCONFIG_RANDOM_TYPE</a></div><div class="ttdeci">#define LIBCONFIG_RANDOM_TYPE</div><div class="ttdoc">Defines which type the t_rand default random state type will be.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__config_8h_source.html#l00283">libccc_config.h:283</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
+<div class="ttc" id="alibccc__config_8h_html_a9edc466e73bedc86d3508d767885b250"><div class="ttname"><a href="libccc__config_8h.html#a9edc466e73bedc86d3508d767885b250">LIBCONFIG_RANDOM_TYPE</a></div><div class="ttdeci">#define LIBCONFIG_RANDOM_TYPE</div><div class="ttdef"><b>Definition:</b> <a href="libccc__config_8h_source.html#l00294">libccc_config.h:294</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="aprng_8h_html"><div class="ttname"><a href="prng_8h.html">prng.h</a></div></div>
-<div class="ttc" id="arandom_8h_html_a80a2940ba1a569c25e077dd72f82bd75"><div class="ttname"><a href="random_8h.html#a80a2940ba1a569c25e077dd72f82bd75">t_rand</a></div><div class="ttdeci">t_prng t_rand</div><div class="ttdoc">This type stores the current state of the random number generator.</div><div class="ttdef"><b>Definition:</b> <a href="random_8h_source.html#l00044">random.h:44</a></div></div>
+<div class="ttc" id="arandom_8h_html_a844b13c1cac7708b317c8fa633a4ed28"><div class="ttname"><a href="random_8h.html#a844b13c1cac7708b317c8fa633a4ed28">t_rand</a></div><div class="ttdeci">HEADER_CPP typedef LIBCONFIG_RANDOM_TYPE t_rand</div><div class="ttdoc">This type stores the current state of the random number generator.</div><div class="ttdef"><b>Definition:</b> <a href="random_8h_source.html#l00042">random.h:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_71ecd33d167cbecc24fcd8dae37d6c8f.html">random</a></li><li class="navelem"><a class="el" href="random_8h.html">random.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_4f2944236d2c525a0d023b83029b43e5.html">random</a></li><li class="navelem"><a class="el" href="random_8h.html">random.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

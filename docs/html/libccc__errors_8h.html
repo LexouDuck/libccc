@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc_errors.h File Reference</title>
+<title>libccc: libccc_errors.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -106,7 +106,8 @@ $(document).ready(function(){initNavTree('libccc__errors_8h.html',''); initResiz
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="libccc__errors_8h__incl.svg" width="140" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="libccc__errors_8h__incl.svg" width="120" height="187"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="libccc__errors_8h_source.html">Go to the source code of this file.</a></p>
@@ -116,12 +117,14 @@ Macros</h2></td></tr>
 <tr class="memitem:a42c1a5eb9b00acb499d165cc3357f270"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__errors_8h.html#a42c1a5eb9b00acb499d165cc3357f270">CHECK_ERRORS</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:a42c1a5eb9b00acb499d165cc3357f270"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >These macros allow you to configure how libccc handles exceptions/error cases. </p>
+</div></td></tr>
 <tr class="memitem:aed3ede9327386c55a69e248f4ff5c212"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__errors_8h.html#aed3ede9327386c55a69e248f4ff5c212">LIBCONFIG_ERROR_DEFAULTHANDLER</a>(ERRORCODE,  MESSAGE)&#160;&#160;&#160;\</td></tr>
-<tr class="memdesc:aed3ede9327386c55a69e248f4ff5c212"><td class="mdescLeft">&#160;</td><td class="mdescRight">These macros allow you to configure how libccc handles exceptions/error cases.  <a href="libccc__errors_8h.html#aed3ede9327386c55a69e248f4ff5c212">More...</a><br /></td></tr>
 <tr class="separator:aed3ede9327386c55a69e248f4ff5c212"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >These macros allow you to configure how libccc handles exceptions/error cases. </p>
+</div></td></tr>
 <tr class="memitem:ae5d355046b01088d146d87fcc68c1782"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__errors_8h.html#ae5d355046b01088d146d87fcc68c1782">HANDLE_ERRORS_UNSPECIFIED</a>&#160;&#160;&#160;1</td></tr>
-<tr class="memdesc:ae5d355046b01088d146d87fcc68c1782"><td class="mdescLeft">&#160;</td><td class="mdescRight">These macros allow you to configure how libccc handles exceptions/error cases.  <a href="libccc__errors_8h.html#ae5d355046b01088d146d87fcc68c1782">More...</a><br /></td></tr>
 <tr class="separator:ae5d355046b01088d146d87fcc68c1782"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd69827bfc508bf61093a74430fa555f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__errors_8h.html#abd69827bfc508bf61093a74430fa555f">HANDLE_ERRORS_SYSTEM</a>&#160;&#160;&#160;1</td></tr>
 <tr class="separator:abd69827bfc508bf61093a74430fa555f"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -185,9 +188,9 @@ Typedefs</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ab30adf8edbfe4bd90411d7eb858633b9"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9">cccerror</a> { <br />
-&#160;&#160;<a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a0458ccc361d6c268458359ac4c20121c">ERROR_UNSPECIFIED</a> = (-1)
+&#160;&#160;<a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a0458ccc361d6c268458359ac4c20121c">ERROR_UNSPECIFIED</a> = ERROR
 , <br />
-&#160;&#160;<a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a4edc8aade11e1de7bbbdc04704baae5f">ERROR_NONE</a> = (0)
+&#160;&#160;<a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a4edc8aade11e1de7bbbdc04704baae5f">ERROR_NONE</a> = OK
 , <br />
 &#160;&#160;<a class="el" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a2c3d9a7a6ca88f7a668bc11e6098db93">ERROR_SYSTEM</a>
 , <br />
@@ -265,8 +268,6 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>These macros allow you to configure how libccc handles exceptions/error cases. </p>
 <p >These macro functions determine how exception cases are to be handled by libccc. You may change the logic here (to implement custom exception handling for example). </p>
 
 <p class="definition">Definition at line <a class="el" href="libccc__errors_8h_source.html#l00051">51</a> of file <a class="el" href="libccc__errors_8h_source.html">libccc_errors.h</a>.</p>
@@ -284,8 +285,6 @@ Enumerations</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>These macros allow you to configure how libccc handles exceptions/error cases. </p>
 <p >These "plural-named" can be used to activate or deactivate exception handling at will. </p>
 
 <p class="definition">Definition at line <a class="el" href="libccc__errors_8h_source.html#l00064">64</a> of file <a class="el" href="libccc__errors_8h_source.html">libccc_errors.h</a>.</p>
@@ -708,8 +707,9 @@ Enumerations</h2></td></tr>
 <div class="line">        Error_Set(ERROR_##ERRORTYPE);                                   \</div>
 <div class="line">        if (HANDLE_ERRORS_##ERRORTYPE)                                  \</div>
 <div class="line">        {                                                               \</div>
-<div class="line">            Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);            \</div>
+<div class="line">            Error_Handle(ERROR_##ERRORTYPE, __func__, <a class="code hl_define" href="pointer_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a>);            \</div>
 <div class="line">        }                                                               \</div>
+<div class="ttc" id="apointer_8h_html_a070d2ce7b6bb7e5c05602aa8c308d0c4"><div class="ttname"><a href="pointer_8h.html#a070d2ce7b6bb7e5c05602aa8c308d0c4">NULL</a></div><div class="ttdeci">#define NULL</div><div class="ttdoc">Represents a NULL (0-value) pointer, of type 'void'.</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00075">pointer.h:75</a></div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="libccc__errors_8h_source.html#l00155">155</a> of file <a class="el" href="libccc__errors_8h_source.html">libccc_errors.h</a>.</p>
 
@@ -811,7 +811,7 @@ Enumerations</h2></td></tr>
 <div class="line">            Error_Handle(ERROR_##ERRORTYPE, __func__,                   \</div>
 <div class="line">                <a class="code hl_function" href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a>(__VA_ARGS__));                            \</div>
 <div class="line">        }                                                               \</div>
-<div class="ttc" id="aformat_8h_html_a9ba6ad3bf2cfc927edd126e83f27bcc3"><div class="ttname"><a href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></div><div class="ttdeci">t_char * String_Format(t_char const *format,...)</div><div class="ttdoc">Constructs a string from the given format string and multiple args (equivalent to asprintf())</div></div>
+<div class="ttc" id="aformat_8h_html_a9ba6ad3bf2cfc927edd126e83f27bcc3"><div class="ttname"><a href="format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3">String_Format</a></div><div class="ttdeci">t_char * String_Format(t_char const *format,...)</div></div>
 </div><!-- fragment -->
 <p class="definition">Definition at line <a class="el" href="libccc__errors_8h_source.html#l00176">176</a> of file <a class="el" href="libccc__errors_8h_source.html">libccc_errors.h</a>.</p>
 
@@ -968,9 +968,9 @@ Enumerations</h2></td></tr>
 <div class="line"><a id="l00254" name="l00254"></a><span class="lineno">  254</span><span class="comment">//  ERROR_,</span></div>
 <div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span> </div>
 <div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span>    <a class="code hl_enumvalue" href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9aa233cc0d33f1de525989df1624707ebb">ENUMLENGTH_CCCERROR</a>,</div>
-<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}       <a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>;</div>
-<div class="ttc" id="alibccc__define_8h_html_a8fe83ac76edc595f6b98cd4a4127aed5"><div class="ttname"><a href="libccc__define_8h.html#a8fe83ac76edc595f6b98cd4a4127aed5">ERROR</a></div><div class="ttdeci">#define ERROR</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00318">libccc_define.h:318</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_aba51915c87d64af47fb1cc59348961c9"><div class="ttname"><a href="libccc__define_8h.html#aba51915c87d64af47fb1cc59348961c9">OK</a></div><div class="ttdeci">#define OK</div><div class="ttdoc">Represents a successful function return (expands to (0))</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00313">libccc_define.h:313</a></div></div>
+<div class="line"><a id="l00257" name="l00257"></a><span class="lineno">  257</span>}   <a class="code hl_typedef" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>;</div>
+<div class="ttc" id="alibccc__define_8h_html_a8fe83ac76edc595f6b98cd4a4127aed5"><div class="ttname"><a href="libccc__define_8h.html#a8fe83ac76edc595f6b98cd4a4127aed5">ERROR</a></div><div class="ttdeci">#define ERROR</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00322">libccc_define.h:322</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_aba51915c87d64af47fb1cc59348961c9"><div class="ttname"><a href="libccc__define_8h.html#aba51915c87d64af47fb1cc59348961c9">OK</a></div><div class="ttdeci">#define OK</div><div class="ttdoc">Represents a successful function return (expands to (0))</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00317">libccc_define.h:317</a></div></div>
 <div class="ttc" id="alibccc__errors_8h_html_a54dc030d7c8bbb1e03a6311fd02fa127"><div class="ttname"><a href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a></div><div class="ttdeci">enum cccerror e_cccerror</div><div class="ttdoc">This type represents an error code for a libccc function (ie: a value for the 'errno' global variable...</div></div>
 <div class="ttc" id="alibccc__errors_8h_html_ab30adf8edbfe4bd90411d7eb858633b9a035f9264ec28a5dd0bafc6ad6c320471"><div class="ttname"><a href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a035f9264ec28a5dd0bafc6ad6c320471">ERROR_INDEX2LARGE</a></div><div class="ttdeci">@ ERROR_INDEX2LARGE</div><div class="ttdoc">Argument Error: index value given is too large.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__errors_8h_source.html#l00247">libccc_errors.h:247</a></div></div>
 <div class="ttc" id="alibccc__errors_8h_html_ab30adf8edbfe4bd90411d7eb858633b9a0458ccc361d6c268458359ac4c20121c"><div class="ttname"><a href="libccc__errors_8h.html#ab30adf8edbfe4bd90411d7eb858633b9a0458ccc361d6c268458359ac4c20121c">ERROR_UNSPECIFIED</a></div><div class="ttdeci">@ ERROR_UNSPECIFIED</div><div class="ttdoc">Unspecified error.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__errors_8h_source.html#l00228">libccc_errors.h:228</a></div></div>
@@ -1003,7 +1003,7 @@ Enumerations</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="libccc__errors_8h.html">libccc_errors.h</a></li>
+    <li class="navelem"><a class="el" href="libccc__errors_8h.html">libccc_errors.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

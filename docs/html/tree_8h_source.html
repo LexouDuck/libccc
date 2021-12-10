@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/monad/tree.h Source File</title>
+<title>libccc: libccc/monad/tree.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -109,115 +109,113 @@ $(document).ready(function(){initNavTree('tree_8h_source.html',''); initResizabl
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#ifndef __LIBCCC_MONAD_TREE_H</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#define __LIBCCC_MONAD_TREE_H</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="comment">**                                   Includes                                 *|</span></div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">**                                   Includes                                 *|</span></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="bool_8h.html">libccc/bool.h</a>&quot;</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span><span class="preprocessor">#include &quot;<a class="code" href="int_8h.html">libccc/int.h</a>&quot;</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="preprocessor">#include &quot;<a class="code" href="pointer_8h.html">libccc/pointer.h</a>&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &quot;<a class="code" href="bool_8h.html">libccc/bool.h</a>&quot;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &quot;<a class="code" href="int_8h.html">libccc/int.h</a>&quot;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#include &quot;<a class="code" href="pointer_8h.html">libccc/pointer.h</a>&quot;</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="tree_8h.html#a948a4a515352746b4601f21afe5d2019">   29</a></span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span><a class="code hl_define" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#undef  T</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">   35</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &quot;<a class="code" href="tree_8c.html">libccc/monad/tree.c</a>&quot;</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#undef  T</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">   33</a></span><span class="preprocessor">#define T   T_TYPE</span></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#include &quot;libccc/monad/tree.c&quot;</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="comment">**                                 Definitions                                *|</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">**                                 Definitions                                *|</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">/*</span></div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">**  TODO document this</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="tree_8h.html">   48</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span>tree(T)</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>{</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="tree_8h.html#a9fd1bb925a0aa72d0ab8f4feaa4fe941">   50</a></span>    t_size          <a class="code hl_variable" href="tree_8h.html#a9fd1bb925a0aa72d0ab8f4feaa4fe941">node_count</a>; </div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="tree_8h.html#a9b483e1e8ca33da6003fb736f4941b22">   51</a></span>    <span class="keyword">struct </span>tree(T)* <a class="code hl_variable" href="tree_8h.html#a9b483e1e8ca33da6003fb736f4941b22">nodes</a>;      </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="tree_8h.html#a2d2ea98c08814a41fb7928289cde5d2a">   52</a></span>    <a class="code hl_define" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>               <a class="code hl_variable" href="tree_8h.html#a2d2ea98c08814a41fb7928289cde5d2a">value</a>;      </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="tree_8h.html#ac43d485c6373e359064b737c8b156649">   53</a></span>}   <a class="code hl_define" href="tree_8c.html#a6aa5bd396e887529d9f3594f40c674da">s_tree</a>(<a class="code hl_define" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span><span class="comment">**  TODO document this</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">typedef</span> <span class="keyword">struct </span>tree(T)</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>{</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    <a class="code hl_typedef" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>          node_count; </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    <span class="keyword">struct </span>tree(T)* nodes;      </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <a class="code hl_define" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>               <a class="code hl_variable" href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>;      </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="tree_8h.html#ad5935b59e2d0e2c8ce9e349ae49f669d">   51</a></span>}   <a class="code hl_function" href="tree_8h.html#ad5935b59e2d0e2c8ce9e349ae49f669d">s_tree</a>(<a class="code hl_define" href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>);</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define foreach_s_tree_init(        _TYPE_, _VAR_, _TREE_)  </span></div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define foreach_s_tree_exit(        _TYPE_, _VAR_, _TREE_)  </span></div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define foreach_s_tree_loop_init(   _TYPE_, _VAR_, _TREE_)  </span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#define foreach_s_tree_loop_exit(   _TYPE_, _VAR_, _TREE_)  </span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="preprocessor">#define foreach_s_tree_loop_incr(   _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span><span class="preprocessor">#define foreach_s_tree_init(        _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span><span class="preprocessor">#define foreach_s_tree_exit(        _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#define foreach_s_tree_loop_init(   _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="preprocessor">#define foreach_s_tree_loop_exit(   _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define foreach_s_tree_loop_incr(   _TYPE_, _VAR_, _TREE_)  </span></div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">** ************************************************************************** *|</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment">**                             Basic Tree Operations                          *|</span></div>
 <div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">**                             Basic Tree Operations                          *|</span></div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="comment">** ************************************************************************** *|</span></div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">*/</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// TODO Tree</span></div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// TODO Tree_New</span></div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// TODO Tree_Delete</span></div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// TODO Tree_Delete_F</span></div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// TODO Tree_Duplicate</span></div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// TODO Tree_Get</span></div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="comment">// TODO Tree_Set</span></div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// TODO Tree_Copy</span></div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// TODO Tree_Append</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// TODO Tree_Prepend</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">// TODO Tree_Insert</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// TODO Tree_Remove</span></div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// TODO Tree_Remove_F</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">// TODO Tree_RemoveAll</span></div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// TODO Tree_RemoveAll_F</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// TODO Tree_RemoveAt</span></div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span><span class="comment">// TODO Tree_RemoveAt_F</span></div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">// TODO Tree_Replace</span></div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">// TODO Tree_Find</span></div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">// TODO Tree_Find_F</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">// TODO Tree_Count</span></div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// TODO Tree_Contains</span></div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">// TODO Tree_Has</span></div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">// TODO Tree_HasOnly</span></div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">// TODO Tree_Equals</span></div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">// TODO Tree_Equals_N</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="comment">// TODO Tree_Compare</span></div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">// TODO Tree_Compare_N</span></div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// TODO Tree_Iterate</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">// TODO Tree_Iterate_I</span></div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">// TODO Tree_Map</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">// TODO Tree_Map_I</span></div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="comment">// TODO Tree_Filter</span></div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">// TODO Tree_Filter_I</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">*/</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="comment">// TODO Tree</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span><span class="comment">// TODO Tree_New</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// TODO Tree_Delete</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="comment">// TODO Tree_Delete_F</span></div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="comment">// TODO Tree_Duplicate</span></div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="comment">// TODO Tree_Get</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="comment">// TODO Tree_Set</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="comment">// TODO Tree_Copy</span></div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// TODO Tree_Append</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="comment">// TODO Tree_Prepend</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="comment">// TODO Tree_Insert</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// TODO Tree_Remove</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="comment">// TODO Tree_Remove_F</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="comment">// TODO Tree_RemoveAll</span></div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="comment">// TODO Tree_RemoveAll_F</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span><span class="comment">// TODO Tree_RemoveAt</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="comment">// TODO Tree_RemoveAt_F</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="comment">// TODO Tree_Replace</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="comment">// TODO Tree_Find</span></div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span><span class="comment">// TODO Tree_Find_F</span></div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span><span class="comment">// TODO Tree_Count</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">// TODO Tree_Contains</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="comment">// TODO Tree_Has</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="comment">// TODO Tree_HasOnly</span></div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span><span class="comment">// TODO Tree_Equals</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="comment">// TODO Tree_Equals_N</span></div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span><span class="comment">// TODO Tree_Compare</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="comment">// TODO Tree_Compare_N</span></div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span><span class="comment">// TODO Tree_Iterate</span></div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="comment">// TODO Tree_Iterate_I</span></div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span><span class="comment">// TODO Tree_Map</span></div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="comment">// TODO Tree_Map_I</span></div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="comment">// TODO Tree_Filter</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span><span class="comment">// TODO Tree_Filter_I</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="comment">// TODO Tree_Reduce ?</span></div>
 <div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="comment">// TODO Tree_Reduce ?</span></div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span> </div>
 <div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span> </div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
-<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><a class="code hl_define" href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aarray_8h_html_a4fc7f59e3113e19697159919a5aad095"><div class="ttname"><a href="array_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a></div><div class="ttdeci">T value</div><div class="ttdef"><b>Definition:</b> <a href="array_8h_source.html#l00151">array.h:151</a></div></div>
 <div class="ttc" id="abool_8h_html"><div class="ttname"><a href="bool_8h.html">bool.h</a></div></div>
 <div class="ttc" id="aint_8h_html"><div class="ttname"><a href="int_8h.html">int.h</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00088">libccc_define.h:88</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00085">libccc_define.h:85</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="apointer_8h_html"><div class="ttname"><a href="pointer_8h.html">pointer.h</a></div></div>
-<div class="ttc" id="atree_8c_html"><div class="ttname"><a href="tree_8c.html">tree.c</a></div></div>
-<div class="ttc" id="atree_8c_html_a6aa5bd396e887529d9f3594f40c674da"><div class="ttname"><a href="tree_8c.html#a6aa5bd396e887529d9f3594f40c674da">s_tree</a></div><div class="ttdeci">#define s_tree(X)</div><div class="ttdef"><b>Definition:</b> <a href="tree_8c_source.html#l00102">tree.c:102</a></div></div>
-<div class="ttc" id="atree_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="tree_8h_source.html#l00035">tree.h:35</a></div></div>
-<div class="ttc" id="atree_8h_html_a2d2ea98c08814a41fb7928289cde5d2a"><div class="ttname"><a href="tree_8h.html#a2d2ea98c08814a41fb7928289cde5d2a">tree_T_NAME::value</a></div><div class="ttdeci">T_TYPE value</div><div class="ttdoc">The value stored in this tree node.</div><div class="ttdef"><b>Definition:</b> <a href="tree_8h_source.html#l00052">tree.h:52</a></div></div>
-<div class="ttc" id="atree_8h_html_a9b483e1e8ca33da6003fb736f4941b22"><div class="ttname"><a href="tree_8h.html#a9b483e1e8ca33da6003fb736f4941b22">tree_T_NAME::nodes</a></div><div class="ttdeci">struct tree_T_NAME * nodes</div><div class="ttdoc">The array of sub-nodes of this tree node.</div><div class="ttdef"><b>Definition:</b> <a href="tree_8h_source.html#l00051">tree.h:51</a></div></div>
-<div class="ttc" id="atree_8h_html_a9fd1bb925a0aa72d0ab8f4feaa4fe941"><div class="ttname"><a href="tree_8h.html#a9fd1bb925a0aa72d0ab8f4feaa4fe941">tree_T_NAME::node_count</a></div><div class="ttdeci">t_size node_count</div><div class="ttdoc">The amount of sub-nodes of this tree node.</div><div class="ttdef"><b>Definition:</b> <a href="tree_8h_source.html#l00050">tree.h:50</a></div></div>
+<div class="ttc" id="apointer_8h_html_ab26ea4b5e8504781be1c368c28967472"><div class="ttname"><a href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a></div><div class="ttdeci">size_t t_size</div><div class="ttdef"><b>Definition:</b> <a href="pointer_8h_source.html#l00091">pointer.h:91</a></div></div>
+<div class="ttc" id="atree_8h_html_a0acb682b8260ab1c60b918599864e2e5"><div class="ttname"><a href="tree_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a></div><div class="ttdeci">#define T</div><div class="ttdoc">set up generic declaration macros, to have mygeneric(T) syntax</div><div class="ttdef"><b>Definition:</b> <a href="tree_8h_source.html#l00033">tree.h:33</a></div></div>
+<div class="ttc" id="atree_8h_html_ad5935b59e2d0e2c8ce9e349ae49f669d"><div class="ttname"><a href="tree_8h.html#ad5935b59e2d0e2c8ce9e349ae49f669d">s_tree</a></div><div class="ttdeci">s_tree(T)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="dir_e24cf0de90354a2d5cfac55fe9be57d6.html">monad</a></li><li class="navelem"><a class="el" href="tree_8h.html">tree.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_6ab6982fc79c074882a5f665edcf2594.html">monad</a></li><li class="navelem"><a class="el" href="tree_8h.html">tree.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

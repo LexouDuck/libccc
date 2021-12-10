@@ -6,6 +6,7 @@ dist/
 lint/
 ref/
 doc/_doxyrest/
+docs/hdr/
 docs/man/
 docs/rtf/
 docs/pdf/

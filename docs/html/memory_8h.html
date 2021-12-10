@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: hdr/libccc/memory.h File Reference</title>
+<title>libccc: libccc/memory.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.29</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,10 +93,6 @@ $(document).ready(function(){initNavTree('memory_8h.html',''); initResizable(); 
 </div>
 
 <div class="header">
-  <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">memory.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -106,15 +102,19 @@ $(document).ready(function(){initNavTree('memory_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="memory_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="memory_8h__incl.svg" width="330" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+</div>
 </div>
 </div>
 <p><a href="memory_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:acdecf799fcbd27e796d72f3aba98f496"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#acdecf799fcbd27e796d72f3aba98f496">KB</a>(X)&#160;&#160;&#160;((X) * 1024)</td></tr>
-<tr class="memdesc:acdecf799fcbd27e796d72f3aba98f496"><td class="mdescLeft">&#160;</td><td class="mdescRight">macros for byte sizes  <a href="memory_8h.html#acdecf799fcbd27e796d72f3aba98f496">More...</a><br /></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Macro functions for converting byte sizes to various units </p>
+</div></td></tr>
+<tr class="memitem:acdecf799fcbd27e796d72f3aba98f496"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#acdecf799fcbd27e796d72f3aba98f496">KB</a>(X)&#160;&#160;&#160;(  (X) * 1024)</td></tr>
+<tr class="memdesc:acdecf799fcbd27e796d72f3aba98f496"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a value expressed in kilobytes to its equivalent in bytes  <a href="memory_8h.html#acdecf799fcbd27e796d72f3aba98f496">More...</a><br /></td></tr>
 <tr class="separator:acdecf799fcbd27e796d72f3aba98f496"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b14276c83423c47988edb0dc5597aad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2b14276c83423c47988edb0dc5597aad">MB</a>(X)&#160;&#160;&#160;(<a class="el" href="memory_8h.html#acdecf799fcbd27e796d72f3aba98f496">KB</a>(X) * 1024)</td></tr>
 <tr class="memdesc:a2b14276c83423c47988edb0dc5597aad"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a value expressed in megabytes to its equivalent in bytes  <a href="memory_8h.html#a2b14276c83423c47988edb0dc5597aad">More...</a><br /></td></tr>
@@ -123,133 +123,10 @@ Macros</h2></td></tr>
 <tr class="memdesc:ac0efefdf392a1bdf22a44dae9f9d33eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a value expressed in gigabytes to its equivalent in bytes  <a href="memory_8h.html#ac0efefdf392a1bdf22a44dae9f9d33eb">More...</a><br /></td></tr>
 <tr class="separator:ac0efefdf392a1bdf22a44dae9f9d33eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a306987743beaff3d0c29cc0b625a43ae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a306987743beaff3d0c29cc0b625a43ae">TB</a>(X)&#160;&#160;&#160;(<a class="el" href="memory_8h.html#ac0efefdf392a1bdf22a44dae9f9d33eb">GB</a>(X) * 1024)</td></tr>
-<tr class="memdesc:a306987743beaff3d0c29cc0b625a43ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts a value expressed in terabytes to its equivalent in bytes  <a href="memory_8h.html#a306987743beaff3d0c29cc0b625a43ae">More...</a><br /></td></tr>
 <tr class="separator:a306987743beaff3d0c29cc0b625a43ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21729a359cc7fd389460273f2a37baee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a21729a359cc7fd389460273f2a37baee">c_memnew</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New</a></td></tr>
-<tr class="memdesc:a21729a359cc7fd389460273f2a37baee"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8" title="Returns a newly allocated memory area which is size bytes long, with every byte set to 0.">Memory_New</a>]  <a href="memory_8h.html#a21729a359cc7fd389460273f2a37baee">More...</a><br /></td></tr>
-<tr class="separator:a21729a359cc7fd389460273f2a37baee"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6ab1f24d7bab2be2361b3e894b59b914"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6ab1f24d7bab2be2361b3e894b59b914">c_memcnew</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc">Memory_New_C</a></td></tr>
-<tr class="memdesc:a6ab1f24d7bab2be2361b3e894b59b914"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc" title="Returns a newly allocated memory area which is size bytes long, with every byte set to c.">Memory_New_C</a>]  <a href="memory_8h.html#a6ab1f24d7bab2be2361b3e894b59b914">More...</a><br /></td></tr>
-<tr class="separator:a6ab1f24d7bab2be2361b3e894b59b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ab8252f80f6fe439c69aa168f64ee5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3ab8252f80f6fe439c69aa168f64ee5e">c_malloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
-<tr class="memdesc:a3ab8252f80f6fe439c69aa168f64ee5e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>]  <a href="memory_8h.html#a3ab8252f80f6fe439c69aa168f64ee5e">More...</a><br /></td></tr>
-<tr class="separator:a3ab8252f80f6fe439c69aa168f64ee5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a795f68255b939d6af0a0eaa6a0ac8b46"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a795f68255b939d6af0a0eaa6a0ac8b46">c_memalloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
-<tr class="memdesc:a795f68255b939d6af0a0eaa6a0ac8b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>]  <a href="memory_8h.html#a795f68255b939d6af0a0eaa6a0ac8b46">More...</a><br /></td></tr>
-<tr class="separator:a795f68255b939d6af0a0eaa6a0ac8b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6123bf52e69254fbb7f26a186a994466"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6123bf52e69254fbb7f26a186a994466">Memory_Alloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
-<tr class="memdesc:a6123bf52e69254fbb7f26a186a994466"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>]  <a href="memory_8h.html#a6123bf52e69254fbb7f26a186a994466">More...</a><br /></td></tr>
-<tr class="separator:a6123bf52e69254fbb7f26a186a994466"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8865c6728c372790de8dee1ed24c7480"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a8865c6728c372790de8dee1ed24c7480">c_realloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
-<tr class="memdesc:a8865c6728c372790de8dee1ed24c7480"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>]  <a href="memory_8h.html#a8865c6728c372790de8dee1ed24c7480">More...</a><br /></td></tr>
-<tr class="separator:a8865c6728c372790de8dee1ed24c7480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab0cb9f3dd6a46f797575aba4d74d8708"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab0cb9f3dd6a46f797575aba4d74d8708">c_memrealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
-<tr class="memdesc:ab0cb9f3dd6a46f797575aba4d74d8708"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>]  <a href="memory_8h.html#ab0cb9f3dd6a46f797575aba4d74d8708">More...</a><br /></td></tr>
-<tr class="separator:ab0cb9f3dd6a46f797575aba4d74d8708"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ab912d4e23143dd601e47d832d5f95e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9ab912d4e23143dd601e47d832d5f95e">Memory_Realloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
-<tr class="memdesc:a9ab912d4e23143dd601e47d832d5f95e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>]  <a href="memory_8h.html#a9ab912d4e23143dd601e47d832d5f95e">More...</a><br /></td></tr>
-<tr class="separator:a9ab912d4e23143dd601e47d832d5f95e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6276b79f109be5e5e47fcaea7674f98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa6276b79f109be5e5e47fcaea7674f98">c_dealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:aa6276b79f109be5e5e47fcaea7674f98"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#aa6276b79f109be5e5e47fcaea7674f98">More...</a><br /></td></tr>
-<tr class="separator:aa6276b79f109be5e5e47fcaea7674f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a229e664fb564b24352d168abcf680717"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a229e664fb564b24352d168abcf680717">c_memdealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:a229e664fb564b24352d168abcf680717"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#a229e664fb564b24352d168abcf680717">More...</a><br /></td></tr>
-<tr class="separator:a229e664fb564b24352d168abcf680717"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeaf4993a129979fc44290b838624fd27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aeaf4993a129979fc44290b838624fd27">Memory_Dealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:aeaf4993a129979fc44290b838624fd27"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#aeaf4993a129979fc44290b838624fd27">More...</a><br /></td></tr>
-<tr class="separator:aeaf4993a129979fc44290b838624fd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f8399dfdd5aded24b094b2e4ba21d9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a4f8399dfdd5aded24b094b2e4ba21d9b">c_free</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:a4f8399dfdd5aded24b094b2e4ba21d9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#a4f8399dfdd5aded24b094b2e4ba21d9b">More...</a><br /></td></tr>
-<tr class="separator:a4f8399dfdd5aded24b094b2e4ba21d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7cb969b9b92954d72fc3c9561f1b6a28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a7cb969b9b92954d72fc3c9561f1b6a28">c_memfree</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:a7cb969b9b92954d72fc3c9561f1b6a28"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#a7cb969b9b92954d72fc3c9561f1b6a28">More...</a><br /></td></tr>
-<tr class="separator:a7cb969b9b92954d72fc3c9561f1b6a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa86aff2cdbbd34b31607ab392c31e127"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa86aff2cdbbd34b31607ab392c31e127">Memory_Free</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
-<tr class="memdesc:aa86aff2cdbbd34b31607ab392c31e127"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>]  <a href="memory_8h.html#aa86aff2cdbbd34b31607ab392c31e127">More...</a><br /></td></tr>
-<tr class="separator:aa86aff2cdbbd34b31607ab392c31e127"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae396e9ae0bd0f7ea6f490d162f8a568b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae396e9ae0bd0f7ea6f490d162f8a568b">c_memdel</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83">Memory_Delete</a></td></tr>
-<tr class="memdesc:ae396e9ae0bd0f7ea6f490d162f8a568b"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83" title="Frees the allocated memory at **a_ptr, and sets *a_ptr to NULL.">Memory_Delete</a>]  <a href="memory_8h.html#ae396e9ae0bd0f7ea6f490d162f8a568b">More...</a><br /></td></tr>
-<tr class="separator:ae396e9ae0bd0f7ea6f490d162f8a568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6d0491fc7e398322517829009da1034f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6d0491fc7e398322517829009da1034f">c_memset</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de">Memory_Set</a></td></tr>
-<tr class="memdesc:a6d0491fc7e398322517829009da1034f"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de" title="Sets n bytes of memory, starting at ptr, to the given value byte.">Memory_Set</a>]  <a href="memory_8h.html#a6d0491fc7e398322517829009da1034f">More...</a><br /></td></tr>
-<tr class="separator:a6d0491fc7e398322517829009da1034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a715e2a5223c84833c10143e5c653975e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a715e2a5223c84833c10143e5c653975e">c_bzero</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td></tr>
-<tr class="memdesc:a715e2a5223c84833c10143e5c653975e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb" title="Sets n bytes of memory to 0, starting at ptr.">Memory_Clear</a>]  <a href="memory_8h.html#a715e2a5223c84833c10143e5c653975e">More...</a><br /></td></tr>
-<tr class="separator:a715e2a5223c84833c10143e5c653975e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a568d4062ed6afbe67c7f74697f4acdd0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a568d4062ed6afbe67c7f74697f4acdd0">c_memclr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td></tr>
-<tr class="memdesc:a568d4062ed6afbe67c7f74697f4acdd0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb" title="Sets n bytes of memory to 0, starting at ptr.">Memory_Clear</a>]  <a href="memory_8h.html#a568d4062ed6afbe67c7f74697f4acdd0">More...</a><br /></td></tr>
-<tr class="separator:a568d4062ed6afbe67c7f74697f4acdd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a33c6f10b0cf92d89d292ab07bf0af934"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a33c6f10b0cf92d89d292ab07bf0af934">c_memcpy</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591">Memory_Copy</a></td></tr>
-<tr class="memdesc:a33c6f10b0cf92d89d292ab07bf0af934"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591" title="Copies n bytes of data from src into dest, and returns dest.">Memory_Copy</a>]  <a href="memory_8h.html#a33c6f10b0cf92d89d292ab07bf0af934">More...</a><br /></td></tr>
-<tr class="separator:a33c6f10b0cf92d89d292ab07bf0af934"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f333c722e1630285d86ea5b9d287875"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2f333c722e1630285d86ea5b9d287875">c_memccpy</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6">Memory_Copy_C</a></td></tr>
-<tr class="memdesc:a2f333c722e1630285d86ea5b9d287875"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6" title="Copies n bytes of data from src into dest, and returns dest (stops upon encountering byte).">Memory_Copy_C</a>]  <a href="memory_8h.html#a2f333c722e1630285d86ea5b9d287875">More...</a><br /></td></tr>
-<tr class="separator:a2f333c722e1630285d86ea5b9d287875"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3622496b6ee9c1adcba74720655f6d92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3622496b6ee9c1adcba74720655f6d92">c_memmove</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6">Memory_Move</a></td></tr>
-<tr class="memdesc:a3622496b6ee9c1adcba74720655f6d92"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6" title="Moves n bytes of data from src into dest, and returns dest.">Memory_Move</a>]  <a href="memory_8h.html#a3622496b6ee9c1adcba74720655f6d92">More...</a><br /></td></tr>
-<tr class="separator:a3622496b6ee9c1adcba74720655f6d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0c9b0a73df107421fc7f9125f8d3ca0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa0c9b0a73df107421fc7f9125f8d3ca0">c_memdup</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279">Memory_Duplicate</a></td></tr>
-<tr class="memdesc:aa0c9b0a73df107421fc7f9125f8d3ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279" title="Allocates a memory region which is n bytes long and has the same content as ptr.">Memory_Duplicate</a>]  <a href="memory_8h.html#aa0c9b0a73df107421fc7f9125f8d3ca0">More...</a><br /></td></tr>
-<tr class="separator:aa0c9b0a73df107421fc7f9125f8d3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a362e51bbf24737e0844eb7eb37684c61"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a362e51bbf24737e0844eb7eb37684c61">c_memjoin</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b">Memory_Join</a></td></tr>
-<tr class="memdesc:a362e51bbf24737e0844eb7eb37684c61"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b" title="Return a newly allocated memory region, by concatenating ptr1 and ptr2">Memory_Join</a>]  <a href="memory_8h.html#a362e51bbf24737e0844eb7eb37684c61">More...</a><br /></td></tr>
-<tr class="separator:a362e51bbf24737e0844eb7eb37684c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a418945f1d998541e1dde3e234303c344"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a418945f1d998541e1dde3e234303c344">c_memappend</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d">Memory_Append</a></td></tr>
-<tr class="memdesc:a418945f1d998541e1dde3e234303c344"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d" title="Return a newly allocated memory region, by concatenating *a_dest (deletes old) and src">Memory_Append</a>]  <a href="memory_8h.html#a418945f1d998541e1dde3e234303c344">More...</a><br /></td></tr>
-<tr class="separator:a418945f1d998541e1dde3e234303c344"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0d80edc34222f7c0a07368933c3fdb4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac0d80edc34222f7c0a07368933c3fdb4">c_memprepend</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8">Memory_Prepend</a></td></tr>
-<tr class="memdesc:ac0d80edc34222f7c0a07368933c3fdb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8" title="Return a newly allocated memory region, by concatenating src and *a_dest (deletes old)">Memory_Prepend</a>]  <a href="memory_8h.html#ac0d80edc34222f7c0a07368933c3fdb4">More...</a><br /></td></tr>
-<tr class="separator:ac0d80edc34222f7c0a07368933c3fdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc92d792bcf9b544552327d67df1ac09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#afc92d792bcf9b544552327d67df1ac09">c_memmerge</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba">Memory_Merge</a></td></tr>
-<tr class="memdesc:afc92d792bcf9b544552327d67df1ac09"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba" title="Return a newly allocated memory region, by concatenating *a_ptr1 (deletes old) and *a_ptr2 (deletes o...">Memory_Merge</a>]  <a href="memory_8h.html#afc92d792bcf9b544552327d67df1ac09">More...</a><br /></td></tr>
-<tr class="separator:afc92d792bcf9b544552327d67df1ac09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af4bb2900ccc0ba1332cd00ed60c943af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af4bb2900ccc0ba1332cd00ed60c943af">c_memchr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a></td></tr>
-<tr class="memdesc:af4bb2900ccc0ba1332cd00ed60c943af"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b" title="Finds the first occurence of the given byte value in the first n bytes at ptr.">Memory_Find</a>]  <a href="memory_8h.html#af4bb2900ccc0ba1332cd00ed60c943af">More...</a><br /></td></tr>
-<tr class="separator:af4bb2900ccc0ba1332cd00ed60c943af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a077c1e78c91a74c9748febb00f1ff597"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a077c1e78c91a74c9748febb00f1ff597">c_memfind</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a></td></tr>
-<tr class="memdesc:a077c1e78c91a74c9748febb00f1ff597"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b" title="Finds the first occurence of the given byte value in the first n bytes at ptr.">Memory_Find</a>]  <a href="memory_8h.html#a077c1e78c91a74c9748febb00f1ff597">More...</a><br /></td></tr>
-<tr class="separator:a077c1e78c91a74c9748febb00f1ff597"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9bd2020893258b0dfb32d96a59f8438"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa9bd2020893258b0dfb32d96a59f8438">c_memrep</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff">Memory_Replace</a></td></tr>
-<tr class="memdesc:aa9bd2020893258b0dfb32d96a59f8438"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff" title="Replaces every old byte with new, in the n byte long memory region starting at ptr.">Memory_Replace</a>]  <a href="memory_8h.html#aa9bd2020893258b0dfb32d96a59f8438">More...</a><br /></td></tr>
-<tr class="separator:aa9bd2020893258b0dfb32d96a59f8438"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5bad584dd79351e14215596b062c2aa6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a5bad584dd79351e14215596b062c2aa6">c_memcmp</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61">Memory_Compare</a></td></tr>
-<tr class="memdesc:a5bad584dd79351e14215596b062c2aa6"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61" title="Compares n bytes of memory in ptr1 and ptr2: returns the first difference of chars encountered,...">Memory_Compare</a>]  <a href="memory_8h.html#a5bad584dd79351e14215596b062c2aa6">More...</a><br /></td></tr>
-<tr class="separator:a5bad584dd79351e14215596b062c2aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab051bf34a7da3b1fdb27cd11ce10126e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab051bf34a7da3b1fdb27cd11ce10126e">c_memequ</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5">Memory_Equals</a></td></tr>
-<tr class="memdesc:ab051bf34a7da3b1fdb27cd11ce10126e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5" title="Checks n bytes of memory in ptr1 and ptr2 for equality.">Memory_Equals</a>]  <a href="memory_8h.html#ab051bf34a7da3b1fdb27cd11ce10126e">More...</a><br /></td></tr>
-<tr class="separator:ab051bf34a7da3b1fdb27cd11ce10126e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac0ec452332f4d3438814ebbda13c1fe9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac0ec452332f4d3438814ebbda13c1fe9">c_memswap</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d">Memory_Swap</a></td></tr>
-<tr class="memdesc:ac0ec452332f4d3438814ebbda13c1fe9"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d" title="Swaps size bytes of memory between ptr1 and ptr2">Memory_Swap</a>]  <a href="memory_8h.html#ac0ec452332f4d3438814ebbda13c1fe9">More...</a><br /></td></tr>
-<tr class="separator:ac0ec452332f4d3438814ebbda13c1fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b9d47a32adb943cca29dd0321673750"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a7b9d47a32adb943cca29dd0321673750">c_memprint</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">Memory_Print</a></td></tr>
-<tr class="separator:a7b9d47a32adb943cca29dd0321673750"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a79d30aa6274343e79f5914c7f94ebae4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a79d30aa6274343e79f5914c7f94ebae4">c_memtostr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae651a291245a355e45bb8bd74961a3e7">Memory_ToString</a></td></tr>
-<tr class="separator:a79d30aa6274343e79f5914c7f94ebae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e434fd038be54a99b94e6adfccadb70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a0e434fd038be54a99b94e6adfccadb70">c_getbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1">Memory_GetBits</a></td></tr>
-<tr class="memdesc:a0e434fd038be54a99b94e6adfccadb70"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1" title="Get a subsection of n bits from the data in ptr, starting at bit index bit.">Memory_GetBits</a>]  <a href="memory_8h.html#a0e434fd038be54a99b94e6adfccadb70">More...</a><br /></td></tr>
-<tr class="separator:a0e434fd038be54a99b94e6adfccadb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a194a94167fd323dc5e7acd71d785a6a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a194a94167fd323dc5e7acd71d785a6a6">c_setbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9">Memory_SetBits</a></td></tr>
-<tr class="memdesc:a194a94167fd323dc5e7acd71d785a6a6"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9" title="Set a subsection of n bits to the data in ptr, starting at bit index bit.">Memory_SetBits</a>]  <a href="memory_8h.html#a194a94167fd323dc5e7acd71d785a6a6">More...</a><br /></td></tr>
-<tr class="separator:a194a94167fd323dc5e7acd71d785a6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af24828a6b73efaed72dffc65d4f3c230"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af24828a6b73efaed72dffc65d4f3c230">c_bitregion</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5">Memory_BitRegion</a></td></tr>
-<tr class="memdesc:af24828a6b73efaed72dffc65d4f3c230"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5" title="Get a subsection of n bits from value, starting at bit index bit.">Memory_BitRegion</a>]  <a href="memory_8h.html#af24828a6b73efaed72dffc65d4f3c230">More...</a><br /></td></tr>
-<tr class="separator:af24828a6b73efaed72dffc65d4f3c230"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a868ffd45477b9d96f57f3f24fa6471e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a868ffd45477b9d96f57f3f24fa6471e7">c_countbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d">Memory_CountBits</a></td></tr>
-<tr class="memdesc:a868ffd45477b9d96f57f3f24fa6471e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d" title="Get the total amount of bits set to 1 in the given value.">Memory_CountBits</a>]  <a href="memory_8h.html#a868ffd45477b9d96f57f3f24fa6471e7">More...</a><br /></td></tr>
-<tr class="separator:a868ffd45477b9d96f57f3f24fa6471e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aff9c30944e60243cf16ffce69712e09e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aff9c30944e60243cf16ffce69712e09e">c_getmsb</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a></td></tr>
-<tr class="memdesc:aff9c30944e60243cf16ffce69712e09e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33" title="Get the bit index of the most signficant 1-bit of the given value">Memory_GetMostSignificantBit</a>]  <a href="memory_8h.html#aff9c30944e60243cf16ffce69712e09e">More...</a><br /></td></tr>
-<tr class="separator:aff9c30944e60243cf16ffce69712e09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5b7b827f372e3953938006b2750f916e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a5b7b827f372e3953938006b2750f916e">Memory_GetMSB</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a></td></tr>
-<tr class="memdesc:a5b7b827f372e3953938006b2750f916e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33" title="Get the bit index of the most signficant 1-bit of the given value">Memory_GetMostSignificantBit</a>]  <a href="memory_8h.html#a5b7b827f372e3953938006b2750f916e">More...</a><br /></td></tr>
-<tr class="separator:a5b7b827f372e3953938006b2750f916e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad2b5db271fa10dd2e2e88abea105ef8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ad2b5db271fa10dd2e2e88abea105ef8e">c_getlsb</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a></td></tr>
-<tr class="memdesc:ad2b5db271fa10dd2e2e88abea105ef8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464" title="Get the bit index of the least signficant 1-bit of the given value">Memory_GetLeastSignificantBit</a>]  <a href="memory_8h.html#ad2b5db271fa10dd2e2e88abea105ef8e">More...</a><br /></td></tr>
-<tr class="separator:ad2b5db271fa10dd2e2e88abea105ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a602da2adbe2a12d4556ab0df0f08dca2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a602da2adbe2a12d4556ab0df0f08dca2">Memory_GetLSB</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a></td></tr>
-<tr class="memdesc:a602da2adbe2a12d4556ab0df0f08dca2"><td class="mdescLeft">&#160;</td><td class="mdescRight">[<em>Alias for</em> <a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464" title="Get the bit index of the least signficant 1-bit of the given value">Memory_GetLeastSignificantBit</a>]  <a href="memory_8h.html#a602da2adbe2a12d4556ab0df0f08dca2">More...</a><br /></td></tr>
-<tr class="separator:a602da2adbe2a12d4556ab0df0f08dca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Macros to convert values' endianness (invert byte-per-byte) </p>
+</div></td></tr>
 <tr class="memitem:a10e49801c4c48c434ea5a4a8fda7782b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a10e49801c4c48c434ea5a4a8fda7782b">ENDIAN_INVERT_16</a>(X)</td></tr>
 <tr class="separator:a10e49801c4c48c434ea5a4a8fda7782b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ac30afd82cfb6ce51365b7da8676416"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a4ac30afd82cfb6ce51365b7da8676416">ENDIAN_INVERT_32</a>(X)</td></tr>
@@ -259,103 +136,223 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p >Type definition for a pointer </p>
+</div></td></tr>
+<tr class="memitem:a7ab5d51469ae91ed1deddd423a55f524"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a7ab5d51469ae91ed1deddd423a55f524">p_any</a></td></tr>
+<tr class="separator:a7ab5d51469ae91ed1deddd423a55f524"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3094c82cb1a65c4a8b5b394970964b69"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3094c82cb1a65c4a8b5b394970964b69">p_ptr</a></td></tr>
-<tr class="memdesc:a3094c82cb1a65c4a8b5b394970964b69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Type definition for a pointer.  <a href="memory_8h.html#a3094c82cb1a65c4a8b5b394970964b69">More...</a><br /></td></tr>
 <tr class="separator:a3094c82cb1a65c4a8b5b394970964b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:aea153a8ebd6bbf046e3fb0b8b7eba3c8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New</a> (t_size size)</td></tr>
-<tr class="memdesc:aea153a8ebd6bbf046e3fb0b8b7eba3c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>0</code>.  <a href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">More...</a><br /></td></tr>
+<tr class="memitem:a359487e28e0e2ee888ce4eaa62f9e0bf"><td class="memItemLeft" align="right" valign="top">typedef void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a359487e28e0e2ee888ce4eaa62f9e0bf">p_pointer</a></td></tr>
+<tr class="separator:a359487e28e0e2ee888ce4eaa62f9e0bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>0</code>. </p>
+</td></tr>
+<tr class="memitem:a21729a359cc7fd389460273f2a37baee"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a21729a359cc7fd389460273f2a37baee">c_memnew</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New</a></td></tr>
+<tr class="separator:a21729a359cc7fd389460273f2a37baee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea153a8ebd6bbf046e3fb0b8b7eba3c8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New</a> (<a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> size)</td></tr>
 <tr class="separator:aea153a8ebd6bbf046e3fb0b8b7eba3c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee426aef641b94de1b7aadabac3e4efc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc">Memory_New_C</a> (t_size size, char c)</td></tr>
-<tr class="memdesc:aee426aef641b94de1b7aadabac3e4efc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>c</code>.  <a href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>c</code>. </p>
+</td></tr>
+<tr class="memitem:a6ab1f24d7bab2be2361b3e894b59b914"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6ab1f24d7bab2be2361b3e894b59b914">c_memcnew</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc">Memory_New_C</a></td></tr>
+<tr class="separator:a6ab1f24d7bab2be2361b3e894b59b914"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee426aef641b94de1b7aadabac3e4efc"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc">Memory_New_C</a> (<a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> size, char c)</td></tr>
 <tr class="separator:aee426aef641b94de1b7aadabac3e4efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8f18e471b1e6b28fcab7681f90673eca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a> (t_size size)</td></tr>
-<tr class="memdesc:a8f18e471b1e6b28fcab7681f90673eca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a pointer to a newly allocated memory area which is <code>size</code> bytes long, uninitialized.  <a href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Returns a pointer to a newly allocated memory area which is <code>size</code> bytes long, uninitialized. </p>
+</td></tr>
+<tr class="memitem:a3ab8252f80f6fe439c69aa168f64ee5e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3ab8252f80f6fe439c69aa168f64ee5e">c_malloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
+<tr class="separator:a3ab8252f80f6fe439c69aa168f64ee5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a795f68255b939d6af0a0eaa6a0ac8b46"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a795f68255b939d6af0a0eaa6a0ac8b46">c_memalloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
+<tr class="separator:a795f68255b939d6af0a0eaa6a0ac8b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6123bf52e69254fbb7f26a186a994466"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6123bf52e69254fbb7f26a186a994466">Memory_Alloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a></td></tr>
+<tr class="separator:a6123bf52e69254fbb7f26a186a994466"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f18e471b1e6b28fcab7681f90673eca"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca">Memory_Allocate</a> (<a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> size)</td></tr>
 <tr class="separator:a8f18e471b1e6b28fcab7681f90673eca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3e31c5c3b247ab646d502db3c9897a7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a> (void *ptr, t_size size)</td></tr>
-<tr class="memdesc:ab3e31c5c3b247ab646d502db3c9897a7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reallocates the given area of memory <code>ptr</code> to be <code>size</code> bytes long, returning the new (or same) pointer.  <a href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Reallocates the given area of memory <code>ptr</code> to be <code>size</code> bytes long, returning the new (or same) pointer. </p>
+</td></tr>
+<tr class="memitem:a8865c6728c372790de8dee1ed24c7480"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a8865c6728c372790de8dee1ed24c7480">c_realloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
+<tr class="separator:a8865c6728c372790de8dee1ed24c7480"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0cb9f3dd6a46f797575aba4d74d8708"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab0cb9f3dd6a46f797575aba4d74d8708">c_memrealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
+<tr class="separator:ab0cb9f3dd6a46f797575aba4d74d8708"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9ab912d4e23143dd601e47d832d5f95e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9ab912d4e23143dd601e47d832d5f95e">Memory_Realloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a></td></tr>
+<tr class="separator:a9ab912d4e23143dd601e47d832d5f95e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3e31c5c3b247ab646d502db3c9897a7"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7">Memory_Reallocate</a> (void *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> size)</td></tr>
 <tr class="separator:ab3e31c5c3b247ab646d502db3c9897a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Frees the previously allocated memory area at <code>*ptr</code>. </p>
+</td></tr>
+<tr class="memitem:aa6276b79f109be5e5e47fcaea7674f98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa6276b79f109be5e5e47fcaea7674f98">c_dealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:aa6276b79f109be5e5e47fcaea7674f98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a229e664fb564b24352d168abcf680717"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a229e664fb564b24352d168abcf680717">c_memdealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:a229e664fb564b24352d168abcf680717"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaf4993a129979fc44290b838624fd27"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aeaf4993a129979fc44290b838624fd27">Memory_Dealloc</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:aeaf4993a129979fc44290b838624fd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f8399dfdd5aded24b094b2e4ba21d9b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a4f8399dfdd5aded24b094b2e4ba21d9b">c_free</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:a4f8399dfdd5aded24b094b2e4ba21d9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7cb969b9b92954d72fc3c9561f1b6a28"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a7cb969b9b92954d72fc3c9561f1b6a28">c_memfree</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:a7cb969b9b92954d72fc3c9561f1b6a28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa86aff2cdbbd34b31607ab392c31e127"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa86aff2cdbbd34b31607ab392c31e127">Memory_Free</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a></td></tr>
+<tr class="separator:aa86aff2cdbbd34b31607ab392c31e127"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a5425ca9599da27aed183e80400b4bf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">Memory_Deallocate</a> (void *ptr)</td></tr>
-<tr class="memdesc:a2a5425ca9599da27aed183e80400b4bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the previously allocated memory area at <code>*ptr</code>.  <a href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf">More...</a><br /></td></tr>
 <tr class="separator:a2a5425ca9599da27aed183e80400b4bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Frees the allocated memory at <code>**a_ptr</code>, and sets <code>*a_ptr</code> to <code>NULL</code>. </p>
+</td></tr>
+<tr class="memitem:ae396e9ae0bd0f7ea6f490d162f8a568b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae396e9ae0bd0f7ea6f490d162f8a568b">c_memdel</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83">Memory_Delete</a></td></tr>
+<tr class="separator:ae396e9ae0bd0f7ea6f490d162f8a568b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6c25922e9f9fdb2083c3772db7070e83"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83">Memory_Delete</a> (void **a_ptr)</td></tr>
-<tr class="memdesc:a6c25922e9f9fdb2083c3772db7070e83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the allocated memory at <code>**a_ptr</code>, and sets <code>*a_ptr</code> to <code>NULL</code>.  <a href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83">More...</a><br /></td></tr>
 <tr class="separator:a6c25922e9f9fdb2083c3772db7070e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa859acf2af192ebcc5fcf30f63f1d3de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de">Memory_Set</a> (void *ptr, t_u8 byte, t_size n)</td></tr>
-<tr class="memdesc:aa859acf2af192ebcc5fcf30f63f1d3de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <code>n</code> bytes of memory, starting at <code>ptr</code>, to the given value <code>byte</code>.  <a href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Sets <code>n</code> bytes of memory, starting at <code>ptr</code>, to the given value <code>byte</code>. </p>
+</td></tr>
+<tr class="memitem:a6d0491fc7e398322517829009da1034f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6d0491fc7e398322517829009da1034f">c_memset</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de">Memory_Set</a></td></tr>
+<tr class="separator:a6d0491fc7e398322517829009da1034f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa859acf2af192ebcc5fcf30f63f1d3de"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de">Memory_Set</a> (void *ptr, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> byte, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:aa859acf2af192ebcc5fcf30f63f1d3de"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa30b4940b752fa1ed0dab3cd2c5cbebb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a> (void *ptr, t_size n)</td></tr>
-<tr class="memdesc:aa30b4940b752fa1ed0dab3cd2c5cbebb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets <code>n</code> bytes of memory to 0, starting at <code>ptr</code>.  <a href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Sets <code>n</code> bytes of memory to 0, starting at <code>ptr</code>. </p>
+</td></tr>
+<tr class="memitem:a715e2a5223c84833c10143e5c653975e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a715e2a5223c84833c10143e5c653975e">c_bzero</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td></tr>
+<tr class="separator:a715e2a5223c84833c10143e5c653975e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a568d4062ed6afbe67c7f74697f4acdd0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a568d4062ed6afbe67c7f74697f4acdd0">c_memclr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td></tr>
+<tr class="separator:a568d4062ed6afbe67c7f74697f4acdd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a263eba94359c1f0d475bf19277afd36c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a263eba94359c1f0d475bf19277afd36c">c_memzero</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td></tr>
+<tr class="separator:a263eba94359c1f0d475bf19277afd36c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa30b4940b752fa1ed0dab3cd2c5cbebb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a> (void *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:aa30b4940b752fa1ed0dab3cd2c5cbebb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c35309dc61269b560c0b8e31080a591"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591">Memory_Copy</a> (void *dest, void const *src, t_size n)</td></tr>
-<tr class="memdesc:a9c35309dc61269b560c0b8e31080a591"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>.  <a href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>. </p>
+</td></tr>
+<tr class="memitem:a33c6f10b0cf92d89d292ab07bf0af934"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a33c6f10b0cf92d89d292ab07bf0af934">c_memcpy</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591">Memory_Copy</a></td></tr>
+<tr class="separator:a33c6f10b0cf92d89d292ab07bf0af934"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c35309dc61269b560c0b8e31080a591"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591">Memory_Copy</a> (void *dest, void const *src, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a9c35309dc61269b560c0b8e31080a591"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af029f86455df8218a1f5f14bee502ed6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6">Memory_Copy_C</a> (void *dest, void const *src, t_u8 byte, t_size n)</td></tr>
-<tr class="memdesc:af029f86455df8218a1f5f14bee502ed6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code> (stops upon encountering <code>byte</code>).  <a href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code> (stops upon encountering <code>byte</code>). </p>
+</td></tr>
+<tr class="memitem:a2f333c722e1630285d86ea5b9d287875"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2f333c722e1630285d86ea5b9d287875">c_memccpy</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6">Memory_Copy_C</a></td></tr>
+<tr class="separator:a2f333c722e1630285d86ea5b9d287875"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af029f86455df8218a1f5f14bee502ed6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6">Memory_Copy_C</a> (void *dest, void const *src, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> byte, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:af029f86455df8218a1f5f14bee502ed6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a535c7fa86743a30fe664d6d4001df0e6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6">Memory_Move</a> (void *dest, void const *src, t_size n)</td></tr>
-<tr class="memdesc:a535c7fa86743a30fe664d6d4001df0e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Moves <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>.  <a href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Moves <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>. </p>
+</td></tr>
+<tr class="memitem:a3622496b6ee9c1adcba74720655f6d92"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3622496b6ee9c1adcba74720655f6d92">c_memmove</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6">Memory_Move</a></td></tr>
+<tr class="separator:a3622496b6ee9c1adcba74720655f6d92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a535c7fa86743a30fe664d6d4001df0e6"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6">Memory_Move</a> (void *dest, void const *src, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a535c7fa86743a30fe664d6d4001df0e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb009f55cb883446a1298e654282b279"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279">Memory_Duplicate</a> (void const *ptr, t_size n)</td></tr>
-<tr class="memdesc:aeb009f55cb883446a1298e654282b279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Allocates a memory region which is <code>n</code> bytes long and has the same content as <code>ptr</code>.  <a href="memory_8h.html#aeb009f55cb883446a1298e654282b279">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Allocates a memory region which is <code>n</code> bytes long and has the same content as <code>ptr</code>. </p>
+</td></tr>
+<tr class="memitem:aa0c9b0a73df107421fc7f9125f8d3ca0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa0c9b0a73df107421fc7f9125f8d3ca0">c_memdup</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279">Memory_Duplicate</a></td></tr>
+<tr class="separator:aa0c9b0a73df107421fc7f9125f8d3ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb009f55cb883446a1298e654282b279"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279">Memory_Duplicate</a> (void const *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:aeb009f55cb883446a1298e654282b279"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae44987d1740acfa6b595e27f95d3bf7b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b">Memory_Join</a> (void const *ptr1, t_size length1, void const *ptr2, t_size length2)</td></tr>
-<tr class="memdesc:ae44987d1740acfa6b595e27f95d3bf7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a newly allocated memory region, by concatenating <code>ptr1</code> and <code>ptr2</code>  <a href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Return a newly allocated memory region, by concatenating <code>ptr1</code> and <code>ptr2</code> </p>
+</td></tr>
+<tr class="memitem:a362e51bbf24737e0844eb7eb37684c61"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a362e51bbf24737e0844eb7eb37684c61">c_memjoin</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b">Memory_Join</a></td></tr>
+<tr class="separator:a362e51bbf24737e0844eb7eb37684c61"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae44987d1740acfa6b595e27f95d3bf7b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b">Memory_Join</a> (void const *ptr1, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> length1, void const *ptr2, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> length2)</td></tr>
 <tr class="separator:ae44987d1740acfa6b595e27f95d3bf7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93803559991d0df71ce21e49839e2d1d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d">Memory_Append</a> (void **a_dest, t_size dest_length, void const *src, t_size src_length)</td></tr>
-<tr class="memdesc:a93803559991d0df71ce21e49839e2d1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a newly allocated memory region, by concatenating <code>*a_dest</code> (deletes old) and <code>src</code>  <a href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Return a newly allocated memory region, by concatenating <code>*a_dest</code> (deletes old) and <code>src</code> </p>
+</td></tr>
+<tr class="memitem:a418945f1d998541e1dde3e234303c344"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a418945f1d998541e1dde3e234303c344">c_memappend</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d">Memory_Append</a></td></tr>
+<tr class="separator:a418945f1d998541e1dde3e234303c344"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93803559991d0df71ce21e49839e2d1d"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d">Memory_Append</a> (void **a_dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> dest_length, void const *src, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> src_length)</td></tr>
 <tr class="separator:a93803559991d0df71ce21e49839e2d1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2271bf6eb1b03fa0441737225a1867f8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8">Memory_Prepend</a> (void const *src, t_size src_length, void **a_dest, t_size dest_length)</td></tr>
-<tr class="memdesc:a2271bf6eb1b03fa0441737225a1867f8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a newly allocated memory region, by concatenating <code>src</code> and <code>*a_dest</code> (deletes old)  <a href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Return a newly allocated memory region, by concatenating <code>src</code> and <code>*a_dest</code> (deletes old) </p>
+</td></tr>
+<tr class="memitem:ac0d80edc34222f7c0a07368933c3fdb4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac0d80edc34222f7c0a07368933c3fdb4">c_memprepend</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8">Memory_Prepend</a></td></tr>
+<tr class="separator:ac0d80edc34222f7c0a07368933c3fdb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2271bf6eb1b03fa0441737225a1867f8"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8">Memory_Prepend</a> (void const *src, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> src_length, void **a_dest, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> dest_length)</td></tr>
 <tr class="separator:a2271bf6eb1b03fa0441737225a1867f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a556ff689a18f44076245e103e77596ba"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba">Memory_Merge</a> (void **a_ptr1, t_size length1, void **a_ptr2, t_size length2)</td></tr>
-<tr class="memdesc:a556ff689a18f44076245e103e77596ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Return a newly allocated memory region, by concatenating <code>*a_ptr1</code> (deletes old) and <code>*a_ptr2</code> (deletes old)  <a href="memory_8h.html#a556ff689a18f44076245e103e77596ba">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Return a newly allocated memory region, by concatenating <code>*a_ptr1</code> (deletes old) and <code>*a_ptr2</code> (deletes old) </p>
+</td></tr>
+<tr class="memitem:afc92d792bcf9b544552327d67df1ac09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#afc92d792bcf9b544552327d67df1ac09">c_memmerge</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba">Memory_Merge</a></td></tr>
+<tr class="separator:afc92d792bcf9b544552327d67df1ac09"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a556ff689a18f44076245e103e77596ba"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba">Memory_Merge</a> (void **a_ptr1, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> length1, void **a_ptr2, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> length2)</td></tr>
 <tr class="separator:a556ff689a18f44076245e103e77596ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a39072fcba9b4b6482de25c568ff6b62b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a> (void const *ptr, t_u8 byte, t_size n)</td></tr>
-<tr class="memdesc:a39072fcba9b4b6482de25c568ff6b62b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the first occurence of the given <code>byte</code> value in the first <code>n</code> bytes at <code>ptr</code>.  <a href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Finds the first occurence of the given <code>byte</code> value in the first <code>n</code> bytes at <code>ptr</code>. </p>
+</td></tr>
+<tr class="memitem:af4bb2900ccc0ba1332cd00ed60c943af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af4bb2900ccc0ba1332cd00ed60c943af">c_memchr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a></td></tr>
+<tr class="separator:af4bb2900ccc0ba1332cd00ed60c943af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a077c1e78c91a74c9748febb00f1ff597"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a077c1e78c91a74c9748febb00f1ff597">c_memfind</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a></td></tr>
+<tr class="separator:a077c1e78c91a74c9748febb00f1ff597"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a39072fcba9b4b6482de25c568ff6b62b"><td class="memItemLeft" align="right" valign="top">void *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b">Memory_Find</a> (void const *ptr, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> byte, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a39072fcba9b4b6482de25c568ff6b62b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac7ea6d813c693c6b0f1a471692d6fff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff">Memory_Replace</a> (void *ptr, t_u8 old, t_u8 new, t_size n)</td></tr>
-<tr class="memdesc:aac7ea6d813c693c6b0f1a471692d6fff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Replaces every <code>old</code> byte with <code>new</code>, in the <code>n</code> byte long memory region starting at <code>ptr</code>.  <a href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Replaces every <code>old</code> byte with <code>new</code>, in the <code>n</code> byte long memory region starting at <code>ptr</code>. </p>
+</td></tr>
+<tr class="memitem:aa9bd2020893258b0dfb32d96a59f8438"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aa9bd2020893258b0dfb32d96a59f8438">c_memrep</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff">Memory_Replace</a></td></tr>
+<tr class="separator:aa9bd2020893258b0dfb32d96a59f8438"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac7ea6d813c693c6b0f1a471692d6fff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff">Memory_Replace</a> (void *ptr, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a>, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#addd1a554e6048a1efb923536b526ae44">new</a>, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:aac7ea6d813c693c6b0f1a471692d6fff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6af1c36193c51a556a192aaab6efaf61"><td class="memItemLeft" align="right" valign="top">t_sint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61">Memory_Compare</a> (void const *ptr1, void const *ptr2, t_size n)</td></tr>
-<tr class="memdesc:a6af1c36193c51a556a192aaab6efaf61"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compares <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code>: returns the first difference of chars encountered, or zero, if the bytes all match.  <a href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Compares <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code>: returns the first difference of chars encountered, or zero, if the bytes all match. </p>
+</td></tr>
+<tr class="memitem:a5bad584dd79351e14215596b062c2aa6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a5bad584dd79351e14215596b062c2aa6">c_memcmp</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61">Memory_Compare</a></td></tr>
+<tr class="separator:a5bad584dd79351e14215596b062c2aa6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6af1c36193c51a556a192aaab6efaf61"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61">Memory_Compare</a> (void const *ptr1, void const *ptr2, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a6af1c36193c51a556a192aaab6efaf61"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af18d376c04172a4f5f34a736940060a5"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5">Memory_Equals</a> (void const *ptr1, void const *ptr2, t_size n)</td></tr>
-<tr class="memdesc:af18d376c04172a4f5f34a736940060a5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code> for equality.  <a href="memory_8h.html#af18d376c04172a4f5f34a736940060a5">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Checks <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code> for equality </p>
+</td></tr>
+<tr class="memitem:ab051bf34a7da3b1fdb27cd11ce10126e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ab051bf34a7da3b1fdb27cd11ce10126e">c_memequ</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5">Memory_Equals</a></td></tr>
+<tr class="separator:ab051bf34a7da3b1fdb27cd11ce10126e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af18d376c04172a4f5f34a736940060a5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5">Memory_Equals</a> (void const *ptr1, void const *ptr2, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:af18d376c04172a4f5f34a736940060a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a275510af632b307d8a917276a6b6ee5d"><td class="memItemLeft" align="right" valign="top">t_bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d">Memory_Swap</a> (void *ptr1, void *ptr2, t_size size)</td></tr>
-<tr class="memdesc:a275510af632b307d8a917276a6b6ee5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Swaps <code>size</code> bytes of memory between <code>ptr1</code> and <code>ptr2</code>  <a href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Swaps <code>size</code> bytes of memory between <code>ptr1</code> and <code>ptr2</code> </p>
+</td></tr>
+<tr class="memitem:ac0ec452332f4d3438814ebbda13c1fe9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac0ec452332f4d3438814ebbda13c1fe9">c_memswap</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d">Memory_Swap</a></td></tr>
+<tr class="separator:ac0ec452332f4d3438814ebbda13c1fe9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a275510af632b307d8a917276a6b6ee5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d">Memory_Swap</a> (void *ptr1, void *ptr2, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> size)</td></tr>
 <tr class="separator:a275510af632b307d8a917276a6b6ee5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9e3620fcef9743645358e162dd6dad42"><td class="memItemLeft" align="right" valign="top">t_size&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">Memory_Print</a> (t_char **dest, void const *ptr, t_size n)</td></tr>
-<tr class="memdesc:a9e3620fcef9743645358e162dd6dad42"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes.  <a href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes </p>
+</td></tr>
+<tr class="memitem:a7b9d47a32adb943cca29dd0321673750"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a7b9d47a32adb943cca29dd0321673750">c_memprint</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">Memory_Print</a></td></tr>
+<tr class="separator:a7b9d47a32adb943cca29dd0321673750"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e3620fcef9743645358e162dd6dad42"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">Memory_Print</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> **dest, void const *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a9e3620fcef9743645358e162dd6dad42"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae651a291245a355e45bb8bd74961a3e7"><td class="memItemLeft" align="right" valign="top">t_char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae651a291245a355e45bb8bd74961a3e7">Memory_ToString</a> (void const *ptr, t_size n)</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>  </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42">Memory_Print()</a> </dd></dl>
+</td></tr>
+<tr class="memitem:a79d30aa6274343e79f5914c7f94ebae4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a79d30aa6274343e79f5914c7f94ebae4">c_memtostr</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae651a291245a355e45bb8bd74961a3e7">Memory_ToString</a></td></tr>
+<tr class="separator:a79d30aa6274343e79f5914c7f94ebae4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae651a291245a355e45bb8bd74961a3e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae651a291245a355e45bb8bd74961a3e7">Memory_ToString</a> (void const *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:ae651a291245a355e45bb8bd74961a3e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68c8463409d141824b582388071bf0b1"><td class="memItemLeft" align="right" valign="top">t_uintmax&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1">Memory_GetBits</a> (void *ptr, t_size bit, t_u8 n)</td></tr>
-<tr class="memdesc:a68c8463409d141824b582388071bf0b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a subsection of <code>n</code> bits from the data in <code>ptr</code>, starting at bit index <code>bit</code>.  <a href="memory_8h.html#a68c8463409d141824b582388071bf0b1">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a subsection of <code>n</code> bits from the data in <code>ptr</code>, starting at bit index <code>bit</code>. </p>
+</td></tr>
+<tr class="memitem:a0e434fd038be54a99b94e6adfccadb70"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a0e434fd038be54a99b94e6adfccadb70">c_getbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1">Memory_GetBits</a></td></tr>
+<tr class="separator:a0e434fd038be54a99b94e6adfccadb70"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a68c8463409d141824b582388071bf0b1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1">Memory_GetBits</a> (void *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> bit, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a68c8463409d141824b582388071bf0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae0df409d2655e141b8542274ad0398d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9">Memory_SetBits</a> (void *ptr, t_size bit, t_u8 n, t_uintmax value)</td></tr>
-<tr class="memdesc:ae0df409d2655e141b8542274ad0398d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a subsection of <code>n</code> bits to the data in <code>ptr</code>, starting at bit index <code>bit</code>.  <a href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Set a subsection of <code>n</code> bits to the data in <code>ptr</code>, starting at bit index <code>bit</code>. </p>
+</td></tr>
+<tr class="memitem:a194a94167fd323dc5e7acd71d785a6a6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a194a94167fd323dc5e7acd71d785a6a6">c_setbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9">Memory_SetBits</a></td></tr>
+<tr class="separator:a194a94167fd323dc5e7acd71d785a6a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0df409d2655e141b8542274ad0398d9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9">Memory_SetBits</a> (void *ptr, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> bit, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>, <a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>)</td></tr>
 <tr class="separator:ae0df409d2655e141b8542274ad0398d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a46e91ea11459c86d6e32a79f7c906af5"><td class="memItemLeft" align="right" valign="top">t_uintmax&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5">Memory_BitRegion</a> (t_uintmax value, t_u8 bit, t_u8 n)</td></tr>
-<tr class="memdesc:a46e91ea11459c86d6e32a79f7c906af5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get a subsection of <code>n</code> bits from <code>value</code>, starting at bit index <code>bit</code>.  <a href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get a subsection of <code>n</code> bits from <code>value</code>, starting at bit index <code>bit</code>. </p>
+</td></tr>
+<tr class="memitem:af24828a6b73efaed72dffc65d4f3c230"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#af24828a6b73efaed72dffc65d4f3c230">c_bitregion</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5">Memory_BitRegion</a></td></tr>
+<tr class="separator:af24828a6b73efaed72dffc65d4f3c230"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46e91ea11459c86d6e32a79f7c906af5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5">Memory_BitRegion</a> (<a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> bit, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:a46e91ea11459c86d6e32a79f7c906af5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac68831ce2f8c9c206e69fb0c6b65cc5d"><td class="memItemLeft" align="right" valign="top">t_u8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d">Memory_CountBits</a> (t_uintmax value)</td></tr>
-<tr class="memdesc:ac68831ce2f8c9c206e69fb0c6b65cc5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the total amount of bits set to <code>1</code> in the given <code>value</code>.  <a href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get the total amount of bits set to <code>1</code> in the given <code>value</code>. </p>
+</td></tr>
+<tr class="memitem:a868ffd45477b9d96f57f3f24fa6471e7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a868ffd45477b9d96f57f3f24fa6471e7">c_countbits</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d">Memory_CountBits</a></td></tr>
+<tr class="separator:a868ffd45477b9d96f57f3f24fa6471e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac68831ce2f8c9c206e69fb0c6b65cc5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d">Memory_CountBits</a> (<a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>)</td></tr>
 <tr class="separator:ac68831ce2f8c9c206e69fb0c6b65cc5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3c8e11c2c3b24bcb6ada927ce01cbc33"><td class="memItemLeft" align="right" valign="top">t_s8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a> (t_uintmax value)</td></tr>
-<tr class="memdesc:a3c8e11c2c3b24bcb6ada927ce01cbc33"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the bit index of the most signficant <code>1</code>-bit of the given <code>value</code>  <a href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get the bit index of the most signficant <code>1</code>-bit of the given <code>value</code> </p>
+</td></tr>
+<tr class="memitem:aff9c30944e60243cf16ffce69712e09e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#aff9c30944e60243cf16ffce69712e09e">c_getmsb</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a></td></tr>
+<tr class="separator:aff9c30944e60243cf16ffce69712e09e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b7b827f372e3953938006b2750f916e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a5b7b827f372e3953938006b2750f916e">Memory_GetMSB</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a></td></tr>
+<tr class="separator:a5b7b827f372e3953938006b2750f916e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3c8e11c2c3b24bcb6ada927ce01cbc33"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33">Memory_GetMostSignificantBit</a> (<a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>)</td></tr>
 <tr class="separator:a3c8e11c2c3b24bcb6ada927ce01cbc33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac444a467ccc0a84b8de7f9412139f464"><td class="memItemLeft" align="right" valign="top">t_s8&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a> (t_uintmax value)</td></tr>
-<tr class="memdesc:ac444a467ccc0a84b8de7f9412139f464"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the bit index of the least signficant <code>1</code>-bit of the given <code>value</code>  <a href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">More...</a><br /></td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get the bit index of the least signficant <code>1</code>-bit of the given <code>value</code> </p>
+</td></tr>
+<tr class="memitem:ad2b5db271fa10dd2e2e88abea105ef8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ad2b5db271fa10dd2e2e88abea105ef8e">c_getlsb</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a></td></tr>
+<tr class="separator:ad2b5db271fa10dd2e2e88abea105ef8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a602da2adbe2a12d4556ab0df0f08dca2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#a602da2adbe2a12d4556ab0df0f08dca2">Memory_GetLSB</a>&#160;&#160;&#160;<a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a></td></tr>
+<tr class="separator:a602da2adbe2a12d4556ab0df0f08dca2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac444a467ccc0a84b8de7f9412139f464"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464">Memory_GetLeastSignificantBit</a> (<a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> <a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>)</td></tr>
 <tr class="separator:ac444a467ccc0a84b8de7f9412139f464"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >This header defines the common standard memory manipulation functions.</p>
 <ul>
-<li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/memory">https://en.cppreference.com/w/c/memory</a></li>
+<li><em>Standard library equivalent: </em>(C) <a href="https://en.cppreference.com/w/c/memory">https://en.cppreference.com/w/c/memory</a> </li>
 </ul>
 
 <p class="definition">Definition in file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
@@ -371,15 +368,14 @@ Functions</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;((X) * 1024)</td>
+          <td>&#160;&#160;&#160;(  (X) * 1024)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>macros for byte sizes </p>
-<p >converts a value expressed in kilobytes to its equivalent in bytes </p>
+<p>converts a value expressed in kilobytes to its equivalent in bytes </p>
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00049">49</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00056">56</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -401,7 +397,7 @@ Functions</h2></td></tr>
 
 <p>converts a value expressed in megabytes to its equivalent in bytes </p>
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00050">50</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00057">57</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -423,7 +419,7 @@ Functions</h2></td></tr>
 
 <p>converts a value expressed in gigabytes to its equivalent in bytes </p>
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00051">51</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00058">58</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -442,10 +438,9 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p >converts a value expressed in terabytes to its equivalent in bytes </p>
 
-<p>converts a value expressed in terabytes to its equivalent in bytes </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00052">52</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00059">59</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -466,9 +461,8 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 <b>Value:</b><div class="fragment"><div class="line">    ( (((X)&amp;0XFF)&lt;&lt;8) \</div>
 <div class="line">    | (((X)&gt;&gt;8)&amp;0XFF) )</div>
-</div><!-- fragment --><p >Macros to convert values' endianness (invert byte-per-byte) </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00058">58</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00066">66</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -490,7 +484,7 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    ( (((X)&amp;0XFF)&lt;&lt;24) | (((X)&amp;0XFF00)&lt;&lt;8) \</div>
 <div class="line">    | (((X)&gt;&gt;24)&amp;0XFF) | (((X)&gt;&gt;8)&amp;0XFF00) )</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00061">61</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00069">69</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -512,7 +506,7 @@ Functions</h2></td></tr>
 <b>Value:</b><div class="fragment"><div class="line">    ( (((X)&amp;0XFF)&lt;&lt;56) | (((X)&amp;0XFF00)&lt;&lt;40) | (((X)&amp;0XFF0000)&lt;&lt;24) | (((X)&amp;0XFF000000)&lt;&lt;8) \</div>
 <div class="line">    | (((X)&gt;&gt;56)&amp;0XFF) | (((X)&gt;&gt;40)&amp;0XFF00) | (((X)&gt;&gt;24)&amp;0XFF0000) | (((X)&gt;&gt;8)&amp;0XFF000000) )</div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00064">64</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00072">72</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -528,9 +522,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8" title="Returns a newly allocated memory area which is size bytes long, with every byte set to 0.">Memory_New</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00092">92</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00101">101</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -546,9 +538,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aee426aef641b94de1b7aadabac3e4efc" title="Returns a newly allocated memory area which is size bytes long, with every byte set to c.">Memory_New_C</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00108">108</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00119">119</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -564,9 +554,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00125">125</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00138">138</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -582,9 +570,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00126">126</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00139">139</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -600,9 +586,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a8f18e471b1e6b28fcab7681f90673eca" title="Returns a pointer to a newly allocated memory area which is size bytes long, uninitialized.">Memory_Allocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00127">127</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00140">140</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -618,9 +602,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00144">144</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00159">159</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -636,9 +618,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00145">145</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00160">160</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -654,9 +634,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ab3e31c5c3b247ab646d502db3c9897a7" title="Reallocates the given area of memory ptr to be size bytes long, returning the new (or same) pointer.">Memory_Reallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00146">146</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00161">161</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -672,9 +650,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00158">158</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00175">175</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -690,9 +666,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00159">159</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00176">176</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -708,9 +682,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00160">160</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00177">177</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -726,9 +698,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00161">161</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00178">178</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -744,9 +714,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00162">162</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00179">179</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -762,9 +730,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2a5425ca9599da27aed183e80400b4bf" title="Frees the previously allocated memory area at *ptr.">Memory_Deallocate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00163">163</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00180">180</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -780,9 +746,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a6c25922e9f9fdb2083c3772db7070e83" title="Frees the allocated memory at **a_ptr, and sets *a_ptr to NULL.">Memory_Delete</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00174">174</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00193">193</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -798,9 +762,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aa859acf2af192ebcc5fcf30f63f1d3de" title="Sets n bytes of memory, starting at ptr, to the given value byte.">Memory_Set</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00186">186</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00207">207</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -816,9 +778,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb" title="Sets n bytes of memory to 0, starting at ptr.">Memory_Clear</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00195">195</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00218">218</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -834,9 +794,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb" title="Sets n bytes of memory to 0, starting at ptr.">Memory_Clear</a>] </p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00219">219</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00196">196</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+</div>
+</div>
+<a id="a263eba94359c1f0d475bf19277afd36c" name="a263eba94359c1f0d475bf19277afd36c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a263eba94359c1f0d475bf19277afd36c">&#9670;&nbsp;</a></span>c_memzero</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define c_memzero&#160;&#160;&#160;<a class="el" href="memory_8h.html#aa30b4940b752fa1ed0dab3cd2c5cbebb">Memory_Clear</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00220">220</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -852,9 +826,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a9c35309dc61269b560c0b8e31080a591" title="Copies n bytes of data from src into dest, and returns dest.">Memory_Copy</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00207">207</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00233">233</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -870,9 +842,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#af029f86455df8218a1f5f14bee502ed6" title="Copies n bytes of data from src into dest, and returns dest (stops upon encountering byte).">Memory_Copy_C</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00218">218</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00246">246</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -888,9 +858,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a535c7fa86743a30fe664d6d4001df0e6" title="Moves n bytes of data from src into dest, and returns dest.">Memory_Move</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00229">229</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00259">259</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -906,9 +874,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aeb009f55cb883446a1298e654282b279" title="Allocates a memory region which is n bytes long and has the same content as ptr.">Memory_Duplicate</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00243">243</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00275">275</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -924,9 +890,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ae44987d1740acfa6b595e27f95d3bf7b" title="Return a newly allocated memory region, by concatenating ptr1 and ptr2">Memory_Join</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00258">258</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00292">292</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -942,9 +906,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a93803559991d0df71ce21e49839e2d1d" title="Return a newly allocated memory region, by concatenating *a_dest (deletes old) and src">Memory_Append</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00265">265</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00301">301</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -960,9 +922,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a2271bf6eb1b03fa0441737225a1867f8" title="Return a newly allocated memory region, by concatenating src and *a_dest (deletes old)">Memory_Prepend</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00272">272</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00310">310</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -978,9 +938,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a556ff689a18f44076245e103e77596ba" title="Return a newly allocated memory region, by concatenating *a_ptr1 (deletes old) and *a_ptr2 (deletes o...">Memory_Merge</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00279">279</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00319">319</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -996,9 +954,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b" title="Finds the first occurence of the given byte value in the first n bytes at ptr.">Memory_Find</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00298">298</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00340">340</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1014,9 +970,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a39072fcba9b4b6482de25c568ff6b62b" title="Finds the first occurence of the given byte value in the first n bytes at ptr.">Memory_Find</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00299">299</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00341">341</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1032,9 +986,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#aac7ea6d813c693c6b0f1a471692d6fff" title="Replaces every old byte with new, in the n byte long memory region starting at ptr.">Memory_Replace</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00311">311</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00355">355</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1050,9 +1002,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a6af1c36193c51a556a192aaab6efaf61" title="Compares n bytes of memory in ptr1 and ptr2: returns the first difference of chars encountered,...">Memory_Compare</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00326">326</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00372">372</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1068,9 +1018,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#af18d376c04172a4f5f34a736940060a5" title="Checks n bytes of memory in ptr1 and ptr2 for equality.">Memory_Equals</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00341">341</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00389">389</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1086,9 +1034,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a275510af632b307d8a917276a6b6ee5d" title="Swaps size bytes of memory between ptr1 and ptr2">Memory_Swap</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00357">357</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00407">407</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1104,7 +1050,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00375">375</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00430">430</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1120,7 +1066,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00379">379</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00439">439</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1136,9 +1082,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a68c8463409d141824b582388071bf0b1" title="Get a subsection of n bits from the data in ptr, starting at bit index bit.">Memory_GetBits</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00403">403</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00466">466</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1154,9 +1098,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ae0df409d2655e141b8542274ad0398d9" title="Set a subsection of n bits to the data in ptr, starting at bit index bit.">Memory_SetBits</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00420">420</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00486">486</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1172,9 +1114,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a46e91ea11459c86d6e32a79f7c906af5" title="Get a subsection of n bits from value, starting at bit index bit.">Memory_BitRegion</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00434">434</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00502">502</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1190,9 +1130,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ac68831ce2f8c9c206e69fb0c6b65cc5d" title="Get the total amount of bits set to 1 in the given value.">Memory_CountBits</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00446">446</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00516">516</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1208,9 +1146,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33" title="Get the bit index of the most signficant 1-bit of the given value">Memory_GetMostSignificantBit</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00459">459</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00531">531</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1226,9 +1162,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#a3c8e11c2c3b24bcb6ada927ce01cbc33" title="Get the bit index of the most signficant 1-bit of the given value">Memory_GetMostSignificantBit</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00460">460</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00532">532</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1244,9 +1178,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464" title="Get the bit index of the least signficant 1-bit of the given value">Memory_GetLeastSignificantBit</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00471">471</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00545">545</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1262,13 +1194,33 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>[<em>Alias for</em> <a class="el" href="memory_8h.html#ac444a467ccc0a84b8de7f9412139f464" title="Get the bit index of the least signficant 1-bit of the given value">Memory_GetLeastSignificantBit</a>] </p>
-
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00472">472</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00546">546</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
+<a id="a7ab5d51469ae91ed1deddd423a55f524" name="a7ab5d51469ae91ed1deddd423a55f524"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ab5d51469ae91ed1deddd423a55f524">&#9670;&nbsp;</a></span>p_any</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="memory_8h.html#a7ab5d51469ae91ed1deddd423a55f524">p_any</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p >This typedef is only provided for certain niche purposes, since it is typically not very good practice in C to hide pointers within <code>typedef</code> types. </p><dl class="section see"><dt>See also</dt><dd><ul>
+<li><a class="el" href="pointer_8h.html#aaf13bc256e9c704039e08ec061508a0c">t_ptrdiff</a></li>
+<li><a class="el" href="pointer_8h.html#a99f60fa8c0b01452e12df739f000a5c4" title="Pointer-sized unsigned integer type.">t_uintptr</a></li>
+<li><a class="el" href="pointer_8h.html#acbd1c0307c55e5f81a2e837cb6c5541e">t_sintptr</a> </li>
+</ul>
+</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00047">47</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+
+</div>
+</div>
 <a id="a3094c82cb1a65c4a8b5b394970964b69" name="a3094c82cb1a65c4a8b5b394970964b69"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3094c82cb1a65c4a8b5b394970964b69">&#9670;&nbsp;</a></span>p_ptr</h2>
 
@@ -1281,10 +1233,23 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Type definition for a pointer. </p>
-<p >This typedef is only provided for certain niche purposes, since it is typically not very good practice in C to hide pointers within <code>typedef</code> types. </p>
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00048">48</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
-<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00044">44</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
+</div>
+</div>
+<a id="a359487e28e0e2ee888ce4eaa62f9e0bf" name="a359487e28e0e2ee888ce4eaa62f9e0bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a359487e28e0e2ee888ce4eaa62f9e0bf">&#9670;&nbsp;</a></span>p_pointer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void* <a class="el" href="memory_8h.html#a359487e28e0e2ee888ce4eaa62f9e0bf">p_pointer</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="memory_8h_source.html#l00049">49</a> of file <a class="el" href="memory_8h_source.html">memory.h</a>.</p>
 
 </div>
 </div>
@@ -1298,14 +1263,12 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void * Memory_New </td>
           <td>(</td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>0</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> This function is similar to:</li>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/memory/calloc">https://en.cppreference.com/w/c/memory/calloc</a></li>
@@ -1324,7 +1287,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void * Memory_New_C </td>
           <td>(</td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>size</em>, </td>
         </tr>
         <tr>
@@ -1340,8 +1303,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns a newly allocated memory area which is <code>size</code> bytes long, with every byte set to <code>c</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -1359,18 +1320,16 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void * Memory_Allocate </td>
           <td>(</td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>size</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Returns a pointer to a newly allocated memory area which is <code>size</code> bytes long, uninitialized. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/memory/malloc">https://en.cppreference.com/w/c/memory/malloc</a></li>
 </ul>
-<p >Allocates <code>size</code> bytes in memory, returning the pointer to allocated region. NB: This function only allocates a new memory region and does nothign more: This means that there may be garbage leftover values in the newly allocated region. It generally recommended to use <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8" title="Returns a newly allocated memory area which is size bytes long, with every byte set to 0.">Memory_New()</a> instead, to avoid garbage memory issues.</p>
+<p >Allocates <code>size</code> bytes in memory, returning the pointer to allocated region. NB: This function only allocates a new memory region and does nothign more: This means that there may be garbage leftover values in the newly allocated region. It generally recommended to use <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New()</a> instead, to avoid garbage memory issues.</p>
 <dl class="section return"><dt>Returns</dt><dd>The pointer to newly allocated region, or <code>NULL</code> if an error occurred (ie: the memory could not be allocated for whatever reason). </dd></dl>
 
 </div>
@@ -1390,7 +1349,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
@@ -1400,8 +1359,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Reallocates the given area of memory <code>ptr</code> to be <code>size</code> bytes long, returning the new (or same) pointer. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/memory/realloc">https://en.cppreference.com/w/c/memory/realloc</a></li>
 </ul>
@@ -1425,12 +1382,10 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Frees the previously allocated memory area at <code>*ptr</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/memory/free">https://en.cppreference.com/w/c/memory/free</a></li>
 </ul>
-<p >Deallocates the area of memory pointed to by <code>ptr</code>, assuming it was previously allocated by a call to <a class="el" href="memory_8h.html#a6123bf52e69254fbb7f26a186a994466" title="[Alias for Memory_Allocate]">Memory_Alloc()</a> or <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8" title="Returns a newly allocated memory area which is size bytes long, with every byte set to 0.">Memory_New()</a> </p>
+<p >Deallocates the area of memory pointed to by <code>ptr</code>, assuming it was previously allocated by a call to <a class="el" href="memory_8h.html#a6123bf52e69254fbb7f26a186a994466">Memory_Alloc()</a> or <a class="el" href="memory_8h.html#aea153a8ebd6bbf046e3fb0b8b7eba3c8">Memory_New()</a> </p>
 
 </div>
 </div>
@@ -1449,8 +1404,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Frees the allocated memory at <code>**a_ptr</code>, and sets <code>*a_ptr</code> to <code>NULL</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -1479,13 +1432,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>byte</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1495,8 +1448,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets <code>n</code> bytes of memory, starting at <code>ptr</code>, to the given value <code>byte</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/string/byte/memset">https://en.cppreference.com/w/c/string/byte/memset</a></li>
 </ul>
@@ -1519,7 +1470,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1529,8 +1480,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Sets <code>n</code> bytes of memory to 0, starting at <code>ptr</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(BSD) <a href="https://linux.die.net/man/3/bzero">https://linux.die.net/man/3/bzero</a></li>
 </ul>
@@ -1559,7 +1508,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1569,8 +1518,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/string/byte/memcpy">https://en.cppreference.com/w/c/string/byte/memcpy</a></li>
 </ul>
@@ -1599,13 +1546,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>byte</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1615,8 +1562,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Copies <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code> (stops upon encountering <code>byte</code>). </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C23) <a href="https://en.cppreference.com/w/c/string/byte/memccpy">https://en.cppreference.com/w/c/string/byte/memccpy</a></li>
 </ul>
@@ -1645,7 +1590,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1655,8 +1600,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Moves <code>n</code> bytes of data from <code>src</code> into <code>dest</code>, and returns <code>dest</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/string/byte/memmove">https://en.cppreference.com/w/c/string/byte/memmove</a></li>
 </ul>
@@ -1679,7 +1622,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1689,8 +1632,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Allocates a memory region which is <code>n</code> bytes long and has the same content as <code>ptr</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -1713,7 +1654,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>length1</em>, </td>
         </tr>
         <tr>
@@ -1725,7 +1666,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>length2</em>&#160;</td>
         </tr>
         <tr>
@@ -1735,8 +1676,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Return a newly allocated memory region, by concatenating <code>ptr1</code> and <code>ptr2</code> </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> </li>
 </ul>
@@ -1758,7 +1697,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>dest_length</em>, </td>
         </tr>
         <tr>
@@ -1770,7 +1709,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>src_length</em>&#160;</td>
         </tr>
         <tr>
@@ -1780,8 +1719,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Return a newly allocated memory region, by concatenating <code>*a_dest</code> (deletes old) and <code>src</code> </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> </li>
 </ul>
@@ -1803,7 +1740,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>src_length</em>, </td>
         </tr>
         <tr>
@@ -1815,7 +1752,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>dest_length</em>&#160;</td>
         </tr>
         <tr>
@@ -1825,8 +1762,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Return a newly allocated memory region, by concatenating <code>src</code> and <code>*a_dest</code> (deletes old) </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> </li>
 </ul>
@@ -1848,7 +1783,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>length1</em>, </td>
         </tr>
         <tr>
@@ -1860,7 +1795,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>length2</em>&#160;</td>
         </tr>
         <tr>
@@ -1870,8 +1805,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Return a newly allocated memory region, by concatenating <code>*a_ptr1</code> (deletes old) and <code>*a_ptr2</code> (deletes old) </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> </li>
 </ul>
@@ -1893,13 +1826,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>byte</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1909,8 +1842,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Finds the first occurence of the given <code>byte</code> value in the first <code>n</code> bytes at <code>ptr</code>. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/string/byte/memchr">https://en.cppreference.com/w/c/string/byte/memchr</a></li>
 </ul>
@@ -1933,19 +1864,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>new</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1955,8 +1886,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Replaces every <code>old</code> byte with <code>new</code>, in the <code>n</code> byte long memory region starting at <code>ptr</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -1971,7 +1900,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_sint Memory_Compare </td>
+          <td class="memname"><a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> Memory_Compare </td>
           <td>(</td>
           <td class="paramtype">void const *&#160;</td>
           <td class="paramname"><em>ptr1</em>, </td>
@@ -1985,7 +1914,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -1995,8 +1924,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Compares <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code>: returns the first difference of chars encountered, or zero, if the bytes all match. </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/string/byte/memcmp">https://en.cppreference.com/w/c/string/byte/memcmp</a></li>
 </ul>
@@ -2012,7 +1939,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Memory_Equals </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Memory_Equals </td>
           <td>(</td>
           <td class="paramtype">void const *&#160;</td>
           <td class="paramname"><em>ptr1</em>, </td>
@@ -2026,7 +1953,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2036,8 +1963,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Checks <code>n</code> bytes of memory in <code>ptr1</code> and <code>ptr2</code> for equality. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2053,7 +1978,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_bool Memory_Swap </td>
+          <td class="memname"><a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> Memory_Swap </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr1</em>, </td>
@@ -2067,7 +1992,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>size</em>&#160;</td>
         </tr>
         <tr>
@@ -2077,8 +2002,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Swaps <code>size</code> bytes of memory between <code>ptr1</code> and <code>ptr2</code> </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2094,9 +2017,9 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_size Memory_Print </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> Memory_Print </td>
           <td>(</td>
-          <td class="paramtype">t_char **&#160;</td>
+          <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> **&#160;</td>
           <td class="paramname"><em>dest</em>, </td>
         </tr>
         <tr>
@@ -2108,7 +2031,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2118,8 +2041,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes. </p>
+<p >TODO document this </p>
 
 </div>
 </div>
@@ -2130,7 +2052,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_char * Memory_ToString </td>
+          <td class="memname"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> * Memory_ToString </td>
           <td>(</td>
           <td class="paramtype">void const *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2138,7 +2060,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2148,7 +2070,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="memory_8h.html#a9e3620fcef9743645358e162dd6dad42" title="Prints an area of memory to a string buffer, as space-delimited hexadecimal bytes.">Memory_Print()</a> </dd></dl>
+<p >TODO document this </p>
 
 </div>
 </div>
@@ -2159,7 +2081,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uintmax Memory_GetBits </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> Memory_GetBits </td>
           <td>(</td>
           <td class="paramtype">void *&#160;</td>
           <td class="paramname"><em>ptr</em>, </td>
@@ -2167,13 +2089,13 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>bit</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2183,8 +2105,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a subsection of <code>n</code> bits from the data in <code>ptr</code>, starting at bit index <code>bit</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2196,7 +2116,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A subsection of the data in <code>ptr</code> argument which is <code>n</code> bits long, starting at the given bit index <code>bit</code>, and bit-shifting the resulting bits to the right by <code>bit</code> bits (so as to center the value back to zero). TODO document how this function handles endian-ness ? </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A subsection of the data in <code>ptr</code> argument which is <code>n</code> bits long, starting at the given bit index <code>bit</code>, and bit-shifting the resulting bits to the right by <code>bit</code> bits (so as to center the value back to zero).</dd></dl>
+<p>TODO document how this function handles endian-ness ? </p>
 
 </div>
 </div>
@@ -2215,19 +2136,19 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_size&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td>
           <td class="paramname"><em>bit</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>n</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_uintmax&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td>
           <td class="paramname"><em>value</em>&#160;</td>
         </tr>
         <tr>
@@ -2237,8 +2158,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Set a subsection of <code>n</code> bits to the data in <code>ptr</code>, starting at bit index <code>bit</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2251,7 +2170,8 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A subsection of the data in <code>ptr</code> argument which is <code>n</code> bits long, starting at the given bit index <code>bit</code>, and bit-shifting the resulting bits to the right by <code>bit</code> bits (so as to center the value back to zero). TODO document how this function handles endian-ness ? </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A subsection of the data in <code>ptr</code> argument which is <code>n</code> bits long, starting at the given bit index <code>bit</code>, and bit-shifting the resulting bits to the right by <code>bit</code> bits (so as to center the value back to zero).</dd></dl>
+<p>TODO document how this function handles endian-ness ? </p>
 
 </div>
 </div>
@@ -2262,21 +2182,21 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_uintmax Memory_BitRegion </td>
+          <td class="memname"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a> Memory_BitRegion </td>
           <td>(</td>
-          <td class="paramtype">t_uintmax&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td>
           <td class="paramname"><em>value</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>bit</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">t_u8&#160;</td>
+          <td class="paramtype"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a>&#160;</td>
           <td class="paramname"><em>n</em>&#160;</td>
         </tr>
         <tr>
@@ -2286,8 +2206,6 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get a subsection of <code>n</code> bits from <code>value</code>, starting at bit index <code>bit</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2302,16 +2220,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_u8 Memory_CountBits </td>
+          <td class="memname"><a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> Memory_CountBits </td>
           <td>(</td>
-          <td class="paramtype">t_uintmax&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get the total amount of bits set to <code>1</code> in the given <code>value</code>. </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em></li>
 </ul>
@@ -2326,16 +2242,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s8 Memory_GetMostSignificantBit </td>
+          <td class="memname"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a> Memory_GetMostSignificantBit </td>
           <td>(</td>
-          <td class="paramtype">t_uintmax&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get the bit index of the most signficant <code>1</code>-bit of the given <code>value</code> </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> , similar to the builtin <code>clz()</code> function</li>
 </ul>
@@ -2350,16 +2264,14 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">t_s8 Memory_GetLeastSignificantBit </td>
+          <td class="memname"><a class="el" href="int_8h.html#ad43b97769f85e74c144f4f4de85fc751">t_s8</a> Memory_GetLeastSignificantBit </td>
           <td>(</td>
-          <td class="paramtype">t_uintmax&#160;</td>
+          <td class="paramtype"><a class="el" href="pointer_8h.html#ac0aecea9015652a32969ae48f1e6bd2c">t_uintmax</a>&#160;</td>
           <td class="paramname"><em>value</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Get the bit index of the least signficant <code>1</code>-bit of the given <code>value</code> </p>
 <ul>
 <li><em>This function is not defined in the C ISO standard.</em> , similar to the builtin <code>clz()</code> function</li>
 </ul>
@@ -2372,7 +2284,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_0045f852bf8045b6d5abd9c9eb54a446.html">hdr</a></li><li class="navelem"><a class="el" href="dir_769289bab6d29f7dad64fd8f1acfa1bf.html">libccc</a></li><li class="navelem"><a class="el" href="memory_8h.html">memory.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="memory_8h.html">memory.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

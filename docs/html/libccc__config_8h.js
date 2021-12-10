@@ -9,6 +9,7 @@ var libccc__config_8h =
     [ "LIBCONFIG_UINT_ERROR", "libccc__config_8h.html#a047eb3af34e880e4421fe4fb1c54e553", null ],
     [ "LIBCONFIG_SINT_BITS", "libccc__config_8h.html#a1a9558d537e683386d61b5eea4e0c38d", null ],
     [ "LIBCONFIG_SINT_ERROR", "libccc__config_8h.html#a44ec62e5be0341ca61ead41cd4065b8d", null ],
+    [ "LIBCONFIG_INTEGER_TYPES", "libccc__config_8h.html#a336509566bdbbcc54ff7f5566df7e2b7", null ],
     [ "LIBCONFIG_FIXED_BITS", "libccc__config_8h.html#ad7eedca7c0c8c0a111bedd2ede0e6ea5", null ],
     [ "LIBCONFIG_FIXED_ERROR", "libccc__config_8h.html#a7acefcf022bcd54c8d240707b855074b", null ],
     [ "LIBCONFIG_FIXED_APPROX", "libccc__config_8h.html#ac3559624016adae60fd6f2985c393fe2", null ],

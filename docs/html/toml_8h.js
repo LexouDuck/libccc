@@ -25,8 +25,6 @@ var toml_8h =
     [ "TOML_Concat", "toml_8h.html#ae422f50ed5bfa5e6e38f54f5aa1ba5ba", null ],
     [ "TOML_Concat_Array", "toml_8h.html#adf8670161cbb8f3873cae2bbf84c4623", null ],
     [ "TOML_Concat_Object", "toml_8h.html#a871e26e32eeb5a2918161fe1505a4f34", null ],
-    [ "TOML_GetError", "toml_8h.html#ac9620703d6c094f02e56fdee3f84ede7", null ],
-    [ "TOML_GetErrorMessage", "toml_8h.html#aa3011b0bb0f7885155e5f57db3ee1e8e", null ],
     [ "TOML_CreateNull", "toml_8h.html#a118f90307f2fc7b09704f6520291ae3f", null ],
     [ "TOML_CreateBoolean", "toml_8h.html#ad4c4d1d3da03d6142274a512ed9b5c93", null ],
     [ "TOML_CreateInteger", "toml_8h.html#afd74a716485668ac0be44a4492679711", null ],
@@ -112,7 +110,6 @@ var toml_8h =
     [ "TOML_Replace_InObject_CaseSensitive", "toml_8h.html#a4ed6953b32dd5a126470b80da769fb0f", null ],
     [ "TOML_Replace_InObject_IgnoreCase", "toml_8h.html#a522e8a96e3e4f2e0bd6b172274030a67", null ],
     [ "TOML_Merge", "toml_8h.html#a95bca67e8517d98efbd4222d97552765", null ],
-    [ "s_toml", "toml_8h.html#a62b67084d9e0a61bc39576be3562cea0", null ],
     [ "TOML_Parse_Lenient", "toml_8h.html#a67b73dc2f6f3fdc77f70c56beae0d0e7", null ],
     [ "TOML_FromString_Lenient", "toml_8h.html#a7d29005bae6eda95308d27244a33f089", null ],
     [ "TOML_Parse_Strict", "toml_8h.html#a1db69c5452340824d5d59e13379a0379", null ],
@@ -121,5 +118,6 @@ var toml_8h =
     [ "TOML_Print_Minify", "toml_8h.html#a78a54e02bfdb7a46ebc69b7dd6429f06", null ],
     [ "TOML_ToString_Pretty", "toml_8h.html#a07350b9d309cdc4189320fde528c0a8f", null ],
     [ "TOML_ToString_Minify", "toml_8h.html#a068de8d518331422e3f177195b5f69bb", null ],
-    [ "TOML_Minify", "toml_8h.html#ac25ac27e710b9e144e5a6cd79aa7ce27", null ]
+    [ "TOML_Minify", "toml_8h.html#ac25ac27e710b9e144e5a6cd79aa7ce27", null ],
+    [ "s_toml", "toml_8h.html#afe7d4ef9ea07ff568d9b45b323f6d239", null ]
 ];
