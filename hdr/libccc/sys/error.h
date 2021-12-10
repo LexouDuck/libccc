@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc_error.h                           |    __    __  ___      _____  | ||
+||  libccc/sys/error.h                       |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -9,9 +9,9 @@
 ||                                                                            ||
 \*============================================================================*/
 
-#ifndef __LIBCCC_ERROR_H
-#define __LIBCCC_ERROR_H
-/*!@group{libccc_error,10,libccc/error.h}
+#ifndef __LIBCCC_SYS_ERROR_H
+#define __LIBCCC_SYS_ERROR_H
+/*!@group{libccc_sys_error,10,libccc/sys/error.h}
 **
 **	This header defines the utility functions for error handling
 */
@@ -30,8 +30,8 @@
 
 HEADER_CPP
 
-#ifndef __LIBCCC_ERROR_T
-#define __LIBCCC_ERROR_T
+#ifndef __LIBCCC_SYS_ERROR_T
+#define __LIBCCC_SYS_ERROR_T
 
 /*
 ** ************************************************************************** *|
@@ -54,8 +54,8 @@ typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 
 
 #endif
-#ifndef __LIBCCC_ERROR_F
-#define __LIBCCC_ERROR_F
+#ifndef __LIBCCC_SYS_ERROR_F
+#define __LIBCCC_SYS_ERROR_F
 
 /*
 ** ************************************************************************** *|

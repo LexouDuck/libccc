@@ -55,7 +55,7 @@ HEADER_CPP
 //!@doc The file to include in source files which use `HANDLE_ERROR()`
 //!@{
 #ifndef LIBCONFIG_ERROR_INCLUDE
-#define LIBCONFIG_ERROR_INCLUDE	"libccc/error.h"
+#define LIBCONFIG_ERROR_INCLUDE	"libccc/sys/error.h"
 #endif
 //!@}
 

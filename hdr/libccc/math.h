@@ -19,7 +19,7 @@
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/tgmath}
 */
 
-// TODO add PCGD() and PPCM() functions
+// TODO add PGCD/LCD() and PPCM/SCM() functions
 
 /*
 ** ************************************************************************** *|

@@ -97,7 +97,7 @@ HEADER_CPP
 #undef	__LIBCCC_POINTER_H
 #undef	__LIBCCC_POINTER_F
 
-//#include "libccc/error.h"
+//#include "libccc/sys/error.h"
 //#include "libccc/memory.h"
 //#include "libccc/string.h"
 

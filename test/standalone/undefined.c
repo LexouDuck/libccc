@@ -7,7 +7,6 @@
 #include <libccc/encode/common.h>
 #include <libccc/encode/json.h>
 #include <libccc/encode/toml.h>
-#include <libccc/error.h>
 #include <libccc/fixed.h>
 #include <libccc/float.h>
 #include <libccc/format.h>
@@ -41,6 +40,7 @@
 #include <libccc/string.h>
 #include <libccc/stringarray.h>
 #include <libccc/sys/ansi.h>
+#include <libccc/sys/error.h>
 #include <libccc/sys/io.h>
 #include <libccc/sys/logger.h>
 #include <libccc/sys/program.h>

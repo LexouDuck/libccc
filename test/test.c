@@ -4,8 +4,8 @@
 #include <math.h>
 
 #include "libccc.h"
-#include "libccc/error.h"
 #include "libccc/math.h"
+#include "libccc/sys/error.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
