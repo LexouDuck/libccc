@@ -82,5 +82,5 @@ var searchData=
   ['logger_5finit_79',['Logger_Init',['../logger_8h.html#a47c4a4313e7a399114c24171076f8785',1,'logger.h']]],
   ['logger_5flogsettings_80',['Logger_LogSettings',['../logger_8h.html#a5fadee1691617b5fdedb74f325a59cd9',1,'logger.h']]],
   ['logone_5ffunction_5fcontent_81',['LOGONE_FUNCTION_CONTENT',['../logger_8h.html#a63c3de50d77deebd22a9fd8b59fc4a43',1,'logger.h']]],
-  ['lum_82',['lum',['../color_8h.html#ac8fc8a99de5f31d8884cb636db576e35',1,'ahsl']]]
+  ['lum_82',['lum',['../image_2color_8h.html#ac8fc8a99de5f31d8884cb636db576e35',1,'ahsl']]]
 ];

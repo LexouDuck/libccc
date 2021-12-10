@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['r_0',['r',['../color_8h.html#a4cc01ac1ef1a1797f23c6f494764dbb2',1,'argb']]],
+  ['r_0',['r',['../image_2color_8h.html#a4cc01ac1ef1a1797f23c6f494764dbb2',1,'argb']]],
   ['random_2eh_1',['random.h',['../random_8h.html',1,'']]],
   ['random_5fdelete_2',['Random_Delete',['../random_8h.html#a6a95e8fbbbe0a10fbab208a53bddb5f8',1,'random.h']]],
   ['random_5ffixed_3',['Random_Fixed',['../random_8h.html#a463de940a7527dbfda9b2bdf44db2cd0',1,'random.h']]],

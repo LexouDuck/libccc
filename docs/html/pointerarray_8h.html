@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.39</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('pointerarray_8h.html',''); initResizab
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">pointerarray.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -108,6 +111,16 @@ $(document).ready(function(){initNavTree('pointerarray_8h.html',''); initResizab
 </div>
 <p><a href="pointerarray_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ad14a26f9de8f356e95e53795cf67344d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ad14a26f9de8f356e95e53795cf67344d">c_ptrarrfdel</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a></td></tr>
+<tr class="separator:ad14a26f9de8f356e95e53795cf67344d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a> (void ***ptrarr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *ptr))</td></tr>
+<tr class="separator:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
@@ -168,12 +181,6 @@ Variables</h2></td></tr>
 <tr class="separator:a3deec829f2088901886774d610e5a3dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a80ebc93739a09314fcc6d8e47e40e0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a80ebc93739a09314fcc6d8e47e40e0d6">PointerArray_Delete</a> (void ***ptrarr)</td></tr>
 <tr class="separator:a80ebc93739a09314fcc6d8e47e40e0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Deletes the array inside the given address <code>ptrarr</code> (frees and sets to NULL), calling the given <code>delete</code> function for each item </p>
-</td></tr>
-<tr class="memitem:ad14a26f9de8f356e95e53795cf67344d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ad14a26f9de8f356e95e53795cf67344d">c_ptrarrfdel</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a></td></tr>
-<tr class="separator:ad14a26f9de8f356e95e53795cf67344d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a> (void ***ptrarr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *ptr))</td></tr>
-<tr class="separator:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Appends the given item <code>item</code> to the end of the given array <code>dest</code>. </p>
 </td></tr>
 <tr class="memitem:a49f37b5529a35507c9e6a0ac73cf8971"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a49f37b5529a35507c9e6a0ac73cf8971">c_ptrarradd</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a0012e6940999436f091526e3ba147d11">PointerArray_Add</a></td></tr>

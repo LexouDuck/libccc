@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['a_0',['a',['../color_8h.html#ab6e656aa673e0332a39a71a69a41664f',1,'argb::a()'],['../color_8h.html#ab6e656aa673e0332a39a71a69a41664f',1,'ahsl::a()']]],
-  ['abs_1',['ABS',['../math_8h.html#adefab4344518e9d35a80d87c20c0fa48',1,'math.h']]],
+  ['a_0',['a',['../image_2color_8h.html#ab6e656aa673e0332a39a71a69a41664f',1,'argb::a()'],['../image_2color_8h.html#ab6e656aa673e0332a39a71a69a41664f',1,'ahsl::a()']]],
+  ['abs_1',['ABS',['../math_8h.html#adefab4344518e9d35a80d87c20c0fa48',1,'ABS():&#160;math.h'],['../math_2math_8h.html#adefab4344518e9d35a80d87c20c0fa48',1,'ABS():&#160;math.h']]],
   ['accessmode_5fgroup_5fr_2',['ACCESSMODE_GROUP_R',['../io_8h.html#a302a0781fb89ad9e0d4fb7dd5c1d4f2e',1,'io.h']]],
   ['accessmode_5fgroup_5frwx_3',['ACCESSMODE_GROUP_RWX',['../io_8h.html#ae9986470766bc9713ebcc6a5492bcb84',1,'io.h']]],
   ['accessmode_5fgroup_5fw_4',['ACCESSMODE_GROUP_W',['../io_8h.html#ab9bb07a792adb4c8c255d6939bedf684',1,'io.h']]],
@@ -14,13 +14,13 @@ var searchData=
   ['accessmode_5fuser_5frwx_11',['ACCESSMODE_USER_RWX',['../io_8h.html#a1a86278af7e6a9c48e34e35b0e47f522',1,'io.h']]],
   ['accessmode_5fuser_5fw_12',['ACCESSMODE_USER_W',['../io_8h.html#a32862b2f3ae46fc3ca35cab3d5ab6581',1,'io.h']]],
   ['accessmode_5fuser_5fx_13',['ACCESSMODE_USER_X',['../io_8h.html#accdc26671acd720f980d79a1798a0b9d',1,'io.h']]],
-  ['ahsl_14',['ahsl',['../color_8h.html#structahsl',1,'']]],
+  ['ahsl_14',['ahsl',['../image_2color_8h.html#structahsl',1,'']]],
   ['algebra_2eh_15',['algebra.h',['../algebra_8h.html',1,'']]],
   ['and_16',['and',['../bool_8h.html#aa3d7d535cf450b91b9cb6d9cee2edbb9',1,'bool.h']]],
   ['ansi_17',['ANSI',['../ansi_8h.html#ad874c1142f1cec4d1e4a09510081ef66',1,'ansi.h']]],
   ['ansi_2eh_18',['ansi.h',['../ansi_8h.html',1,'']]],
   ['append_19',['append',['../logger_8h.html#ac9acc76083cb277cfe30331fcf136b96',1,'logger']]],
-  ['argb_20',['argb',['../color_8h.html#structargb',1,'']]],
+  ['argb_20',['argb',['../image_2color_8h.html#structargb',1,'']]],
   ['array_21',['array',['../array_8h.html#a91863a6e23c98532d3d86e30307dfbf9',1,'array.h']]],
   ['array_2eh_22',['array.h',['../array_8h.html',1,'']]]
 ];

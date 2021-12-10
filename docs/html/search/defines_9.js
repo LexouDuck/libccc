@@ -78,5 +78,5 @@ var searchData=
   ['is_5fnotanumber_75',['IS_NOTANUMBER',['../float_8h.html#a84fb239233422462199912711ed0ded7',1,'float.h']]],
   ['isinf_76',['isinf',['../float_8h.html#afe0ec0ba0f3b1bdf1b739a01977e0de5',1,'float.h']]],
   ['isnan_77',['isnan',['../float_8h.html#aed3d93c4bc16739191c85a44c8a03cb5',1,'float.h']]],
-  ['isneg_78',['ISNEG',['../math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'math.h']]]
+  ['isneg_78',['ISNEG',['../math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'ISNEG():&#160;math.h'],['../math_2math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'ISNEG():&#160;math.h']]]
 ];

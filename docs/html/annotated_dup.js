@@ -1,7 +1,7 @@
 var annotated_dup =
 [
-    [ "ahsl", "color_8h.html#structahsl", "color_8h_structahsl" ],
-    [ "argb", "color_8h.html#structargb", "color_8h_structargb" ],
+    [ "ahsl", "image_2color_8h.html#structahsl", "image_2color_8h_structahsl" ],
+    [ "argb", "image_2color_8h.html#structargb", "image_2color_8h_structargb" ],
     [ "box1d", "interval_8h.html#structbox1d", "interval_8h_structbox1d" ],
     [ "box2d", "interval_8h.html#structbox2d", "interval_8h_structbox2d" ],
     [ "box3d", "interval_8h.html#structbox3d", "interval_8h_structbox3d" ],

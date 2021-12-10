@@ -110,6 +110,6 @@ var searchData=
   ['is_5fnotanumber_107',['IS_NOTANUMBER',['../float_8h.html#a84fb239233422462199912711ed0ded7',1,'float.h']]],
   ['isinf_108',['isinf',['../float_8h.html#afe0ec0ba0f3b1bdf1b739a01977e0de5',1,'float.h']]],
   ['isnan_109',['isnan',['../float_8h.html#aed3d93c4bc16739191c85a44c8a03cb5',1,'float.h']]],
-  ['isneg_110',['ISNEG',['../math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'math.h']]],
+  ['isneg_110',['ISNEG',['../math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'ISNEG():&#160;math.h'],['../math_2math_8h.html#a2d657e7d0f2f750a9c6444549644e299',1,'ISNEG():&#160;math.h']]],
   ['item_111',['item',['../common_8h.html#a9df4a117145bebe73d5c1d5305576205',1,'kvt_print::item()'],['../array_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e',1,'item():&#160;array.h'],['../list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e',1,'item():&#160;list.h']]]
 ];

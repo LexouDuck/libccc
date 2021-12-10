@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.2"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>libccc: libccc/math/math.h File Reference</title>
+<title>libccc: libccc/math.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.39</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -121,29 +121,29 @@ Macros</h2></td></tr>
 <tr class="separator:ad7098bacdaeacb27cdf1bc16f1d95a4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a40ba4dff35cf7ac35cdb6e4a511267b7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(BITS,  NAME,  CNAME,  TYPE)</td></tr>
 <tr class="separator:a40ba4dff35cf7ac35cdb6e4a511267b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4ad220d31bc2882f0d77eb0c34a5934e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4ad220d31bc2882f0d77eb0c34a5934e">MATH_DEFINE_FUNCTION_F32</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,32, NAME, CNAME,f)</td></tr>
+<tr class="memitem:a4ad220d31bc2882f0d77eb0c34a5934e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4ad220d31bc2882f0d77eb0c34a5934e">MATH_DEFINE_FUNCTION_F32</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,32, NAME, CNAME,f)</td></tr>
 <tr class="separator:a4ad220d31bc2882f0d77eb0c34a5934e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83abc4fe7c5090b7682218b8786b480d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a83abc4fe7c5090b7682218b8786b480d">MATH_DEFINE_REALFUNCTION_F32</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	32, NAME, CNAME,f)</td></tr>
+<tr class="memitem:a83abc4fe7c5090b7682218b8786b480d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a83abc4fe7c5090b7682218b8786b480d">MATH_DEFINE_REALFUNCTION_F32</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	32, NAME, CNAME,f)</td></tr>
 <tr class="separator:a83abc4fe7c5090b7682218b8786b480d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d6fd71a8ef8f18823e9e77af70c288"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6d6fd71a8ef8f18823e9e77af70c288">MATH_DEFINE_REALOPERATOR_F32</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	32, NAME, CNAME,f)</td></tr>
+<tr class="memitem:ac6d6fd71a8ef8f18823e9e77af70c288"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6d6fd71a8ef8f18823e9e77af70c288">MATH_DEFINE_REALOPERATOR_F32</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	32, NAME, CNAME,f)</td></tr>
 <tr class="separator:ac6d6fd71a8ef8f18823e9e77af70c288"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7e54cce22618dfa746ec0b54345a6dc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7e54cce22618dfa746ec0b54345a6dc3">MATH_DEFINE_FUNCTION_F64</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,64, NAME, CNAME,)</td></tr>
+<tr class="memitem:a7e54cce22618dfa746ec0b54345a6dc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7e54cce22618dfa746ec0b54345a6dc3">MATH_DEFINE_FUNCTION_F64</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,64, NAME, CNAME,)</td></tr>
 <tr class="separator:a7e54cce22618dfa746ec0b54345a6dc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a55a4f3dd110044cd8e981bc941e8bbc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a55a4f3dd110044cd8e981bc941e8bbc3">MATH_DEFINE_REALFUNCTION_F64</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	64, NAME, CNAME,)</td></tr>
+<tr class="memitem:a55a4f3dd110044cd8e981bc941e8bbc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a55a4f3dd110044cd8e981bc941e8bbc3">MATH_DEFINE_REALFUNCTION_F64</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	64, NAME, CNAME,)</td></tr>
 <tr class="separator:a55a4f3dd110044cd8e981bc941e8bbc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb4e14dad0b258e41f20151d272789a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adb4e14dad0b258e41f20151d272789a1">MATH_DEFINE_REALOPERATOR_F64</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	64, NAME, CNAME,)</td></tr>
+<tr class="memitem:adb4e14dad0b258e41f20151d272789a1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adb4e14dad0b258e41f20151d272789a1">MATH_DEFINE_REALOPERATOR_F64</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	64, NAME, CNAME,)</td></tr>
 <tr class="separator:adb4e14dad0b258e41f20151d272789a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab351bf38b06962d9e405b9ce7e3e7660"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab351bf38b06962d9e405b9ce7e3e7660">MATH_DEFINE_FUNCTION_F80</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,80, NAME, CNAME,l)</td></tr>
+<tr class="memitem:ab351bf38b06962d9e405b9ce7e3e7660"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab351bf38b06962d9e405b9ce7e3e7660">MATH_DEFINE_FUNCTION_F80</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,80, NAME, CNAME,l)</td></tr>
 <tr class="separator:ab351bf38b06962d9e405b9ce7e3e7660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d24f92d3cd04d693d1e628f23384d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac2d24f92d3cd04d693d1e628f23384d8">MATH_DEFINE_REALFUNCTION_F80</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	80, NAME, CNAME,l)</td></tr>
+<tr class="memitem:ac2d24f92d3cd04d693d1e628f23384d8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac2d24f92d3cd04d693d1e628f23384d8">MATH_DEFINE_REALFUNCTION_F80</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	80, NAME, CNAME,l)</td></tr>
 <tr class="separator:ac2d24f92d3cd04d693d1e628f23384d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a963bd0c5e92b956de41506b874c5f9cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a963bd0c5e92b956de41506b874c5f9cb">MATH_DEFINE_REALOPERATOR_F80</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	80, NAME, CNAME,l)</td></tr>
+<tr class="memitem:a963bd0c5e92b956de41506b874c5f9cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a963bd0c5e92b956de41506b874c5f9cb">MATH_DEFINE_REALOPERATOR_F80</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	80, NAME, CNAME,l)</td></tr>
 <tr class="separator:a963bd0c5e92b956de41506b874c5f9cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50195d60b59de528854562cb5ca281c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a50195d60b59de528854562cb5ca281c6">MATH_DEFINE_FUNCTION_F128</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,128,NAME, CNAME,q)</td></tr>
+<tr class="memitem:a50195d60b59de528854562cb5ca281c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a50195d60b59de528854562cb5ca281c6">MATH_DEFINE_FUNCTION_F128</a>(RETURN,  NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,128,NAME, CNAME,q)</td></tr>
 <tr class="separator:a50195d60b59de528854562cb5ca281c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4ddb8fd093e29001c973426f6d03dbd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4ddb8fd093e29001c973426f6d03dbd">MATH_DEFINE_REALFUNCTION_F128</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	128,NAME, CNAME,q)</td></tr>
+<tr class="memitem:ac4ddb8fd093e29001c973426f6d03dbd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4ddb8fd093e29001c973426f6d03dbd">MATH_DEFINE_REALFUNCTION_F128</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	128,NAME, CNAME,q)</td></tr>
 <tr class="separator:ac4ddb8fd093e29001c973426f6d03dbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a7d1bab9dc923bcc0c6b6249dc32093"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7a7d1bab9dc923bcc0c6b6249dc32093">MATH_DEFINE_REALOPERATOR_F128</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	128,NAME, CNAME,q)</td></tr>
+<tr class="memitem:a7a7d1bab9dc923bcc0c6b6249dc32093"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7a7d1bab9dc923bcc0c6b6249dc32093">MATH_DEFINE_REALOPERATOR_F128</a>( NAME,  CNAME)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	128,NAME, CNAME,q)</td></tr>
 <tr class="separator:a7a7d1bab9dc923bcc0c6b6249dc32093"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a15ce5bb45fbd3c1ec09f0babee8c01b0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a15ce5bb45fbd3c1ec09f0babee8c01b0">MATH_DECL_FUNCTION</a>(RETURN,  NAME,  CNAME)</td></tr>
 <tr class="separator:a15ce5bb45fbd3c1ec09f0babee8c01b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -211,325 +211,325 @@ Macros</h2></td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code>, rounded to the nearest integer </p>
 </div></td></tr>
-<tr class="memitem:aa72cbc653006fad87b3bab03e0fc85fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Round, X)</td></tr>
+<tr class="memitem:aa72cbc653006fad87b3bab03e0fc85fc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Round, X)</td></tr>
 <tr class="separator:aa72cbc653006fad87b3bab03e0fc85fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7069049667d98c20fe3ecae1e202b695"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7069049667d98c20fe3ecae1e202b695">c_round</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a></td></tr>
+<tr class="memitem:a7069049667d98c20fe3ecae1e202b695"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7069049667d98c20fe3ecae1e202b695">c_round</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a></td></tr>
 <tr class="separator:a7069049667d98c20fe3ecae1e202b695"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code>, rounded towards 0 </p>
 </div></td></tr>
-<tr class="memitem:ab3232e80adb380b9be6d1447b71cf82f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Truncate, X)</td></tr>
+<tr class="memitem:ab3232e80adb380b9be6d1447b71cf82f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Truncate, X)</td></tr>
 <tr class="separator:ab3232e80adb380b9be6d1447b71cf82f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a23ecdd8d3e74c0769b158d8e66024de9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a23ecdd8d3e74c0769b158d8e66024de9">c_trunc</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td></tr>
+<tr class="memitem:a23ecdd8d3e74c0769b158d8e66024de9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a23ecdd8d3e74c0769b158d8e66024de9">c_trunc</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td></tr>
 <tr class="separator:a23ecdd8d3e74c0769b158d8e66024de9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a976cbc1ba65415e5c392446be48d4e8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a976cbc1ba65415e5c392446be48d4e8d">Math_Truncate</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td></tr>
+<tr class="memitem:a976cbc1ba65415e5c392446be48d4e8d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a976cbc1ba65415e5c392446be48d4e8d">Math_Truncate</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td></tr>
 <tr class="separator:a976cbc1ba65415e5c392446be48d4e8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code>, rounded to the superior integer </p>
 </div></td></tr>
-<tr class="memitem:a20c8df10342ad480da2a17e4571f6336"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Floor, X)</td></tr>
+<tr class="memitem:a20c8df10342ad480da2a17e4571f6336"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Floor, X)</td></tr>
 <tr class="separator:a20c8df10342ad480da2a17e4571f6336"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a48a1266c985cadc24910072812554415"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a48a1266c985cadc24910072812554415">c_floor</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a></td></tr>
+<tr class="memitem:a48a1266c985cadc24910072812554415"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a48a1266c985cadc24910072812554415">c_floor</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a></td></tr>
 <tr class="separator:a48a1266c985cadc24910072812554415"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code>, rounded to the inferior integer </p>
 </div></td></tr>
-<tr class="memitem:afb24ba3038912b97fb01f979416c0fe5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ceiling, X)</td></tr>
+<tr class="memitem:afb24ba3038912b97fb01f979416c0fe5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ceiling, X)</td></tr>
 <tr class="separator:afb24ba3038912b97fb01f979416c0fe5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5e5b23cc171473b3a2f49357f3e544dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a5e5b23cc171473b3a2f49357f3e544dc">c_ceil</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td></tr>
+<tr class="memitem:a5e5b23cc171473b3a2f49357f3e544dc"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a5e5b23cc171473b3a2f49357f3e544dc">c_ceil</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td></tr>
 <tr class="separator:a5e5b23cc171473b3a2f49357f3e544dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c717a00218d5c6846b567bb184731a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8c717a00218d5c6846b567bb184731a4">Math_Ceiling</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td></tr>
+<tr class="memitem:a8c717a00218d5c6846b567bb184731a4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8c717a00218d5c6846b567bb184731a4">Math_Ceiling</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td></tr>
 <tr class="separator:a8c717a00218d5c6846b567bb184731a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the addition result of <code>x</code> and <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:aaf4e551f813356323d69ede11d01fbcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Add, X, Y)</td></tr>
+<tr class="memitem:aaf4e551f813356323d69ede11d01fbcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Add, X, Y)</td></tr>
 <tr class="separator:aaf4e551f813356323d69ede11d01fbcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac451a56e431bdec003beefb65657bd8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac451a56e431bdec003beefb65657bd8e">c_add</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a></td></tr>
+<tr class="memitem:ac451a56e431bdec003beefb65657bd8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac451a56e431bdec003beefb65657bd8e">c_add</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a></td></tr>
 <tr class="separator:ac451a56e431bdec003beefb65657bd8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the subtraction result of <code>x</code> by <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:ab08223d2f6a5d4b137f68b308bc5d860"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Sub, X, Y)</td></tr>
+<tr class="memitem:ab08223d2f6a5d4b137f68b308bc5d860"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Sub, X, Y)</td></tr>
 <tr class="separator:ab08223d2f6a5d4b137f68b308bc5d860"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a77de4417450c301d1c4b6b0373498910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a77de4417450c301d1c4b6b0373498910">c_sub</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td></tr>
+<tr class="memitem:a77de4417450c301d1c4b6b0373498910"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a77de4417450c301d1c4b6b0373498910">c_sub</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td></tr>
 <tr class="separator:a77de4417450c301d1c4b6b0373498910"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a19ac6924bb67ebf55cb2fdcce1b355c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a19ac6924bb67ebf55cb2fdcce1b355c6">Math_Subtract</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td></tr>
+<tr class="memitem:a19ac6924bb67ebf55cb2fdcce1b355c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a19ac6924bb67ebf55cb2fdcce1b355c6">Math_Subtract</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td></tr>
 <tr class="separator:a19ac6924bb67ebf55cb2fdcce1b355c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the multiplication result of <code>x</code> and <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:a726ce9449da9989c4ec2dc2eff68dda4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mul, X, Y)</td></tr>
+<tr class="memitem:a726ce9449da9989c4ec2dc2eff68dda4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mul, X, Y)</td></tr>
 <tr class="separator:a726ce9449da9989c4ec2dc2eff68dda4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4834cc7bd84b5badfeb31fb826346cf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4834cc7bd84b5badfeb31fb826346cf1">c_mul</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td></tr>
+<tr class="memitem:a4834cc7bd84b5badfeb31fb826346cf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4834cc7bd84b5badfeb31fb826346cf1">c_mul</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td></tr>
 <tr class="separator:a4834cc7bd84b5badfeb31fb826346cf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7fb24faaf2879f1bc26fe1c41aea9a83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7fb24faaf2879f1bc26fe1c41aea9a83">Math_Multiply</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td></tr>
+<tr class="memitem:a7fb24faaf2879f1bc26fe1c41aea9a83"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7fb24faaf2879f1bc26fe1c41aea9a83">Math_Multiply</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td></tr>
 <tr class="separator:a7fb24faaf2879f1bc26fe1c41aea9a83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the quotient of euclidian division of <code>x</code> by <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:a7f6bd9ca3932d3f4a8df8dc726771e41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Div, X, Y)</td></tr>
+<tr class="memitem:a7f6bd9ca3932d3f4a8df8dc726771e41"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Div, X, Y)</td></tr>
 <tr class="separator:a7f6bd9ca3932d3f4a8df8dc726771e41"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d84d069add851cbd300f8dcc8707d9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2d84d069add851cbd300f8dcc8707d9e">c_div</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td></tr>
+<tr class="memitem:a2d84d069add851cbd300f8dcc8707d9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2d84d069add851cbd300f8dcc8707d9e">c_div</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td></tr>
 <tr class="separator:a2d84d069add851cbd300f8dcc8707d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa3ff6a985446fedc349e323d38dcec1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa3ff6a985446fedc349e323d38dcec1e">Math_Divide</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td></tr>
+<tr class="memitem:aa3ff6a985446fedc349e323d38dcec1e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa3ff6a985446fedc349e323d38dcec1e">Math_Divide</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td></tr>
 <tr class="separator:aa3ff6a985446fedc349e323d38dcec1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the remainder of euclidian division of <code>x</code> by <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:ac4a5ee0927b28d50ad46627d11c01031"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mod, X, Y)</td></tr>
+<tr class="memitem:ac4a5ee0927b28d50ad46627d11c01031"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mod, X, Y)</td></tr>
 <tr class="separator:ac4a5ee0927b28d50ad46627d11c01031"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa99cf6445325c8be2de8721f3b6be081"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa99cf6445325c8be2de8721f3b6be081">c_mod</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td></tr>
+<tr class="memitem:aa99cf6445325c8be2de8721f3b6be081"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa99cf6445325c8be2de8721f3b6be081">c_mod</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td></tr>
 <tr class="separator:aa99cf6445325c8be2de8721f3b6be081"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acf9a3dd280a41b845d336654d894751c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#acf9a3dd280a41b845d336654d894751c">Math_Modulo</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td></tr>
+<tr class="memitem:acf9a3dd280a41b845d336654d894751c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#acf9a3dd280a41b845d336654d894751c">Math_Modulo</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td></tr>
 <tr class="separator:acf9a3dd280a41b845d336654d894751c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the absolute value of <code>x</code> (makes <code>x</code> positive) </p>
 </div></td></tr>
-<tr class="memitem:afcccd28251b61b4ed3e1385d8b09d465"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Abs, X)</td></tr>
+<tr class="memitem:afcccd28251b61b4ed3e1385d8b09d465"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Abs, X)</td></tr>
 <tr class="separator:afcccd28251b61b4ed3e1385d8b09d465"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4fa8be94e9acad3e9c520f969077b094"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4fa8be94e9acad3e9c520f969077b094">c_abs</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td></tr>
+<tr class="memitem:a4fa8be94e9acad3e9c520f969077b094"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4fa8be94e9acad3e9c520f969077b094">c_abs</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td></tr>
 <tr class="separator:a4fa8be94e9acad3e9c520f969077b094"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4a032a711294c646d53ac7f4351331b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4a032a711294c646d53ac7f4351331b6">Math_AbsoluteValue</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td></tr>
+<tr class="memitem:a4a032a711294c646d53ac7f4351331b6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4a032a711294c646d53ac7f4351331b6">Math_AbsoluteValue</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td></tr>
 <tr class="separator:a4a032a711294c646d53ac7f4351331b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code> to the power of <code>y</code> </p>
 </div></td></tr>
-<tr class="memitem:adc74e835a3bb01938f69669f9985e7e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Pow, X, Y)</td></tr>
+<tr class="memitem:adc74e835a3bb01938f69669f9985e7e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Pow, X, Y)</td></tr>
 <tr class="separator:adc74e835a3bb01938f69669f9985e7e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac202fbc0dc7178f4559f91c0c138d5af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac202fbc0dc7178f4559f91c0c138d5af">c_pow</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td></tr>
+<tr class="memitem:ac202fbc0dc7178f4559f91c0c138d5af"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac202fbc0dc7178f4559f91c0c138d5af">c_pow</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td></tr>
 <tr class="separator:ac202fbc0dc7178f4559f91c0c138d5af"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e97f6779a34afda791afefea59314d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3e97f6779a34afda791afefea59314d0">Math_Power</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td></tr>
+<tr class="memitem:a3e97f6779a34afda791afefea59314d0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3e97f6779a34afda791afefea59314d0">Math_Power</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td></tr>
 <tr class="separator:a3e97f6779a34afda791afefea59314d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the value of <code>x</code> to the power of <code>n</code> (integer) </p>
 </div></td></tr>
-<tr class="memitem:a90a1c1494cd87f8df53a43bc5d07ec68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a>(X,  N)&#160;&#160;&#160;;	<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(IntPow, X, N)</td></tr>
+<tr class="memitem:a90a1c1494cd87f8df53a43bc5d07ec68"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a>(X,  N)&#160;&#160;&#160;;	<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(IntPow, X, N)</td></tr>
 <tr class="separator:a90a1c1494cd87f8df53a43bc5d07ec68"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefbaf75d5ec721e044d34cde795b0db1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aefbaf75d5ec721e044d34cde795b0db1">c_intpow</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td></tr>
+<tr class="memitem:aefbaf75d5ec721e044d34cde795b0db1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aefbaf75d5ec721e044d34cde795b0db1">c_intpow</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td></tr>
 <tr class="separator:aefbaf75d5ec721e044d34cde795b0db1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a21ea08dfa69382132ee85c44be90087d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a21ea08dfa69382132ee85c44be90087d">Math_IntPower</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td></tr>
+<tr class="memitem:a21ea08dfa69382132ee85c44be90087d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a21ea08dfa69382132ee85c44be90087d">Math_IntPower</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td></tr>
 <tr class="separator:a21ea08dfa69382132ee85c44be90087d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the square root of <code>x</code> (inverse of power of 2) </p>
 </div></td></tr>
-<tr class="memitem:aee3e7e54eba5dc2f056e1b5390fb04b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root2, X)</td></tr>
+<tr class="memitem:aee3e7e54eba5dc2f056e1b5390fb04b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root2, X)</td></tr>
 <tr class="separator:aee3e7e54eba5dc2f056e1b5390fb04b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2e7d4980398cb3cfa11ef1e9677d5835"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2e7d4980398cb3cfa11ef1e9677d5835">c_sqrt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
+<tr class="memitem:a2e7d4980398cb3cfa11ef1e9677d5835"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2e7d4980398cb3cfa11ef1e9677d5835">c_sqrt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
 <tr class="separator:a2e7d4980398cb3cfa11ef1e9677d5835"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc7bf05794e77c7173890250cdce4795"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#abc7bf05794e77c7173890250cdce4795">Math_SqRt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
+<tr class="memitem:abc7bf05794e77c7173890250cdce4795"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#abc7bf05794e77c7173890250cdce4795">Math_SqRt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
 <tr class="separator:abc7bf05794e77c7173890250cdce4795"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adec5e2dd849f7b7648628ad2cd78319f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adec5e2dd849f7b7648628ad2cd78319f">Math_SquareRoot</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
+<tr class="memitem:adec5e2dd849f7b7648628ad2cd78319f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adec5e2dd849f7b7648628ad2cd78319f">Math_SquareRoot</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td></tr>
 <tr class="separator:adec5e2dd849f7b7648628ad2cd78319f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the cubic root of <code>x</code> (inverse of power of 3) </p>
 </div></td></tr>
-<tr class="memitem:a79019aa3a0dd260b271f72f148967f09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root3, X)</td></tr>
+<tr class="memitem:a79019aa3a0dd260b271f72f148967f09"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root3, X)</td></tr>
 <tr class="separator:a79019aa3a0dd260b271f72f148967f09"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaa61dbab7fea4ebe148cfae39393d5c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aaa61dbab7fea4ebe148cfae39393d5c2">c_cbrt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
+<tr class="memitem:aaa61dbab7fea4ebe148cfae39393d5c2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aaa61dbab7fea4ebe148cfae39393d5c2">c_cbrt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
 <tr class="separator:aaa61dbab7fea4ebe148cfae39393d5c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a021c4d99cd1422be2735ced2df95a283"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a021c4d99cd1422be2735ced2df95a283">Math_CbRt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
+<tr class="memitem:a021c4d99cd1422be2735ced2df95a283"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a021c4d99cd1422be2735ced2df95a283">Math_CbRt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
 <tr class="separator:a021c4d99cd1422be2735ced2df95a283"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6870fa044bb9b9a183e748273ea6de4b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6870fa044bb9b9a183e748273ea6de4b">Math_CubeRoot</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
+<tr class="memitem:a6870fa044bb9b9a183e748273ea6de4b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6870fa044bb9b9a183e748273ea6de4b">Math_CubeRoot</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td></tr>
 <tr class="separator:a6870fa044bb9b9a183e748273ea6de4b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the power-n-ic root of <code>x</code> (inverse of power of <code>n</code>) </p>
 </div></td></tr>
-<tr class="memitem:a91480a88dc895ea3900d08062d98e9c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(RootN, X, Y)</td></tr>
+<tr class="memitem:a91480a88dc895ea3900d08062d98e9c6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(RootN, X, Y)</td></tr>
 <tr class="separator:a91480a88dc895ea3900d08062d98e9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa66df0b1739e3618b0ad393051099ab5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa66df0b1739e3618b0ad393051099ab5">c_nrt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
+<tr class="memitem:aa66df0b1739e3618b0ad393051099ab5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa66df0b1739e3618b0ad393051099ab5">c_nrt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
 <tr class="separator:aa66df0b1739e3618b0ad393051099ab5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac2d365dfb124bbee8175f37cdcb7708f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac2d365dfb124bbee8175f37cdcb7708f">Math_NRt</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
+<tr class="memitem:ac2d365dfb124bbee8175f37cdcb7708f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac2d365dfb124bbee8175f37cdcb7708f">Math_NRt</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
 <tr class="separator:ac2d365dfb124bbee8175f37cdcb7708f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cedaf6adc4b66f497b0e9d0fdaa2bc0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9cedaf6adc4b66f497b0e9d0fdaa2bc0">Math_NRoot</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
+<tr class="memitem:a9cedaf6adc4b66f497b0e9d0fdaa2bc0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9cedaf6adc4b66f497b0e9d0fdaa2bc0">Math_NRoot</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td></tr>
 <tr class="separator:a9cedaf6adc4b66f497b0e9d0fdaa2bc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the exponential function's value for <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:a7f68228a8f46b62840c4c807078535e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Exp, X)</td></tr>
+<tr class="memitem:a7f68228a8f46b62840c4c807078535e6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Exp, X)</td></tr>
 <tr class="separator:a7f68228a8f46b62840c4c807078535e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b58dfa6ac930cca58b4ab013db96001"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4b58dfa6ac930cca58b4ab013db96001">c_exp</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td></tr>
+<tr class="memitem:a4b58dfa6ac930cca58b4ab013db96001"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4b58dfa6ac930cca58b4ab013db96001">c_exp</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td></tr>
 <tr class="separator:a4b58dfa6ac930cca58b4ab013db96001"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8bdf486f6a50d06ee887b28cf3d35a2f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8bdf486f6a50d06ee887b28cf3d35a2f">Math_Exponential</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td></tr>
+<tr class="memitem:a8bdf486f6a50d06ee887b28cf3d35a2f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a8bdf486f6a50d06ee887b28cf3d35a2f">Math_Exponential</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td></tr>
 <tr class="separator:a8bdf486f6a50d06ee887b28cf3d35a2f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the natural logarithm of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:a16c639616f40a7565aa01d195caff6f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ln, X)</td></tr>
+<tr class="memitem:a16c639616f40a7565aa01d195caff6f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ln, X)</td></tr>
 <tr class="separator:a16c639616f40a7565aa01d195caff6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acc74a24ab6f03b00b858d0136c217e53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#acc74a24ab6f03b00b858d0136c217e53">c_ln</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td></tr>
+<tr class="memitem:acc74a24ab6f03b00b858d0136c217e53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#acc74a24ab6f03b00b858d0136c217e53">c_ln</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td></tr>
 <tr class="separator:acc74a24ab6f03b00b858d0136c217e53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada0d972aa265570cae4feacfbee53a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ada0d972aa265570cae4feacfbee53a22">Math_NaturalLogarithm</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td></tr>
+<tr class="memitem:ada0d972aa265570cae4feacfbee53a22"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ada0d972aa265570cae4feacfbee53a22">Math_NaturalLogarithm</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td></tr>
 <tr class="separator:ada0d972aa265570cae4feacfbee53a22"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the binary (base-2) logarithm of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:a72d3cfc57986b9279efb32f9250bcbf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log2, X)</td></tr>
+<tr class="memitem:a72d3cfc57986b9279efb32f9250bcbf1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log2, X)</td></tr>
 <tr class="separator:a72d3cfc57986b9279efb32f9250bcbf1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a035ebcff0df0ef7c0772cc3ab7e32f0a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a035ebcff0df0ef7c0772cc3ab7e32f0a">c_lg</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
+<tr class="memitem:a035ebcff0df0ef7c0772cc3ab7e32f0a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a035ebcff0df0ef7c0772cc3ab7e32f0a">c_lg</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
 <tr class="separator:a035ebcff0df0ef7c0772cc3ab7e32f0a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bb6e4ecbfe0a8761c5e6eda116ee56a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6bb6e4ecbfe0a8761c5e6eda116ee56a">c_log2</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
+<tr class="memitem:a6bb6e4ecbfe0a8761c5e6eda116ee56a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6bb6e4ecbfe0a8761c5e6eda116ee56a">c_log2</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
 <tr class="separator:a6bb6e4ecbfe0a8761c5e6eda116ee56a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9cac4e3384bdb509ab288b53880d50ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9cac4e3384bdb509ab288b53880d50ff">Math_Logarithm_Base2</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
+<tr class="memitem:a9cac4e3384bdb509ab288b53880d50ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9cac4e3384bdb509ab288b53880d50ff">Math_Logarithm_Base2</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td></tr>
 <tr class="separator:a9cac4e3384bdb509ab288b53880d50ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the decimal (base-10) logarithm of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:aa206647abf097431798d21dd311954a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log10, X)</td></tr>
+<tr class="memitem:aa206647abf097431798d21dd311954a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log10, X)</td></tr>
 <tr class="separator:aa206647abf097431798d21dd311954a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a411424ea4d96ee8ced7126b4a0da17fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a411424ea4d96ee8ced7126b4a0da17fb">c_log</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
+<tr class="memitem:a411424ea4d96ee8ced7126b4a0da17fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a411424ea4d96ee8ced7126b4a0da17fb">c_log</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
 <tr class="separator:a411424ea4d96ee8ced7126b4a0da17fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7dbbfb97ec606b0670c3a231e1ff25f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af7dbbfb97ec606b0670c3a231e1ff25f">c_log10</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
+<tr class="memitem:af7dbbfb97ec606b0670c3a231e1ff25f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af7dbbfb97ec606b0670c3a231e1ff25f">c_log10</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
 <tr class="separator:af7dbbfb97ec606b0670c3a231e1ff25f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a454b3dabd0ac9b80a3ec89fab42d8d8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a454b3dabd0ac9b80a3ec89fab42d8d8b">Math_Logarithm_Base10</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
+<tr class="memitem:a454b3dabd0ac9b80a3ec89fab42d8d8b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a454b3dabd0ac9b80a3ec89fab42d8d8b">Math_Logarithm_Base10</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td></tr>
 <tr class="separator:a454b3dabd0ac9b80a3ec89fab42d8d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the base-<code>n</code> logarithm of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:ad332fbe3d095eb30564b2f259f8d702f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(LogN, X, Y)</td></tr>
+<tr class="memitem:ad332fbe3d095eb30564b2f259f8d702f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a>(X,  Y)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(LogN, X, Y)</td></tr>
 <tr class="separator:ad332fbe3d095eb30564b2f259f8d702f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adf1883c531d105e5af9446f9808e5a9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adf1883c531d105e5af9446f9808e5a9c">c_logn</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td></tr>
+<tr class="memitem:adf1883c531d105e5af9446f9808e5a9c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adf1883c531d105e5af9446f9808e5a9c">c_logn</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td></tr>
 <tr class="separator:adf1883c531d105e5af9446f9808e5a9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adb4ea19911336517ba2d6493bb6fa000"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adb4ea19911336517ba2d6493bb6fa000">Math_Logarithm_BaseN</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td></tr>
+<tr class="memitem:adb4ea19911336517ba2d6493bb6fa000"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adb4ea19911336517ba2d6493bb6fa000">Math_Logarithm_BaseN</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td></tr>
 <tr class="separator:adb4ea19911336517ba2d6493bb6fa000"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the cosine of <code>x</code> (horizontal trigonometry coordinate) </p>
 </div></td></tr>
-<tr class="memitem:a3209a4f810ee243cc14506ffda119ce8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Cos, X)</td></tr>
+<tr class="memitem:a3209a4f810ee243cc14506ffda119ce8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Cos, X)</td></tr>
 <tr class="separator:a3209a4f810ee243cc14506ffda119ce8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a25372d72105ca8cb35fc5a8e3bbbd354"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td></tr>
+<tr class="memitem:a25372d72105ca8cb35fc5a8e3bbbd354"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a25372d72105ca8cb35fc5a8e3bbbd354">c_cos</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td></tr>
 <tr class="separator:a25372d72105ca8cb35fc5a8e3bbbd354"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6e6fd72af6736dc1372997364432388"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6e6fd72af6736dc1372997364432388">Math_Cosine</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td></tr>
+<tr class="memitem:ac6e6fd72af6736dc1372997364432388"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6e6fd72af6736dc1372997364432388">Math_Cosine</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td></tr>
 <tr class="separator:ac6e6fd72af6736dc1372997364432388"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the sine of <code>x</code> (vertical trigonometry coordinate) </p>
 </div></td></tr>
-<tr class="memitem:a64038638cbc7370c940ea65274c14543"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Sin, X)</td></tr>
+<tr class="memitem:a64038638cbc7370c940ea65274c14543"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Sin, X)</td></tr>
 <tr class="separator:a64038638cbc7370c940ea65274c14543"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09ee15332598b0dc582c1c5ee19a0f84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td></tr>
+<tr class="memitem:a09ee15332598b0dc582c1c5ee19a0f84"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">c_sin</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td></tr>
 <tr class="separator:a09ee15332598b0dc582c1c5ee19a0f84"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a490afb0355e5f5f94cf6e10133bfc159"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a490afb0355e5f5f94cf6e10133bfc159">Math_Sine</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td></tr>
+<tr class="memitem:a490afb0355e5f5f94cf6e10133bfc159"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a490afb0355e5f5f94cf6e10133bfc159">Math_Sine</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td></tr>
 <tr class="separator:a490afb0355e5f5f94cf6e10133bfc159"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the tangent of <code>x</code> (trigonometry tangent line) </p>
 </div></td></tr>
-<tr class="memitem:aba69fa3c396a390bf4a2764d064d83f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Tan, X)</td></tr>
+<tr class="memitem:aba69fa3c396a390bf4a2764d064d83f1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Tan, X)</td></tr>
 <tr class="separator:aba69fa3c396a390bf4a2764d064d83f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70ba56d882f4b5603fc71cdcaa670d50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a70ba56d882f4b5603fc71cdcaa670d50">c_tan</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td></tr>
+<tr class="memitem:a70ba56d882f4b5603fc71cdcaa670d50"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a70ba56d882f4b5603fc71cdcaa670d50">c_tan</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td></tr>
 <tr class="separator:a70ba56d882f4b5603fc71cdcaa670d50"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aafe8c5688b0503a6fe07e7a98c03f7f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aafe8c5688b0503a6fe07e7a98c03f7f7">Math_Tangent</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td></tr>
+<tr class="memitem:aafe8c5688b0503a6fe07e7a98c03f7f7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aafe8c5688b0503a6fe07e7a98c03f7f7">Math_Tangent</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td></tr>
 <tr class="separator:aafe8c5688b0503a6fe07e7a98c03f7f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the arc-cosine of <code>x</code> (inverse of the cos function) </p>
 </div></td></tr>
-<tr class="memitem:a2a275bf6d4ea329ea78335545990bf30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcCos, X)</td></tr>
+<tr class="memitem:a2a275bf6d4ea329ea78335545990bf30"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcCos, X)</td></tr>
 <tr class="separator:a2a275bf6d4ea329ea78335545990bf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada99a21379518c97eddcec22431dc5cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ada99a21379518c97eddcec22431dc5cb">c_acos</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
+<tr class="memitem:ada99a21379518c97eddcec22431dc5cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ada99a21379518c97eddcec22431dc5cb">c_acos</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
 <tr class="separator:ada99a21379518c97eddcec22431dc5cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a547613518a354228da566940e032648b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a547613518a354228da566940e032648b">Math_Cos_1</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
+<tr class="memitem:a547613518a354228da566940e032648b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a547613518a354228da566940e032648b">Math_Cos_1</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
 <tr class="separator:a547613518a354228da566940e032648b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a64f80667c1928c15cecd891117287827"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a64f80667c1928c15cecd891117287827">Math_InvCosine</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
+<tr class="memitem:a64f80667c1928c15cecd891117287827"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a64f80667c1928c15cecd891117287827">Math_InvCosine</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td></tr>
 <tr class="separator:a64f80667c1928c15cecd891117287827"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the arc-sine of <code>x</code> (inverse of the sin function) </p>
 </div></td></tr>
-<tr class="memitem:a3ea416f7232cff551bcfdde5bb2f3edf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcSin, X)</td></tr>
+<tr class="memitem:a3ea416f7232cff551bcfdde5bb2f3edf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcSin, X)</td></tr>
 <tr class="separator:a3ea416f7232cff551bcfdde5bb2f3edf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63385d77920b179ea4a31d55b35b6e63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a63385d77920b179ea4a31d55b35b6e63">c_asin</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
+<tr class="memitem:a63385d77920b179ea4a31d55b35b6e63"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a63385d77920b179ea4a31d55b35b6e63">c_asin</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
 <tr class="separator:a63385d77920b179ea4a31d55b35b6e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a26601f17517dd408682251e40836bc1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a26601f17517dd408682251e40836bc1a">Math_Sin_1</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
+<tr class="memitem:a26601f17517dd408682251e40836bc1a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a26601f17517dd408682251e40836bc1a">Math_Sin_1</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
 <tr class="separator:a26601f17517dd408682251e40836bc1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1b00246866a3b1a3206fe8949c3ce23b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a1b00246866a3b1a3206fe8949c3ce23b">Math_InvSine</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
+<tr class="memitem:a1b00246866a3b1a3206fe8949c3ce23b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a1b00246866a3b1a3206fe8949c3ce23b">Math_InvSine</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td></tr>
 <tr class="separator:a1b00246866a3b1a3206fe8949c3ce23b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the arc-tangent of <code>x</code> (inverse of the tan function) </p>
 </div></td></tr>
-<tr class="memitem:af1c3fc24548e298ea19abce3d9d783dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan, X)</td></tr>
+<tr class="memitem:af1c3fc24548e298ea19abce3d9d783dd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan, X)</td></tr>
 <tr class="separator:af1c3fc24548e298ea19abce3d9d783dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a83d84e2712197f2851c25455587cfe16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a83d84e2712197f2851c25455587cfe16">c_atan</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
+<tr class="memitem:a83d84e2712197f2851c25455587cfe16"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a83d84e2712197f2851c25455587cfe16">c_atan</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
 <tr class="separator:a83d84e2712197f2851c25455587cfe16"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61c81a26b368abe08cbb91af8bec12c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a61c81a26b368abe08cbb91af8bec12c7">Math_Tan_1</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
+<tr class="memitem:a61c81a26b368abe08cbb91af8bec12c7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a61c81a26b368abe08cbb91af8bec12c7">Math_Tan_1</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
 <tr class="separator:a61c81a26b368abe08cbb91af8bec12c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0952fbb9b644572886ae369649a84f85"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a0952fbb9b644572886ae369649a84f85">Math_InvTangent</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
+<tr class="memitem:a0952fbb9b644572886ae369649a84f85"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a0952fbb9b644572886ae369649a84f85">Math_InvTangent</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td></tr>
 <tr class="separator:a0952fbb9b644572886ae369649a84f85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the arc-tangent of (<code>y</code> / <code>x</code>), used to find an angle from coordinates </p>
 </div></td></tr>
-<tr class="memitem:a11972c48b9c7e57f2dad91c0252eced1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a>(Y,  X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan2, Y, X)</td></tr>
+<tr class="memitem:a11972c48b9c7e57f2dad91c0252eced1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a>(Y,  X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan2, Y, X)</td></tr>
 <tr class="separator:a11972c48b9c7e57f2dad91c0252eced1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a341bd19c5f1c41938050e9ea62756f24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a341bd19c5f1c41938050e9ea62756f24">c_atan2</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
+<tr class="memitem:a341bd19c5f1c41938050e9ea62756f24"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a341bd19c5f1c41938050e9ea62756f24">c_atan2</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
 <tr class="separator:a341bd19c5f1c41938050e9ea62756f24"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09a746a7d1f14e14cd960f22c117c073"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a09a746a7d1f14e14cd960f22c117c073">Math_ArcTan_YoverX</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
+<tr class="memitem:a09a746a7d1f14e14cd960f22c117c073"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a09a746a7d1f14e14cd960f22c117c073">Math_ArcTan_YoverX</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
 <tr class="separator:a09a746a7d1f14e14cd960f22c117c073"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a997dadbffad4f30778ad3159c2d8cef7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a997dadbffad4f30778ad3159c2d8cef7">Math_ArcTangent2</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
+<tr class="memitem:a997dadbffad4f30778ad3159c2d8cef7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a997dadbffad4f30778ad3159c2d8cef7">Math_ArcTangent2</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
 <tr class="separator:a997dadbffad4f30778ad3159c2d8cef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a03760b64ad078661795263b6d74f1ab3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a03760b64ad078661795263b6d74f1ab3">Math_ArcTangent_YoverX</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
+<tr class="memitem:a03760b64ad078661795263b6d74f1ab3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a03760b64ad078661795263b6d74f1ab3">Math_ArcTangent_YoverX</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td></tr>
 <tr class="separator:a03760b64ad078661795263b6d74f1ab3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic cosine of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:abc2c4ddb0a526dbc694e1fb38604349b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(CosH, X)</td></tr>
+<tr class="memitem:abc2c4ddb0a526dbc694e1fb38604349b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(CosH, X)</td></tr>
 <tr class="separator:abc2c4ddb0a526dbc694e1fb38604349b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a802ec33aec2d3e3acb34b41ca0fcbf07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a802ec33aec2d3e3acb34b41ca0fcbf07">c_cosh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
+<tr class="memitem:a802ec33aec2d3e3acb34b41ca0fcbf07"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a802ec33aec2d3e3acb34b41ca0fcbf07">c_cosh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
 <tr class="separator:a802ec33aec2d3e3acb34b41ca0fcbf07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d9be51246d0168323fff5c5c99e2bcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4d9be51246d0168323fff5c5c99e2bcf">Math_Cos_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
+<tr class="memitem:a4d9be51246d0168323fff5c5c99e2bcf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a4d9be51246d0168323fff5c5c99e2bcf">Math_Cos_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
 <tr class="separator:a4d9be51246d0168323fff5c5c99e2bcf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6bb25605013bcfc6f741575fd2efc230"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6bb25605013bcfc6f741575fd2efc230">Math_Cosine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
+<tr class="memitem:a6bb25605013bcfc6f741575fd2efc230"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a6bb25605013bcfc6f741575fd2efc230">Math_Cosine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td></tr>
 <tr class="separator:a6bb25605013bcfc6f741575fd2efc230"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic sine of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:aeea76c85821d1b5cdbe5784f7710f6be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(SinH, X)</td></tr>
+<tr class="memitem:aeea76c85821d1b5cdbe5784f7710f6be"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(SinH, X)</td></tr>
 <tr class="separator:aeea76c85821d1b5cdbe5784f7710f6be"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a179ab0f7d9cf62fd1d8e722b97cd55fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a179ab0f7d9cf62fd1d8e722b97cd55fb">c_sinh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
+<tr class="memitem:a179ab0f7d9cf62fd1d8e722b97cd55fb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a179ab0f7d9cf62fd1d8e722b97cd55fb">c_sinh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
 <tr class="separator:a179ab0f7d9cf62fd1d8e722b97cd55fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af2a96a8558b13c2378b2d75c3516c7ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af2a96a8558b13c2378b2d75c3516c7ad">Math_Sin_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
+<tr class="memitem:af2a96a8558b13c2378b2d75c3516c7ad"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#af2a96a8558b13c2378b2d75c3516c7ad">Math_Sin_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
 <tr class="separator:af2a96a8558b13c2378b2d75c3516c7ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afac12064625b00665c8b011b73c33c20"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afac12064625b00665c8b011b73c33c20">Math_Sine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
+<tr class="memitem:afac12064625b00665c8b011b73c33c20"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afac12064625b00665c8b011b73c33c20">Math_Sine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td></tr>
 <tr class="separator:afac12064625b00665c8b011b73c33c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic tangent of <code>x</code> </p>
 </div></td></tr>
-<tr class="memitem:a0ad4e08b761330a3a0e05eea17a8c2cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(TanH, X)</td></tr>
+<tr class="memitem:a0ad4e08b761330a3a0e05eea17a8c2cb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(TanH, X)</td></tr>
 <tr class="separator:a0ad4e08b761330a3a0e05eea17a8c2cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aca4f29ed09665f3e6890b0eabebb1e9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aca4f29ed09665f3e6890b0eabebb1e9e">c_tanh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
+<tr class="memitem:aca4f29ed09665f3e6890b0eabebb1e9e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aca4f29ed09665f3e6890b0eabebb1e9e">c_tanh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
 <tr class="separator:aca4f29ed09665f3e6890b0eabebb1e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afdc89ff506313da5ae2fd87ac4bba383"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afdc89ff506313da5ae2fd87ac4bba383">Math_Tan_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
+<tr class="memitem:afdc89ff506313da5ae2fd87ac4bba383"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#afdc89ff506313da5ae2fd87ac4bba383">Math_Tan_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
 <tr class="separator:afdc89ff506313da5ae2fd87ac4bba383"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a24f9ee765e43563b85c6e3cd53dc9037"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a24f9ee765e43563b85c6e3cd53dc9037">Math_Tangent_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
+<tr class="memitem:a24f9ee765e43563b85c6e3cd53dc9037"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a24f9ee765e43563b85c6e3cd53dc9037">Math_Tangent_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td></tr>
 <tr class="separator:a24f9ee765e43563b85c6e3cd53dc9037"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic arc-cosine of <code>x</code> (inverse of the cosh function) </p>
 </div></td></tr>
-<tr class="memitem:a2ebb9a51f9b6549fd1db56c7e45612a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvCosH, X)</td></tr>
+<tr class="memitem:a2ebb9a51f9b6549fd1db56c7e45612a0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvCosH, X)</td></tr>
 <tr class="separator:a2ebb9a51f9b6549fd1db56c7e45612a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4c1f7020ad70ad5d6246de94c070e54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4c1f7020ad70ad5d6246de94c070e54">c_acosh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
+<tr class="memitem:ac4c1f7020ad70ad5d6246de94c070e54"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac4c1f7020ad70ad5d6246de94c070e54">c_acosh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
 <tr class="separator:ac4c1f7020ad70ad5d6246de94c070e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e441b3ea273e59922f8943fe107858f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3e441b3ea273e59922f8943fe107858f">Math_Cos_1_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
+<tr class="memitem:a3e441b3ea273e59922f8943fe107858f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a3e441b3ea273e59922f8943fe107858f">Math_Cos_1_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
 <tr class="separator:a3e441b3ea273e59922f8943fe107858f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a89b97f9df4b8845d60c4de49a16977f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a89b97f9df4b8845d60c4de49a16977f0">Math_InvCosine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
+<tr class="memitem:a89b97f9df4b8845d60c4de49a16977f0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a89b97f9df4b8845d60c4de49a16977f0">Math_InvCosine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td></tr>
 <tr class="separator:a89b97f9df4b8845d60c4de49a16977f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic arc-sine of <code>x</code> (inverse of the sinh function) </p>
 </div></td></tr>
-<tr class="memitem:aedf08cb1bb4045752fd4d46e7f61aeae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvSinH, X)</td></tr>
+<tr class="memitem:aedf08cb1bb4045752fd4d46e7f61aeae"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvSinH, X)</td></tr>
 <tr class="separator:aedf08cb1bb4045752fd4d46e7f61aeae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5078c1a8d86f2039b678f0ef22edc53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ae5078c1a8d86f2039b678f0ef22edc53">c_asinh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
+<tr class="memitem:ae5078c1a8d86f2039b678f0ef22edc53"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ae5078c1a8d86f2039b678f0ef22edc53">c_asinh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
 <tr class="separator:ae5078c1a8d86f2039b678f0ef22edc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:adc0051011f0f69ef4ff505176f60f4c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adc0051011f0f69ef4ff505176f60f4c5">Math_Sin_1_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
+<tr class="memitem:adc0051011f0f69ef4ff505176f60f4c5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#adc0051011f0f69ef4ff505176f60f4c5">Math_Sin_1_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
 <tr class="separator:adc0051011f0f69ef4ff505176f60f4c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5f3e950cfe1f3f95cb405971269411a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a5f3e950cfe1f3f95cb405971269411a7">Math_InvSine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
+<tr class="memitem:a5f3e950cfe1f3f95cb405971269411a7"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a5f3e950cfe1f3f95cb405971269411a7">Math_InvSine_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td></tr>
 <tr class="separator:a5f3e950cfe1f3f95cb405971269411a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Returns the hyperbolic arc-tangent of <code>x</code> (inverse of the tanh function) </p>
 </div></td></tr>
-<tr class="memitem:a9359727ebe39b0306999c79c9d242460"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a>(X)&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvTanH, X)</td></tr>
+<tr class="memitem:a9359727ebe39b0306999c79c9d242460"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a>(X)&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvTanH, X)</td></tr>
 <tr class="separator:a9359727ebe39b0306999c79c9d242460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6d36d825e197337e9a4d61d65d24502"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6d36d825e197337e9a4d61d65d24502">c_atanh</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
+<tr class="memitem:ac6d36d825e197337e9a4d61d65d24502"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#ac6d36d825e197337e9a4d61d65d24502">c_atanh</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
 <tr class="separator:ac6d36d825e197337e9a4d61d65d24502"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40b0d93f97d2cc552c7a1e48abbadfeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a40b0d93f97d2cc552c7a1e48abbadfeb">Math_Tan_1_H</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
+<tr class="memitem:a40b0d93f97d2cc552c7a1e48abbadfeb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a40b0d93f97d2cc552c7a1e48abbadfeb">Math_Tan_1_H</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
 <tr class="separator:a40b0d93f97d2cc552c7a1e48abbadfeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20633cb2351a37df10e34dbbfba6d134"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a20633cb2351a37df10e34dbbfba6d134">Math_InvTangent_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
+<tr class="memitem:a20633cb2351a37df10e34dbbfba6d134"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="math_8h.html#a20633cb2351a37df10e34dbbfba6d134">Math_InvTangent_Hyperbolic</a>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td></tr>
 <tr class="separator:a20633cb2351a37df10e34dbbfba6d134"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
@@ -561,7 +561,7 @@ Macros</h2></td></tr>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/numeric/math/abs">https://en.cppreference.com/w/c/numeric/math/abs</a></li>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/numeric/math/fabs">https://en.cppreference.com/w/c/numeric/math/fabs</a></li>
-<li>Math: <img class="formulaInl" alt="$ {|x|} $" src="form_22.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {|x|} $" src="form_0.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00051">51</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -587,7 +587,7 @@ Macros</h2></td></tr>
 <p>Computes to <code>+1</code>, <code>-1</code> (or <code>0</code> if <code>(X) == 0</code>) according to the sign of <code>X</code> </p>
 <ul>
 <li><em>Standard library equivalent: </em>(C89) <a href="https://en.cppreference.com/w/c/numeric/math/signbit">https://en.cppreference.com/w/c/numeric/math/signbit</a> (differs)</li>
-<li>Math: <img class="formulaInl" alt="$ {\frac{x}{|x|}} $" src="form_23.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\frac{x}{|x|}} $" src="form_1.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00061">61</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -613,7 +613,7 @@ Macros</h2></td></tr>
 <p>Checks if a value is negative (works for unsigned types, without causing tautology warnings) </p>
 <p >This macro is useful to check if a value is negative, but its type (signed or unsigned) is not known. In particular, the <code>char</code> and <code>enum</code> native C types are of unknown/undefined signage, so this macro is useful to check that a value is positive, no matter the platform/environment.</p>
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x &lt; 0} $" src="form_24.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x &lt; 0} $" src="form_2.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00073">73</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -1243,7 +1243,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,32, NAME, CNAME,f)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,32, NAME, CNAME,f)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1273,7 +1273,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	32, NAME, CNAME,f)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	32, NAME, CNAME,f)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1303,7 +1303,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	32, NAME, CNAME,f)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	32, NAME, CNAME,f)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1339,7 +1339,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,64, NAME, CNAME,)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,64, NAME, CNAME,)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1369,7 +1369,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	64, NAME, CNAME,)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	64, NAME, CNAME,)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1399,7 +1399,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	64, NAME, CNAME,)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	64, NAME, CNAME,)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1435,7 +1435,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,80, NAME, CNAME,l)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,80, NAME, CNAME,l)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1465,7 +1465,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	80, NAME, CNAME,l)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	80, NAME, CNAME,l)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1495,7 +1495,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	80, NAME, CNAME,l)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	80, NAME, CNAME,l)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1531,7 +1531,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,128,NAME, CNAME,q)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a1a8c606ca6b1b7c9ab29a867251a5231">MATH_DEFINE_FUNCTION</a>(RETURN,128,NAME, CNAME,q)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1561,7 +1561,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	128,NAME, CNAME,q)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad7098bacdaeacb27cdf1bc16f1d95a4f">MATH_DEFINE_REALFUNCTION</a>(	128,NAME, CNAME,q)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1591,7 +1591,7 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	128,NAME, CNAME,q)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a40ba4dff35cf7ac35cdb6e4a511267b7">MATH_DEFINE_REALOPERATOR</a>(	128,NAME, CNAME,q)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1862,12 +1862,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Round, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Round, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {round{x}} $" src="form_25.png"/> or <img class="formulaInl" alt="$ {\lfloor{x}\rceil} $" src="form_26.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {round{x}} $" src="form_3.png"/> or <img class="formulaInl" alt="$ {\lfloor{x}\rceil} $" src="form_4.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00260">260</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -1881,7 +1881,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_round&#160;&#160;&#160;<a class="el" href="math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a></td>
+          <td class="memname">#define c_round&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa72cbc653006fad87b3bab03e0fc85fc">Math_Round</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1901,12 +1901,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Truncate, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Truncate, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {trunc{x}} $" src="form_27.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {trunc{x}} $" src="form_5.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00269">269</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -1920,7 +1920,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_trunc&#160;&#160;&#160;<a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td>
+          <td class="memname">#define c_trunc&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1936,7 +1936,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Truncate&#160;&#160;&#160;<a class="el" href="math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td>
+          <td class="memname">#define Math_Truncate&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab3232e80adb380b9be6d1447b71cf82f">Math_Trunc</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1956,12 +1956,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Floor, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Floor, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {floor{x}} $" src="form_28.png"/> or <img class="formulaInl" alt="$ {\lfloor{x}\rfloor} $" src="form_29.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {floor{x}} $" src="form_6.png"/> or <img class="formulaInl" alt="$ {\lfloor{x}\rfloor} $" src="form_7.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00279">279</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -1975,7 +1975,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_floor&#160;&#160;&#160;<a class="el" href="math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a></td>
+          <td class="memname">#define c_floor&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a20c8df10342ad480da2a17e4571f6336">Math_Floor</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1995,12 +1995,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ceiling, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ceiling, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {ceil{x}} $" src="form_30.png"/> or <img class="formulaInl" alt="$ {\lceil{x}\rceil} $" src="form_31.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {ceil{x}} $" src="form_8.png"/> or <img class="formulaInl" alt="$ {\lceil{x}\rceil} $" src="form_9.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00288">288</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2014,7 +2014,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ceil&#160;&#160;&#160;<a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td>
+          <td class="memname">#define c_ceil&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2030,7 +2030,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Ceiling&#160;&#160;&#160;<a class="el" href="math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td>
+          <td class="memname">#define Math_Ceiling&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afb24ba3038912b97fb01f979416c0fe5">Math_Ceil</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2060,12 +2060,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Add, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Add, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x + y} $" src="form_32.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x + y} $" src="form_10.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00306">306</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2079,7 +2079,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_add&#160;&#160;&#160;<a class="el" href="math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a></td>
+          <td class="memname">#define c_add&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aaf4e551f813356323d69ede11d01fbcf">Math_Add</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2109,12 +2109,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Sub, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Sub, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x - y} $" src="form_33.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x - y} $" src="form_11.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00315">315</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2128,7 +2128,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_sub&#160;&#160;&#160;<a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td>
+          <td class="memname">#define c_sub&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2144,7 +2144,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Subtract&#160;&#160;&#160;<a class="el" href="math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td>
+          <td class="memname">#define Math_Subtract&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ab08223d2f6a5d4b137f68b308bc5d860">Math_Sub</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2174,12 +2174,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mul, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mul, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x \times y} $" src="form_34.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x \times y} $" src="form_12.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00325">325</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2193,7 +2193,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_mul&#160;&#160;&#160;<a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td>
+          <td class="memname">#define c_mul&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2209,7 +2209,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Multiply&#160;&#160;&#160;<a class="el" href="math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td>
+          <td class="memname">#define Math_Multiply&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a726ce9449da9989c4ec2dc2eff68dda4">Math_Mul</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2239,12 +2239,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Div, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Div, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\frac{x}{y}} $" src="form_35.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\frac{x}{y}} $" src="form_13.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00335">335</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2258,7 +2258,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_div&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td>
+          <td class="memname">#define c_div&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2274,7 +2274,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Divide&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td>
+          <td class="memname">#define Math_Divide&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f6bd9ca3932d3f4a8df8dc726771e41">Math_Div</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2304,12 +2304,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mod, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Mod, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x \mod y} $" src="form_36.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x \mod y} $" src="form_14.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00345">345</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2323,7 +2323,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_mod&#160;&#160;&#160;<a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td>
+          <td class="memname">#define c_mod&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2339,7 +2339,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Modulo&#160;&#160;&#160;<a class="el" href="math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td>
+          <td class="memname">#define Math_Modulo&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac4a5ee0927b28d50ad46627d11c01031">Math_Mod</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2359,12 +2359,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Abs, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Abs, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {|x|} $" src="form_22.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {|x|} $" src="form_0.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00361">361</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2378,7 +2378,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_abs&#160;&#160;&#160;<a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td>
+          <td class="memname">#define c_abs&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2394,7 +2394,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_AbsoluteValue&#160;&#160;&#160;<a class="el" href="math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td>
+          <td class="memname">#define Math_AbsoluteValue&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#afcccd28251b61b4ed3e1385d8b09d465">Math_Abs</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2424,12 +2424,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Pow, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(Pow, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x^y} $" src="form_37.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x^y} $" src="form_15.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00373">373</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2443,7 +2443,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_pow&#160;&#160;&#160;<a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td>
+          <td class="memname">#define c_pow&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2459,7 +2459,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Power&#160;&#160;&#160;<a class="el" href="math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td>
+          <td class="memname">#define Math_Power&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#adc74e835a3bb01938f69669f9985e7e6">Math_Pow</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2489,12 +2489,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;;	<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(IntPow, X, N)</td>
+          <td></td><td>&#160;&#160;&#160;;	<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(IntPow, X, N)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {x^n} $" src="form_38.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {x^n} $" src="form_16.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00383">383</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2508,7 +2508,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_intpow&#160;&#160;&#160;<a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td>
+          <td class="memname">#define c_intpow&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2524,7 +2524,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_IntPower&#160;&#160;&#160;<a class="el" href="math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td>
+          <td class="memname">#define Math_IntPower&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a90a1c1494cd87f8df53a43bc5d07ec68">Math_IntPow</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2544,12 +2544,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root2, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root2, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sqrt{x}} $" src="form_39.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sqrt{x}} $" src="form_17.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00395">395</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2563,7 +2563,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_sqrt&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
+          <td class="memname">#define c_sqrt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2579,7 +2579,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_SqRt&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
+          <td class="memname">#define Math_SqRt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2595,7 +2595,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_SquareRoot&#160;&#160;&#160;<a class="el" href="math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
+          <td class="memname">#define Math_SquareRoot&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aee3e7e54eba5dc2f056e1b5390fb04b5">Math_Root2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2615,12 +2615,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root3, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Root3, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sqrt[3]{x}} $" src="form_40.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sqrt[3]{x}} $" src="form_18.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00406">406</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2634,7 +2634,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_cbrt&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
+          <td class="memname">#define c_cbrt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2650,7 +2650,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_CbRt&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
+          <td class="memname">#define Math_CbRt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2666,7 +2666,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_CubeRoot&#160;&#160;&#160;<a class="el" href="math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
+          <td class="memname">#define Math_CubeRoot&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a79019aa3a0dd260b271f72f148967f09">Math_Root3</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2696,12 +2696,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(RootN, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(RootN, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sqrt[n]{x}} $" src="form_41.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sqrt[n]{x}} $" src="form_19.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00417">417</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2715,7 +2715,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_nrt&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
+          <td class="memname">#define c_nrt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2731,7 +2731,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_NRt&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
+          <td class="memname">#define Math_NRt&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2747,7 +2747,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_NRoot&#160;&#160;&#160;<a class="el" href="math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
+          <td class="memname">#define Math_NRoot&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a91480a88dc895ea3900d08062d98e9c6">Math_RootN</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2767,12 +2767,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Exp, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Exp, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {e^x} $" src="form_42.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {e^x} $" src="form_20.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00438">438</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2786,7 +2786,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_exp&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td>
+          <td class="memname">#define c_exp&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2802,7 +2802,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Exponential&#160;&#160;&#160;<a class="el" href="math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td>
+          <td class="memname">#define Math_Exponential&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a7f68228a8f46b62840c4c807078535e6">Math_Exp</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2822,12 +2822,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ln, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Ln, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\ln {x}} $" src="form_43.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\ln {x}} $" src="form_21.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00448">448</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2841,7 +2841,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ln&#160;&#160;&#160;<a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td>
+          <td class="memname">#define c_ln&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2857,7 +2857,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_NaturalLogarithm&#160;&#160;&#160;<a class="el" href="math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td>
+          <td class="memname">#define Math_NaturalLogarithm&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a16c639616f40a7565aa01d195caff6f3">Math_Ln</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2877,12 +2877,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log2, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log2, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\log_{2} {x}} $" src="form_44.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\log_{2} {x}} $" src="form_22.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00458">458</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2896,7 +2896,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_lg&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
+          <td class="memname">#define c_lg&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2912,7 +2912,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_log2&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
+          <td class="memname">#define c_log2&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2928,7 +2928,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Logarithm_Base2&#160;&#160;&#160;<a class="el" href="math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
+          <td class="memname">#define Math_Logarithm_Base2&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a72d3cfc57986b9279efb32f9250bcbf1">Math_Log2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2948,12 +2948,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log10, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Log10, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\log_{10} {x}} $" src="form_45.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\log_{10} {x}} $" src="form_23.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00469">469</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -2967,7 +2967,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_log&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
+          <td class="memname">#define c_log&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2983,7 +2983,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_log10&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
+          <td class="memname">#define c_log10&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2999,7 +2999,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Logarithm_Base10&#160;&#160;&#160;<a class="el" href="math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
+          <td class="memname">#define Math_Logarithm_Base10&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aa206647abf097431798d21dd311954a7">Math_Log10</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3029,12 +3029,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(LogN, X, Y)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a5b7f9250ac1480dc15d6973242844730">DEFINE_GENERIC_MATH_OPERATOR</a>(LogN, X, Y)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\log_{n} {x}} $" src="form_46.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\log_{n} {x}} $" src="form_24.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00480">480</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3048,7 +3048,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_logn&#160;&#160;&#160;<a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td>
+          <td class="memname">#define c_logn&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3064,7 +3064,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Logarithm_BaseN&#160;&#160;&#160;<a class="el" href="math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td>
+          <td class="memname">#define Math_Logarithm_BaseN&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ad332fbe3d095eb30564b2f259f8d702f">Math_LogN</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3084,12 +3084,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Cos, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Cos, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\cos {x}} $" src="form_47.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\cos {x}} $" src="form_25.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00498">498</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3103,7 +3103,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_cos&#160;&#160;&#160;<a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td>
+          <td class="memname">#define c_cos&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3119,7 +3119,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Cosine&#160;&#160;&#160;<a class="el" href="math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td>
+          <td class="memname">#define Math_Cosine&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3209a4f810ee243cc14506ffda119ce8">Math_Cos</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3139,12 +3139,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Sin, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Sin, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sin {x}} $" src="form_48.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sin {x}} $" src="form_26.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00508">508</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3158,7 +3158,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_sin&#160;&#160;&#160;<a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td>
+          <td class="memname">#define c_sin&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3174,7 +3174,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Sine&#160;&#160;&#160;<a class="el" href="math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td>
+          <td class="memname">#define Math_Sine&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a64038638cbc7370c940ea65274c14543">Math_Sin</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3194,12 +3194,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Tan, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(Tan, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\tan {x}} $" src="form_49.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\tan {x}} $" src="form_27.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00518">518</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3213,7 +3213,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_tan&#160;&#160;&#160;<a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td>
+          <td class="memname">#define c_tan&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3229,7 +3229,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Tangent&#160;&#160;&#160;<a class="el" href="math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td>
+          <td class="memname">#define Math_Tangent&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aba69fa3c396a390bf4a2764d064d83f1">Math_Tan</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3249,12 +3249,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcCos, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcCos, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\cos^{-1} {x}} $" src="form_50.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\cos^{-1} {x}} $" src="form_28.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00528">528</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3268,7 +3268,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_acos&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
+          <td class="memname">#define c_acos&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3284,7 +3284,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Cos_1&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
+          <td class="memname">#define Math_Cos_1&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3300,7 +3300,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvCosine&#160;&#160;&#160;<a class="el" href="math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
+          <td class="memname">#define Math_InvCosine&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2a275bf6d4ea329ea78335545990bf30">Math_ArcCos</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3320,12 +3320,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcSin, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcSin, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sin^{-1} {x}} $" src="form_51.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sin^{-1} {x}} $" src="form_29.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00539">539</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3339,7 +3339,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_asin&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
+          <td class="memname">#define c_asin&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3355,7 +3355,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Sin_1&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
+          <td class="memname">#define Math_Sin_1&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3371,7 +3371,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvSine&#160;&#160;&#160;<a class="el" href="math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
+          <td class="memname">#define Math_InvSine&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a3ea416f7232cff551bcfdde5bb2f3edf">Math_ArcSin</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3391,12 +3391,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\tan^{-1} {x}} $" src="form_52.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\tan^{-1} {x}} $" src="form_30.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00550">550</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3410,7 +3410,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_atan&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
+          <td class="memname">#define c_atan&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3426,7 +3426,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Tan_1&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
+          <td class="memname">#define Math_Tan_1&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3442,7 +3442,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvTangent&#160;&#160;&#160;<a class="el" href="math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
+          <td class="memname">#define Math_InvTangent&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#af1c3fc24548e298ea19abce3d9d783dd">Math_ArcTan</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3472,12 +3472,12 @@ Macros</h2></td></tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan2, Y, X)</td>
+          <td></td><td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(ArcTan2, Y, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\arctan(\frac{y}{x})} $" src="form_53.png"/>, in the range <img class="formulaInl" alt="$ {[-\pi;+\pi]} $" src="form_54.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\arctan(\frac{y}{x})} $" src="form_31.png"/>, in the range <img class="formulaInl" alt="$ {[-\pi;+\pi]} $" src="form_32.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00563">563</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3491,7 +3491,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_atan2&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
+          <td class="memname">#define c_atan2&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3507,7 +3507,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_ArcTan_YoverX&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
+          <td class="memname">#define Math_ArcTan_YoverX&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3523,7 +3523,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_ArcTangent2&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
+          <td class="memname">#define Math_ArcTangent2&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3539,7 +3539,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_ArcTangent_YoverX&#160;&#160;&#160;<a class="el" href="math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
+          <td class="memname">#define Math_ArcTangent_YoverX&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a11972c48b9c7e57f2dad91c0252eced1">Math_ArcTan2</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3559,12 +3559,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(CosH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(CosH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\cosh {x}} $" src="form_55.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\cosh {x}} $" src="form_33.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00583">583</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3578,7 +3578,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_cosh&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
+          <td class="memname">#define c_cosh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3594,7 +3594,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Cos_H&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
+          <td class="memname">#define Math_Cos_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3610,7 +3610,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Cosine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
+          <td class="memname">#define Math_Cosine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#abc2c4ddb0a526dbc694e1fb38604349b">Math_CosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3630,12 +3630,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(SinH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(SinH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sinh {x}} $" src="form_56.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sinh {x}} $" src="form_34.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00594">594</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3649,7 +3649,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_sinh&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
+          <td class="memname">#define c_sinh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3665,7 +3665,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Sin_H&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
+          <td class="memname">#define Math_Sin_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3681,7 +3681,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Sine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
+          <td class="memname">#define Math_Sine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aeea76c85821d1b5cdbe5784f7710f6be">Math_SinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3701,12 +3701,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(TanH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(TanH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\tanh {x}} $" src="form_57.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\tanh {x}} $" src="form_35.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00605">605</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3720,7 +3720,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_tanh&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
+          <td class="memname">#define c_tanh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3736,7 +3736,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Tan_H&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
+          <td class="memname">#define Math_Tan_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3752,7 +3752,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Tangent_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
+          <td class="memname">#define Math_Tangent_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a0ad4e08b761330a3a0e05eea17a8c2cb">Math_TanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3772,12 +3772,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvCosH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvCosH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\cosh^{-1} {x}} $" src="form_58.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\cosh^{-1} {x}} $" src="form_36.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00616">616</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3791,7 +3791,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_acosh&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
+          <td class="memname">#define c_acosh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3807,7 +3807,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Cos_1_H&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
+          <td class="memname">#define Math_Cos_1_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3823,7 +3823,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvCosine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
+          <td class="memname">#define Math_InvCosine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a2ebb9a51f9b6549fd1db56c7e45612a0">Math_InvCosH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3843,12 +3843,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvSinH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvSinH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\sinh^{-1} {x}} $" src="form_59.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\sinh^{-1} {x}} $" src="form_37.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00627">627</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3862,7 +3862,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_asinh&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
+          <td class="memname">#define c_asinh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3878,7 +3878,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Sin_1_H&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
+          <td class="memname">#define Math_Sin_1_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3894,7 +3894,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvSine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
+          <td class="memname">#define Math_InvSine_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#aedf08cb1bb4045752fd4d46e7f61aeae">Math_InvSinH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3914,12 +3914,12 @@ Macros</h2></td></tr>
           <td>(</td>
           <td class="paramtype">&#160;</td>
           <td class="paramname">X</td><td>)</td>
-          <td>&#160;&#160;&#160;<a class="el" href="math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvTanH, X)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#ac2f8add1e5d5c9c2e1622872d3d81085">DEFINE_GENERIC_MATH_FUNCTION</a>(InvTanH, X)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 <ul>
-<li>Math: <img class="formulaInl" alt="$ {\tanh^{-1} {x}} $" src="form_60.png"/> </li>
+<li>Math: <img class="formulaInl" alt="$ {\tanh^{-1} {x}} $" src="form_38.png"/> </li>
 </ul>
 
 <p class="definition">Definition at line <a class="el" href="math_8h_source.html#l00638">638</a> of file <a class="el" href="math_8h_source.html">math.h</a>.</p>
@@ -3933,7 +3933,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_atanh&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
+          <td class="memname">#define c_atanh&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3949,7 +3949,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_Tan_1_H&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
+          <td class="memname">#define Math_Tan_1_H&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3965,7 +3965,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define Math_InvTangent_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
+          <td class="memname">#define Math_InvTangent_Hyperbolic&#160;&#160;&#160;<a class="el" href="math_2math_8h.html#a9359727ebe39b0306999c79c9d242460">Math_InvTanH</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -3979,7 +3979,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="dir_0d635f2cc23728660326cdb373135025.html">math</a></li><li class="navelem"><a class="el" href="math_8h.html">math.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c91b9cc10373ff0ff775332a50dfdee2.html">libccc</a></li><li class="navelem"><a class="el" href="math_8h.html">math.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.2 </li>
   </ul>
 </div>

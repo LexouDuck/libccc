@@ -31,7 +31,7 @@
  <tr style="height: 56px;">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.35</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.39</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -94,21 +94,20 @@ $(document).ready(function(){initNavTree('io_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">io.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;fcntl.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="libccc_8h_source.html">libccc.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="ansi_8h_source.html">libccc/sys/ansi.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="color_8h_source.html">libccc/color.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="image_2color_8h_source.html">libccc/image/color.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for io.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="io_8h__incl.svg" width="424" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><iframe scrolling="no" frameborder="0" src="io_8h__incl.svg" width="430" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
 </div>
 </div>
 </div>
@@ -121,8 +120,6 @@ Macros</h2></td></tr>
 <tr class="separator:abe5d3c90538920357e5f36e108e5dcaa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13d44d24963b7992753ad7c40ca012d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a13d44d24963b7992753ad7c40ca012d2">__LIBCCC_SYS_IO_F</a></td></tr>
 <tr class="separator:a13d44d24963b7992753ad7c40ca012d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50235af184dea495d80bdad9a25c9897"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a50235af184dea495d80bdad9a25c9897">c_write_line</a>&#160;&#160;&#160;<a class="el" href="io_8h.html#a2b35a4bb84694d80084be0efbe1b4e83">IO_Write_Line</a></td></tr>
-<tr class="separator:a50235af184dea495d80bdad9a25c9897"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr class="memitem:a79bed4b7f7d7847c1c49cc3ac5441bbd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a79bed4b7f7d7847c1c49cc3ac5441bbd">__LIBCCC_COLOR_F</a></td></tr>
 <tr class="separator:a79bed4b7f7d7847c1c49cc3ac5441bbd"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,11 +230,6 @@ Typedefs</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:a529de828c63062e6b522d48411c11219"><td class="memItemLeft" align="right" valign="top">typedef unsigned int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a529de828c63062e6b522d48411c11219">t_io_open</a></td></tr>
 <tr class="separator:a529de828c63062e6b522d48411c11219"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a2b35a4bb84694d80084be0efbe1b4e83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a2b35a4bb84694d80084be0efbe1b4e83">IO_Write_Line</a> (<a class="el" href="io_8h.html#a7ce645cf2e5d02fc9efa1e2b4ab80e3f">t_fd</a> fd, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str)</td></tr>
-<tr class="separator:a2b35a4bb84694d80084be0efbe1b4e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Get the ANSI color code number for the nearest color to the given 32-bit <code>color</code>. </p>
 </td></tr>
 <tr class="memitem:a192192b1786a603f7746cb5f30b02d45"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a192192b1786a603f7746cb5f30b02d45">c_iocolor</a>&#160;&#160;&#160;<a class="el" href="io_8h.html#a2d94641dce33e903f3117aed1d472bf2">IO_GetColor</a></td></tr>
@@ -338,6 +330,13 @@ Functions</h2></td></tr>
 <tr class="separator:aeff64798207c501edd85a7e80bd1234c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ace4c7dc0bb0bcb519e846bfe7e14ebbc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#ace4c7dc0bb0bcb519e846bfe7e14ebbc">IO_Write_Data</a> (<a class="el" href="io_8h.html#a7ce645cf2e5d02fc9efa1e2b4ab80e3f">t_fd</a> fd, <a class="el" href="int_8h.html#a8ddf940d2d7288b36e35ce78989c811e">t_u8</a> const *data, <a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
 <tr class="separator:ace4c7dc0bb0bcb519e846bfe7e14ebbc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Writes the given string <code>str</code> to the given file descriptor <code>fd</code>, and a newline &lsquo;&rsquo;<br  />
+'` char at the end </p>
+</td></tr>
+<tr class="memitem:a50235af184dea495d80bdad9a25c9897"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a50235af184dea495d80bdad9a25c9897">c_write_line</a>&#160;&#160;&#160;<a class="el" href="io_8h.html#a2b35a4bb84694d80084be0efbe1b4e83">IO_Write_Line</a></td></tr>
+<tr class="separator:a50235af184dea495d80bdad9a25c9897"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b35a4bb84694d80084be0efbe1b4e83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="pointer_8h.html#ab26ea4b5e8504781be1c368c28967472">t_size</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a2b35a4bb84694d80084be0efbe1b4e83">IO_Write_Line</a> (<a class="el" href="io_8h.html#a7ce645cf2e5d02fc9efa1e2b4ab80e3f">t_fd</a> fd, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str)</td></tr>
+<tr class="separator:a2b35a4bb84694d80084be0efbe1b4e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a>   Writes the given string array <code>strarr</code> to the given file descriptor <code>fd</code> </p>
 </td></tr>
 <tr class="memitem:a8dd1c7c5c1f72e98e52f225a6b475ab9"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="io_8h.html#a8dd1c7c5c1f72e98e52f225a6b475ab9">c_write_lines</a>&#160;&#160;&#160;<a class="el" href="io_8h.html#ab524c99ba9ecf63c2dae29ca43ea7901">IO_Write_Lines</a></td></tr>

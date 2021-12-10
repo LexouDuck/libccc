@@ -3,7 +3,7 @@ var searchData=
   ['s_0',['s',['../complex_8h.html#a0311e4489e46bec97407e77482b3a224',1,'quaternion']]],
   ['s_5fjson_1',['s_json',['../json_8h.html#a3a4c8ec4182bdd2ab7da004d0851354e',1,'json.h']]],
   ['s_5ftoml_2',['s_toml',['../toml_8h.html#afe7d4ef9ea07ff568d9b45b323f6d239',1,'toml.h']]],
-  ['sat_3',['sat',['../color_8h.html#ad9e7950151136dff48a0dd83f4ed03d3',1,'ahsl']]],
+  ['sat_3',['sat',['../image_2color_8h.html#ad9e7950151136dff48a0dd83f4ed03d3',1,'ahsl']]],
   ['sc_4',['sc',['../vlq_8h.html#a448bc235fa3ed6a58fee1c06f0c0aa98',1,'varsint']]],
   ['sec_5',['sec',['../time_8h.html#aa480a0bead36775c92b96abf820473de',1,'nanotime::sec()'],['../time_8h.html#acedfd6318b081dd98ab0f8b6d695de18',1,'date::sec()']]],
   ['sh_6',['sh',['../vlq_8h.html#aeab220f2c49dc723e87ceae3ed332266',1,'varsint']]],

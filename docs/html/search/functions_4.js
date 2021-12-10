@@ -1,14 +1,14 @@
 var searchData=
 [
-  ['error_5fget_0',['Error_Get',['../error_8h.html#ad94c866af5ac844bc1505ded6c93aa83',1,'error.h']]],
-  ['error_5fgetcode_1',['Error_GetCode',['../error_8h.html#a77b6d74719daaf5c6750125333f1e458',1,'error.h']]],
-  ['error_5fgethandler_2',['Error_GetHandler',['../error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc',1,'error.h']]],
-  ['error_5fgetmessage_3',['Error_GetMessage',['../error_8h.html#a71117dafe78ee6ffd6759182080199d6',1,'error.h']]],
-  ['error_5fgetname_4',['Error_GetName',['../error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b',1,'error.h']]],
-  ['error_5fhandle_5',['Error_Handle',['../error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd',1,'error.h']]],
-  ['error_5fhandler_6',['Error_Handler',['../error_8h.html#a224c7af49405190664152dc7efc4ae20',1,'error.h']]],
-  ['error_5fset_7',['Error_Set',['../error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad',1,'error.h']]],
-  ['error_5fsetallhandlers_8',['Error_SetAllHandlers',['../error_8h.html#a7d5a33ad617754de4361c324504026a6',1,'error.h']]],
-  ['error_5fsethandler_9',['Error_SetHandler',['../error_8h.html#a7a0846928ebb77e3330de165436901ad',1,'error.h']]],
-  ['error_5fstdc_10',['Error_STDC',['../error_8h.html#aeed19ee6aa481dfaa137c7c762272b71',1,'error.h']]]
+  ['error_5fget_0',['Error_Get',['../error_8h.html#ad94c866af5ac844bc1505ded6c93aa83',1,'Error_Get(void):&#160;error.h'],['../sys_2error_8h.html#ad94c866af5ac844bc1505ded6c93aa83',1,'Error_Get(void):&#160;error.h']]],
+  ['error_5fgetcode_1',['Error_GetCode',['../error_8h.html#a77b6d74719daaf5c6750125333f1e458',1,'Error_GetCode(t_char const *name):&#160;error.h'],['../sys_2error_8h.html#a77b6d74719daaf5c6750125333f1e458',1,'Error_GetCode(t_char const *name):&#160;error.h']]],
+  ['error_5fgethandler_2',['Error_GetHandler',['../error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc',1,'Error_GetHandler(e_cccerror error):&#160;error.h'],['../sys_2error_8h.html#a3c5645c6fe1e149dccf86c07a41808dc',1,'Error_GetHandler(e_cccerror error):&#160;error.h']]],
+  ['error_5fgetmessage_3',['Error_GetMessage',['../error_8h.html#a71117dafe78ee6ffd6759182080199d6',1,'Error_GetMessage(e_cccerror error):&#160;error.h'],['../sys_2error_8h.html#a71117dafe78ee6ffd6759182080199d6',1,'Error_GetMessage(e_cccerror error):&#160;error.h']]],
+  ['error_5fgetname_4',['Error_GetName',['../error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b',1,'Error_GetName(e_cccerror error):&#160;error.h'],['../sys_2error_8h.html#ad9c1970e6a5b0d1eaa8d271119d9572b',1,'Error_GetName(e_cccerror error):&#160;error.h']]],
+  ['error_5fhandle_5',['Error_Handle',['../error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd',1,'Error_Handle(e_cccerror error, t_char const *funcname, t_char *message):&#160;error.h'],['../sys_2error_8h.html#a4afe5f5a133b275e413af6ea0ec5c2cd',1,'Error_Handle(e_cccerror error, t_char const *funcname, t_char *message):&#160;error.h']]],
+  ['error_5fhandler_6',['Error_Handler',['../error_8h.html#a224c7af49405190664152dc7efc4ae20',1,'Error_Handler(e_cccerror error, t_char const *message):&#160;error.h'],['../sys_2error_8h.html#a224c7af49405190664152dc7efc4ae20',1,'Error_Handler(e_cccerror error, t_char const *message):&#160;error.h']]],
+  ['error_5fset_7',['Error_Set',['../error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad',1,'Error_Set(e_cccerror error):&#160;error.h'],['../sys_2error_8h.html#a598851df6c16da4fbb047dfb6c03e5ad',1,'Error_Set(e_cccerror error):&#160;error.h']]],
+  ['error_5fsetallhandlers_8',['Error_SetAllHandlers',['../error_8h.html#a7d5a33ad617754de4361c324504026a6',1,'Error_SetAllHandlers(f_ccchandler handler):&#160;error.h'],['../sys_2error_8h.html#a7d5a33ad617754de4361c324504026a6',1,'Error_SetAllHandlers(f_ccchandler handler):&#160;error.h']]],
+  ['error_5fsethandler_9',['Error_SetHandler',['../error_8h.html#a7a0846928ebb77e3330de165436901ad',1,'Error_SetHandler(e_cccerror error, f_ccchandler handler):&#160;error.h'],['../sys_2error_8h.html#a7a0846928ebb77e3330de165436901ad',1,'Error_SetHandler(e_cccerror error, f_ccchandler handler):&#160;error.h']]],
+  ['error_5fstdc_10',['Error_STDC',['../error_8h.html#aeed19ee6aa481dfaa137c7c762272b71',1,'Error_STDC(int errno_value):&#160;error.h'],['../sys_2error_8h.html#aeed19ee6aa481dfaa137c7c762272b71',1,'Error_STDC(int errno_value):&#160;error.h']]]
 ];

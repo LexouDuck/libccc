@@ -883,6 +883,7 @@ INPUT                  = ./README.md \
                          ./docs/hdr/libccc/math/ \
                          ./docs/hdr/libccc/math/algebra/ \
                          ./docs/hdr/libccc/monad/ \
+                         ./docs/hdr/libccc/image/ \
                          ./docs/hdr/libccc/random/ \
                          ./docs/hdr/libccc/encode/ \
 

@@ -235,7 +235,7 @@ var searchData=
   ['sf_5fvector4d_5f_232',['SF_VECTOR4D_',['../format_8h.html#ad7d5eadf644ae91d36d349364cc9582e',1,'format.h']]],
   ['sf_5fvector_5faxis_233',['SF_VECTOR_AXIS',['../format_8h.html#a24ca7ab2485d3ad27fd389be3370aa75',1,'format.h']]],
   ['sf_5fvector_5faxis_5f_234',['SF_VECTOR_AXIS_',['../format_8h.html#afac7ba88530886630d83d6393e1a88f5',1,'format.h']]],
-  ['sign_235',['SIGN',['../math_8h.html#a1d03a61bac95c19534e6e4921e18af72',1,'math.h']]],
+  ['sign_235',['SIGN',['../math_8h.html#a1d03a61bac95c19534e6e4921e18af72',1,'SIGN():&#160;math.h'],['../math_2math_8h.html#a1d03a61bac95c19534e6e4921e18af72',1,'SIGN():&#160;math.h']]],
   ['sint_5fabs_236',['SInt_Abs',['../math_2int_8h.html#a0004c51fc137781d7ba6e458ec2673bf',1,'int.h']]],
   ['sint_5fabsolutevalue_237',['SInt_AbsoluteValue',['../math_2int_8h.html#a7e5b4afc13b21024092c77b2a7caf136',1,'int.h']]],
   ['sint_5fadd_238',['SInt_Add',['../math_2int_8h.html#aa686e2d5fcc6e3541a6e6bbc6b151e39',1,'int.h']]],
