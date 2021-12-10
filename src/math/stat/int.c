@@ -1,6 +1,6 @@
 
 #include "libccc/memory.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/math/stat.h"
 
 #define T_TYPE	t_sint

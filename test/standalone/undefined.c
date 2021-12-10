@@ -21,7 +21,7 @@
 #include <libccc/math/fixed.h>
 #include <libccc/math/float.h>
 #include <libccc/math/int.h>
-#include <libccc/math/math.h>
+#include <libccc/math.h>
 #include <libccc/math/sort.h>
 #include <libccc/math/stat.h>
 #include <libccc/math/vlq.h>

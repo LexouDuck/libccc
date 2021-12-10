@@ -3,7 +3,7 @@
 #include <time.h>
 
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/math/algebra.h"
 #include "libccc/math/stat.h"
 

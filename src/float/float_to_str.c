@@ -5,7 +5,7 @@
 #include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

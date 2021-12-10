@@ -2,7 +2,7 @@
 #include "libccc/fixed.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include "test.h"
 

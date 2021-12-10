@@ -1,7 +1,7 @@
 
 #include "libccc/int.h"
 #include "libccc/math/int.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

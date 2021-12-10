@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"

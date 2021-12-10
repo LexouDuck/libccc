@@ -5,7 +5,7 @@
 
 #include "libccc.h"
 #include "libccc/error.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"

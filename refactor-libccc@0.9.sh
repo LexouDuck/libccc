@@ -3,8 +3,8 @@
 
 replace()
 {
-	sed -E "s/\\b$2\\b/$3/g" "$1" > temp.ts
-	mv temp.ts "$1"
+	sed -E "s/\\b$2\\b/$3/g" "$1" > "$1.tmp"
+	mv "$1.tmp" "$1"
 }
 
 for f in $*
@@ -19,4 +19,5 @@ do
 	replace "$f" "StringArray_Fold"       "String_Join"
 	replace "$f" "StringArray_Join"       "StringArray_Concat"
 	replace "$f" "StringArray_Insert"     "StringArray_Wedge"
+	replace "$f" "libccc/math/math.h"     "libccc/math.h"
 done

@@ -3,7 +3,7 @@
 
 
 
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/encode/common.h"

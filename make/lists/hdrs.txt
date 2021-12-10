@@ -10,6 +10,7 @@ libccc/fixed.h
 libccc/float.h
 libccc/format.h
 libccc/int.h
+libccc/math.h
 libccc/math/algebra.h
 libccc/math/algebra/interval.h
 libccc/math/algebra/matrix.h
@@ -19,7 +20,6 @@ libccc/math/constants.h
 libccc/math/fixed.h
 libccc/math/float.h
 libccc/math/int.h
-libccc/math/math.h
 libccc/math/sort.h
 libccc/math/stat.h
 libccc/math/vlq.h

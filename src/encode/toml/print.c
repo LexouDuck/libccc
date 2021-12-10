@@ -3,7 +3,7 @@
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/encode/toml.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
