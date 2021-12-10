@@ -20,4 +20,6 @@ do
 	replace "$f" "StringArray_Join"       "StringArray_Concat"
 	replace "$f" "StringArray_Insert"     "StringArray_Wedge"
 	replace "$f" "libccc/math/math.h"     "libccc/math.h"
+	replace "$f" "libccc/error.h"         "libccc/sys/error.h"
+	replace "$f" "libccc/color.h"         "libccc/image/color.h"
 done

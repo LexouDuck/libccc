@@ -3,7 +3,7 @@
 #include <libccc.h>
 #include <libccc/bool.h>
 #include <libccc/char.h>
-#include <libccc/color.h>
+#include <libccc/image/color.h>
 #include <libccc/encode/common.h>
 #include <libccc/encode/json.h>
 #include <libccc/encode/toml.h>

@@ -1,5 +1,5 @@
 
-#include "libccc/color.h"
+#include "libccc/image/color.h"
 #include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

@@ -1,11 +1,5 @@
 bool/bool_from_str.c
 bool/bool_to_str.c
-color/argb_get.c
-color/argb_set.c
-color/argb_to.c
-color/convert.c
-color/diff.c
-color/nearest.c
 encode/json/minify.c
 encode/json/parse.c
 encode/json/print.c
@@ -35,6 +29,12 @@ fixed/fixed_to_str.c
 float/float.c
 float/float_from_str.c
 float/float_to_str.c
+image/color/argb_get.c
+image/color/argb_set.c
+image/color/argb_to.c
+image/color/convert.c
+image/color/diff.c
+image/color/nearest.c
 int/int.c
 int/int_from_str.c
 int/int_from_strbase.c

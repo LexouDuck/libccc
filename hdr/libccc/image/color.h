@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/color.h                           |    __    __  ___      _____  | ||
+||  libccc/image/color.h                           |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -9,9 +9,9 @@
 ||                                                                            ||
 \*============================================================================*/
 
-#ifndef __LIBCCC_COLOR_H
-#define __LIBCCC_COLOR_H
-/*!@group{libccc_color,20,libccc/color.h}
+#ifndef __LIBCCC_IMAGE_COLOR_H
+#define __LIBCCC_IMAGE_COLOR_H
+/*!@group{libccc_image_color,20,libccc/image/color.h}
 **
 **	This header defines all the functions/bitmasks for encoding colors in ints.
 */
@@ -29,8 +29,8 @@
 
 HEADER_CPP
 
-#ifndef __LIBCCC_COLOR_T
-#define __LIBCCC_COLOR_T
+#ifndef __LIBCCC_IMAGE_COLOR_T
+#define __LIBCCC_IMAGE_COLOR_T
 
 /*
 ** ************************************************************************** *|
@@ -117,8 +117,8 @@ TYPEDEF_ALIAS(	s_ahsl, COLOR_AHSL, STRUCT)
 
 
 #endif
-#ifndef __LIBCCC_COLOR_F
-#define __LIBCCC_COLOR_F
+#ifndef __LIBCCC_IMAGE_COLOR_F
+#define __LIBCCC_IMAGE_COLOR_F
 
 /*
 ** ************************************************************************** *|

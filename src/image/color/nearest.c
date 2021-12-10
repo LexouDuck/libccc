@@ -1,6 +1,6 @@
 
 #include "libccc/math.h"
-#include "libccc/color.h"
+#include "libccc/image/color.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

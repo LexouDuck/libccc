@@ -312,7 +312,7 @@ HEADER_CPP
 #define SF_MEMORY_    "m" //
 //!@}
 
-//!@doc String format specifier macros for libccc/color.h
+//!@doc String format specifier macros for libccc/image/color.h
 //!@{
 #define SF_COLOR_ARGB16  "#%"SF_COLOR_ARGB16_
 #define SF_COLOR_ARGB16_ "X"

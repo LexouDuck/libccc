@@ -1,5 +1,5 @@
 
-#include "libccc/color.h"
+#include "libccc/image/color.h"
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
 

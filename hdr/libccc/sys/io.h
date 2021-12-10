@@ -53,7 +53,7 @@
 
 #ifndef __LIBCCC_COLOR_H
 #define	__LIBCCC_COLOR_F
-#include "libccc/color.h"
+#include "libccc/image/color.h"
 #undef	__LIBCCC_COLOR_H
 #undef	__LIBCCC_COLOR_F
 #endif
