@@ -14,10 +14,11 @@
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wformat-security"
 
-
+#if 0 // test template
 
 #ifndef c_kvt_
 void test_kvt_(void)	{}
+#warning "kvt_() test suite function defined, but the function isn't defined."
 #else
 void	print_test_kvt_(char const* test_name, int can_segfault,
 		char const* str,
@@ -32,10 +33,11 @@ void	test_kvt_(void)
 }
 #endif
 
-
+#endif
 
 #ifndef c_kvtget
 void test_kvtget(void)	{}
+#warning "kvtget() test suite function defined, but the function isn't defined."
 #else
 void	print_test_kvtget(char const* test_name, int can_segfault, \
 		s_kvt const*	expecting,			\

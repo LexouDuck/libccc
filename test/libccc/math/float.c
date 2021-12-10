@@ -5,7 +5,7 @@
 
 #include "test.h"
 
-
+#if 0 // test template
 
 #define DEFINETEST_FLOAT_(BITS) \
 void	print_test_f##BITS##(char const* test_name, int can_segfault,		\
@@ -25,18 +25,21 @@ void	test_f##BITS##(void)												\
 
 #ifndef c_f32
 void test_f32(void)	{}
+#warning "f32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_(32)
 #endif
 
 #ifndef c_f64
 void test_f64(void)	{}
+#warning "f64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_(64)
 #endif
 
 #ifndef c_f80
 void test_f80(void)	{}
+#warning "f80() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_(80)
 #endif
@@ -44,12 +47,13 @@ DEFINETEST_FLOAT_(80)
 #if LIBCONFIG_USE_INT128
 #ifndef c_f128
 void test_f128(void)	{}
+#warning "f128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_(128)
 #endif
 #endif
 
-
+#endif
 
 // TODO
 

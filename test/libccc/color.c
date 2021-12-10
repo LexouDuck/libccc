@@ -3,10 +3,11 @@
 
 #include "test.h"
 
-
+#if 0 // test template
 
 #ifndef c_color_
 void test_color_(void)	{}
+#warning "color_() test suite function defined, but the function isn't defined."
 #else
 void	print_test_color_(char const* test_name, int can_segfault,
 		char const* str,
@@ -24,7 +25,7 @@ void	test_color_(void)
 }
 #endif
 
-
+#endif
 
 // TODO
 

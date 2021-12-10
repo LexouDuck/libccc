@@ -121,12 +121,14 @@ void	test_##TYPE##tostr(void)																							\
 
 #ifndef c_f32tostr
 void test_f32tostr(void)	{}
+#warning "f32tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STR(f32)
 #endif
 
 #ifndef c_f64tostr
 void test_f64tostr(void)	{}
+#warning "f64tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STR(f64)
 #endif
@@ -143,22 +145,18 @@ void test_f128tostr(void)	{}
 DEFINETEST_FLOAT_TO_STR(f128)
 #endif
 
-#ifndef c_floattostr
-void test_floattostr(void)	{}
-#else
-DEFINETEST_FLOAT_TO_STR(float)
-#endif
-
 /*
 
 #ifndef c_f32tostrexp
 void test_f32tostrexp(void)	{}
+#warning "f32tostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(f32)
 #endif
 
 #ifndef c_f64tostrexp
 void test_f64tostrexp(void)	{}
+#warning "f64tostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(f64)
 #endif
@@ -177,6 +175,7 @@ DEFINETEST_FLOAT_TO_STREXP(f128)
 
 #ifndef c_floattostrexp
 void test_floattostrexp(void)	{}
+#warning "floattostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(float)
 #endif
@@ -185,12 +184,14 @@ DEFINETEST_FLOAT_TO_STREXP(float)
 
 #ifndef c_f32tostrdec
 void test_f32tostrdec(void)	{}
+#warning "f32tostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f32)
 #endif
 
 #ifndef c_f64tostrdec
 void test_f64tostrdec(void)	{}
+#warning "f64tostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f64)
 #endif
@@ -209,6 +210,7 @@ DEFINETEST_FLOAT_TO_STRDEC(f128)
 
 #ifndef c_floattostrdec
 void test_floattostrdec(void)	{}
+#warning "floattostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(float)
 #endif
@@ -217,12 +219,14 @@ DEFINETEST_FLOAT_TO_STRDEC(float)
 
 #ifndef c_f32tostrhex
 void test_f32tostrhex(void)	{}
+#warning "f32tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f32)
 #endif
 
 #ifndef c_f64tostrhex
 void test_f64tostrhex(void)	{}
+#warning "f64tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f64)
 #endif
@@ -241,6 +245,7 @@ DEFINETEST_FLOAT_TO_STRHEX(f128)
 
 #ifndef c_floattostrhex
 void test_floattostrhex(void)	{}
+#warning "floattostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(float)
 #endif
@@ -249,12 +254,14 @@ DEFINETEST_FLOAT_TO_STRHEX(float)
 
 #ifndef c_f32tostrbin
 void test_f32tostrbin(void)	{}
+#warning "f32tostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f32) // TODO
 #endif
 
 #ifndef c_f64tostrbin
 void test_f64tostrbin(void)	{}
+#warning "f64tostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
 #endif
@@ -273,6 +280,7 @@ DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
 
 #ifndef c_floattostrbin
 void test_floattostrbin(void)	{}
+#warning "floattostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
 #endif
@@ -1358,12 +1366,14 @@ void	test_strto##TYPE(void)																									\
 
 #ifndef c_strtof32
 void test_strtof32(void)	{}
+#warning "strtof32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_FLOAT(f32)
 #endif
 
 #ifndef c_strtof64
 void test_strtof64(void)	{}
+#warning "strtof64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_FLOAT(f64)
 #endif
@@ -1378,12 +1388,6 @@ DEFINETEST_STR_TO_FLOAT(f80)
 void test_strtof128(void)	{}
 #else
 DEFINETEST_STR_TO_FLOAT(f128)
-#endif
-
-#ifndef c_strtofloat
-void test_strtofloat(void)	{}
-#else
-DEFINETEST_STR_TO_FLOAT(float)
 #endif
 
 
@@ -1414,7 +1418,7 @@ int		testsuite_float(void)
 	test_f64tostr();
 	test_f80tostr();
 	test_f128tostr();
-	test_floattostr();
+//	test_ftostr();
 
 
 
@@ -1422,7 +1426,7 @@ int		testsuite_float(void)
 	test_strtof64();
 	test_strtof80();
 	test_strtof128();
-	test_strtofloat();
+//	test_strtof();
 
 	return (OK);
 }

@@ -8,6 +8,7 @@
 
 #ifndef c_lstitem
 void test_lstitem(void)	{}
+#warning "lstitem() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstitem(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -38,6 +39,7 @@ void	test_lstitem(void)
 
 #ifndef c_lstlen
 void test_lstlen(void)	{}
+#warning "lstlen() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstsize(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -61,6 +63,7 @@ void	test_lstsize(void)
 
 #ifndef c_lstdel
 void test_lstdel(void)	{}
+#warning "lstdel() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstdel(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -78,39 +81,40 @@ void	test_lstdel(void)
 
 
 
-#ifndef c_lstdelf
-void test_lstdelf(void)	{}
+#ifndef c_lstfdel
+void test_lstfdel(void)	{}
+#warning "lstfdel() test suite function defined, but the function isn't defined."
 #else
-void	print_test_lstdelf(char const* test_name, int can_segfault,
+void	print_test_lstfdel(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list(any) **a_lst,
 		void (*delete)(void *, t_size))
 {
 	// TODO
 }
-void	test_lstdelf(void)
+void	test_lstfdel(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
-	//	void	c_lstdelf(s_list(any) **a_lst, void (*del)(void *, t_size));
-		c_putstr("\nft_lstdelf :\n");	
-		c_lstdelf(mixed_list, c_delete);
+	//	void	c_lstfdel(s_list(any) **a_lst, void (*del)(void *, t_size));
+		c_putstr("\nft_lstfdel :\n");	
+		c_lstfdel(mixed_list, c_delete);
 
 		if (*mixed_list) // || *mixed_list || (*mixed_list)->item)
 		{
-			c_putstr_fd("Error deleting with c_lstdelf\n", 2);
+			c_putstr_fd("Error deleting with c_lstfdel\n", 2);
 		}
 		else
 		{
 			c_putstr("Function seems to work; should still check for leaks.\n");
 		}
-	//	void	c_lstdelf(s_list(any) **a_lst, void (*del)(void *, t_size));
-		c_putstr("\nft_lstdelf :\n");	
-		c_lstdelf(&tmp, c_delete);
-		c_lstdelf(a_slst, c_delete);
+	//	void	c_lstfdel(s_list(any) **a_lst, void (*del)(void *, t_size));
+		c_putstr("\nft_lstfdel :\n");	
+		c_lstfdel(&tmp, c_delete);
+		c_lstfdel(a_slst, c_delete);
 		if (*a_slst || tmp) // || *a_slst || (*a_ilst)->item || tmp->item)
 		{
-			c_putstr_fd("Error deleting with c_lstdelf\n", 2);
+			c_putstr_fd("Error deleting with c_lstfdel\n", 2);
 		}
 		else
 		{
@@ -124,6 +128,7 @@ void	test_lstdelf(void)
 
 #ifndef c_lstget
 void test_lstget(void)	{}
+#warning "lstget() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstget(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -143,6 +148,7 @@ void	test_lstget(void)
 
 #ifndef c_lstset
 void test_lstset(void)	{}
+#warning "lstset() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstset(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -163,6 +169,7 @@ void	test_lstset(void)
 
 #ifndef c_lstcpy
 void test_lstcpy(void)	{}
+#warning "lstcpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstcpy(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -183,6 +190,7 @@ void	test_lstcpy(void)
 
 #ifndef c_lstsub
 void test_lstsub(void)	{}
+#warning "lstsub() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstsub(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -203,6 +211,7 @@ void	test_lstsub(void)
 
 #ifndef c_lstprepend
 void test_lstprepend(void)	{}
+#warning "lstprepend() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstprepend(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -228,6 +237,7 @@ void	test_lstadd(void)
 
 #ifndef c_lstappend
 void test_lstappend(void)	{}
+#warning "lstappend() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstappend(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -255,6 +265,7 @@ void	test_lstappend(void)
 
 #ifndef c_lstinsert
 void test_lstinsert(void)	{}
+#warning "lstinsert() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstinsert(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -275,6 +286,7 @@ void	test_lstinsert(void)
 
 #ifndef c_lstfind
 void test_lstfind(void)	{}
+#warning "lstfind() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstfind(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -294,6 +306,7 @@ void	test_lstfind(void)
 
 #ifndef c_lstfindi
 void test_lstfindi(void)	{}
+#warning "lstfindi() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstfindi(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -313,6 +326,7 @@ void	test_lstfindi(void)
 
 #ifndef c_lstdelone
 void test_lstdelone(void)	{}
+#warning "lstdelone() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstdelone(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -365,6 +379,7 @@ void	test_lstdelone(void)
 
 #ifndef c_lstiter
 void test_lstiter(void)	{}
+#warning "lstiter() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstiter(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -386,23 +401,24 @@ void	test_lstiter(void)
 
 
 
-#ifndef c_lstiteri
-void test_lstiteri(void)	{}
+#ifndef c_lstiiter
+void test_lstiiter(void)	{}
+#warning "lstiiter() test suite function defined, but the function isn't defined."
 #else
-void	print_test_lstiteri(char const* test_name, int can_segfault,
+void	print_test_lstiiter(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list(any)* list,
 		void (*f)(void* item, t_uint index))
 {
 	// TODO
 }
-void	test_lstiteri(void)
+void	test_lstiiter(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
-//	c_lstiteri(s_list(any) *list, void (*f)(s_list(any) *elem));
-	c_lstiteri(*a_lst, c_lstiter_tolower);
-	print_test_list("lstiteri", "lstiteri", a_lst, expect_lower, FALSE);
+//	c_lstiiter(s_list(any) *list, void (*f)(s_list(any) *elem));
+	c_lstiiter(*a_lst, c_lstiter_tolower);
+	print_test_list("lstiiter", "lstiiter", a_lst, expect_lower, FALSE);
 */
 }
 #endif
@@ -411,6 +427,7 @@ void	test_lstiteri(void)
 
 #ifndef c_lstmap
 void test_lstmap(void)	{}
+#warning "lstmap() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstmap(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -432,23 +449,24 @@ void	test_lstmap(void)
 
 
 
-#ifndef c_lstmapi
-void test_lstmapi(void)	{}
+#ifndef c_lstimap
+void test_lstimap(void)	{}
+#warning "lstimap() test suite function defined, but the function isn't defined."
 #else
-void	print_test_lstmapi(char const* test_name, int can_segfault,
+void	print_test_lstimap(char const* test_name, int can_segfault,
 		char const* expecting,
 		s_list(any)* list,
 		void* (*map)(void* item, t_uint index))
 {
 	// TODO
 }
-void	test_lstmapi(void)
+void	test_lstimap(void)
 {
 /*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
 /*	TODO
-//	s_list(any)	*c_lstmapi(s_list(any) *list, s_list(any) *(*f)(s_list(any) *elem));
+//	s_list(any)	*c_lstimap(s_list(any) *list, s_list(any) *(*f)(s_list(any) *elem));
 	segfault = setjmp(restore); if (!segfault) *a_lst = c_lstmap(*a_lst, c_lstmap_toupper); else *a_lst = NULL;
-	print_test_list("lstmapi", "lstmapi", *a_lst, expect_upper, FALSE);
+	print_test_list("lstimap", "lstimap", *a_lst, expect_upper, FALSE);
 */
 }
 #endif
@@ -457,6 +475,7 @@ void	test_lstmapi(void)
 
 #ifndef c_lstfold
 void test_lstfold(void)	{}
+#warning "lstfold() test suite function defined, but the function isn't defined."
 #else
 void	print_test_lstfold(char const* test_name, int can_segfault,
 		char const* expecting)
@@ -473,42 +492,6 @@ void	test_lstfold(void)
 	c_putnbr(n);
 	c_putstr("\nExpected : 1337\n");
 #endif
-}
-#endif
-
-
-
-#ifndef c_lst_to_ptrarr
-void test_lst_to_ptrarr(void)	{}
-#else
-void	print_test_lst_to_ptrarr(char const* test_name, int can_segfault,
-		char const* expecting,
-		s_list(any) const** a_lst)
-{
-	// TODO
-}
-void	test_lst_to_ptrarr(void)
-{
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
-//	TODO
-}
-#endif
-
-
-
-#ifndef c_lst_to_array
-void test_lst_to_array(void)	{}
-#else
-void	print_test_lst_to_array(char const* test_name, int can_segfault,
-		char const* expecting,
-		s_list(any) const** a_lst)
-{
-	// TODO
-}
-void	test_lst_to_array(void)
-{
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS */
-//	TODO
 }
 #endif
 

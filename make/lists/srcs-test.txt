@@ -17,6 +17,7 @@
 ./test/libccc/math/vlq.c
 ./test/libccc/memory.c
 ./test/libccc/monad/array.c
+./test/libccc/monad/convert.c
 ./test/libccc/monad/dict.c
 ./test/libccc/monad/hashmap.c
 ./test/libccc/monad/list.c

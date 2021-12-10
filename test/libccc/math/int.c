@@ -31,7 +31,7 @@
 #define TEST_FLOW(OPERAND1, OPERATOR, OPERAND2, BOUND) \
 	((OPERAND1) OPERATOR (OPERAND2)), (OPERAND1), (OPERAND2)
 
-
+#if 0 // test template
 
 #define DEFINETEST_UINT_(BITS) \
 void	print_test_u##BITS##(char const* test_name, int can_segfault,		\
@@ -50,35 +50,40 @@ void	test_u##BITS##(void)												\
 
 #ifndef c_u8
 void test_u8(void)	{}
+#warning "u8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_(8)
 #endif
 
 #ifndef c_u16
 void test_u16(void)	{}
+#warning "u16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_(16)
 #endif
 
 #ifndef c_u32
 void test_u32(void)	{}
+#warning "u32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_(32)
 #endif
 
 #ifndef c_u64
 void test_u64(void)	{}
+#warning "u64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_(64)
 #endif
 
 #ifndef c_u128
 void test_u128(void)	{}
+#warning "u128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_(128)
 #endif
 
-
+#endif
 
 #define DEFINETEST_UINT_OPERATOR(OP, FUNC, BITS) \
 void	print_test_u##BITS##FUNC(char const* test_name, int can_segfault,	\
@@ -111,6 +116,7 @@ void	test_u##BITS##FUNC(void)											\
 
 #ifndef c_uadd
 void test_u8add(void)	{}
+#warning "uadd() test suite function defined, but the function isn't defined."
 void test_u8sub(void)	{}
 void test_u8mul(void)	{}
 void test_u8div(void)	{}
@@ -218,6 +224,7 @@ void	test_s##BITS##FUNC(void)											\
 
 #ifndef c_sadd
 void test_s8add(void)	{}
+#warning "sadd() test suite function defined, but the function isn't defined."
 void test_s8sub(void)	{}
 void test_s8mul(void)	{}
 void test_s8div(void)	{}

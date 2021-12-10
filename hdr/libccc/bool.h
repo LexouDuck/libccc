@@ -144,7 +144,7 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 //!@{
 _MALLOC()
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
-#define c_booltostr		Bool_ToString //!< @alias{Bool_ToString}
+#define c_booltostr		Bool_ToString
 //!@}
 
 
@@ -152,13 +152,13 @@ t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 //!@doc Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
 //!@{
 t_size					Bool_Parse(t_bool *dest, t_char const* str);
-#define c_boolparse		Bool_Parse //!< @alias{Bool_Parse}
+#define c_boolparse		Bool_Parse
 //!@}
 
 //!@doc Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
 //!@{
 t_bool					Bool_FromString(t_char const* str);
-#define c_strtobool		Bool_FromString //!< @alias{Bool_FromString}
+#define c_strtobool		Bool_FromString
 //!@}
 
 

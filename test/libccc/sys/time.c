@@ -175,6 +175,7 @@ s_date	bad_leap_second_date = (s_date)
 
 #ifndef c_datetostr
 void test_datetostr(void)	{}
+#warning "datetostr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_datetostr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -219,6 +220,7 @@ void	test_datetostr(void)
 
 #ifndef c_strtodate
 void test_strtodate(void)	{}
+#warning "strtodate() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strtodate(char const* test_name, int can_segfault,
 		s_date expecting,

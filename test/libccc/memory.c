@@ -7,6 +7,7 @@
 
 #ifndef c_memalloc
 void test_memalloc(void)	{}
+#warning "memalloc() test suite function defined, but the function isn't defined."
 #else
 #define memalloc(n)	malloc(n)
 void	print_test_memalloc(char const* test_name, int can_segfault,
@@ -29,6 +30,7 @@ void	test_memalloc(void)
 
 #ifndef c_memnew
 void test_memnew(void)	{}
+#warning "memnew() test suite function defined, but the function isn't defined."
 #else
 static void*	memnew(t_size n) { void* result = malloc(n);	memset(result, 0, n);	return (result); }
 void	print_test_memnew(char const* test_name, int can_segfault,
@@ -59,6 +61,7 @@ void	test_memnew(void)
 
 #ifndef c_memfree
 void test_memfree(void)	{}
+#warning "memfree() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memfree(char const* test_name, int can_segfault,
 		void* expecting,
@@ -85,6 +88,7 @@ void	test_memfree(void)
 
 #ifndef c_memdel
 void test_memdel(void)	{}
+#warning "memdel() test suite function defined, but the function isn't defined."
 #else
 static void	memdel(void** ptr) { free(*ptr); ptr = NULL; }
 void	print_test_memdel(char const* test_name, int can_segfault,
@@ -115,6 +119,7 @@ void	test_memdel(void)
 
 #ifndef c_memset
 void test_memset(void)	{}
+#warning "memset() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memset(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -149,6 +154,7 @@ void	test_memset(void)
 
 #ifndef c_memclr
 void test_memclr(void)	{}
+#warning "memclr() test suite function defined, but the function isn't defined."
 #else
 // NB: this alias is defined because this function has a different name in libccc
 #ifdef __MINGW32__
@@ -187,6 +193,7 @@ void	test_memclr(void)
 
 #ifndef c_memcpy
 void test_memcpy(void)	{}
+#warning "memcpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memcpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -231,6 +238,7 @@ void	test_memcpy(void)
 
 #ifndef c_memccpy
 void test_memccpy(void)	{}
+#warning "memccpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memccpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -293,6 +301,7 @@ void	test_memccpy(void)
 
 #ifndef c_memmove
 void test_memmove(void)	{}
+#warning "memmove() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
 		char* dest_libccc,
@@ -340,6 +349,7 @@ void	test_memmove(void)
 
 #ifndef c_memchr
 void test_memchr(void)	{}
+#warning "memchr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memchr(char const* test_name, int can_segfault,
 		void const* ptr,
@@ -370,6 +380,7 @@ void	test_memchr(void)
 
 #ifndef c_memcmp
 void test_memcmp(void)	{}
+#warning "memcmp() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memcmp(char const* test_name, int can_segfault,
 		char const* ptr1,
@@ -415,6 +426,7 @@ void	test_memcmp(void)
 // TODO check on which platforms this function exists, if any
 #ifndef c_memdup
 void test_memdup(void)	{}
+#warning "memdup() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memdup(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -451,6 +463,7 @@ void	test_memdup(void)
 
 #ifndef c_memswap
 void test_memswap(void)	{}
+#warning "memswap() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memswap(void)
 {
@@ -467,6 +480,7 @@ void	test_memswap(void)
 
 #ifndef c_memrep
 void test_memrep(void)	{}
+#warning "memrep() test suite function defined, but the function isn't defined."
 #else
 void	print_test_memrep(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -508,6 +522,7 @@ void	test_memrep(void)
 
 #ifndef c_getbits
 void test_getbits(void)	{}
+#warning "getbits() test suite function defined, but the function isn't defined."
 #else
 void	print_test_getbits(void)
 {

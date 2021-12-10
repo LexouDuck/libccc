@@ -109,6 +109,7 @@ char const*		strarr4_C[9] = {"", "", "bb", "", "", "bb", "", "", NULL};
 
 #ifndef c_strarrlen
 void test_strarrlen(void)	{}
+#warning "strarrlen() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strarrlen(char const* test_name, int can_segfault,
 		t_size			expecting,
@@ -138,6 +139,7 @@ void	test_strarrlen()
 
 #ifndef c_strsplit_char
 void test_strsplit_char(void)	{}
+#warning "strsplit_char() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strsplit_char(char const* test_name, int can_segfault,
 		char const**	expecting,
@@ -163,35 +165,36 @@ void	test_strsplit_char()
 
 
 
-#ifndef c_strsplit_charset
-void test_strsplit_charset(void)	{}
+#ifndef c_strsplit_cset
+void test_strsplit_cset(void)	{}
+#warning "strsplit_cset() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strsplit_charset(char const* test_name, int can_segfault,
+void	print_test_strsplit_cset(char const* test_name, int can_segfault,
 		char const**	expecting,
 		char const*		str,
 		char const*		separators)
 {
 	TEST_INIT(strarr)
-	TEST_PERFORM_(result, (char**)c_strsplit_charset, str, separators)
+	TEST_PERFORM_(result, (char**)c_strsplit_cset, str, separators)
 	test.expect = (char**)expecting;
-	TEST_PRINT(strarr,	strsplit_charset, "str=\"%s\", seps=\"%s\"", str, separators)
+	TEST_PRINT(strarr,	strsplit_cset, "str=\"%s\", seps=\"%s\"", str, separators)
 	TEST_FREE_RESULT(c_strarrfree)
 }
-void	test_strsplit_charset()
+void	test_strsplit_cset()
 {
 	char const* numbers[4] = {"2130706433", "136661", "46", NULL};
 //	| TEST FUNCTION				| TEST NAME						| CAN SEGV		| EXPECTING			| TEST ARGS
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_A,			strarr1_as_str,				"\n");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr1_B,			strarr1_as_str,				"\n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr2_B,			strarr2_as_str,				"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr3,			strarr3_as_str_A,			" ");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr3,			strarr3_as_str_B,			" \n\t");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr4_A,			strarr4_as_str,				"a");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			strarr_empty,		strarr4_as_str,				"ab");
-	print_test_strsplit_charset("strsplit_charset",				FALSE,			numbers,			"2130706433 136661 46",		" ");
-	print_test_strsplit_charset("strsplit_charset (null str)",	SIGNAL_SIGSEGV,	NULL,				NULL,						"a");
-	print_test_strsplit_charset("strsplit_charset (null seps)",	SIGNAL_SIGSEGV,	NULL,				strarr1_as_str,				NULL);
-	print_test_strsplit_charset("strsplit_charset (both null)",	SIGNAL_SIGSEGV,	NULL,				NULL,						NULL);
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr1_A,			strarr1_as_str,				"\n");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr1_B,			strarr1_as_str,				"\n\t");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr2_B,			strarr2_as_str,				"a");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr3,			strarr3_as_str_A,			" ");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr3,			strarr3_as_str_B,			" \n\t");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr4_A,			strarr4_as_str,				"a");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			strarr_empty,		strarr4_as_str,				"ab");
+	print_test_strsplit_cset("strsplit_cset",				FALSE,			numbers,			"2130706433 136661 46",		" ");
+	print_test_strsplit_cset("strsplit_cset (null str)",	SIGNAL_SIGSEGV,	NULL,				NULL,						"a");
+	print_test_strsplit_cset("strsplit_cset (null seps)",	SIGNAL_SIGSEGV,	NULL,				strarr1_as_str,				NULL);
+	print_test_strsplit_cset("strsplit_cset (both null)",	SIGNAL_SIGSEGV,	NULL,				NULL,						NULL);
 }
 #endif
 
@@ -199,6 +202,7 @@ void	test_strsplit_charset()
 
 #ifndef c_strsplit_str
 void test_strsplit_str(void)	{}
+#warning "strsplit_str() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strsplit_str(char const* test_name, int can_segfault,
 		char const**	expecting,
@@ -231,6 +235,7 @@ void	test_strsplit_str()
 
 #ifndef c_strarrconcat
 void test_strarrconcat(void)	{}
+#warning "strarrconcat() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strarrconcat(char const* test_name, int can_segfault,
 		char const**	expecting,
@@ -254,6 +259,7 @@ void	test_strarrconcat()
 
 #ifndef c_strjoin
 void test_strjoin(void)	{}
+#warning "strjoin() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strjoin(char const* test_name, int can_segfault,
 		char const*		expecting,
@@ -306,13 +312,13 @@ int		testsuite_stringarray(void)
 //	test_strarrdel();
 
 	test_strsplit_char();
-	test_strsplit_charset();
+	test_strsplit_cset();
 	test_strsplit_str();
 //	test_strdivide();
 	test_strjoin();
 
 //	test_strarrcount_char();
-//	test_strarrcount_charset();
+//	test_strarrcount_cset();
 //	test_strarrcount_string();
 
 //	test_strarrpad_l();

@@ -502,7 +502,7 @@ t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 */
 //!@{
 t_size						String_Count_Char(t_char const* str, t_char c);
-#define c_strcount_chr		String_Count_Char
+#define c_strcount_char		String_Count_Char
 //!@}
 
 //!@doc Count the total occurences of chars from `charset` in the given string `str`
