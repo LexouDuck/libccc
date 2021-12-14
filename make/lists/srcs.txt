@@ -1,5 +1,11 @@
 bool/bool_from_str.c
 bool/bool_to_str.c
+compress/huffman.c
+compress/lz77.c
+compress/lzma.c
+compress/lzss.c
+compress/lzw.c
+compress/rle.c
 encode/json/minify.c
 encode/json/parse.c
 encode/json/print.c
