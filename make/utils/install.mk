@@ -2,14 +2,11 @@
 
 
 
-#! DESTDIR is a GNU-conventional environment variable, typically set to nothing (ie: root folder)
-ifeq ($(DESTDIR),)
-	DESTDIR := 
-endif
+#! DESTDIR is a GNU-conventional environment variable, typically set to nothing (ie: root folder)),)
+DESTDIR ?= 
+
 #! PREFIX is a GNU-conventional environment variable, but if it is not set, then set default value
-ifeq ($(PREFIX),)
-	PREFIX := /usr/local
-endif
+PREFIX ?= /usr/local
 
 #! The folder in which to install the library
 INSTALLDIR = $(DESTDIR)$(PREFIX)
@@ -17,14 +14,10 @@ INSTALLDIR = $(DESTDIR)$(PREFIX)
 
 
 #! INSTALL is a GNU-conventional environment variable, but if it is not set, then set default value
-ifeq ($(INSTALL),)
-	INSTALL := install
-endif
+INSTALL ?= install
+
 #! INSTALL_DATA is a GNU-conventional environment variable, but if it is not set, then set default value
-ifeq ($(INSTALL_DATA),)
-	INSTALL_DATA := $(INSTALL) -c -m 644
-endif
+INSTALL_DATA ?= $(INSTALL) -c -m 644
+
 #! INSTALL_PROGRAM is a GNU-conventional environment variable, but if it is not set, then set default value
-ifeq ($(INSTALL_PROGRAM),)
-	INSTALL_PROGRAM := $(INSTALL) -c -m 755
-endif
+INSTALL_PROGRAM ?= $(INSTALL) -c -m 755

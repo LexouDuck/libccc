@@ -2,9 +2,7 @@
 
 
 #! If not explicitly specified, use full of list of all generic headers
-ifeq ($(GENERIC_HEADERS),)
-GENERIC_HEADERS = $(wildcard $(HDRDIR)libccc/monad/*.h)
-endif
+GENERIC_HEADERS ?= $(wildcard $(HDRDIR)libccc/monad/*.h)
 
 #! The file which holds the template of C code to make an importable generic-type code header
 GENERIC_TEMPLATE = make/rules/generic.template.c
