@@ -48,16 +48,36 @@ address = @value; // ++C
 
 
 
-- binary number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
+- binary (base 2) number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
 ```c
-value = 0b110;	// pure C (GCC extension only)
-value = 0b110;	// ++C
+value = 0b11010;	// pure C (GCC extension only)
+value = 0b11010;	// ++C
 ```
-
-- octal number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
+- seximal (base 6) number literals: with the new prefix `0s`
+```c
+// this is not possible in pure C
+value = 0s12345;	// ++C
+```
+- octal (base 8) number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
 ```c
 value = 0644;	// pure C
 value = 0o644;	// ++C
+```
+- decimal (base 10) number literals: you can place underscores to space out numbers (in any base). For decimal numbers in particular, this can be used to mimic a numeric literal's `0?` prefix:
+```c
+value = 123456789;	// pure C
+value = 0_123456789;	// ++C
+// as a special case, if the leading 0 is followed by an underscore, then it will be a decimal literal, not octal.
+```
+- dozenal (base 12) number literals: with the new prefix `0d`
+```c
+// this is not possible in pure C
+value = 0d123456789AB;	// ++C
+```
+- hexadecimal (base 16) number literals: no particular additions here
+```c
+value = 0x123456789ABCDEF;	// ++C
+// no special features added in ++C for hexadecimal
 ```
 
 
