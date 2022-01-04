@@ -8,6 +8,8 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
+#! The sub-directory in which makefile scripts are stored
+MKFILES_DIR := ./mkfile/
 
 
 
@@ -42,7 +44,7 @@ TESTDIR = ./test/
 #! The directory for git hooks scripts
 GITHOOKSDIR = ./.githooks/
 #! The directory for important list files (source files, packages)
-LISTSDIR = ./make/lists/
+LISTSDIR = ./$(MKFILES_DIR)/lists/
 
 # generated folders
 
@@ -69,16 +71,16 @@ TEMPDIR = ./temp/
 #######################################
 
 # general variables
-include make/utils/print.mk
-include make/utils/ansi.mk
-include make/utils/sudo.mk
-include make/utils/ext.mk
-include make/utils/install.mk
+include $(MKFILES_DIR)utils/print.mk
+include $(MKFILES_DIR)utils/ansi.mk
+include $(MKFILES_DIR)utils/sudo.mk
+include $(MKFILES_DIR)utils/ext.mk
+include $(MKFILES_DIR)utils/install.mk
 
 # project-specific rules
-include make/config/modes.mk
-include make/config/build.mk
-include make/config/build-tests.mk
+include $(MKFILES_DIR)config/modes.mk
+include $(MKFILES_DIR)config/build.mk
+include $(MKFILES_DIR)config/build-tests.mk
 
 
 
@@ -87,33 +89,33 @@ include make/config/build-tests.mk
 #######################################
 
 # project-specific rules
-include make/rules/all.mk
-include make/rules/lists.mk
-include make/rules/build.mk
-include make/rules/lists-tests.mk
-include make/rules/build-tests.mk
-include make/rules/install.mk
+include $(MKFILES_DIR)rules/all.mk
+include $(MKFILES_DIR)rules/lists.mk
+include $(MKFILES_DIR)rules/build.mk
+include $(MKFILES_DIR)rules/lists-tests.mk
+include $(MKFILES_DIR)rules/build-tests.mk
+include $(MKFILES_DIR)rules/install.mk
 
-include make/rules/init.mk
-include make/rules/prereq.mk
-include make/rules/packages.mk
-include make/rules/version.mk
-include make/rules/dist.mk
-include make/rules/clean.mk
+include $(MKFILES_DIR)rules/init.mk
+include $(MKFILES_DIR)rules/prereq.mk
+include $(MKFILES_DIR)rules/packages.mk
+include $(MKFILES_DIR)rules/version.mk
+include $(MKFILES_DIR)rules/dist.mk
+include $(MKFILES_DIR)rules/clean.mk
 
-include make/rules/debugging.mk
-include make/rules/test.mk
-include make/rules/test-env.mk
-include make/rules/test-standalone.mk
-include make/rules/lint.mk
-include make/rules/coverage.mk
-include make/rules/format.mk
-include make/rules/doc.mk
+include $(MKFILES_DIR)rules/debugging.mk
+include $(MKFILES_DIR)rules/test.mk
+include $(MKFILES_DIR)rules/test-env.mk
+include $(MKFILES_DIR)rules/test-standalone.mk
+include $(MKFILES_DIR)rules/lint.mk
+include $(MKFILES_DIR)rules/coverage.mk
+include $(MKFILES_DIR)rules/format.mk
+include $(MKFILES_DIR)rules/doc.mk
+include $(MKFILES_DIR)rules/help-doc.mk
 
 # general rules
-include make/utils/refactor.mk
-include make/utils/help.mk
-include make/rules/help-doc.mk
+include $(MKFILES_DIR)utils/refactor.mk
+include $(MKFILES_DIR)utils/help.mk
 
 # libccc-specific rules
-include make/rules/generic.mk
+include $(MKFILES_DIR)rules/generic.mk

@@ -3,7 +3,7 @@
 
 
 #! The folder which stores makefiles/scripts used for dependency package management
-PACKAGESDIR := make/packages/
+PACKAGESDIR := $(MKFILES_DIR)packages/
 
 
 

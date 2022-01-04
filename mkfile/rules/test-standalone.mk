@@ -90,7 +90,7 @@ $(SRCS_TEST_UNDEFINED): $(addprefix $(HDRDIR),$(TEST_UNDEFINED_INCLUDES))
 	| grep -v '[usqfUSQF]128' \
 	| awk '\
 	BEGIN {\
-		print "// This is a generated source file: see ./make/rules/test-simple.mk for more info";\
+		print "// This is a generated source file: see $(MKFILES_DIR)rules/test-simple.mk for more info";\
 		print "";\
 		$(foreach i,$(TEST_UNDEFINED_INCLUDES),print "#include <$(i)>";)\
 		print "#define T_TYPE	t_sint";\
