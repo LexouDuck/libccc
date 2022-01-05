@@ -10,7 +10,7 @@ echo_HDRSFILE = find $(HDRDIR) -name "*.h" | sort | sed 's|$(HDRDIR)/||g'
 make_HDRSFILE = $(call echo_HDRSFILE) > $(HDRSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(HDRSFILE) ; echo $$?),1)
-$(shell $(call print_warning,"header code list file '$(HDRSFILE)' doesn't exist - creating now..."))
+$(warning "header code list file '$(HDRSFILE)' doesn't exist - creating now...")
 $(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_HDRSFILE))
 endif
@@ -27,7 +27,7 @@ echo_SRCSFILE = find $(SRCDIR) -name "*.c" | sort | sed 's|$(SRCDIR)/||g'
 make_SRCSFILE = $(call echo_SRCSFILE) > $(SRCSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(SRCSFILE) ; echo $$?),1)
-$(shell $(call print_warning,"source code list file '$(SRCSFILE)' doesn't exist - creating now..."))
+$(warning "source code list file '$(SRCSFILE)' doesn't exist - creating now...")
 $(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_SRCSFILE))
 endif

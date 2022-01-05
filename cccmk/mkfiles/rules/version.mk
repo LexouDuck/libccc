@@ -16,7 +16,7 @@ make_VERSION = $(call echo_VERSION,$(1),$(2),$(3)) > $(VERSIONFILE) && cat $(VER
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(VERSIONFILE) ; echo $$?),1)
 $(warning "version file '$(VERSIONFILE)' doesn't exist - creating now...")
-#$(shell $(call make_VERSION,0,0,1))
+$(shell echo "$(NAME)@0.0.1-$(VERSION_METADATA)" > $(VERSIONFILE))
 endif
 #! The filepath in which to store the version number
 VERSIONINFO := $(shell cat $(VERSIONFILE))
@@ -47,7 +47,7 @@ define VERSION_ERRORMESSAGE
 
 The contents of the version file '$(VERSIONFILE)':
 $(VERSIONINFO)
-The version should follow a format like semver (semantic versioning):
+The version should follow a semver-like format (semantic versioning):
 NAME@X.Y.Z-METADATA
 where:
  - NAME is the project name (should be the same as the Makefile variable)
