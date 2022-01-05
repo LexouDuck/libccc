@@ -5,18 +5,29 @@
 
 
 #! important variables
-version=0.1
+cccmk_version=0.1
+cccmk_install=~/Projects/libccc/cccmk
 
 debug=false
 verbose=$debug
+if $debug
+then set -x
+fi
 
 command=help
 command_arg_name=
 command_arg_path=
 
-project_mkfile=Makefile
-project_mkpath=make
 project_versionfile=VERSION
+project_mkfile=Makefile
+project_mkpath=mkfile
+project_mkpath_dirs='
+config
+utils
+rules
+lists
+packages
+'
 
 
 
@@ -34,7 +45,7 @@ print_error()   { printf "cccmk: ""\033[31m""error"   >&2 ; printf "\033[0m: $1\
 #! The path which stores all cccmk data
 if [ -z "$CCCMK_PATH" ]
 then
-	CCCMK_PATH="./cccmk"
+	CCCMK_PATH="$cccmk_install"
 	#print_warning "No value provided for CCCMK_PATH, using default: '$CCCMK_PATH'"
 fi
 if ! [ -d "$CCCMK_PATH" ]
@@ -57,8 +68,6 @@ then
 	exit 1
 fi
 
-. "$CCCMK_PATH_SCRIPTS/utils.sh"
-
 
 
 show_help()
@@ -68,10 +77,10 @@ show_help()
 	echo '    cccmk [OPTIONS...] diff [PROJECT_DIR]'
 	echo ''
 	echo 'OPTIONS:'
-	echo '    Here is the list of accepted options, both in '-c' short form, and '--string' long form'
+	echo '    Here is the list of accepted options, both in "-c" short form, and "--string" long form'
 	echo '    -h, --help      If provided, display this short help message and exit'
-	echo '    -V, --version   If provided, display the cccmk version number info and exit'
-	echo '    -v, --verbose   If provided, show additional log messages for detailed info/debugging'
+	echo '    -v, --version   If provided, display the cccmk version number info and exit'
+	echo '    -V, --verbose   If provided, show additional log messages for detailed info/debugging'
 	echo ''
 	echo 'COMMANDS:'
 	echo ''
@@ -92,7 +101,7 @@ show_help()
 
 show_version()
 {
-	echo "cccmk - version $version"
+	echo "cccmk - version $cccmk_version"
 }
 
 
@@ -107,11 +116,11 @@ parse_args()
 				show_help
 				exit 0
 				;;
-			-V|--version)	print_verbose "parsed arg: '--version'"
+			-v|--version)	print_verbose "parsed arg: '--version'"
 				show_version
 				exit 0
 				;;
-			-v|--verbose)	print_verbose "parsed arg: '--verbose'"
+			-V|--verbose)	print_verbose "parsed arg: '--verbose'"
 				verbose=true
 				;;
 			-*)	print_error "Unknown option: '$1' (try 'cccmk --help')"
@@ -123,7 +132,7 @@ parse_args()
 				then print_error "The 'new' command expects a PROJECT_NAME argument" ; exit 1
 				fi
 				command_arg_name="$2"
-				if [ $# -gt 1 ]
+				if [ $# -gt 2 ]
 				then command_arg_path="$3" ; shift
 				else command_arg_path="./$2"
 				fi
@@ -155,24 +164,57 @@ parse_args "$@"
 
 case "$command" in
 	new)
+		read -p "Is the project a program, or library ? [program/library/cancel] " response
+		response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
+		case $response in
+			program|library) project_type=$response ;;
+			cancel)	print_message "Operation cancelled." ;;
+			*)	print_error "Invalid answer, should be either 'program' or 'library'." ;;
+		esac
 		print_verbose "creating new project at '$command_arg_path'..."
 		mkdir "$command_arg_path"
 		cd "$command_arg_path"
 		mkdir "./$project_mkpath"
-		mkdir "./$project_mkpath/config"
-		mkdir "./$project_mkpath/utils"
-		mkdir "./$project_mkpath/rules"
-		mkdir "./$project_mkpath/lists"
-		mkdir "./$project_mkpath/packages"
-		touch "./$project_mkfile"
+		for i in $project_mkpath_dirs
+		do
+			mkdir "./$project_mkpath/$i"
+			cp -r "$CCCMK_PATH_MKFILES/$i/*" "./$project_mkpath/$i/"
+			if [ -d "./$project_mkpath/$i/_$response" ]
+			then cp "./$project_mkpath/$i/_$response/*" "./$project_mkpath/$i/"
+			fi
+			rm -r "./$project_mkpath/$i/_*"
+		done
+		awk -v project_name='$command_arg_name' '
+		{
+			if (/^NAME =/)
+			{ print "NAME = " project_name; }
+			else print;
+		}' "$CCCMK_PATH_MKFILES/Makefile" > "./$project_mkfile"
 		chmod 755 "./$project_mkfile"
-		echo "$command_arg_name@0.0.0-?" "./$project_versionfile"
 		git init
+		git branch -m master
+		make init
+		make version
 		cd -
 		print_success "Created new project '$command_arg_name' at '$command_arg_path'"
 		;;
 	diff)
+		print_message "folder differences:"
 		diff "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath"
+		#tree "$CCCMK_PATH_MKFILES"               | expand -t 4 > mkfile_tree_ccc.txt
+		#tree "$command_arg_path/$project_mkpath" | expand -t 4 > mkfile_tree_cwd.txt
+		#diff --side-by-side "mkfile_tree_ccc.txt" "mkfile_tree_cwd.txt"
+		#rm mkfile_tree_ccc.txt
+		#rm mkfile_tree_cwd.txt
+		mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
+		for i in $mkfiles
+		do
+			if [ -f $command_arg_path/$project_mkpath/$i ]
+			then
+				print_message "mkfile differences: '$i'"
+				diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i" || continue
+			fi
+		done
 		print_verbose "finished checking differences."
 		;;
 esac
