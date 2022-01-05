@@ -44,7 +44,7 @@ TESTDIR = ./test/
 #! The directory for git hooks scripts
 GITHOOKSDIR = ./.githooks/
 #! The directory for important list files (source files, packages)
-LISTSDIR = ./$(MKFILES_DIR)/lists/
+LISTSDIR = $(MKFILES_DIR)lists/
 
 # generated folders
 

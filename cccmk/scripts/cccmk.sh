@@ -8,7 +8,9 @@
 cccmk_version=0.1
 cccmk_install=~/Projects/libccc/cccmk
 
-debug=false
+if [ -z $debug ]
+then debug=false
+fi
 verbose=$debug
 if $debug
 then set -x
@@ -65,6 +67,13 @@ CCCMK_PATH_MKFILES="$CCCMK_PATH/mkfiles"
 if ! [ -d "$CCCMK_PATH_MKFILES" ]
 then
 	print_error "The CCCMK_PATH folder does not contain a 'mkfiles' folder: '$CCCMK_PATH_MKFILES'"
+	exit 1
+fi
+#! The path which stores cccmk template files for new projects
+CCCMK_PATH_PROJECT="$CCCMK_PATH/project"
+if ! [ -d "$CCCMK_PATH_PROJECT" ]
+then
+	print_error "The CCCMK_PATH folder does not contain a 'project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
 
@@ -162,42 +171,60 @@ parse_args()
 
 parse_args "$@"
 
+
+
 case "$command" in
 	new)
 		read -p "Is the project a program, or library ? [program/library/cancel] " response
 		response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
 		case $response in
 			program|library) project_type=$response ;;
-			cancel)	print_message "Operation cancelled." ;;
-			*)	print_error "Invalid answer, should be either 'program' or 'library'." ;;
+			cancel)	print_message "Operation cancelled." ; exit 1 ;;
+			*)	print_error "Invalid answer, should be either 'program' or 'library'." ; exit 1 ;;
 		esac
 		print_verbose "creating new project at '$command_arg_path'..."
-		mkdir "$command_arg_path"
-		cd "$command_arg_path"
-		mkdir "./$project_mkpath"
-		for i in $project_mkpath_dirs
-		do
-			mkdir "./$project_mkpath/$i"
-			cp -r "$CCCMK_PATH_MKFILES/$i/*" "./$project_mkpath/$i/"
-			if [ -d "./$project_mkpath/$i/_$response" ]
-			then cp "./$project_mkpath/$i/_$response/*" "./$project_mkpath/$i/"
-			fi
-			rm -r "./$project_mkpath/$i/_*"
-		done
-		awk -v project_name='$command_arg_name' '
-		{
-			if (/^NAME =/)
-			{ print "NAME = " project_name; }
-			else print;
-		}' "$CCCMK_PATH_MKFILES/Makefile" > "./$project_mkfile"
-		chmod 755 "./$project_mkfile"
-		git init
-		git branch -m master
-		make init
-		make version
-		cd -
+		(
+			# create project folder and cd inside it
+			mkdir "$command_arg_path"
+			cd    "$command_arg_path"
+			# copy over template project files
+			cp -r "$CCCMK_PATH_PROJECT/.githooks" ./
+			cp -r "$CCCMK_PATH_PROJECT/"* ./
+			# TODO LICENSE logic ?
+			echo "# $command_arg_name" > ./README.md
+			echo "# TODO list"         > ./TODO.md
+			# copy over template mkfile scripts to new project folder
+			mkdir "./$project_mkpath"
+			for i in $project_mkpath_dirs
+			do
+				cp -r "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
+				if [ -d "./$project_mkpath/$i/_$response/" ]
+				then mv "./$project_mkpath/$i/_$response/"*.mk "./$project_mkpath/$i/"
+				fi
+				rm -rf "./$project_mkpath/$i/"_*
+			done
+			# set project's name in root makefile
+			awk -v project_name="$command_arg_name" '
+			{
+				if (/^NAME =/)
+				{ print "NAME = " project_name; }
+				else print;
+			}' "$CCCMK_PATH_PROJECT/Makefile" > "./$project_mkfile"
+			chmod 755 "./$project_mkfile"
+			# create project version file
+			echo "$command_arg_name@0.0.0-?" > "$project_versionfile"
+			# set up git repo for new project
+			git init
+			git branch -m master
+			git add --all
+			git commit -m "initial commit"
+			# set up other git/version management things
+			make init
+			make version
+		)
 		print_success "Created new project '$command_arg_name' at '$command_arg_path'"
 		;;
+
 	diff)
 		print_message "folder differences:"
 		diff "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath"
@@ -217,4 +244,5 @@ case "$command" in
 		done
 		print_verbose "finished checking differences."
 		;;
+
 esac

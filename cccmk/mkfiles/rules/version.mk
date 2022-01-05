@@ -15,8 +15,8 @@ echo_VERSION = echo "$(NAME)@$(1).$(2).$(3)-$(VERSION_METADATA)"
 make_VERSION = $(call echo_VERSION,$(1),$(2),$(3)) > $(VERSIONFILE) && cat $(VERSIONFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(VERSIONFILE) ; echo $$?),1)
-$(shell $(call print_warning,"version file '$(VERSIONFILE)' doesn't exist - creating now..."))
-$(shell $(call make_VERSION,0,0,1))
+$(warning "version file '$(VERSIONFILE)' doesn't exist - creating now...")
+#$(shell $(call make_VERSION,0,0,1))
 endif
 #! The filepath in which to store the version number
 VERSIONINFO := $(shell cat $(VERSIONFILE))
@@ -47,12 +47,12 @@ define VERSION_ERRORMESSAGE
 
 The contents of the version file '$(VERSIONFILE)':
 $(VERSIONINFO)
-The version should follow a semver-like format:
-(NAME)@(X).(Y).(Z)-(METADATA)
+The version should follow a format like semver (semantic versioning):
+NAME@X.Y.Z-METADATA
 where:
- - (NAME) is the project name (should be the same as the Makefile variable)
- - (X), (Y), (Z) are the version numbers (major, minor, and patch respectively, like in 'semver')
- - (METADATA) is project-specific metadata to identify builds (by default, the date and commit rev)
+ - NAME is the project name (should be the same as the Makefile variable)
+ - X, Y, Z are the version numbers (major, minor, and patch respectively, like in semver)
+ - METADATA is project-specific metadata to identify builds (by default, the date and commit rev)
 You can learn more about semver here: https://github.com/semver/semver/blob/master/semver.md
 
 endef
