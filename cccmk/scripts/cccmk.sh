@@ -84,6 +84,7 @@ show_help()
 	echo 'USAGE:'
 	echo '    cccmk [OPTIONS...] new PROJECT_NAME [PROJECT_DIR]'
 	echo '    cccmk [OPTIONS...] diff [PROJECT_DIR]'
+	echo '    cccmk [OPTIONS...] update [MKFILE_PATH...]'
 	echo ''
 	echo 'OPTIONS:'
 	echo '    Here is the list of accepted options, both in "-c" short form, and "--string" long form'
@@ -105,6 +106,11 @@ show_help()
 	echo '    Checks for differences between the given project and the template mkfiles.'
 	echo '    - PROJECT_DIR (optional) is the project folder for which to check differences.'
 	echo '      If not specified, the project folder to check is assumed to be "./", the current dir.'
+	echo ''
+	echo '  $ cccmk update [MKFILE_PATH...]'
+	echo '    Overwrites the given file with the latest cccmk template equivalent.'
+	echo '    - MKFILE_PATH (optional) is the filepath of one or more mkfile scripts to update.'
+	echo '      If no path is specfied, then all mkfile script files will be updated.'
 	echo ''
 }
 
@@ -154,6 +160,17 @@ parse_args()
 				else command_arg_path="."
 				fi
 				;;
+			update)	print_verbose "parsed command: 'update'"
+				command=$1
+				shift
+				if [ $# -ge 1 ]
+				then command_arg_path="$@"
+				else command_arg_path=""
+				fi
+				while [ $# -gt 1 ]
+				do shift
+				done
+				;;
 			*)	print_error "Invalid argument: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
@@ -174,6 +191,7 @@ parse_args "$@"
 
 
 case "$command" in
+
 	new)
 		read -p "Is the project a program, or library ? [program/library/cancel] " response
 		response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
@@ -227,7 +245,7 @@ case "$command" in
 
 	diff)
 		print_message "folder differences:"
-		diff "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath"
+		diff "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''
 		#tree "$CCCMK_PATH_MKFILES"               | expand -t 4 > mkfile_tree_ccc.txt
 		#tree "$command_arg_path/$project_mkpath" | expand -t 4 > mkfile_tree_cwd.txt
 		#diff --side-by-side "mkfile_tree_ccc.txt" "mkfile_tree_cwd.txt"
@@ -243,6 +261,39 @@ case "$command" in
 			fi
 		done
 		print_verbose "finished checking differences."
+		;;
+
+	update)
+		for i in $command_arg_path
+		do
+			if ! [ -f "./$project_mkpath/$i" ]
+			then
+				print_error "Invalid filepath for 'cccmk update': ./$project_mkpath/$i"
+				print_error "The path should be relative to the '$project_mkpath' folder"
+				exit 1
+			fi
+			if ! diff -q "./$project_mkpath/$i" "$CCCMK_PATH_MKFILES/$i"
+			then
+				git --no-pager diff --color --no-index "./$project_mkpath/$i" "$CCCMK_PATH_MKFILES/$i" || echo ''
+				print_message "The file './$project_mkpath/$i' differs from the cccmk template (see diff above)"
+				print_message "Your file is shown as old/red, and the latest cccmk template is shown as new/green."
+				read -p "Are you sure you wish to overwrite './$project_mkpath/$i' ? [y/N]" response
+				response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
+				case $response in
+					y|ye|yes) response=true ;;
+					n|no|'')  print_message "Operation cancelled." ; continue ;;
+					*)        print_error "Invalid answer, should be either 'y'/'yes' or 'n'/'no'." ; exit 1 ;;
+				esac
+			else
+				response=false
+				print_message "The file './$project_mkpath/$i' is identical to the latest cccmk template."
+			fi
+			if $response
+			then
+				print_message "Updating file './$project_mkpath/$i'..."
+				cp "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
+			fi
+		done
 		;;
 
 esac
