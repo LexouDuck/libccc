@@ -7,6 +7,12 @@
 #! important variables
 cccmk_version=0.1
 cccmk_install=~/Projects/libccc/cccmk
+#cccmk_diffcmd="diff --color"
+cccmk_diffcmd="git --no-pager diff --color --no-index"
+cccmk_diff()
+{
+	$cccmk_diffcmd "$1" "$2" || echo ''
+}
 
 if [ -z $debug ]
 then debug=false
@@ -79,38 +85,75 @@ fi
 
 
 
+cccmk_commands='
+help
+version
+new
+diff
+update
+'
+
+cccmk_doc_args_help='cccmk [<OPTIONS>...] help'
+cccmk_doc_text_help='
+    Displays this brief help message (same as the -h/--help option).
+'
+cccmk_doc_args_version='cccmk [<OPTIONS>...] version'
+cccmk_doc_text_version='
+    Displays the cccmk version number info (same as the -v/--version option).
+'
+cccmk_doc_args_new='cccmk [<OPTIONS>...] new <PROJECT_NAME> [<PROJECT_DIR>]'
+cccmk_doc_text_new='
+    Creates a new project, filling the newly created project with various mkfile scripts,
+    prompting the user to specify which mkfile scripts/rules they would like to use.
+    - <PROJECT_NAME> is the name to give to the project.
+    - <PROJECT_DIR> (optional) is the folder in which to create the project.
+      If not specified, the new project will be created in the current folder,
+      and the newly created project folder will be named using <PROJECT_NAME>.
+'
+cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
+cccmk_doc_text_diff='
+    Checks for differences between the given project and the template mkfiles.
+    - <PROJECT_DIR> (optional) is the project folder for which to check differences.
+      If not specified, the project folder to check is assumed to be "./", the current dir.
+'
+cccmk_doc_args_update='cccmk [<OPTIONS>...] update [<MKFILE_PATH>...]'
+cccmk_doc_text_update='
+    Overwrites the given file with the latest cccmk template equivalent.
+    - <MKFILE_PATH> (optional) is the filepath of one or more mkfile scripts to update.
+      If no path is specfied, then all mkfile script files will be updated.
+'
+
+
+cccmk_options='
+h
+v
+V
+'
+cccmk_doc_flag_h='-h, --help       If provided, display this brief help message and exit.'
+cccmk_doc_flag_v='-v, --version    If provided, display the cccmk version number info and exit.'
+cccmk_doc_flag_V='-V, --verbose    If provided, show additional log messages for detailed info/debugging.'
+
 show_help()
 {
 	echo 'USAGE:'
-	echo '    cccmk [OPTIONS...] new PROJECT_NAME [PROJECT_DIR]'
-	echo '    cccmk [OPTIONS...] diff [PROJECT_DIR]'
-	echo '    cccmk [OPTIONS...] update [MKFILE_PATH...]'
+	for i in $cccmk_commands
+	do
+		line="cccmk_doc_args_$i" ; echo "    ${!line}"
+	done
 	echo ''
 	echo 'OPTIONS:'
 	echo '    Here is the list of accepted options, both in "-c" short form, and "--string" long form'
-	echo '    -h, --help      If provided, display this short help message and exit'
-	echo '    -v, --version   If provided, display the cccmk version number info and exit'
-	echo '    -V, --verbose   If provided, show additional log messages for detailed info/debugging'
+	for i in $cccmk_options
+	do
+		line="cccmk_doc_flag_$i" ; echo "    ${!line}"
+	done
 	echo ''
 	echo 'COMMANDS:'
-	echo ''
-	echo '  $ cccmk new PROJECT_NAME [PROJECT_DIR]'
-	echo '    Creates a new project, filling the newly created project with various mkfile scripts,'
-	echo '    prompting the user to specify which mkfile scripts/rules they would like to use.'
-	echo '    - PROJECT_NAME is the name to give to the project.'
-	echo '    - PROJECT_DIR (optional) is the folder in which to create the project.'
-	echo '      If not specified, the new project will be created in the current folder,'
-	echo '      and the newly created project folder will be named using PROJECT_NAME.'
-	echo ''
-	echo '  $ cccmk diff [PROJECT_DIR]'
-	echo '    Checks for differences between the given project and the template mkfiles.'
-	echo '    - PROJECT_DIR (optional) is the project folder for which to check differences.'
-	echo '      If not specified, the project folder to check is assumed to be "./", the current dir.'
-	echo ''
-	echo '  $ cccmk update [MKFILE_PATH...]'
-	echo '    Overwrites the given file with the latest cccmk template equivalent.'
-	echo '    - MKFILE_PATH (optional) is the filepath of one or more mkfile scripts to update.'
-	echo '      If no path is specfied, then all mkfile script files will be updated.'
+	for i in $cccmk_commands
+	do
+		line="cccmk_doc_args_$i" ; printf "  \$ ${!line}"
+		line="cccmk_doc_text_$i" ; printf  "    ${!line}\n"
+	done
 	echo ''
 }
 
@@ -245,21 +288,28 @@ case "$command" in
 
 	diff)
 		print_message "folder differences:"
-		diff "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''
-		#tree "$CCCMK_PATH_MKFILES"               | expand -t 4 > mkfile_tree_ccc.txt
-		#tree "$command_arg_path/$project_mkpath" | expand -t 4 > mkfile_tree_cwd.txt
-		#diff --side-by-side "mkfile_tree_ccc.txt" "mkfile_tree_cwd.txt"
-		#rm mkfile_tree_ccc.txt
-		#rm mkfile_tree_cwd.txt
-		mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
-		for i in $mkfiles
-		do
-			if [ -f $command_arg_path/$project_mkpath/$i ]
-			then
-				print_message "mkfile differences: '$i'"
-				diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i" || continue
-			fi
-		done
+		diff -qsr "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''
+		if tree --version > /dev/null
+		then
+			tree -a   "$CCCMK_PATH_MKFILES"             > ./tree_ccc.txt
+			tree -a "$command_arg_path/$project_mkpath" > ./tree_pwd.txt
+			cccmk_diff "./tree_ccc.txt" "./tree_pwd.txt"
+			rm ./tree_*.txt
+		else
+			print_warning "This computer has no 'tree' command installed, cannot display folder tree diff"
+		fi
+		if $verbose
+		then
+			mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
+			for i in $mkfiles
+			do
+				if [ -f $command_arg_path/$project_mkpath/$i ]
+				then
+					print_message "mkfile differences: '$i'"
+					cccmk_diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i"
+				fi
+			done
+		fi
 		print_verbose "finished checking differences."
 		;;
 
@@ -272,9 +322,9 @@ case "$command" in
 				print_error "The path should be relative to the '$project_mkpath' folder"
 				exit 1
 			fi
-			if ! diff -q "./$project_mkpath/$i" "$CCCMK_PATH_MKFILES/$i"
+			if ! cmp "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
 			then
-				git --no-pager diff --color --no-index "./$project_mkpath/$i" "$CCCMK_PATH_MKFILES/$i" || echo ''
+				cccmk_diff "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
 				print_message "The file './$project_mkpath/$i' differs from the cccmk template (see diff above)"
 				print_message "Your file is shown as old/red, and the latest cccmk template is shown as new/green."
 				read -p "Are you sure you wish to overwrite './$project_mkpath/$i' ? [y/N]" response
