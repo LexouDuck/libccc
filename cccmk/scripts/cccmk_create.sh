@@ -12,6 +12,7 @@ case $response in
 	cancel)	print_message "Operation cancelled." ; exit 1 ;;
 	*)	print_error "Invalid answer, should be either 'program' or 'library'." ; exit 1 ;;
 esac
+echo ''
 
 list_subfolders()
 {
@@ -31,6 +32,9 @@ print_verbose "creating new project at '$command_arg_path'..."
 	echo "# TODO list"         > ./TODO.md
 	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
+	# create '.cccmk' tracking file
+	echo "project_type=$project_type" >> "$project_cccmkfile"
+	echo "project_scripts="           >> "$project_cccmkfile"
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
@@ -65,6 +69,11 @@ print_verbose "creating new project at '$command_arg_path'..."
 		done
 		# cleanup up leftover '_if_*' folders
 		rm -rf "./$project_mkpath/$dir/"_if_*
+		# add mkfile scripts to the '.cccmk' file
+		for file in `find "$project_mkpath/$dir" -type f`
+		do
+			echo "$file" >> "$project_cccmkfile"
+		done
 	done
 	# set project's name in root makefile
 	awk -v project_name="$command_arg_name" '
@@ -84,5 +93,18 @@ print_verbose "creating new project at '$command_arg_path'..."
 	# set up other git/version management things
 	make init
 	make version
+
+	if $verbose
+	then
+		print_verbose "Here is the folder tree of the newly created project:"
+		if tree --version > /dev/null
+		then
+			tree -a -I '.git' .
+		else
+			print_warning "This computer has no 'tree' command installed, cannot display project folder tree."
+		fi
+		print_verbose "Here are the contents of the '$project_cccmkfile' file:"
+		cat "$project_cccmkfile"
+	fi
 )
 print_success "Created new project '$command_arg_name' at '$command_arg_path'"

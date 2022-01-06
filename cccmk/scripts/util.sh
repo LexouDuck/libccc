@@ -10,8 +10,8 @@ prompt_multiselect()
 	cursor_blink_on()   { printf "$ESC[?25h"; }
 	cursor_blink_off()  { printf "$ESC[?25l"; }
 	cursor_to()         { printf "$ESC[$1;${2:-1}H"; }
-	print_inactive()    { printf "$2   $1 "; }
-	print_active()      { printf "$2  $ESC[7m $1 $ESC[27m"; }
+	print_inactive()    { printf "$1   $2 "; }
+	print_active()      { printf "$1  $ESC[7m $2 $ESC[27m"; }
 	get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
 	key_input()
 	{
@@ -75,8 +75,8 @@ prompt_multiselect()
 
 			cursor_to $(($startrow + $idx))
 			if [ $idx -eq $active ]
-			then print_active   "$option" "$prefix"
-			else print_inactive "$option" "$prefix"
+			then print_active   "$prefix" "$option" "$description"
+			else print_inactive "$prefix" "$option" "$description"
 			fi
 			((idx++))
 		done

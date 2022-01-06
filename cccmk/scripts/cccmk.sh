@@ -25,6 +25,7 @@ command=help
 command_arg_name=
 command_arg_path=
 
+project_cccmkfile=.cccmk
 project_versionfile=VERSION
 project_mkfile=Makefile
 project_mkpath=mkfile
