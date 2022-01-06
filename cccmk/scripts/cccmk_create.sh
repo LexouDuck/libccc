@@ -2,6 +2,7 @@
 
 
 
+# prompt the user for the project type
 read -p "Is the project a program, or library ? [program/library/cancel] " response
 response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
 case $response in
@@ -9,6 +10,14 @@ case $response in
 	cancel)	print_message "Operation cancelled." ; exit 1 ;;
 	*)	print_error "Invalid answer, should be either 'program' or 'library'." ; exit 1 ;;
 esac
+
+# prompt the user for the project packages
+echo "Please select which packages you like to include as dependencies, among the common ones:"
+echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
+common_packages=`ls "$CCCMK_PATH_MKFILES/packages" | sort --ignore-case | xargs`
+chosen_packages=
+prompt_multiselect chosen_packages `echo "$common_packages" | tr [:space:] ';' `
+#print_verbose "selected packages: ${response[@]}"
 
 print_verbose "creating new project at '$command_arg_path'..."
 (
@@ -23,13 +32,22 @@ print_verbose "creating new project at '$command_arg_path'..."
 	echo "# TODO list"         > ./TODO.md
 	# copy over template mkfile scripts to new project folder
 	mkdir "./$project_mkpath"
-	for i in $project_mkpath_dirs
+	for dir in $project_mkpath_dirs
 	do
-		cp -r "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
-		if [ -d "./$project_mkpath/$i/_$response/" ]
-		then mv "./$project_mkpath/$i/_$response/"*.mk "./$project_mkpath/$i/"
+		if [ "$dir" == "packages" ]
+		then # only copy over selected packages
+			mkdir "./$project_mkpath/$dir"
+			for i in ${chosen_packages[@]}
+			do
+				cp "$CCCMK_PATH_MKFILES/$dir/$i" "./$project_mkpath/$dir/$i"
+			done
+		else # copy over all files, and check leading-underscore folders to conditionally copy
+			cp -r "$CCCMK_PATH_MKFILES/$dir" "./$project_mkpath/$dir"
+			if [ -d "./$project_mkpath/$dir/_$response/" ]
+			then mv "./$project_mkpath/$dir/_$response/"*.mk "./$project_mkpath/$dir/"
+			fi
 		fi
-		rm -rf "./$project_mkpath/$i/"_*
+		rm -rf "./$project_mkpath/$dir/"_*
 	done
 	# set project's name in root makefile
 	awk -v project_name="$command_arg_name" '

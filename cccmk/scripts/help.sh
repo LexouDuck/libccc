@@ -60,6 +60,7 @@ cccmk_doc_flag_V='-V, --verbose    If provided, show additional log messages for
 #! Displays program help
 show_help()
 {
+	local line=""
 	echo 'USAGE:'
 	for i in $cccmk_commands
 	do

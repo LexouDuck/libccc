@@ -2,6 +2,7 @@
 
 
 
+# iterate over all filepath arguments
 for i in $command_arg_path
 do
 	file_pwd="$i"
