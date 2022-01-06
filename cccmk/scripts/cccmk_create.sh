@@ -3,21 +3,20 @@
 
 
 # prompt the user for the project type
-read -p "Is the project a program, or library ? [program/library/cancel] " response
+echo "Is the project a program, or library ? [program/library/cancel]"
+read -p "> " response
 response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
+project_type=program
 case $response in
 	program|library) project_type=$response ;;
 	cancel)	print_message "Operation cancelled." ; exit 1 ;;
 	*)	print_error "Invalid answer, should be either 'program' or 'library'." ; exit 1 ;;
 esac
 
-# prompt the user for the project packages
-echo "Please select which packages you like to include as dependencies, among the common ones:"
-echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
-common_packages=`ls "$CCCMK_PATH_MKFILES/packages" | sort --ignore-case | xargs`
-chosen_packages=
-prompt_multiselect chosen_packages `echo "$common_packages" | tr [:space:] ';' `
-#print_verbose "selected packages: ${response[@]}"
+list_subfolders()
+{
+	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
+}
 
 print_verbose "creating new project at '$command_arg_path'..."
 (
@@ -30,24 +29,42 @@ print_verbose "creating new project at '$command_arg_path'..."
 	# TODO LICENSE logic ?
 	echo "# $command_arg_name" > ./README.md
 	echo "# TODO list"         > ./TODO.md
-	# copy over template mkfile scripts to new project folder
+	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
-	for dir in $project_mkpath_dirs
+	# iterate over all mkfile folders
+	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
+		# copy over all files
+		cp -r "$CCCMK_PATH_MKFILES/$dir" "./$project_mkpath/$dir"
+		# prepare multiselect prompt
 		if [ "$dir" == "packages" ]
-		then # only copy over selected packages
-			mkdir "./$project_mkpath/$dir"
-			for i in ${chosen_packages[@]}
-			do
-				cp "$CCCMK_PATH_MKFILES/$dir/$i" "./$project_mkpath/$dir/$i"
-			done
-		else # copy over all files, and check leading-underscore folders to conditionally copy
-			cp -r "$CCCMK_PATH_MKFILES/$dir" "./$project_mkpath/$dir"
-			if [ -d "./$project_mkpath/$dir/_$response/" ]
-			then mv "./$project_mkpath/$dir/_$response/"*.mk "./$project_mkpath/$dir/"
-			fi
+		then prompt_message="Select which packages you like to include as dependencies, among the common ones:"
+		else prompt_message="Select which utility scripts you wish to include in your project:"
 		fi
-		rm -rf "./$project_mkpath/$dir/"_*
+		# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain scripts
+		for subdir in `list_subfolders "$project_mkpath/$dir"`
+		do
+			case "$subdir" in
+				_if_selected) # prompt the user to select which scripts they want
+					proposed_scripts=`ls "$project_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
+					selected_scripts=
+					echo "$prompt_message"
+					prompt_multiselect selected_scripts `echo "$proposed_scripts" | tr [:space:] ';' `
+					for i in ${selected_scripts[@]}
+					do
+						mv "$project_mkpath/$dir/$subdir/$i" "./$project_mkpath/$dir/$i"
+					done
+					;;
+				_if_type_*) # only copy over files if $project_type matches folder name part after '_if_type_'
+					if [ "$subdir" == "_if_type_$project_type" ]
+					then mv "./$project_mkpath/$dir/$subdir/"*.mk "./$project_mkpath/$dir/"
+					fi
+					;;
+				*)	break;;
+			esac
+		done
+		# cleanup up leftover '_if_*' folders
+		rm -rf "./$project_mkpath/$dir/"_if_*
 	done
 	# set project's name in root makefile
 	awk -v project_name="$command_arg_name" '

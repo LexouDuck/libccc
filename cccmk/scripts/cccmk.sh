@@ -28,13 +28,6 @@ command_arg_path=
 project_versionfile=VERSION
 project_mkfile=Makefile
 project_mkpath=mkfile
-project_mkpath_dirs='
-config
-utils
-rules
-lists
-packages
-'
 
 
 

@@ -4,6 +4,7 @@
 
 prompt_multiselect()
 {
+	echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
 	# little helpers for terminal print control and key input
 	ESC=$(printf "\033")
 	cursor_blink_on()   { printf "$ESC[?25h"; }

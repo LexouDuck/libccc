@@ -57,6 +57,14 @@ cccmk_doc_flag_V='-V, --verbose    If provided, show additional log messages for
 
 
 
+#! The list of possible valid project types
+cccmk_project_types='
+program
+library
+'
+
+
+
 #! Displays program help
 show_help()
 {
