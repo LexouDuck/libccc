@@ -5,7 +5,6 @@
 
 
 #! important variables
-cccmk_version=0.1
 cccmk_install=~/Projects/libccc/cccmk
 #cccmk_diffcmd="diff --color"
 cccmk_diffcmd="git --no-pager diff --color --no-index"
@@ -85,12 +84,15 @@ fi
 
 
 
+#! The program version number
+cccmk_version=0.1
+#! The list of accepted commands
 cccmk_commands='
 help
 version
-new
-diff
+create
 update
+diff
 '
 
 cccmk_doc_args_help='cccmk [<OPTIONS>...] help'
@@ -101,8 +103,8 @@ cccmk_doc_args_version='cccmk [<OPTIONS>...] version'
 cccmk_doc_text_version='
     Displays the cccmk version number info (same as the -v/--version option).
 '
-cccmk_doc_args_new='cccmk [<OPTIONS>...] new <PROJECT_NAME> [<PROJECT_DIR>]'
-cccmk_doc_text_new='
+cccmk_doc_args_create='cccmk [<OPTIONS>...] new <PROJECT_NAME> [<PROJECT_DIR>]'
+cccmk_doc_text_create='
     Creates a new project, filling the newly created project with various mkfile scripts,
     prompting the user to specify which mkfile scripts/rules they would like to use.
     - <PROJECT_NAME> is the name to give to the project.
@@ -110,20 +112,20 @@ cccmk_doc_text_new='
       If not specified, the new project will be created in the current folder,
       and the newly created project folder will be named using <PROJECT_NAME>.
 '
-cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
-cccmk_doc_text_diff='
-    Checks for differences between the given project and the template mkfiles.
-    - <PROJECT_DIR> (optional) is the project folder for which to check differences.
-      If not specified, the project folder to check is assumed to be "./", the current dir.
-'
 cccmk_doc_args_update='cccmk [<OPTIONS>...] update [<MKFILE_PATH>...]'
 cccmk_doc_text_update='
     Overwrites the given file with the latest cccmk template equivalent.
     - <MKFILE_PATH> (optional) is the filepath of one or more mkfile scripts to update.
       If no path is specfied, then all mkfile script files will be updated.
 '
+cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
+cccmk_doc_text_diff='
+    Checks for differences between the given project and the template mkfiles.
+    - <PROJECT_DIR> (optional) is the project folder for which to check differences.
+      If not specified, the project folder to check is assumed to be "./", the current dir.
+'
 
-
+#! The list of accepted option flags (single-char short form)
 cccmk_options='
 h
 v
@@ -133,6 +135,7 @@ cccmk_doc_flag_h='-h, --help       If provided, display this brief help message 
 cccmk_doc_flag_v='-v, --version    If provided, display the cccmk version number info and exit.'
 cccmk_doc_flag_V='-V, --verbose    If provided, show additional log messages for detailed info/debugging.'
 
+#! Displays program help
 show_help()
 {
 	echo 'USAGE:'
@@ -157,6 +160,7 @@ show_help()
 	echo ''
 }
 
+#! Displays program version
 show_version()
 {
 	echo "cccmk - version $cccmk_version"
@@ -164,6 +168,7 @@ show_version()
 
 
 
+#! Parses program arguments, assessing which command is called, handling arg errors etc
 parse_args()
 {
 	while [ $# -gt 0 ]
@@ -184,10 +189,10 @@ parse_args()
 			-*)	print_error "Unknown option: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
-			new)	print_verbose "parsed command: 'new'"
+			create)	print_verbose "parsed command: 'create'"
 				command=$1
 				if [ $# -le 1 ]
-				then print_error "The 'new' command expects a PROJECT_NAME argument" ; exit 1
+				then print_error "The 'create' command expects a PROJECT_NAME argument" ; exit 1
 				fi
 				command_arg_name="$2"
 				if [ $# -gt 2 ]
@@ -235,7 +240,7 @@ parse_args "$@"
 
 case "$command" in
 
-	new)
+	create)
 		read -p "Is the project a program, or library ? [program/library/cancel] " response
 		response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
 		case $response in
@@ -286,33 +291,6 @@ case "$command" in
 		print_success "Created new project '$command_arg_name' at '$command_arg_path'"
 		;;
 
-	diff)
-		print_message "folder differences:"
-		diff -qsr "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''
-		if tree --version > /dev/null
-		then
-			tree -a   "$CCCMK_PATH_MKFILES"             > ./tree_ccc.txt
-			tree -a "$command_arg_path/$project_mkpath" > ./tree_pwd.txt
-			cccmk_diff "./tree_ccc.txt" "./tree_pwd.txt"
-			rm ./tree_*.txt
-		else
-			print_warning "This computer has no 'tree' command installed, cannot display folder tree diff"
-		fi
-		if $verbose
-		then
-			mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
-			for i in $mkfiles
-			do
-				if [ -f $command_arg_path/$project_mkpath/$i ]
-				then
-					print_message "mkfile differences: '$i'"
-					cccmk_diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i"
-				fi
-			done
-		fi
-		print_verbose "finished checking differences."
-		;;
-
 	update)
 		for i in $command_arg_path
 		do
@@ -344,6 +322,60 @@ case "$command" in
 				cp "$CCCMK_PATH_MKFILES/$i" "./$project_mkpath/$i"
 			fi
 		done
+		;;
+
+	diff)
+		print_message "folder differences:"
+		#folder_diff=`diff -qsr "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''`
+		if tree --version > /dev/null
+		then
+			tree -L 2 -a   "$CCCMK_PATH_MKFILES"             > ./cccmk_tree_ccc.txt
+			tree -L 2 -a "$command_arg_path/$project_mkpath" > ./cccmk_tree_pwd.txt
+			diff -U-1 ./cccmk_tree_ccc.txt ./cccmk_tree_pwd.txt > ./cccmk_tree_diff.txt && cat ./cccmk_tree_diff.txt
+			awk \
+			-v path_old="$CCCMK_PATH_MKFILES/" \
+			-v path_new="$command_arg_path/$project_mkpath/" \
+			'BEGIN {
+				io_reset  = "\033[0m";
+				io_red    = "\033[31m";
+				io_green  = "\033[32m";
+				io_yellow = "\033[33m";
+			}
+			{
+				if (!/\.[a-z]+$/ && !/_[a-zA-Z_]+$/)
+				{
+					folder = $NF "/";
+				}
+				else if (/^ /)
+				{
+					file_old = path_old folder $NF;
+					file_new = path_new folder $NF;
+					if (system("cmp -s " file_old " " file_new))
+					{ $0 = "~" substr($0, 2); }
+				}
+				     if (/^ /)  { print io_reset  $0; }
+				else if (/^~/)  { print io_yellow $0 io_reset; }
+				else if (/^\+/) { print io_green  $0 io_reset; }
+				else if (/^\-/) { print io_red    $0 io_reset; }
+				else { print; }
+			}' ./cccmk_tree_diff.txt
+			rm ./cccmk_tree_*.txt
+		else
+			print_warning "This computer has no 'tree' command installed, cannot display folder tree diff"
+		fi
+		if $verbose
+		then
+			mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
+			for i in $mkfiles
+			do
+				if [ -f $command_arg_path/$project_mkpath/$i ]
+				then
+					print_message "mkfile differences: '$i'"
+					cccmk_diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i"
+				fi
+			done
+		fi
+		print_verbose "finished checking differences."
 		;;
 
 esac
