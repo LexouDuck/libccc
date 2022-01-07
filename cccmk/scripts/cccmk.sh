@@ -4,7 +4,8 @@
 
 
 
-#! important variables
+#! configuration variables
+
 cccmk_install=~/Projects/libccc/cccmk
 #cccmk_diffcmd="diff --color"
 cccmk_diffcmd="git --no-pager diff --color --no-index"
@@ -21,14 +22,16 @@ if $debug
 then set -x
 fi
 
-command=help
-command_arg_name=
-command_arg_path=
-
 project_cccmkfile=.cccmk
 project_versionfile=VERSION
 project_mkfile=Makefile
 project_mkpath=mkfile
+
+
+
+command=help
+command_arg_name=
+command_arg_path=
 
 
 
@@ -51,28 +54,28 @@ then
 fi
 if ! [ -d "$CCCMK_PATH" ]
 then
-	print_error "The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
+	print_error "Bad install? The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
 	exit 1
 fi
 #! The path which stores cccmk source sh scripts
 CCCMK_PATH_SCRIPTS="$CCCMK_PATH/scripts"
 if ! [ -d "$CCCMK_PATH_SCRIPTS" ]
 then
-	print_error "The CCCMK_PATH folder does not contain a 'scripts' folder: '$CCCMK_PATH_SCRIPTS'"
+	print_error "Bad install? The CCCMK_PATH folder does not contain a 'scripts' folder: '$CCCMK_PATH_SCRIPTS'"
 	exit 1
 fi
 #! The path which stores cccmk template mkfiles
 CCCMK_PATH_MKFILES="$CCCMK_PATH/mkfiles"
 if ! [ -d "$CCCMK_PATH_MKFILES" ]
 then
-	print_error "The CCCMK_PATH folder does not contain a 'mkfiles' folder: '$CCCMK_PATH_MKFILES'"
+	print_error "Bad install? The CCCMK_PATH folder does not contain a 'mkfiles' folder: '$CCCMK_PATH_MKFILES'"
 	exit 1
 fi
 #! The path which stores cccmk template files for new projects
 CCCMK_PATH_PROJECT="$CCCMK_PATH/project"
 if ! [ -d "$CCCMK_PATH_PROJECT" ]
 then
-	print_error "The CCCMK_PATH folder does not contain a 'project' folder: '$CCCMK_PATH_PROJECT'"
+	print_error "Bad install? The CCCMK_PATH folder does not contain a 'project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
 
@@ -83,29 +86,53 @@ fi
 
 
 
+project_missing=
+if ! [ -f "$project_cccmkfile" ]
+then project_missing="$project_missing\n- missing project tracker file: '$project_cccmkfile'"
+fi
+if ! [ -f "$project_mkfile" ]
+then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
+fi
+if ! [ -d "$project_mkpath" ]
+then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
+fi
+
+if ! [ -z "$project_missing" ]
+then print_warning "The current folder is not a valid cccmk project folder:$project_missing"
+fi
+
+
+
 #! Parses program arguments, assessing which command is called, handling arg errors etc
 parse_args()
 {
-	while [ $# -gt 0 ]
+	if [ $# -eq 0 ]
+	then print_warning "No command/arguments given to cccmk, displaying help..."
+	else while [ $# -gt 0 ]
 	do
 		print_verbose "parsing arg: '$1'"
 		case "$1" in
-			-h|--help)	print_verbose "parsed arg: '--help'"
+			-h|--help|help)
+				command=$1
+				print_verbose "parsed command: '$command'"
 				show_help
 				exit 0
 				;;
-			-v|--version)	print_verbose "parsed arg: '--version'"
+			-v|--version|version)
+				command=$1
+				print_verbose "parsed command: '$command'"
 				show_version
 				exit 0
 				;;
-			-V|--verbose)	print_verbose "parsed arg: '--verbose'"
+			-V|--verbose)
 				verbose=true
 				;;
 			-*)	print_error "Unknown option: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
-			create)	print_verbose "parsed command: 'create'"
+			create)
 				command=$1
+				print_verbose "parsed command: '$command'"
 				if [ $# -le 1 ]
 				then print_error "The 'create' command expects a PROJECT_NAME argument" ; exit 1
 				fi
@@ -116,15 +143,17 @@ parse_args()
 				fi
 				shift
 				;;
-			diff)	print_verbose "parsed command: 'diff'"
+			diff)
 				command=$1
+				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
 				then command_arg_path="$2" ; shift
 				else command_arg_path="."
 				fi
 				;;
-			update)	print_verbose "parsed command: 'update'"
+			update)
 				command=$1
+				print_verbose "parsed command: '$command'"
 				shift
 				if [ $# -ge 1 ]
 				then command_arg_path="$@"
@@ -140,6 +169,7 @@ parse_args()
 		esac
 		shift # go to next argument
 	done
+	fi
 	print_verbose "finished parsing args."
 	print_verbose "verbose = $verbose"
 	print_verbose "command = '$command'"

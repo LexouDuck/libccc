@@ -2,6 +2,13 @@
 
 
 
+list_subfolders()
+{
+	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
+}
+
+print_verbose "creating new project at '$command_arg_path'..."
+
 # prompt the user for the project type
 echo "Is the project a program, or library ? [program/library/cancel]"
 read -p "> " response
@@ -14,12 +21,6 @@ case $response in
 esac
 echo ''
 
-list_subfolders()
-{
-	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
-}
-
-print_verbose "creating new project at '$command_arg_path'..."
 (
 	# create project folder and cd inside it
 	mkdir "$command_arg_path"
@@ -33,8 +34,9 @@ print_verbose "creating new project at '$command_arg_path'..."
 	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
 	# create '.cccmk' tracking file
-	echo "project_type=$project_type" >> "$project_cccmkfile"
-	echo "project_scripts="           >> "$project_cccmkfile"
+	echo "project_type=$project_type"     >> "$project_cccmkfile"
+	echo "project_commit=$project_commit" >> "$project_cccmkfile"
+	echo "project_scripts='"              >> "$project_cccmkfile"
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
@@ -75,6 +77,7 @@ print_verbose "creating new project at '$command_arg_path'..."
 			echo "$file" >> "$project_cccmkfile"
 		done
 	done
+	echo "'" >> "$project_cccmkfile"
 	# set project's name in root makefile
 	awk -v project_name="$command_arg_name" '
 	{
@@ -98,10 +101,8 @@ print_verbose "creating new project at '$command_arg_path'..."
 	then
 		print_verbose "Here is the folder tree of the newly created project:"
 		if tree --version > /dev/null
-		then
-			tree -a -I '.git' .
-		else
-			print_warning "This computer has no 'tree' command installed, cannot display project folder tree."
+		then tree -a -I '.git' .
+		else print_warning "This computer has no 'tree' command installed, cannot display project folder tree."
 		fi
 		print_verbose "Here are the contents of the '$project_cccmkfile' file:"
 		cat "$project_cccmkfile"

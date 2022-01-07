@@ -10,6 +10,5 @@
 
 ### Project folder structure
 
-- `./mkfiles`: holds template makefile scripts which can be selected/added/removed to a user project.
-- `./project`: holds various files which are copied as-is when creating a new project with `cccmk new`.
+- `./project`: holds the template source files used when creating a new project with `cccmk new`.
 - `./scripts`: holds the source code sheel scripts which make up the `cccmk` toolchain.
