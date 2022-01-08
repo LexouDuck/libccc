@@ -1,14 +1,21 @@
 #!/bin/sh -e
 
 #! This is the main entry-point script for cccmk
+#! It sets some key variables, and processes commandline arguments
 
 
 
-#! configuration variables
+# fundamental cccmk variables
 
+#! The git revision (can also be branch name) of the currently installed cccmk
+cccmk_git_rev="dev"
+#! The git repo URL from which to get any cccmk templates
+cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk/"
+#! The installation folder path of cccmk
 cccmk_install=~/Projects/libccc/cccmk
+#! The shell command (and arguments) used to perform and display file text diffs
+cccmk_diffcmd="git diff --color --no-pager --no-index"
 #cccmk_diffcmd="diff --color"
-cccmk_diffcmd="git --no-pager diff --color --no-index"
 cccmk_diff()
 {
 	$cccmk_diffcmd "$1" "$2" || echo ''
@@ -17,15 +24,12 @@ cccmk_diff()
 if [ -z $debug ]
 then debug=false
 fi
-verbose=$debug
 if $debug
 then set -x
 fi
 
-project_cccmkfile=.cccmk
-project_versionfile=VERSION
-project_mkfile=Makefile
-project_mkpath=mkfile
+#! If set to `true`, then cccmk will display any `print_verbose` messages
+verbose=$debug
 
 
 
@@ -64,18 +68,18 @@ then
 	print_error "Bad install? The CCCMK_PATH folder does not contain a 'scripts' folder: '$CCCMK_PATH_SCRIPTS'"
 	exit 1
 fi
-#! The path which stores cccmk template mkfiles
-CCCMK_PATH_MKFILES="$CCCMK_PATH/mkfiles"
-if ! [ -d "$CCCMK_PATH_MKFILES" ]
-then
-	print_error "Bad install? The CCCMK_PATH folder does not contain a 'mkfiles' folder: '$CCCMK_PATH_MKFILES'"
-	exit 1
-fi
 #! The path which stores cccmk template files for new projects
 CCCMK_PATH_PROJECT="$CCCMK_PATH/project"
 if ! [ -d "$CCCMK_PATH_PROJECT" ]
 then
 	print_error "Bad install? The CCCMK_PATH folder does not contain a 'project' folder: '$CCCMK_PATH_PROJECT'"
+	exit 1
+fi
+#! The path which stores cccmk template mkfiles
+CCCMK_PATH_MKFILES="$CCCMK_PATH_PROJECT/mkfile"
+if ! [ -d "$CCCMK_PATH_MKFILES" ]
+then
+	print_error "Bad install? The CCCMK_PATH folder does not contain a 'mkfile' folder: '$CCCMK_PATH_MKFILES'"
 	exit 1
 fi
 
@@ -86,19 +90,48 @@ fi
 
 
 
+# project configuration variables
+
+#! The filepath of a project's project-tracker file
+project_cccmkfile=".cccmk"
+#! The filepath of a project's versioning info file
+project_versionfile="VERSION"
+#! The filepath of a project's main makefile
+project_mkfile="Makefile"
+#! The filepath of a project's makefile scripts folder
+project_mkpath="mkfile"
+
+#! Parsed from the .cccmk file: the type of the current project
+project_type=
+#! Parsed from the .cccmk file: the cccmk commit revision
+project_cccmk=
+#! Parsed from the .cccmk file: the list of mkfile scripts to track
+project_scripts=
+
+
+
+#! The list of absent files which are necessary for any project using cccmk
 project_missing=
-if ! [ -f "$project_cccmkfile" ]
+if ! [ -f "./$project_cccmkfile" ]
 then project_missing="$project_missing\n- missing project tracker file: '$project_cccmkfile'"
 fi
-if ! [ -f "$project_mkfile" ]
+if ! [ -f "./$project_versionfile" ]
+then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
+fi
+if ! [ -f "./$project_mkfile" ]
 then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
 fi
-if ! [ -d "$project_mkpath" ]
+if ! [ -d "./$project_mkpath" ]
 then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
 fi
 
 if ! [ -z "$project_missing" ]
 then print_warning "The current folder is not a valid cccmk project folder:$project_missing"
+else
+	. "./$project_cccmkfile"
+	print_verbose "parsed project_type:  '$project_type'"
+	print_verbose "parsed project_cccmk: '$project_cccmk'"
+	print_verbose "parsed project_scripts: '$project_scripts'"
 fi
 
 
@@ -113,13 +146,13 @@ parse_args()
 		print_verbose "parsing arg: '$1'"
 		case "$1" in
 			-h|--help|help)
-				command=$1
+				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_help
 				exit 0
 				;;
 			-v|--version|version)
-				command=$1
+				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_version
 				exit 0
@@ -131,7 +164,7 @@ parse_args()
 				exit 1
 				;;
 			create)
-				command=$1
+				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -le 1 ]
 				then print_error "The 'create' command expects a PROJECT_NAME argument" ; exit 1
@@ -143,16 +176,8 @@ parse_args()
 				fi
 				shift
 				;;
-			diff)
-				command=$1
-				print_verbose "parsed command: '$command'"
-				if [ $# -gt 1 ]
-				then command_arg_path="$2" ; shift
-				else command_arg_path="."
-				fi
-				;;
 			update)
-				command=$1
+				command="$1"
 				print_verbose "parsed command: '$command'"
 				shift
 				if [ $# -ge 1 ]
@@ -162,6 +187,22 @@ parse_args()
 				while [ $# -gt 1 ]
 				do shift
 				done
+				;;
+			diff)
+				command="$1"
+				print_verbose "parsed command: '$command'"
+				if [ $# -gt 1 ]
+				then command_arg_path="$2" ; shift
+				else command_arg_path="."
+				fi
+				;;
+			migrate)
+				command="$1"
+				print_verbose "parsed command: '$command'"
+				if [ $# -gt 1 ]
+				then command_arg_path="$2" ; shift
+				else command_arg_path="."
+				fi
 				;;
 			*)	print_error "Invalid argument: '$1' (try 'cccmk --help')"
 				exit 1
@@ -184,9 +225,10 @@ parse_args "$@"
 
 
 case "$command" in
-	help)    show_help ;;
+	help)    show_help    ;;
 	version) show_version ;;
-	create)  . $CCCMK_PATH_SCRIPTS/cccmk_create.sh ;;
-	update)  . $CCCMK_PATH_SCRIPTS/cccmk_update.sh ;;
-	diff)    . $CCCMK_PATH_SCRIPTS/cccmk_diff.sh ;;
+	create)  . $CCCMK_PATH_SCRIPTS/cccmk_create.sh  ;;
+	update)  . $CCCMK_PATH_SCRIPTS/cccmk_update.sh  ;;
+	diff)    . $CCCMK_PATH_SCRIPTS/cccmk_diff.sh    ;;
+	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
 esac

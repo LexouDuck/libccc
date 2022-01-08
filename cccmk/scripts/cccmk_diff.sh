@@ -45,7 +45,7 @@ then
 	mkfiles=`( cd "$CCCMK_PATH_MKFILES" ; find . -name '*.mk' -o -name '*.awk' )`
 	for i in $mkfiles
 	do
-		if [ -f $command_arg_path/$project_mkpath/$i ]
+		if [ -f "$command_arg_path/$project_mkpath/$i" ]
 		then
 			print_message "mkfile differences: '$i'"
 			cccmk_diff "$CCCMK_PATH_MKFILES/$i" "$command_arg_path/$project_mkpath/$i"

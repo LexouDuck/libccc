@@ -2,6 +2,9 @@
 
 
 
+if [ -z "$command_arg_path" ]
+then command_arg_path="`find "$project_mkpath" -type f`"
+
 # iterate over all filepath arguments
 for i in $command_arg_path
 do

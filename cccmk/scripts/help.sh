@@ -11,6 +11,7 @@ version
 create
 update
 diff
+migrate
 '
 
 cccmk_doc_args_help='cccmk [<OPTIONS>...] help'
@@ -40,6 +41,12 @@ cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
 cccmk_doc_text_diff='
     Checks for differences between the given project and the template mkfiles.
     - <PROJECT_DIR> (optional) is the project folder for which to check differences.
+      If not specified, the project folder to check is assumed to be "./", the current dir.
+'
+cccmk_doc_args_migrate='cccmk [<OPTIONS>...] migrate [<PROJECT_DIR>]'
+cccmk_doc_text_migrate='
+    Converts an already-existing project (with a makefile) to have it use cccmk.
+    - <PROJECT_DIR> (optional) is the project folder which should migrate to using cccmk.
       If not specified, the project folder to check is assumed to be "./", the current dir.
 '
 

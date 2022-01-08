@@ -15,9 +15,16 @@ read -p "> " response
 response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
 project_type=program
 case $response in
-	program|library) project_type=$response ;;
-	cancel)	print_message "Operation cancelled." ; exit 1 ;;
-	*)	print_error "Invalid answer, should be either 'program' or 'library'." ; exit 1 ;;
+	program|library)
+		project_type=$response
+		;;
+	cancel)
+		print_message "Operation cancelled."
+		exit 1
+		;;
+	*)	print_error "Invalid answer, should be either 'program' or 'library'."
+		exit 1
+		;;
 esac
 echo ''
 
@@ -34,9 +41,11 @@ echo ''
 	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
 	# create '.cccmk' tracking file
-	echo "project_type=$project_type"     >> "$project_cccmkfile"
-	echo "project_commit=$project_commit" >> "$project_cccmkfile"
-	echo "project_scripts='"              >> "$project_cccmkfile"
+	echo '#!/bin/sh -e' > "./$project_cccmkfile"
+	chmod 755 "./$project_cccmkfile"
+	echo "project_type=$project_type"   >> "$project_cccmkfile"
+	echo "project_cccmk=$project_cccmk" >> "$project_cccmkfile"
+	echo "project_scripts='"            >> "$project_cccmkfile"
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
