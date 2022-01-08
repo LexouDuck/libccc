@@ -2,6 +2,11 @@
 
 
 
+if ! [ -z "$project_missing" ]
+then print_error "The current folder is not a valid cccmk project folder (needed for command 'cccmk diff')"
+exit 1
+fi
+
 print_message "folder differences:"
 #folder_diff=`diff -qsr "$CCCMK_PATH_MKFILES" "$command_arg_path/$project_mkpath" || echo ''`
 if tree --version > /dev/null

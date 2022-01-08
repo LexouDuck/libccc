@@ -9,9 +9,9 @@ cccmk_commands='
 help
 version
 create
-update
-diff
 migrate
+diff
+update
 '
 
 cccmk_doc_args_help='cccmk [<OPTIONS>...] help'
@@ -31,22 +31,24 @@ cccmk_doc_text_create='
       If not specified, the new project will be created in the current folder,
       and the newly created project folder will be named using <PROJECT_NAME>.
 '
+cccmk_doc_args_migrate='cccmk [<OPTIONS>...] migrate [<PROJECT_DIR>]'
+cccmk_doc_text_migrate='
+    Converts an already-existing project (with a makefile) to have it use cccmk.
+    - <PROJECT_DIR> (optional) is the project folder which should migrate to using cccmk.
+      If not specified, the project folder to check is assumed to be "./", the current dir.
+'
 cccmk_doc_args_update='cccmk [<OPTIONS>...] update [<MKFILE_PATH>...]'
 cccmk_doc_text_update='
     Overwrites the given file with the latest cccmk template equivalent.
+    Can be only successfully be run from a valid cccmk project folder.
     - <MKFILE_PATH> (optional) is the filepath of one or more mkfile scripts to update.
       If no path is specfied, then all mkfile script files will be updated.
 '
 cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
 cccmk_doc_text_diff='
     Checks for differences between the given project and the template mkfiles.
+    Can be only successfully be run from a valid cccmk project folder.
     - <PROJECT_DIR> (optional) is the project folder for which to check differences.
-      If not specified, the project folder to check is assumed to be "./", the current dir.
-'
-cccmk_doc_args_migrate='cccmk [<OPTIONS>...] migrate [<PROJECT_DIR>]'
-cccmk_doc_text_migrate='
-    Converts an already-existing project (with a makefile) to have it use cccmk.
-    - <PROJECT_DIR> (optional) is the project folder which should migrate to using cccmk.
       If not specified, the project folder to check is assumed to be "./", the current dir.
 '
 

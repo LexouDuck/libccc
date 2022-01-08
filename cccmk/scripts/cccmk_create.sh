@@ -40,12 +40,18 @@ echo ''
 	echo "# TODO list"         > ./TODO.md
 	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
-	# create '.cccmk' tracking file
+	# create '.cccmk' project tracker file
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
-	echo "project_type=$project_type"   >> "$project_cccmkfile"
-	echo "project_cccmk=$project_cccmk" >> "$project_cccmkfile"
-	echo "project_scripts='"            >> "$project_cccmkfile"
+	{	echo ""
+		echo "project_type=$project_type"
+		echo "project_cccmk=$project_cccmk"
+		echo "project_mkfile=$project_mkfile"
+		echo "project_mkpath=$project_mkpath"
+		echo "project_versionfile=$project_versionfile"
+		echo "project_packagefile=$project_packagefile"
+		echo "project_scripts='"                 
+	} >> "$project_cccmkfile"
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
