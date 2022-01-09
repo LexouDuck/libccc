@@ -39,12 +39,12 @@ echo ''
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
 	{	echo ""
-		echo "project_type=$project_type"
-		echo "project_cccmk=$project_cccmk"
-		echo "project_mkfile=$project_mkfile"
-		echo "project_mkpath=$project_mkpath"
-		echo "project_versionfile=$project_versionfile"
-		echo "project_packagefile=$project_packagefile"
+		echo "project_type='$project_type'"
+		echo "project_cccmk='$project_cccmk'"
+		echo "project_mkfile='$project_mkfile'"
+		echo "project_mkpath='$project_mkpath'"
+		echo "project_versionfile='$project_versionfile'"
+		echo "project_packagefile='$project_packagefile'"
 		echo "project_scripts='"                 
 	} >> "$project_cccmkfile"
 	# iterate over all mkfile folders
@@ -84,7 +84,7 @@ echo ''
 		done
 		# cleanup up leftover '_if_*' folders
 		rm -rf "./$project_mkpath/$dir/"_if_*
-		# add mkfile scripts to the '.cccmk' file
+		# add mkfile scripts to the '.cccmk' file (with their respective cccmk template git revisions)
 		for file in `find "$project_mkpath/$dir" -type f`
 		do
 			echo "$file" >> "$project_cccmkfile"

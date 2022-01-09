@@ -50,10 +50,10 @@ done
 # show mkfile folder tree differences
 if tree --version > /dev/null
 then
-	tree -L 2 -a "$command_arg_path/$diffchk_mkpath" > ./cccmk_tree_tmp.txt
+	tree -L 2 -a "$command_arg_path/$diffchk_mkpath" > ./cccmk_tree_ccc.txt
 	tree -L 2 -a "$command_arg_path/$project_mkpath" > ./cccmk_tree_cwd.txt
 	diff -U-1 \
-		./cccmk_tree_tmp.txt \
+		./cccmk_tree_ccc.txt \
 		./cccmk_tree_cwd.txt \
 	>	./cccmk_tree_diff.txt \
 	&&	cat ./cccmk_tree_diff.txt

@@ -10,7 +10,7 @@
 #! The git revision (can also be branch name) of the currently installed cccmk
 cccmk_git_rev="dev"
 #! The git repo URL from which to get any cccmk templates
-cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk/"
+cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk"
 #! The installation folder path of cccmk
 cccmk_install=~/Projects/libccc/cccmk
 #! The shell command (and arguments) used to perform and display file text diffs
@@ -57,29 +57,30 @@ then
 	#print_warning "No value provided for CCCMK_PATH, using default: '$CCCMK_PATH'"
 fi
 if ! [ -d "$CCCMK_PATH" ]
-then
-	print_error "Bad install? The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
+then print_error "Bad install? The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
 	exit 1
 fi
+
+cccmk_dir_scripts="scripts"
 #! The path which stores cccmk source sh scripts
-CCCMK_PATH_SCRIPTS="$CCCMK_PATH/scripts"
+CCCMK_PATH_SCRIPTS="$CCCMK_PATH/$cccmk_dir_scripts"
 if ! [ -d "$CCCMK_PATH_SCRIPTS" ]
-then
-	print_error "Bad install? The CCCMK_PATH folder does not contain a 'scripts' folder: '$CCCMK_PATH_SCRIPTS'"
+then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_scripts' folder: '$CCCMK_PATH_SCRIPTS'"
 	exit 1
 fi
+
+cccmk_dir_project="project"
 #! The path which stores cccmk template files for new projects
-CCCMK_PATH_PROJECT="$CCCMK_PATH/project"
+CCCMK_PATH_PROJECT="$CCCMK_PATH/$cccmk_dir_project"
 if ! [ -d "$CCCMK_PATH_PROJECT" ]
-then
-	print_error "Bad install? The CCCMK_PATH folder does not contain a 'project' folder: '$CCCMK_PATH_PROJECT'"
+then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
+cccmk_dir_mkfiles="$cccmk_dir_project/mkfile"
 #! The path which stores cccmk template mkfiles
-CCCMK_PATH_MKFILES="$CCCMK_PATH_PROJECT/mkfile"
+CCCMK_PATH_MKFILES="$CCCMK_PATH/$cccmk_dir_mkfiles"
 if ! [ -d "$CCCMK_PATH_MKFILES" ]
-then
-	print_error "Bad install? The CCCMK_PATH folder does not contain a 'mkfile' folder: '$CCCMK_PATH_MKFILES'"
+then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
 	exit 1
 fi
 
