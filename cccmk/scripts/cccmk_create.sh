@@ -2,18 +2,13 @@
 
 
 
-list_subfolders()
-{
-	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
-}
-
 print_verbose "creating new project at '$command_arg_path'..."
 
 # prompt the user for the project type
 echo "Is the project a program, or library ? [program/library/cancel]"
 read -p "> " response
 response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
-project_type=program
+project_type=
 case $response in
 	program|library)
 		project_type=$response
@@ -57,11 +52,6 @@ echo ''
 	do
 		# copy over all files
 		cp -r "$CCCMK_PATH_MKFILES/$dir" "./$project_mkpath/$dir"
-		# prepare multiselect prompt
-		if [ "$dir" == "packages" ]
-		then prompt_message="Select which packages you like to include as dependencies, among the common ones:"
-		else prompt_message="Select which utility scripts you wish to include in your project:"
-		fi
 		# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain scripts
 		for subdir in `list_subfolders "$project_mkpath/$dir"`
 		do
@@ -69,19 +59,27 @@ echo ''
 				_if_selected) # prompt the user to select which scripts they want
 					proposed_scripts=`ls "$project_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
 					selected_scripts=
+					if [ "$dir" == "packages" ]
+					then prompt_message="Select which packages you like to include as dependencies, among the common ones:"
+					else prompt_message="Select which utility scripts you wish to include in your project:"
+					fi
 					echo "$prompt_message"
 					prompt_multiselect selected_scripts `echo "$proposed_scripts" | tr [:space:] ';' `
 					for i in ${selected_scripts[@]}
 					do
-						mv "$project_mkpath/$dir/$subdir/$i" "./$project_mkpath/$dir/$i"
+						mv  "./$project_mkpath/$dir/$subdir/$i" \
+							"./$project_mkpath/$dir/$i"
 					done
 					;;
 				_if_type_*) # only copy over files if $project_type matches folder name part after '_if_type_'
 					if [ "$subdir" == "_if_type_$project_type" ]
-					then mv "./$project_mkpath/$dir/$subdir/"*.mk "./$project_mkpath/$dir/"
+					then
+						mv  "./$project_mkpath/$dir/$subdir/"* \
+							"./$project_mkpath/$dir/"
 					fi
 					;;
-				*)	break;;
+				*)	break
+					;;
 			esac
 		done
 		# cleanup up leftover '_if_*' folders

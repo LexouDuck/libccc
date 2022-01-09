@@ -14,7 +14,7 @@ cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev
 #! The installation folder path of cccmk
 cccmk_install=~/Projects/libccc/cccmk
 #! The shell command (and arguments) used to perform and display file text diffs
-cccmk_diffcmd="git diff --color --no-pager --no-index"
+cccmk_diffcmd="git --no-pager diff --no-index --color"
 #cccmk_diffcmd="diff --color"
 cccmk_diff()
 {

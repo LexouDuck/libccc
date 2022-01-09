@@ -2,6 +2,52 @@
 
 
 
+#! Check if a space-separated list contains a certain string
+contains()
+{
+    if [ -t 0 ] && [ $# -gt 1 ]
+    then
+		echo "$1" | grep -w -q "$2"
+    else
+        while read line
+        do
+			echo "$1" | grep -w -q "$line"
+        done
+    fi
+}
+
+#! Keep only certain items from the space-separated list given as input
+filter()
+{
+    filter_inner()
+    (
+        for i in $2
+        do
+            $1 "$i" && echo "$i"
+        done
+    )
+    if [ -t 0 ] && [ $# -gt 1 ]
+    then
+    	filter_inner $1 "$2"
+    else
+        while read line
+        do
+            filter_inner $1 "$line"
+        done
+    fi
+}
+
+
+
+#! List subfolders of a folder, with no leading prefix (just the name of each folder)
+list_subfolders()
+{
+	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
+}
+
+
+
+#! Presents a multi-select list prompt to the user
 prompt_multiselect()
 {
 	echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
