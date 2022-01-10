@@ -18,7 +18,7 @@ MKFILES_DIR := ./mkfile/
 #######################################
 
 #! Output filename for the project
-NAME = 
+NAME = [[name]]
 
 
 

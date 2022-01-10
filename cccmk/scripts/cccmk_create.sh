@@ -30,9 +30,8 @@ echo ''
 	# copy over template project files
 	cp -r "$CCCMK_PATH_PROJECT/.githooks" ./
 	cp -r "$CCCMK_PATH_PROJECT/"* ./
-	# TODO LICENSE logic ?
-	echo "# $command_arg_name" > ./README.md
-	echo "# TODO list"         > ./TODO.md
+	# TODO LICENSE file logic ?
+	# TODO replace [[x]] logic ?
 	# create mkfile folder for the new project
 	mkdir "./$project_mkpath"
 	# create '.cccmk' project tracker file
@@ -47,6 +46,10 @@ echo ''
 		echo "project_packagefile='$project_packagefile'"
 		echo "project_scripts='"                 
 	} >> "$project_cccmkfile"
+	# replace [[vars]] in templates
+	project_replace_name="$command_arg_path"
+	project_replace_year="`date "+%Y"`"
+	project_replace_author="???" # TODO prompt_text() function call ?
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
@@ -57,22 +60,48 @@ echo ''
 		for subdir in `list_subfolders "$project_mkpath/$dir"`
 		do
 			case "$subdir" in
-				_if_selected) # prompt the user to select which scripts they want
-					proposed_scripts=`ls "$project_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
-					selected_scripts=
-					if [ -f "$project_mkpath/$dir/$subdir.sh" ]
-					then  . "$project_mkpath/$dir/$subdir.sh"
-					else prompt_message="Select which utility scripts you wish to include in your project:"
+				# prompt the user to select which files they want
+				_if_multiselect)
+					if [ -f "$project_mkpath/$dir/$subdir/.cccmk" ]
+					then  . "$project_mkpath/$dir/$subdir/.cccmk"
+					else prompt_message="Select which files you wish to include in your project:"
 					fi
+					proposed_files=`ls "$project_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
+					selected_files=
 					echo "$prompt_message"
-					prompt_multiselect selected_scripts `echo "$proposed_scripts" | tr [:space:] ';' `
-					for i in ${selected_scripts[@]}
+					prompt_multiselect selected_files `echo "$proposed_files" | tr [:space:] ';' `
+					for i in ${selected_files[@]}
 					do
 						mv  "./$project_mkpath/$dir/$subdir/$i" \
 							"./$project_mkpath/$dir/$i"
 					done
 					;;
-				_if_type_*) # only copy over files if $project_type matches folder name part after '_if_type_'
+				# prompt the user to select one out of several files
+				_if_select)
+					if [ -f "$project_mkpath/$dir/$subdir/.cccmk" ]
+					then  . "$project_mkpath/$dir/$subdir/.cccmk"
+					else prompt_message="Select the file you wish to include in your project:"
+					fi
+					echo "$prompt_message"
+					prompt_select selected_file 
+					mv  "./$project_mkpath/$dir/$subdir/$selected_file" \
+						"./$project_mkpath/$dir/$selected_file"
+					;;
+				# only copy over files if player answers y/yes to the '_if_flag_*/.cccmk' question
+				_if_flag_*)
+					if [ -f "$project_mkpath/$dir/$subdir/.cccmk" ]
+					then  . "$project_mkpath/$dir/$subdir/.cccmk"
+					else prompt_message="Do you wish to include the following files ?""\n`ls "$project_mkpath/$dir/$subdir/"`"
+					fi
+					prompt_question response "$prompt_message"
+					if $response
+					then
+						mv  "./$project_mkpath/$dir/$subdir/"* \
+							"./$project_mkpath/$dir/"
+					fi
+					;;
+				# only copy over files if $project_type matches folder name part after '_if_type_'
+				_if_type_*)
 					if [ "$subdir" == "_if_type_$project_type" ]
 					then
 						mv  "./$project_mkpath/$dir/$subdir/"* \

@@ -1,10 +1,10 @@
 # PROJECT
 
-obj/
-bin/
-dist/
-log/
-ref/
+/obj/
+/bin/
+/log/
+/dist/
+/ref/
 
 
 

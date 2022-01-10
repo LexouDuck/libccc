@@ -1,3 +1,4 @@
 #!/bin/sh -e
 
-echo " learn more at https://choosealicense.com/licenses/"
+prompt_message="Select which LICENSE file to use for your project.
+You can learn more about legal licenses at https://choosealicense.com/licenses/"
