@@ -42,11 +42,11 @@ command_arg_path=
 # utility functions for logging/io
 
 print_verbose() {
-if $verbose; then printf "cccmk: ""\033[34m""verbose" >&2 ; printf "\033[0m: $1\n" >&2 ; fi ; }
-print_message() { printf "cccmk: ""\033[34m""message" >&2 ; printf "\033[0m: $1\n" >&2 ; }
-print_warning() { printf "cccmk: ""\033[33m""warning" >&2 ; printf "\033[0m: $1\n" >&2 ; }
-print_success() { printf "cccmk: ""\033[32m""success" >&2 ; printf "\033[0m: $1\n" >&2 ; }
-print_error()   { printf "cccmk: ""\033[31m""error"   >&2 ; printf "\033[0m: $1\n" >&2 ; }
+if $verbose; then { printf "cccmk: ""\033[34m""verbose" ; printf "\033[0m: ""$@""\n" ; } >&2 ; fi ; }
+print_message() { { printf "cccmk: ""\033[34m""message" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
+print_warning() { { printf "cccmk: ""\033[33m""warning" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
+print_success() { { printf "cccmk: ""\033[32m""success" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
+print_error()   { { printf "cccmk: ""\033[31m""error"   ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
 
 
 
@@ -88,50 +88,6 @@ fi
 
 . $CCCMK_PATH_SCRIPTS/util.sh
 . $CCCMK_PATH_SCRIPTS/help.sh
-
-
-
-# project configuration variables
-
-#! The filepath of a project's project-tracker file
-project_cccmkfile=".cccmk"
-
-#! Parsed from the .cccmk file: The filepath of a project's main makefile
-project_mkfile="Makefile"
-#! Parsed from the .cccmk file: The filepath of a project's makefile scripts folder
-project_mkpath="mkfile"
-#! Parsed from the .cccmk file: The filepath of a project's versioning info file
-project_versionfile="VERSION"
-#! Parsed from the .cccmk file: The filepath of a project's package dependency list file
-project_packagefile="$project_mkpath/lists/packages.txt"
-
-#! Parsed from the .cccmk file: the type of the current project
-project_type=
-#! Parsed from the .cccmk file: the cccmk commit revision
-project_cccmk=
-#! Parsed from the .cccmk file: the list of mkfile scripts to track
-project_scripts=
-
-#! The list of absent files which are necessary for any project using cccmk
-project_missing=
-
-if ! [ -f "./$project_cccmkfile" ]
-then print_warning "The current folder is not a valid cccmk project folder - missing '$project_cccmkfile'"
-	project_missing="$project_missing\n- missing project tracker file: '$project_cccmkfile'"
-fi
-
-if ! [ -f "./$project_mkfile" ]
-then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
-fi
-if ! [ -d "./$project_mkpath" ]
-then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
-fi
-if ! [ -f "./$project_versionfile" ]
-then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
-fi
-if ! [ -f "./$project_packagefile" ]
-then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
-fi
 
 
 
@@ -222,10 +178,36 @@ parse_args "$@"
 
 
 
-# display warning if current folder is missing any necessary project files
-if ! [ -z "$project_missing" ]
-then print_warning "The current cccmk project folder is missing important files:$project_missing"
+# project configuration variables
+
+#! The filepath of a project's project-tracker file
+project_cccmkfile=".cccmk"
+
+#! Parsed from the .cccmk file: The filepath of a project's main makefile
+project_mkfile="Makefile"
+#! Parsed from the .cccmk file: The filepath of a project's makefile scripts folder
+project_mkpath="mkfile"
+#! Parsed from the .cccmk file: The filepath of a project's versioning info file
+project_versionfile="VERSION"
+#! Parsed from the .cccmk file: The filepath of a project's package dependency list file
+project_packagefile="$project_mkpath/lists/packages.txt"
+
+#! Parsed from the .cccmk file: the type of the current project
+project_type=
+#! Parsed from the .cccmk file: the cccmk commit revision
+project_cccmk=
+#! Parsed from the .cccmk file: the list of mkfile scripts to track
+project_scripts=
+project_scriptfiles=
+
+#! The list of absent files which are necessary for any project using cccmk
+project_missing=
+
+if ! [ -f "./$project_cccmkfile" ]
+then print_warning "The current folder is not a valid cccmk project folder - missing '$project_cccmkfile'"
+	project_missing="$project_missing\n- missing project tracker file: '$project_cccmkfile'"
 else
+	# parse the .cccmk file (by simply running it as an inline shell script)
 	. "./$project_cccmkfile"
 	print_verbose "parsed project_type:        '$project_type'"
 	print_verbose "parsed project_cccmk:       '$project_cccmk'"
@@ -234,6 +216,30 @@ else
 	print_verbose "parsed project_versionfile: '$project_versionfile'"
 	print_verbose "parsed project_packagefile: '$project_packagefile'"
 	print_verbose "parsed project_scripts:     '$project_scripts'"
+	project_scriptfiles=''
+	for i in $project_scripts
+	do
+		project_scriptfiles="$project_scriptfiles `echo "$i" | cut -d':' -f 2 `"
+	done
+	#print_verbose "parsed project_scriptfiles: '$project_scriptfiles'"
+fi
+
+if ! [ -f "./$project_mkfile" ]
+then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
+fi
+if ! [ -d "./$project_mkpath" ]
+then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
+fi
+if ! [ -f "./$project_versionfile" ]
+then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
+fi
+if ! [ -f "./$project_packagefile" ]
+then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
+fi
+
+# display warning if current folder is missing any necessary project files
+if ! [ -z "$project_missing" ]
+then print_warning "The current cccmk project folder is missing important files:$project_missing"
 fi
 
 

@@ -50,6 +50,7 @@ echo ''
 	# iterate over all mkfile folders
 	for dir in `list_subfolders "$CCCMK_PATH_MKFILES"`
 	do
+		suffix=''
 		# copy over all files
 		cp -r "$CCCMK_PATH_MKFILES/$dir" "./$project_mkpath/$dir"
 		# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain scripts
@@ -59,8 +60,8 @@ echo ''
 				_if_selected) # prompt the user to select which scripts they want
 					proposed_scripts=`ls "$project_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
 					selected_scripts=
-					if [ "$dir" == "packages" ]
-					then prompt_message="Select which packages you like to include as dependencies, among the common ones:"
+					if [ -f "$project_mkpath/$dir/$subdir.sh" ]
+					then  . "$project_mkpath/$dir/$subdir.sh"
 					else prompt_message="Select which utility scripts you wish to include in your project:"
 					fi
 					echo "$prompt_message"
@@ -87,7 +88,7 @@ echo ''
 		# add mkfile scripts to the '.cccmk' file (with their respective cccmk template git revisions)
 		for file in `find "$project_mkpath/$dir" -type f`
 		do
-			echo "$file" >> "$project_cccmkfile"
+			echo "$file$suffix" >> "$project_cccmkfile"
 		done
 	done
 	echo "'" >> "$project_cccmkfile"

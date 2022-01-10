@@ -18,14 +18,14 @@ do
 	# copy over all files
 	cp -r "$CCCMK_PATH_MKFILES/$dir" "$command_arg_path/$diffchk_mkpath/$dir"
 	# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain scripts
-	for subdir in `list_subfolders "$diffchk_mkpath/$dir"`
+	for subdir in `list_subfolders "$command_arg_path/$diffchk_mkpath/$dir"`
 	do
 		case "$subdir" in
 			_if_selected) # prompt the user to select which scripts they want
-				proposed_scripts=`ls "$diffchk_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
+				proposed_scripts=`ls "$command_arg_path/$diffchk_mkpath/$dir/$subdir/" | sort --ignore-case | xargs`
 				for i in $proposed_scripts
 				do
-					if contains "$project_scripts" "$project_mkpath/$dir/$i"
+					if contains "$project_scriptfiles" "$project_mkpath/$dir/$i"
 					then
 						mv  "$command_arg_path/$diffchk_mkpath/$dir/$subdir/$i" \
 							"$command_arg_path/$diffchk_mkpath/$dir/$i"
@@ -44,7 +44,7 @@ do
 		esac
 	done
 	# cleanup up leftover '_if_*' folders
-	rm -rf "./$diffchk_mkpath/$dir/"_if_*
+	rm -rf "$command_arg_path/$diffchk_mkpath/$dir/"_if_*
 done
 
 # show mkfile folder tree differences
@@ -94,11 +94,14 @@ if $verbose
 then
 	for i in $project_scripts
 	do
-		if [ -f "$command_arg_path/$i" ]
+		script_rev="`echo "$i" | cut -d':' -f 1 `"
+		scriptfile="`echo "$i" | cut -d':' -f 2 `"
+		script_if_="`echo "$i" | cut -d':' -f 3 `"
+		if [ -f "$command_arg_path/$scriptfile" ]
 		then
-			print_message "mkfile differences: '$i'"
-			templatefile=`echo "$diffchk_mkpath/$i" | sed "s|$project_mkpath/||"`
-			cccmk_diff "$command_arg_path/$templatefile" "$command_arg_path/$i"
+			print_message "mkfile differences: '$scriptfile'"
+			templatefile=`echo "$diffchk_mkpath/$scriptfile" | sed "s|$project_mkpath/||"`
+			cccmk_diff "$command_arg_path/$templatefile" "$command_arg_path/$scriptfile"
 		fi
 	done
 fi

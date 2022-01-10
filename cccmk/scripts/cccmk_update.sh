@@ -9,7 +9,7 @@ fi
 
 if [ -z "$command_arg_path" ]
 then print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts will be updated."
-	command_arg_path="$project_scripts"
+	command_arg_path="$project_scriptfiles"
 fi
 
 #! Changes the given filepath ($1) to add a folder ($2) near its end (right after the last '/' of the filepath)
@@ -95,7 +95,12 @@ do
 	if $response
 	then print_message "Updating file '$file_cwd'..."
 		#cp "$file_ccc" "$file_cwd"
-		git merge-file -p --diff3 "$file_cwd" "$file_ccc" "$file_new"
+		print_verbose "performing 3-way diff/merge:\n%s\n%s\n%s\n%s" \
+			" - original file (cccmk):   [`date -r "$file_ccc" "+%m-%d-%Y %H:%M:%S"`] $file_ccc" \
+			" - up2dated file (cccmk):   [`date -r "$file_new" "+%m-%d-%Y %H:%M:%S"`] $file_new" \
+			" - modified file (project): [`date -r "$file_cwd" "+%m-%d-%Y %H:%M:%S"`] $file_cwd" \
+			""
+		git merge-file -p --diff3 "$file_new" "$file_ccc" "$file_cwd"
 		#cp "$file_new" "$file_ccc"
 	fi
 done

@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+prompt_message="Select which optional makefile utility scripts you wish to include in your project:"
+
+# TODO logic to show descriptions for each script
