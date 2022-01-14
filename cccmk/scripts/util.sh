@@ -39,6 +39,18 @@ filter()
 
 
 
+#! Call AWK on a file, modifying it in-place
+awk_inplace()
+{
+	local file="$1"
+	local temp="$1.tmp"
+	shift 1
+	awk "$@" "$file" > "$temp"
+	mv "$temp" "$file"
+}
+
+
+
 #! List all regular files contained inside the given folder (no hidden files, nor folders, nor symlinks etc)
 list_onlyfiles()
 {

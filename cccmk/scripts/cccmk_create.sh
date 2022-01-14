@@ -37,8 +37,8 @@ copy_from_template()
 	# copy over all regular files
 	for i in `list_onlyfiles "$srcdir/$dir"`
 	do
-		cp -p         "$srcdir/$dir/$i"   "$outdir/$dir/$i"
-		echo "$rev"":""$srcdir/$dir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
+		cp -p  "$srcdir/$dir/$i"   "$outdir/$dir/$i"
+		echo "$rev"":""/$dir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 	done
 	# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain files
 	for subdir in `list_subfolders "$srcdir/$dir"`
@@ -48,12 +48,12 @@ copy_from_template()
 			_if_select)
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
-				else prompt_message="Select the file you wish to include in your project:"
+				else prompt_message="Select the one file you wish to include in your project:"
 				fi
 				echo "$prompt_message"
-				prompt_select selected_file
-				cp -p         "$srcdir/$dir/$subdir/$selected_file"   "$outdir/$dir/$selected_file"
-				echo "$rev"":""$srcdir/$dir/$subdir/$selected_file"":""$outdir/$dir/$selected_file" >> "$project_cccmkfile"
+				#prompt_select selected_file
+				#cp -p  "$srcdir/$dir/$subdir/$selected_file"   "$outdir/$dir/$selected_file"
+				#echo "$rev"":""/$dir/$subdir/$selected_file"":""$outdir/$dir/$selected_file" >> "$project_cccmkfile"
 				;;
 			# prompt the user to select which files they want
 			_if_multiselect)
@@ -67,8 +67,8 @@ copy_from_template()
 				prompt_multiselect selected_files `echo "$proposed_files" | tr [:space:] ';' `
 				for i in ${selected_files[@]}
 				do
-					cp -p         "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-					echo "$rev"":""$srcdir/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
+					cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
+					echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 				done
 				;;
 			# only copy over files if player answers y/yes to the '_if_flag_*/.cccmk' question
@@ -80,10 +80,10 @@ copy_from_template()
 				prompt_question response "$prompt_message"
 				if $response
 				then
-					for i in "$srcdir/$dir/$subdir/"*
+					for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
 					do
-						cp -p         "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-						echo "$rev"":""$srcdir/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
+						cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
+						echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 					done
 				fi
 				;;
@@ -91,22 +91,36 @@ copy_from_template()
 			_if_type_*)
 				if [ "$subdir" == "_if_type_$project_type" ]
 				then
-					for i in "$srcdir/$dir/$subdir/"*
+					for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
 					do
-						cp -p         "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-						echo "$rev"":""$srcdir/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
+						cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
+						echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 					done
 				fi
 				;;
+			# any other '_if_*' folder is unknown syntax
 			_if_*)
 				print_error "Unknown conditional project template subfolder: '$subdir'"
 				exit 1
+				;;
+			# these folders simply hold files which should not be added to the .cccmk project_track list
+			_untracked)
+				for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
+				do
+					cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
+				done
 				;;
 			# for any other normal folder, recurse deeper
 			*)
 				copy_from_template "$srcdir" "$outdir" "$dir/$subdir"
 				;;
 		esac
+	done
+	# replace [[vars]] in newly copied-over files
+	for i in `list_onlyfiles "$srcdir/$dir"`
+	do
+		cp -p  "$srcdir/$dir/$i"   "$outdir/$dir/$i"
+		echo "$rev"":""/$dir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 	done
 }
 
@@ -118,6 +132,7 @@ copy_from_template()
 	# create project folder and cd inside it
 	mkdir "$command_arg_path"
 	cd    "$command_arg_path"
+
 	# create '.cccmk' project tracker file
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
@@ -130,14 +145,17 @@ copy_from_template()
 		echo "project_packagefile='$project_packagefile'"
 		echo "project_track='"                 
 	} >> "$project_cccmkfile"
-	# replace [[vars]] in templates
+
+	# add tracked files to the '.cccmk' file (with their respective cccmk template git revisions)
+	project_replace='name path year author'
 	project_replace_name="$command_arg_name"
 	project_replace_path="$command_arg_path"
 	project_replace_year="`date "+%Y"`"
 	project_replace_author="???" # TODO prompt_text() function call ?
-	# add mkfile scripts to the '.cccmk' file (with their respective cccmk template git revisions)
 	copy_from_template "$CCCMK_PATH_PROJECT" "." "."
 	echo "'" >> "$project_cccmkfile"
+	awk_inplace "$project_cccmkfile" '{ gsub(/\.\//, ""); print; }'
+
 	# create initial project version file
 	echo "$command_arg_name@0.0.0-?" > "$project_versionfile"
 	# set up git repo for new project
