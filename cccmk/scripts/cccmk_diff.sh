@@ -92,7 +92,7 @@ fi
 # if verbose, show diffs for each non-identical file
 if $verbose
 then
-	for i in $project_scripts
+	for i in $project_track
 	do
 		script_rev="`echo "$i" | cut -d':' -f 1 `"
 		scriptfile="`echo "$i" | cut -d':' -f 2 `"

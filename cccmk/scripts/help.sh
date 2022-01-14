@@ -22,7 +22,7 @@ cccmk_doc_args_version='cccmk [<OPTIONS>...] version'
 cccmk_doc_text_version='
     Displays the cccmk version number info (same as the -v/--version option).
 '
-cccmk_doc_args_create='cccmk [<OPTIONS>...] new <PROJECT_NAME> [<PROJECT_DIR>]'
+cccmk_doc_args_create='cccmk [<OPTIONS>...] create <PROJECT_NAME> [<PROJECT_DIR>]'
 cccmk_doc_text_create='
     Creates a new project, filling the newly created project with various mkfile scripts,
     prompting the user to specify which mkfile scripts/rules they would like to use.

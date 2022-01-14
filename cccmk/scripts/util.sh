@@ -39,6 +39,12 @@ filter()
 
 
 
+#! List all regular files contained inside the given folder (no hidden files, nor folders, nor symlinks etc)
+list_onlyfiles()
+{
+	( cd "$1" && ls -p 2> /dev/null || echo '' ) | grep -v / | xargs
+}
+
 #! List subfolders of a folder, with no leading prefix (just the name of each folder)
 list_subfolders()
 {

@@ -3,12 +3,21 @@
 #! This is the main entry-point script for cccmk
 #! It sets some key variables, and processes commandline arguments
 
+if [ -z $debug ]
+then debug=false
+fi
+if $debug
+then set -x
+fi
+
 
 
 # fundamental cccmk variables
 
+#! The git branch/revision to follow ("master" for stable, or "dev" for beta)
+cccmk_git="dev" # TODO dissociate current revision hash and current branch to follow
 #! The git revision (can also be branch name) of the currently installed cccmk
-cccmk_git_rev="dev"
+cccmk_git_rev="dev" #"`git rev-parse HEAD`"
 #! The git repo URL from which to get any cccmk templates
 cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk"
 #! The installation folder path of cccmk
@@ -21,12 +30,7 @@ cccmk_diff()
 	$cccmk_diffcmd "$1" "$2" || echo ''
 }
 
-if [ -z $debug ]
-then debug=false
-fi
-if $debug
-then set -x
-fi
+
 
 #! If set to `true`, then cccmk will display any `print_verbose` messages
 verbose=$debug
@@ -197,7 +201,7 @@ project_type=
 #! Parsed from the .cccmk file: the cccmk commit revision
 project_cccmk=
 #! Parsed from the .cccmk file: the list of mkfile scripts to track
-project_scripts=
+project_track=
 project_scriptfiles=
 
 #! The list of absent files which are necessary for any project using cccmk
@@ -215,9 +219,9 @@ else
 	print_verbose "parsed project_mkpath:      '$project_mkpath'"
 	print_verbose "parsed project_versionfile: '$project_versionfile'"
 	print_verbose "parsed project_packagefile: '$project_packagefile'"
-	print_verbose "parsed project_scripts:     '$project_scripts'"
+	print_verbose "parsed project_track:     '$project_track'"
 	project_scriptfiles=''
-	for i in $project_scripts
+	for i in $project_track
 	do
 		project_scriptfiles="$project_scriptfiles `echo "$i" | cut -d':' -f 2 `"
 	done
