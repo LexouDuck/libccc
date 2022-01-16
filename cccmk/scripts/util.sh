@@ -118,16 +118,20 @@ key_input()
 }
 
 #! Presents a single-select list prompt to the user
+#! @param $1	retval: return value variable name
+#! @param $2	options: list of selectable values (colon-separated string)
+#! @param $3	default: initially selected value
 prompt_select()
 {
+	echo "(UP/DOWN to move cursor; ENTER to select and proceed)"
 	local retval=$1
 	local options
-	local defaults
+	local default
 
 	IFS=';' read -r -a options <<< "$2"
 	if [[ -z $3 ]]
-	then defaults=()
-	else IFS=';' read -r -a defaults <<< "$3"
+	then default=
+	else IFS=';' read -r -a default <<< "$3"
 	fi
 	local selected
 
@@ -149,7 +153,7 @@ prompt_select()
 		# print options by overwriting the last lines
 		local idx=0
 		for option in "${options[@]}"; do
-			local prefix="-"
+			local prefix=" "
 			if [ $idx -eq $active ]
 			then prefix=">"
 			fi
@@ -196,9 +200,11 @@ prompt_select()
 
 
 #! Presents a multi-select list prompt to the user
+#! @param $1	retval: return value variable name
+#! @param $2	options: list of selectable values (colon-separated string)
+#! @param $3	defaults: list of default values (space-separated, true/false)
 prompt_multiselect()
 {
-	echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
 	toggle_option()
 	{
 		local arr_name=$1
@@ -211,6 +217,7 @@ prompt_multiselect()
 		eval $arr_name='("${arr[@]}")'
 	}
 
+	echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
 	local retval=$1
 	local options
 	local defaults

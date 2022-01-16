@@ -50,10 +50,15 @@ copy_from_template()
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Select the one file you wish to include in your project:"
 				fi
+				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs | tr ' ' ';' `
+				selected_file=
 				echo "$prompt_message"
-				#prompt_select selected_file
-				#cp -p  "$srcdir/$dir/$subdir/$selected_file"   "$outdir/$dir/$selected_file"
-				#echo "$rev"":""/$dir/$subdir/$selected_file"":""$outdir/$dir/$selected_file" >> "$project_cccmkfile"
+				prompt_select selected_file "$proposed_files"
+				if [ -z "$output_filename" ]
+				then output_filename="$selected_file"
+				fi
+				cp -p  "$srcdir/$dir/$subdir/$selected_file"   "$outdir/$dir/$output_filename"
+				echo "$rev"":""/$dir/$subdir/$selected_file"":""$outdir/$dir/$output_filename" >> "$project_cccmkfile"
 				;;
 			# prompt the user to select which files they want
 			_if_multiselect)
