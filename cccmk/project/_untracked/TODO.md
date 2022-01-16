@@ -1,4 +1,4 @@
-# TODO list for [[name]]
+# TODO list for %[name]%
 ---
 
 - TODO: ???

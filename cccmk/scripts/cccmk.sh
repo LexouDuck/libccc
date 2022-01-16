@@ -187,6 +187,16 @@ parse_args "$@"
 #! The filepath of a project's project-tracker file
 project_cccmkfile=".cccmk"
 
+#! Parsed from the .cccmk file: The author of a project
+project_author=
+#! Parsed from the .cccmk file: The name of a project
+project_name=
+#! Parsed from the .cccmk file: The year of a project
+project_year=
+#! Parsed from the .cccmk file: The type (program/library) of a project
+project_type=
+#! Parsed from the .cccmk file: The cccmk commit revision
+project_cccmk="dev"
 #! Parsed from the .cccmk file: The filepath of a project's main makefile
 project_mkfile="Makefile"
 #! Parsed from the .cccmk file: The filepath of a project's makefile scripts folder
@@ -196,11 +206,7 @@ project_versionfile="VERSION"
 #! Parsed from the .cccmk file: The filepath of a project's package dependency list file
 project_packagefile="$project_mkpath/lists/packages.txt"
 
-#! Parsed from the .cccmk file: the type of the current project
-project_type=
-#! Parsed from the .cccmk file: the cccmk commit revision
-project_cccmk=
-#! Parsed from the .cccmk file: the list of mkfile scripts to track
+#! Parsed from the .cccmk file: the list of project files to track with cccmk
 project_track=
 project_scriptfiles=
 
@@ -219,7 +225,7 @@ else
 	print_verbose "parsed project_mkpath:      '$project_mkpath'"
 	print_verbose "parsed project_versionfile: '$project_versionfile'"
 	print_verbose "parsed project_packagefile: '$project_packagefile'"
-	print_verbose "parsed project_track:     '$project_track'"
+	print_verbose "parsed project_track:       '$project_track'"
 	project_scriptfiles=''
 	for i in $project_track
 	do

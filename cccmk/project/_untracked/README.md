@@ -1,4 +1,4 @@
-# [[name]]
+# %[name]%
 ---
 
 - TODO: write brief project description
@@ -7,7 +7,7 @@
 
 Documentation
 ---
-The documentation for [[name]] is available at the following address: https://lexouduck.github.io/libccc/doc/html/index.html
+The documentation for %[name]% is available at the following address: https://lexouduck.github.io/libccc/doc/html/index.html
 
 
 
