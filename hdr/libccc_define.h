@@ -267,7 +267,7 @@ HEADER_CPP
 	//! Harmonized type for 80-bit extended-precision floating-point numbers.
 	typedef long double	_Float80;
 
-#elif (__LDBL_MANT_DIG__ <= 112) || defined(__float128)
+#elif (__LDBL_MANT_DIG__ <= 113) || defined(__float128)
 // `long double` is 128-bit (mantissa: 113 bits, exponent: 15 bits)
 	#ifndef __float128
 	#define __float128	long double
