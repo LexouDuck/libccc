@@ -51,11 +51,7 @@ t_time		Date_ToTime_LocalTime(s_date const* value)
 	struct tm	tm;
 
 	tm = Date_ToSTDC(value);
-#ifdef _WIN32
 	return (mktime(&tm));
-#else
-	return (timelocal(&tm));
-#endif
 }
 
 
