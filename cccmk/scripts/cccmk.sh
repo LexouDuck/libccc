@@ -219,6 +219,9 @@ then print_warning "The current folder is not a valid cccmk project folder - mis
 else
 	# parse the .cccmk file (by simply running it as an inline shell script)
 	. "./$project_cccmkfile"
+	print_verbose "parsed project_author:      '$project_author'"
+	print_verbose "parsed project_name:        '$project_name'"
+	print_verbose "parsed project_year:        '$project_year'"
 	print_verbose "parsed project_type:        '$project_type'"
 	print_verbose "parsed project_cccmk:       '$project_cccmk'"
 	print_verbose "parsed project_mkfile:      '$project_mkfile'"
@@ -251,6 +254,45 @@ fi
 if ! [ -z "$project_missing" ]
 then print_warning "The current cccmk project folder is missing important files:$project_missing"
 fi
+
+
+
+#! Takes in a template text file, and creates a text file from the given variable values
+#! @param $1	inputfile (filepath): the template text file used to generate our final file
+#! @param $2	outputfile [optional] (filepath): if not specified, inputfile is modified in-place
+#! @param $3	variables  [optional] (string): the list of variable names and their values
+#!          	Each key/value pair has an '=' equal, and they are separated with ';' semi-colons.
+#!          	'foo=a; bar=b; baz=c;' is a valid example. If nothing is specified, cccmk project variables are used.
+cccmk_template()
+{
+	local inputfile="$1"
+	local outputfile="$2"
+	local variables="$3"
+	if [ -z "$variables" ]
+	then variables="
+		author=$project_author;
+		name=$project_name;
+		year=$project_year;
+		type=$project_type;
+		cccmk=$project_cccmk;
+		mkfile=$project_mkfile;
+		mkpath=$project_mkpath;
+		versionfile=$project_versionfile;
+		packagefile=$project_packagefile;
+	"
+	fi
+	if [ -z "$outputfile" ]
+	then
+		awk_inplace "$inputfile" \
+		-v variables="$variables" \
+		-f "$CCCMK_PATH_SCRIPTS/template.awk"
+	else
+		awk \
+		-v variables="$variables" \
+		-f "$CCCMK_PATH_SCRIPTS/template.awk" \
+		"$inputfile" > "$outputfile"
+	fi
+}
 
 
 

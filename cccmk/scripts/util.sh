@@ -123,7 +123,10 @@ key_input()
 #! @param $3	default: initially selected value
 prompt_select()
 {
-	echo "(UP/DOWN to move cursor; ENTER to select and proceed)"
+	echo "Select one item in the list below. The controls are:"
+	echo " - <ESCAPE> to cancel/abort operation."
+	echo " - <UP>/<DOWN> to move selection cursor."
+	echo " - <ENTER> or <SPACE> to select and proceed."
 	local retval=$1
 	local options
 	local default
@@ -169,6 +172,8 @@ prompt_select()
 		# user key control
 		case `key_input` in
 			space)
+				selected="${options[active]}"
+				break
 				;;
 			enter)
 				selected="${options[active]}"
@@ -205,19 +210,11 @@ prompt_select()
 #! @param $3	defaults: list of default values (space-separated, true/false)
 prompt_multiselect()
 {
-	toggle_option()
-	{
-		local arr_name=$1
-		eval "local arr=(\"\${${arr_name}[@]}\")"
-		local option=$2
-		if [ -z ${arr[option]} ]
-		then arr[option]=${options[$option]}
-		else arr[option]=
-		fi
-		eval $arr_name='("${arr[@]}")'
-	}
-
-	echo "(UP/DOWN to move cursor; SPACE to toggle selected checkbox; ENTER to confirm and proceed)"
+	echo "Select any items in the list below. The controls are:"
+	echo " - <ESCAPE> to cancel/abort operation."
+	echo " - <UP>/<DOWN> to move selection cursor."
+	echo " - <SPACE> to toggle selected checkbox."
+	echo " - <ENTER> to confirm and proceed."
 	local retval=$1
 	local options
 	local defaults
@@ -234,6 +231,18 @@ prompt_multiselect()
 		selected+=("${defaults[i]}")
 		printf "\n"
 	done
+
+	toggle_option()
+	{
+		local arr_name=$1
+		eval "local arr=(\"\${${arr_name}[@]}\")"
+		local option=$2
+		if [ -z ${arr[option]} ]
+		then arr[option]=${options[$option]}
+		else arr[option]=
+		fi
+		eval $arr_name='("${arr[@]}")'
+	}
 
 	# determine current screen position for overwriting the options
 	local lastrow=`get_cursor_row`

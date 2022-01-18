@@ -124,19 +124,7 @@ copy_from_template()
 	# replace %[vars]% in newly copied-over files
 	for i in `list_onlyfiles "$outdir/$dir"`
 	do
-		awk_inplace "$outdir/$dir/$i" \
-		-v variables="
-			author=???;
-			name=$command_arg_name;
-			year=`date "+%Y"`;
-			type=$project_type;
-			cccmk=$project_cccmk;
-			mkfile=$project_mkfile;
-			mkpath=$project_mkpath;
-			versionfile=$project_versionfile;
-			packagefile=$project_packagefile;
-		" \
-		-f "$CCCMK_PATH_SCRIPTS/template.awk"
+		cccmk_template "$outdir/$dir/$i"
 	done
 }
 
@@ -162,23 +150,17 @@ copy_from_template()
 		echo "project_mkpath='$project_mkpath'"
 		echo "project_versionfile='$project_versionfile'"
 		echo "project_packagefile='$project_packagefile'"
-		echo "project_track='"                 
 	} >> "$project_cccmkfile"
+	# parse the newly created .cccmk prpject tracker file
+	. "./$project_cccmkfile"
 
 	# add tracked files to the '.cccmk' file (with their respective cccmk template git revisions)
+	echo "project_track='" >> "$project_cccmkfile"
 	copy_from_template "$CCCMK_PATH_PROJECT" "." "."
 	echo "'" >> "$project_cccmkfile"
 	awk_inplace "$project_cccmkfile" '{ gsub(/\.\//, ""); print; }'
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
-	# replace [[vars]] in newly copied-over files
-#	for i in $project_track
-#	do
-#		trackedfile_src_rev="`echo "$i" | cut -d':' -f 1 `"
-#		trackedfile_srcpath="`echo "$i" | cut -d':' -f 2 `"
-#		trackedfile_newpath="`echo "$i" | cut -d':' -f 3 `"
-#		awk_inplace "$trackedfile_newpath" -f $CCCMK_PATH_SCRIPTS/template.awk
-#	done
 
 	# create initial project version file
 	echo "$command_arg_name@0.0.0-?" > "$project_versionfile"
