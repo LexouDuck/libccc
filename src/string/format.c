@@ -3,10 +3,6 @@
 #include "libccc/string.h"
 #include "libccc/format.h"
 
-#if (defined(__GNUC__) && !defined(_GNU_SOURCE))
-#define _GNU_SOURCE /* needed for (v)asprintf, affects '#include <stdio.h>' */
-#endif
-
 #ifndef __NOSTD__
 	#include <stdio.h>
 #else
@@ -27,16 +23,19 @@
 
 
 
-#if (!defined(__GNUC__) || defined(__NOSTD__))
+#if (defined(__NOSTD__) || \
+	!defined(__GNUC__) || \
+	(defined(__GNUC__) && !defined(_GNU_SOURCE) && !defined(_BSD_SOURCE)))
 
 // MSVC implements this as `_vscprintf`, thus we just 'symlink' it here
-#ifdef _MSC_VER
+#if __MSVC__
 #define vscprintf _vscprintf
+#elif __APPLE__
+#define vscprintf vscprintf
 #endif
 
-static
-#ifndef vscprintf
-int		vscprintf(t_char const* format, va_list args)
+#ifndef 	vscprintf
+static	int	vscprintf(t_char const* format, va_list args)
 {
 	va_list args_copy;
 
@@ -47,9 +46,13 @@ int		vscprintf(t_char const* format, va_list args)
 }
 #endif
 
-static
-#ifndef vasprintf
-int		vasprintf(t_char** a_str, t_char const* format, va_list args)
+// MacOSX implements this one and exposes it by default
+#if __APPLE__
+#define vasprintf vasprintf
+#endif
+
+#ifndef 	vasprintf
+static	int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 {
 	int length = vscprintf(format, args);
 	if (length == -1)
