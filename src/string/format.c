@@ -22,8 +22,7 @@
 
 
 
-#if (!defined(__APPLE__) || defined(__NOSTD__))
-
+#if ((!defined(_GNU_SOURCE) && !defined(_BSD_SOURCE)) || defined(__NOSTD__))
 	#ifndef 	vscprintf
 	static int	vscprintf(t_char const* format, va_list args)
 	{

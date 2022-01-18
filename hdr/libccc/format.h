@@ -43,6 +43,7 @@
 #endif
 //!@}
 
+#include <inttypes.h>
 #include "libccc.h"
 
 HEADER_CPP
@@ -132,71 +133,56 @@ HEADER_CPP
 #define SF_SINT_OCT_ CONCAT(SF_S,CONCAT(LIBCONFIG_SINT_BITS,_OCT_))
 
 #define SF_U8       "%"SF_U8_
-#define SF_U8_      "u"
+#define SF_U8_      PRIu8
 #define SF_U8_HEX   "0x%"SF_U8_HEX_
-#define SF_U8_HEX_  "X"
+#define SF_U8_HEX_  PRIX8
 #define SF_U8_OCT   "0o%"SF_U8_OCT_
-#define SF_U8_OCT_  "o"
+#define SF_U8_OCT_  PRIo8
 #define SF_S8       "%"SF_S8_
-#define SF_S8_      "i"
+#define SF_S8_      PRIi8
 #define SF_S8_HEX   "0x%"SF_S8_HEX_
-#define SF_S8_HEX_  "X"
+#define SF_S8_HEX_  PRIX8
 #define SF_S8_OCT   "0o%"SF_S8_OCT_
-#define SF_S8_OCT_  "o"
+#define SF_S8_OCT_  PRIo8
 
 #define SF_U16      "%"SF_U16_
-#define SF_U16_     "u"
+#define SF_U16_     PRIu16
 #define SF_U16_HEX  "0x%"SF_U16_HEX_
-#define SF_U16_HEX_ "X"
+#define SF_U16_HEX_ PRIX16
 #define SF_U16_OCT  "0o%"SF_U16_OCT_
-#define SF_U16_OCT_ "o"
+#define SF_U16_OCT_ PRIo16
 #define SF_S16      "%"SF_S16_
-#define SF_S16_     "i"
+#define SF_S16_     PRIi16
 #define SF_S16_HEX  "0x%"SF_S16_HEX_
-#define SF_S16_HEX_ "X"
+#define SF_S16_HEX_ PRIX16
 #define SF_S16_OCT  "0o%"SF_S16_OCT_
-#define SF_S16_OCT_ "o"
+#define SF_S16_OCT_ PRIo16
 
 #define SF_U32      "%"SF_U32_
-#define SF_U32_     "u"
+#define SF_U32_     PRIu32
 #define SF_U32_HEX  "0x%"SF_U32_HEX_
-#define SF_U32_HEX_ "X"
+#define SF_U32_HEX_ PRIX32
 #define SF_U32_OCT  "0o%"SF_U32_OCT_
-#define SF_U32_OCT_ "o"
+#define SF_U32_OCT_ PRIo32
 #define SF_S32      "%"SF_S32_
-#define SF_S32_     "i"
+#define SF_S32_     PRIi32
 #define SF_S32_HEX  "0x%"SF_S32_HEX_
-#define SF_S32_HEX_ "X"
+#define SF_S32_HEX_ PRIX32
 #define SF_S32_OCT  "0o%"SF_S32_OCT_
-#define SF_S32_OCT_ "o"
+#define SF_S32_OCT_ PRIo32
 
-#if (defined(__APPLE__) || defined(__WINDOWS__))
-	#define SF_U64       "%"SF_U64_
-	#define SF_U64_      "llu"
-	#define SF_U64_HEX   "0x%"SF_U64_HEX_
-	#define SF_U64_HEX_  "llX"
-	#define SF_U64_OCT   "0o%"SF_U64_OCT_
-	#define SF_U64_OCT_  "llo"
-	#define SF_S64       "%"SF_S64_
-	#define SF_S64_      "lli"
-	#define SF_S64_HEX   "0x%"SF_S64_HEX_
-	#define SF_S64_HEX_  "llX"
-	#define SF_S64_OCT   "0o%"SF_S64_OCT_
-	#define SF_S64_OCT_  "llo"
-#else
-	#define SF_U64       "%"SF_U64_
-	#define SF_U64_      "lu"
-	#define SF_U64_HEX   "0x%"SF_U64_HEX_
-	#define SF_U64_HEX_  "lX"
-	#define SF_U64_OCT   "0o%"SF_U64_OCT_
-	#define SF_U64_OCT_  "lo"
-	#define SF_S64       "%"SF_S64_
-	#define SF_S64_      "li"
-	#define SF_S64_HEX   "0x%"SF_S64_HEX_
-	#define SF_S64_HEX_  "lX"
-	#define SF_S64_OCT   "0o%"SF_S64_OCT_
-	#define SF_S64_OCT_  "lo"
-#endif
+#define SF_U64       "%"SF_U64_
+#define SF_U64_      PRIu64
+#define SF_U64_HEX   "0x%"SF_U64_HEX_
+#define SF_U64_HEX_  PRIX64
+#define SF_U64_OCT   "0o%"SF_U64_OCT_
+#define SF_U64_OCT_  PRIo64
+#define SF_S64       "%"SF_S64_
+#define SF_S64_      PRIi64
+#define SF_S64_HEX   "0x%"SF_S64_HEX_
+#define SF_S64_HEX_  PRIX64
+#define SF_S64_OCT   "0o%"SF_S64_OCT_
+#define SF_S64_OCT_  PRIo64
 
 #define SF_U128      "[128-bit unsigned int, dec]"//"%"SF_U128_
 #define SF_U128_     "Lu" // TODO
