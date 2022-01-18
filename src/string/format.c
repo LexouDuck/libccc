@@ -27,7 +27,7 @@
 
 
 
-#if (!defined(__GNUC__) || (!defined(_GNU_SOURCE) && !defined(_BSD_SOURCE)) || defined(__NOSTD__))
+#if (!defined(__GNUC__) || defined(__NOSTD__))
 
 // MSVC implements this as `_vscprintf`, thus we just 'symlink' it here
 #ifdef _MSC_VER
