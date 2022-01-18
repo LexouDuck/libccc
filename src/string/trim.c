@@ -60,7 +60,7 @@ t_char*		String_Trim_R(t_char const* str, t_char const* charset)
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
 	i = String_Length(str);
-	while (--i)
+	while (i--)
 	{
 		if (!Char_IsInCharset(str[i], charset))
 			break;
