@@ -12,8 +12,10 @@ then print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts 
 	command_arg_path="$project_scriptfiles"
 fi
 
-#! Changes the given filepath ($1) to add a folder ($2) near its end (right after the last '/' of the filepath)
-cccmk_alt_folder()
+#! Changes the given filepath to add a folder near its end (right after the last '/' of the filepath)
+#! @param $1	The filepath to add a subfolder to
+#! @param $2	The subfolder to add the the given filepath, before the file at the end of the path
+cccmk_add_subfolder()
 {
 	echo "$1" \
 	| awk -v folder="$2" '
@@ -44,7 +46,7 @@ do
 	then
 		for altdir in $file_ccc_altdirs
 		do
-			file_ccc_alt="`cccmk_alt_folder "$template" "$altdir" `"
+			file_ccc_alt="`cccmk_add_subfolder "$template" "$altdir" `"
 			if [ -f "$CCCMK_PATH_MKFILES/$file_ccc_alt" ]
 			then
 				template="$file_ccc_alt"

@@ -54,33 +54,51 @@ awk_inplace()
 #! List all regular files contained inside the given folder (no hidden files, nor folders, nor symlinks etc)
 list_onlyfiles()
 {
-	( cd "$1" && ls -p 2> /dev/null || echo '' ) | grep -v / | xargs
+	( cd "$1" && ls -Ap 2> /dev/null || echo '' ) | grep -v / | xargs
 }
 
 #! List subfolders of a folder, with no leading prefix (just the name of each folder)
 list_subfolders()
 {
-	( cd "$1" && ls -d */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
+	( cd "$1" && ls -Ad */ 2> /dev/null || echo '' ) | tr '/' ' ' | xargs
 }
 
 
 
 # user interface/prompting
 
+#! prompts the user to input some text
+#! @param $1	name of the return value variable
+#! @param $2	text to echo for the prompt
+prompt_text()
+{
+	local retval=$1
+	local answer
+	echo "$2"
+	echo "[type any text, <ENTER> to confirm and proceed]"
+	read -p "> " answer
+	echo ''
+	eval $retval='${answer}'
+}
+
+
+
 #! prompts a yes/no question for the user
+#! @param $1	name of the return value variable
+#! @param $2	text to echo for the prompt
 prompt_question()
 {
 	local retval=$1
-	local response
+	local answer
 	echo "$2 [y/n]"
-	read -p "> " response
-	response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
-	case $response in
+	read -p "> " answer
+	answer=`echo "$answer" | tr [:upper:] [:lower:]` # force lowercase
+	case $answer in
 		y|ye|yes)
-			response=true
+			answer=true
 			;;
 		n|no|'')
-			response=false
+			answer=false
 			print_message "Operation cancelled."
 			continue
 			;;
@@ -90,7 +108,7 @@ prompt_question()
 			;;
 	esac
 	echo ''
-	eval $retval='${selected}'
+	eval $retval='${answer}'
 }
 
 

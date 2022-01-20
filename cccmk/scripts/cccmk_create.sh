@@ -2,29 +2,6 @@
 
 
 
-print_verbose "creating new project at '$command_arg_path'..."
-
-# prompt the user for the project type
-echo "Is the project a program, or library ? [program/library/cancel]"
-read -p "> " response
-response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
-project_type=
-case $response in
-	program|library)
-		project_type=$response
-		;;
-	cancel)
-		print_message "Operation cancelled."
-		exit 1
-		;;
-	*)	print_error "Invalid answer, should be either 'program' or 'library'."
-		exit 1
-		;;
-esac
-echo ''
-
-
-
 #! Recursive function used to copy over template files from the `cccmk/project` folder
 copy_from_template()
 {
@@ -37,6 +14,9 @@ copy_from_template()
 	# copy over all regular files
 	for i in `list_onlyfiles "$srcdir/$dir"`
 	do
+		if [ "$i" == ".cccmk" ]
+		then continue
+		fi
 		cp -p  "$srcdir/$dir/$i"   "$outdir/$dir/$i"
 		echo "$rev"":""/$dir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
 	done
@@ -130,8 +110,29 @@ copy_from_template()
 
 
 
-# TODO LICENSE file logic ?
-# TODO replace [[x]] logic ?
+print_verbose "creating new project at '$command_arg_path'..."
+
+# prompt the user for the project_author
+prompt_text response "Who is the author of this project ?"
+project_author="$response"
+
+# prompt the user for the project_type
+prompt_text response "Is the project a program, or library ? [program/library/cancel]"
+response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
+project_type=""
+case $response in
+	program|library)
+		project_type=$response
+		;;
+	cancel)
+		print_message "Operation cancelled."
+		exit 1
+		;;
+	*)	print_error "Invalid answer, should be either 'program' or 'library'."
+		exit 1
+		;;
+esac
+
 (
 	# create project folder and cd inside it
 	mkdir "$command_arg_path"
@@ -141,7 +142,7 @@ copy_from_template()
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
 	{	echo ""
-		echo "project_author='???'" # TODO prompt_text() function call ?
+		echo "project_author='$project_author'"
 		echo "project_name='$command_arg_name'"
 		echo "project_year='`date "+%Y"`'"
 		echo "project_type='$project_type'"
