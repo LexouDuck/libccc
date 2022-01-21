@@ -11,7 +11,7 @@ void**	PointerArray_Replace(void* const* ptrarr, void const* old, void const* ne
 	t_uint	length;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	result = PointerArray_Duplicate(ptrarr);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result == NULL)
@@ -34,7 +34,7 @@ void**	PointerArray_ReplaceFirst(void* const* ptrarr, void const* old, void cons
 	t_uint	length;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	result = PointerArray_Duplicate(ptrarr);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result == NULL)
@@ -60,7 +60,7 @@ void**	PointerArray_ReplaceLast(void* const* ptrarr, void const* old, void const
 	t_uint	length;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	result = PointerArray_Duplicate(ptrarr);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	if (result == NULL)

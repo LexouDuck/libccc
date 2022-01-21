@@ -6,7 +6,7 @@
 
 
 
-t_uint		StringArray_Count_Char(t_char const** strarr, t_char const c)
+t_uint		StringArray_Count_Char(t_char const* const* strarr, t_char const c)
 {
 	t_uint		i;
 	t_uint		count;
@@ -24,7 +24,7 @@ t_uint		StringArray_Count_Char(t_char const** strarr, t_char const c)
 
 
 
-t_uint		StringArray_Count_Charset(t_char const** strarr, t_char const* charset)
+t_uint		StringArray_Count_Charset(t_char const* const* strarr, t_char const* charset)
 {
 	t_uint		i;
 	t_uint		count;
@@ -43,7 +43,7 @@ t_uint		StringArray_Count_Charset(t_char const** strarr, t_char const* charset)
 
 
 
-t_uint		StringArray_Count_String(t_char const** strarr, t_char const* query)
+t_uint		StringArray_Count_String(t_char const* const* strarr, t_char const* query)
 {
 	t_uint		i;
 	t_uint		count;

@@ -42,7 +42,8 @@ HEADER_CPP
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
 	{														\
 		t_char* tmp_errorname = Error_GetName(ERRORCODE);	\
-		IO_Output_Format(C_RED"ERROR"C_RESET"[%s]: %s\n",	\
+		IO_Write_Format(STDERR,								\
+			C_RED"libccc error"C_RESET"[%s]: %s\n",			\
 			tmp_errorname, MESSAGE);						\
 		String_Delete(&tmp_errorname);						\
 	}														\
@@ -216,7 +217,7 @@ HEADER_CPP
 **
 **	The `e_cccerror` error code enum used is meant to not be platform-specific, unlike `errno`.
 **
-**	The `ERROR_SYSTEM_IO` error code indicates an error which stores an `strerror(errno)` message.
+**	The `ERROR_SYSTEM` error code indicates an error which stores an `strerror(errno)` message.
 **	As such, it can hold many different messages (as many as your environment defines/uses).
 **
 **	NOTE: the only errno macros whch are defined by the standard itself are:
@@ -226,14 +227,14 @@ HEADER_CPP
 */
 typedef enum cccerror
 {
-	ERROR_UNSPECIFIED = ERROR, //!< Unspecified error
-	ERROR_NONE        = OK,    //!< No error
+	ERROR_UNSPECIFIED = ERROR, //!< Unspecified error (-1)
+	ERROR_NONE        = OK,    //!< No error (0)
 
 	ERROR_SYSTEM,       //!< System Error: `strerror(errno)` message
-	ERROR_ALLOCFAILURE, //!< System Error: Memory allocation failure
 
-	ERROR_PARSE,        //!< Error while attempting to parse string
-	ERROR_PRINT,        //!< Error while attempting to print string
+	ERROR_ALLOCFAILURE, //!< Error: Memory allocation failure
+	ERROR_PARSE,        //!< Error: while attempting to parse string
+	ERROR_PRINT,        //!< Error: while attempting to print string
 	ERROR_NOTFOUND,     //!< Error: could not find value
 
 	ERROR_INVALIDARGS,  //!< Argument Error

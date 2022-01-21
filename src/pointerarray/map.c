@@ -13,7 +13,7 @@ void**		PointerArray_Map(void* const* ptrarr,
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
-	result = PointerArray_New(PointerArray_Length(ptrarr), NULL);
+	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; ptrarr[i]; ++i)
 	{
@@ -31,7 +31,7 @@ void**		PointerArray_Map_I(void* const* ptrarr,
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
-	result = PointerArray_New(PointerArray_Length(ptrarr), NULL);
+	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (t_uint i = 0; ptrarr[i]; ++i)
 	{

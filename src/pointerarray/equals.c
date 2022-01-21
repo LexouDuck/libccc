@@ -5,7 +5,7 @@
 
 
 
-t_bool	PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2)
+t_bool	PointerArray_Equals(void const* const* ptrarr1, void const* const* ptrarr2)
 {
 	t_uint	length1;
 	t_uint	length2;
@@ -25,7 +25,7 @@ t_bool	PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2)
 }
 
 
-t_bool	PointerArray_Equals_N(void* const* ptrarr1, void* const* ptrarr2, t_uint n)
+t_bool	PointerArray_Equals_N(void const* const* ptrarr1, void const* const* ptrarr2, t_uint n)
 {
 	t_uint	length1;
 	t_uint	length2;

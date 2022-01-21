@@ -12,7 +12,7 @@ void**	PointerArray_Insert(void** dest, void const* ptr, t_uint index)
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (ptr  == NULL), return (NULL);)
-	length = PointerArray_Length((void* const*)dest);
+	length = PointerArray_Length((void const* const*)dest);
 	result = PointerArray_New(length + 1, NULL);
 	for (t_uint i = 0; i <= length; ++i)
 	{

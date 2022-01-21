@@ -5,7 +5,7 @@
 
 
 
-t_uint	PointerArray_Length(void* const* ptrarr)
+t_uint	PointerArray_Length(void const* const* ptrarr)
 {
 	t_uint	i;
 

@@ -13,7 +13,7 @@ void**	PointerArray_Sub(void* const* ptrarr, t_uint index, t_uint n)
 	t_uint		i;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	HANDLE_ERROR(INDEX2LARGE, (index > length), return (NULL);)
 	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
 	result = PointerArray_New(n, NULL);

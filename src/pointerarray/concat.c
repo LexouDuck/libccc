@@ -15,8 +15,8 @@ void**	PointerArray_Concat(void* const* ptrarr1, void* const* ptrarr2)
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr1 == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr2 == NULL), return (NULL);)
-	length1 = PointerArray_Length(ptrarr1);
-	length2 = PointerArray_Length(ptrarr2);
+	length1 = PointerArray_Length((void const* const*)ptrarr1);
+	length2 = PointerArray_Length((void const* const*)ptrarr2);
 	result = (void**)Memory_Allocate(sizeof(void*) * (length1 + length2 + 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;

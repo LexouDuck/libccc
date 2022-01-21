@@ -5,7 +5,7 @@
 
 
 
-t_uint	PointerArray_Count(void* const* ptrarr, void const* ptr)
+t_uint	PointerArray_Count(void const* const* ptrarr, void const* ptr)
 {
 	t_uint	result = 0;
 	t_uint	length;

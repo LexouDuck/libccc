@@ -7,7 +7,7 @@
 
 
 
-t_char**	StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const* str))
+t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char const* str))
 {
 	t_char**	result;
 	t_bool*	tmp;
@@ -48,7 +48,7 @@ t_char**	StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const
 }
 
 
-t_char**	StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char const* str, t_uint index))
+t_char**	StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_char const* str, t_uint index))
 {
 	t_char**	result;
 	t_bool*	tmp;

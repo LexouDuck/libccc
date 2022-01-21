@@ -5,7 +5,7 @@
 
 
 
-t_char**	StringArray_Reverse(t_char const** strarr)
+t_char**	StringArray_Reverse(t_char const* const* strarr)
 {
 	t_char**	result;
 	t_uint	length;

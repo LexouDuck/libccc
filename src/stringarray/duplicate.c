@@ -7,7 +7,7 @@
 
 
 
-t_char**		StringArray_Duplicate(t_char const** strarr)
+t_char**		StringArray_Duplicate(t_char const* const* strarr)
 {
 	t_uint	i;
 	t_char**	result;

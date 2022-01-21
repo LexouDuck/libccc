@@ -13,7 +13,7 @@ void**		PointerArray_Duplicate(void* const* ptrarr)
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (*ptrarr == NULL), return (NULL);)
-	result = PointerArray_New(PointerArray_Length(ptrarr), NULL);
+	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (ptrarr[i])

@@ -127,7 +127,7 @@ t_char**				String_Divide(t_char const* str, t_size n);
 **	The amount of strings in the given string array `strarr` (before the first NULL pointer).
 */
 //!@{
-t_uint					StringArray_Length(t_char const** strarr);
+t_uint					StringArray_Length(t_char const* const* strarr);
 #define c_strarrlen		StringArray_Length
 //!@}
 
@@ -141,7 +141,7 @@ t_uint					StringArray_Length(t_char const** strarr);
 **	This total does not include the `\0` null-terminator characters at the end of each string.
 */
 //!@{
-t_size					StringArray_TotalLength(t_char const** strarr, t_uint n);
+t_size					StringArray_TotalLength(t_char const* const* strarr, t_uint n);
 #define c_strarrlens	StringArray_TotalLength
 //!@}
 
@@ -200,7 +200,7 @@ t_char**				StringArray_Create(t_uint n, ...);
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Duplicate(t_char const** strarr);
+t_char**				StringArray_Duplicate(t_char const* const* strarr);
 #define c_strarrdup		StringArray_Duplicate
 //!@}
 
@@ -218,7 +218,7 @@ t_char**				StringArray_Duplicate(t_char const** strarr);
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Sub(t_char const** strarr, t_uint start, t_uint length);
+t_char**				StringArray_Sub(t_char const* const* strarr, t_uint start, t_uint length);
 #define c_strarrsub		StringArray_Sub
 //!@}
 
@@ -235,7 +235,7 @@ t_char**				StringArray_Sub(t_char const** strarr, t_uint start, t_uint length);
 **	The given `dest` pointer, or `NULL` if an error occurred. The `dest` string array is modified in-place.
 */
 //!@{
-t_char**				StringArray_Copy(t_char** dest, t_uint dest_i, t_char const** src, t_uint src_i, t_uint length);
+t_char**				StringArray_Copy(t_char** dest, t_uint dest_i, t_char const* const* src, t_uint src_i, t_uint length);
 #define c_strarrcpy		StringArray_Copy
 //!@}
 
@@ -395,7 +395,7 @@ void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*dele
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Replace(t_char const** strarr, t_char const* old, t_char const* new);
+t_char**				StringArray_Replace(t_char const* const* strarr, t_char const* old, t_char const* new);
 #define c_strarrrep		StringArray_Replace
 //!@}
 
@@ -412,7 +412,7 @@ t_char**				StringArray_Replace(t_char const** strarr, t_char const* old, t_char
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
+t_char**					StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrrepfirst	StringArray_ReplaceFirst
 //!@}
 
@@ -429,7 +429,7 @@ t_char**					StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, 
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char const* old, t_char const* new, t_uint n);
+t_char**					StringArray_ReplaceLast(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n);
 #define c_strarrreplast		StringArray_ReplaceLast
 //!@}
 
@@ -444,7 +444,7 @@ t_char**					StringArray_ReplaceLast(t_char const** strarr, t_char const* old, t
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Reverse(t_char const** strarr);
+t_char**				StringArray_Reverse(t_char const* const* strarr);
 #define c_strarrrev		StringArray_Reverse
 //!@}
 
@@ -458,7 +458,7 @@ t_char**				StringArray_Reverse(t_char const** strarr);
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Pad_L(t_char const** strarr, t_char c, t_uint n);
+t_char**				StringArray_Pad_L(t_char const* const* strarr, t_char c, t_uint n);
 #define c_strarrpadl	StringArray_Pad_L
 //!@}
 
@@ -478,7 +478,7 @@ t_char**				StringArray_Pad_L(t_char const** strarr, t_char c, t_uint n);
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_Concat(t_char const** strarr1, t_char const** strarr2);
+t_char**					StringArray_Concat(t_char const* const* strarr1, t_char const* const* strarr2);
 #define c_strarrconcat		StringArray_Concat
 //!@}
 
@@ -492,7 +492,7 @@ t_char**					StringArray_Concat(t_char const** strarr1, t_char const** strarr2);
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_Append(t_char** *a_dest, t_char const** src);
+t_char**					StringArray_Append(t_char** *a_dest, t_char const* const* src);
 #define c_strarrappend		StringArray_Append
 //!@}
 
@@ -506,7 +506,7 @@ t_char**					StringArray_Append(t_char** *a_dest, t_char const** src);
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_Prepend(t_char const** src, t_char** *a_dest);
+t_char**					StringArray_Prepend(t_char const* const* src, t_char** *a_dest);
 #define c_strarrprepend		StringArray_Prepend
 //!@}
 
@@ -536,7 +536,7 @@ t_char**					StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2);
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
+t_char**					StringArray_Join(t_char const* const* * strarrs, t_char const* const* sep);
 #define c_strarrjoin		StringArray_Join
 //!@}
 
@@ -559,7 +559,7 @@ t_char**					StringArray_Join(t_char const*** strarrs, t_char const** sep);
 **	Otherwise, `FALSE` is returned.
 */
 //!@{
-t_bool					StringArray_Equals(t_char const** strarr1, t_char const** strarr2);
+t_bool					StringArray_Equals(t_char const* const* strarr1, t_char const* const* strarr2);
 #define c_strarrequ		StringArray_Equals
 //!@}
 
@@ -575,7 +575,7 @@ t_bool					StringArray_Equals(t_char const** strarr1, t_char const** strarr2);
 **	Otherwise, `FALSE` is returned.
 */
 //!@{
-t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, t_uint n);
+t_bool					StringArray_Equals_N(t_char const* const* strarr1, t_char const* const* strarr2, t_uint n);
 #define c_strarrnequ	StringArray_Equals_N
 //!@}
 
@@ -589,7 +589,7 @@ t_bool					StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, 
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
-t_sint					StringArray_Compare	(t_char const** strarr1, t_char const** strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2));
+t_sint					StringArray_Compare	(t_char const* const* strarr1, t_char const* const* strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2));
 #define c_strarrcmp		StringArray_Compare
 
 //!@doc Compares two string arrays using the given `compare` function, for the `n` first strings
@@ -601,7 +601,7 @@ t_sint					StringArray_Compare	(t_char const** strarr1, t_char const** strarr2, 
 **	@returns
 **	The first non-zero value returned by the `compare` function given.
 */
-t_sint					StringArray_Compare_N	(t_char const** strarr1, t_char const** strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2), t_uint n);
+t_sint					StringArray_Compare_N	(t_char const* const* strarr1, t_char const* const* strarr2, t_sint (*compare)(t_char const* str1, t_char const* str2), t_uint n);
 #define c_strarrncmp	StringArray_Compare_N
 
 
@@ -617,7 +617,7 @@ t_sint					StringArray_Compare_N	(t_char const** strarr1, t_char const** strarr2
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_Char(t_char const** strarr, t_char const c);
+t_uint							StringArray_Count_Char(t_char const* const* strarr, t_char const c);
 #define c_strarrcount_char		StringArray_Count_Char
 //!@}
 
@@ -626,7 +626,7 @@ t_uint							StringArray_Count_Char(t_char const** strarr, t_char const c);
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_Charset(t_char const** strarr, t_char const* cset);
+t_uint							StringArray_Count_Charset(t_char const* const* strarr, t_char const* cset);
 #define c_strarrcount_cset		StringArray_Count_Charset
 //!@}
 
@@ -635,7 +635,7 @@ t_uint							StringArray_Count_Charset(t_char const** strarr, t_char const* cset
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_String(t_char const** strarr, t_char const* query);
+t_uint							StringArray_Count_String(t_char const* const* strarr, t_char const* query);
 #define c_strarrcount_str		StringArray_Count_String
 //!@}
 
@@ -685,12 +685,12 @@ void					StringArray_Iterate_I(t_char** strarr, t_char* (*f)(t_char* str, t_uint
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Map(t_char const** strarr, t_char* (*map)(t_char const* str));
+t_char**				StringArray_Map(t_char const* const* strarr, t_char* (*map)(t_char const* str));
 #define c_strarrmap		StringArray_Map
 //!@}
 //!@doc Like StringArray_Map(), but the user-supplied function receives the current index
 //!@{
-t_char**				StringArray_Map_I(t_char const** strarr, t_char* (*map)(t_char const* str, t_uint index));
+t_char**				StringArray_Map_I(t_char const* const* strarr, t_char* (*map)(t_char const* str, t_uint index));
 #define c_strarrimap	StringArray_Map_I
 //!@}
 
@@ -701,15 +701,16 @@ t_char**				StringArray_Map_I(t_char const** strarr, t_char* (*map)(t_char const
 **	@param	strarr	The string array whose strings should be iterated upon
 **	@param	filter	The function to call to check if an string of `strarr` should be added to the result
 **	@returns
-**	A new string array, created by storing the return values of each call to the given `map` function.
+**	A new string array, created by duplicating the strings of the given `array`
+**	for which the corresponding call to the `filter` function returned `TRUE`.
 */
 //!@{
-t_char**				StringArray_Filter(t_char const** strarr, t_bool (*filter)(t_char const* str));
+t_char**				StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char const* str));
 #define c_strarrfilter	StringArray_Filter
 //!@}
 //!@doc Like StringArray_Filter(), but the user-supplied function receives the current index
 //!@{
-t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char const* str, t_uint index));
+t_char**				StringArray_Filter_I(t_char const* const* strarr, t_bool (*filter)(t_char const* str, t_uint index));
 #define c_strarrifilter	StringArray_Filter_I
 //!@}
 
@@ -727,12 +728,12 @@ t_char**				StringArray_Filter_I(t_char const** strarr, t_bool (*filter)(t_char 
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
 //!@{
-void*					StringArray_Reduce(t_char const** strarr, void* (*f)(t_char const* str, void* acc));
+void*					StringArray_Reduce(t_char const* const* strarr, void* (*f)(t_char const* str, void* acc));
 #define c_strarrreduce	StringArray_Reduce
 //!@}
 //!@doc Like StringArray_Reduce(), but the user-supplied function receives the current index
 //!@{
-void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index));
+void*					StringArray_Reduce_I(t_char const* const* strarr, void* (*f)(t_char const* str, void* acc, t_uint index));
 #define c_strarrireduce	StringArray_Reduce_I
 //!@}
 
@@ -748,12 +749,12 @@ void*					StringArray_Reduce_I(t_char const** strarr, void* (*f)(t_char const* s
 **	A single value, of any type, which is created by calling `f()` for each string of the given `strarr`.
 */
 //!@{
-void*					StringArray_Fold(t_char const** strarr, void* (*f)(t_char const* str, void* acc), void* initial);
+void*					StringArray_Fold(t_char const* const* strarr, void* (*f)(t_char const* str, void* acc), void* initial);
 #define c_strarrfold	StringArray_Fold
 //!@}
 //!@doc Like StringArray_Reduce(), but the user-supplied function receives the current index
 //!@{
-void*					StringArray_Fold_I(t_char const** strarr, void* (*f)(t_char const* str, void* acc, t_uint index), void* initial);
+void*					StringArray_Fold_I(t_char const* const* strarr, void* (*f)(t_char const* str, void* acc, t_uint index), void* initial);
 #define c_strarrifold	StringArray_Fold_I
 //!@}
 

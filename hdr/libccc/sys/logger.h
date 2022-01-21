@@ -149,43 +149,43 @@ typedef s_logger const* const*	t_logptrarr;
 
 //!@doc Create a new logger. If logfile_path is required, but NULL, a default macro is used
 //!@{
-void						Logger_Init(s_logger *a_logger);
-#define c_loginit			Logger_Init
-#define InitializeLogger	Logger_Init
+void							Logger_Init(s_logger *a_logger);
+#define c_io_loginit			Logger_Init
+#define InitializeLogger		Logger_Init
 //!@}
 
 //!@doc Cleanly release logger (close file descriptors, free internal memory)
 //!@{
-void						Logger_Exit(s_logger *a_logger);
-#define c_logexit			Logger_Exit
-#define FinalizeLogger		Logger_Exit
+void							Logger_Exit(s_logger *a_logger);
+#define c_io_logexit			Logger_Exit
+#define FinalizeLogger			Logger_Exit
 //!@}
 
 //!@doc Free all memory in logger, but do not release sockets; useful when a duplicated memory instance exists
 //!@{
-void						Logger_DeleteMemory(s_logger *a_logger);
-#define c_logdelmem			Logger_DeleteMemory
-#define DeleteMemory_Logger	Logger_DeleteMemory
+void							Logger_DeleteMemory(s_logger *a_logger);
+#define c_io_logdelmem			Logger_DeleteMemory
+#define DeleteMemory_Logger		Logger_DeleteMemory
 //!@}
 
 //!@doc Util function to help debug the logger
 //!@{
-t_char*						Logger_GetSettings(s_logger const* logger);
-#define c_log_getsettings	Logger_GetSettings
+t_char*							Logger_GetSettings(s_logger const* logger);
+#define c_io_log_getsettings	Logger_GetSettings
 //!@}
 
 //!@doc Util function to help debug the logger
 //!@{
-e_cccerror					Logger_LogSettings(s_logger const* logger);
-#define c_log_logsettings	Logger_LogSettings
+e_cccerror						Logger_LogSettings(s_logger const* logger);
+#define c_io_log_logsettings	Logger_LogSettings
 //!@}
 
 
 
 //!@doc Returns a UNIX-format string representation of the given 'utc' date/time number
 //!@{
-t_char*				Logger_GetTimestamp(t_time utc);
-#define c_logtime	Logger_GetTimestamp
+t_char*							Logger_GetTimestamp(t_time utc);
+#define c_io_logtime			Logger_GetTimestamp
 //!@}
 
 
@@ -203,7 +203,7 @@ e_cccerror 	Log(s_logger const* logger,
 	t_bool use_errno,
 	t_bool is_error,
 	t_char const* format_str, ...);
-#define c_log		Log
+#define c_io_log		Log
 
 e_cccerror	Log_VA(s_logger const* logger,
 	t_bool 		verbose_only,
@@ -212,7 +212,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_char const*	prefix,
 	t_char const*	prefix_color,
 	t_char const*	format_str, va_list args);
-#define c_log_va	Log_VA
+#define c_io_log_va	Log_VA
 
 //!@}
 
@@ -221,7 +221,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 //!@doc Used to log a fundamental error where even the logger itself doesn't work: calls the STD C perror() function
 //!@{
 e_cccerror				Log_Fatal(s_logger const* logger, t_char const* str);
-#define c_log_fatal		Log_Fatal
+#define c_io_log_fatal	Log_Fatal
 #define Log_FatalError	Log_Fatal
 //!@}
 
@@ -231,12 +231,12 @@ e_cccerror				Log_Fatal(s_logger const* logger, t_char const* str);
 //!@{
 _FORMAT(printf, 3, 4)
 e_cccerror					Log_Error_IO(s_logger const* logger, int error_code, t_char const* format_str, ...); // TODO remove error_code (breaking change)
-#define c_log_error_io		Log_Error_IO
+#define c_io_log_error_io	Log_Error_IO
 #define Log_SystemError		Log_Error_IO
 //!@doc Like Log_Error_IO(), but this takes an array of loggers, and logs to each of their destinations
 _FORMAT(printf, 3, 4)
 e_cccerror					LogAll_Error_IO(t_logptrarr const loggers, int error_code, t_char const* format_str, ...); // TODO remove error_code (breaking change)
-#define c_logall_error_io	LogAll_Error_IO
+#define c_io_logall_error_io	LogAll_Error_IO
 #define LogAll_SystemError	LogAll_Error_IO
 //!@}
 
@@ -244,66 +244,66 @@ e_cccerror					LogAll_Error_IO(t_logptrarr const loggers, int error_code, t_char
 //!@{
 _FORMAT(printf, 3, 4)
 e_cccerror					Log_Error(s_logger const* logger, int error_code, t_char const* format_str, ...); // TODO remove error_code (breaking change)
-#define c_log_error			Log_Error
+#define c_io_log_error		Log_Error
 //!@}
 //!@doc Like Log_Error(), but this takes an array of loggers, and logs to each of their destinations
 //!@{
 _FORMAT(printf, 3, 4)
 e_cccerror					LogAll_Error(t_logptrarr const loggers, int error_code, t_char const* format_str, ...); // TODO remove error_code (breaking change)
-#define c_logall_error		LogAll_Error
+#define c_io_logall_error	LogAll_Error
 //!@}
 
 //!@doc Log a warning message - use this to notify the user of a minor/potential problem
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					Log_Warning(s_logger const* logger, t_char const* format_str, ...);
-#define c_log_warning		Log_Warning
+#define c_io_log_warning	Log_Warning
 //!@}
 //!@doc Like Log_Warning(), but this takes an array of loggers, and logs to each of their destinations
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					LogAll_Warning(t_logptrarr const loggers, t_char const* format_str, ...);
-#define c_logall_warning	LogAll_Warning
+#define c_io_logall_warning	LogAll_Warning
 //!@}
 
 //!@doc Log a success message - use this to notify the user of a successful operation (or result)
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					Log_Success(s_logger const* logger, t_char const* format_str, ...);
-#define c_log_success		Log_Success
+#define c_io_log_success	Log_Success
 //!@}
 //!@doc Like Log_Success(), but this takes an array of loggers, and logs to each of their destinations
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					LogAll_Success(t_logptrarr const loggers, t_char const* format_str, ...);
-#define c_logall_success	LogAll_Success
+#define c_io_logall_success	LogAll_Success
 //!@}
 
 //!@doc Logging printf-style of message to both stdout and logfile (if applicable)
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					Log_Message(s_logger const* logger, t_char const* format_str, ...);
-#define c_log_message		Log_Message
+#define c_io_log_message	Log_Message
 //!@}
 //!@doc Like Log_Message(), but this takes an array of loggers, and logs to each of their destinations
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					LogAll_Message(t_logptrarr const loggers, t_char const* format_str, ...);
-#define c_logall_message	LogAll_Message
+#define c_io_logall_message	LogAll_Message
 //!@}
 
 //!@doc Logging printf-style of verbose message to both stdout and logfile (if applicable)
 //!@{
 _FORMAT(printf, 2, 3)
 e_cccerror					Log_Message_Verbose(s_logger const* logger, t_char const* format_str, ...);
-#define c_log_verbose		Log_Message_Verbose
+#define c_io_log_verbose	Log_Message_Verbose
 #define Log_Verbose			Log_Message_Verbose
 //!@doc Like Log_Message_Verbose(), but this takes an array of loggers, and logs to each of their destinations
 //!@}
 _FORMAT(printf, 2, 3)
 //!@{
 e_cccerror					LogAll_Message_Verbose(t_logptrarr const loggers, t_char const* format_str, ...);
-#define c_logall_verbose	LogAll_Message_Verbose
+#define c_io_logall_verbose	LogAll_Message_Verbose
 #define LogAll_Verbose		LogAll_Message_Verbose
 //!@}
 

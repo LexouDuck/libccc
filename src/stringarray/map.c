@@ -7,7 +7,7 @@
 
 
 
-t_char**		StringArray_Map(t_char const** strarr,
+t_char**		StringArray_Map(t_char const* const* strarr,
 	t_char* (*map)(t_char const* str))
 {
 	t_char**	result;
@@ -25,7 +25,7 @@ t_char**		StringArray_Map(t_char const** strarr,
 
 
 
-t_char**		StringArray_Map_I(t_char const** strarr,
+t_char**		StringArray_Map_I(t_char const* const* strarr,
 	t_char* (*map)(t_char const* str, t_uint index))
 {
 	t_char**	result;

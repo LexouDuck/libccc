@@ -5,7 +5,7 @@
 
 
 
-t_bool	PointerArray_Contains(void* const* ptrarr, void const* ptr)
+t_bool	PointerArray_Contains(void const* const* ptrarr, void const* ptr)
 {
 	t_uint	length;
 

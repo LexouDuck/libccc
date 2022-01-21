@@ -16,7 +16,7 @@ void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	if (length == 0 || ptrarr == NULL)
 		return ((void**)Memory_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
@@ -57,7 +57,7 @@ void**	PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void const* p
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	if (length == 0 || ptrarr == NULL)
 		return ((void**)Memory_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);

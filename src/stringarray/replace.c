@@ -5,7 +5,7 @@
 
 
 
-t_char**	StringArray_Replace(t_char const** strarr, t_char const* old, t_char const* new)
+t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* old, t_char const* new)
 {
 	t_char**	result;
 	t_uint		length;
@@ -28,7 +28,7 @@ t_char**	StringArray_Replace(t_char const** strarr, t_char const* old, t_char co
 
 
 
-t_char**	StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, t_char const* new, t_uint n)
+t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;
@@ -54,7 +54,7 @@ t_char**	StringArray_ReplaceFirst(t_char const** strarr, t_char const* old, t_ch
 
 
 
-t_char**	StringArray_ReplaceLast(t_char const** strarr, t_char const* old, t_char const* new, t_uint n)
+t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;

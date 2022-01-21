@@ -12,8 +12,8 @@ void**	PointerArray_Copy(
 {
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, ( src == NULL), return (NULL);)
-	t_uint	dest_length = PointerArray_Length(dest);
-	t_uint	src_length  = PointerArray_Length(src);
+	t_uint	dest_length = PointerArray_Length((void const* const*)dest);
+	t_uint	src_length  = PointerArray_Length((void const* const*)src);
 	HANDLE_ERROR(INDEX2LARGE, (dest_i >= dest_length),    return (NULL);)
 	HANDLE_ERROR(INDEX2LARGE, ( src_i >=  src_length),    return (NULL);)
 	HANDLE_ERROR(LENGTH2LARGE, (dest_i + n > dest_length), return (NULL);)

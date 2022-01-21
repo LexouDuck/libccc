@@ -35,7 +35,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//!@doc Primitve type: The boolean type (`TRUE` or `FALSE`)
+//!@doc Primitive type: The boolean type (`TRUE` or `FALSE`)
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/types/boolean}
 **

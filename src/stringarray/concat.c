@@ -7,7 +7,7 @@
 
 
 
-t_char**	StringArray_Concat(t_char const** strarr1, t_char const** strarr2)
+t_char**	StringArray_Concat(t_char const* const* strarr1, t_char const* const* strarr2)
 {
 	t_char**	result;
 	t_size	length1;
@@ -38,13 +38,13 @@ t_char**	StringArray_Concat(t_char const** strarr1, t_char const** strarr2)
 
 
 
-t_char**	StringArray_Append(t_char** *a_dest, t_char const** src)
+t_char**	StringArray_Append(t_char** *a_dest, t_char const* const* src)
 {
 	t_char**	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
-	tmp = StringArray_Concat((t_char const**)*a_dest, src);
+	tmp = StringArray_Concat((t_char const* const*)*a_dest, src);
 	StringArray_Delete(a_dest);
 	*a_dest = tmp;
 	return (*a_dest);
@@ -52,13 +52,13 @@ t_char**	StringArray_Append(t_char** *a_dest, t_char const** src)
 
 
 
-t_char**	StringArray_Prepend(t_char const** src, t_char** *a_dest)
+t_char**	StringArray_Prepend(t_char const* const* src, t_char** *a_dest)
 {
 	t_char**	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
-	tmp = StringArray_Concat(src, (t_char const**)*a_dest);
+	tmp = StringArray_Concat(src, (t_char const* const*)*a_dest);
 	StringArray_Delete(a_dest);
 	*a_dest = tmp;
 	return (*a_dest);

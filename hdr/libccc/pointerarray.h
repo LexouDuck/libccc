@@ -54,7 +54,7 @@ typedef t_char**	p_ptrarray;
 **	The amount of strings in the given pointer array `ptrarr` (before the first `NULL` pointer).
 */
 //!@{
-t_uint					PointerArray_Length(void* const* ptrarr);
+t_uint					PointerArray_Length(void const* const * ptrarr);
 #define c_ptrarrlen		PointerArray_Length
 //!@}
 
@@ -470,7 +470,7 @@ void**					PointerArray_Join(void* const** ptrarrs, void* const* sep);
 **	Otherwise, `FALSE` is returned.
 */
 //!@{
-t_bool					PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2);
+t_bool					PointerArray_Equals(void const* const* ptrarr1, void const* const* ptrarr2);
 #define c_ptrarrequ		PointerArray_Equals
 //!@}
 
@@ -485,7 +485,7 @@ t_bool					PointerArray_Equals(void* const* ptrarr1, void* const* ptrarr2);
 **	Otherwise, `FALSE` is returned.
 */
 //!@{
-t_bool					PointerArray_Equals_N(void* const* ptrarr1, void* const* ptrarr2, t_uint n);
+t_bool					PointerArray_Equals_N(void const* const* ptrarr1, void const* const* ptrarr2, t_uint n);
 #define c_ptrarrnequ	PointerArray_Equals_N
 //!@}
 
@@ -500,7 +500,7 @@ t_bool					PointerArray_Equals_N(void* const* ptrarr1, void* const* ptrarr2, t_u
 **	The first non-zero value returned by the `compare` function given.
 */
 //!@{
-t_sint					PointerArray_Compare(void* const* ptrarr1, void* const* ptrarr2, t_sint (*compare)(void const* ptr1, void const* ptr2));
+t_sint					PointerArray_Compare(void const* const* ptrarr1, void const* const* ptrarr2, t_sint (*compare)(void const* ptr1, void const* ptr2));
 #define c_ptrarrcmp		PointerArray_Compare
 //!@}
 
@@ -514,7 +514,7 @@ t_sint					PointerArray_Compare(void* const* ptrarr1, void* const* ptrarr2, t_si
 **	The first non-zero value returned by the `compare` function given.
 */
 //!@{
-t_sint					PointerArray_Compare_N(void* const* ptrarr1, void* const* ptrarr2, t_sint (*compare)(void const* ptr1, void const* ptr2), t_uint n);
+t_sint					PointerArray_Compare_N(void const* const* ptrarr1, void const* const* ptrarr2, t_sint (*compare)(void const* ptr1, void const* ptr2), t_uint n);
 #define c_ptrarrncmp	PointerArray_Compare_N
 //!@}
 
@@ -561,7 +561,7 @@ void* const*			PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void con
 **	or `-1` if no such item was found.
 */
 //!@{
-t_sint					PointerArray_IndexOf(void* const* ptrarr, void const* ptr);
+t_sint					PointerArray_IndexOf(void const* const* ptrarr, void const* ptr);
 #define c_ptrarrfindi	PointerArray_IndexOf
 //!@}
 
@@ -574,7 +574,7 @@ t_sint					PointerArray_IndexOf(void* const* ptrarr, void const* ptr);
 **	or `-1` if no such item was found.
 */
 //!@{
-t_sint					PointerArray_IndexOf_F(void* const* ptrarr, t_bool (*match)(void const* ptr));
+t_sint					PointerArray_IndexOf_F(void const* const* ptrarr, t_bool (*match)(void const* ptr));
 #define c_ptrarrffindi	PointerArray_IndexOf_F
 //!@}
 
@@ -587,7 +587,7 @@ t_sint					PointerArray_IndexOf_F(void* const* ptrarr, t_bool (*match)(void cons
 **	@returns
 **	The total amount of items in the given `array` which are equal to `item`
 */
-t_uint					PointerArray_Count	(void* const* ptrarr, void const* ptr);
+t_uint					PointerArray_Count	(void const* const* ptrarr, void const* ptr);
 #define c_ptrarrcount	PointerArray_Count
 
 //!@doc Checks whether the given `array` contains the given `item`
@@ -599,7 +599,7 @@ t_uint					PointerArray_Count	(void* const* ptrarr, void const* ptr);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						PointerArray_Contains(void* const* ptrarr, void const* ptr);
+t_bool						PointerArray_Contains(void const* const* ptrarr, void const* ptr);
 #define c_ptrarrcontains	PointerArray_Contains
 //!@}
 
@@ -611,7 +611,7 @@ t_bool						PointerArray_Contains(void* const* ptrarr, void const* ptr);
 **	`TRUE` if the given `array` does contain an item which is equal to any item in `targets`,
 **	otherwise returns `FALSE`.
 */
-t_bool					PointerArray_Has	(void* const* ptrarr, void* const* target);
+t_bool					PointerArray_Has	(void const* const* ptrarr, void const* const* target);
 #define c_ptrarrhas		PointerArray_Has
 
 //!@doc Checks whether the given `array` only contains items which are present in the given `targets` array
@@ -623,7 +623,7 @@ t_bool					PointerArray_Has	(void* const* ptrarr, void* const* target);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					PointerArray_HasOnly(void* const* ptrarr, void* const* target);
+t_bool					PointerArray_HasOnly(void const* const* ptrarr, void const* const* target);
 #define c_ptrarrhasonly	PointerArray_HasOnly
 //!@}
 
@@ -710,13 +710,13 @@ void**					PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void cons
 **	A single value, of any type, which is created by calling `f()` for each item of the given `array`.
 */
 //!@{
-void*					PointerArray_Reduce(void* const* ptrarr, void* (*f)(void const* ptr, void* acc));
+void*					PointerArray_Reduce(void const* const* ptrarr, void* (*f)(void const* ptr, void* acc));
 #define c_ptrarrreduce	PointerArray_Reduce
 //!@}
 
 //!@doc Like Array_Reduce(), but the user-supplied function receives the current index
 //!@{
-void*					PointerArray_Reduce_I(void* const* ptrarr, void* (*f)(void const* ptr, void* acc, t_uint index));
+void*					PointerArray_Reduce_I(void const* const* ptrarr, void* (*f)(void const* ptr, void* acc, t_uint index));
 #define c_ptrarrireduce	PointerArray_Reduce_I
 //!@}
 
@@ -732,13 +732,13 @@ void*					PointerArray_Reduce_I(void* const* ptrarr, void* (*f)(void const* ptr,
 **	A single value, of any type, which is created by calling `f()` for each item of the given `array`.
 */
 //!@{
-void*					PointerArray_Fold(void* const* ptrarr, void* (*f)(void const* ptr, void* acc), void* initial);
+void*					PointerArray_Fold(void const* const* ptrarr, void* (*f)(void const* ptr, void* acc), void* initial);
 #define c_ptrarrfold	PointerArray_Fold
 //!@}
 
 //!@doc Like Array_Reduce(), but the user-supplied function receives the current index
 //!@{
-void*					PointerArray_Fold_I(void* const* ptrarr, void* (*f)(void const* ptr, void* acc, t_uint index), void* initial);
+void*					PointerArray_Fold_I(void const* const* ptrarr, void* (*f)(void const* ptr, void* acc, t_uint index), void* initial);
 #define c_ptrarrifold	PointerArray_Fold_I
 //!@}
 

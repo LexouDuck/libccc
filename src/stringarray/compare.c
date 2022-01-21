@@ -5,7 +5,7 @@
 
 
 
-t_sint	StringArray_Compare(t_char const** strarr1, t_char const** strarr2,
+t_sint	StringArray_Compare(t_char const* const* strarr1, t_char const* const* strarr2,
 	t_sint (*compare)(t_char const* ptr1, t_char const* ptr2))
 {
 	t_sint	result;
@@ -32,7 +32,7 @@ t_sint	StringArray_Compare(t_char const** strarr1, t_char const** strarr2,
 
 
 
-t_sint	StringArray_Compare_N(t_char const** strarr1, t_char const** strarr2,
+t_sint	StringArray_Compare_N(t_char const* const* strarr1, t_char const* const* strarr2,
 	t_sint (*compare)(t_char const* ptr1, t_char const* ptr2), t_uint n)
 {
 	t_sint	result;

@@ -19,11 +19,11 @@ void**	PointerArray_Join(void* const** ptrarrs, void* const* sep)
 	if (ptrarrs[0] == NULL)
 		return (PointerArray_New(0, NULL));
 	total = 0;
-	length_sep = PointerArray_Length(sep);
+	length_sep = PointerArray_Length((void const* const*)sep);
 	length_strarrs = 0;
 	while (ptrarrs[length_strarrs])
 	{
-		total += PointerArray_Length(ptrarrs[length_strarrs]);
+		total += PointerArray_Length((void const* const*)ptrarrs[length_strarrs]);
 		++length_strarrs;
 		if (ptrarrs[length_strarrs])
 			total += length_sep;

@@ -5,7 +5,7 @@
 
 
 
-t_bool	PointerArray_Has(void* const* ptrarr, void* const* target)
+t_bool	PointerArray_Has(void const* const* ptrarr, void const* const* target)
 {
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (FALSE);)
 	for (t_uint i = 0; ptrarr[i]; ++i)
@@ -17,7 +17,7 @@ t_bool	PointerArray_Has(void* const* ptrarr, void* const* target)
 }
 
 
-t_bool	PointerArray_HasOnly(void* const* ptrarr, void* const* target)
+t_bool	PointerArray_HasOnly(void const* const* ptrarr, void const* const* target)
 {
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (FALSE);)
 	for (t_uint i = 0; ptrarr[i]; ++i)

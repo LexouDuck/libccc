@@ -10,7 +10,7 @@ void* const*	PointerArray_Find(void* const* ptrarr, void const* ptr)
 	t_uint	length;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	for (t_uint i = 0; i < length; ++i)
 	{
 		if (ptrarr[i] == ptr)
@@ -25,7 +25,7 @@ void* const*	PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const
 	t_uint	length;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	for (t_uint i = 0; i < length; ++i)
 	{
 		if (match(ptrarr[i]))
@@ -35,7 +35,7 @@ void* const*	PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const
 }
 
 
-t_sint	PointerArray_IndexOf(void* const* ptrarr, void const* ptr)
+t_sint	PointerArray_IndexOf(void const* const* ptrarr, void const* ptr)
 {
 	t_uint	length;
 
@@ -50,7 +50,7 @@ t_sint	PointerArray_IndexOf(void* const* ptrarr, void const* ptr)
 }
 
 
-t_sint	PointerArray_IndexOf_F(void* const* ptrarr, t_bool (*match)(void const* ptr))
+t_sint	PointerArray_IndexOf_F(void const* const* ptrarr, t_bool (*match)(void const* ptr))
 {
 	t_uint	length;
 

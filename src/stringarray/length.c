@@ -5,7 +5,7 @@
 
 
 
-t_uint		StringArray_Length(t_char const** strarr)
+t_uint		StringArray_Length(t_char const* const* strarr)
 {
 	t_uint	i;
 
@@ -20,7 +20,7 @@ t_uint		StringArray_Length(t_char const** strarr)
 
 
 
-t_size		StringArray_TotalLength(t_char const** strarr, t_uint n)
+t_size		StringArray_TotalLength(t_char const* const* strarr, t_uint n)
 {
 	t_size	result;
 	t_uint	i;

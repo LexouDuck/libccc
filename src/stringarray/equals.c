@@ -5,7 +5,7 @@
 
 
 
-t_bool	StringArray_Equals(t_char const** strarr1, t_char const** strarr2)
+t_bool	StringArray_Equals(t_char const* const* strarr1, t_char const* const* strarr2)
 {
 	t_uint	length1;
 	t_uint	length2;
@@ -25,7 +25,7 @@ t_bool	StringArray_Equals(t_char const** strarr1, t_char const** strarr2)
 }
 
 
-t_bool	StringArray_Equals_N(t_char const** strarr1, t_char const** strarr2, t_uint n)
+t_bool	StringArray_Equals_N(t_char const* const* strarr1, t_char const* const* strarr2, t_uint n)
 {
 	t_uint	length1;
 	t_uint	length2;

@@ -6,7 +6,7 @@
 
 
 
-void*	PointerArray_Reduce(void* const* ptrarr,
+void*	PointerArray_Reduce(void const* const* ptrarr,
 	void* (*f)(void const* ptr, void* acc))
 {
 	void*	accumulator = NULL;
@@ -22,7 +22,7 @@ void*	PointerArray_Reduce(void* const* ptrarr,
 	return (accumulator);
 }
 
-void*	PointerArray_Reduce_I(void* const* ptrarr,
+void*	PointerArray_Reduce_I(void const* const* ptrarr,
 	void* (*f)(void const* ptr, void* acc, t_uint index))
 {
 	void*	accumulator = NULL;
@@ -40,7 +40,7 @@ void*	PointerArray_Reduce_I(void* const* ptrarr,
 
 
 
-void*	PointerArray_Fold(void* const* ptrarr,
+void*	PointerArray_Fold(void const* const* ptrarr,
 	void* (*f)(void const* ptr, void* acc), void* initial)
 {
 	void*	accumulator = initial;
@@ -56,7 +56,7 @@ void*	PointerArray_Fold(void* const* ptrarr,
 	return (accumulator);
 }
 
-void*	PointerArray_Fold_I(void* const* ptrarr,
+void*	PointerArray_Fold_I(void const* const* ptrarr,
 	void* (*f)(void const* ptr, void* acc, t_uint index), void* initial)
 {
 	void*	accumulator = initial;

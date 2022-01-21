@@ -12,7 +12,7 @@ void**	PointerArray_Reverse(void* const* ptrarr)
 	t_uint	index;
 
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	length = PointerArray_Length(ptrarr);
+	length = PointerArray_Length((void const* const*)ptrarr);
 	HANDLE_ERROR(NULLPOINTER, (length > 0 && ptrarr == NULL), return (NULL);)
 	result = PointerArray_New(length, NULL);
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)

@@ -13,7 +13,7 @@ void	StringArray_Remove(t_char** strarr, t_char const* str)
 
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	index = PointerArray_IndexOf((void**)strarr, str);
+	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
 	StringArray_RemoveAt(strarr, index);
@@ -29,7 +29,7 @@ void	StringArray_Remove_F(t_char** strarr, t_char const* str,
 	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	index = PointerArray_IndexOf((void**)strarr, str);
+	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
 	StringArray_RemoveAt_F(strarr, index, delete);

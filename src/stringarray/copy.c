@@ -6,8 +6,8 @@
 
 
 t_char**	StringArray_Copy(
-	t_char** dest,      t_uint dest_i,
-	t_char const** src, t_uint src_i,
+	t_char** dest,            t_uint dest_i,
+	t_char const* const* src, t_uint src_i,
 	t_uint n)
 {
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)

@@ -7,7 +7,7 @@
 
 
 
-t_char**	StringArray_Join(t_char const*** strarrs, t_char const** sep)
+t_char**	StringArray_Join(t_char const* const* * strarrs, t_char const* const* sep)
 {
 	t_char**	result;
 	t_uint	total;
