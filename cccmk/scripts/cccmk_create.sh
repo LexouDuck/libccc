@@ -1,9 +1,42 @@
 #!/bin/sh -e
 
-
+#! Copies over files from a source directory to the output directory, for creating a project
+project_template_copy()
+{
+	local srcdir="$1"
+	local srcpath="$2"
+	local outpath="$3"
+	local files="$4"
+	for i in $files
+	do
+		# skip any project template helper scripts
+		if [ "$i" == ".cccmk" ]
+		then continue
+		fi
+		# if no value was provided to the 'output_filename' variable, then use the source filename
+		if [ -z "$output_filename" ]
+		then output_filename="$i"
+		fi
+		# copy source template file over to output folder
+		print_verbose "copying template file: '$srcdir/$srcpath/$i'"
+		cp -p "$srcdir/$srcpath/$i"   "$outpath/$output_filename"
+		# update the .cccmk project tracker file (only if path is not in an '_untracked' folder)
+		case "$srcpath" in
+			(*_untracked*) ;;
+			(*)
+				echo "$rev"":""$srcpath/$i"":""$outpath/$output_filename" \
+				| awk '{ gsub(/\.\//, ""); print; }' \
+				>> "$project_cccmkfile"
+				;;
+		esac
+		# replace %[vars]% in newly copied-over file
+		cccmk_template "$outpath/$output_filename"
+		output_filename=""
+	done
+}
 
 #! Recursive function used to copy over template files from the `cccmk/project` folder
-copy_from_template()
+project_template_recurse()
 {
 	local srcdir="$1"
 	local outdir="$2"
@@ -12,14 +45,8 @@ copy_from_template()
 	# create destination folder
 	mkdir -p "$outdir/$dir"
 	# copy over all regular files
-	for i in `list_onlyfiles "$srcdir/$dir"`
-	do
-		if [ "$i" == ".cccmk" ]
-		then continue
-		fi
-		cp -p  "$srcdir/$dir/$i"   "$outdir/$dir/$i"
-		echo "$rev"":""/$dir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
-	done
+	project_template_copy "$srcdir" "$dir" "$outdir/$dir" \
+		"`list_onlyfiles "$srcdir/$dir"`"
 	# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain files
 	for subdir in `list_subfolders "$srcdir/$dir"`
 	do
@@ -37,8 +64,8 @@ copy_from_template()
 				if [ -z "$output_filename" ]
 				then output_filename="$selected_file"
 				fi
-				cp -p  "$srcdir/$dir/$subdir/$selected_file"   "$outdir/$dir/$output_filename"
-				echo "$rev"":""/$dir/$subdir/$selected_file"":""$outdir/$dir/$output_filename" >> "$project_cccmkfile"
+				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					"$selected_file"
 				;;
 			# prompt the user to select which files they want
 			_if_multiselect)
@@ -50,37 +77,29 @@ copy_from_template()
 				selected_files=
 				echo "$prompt_message"
 				prompt_multiselect selected_files `echo "$proposed_files" | tr [:space:] ';' `
-				for i in ${selected_files[@]}
-				do
-					cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-					echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
-				done
+				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					"$selected_files"
 				;;
-			# only copy over files if player answers y/yes to the '_if_flag_*/.cccmk' question
+			# prompt the user with a y/n question, only copy over files if user answers y/yes
 			_if_flag_*)
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Do you wish to include the following files ?""\n`ls "$srcdir/$dir/$subdir/"`"
 				fi
-				prompt_question response "$prompt_message"
+				echo "$prompt_message"
+				prompt_question response 'n'
 				if $response
 				then
-					for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
-					do
-						cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-						echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
-					done
+					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
 				fi
 				;;
 			# only copy over files if $project_type matches folder name part after '_if_type_'
 			_if_type_*)
 				if [ "$subdir" == "_if_type_$project_type" ]
 				then
-					for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
-					do
-						cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-						echo "$rev"":""/$dir/$subdir/$i"":""$outdir/$dir/$i" >> "$project_cccmkfile"
-					done
+					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
 				fi
 				;;
 			# any other '_if_*' folder is unknown syntax
@@ -90,21 +109,14 @@ copy_from_template()
 				;;
 			# these folders simply hold files which should not be added to the .cccmk project_track list
 			_untracked)
-				for i in `list_onlyfiles "$srcdir/$dir/$subdir/"`
-				do
-					cp -p  "$srcdir/$dir/$subdir/$i"   "$outdir/$dir/$i"
-				done
+				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					"`list_onlyfiles "$srcdir/$dir/$subdir"`"
 				;;
 			# for any other normal folder, recurse deeper
 			*)
-				copy_from_template "$srcdir" "$outdir" "$dir/$subdir"
+				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
 				;;
 		esac
-	done
-	# replace %[vars]% in newly copied-over files
-	for i in `list_onlyfiles "$outdir/$dir"`
-	do
-		cccmk_template "$outdir/$dir/$i"
 	done
 }
 
@@ -112,14 +124,29 @@ copy_from_template()
 
 print_verbose "creating new project at '$command_arg_path'..."
 
+if [ -d "$command_arg_path" ] && ! rmdir "$command_arg_path"
+then
+	print_error "Cannot create new project in existing folder '$command_arg_path' because it is not empty."
+	print_message "Maybe you are looking to do a 'cccmk migrate' command instead ?"
+	print_message "Try 'cccmk --help' for more info."
+	exit 1
+fi
+
 # prompt the user for the project_author
-prompt_text response "Who is the author of this project ?"
+echo "Who is the author of this project ?"
+prompt_text response
 project_author="$response"
+if [ -z "$response" ]
+then
+	print_error "Invalid author name: should be a non-empty string."
+	exit 1
+fi
 
 # prompt the user for the project_type
-prompt_text response "Is the project a program, or library ? [program/library/cancel]"
-response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
+echo "Is the project a program, or library ?"
+prompt_text response "[program/library/cancel]"
 project_type=""
+response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
 case $response in
 	program|library)
 		project_type=$response
@@ -157,9 +184,8 @@ esac
 
 	# add tracked files to the '.cccmk' file (with their respective cccmk template git revisions)
 	echo "project_track='" >> "$project_cccmkfile"
-	copy_from_template "$CCCMK_PATH_PROJECT" "." "."
+	project_template_recurse "$CCCMK_PATH_PROJECT" "." "."
 	echo "'" >> "$project_cccmkfile"
-	awk_inplace "$project_cccmkfile" '{ gsub(/\.\//, ""); print; }'
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
 
