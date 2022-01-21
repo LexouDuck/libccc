@@ -7,11 +7,11 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Item,T_NAME)(T item)
+s_list(T)*	List_Item(T)(T item)
 {
-	s_list_T*	result;
+	s_list(T)*	result;
 
-	result = (s_list_T*)Memory_New(sizeof(s_list_T));
+	result = (s_list(T)*)Memory_New(sizeof(s_list(T)));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	result->item = item;
 	return (result);

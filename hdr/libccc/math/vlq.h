@@ -1,21 +1,19 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/math/vlq.h                        |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/math/vlq.h                        |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MATH_VLQ_H
 #define __LIBCCC_MATH_VLQ_H
-/*!@group{libccc_math_vlq}
-** @{
-**	This header defines variable-length numeric types, and utility functions for them.
+/*!@group{libccc_math_vlq,56,libccc/math/vlq.h}
 **
-**	@file
+**	This header defines variable-length numeric types, and utility functions for them.
 */
 
 /*
@@ -57,7 +55,7 @@ typedef union varuint // TODO refactor this and add similar types for fixed and 
 	t_u16	us;	//!< unsigned integer: 16-bit (short)
 	t_u32	ui;	//!< unsigned integer: 32-bit (int)
 	t_u64	ul;	//!< unsigned integer: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_INT128
 	t_q128	uh;	//!< unsigned integer: 128-bit (huge) 
 #endif
 }		u_varuint;
@@ -68,7 +66,7 @@ typedef union varsint // TODO refactor this and add similar types for fixed and 
 	t_s16	ss;	//!< signed integer: 16-bit (short)
 	t_s32	si;	//!< signed integer: 32-bit (int)
 	t_s64	sl;	//!< signed integer: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_INT128
 	t_q128	sh;	//!< signed integer: 128-bit (huge) 
 #endif
 }		u_varsint;
@@ -86,7 +84,7 @@ typedef union varfixed
 	t_q16	qs;	//!< fixed-point: 16-bit (short)
 	t_q32	qi;	//!< fixed-point: 32-bit (int)
 	t_q64	ql;	//!< fixed-point: 64-bit (long)
-#ifdef	__int128
+#if LIBCONFIG_USE_INT128
 	t_q128	qh;	//!< fixed-point: 128-bit (huge) 
 #endif
 }		u_varfixed;
@@ -102,16 +100,16 @@ typedef union varfloat
 {
 	t_f32	fs;	//!< floating-point: single precision
 	t_f64	fd;	//!< floating-point: double precision
-#ifdef	__float80
+#if LIBCONFIG_USE_FLOAT80
 	t_f80	fe;	//!< floating-point: extended precision
 #endif
-#ifdef	__float128
+#if LIBCONFIG_USE_FLOAT128
 	t_f128	fq;	//!< floating-point: quadruple precision
 #endif
 }		u_varfloat;
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

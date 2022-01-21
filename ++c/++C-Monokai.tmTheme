@@ -75,6 +75,32 @@
 				<string>#A6E22E</string>
 			</dict>
 		</dict>
+		<dict>
+			<key>name</key>
+			<string>String prefix</string>
+			<key>scope</key>
+			<string>string.prefix</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#66D9EF</string>
+				<key>fontStyle</key>
+				<string>italic</string>
+			</dict>
+		</dict>
+		<dict>
+			<key>name</key>
+			<string>String suffix</string>
+			<key>scope</key>
+			<string>string.suffix</string>
+			<key>settings</key>
+			<dict>
+				<key>foreground</key>
+				<string>#F92672</string>
+			</dict>
+		</dict>
+
+
 
 		<dict>
 			<key>name</key>

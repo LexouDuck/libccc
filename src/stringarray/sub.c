@@ -7,7 +7,7 @@
 
 
 
-t_char**	StringArray_Sub(t_char const** strarr, t_uint index, t_uint n)
+t_char**	StringArray_Sub(t_char const* const* strarr, t_uint index, t_uint n)
 {
 	t_char**		result;
 	t_uint		length;

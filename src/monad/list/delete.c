@@ -7,10 +7,10 @@
 
 
 _GENERIC()
-void	CONCAT(List_Delete,T_NAME)(s_list_T* list)
+void	List_Free(T)(s_list(T)* list)
 {
-	s_list_T*	next;
-	s_list_T*	i;
+	s_list(T)*	next;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
 	i = list;
@@ -20,16 +20,15 @@ void	CONCAT(List_Delete,T_NAME)(s_list_T* list)
 		Memory_Free(i);
 		i = next;
 	}
-	list = NULL;
 }
 
 
 
 _GENERIC()
-void	CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item))
+void	List_Free_F(T)(s_list(T)* list, void (*delete)(T* item))
 {
-	s_list_T*	next;
-	s_list_T*	i;
+	s_list(T)*	next;
+	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
@@ -41,5 +40,46 @@ void	CONCAT(List_Delete_F,T_NAME)(s_list_T* list, void (*delete)(T* item))
 		Memory_Free(i);
 		i = next;
 	}
-	list = NULL;
+}
+
+
+
+_GENERIC()
+void	List_Delete(T)(s_list(T)* *a_list)
+{
+	s_list(T)*	next;
+	s_list(T)*	i;
+
+	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
+	i = *a_list;
+	while (i)
+	{
+		next = i->next;
+		Memory_Free(i);
+		i = next;
+	}
+	*a_list = NULL;
+}
+
+
+
+_GENERIC()
+void	List_Delete_F(T)(s_list(T)* *a_list, void (*delete)(T* item))
+{
+	s_list(T)*	next;
+	s_list(T)*	i;
+
+	HANDLE_ERROR(NULLPOINTER, (delete  == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
+	i = *a_list;
+	while (i)
+	{
+		next = i->next;
+		delete(&i->item);
+		Memory_Free(i);
+		i = next;
+	}
+	*a_list = NULL;
 }

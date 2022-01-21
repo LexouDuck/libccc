@@ -1,7 +1,7 @@
 
 #include "libccc.h"
+#include "libccc/bool.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
 
 #include "test.h"
 
@@ -28,6 +28,7 @@
 
 #ifndef c_booltostr
 void test_booltostr(void)	{}
+#warning "booltostr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_booltostr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -73,6 +74,7 @@ void	test_booltostr(void)
 
 #ifndef c_strtobool
 void test_strtobool(void)	{}
+#warning "strtobool() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strtobool(char const* test_name, int can_segfault,
 		t_bool expecting,

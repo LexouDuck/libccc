@@ -1,24 +1,22 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/sys/ansi.h                        |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/sys/ansi.h                        |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_SYS_ANSI_H
 #define __LIBCCC_SYS_ANSI_H
-/*!@group{libccc_sys_ansi}
-** @{
+/*!@group{libccc_sys_ansi,21,libccc/sys/ansi.h}
+**
 **	This header defines some useful ANSI text macros.
 **
 **	@see
 **	- https://en.wikipedia.org/wiki/ANSI_escape_code
-**
-**	@file
 */
 
 /*
@@ -141,6 +139,6 @@ HEADER_CPP
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

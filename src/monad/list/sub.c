@@ -7,15 +7,19 @@
 
 
 _GENERIC()
-s_list_T*		CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n)
+s_list(T)*		List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem = NULL;
-	s_list_T*	tmp;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem = NULL;
+	s_list(T)*	tmp;
+	t_uint		length;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	length = List_Length(T)(list);
+	HANDLE_ERROR(INDEX2LARGE, (index >= length),    return (NULL);)
+	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
 	if (n == 0)
-		return (NULL);
+		n = length - index;
 	while (list && index--)
 	{
 		list = list->next;
@@ -26,8 +30,12 @@ s_list_T*		CONCAT(List_Sub,T_NAME)(s_list_T const* list, t_uint index, t_uint n)
 	list = list->next;
 	while (list && n--)
 	{
-		if (!(tmp = (s_list_T*)Memory_Duplicate(list, sizeof(s_list_T))))
-			break;
+		tmp = (s_list(T)*)Memory_Duplicate(list, sizeof(s_list(T)));
+		HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL),
+		{
+			List_Free(T)(tmp);
+			return (NULL);
+		})
 		if (result == NULL)
 			result = tmp;
 		else

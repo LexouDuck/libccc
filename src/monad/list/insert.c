@@ -7,34 +7,48 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Insert,T_NAME)(s_list_T* list, T item, t_uint index)
+s_list(T)*	List_Insert(T)(s_list(T)* dest, T item, t_uint index)
 {
-	s_list_T*	elem;
-	s_list_T*	new;
-	s_list_T*	tmp;
+	s_list(T)*	before;
+	s_list(T)*	after;
+	s_list(T)*	elem;
+	s_list(T)*	new;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	new = (s_list_T*)Memory_Allocate(sizeof(s_list_T));
-	HANDLE_ERROR(ALLOCFAILURE, (new == NULL), return (list);)
-	if (list == NULL || index == 0)
+	//HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
+	new = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
+	HANDLE_ERROR(ALLOCFAILURE, (new == NULL), return (dest);)
+	if (dest == NULL || index == 0)
 	{
 		new->item = item;
-		new->next = list;
+		new->next = dest;
+#if LIBCONFIG_LIST_DOUBLYLINKED
+		if (dest)
+		{
+			elem = dest;
+			while (elem->next)
+			{
+				elem = elem->next;
+			}
+			new->prev = elem;
+		}
+#endif
 		return (new);
 	}
-	elem = list;
+	elem = dest;
 	for (t_uint i = 0; i < index; ++i)
 	{
-		HANDLE_ERROR_SF(INDEX2LARGE, (elem->next == NULL), return (NULL);,
-			", index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
-			index, CONCAT(List_Length,T_NAME)(list))
+		HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL), return (NULL);,
+			", index given ("SF_UINT") is beyond the end of the destination list (length: "SF_UINT")",
+			index, List_Length(T)(dest))
+		before = elem;
 		elem = elem->next;
 	}
+	after = elem;
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	new->prev = elem;
+	new->prev = before;
+	after->prev = new;
 #endif
-	tmp = elem->next;
-	elem->next = new;
-	new->next = tmp;
-	return (list);
+	before->next = new;
+	new->next = after;
+	return (dest);
 }

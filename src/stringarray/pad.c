@@ -6,7 +6,7 @@
 
 
 
-t_char**	StringArray_Pad_L(t_char const** strarr, t_char const c, t_uint n)
+t_char**	StringArray_Pad_L(t_char const* const* strarr, t_char const c, t_uint n)
 {
 	t_char**		result;
 	t_uint		strarr_length;

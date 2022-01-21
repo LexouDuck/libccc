@@ -1,0 +1,6 @@
+#!/bin/sh -e
+
+prompt_message="Select which LICENSE file to use for your project.
+You can learn more about legal licenses at https://choosealicense.com/licenses/"
+
+output_filename="LICENSE"

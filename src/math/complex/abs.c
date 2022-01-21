@@ -1,6 +1,6 @@
 
 #include "libccc/math/complex.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -9,5 +9,5 @@
 inline
 t_float	Complex_Abs(s_complex const* z)
 {
-	return (Float_SqRt((z->re * z->re) + (z->im * z->im)));
+	return (Float_Root2((z->re * z->re) + (z->im * z->im)));
 }

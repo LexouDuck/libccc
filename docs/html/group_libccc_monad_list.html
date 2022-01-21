@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/monad/list.h &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/monad/hashmap.h" href="group_libccc_monad_hashmap.html" />
+    <link rel="prev" title="libccc/monad/array.h" href="group_libccc_monad_array.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/monad/list.h">
+	<meta property="og:description" content="libccc/monad/list.h">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - libccc/monad/list.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_monad_list.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/monad/list.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>libccc/monad/list.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-monad-list-h">
+<span id="doxid-group-libccc-monad-list"></span><span id="index-0"></span><h1>libccc/monad/list.h<a class="headerlink" href="#libccc-monad-list-h" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines a generic linked list type and utility functions for it. <a class="reference internal" href="#details-group-libccc-monad-list"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global variables</span>
+
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga4fc7f59e3113e19697159919a5aad095"><span></span><span class="n">value</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span></span><span class="n">index</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga893734a443486a40663c611a8928205c"><span></span><span class="n">n</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaae77af8c32273545ed25402cc10bed26"><span></span><span class="n">dest_i</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga56c5b8aeb00773896f500cc037bc002e"><span></span><span class="n">src_i</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span></span><span class="n">item</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaf0079e7c4d975627d89274a3536a43a0"><span></span><span class="k">delete</span></span><span></span><span class="p">)(</span><span class="kt">T</span><span class="p">));</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga2f7a6d205f1cf759b95fd8f6c7bb59e1"><span></span><span class="n">old</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaddd1a554e6048a1efb923536b526ae44"><span></span><span class="k">new</span></span><span></span><span class="p">;</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga0667963941c6753819c89ba0ebb63b58"><span></span><span class="n">match</span></span><span></span><span class="p">)(</span><span class="kt">T</span> <span class="n">item</span><span class="p">));</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga4fe5ddc7402c947bee545ef6d49f7108"><span></span><span class="n">map</span></span><span></span><span class="p">)(</span><span class="kt">T</span> <span class="n">item</span><span class="p">));</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga8a7c5edbdf3d9f8c40a32ffab5a33a86"><span></span><span class="n">filter</span></span><span></span><span class="p">)(</span><span class="kt">T</span> <span class="n">item</span><span class="p">));</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">List_Length</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga86f7ddaff5a04850a0330fec20eeb7f2"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
+<span class="kt">T</span><span class="o">*</span><span class="n">List_Get</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gad64d8c7c77e2c11709e5969c61abe6b6"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">T</span><span class="o">*</span><span class="n">List_Set</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga7675c91f2f04032d70676b351a2fe8dd"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Free</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga537756ca083726a6a8cfffaf84bf4777"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Free_F</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gae549ae614ae362854e6bad2ab50813ee"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Delete</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga88416f4bcf01a5682670ec75d9374ec8"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">**</span> <span class="n">a_list</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Delete_F</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaef7f04bfa5f85444c5502a571c1d8728"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">**</span> <span class="n">a_list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">List_Equals</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gae716086403585ccd1e24d76a4d68d4f4"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">List_Equals_N</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gabb44bee5236291e5c7c1c05bf0dce5e7"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_Compare</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaedb81be54c0ea1cb93519e4b895610ec"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <span class="n">item1</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_Compare_N</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga028185d9054cd77a056536d2b5027975"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <span class="n">item1</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_IndexOf</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga28fa4ba9f17a2a77dbf32c7c67ade67a"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_IndexOf_F</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9e0d1ae3b4851d5b6676fb32f9a9829c"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Iterate</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga89a4503286195cbe50ab1420900c9ca6"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span> <span class="n">List_Iterate_I</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaab676a83d34315642e18fcdd23173c50"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span><span class="n">List_Reduce</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga82701dc2101a3217cbf3de0281eeaa8d"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span><span class="n">List_Reduce_I</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gade4f378d4b5238718c2e32e4b8adc20e"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span><span class="n">List_Fold</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga58c31d32d47275a41118b146824b4de7"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span><span class="n">List_Fold_I</span><span class="p">()</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaed8b01b7c6138ddc179c95e2836df1c2"><span class="std std-ref">list</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span>  <span class="n">T_TYPE</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga1ada486ced8ccfa4bb5bf6d37cfc650b"><span></span><span class="n">c_lstadd</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Add</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gab603d28cc0b1c0d70032f7594e62d385"><span></span><span class="n">c_lstappend</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Append</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gac2204e128c04cd69f38940a8ae6a4dfb"><span></span><span class="n">c_lstcmp</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Compare</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga24b8bde5e62832d820ad4cb751e8b5d9"><span></span><span class="n">c_lstconcat</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Concat</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gae6e114e1b887ea00c3b0a43ef0d980f4"><span></span><span class="n">c_lstcontains</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Contains</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gab003aa0c855ae0c39842b56ff58230b4"><span></span><span class="n">c_lstcount</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Count</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gadced3439e23263522832df6897d72d6f"><span></span><span class="n">c_lstcpy</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Copy</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga35ddab09d01e5ed6717113f712d2ad0f"><span></span><span class="n">c_lstcreate</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Create</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga259753b29a955dc737b4009290d8349e"><span></span><span class="n">c_lstdel</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Delete</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga9f99edabc579ca502c772d5e30f6c372"><span></span><span class="n">c_lstdelall</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_RemoveAll</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga07ce23ae1ec84fd136fc8e7b847c18f7"><span></span><span class="n">c_lstdelat</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_RemoveAt</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga1ea89a50527607df8a87a6f14690d8ff"><span></span><span class="n">c_lstdelone</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Remove</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga433baf1dd75f5d167bf37576d3a68367"><span></span><span class="n">c_lstdup</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Duplicate</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gafd3600c59880daf73862446925cd6c15"><span></span><span class="n">c_lstequ</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Equals</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga0750acce81036cb84eb0cd220030c29e"><span></span><span class="n">c_lstfdel</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Delete_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga9d4167202ccff5627a57afd180777f51"><span></span><span class="n">c_lstfdelall</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_RemoveAll_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga4dbb4703882932834d30217d7d4666b5"><span></span><span class="n">c_lstfdelat</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_RemoveAt_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gac71147f0ac41e6475949df02c093c175"><span></span><span class="n">c_lstfdelone</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Remove_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga40776cfdf21d573240ebf7eec764017b"><span></span><span class="n">c_lstffind</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Find_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga3ffb47cf051807ce39041daaac1526dc"><span></span><span class="n">c_lstffindi</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_IndexOf_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaf896498fb580618dc90e327e5e4c68d5"><span></span><span class="n">c_lstffree</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Free_F</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gadc89397d69fbfd4ae4b6c47ac2fdcb0c"><span></span><span class="n">c_lstfilter</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Filter</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga91c898febcaf2858183de7300b5c3857"><span></span><span class="n">c_lstfind</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Find</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga003f06d0d0150a6327d491f9804c9887"><span></span><span class="n">c_lstfindi</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_IndexOf</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaa4d774619dd53685b2ae750437f53776"><span></span><span class="n">c_lstfold</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Fold</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga2f0a15b282c045faa50749a7ae4c8bb1"><span></span><span class="n">c_lstfree</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Free</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gad2204d5b53116494577d119d81202865"><span></span><span class="n">c_lstget</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Get</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga414111dfbedcddfa925d764b4fbdd1e6"><span></span><span class="n">c_lsthas</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Has</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga576fbb3ec8b2d433e039c705b211984e"><span></span><span class="n">c_lsthasonly</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_HasOnly</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaf9f3d2b50f15e557341b9066d42fd835"><span></span><span class="n">c_lstifilter</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Filter_I</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gadd6768fb526147c715c2e2a652c23f68"><span></span><span class="n">c_lstifold</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Fold_I</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga204b42c693b845607cee16c745817211"><span></span><span class="n">c_lstiiter</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Iterate_I</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gafbc0202c8999b3de26e5cd162e926ea8"><span></span><span class="n">c_lstimap</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Map_I</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga1ef782abc54b335299665cc7ea547316"><span></span><span class="n">c_lstinsert</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Insert</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga2bb03d117fe2f76a71040c601fb9dfd0"><span></span><span class="n">c_lstireduce</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Reduce_I</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga8a2ce14746075873666ba0725de08276"><span></span><span class="n">c_lstitem</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Item</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gac47e00164f8151d5e0167006b648726c"><span></span><span class="n">c_lstiter</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Iterate</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga9d4ab54e36d2112ec1867fccb6d220e8"><span></span><span class="n">c_lstlen</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Length</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga3eb81656326de4cdadb2d1333450de1e"><span></span><span class="n">c_lstmap</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Map</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga566b9d2bc70e319de1f53713d2bdc7da"><span></span><span class="n">c_lstmerge</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Merge</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaf002c7c93979611c586271ceef0d51e0"><span></span><span class="n">c_lstncmp</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Compare_N</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga61009659299e7b98ca287d5a0666b618"><span></span><span class="n">c_lstnequ</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Equals_N</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaa4d6bb03e8c0379e4129e27e00314104"><span></span><span class="n">c_lstnew</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_New</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gac2824f9e6bc4099ff10ce77114817260"><span></span><span class="n">c_lstprepend</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Prepend</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaa7ed794df0d2d6f953b85af876bee2ac"><span></span><span class="n">c_lstreduce</span></span><span></span> <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Reduce</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gafcbb57c4315a9ecb8eeb157a5d03dbda"><span></span><span class="n">c_lstrep</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>            <span class="n">List_Replace</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gae61fa1c3977357aa594a5b78dc56d4db"><span></span><span class="n">c_lstrepfirst</span></span><span></span>   <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_ReplaceFirst</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga70dbaab1111e07b84a21586afa6cc610"><span></span><span class="n">c_lstreplast</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_ReplaceLast</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1gaf9326cf309588b7037cc92176ec7da31"><span></span><span class="n">c_lstrev</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Reverse</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga623d561857f6b465260b22cd35412e72"><span></span><span class="n">c_lstset</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Set</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga84d7e4fcbec301f8c60ca8150b1713b0"><span></span><span class="n">c_lstsub</span></span><span></span>    <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>        <span class="n">List_Sub</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-list-1ga32cabda70346cbd8b81d7e9c7a7506b4"><span></span><span class="n">c_lstwedge</span></span><span></span>  <span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span>    <span class="n">List_Wedge</span><span class="o">&lt;</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="o">&gt;</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-monad-list"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines a generic linked list type and utility functions for it.</p>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span id="index-1"></span><span></span><span class="kt">s_list</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+<p>Allocates and returns a single list item from the given <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>Allocates a new linked list containing <code class="docutils literal notranslate"><span class="pre">n</span></code> items, each set to the given <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
+<p>Allocates a new linked list, consisting of several <code class="docutils literal notranslate"><span class="pre">s_list</span></code> structs chained together via their <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer, with each struct storing an <code class="docutils literal notranslate"><span class="pre">item</span></code>.</p>
+<p>Allocates and returns a linked list, created from the given variadic arguments.</p>
+<p>This function accepts a variadic list of arguments to initialize the list.</p>
+<p>Returns a newly allocated copy of the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Creates a new list from a subsection of the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code> and taking <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p>
+<p>Copies over <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given <code class="docutils literal notranslate"><span class="pre">src</span></code> list into the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> list</p>
+<p>Appends the given item <code class="docutils literal notranslate"><span class="pre">item</span></code> to the end of the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">dest</span></code> is NULL, it’ll append <code class="docutils literal notranslate"><span class="pre">item</span></code> at index 0, creating a 1-item list.</p>
+<p>Inserts the given <code class="docutils literal notranslate"><span class="pre">item</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the array, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p>Inserts all items from <code class="docutils literal notranslate"><span class="pre">src</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the array, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p>Removes a single item from the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, at the given <code class="docutils literal notranslate"><span class="pre">index</span></code></p>
+<p>Like List_RemoveAt(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<p>Removes the first item from the given <code class="docutils literal notranslate"><span class="pre">list</span></code> which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p>Like List_Remove(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<p>Removes any items which are equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code> from the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Like List_RemoveAll(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<p>Creates a new list from the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, where any occurence of <code class="docutils literal notranslate"><span class="pre">old</span></code> is replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p>Creates a new list from the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, where the <code class="docutils literal notranslate"><span class="pre">n</span></code> first occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p>Creates a new list from the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, where the <code class="docutils literal notranslate"><span class="pre">n</span></code> last occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p>Creates a new list from the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, with each item’s position being inverted</p>
+<p>Creates a new list which is the concatenation of <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code></p>
+<p>Creates a new list which is the concatenation of <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">list1</span></code></p>
+<p>Creates a new list which is the concatenation of <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">list2</span></code></p>
+<p>Creates a new list which is the concatenation of <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>, and deletes both lists</p>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p>Creates a new list which is the result of applying the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function for each item of <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<p>Like List_Map(), but the user-supplied function receives the current index</p>
+<p>Creates a new list which is a subset of <code class="docutils literal notranslate"><span class="pre">list</span></code>, with only the items where the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p>
+<p>Like List_Filter(), but the user-supplied function receives the current index</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>The value to store within the linked list item</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of items in this list (amount of variadic args)</p></td>
+</tr>
+<tr class="row-odd"><td><p>value</p></td>
+<td><p>The initial value to set for each of the <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of items in this list (amount of variadic args)</p></td>
+</tr>
+<tr class="row-odd"><td><p>…</p></td>
+<td><p>The variadic list of arguments: they must all be of type <code class="docutils literal notranslate"><span class="pre">T</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>list</p></td>
+<td><p>The list to duplicate</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list to copy a subsection from</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index in <code class="docutils literal notranslate"><span class="pre">array</span></code> at which to begin copying a subsection of items</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to copy - if <code class="docutils literal notranslate"><span class="pre">0</span></code>, then all items until the end are copied</p></td>
+</tr>
+<tr class="row-even"><td><p>dest</p></td>
+<td><p>The destination list to copy to</p></td>
+</tr>
+<tr class="row-odd"><td><p>dest_i</p></td>
+<td><p>The index in the destination array at which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-even"><td><p>src</p></td>
+<td><p>The source list which should be copied</p></td>
+</tr>
+<tr class="row-odd"><td><p>src_i</p></td>
+<td><p>The index in the source array from which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of list items to copy from <code class="docutils literal notranslate"><span class="pre">src</span></code> to <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>list destination array to append an item to</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The list item to append to the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination list in which to insert a new item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to insert into the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td><p>The index at which to insert the new list item</p></td>
+</tr>
+<tr class="row-even"><td><p>dest</p></td>
+<td><p>The destination list in which to insert new items</p></td>
+</tr>
+<tr class="row-odd"><td><p>src</p></td>
+<td><p>The source list, whose items will be inserted into <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index at which to insert the new list item</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index of the item to delete from the list</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value which is to be removed from <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to remove items</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value for which any occurrences are to be removed from <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting list</p></td>
+</tr>
+<tr class="row-even"><td><p>list</p></td>
+<td><p>The list to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-odd"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-even"><td><p>new</p></td>
+<td><p>The replacement for the resulting list</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+<tr class="row-even"><td><p>list</p></td>
+<td><p>The list to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-odd"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-even"><td><p>new</p></td>
+<td><p>The replacement for the resulting list</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+<tr class="row-even"><td><p>list</p></td>
+<td><p>The list to duplicate and invert</p></td>
+</tr>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The left-hand list to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The right-hand list to concatenate</p></td>
+</tr>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The left-hand list to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The right-hand list to concatenate</p></td>
+</tr>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The left-hand list to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The right-hand list to concatenate</p></td>
+</tr>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The left-hand list to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The right-hand list to concatenate</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The linked list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The linked list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>map</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>filter</p></td>
+<td><p>The function to call to check if an item of <code class="docutils literal notranslate"><span class="pre">list</span></code> should be added to the result</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated linked list item containing <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p>A newly allocated linked list which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> list structs chained together.</p>
+<p>A newly allocated linked list which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> structs chained together.</p>
+<p>A newly allocated copy of the given linked <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<p>A newly allocated subsection of the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code>, and copying at most <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given source <code class="docutils literal notranslate"><span class="pre">list</span></code>. Will return <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if <code class="docutils literal notranslate"><span class="pre">index</span></code> is too large or if <code class="docutils literal notranslate"><span class="pre">(index</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">List_Length(list))</span></code>. If <code class="docutils literal notranslate"><span class="pre">index</span></code> is valid but the list is not large enough for <code class="docutils literal notranslate"><span class="pre">n</span></code>, then the resulting list will have fewer than <code class="docutils literal notranslate"><span class="pre">n</span></code> items.</p>
+<p>The given <code class="docutils literal notranslate"><span class="pre">dest</span></code> pointer, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred. The <code class="docutils literal notranslate"><span class="pre">dest</span></code> list is modified in-place.</p>
+<p>The new beginning pointer for the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The list is modified in-place. This return will be the same as the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>.</p>
+<p>The new beginning pointer for the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The list is modified in-place. The return value will be the same as the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, and the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<p>The new beginning pointer for the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The list is modified in-place. The return value will be the same as the given list <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, or the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<p>The list given as argument. The list is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">list</span></code>, unless the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<p>The list given as argument. The list is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">list</span></code>, unless the matched item is at position zero.</p>
+<p>The list given as argument. The list is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">list</span></code>, unless a matched item is at position zero.</p>
+<p>A newly created list copied from <code class="docutils literal notranslate"><span class="pre">list</span></code>, in which in any item equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<p>A newly created list copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating forwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<p>A newly created list copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating backwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<p>A newly created list copied from <code class="docutils literal notranslate"><span class="pre">list</span></code>, in which all items’ positions have been reversed. This means that the last item will become the first item, and so on.</p>
+<p>A newly allocated list, created by concatenating <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>.</p>
+<p>A newly allocated list, created by concatenating <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>. The <code class="docutils literal notranslate"><span class="pre">list1</span></code> argument will be deleted.</p>
+<p>A newly allocated list, created by concatenating <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>. The <code class="docutils literal notranslate"><span class="pre">list2</span></code> argument will be deleted.</p>
+<p>A newly allocated list, created by concatenating <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code>. Both <code class="docutils literal notranslate"><span class="pre">list1</span></code> and <code class="docutils literal notranslate"><span class="pre">list2</span></code> will be deleted.</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">list</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">list</span></code> for which the given <code class="docutils literal notranslate"><span class="pre">match</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>. Otherwise, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<p>A new list, created by storing the return values of each call to the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function.</p>
+<p>A new list, created by only keeping the values of the given <code class="docutils literal notranslate"><span class="pre">list</span></code> for which the corresponding call to the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga86f7ddaff5a04850a0330fec20eeb7f2"><span id="index-2"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">List_Length</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
+<p>Returns the amount of items in the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>the list to look through</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The amount of items in the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, by traversing it, looping through every <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gad64d8c7c77e2c11709e5969c61abe6b6"><span id="index-3"></span><span></span><span class="kt">T</span><span class="o">*</span><span class="n">List_Get</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Gets the item at position <code class="docutils literal notranslate"><span class="pre">index</span></code> in the list, and returns that link chain</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>the list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>the index in the list of the item to get</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">index</span></code> th item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, if <code class="docutils literal notranslate"><span class="pre">index</span></code> is beyond the last item.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga7675c91f2f04032d70676b351a2fe8dd"><span id="index-4"></span><span></span><span class="kt">T</span><span class="o">*</span><span class="n">List_Set</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Sets the value of the item at position <code class="docutils literal notranslate"><span class="pre">index</span></code> in the list, and returns that link chain</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>the list in which an item should be set</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>the index in the list of the item to set</p></td>
+</tr>
+<tr class="row-odd"><td><p>item</p></td>
+<td><p>the new value to assign</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">index</span></code> th item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, if <code class="docutils literal notranslate"><span class="pre">index</span></code> is beyond the last item.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga537756ca083726a6a8cfffaf84bf4777"><span id="index-5"></span><span></span><span class="kt">void</span> <span class="n">List_Free</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
+<p>Deallocates all the items in the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The first element of the list to delete.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gae549ae614ae362854e6bad2ab50813ee"><span id="index-6"></span><span></span><span class="kt">void</span> <span class="n">List_Free_F</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deallocates all the items in the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, calling <code class="docutils literal notranslate"><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaf0079e7c4d975627d89274a3536a43a0"><span class="std std-ref"><span class="pre">delete()</span></span></a></code> for each item.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The first element of the list to delete.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga88416f4bcf01a5682670ec75d9374ec8"><span id="index-7"></span><span></span><span class="kt">void</span> <span class="n">List_Delete</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">**</span> <span class="n">a_list</span><span class="p">)</span></pre>
+<p>Deletes all the items in the list starting at <code class="docutils literal notranslate"><span class="pre">*a_list</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_list</p></td>
+<td><p>The address (’&amp;’) of the beginning of the list - will be set to NULL.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gaef7f04bfa5f85444c5502a571c1d8728"><span id="index-8"></span><span></span><span class="kt">void</span> <span class="n">List_Delete_F</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">**</span> <span class="n">a_list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deletes all the items in the list starting at <code class="docutils literal notranslate"><span class="pre">*a_list</span></code>, calling <code class="docutils literal notranslate"><a class="reference internal" href="#doxid-group-libccc-monad-list-1gaf0079e7c4d975627d89274a3536a43a0"><span class="std std-ref"><span class="pre">delete()</span></span></a></code> for each item.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>a_list</p></td>
+<td><p>The address (’&amp;’) of the beginning of the list - will be set to NULL.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gae716086403585ccd1e24d76a4d68d4f4"><span id="index-9"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">List_Equals</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">)</span></pre>
+<p>Checks if two lists have the same content</p>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">list</span></code> contains any item from the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> list</p>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">list</span></code> only contains items which are present in the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> list</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The first list to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The second list to check for equality</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to check for an occurence of items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The list of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list which which should only contain items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The list of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if each item of both lists are equal, and the lists have the same amount of items. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">list</span></code> does contain an item which is equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">list</span></code> only contains items which are equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gabb44bee5236291e5c7c1c05bf0dce5e7"><span id="index-10"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">List_Equals_N</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Checks if two lists have the same content, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The first list to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The second list to check for equality</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the first <code class="docutils literal notranslate"><span class="pre">n</span></code> items of both lists are equal. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gaedb81be54c0ea1cb93519e4b895610ec"><span id="index-11"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_Compare</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <span class="n">item1</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">)</span></pre>
+<p>Compares two lists using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The first list to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The second list to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga028185d9054cd77a056536d2b5027975"><span id="index-12"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_Compare_N</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list1</span><span class="p">,</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <span class="n">item1</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Compares two lists using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list1</p></td>
+<td><p>The first list to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>list2</p></td>
+<td><p>The second list to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga28fa4ba9f17a2a77dbf32c7c67ade67a"><span id="index-13"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_IndexOf</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">T</span> <span class="n">item</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p>Gets the amount of occurences of the given <code class="docutils literal notranslate"><span class="pre">item</span></code> in the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">list</span></code> contains the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>the linked list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to check for occurences of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to match with</p></td>
+</tr>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list in which to check for an occurence of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to check for</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">list</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<p>The total amount of items in the given <code class="docutils literal notranslate"><span class="pre">list</span></code> which are equal to <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">list</span></code> does contain an item which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga9e0d1ae3b4851d5b6676fb32f9a9829c"><span id="index-14"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">List_IndexOf_F</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">list</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>the linked list to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">list</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga89a4503286195cbe50ab1420900c9ca6"><span id="index-15"></span><span></span><span class="kt">void</span> <span class="n">List_Iterate</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Iterates upon each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code>, applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each of its items.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gaab676a83d34315642e18fcdd23173c50"><span id="index-16"></span><span></span><span class="kt">void</span> <span class="n">List_Iterate_I</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like List_Iterate(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga82701dc2101a3217cbf3de0281eeaa8d"><span id="index-17"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="n">List_Reduce</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>The difference between List_Reduce() and List_Fold() is that with this function, the initial value which will be passed as the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter is a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>reduce</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">list</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gade4f378d4b5238718c2e32e4b8adc20e"><span id="index-18"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="n">List_Reduce_I</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like List_Reduce(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga58c31d32d47275a41118b146824b4de7"><span id="index-19"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="n">List_Fold</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code></p>
+<p>The difference between List_Fold() and List_Reduce() is that with this function, you can supply an initial value for the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter, which will be passed to the first call of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>list</p></td>
+<td><p>The list to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>reduce</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">list</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">list</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span id="index-20"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="n">List_Fold_I</span><span class="p">()</span> <span class="kt">T</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><span class="kt">T</span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">T</span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaaeb0f0ed34c31a834ce36fe4defd6c5e"><span class="std std-ref">item</span></a><span></span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Like List_Reduce(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1gaed8b01b7c6138ddc179c95e2836df1c2"><span id="index-21"></span><span></span><span class="kd">struct</span> <span class="n">list</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+<p>This is a basic linked list struct, with dynamic content type.</p>
+<p>The list struct represents one chainlink in the linked-list. So, a linked-list which contains 3 items would consist of 3 different list structs, all chained together via their <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer, and the last item would have this <code class="docutils literal notranslate"><span class="pre">next</span></code> pointer set to <code class="docutils literal notranslate"><span class="pre">NULL</span></code>.</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-list-1ga0acb682b8260ab1c60b918599864e2e5"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="fm">T</span>   <span class="n">T_TYPE</span></pre>
+<p>set up generic declaration macros, to have <code class="docutils literal notranslate"><span class="pre">mygeneric(T)</span></code> syntax</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_monad_array.html" class="btn btn-neutral float-left" title="libccc/monad/array.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_monad_hashmap.html" class="btn btn-neutral float-right" title="libccc/monad/hashmap.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

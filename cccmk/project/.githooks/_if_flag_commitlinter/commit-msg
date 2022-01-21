@@ -1,0 +1,63 @@
+#!/bin/sh
+
+# Get commit message contents
+MSG_FILE=$1
+FILE_CONTENT="$(cat $MSG_FILE)"
+
+# Initialize constants here
+C_RESET="\e[0m"
+C_RED="\e[31m"
+C_GREEN="\e[32m"
+C_YELLOW="\e[33m"
+
+ERROR=$C_RED"ERROR"$C_RESET": "
+SUCCESS=$C_GREEN"SUCCESS"$C_RESET": "
+WARNING=$C_YELLOW"WARNING"$C_RESET": "
+
+export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|cleanup|doc|docs|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
+export ERROR_MSG="
+Commit message is invalid, should follow this format:
+<types>(<scope>): <message>
+<body>
+
+Here are the explanations for each item:
+- <message>: [MANDATORY] a brief description of the changes made (can be any string)
+- <body>: [OPTIONAL] a more in-depth description of the changes made (can be any string)
+- <scope>: [MANDATORY] anything specifying place or category of the commit change. For example: 'tests', 'core', 'repo', a subfolder name, etc...
+- <types>: [MANDATORY] must be one or several of the following (for several <types>, each can be seprated by ',', '&', '|', or '/'):
+	feature      for new feature implementing commits
+	fix          for bug fix commits
+	security     for security issue fix commits
+	performance  for performance issue fix commits
+	improvement  for backwards-compatible enhancement commits
+	breaking     for backwards-incompatible enhancement commits
+	deprecated   for deprecated feature commits
+	refactor     for refactoring commits
+	merge        for merge commits
+	style        for coding style commits
+	test         for testing commits
+	cleanup      for commits which remove unused/deprecated files
+	doc, docs    for documentation commits
+	example      for example code commits
+	dependency   for dependencies upgrading or downgrading commits
+	i18n         for i18n (internationalization) commits
+	config       for configuration commits
+	build        for packaging or bundling commits
+	ci           for continuous integration commits
+	release      for publishing commits
+	assets       for asset file change commits
+	update       for update commits
+	revert       for history revert commits
+	wip          for work in progress commits
+
+You can read the full contributing guidelines here:
+https://github.com/LexouDuck/libccc/blob/master/CONTRIBUTING.md
+"
+# Match the regular expression to the git commit message
+if echo "$FILE_CONTENT" | grep -Eq "$REGEX" ; then
+	printf "$SUCCESS Commit message follows the proper format.\n"
+else
+	printf "$ERROR Bad commit message:\n$FILE_CONTENT\n$ERROR_MSG\n"
+	exit 1
+fi
+exit 0

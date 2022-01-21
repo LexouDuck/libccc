@@ -2,7 +2,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
@@ -238,7 +238,7 @@ DEFINEFUNC_SINTTOSTR(8)
 DEFINEFUNC_SINTTOSTR(16)
 DEFINEFUNC_SINTTOSTR(32)
 DEFINEFUNC_SINTTOSTR(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINTTOSTR(128)
 #endif
 
@@ -276,7 +276,7 @@ DEFINEFUNC_UINTTOSTR(8)
 DEFINEFUNC_UINTTOSTR(16)
 DEFINEFUNC_UINTTOSTR(32)
 DEFINEFUNC_UINTTOSTR(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINTTOSTR(128)
 #endif
 

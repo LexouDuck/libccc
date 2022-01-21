@@ -1,0 +1,72 @@
+# PROJECT
+
+/obj/
+/bin/
+/log/
+/dist/
+/ref/
+
+
+
+# OS/IDE
+
+### Linux
+### MacOS
+.DS-Store
+.DS_Store
+### Windows
+
+### Sublime text
+*.sublime-workspace
+### Visual Studio
+.vs/
+### Visual Studio Code
+.vscode/
+
+
+
+# C
+
+### C intermediary build files
+*.d
+*.o
+*.ko
+*.obj
+*.elf
+*.ilk
+*.map
+*.exp
+*.gch
+*.pch
+### Libraries (static)
+*.a
+*.la
+*.lo
+*.lib
+### Libraries (dynamic)
+*.def
+*.dll
+*.so
+*.so.*
+*.dylib
+### Executables
+*.exe
+*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.stackdump
+### Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+### Kernel Module Compile Results
+*.mod*
+*.cmd
+.tmp_versions/
+modules.order
+Module.symvers
+Mkfile.old
+dkms.conf

@@ -37,13 +37,13 @@ t_char*	U##BITS##_ToString_Hex(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRHEX(8)
 DEFINEFUNC_UINT_TOSTRHEX(16)
 DEFINEFUNC_UINT_TOSTRHEX(32)
 DEFINEFUNC_UINT_TOSTRHEX(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_TOSTRHEX(128)
 #endif
 
@@ -82,12 +82,12 @@ t_char*	S##BITS##_ToString_Hex(t_s##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRHEX(8)
 DEFINEFUNC_SINT_TOSTRHEX(16)
 DEFINEFUNC_SINT_TOSTRHEX(32)
 DEFINEFUNC_SINT_TOSTRHEX(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_TOSTRHEX(128)
 #endif

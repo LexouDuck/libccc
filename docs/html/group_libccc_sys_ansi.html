@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/sys/ansi.h &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/sys/io.h" href="group_libccc_sys_io.html" />
+    <link rel="prev" title="libccc/color.h" href="group_libccc_color.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/sys/ansi.h">
+	<meta property="og:description" content="libccc/sys/ansi.h">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - libccc/sys/ansi.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_sys_ansi.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/sys/ansi.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>libccc/sys/ansi.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-sys-ansi-h">
+<span id="doxid-group-libccc-sys-ansi"></span><span id="index-0"></span><h1>libccc/sys/ansi.h<a class="headerlink" href="#libccc-sys-ansi-h" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines some useful ANSI text macros. <a class="reference internal" href="#details-group-libccc-sys-ansi"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="kt">X</span><span class="p">)</span>  <span class="s">&quot;</span><span class="se">\x1B</span><span class="s">[&quot;</span><span class="kt">X</span><span class="s">&quot;m&quot;</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga2e4dd0b4af70107f36c2aa60b1195f01"><span class="std std-ref">C_BLUE</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;34&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga8318e037c99fbf82089b68ba5d603cd0"><span class="std std-ref">C_CYAN</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;36&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga448d973f9ee30250ec93e600f5d89ed1"><span class="std std-ref">C_GREEN</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;32&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga47da0a04e6c59fa061f60d36c10d9561"><span class="std std-ref">C_MAGENTA</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;35&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7adb9aaa1eed15caecd92e3837581b53"><span class="std std-ref">C_RED</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;31&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf0c29bd95cece6791c62c52e8d2f6335"><span class="std std-ref">C_RESET</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7749aa942f59b07d1e951066e0aeca73"><span class="std std-ref">C_YELLOW</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;33&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gac4646fea5fac91e728c8b4d651b58216"><span class="std std-ref">IO_COLOR_BG</span></a><span></span><span class="p">(</span><span class="n">CODE</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;48;5;&quot;</span><span class="n">CODE</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga0e6d9102bb7d8733d9739f058900564d"><span class="std std-ref">IO_COLOR_BG_BLACK</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;40&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga250067e14725f2eceb20cc6bfd89e44b"><span class="std std-ref">IO_COLOR_BG_BLUE</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;44&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga5b6408b036db61a28f078d512abab9b3"><span class="std std-ref">IO_COLOR_BG_BLUE_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;104&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gae249ef98b992636b843487172db9cda5"><span class="std std-ref">IO_COLOR_BG_CYAN</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;46&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga83394539e8364d9e4fda0ef261f5c74c"><span class="std std-ref">IO_COLOR_BG_CYAN_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;106&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga5766144a8d48ffe3bbdd0c8e3973df52"><span class="std std-ref">IO_COLOR_BG_DEFAULT</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;49&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga61b2d3daade64b5710ad3a06140cb8b8"><span class="std std-ref">IO_COLOR_BG_GRAY_DARK</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga312aa1c2d18fd6847c6d88e8c153092a"><span class="std std-ref">IO_COLOR_BG_GRAY_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;47&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga04a659076f0b262e571ea4f3e6932352"><span class="std std-ref">IO_COLOR_BG_GREEN</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;42&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad4354070e7d86b4c188240d7732476e0"><span class="std std-ref">IO_COLOR_BG_GREEN_LIGHT</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;102&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga0f7a4372b3e38a8f6ecc042d6cec4251"><span class="std std-ref">IO_COLOR_BG_MAGENTA</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;45&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gac65a56f4fef3909ab32fdf2b14be0e20"><span class="std std-ref">IO_COLOR_BG_MAGENTA_LIGHT</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;105&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga0b6883cee7f145ec92c3cef386b59227"><span class="std std-ref">IO_COLOR_BG_RED</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;41&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga77a6fd84024c9bbbd7d8207982a0e656"><span class="std std-ref">IO_COLOR_BG_RED_LIGHT</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;101&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaffee69c7b797736581c06ccc7ea76fd6"><span class="std std-ref">IO_COLOR_BG_WHITE</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;107&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga812ddb5d9d841a57bc58f7e645dcbcce"><span class="std std-ref">IO_COLOR_BG_YELLOW</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;43&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga0c3f4ea8f414d50f8ae47bcd6d518df0"><span class="std std-ref">IO_COLOR_BG_YELLOW_LIGHT</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;103&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga8413d8cc0d4c8cf11da67ff344b8654b"><span class="std std-ref">IO_COLOR_FG</span></a><span></span><span class="p">(</span><span class="n">CODE</span><span class="p">)</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;38;5;&quot;</span><span class="n">CODE</span><span class="s">&quot;&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga178f7bd8aa2cb39a74171b24c3903bfa"><span class="std std-ref">IO_COLOR_FG_BLACK</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;30&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga173eac0768a62c09355ac69fab4ce0a2"><span class="std std-ref">IO_COLOR_FG_BLUE</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;34&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga23dfaaf54af97d31903ffaaa0ba309bc"><span class="std std-ref">IO_COLOR_FG_BLUE_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;94&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7f78b280ecb7a8917f7a980746a081d6"><span class="std std-ref">IO_COLOR_FG_CYAN</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;36&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gabf7bcf19360b7e1922f8084ef0154288"><span class="std std-ref">IO_COLOR_FG_CYAN_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;96&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga162176136345f256f233e0ddd1c7a577"><span class="std std-ref">IO_COLOR_FG_DEFAULT</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;39&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf67ea146996f28af24a8aaddbc184fca"><span class="std std-ref">IO_COLOR_FG_GRAY_DARK</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;90&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad24c920ee4123d7133f44986918aefea"><span class="std std-ref">IO_COLOR_FG_GRAY_LIGHT</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;37&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga4d8d738ec5d9c427efe7bec0310b1319"><span class="std std-ref">IO_COLOR_FG_GREEN</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;32&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga5f92baa1e553d33cfae382b27d879eb0"><span class="std std-ref">IO_COLOR_FG_GREEN_LIGHT</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;92&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga9863906924996123d989e3beeef17d1f"><span class="std std-ref">IO_COLOR_FG_MAGENTA</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;35&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga3206c160f2f866269b2f6cabf0aeec9e"><span class="std std-ref">IO_COLOR_FG_MAGENTA_LIGHT</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;95&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga125e9c08fc48d2310a501e50ca37f2fa"><span class="std std-ref">IO_COLOR_FG_RED</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;31&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga703126f7e6a44f57f0bcfe6a09a10cbb"><span class="std std-ref">IO_COLOR_FG_RED_LIGHT</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;91&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gafd04a2ff549eb5bbfc5f994e888f26bb"><span class="std std-ref">IO_COLOR_FG_WHITE</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;97&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga58c62fd3af7786a9efcbfa52befd3fed"><span class="std std-ref">IO_COLOR_FG_YELLOW</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;33&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga28945d6daca1a432d3593ea5c2aebfda"><span class="std std-ref">IO_COLOR_FG_YELLOW_LIGHT</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;93&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gac81982784d97338b81fd2a54340c0b00"><span class="std std-ref">IO_RESET</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaa9ed6a09ed0d99f8a3f45c2fa65678fa"><span class="std std-ref">IO_TEXT_3</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gadb7d3a0999cd525b1468fe9c8127a9df"><span class="std std-ref">IO_TEXT_6</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;6&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7b80a64dd49aec55705d42e7cd2ac95c"><span class="std std-ref">IO_TEXT_9</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;9&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga80dc8605510ddddb6bc5bc14f4dfdd6c"><span class="std std-ref">IO_TEXT_BLINK</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;5&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7f5db861561bbf42955a6c7bd71217db"><span class="std std-ref">IO_TEXT_BOLD</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf87c42a02a9a3e583e69a0441113d3bb"><span class="std std-ref">IO_TEXT_DIM</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gab91d5b05972e1cd3ac476bc29288172a"><span class="std std-ref">IO_TEXT_HIDDEN</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;8&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga00ebfe98e47c1dc3c295d415ef43c41e"><span class="std std-ref">IO_TEXT_INVERTED</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gacc133b9612777ae9259ca0e827c6016e"><span class="std std-ref">IO_TEXT_RESET_3</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;23&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga9bc27fef31f6958819891c3453c48f4e"><span class="std std-ref">IO_TEXT_RESET_6</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;26&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga8012b614be13a98f69cdcb5139766b78"><span class="std std-ref">IO_TEXT_RESET_9</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;29&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga72d589c7ed30e1a5ae19d0302909c041"><span class="std std-ref">IO_TEXT_RESET_BLINK</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;25&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad99ff5aa24729220c2dbd175ff6d1369"><span class="std std-ref">IO_TEXT_RESET_BOLD</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;21&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaabbcaa0a97883c57081e6217ea2a6782"><span class="std std-ref">IO_TEXT_RESET_DIM</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;22&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7829681d1d0e19f7799c44e08a7cd1ca"><span class="std std-ref">IO_TEXT_RESET_HIDDEN</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;28&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf80735fb21078a1e8095a22597092bd7"><span class="std std-ref">IO_TEXT_RESET_INVERTED</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;27&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga81de1ccbf55802dc11f2a8881d46a9eb"><span class="std std-ref">IO_TEXT_RESET_UNDERLINE</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;24&quot;</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span class="std std-ref">IO_TEXT_UNDERLINE</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">)</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-sys-ansi"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines some useful ANSI text macros.</p>
+<p class="rubric">See also:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/ANSI_escape_code">https://en.wikipedia.org/wiki/ANSI_escape_code</a></p></li>
+</ul>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="fm">ANSI</span>(X) <span class="s">&quot;</span><span class="se">\x1B</span><span class="s">[&quot;</span><span class="kt">X</span><span class="s">&quot;m&quot;</span></pre>
+<p>ANSI text output display escape code macros.</p>
+<p>These are some useful string literals for commandline output colors. Can be used with any of the ‘IO_Output_*’ and ‘IO_Write_*’ functions.</p>
+<p>(Learn more here)[<a class="reference external" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">https://misc.flogisoft.com/bash/tip_colors_and_formatting</a>]</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga2e4dd0b4af70107f36c2aa60b1195f01"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">C_BLUE</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;34&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output blue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga8318e037c99fbf82089b68ba5d603cd0"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">C_CYAN</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;36&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output cyan.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga448d973f9ee30250ec93e600f5d89ed1"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="fm">C_GREEN</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;32&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output green.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga47da0a04e6c59fa061f60d36c10d9561"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="fm">C_MAGENTA</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;35&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output magenta.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7adb9aaa1eed15caecd92e3837581b53"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="fm">C_RED</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;31&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output red.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaf0c29bd95cece6791c62c52e8d2f6335"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="fm">C_RESET</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to reset the terminal text output to its default color.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7749aa942f59b07d1e951066e0aeca73"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="fm">C_YELLOW</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;33&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output yellow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gac4646fea5fac91e728c8b4d651b58216"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG</span>(CODE)   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;48;5;&quot;</span><span class="n">CODE</span><span class="s">&quot;&quot;</span><span class="p">)</span></pre>
+<p>ANSI Color code (255-map, not supported on certain old terminals)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CODE</p></td>
+<td><p>should be a string, containing number between 0 and 255</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga0e6d9102bb7d8733d9739f058900564d"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_BLACK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;40&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight black.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga250067e14725f2eceb20cc6bfd89e44b"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_BLUE</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;44&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight blue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga5b6408b036db61a28f078d512abab9b3"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_BLUE_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;104&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light blue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gae249ef98b992636b843487172db9cda5"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_CYAN</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;46&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight cyan.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga83394539e8364d9e4fda0ef261f5c74c"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_CYAN_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;106&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light cyan.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga5766144a8d48ffe3bbdd0c8e3973df52"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_DEFAULT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;49&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background with the default color for this terminal.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga61b2d3daade64b5710ad3a06140cb8b8"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_GRAY_DARK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;100&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight dark gray.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga312aa1c2d18fd6847c6d88e8c153092a"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_GRAY_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;47&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light gray.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga04a659076f0b262e571ea4f3e6932352"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_GREEN</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;42&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight green.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad4354070e7d86b4c188240d7732476e0"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_GREEN_LIGHT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;102&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light green.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga0f7a4372b3e38a8f6ecc042d6cec4251"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_MAGENTA</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;45&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight magenta.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gac65a56f4fef3909ab32fdf2b14be0e20"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_MAGENTA_LIGHT</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;105&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light magenta.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga0b6883cee7f145ec92c3cef386b59227"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_RED</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;41&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight red.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga77a6fd84024c9bbbd7d8207982a0e656"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_RED_LIGHT</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;101&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light red.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaffee69c7b797736581c06ccc7ea76fd6"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_WHITE</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;107&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight white.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga812ddb5d9d841a57bc58f7e645dcbcce"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_YELLOW</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;43&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight yellow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga0c3f4ea8f414d50f8ae47bcd6d518df0"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_BG_YELLOW_LIGHT</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;103&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text background/highlight light yellow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga8413d8cc0d4c8cf11da67ff344b8654b"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG</span>(CODE)   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;38;5;&quot;</span><span class="n">CODE</span><span class="s">&quot;&quot;</span><span class="p">)</span></pre>
+<p>ANSI Color code (255-map, not supported on certain old terminals)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>CODE</p></td>
+<td><p>should be a string, containing number between 0 and 255</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">See also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor()</span></a></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga178f7bd8aa2cb39a74171b24c3903bfa"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_BLACK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;30&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output black.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga173eac0768a62c09355ac69fab4ce0a2"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_BLUE</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;34&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output blue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga23dfaaf54af97d31903ffaaa0ba309bc"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_BLUE_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;94&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light blue.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7f78b280ecb7a8917f7a980746a081d6"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_CYAN</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;36&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output cyan.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gabf7bcf19360b7e1922f8084ef0154288"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_CYAN_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;96&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light cyan.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga162176136345f256f233e0ddd1c7a577"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_DEFAULT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;39&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output with the default color for this terminal.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaf67ea146996f28af24a8aaddbc184fca"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_GRAY_DARK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;90&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output dark gray.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad24c920ee4123d7133f44986918aefea"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_GRAY_LIGHT</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;37&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light gray.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga4d8d738ec5d9c427efe7bec0310b1319"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_GREEN</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;32&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output green.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga5f92baa1e553d33cfae382b27d879eb0"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_GREEN_LIGHT</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;92&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light green.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga9863906924996123d989e3beeef17d1f"><span id="index-38"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_MAGENTA</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;35&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output magenta.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga3206c160f2f866269b2f6cabf0aeec9e"><span id="index-39"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_MAGENTA_LIGHT</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;95&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light magenta.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga125e9c08fc48d2310a501e50ca37f2fa"><span id="index-40"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_RED</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;31&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output red.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga703126f7e6a44f57f0bcfe6a09a10cbb"><span id="index-41"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_RED_LIGHT</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;91&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light red.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gafd04a2ff549eb5bbfc5f994e888f26bb"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_WHITE</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;97&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output white.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga58c62fd3af7786a9efcbfa52befd3fed"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_YELLOW</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;33&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output yellow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga28945d6daca1a432d3593ea5c2aebfda"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="fm">IO_COLOR_FG_YELLOW_LIGHT</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;93&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to color the terminal text output light yellow.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gac81982784d97338b81fd2a54340c0b00"><span id="index-45"></span><span></span><span class="cp">#define</span> <span class="fm">IO_RESET</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">)</span></pre>
+<p>The string sequence to reset the terminal text output to its default color.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaa9ed6a09ed0d99f8a3f45c2fa65678fa"><span id="index-46"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_3</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">)</span></pre>
+<p>???</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gadb7d3a0999cd525b1468fe9c8127a9df"><span id="index-47"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_6</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;6&quot;</span><span class="p">)</span></pre>
+<p>???</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7b80a64dd49aec55705d42e7cd2ac95c"><span id="index-48"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_9</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;9&quot;</span><span class="p">)</span></pre>
+<p>???</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga80dc8605510ddddb6bc5bc14f4dfdd6c"><span id="index-49"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_BLINK</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;5&quot;</span><span class="p">)</span></pre>
+<p>Display terminal output text which blinks every second (only in tty and xterm)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7f5db861561bbf42955a6c7bd71217db"><span id="index-50"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_BOLD</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">)</span></pre>
+<p>Display terminal output text in bold.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaf87c42a02a9a3e583e69a0441113d3bb"><span id="index-51"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_DIM</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">)</span></pre>
+<p>Display terminal output text with dimmer, darker colors.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gab91d5b05972e1cd3ac476bc29288172a"><span id="index-52"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_HIDDEN</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;8&quot;</span><span class="p">)</span></pre>
+<p>Write, but do not display, the terminal output text (useful for passwords)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga00ebfe98e47c1dc3c295d415ef43c41e"><span id="index-53"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_INVERTED</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">)</span></pre>
+<p>Display terminal output text with the background/foreground colors reversed.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gacc133b9612777ae9259ca0e827c6016e"><span id="index-54"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_3</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;23&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaa9ed6a09ed0d99f8a3f45c2fa65678fa"><span class="std std-ref">IO_TEXT_3</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga9bc27fef31f6958819891c3453c48f4e"><span id="index-55"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_6</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;26&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gadb7d3a0999cd525b1468fe9c8127a9df"><span class="std std-ref">IO_TEXT_6</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga8012b614be13a98f69cdcb5139766b78"><span id="index-56"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_9</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;29&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7b80a64dd49aec55705d42e7cd2ac95c"><span class="std std-ref">IO_TEXT_9</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga72d589c7ed30e1a5ae19d0302909c041"><span id="index-57"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_BLINK</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;25&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga80dc8605510ddddb6bc5bc14f4dfdd6c"><span class="std std-ref">IO_TEXT_BLINK</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad99ff5aa24729220c2dbd175ff6d1369"><span id="index-58"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_BOLD</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;21&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga7f5db861561bbf42955a6c7bd71217db"><span class="std std-ref">IO_TEXT_BOLD</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaabbcaa0a97883c57081e6217ea2a6782"><span id="index-59"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_DIM</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;22&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gaf87c42a02a9a3e583e69a0441113d3bb"><span class="std std-ref">IO_TEXT_DIM</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga7829681d1d0e19f7799c44e08a7cd1ca"><span id="index-60"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_HIDDEN</span>    <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;28&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gab91d5b05972e1cd3ac476bc29288172a"><span class="std std-ref">IO_TEXT_HIDDEN</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gaf80735fb21078a1e8095a22597092bd7"><span id="index-61"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_INVERTED</span>  <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;27&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1ga00ebfe98e47c1dc3c295d415ef43c41e"><span class="std std-ref">IO_TEXT_INVERTED</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1ga81de1ccbf55802dc11f2a8881d46a9eb"><span id="index-62"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_RESET_UNDERLINE</span> <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;24&quot;</span><span class="p">)</span></pre>
+<p>Undoes the effects of <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span class="std std-ref">IO_TEXT_UNDERLINE</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-ansi-1gad40552cab717addecf66999f34f80bf2"><span id="index-63"></span><span></span><span class="cp">#define</span> <span class="fm">IO_TEXT_UNDERLINE</span>   <a class="reference internal" href="#doxid-group-libccc-sys-ansi-1gad874c1142f1cec4d1e4a09510081ef66"><span class="std std-ref">ANSI</span></a><span></span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">)</span></pre>
+<p>Display terminal output text with an underline.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_color.html" class="btn btn-neutral float-left" title="libccc/color.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_sys_io.html" class="btn btn-neutral float-right" title="libccc/sys/io.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

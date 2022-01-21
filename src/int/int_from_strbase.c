@@ -110,13 +110,13 @@ inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Base(&result, str, base, 0);									\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_UINT_FROMSTRBASE(8)
 DEFINEFUNC_UINT_FROMSTRBASE(16)
 DEFINEFUNC_UINT_FROMSTRBASE(32)
 DEFINEFUNC_UINT_FROMSTRBASE(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_FROMSTRBASE(128)
 #endif
 
@@ -193,12 +193,12 @@ inline t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Base(&result, str, base, 0);									\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_SINT_FROMSTRBASE(8)
 DEFINEFUNC_SINT_FROMSTRBASE(16)
 DEFINEFUNC_SINT_FROMSTRBASE(32)
 DEFINEFUNC_SINT_FROMSTRBASE(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_FROMSTRBASE(128)
 #endif

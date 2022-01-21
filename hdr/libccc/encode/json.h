@@ -1,25 +1,23 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/encode/json.h                     |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/encode/json.h                     |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_ENCODE_JSON_H
 #define __LIBCCC_ENCODE_JSON_H
-/*!@group{libccc_encode_json}
-** @{
+/*!@group{libccc_encode_json,41,libccc/encode/json.h}
+**
 **	This header defines a dynamic runtime object type, similar to objects in JS.
 **	- JSON spec: https://www.json.org/json-en.html
 **
 **	In particular, much of the code in this header was inspired by cJSON:
 **	- https://github.com/DaveGamble/cJSON
-**
-**	@file
 */
 
 /*
@@ -38,6 +36,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+//! Like other libccc/encode/ types, JSON is simply an alias for the KVT type
 typedef s_kvt	s_json;
 
 
@@ -59,14 +58,17 @@ typedef s_kvt	s_json;
 ** ************************************************************************** *|
 */
 
+//!@doc Macros which configure the default behavior of the JSON parsing functions (`Strict` or `Lenient`)
+//!@{
 #define 				JSON_Parse		JSON_Parse_Lenient
 #define c_jsonparse		JSON_Parse
 
 #define 				JSON_Parse_N	JSON_Parse_Lenient_N
-#define c_jsonparsen	JSON_Parse_N
+#define c_jsonnparse	JSON_Parse_N
 
 #define 				JSON_FromString	JSON_FromString_Lenient
 #define c_strtojson		JSON_FromString
+//!@}
 
 
 
@@ -95,12 +97,17 @@ typedef s_kvt	s_json;
 **
 **	@see JSON_FromString_Lenient()
 */
+//!@{
 t_size					JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str, t_size n);
 #define c_jsonparse_l	JSON_Parse_Lenient
+//!@}
 
-//! @see JSON_Parse_Lenient()
+//!@doc @see JSON_Parse_Lenient()
+//!@{
 s_json*					JSON_FromString_Lenient(t_utf8 const* str);
 #define c_strtojson_l	JSON_FromString_Lenient
+//!@}
+
 //!@}
 
 
@@ -123,12 +130,17 @@ s_json*					JSON_FromString_Lenient(t_utf8 const* str);
 **
 **	@see JSON_FromString_Strict()
 */
+//!@{
 t_size					JSON_Parse_Strict(s_json* *dest, t_utf8 const* str, t_size n);
 #define c_jsonparse_s	JSON_Parse_Strict
+//!@}
 
-//! @see JSON_Parse_Strict()
+//!@doc @see JSON_Parse_Strict()
+//!@{
 s_json*					JSON_FromString_Strict(t_utf8 const* str);
 #define c_strtojson_s	JSON_FromString_Strict
+//!@}
+
 //!@}
 
 
@@ -139,15 +151,18 @@ s_json*					JSON_FromString_Strict(t_utf8 const* str);
 ** ************************************************************************** *|
 */
 
+//!@doc Macros which configure the default behavior of the JSON_Print() function (`Pretty` or `Minify`)
+//!@{
 #define 				JSON_Print	JSON_Print_Pretty
 #define c_jsonprint		JSON_Print
 
 #define 				JSON_ToString	JSON_ToString_Pretty
 #define c_jsontostr		JSON_ToString
+//!@}
 
 
 
-//! Print a `s_json` item to string buffer `dest`, writing at most `n` characters.
+//!@doc Print a `s_json` item to string buffer `dest`, writing at most `n` characters.
 /*!
 **	@param	dest	The pre-allocated string buffer to write to
 **	@param	item	The JSON object to print
@@ -158,31 +173,41 @@ s_json*					JSON_FromString_Strict(t_utf8 const* str);
 //!@{
 t_size					JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n);
 #define c_jsonprintfmt 	JSON_Print_Pretty
+//!@}
 
-//! Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+//!@doc Get a new string from the given JSON `item`, with readable formatting.
+//!@{
+t_utf8*					JSON_ToString_Pretty(s_json const* item);
+#define c_jsontostrfmt	JSON_ToString_Pretty
+//!@}
+
+
+
+//!@doc Like JSON_Print_Pretty(), but this prints the minimum amount of characters possible
+//!@{
 t_size					JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n);
 #define c_jsonprintmin	JSON_Print_Minify
 //!@}
 
-// TODO alternate versions which can print BigInt numbers and comments ?
-
-//! Get a new string from the given JSON `item`, with readable formatting.
-t_utf8*					JSON_ToString_Pretty(s_json const* item);
-#define c_jsontostrfmt	JSON_ToString_Pretty
-
-//! Get a new string from the given JSON `item`, without any formatting/whitespace.
+//!@doc Get a new string from the given JSON `item`, without any formatting/whitespace.
+//!@{
 t_utf8*					JSON_ToString_Minify(s_json const* item);
 #define c_jsontostrmin	JSON_ToString_Minify
+//!@}
+
+// TODO alternate versions which can print BigInt numbers and comments ?
 
 
 
 #if 0
-//! Render a s_json entity to text using a buffered strategy.
+//!@doc Render a s_json entity to text using a buffered strategy.
 /*!
 **	prebuffer is a guess at the final size. guessing well reduces reallocation. `format = 0` means minified, `format = 1` means formatted/pretty.
 */
+//!@{
 t_utf8*					JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format);
 #define c_jsonprintbuf 	JSON_Print_Buffered
+//!@}
 #endif
 
 
@@ -193,14 +218,16 @@ t_utf8*					JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool for
 ** ************************************************************************** *|
 */
 
-//! Minify a JSON string, to make it more lightweight: removes all whitespace characters
+//!@doc Minify a JSON string, to make it more lightweight: removes all whitespace characters
 /*!
 **	Minify a JSON, removing blank characters (such as ' ', '\t', '\r', '\n') from strings.
 **	The input pointer json cannot point to a read-only address area, such as a string constant, 
 **	but should point to a readable and writable address area.
 */
+//!@{
 void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), and add JSON_Minify(), which would allocate
 #define c_jsonmin	JSON_Minify
+//!@}
 
 
 
@@ -223,12 +250,6 @@ void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), an
 #define JSON_Concat			KVT_Concat			//!< @alias{KVT_Concat}
 #define JSON_Concat_Array	KVT_Concat_Array	//!< @alias{KVT_Concat_Array}
 #define JSON_Concat_Object	KVT_Concat_Object	//!< @alias{KVT_Concat_Object}
-
-
-
-#define JSON_GetError			KVT_GetError		//!< @alias{KVT_GetError}
-
-#define JSON_GetErrorMessage	KVT_GetErrorMessage	//!< @alias{KVT_GetErrorMessage}
 
 
 
@@ -388,18 +409,18 @@ void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), an
 
 #define JSON_Delete_FromObject \
 		JSON_Delete_FromObject_CaseSensitive
-#define JSON_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//! @alias{KVT_Delete_FromObject_CaseSensitive}
-#define JSON_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//! @alias{KVT_Delete_FromObject_IgnoreCase}
+#define JSON_Delete_FromObject_CaseSensitive	KVT_Delete_FromObject_CaseSensitive	//!< @alias{KVT_Delete_FromObject_CaseSensitive}
+#define JSON_Delete_FromObject_IgnoreCase		KVT_Delete_FromObject_IgnoreCase	//!< @alias{KVT_Delete_FromObject_IgnoreCase}
 
 #define JSON_Detach_FromObject \
 		JSON_Detach_FromObject_CaseSensitive
-#define JSON_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//! @alias{KVT_Detach_FromObject_CaseSensitive}
-#define JSON_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//! @alias{KVT_Detach_FromObject_IgnoreCase}
+#define JSON_Detach_FromObject_CaseSensitive	KVT_Detach_FromObject_CaseSensitive	//!< @alias{KVT_Detach_FromObject_CaseSensitive}
+#define JSON_Detach_FromObject_IgnoreCase		KVT_Detach_FromObject_IgnoreCase	//!< @alias{KVT_Detach_FromObject_IgnoreCase}
 
 #define JSON_Replace_InObject \
 		JSON_Replace_InObject_CaseSensitive
-#define JSON_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//! @alias{KVT_Replace_InObject_CaseSensitive}
-#define JSON_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//! @alias{KVT_Replace_InObject_IgnoreCase}
+#define JSON_Replace_InObject_CaseSensitive		KVT_Replace_InObject_CaseSensitive	//!< @alias{KVT_Replace_InObject_CaseSensitive}
+#define JSON_Replace_InObject_IgnoreCase		KVT_Replace_InObject_IgnoreCase		//!< @alias{KVT_Replace_InObject_IgnoreCase}
 
 
 
@@ -407,6 +428,6 @@ void				JSON_Minify(t_utf8* json); //!< TODO rename to JSON_Minify_InPlace(), an
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

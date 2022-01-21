@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc_errors.h &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="enum cccerror" href="enum_cccerror.html" />
+    <link rel="prev" title="libccc_config.h" href="group_libccc_config.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc_errors.h">
+	<meta property="og:description" content="libccc_errors.h">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - libccc_errors.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_errors.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc_errors.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="enum_cccerror.html">enum cccerror</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>libccc_errors.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-errors-h">
+<span id="doxid-group-libccc-errors"></span><span id="index-0"></span><h1>libccc_errors.h<a class="headerlink" href="#libccc-errors-h" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines all the primitive types and common macros to use. <a class="reference internal" href="#details-group-libccc-errors"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <span class="kd">enum</span> <a class="reference internal" href="enum_cccerror.html#doxid-group-libccc-errors-1gab30adf8edbfe4bd90411d7eb858633b9"><span class="std std-ref">cccerror</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span class="std std-ref">e_cccerror</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// enums</span>
+
+<span class="kd">enum</span> <a class="reference internal" href="enum_cccerror.html#doxid-group-libccc-errors-1gab30adf8edbfe4bd90411d7eb858633b9"><span class="std std-ref">cccerror</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga42c1a5eb9b00acb499d165cc3357f270"><span class="std std-ref">CHECK_ERRORS</span></a><span></span>    <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gaddd022277bec63d7897c65d6850ce843"><span class="std std-ref">HANDLE_ERROR</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">,</span> <span class="n">ACTION</span><span class="p">)</span>      <a class="reference internal" href="#doxid-group-libccc-errors-1ga8648b37ae7b53c2e733f25f2caf2c334"><span class="std std-ref">HANDLE_ERROR_BEGIN</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">)</span>                            <span class="err">\</span>   <span class="n">ACTION</span>                                                              <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-errors-1gaaf7b32a3fdbc68d6821252921cfc3e98"><span class="std std-ref">HANDLE_ERROR_FINAL</span></a><span></span><span class="p">()</span>                                                \
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga19b9dbd8608f36c0386986813f0fc021"><span class="std std-ref">HANDLE_ERRORS_ALLOCFAILURE</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga13041b2a3733b858544530f21f837e39"><span class="std std-ref">HANDLE_ERRORS_DELETEREF</span></a><span></span> <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga0b68df83f58275adc9c06a6610f2f09b"><span class="std std-ref">HANDLE_ERRORS_ILLEGALBYTES</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gaf0109a2bcf35b0003b8ae9d52e053ae8"><span class="std std-ref">HANDLE_ERRORS_INDEX2LARGE</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga8c428bcd220b624995b8c239a48d3a72"><span class="std std-ref">HANDLE_ERRORS_INDEX2SMALL</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga5c0fdec573ee5af3eef1a71b6f20d88c"><span class="std std-ref">HANDLE_ERRORS_INVALIDARGS</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga6821cb2870dbd900c1c73c8f5de08a1c"><span class="std std-ref">HANDLE_ERRORS_INVALIDENUM</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga14d4986b179ac468457e19e771cf7e81"><span class="std std-ref">HANDLE_ERRORS_INVALIDRANGE</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gadfb4850b845fcda988d4fec7df556841"><span class="std std-ref">HANDLE_ERRORS_KEYNOTFOUND</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gac9343c97d18666dafacf61431b684360"><span class="std std-ref">HANDLE_ERRORS_LENGTH2LARGE</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga3ec594450bf667e1eb5488596c80de69"><span class="std std-ref">HANDLE_ERRORS_LENGTH2SMALL</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga706cf8cb873acc35f943a954c7787ea1"><span class="std std-ref">HANDLE_ERRORS_MATHDOMAIN</span></a><span></span>    <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga639a651f0c190fe56706d617fc44acc2"><span class="std std-ref">HANDLE_ERRORS_NANARGUMENT</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga8ea6d7e91e8c96b71a977834f3b6eb0d"><span class="std std-ref">HANDLE_ERRORS_NOTFOUND</span></a><span></span>  <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga66caccd0221b08d5c11a1b882fdaa376"><span class="std std-ref">HANDLE_ERRORS_NULLPOINTER</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gafe410c67a3c9891c75f9a6beb274e15e"><span class="std std-ref">HANDLE_ERRORS_PARSE</span></a><span></span> <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga4429e50ecf50ef80e94db248035b6e27"><span class="std std-ref">HANDLE_ERRORS_PRINT</span></a><span></span> <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga00fcc3f93f1a1cf631a603a26c2106fc"><span class="std std-ref">HANDLE_ERRORS_RESULTRANGE</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gabd69827bfc508bf61093a74430fa555f"><span class="std std-ref">HANDLE_ERRORS_SYSTEM</span></a><span></span>    <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gae5d355046b01088d146d87fcc68c1782"><span class="std std-ref">HANDLE_ERRORS_UNSPECIFIED</span></a><span></span>   <span class="mi">1</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga9150fed39cfce5077a89122c6a95f391"><span class="std std-ref">HANDLE_ERRORS_WRONGTYPE</span></a><span></span> <span class="mi">1</span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-errors-1ga8648b37ae7b53c2e733f25f2caf2c334"><span></span><span class="n">HANDLE_ERROR_BEGIN</span></span><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">)</span>     <span class="k">if</span><span class="p">(</span><span class="n">CONDITION</span><span class="p">)</span>                                                       <span class="err">\</span>   <span class="p">{</span>                                                                   <span class="err">\</span>       <a class="reference internal" href="group_libccc_sys_error.html#doxid-group-libccc-sys-error-1ga598851df6c16da4fbb047dfb6c03e5ad"><span class="std std-ref">Error_Set</span></a><span></span><span class="p">(</span><span class="n">ERROR_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">);</span>                                   <span class="err">\</span>       <span class="k">if</span><span class="p">(</span><span class="n">HANDLE_ERRORS_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">)</span>                                   <span class="err">\</span>       <span class="p">{</span>                                                               <span class="err">\</span>           <a class="reference internal" href="group_libccc_sys_error.html#doxid-group-libccc-sys-error-1ga4afe5f5a133b275e413af6ea0ec5c2cd"><span class="std std-ref">Error_Handle</span></a><span></span><span class="p">(</span><span class="n">ERROR_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="no">__func__</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga070d2ce7b6bb7e5c05602aa8c308d0c4"><span class="std std-ref">NULL</span></a><span></span><span class="p">);</span>           <span class="err">\</span>       <span class="p">}</span>                                                               \
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-errors-1ga154f4bd3dd7f93c523e3c8c013cfc427"><span></span><span class="n">HANDLE_ERROR_BEGIN_SF</span></span><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">,</span> <span class="p">...)</span>     <span class="k">if</span><span class="p">(</span><span class="n">CONDITION</span><span class="p">)</span>                                                       <span class="err">\</span>   <span class="p">{</span>                                                                   <span class="err">\</span>       <a class="reference internal" href="group_libccc_sys_error.html#doxid-group-libccc-sys-error-1ga598851df6c16da4fbb047dfb6c03e5ad"><span class="std std-ref">Error_Set</span></a><span></span><span class="p">(</span><span class="n">ERROR_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">);</span>                                   <span class="err">\</span>       <span class="k">if</span><span class="p">(</span><span class="n">HANDLE_ERRORS_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">)</span>                                   <span class="err">\</span>       <span class="p">{</span>                                                               <span class="err">\</span>           <a class="reference internal" href="group_libccc_sys_error.html#doxid-group-libccc-sys-error-1ga4afe5f5a133b275e413af6ea0ec5c2cd"><span class="std std-ref">Error_Handle</span></a><span></span><span class="p">(</span><span class="n">ERROR_</span><span class="err">##</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="no">__func__</span><span class="p">,</span>                   <span class="err">\</span>               <a class="reference internal" href="group_libccc_format.html#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span><span class="p">(</span><span class="n">__VA_ARGS__</span><span class="p">));</span>                            <span class="err">\</span>       <span class="p">}</span>                                                               \
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-errors-1gaaf7b32a3fdbc68d6821252921cfc3e98"><span></span><span class="n">HANDLE_ERROR_FINAL</span></span><span></span><span class="p">()</span>     <span class="p">}</span>                                                                   \
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1ga2ba1335a9c429788a79a11944e0d645e"><span class="std std-ref">HANDLE_ERROR_SF</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">,</span> <span class="n">ACTION</span><span class="p">,</span> <span class="p">...)</span>      <a class="reference internal" href="#doxid-group-libccc-errors-1ga154f4bd3dd7f93c523e3c8c013cfc427"><span class="std std-ref">HANDLE_ERROR_BEGIN_SF</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">,</span> <span class="n">__VA_ARGS__</span><span class="p">)</span>            <span class="err">\</span>   <span class="n">ACTION</span>                                                              <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-errors-1gaaf7b32a3fdbc68d6821252921cfc3e98"><span class="std std-ref">HANDLE_ERROR_FINAL</span></a><span></span><span class="p">()</span>                                                \
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-errors-1gaed3ede9327386c55a69e248f4ff5c212"><span class="std std-ref">LIBCONFIG_ERROR_DEFAULTHANDLER</span></a><span></span><span class="p">(</span><span class="n">ERRORCODE</span><span class="p">,</span> <span class="n">MESSAGE</span><span class="p">)</span>  <span class="err">\</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-errors"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines all the primitive types and common macros to use.</p>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ga54dc030d7c8bbb1e03a6311fd02fa127"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kd">enum</span> <a class="reference internal" href="enum_cccerror.html#doxid-group-libccc-errors-1gab30adf8edbfe4bd90411d7eb858633b9"><span class="std std-ref">cccerror</span></a><span></span> <span class="kt">e_cccerror</span></pre>
+<p>This type represents an error code for a libccc function (ie: a value for the ‘errno’ global variable)</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/error/errno">https://en.cppreference.com/w/c/error/errno</a></p></li>
+<li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/error/errno_macros">https://en.cppreference.com/w/c/error/errno_macros</a></p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">e_cccerror</span></code> error code enum used is meant to not be platform-specific, unlike <code class="docutils literal notranslate"><span class="pre">errno</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ERROR_SYSTEM_IO</span></code> error code indicates an error which stores an <code class="docutils literal notranslate"><span class="pre">strerror(errno)</span></code> message. As such, it can hold many different messages (as many as your environment defines/uses).</p>
+<p>NOTE: the only errno macros whch are defined by the standard itself are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">EDOM</span></code> (<code class="docutils literal notranslate"><span class="pre">ERROR_INVALIDARG_MATHDOMAIN</span></code>) Mathematics argument out of domain of function</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ERANGE</span></code> (<code class="docutils literal notranslate"><span class="pre">ERROR_INVALIDARG_RESULTRANGE</span></code>) Result too large</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">EILSEQ</span></code> (<code class="docutils literal notranslate"><span class="pre">ERROR_INVALIDARG_ILLEGALBYTES</span></code>) Illegal byte sequence (C95)</p></li>
+</ul>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ga42c1a5eb9b00acb499d165cc3357f270"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">CHECK_ERRORS</span>    <span class="mi">1</span></pre>
+<p>This <code class="docutils literal notranslate"><span class="pre">#define</span></code> enables libccc error-handling when set to <code class="docutils literal notranslate"><span class="pre">1</span></code>. You can set this <code class="docutils literal notranslate"><span class="pre">#define</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code> if you wish to deactivate all error checking/handling. This is not recommended, since no checks will be performed, so segfaults will happen. Only do so if your code is robust and thoroughly tested, and you really need some extra performance.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1gaddd022277bec63d7897c65d6850ce843"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">HANDLE_ERROR</span>(ERRORTYPE, CONDITION, ACTION)      <a class="reference internal" href="#doxid-group-libccc-errors-1ga8648b37ae7b53c2e733f25f2caf2c334"><span class="std std-ref">HANDLE_ERROR_BEGIN</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">)</span>                            <span class="err">\</span>   <span class="n">ACTION</span>                                                              <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-errors-1gaaf7b32a3fdbc68d6821252921cfc3e98"><span class="std std-ref">HANDLE_ERROR_FINAL</span></a><span></span><span class="p">()</span>                                                <span class="err">\</span></pre>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ERRORTYPE</p></td>
+<td><p>The type of error to emit (an <code class="docutils literal notranslate"><span class="pre">e_cccerror</span></code> value)</p></td>
+</tr>
+<tr class="row-even"><td><p>CONDITION</p></td>
+<td><p>The condition to check the error</p></td>
+</tr>
+<tr class="row-odd"><td><p>ACTION</p></td>
+<td><p>The actions(s) to perform after handling (<code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">break</span></code>, etc) A variadic argument is used here to allow use of the comma operator.</p></td>
+</tr>
+</tbody>
+</table>
+<span class="target" id="doxid-group-libccc-errors-1gae5d355046b01088d146d87fcc68c1782"><span id="index-4"></span></span><span class="target" id="doxid-group-libccc-errors-1gabd69827bfc508bf61093a74430fa555f"><span id="index-5"></span></span><span class="target" id="doxid-group-libccc-errors-1ga19b9dbd8608f36c0386986813f0fc021"><span id="index-6"></span></span><span class="target" id="doxid-group-libccc-errors-1gafe410c67a3c9891c75f9a6beb274e15e"><span id="index-7"></span></span><span class="target" id="doxid-group-libccc-errors-1ga4429e50ecf50ef80e94db248035b6e27"><span id="index-8"></span></span><span class="target" id="doxid-group-libccc-errors-1ga8ea6d7e91e8c96b71a977834f3b6eb0d"><span id="index-9"></span></span><span class="target" id="doxid-group-libccc-errors-1ga5c0fdec573ee5af3eef1a71b6f20d88c"><span id="index-10"></span></span><span class="target" id="doxid-group-libccc-errors-1ga66caccd0221b08d5c11a1b882fdaa376"><span id="index-11"></span></span><span class="target" id="doxid-group-libccc-errors-1ga706cf8cb873acc35f943a954c7787ea1"><span id="index-12"></span></span><span class="target" id="doxid-group-libccc-errors-1ga00fcc3f93f1a1cf631a603a26c2106fc"><span id="index-13"></span></span><span class="target" id="doxid-group-libccc-errors-1ga639a651f0c190fe56706d617fc44acc2"><span id="index-14"></span></span><span class="target" id="doxid-group-libccc-errors-1ga0b68df83f58275adc9c06a6610f2f09b"><span id="index-15"></span></span><span class="target" id="doxid-group-libccc-errors-1ga6821cb2870dbd900c1c73c8f5de08a1c"><span id="index-16"></span></span><span class="target" id="doxid-group-libccc-errors-1ga14d4986b179ac468457e19e771cf7e81"><span id="index-17"></span></span><span class="target" id="doxid-group-libccc-errors-1ga8c428bcd220b624995b8c239a48d3a72"><span id="index-18"></span></span><span class="target" id="doxid-group-libccc-errors-1gaf0109a2bcf35b0003b8ae9d52e053ae8"><span id="index-19"></span></span><span class="target" id="doxid-group-libccc-errors-1ga3ec594450bf667e1eb5488596c80de69"><span id="index-20"></span></span><span class="target" id="doxid-group-libccc-errors-1gac9343c97d18666dafacf61431b684360"><span id="index-21"></span></span><span class="target" id="doxid-group-libccc-errors-1gadfb4850b845fcda988d4fec7df556841"><span id="index-22"></span></span><span class="target" id="doxid-group-libccc-errors-1ga9150fed39cfce5077a89122c6a95f391"><span id="index-23"></span></span><pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ga13041b2a3733b858544530f21f837e39"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_UNSPECIFIED</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_SYSTEM</span>    <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_ALLOCFAILURE</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_PARSE</span> <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_PRINT</span> <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_NOTFOUND</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_INVALIDARGS</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_NULLPOINTER</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_MATHDOMAIN</span>    <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_RESULTRANGE</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_NANARGUMENT</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_ILLEGALBYTES</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_INVALIDENUM</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_INVALIDRANGE</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_INDEX2SMALL</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_INDEX2LARGE</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_LENGTH2SMALL</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_LENGTH2LARGE</span>  <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_KEYNOTFOUND</span>   <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_WRONGTYPE</span> <span class="mi">1</span>
+<span class="cp">#define</span> <span class="fm">HANDLE_ERRORS_DELETEREF</span> <span class="mi">1</span></pre>
+<p>These macros allow you to configure how libccc handles exceptions/error cases.</p>
+<p>These “plural-named” can be used to activate or deactivate exception handling at will.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ga2ba1335a9c429788a79a11944e0d645e"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="fm">HANDLE_ERROR_SF</span>(ERRORTYPE, CONDITION, ACTION, ...)      <a class="reference internal" href="#doxid-group-libccc-errors-1ga154f4bd3dd7f93c523e3c8c013cfc427"><span class="std std-ref">HANDLE_ERROR_BEGIN_SF</span></a><span></span><span class="p">(</span><span class="n">ERRORTYPE</span><span class="p">,</span> <span class="n">CONDITION</span><span class="p">,</span> <span class="n">__VA_ARGS__</span><span class="p">)</span>            <span class="err">\</span>   <span class="n">ACTION</span>                                                              <span class="err">\</span>   <a class="reference internal" href="#doxid-group-libccc-errors-1gaaf7b32a3fdbc68d6821252921cfc3e98"><span class="std std-ref">HANDLE_ERROR_FINAL</span></a><span></span><span class="p">()</span>                                                <span class="err">\</span></pre>
+<p>The behavior to handle an error case, with a custom message.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ERRORTYPE</p></td>
+<td><p>The type of error to emit (an <code class="docutils literal notranslate"><span class="pre">e_cccerror</span></code> value)</p></td>
+</tr>
+<tr class="row-even"><td><p>CONDITION</p></td>
+<td><p>The condition to check the error</p></td>
+</tr>
+<tr class="row-odd"><td><p>ACTION</p></td>
+<td><p>The actions(s) to perform after handling (<code class="docutils literal notranslate"><span class="pre">return</span></code>, <code class="docutils literal notranslate"><span class="pre">break</span></code>, etc)</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>The custom error message (format string and args, like <code class="docutils literal notranslate"><span class="pre">printf()</span></code>)</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1gaed3ede9327386c55a69e248f4ff5c212"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="fm">LIBCONFIG_ERROR_DEFAULTHANDLER</span>(ERRORCODE, MESSAGE)  <span class="err">\</span></pre>
+<p>These macros allow you to configure how libccc handles exceptions/error cases.</p>
+<p>These macro functions determine how exception cases are to be handled by libccc. You may change the logic here (to implement custom exception handling for example).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_config.html" class="btn btn-neutral float-left" title="libccc_config.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="enum_cccerror.html" class="btn btn-neutral float-right" title="enum cccerror" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -7,16 +7,16 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Duplicate,T_NAME)(s_list_T const* list)
+s_list(T)*	List_Duplicate(T)(s_list(T) const* list)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem = NULL;
-	s_list_T*	tmp;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem = NULL;
+	s_list(T)*	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	while (list)
 	{
-		if (!(tmp = (s_list_T*)Memory_Duplicate(list, sizeof(s_list_T))))
+		if (!(tmp = (s_list(T)*)Memory_Duplicate(list, sizeof(s_list(T)))))
 			break;
 		if (result == NULL)
 			result = tmp;

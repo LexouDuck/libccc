@@ -46,13 +46,13 @@ inline t_u##BITS	U##BITS##_FromString_Dec(t_char const* str)						\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Dec(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_UINT_FROMSTRDEC(8)
 DEFINEFUNC_UINT_FROMSTRDEC(16)
 DEFINEFUNC_UINT_FROMSTRDEC(32)
 DEFINEFUNC_UINT_FROMSTRDEC(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_FROMSTRDEC(128)
 #endif
 
@@ -106,12 +106,12 @@ inline t_s##BITS	S##BITS##_FromString_Dec(t_char const* str)						\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Dec(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_SINT_FROMSTRDEC(8)
 DEFINEFUNC_SINT_FROMSTRDEC(16)
 DEFINEFUNC_SINT_FROMSTRDEC(32)
 DEFINEFUNC_SINT_FROMSTRDEC(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_FROMSTRDEC(128)
 #endif

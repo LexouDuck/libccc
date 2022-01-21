@@ -17,9 +17,11 @@
 #include "libccc/char.h"
 #include "libccc/text/ascii.h"
 #include "libccc/text/unicode.h"
-#include "libccc/monad/list.h"
 #include "libccc/math/stat.h"
 #include "libccc/sys/time.h"
+
+typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
+typedef struct list_int 	s_list_int ;	//!< @see "libccc/monad/list.h"
 
 #include "test_catch.h"
 #include "test_timer.h"
@@ -92,9 +94,10 @@ char*	u32tostr(	t_u32	number);
 char*	s32tostr(	t_s32	number);
 char*	u64tostr(	t_u64	number);
 char*	s64tostr(	t_s64	number);
+#if LIBCONFIG_USE_INT128
 char*	u128tostr(	t_u128	number);
 char*	s128tostr(	t_s128	number);
-
+#endif
 char*	ptrtostr(void const* ptr);
 
 
@@ -136,7 +139,7 @@ DEFINEFUNC_PRINT_TEST(s8,		t_s8)
 DEFINEFUNC_PRINT_TEST(s16,		t_s16)
 DEFINEFUNC_PRINT_TEST(s32,		t_s32)
 DEFINEFUNC_PRINT_TEST(s64,		t_s64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_PRINT_TEST(s128,		t_s128)
 #endif
 
@@ -145,7 +148,7 @@ DEFINEFUNC_PRINT_TEST(u8,		t_u8)
 DEFINEFUNC_PRINT_TEST(u16,		t_u16)
 DEFINEFUNC_PRINT_TEST(u32,		t_u32)
 DEFINEFUNC_PRINT_TEST(u64,		t_u64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_PRINT_TEST(u128,		t_u128)
 #endif
 
@@ -153,17 +156,17 @@ DEFINEFUNC_PRINT_TEST(fixed,	t_fixed)
 DEFINEFUNC_PRINT_TEST(q16,		t_q16)
 DEFINEFUNC_PRINT_TEST(q32,		t_q32)
 DEFINEFUNC_PRINT_TEST(q64,		t_q64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_PRINT_TEST(q128,		t_q128)
 #endif
 
 DEFINEFUNC_PRINT_TEST(float,	t_float)
 DEFINEFUNC_PRINT_TEST(f32,		t_f32)
 DEFINEFUNC_PRINT_TEST(f64,		t_f64)
-#ifdef __float80
+#if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_PRINT_TEST(f80,		t_f80)
 #endif
-#ifdef __float128
+#if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_PRINT_TEST(f128,		t_f128)
 #endif
 
@@ -176,11 +179,12 @@ DEFINEFUNC_PRINT_TEST(uintmax,	t_uintmax)
 
 DEFINEFUNC_PRINT_TEST(mem,		void const*)
 DEFINEFUNC_PRINT_TEST(ptr,		void const*)
-DEFINEFUNC_PRINT_TEST(ptrarr,	void const**)
+DEFINEFUNC_PRINT_TEST(ptrarr,	void**)
 DEFINEFUNC_PRINT_TEST(str,		char const*)
-DEFINEFUNC_PRINT_TEST(strarr,	char const**)
+DEFINEFUNC_PRINT_TEST(strarr,	char**)
 
-DEFINEFUNC_PRINT_TEST(list,		s_list const*)
+DEFINEFUNC_PRINT_TEST(array,	s_array_int const*)
+DEFINEFUNC_PRINT_TEST(list,		s_list_int const*)
 
 DEFINEFUNC_PRINT_TEST(date,		s_date)
 
@@ -362,25 +366,6 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 		test.KIND = NULL;				\
 	}									\
 
-/*!
-**	This macro frees the result variable for a test, if it is appropriate to do so,
-**	knowing this is an array of sub-results which should also be freed, and that
-**	this array is a null-terminated pointer array.
-**	@param	KIND	The name of the array result variable to freed
-*/
-#define TEST_FREE_ARRAY_NULLTERM_(KIND) \
-	if (test.KIND &&						\
-		test.KIND##_sig == SIGNAL_NULL)		\
-	{										\
-		for (int i = 0; test.KIND[i]; ++i)	\
-		{									\
-			free((void*)test.KIND[i]);		\
-			test.KIND[i] = NULL;			\
-		}									\
-		free((void*)test.KIND);				\
-		test.KIND = NULL;					\
-	}										\
-
 //! Frees the 'result_libccc' variable, if appropriate
 #define TEST_FREE() \
 	TEST_FREE_(result)	\
@@ -390,9 +375,14 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 	TEST_FREE_(result)	\
 	TEST_FREE_(expect)	\
 
-//! Frees the 'result_libccc', if appropriate, when that result is a nested allocation of rank 2 (ie, a char**/string array)
-#define TEST_FREE_ARRAY_NULLTERM() \
-	TEST_FREE_ARRAY_NULLTERM_(result)	\
+//! Frees the 'result_libccc', if appropriate, with a user-supplied function
+#define TEST_FREE_RESULT(DELETE_FUNCTION) \
+	if (test.result &&							\
+		test.result##_sig == SIGNAL_NULL)		\
+	{											\
+		DELETE_FUNCTION(test.result);			\
+		test.result = NULL;						\
+	}											\
 
 
 

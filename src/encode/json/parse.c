@@ -1,6 +1,7 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
+#include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
 #include "libccc/encode/json.h"
@@ -582,10 +583,11 @@ failure:
 static
 t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//, t_utf8 const** return_parse_end)
 {
-	s_json_parse parser = { 0 };
+	s_json_parse parser;
 	s_json_parse* p = &parser;
 	s_json* result = NULL;
 
+	Memory_Clear(p, sizeof(s_json_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
 		if (dest) *dest = NULL;
 		return (p->offset);)

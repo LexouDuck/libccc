@@ -6,10 +6,10 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T item))
+s_list(T)*	List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item))
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	item;
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
@@ -17,8 +17,8 @@ s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T it
 	{
 		if (filter(list->item))
 		{
-			elem = CONCAT(List_Item,T_NAME)(list->item);
-			CONCAT(List_Append,T_NAME)(result, elem);
+			item = List_Item(T)(list->item);
+			List_Append(T)(result, item);
 		}
 		list = list->next;
 	}
@@ -28,10 +28,10 @@ s_list_T*	CONCAT(List_Filter,T_NAME)(s_list_T const* list, t_bool (*filter)(T it
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T item, t_uint index))
+s_list(T)*	List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_uint index))
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	item;
 	t_uint	i;
 
 	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
@@ -41,8 +41,8 @@ s_list_T*	CONCAT(List_Filter_I,T_NAME)(s_list_T const* list, t_bool (*filter)(T 
 	{
 		if (filter(list->item, i))
 		{
-			elem = CONCAT(List_Item,T_NAME)(list->item);
-			CONCAT(List_Append,T_NAME)(result, elem);
+			item = List_Item(T)(list->item);
+			List_Append(T)(result, item);
 		}
 		list = list->next;
 		++i;

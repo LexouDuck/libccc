@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/pointerarray.h &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/string.h" href="group_libccc_string.html" />
+    <link rel="prev" title="libccc/pointer.h" href="group_libccc_pointer.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/pointerarray.h">
+	<meta property="og:description" content="libccc/pointerarray.h">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - libccc/pointerarray.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_pointerarray.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/pointerarray.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>libccc/pointerarray.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-pointerarray-h">
+<span id="doxid-group-libccc-pointerarray"></span><span id="index-0"></span><h1>libccc/pointerarray.h<a class="headerlink" href="#libccc-pointerarray-h" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines the common standard memory manipulation functions. <a class="reference internal" href="#details-group-libccc-pointerarray"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global variables</span>
+
+<a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga62f3aa19ee4b1d7e93953b05d810d0bf"><span class="std std-ref">p_ptrarray</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gafbcf9fc17497d6add3720211aa28e0c8"><span class="std std-ref">PointerArray_New</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">value</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga34099db1f1826bcc4edbbf9142a6170c"><span class="std std-ref">PointerArray_Create</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">,</span> <span class="p">...);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga08e23cae9c98715ec2b51eba1e6dc3d6"><span class="std std-ref">PointerArray_Duplicate</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gad06f08d2e142c520be6f0ce92025c93d"><span class="std std-ref">PointerArray_Sub</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga62e429acc221b8a4f5b29aba7b2dc169"><span class="std std-ref">PointerArray_Copy</span></a><span></span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">dest_i</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">src_i</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span>
+<span class="p">);</span>
+
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa79d52f01c16bd6582594e68f48d6a04"><span class="std std-ref">PointerArray_Free</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga2fd4493ca132c6ee85b5797afd471f5a"><span class="std std-ref">PointerArray_Free_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga80ebc93739a09314fcc6d8e47e40e0d6"><span class="std std-ref">PointerArray_Delete</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">ptrarr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gacb64c73646732a61a8bfafa8df5dd5d8"><span class="std std-ref">PointerArray_Delete_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga0012e6940999436f091526e3ba147d11"><span class="std std-ref">PointerArray_Add</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga32cc0ffa9c0fe5a554cebf930f2c2f76"><span class="std std-ref">PointerArray_Insert</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga6e0bcc8b8a443f0c1a70e89a7047a298"><span class="std std-ref">PointerArray_Wedge</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga88fa9967e0e5b27a13dc4a9b9625437b"><span class="std std-ref">PointerArray_RemoveAt</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7a6bee24423b11992283f2cbd63f20a8"><span class="std std-ref">PointerArray_RemoveAt_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gad2e888ad3e55967562ea1ba738632337"><span class="std std-ref">PointerArray_Remove</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gab3084db2d375fd6827fb93916198ddc4"><span class="std std-ref">PointerArray_Remove_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gac314304605995d20e6474ab46eabd3b8"><span class="std std-ref">PointerArray_RemoveAll</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga81f8dc0133ed002e8c4291faff7a715c"><span class="std std-ref">PointerArray_RemoveAll_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gab3f80d096d3982ab340e90815f2f55bf"><span class="std std-ref">PointerArray_Replace</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga626270290333ea8c2138e1b644117d7d"><span class="std std-ref">PointerArray_ReplaceFirst</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7c9acf830a6edd11cb3fd6020cdbf023"><span class="std std-ref">PointerArray_ReplaceLast</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gadb60fa8e835b172afffd1a40985e2bc3"><span class="std std-ref">PointerArray_Reverse</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gada7af2da47b6bc7ac95836f16b33957c"><span class="std std-ref">PointerArray_Concat</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga0c922dc52674ab857dc6978999d140bb"><span class="std std-ref">PointerArray_Append</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaf798ccdcc9d54f016a2bccbe2e1b9a86"><span class="std std-ref">PointerArray_Prepend</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr2</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga62299aa394f20180da48eb665e8f6c78"><span class="std std-ref">PointerArray_Merge</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr2</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gade1e527e70bacc460729133c9d7c580f"><span class="std std-ref">PointerArray_Join</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">**</span> <span class="n">ptrarrs</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">sep</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gacc52f2feb0845d436d7c7b8d6f418dd0"><span class="std std-ref">PointerArray_Equals</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga5aa82f676127f6b638965d1e4d241d53"><span class="std std-ref">PointerArray_Equals_N</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga5666d3a7c01558a89cfb1e9f9391c4f9"><span class="std std-ref">PointerArray_Compare</span></a><span></span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr2</span><span class="p">)</span> <span class="n">compare</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga33f4ce367e82ecc785922086005e7e19"><span class="std std-ref">PointerArray_Compare_N</span></a><span></span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span>
+<span class="p">);</span>
+
+<span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga2f38609e9c079282f10aeccb397e107a"><span class="std std-ref">PointerArray_Find</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gae7be19544a238bb67614f6414b375475"><span class="std std-ref">PointerArray_Find_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gafa317b561c64ad4000d661ce382560c8"><span class="std std-ref">PointerArray_IndexOf</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga3a54ad543b1e8a13fab68b60f34ad0e3"><span class="std std-ref">PointerArray_IndexOf_F</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">match</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa0aa46ea17234892e94d90d359fd648b"><span class="std std-ref">PointerArray_Contains</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga8f3fba0bb89ed4ef586046a78be12eea"><span class="std std-ref">PointerArray_HasOnly</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaafd11e097542d3a8a4f08d276b616571"><span class="std std-ref">PointerArray_Iterate</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga943dbfbd2eb108c8f91ed6fdb01af92b"><span class="std std-ref">PointerArray_Iterate_I</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga706da3c83d441c2c4671496ee0ed373c"><span class="std std-ref">PointerArray_Map</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga960a8086cb5a919ccfa60fb326b6e735"><span class="std std-ref">PointerArray_Map_I</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">map</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga22dfa4fbfab232dcf004a97c4da9def2"><span class="std std-ref">PointerArray_Filter</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7a91852c8303fc69cc35240e110da8ea"><span class="std std-ref">PointerArray_Filter_I</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">filter</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga767d7dcad63055a70ab8818b6c859ce8"><span class="std std-ref">PointerArray_Reduce</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga4d8fa468d36d2b1688cf06f5d4b2f550"><span class="std std-ref">PointerArray_Reduce_I</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga340fa7193b6b78542522b814db58bdae"><span class="std std-ref">PointerArray_Fold</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+<span class="kt">void</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga68477419864f964dfe69f8538cb8c33b"><span class="std std-ref">PointerArray_Fold_I</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gae9b3f6905f992c594962127afe9e39f8"><span class="std std-ref">PointerArray_Length</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga142f59b6d25d59a9a5c07a0875282933"><span class="std std-ref">PointerArray_Count</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa87e9e76c8a5507eb361dba2ac6262d2"><span class="std std-ref">PointerArray_Has</span></a><span></span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga49f37b5529a35507c9e6a0ac73cf8971"><span></span><span class="n">c_ptrarradd</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga0012e6940999436f091526e3ba147d11"><span class="std std-ref">PointerArray_Add</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga128af4bdd9a613d6614f164927acd195"><span></span><span class="n">c_ptrarrappend</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga0c922dc52674ab857dc6978999d140bb"><span class="std std-ref">PointerArray_Append</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga0cad34e2fb595a09c1061db3a0913ce5"><span></span><span class="n">c_ptrarrcmp</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga5666d3a7c01558a89cfb1e9f9391c4f9"><span class="std std-ref">PointerArray_Compare</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaa524266424aed950461ff076801957b6"><span></span><span class="n">c_ptrarrconcat</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gada7af2da47b6bc7ac95836f16b33957c"><span class="std std-ref">PointerArray_Concat</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga236c19ea4eaa5e5e79ae5a74155bb514"><span></span><span class="n">c_ptrarrcontains</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa0aa46ea17234892e94d90d359fd648b"><span class="std std-ref">PointerArray_Contains</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaf11cfb55383f6c4d0aa2e07e2af79cfb"><span></span><span class="n">c_ptrarrcount</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga142f59b6d25d59a9a5c07a0875282933"><span class="std std-ref">PointerArray_Count</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga60ecf996e2107c7b76681cc8679bfdd8"><span></span><span class="n">c_ptrarrcpy</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga62e429acc221b8a4f5b29aba7b2dc169"><span class="std std-ref">PointerArray_Copy</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga9a8a845037e83ddd5628b5b19ee6994e"><span></span><span class="n">c_ptrarrcreate</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga34099db1f1826bcc4edbbf9142a6170c"><span class="std std-ref">PointerArray_Create</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga3deec829f2088901886774d610e5a3dc"><span></span><span class="n">c_ptrarrdel</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga80ebc93739a09314fcc6d8e47e40e0d6"><span class="std std-ref">PointerArray_Delete</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gae21171bb0fe60441adaad88b11c76f8f"><span></span><span class="n">c_ptrarrdelall</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gac314304605995d20e6474ab46eabd3b8"><span class="std std-ref">PointerArray_RemoveAll</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga6da1030ee226290f64c53d2ffee1080f"><span></span><span class="n">c_ptrarrdelat</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga88fa9967e0e5b27a13dc4a9b9625437b"><span class="std std-ref">PointerArray_RemoveAt</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga047e791694330303dc6232eaea61a561"><span></span><span class="n">c_ptrarrdelone</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gad2e888ad3e55967562ea1ba738632337"><span class="std std-ref">PointerArray_Remove</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga080ecf6ccb43d332aff844d0195debd7"><span></span><span class="n">c_ptrarrdup</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga08e23cae9c98715ec2b51eba1e6dc3d6"><span class="std std-ref">PointerArray_Duplicate</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga5d02f3796be7689ba0bd269f4bb27f02"><span></span><span class="n">c_ptrarrequ</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gacc52f2feb0845d436d7c7b8d6f418dd0"><span class="std std-ref">PointerArray_Equals</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gad14a26f9de8f356e95e53795cf67344d"><span></span><span class="n">c_ptrarrfdel</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gacb64c73646732a61a8bfafa8df5dd5d8"><span class="std std-ref">PointerArray_Delete_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga63c8b498878abf83f3222f1bff03df8e"><span></span><span class="n">c_ptrarrfdelall</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga81f8dc0133ed002e8c4291faff7a715c"><span class="std std-ref">PointerArray_RemoveAll_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga163be1b32a059384bc4d0691ebd97f33"><span></span><span class="n">c_ptrarrfdelat</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7a6bee24423b11992283f2cbd63f20a8"><span class="std std-ref">PointerArray_RemoveAt_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaac1621df63ea263b28923acb0151d590"><span></span><span class="n">c_ptrarrfdelone</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gab3084db2d375fd6827fb93916198ddc4"><span class="std std-ref">PointerArray_Remove_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gabb261fee561a5cc263680b9b04254fa3"><span></span><span class="n">c_ptrarrffind</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gae7be19544a238bb67614f6414b375475"><span class="std std-ref">PointerArray_Find_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga7cdf6f450ebb18b3ca5c8a44fcb04ef8"><span></span><span class="n">c_ptrarrffindi</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga3a54ad543b1e8a13fab68b60f34ad0e3"><span class="std std-ref">PointerArray_IndexOf_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga2e31bc6dceb2985ba36e71b7aa9ab14e"><span></span><span class="n">c_ptrarrffree</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga2fd4493ca132c6ee85b5797afd471f5a"><span class="std std-ref">PointerArray_Free_F</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga5c035721e66fa8744fd7b78014aa5518"><span></span><span class="n">c_ptrarrfilter</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga22dfa4fbfab232dcf004a97c4da9def2"><span class="std std-ref">PointerArray_Filter</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga05a9b3a73b0b27d31ba1813406a592b2"><span></span><span class="n">c_ptrarrfind</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga2f38609e9c079282f10aeccb397e107a"><span class="std std-ref">PointerArray_Find</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga461f0e4a43771566a682e00096d79006"><span></span><span class="n">c_ptrarrfindi</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gafa317b561c64ad4000d661ce382560c8"><span class="std std-ref">PointerArray_IndexOf</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga19dfd7ae3362f2a83a6b32254bd2c54c"><span></span><span class="n">c_ptrarrfold</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga340fa7193b6b78542522b814db58bdae"><span class="std std-ref">PointerArray_Fold</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga6cc6461072e7614b04e7b20d5b203ca0"><span></span><span class="n">c_ptrarrfree</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa79d52f01c16bd6582594e68f48d6a04"><span class="std std-ref">PointerArray_Free</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga20a3c40c1304b13a5525e65b7447656c"><span></span><span class="n">c_ptrarrhas</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaa87e9e76c8a5507eb361dba2ac6262d2"><span class="std std-ref">PointerArray_Has</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaaa5a5164b303cbf7bd7c25fd0c7d08b7"><span></span><span class="n">c_ptrarrhasonly</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga8f3fba0bb89ed4ef586046a78be12eea"><span class="std std-ref">PointerArray_HasOnly</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga62d2c83666e8068bf8a53c126834d17a"><span></span><span class="n">c_ptrarrifilter</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7a91852c8303fc69cc35240e110da8ea"><span class="std std-ref">PointerArray_Filter_I</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga57f52930d3b54d42096cd0886c142ca8"><span></span><span class="n">c_ptrarrifold</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga68477419864f964dfe69f8538cb8c33b"><span class="std std-ref">PointerArray_Fold_I</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga61500c2f8e950cdb49d07aa28a6651ae"><span></span><span class="n">c_ptrarriiter</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga943dbfbd2eb108c8f91ed6fdb01af92b"><span class="std std-ref">PointerArray_Iterate_I</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga214a90d5324e5809fc3aa372fe6906b7"><span></span><span class="n">c_ptrarrimap</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga960a8086cb5a919ccfa60fb326b6e735"><span class="std std-ref">PointerArray_Map_I</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gabe2b3751f5a654b5a23d238a204904fe"><span></span><span class="n">c_ptrarrinsert</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga32cc0ffa9c0fe5a554cebf930f2c2f76"><span class="std std-ref">PointerArray_Insert</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gae864e04eea603d1d96f34ab666f084f9"><span></span><span class="n">c_ptrarrireduce</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga4d8fa468d36d2b1688cf06f5d4b2f550"><span class="std std-ref">PointerArray_Reduce_I</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga3cca63daa746235ea98ae2efd48c559c"><span></span><span class="n">c_ptrarriter</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaafd11e097542d3a8a4f08d276b616571"><span class="std std-ref">PointerArray_Iterate</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga71eeef94f60e03284a87f306c7950ae1"><span></span><span class="n">c_ptrarrjoin</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gade1e527e70bacc460729133c9d7c580f"><span class="std std-ref">PointerArray_Join</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga4b07ecce987944d10ca49315451dfd92"><span></span><span class="n">c_ptrarrlen</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gae9b3f6905f992c594962127afe9e39f8"><span class="std std-ref">PointerArray_Length</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga96f95043cec659ce35038bd84842c59c"><span></span><span class="n">c_ptrarrmap</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga706da3c83d441c2c4671496ee0ed373c"><span class="std std-ref">PointerArray_Map</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaa72241db27e71ff6ec4e27a8434449e1"><span></span><span class="n">c_ptrarrmerge</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga62299aa394f20180da48eb665e8f6c78"><span class="std std-ref">PointerArray_Merge</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga8563668f431e07fea7d91eb55013ca25"><span></span><span class="n">c_ptrarrncmp</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga33f4ce367e82ecc785922086005e7e19"><span class="std std-ref">PointerArray_Compare_N</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga0162bc4689b546748fcd0fa79d0a647a"><span></span><span class="n">c_ptrarrnequ</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga5aa82f676127f6b638965d1e4d241d53"><span class="std std-ref">PointerArray_Equals_N</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga86fc50b3738806166059e488bfa78306"><span></span><span class="n">c_ptrarrnew</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gafbcf9fc17497d6add3720211aa28e0c8"><span class="std std-ref">PointerArray_New</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga7d13f134a20d3356dec272ae000d4ff5"><span></span><span class="n">c_ptrarrprepend</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gaf798ccdcc9d54f016a2bccbe2e1b9a86"><span class="std std-ref">PointerArray_Prepend</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaaee622cf060ca20750a0de190bf4c9a5"><span></span><span class="n">c_ptrarrreduce</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga767d7dcad63055a70ab8818b6c859ce8"><span class="std std-ref">PointerArray_Reduce</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga82e075746851e81bd20cd6a30036bd8a"><span></span><span class="n">c_ptrarrrep</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gab3f80d096d3982ab340e90815f2f55bf"><span class="std std-ref">PointerArray_Replace</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga0103eaf7681b0ff29c858b16f3638314"><span></span><span class="n">c_ptrarrrepfirst</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga626270290333ea8c2138e1b644117d7d"><span class="std std-ref">PointerArray_ReplaceFirst</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga816ebf817eb5b3bae6424cb73d21fc17"><span></span><span class="n">c_ptrarrreplast</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga7c9acf830a6edd11cb3fd6020cdbf023"><span class="std std-ref">PointerArray_ReplaceLast</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaecb75c3e1fd621b4f878e2780cf9c051"><span></span><span class="n">c_ptrarrrev</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gadb60fa8e835b172afffd1a40985e2bc3"><span class="std std-ref">PointerArray_Reverse</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1ga3b2991d4f35885b52ed11890fafbd6d2"><span></span><span class="n">c_ptrarrsub</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-pointerarray-1gad06f08d2e142c520be6f0ce92025c93d"><span class="std std-ref">PointerArray_Sub</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-pointerarray-1gaf9114c65534a2076ce08cfc82f4c6955"><span></span><span class="n">c_ptrarrwedge</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-pointerarray-1ga6e0bcc8b8a443f0c1a70e89a7047a298"><span class="std std-ref">PointerArray_Wedge</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-pointerarray"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines the common standard memory manipulation functions.</p>
+<section id="global-variables">
+<h3>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga62f3aa19ee4b1d7e93953b05d810d0bf"><span id="index-1"></span><a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">**</span> <span class="kt">p_ptrarray</span></pre>
+<p>Type definition for an array of pointers.</p>
+<p>This typedef is only provided for certain niche purposes, since it is typically not very good practice in C to hide pointers within <code class="docutils literal notranslate"><span class="pre">typedef</span></code> types.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gafbcf9fc17497d6add3720211aa28e0c8"><span id="index-2"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_New</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">value</span><span class="p">)</span></pre>
+<p>Allocates a new array which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> items, each set to the given <code class="docutils literal notranslate"><span class="pre">value</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items in this array</p></td>
+</tr>
+<tr class="row-even"><td><p>value</p></td>
+<td><p>The initial value to set for each of the <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array containing <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga34099db1f1826bcc4edbbf9142a6170c"><span id="index-3"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Create</span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">,</span> <span class="p">...)</span></pre>
+<p>Allocates a new array which consists of <code class="docutils literal notranslate"><span class="pre">n</span></code> items, initialized with variadic arguments.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items in this array (amount of variadic args)</p></td>
+</tr>
+<tr class="row-even"><td><p>…</p></td>
+<td><p>The variadic array of arguments: there must be <code class="docutils literal notranslate"><span class="pre">n</span></code> arguments, of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array containing <code class="docutils literal notranslate"><span class="pre">n</span></code> elements (the given <code class="docutils literal notranslate"><span class="pre">...</span></code> varargs)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga08e23cae9c98715ec2b51eba1e6dc3d6"><span id="index-4"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Duplicate</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">)</span></pre>
+<p>Returns a newly allocated copy of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to duplicate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated copy of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gad06f08d2e142c520be6f0ce92025c93d"><span id="index-5"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Sub</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from a subsection of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code> and taking <code class="docutils literal notranslate"><span class="pre">n</span></code> elements</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to copy a subsection from</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index in <code class="docutils literal notranslate"><span class="pre">array</span></code> at which to begin copying a subsection of items</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to copy - if <code class="docutils literal notranslate"><span class="pre">0</span></code>, then all items until the end are copied</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated subsection of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, starting at <code class="docutils literal notranslate"><span class="pre">index</span></code>, and copying at most <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given source <code class="docutils literal notranslate"><span class="pre">array</span></code>. Will return a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer, if <code class="docutils literal notranslate"><span class="pre">index</span></code> is too large or if <code class="docutils literal notranslate"><span class="pre">(index</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">&gt;</span> <span class="pre">array-&gt;length)</span></code>. If <code class="docutils literal notranslate"><span class="pre">index</span></code> is valid but the array is not large enough for <code class="docutils literal notranslate"><span class="pre">n</span></code>, then the resulting array will have fewer than <code class="docutils literal notranslate"><span class="pre">n</span></code> elements.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga62e429acc221b8a4f5b29aba7b2dc169"><span id="index-6"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Copy</span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">dest_i</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">src_i</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span>
+<span class="p">)</span></pre>
+<p>Copies over <code class="docutils literal notranslate"><span class="pre">n</span></code> items from the given <code class="docutils literal notranslate"><span class="pre">src</span></code> array into the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> array</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array to copy to</p></td>
+</tr>
+<tr class="row-even"><td><p>dest_i</p></td>
+<td><p>The index in the destination array at which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-odd"><td><p>src</p></td>
+<td><p>The source array which should be copied</p></td>
+</tr>
+<tr class="row-even"><td><p>src_i</p></td>
+<td><p>The index in the source array from which to copy <code class="docutils literal notranslate"><span class="pre">n</span></code> items</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of array items to copy from <code class="docutils literal notranslate"><span class="pre">src</span></code> to <code class="docutils literal notranslate"><span class="pre">dest</span></code> - if <code class="docutils literal notranslate"><span class="pre">0</span></code>, all items until the end if <code class="docutils literal notranslate"><span class="pre">src</span></code> are copied</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The given <code class="docutils literal notranslate"><span class="pre">dest</span></code> pointer, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred. The <code class="docutils literal notranslate"><span class="pre">dest</span></code> array is modified in-place.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gaa79d52f01c16bd6582594e68f48d6a04"><span id="index-7"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Free</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">)</span></pre>
+<p>Deallocates the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted - its <code class="docutils literal notranslate"><span class="pre">length</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga2fd4493ca132c6ee85b5797afd471f5a"><span id="index-8"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Free_F</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deallocates the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, calling the given <code class="docutils literal notranslate"><span class="pre">delete</span></code> function for each item</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted - its <code class="docutils literal notranslate"><span class="pre">length</span></code> will be set to <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga80ebc93739a09314fcc6d8e47e40e0d6"><span id="index-9"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Delete</span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">ptrarr</span><span class="p">)</span></pre>
+<p>Deletes the array inside the given address <code class="docutils literal notranslate"><span class="pre">ptrarr</span></code> (frees and sets to NULL)</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The address of the array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gacb64c73646732a61a8bfafa8df5dd5d8"><span id="index-10"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Delete_F</span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Deletes the array inside the given address <code class="docutils literal notranslate"><span class="pre">ptrarr</span></code> (frees and sets to NULL), calling the given <code class="docutils literal notranslate"><span class="pre">delete</span></code> function for each item</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The address of the array whose <code class="docutils literal notranslate"><span class="pre">items</span></code> buffer should be deleted.</p></td>
+</tr>
+<tr class="row-even"><td><p>delete</p></td>
+<td><p>the function which should be executed for each item before deletion.</p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga0012e6940999436f091526e3ba147d11"><span id="index-11"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Add</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Appends the given item <code class="docutils literal notranslate"><span class="pre">item</span></code> to the end of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">dest</span></code> is NULL, it’ll append <code class="docutils literal notranslate"><span class="pre">item</span></code> at index 0, creating a 1-item array.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array to append an item to</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to add to the given <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new pointer for the given <code class="docutils literal notranslate"><span class="pre">array</span></code>. The array is modified in-place. This return will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga32cc0ffa9c0fe5a554cebf930f2c2f76"><span id="index-12"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Insert</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts the given <code class="docutils literal notranslate"><span class="pre">item</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the ptrarr, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array in which to insert a new item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The array item to insert into the given <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td><p>The index at which to insert the new array item</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new beginning pointer for the given <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The array is modified in-place. The return value will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, and the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga6e0bcc8b8a443f0c1a70e89a7047a298"><span id="index-13"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Wedge</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">src</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Inserts all items from <code class="docutils literal notranslate"><span class="pre">src</span></code> at the given <code class="docutils literal notranslate"><span class="pre">index</span></code> of the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<p>If <code class="docutils literal notranslate"><span class="pre">index</span></code> is greater than the length of the ptrarr, then nothing is done and <code class="docutils literal notranslate"><span class="pre">NULL</span></code> is returned.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The destination array in which to insert new items</p></td>
+</tr>
+<tr class="row-even"><td><p>src</p></td>
+<td><p>The source ptrarr, whose items will be inserted into <code class="docutils literal notranslate"><span class="pre">dest</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>index</p></td>
+<td><p>The index at which to insert the new array items</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new beginning pointer for the given array <code class="docutils literal notranslate"><span class="pre">dest</span></code>. The array is modified in-place. The return value will be the same as the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> argument, unless <code class="docutils literal notranslate"><span class="pre">dest</span> <span class="pre">==</span> <span class="pre">NULL</span></code>, or the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga88fa9967e0e5b27a13dc4a9b9625437b"><span id="index-14"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_RemoveAt</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">)</span></pre>
+<p>Removes a single item from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, at the given <code class="docutils literal notranslate"><span class="pre">index</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>index</p></td>
+<td><p>The index of the item to delete from the array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The array given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless the <code class="docutils literal notranslate"><span class="pre">index</span></code> given is zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga7a6bee24423b11992283f2cbd63f20a8"><span id="index-15"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_RemoveAt_F</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">index</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like Array_RemoveAt(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gad2e888ad3e55967562ea1ba738632337"><span id="index-16"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Remove</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Removes the first item from the given <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to remove an item</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value which is to be removed from <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">array</span></code> given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless the matched item is at position zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gab3084db2d375fd6827fb93916198ddc4"><span id="index-17"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Remove_F</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like Array_Remove(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gac314304605995d20e6474ab46eabd3b8"><span id="index-18"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_RemoveAll</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Removes any items which are equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code> from the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to remove items</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item value for which any occurrences are to be removed from <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The array given as argument. The array is edited in-place, no allocation is performed. This pointer will typically be equal to <code class="docutils literal notranslate"><span class="pre">array</span></code>, unless a matched item is at position zero.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga81f8dc0133ed002e8c4291faff7a715c"><span id="index-19"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_RemoveAll_F</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="p">)</span> <span class="k">delete</span><span class="p">)</span></pre>
+<p>Like Array_RemoveAll(), but you can supply a custom <code class="docutils literal notranslate"><span class="pre">delete</span></code> function</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gab3f80d096d3982ab340e90815f2f55bf"><span id="index-20"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Replace</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where any occurence of <code class="docutils literal notranslate"><span class="pre">old</span></code> is replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">array</span></code>, in which in any item equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga626270290333ea8c2138e1b644117d7d"><span id="index-21"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_ReplaceFirst</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where the first <code class="docutils literal notranslate"><span class="pre">n</span></code> occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating forwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga7c9acf830a6edd11cb3fd6020cdbf023"><span id="index-22"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_ReplaceLast</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">old</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="k">new</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, where the last <code class="docutils literal notranslate"><span class="pre">n</span></code> occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> are replaced with <code class="docutils literal notranslate"><span class="pre">new</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to use as a basis for copy and item replacement</p></td>
+</tr>
+<tr class="row-even"><td><p>old</p></td>
+<td><p>The item to be replaced</p></td>
+</tr>
+<tr class="row-odd"><td><p>new</p></td>
+<td><p>The replacement for the resulting array</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of occurences of <code class="docutils literal notranslate"><span class="pre">old</span></code> to replace</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">strarr</span></code>, in which in the first (iterating backwards) <code class="docutils literal notranslate"><span class="pre">n</span></code> encountered items which are equal to <code class="docutils literal notranslate"><span class="pre">old</span></code> will instead have a value of <code class="docutils literal notranslate"><span class="pre">new</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gadb60fa8e835b172afffd1a40985e2bc3"><span id="index-23"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Reverse</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">)</span></pre>
+<p>Creates a new array from the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, with each item’s position being inverted</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to duplicate and invert</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly created array copied from <code class="docutils literal notranslate"><span class="pre">array</span></code>, in which all items’ positions have been reversed. This means that the last item will become the first ptr, and so on.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gada7af2da47b6bc7ac95836f16b33957c"><span id="index-24"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Concat</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated ptrarr, created by concatenating <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga0c922dc52674ab857dc6978999d140bb"><span id="index-25"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Append</span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated ptrarr, created by concatenating <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>. The <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> argument will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gaf798ccdcc9d54f016a2bccbe2e1b9a86"><span id="index-26"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Prepend</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>, and deletes <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated ptrarr, created by concatenating <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>. The <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code> argument will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga62299aa394f20180da48eb665e8f6c78"><span id="index-27"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Merge</span><span class="p">(</span><span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">***</span> <span class="n">a_ptrarr2</span><span class="p">)</span></pre>
+<p>Creates a new array which is the concatenation of <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>, and deletes both arrays</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The left-hand array to concatenate</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The right-hand array to concatenate</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated ptrarr, created by concatenating <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code>. Both <code class="docutils literal notranslate"><span class="pre">ptrarr1</span></code> and <code class="docutils literal notranslate"><span class="pre">ptrarr2</span></code> will be deleted.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gade1e527e70bacc460729133c9d7c580f"><span id="index-28"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Join</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">**</span> <span class="n">ptrarrs</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">sep</span><span class="p">)</span></pre>
+<p>Concatenates a set of arrays together, adding the given set of items <code class="docutils literal notranslate"><span class="pre">sep</span></code> between each</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarrs</p></td>
+<td><p>The set of arrays which should be joined together</p></td>
+</tr>
+<tr class="row-even"><td><p>sep</p></td>
+<td><p>The separator array, to be added in between each array of <code class="docutils literal notranslate"><span class="pre">ptrarrs</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A newly allocated array, which is the concatenation of all arrays in <code class="docutils literal notranslate"><span class="pre">ptrarrs</span></code>, with the items of <code class="docutils literal notranslate"><span class="pre">sep</span></code> added between each array.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gacc52f2feb0845d436d7c7b8d6f418dd0"><span id="index-29"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">PointerArray_Equals</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">)</span></pre>
+<p>Checks if two arrays have the same content</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The first array to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The second array to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if each item of both arrays are equal, and the arrays have the same amount of items. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga5aa82f676127f6b638965d1e4d241d53"><span id="index-30"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">PointerArray_Equals_N</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Checks if two arrays have the same content, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The first array to check for equality</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The second array to check for equality</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the first <code class="docutils literal notranslate"><span class="pre">n</span></code> items of both arrays are equal. If both pointers given are identical, it simply returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> without even checking. Otherwise, <code class="docutils literal notranslate"><span class="pre">FALSE</span></code> is returned.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga5666d3a7c01558a89cfb1e9f9391c4f9"><span id="index-31"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">PointerArray_Compare</span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr2</span><span class="p">)</span> <span class="n">compare</span>
+<span class="p">)</span></pre>
+<p>Compares two arrays using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The first array to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The second array to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga33f4ce367e82ecc785922086005e7e19"><span id="index-32"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">PointerArray_Compare_N</span><span class="p">(</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr1</span><span class="p">,</span>
+    <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr2</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr1</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr2</span><span class="p">)</span> <span class="n">compare</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">n</span>
+<span class="p">)</span></pre>
+<p>Compares two arrays using the given <code class="docutils literal notranslate"><span class="pre">compare</span></code> function, for the <code class="docutils literal notranslate"><span class="pre">n</span></code> first items</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr1</p></td>
+<td><p>The first array to compare</p></td>
+</tr>
+<tr class="row-even"><td><p>ptrarr2</p></td>
+<td><p>The second array to compare</p></td>
+</tr>
+<tr class="row-odd"><td><p>compare</p></td>
+<td><p>The function used to determine whether items are considered “equal” or not</p></td>
+</tr>
+<tr class="row-even"><td><p>n</p></td>
+<td><p>The amount of items to check for equality</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first non-zero value returned by the <code class="docutils literal notranslate"><span class="pre">compare</span></code> function given.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga2f38609e9c079282f10aeccb397e107a"><span id="index-33"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">PointerArray_Find</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gae7be19544a238bb67614f6414b375475"><span id="index-34"></span><span></span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">PointerArray_Find_F</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
+<p>Returns the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> for which the given <code class="docutils literal notranslate"><span class="pre">match</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>. Otherwise, returns <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gafa317b561c64ad4000d661ce382560c8"><span id="index-35"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">PointerArray_IndexOf</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>the linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>the <code class="docutils literal notranslate"><span class="pre">item</span></code> pointer to match against</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga3a54ad543b1e8a13fab68b60f34ad0e3"><span id="index-36"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <span class="n">PointerArray_IndexOf_F</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">match</span><span class="p">)</span></pre>
+<p>Returns the index of the first encountered item in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> matching the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>the linked array to look through</p></td>
+</tr>
+<tr class="row-even"><td><p>match</p></td>
+<td><p>The function used to compare items to the target value</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The first encountered item of the given linked <code class="docutils literal notranslate"><span class="pre">array</span></code> which is equal to <code class="docutils literal notranslate"><span class="pre">item</span></code>, or <code class="docutils literal notranslate"><span class="pre">-1</span></code> if no such item was found.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gaa0aa46ea17234892e94d90d359fd648b"><span id="index-37"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">PointerArray_Contains</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> contains the given <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to check for an occurence of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to check for</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> does contain an item which is equal to the given <code class="docutils literal notranslate"><span class="pre">item</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga8f3fba0bb89ed4ef586046a78be12eea"><span id="index-38"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">PointerArray_HasOnly</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> only contains items which are present in the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> array</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array which which should only contain items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The array of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> only contains items which are equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gaafd11e097542d3a8a4f08d276b616571"><span id="index-39"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Iterate</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Iterates upon each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>, applying the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each of its items.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga943dbfbd2eb108c8f91ed6fdb01af92b"><span id="index-40"></span><span></span><span class="kt">void</span> <span class="n">PointerArray_Iterate_I</span><span class="p">(</span><span class="kt">void</span><span class="o">**</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like Array_Iterate(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga706da3c83d441c2c4671496ee0ed373c"><span id="index-41"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Map</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
+<p>Creates a new array which is the result of applying the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>map</p></td>
+<td><p>The function to call for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A new ptrarr, created by storing the return values of each call to the given <code class="docutils literal notranslate"><span class="pre">map</span></code> function.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga960a8086cb5a919ccfa60fb326b6e735"><span id="index-42"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Map_I</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">map</span><span class="p">)</span></pre>
+<p>Like Array_Map(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga22dfa4fbfab232dcf004a97c4da9def2"><span id="index-43"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Filter</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
+<p>Creates a new array which is a subset of <code class="docutils literal notranslate"><span class="pre">array</span></code>, with only the items where the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array whose items should be iterated upon</p></td>
+</tr>
+<tr class="row-even"><td><p>filter</p></td>
+<td><p>The function to call to check if an item of <code class="docutils literal notranslate"><span class="pre">array</span></code> should be added to the result</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A new ptrarr, created by only keeping the values of the given <code class="docutils literal notranslate"><span class="pre">array</span></code> for which the corresponding call to the <code class="docutils literal notranslate"><span class="pre">filter</span></code> function returned <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga7a91852c8303fc69cc35240e110da8ea"><span id="index-44"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">PointerArray_Filter_I</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">filter</span><span class="p">)</span></pre>
+<p>Like Array_Filter(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga767d7dcad63055a70ab8818b6c859ce8"><span id="index-45"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PointerArray_Reduce</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p>The difference between Array_Reduce() and Array_Fold() is that with this function, the initial value which will be passed as the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter is a <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga4d8fa468d36d2b1688cf06f5d4b2f550"><span id="index-46"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PointerArray_Reduce_I</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">)</span></pre>
+<p>Like Array_Reduce(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga340fa7193b6b78542522b814db58bdae"><span id="index-47"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PointerArray_Fold</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Creates a single value by executing the given function <code class="docutils literal notranslate"><span class="pre">f</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p>The difference between Array_Fold() and Array_Reduce() is that with this function, you can supply an initial value for the <code class="docutils literal notranslate"><span class="pre">acc</span></code> parameter, which will be passed to the first call of <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array to iterate upon</p></td>
+</tr>
+<tr class="row-even"><td><p>f</p></td>
+<td><p>The user-specified function to execute for each item of <code class="docutils literal notranslate"><span class="pre">array</span></code>. It takes the previous return value <code class="docutils literal notranslate"><span class="pre">acc</span></code> as argument, and its return value may be of any type</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>A single value, of any type, which is created by calling <code class="docutils literal notranslate"><span class="pre">f()</span></code> for each item of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga68477419864f964dfe69f8538cb8c33b"><span id="index-48"></span><span></span><span class="kt">void</span><span class="o">*</span> <span class="n">PointerArray_Fold_I</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">void</span> <span class="k">const</span><span class="o">*</span><span class="n">ptr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="n">acc</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaec6b74e35c2521f4da8cf8a66487dd7c"><span class="std std-ref">index</span></a><span></span><span class="p">)</span> <span class="n">f</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">initial</span><span class="p">)</span></pre>
+<p>Like Array_Reduce(), but the user-supplied function receives the current index</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gae9b3f6905f992c594962127afe9e39f8"><span id="index-49"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">PointerArray_Length</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">)</span></pre>
+<p>Gets the amount of strings contained in the given pointer array <code class="docutils literal notranslate"><span class="pre">ptrarr</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The pointer array whose length shall be counted</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The amount of strings in the given pointer array <code class="docutils literal notranslate"><span class="pre">ptrarr</span></code> (before the first <code class="docutils literal notranslate"><span class="pre">NULL</span></code> pointer).</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1ga142f59b6d25d59a9a5c07a0875282933"><span id="index-50"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga24081be54642dc3413a6201c070cf224"><span class="std std-ref">t_uint</span></a><span></span> <span class="n">PointerArray_Count</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">)</span></pre>
+<p>Gets the amount of occurences of the given <code class="docutils literal notranslate"><span class="pre">item</span></code> in the given <code class="docutils literal notranslate"><span class="pre">array</span></code></p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to check for occurences of <code class="docutils literal notranslate"><span class="pre">item</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>item</p></td>
+<td><p>The item to match with</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The total amount of items in the given <code class="docutils literal notranslate"><span class="pre">array</span></code> which are equal to <code class="docutils literal notranslate"><span class="pre">item</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-pointerarray-1gaa87e9e76c8a5507eb361dba2ac6262d2"><span id="index-51"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">PointerArray_Has</span><span class="p">(</span><span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">ptrarr</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">target</span><span class="p">)</span></pre>
+<p>Checks whether the given <code class="docutils literal notranslate"><span class="pre">array</span></code> contains any item from the given <code class="docutils literal notranslate"><span class="pre">targets</span></code> array</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ptrarr</p></td>
+<td><p>The array in which to check for an occurence of items from <code class="docutils literal notranslate"><span class="pre">target</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>targets</p></td>
+<td><p>The array of items which are to be matched with <code class="docutils literal notranslate"><span class="pre">array</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">TRUE</span></code> if the given <code class="docutils literal notranslate"><span class="pre">array</span></code> does contain an item which is equal to any item in <code class="docutils literal notranslate"><span class="pre">targets</span></code>, otherwise returns <code class="docutils literal notranslate"><span class="pre">FALSE</span></code>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_pointer.html" class="btn btn-neutral float-left" title="libccc/pointer.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_string.html" class="btn btn-neutral float-right" title="libccc/string.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

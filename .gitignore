@@ -5,8 +5,17 @@ bin/
 dist/
 lint/
 ref/
-doc/*/*
-doc/html/.doctrees
+doc/_doxyrest/
+docs/hdr/
+docs/man/
+docs/rtf/
+docs/pdf/
+docs/xml/
+docs/rst/
+docs/latex/
+docs/docbook/
+docs/html/.doctrees
+log/coverage/
 log/**/*.log
 log/**/*.txt
 

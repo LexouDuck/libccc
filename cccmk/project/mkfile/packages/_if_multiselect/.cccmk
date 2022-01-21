@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+prompt_message="Select which packages you like to include as dependencies, among the common ones:"
+
+# TODO logic to show descriptions for each script

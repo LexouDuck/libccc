@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-T*	CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item)
+T*	Array_Find(T)(s_array(T) const* array, T item)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
@@ -20,7 +20,7 @@ T*	CONCAT(Array_Find,T_NAME)(s_array_T const* array, T item)
 
 
 _GENERIC()
-T*	CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
+T*	Array_Find_F(T)(s_array(T) const* array, t_bool (*match)(T item))
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
@@ -34,7 +34,7 @@ T*	CONCAT(Array_Find_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
 
 
 _GENERIC()
-t_sint	CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item)
+t_sint	Array_IndexOf(T)(s_array(T) const* array, T item)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (ERROR);)
@@ -48,7 +48,7 @@ t_sint	CONCAT(Array_IndexOf,T_NAME)(s_array_T const* array, T item)
 
 
 _GENERIC()
-t_sint	CONCAT(Array_IndexOf_F,T_NAME)(s_array_T const* array, t_bool (*match)(T item))
+t_sint	Array_IndexOf_F(T)(s_array(T) const* array, t_bool (*match)(T item))
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (ERROR);)

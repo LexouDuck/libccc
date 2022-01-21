@@ -37,13 +37,13 @@ t_char*	U##BITS##_ToString_Bin(t_u##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRBIN(8)
 DEFINEFUNC_UINT_TOSTRBIN(16)
 DEFINEFUNC_UINT_TOSTRBIN(32)
 DEFINEFUNC_UINT_TOSTRBIN(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_TOSTRBIN(128)
 #endif
 
@@ -82,12 +82,12 @@ t_char*	S##BITS##_ToString_Bin(t_s##BITS number, t_bool prefix)			\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRBIN(8)
 DEFINEFUNC_SINT_TOSTRBIN(16)
 DEFINEFUNC_SINT_TOSTRBIN(32)
 DEFINEFUNC_SINT_TOSTRBIN(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_TOSTRBIN(128)
 #endif

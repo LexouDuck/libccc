@@ -1,7 +1,7 @@
 
 #include "libccc/fixed.h"
 #include "libccc/string.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -81,7 +81,7 @@ DEFINEFUNC_FIXED_FROM(			64)
 DEFINEFUNC_FIXED_INTEGERPART(	64)
 DEFINEFUNC_FIXED_FRACTIONPART(	64)
 
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_FIXED_FROMINT(		128)
 DEFINEFUNC_FIXED_FROMFIXED(		128)
 DEFINEFUNC_FIXED_FROMFLOAT(		128)

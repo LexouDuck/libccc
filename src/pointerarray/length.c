@@ -5,13 +5,13 @@
 
 
 
-t_u32	PointerArray_Length(void const** a_ptrarr)
+t_uint	PointerArray_Length(void const* const* ptrarr)
 {
-	t_u32	i;
+	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (a_ptrarr == NULL), return (0);)
+	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (0);)
 	i = 0;
-	while (((void**)a_ptrarr)[i])
+	while (ptrarr[i])
 	{
 		++i;
 	}

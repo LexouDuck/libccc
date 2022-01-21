@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>union kvt::dynamic &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="struct kvt_parse" href="struct_kvt_parse.html" />
+    <link rel="prev" title="struct kvt" href="struct_kvt.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="union kvt::dynamic">
+	<meta property="og:description" content="union kvt::dynamic">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - union kvt::dynamic">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="union_kvt_dynamic.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="struct_kvt.html">struct kvt</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">union kvt::dynamic</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="struct_kvt.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="struct_kvt.html#detailed-documentation">Detailed Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="struct_kvt_parse.html">struct kvt_parse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="struct_kvt_print.html">struct kvt_print</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_libccc_encode_common.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="group_libccc_encode_common.html#detailed-documentation">Detailed Documentation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="group_libccc_encode_common.html">libccc/encode/common.h</a> &raquo;</li>
+          <li><a href="struct_kvt.html">struct kvt</a> &raquo;</li>
+      <li>union kvt::dynamic</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="union-kvt-dynamic">
+<span id="doxid-unionkvt-1-1dynamic"></span><span id="index-0"></span><h1>union kvt::dynamic<a class="headerlink" href="#union-kvt-dynamic" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="cp">#include</span> <span class="cpf">&lt;common.h&gt;</span><span class="cp"></span>
+
+<span class="kd">union</span> <span class="n">dynamic</span>
+<span class="p">{</span>
+    <span class="c1">// fields</span>
+
+    <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-unionkvt-1-1dynamic-1a419f0e4669e47f0c73e552ba5a1e4c7d"><span class="std std-ref">boolean</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <a class="reference internal" href="#doxid-unionkvt-1-1dynamic-1a9d82e22638f13a8114895774bd173842"><span class="std std-ref">integer</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span class="std std-ref">t_f64</span></a><span></span> <a class="reference internal" href="#doxid-unionkvt-1-1dynamic-1abb11550405e5ac987c1e37475f6d747d"><span class="std std-ref">number</span></a><span></span><span class="p">;</span>
+    <span class="kt">t_utf8</span><span class="o">*</span> <a class="reference internal" href="#doxid-unionkvt-1-1dynamic-1a4ce877abfa44c26523da5392537c7ee9"><span class="std std-ref">string</span></a><span></span><span class="p">;</span>
+    <span class="kd">struct</span> <a class="reference internal" href="struct_kvt.html#doxid-structkvt"><span class="std std-ref">kvt</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-unionkvt-1-1dynamic-1ab499fb8543527d661cc0abd6f1942699"><span class="std std-ref">child</span></a><span></span><span class="p">;</span>
+<span class="p">};</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-unionkvt-1-1dynamic"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<section id="fields">
+<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionkvt-1-1dynamic-1a419f0e4669e47f0c73e552ba5a1e4c7d"><span id="index-1"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">boolean</span></pre>
+<p><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga6dc71632afd5a548dfda3a7c3b80fece"><span class="std std-ref">DYNAMICTYPE_BOOLEAN</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionkvt-1-1dynamic-1a9d82e22638f13a8114895774bd173842"><span id="index-2"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">integer</span></pre>
+<p><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1gad05bc3438d208190a0f6b562870054b4"><span class="std std-ref">DYNAMICTYPE_INTEGER</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionkvt-1-1dynamic-1abb11550405e5ac987c1e37475f6d747d"><span id="index-3"></span><a class="reference internal" href="group_libccc_float.html#doxid-group-libccc-float-1gad103913585e225d474d7bd173154f4e8"><span class="std std-ref">t_f64</span></a><span></span> <span class="n">number</span></pre>
+<p><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga6655691b2b2ba8dcdac30ccde95e70bf"><span class="std std-ref">DYNAMICTYPE_FLOAT</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionkvt-1-1dynamic-1a4ce877abfa44c26523da5392537c7ee9"><span id="index-4"></span><span></span><span class="kt">t_utf8</span><span class="o">*</span> <span class="n">string</span></pre>
+<p><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga01432bc480fa98f2761ac881c64c0f57"><span class="std std-ref">DYNAMICTYPE_STRING</span></a> or <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga3f6b80eb223376c650c02a53e9476339"><span class="std std-ref">DYNAMICTYPE_RAW</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionkvt-1-1dynamic-1ab499fb8543527d661cc0abd6f1942699"><span id="index-5"></span><span></span><span class="kd">struct</span> <a class="reference internal" href="struct_kvt.html#doxid-structkvt"><span class="std std-ref">kvt</span></a><span></span><span class="o">*</span> <span class="n">child</span></pre>
+<p><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga076664a7415297970df0cd6b7dfbfd0e"><span class="std std-ref">DYNAMICTYPE_ARRAY</span></a> or <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga5161e279ebaad2a100e734db219cf832"><span class="std std-ref">DYNAMICTYPE_OBJECT</span></a></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="struct_kvt.html" class="btn btn-neutral float-left" title="struct kvt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="struct_kvt_parse.html" class="btn btn-neutral float-right" title="struct kvt_parse" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

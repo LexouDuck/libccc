@@ -2,7 +2,7 @@
 #include "libccc/fixed.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include "test.h"
 
@@ -120,32 +120,30 @@ void	test_##TYPE##tostr(void)																												\
 
 #ifndef c_q16tostr
 void test_q16tostr(void)	{}
+#warning "q16tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FIXED_TO_STR(q16, Q16)
 #endif
 
 #ifndef c_q32tostr
 void test_q32tostr(void)	{}
+#warning "q32tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FIXED_TO_STR(q32, Q32)
 #endif
 
 #ifndef c_q64tostr
 void test_q64tostr(void)	{}
+#warning "q64tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FIXED_TO_STR(q64, Q64)
 #endif
 
-#ifndef c_q128tostr
+#if !defined(c_q128tostr) || !defined(__int128)
 void test_q128tostr(void)	{}
+#warning "q128tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FIXED_TO_STR(q128, Q128)
-#endif
-
-#ifndef c_fixedtostr
-void test_fixedtostr(void)	{}
-#else
-DEFINETEST_FIXED_TO_STR(fixed, Fixed)
 #endif
 
 
@@ -181,11 +179,11 @@ int		testsuite_fixed(void)
 
 	print_nonstd();
 
+//	test_qtostr();
 	test_q16tostr();
 	test_q32tostr();
 	test_q64tostr();
 	test_q128tostr();
-	test_fixedtostr();
 
 	// TODO
 

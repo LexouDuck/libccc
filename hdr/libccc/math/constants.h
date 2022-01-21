@@ -1,23 +1,25 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/math/constants.h                  |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/math/constants.h                  |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MATH_CONSTANTS_H
 #define __LIBCCC_MATH_CONSTANTS_H
-/*!@group{libccc_math_constants}
-** @{
+/*!@group{libccc_math_constants,55,libccc/math/constants.h}
+**
 **	This header defines the common standard math constants and macro defines.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math}
 **
-**	@file
+**	This file holds various relevant mathematical constants.
+**	Many of these constants are used to speed up the fast-approximate versions
+**	of some fundamental algorithms and math functions.
 */
 
 /*
@@ -34,12 +36,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
-*/
-
-/*
-**	Various relevant mathematical constants.
-**	Many of these constants are used to speed up the fast-approximate versions
-**	of some fundamental algorithms and math functions.
 */
 
 //! Alias for #DIV_PI_4
@@ -218,6 +214,6 @@ HEADER_CPP
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

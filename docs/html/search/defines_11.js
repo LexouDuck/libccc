@@ -1,0 +1,28 @@
+var searchData=
+[
+  ['q128_0',['Q128',['../fixed_8h.html#aef0149004e36857bfcecadbabc22d7ac',1,'fixed.h']]],
+  ['q128_5ferror_1',['Q128_ERROR',['../fixed_8h.html#a637c1579ed7743b929c968b5b9e86bc4',1,'fixed.h']]],
+  ['q128_5fmax_2',['Q128_MAX',['../fixed_8h.html#ad1fafa3ca67d26318255346bf73d6f94',1,'fixed.h']]],
+  ['q128_5fmaxint_3',['Q128_MAXINT',['../fixed_8h.html#a5dbd61739c75a6661ba047fa2864f924',1,'fixed.h']]],
+  ['q128_5fmin_4',['Q128_MIN',['../fixed_8h.html#a536ae67bddaf22d210b559b0fd9082c6',1,'fixed.h']]],
+  ['q128_5fminint_5',['Q128_MININT',['../fixed_8h.html#ada48478b74725d9ae45343b49de1ec5b',1,'fixed.h']]],
+  ['q16_6',['Q16',['../fixed_8h.html#add3b89b2cb036e3fc132c81d6b60adf5',1,'fixed.h']]],
+  ['q16_5ferror_7',['Q16_ERROR',['../fixed_8h.html#ad06c88bdfe1b3cf5dd9786835afaa1d0',1,'fixed.h']]],
+  ['q16_5fmax_8',['Q16_MAX',['../fixed_8h.html#a6c4af1bab0609a00efbe429151fc9b56',1,'fixed.h']]],
+  ['q16_5fmaxint_9',['Q16_MAXINT',['../fixed_8h.html#acf49ad4cb3e835b0c6502be35adb8535',1,'fixed.h']]],
+  ['q16_5fmin_10',['Q16_MIN',['../fixed_8h.html#a699adbcd92740208a22eb47a7359c430',1,'fixed.h']]],
+  ['q16_5fminint_11',['Q16_MININT',['../fixed_8h.html#a86cd64a90b68b810b2b0ad2678e8e94e',1,'fixed.h']]],
+  ['q32_12',['Q32',['../fixed_8h.html#a79e207d3520cebac2378a6cc22dea566',1,'fixed.h']]],
+  ['q32_5ferror_13',['Q32_ERROR',['../fixed_8h.html#ae55de3b5c1919be930a39e5f9f67370d',1,'fixed.h']]],
+  ['q32_5fmax_14',['Q32_MAX',['../fixed_8h.html#a13a5f2ed63e32f74b12177db7198e655',1,'fixed.h']]],
+  ['q32_5fmaxint_15',['Q32_MAXINT',['../fixed_8h.html#a82f55ab5e07f7d4fe14643c5bd9d1207',1,'fixed.h']]],
+  ['q32_5fmin_16',['Q32_MIN',['../fixed_8h.html#a5211bfa3419b776cebd863f87ff50548',1,'fixed.h']]],
+  ['q32_5fminint_17',['Q32_MININT',['../fixed_8h.html#af9a9f8997ec84586228eb26f0df9167d',1,'fixed.h']]],
+  ['q64_18',['Q64',['../fixed_8h.html#ac47499f3b166ac1c2f4484c29e62aa1f',1,'fixed.h']]],
+  ['q64_5ferror_19',['Q64_ERROR',['../fixed_8h.html#aa8edba894fe7043722317434ced07e72',1,'fixed.h']]],
+  ['q64_5fmax_20',['Q64_MAX',['../fixed_8h.html#a0a493c60855f5aa8dfd9e8123f69cb2d',1,'fixed.h']]],
+  ['q64_5fmaxint_21',['Q64_MAXINT',['../fixed_8h.html#a9cf48a22a54bf951309297cd8e403f9d',1,'fixed.h']]],
+  ['q64_5fmin_22',['Q64_MIN',['../fixed_8h.html#a5c8df7226a2374e77095f37586fe7bc1',1,'fixed.h']]],
+  ['q64_5fminint_23',['Q64_MININT',['../fixed_8h.html#a72d7cbc01f504832c949c3634dacfc97',1,'fixed.h']]],
+  ['quarter_5fpi_24',['QUARTER_PI',['../constants_8h.html#a5727947dfa0f901d1415a6e7233bc61b',1,'constants.h']]]
+];

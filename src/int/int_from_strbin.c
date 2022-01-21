@@ -48,13 +48,13 @@ inline t_u##BITS	U##BITS##_FromString_Bin(t_char const* str)						\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Bin(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_UINT_FROMSTRBIN(8)
 DEFINEFUNC_UINT_FROMSTRBIN(16)
 DEFINEFUNC_UINT_FROMSTRBIN(32)
 DEFINEFUNC_UINT_FROMSTRBIN(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_FROMSTRBIN(128)
 #endif
 
@@ -110,12 +110,12 @@ inline t_s##BITS	S##BITS##_FromString_Bin(t_char const* str)						\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Bin(&result, str, 0);											\
 	return (result);																\
-}																					\
+}
 
 DEFINEFUNC_SINT_FROMSTRBIN(8)
 DEFINEFUNC_SINT_FROMSTRBIN(16)
 DEFINEFUNC_SINT_FROMSTRBIN(32)
 DEFINEFUNC_SINT_FROMSTRBIN(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_FROMSTRBIN(128)
 #endif

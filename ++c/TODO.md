@@ -48,16 +48,36 @@ address = @value; // ++C
 
 
 
-- binary number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
+- binary (base 2) number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
 ```c
-value = 0b110;	// pure C (GCC extension only)
-value = 0b110;	// ++C
+value = 0b11010;	// pure C (GCC extension only)
+value = 0b11010;	// ++C
 ```
-
-- octal number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
+- seximal (base 6) number literals: with the new prefix `0s`
+```c
+// this is not possible in pure C
+value = 0s12345;	// ++C
+```
+- octal (base 8) number literals: in addition to leading zero notation, a `0o` literal number prefix is also accepted
 ```c
 value = 0644;	// pure C
 value = 0o644;	// ++C
+```
+- decimal (base 10) number literals: you can place underscores to space out numbers (in any base). For decimal numbers in particular, this can be used to mimic a numeric literal's `0?` prefix:
+```c
+value = 123456789;	// pure C
+value = 0_123456789;	// ++C
+// as a special case, if the leading 0 is followed by an underscore, then it will be a decimal literal, not octal.
+```
+- dozenal (base 12) number literals: with the new prefix `0d`
+```c
+// this is not possible in pure C
+value = 0d123456789AB;	// ++C
+```
+- hexadecimal (base 16) number literals: no particular additions here
+```c
+value = 0x123456789ABCDEF;	// ++C
+// no special features added in ++C for hexadecimal
 ```
 
 
@@ -82,7 +102,67 @@ void (*g)(int, char* (*)(char*)); // pure C
 
 
 
-### Cross-platform fixes:
+### String literals:
+
+C supports regular string literals, as well as wide-char string literals - and since the C11 standard,
+unicode string literals are also supported:
+```c
+"hello world!"   // => char[N]     (ANSI C)
+L"hello world!"  // => wchar_t[N]  (ANSI C)
+u8"hello world!" // => char[N]     (C11)
+u"hello world!"  // => char16_t[N] (C11)
+U"hello world!"  // => char32_t[N] (C11)
+```
+In ++C, alternate prefixes are accepted, and any of these syntaxes will work and transpile/compile correctly, regardless of the target C standard chosen:
+```c
+"hello world!"      // => t_char[N]  (++C)
+w"hello world!"     // => t_sint[N]  (++C)
+utf8"hello world!"  // => t_utf8[N]  (++C)
+utf16"hello world!" // => t_utf16[N] (++C)
+utf32"hello world!" // => t_utf32[N] (++C)
+```
+In the case where a unicode string literal is used, for a target C standard version which predates C11, then its contents will be directly changed in the transpiled output:
+```c
+// ++C
+t_utf8 const* unicode = utf8"Any unicode character directly works: それは本当に作品";
+// with target set is C11 or above, transpiles to:
+t_utf8 const* unicode = u8"Any unicode character directly works: それは本当に作品";
+// with target set is C99, transpiles to:
+t_utf8 const* unicode = "Any unicode character directly works: \u305D\u308C\u306F\u672C\u5F53\u306B\u4F5C\u54C1";
+// with target set to less than C99, transpiles to:
+t_utf8 const* unicode = "Any unicode character directly works: \xE3\x81\x9D\xE3\x82\x8C\xE3\x81\xAF\xE6\x9C\xAC\xE5\xBD\x93\xE3\x81\xAB\xE4\xBD\x9C\xE5\x93\x81";
+```
+
+##### String Format literals:
+
+++C allows for formatted literal strings, prefixed with an `f` character:
+```c
+t_utf8 const* formatted = f"This is a formatted string containing a float: #{sqrt(2.0)}";
+t_utf8 const* formatted = f"This is a formatted string containing an escaped hashtag: \#";
+```
+Only constant expressions are allowed within the `#{}` format field. In ++C, the exact definition of a constant expression is more open-ended than it is in pure C (any pure function may be called in a constant expression - see "Transpile-time expressions" for more info).
+
+##### String RegExp literals:
+
+++C allows for regex literal strings, prefixed with an `r` character, and regex mode flags may be placed immediately after the ending double quote (no spaces between the ending quote and the flag characters):
+```c
+char const* regex1 = r"\b(My_\w*)\b"g;
+char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
+char const* regex3 = r"[a-zA-Z_]\w*"sg;
+```
+When writing a regex literal, the transpiled C output string literal will:
+- output errors/warnings if the underlying regular expression is malformed/invalid.
+- have double backquotes `\\` wherever necessary.
+- place the regex mode flags within the string, at the start, using `(?i)` notation (learn more about this here: https://www.regular-expressions.info/modifiers.html?wlr=1)
+
+Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other RegExp engines into one:
+- https://github.com/kkos/oniguruma
+- https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
+- http://www.greenend.org.uk/rjk/tech/regexp.html
+
+
+
+### Cross-platform keywords:
 
 - `asm`: Transpiles to the more cross-platform equivalent: `__asm__`
 - `inline`: Transpiles to the more cross-platform equivalent: `__inline__`
@@ -92,7 +172,35 @@ void (*g)(int, char* (*)(char*)); // pure C
 - `alignas(X)`: Transpiles to whatever logic makes sense for the given platform
 
 
-### Compile-time operators:
+
+### Transpile-time expressions:
+
+Any constant expression (including calls to pure functions) can be executed at transpile-time, using the
+constant expression function: `#(expression)`
+
+Here is an example:
+```c
+#if #(sqrt(4.0) == 2.0)
+typedef enum something
+{
+	SOMEVALUE = #(sqrt(8.0)),
+}	e_something;
+#endif
+```
+This will transpile to:
+```c
+#if 1
+typedef enum something
+{
+	SOMEVALUE = 4.0,
+}	e_something;
+#endif
+```
+Note that memory allocation/freeing are non-pure operations, so they cannot be performed at transpile-time.
+
+
+
+### Transpile-time operators:
 
 - `typeof(X)`: Transpiles to the fully resolved type of the variable/value/token `X`
 - `nullof(X)`: Transpiles to the user-defined default value of the variable/value/token `X`
@@ -101,44 +209,36 @@ void (*g)(int, char* (*)(char*)); // pure C
 There is also an `is` operator, which allows for equality checks between types at transpile-time:
 ```c
 #if #(typeof(size_t) is unsigned long)
-	// do something
+	#warning "memory size type is unsigned long"
 #elif #(!(typeof(size_t) is unsigned long long))
-	#error "unsupported size_t type"
+	#warning "memory size type is unsigned long long"
 #endif
 ```
 A type equality check returns `1` if both types, when fully resolved (after following any nested `typedef`s), are the same.
 Essentially, any 2 types which would issue a warning when implicitly casted will have `is` between them return `0`.
-
-
-
-Also:
-
-
-
-### String literals:
-
-##### Unicode literals:
+Note that this operator is not symmetrical, ie: `A is B` is not the same as `B is A`, here is a simple example:
 ```c
-t_utf8 const* unicode = u"Any unicode character directly works: それは本当に作品";
+#(char* is char const*) // result is `1`, since a mutable pointer implicitly casts to its constant equivalent
+#(char const* is char*)	// result is `0`, since a constant pointer cannot be coerced to mutable implicitly
 ```
 
-##### RegExp literals:
-
-regex literal strings are prefixed with an `r` character, and regex mode flags may be placed after the ending double quote:
+You can use transpile-time expressions alongside existing preprocessor directives:
 ```c
-char const* regex1 = r"\b(My_\w*)\b"g;
-char const* regex2 = r"(?x) ( [^)] __damn__ )"i;
-char const* regex3 = r"[a-zA-Z_]\w*"sg;
+//! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
+#if #(sizeof(char) == 1)
+#endif
+
+//! Here is an example of function-call generic type promotion (to use with `va_arg()`)
+#if #(typeof(T) is char)
+	#define T_VA_ARG	int
+#elif #(typeof(T) is short)
+	#define T_VA_ARG	int
+#elif #(typeof(T) is float)
+	#define T_VA_ARG	double
+#else
+	#define T_VA_ARG	T
+#endif
 ```
-When writing a regex literal, the transpiled C output string literal will:
-- have double backquotes `\\` wherever necessary
-- place the regex mode flags within the string, at the start, using `(?i)` notation (learn more: https://www.regular-expressions.info/modifiers.html?wlr=1)
-
-Note that libccc uses the Oniguruma Regex engine, which encompasses the features of many other RegExp engines into one:
-- https://github.com/kkos/oniguruma
-- https://raw.githubusercontent.com/kkos/oniguruma/5.9.6/doc/RE
-- http://www.greenend.org.uk/rjk/tech/regexp.html
-
 
 
 ### Optional function arguments (named):
@@ -214,34 +314,31 @@ TODO: add example to show how variable capture is complicated
 
 ### Preprocessor directives:
 
-There are a couple of changes/fixes to existing preprocessor directives:
+Most of the new additions in ++C take the form of new preprocessor directives - this is done for 2 reasons:
+- Because they all involve operations that occur at transpile-time (so, they occur before any #ifs or #defines)
+- To avoid adding new keywords to the C language which could conflict with existing C code, since one of the goals of ++C is to have full two-way interoperability between both languages.
+
+Here is a list of the preprocessor directives which ++C provides:
 ```c
-//! compile-time operators like sizeof() can be used in `#if` statements directly now, the transpiler will handle it
-#if (sizeof(char) == 1)
-#endif
-
-//! Here is an example of function-call generic type promotion (to use with va_arg())
-#if (typeof(T) is char)
-	#define T_VA_ARG	int
-#elif (typeof(T) is short)
-	#define T_VA_ARG	int
-#elif (typeof(T) is float)
-	#define T_VA_ARG	double
-#else
-	#define T_VA_ARG	T
-#endif
-```
-
-Most of the new additions in ++C take the form of new preprocessor directives, of which here is a brief list:
-```c
-//! works similar to namespaces and templates in C++, but simpler and more powerful (read more about generic namespace types below)
-#namespace NameSpace.Type<T=(float|int), P>
-
 //! define a custom operator (optionally with a certain specified `precedence` and `associativity`)
 #operator	$	(char* a, char* b) => int	= DoOperation(a, b)
 
 //! define a custom accessor syntax for a struct/union (custom brackets `get` functions)
 #accessor (struct s var)[int index] => int	= GetFunction(var, index)
+
+//! works similar to namespaces and templates in C++ (read more about generic namespace types below)
+#namespace NameSpace.Type<T=(float|int), P>
+
+//! defines a category of types, which verify certain conditions
+#interface i_iterable<T>
+	#has #(sizeof(i_iterable<T>) == 1)
+	#has Iterate(i_iterable<T> self, (T)=>void f)
+
+//! defines a type with additional info: operators, 
+#type t_string = char*
+	#has nullof: NULL
+	#has formatof: "%s"
+	#has i_iterable: { Iterate: String_Iterate; }
 
 //! type reflection - a special kind of macro, for types (inserts contents of a type into the code)
 #reflect(struct s)	printf("%s %s;\n", #type, #name)
@@ -677,6 +774,33 @@ printf("%s\n", obj<object*>["sub"]<char*>["str"]); // type inferrence cannot be 
 ```
 
 
+### Interfaces
+++C supports interfaces (similar to their incarnations in many other languages): an interface defines a category of types, which verify certain conditions
+```c
+#interface i_iterable<T>
+	#has #(sizeof(i_iterable<T>) == 1)
+	#has Iterate(i_iterable<T> self, (T) => void f) => void
+```
+An interface may be followed by any number of `#has` directives, which describe the interface.
+To be precise, an interface `#has` directive accepts:
+- a function prototype: any type which implements this interface will require a corresponding function to be mapped
+- a variable declaration: any type which implements this interface
+- a transpile-time conditional expression: this expression will be executed to check that a type does indeed implement the interface in question
+
+
+### Types
+
+++C supports a `#type` directive, which creates a c typedef, as well as define other additional info which is associated to this type
+```c
+#type t_string = char*
+	#has nullof: NULL
+	#has formatof: "%s"
+	#has i_iterable: { .Iterate = String_Iterate; }
+```
+An interface may be followed by any number of `#has` directives, which describe the interface.
+To be precise, an interface `#has` directive accepts:
+
+
 
 ### Type reflection:
 The `#reflect` preprocessor directive inserts the contents of a type into the code
@@ -755,32 +879,18 @@ int main()
 
 
 
-### Transpiler instructions:
+### REPLACE: m4 macros
 
-
-##### INCBIN
-Allows you to include a binary file as a global/extern const byte array.
-```c
-#incbin myfile	"./path/to/file.dat"
-```
-In this example, an `extern` variable named `myfile` will be created, with type `unsigned char const[]`:
-it holds the contents of the file given by the second argument, the string filepath.
-It will also create two other variables: `myfile_end` which points to the end of the binary data array,
-and `myfile_size`, which is the filesize (despite its actual type being `unsigned char const[]` as well, you must cast this to (size_t))
-
-
-##### REPLACE
-
-Creates a replacement token - works just like to the C `#define` pre-processor instruction, but operates when transpiling.
+Creates a replacement token - works similarly to the C `#define` pre-processor instruction, but operates when transpiling.
 ```c
 void		MyFunction(void);
-#replace f	MyFunction
+#replace f <MyFunction>
 int main()
 {
 	f();
 }
 ```
-The above example transpiles by replacing `f` directly inline, rather than transpiling to a C pre-processor `#define` statement.
+The above example transpiles by replacing `f` directly inline, rather than transpiling to a C `#define` statement:
 ```c
 void		MyFunction(void);
 int main()
@@ -788,10 +898,29 @@ int main()
 	MyFunction();
 }
 ```
-This is the difference between `#define` and `#alias` instructions, `#alias` will change the output C code directly.
+The substitute expansion string can be written with either `"` double-quotes, or `<`/`>` chevron quotes, much like the `#include` C pre-processor directive.
+The `#replace` directive is performed/transpiled using `m4` - this means that several more powerful features are available, which you can learn more about here: https://www.gnu.org/software/m4/manual/m4.html.
+For instance, since `m4` is not single-pass, you can make recursive macros (define a macro from within a macro).
+For this to be possible though, you must use different characters to begin and finish the macro string (ie: you must use a `<>` chevron-quoted string in this case).
 
 
-##### HEADER
+
+### INCBIN: include binary file as global constant variable
+Allows you to include a binary file as a global/extern const byte array.
+```c
+#incbin myfile	"./path/to/file.dat"
+```
+In this example, an `extern` variable named `myfile` will be created, with type `unsigned char const[]`:
+it holds the contents of the file given by the second argument, the string filepath.
+This directive will create a total of 3 global constant variables:
+```c
+extern t_u8 const[] myfile;      // this is the binary contents of the included file
+extern t_u8 const[] myfile_end;  // this points to the end of the binary data array
+extern t_size const myfile_size; // this is the filesize - ie: the result of `(myfile_end - myfile)`
+```
+
+
+### HEADER: guard a header file against double-inclusion
 
 Should be placed in a header file (ie: `.++h`,`.pph`,`.xxh`,etc), at the top of the file (before any `#include` directives).
 Surrounds the file with include-guards, with the given token argument being the `#define` used for header inclusion guarding.
@@ -805,6 +934,7 @@ void HelloWorld(void);
 The above example would transpile to the following C code output:
 ```c
 // C code
+#pragma once
 #ifndef __HEADER_H
 #define __HEADER_H
 
@@ -823,7 +953,7 @@ void HelloWorld(void);
 
 #endif
 ```
-If no argument is supplied, `#header` will generate a header based on the file name (relative to the folder from where `ppp` was invoked), with two leading underscores `__`, and ending with `_H`:
+If no argument is supplied, `#header` will generate a header `#define` name based on the file name (relative to the folder from where `ppp` was invoked), with two leading underscores `__`, and ending with `_H`:
 - for example, in a file at path `./src/utils/header.++h`:
 ```c
 // ++C code
@@ -854,7 +984,23 @@ In particular, there are 9 pre-defined `#is` attributes:
 #is pure                //!< cross-platform way to use `__attribute__((pure, ...))`
 #is packed              //!< cross-platform way to use `__attribute__((packed, ...))`
 ```
-Users can also define their own `#is` attributes - there are mainly useful to give additional compile-time errors/warnings.
+Users can also define their own `#is` attributes - this is a powerful tool to give additional compile-time errors/warnings, so as to have safer/more rigourous code.
+```c
+#attribute create         = __attribute__((malloc))
+#attribute delete(argpos) = __attribute__((delete(argpos)))
+#attribute format(function, t_uint argpos_format, t_uint argpos_valist) =
+	#if (!(typeof(function.arg_types[argpos_format]) is char*))
+		#error f"Invalid 'format()' attribute: expected format string type argument at position #{argpos_format}"
+	#elif (!(typeof(function.arg_types[argpos_valist]) is ...))
+		#error f"Invalid 'format()' attribute: expected variadic ellipsis argumebt at position #{argpos_valist}"
+	#else
+		
+	#endif
+
+//decl_function
+//decl_variable
+//decl_compound
+```
 
 
 

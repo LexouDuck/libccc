@@ -133,7 +133,7 @@ TOML_TEST(toml_string_empty		, "\"\"")
 TOML_TEST(toml_string			, "\"Hello World!\"")
 TOML_TEST(toml_string_cc_c0		, "\"␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟\"")
 TOML_TEST(toml_string_cc_c1		, "\"\"")
-TOML_TEST(toml_string_utf8_fr	, "\"Être à même de ça, d'air sûr, maïs de son père en main… D'où la paix sur l'île de son âme…\"")
+TOML_TEST(toml_string_utf8_fr	, "\"Être à même de ça, d'air sûr — manger du maïs à l'œil… D'où la paix sur l'île de son âme…\"")
 TOML_TEST(toml_string_utf8_ru	, "\"Яцк Ничолсон\"")
 TOML_TEST(toml_string_utf8_jp	, "\"お前はもう死んでいる - 愛 - 私は実体の小さな学生です\"")
 TOML_TEST(toml_string_utf8_ho	, "\"�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻\"")
@@ -231,7 +231,7 @@ t_utf8*	toml_strange_sot	= "\1hello=\1\"world\"\1\n";
 t_utf8*	toml_strange_stx	= "\2hello=\2\"world\"\2\n";
 t_utf8*	toml_strange_etx	= "\3hello=\3\"world\"\3\n";
 t_utf8*	toml_strange_eot	= "\4hello=\4\"world\"\4\n";
-t_utf8*	toml_strange_esc	= "\ehello=\e\"world\"\e\n";
+t_utf8*	toml_strange_esc	= "\x1Bhello=\x1B\"world\"\x1B\n";
 t_utf8*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
 
 

@@ -45,13 +45,13 @@ t_char*	U##BITS##_ToString_Oct(t_u##BITS number, t_bool prefix)		\
 	}																\
 	result[n] = '\0';												\
 	return (result);												\
-}																	\
+}
 
 DEFINEFUNC_UINT_TOSTROCT(8)
 DEFINEFUNC_UINT_TOSTROCT(16)
 DEFINEFUNC_UINT_TOSTROCT(32)
 DEFINEFUNC_UINT_TOSTROCT(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_TOSTROCT(128)
 #endif
 
@@ -90,12 +90,12 @@ t_char*	S##BITS##_ToString_Oct(t_s##BITS number, t_bool prefix)		\
 	}																\
 	result[n] = '\0';												\
 	return (result);												\
-}																	\
+}
 
 DEFINEFUNC_SINT_TOSTROCT(8)
 DEFINEFUNC_SINT_TOSTROCT(16)
 DEFINEFUNC_SINT_TOSTROCT(32)
 DEFINEFUNC_SINT_TOSTROCT(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_TOSTROCT(128)
 #endif

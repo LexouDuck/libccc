@@ -3,10 +3,11 @@
 
 #include "test.h"
 
-
+#if 0 // test template
 
 #ifndef c_regex_
 void test_regex_(void)	{}
+#warning "regex_() test suite function defined, but the function isn't defined."
 #else
 void	print_test_regex_(char const* test_name, int can_segfault,
 		char const* str,
@@ -21,7 +22,7 @@ void	test_regex_(void)
 }
 #endif
 
-
+#endif
 
 // TODO
 

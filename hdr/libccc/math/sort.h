@@ -1,26 +1,24 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/math/sort.h                       |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/math/sort.h                       |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MATH_SORT_H
 #define __LIBCCC_MATH_SORT_H
-/*!@group{libccc_math_sort}
-** @{
+/*!@group{libccc_math_sort,58,libccc/math/sort.h}
+**
 **	This header defines functions for sorting arrays/lists of any type.
 **	There are several different kinds of sorting algorithms provided.
 **	Some of these algorithms are better suited for arrays, others for lists -
 **	some are better for small sizes, others for large sizes, etc.
 **
 **	TODO other algorithms than quicksort
-**
-**	@file
 */
 
 /*
@@ -96,6 +94,6 @@ void	QuickSort_##COMPARE(TYPE* array, t_size items)													\
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

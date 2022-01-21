@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
+s_list(T) const*	List_Find(T)(s_list(T) const* list, T item)
 {
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	while (list)
@@ -21,7 +21,7 @@ s_list_T const*	CONCAT(List_Find,T_NAME)(s_list_T const* list, T item)
 
 
 _GENERIC()
-s_list_T const*	CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item))
+s_list(T) const*	List_Find_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 {
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	while (list)
@@ -36,7 +36,7 @@ s_list_T const*	CONCAT(List_Find_F,T_NAME)(s_list_T const* list, t_bool (*match)
 
 
 _GENERIC()
-t_sint	CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item)
+t_sint	List_IndexOf(T)(s_list(T) const* list, T item)
 {
 	t_uint	i;
 
@@ -55,7 +55,7 @@ t_sint	CONCAT(List_IndexOf,T_NAME)(s_list_T const* list, T item)
 
 
 _GENERIC()
-t_sint	CONCAT(List_IndexOf_F,T_NAME)(s_list_T const* list, t_bool (*match)(T item))
+t_sint	List_IndexOf_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 {
 	t_uint	i;
 

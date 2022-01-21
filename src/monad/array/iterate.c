@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-void	CONCAT(Array_Iterate,T_NAME)(s_array_T* array, void (*f)(T item))
+void	Array_Iterate(T)(s_array(T)* array, void (*f)(T item))
 {
 	t_uint i;
 
@@ -21,7 +21,7 @@ void	CONCAT(Array_Iterate,T_NAME)(s_array_T* array, void (*f)(T item))
 
 
 _GENERIC()
-void	CONCAT(Array_Iterate_I,T_NAME)(s_array_T* array, void (*f)(T item, t_uint index))
+void	Array_Iterate_I(T)(s_array(T)* array, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 

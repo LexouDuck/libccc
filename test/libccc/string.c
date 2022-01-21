@@ -16,6 +16,7 @@
 
 #ifndef c_strnew
 void test_strnew(void)	{}
+#warning "strnew() test suite function defined, but the function isn't defined."
 #else
 static void*	strnew(t_size n) { void* result = malloc(n + sizeof(""));	memset(result, '\0', n);	return (result); }
 void	print_test_strnew(char const* test_name, int can_segfault,
@@ -45,6 +46,7 @@ void	test_strnew(void)
 
 #ifndef c_strset
 void test_strset(void)	{}
+#warning "strset() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strset(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -71,6 +73,7 @@ void	test_strset(void)
 
 #ifndef c_strclr
 void test_strclr(void)	{}
+#warning "strclr() test suite function defined, but the function isn't defined."
 #else
 #ifndef strclr
 #define strclr(dest, c)	memset(dest, c, strlen(c))
@@ -99,6 +102,7 @@ void	test_strclr(void)
 
 #ifndef c_strdel
 void test_strdel(void)	{}
+#warning "strdel() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strdel(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -107,7 +111,7 @@ void	print_test_strdel(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_VOID(*dest_libccc,	strdel, dest_libccc)
-	TEST_PRINT(ptr,					strdel, "str=%p/\"%s\"", dest_libccc, *dest_libccc)
+	TEST_PRINT(ptr,					strdel, "str=%p/\"%s\"", (void*)dest_libccc, *dest_libccc)
 	TEST_FREE()
 }
 void	test_strdel(void)
@@ -123,6 +127,7 @@ void	test_strdel(void)
 
 #ifndef c_strdup
 void test_strdup(void)	{}
+#warning "strdup() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strdup(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -149,6 +154,7 @@ void	test_strdup(void)
 
 #ifndef c_strcpy
 void test_strcpy(void)	{}
+#warning "strcpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -183,6 +189,7 @@ void	test_strcpy(void)
 
 #ifndef c_strncpy
 void test_strncpy(void)	{}
+#warning "strncpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strncpy(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -221,6 +228,7 @@ void	test_strncpy(void)
 
 #ifndef c_strlcpy
 void test_strlcpy(void)	{}
+#warning "strlcpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strlcpy(char const* test_name, int can_segfault,
 		t_size expecting,
@@ -279,6 +287,7 @@ void	test_strlcpy(void)
 
 #ifndef c_strcat
 void test_strcat(void)	{}
+#warning "strcat() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcat(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -315,6 +324,7 @@ void	test_strcat(void)
 
 #ifndef c_strncat
 void test_strncat(void)	{}
+#warning "strncat() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strncat(char const* test_name, int can_segfault,
 		char* dest_libccc,
@@ -355,6 +365,7 @@ void	test_strncat(void)
 
 #ifndef c_strlcat
 void test_strlcat(void)	{}
+#warning "strlcat() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strlcat(char const* test_name, int can_segfault,
 		t_size expecting,
@@ -419,6 +430,7 @@ void	test_strlcat(void)
 
 #ifndef c_strlen
 void test_strlen(void)	{}
+#warning "strlen() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strlen(char const* test_name, int can_segfault,
 		char const* str)
@@ -442,6 +454,7 @@ void	test_strlen(void)
 
 #ifndef c_strcmp
 void test_strcmp(void)	{}
+#warning "strcmp() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcmp(char const* test_name, int can_segfault,
 		char const* str1,
@@ -472,6 +485,7 @@ void	test_strcmp(void)
 
 #ifndef c_strncmp
 void test_strncmp(void)	{}
+#warning "strncmp() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strncmp(char const* test_name, int can_segfault,
 		char const* str1,
@@ -506,6 +520,7 @@ void	test_strncmp(void)
 
 #ifndef c_strequ
 void test_strequ(void)	{}
+#warning "strequ() test suite function defined, but the function isn't defined."
 #else
 #ifndef strequ
 #define strequ(str1, str2)	(strcmp(str1, str2) == 0)
@@ -540,6 +555,7 @@ void	test_strequ(void)
 
 #ifndef c_strnequ
 void test_strnequ(void)	{}
+#warning "strnequ() test suite function defined, but the function isn't defined."
 #else
 #ifndef strnequ
 #define strnequ(str1, str2, n)	(strncmp(str1, str2, n) == 0)
@@ -577,6 +593,7 @@ void	test_strnequ(void)
 
 #ifndef c_strhas
 void test_strhas(void)	{}
+#warning "strhas() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strhas(char const* test_name, int can_segfault,
 		t_bool expecting,
@@ -605,6 +622,7 @@ void	test_strhas(void)
 
 #ifndef c_strhasonly
 void test_strhasonly(void)	{}
+#warning "strhasonly() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strhasonly(char const* test_name, int can_segfault,
 		t_bool expecting,
@@ -634,6 +652,7 @@ void	test_strhasonly(void)
 
 #ifndef c_strcount_char
 void test_strcount_char(void)	{}
+#warning "strcount_char() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcount_char(char const* test_name, int can_segfault,
 		t_size expecting,
@@ -662,6 +681,7 @@ void	test_strcount_char(void)
 
 #ifndef c_strcount_str
 void test_strcount_str(void)	{}
+#warning "strcount_str() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcount_str(char const* test_name, int can_segfault,
 		t_size expecting,
@@ -700,6 +720,7 @@ void	test_strcount_str(void)
 
 #ifndef c_strchr
 void test_strchr(void)	{}
+#warning "strchr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strchr(char const* test_name, int can_segfault,
 		char const* str,
@@ -707,7 +728,7 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strchr, str, c)
-	TEST_PRINT(ptr,		strchr, "str=%p/\"%s\", c='%c'/0x%X", str, str, c, c)
+	TEST_PRINT(ptr,		strchr, "str=%p/\"%s\", c='%c'/0x%X", (void*)str, str, c, c)
 }
 void	test_strchr(void)
 {
@@ -726,6 +747,7 @@ void	test_strchr(void)
 
 #ifndef c_strstr
 void test_strstr(void)	{}
+#warning "strstr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strstr(char const* test_name, int can_segfault,
 		char const* str,
@@ -733,7 +755,7 @@ void	print_test_strstr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strstr, str, query)
-	TEST_PRINT(ptr,		strstr, "str=%p/\"%s\", query=\"%s\"", str, str, query)
+	TEST_PRINT(ptr,		strstr, "str=%p/\"%s\", query=\"%s\"", (void*)str, str, query)
 }
 void	test_strstr(void)
 {
@@ -754,6 +776,7 @@ void	test_strstr(void)
 
 #ifndef c_strrchr
 void test_strrchr(void)	{}
+#warning "strrchr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strrchr(char const* test_name, int can_segfault,
 		char const* str,
@@ -761,7 +784,7 @@ void	print_test_strrchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM_LIBC(	strrchr, str, c)
-	TEST_PRINT(ptr,		strrchr, "str=%p/\"%s\", c='%c'/0x%X", str, str, c, c)
+	TEST_PRINT(ptr,		strrchr, "str=%p/\"%s\", c='%c'/0x%X", (void*)str, str, c, c)
 }
 void	test_strrchr(void)
 {
@@ -780,6 +803,7 @@ void	test_strrchr(void)
 
 #ifndef c_strrstr
 void test_strrstr(void)	{}
+#warning "strrstr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strrstr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -788,7 +812,7 @@ void	print_test_strrstr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM(	strrstr, str, query)
-	TEST_PRINT(ptr,	strrstr, "str=%p/\"%s\", query=\"%s\"", str, str, query)
+	TEST_PRINT(ptr,	strrstr, "str=%p/\"%s\", query=\"%s\"", (void*)str, str, query)
 }
 void	test_strrstr(void)
 {
@@ -813,6 +837,7 @@ void	test_strrstr(void)
 
 #ifndef c_strnchr
 void test_strnchr(void)	{}
+#warning "strnchr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strnchr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -822,7 +847,7 @@ void	print_test_strnchr(char const* test_name, int can_segfault,
 {
 	TEST_INIT(ptr)
 	TEST_PERFORM(	strnchr, str, c, n)
-	TEST_PRINT(ptr,	strnchr, "str=%p/\"%s\", c='%c'/0x%X, n=%zu", str, str, c, c, n)
+	TEST_PRINT(ptr,	strnchr, "str=%p/\"%s\", c='%c'/0x%X, n=%zu", (void*)str, str, c, c, n)
 }
 void	test_strnchr(void)
 {
@@ -848,6 +873,7 @@ void	test_strnchr(void)
 
 #ifndef c_strnstr
 void test_strnstr(void)	{}
+#warning "strnstr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strnstr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -862,7 +888,7 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 #else
 	TEST_PERFORM(	strnstr, str, query, n)
 #endif
-	TEST_PRINT(ptr,	strnstr, "str=%p/\"%s\", query=\"%s\", n=%zu", str, str, query, n)
+	TEST_PRINT(ptr,	strnstr, "str=%p/\"%s\", query=\"%s\", n=%zu", (void*)str, str, query, n)
 }
 void	test_strnstr(void)
 {
@@ -884,6 +910,7 @@ void	test_strnstr(void)
 
 #ifndef c_strremove
 void test_strremove(void)	{}
+#warning "strremove() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strremove(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -906,6 +933,7 @@ void	test_strremove(void)
 
 #ifndef c_strtoesc
 void test_strtoesc(void)	{}
+#warning "strtoesc() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strtoesc(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -928,6 +956,7 @@ void	test_strtoesc(void)
 
 #ifndef c_esctostr
 void test_esctostr(void)	{}
+#warning "esctostr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_esctostr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -950,6 +979,7 @@ void	test_esctostr(void)
 
 #ifndef c_strrep_char
 void test_strrep_char(void)	{}
+#warning "strrep_char() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strrep_char(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -971,21 +1001,22 @@ void	test_strrep_char(void)
 
 
 
-#ifndef c_strrep_charset
-void test_strrep_charset(void)	{}
+#ifndef c_strrep_cset
+void test_strrep_cset(void)	{}
+#warning "strrep_cset() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strrep_charset(char const* test_name, int can_segfault,
+void	print_test_strrep_cset(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		char const* old,
 		char const* new)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strrep_charset, str, old, new)
-	TEST_PRINT(str,	strrep_charset, "str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
+	TEST_PERFORM(	strrep_cset, str, old, new)
+	TEST_PRINT(str,	strrep_cset, "str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
 	TEST_FREE()
 }
-void	test_strrep_charset(void)
+void	test_strrep_cset(void)
 {
 //	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
 //	TODO
@@ -996,6 +1027,7 @@ void	test_strrep_charset(void)
 
 #ifndef c_strrep_str
 void test_strrep_str(void)	{}
+#warning "strrep_str() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strrep_str(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1025,6 +1057,7 @@ void	test_strrep_string(void)
 
 #ifndef c_strtrim
 void test_strtrim(void)	{}
+#warning "strtrim() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strtrim(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1057,77 +1090,80 @@ void	test_strtrim(void)
 #endif
 
 
-#ifndef c_strtrim_l
-void test_strtrim_l(void)	{}
+#ifndef c_strtriml
+void test_strtriml(void)	{}
+#warning "strtriml() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtrim_l(char const* test_name, int can_segfault,
+void	print_test_strtriml(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
 		char const* str)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strtrim_l, str, charset)
-	TEST_PRINT(str,	strtrim_l, "str=\"%s\", charset=\"%s\"", str, charset)
+	TEST_PERFORM(	strtriml, str, charset)
+	TEST_PRINT(str,	strtriml, "str=\"%s\", charset=\"%s\"", str, charset)
 	TEST_FREE()
 }
-void	test_strtrim_l(void)
+void	test_strtriml(void)
 {
 //	| TEST FUNCTION     | TEST NAME                   | CAN SEGV       | EXPECTING                      | TEST ARGS
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"Xx_Vegeta2000_xXx",             "x",           "xXx_Vegeta2000_xXx");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"_Vegeta2000_xXx",               "xX",          "xXx_Vegeta2000_xXx");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"Vegeta2000_xXx",                "xX_",         "xXx_Vegeta2000_xXx");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"Vegeta2000_xXx",                "xX_0",        "xXx_Vegeta2000_xXx");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"Vegeta2000_xXx",                "xX_02",       "xXx_Vegeta2000_xXx");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"swag\n",                        " \t\n\r\v\f", "   swag\n");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"FOR THE\tHORDE ! 	 \t \n ",    " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
-	print_test_strtrim_l("strtrim_l                  ", FALSE,			"do u even\ntrim bruh\n\r\n\n\t"," \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
-	print_test_strtrim_l("strtrim_l (only whitespace)", FALSE,			"",                              " \t\n\r\v\f", "\n 	  \v \n\t ");
-	print_test_strtrim_l("strtrim_l (empty string)   ", FALSE,			"",                              " \t\n\r\v\f", "");
-	print_test_strtrim_l("strtrim_l (empty charset)  ", FALSE,			"   swag\n",                     "",            "   swag\n");
-	print_test_strtrim_l("strtrim_l (null string)    ", SIGNAL_SIGSEGV,	NULL,                            "ab", NULL);
-	print_test_strtrim_l("strtrim_l (null charset)   ", SIGNAL_SIGSEGV,	NULL,                            NULL, " swag \n");
-	print_test_strtrim_l("strtrim_l (both null)      ", SIGNAL_SIGSEGV,	NULL,                            NULL, NULL);
+	print_test_strtriml("strtriml                  ", FALSE,			"Xx_Vegeta2000_xXx",             "x",           "xXx_Vegeta2000_xXx");
+	print_test_strtriml("strtriml                  ", FALSE,			"_Vegeta2000_xXx",               "xX",          "xXx_Vegeta2000_xXx");
+	print_test_strtriml("strtriml                  ", FALSE,			"Vegeta2000_xXx",                "xX_",         "xXx_Vegeta2000_xXx");
+	print_test_strtriml("strtriml                  ", FALSE,			"Vegeta2000_xXx",                "xX_0",        "xXx_Vegeta2000_xXx");
+	print_test_strtriml("strtriml                  ", FALSE,			"Vegeta2000_xXx",                "xX_02",       "xXx_Vegeta2000_xXx");
+	print_test_strtriml("strtriml                  ", FALSE,			"swag\n",                        " \t\n\r\v\f", "   swag\n");
+	print_test_strtriml("strtriml                  ", FALSE,			"FOR THE\tHORDE ! 	 \t \n ",    " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
+	print_test_strtriml("strtriml                  ", FALSE,			"do u even\ntrim bruh\n\r\n\n\t"," \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
+	print_test_strtriml("strtriml (only whitespace)", FALSE,			"",                              " \t\n\r\v\f", "\n 	  \v \n\t ");
+	print_test_strtriml("strtriml (empty string)   ", FALSE,			"",                              " \t\n\r\v\f", "");
+	print_test_strtriml("strtriml (empty charset)  ", FALSE,			"   swag\n",                     "",            "   swag\n");
+	print_test_strtriml("strtriml (null string)    ", SIGNAL_SIGSEGV,	NULL,                            "ab", NULL);
+	print_test_strtriml("strtriml (null charset)   ", SIGNAL_SIGSEGV,	NULL,                            NULL, " swag \n");
+	print_test_strtriml("strtriml (both null)      ", SIGNAL_SIGSEGV,	NULL,                            NULL, NULL);
 }
 #endif
 
 
-#ifndef c_strtrim_r
-void test_strtrim_r(void)	{}
+#ifndef c_strtrimr
+void test_strtrimr(void)	{}
+#warning "strtrimr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtrim_r(char const* test_name, int can_segfault,
+void	print_test_strtrimr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* charset,
 		char const* str)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strtrim_r, str, charset)
-	TEST_PRINT(str,	strtrim_r, "str=\"%s\", charset=\"%s\"", str, charset)
+	TEST_PERFORM(	strtrimr, str, charset)
+	TEST_PRINT(str,	strtrimr, "str=\"%s\", charset=\"%s\"", str, charset)
 	TEST_FREE()
 }
-void	test_strtrim_r(void)
+void	test_strtrimr(void)
 {
 //	| TEST FUNCTION     | TEST NAME                   | CAN SEGV       | EXPECTING                     | TEST ARGS
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"xXx_Vegeta2000_xX",           "x",           "xXx_Vegeta2000_xXx");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"xXx_Vegeta2000_",             "xX",          "xXx_Vegeta2000_xXx");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"xXx_Vegeta2000",              "xX_",         "xXx_Vegeta2000_xXx");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"xXx_Vegeta2",                 "xX_0",        "xXx_Vegeta2000_xXx");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"xXx_Vegeta",                  "xX_02",       "xXx_Vegeta2000_xXx");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"   swag",                     " \t\n\r\v\f", "   swag\n");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"\t\n   \f FOR THE\tHORDE !",  " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
-	print_test_strtrim_r("strtrim_r                  ", FALSE,			"do u even\ntrim bruh",        " \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
-	print_test_strtrim_r("strtrim_r (only in charset)", FALSE,			"",                            " \t\n\r\v\f", "\n 	  \v \n\t ");
-	print_test_strtrim_r("strtrim_r (empty string)   ", FALSE,			"",                            " \t\n\r\v\f", "");
-	print_test_strtrim_r("strtrim_r (empty charset)  ", FALSE,			"   swag\n",                   "",            "   swag\n");
-	print_test_strtrim_r("strtrim_r (both empty)     ", FALSE,			"",                            "",            "");
-	print_test_strtrim_r("strtrim_r (null string)    ", SIGNAL_SIGSEGV,	NULL,                          "ab", NULL);
-	print_test_strtrim_r("strtrim_r (null charset)   ", SIGNAL_SIGSEGV,	NULL,                          NULL, "ab");
-	print_test_strtrim_r("strtrim_r (both null)      ", SIGNAL_SIGSEGV,	NULL,                          NULL, NULL);
+	print_test_strtrimr("strtrimr                  ", FALSE,			"xXx_Vegeta2000_xX",           "x",           "xXx_Vegeta2000_xXx");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"xXx_Vegeta2000_",             "xX",          "xXx_Vegeta2000_xXx");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"xXx_Vegeta2000",              "xX_",         "xXx_Vegeta2000_xXx");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"xXx_Vegeta2",                 "xX_0",        "xXx_Vegeta2000_xXx");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"xXx_Vegeta",                  "xX_02",       "xXx_Vegeta2000_xXx");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"   swag",                     " \t\n\r\v\f", "   swag\n");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"\t\n   \f FOR THE\tHORDE !",  " \t\n\r\v\f", "\t\n   \f FOR THE\tHORDE ! 	 \t \n ");
+	print_test_strtrimr("strtrimr                  ", FALSE,			"do u even\ntrim bruh",        " \t\n\r\v\f", "do u even\ntrim bruh\n\r\n\n\t");
+	print_test_strtrimr("strtrimr (only in charset)", FALSE,			"",                            " \t\n\r\v\f", "\n 	  \v \n\t ");
+	print_test_strtrimr("strtrimr (empty string)   ", FALSE,			"",                            " \t\n\r\v\f", "");
+	print_test_strtrimr("strtrimr (empty charset)  ", FALSE,			"   swag\n",                   "",            "   swag\n");
+	print_test_strtrimr("strtrimr (both empty)     ", FALSE,			"",                            "",            "");
+	print_test_strtrimr("strtrimr (null string)    ", SIGNAL_SIGSEGV,	NULL,                          "ab", NULL);
+	print_test_strtrimr("strtrimr (null charset)   ", SIGNAL_SIGSEGV,	NULL,                          NULL, "ab");
+	print_test_strtrimr("strtrimr (both null)      ", SIGNAL_SIGSEGV,	NULL,                          NULL, NULL);
 }
 #endif
 
 
 #ifndef c_strpad
 void test_strpad(void)	{}
+#warning "strpad() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strpad(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1164,77 +1200,79 @@ void	test_strpad(void)
 
 
 
-#ifndef c_strpad_l
-void test_strpad_l(void)	{}
+#ifndef c_strpadl
+void test_strpadl(void)	{}
+#warning "strpadl() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strpad_l(char const* test_name, int can_segfault,
+void	print_test_strpadl(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
 		char c,
 		t_size length)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strpad_l, str, c, length)
-	TEST_PRINT(str,	strpad_l, "str=\"%s\", c='%c'/0x%X, n=%zu", str, c, c, length)
+	TEST_PERFORM(	strpadl, str, c, length)
+	TEST_PRINT(str,	strpadl, "str=\"%s\", c='%c'/0x%X, n=%zu", str, c, c, length)
 	TEST_FREE()
 }
-void	test_strpad_l(void)
+void	test_strpadl(void)
 {
 //	| TEST FUNCTION     | TEST NAME              | CAN SEGV        | EXPECTING           | TEST ARGS
-	print_test_strpad_l("strpad_l (n == strlen) ", FALSE,			"test",               "test", ' ', 4);
-	print_test_strpad_l("strpad_l               ", FALSE,			" test",              "test", ' ', 5);
-	print_test_strpad_l("strpad_l               ", FALSE,			"  test",             "test", ' ', 6);
-	print_test_strpad_l("strpad_l               ", FALSE,			"   test",            "test", ' ', 7);
-	print_test_strpad_l("strpad_l               ", FALSE,			"    test",           "test", ' ', 8);
-	print_test_strpad_l("strpad_l               ", FALSE,			"     test",          "test", ' ', 9);
-	print_test_strpad_l("strpad_l               ", FALSE,			"      test",         "test", ' ', 10);
-	print_test_strpad_l("strpad_l               ", FALSE,			"01234",              "1234", '0', 5);
-	print_test_strpad_l("strpad_l               ", FALSE,			"001234",             "1234", '0', 6);
-	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE,			"wag",                "swag", ' ', 3);
-	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE,			"ag",                 "swag", ' ', 2);
-	print_test_strpad_l("strpad_l (n < strlen)  ", FALSE,			"g",                  "swag", ' ', 1);
-	print_test_strpad_l("strpad_l (n == 0)      ", FALSE,			"",                   "swag", ' ', 0);
-	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE,			"test",               "test",'\0', 4);
-	print_test_strpad_l("strpad_l (c == '\\0')  ", FALSE,			"",                   "test",'\0', 5);
-	print_test_strpad_l("strpad_l (null string) ", SIGNAL_SIGSEGV,	NULL,                 NULL,  ' ', 5);
+	print_test_strpadl("strpadl (n == strlen) ", FALSE,			"test",               "test", ' ', 4);
+	print_test_strpadl("strpadl               ", FALSE,			" test",              "test", ' ', 5);
+	print_test_strpadl("strpadl               ", FALSE,			"  test",             "test", ' ', 6);
+	print_test_strpadl("strpadl               ", FALSE,			"   test",            "test", ' ', 7);
+	print_test_strpadl("strpadl               ", FALSE,			"    test",           "test", ' ', 8);
+	print_test_strpadl("strpadl               ", FALSE,			"     test",          "test", ' ', 9);
+	print_test_strpadl("strpadl               ", FALSE,			"      test",         "test", ' ', 10);
+	print_test_strpadl("strpadl               ", FALSE,			"01234",              "1234", '0', 5);
+	print_test_strpadl("strpadl               ", FALSE,			"001234",             "1234", '0', 6);
+	print_test_strpadl("strpadl (n < strlen)  ", FALSE,			"wag",                "swag", ' ', 3);
+	print_test_strpadl("strpadl (n < strlen)  ", FALSE,			"ag",                 "swag", ' ', 2);
+	print_test_strpadl("strpadl (n < strlen)  ", FALSE,			"g",                  "swag", ' ', 1);
+	print_test_strpadl("strpadl (n == 0)      ", FALSE,			"",                   "swag", ' ', 0);
+	print_test_strpadl("strpadl (c == '\\0')  ", FALSE,			"test",               "test",'\0', 4);
+	print_test_strpadl("strpadl (c == '\\0')  ", FALSE,			"",                   "test",'\0', 5);
+	print_test_strpadl("strpadl (null string) ", SIGNAL_SIGSEGV,	NULL,                 NULL,  ' ', 5);
 }
 #endif
 
 
 
-#ifndef c_strpad_r
-void test_strpad_r(void)	{}
+#ifndef c_strpadr
+void test_strpadr(void)	{}
+#warning "strpadr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strpad_r(char const* test_name, int can_segfault,
+void	print_test_strpadr(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str,
 		char c,
 		t_size length)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strpad_r, str, c, length)
-	TEST_PRINT(str,	strpad_r, "str=\"%s\", c='%c'/0x%X, n=%zu", str, c, c, length)
+	TEST_PERFORM(	strpadr, str, c, length)
+	TEST_PRINT(str,	strpadr, "str=\"%s\", c='%c'/0x%X, n=%zu", str, c, c, length)
 	TEST_FREE()
 }
-void	test_strpad_r(void)
+void	test_strpadr(void)
 {
 //	| TEST FUNCTION     | TEST NAME              | CAN SEGV       | EXPECTING     | TEST ARGS
-	print_test_strpad_r("strpad_r (n == strlen) ", FALSE,			"test",        "test", ' ', 4);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test ",       "test", ' ', 5);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test  ",      "test", ' ', 6);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test   ",     "test", ' ', 7);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test    ",    "test", ' ', 8);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test     ",   "test", ' ', 9);
-	print_test_strpad_r("strpad_r               ", FALSE,			"test      ",  "test", ' ', 10);
-	print_test_strpad_r("strpad_r               ", FALSE,			"12340",       "1234", '0', 5);
-	print_test_strpad_r("strpad_r               ", FALSE,			"123400",      "1234", '0', 6);
-	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE,			"swa",         "swag", ' ', 3);
-	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE,			"sw",          "swag", ' ', 2);
-	print_test_strpad_r("strpad_r (n < strlen)  ", FALSE,			"s",           "swag", ' ', 1);
-	print_test_strpad_r("strpad_r (n == 0)      ", FALSE,			"",            "swag", ' ', 0);
-	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE,			"test",        "test",'\0', 4);
-	print_test_strpad_r("strpad_r (c == '\\0')  ", FALSE,			"test",        "test",'\0', 5);
-	print_test_strpad_r("strpad_r (null string) ", SIGNAL_SIGSEGV,  NULL,          NULL,  ' ', 5);
+	print_test_strpadr("strpadr (n == strlen) ", FALSE,			"test",        "test", ' ', 4);
+	print_test_strpadr("strpadr               ", FALSE,			"test ",       "test", ' ', 5);
+	print_test_strpadr("strpadr               ", FALSE,			"test  ",      "test", ' ', 6);
+	print_test_strpadr("strpadr               ", FALSE,			"test   ",     "test", ' ', 7);
+	print_test_strpadr("strpadr               ", FALSE,			"test    ",    "test", ' ', 8);
+	print_test_strpadr("strpadr               ", FALSE,			"test     ",   "test", ' ', 9);
+	print_test_strpadr("strpadr               ", FALSE,			"test      ",  "test", ' ', 10);
+	print_test_strpadr("strpadr               ", FALSE,			"12340",       "1234", '0', 5);
+	print_test_strpadr("strpadr               ", FALSE,			"123400",      "1234", '0', 6);
+	print_test_strpadr("strpadr (n < strlen)  ", FALSE,			"swa",         "swag", ' ', 3);
+	print_test_strpadr("strpadr (n < strlen)  ", FALSE,			"sw",          "swag", ' ', 2);
+	print_test_strpadr("strpadr (n < strlen)  ", FALSE,			"s",           "swag", ' ', 1);
+	print_test_strpadr("strpadr (n == 0)      ", FALSE,			"",            "swag", ' ', 0);
+	print_test_strpadr("strpadr (c == '\\0')  ", FALSE,			"test",        "test",'\0', 4);
+	print_test_strpadr("strpadr (c == '\\0')  ", FALSE,			"test",        "test",'\0', 5);
+	print_test_strpadr("strpadr (null string) ", SIGNAL_SIGSEGV,  NULL,          NULL,  ' ', 5);
 }
 #endif
 
@@ -1249,6 +1287,7 @@ void	test_strpad_r(void)
 // TODO check on which platforms this function exists, if any
 #ifndef c_strrev
 void test_strrev(void)	{}
+#warning "strrev() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strrev(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1275,37 +1314,39 @@ void	test_strrev(void)
 #endif
 
 
-#ifndef c_strjoin
-void test_strjoin(void)	{}
+#ifndef c_strconcat
+void test_strconcat(void)	{}
+#warning "strconcat() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strjoin(char const* test_name, int can_segfault,
+void	print_test_strconcat(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const *str1,
 		char const *str2)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strjoin, str1, str2)
-	TEST_PRINT(str,	strjoin, "str1=\"%s\", str2=\"%s\"", str1, str2)
+	TEST_PERFORM(	strconcat, str1, str2)
+	TEST_PRINT(str,	strconcat, "str1=\"%s\", str2=\"%s\"", str1, str2)
 	TEST_FREE()
 }
-void	test_strjoin(void)
+void	test_strconcat(void)
 {
 //	| TEST FUNCTION   | TEST NAME             | CAN SEGV       | EXPECTING                      | TEST ARGS
-	print_test_strjoin("strjoin             ", FALSE,			"Omae wa mou shindeiru.Nani???",  test1,  test2);
-	print_test_strjoin("strjoin             ", FALSE,			"test1test2",                    "test1", "test2");
-	print_test_strjoin("strjoin             ", FALSE,			"Whoa...",                       "Whoa.", "..");
-	print_test_strjoin("strjoin (empty str1)", FALSE,			"sweg",                          "sweg",  "");
-	print_test_strjoin("strjoin (empty str2)", FALSE,			"sweg",                          "",      "sweg");
-	print_test_strjoin("strjoin (both empty)", FALSE,			"",                              "",      "");
-	print_test_strjoin("strjoin (null str1) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  test2);
-	print_test_strjoin("strjoin (null str2) ", SIGNAL_SIGSEGV,	NULL,                            test1, NULL);
-	print_test_strjoin("strjoin (both null) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  NULL);
+	print_test_strconcat("strconcat             ", FALSE,			"Omae wa mou shindeiru.Nani???",  test1,  test2);
+	print_test_strconcat("strconcat             ", FALSE,			"test1test2",                    "test1", "test2");
+	print_test_strconcat("strconcat             ", FALSE,			"Whoa...",                       "Whoa.", "..");
+	print_test_strconcat("strconcat (empty str1)", FALSE,			"sweg",                          "sweg",  "");
+	print_test_strconcat("strconcat (empty str2)", FALSE,			"sweg",                          "",      "sweg");
+	print_test_strconcat("strconcat (both empty)", FALSE,			"",                              "",      "");
+	print_test_strconcat("strconcat (null str1) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  test2);
+	print_test_strconcat("strconcat (null str2) ", SIGNAL_SIGSEGV,	NULL,                            test1, NULL);
+	print_test_strconcat("strconcat (both null) ", SIGNAL_SIGSEGV,	NULL,                            NULL,  NULL);
 }
 #endif
 
 
 #ifndef c_strinsert
 void test_strinsert(void)	{}
+#warning "strinsert() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strinsert(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1329,6 +1370,7 @@ void	test_strinsert(void)
 
 #ifndef c_strsub
 void test_strsub(void)	{}
+#warning "strsub() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strsub(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1399,6 +1441,7 @@ t_char	strtoupper_1on2(t_char c, t_size i)
 
 #ifndef c_striter
 void test_striter(void)	{}
+#warning "striter() test suite function defined, but the function isn't defined."
 #else
 void	print_test_striter(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1408,7 +1451,7 @@ void	print_test_striter(char const* test_name, int can_segfault,
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
 	TEST_PERFORM_VOID(result_libccc, striter, result_libccc, f)
-	TEST_PRINT(str,					 striter, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,					 striter, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_striter(void)
@@ -1424,35 +1467,37 @@ void	test_striter(void)
 #endif
 
 
-#ifndef c_striteri
-void test_striteri(void)	{}
+#ifndef c_striiter
+void test_striiter(void)	{}
+#warning "striiter() test suite function defined, but the function isn't defined."
 #else
-void	print_test_striteri(char const* test_name, int can_segfault,
+void	print_test_striiter(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		void (*f)(t_char*, t_size))
 {
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
-	TEST_PERFORM_VOID(result_libccc, striteri, result_libccc, f)
-	TEST_PRINT(str,					 striteri, "str=\"%s\", f=%p", str, f)
+	TEST_PERFORM_VOID(result_libccc, striiter, result_libccc, f)
+	TEST_PRINT(str,					 striiter, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
-void	test_striteri(void)
+void	test_striiter(void)
 {
 //	| TEST FUNCTION    | TEST NAME            | CAN SEGV       | EXPECTING               | TEST ARGS
-	print_test_striteri("striteri            ",	FALSE,			"sWeG",                   "SWEG",                   &strtolower_1on2);
-	print_test_striteri("striteri            ",	FALSE,			" Test dude ",            " TesT DuDe ",            &strtolower_1on2);
-	print_test_striteri("striteri            ",	FALSE,			"oMaE Wa mOu sHiNdEiRu.", "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
-	print_test_striteri("striteri (null str) ",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     &strtolower_1on2);
-	print_test_striteri("striteri (null func)",	SIGNAL_SIGSEGV,	NULL,                     "OMAE WA MOU SHINDEIRU.", NULL);
-	print_test_striteri("striteri (both null)",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     NULL);
+	print_test_striiter("striiter            ",	FALSE,			"sWeG",                   "SWEG",                   &strtolower_1on2);
+	print_test_striiter("striiter            ",	FALSE,			" Test dude ",            " TesT DuDe ",            &strtolower_1on2);
+	print_test_striiter("striiter            ",	FALSE,			"oMaE Wa mOu sHiNdEiRu.", "OMAE WA MOU SHINDEIRU.", &strtolower_1on2);
+	print_test_striiter("striiter (null str) ",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     &strtolower_1on2);
+	print_test_striiter("striiter (null func)",	SIGNAL_SIGSEGV,	NULL,                     "OMAE WA MOU SHINDEIRU.", NULL);
+	print_test_striiter("striiter (both null)",	SIGNAL_SIGSEGV,	NULL,                     NULL,                     NULL);
 }
 #endif
 
 
 #ifndef c_strmap
 void test_strmap(void)	{}
+#warning "strmap() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strmap(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -1461,7 +1506,7 @@ void	print_test_strmap(char const* test_name, int can_segfault,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strmap, str, f)
-	TEST_PRINT(str,	strmap, "str=\"%s\", f=%p", str, f)
+	TEST_PRINT(str,	strmap, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
 void	test_strmap(void)
@@ -1475,26 +1520,27 @@ void	test_strmap(void)
 #endif
 
 
-#ifndef c_strmapi
-void test_strmapi(void)	{}
+#ifndef c_strimap
+void test_strimap(void)	{}
+#warning "strimap() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strmapi(char const* test_name, int can_segfault,
+void	print_test_strimap(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str,
 		t_char (*f)(t_char, t_size))
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strmapi, str, f)
-	TEST_PRINT(str,	strmapi, "str=\"%s\", f=%p", str, f)
+	TEST_PERFORM(	strimap, str, f)
+	TEST_PRINT(str,	strimap, "str=\"%s\", f=%p", str, (void*)f)
 	TEST_FREE()
 }
-void	test_strmapi(void)
+void	test_strimap(void)
 {
 //	| TEST FUNCTION   | TEST NAME             | CAN SEGV       | EXPECTING      | TEST ARGS
-	print_test_strmapi("strmapi            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.", "omae wa mou shindeiru.", &strtoupper_1on2);
-	print_test_strmapi("strmapi (null str) ",	SIGNAL_SIGSEGV,	NULL,            NULL,                     &strtoupper_1on2);
-	print_test_strmapi("strmapi (null func)",	SIGNAL_SIGSEGV,	NULL,            "omae wa mou shindeiru.", NULL);
-	print_test_strmapi("strmapi (both null)",	SIGNAL_SIGSEGV,	NULL,            NULL,                     NULL);
+	print_test_strimap("strimap            ",	FALSE, "oMaE Wa mOu sHiNdEiRu.", "omae wa mou shindeiru.", &strtoupper_1on2);
+	print_test_strimap("strimap (null str) ",	SIGNAL_SIGSEGV,	NULL,            NULL,                     &strtoupper_1on2);
+	print_test_strimap("strimap (null func)",	SIGNAL_SIGSEGV,	NULL,            "omae wa mou shindeiru.", NULL);
+	print_test_strimap("strimap (both null)",	SIGNAL_SIGSEGV,	NULL,            NULL,                     NULL);
 }
 #endif
 
@@ -1539,9 +1585,11 @@ int		testsuite_string(void)
 	test_strset();
 	test_strclr();
 //	test_strdel();
+	test_strconcat();
 //	test_strmerge();
 //	test_strappend();
 //	test_strprepend();
+//	test_strjoin();
 
 	test_strequ();
 	test_strnequ();
@@ -1555,24 +1603,29 @@ int		testsuite_string(void)
 	test_strtoesc();
 	test_esctostr();
 //	test_strrep_char();
-//	test_strrep_charset();
+//	test_strrep_cset();
 //	test_strrep_str();
 
 	test_strtrim();
-	test_strtrim_l();
-	test_strtrim_r();
+	test_strtriml();
+	test_strtrimr();
 	test_strpad();
-	test_strpad_l();
-	test_strpad_r();
+	test_strpadl();
+	test_strpadr();
 
 	test_strrev();
-	test_strjoin();
 //	test_strinsert();
 	test_strsub();
 	test_striter();
-	test_striteri();
+	test_striiter();
 	test_strmap();
-	test_strmapi();
+	test_strimap();
+//	test_strfilter();
+//	test_strifilter();
+//	test_strreduce();
+//	test_strireduce();
+//	test_strfold();
+//	test_strifold();
 
 	return (0);
 }

@@ -1,10 +1,11 @@
 
 #include "libccc/memory.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/math/stat.h"
-#define T			t_float
-#define T_NAME		_float
-#define T_DEFAULT	0.
+
+#define T_TYPE	t_float
+#define T_NAME	float
+#define T_NULL	0.
 #include "libccc/monad/array.c"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -61,11 +62,11 @@ s_array_float	c_stat_flst_dup(s_array_float const flst)
 
 
 
-s_array_float 	c_stat_merge_flst(
-	s_array_float *start,
-	s_array_float *append)
+s_array(float) 	c_stat_merge_flst(
+	s_array(float) *start,
+	s_array(float) *append)
 {
-	s_array_float	result;
+	s_array(float)	result;
 	t_uint	i;
 	t_uint	j;
 

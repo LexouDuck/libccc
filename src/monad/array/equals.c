@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-t_bool	CONCAT(Array_Equals,T_NAME)(s_array_T const* array1, s_array_T const* array2)
+t_bool	Array_Equals(T)(s_array(T) const* array1, s_array(T) const* array2)
 {
 	if (array1 == array2)
 		return (0);
@@ -26,7 +26,7 @@ t_bool	CONCAT(Array_Equals,T_NAME)(s_array_T const* array1, s_array_T const* arr
 
 
 _GENERIC()
-t_bool	CONCAT(Array_Equals_N,T_NAME)(s_array_T const* array1, s_array_T const* array2, t_uint n)
+t_bool	Array_Equals_N(T)(s_array(T) const* array1, s_array(T) const* array2, t_uint n)
 {
 	if (array1 == array2)
 		return (0);

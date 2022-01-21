@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
+void	List_Iterate(T)(s_list(T)* list, void (*f)(T item))
 {
 	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
@@ -20,7 +20,7 @@ void	CONCAT(List_Iterate,T_NAME)(s_list_T* list, void (*f)(T item))
 
 
 _GENERIC()
-void	CONCAT(List_Iterate_I,T_NAME)(s_list_T* list, void (*f)(T item, t_uint index))
+void	List_Iterate_I(T)(s_list(T)* list, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 

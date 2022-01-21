@@ -7,8 +7,18 @@
 
 
 
+// Disable certain GCC warnings temporarily
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat-security"
+// Disable certain clang warnings temporarily
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wformat-security"
+
+#if 0 // test template
+
 #ifndef c_kvt_
 void test_kvt_(void)	{}
+#warning "kvt_() test suite function defined, but the function isn't defined."
 #else
 void	print_test_kvt_(char const* test_name, int can_segfault,
 		char const* str,
@@ -23,15 +33,16 @@ void	test_kvt_(void)
 }
 #endif
 
-
+#endif
 
 #ifndef c_kvtget
 void test_kvtget(void)	{}
+#warning "kvtget() test suite function defined, but the function isn't defined."
 #else
 void	print_test_kvtget(char const* test_name, int can_segfault, \
 		s_kvt const*	expecting,			\
 		s_kvt const*	item,				\
-		char const*	format, ...)			\
+		t_char const*	format, ...)		\
 {											\
 	t_char* str;							\
 	va_list va_args;						\
@@ -155,6 +166,13 @@ void	test_kvtget(void)
 	print_test_kvtget("kvtget (brackt syntax)", FALSE,	kvt_nest_object,	kvt, "[\"test_object\"][\"nest_object\"]");
 }
 #endif
+
+
+
+// Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop
+// Resets the clang warning settings back to normal
+#pragma clang diagnostic pop
 
 
 

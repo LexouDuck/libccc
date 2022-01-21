@@ -3,7 +3,7 @@
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 #include "libccc/encode/json.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -523,8 +523,9 @@ failure:
 
 t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 {
-	s_json_print p = { 0 };
+	s_json_print p;
 
+	Memory_Clear(&p, sizeof(s_json_print));
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;
@@ -540,8 +541,9 @@ t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 
 t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
 {
-	s_json_print p = { 0 };
+	s_json_print p;
 
+	Memory_Clear(&p, sizeof(s_json_print));
 	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
 	if (n == 0)
 		n = SIZE_MAX;

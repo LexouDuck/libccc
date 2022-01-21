@@ -1,8 +1,9 @@
 
 #include "libccc.h"
+#include "libccc/bool.h"
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
 
 #include "test.h"
 
@@ -102,34 +103,37 @@ void	test_u##BITS##tostr(void)																							\
 
 #ifndef c_u8tostr
 void test_u8tostr(void)	{}
+#warning "u8tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STR(8)
 #endif
 
 #ifndef c_u16tostr
 void test_u16tostr(void)	{}
+#warning "u16tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STR(16)
 #endif
 
 #ifndef c_u32tostr
 void test_u32tostr(void)	{}
+#warning "u32tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STR(32)
 #endif
 
 #ifndef c_u64tostr
 void test_u64tostr(void)	{}
+#warning "u64tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STR(64)
 #endif
 
-#ifdef __int128
 #ifndef c_u128tostr
 void test_u128tostr(void)	{}
+#warning "u128tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STR(128)
-#endif
 #endif
 
 
@@ -212,34 +216,37 @@ void	test_s##BITS##tostr(void)																							\
 
 #ifndef c_s8tostr
 void test_s8tostr(void)	{}
+#warning "s8tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STR(8)
 #endif
 
 #ifndef c_s16tostr
 void test_s16tostr(void)	{}
+#warning "s16tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STR(16)
 #endif
 
 #ifndef c_s32tostr
 void test_s32tostr(void)	{}
+#warning "s32tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STR(32)
 #endif
 
 #ifndef c_s64tostr
 void test_s64tostr(void)	{}
+#warning "s64tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STR(64)
 #endif
 
-#ifdef __int128
 #ifndef c_s128tostr
 void test_s128tostr(void)	{}
+#warning "s128tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STR(128)
-#endif
 #endif
 
 
@@ -317,34 +324,37 @@ void	test_u##BITS##tostrhex(void)																								\
 
 #ifndef c_u8tostrhex
 void test_u8tostrhex(void)	{}
+#warning "u8tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRHEX(8)
 #endif
 
 #ifndef c_u16tostrhex
 void test_u16tostrhex(void)	{}
+#warning "u16tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRHEX(16)
 #endif
 
 #ifndef c_u32tostrhex
 void test_u32tostrhex(void)	{}
+#warning "u32tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRHEX(32)
 #endif
 
 #ifndef c_u64tostrhex
 void test_u64tostrhex(void)	{}
+#warning "u64tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRHEX(64)
 #endif
 
-#ifdef __int128
 #ifndef c_u128tostrhex
 void test_u128tostrhex(void)	{}
+#warning "u128tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRHEX(128)
-#endif
 #endif
 
 
@@ -468,34 +478,37 @@ void	test_s##BITS##tostrbase(void)																													\
 
 #ifndef c_s8tostrbase
 void test_s8tostrbase(void)	{}
+#warning "s8tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STRBASE(8)
 #endif
 
 #ifndef c_s16tostrbase
 void test_s16tostrbase(void)	{}
+#warning "s16tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STRBASE(16)
 #endif
 
 #ifndef c_s32tostrbase
 void test_s32tostrbase(void)	{}
+#warning "s32tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STRBASE(32)
 #endif
 
 #ifndef c_s64tostrbase
 void test_s64tostrbase(void)	{}
+#warning "s64tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STRBASE(64)
 #endif
 
-#ifdef __int128
 #ifndef c_s128tostrbase
 void test_s128tostrbase(void)	{}
+#warning "s128tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_SINT_TO_STRBASE(128)
-#endif
 #endif
 
 
@@ -601,34 +614,37 @@ void	test_u##BITS##tostrbase(void)																												\
 
 #ifndef c_u8tostrbase
 void test_u8tostrbase(void)	{}
+#warning "u8tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRBASE(8)
 #endif
 
 #ifndef c_u16tostrbase
 void test_u16tostrbase(void)	{}
+#warning "u16tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRBASE(16)
 #endif
 
 #ifndef c_u32tostrbase
 void test_u32tostrbase(void)	{}
+#warning "u32tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRBASE(32)
 #endif
 
 #ifndef c_u64tostrbase
 void test_u64tostrbase(void)	{}
+#warning "u64tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRBASE(64)
 #endif
 
-#ifdef __int128
 #ifndef c_u128tostrbase
 void test_u128tostrbase(void)	{}
+#warning "u128tostrbase() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_UINT_TO_STRBASE(128)
-#endif
 #endif
 
 
@@ -712,7 +728,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\255 5"                     );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\\//\v/789"                 );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                       0x123, "0x123"                      );	\
-	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                      0b1101, "0b1101"                     );	\
+	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                         0xD, "0b1101"                     );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\33124578"                  );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "[124578"                    );	\
@@ -793,34 +809,37 @@ void test_strtou##BITS(void)																										\
 
 #ifndef c_strtou8
 void test_strtou8(void)	{}
+#warning "strtou8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_UINT(8)
 #endif
 
 #ifndef c_strtou16
 void test_strtou16(void)	{}
+#warning "strtou16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_UINT(16)
 #endif
 
 #ifndef c_strtou32
 void test_strtou32(void)	{}
+#warning "strtou32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_UINT(32)
 #endif
 
 #ifndef c_strtou64
 void test_strtou64(void)	{}
+#warning "strtou64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_UINT(64)
 #endif
 
-#ifdef __int128
 #ifndef c_strtou128
 void test_strtou128(void)	{}
+#warning "strtou128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_UINT(128)
-#endif
 #endif
 
 
@@ -888,7 +907,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\255 5"                     );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\\//\v/789"                 );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                       0x123, "0x123"                      );	\
-	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                      0b1101, "0b1101"                     );	\
+	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                         0xD, "0b1101"                     );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\33124578"                  );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\15124578"                  );	\
@@ -973,34 +992,37 @@ void test_strtos##BITS(void)																										\
 
 #ifndef c_strtos8
 void test_strtos8(void)	{}
+#warning "strtos8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_SINT(8)
 #endif
 
 #ifndef c_strtos16
 void test_strtos16(void)	{}
+#warning "strtos16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_SINT(16)
 #endif
 
 #ifndef c_strtos32
 void test_strtos32(void)	{}
+#warning "strtos32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_SINT(32)
 #endif
 
 #ifndef c_strtos64
 void test_strtos64(void)	{}
+#warning "strtos64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_SINT(64)
 #endif
 
-#ifdef __int128
 #ifndef c_strtos128
 void test_strtos128(void)	{}
+#warning "strtos128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_SINT(128)
-#endif
 #endif
 
 
@@ -1022,34 +1044,37 @@ void	test_strhextou##BITS(void)														\
 
 #ifndef c_strhextou8
 void test_strhextou8(void)	{}
+#warning "strhextou8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRHEX_TO_UINT(8)
 #endif
 
 #ifndef c_strhextou16
 void test_strhextou16(void)	{}
+#warning "strhextou16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRHEX_TO_UINT(16)
 #endif
 
 #ifndef c_strhextou32
 void test_strhextou32(void)	{}
+#warning "strhextou32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRHEX_TO_UINT(32)
 #endif
 
 #ifndef c_strhextou64
 void test_strhextou64(void)	{}
+#warning "strhextou64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRHEX_TO_UINT(64)
 #endif
 
-#ifdef __int128
 #ifndef c_strhextou128
 void test_strhextou128(void)	{}
+#warning "strhextou128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRHEX_TO_UINT(128)
-#endif
 #endif
 
 
@@ -1170,34 +1195,37 @@ void	test_strbasetou##BITS(void)																												\
 
 #ifndef c_strbasetou8
 void test_strbasetou8(void)	{}
+#warning "strbasetou8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_UINT(8)
 #endif
 
 #ifndef c_strbasetou16
 void test_strbasetou16(void)	{}
+#warning "strbasetou16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_UINT(16)
 #endif
 
 #ifndef c_strbasetou32
 void test_strbasetou32(void)	{}
+#warning "strbasetou32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_UINT(32)
 #endif
 
 #ifndef c_strbasetou64
 void test_strbasetou64(void)	{}
+#warning "strbasetou64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_UINT(64)
 #endif
 
-#ifdef __int128
 #ifndef c_strbasetou128
 void test_strbasetou128(void)	{}
+#warning "strbasetou128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_UINT(128)
-#endif
 #endif
 
 
@@ -1319,34 +1347,37 @@ void	test_strbasetos##BITS(void)																													\
 
 #ifndef c_strbasetos8
 void test_strbasetos8(void)	{}
+#warning "strbasetos8() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_SINT(8)
 #endif
 
 #ifndef c_strbasetos16
 void test_strbasetos16(void)	{}
+#warning "strbasetos16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_SINT(16)
 #endif
 
 #ifndef c_strbasetos32
 void test_strbasetos32(void)	{}
+#warning "strbasetos32() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_SINT(32)
 #endif
 
 #ifndef c_strbasetos64
 void test_strbasetos64(void)	{}
+#warning "strbasetos64() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_SINT(64)
 #endif
 
-#ifdef __int128
 #ifndef c_strbasetos128
 void test_strbasetos128(void)	{}
+#warning "strbasetos128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STRBASE_TO_SINT(128)
-#endif
 #endif
 
 

@@ -6,19 +6,97 @@
 
 
 _GENERIC()
-s_list_T*	CONCAT(List_Replace,T_NAME)(s_list_T const* list, T old, T new)
+s_list(T)*	List_Replace(T)(s_list(T) const* list, T old, T new)
 {
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
-	while (list)
+	result = List_Duplicate(T)(list);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	elem = result;
+	while (elem)
 	{
-		elem = CONCAT(List_Item,T_NAME)(T_EQUALS(list->item, old) ? new : list->item);
-		if (elem == NULL)
-			break;
-		CONCAT(List_Append,T_NAME)(result, elem);
-		list = list->next;
+		if (T_EQUALS(elem->item, old))
+		{
+			elem->item = new;
+		}
+		elem = elem->next;
 	}
+	return (result);
+}
+
+
+
+_GENERIC()
+s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n)
+{
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
+
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	result = List_Duplicate(T)(list);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	elem = result;
+	while (elem)
+	{
+		if (n == 0)
+			return (result);
+		if (T_EQUALS(elem->item, old))
+		{
+			elem->item = new;
+			n -= 1;
+		}
+		elem = elem->next;
+	}
+	return (result);
+}
+
+
+
+_GENERIC()
+s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n)
+{
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
+
+	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	result = List_Duplicate(T)(list);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+#if LIBCONFIG_LIST_DOUBLYLINKED
+	elem = result->prev;
+	while (elem)
+	{
+		if (n == 0)
+			return (result);
+		if (T_EQUALS(elem->item, old))
+		{
+			elem->item = new;
+			n -= 1;
+		}
+		elem = elem->prev;
+	}
+#else
+	t_uint total = 0;
+	for (elem = result; elem != NULL; elem = elem->next)
+	{
+		if (T_EQUALS(elem->item, old))
+			total += 1;
+	}
+	for (elem = result; elem != NULL; elem = elem->next)
+	{
+		if (n == 0)
+			return (result);
+		if (T_EQUALS(elem->item, old))
+		{
+			if (total == n)
+			{
+				elem->item = new;
+				n -= 1;
+			}
+			total -= 1;
+		}
+	}
+#endif
 	return (result);
 }

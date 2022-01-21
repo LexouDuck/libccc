@@ -1,21 +1,19 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/math/algebra/interval.h           |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/math/algebra/interval.h           |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MATH_ALGEBRA_INTERVAL_H
 #define __LIBCCC_MATH_ALGEBRA_INTERVAL_H
-/*!@group{libccc_math_algebra_interval}
-** @{
-**	This header defines useful algebra and calculus types, and functions.
+/*!@group{libccc_math_algebra_interval,65,libccc/math/algebra/interval.h}
 **
-**	@file
+**	This header defines useful algebra and calculus types, and functions.
 */
 // TODO add other function macros for integral, distance, etc
 
@@ -141,6 +139,6 @@ t_s64		c_distance_s64 (t_s64 x, t_s64 y);
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

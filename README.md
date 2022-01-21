@@ -16,35 +16,35 @@ The first step to accomplishing this is to avoid using the native int/long/short
 ('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply). Of course, many times a platform-dependent "fast int" is the best thing to use, and this is made easy using libccc.
 
 The following categories/headers include the ISO standard library (types, functions, macros):
-* _**bool.h**_: primitive boolean type (usually `_Bool`), and strtobool, booltostr, etc
-* _**char.h**_: functions to handle ANSI/ASCII characters (islower, isalpha, toupper, etc - but also `wchar_t` and UTF8 char handling)
-* _**int.h**_: integer number types, functions to replace the wonky STD C atoi/itoa functions with better type-specific conversion functions
-* _**float.h**_: floating-point types, functions to replace the wonky STD C atof/strtol functions with better type-specific conversion functions
-* _**pointer.h**_: important system types for pointer arithmetic (`size_t`, `ptrdiff_t`) and the functions associated with them
-* _**memory.h**_: functions to manipulate memory directly (memcpy, memset, memchr, etc - but also extras like memdup, memrep, getbits)
-* _**string.h**_: functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
-* _**math/float.h**_: common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
-* _**sys/time.h**_: functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
-* _**sys/io.h**_: functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
+* `bool.h`       : primitive boolean type (usually `_Bool`), and strtobool, booltostr, etc
+* `char.h`       : functions to handle ANSI/ASCII characters (islower, isalpha, toupper, etc - but also `wchar_t` and UTF8 char handling)
+* `int.h`        : integer number types, functions to replace the wonky STD C atoi/itoa functions with better type-specific conversion functions
+* `float.h`      : floating-point types, functions to replace the wonky STD C atof/strtol functions with better type-specific conversion functions
+* `pointer.h`    : important system types for pointer arithmetic (`size_t`, `ptrdiff_t`) and the functions associated with them
+* `memory.h`     : functions to manipulate memory directly (memcpy, memset, memchr, etc - but also extras like memdup, memrep, getbits)
+* `string.h`     : functions to manipulate strings (strcpy,strchr,strsub,etc but also extras such as strformat,strsplit,strmap)
+* `math/float.h` : common mathematical functions operating on floating-point numbers (the implementations in this lib are fast-approximate versions, though by default LIBCONFIG_FAST_APPROX_MATH is defined as 0, so the functions are actually simple wrappers over the builtin FPU math functions)
+* `sys/time.h`   : functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call)
+* `sys/io.h`     : functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`)
 
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
-* _**fixed.h**_: fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)
-* _**color.h**_: functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
-* _**pointerarray.h**_:	a set of functions used to manipulate pointer arrays (`void **`, where the array is terminated by a NULL pointer)
-* _**stringarray.h**_:	a set of functions used to manipulate string arrays (`char **`, where the array is terminated by a NULL pointer)
-* _**monad/array.h**_:	generic-type array functions (simply stores a contiguous memory buffer `.items` and a `.length`)
-* _**monad/list.h**_:	generic-type linked-list functions (which can be configured to be singly-linked or doubly-linked)
-* _**monad/stack.h**_:	generic-type stack functions (mainly push/pop, made to act like a FIFO/LILO type)
-* _**monad/queue.h**_:	generic-type queue functions (mainly push/pop, made to act like a LIFO/FILO type)
-* _**monad/dict.h**_:	generic-type dictionary (key/value pair) functions (access items via their string `key` rather than their index)
-* _**monad/tree.h**_:	generic-type tree functions (each `struct tree` stores a value of type `T`)
-* _**monad/object.h**_:	generic-type nestable object, works similar to a JSON data structure (stores key/value pairs).
-* _**math/algebra.h**_:	math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
-* _**math/random.h**_:	functions for simple pseudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
-* _**math/complex.h**_:	math functions for complex number operations, as well as quaternions
-* _**math/stat.h**_:	statistics & probabilities functions: int/float number array sort functions, median, standard deviation, etc
-* _**math/vlq.h**_: 	Variable-Length Quantity math functions, for variable-size "big ints", "big fixed", and "big float" types.
-* _**sys/regex.h**_:	Regular Expression type and functions, based on the all-encompassing [Oniguruma](https://github.com/kkos/oniguruma) regex engine
+* `libccc/fixed.h`        : fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)
+* `libccc/color.h`        : functions manipulating several common color encodings, as well as other useful color-related functions (like RGB_to_HSL, etc)
+* `libccc/pointerarray.h` : a set of functions used to manipulate pointer arrays (`void **`, where the array is terminated by a NULL pointer)
+* `libccc/stringarray.h`  : a set of functions used to manipulate string arrays (`char **`, where the array is terminated by a NULL pointer)
+* `libccc/math/algebra.h` : math functions for 2D/3D/4D vectors and matrices, as well as integrals and more
+* `libccc/math/random.h`  : functions for simple pseudo-random number generation (many more functions than just the ISO rand/srand/rand_r functions)
+* `libccc/math/complex.h` : math functions for complex number operations, as well as quaternions
+* `libccc/math/stat.h`    : statistics & probabilities functions: int/float number array sort functions, median, standard deviation, etc
+* `libccc/math/vlq.h`     : Variable-Length Quantity math functions, for variable-size "big ints", "big fixed", and "big float" types.
+* `libccc/monad/array.h`  : generic-type array functions (simply stores a contiguous memory buffer `.items` and a `.length`)
+* `libccc/monad/list.h`   : generic-type linked-list functions (which can be configured to be singly-linked or doubly-linked)
+* `libccc/monad/stack.h`  : generic-type stack functions (mainly push/pop, made to act like a FIFO/LILO type)
+* `libccc/monad/queue.h`  : generic-type queue functions (mainly push/pop, made to act like a LIFO/FILO type)
+* `libccc/monad/dict.h`   : generic-type dictionary (key/value pair) functions (access items via their string `key` rather than their index)
+* `libccc/monad/tree.h`   : generic-type tree functions (each `struct tree` stores a value of type `T`)
+* `libccc/monad/object.h` : generic-type nestable object, works similar to a JSON data structure (stores key/value pairs).
+* `libccc/sys/regex.h`    : Regular Expression type and functions, based on the all-encompassing [Oniguruma](https://github.com/kkos/oniguruma) regex engine
 
 
 
@@ -83,6 +83,21 @@ Thank you to Doxygen, Doxyrest, Sphinx, and GitHub Pages to make this auto-gener
 
 
 
+
+Build system
+---
+This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form.
+
+There a couple of important custom Makefile variables used, which you should keep in mind:
+- MODE: the kind of compiler flags used (can be `debug` or `release`)
+- OSMODE: the target operating system (can be `win32`, `win64`, `macos`, `linux`, or `other`)
+- LIBMODE: the type of library build (can be `static` or `dynamic`)
+Depending on your particular machine/environment/needs, you may need to set a custom value for one of these (eg: `make OSMODE=win32`)
+
+To learn more about what make scripts are provided, do `make help`, which will give a list of all rules and a brief description for each.
+
+
+
 Testing
 ---
 To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted).
@@ -101,65 +116,6 @@ This CI job builds everything with a `make`, and runs the testing suite with a `
 - Windows (mingw-gcc and clang)
 
 You can check the latest CI/CD run of libccc over on the [GitHub Actions](https://github.com/LexouDuck/libccc/actions) page of this repo.
-
-
-
-
-Build system
----
-This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form.
-
-There a couple of important custom Makefile variables used, which you should keep in mind:
-- MODE: the kind of compiler flags used (can be `debug` or `release`)
-- OSMODE: the target operating system (can be `win32`, `win64`, `macos`, or `linux`)
-- LIBMODE: the type of library build (can be `static` or `dynamic`)
-Depending on your particular machine/environment/needs, you may need to set a custom value for one of these (eg: `make OSMODE=win32`)
-
-The available `make` commands are:
-
-##### Building
-
-- `make debug` or `make` or `make all`
-	Build the `libccc.a` library file, in debug mode (with added flags: `-g -ggdb -D DEBUG=1`)
-
-- `make release`
-	Build the `libccc.a` library file, in release mode (builds both static and dynamic library files for the given OSMODE, with added flags like `-O3`)
-
-- `make doc`
-	Generate documentation from doxygen comments in the code to the ./doc/ folder (in several formats: html, latex, rtf, man)
-
-
-##### Checking/CI
-
-- `make libccc_test`
-	Builds a test software `libccc_test`, which runs test suites on every libccc function.
-
-- `make test`
-	Builds `libccc_test` and runs it without any arguments (running all tests).
-
-- `make lint`
-	Runs CPPcheck on all source files
-
-- `make preprocessed`
-	Fills the `./obj/` folder with `.c` files in their preprocessed state - this can help debug certain code macros, etc
-
-
-##### Deleting
-
-- `make clean`
-	Delete all object files in `./obj/` folder.
-
-- `make rclean`
-	Delete all object files in `./obj/` folder, and the folder itself.
-
-- `make fclean`
-	Delete all object files in `./obj/` folder, as well as the executable and library files.
-
-- `make tclean`
-	Delete the test executable file, if present.
-
-- `make re`
-	Does a `make fclean` followed by a `make`
 
 
 

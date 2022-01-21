@@ -1,35 +1,20 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/monad/tree.h                      |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/monad/tree.h                      |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MONAD_TREE_H
 #define __LIBCCC_MONAD_TREE_H
-/*!@group{libccc_monad_tree}
-** @{
-**	This header defines a simple tree/node/leaf type and utility functions for it.
+/*!@group{libccc_monad_tree,34,libccc/monad/tree.h}
 **
-**	@file
+**	This header defines a simple tree/node/leaf type and utility functions for it.
 */
-
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_DEFAULT
-#define T_DEFAULT	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
 
 /*
 ** ************************************************************************** *|
@@ -43,25 +28,27 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/tree.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
 
-#define tree_T		CONCAT(tree, T_NAME)
-#define s_tree_T	CONCAT(s_tree, T_NAME)
-
 //! A simple tree/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
-typedef struct tree_T
+typedef struct tree(T)
 {
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
-	struct tree_T*	nodes;		//!< The array of sub-nodes of this tree node
+	struct tree(T)*	nodes;		//!< The array of sub-nodes of this tree node
 	T				value;		//!< The value stored in this tree node
-}				s_tree_T;
+}	s_tree(T);
 
 
 
@@ -121,6 +108,6 @@ typedef struct tree_T
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

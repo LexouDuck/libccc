@@ -27,20 +27,20 @@
 */
 
 _GENERIC()
-s_list_T*	CONCAT(List_Create,T_NAME)(t_uint n, ...)
+s_list(T)*	List_Create(T)(t_uint n, ...)
 {
 	va_list		args;
 	T			item;
-	s_list_T*	result = NULL;
-	s_list_T*	elem;
-	s_list_T*	new;
+	s_list(T)*	result = NULL;
+	s_list(T)*	elem;
+	s_list(T)*	new;
 
 	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (NULL);)
 	va_start(args, n);
 	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(args, T);
-		new = (s_list_T*)Memory_Allocate(sizeof(s_list_T));
+		new = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
 		HANDLE_ERROR(ALLOCFAILURE, (new == NULL), break;)
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		new->prev = NULL;

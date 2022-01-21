@@ -1,7 +1,7 @@
 
 #include "libccc.h"
+#include "libccc/pointer.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/math.h"
 
 #include "test.h"
 
@@ -28,6 +28,7 @@
 
 #ifndef c_sizetostr
 void test_sizetostr(void)	{}
+#warning "sizetostr() test suite function defined, but the function isn't defined."
 #else
 void	print_test_sizetostr(char const* test_name, int can_segfault,
 		char const* expecting,
@@ -80,6 +81,7 @@ void	test_sizetostr(void)
 
 #ifndef c_strtosize
 void test_strtosize(void)	{}
+#warning "strtosize() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strtosize(char const* test_name, int can_segfault,
 		t_size expecting,

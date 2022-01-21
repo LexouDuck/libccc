@@ -7,7 +7,7 @@
 
 
 _GENERIC()
-T*	CONCAT(Array_Get,T_NAME)(s_array_T const* array, t_uint index)
+T*	Array_Get(T)(s_array(T) const* array, t_uint index)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)

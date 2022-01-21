@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/encode/toml.h &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/math.h" href="group_libccc_math.html" />
+    <link rel="prev" title="libccc/encode/json.h" href="group_libccc_encode_json.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/encode/toml.h">
+	<meta property="og:description" content="libccc/encode/toml.h">
+	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation - libccc/encode/toml.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_encode_toml.html">
+	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/encode/toml.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>libccc/encode/toml.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-encode-toml-h">
+<span id="doxid-group-libccc-encode-toml"></span><span id="index-0"></span><h1>libccc/encode/toml.h<a class="headerlink" href="#libccc-encode-toml-h" title="Permalink to this headline"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<p>This header defines a simple API to manipulate TOML and/or INI files. <a class="reference internal" href="#details-group-libccc-encode-toml"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global variables</span>
+
+<a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga4eb42ec03a60eac923b156b0ecd3e279"><span class="std std-ref">s_kvt</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga1db69c5452340824d5d59e13379a0379"><span class="std std-ref">TOML_Parse_Strict</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga0c431e0276e95674c902c6fbc0d8618d"><span class="std std-ref">TOML_FromString_Strict</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gab9ef3640dbe0c46ad1f7e7a025a0cd7f"><span class="std std-ref">TOML_FromString</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga569543dff74d2f096a7c434b8225c499"><span class="std std-ref">TOML_Parse</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gac21a8b36699184f1ba659fb07f7f5ee3"><span class="std std-ref">TOML_Parse_N</span></a><span></span>  <span class="n">TOML_Parse_Lenient_N</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gaccfed87778a341ebdbc5177a5565c068"><span class="std std-ref">c_strtotoml</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1gab9ef3640dbe0c46ad1f7e7a025a0cd7f"><span class="std std-ref">TOML_FromString</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga536f40c55946b9fc04f42f02136f1acb"><span class="std std-ref">c_strtotoml_l</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gadd8532c1e91d710626dac89ba370576a"><span class="std std-ref">c_strtotoml_s</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga0c431e0276e95674c902c6fbc0d8618d"><span class="std std-ref">TOML_FromString_Strict</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga3f5975b958ee76cbf134626a4043a2a0"><span class="std std-ref">c_tomlparse</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga569543dff74d2f096a7c434b8225c499"><span class="std std-ref">TOML_Parse</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe25ac4c7996b9f79355009d33dc2144"><span class="std std-ref">c_tomlparse_l</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga5047958bdb82e33614c61e2dea529ea3"><span class="std std-ref">c_tomlparse_s</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga1db69c5452340824d5d59e13379a0379"><span class="std std-ref">TOML_Parse_Strict</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafbd7305ba8d942c6bc938316dac893d3"><span class="std std-ref">c_tomlparsen</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-encode-toml-1gac21a8b36699184f1ba659fb07f7f5ee3"><span class="std std-ref">TOML_Parse_N</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-encode-toml"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<p>This header defines a simple API to manipulate TOML and/or INI files.</p>
+<ul class="simple">
+<li><p>TOML spec: <a class="reference external" href="https://toml.io/en/v1.0.0#spec">https://toml.io/en/v1.0.0#spec</a></p></li>
+<li><p>INI files: <a class="reference external" href="https://en.wikipedia.org/wiki/INI_file">https://en.wikipedia.org/wiki/INI_file</a></p></li>
+</ul>
+<section id="global-variables">
+<h3>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span id="index-1"></span><a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga4eb42ec03a60eac923b156b0ecd3e279"><span class="std std-ref">s_kvt</span></a><span></span> <span class="kt">s_toml</span></pre>
+<p>Like other libccc/encode/ types, TOML is just an alias for the KVT type.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">*</span> <span class="n">TOML_FromString_Lenient</span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1ga1db69c5452340824d5d59e13379a0379"><span id="index-3"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">TOML_Parse_Strict</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Create a new <code class="docutils literal notranslate"><span class="pre">s_toml</span></code> object, parsed from a (valid) TOML string.</p>
+<p>This function creates a <code class="docutils literal notranslate"><span class="pre">s_toml</span></code> object by parsing a TOML string, strictly following the TOML official spec (<a class="reference external" href="https://www.toml.org/toml-en.html">https://www.toml.org/toml-en.html</a>), aborting with an error if anything non-standard is encountered.</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The resulting TOML object</p></td>
+</tr>
+<tr class="row-even"><td><p>str</p></td>
+<td><p>The string to parse</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The maximum amount of characters to parse (infinite if <code class="docutils literal notranslate"><span class="pre">0</span></code> is given)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The amount of characters parsed from the given <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga0c431e0276e95674c902c6fbc0d8618d"><span class="std std-ref">TOML_FromString_Strict()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1ga0c431e0276e95674c902c6fbc0d8618d"><span id="index-4"></span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">*</span> <span class="n">TOML_FromString_Strict</span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga1db69c5452340824d5d59e13379a0379"><span class="std std-ref">TOML_Parse_Strict()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span id="index-5"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">TOML_Parse_Lenient</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-toml-1gafe7d4ef9ea07ff568d9b45b323f6d239"><span class="std std-ref">s_toml</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<p>Create a new <code class="docutils literal notranslate"><span class="pre">s_toml</span></code> object, parsed from a (valid) TOML string.</p>
+<p>This function creates a <code class="docutils literal notranslate"><span class="pre">s_toml</span></code> object by parsing a TOML string, This API is made to be compatible with both the TOML file spec and the INI file spec. So, this means a couple of things in particular:</p>
+<ul class="simple">
+<li><p>(TOML/INI) All whitespace characters are handled (including the rare form-feed and vertical-tab chars)</p></li>
+<li><p>(TOML/INI) There cannot be any name conflicts between keys or sections names within a given scope.</p></li>
+<li><p>(TOML/INI) Comments can be started with either a ‘;’ char or a ‘#’ (when not inside a quoted string)</p></li>
+<li><p>(TOML) Sections can be nested</p></li>
+<li><p>(TOML) Key strings can be quoted, to allow for more characters than a token <code class="docutils literal notranslate"><span class="pre">[A-Za-z0-9_-]</span></code></p></li>
+<li><p>(TOML) Strings with whitespace should always be quoted`, triple double-quotes for multi-line strings</p></li>
+<li><p>(TOML) Strings can be single-quoted, this makes a literal verbatim string (no character escaping)</p></li>
+<li><p>(TOML) All types are supported, except for dates (which must be stored as string or integer)</p></li>
+<li><p>(TOML) All numeric literal notations are accepted (“0x” = hexadecimal, “0o” = octal, “0b” = binary)</p></li>
+<li><p>Arrays can be written using curly braces ‘{’ and ‘}’, to avoid confusion with sections</p></li>
+<li><p>Unlike regular TOML, this API can behave in a case-sensitive fashion, if needed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">null</span></code> is a valid value for any key/value pair (so as to be inter-compatible with JSON, YAML, etc)</p></li>
+</ul>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The resulting TOML object</p></td>
+</tr>
+<tr class="row-even"><td><p>str</p></td>
+<td><p>The string to parse</p></td>
+</tr>
+<tr class="row-odd"><td><p>n</p></td>
+<td><p>The maximum amount of characters to parse (infinite if <code class="docutils literal notranslate"><span class="pre">0</span></code> is given)</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The amount of characters parsed from the given <code class="docutils literal notranslate"><span class="pre">str</span></code>.</p>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient()</span></a></p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<span class="target" id="doxid-group-libccc-encode-toml-1ga569543dff74d2f096a7c434b8225c499"><span id="index-6"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1ga3f5975b958ee76cbf134626a4043a2a0"><span id="index-7"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1gac21a8b36699184f1ba659fb07f7f5ee3"><span id="index-8"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1gafbd7305ba8d942c6bc938316dac893d3"><span id="index-9"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1gab9ef3640dbe0c46ad1f7e7a025a0cd7f"><span id="index-10"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1gaccfed87778a341ebdbc5177a5565c068"><span id="index-11"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1ga536f40c55946b9fc04f42f02136f1acb"><span id="index-12"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1ga5047958bdb82e33614c61e2dea529ea3"><span id="index-13"></span></span><span class="target" id="doxid-group-libccc-encode-toml-1gadd8532c1e91d710626dac89ba370576a"><span id="index-14"></span></span><pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-toml-1gafe25ac4c7996b9f79355009d33dc2144"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">TOML_Parse</span>  <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_tomlparse</span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga569543dff74d2f096a7c434b8225c499"><span class="std std-ref">TOML_Parse</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">TOML_Parse_N</span>    <span class="n">TOML_Parse_Lenient_N</span>
+<span class="cp">#define</span> <span class="fm">c_tomlparsen</span>    <a class="reference internal" href="#doxid-group-libccc-encode-toml-1gac21a8b36699184f1ba659fb07f7f5ee3"><span class="std std-ref">TOML_Parse_N</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">TOML_FromString</span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strtotoml</span> <a class="reference internal" href="#doxid-group-libccc-encode-toml-1gab9ef3640dbe0c46ad1f7e7a025a0cd7f"><span class="std std-ref">TOML_FromString</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strtotoml_l</span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga7d29005bae6eda95308d27244a33f089"><span class="std std-ref">TOML_FromString_Lenient</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_tomlparse_s</span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga1db69c5452340824d5d59e13379a0379"><span class="std std-ref">TOML_Parse_Strict</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strtotoml_s</span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga0c431e0276e95674c902c6fbc0d8618d"><span class="std std-ref">TOML_FromString_Strict</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_tomlparse_l</span>   <a class="reference internal" href="#doxid-group-libccc-encode-toml-1ga67b73dc2f6f3fdc77f70c56beae0d0e7"><span class="std std-ref">TOML_Parse_Lenient</span></a></pre>
+<p>Macros which configure the default behavior of the TOML parsing functions (<code class="docutils literal notranslate"><span class="pre">Strict</span></code> or <code class="docutils literal notranslate"><span class="pre">Lenient</span></code>)</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_encode_json.html" class="btn btn-neutral float-left" title="libccc/encode/json.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_math.html" class="btn btn-neutral float-right" title="libccc/math.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

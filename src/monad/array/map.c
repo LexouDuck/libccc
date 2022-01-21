@@ -7,40 +7,38 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_Map,T_NAME)(s_array_T const* array, T (*map)(T item))
+s_array(T)*	Array_Map(T)(s_array(T) const* array, T (*map)(T item))
 {
-	s_array_T	result = {0};
-	t_uint	i;
+	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
-	result.items = (T*)Memory_Allocate(sizeof(T) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
-	result.length = array->length;
-	for (i = 0; i < result.length; ++i)
+	HANDLE_ERROR(NULLPOINTER, (map   == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if (array->length == 0 || array->items == NULL)
+		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
+	result = Array_New(T)(array->length, T_NULL);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	for (t_uint i = 0; i < array->length; ++i)
 	{
-		result.items[i] = map(array->items[i]);
+		result->items[i] = map(array->items[i]);
 	}
 	return (result);
 }
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_Map_I,T_NAME)(s_array_T const* array, T (*map)(T item, t_uint index))
+s_array(T)*	Array_Map_I(T)(s_array(T) const* array, T (*map)(T item, t_uint index))
 {
-	s_array_T	result = {0};
-	t_uint	i;
+	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
-	result.items = (T*)Memory_Allocate(sizeof(T) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
-	result.length = array->length;
-	for (i = 0; i < result.length; ++i)
+	HANDLE_ERROR(NULLPOINTER, (map   == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if (array->length == 0 || array->items == NULL)
+		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
+	result = Array_New(T)(array->length, T_NULL);
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	for (t_uint i = 0; i < array->length; ++i)
 	{
-		result.items[i] = map(array->items[i], i);
+		result->items[i] = map(array->items[i], i);
 	}
 	return (result);
 }

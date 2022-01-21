@@ -6,13 +6,13 @@
 
 
 _GENERIC()
-t_bool	CONCAT(Array_Has,T_NAME)(s_array_T const* array, s_array_T const* target)
+t_bool	Array_Has(T)(s_array(T) const* array, s_array(T) const* target)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (FALSE);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (FALSE);)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
-		if (CONCAT(Array_Contains,T_NAME)(target, array->items[i]))
+		if (Array_Contains(T)(target, array->items[i]))
 			return (TRUE);
 	}
 	return (FALSE);
@@ -20,13 +20,13 @@ t_bool	CONCAT(Array_Has,T_NAME)(s_array_T const* array, s_array_T const* target)
 
 
 _GENERIC()
-t_bool	CONCAT(Array_HasOnly,T_NAME)(s_array_T const* array, s_array_T const* target)
+t_bool	Array_HasOnly(T)(s_array(T) const* array, s_array(T) const* target)
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (FALSE);)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (FALSE);)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
-		if (!CONCAT(Array_Contains,T_NAME)(target, array->items[i]))
+		if (!Array_Contains(T)(target, array->items[i]))
 			return (FALSE);
 	}
 	return (TRUE);

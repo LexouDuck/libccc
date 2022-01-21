@@ -1,22 +1,21 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/math/algebra.h                    |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/math/algebra.h                    |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MATH_ALGEBRA_H
 #define __LIBCCC_MATH_ALGEBRA_H
-/*!@group{libccc_math_algebra}
-** @{
-**	This header defines useful algebra and calculus types, and functions.
+/*!@group{libccc_math_algebra,60,libccc/math/algebra.h}
 **
-**	@file
+**	This header defines useful algebra and calculus types, and functions.
 */
+
 // TODO add other function macros for integral, distance, etc
 
 /*
@@ -37,6 +36,6 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

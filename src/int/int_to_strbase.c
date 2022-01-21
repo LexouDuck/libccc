@@ -63,13 +63,13 @@ t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_UINT_TOSTRBASE(8)
 DEFINEFUNC_UINT_TOSTRBASE(16)
 DEFINEFUNC_UINT_TOSTRBASE(32)
 DEFINEFUNC_UINT_TOSTRBASE(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_UINT_TOSTRBASE(128)
 #endif
 
@@ -106,12 +106,12 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 	}																	\
 	result[n] = '\0';													\
 	return (result);													\
-}																		\
+}
 
 DEFINEFUNC_SINT_TOSTRBASE(8)
 DEFINEFUNC_SINT_TOSTRBASE(16)
 DEFINEFUNC_SINT_TOSTRBASE(32)
 DEFINEFUNC_SINT_TOSTRBASE(64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_TOSTRBASE(128)
 #endif

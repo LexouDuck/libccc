@@ -8,12 +8,12 @@
 char const*	signals[ENUMLENGTH_SIGNAL + 1] =
 {
 	"",
-	"#SIGTERM",	//!< (SIGnal: TERMination) termination request, sent to the program
-	"#SIGSEGV",	//!< (SIGnal: SEGmentation Violation) invalid memory access (segmentation fault)
-	"#SIGINT",	//!< (SIGnal: INTerrupt) external interrupt, usually initiated by the user
-	"#SIGILL",	//!< (SIGnal: ILLegal operation) invalid program image, such as invalid instruction
-	"#SIGABRT",	//!< (SIGnal: ABoRT) abnormal termination condition, as is e.g. initiated by abort()
-	"#SIGFPE",	//!< (SIGnal: Floating-Point Error) erroneous arithmetic operation such as divide by zero
+	"#SIGTERM",	//!< (SIGnal: TERMination request)
+	"#SIGSEGV",	//!< (SIGnal: SEGmentation Violation)
+	"#SIGINT",	//!< (SIGnal: INTerrupt) external
+	"#SIGILL",	//!< (SIGnal: ILLegal instruction)
+	"#SIGABRT",	//!< (SIGnal: ABoRTed execution)
+	"#SIGFPE",	//!< (SIGnal: Floating-Point Exception)
 	NULL
 };
 
@@ -66,7 +66,7 @@ void	init_segfault_handler(void)
 	signal(SIGABRT,	signal_handler);
 	signal(SIGFPE,	signal_handler);
 #else
-	memset(&signal_action, 0, sizeof(sigaction));
+	memset(&signal_action, 0, sizeof(struct sigaction));
 	sigemptyset(&signal_action.sa_mask);
 	signal_action.sa_flags     = SA_NODEFER;
 	signal_action.sa_sigaction = signal_handler;

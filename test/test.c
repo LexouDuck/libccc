@@ -4,8 +4,8 @@
 #include <math.h>
 
 #include "libccc.h"
-#include "libccc/error.h"
-#include "libccc/math/math.h"
+#include "libccc/math.h"
+#include "libccc/sys/error.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
@@ -177,7 +177,7 @@ DEFINE_TESTFUNCTION_INT( u8, 	u, 8)
 DEFINE_TESTFUNCTION_INT(u16,	u, 16)
 DEFINE_TESTFUNCTION_INT(u32,	u, 32)
 DEFINE_TESTFUNCTION_INT(u64,	u, 64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINE_TESTFUNCTION_INT(u128,	u, 128)
 #endif
 DEFINE_TESTFUNCTION_INT(uint,	u, 64)
@@ -186,7 +186,7 @@ DEFINE_TESTFUNCTION_INT( s8, 	s, 8)
 DEFINE_TESTFUNCTION_INT(s16,	s, 16)
 DEFINE_TESTFUNCTION_INT(s32,	s, 32)
 DEFINE_TESTFUNCTION_INT(s64,	s, 64)
-#ifdef __int128
+#if LIBCONFIG_USE_INT128
 DEFINE_TESTFUNCTION_INT(s128,	s, 128)
 #endif
 DEFINE_TESTFUNCTION_INT(sint,	s, 64)
@@ -258,10 +258,10 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(f64, 64)
-#ifdef __float80
+#if LIBCONFIG_USE_FLOAT80
 DEFINE_TESTFUNCTION_FLOAT(f80, 80)
 #endif
-#ifdef __float128
+#if LIBCONFIG_USE_FLOAT128
 DEFINE_TESTFUNCTION_FLOAT(f128, 128)
 #endif
 DEFINE_TESTFUNCTION_FLOAT(float, LIBCONFIG_FLOAT_BITS)
@@ -448,8 +448,8 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 
 void	print_test_strarr(s_test_strarr* test, char const* args)
 {
-	char*	str_result;
-	char*	str_expect;
+	char*	str_result = NULL;
+	char*	str_expect = NULL;
 	int		error = FALSE;
 	int		length;
 	size_t	i;

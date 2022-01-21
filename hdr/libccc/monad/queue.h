@@ -1,35 +1,20 @@
-/*============================================================================*/
-/*                                            ______________________________  */
-/*  libccc/monad/queue.h                     |    __    __  ___      _____  | */
-/*                                           |   / /\  / /\/ . |\   /  __|\ | */
-/*  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | */
-/*                                           | /___/\/_/ /___-'\   \____/\  | */
-/* Comprehensive|Cross-platform|Customizable | \____/\__/\____-'    \____/  | */
-/* This source code follows the MIT License. |______________________________| */
-/*                                                                            */
-/*============================================================================*/
+/*============================================================================*\
+||                                            ______________________________  ||
+||  libccc/monad/queue.h                     |    __    __  ___      _____  | ||
+||                                           |   / /\  / /\/ . |\   /  __|\ | ||
+||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
+||                                           | /___/\/_/ /___,'\   \____/\  | ||
+|| Comprehensive|Cross-platform|Customizable | \____/\__/\____,'    \____/  | ||
+|| This source code follows the MIT License. |______________________________| ||
+||                                                                            ||
+\*============================================================================*/
 
 #ifndef __LIBCCC_MONAD_QUEUE_H
 #define __LIBCCC_MONAD_QUEUE_H
-/*!@group{libccc_monad_queue}
-** @{
-**	This header defines a simple queue (LIFO) type and utility functions for it.
+/*!@group{libccc_monad_queue,36,libccc/monad/queue.h}
 **
-**	@file
+**	This header defines a simple queue (LIFO) type and utility functions for it.
 */
-
-#ifndef T
-#define T	void*
-#endif
-#ifndef T_NAME
-#define T_NAME	
-#endif
-#ifndef T_DEFAULT
-#define T_DEFAULT	NULL
-#endif
-#ifndef T_EQUALS
-#define T_EQUALS(A, B)	((A) == (B))
-#endif
 
 /*
 ** ************************************************************************** *|
@@ -42,24 +27,26 @@
 
 HEADER_CPP
 
+//! set up generic declaration macros, to have `mygeneric(T)` syntax
+#undef	T
+#define	T	T_TYPE
+#include "libccc/monad/queue.c"
+
 /*
 ** ************************************************************************** *|
 **                                 Definitions                                *|
 ** ************************************************************************** *|
 */
 
-#define queue_T		CONCAT(queue, T_NAME)
-#define s_queue_T	CONCAT(s_queue, T_NAME)
-
 //! A simple queue/node/leaf struct, stores an array of "branches" (ie: sub-nodes).
 /*
 **	TODO document this
 */
-typedef struct queue_T
+typedef struct queue(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}				s_queue_T;
+}	s_queue(T);
 
 
 
@@ -92,6 +79,6 @@ typedef struct queue_T
 
 
 
-/*! @} */
+/*! @endgroup */
 HEADER_END
 #endif

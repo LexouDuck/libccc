@@ -7,14 +7,15 @@
 
 
 _GENERIC()
-s_array_T	CONCAT(Array_Duplicate,T_NAME)(s_array_T const* array)
+s_array(T)*	Array_Duplicate(T)(s_array(T) const* array)
 {
-	s_array_T	result = {0};
+	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (result);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (result);)
-	result.items = (T*)Memory_Duplicate(array->items, sizeof(T) * array->length);
-	if (result.items)
-		result.length = array->length;
+	HANDLE_ERROR(NULLPOINTER, (array        == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (NULL);)
+	result = (s_array(T)*)Memory_New(sizeof(s_array(T)));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	result->items = (T*)Memory_Duplicate(array->items, sizeof(T) * array->length);
+	result->length = (array->items ? array->length : 0);
 	return (result);
 }
