@@ -12,32 +12,32 @@ print_message "folder differences:"
 	cd "$command_arg_path"
 	. "$project_cccmkfile"
 	#! temporary folder used to check differences with source cccmk templates
-	diffchk_oldpath=".cccmk_diff_old"
-	diffchk_newpath=".cccmk_diff_new"
-	mkdir "$diffchk_oldpath"
-	mkdir "$diffchk_newpath"
+	diffchk_cccpath=".cccmk_diff_old"
+	diffchk_pwdpath=".cccmk_diff_new"
+	mkdir "$diffchk_cccpath"
+	mkdir "$diffchk_pwdpath"
 	# copy over files to diffchk folders
 	for i in $project_track
 	do
-		trackedfile_src_rev="`echo "$i" | cut -d':' -f 1 `"
-		trackedfile_oldpath="`echo "$i" | cut -d':' -f 2 `"
-		trackedfile_newpath="`echo "$i" | cut -d':' -f 3 `"
-		mkdir -p "` dirname "$diffchk_oldpath/$trackedfile_newpath" `"
-		mkdir -p "` dirname "$diffchk_newpath/$trackedfile_newpath" `"
+		trackedfile_ccc_rev="`echo "$i" | cut -d':' -f 1 `"
+		trackedfile_cccpath="`echo "$i" | cut -d':' -f 2 `"
+		trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
+		mkdir -p "` dirname "$diffchk_cccpath/$trackedfile_pwdpath" `"
+		mkdir -p "` dirname "$diffchk_pwdpath/$trackedfile_pwdpath" `"
 		# replace %[vars]% in newly copied-over file
 		cccmk_template \
-			"$CCCMK_PATH_PROJECT/$trackedfile_oldpath" "$diffchk_oldpath/$trackedfile_newpath"
-		if [ -f "./$trackedfile_newpath" ]
-		then cp -p "./$trackedfile_newpath" "$diffchk_newpath/$trackedfile_newpath"
+			"$CCCMK_PATH_PROJECT/$trackedfile_cccpath" "$diffchk_cccpath/$trackedfile_pwdpath"
+		if [ -f "./$trackedfile_pwdpath" ]
+		then cp -p "./$trackedfile_pwdpath" "$diffchk_pwdpath/$trackedfile_pwdpath"
 		fi
 	done
 
 	# show mkfile folder tree differences
 	{
-		diff -qrs -U-1 "$diffchk_oldpath" "$diffchk_newpath" \
+		diff -qrs -U-1 "$diffchk_cccpath" "$diffchk_pwdpath" \
 		| awk \
-		-v path_old="$diffchk_oldpath" \
-		-v path_new="$diffchk_newpath" \
+		-v path_old="$diffchk_cccpath" \
+		-v path_new="$diffchk_pwdpath" \
 		'BEGIN {
 			io_reset  = "\033[0m";
 			io_red    = "\033[31m";
@@ -67,67 +67,25 @@ print_message "folder differences:"
 		}'
 		echo ''
 	}
-# old alternate version to display folder tree diffs (relies on the non-standard 'treee' command)
-#	if tree --version > /dev/null
-#	then
-#		tree -a "$diffchk_oldpath" > .cccmk_diff_tree_old.txt
-#		tree -a "$diffchk_newpath" > .cccmk_diff_tree_new.txt
-#		diff -U-1 \
-#			.cccmk_diff_tree_old.txt \
-#			.cccmk_diff_tree_new.txt \
-#		>	.cccmk_diff_tree.txt \
-#		&&	cat .cccmk_diff_tree.txt
-#		awk \
-#		-v path_old="$diffchk_oldpath/" \
-#		-v path_new="$diffchk_newpath/" \
-#		'BEGIN {
-#			io_reset  = "\033[0m";
-#			io_red    = "\033[31m";
-#			io_green  = "\033[32m";
-#			io_yellow = "\033[33m";
-#		}
-#		{
-#			if (/[└├](── )/)
-#			{
-#				folder = $NF "/";
-#			}
-#			else if (/^ /)
-#			{
-#				file_old = path_old folder $NF;
-#				file_new = path_new folder $NF;
-#				if (system("cmp -s " file_old " " file_new))
-#				{ $0 = "~" substr($0, 2); }
-#			}
-#			     if (/^ /)  { print io_reset  $0; }
-#			else if (/^~/)  { print io_yellow $0 io_reset; }
-#			else if (/^\+/) { print io_green  $0 io_reset; }
-#			else if (/^\-/) { print io_red    $0 io_reset; }
-#			else { print; }
-#		}' .cccmk_diff_tree.txt
-#		rm .cccmk_diff_tree*.txt
-#	else
-#		print_warning "This computer has no 'tree' command installed, cannot display folder tree diff"
-#	fi
-
 	# if verbose, show diffs for each non-identical file
 	if $verbose
 	then
 		for i in $project_track
 		do
-			trackedfile_src_rev="`echo "$i" | cut -d':' -f 1 `"
-			trackedfile_oldpath="`echo "$i" | cut -d':' -f 2 `"
-			trackedfile_newpath="`echo "$i" | cut -d':' -f 3 `"
-			if [ -f "./$trackedfile_newpath" ]
+			trackedfile_ccc_rev="`echo "$i" | cut -d':' -f 1 `"
+			trackedfile_cccpath="`echo "$i" | cut -d':' -f 2 `"
+			trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
+			if [ -f "./$trackedfile_pwdpath" ]
 			then
-				print_message "mkfile differences: '$trackedfile_newpath'"
+				print_message "mkfile differences: '$trackedfile_pwdpath'"
 				cccmk_diff \
-					"$diffchk_oldpath/$trackedfile_newpath" \
-					"$diffchk_newpath/$trackedfile_newpath"
+					"$diffchk_cccpath/$trackedfile_pwdpath" \
+					"$diffchk_pwdpath/$trackedfile_pwdpath"
 			fi
 		done
 	fi
 	# cleanup diff folders
-	rm -rf "$diffchk_oldpath"
-	rm -rf "$diffchk_newpath"
+	rm -rf "$diffchk_cccpath"
+	rm -rf "$diffchk_pwdpath"
 )
 print_verbose "finished checking differences."

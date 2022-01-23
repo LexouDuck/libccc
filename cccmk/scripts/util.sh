@@ -51,6 +51,17 @@ awk_inplace()
 
 
 
+#! Get a UNIX UTC timestamp for the last modified date of a file
+file_timestamp()
+{
+	if [ -f "$1" ]
+	then date -r "$1" '+%m-%d-%Y %H:%M:%S'
+	else echo        '??-??-???? ??:??:??'
+	fi
+}
+
+
+
 #! List all regular files contained inside the given folder (no hidden files, nor folders, nor symlinks etc)
 list_onlyfiles()
 {

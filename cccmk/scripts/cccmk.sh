@@ -103,26 +103,27 @@ parse_args()
 	else while [ $# -gt 0 ]
 	do
 		case "$1" in
-			-h|--help|help)
+			(-h|--help|help)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_help
 				exit 0
 				;;
-			-v|--version|version)
+			(-v|--version|version)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_version
 				exit 0
 				;;
-			-V|--verbose)
+			(-V|--verbose)
 				verbose=true
 				print_verbose "parsed argument: '$1'"
 				;;
-			-*)	print_error "Unknown option: '$1' (try 'cccmk --help')"
+			(-*)
+				print_error "Unknown option: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
-			create)
+			(create)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -le 1 ]
@@ -136,7 +137,7 @@ parse_args()
 				fi
 				shift
 				;;
-			migrate)
+			(migrate)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
@@ -144,7 +145,7 @@ parse_args()
 				else command_arg_path="."
 				fi
 				;;
-			diff)
+			(diff)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
@@ -152,19 +153,21 @@ parse_args()
 				else command_arg_path="."
 				fi
 				;;
-			update)
+			(update)
 				command="$1"
 				print_verbose "parsed command: '$command'"
-				shift
-				if [ $# -ge 1 ]
-				then command_arg_path="$@"
-				else command_arg_path=""
+				if [ $# -gt 1 ]
+				then
+					shift
+					command_arg_path="$@"
+					while [ $# -gt 1 ]
+					do
+						shift
+					done
 				fi
-				while [ $# -gt 1 ]
-				do shift
-				done
 				;;
-			*)	print_error "Invalid argument: '$1' (try 'cccmk --help')"
+			(*)
+				print_error "Invalid argument: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
 		esac
@@ -301,7 +304,7 @@ case "$command" in
 	help)    show_help    ;;
 	version) show_version ;;
 	create)  . $CCCMK_PATH_SCRIPTS/cccmk_create.sh  ;;
-	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
 	diff)    . $CCCMK_PATH_SCRIPTS/cccmk_diff.sh    ;;
 	update)  . $CCCMK_PATH_SCRIPTS/cccmk_update.sh  ;;
+	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
 esac
