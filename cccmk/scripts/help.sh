@@ -12,6 +12,7 @@ create
 migrate
 diff
 update
+upgrade
 '
 
 cccmk_doc_args_help='cccmk [<OPTIONS>...] help'
@@ -37,6 +38,13 @@ cccmk_doc_text_migrate='
     - <PROJECT_DIR> (optional) is the project folder which should migrate to using cccmk.
       If not specified, the project folder to check is assumed to be "./", the current dir.
 '
+cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
+cccmk_doc_text_diff='
+    Checks for differences between the given project and the template mkfiles.
+    Can be only successfully be run from a valid cccmk project folder.
+    - <PROJECT_DIR> (optional) is the project folder for which to check differences.
+      If not specified, the project folder to check is assumed to be "./", the current dir.
+'
 cccmk_doc_args_update='cccmk [<OPTIONS>...] update [<MKFILE_PATH>...]'
 cccmk_doc_text_update='
     Overwrites the given file with the latest cccmk template equivalent.
@@ -44,12 +52,11 @@ cccmk_doc_text_update='
     - <MKFILE_PATH> (optional) is the filepath of one or more mkfile scripts to update.
       If no path is specfied, then all mkfile script files will be updated.
 '
-cccmk_doc_args_diff='cccmk [<OPTIONS>...] diff [<PROJECT_DIR>]'
-cccmk_doc_text_diff='
-    Checks for differences between the given project and the template mkfiles.
-    Can be only successfully be run from a valid cccmk project folder.
-    - <PROJECT_DIR> (optional) is the project folder for which to check differences.
-      If not specified, the project folder to check is assumed to be "./", the current dir.
+cccmk_doc_args_upgrade='cccmk [<OPTIONS>...] upgrade'
+cccmk_doc_text_upgrade='
+    Updates your local cccmk installation, by fetching new files from the latest version.
+    Since the cccmk installation process uses a "git clone" of the official repository,
+    updating cccmk itself is really just a simple "git pull" operation.
 '
 
 

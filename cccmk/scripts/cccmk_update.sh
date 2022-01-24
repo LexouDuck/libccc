@@ -97,7 +97,7 @@ do
 	then
 		# get latest template from the internet
 		print_message "Checking latest template for '$file_pwd'..."
-		file_url="$cccmk_git_url/$cccmk_dir_project/$file_ccc"
+		file_url="$cccmk_git_url/$cccmk_git_rev/cccmk/$cccmk_dir_project/$file_ccc"
 		print_verbose "fetching template file from url: '$file_url'"
 		curl --silent "$file_url" > "$path_tmp/$file_tmp"
 		if ! [ -f "$path_tmp/$file_tmp" ]
@@ -113,9 +113,9 @@ do
 		fi
 		# do a git 3-way merge to update the file in question
 		print_verbose "performing 3-way diff/merge:\n%s\n%s\n%s\n%s" \
-			" - modified file (project): [`file_timestamp "$path_pwd/$file_pwd"`] $path_pwd/$file_pwd" \
-			" - up2dated file (cccmk):   [`file_timestamp "$path_tmp/$file_tmp"`] $path_tmp/$file_tmp" \
-			" - original file (cccmk):   [`file_timestamp "$path_ccc/$file_ccc"`] $path_ccc/$file_ccc" \
+			" - project tracked modified file: [`file_timestamp "$path_pwd/$file_pwd"`] $path_pwd/$file_pwd" \
+			" - local install cccmk template:  [`file_timestamp "$path_tmp/$file_tmp"`] $path_tmp/$file_tmp" \
+			" - last update's cccmk template:  [`file_timestamp "$path_ccc/$file_ccc"`] $path_ccc/$file_ccc" \
 			""
 		if [ -f "$path_pwd/$file_pwd" -a -f "$path_ccc/$file_ccc" ]
 		then

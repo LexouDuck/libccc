@@ -10,18 +10,47 @@ if $debug
 then set -x
 fi
 
+# check that necessary shell commands are installed and usable
+
+# check the `diff` command
+if ! diff --version > /dev/null
+then print_error "cccmk requires the shell command 'diff' to be installed and accessible from the \$PATH."
+	exit 1
+fi
+# check the `git` command
+if ! git --version > /dev/null
+then print_error "cccmk requires the shell command 'git' to be installed and accessible from the \$PATH."
+	exit 1
+fi
+# check the `make` command
+if ! make --version > /dev/null
+then print_error "cccmk requires the shell command 'make' to be installed and accessible from the \$PATH."
+	exit 1
+fi
+
+# set the initial values for important program variables
+
+#! If set to `true`, then cccmk will display any `print_verbose` messages
+verbose=$debug
+
+command=help
+command_arg_name=
+command_arg_path=
 
 
-# fundamental cccmk variables
 
-#! The git branch/revision to follow ("master" for stable, or "dev" for beta)
-cccmk_git="dev" # TODO dissociate current revision hash and current branch to follow
-#! The git revision (can also be branch name) of the currently installed cccmk
-cccmk_git_rev="dev" #"`git rev-parse HEAD`"
-#! The git repo URL from which to get any cccmk templates
-cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk"
+# set the fundamental cccmk variables
+
 #! The installation folder path of cccmk
 cccmk_install=~/Projects/libccc/cccmk
+#! The version number of the currently installed cccmk
+cccmk_version=`cat "$CCCMK_PATH/VERSION"`
+#! The git revision of the currently installed cccmk
+cccmk_git_rev=`git rev-parse HEAD`
+#! The git repo URL from which to get any cccmk templates
+cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/"
+#! The git branch name/revision hash to use when doing a 'cccmk upgrade'
+cccmk_upgrade=dev
 #! The shell command (and arguments) used to perform and display file text diffs
 cccmk_diffcmd="git --no-pager diff --no-index --color"
 #cccmk_diffcmd="diff --color"
@@ -32,25 +61,15 @@ cccmk_diff()
 
 
 
-#! If set to `true`, then cccmk will display any `print_verbose` messages
-verbose=$debug
-
-
-
-command=help
-command_arg_name=
-command_arg_path=
-
-
-
 # utility functions for logging/io
 
 print_verbose() {
-if $verbose; then { printf "cccmk: ""\033[34m""verbose" ; printf "\033[0m: ""$@""\n" ; } >&2 ; fi ; }
-print_message() { { printf "cccmk: ""\033[34m""message" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_warning() { { printf "cccmk: ""\033[33m""warning" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_success() { { printf "cccmk: ""\033[32m""success" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_error()   { { printf "cccmk: ""\033[31m""error"   ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
+if $verbose; then { printf "cccmk: ""\033[34m""verbose""\033[0m: ""$@" ; echo "" ; } >&2 ; fi ; }
+print_message() { { printf "cccmk: ""\033[34m""message""\033[0m: ""$@" ; echo "" ; } >&2 ; }
+print_warning() { { printf "cccmk: ""\033[33m""warning""\033[0m: ""$@" ; echo "" ; } >&2 ; }
+print_success() { { printf "cccmk: ""\033[32m""success""\033[0m: ""$@" ; echo "" ; } >&2 ; }
+print_failure() { { printf "cccmk: ""\033[31m""failure""\033[0m: ""$@" ; echo "" ; } >&2 ; }
+print_error() { print_failure "$@" ; exit 1 }
 
 
 
@@ -185,7 +204,7 @@ parse_args "$@"
 
 
 
-# project configuration variables
+# set the project configuration variables
 
 #! The filepath of a project's project-tracker file
 project_cccmkfile=".cccmk"
@@ -304,7 +323,8 @@ case "$command" in
 	help)    show_help    ;;
 	version) show_version ;;
 	create)  . $CCCMK_PATH_SCRIPTS/cccmk_create.sh  ;;
+	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
 	diff)    . $CCCMK_PATH_SCRIPTS/cccmk_diff.sh    ;;
 	update)  . $CCCMK_PATH_SCRIPTS/cccmk_update.sh  ;;
-	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
+	upgrade) . $CCCMK_PATH_SCRIPTS/cccmk_upgrade.sh ;;
 esac
