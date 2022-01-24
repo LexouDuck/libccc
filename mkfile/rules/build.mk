@@ -45,8 +45,8 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 $(NAME_STATIC): $(OBJS)
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling static library: "$@" -> "
-	@ar -rc $@ $(OBJS)
-	@ranlib $@
+	@$(AR) -rc $@ $(OBJS)
+	@$(RANLIB) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)$(OSMODE)/static/
 
