@@ -39,28 +39,6 @@ command_arg_path=
 
 
 
-# set the fundamental cccmk variables
-
-#! The installation folder path of cccmk
-cccmk_install=~/Projects/libccc/cccmk
-#! The version number of the currently installed cccmk
-cccmk_version=`cat "$CCCMK_PATH/VERSION"`
-#! The git revision of the currently installed cccmk
-cccmk_git_rev=`git rev-parse HEAD`
-#! The git repo URL from which to get any cccmk templates
-cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/"
-#! The git branch name/revision hash to use when doing a 'cccmk upgrade'
-cccmk_upgrade=dev
-#! The shell command (and arguments) used to perform and display file text diffs
-cccmk_diffcmd="git --no-pager diff --no-index --color"
-#cccmk_diffcmd="diff --color"
-cccmk_diff()
-{
-	$cccmk_diffcmd "$1" "$2" || echo ''
-}
-
-
-
 # utility functions for logging/io
 
 print_verbose() {
@@ -69,9 +47,12 @@ print_message() { { printf "cccmk: ""\033[34m""message""\033[0m: ""$@" ; echo ""
 print_warning() { { printf "cccmk: ""\033[33m""warning""\033[0m: ""$@" ; echo "" ; } >&2 ; }
 print_success() { { printf "cccmk: ""\033[32m""success""\033[0m: ""$@" ; echo "" ; } >&2 ; }
 print_failure() { { printf "cccmk: ""\033[31m""failure""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_error() { print_failure "$@" ; exit 1 }
+print_error() { print_failure "$@" ; exit 1 ; }
 
 
+
+cccmk_install=~/Projects/libccc/cccmk
+#cccmk_install=~/.cccmk
 
 #! The path which stores all cccmk data
 if [ -z "$CCCMK_PATH" ]
@@ -106,6 +87,28 @@ if ! [ -d "$CCCMK_PATH_MKFILES" ]
 then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
 	exit 1
 fi
+
+
+
+# set the fundamental cccmk variables
+
+#! The installation folder path of cccmk
+cccmk_install=~/Projects/libccc/cccmk
+#! The version number of the currently installed cccmk
+cccmk_version="`( cat "$cccmk_install/VERSION" )`"
+#! The git revision of the currently installed cccmk
+cccmk_git_rev="`( cd "$cccmk_install" ; git rev-parse HEAD )`"
+#! The git repo URL from which to get any cccmk templates
+cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/"
+#! The git branch name/revision hash to use when doing a 'cccmk upgrade'
+cccmk_upgrade=dev
+#! The shell command (and arguments) used to perform and display file text diffs
+cccmk_diffcmd="git --no-pager diff --no-index --color"
+#cccmk_diffcmd="diff --color"
+cccmk_diff()
+{
+	$cccmk_diffcmd "$1" "$2" || echo ''
+}
 
 
 

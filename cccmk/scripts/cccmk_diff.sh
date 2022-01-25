@@ -7,7 +7,7 @@ then print_error "The current folder is not a valid cccmk project folder (needed
 exit 1
 fi
 
-print_message "folder differences:"
+print_message "Overview of differences:"
 (
 	cd "$command_arg_path"
 	. "$project_cccmkfile"
@@ -24,11 +24,14 @@ print_message "folder differences:"
 		trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
 		mkdir -p "` dirname "$diffchk_cccpath/$trackedfile_pwdpath" `"
 		mkdir -p "` dirname "$diffchk_pwdpath/$trackedfile_pwdpath" `"
+		actual_cccpath="$CCCMK_PATH_PROJECT"
+		actual_pwdpath="."
 		# replace %[vars]% in newly copied-over file
-		cccmk_template \
-			"$CCCMK_PATH_PROJECT/$trackedfile_cccpath" "$diffchk_cccpath/$trackedfile_pwdpath"
-		if [ -f "./$trackedfile_pwdpath" ]
-		then cp -p "./$trackedfile_pwdpath" "$diffchk_pwdpath/$trackedfile_pwdpath"
+		if [ -f             "$actual_cccpath/$trackedfile_cccpath" ]
+		then cccmk_template "$actual_cccpath/$trackedfile_cccpath" "$diffchk_cccpath/$trackedfile_pwdpath"
+		fi
+		if [ -f             "$actual_pwdpath/$trackedfile_pwdpath" ]
+		then cp -p          "$actual_pwdpath/$trackedfile_pwdpath" "$diffchk_pwdpath/$trackedfile_pwdpath"
 		fi
 	done
 
@@ -77,7 +80,7 @@ print_message "folder differences:"
 			trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
 			if [ -f "./$trackedfile_pwdpath" ]
 			then
-				print_message "mkfile differences: '$trackedfile_pwdpath'"
+				print_message "Tracked file differences: '$trackedfile_pwdpath'"
 				cccmk_diff \
 					"$diffchk_cccpath/$trackedfile_pwdpath" \
 					"$diffchk_pwdpath/$trackedfile_pwdpath"

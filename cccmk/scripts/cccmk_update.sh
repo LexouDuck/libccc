@@ -42,6 +42,8 @@ else
 	done
 fi
 
+
+
 # iterate over all cccmk-tracked files
 for i in $project_track
 do
@@ -55,13 +57,16 @@ do
 		fi
 	fi
 
+	#! The URL of the tracked template file
+	file_url="$cccmk_git_url/$trackedfile_ccc_rev/cccmk/$cccmk_dir_project/$trackedfile_cccpath"
+
 	#! The file in the current project
 	file_pwd="$trackedfile_pwdpath"
-	#! The equivalent file in the local cccmk installed templates
+	#! The equivalent filepath tracked from the cccmk templates
 	file_ccc="$trackedfile_cccpath"
 	#! The temporary filepath for the newly updated cccmk template, fetched from the web
-	file_tmp="$file_pwd.tmp"
-	path_tmp="$path_pwd"
+	file_old="$file_ccc.tmp"
+	path_old="$path_ccc"
 
 	# check if files exist, and prompt user accordingly
 	if [ -f "$path_pwd/$file_pwd" -a -f "$path_ccc/$file_ccc" ]
@@ -74,66 +79,92 @@ do
 			cccmk_diff "$path_ccc/$file_ccc" "$path_pwd/$file_pwd"
 			print_message "The file '$file_pwd' differs from the cccmk template (see diff above)"
 			print_message "NOTE: the cccmk template is shown as old/red, and your file is shown as new/green."
-			echo "Are you sure you wish to overwrite '$file_pwd' ?"
+			echo "Are you sure you wish to update '$file_pwd' by merging it with the template ?"
 			prompt_question response 'n'
-			if $response
-			then print_message "Updating file '$file_pwd'..."
-			else print_message "Update operation cancelled for '$file_pwd'." ; continue
-			fi
 		fi
-	elif [ -f "$path_pwd/$file_pwd" ]
-	then print_warning "Could not find source template file '$path_ccc/$file_ccc'."
-	elif [ -f "$path_ccc/$file_ccc" ]
+	elif ! [ -f "$path_pwd/$file_pwd" ]
 	then print_warning "Could not find project tracked file '$path_pwd/$file_pwd'."
+		echo "Are you sure you wish to create the file '$file_pwd' using the template ?"
+		prompt_question response 'n'
+	elif ! [ -f "$path_ccc/$file_ccc" ]
+	then print_warning "Could not find source template file '$path_ccc/$file_ccc'."
+		response=true
 	else
-		print_error "Both files do not exist:\n%s\n%s" \
+		print_error "Bad '$project_cccmkfile' tracker file - both files do not exist:\n%s\n%s" \
 			"$path_ccc/$file_ccc" \
 			"$path_pwd/$file_pwd" \
-		;exit 1
+		; exit 1
+	fi
+
+	# check user response
+	if $response
+	then print_message "Updating file '$file_pwd'..."
+	else print_message "Update operation cancelled for '$file_pwd'." ; continue
 	fi
 
 	# actually update the file in question
 	if $response
 	then
-		# get latest template from the internet
-		print_message "Checking latest template for '$file_pwd'..."
-		file_url="$cccmk_git_url/$cccmk_git_rev/cccmk/$cccmk_dir_project/$file_ccc"
+		# get tracked template from the internet
 		print_verbose "fetching template file from url: '$file_url'"
-		curl --silent "$file_url" > "$path_tmp/$file_tmp"
-		if ! [ -f "$path_tmp/$file_tmp" ]
+		curl --silent "$file_url" > "$path_old/$file_old"
+		if ! [ -f "$path_old/$file_old" ]
 		then
-			print_error "Could not retrieve latest template from repo at '$file_url'."
-			rm -f "$path_tmp/$file_tmp"
+			print_error "Could not retrieve tracked template from repo at '$file_url'."
+			rm -f "$path_old/$file_old"
 			exit 1
-		elif ! [ -z "` head -1 "$path_tmp/$file_tmp" | grep '^[45][0-9][0-9]: ' `" ]
+		elif ! [ -z "` head -1 "$path_old/$file_old" | grep '^[45][0-9][0-9]: ' `" ]
 		then
-			print_error "Error while retrieving template from repo at '$file_url':\n`cat "$path_tmp/$file_tmp"`"
-			rm -f "$path_tmp/$file_tmp"
+			print_error "Error while retrieving template from repo at '$file_url':"
+			print_error "` cat "$path_old/$file_old" `"
+			rm -f "$path_old/$file_old"
 			exit 1
 		fi
 		# do a git 3-way merge to update the file in question
 		print_verbose "performing 3-way diff/merge:\n%s\n%s\n%s\n%s" \
-			" - project tracked modified file: [`file_timestamp "$path_pwd/$file_pwd"`] $path_pwd/$file_pwd" \
-			" - local install cccmk template:  [`file_timestamp "$path_tmp/$file_tmp"`] $path_tmp/$file_tmp" \
-			" - last update's cccmk template:  [`file_timestamp "$path_ccc/$file_ccc"`] $path_ccc/$file_ccc" \
+			" - project_track modified file: [`file_timestamp "$path_pwd/$file_pwd"`] $path_pwd/$file_pwd" \
+			" - last trakced cccmk template: [`file_timestamp "$path_old/$file_old"`] $path_old/$file_old" \
+			" - localinstall cccmk template: [`file_timestamp "$path_ccc/$file_ccc"`] $path_ccc/$file_ccc" \
 			""
 		if [ -f "$path_pwd/$file_pwd" -a -f "$path_ccc/$file_ccc" ]
 		then
-			git merge-file --diff3 --theirs \
+			git merge-file -p --diff3 --union \
 				"$path_pwd/$file_pwd" \
+				"$path_old/$file_old" \
 				"$path_ccc/$file_ccc" \
-				"$path_tmp/$file_tmp" \
-
-		elif [ -f "$path_ccc/$file_ccc" ]; then cp "$path_tmp/$file_tmp" "$path_pwd/$file_pwd"
-		elif [ -f "$path_pwd/$file_pwd" ]; then echo ''
-		else exit 1
+			>     "$path_pwd/.tmp" \
+			&& mv "$path_pwd/.tmp" "$path_pwd/$file_pwd"
+		elif [ -f "$path_ccc/$file_ccc" ]; then cp "$path_ccc/$file_ccc" "$path_pwd/$file_pwd"
+		elif [ -f "$path_pwd/$file_pwd" ]; then cp "$path_old/$file_old" "$path_pwd/$file_pwd"
+		else
+			rm -f "$path_old/$file_old"
+			exit 1
 		fi
 		# check that merge was successful
 		if [ -z "` cat "$path_pwd/$file_pwd" | grep '^=======$' `" ]
 		then print_success "Updated file '$file_pwd'."
-		else print_warning "There were merge conflicts when updating file: '$file_pwd'."
+		else print_warning "CONFLICT: There were merge conflicts when updating file: '$file_pwd'."
 		fi
+		# apply new tracking revision hash to .cccmk project tracker file
+		awk_inplace "$path_pwd/$project_cccmkfile" \
+			-v filepath="$file_pwd" \
+			-v rev="$cccmk_git_rev" \
+		'{
+			if (/^[0-9a-fA-F]{40}:/)
+			{
+				split($0, parts, /:/);
+				if (parts[3] == filepath)
+				{
+					print rev ":" parts[2] ":" filepath;
+				}
+				else print;
+			}
+			else print;
+		}'
 		# cleanup temp file
-		rm "$path_tmp/$file_tmp"
+		rm "$path_old/$file_old"
+		# keep track all previously updated/merged files
+		updated_files="$updated_files $trackedfile_pwdpath"
 	fi
 done
+print_verbose "finished updating files."
