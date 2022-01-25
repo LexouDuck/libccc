@@ -47,15 +47,16 @@ BEGIN {
 	{ print_error("expected variable name and colon for '%%[_]:' loop directive"); }
 	else if (/%%/)
 	{ print_error("bad syntax - '%%[_]:' loop directive should be at the beginning of the line"); }
-	else if (match($0, /%\[([a-zA-Z_]+)\]%/, matched))
+	else
 	{
-		if (matched[1] in vars)
+		while (match($0, /%\[([a-zA-Z_]+)\]%/, matched))
 		{
-			line = $0;
-			sub(/%\[([a-zA-Z_]+)\]%/, vars[matched[1]], line);
-			print line;
+			if (matched[1] in vars)
+			{
+				sub("%\\[" matched[1] "\\]%", vars[matched[1]], $0);
+			}
+			else { print_error("unknown variable used: " matched[1]); }
 		}
-		else { print_error("unknown variable used: " matched[1]); }
+		print;
 	}
-	else print;
 }

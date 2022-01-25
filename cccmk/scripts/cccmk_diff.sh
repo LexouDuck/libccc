@@ -6,6 +6,7 @@ if ! [ -z "$project_missing" ]
 then
 	print_error "The current folder is not a valid cccmk project folder (needed for command 'cccmk diff')"
 	exit 1
+else . "$project_cccmkfile"
 fi
 
 #! current project folder

@@ -1,9 +1,11 @@
 # PROJECT
 
+/%[name]%
+
 /obj/
 /bin/
-/log/
 /dist/
+/log/
 /ref/
 
 
