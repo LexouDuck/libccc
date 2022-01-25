@@ -13,6 +13,8 @@ path_pwd="."
 #! local cccmk install folder which stores the project template
 path_ccc="$CCCMK_PATH_PROJECT"
 
+#! list of files to be updated/merged
+request_files=""
 #! list of updated/merged files
 updated_files=""
 #! list of all tracked files in the current project
@@ -26,18 +28,31 @@ do
 	tracked_files="$tracked_files $trackedfile_pwdpath"
 done
 
-
 if [ -z "$command_arg_path" ]
 then
 	print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts will be updated."
-	command_arg_path="$tracked_files"
+	request_files="$tracked_files"
 else
-	# iterate over all user-specified files, if any
+	# iterate over all user-specified files, to populate 'request_files'
 	for i in $command_arg_path
 	do
-		if [ -z "` echo $tracked_files | grep -w "$i" `" ]
+		if ! [ -z "` echo $tracked_files | grep "$i" `" ]
 		then
-			print_warning "file is not tracked by '$project_cccmkfile' file: '$i'"
+			if [ -d "$i" ] # if this is a folder, recursively add any tracked files inside
+			then
+				for f in $tracked_files
+				do
+					if ! [ -z "` echo $f | grep "^$i/" `" ]
+					then request_files="$request_files $f"
+					fi
+				done
+			elif [ -f "$i" ] # if this is a regular file, add it
+			then
+				request_files="$request_files $i"
+			else # the file/folder doesnt exist
+				request_files="$request_files $i"
+			fi
+		else print_warning "File is not tracked by '$project_cccmkfile' file: '$i'"
 		fi
 	done
 fi
@@ -52,7 +67,7 @@ do
 	trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
 	if ! [ -z "$command_arg_path" ]
 	then
-		if [ -z "` echo $command_arg_path | grep -w "$trackedfile_pwdpath" `" ]
+		if [ -z "` echo $request_files | grep -w "$trackedfile_pwdpath" `" ]
 		then continue # user did not ask for this file
 		fi
 	fi

@@ -167,15 +167,7 @@ parse_args()
 				else command_arg_path="."
 				fi
 				;;
-			(diff)
-				command="$1"
-				print_verbose "parsed command: '$command'"
-				if [ $# -gt 1 ]
-				then command_arg_path="$2" ; shift
-				else command_arg_path="."
-				fi
-				;;
-			(update)
+			(diff|update)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
@@ -187,6 +179,10 @@ parse_args()
 						shift
 					done
 				fi
+				;;
+			(upgrade)
+				command="$1"
+				print_verbose "parsed command: '$command'"
 				;;
 			(*)
 				print_error "Invalid argument: '$1' (try 'cccmk --help')"
