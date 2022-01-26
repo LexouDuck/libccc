@@ -612,6 +612,60 @@ t_sint					StringArray_Compare_N	(t_char const* const* strarr1, t_char const* co
 ** ************************************************************************** *|
 */
 
+//!@doc Returns the first encountered item in the given `strarr` matching the given `str`
+/*!
+**	@param	strarr	The string array to look through
+**	@param	str		The `str` pointer to match against
+**	@returns
+**	The first encountered item of the given `strarr` which is equal to `item`,
+**	or `NULL` if no such item was found.
+*/
+//!@{
+t_char* const*			StringArray_Find(t_char* const* strarr, t_char const* str);
+#define c_strarrfind	StringArray_Find
+//!@}
+
+//!@doc Returns the first encountered item in the given `strarr` matching the given `str`
+/*!
+**	@param	strarr	The string array to look through
+**	@param	match	The function used to compare items to the target value
+**	@returns
+**	The first encountered item of the given `strarr` for which the given `match` function
+**	returned `TRUE`. Otherwise, returns `NULL` if no such item was found.
+*/
+//!@{
+t_char* const*			StringArray_Find_F(t_char* const* strarr, t_bool (*match)(t_char const* str));
+#define c_strarrffind	StringArray_Find_F
+//!@}
+
+//!@doc Returns the index of the first encountered item in the given `strarr` matching the given `str`
+/*!
+**	@param	strarr	the string array to look through
+**	@param	str		the `str` pointer to match against
+**	@returns
+**	The first encountered item of the given `strarr` which is equal to `str`,
+**	or `-1` if no such item was found.
+*/
+//!@{
+t_sint					StringArray_IndexOf(t_char const* const* strarr, t_char const* str);
+#define c_strarrfindi	StringArray_IndexOf
+//!@}
+
+//!@doc Returns the index of the first encountered item in the given `strarr` matching the given `str`
+/*!
+**	@param	strarr	the string array to look through
+**	@param	match	The function used to compare items to the target value
+**	@returns
+**	The first encountered item of the given `strarr` for which the given `match` function
+**	returned `TRUE`. Otherwise, `-1` if no such item was found.
+*/
+//!@{
+t_sint					StringArray_IndexOf_F(t_char const* const* strarr, t_bool (*match)(t_char const* str));
+#define c_strarrffindi	StringArray_IndexOf_F
+//!@}
+
+
+
 //!	Counts the amount of occurences of the char `c` in the given string array `strarr`.
 /*!
 **	TODO document this

@@ -526,12 +526,12 @@ t_sint					PointerArray_Compare_N(void const* const* ptrarr1, void const* const*
 ** ************************************************************************** *|
 */
 
-//!@doc Returns the first encountered item in the given `array` matching the given `item`
+//!@doc Returns the first encountered item in the given `ptrarr` matching the given `ptr`
 /*!
-**	@param	ptrarr	The linked array to look through
-**	@param	item	The `item` pointer to match against
+**	@param	ptrarr	The pointer array to look through
+**	@param	ptr		The `ptr` pointer to match against
 **	@returns
-**	The first encountered item of the given linked `array` which is equal to `item`,
+**	The first encountered item of the given `ptrarr` which is equal to `ptr`,
 **	or `NULL` if no such item was found.
 */
 //!@{
@@ -539,12 +539,12 @@ void* const*			PointerArray_Find(void* const* ptrarr, void const* ptr);
 #define c_ptrarrfind	PointerArray_Find
 //!@}
 
-//!@doc Returns the first encountered item in the given `array` matching the given `item`
+//!@doc Returns the first encountered item in the given `ptrarr` matching the given `ptr`
 /*!
-**	@param	ptrarr	The linked array to look through
+**	@param	ptrarr	The pointer array to look through
 **	@param	match	The function used to compare items to the target value
 **	@returns
-**	The first encountered item of the given linked `array` for which the given `match` function
+**	The first encountered item of the given `ptrarr` for which the given `match` function
 **	returned `TRUE`. Otherwise, returns `NULL` if no such item was found.
 */
 //!@{
@@ -552,12 +552,12 @@ void* const*			PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void con
 #define c_ptrarrffind	PointerArray_Find_F
 //!@}
 
-//!@doc Returns the index of the first encountered item in the given `array` matching the given `item`
+//!@doc Returns the index of the first encountered item in the given `ptrarr` matching the given `ptr`
 /*!
-**	@param	ptrarr	the linked array to look through
-**	@param	item	the `item` pointer to match against
+**	@param	ptrarr	The pointer array to look through
+**	@param	ptr		The `ptr` pointer to match against
 **	@returns
-**	The first encountered item of the given linked `array` which is equal to `item`,
+**	The first encountered item of the given `ptrarr` which is equal to `ptr`,
 **	or `-1` if no such item was found.
 */
 //!@{
@@ -565,13 +565,13 @@ t_sint					PointerArray_IndexOf(void const* const* ptrarr, void const* ptr);
 #define c_ptrarrfindi	PointerArray_IndexOf
 //!@}
 
-//!@doc Returns the index of the first encountered item in the given `array` matching the given `item`
+//!@doc Returns the index of the first encountered item in the given `ptrarr` matching the given `ptr`
 /*!
-**	@param	ptrarr	the linked array to look through
+**	@param	ptrarr	The pointer array to look through
 **	@param	match	The function used to compare items to the target value
 **	@returns
-**	The first encountered item of the given linked `array` which is equal to `item`,
-**	or `-1` if no such item was found.
+**	The first encountered item of the given `ptrarr` for which the given `match` function
+**	returned `TRUE`. Otherwise, `-1` if no such item was found.
 */
 //!@{
 t_sint					PointerArray_IndexOf_F(void const* const* ptrarr, t_bool (*match)(void const* ptr));
