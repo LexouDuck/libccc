@@ -2,6 +2,7 @@
 #ifndef __NOSTD__
 	#include <unistd.h>
 #else
+	typedef unsigned long	size_t;
 	char*	getcwd(char* dest, size_t size);
 #endif
 

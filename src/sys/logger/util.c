@@ -2,6 +2,7 @@
 #ifndef __NOSTD__
 	#include <unistd.h>
 #else
+	typedef unsigned long	size_t;
 	char*	strerror(int error);
 	int		write(int fd, void const* buffer, size_t n);
 #endif
@@ -9,8 +10,8 @@
 	#include <errno.h>
 #else
 	#ifndef	errno
-	#define errno	(*_errno())
-	extern	int*	_errno(void);
+	extern	int*	errno(void);
+	#define errno	(*errno())
 	#endif
 #endif
 #ifndef __NOSTD__

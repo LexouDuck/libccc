@@ -56,7 +56,7 @@ void	Date_MakeValid(s_date* date)
 		date->hour = (tmp - 1);
 
 	tmp = (Date_IsLeapYear(date->year) ? TIME_MAX_DAYS_YEAR_LEAP : TIME_MAX_DAYS_YEAR);
-	if (date->day_year >= tmp)
+	if ((t_s64)date->day_year >= tmp)
 		date->day_year = (tmp - 1);
 
 	tmp = Date_DaysInMonth(date->month, date->year);

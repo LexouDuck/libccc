@@ -5,12 +5,15 @@
 	#include <stdlib.h>
 	#include <unistd.h>
 #else
+	typedef int	errno_t;
+	typedef unsigned long	size_t;
+	typedef unsigned long	rsize_t;
 	char*	getenv(char const* name);
 	errno_t getenv_s(size_t* len, char* value, rsize_t valuesz, char const* name);
 	#if __HASFUNC_SETENV
 		int	setenv(char const* name, char const* value, int overwrite);
 	#else
-		int	putenv(t_char const* command);
+		int	putenv(char const* command);
 	#endif
 #endif
 

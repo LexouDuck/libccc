@@ -41,6 +41,10 @@
 	#define SIZE_MAX	(size_t)-1
 	#define PTRDIFF_MIN	((ptrdiff_t)(SIZE_MAX >> 1))
 	#define PTRDIFF_MAX	((ptrdiff_t)((SIZE_MAX >> 1) + 1))
+	#define INTMAX_MAX	((t_sintmax)+((~(t_uintmax)0) >> 1))
+	#define INTMAX_MIN	((t_sintmax)-((~(t_uintmax)0) >> 1))
+	#define INTPTR_MAX	((t_sintptr)+((~(t_uintptr)0) >> 1))
+	#define INTPTR_MIN	((t_sintptr)-((~(t_uintptr)0) >> 1))
 #endif
 
 #ifndef __NOSTD__

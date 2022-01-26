@@ -43,7 +43,31 @@
 #endif
 //!@}
 
-#include <inttypes.h>
+//!@doc @isostd{C99,https://en.cppreference.com/w/c/types/integer}
+//!@{
+#ifndef __NOSTD__
+	#include <inttypes.h>
+#else
+// TODO: better logic than just using 'long' here, with the __DATAMODEL__ macro ?
+	#define PRIu8	"hhu"
+	#define PRIi8	"hhi"
+	#define PRIX8	"hhX"
+	#define PRIo8	"hho"
+	#define PRIu16	"hu"
+	#define PRIi16	"hi"
+	#define PRIX16	"hX"
+	#define PRIo16	"ho"
+	#define PRIu32	"lu"
+	#define PRIi32	"li"
+	#define PRIX32	"lX"
+	#define PRIo32	"lo"
+	#define PRIu64	"llu"
+	#define PRIi64	"lli"
+	#define PRIX64	"llX"
+	#define PRIo64	"llo"
+#endif
+//!@}
+
 #include "libccc.h"
 
 HEADER_CPP

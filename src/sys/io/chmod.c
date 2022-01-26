@@ -8,6 +8,7 @@
 	typedef unsigned long	gid_t;
 	int chmod(char const* pathname, mode_t mode);
 	int chown(char const* pathname, uid_t owner, gid_t group);
+	typedef struct stat	chmod_stat;
 	int stat (char const* pathname, struct stat* statbuf);
 #endif
 
@@ -29,9 +30,15 @@ e_cccerror	IO_ChangeMode	(t_char const* filepath, t_io_mode mode)
 	return (OK);
 }
 
+
+
 inline
 t_io_mode	IO_GetMode		(t_char const* filepath)
 {
+#ifdef __NOSTD__
+	filepath = NULL;
+	return (ERROR_UNSPECIFIED); // TODO
+#else
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
 
 	t_io_mode	result = 0;
@@ -43,7 +50,10 @@ t_io_mode	IO_GetMode		(t_char const* filepath)
 		return (ERROR_SYSTEM);)
 	result = stat_buffer.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
 	return (result);
+#endif
 }
+
+
 
 #if 0
 inline
