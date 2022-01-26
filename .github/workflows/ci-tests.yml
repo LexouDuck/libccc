@@ -29,12 +29,14 @@ jobs:
     - name: Get libccc build artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: ci-build.yml
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
         path: ./
 
     - name: Get libccc tests artifacts
       uses: dawidd6/action-download-artifact@v2
       with:
+        workflow: ci-build.yml
         name: libccc-tests_${{matrix.os}}_${{matrix.compiler}}
         path: ./
 
