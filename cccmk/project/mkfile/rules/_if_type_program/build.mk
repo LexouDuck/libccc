@@ -10,11 +10,11 @@ DEPS := $(OBJS:.o=.d)
 
 # here we add linked library flags for each package
 LDLIBS := $(LDLIBS) \
-	$(foreach i,$(PACKAGES_LINK),$($(i)))
+	$(foreach i,$(PACKAGES_LINKS),$($(i)))
 
 # here we add include header folders for each package
 INCLUDES := $(INCLUDES) \
-	$(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
+	$(foreach i,$(PACKAGES_INCLUDES),-I$($(i)))
 
 
 
@@ -44,7 +44,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 #! Compiles the project executable
 $(NAME): $(OBJS)
 	@printf "Compiling program: "$(NAME)" -> "
-	@$(CC) -o $@ $(CFLAGS) $(INCLUDES) $^ $(LDLIBS)
+	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 

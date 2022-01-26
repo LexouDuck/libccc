@@ -10,11 +10,11 @@ DEPS := $(OBJS:.o=.d)
 
 # here we add linked library flags for each package
 LDLIBS := $(LDLIBS) \
-	$(foreach i,$(PACKAGES_LINK),$($(i)))
+	$(foreach i,$(PACKAGES_LINKS),$($(i)))
 
 # here we add include header folders for each package
 INCLUDES := $(INCLUDES) \
-	$(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
+	$(foreach i,$(PACKAGES_INCLUDES),-I$($(i)))
 
 
 
