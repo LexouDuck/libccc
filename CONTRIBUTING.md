@@ -1,6 +1,9 @@
 This file describes good practices to follow if you want to contribute to this project.
 
+---
+
 # Commit Message Format
+
 (inspired from git commit message from angular style and git-commit-message-convention repository)
 
 The following format is used for commit messages (items within square brackets are optional):
@@ -94,3 +97,11 @@ doc: fixed minor mispelling [skip ci]
 
 CI build is a waste of time for such a tiny mispelling fix. 
 ```
+
+
+
+---
+
+# Coding style
+
+- TODO: write description of coding style

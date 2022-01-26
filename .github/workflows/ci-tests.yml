@@ -26,15 +26,17 @@ jobs:
 
 
 
-    - name: Get C# binding build artifacts
-      uses: actions/download-artifact@v2
+    - name: Get libccc build artifacts
+      uses: dawidd6/action-download-artifact@v2
       with:
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
+        path: ./
 
-    - name: Get C# binding tests artifacts
-      uses: actions/download-artifact@v2
+    - name: Get libccc tests artifacts
+      uses: dawidd6/action-download-artifact@v2
       with:
         name: libccc-tests_${{matrix.os}}_${{matrix.compiler}}
+        path: ./
 
 
 

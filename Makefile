@@ -59,7 +59,7 @@ LOGDIR = ./log/
 #! The directory for test-suite code-coverage output reports
 COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
-LINTDIR = ./lint/
+LINTDIR = $(LOGDIR)lint/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
 

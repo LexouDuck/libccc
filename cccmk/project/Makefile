@@ -17,7 +17,7 @@ MKFILES_DIR := ./%[mkpath]%/
 #          Project variables          #
 #######################################
 
-#! Output filename for the project
+#! Output filename for the %[type]%
 NAME = %[name]%
 
 

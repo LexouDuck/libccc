@@ -39,6 +39,7 @@
 #ifndef __NOSTD__
 	#include <stdint.h>
 #else
+// TODO: better logic than just using 'long' here, with the __DATAMODEL__ macro ?
 	typedef unsigned char		uint8_t;
 	typedef unsigned short		uint16_t;
 	typedef unsigned long		uint32_t;

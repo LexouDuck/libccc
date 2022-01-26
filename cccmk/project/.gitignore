@@ -1,9 +1,11 @@
 # PROJECT
 
+/%[name]%
+
 /obj/
 /bin/
-/log/
 /dist/
+/log/
 /ref/
 
 
@@ -22,6 +24,12 @@
 .vs/
 ### Visual Studio Code
 .vscode/
+
+
+
+# cccmk
+/.cccmk_diff_*/
+/.cccmk_update/
 
 
 
