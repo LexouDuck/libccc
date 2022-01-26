@@ -51,3 +51,39 @@ $(NAME): $(OBJS)
 
 # The following line is for `.d` dependency file handling
 -include $(DEPS)
+
+
+
+.PHONY:\
+clean-build #! Deletes all intermediary build-related files
+clean-build: \
+clean-build-obj \
+clean-build-dep \
+clean-build-bin \
+
+.PHONY:\
+clean-build-obj #! Deletes all .o build object files
+clean-build-obj:
+	@$(call print_message,"Deleting all build .o files...")
+	@rm -f $(OBJS)
+
+.PHONY:\
+clean-build-dep #! Deletes all .d build dependency files
+clean-build-dep:
+	@$(call print_message,"Deleting all build .d files...")
+	@rm -f $(DEPS)
+
+.PHONY:\
+clean-build-bin #! Deletes all build binaries
+clean-build-bin:
+	@$(call print_message,"Deleting program: $(NAME)")
+	@rm -f $(NAME)
+
+
+
+.PHONY:\
+prereq-build #! Checks prerequisite installs to build the library/program
+prereq-build:
+	@-$(call check_prereq,'(build) C compiler: $(CC)',\
+		$(CC) --version,\
+		$(call install_prereq,$(CC)))

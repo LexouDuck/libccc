@@ -14,7 +14,6 @@ clean: \
 clean-all #! Deletes every generated file
 clean-all: \
 	clean-build \
-	clean-tests \
 	clean-obj \
 	clean-bin \
 
@@ -24,19 +23,16 @@ clean-all: \
 clean-all-obj #! Deletes all .o files
 clean-all-obj: \
 	clean-build-obj \
-	clean-tests-obj \
 
 .PHONY:\
 clean-all-dep #! Deletes all .d files
 clean-all-dep: \
 	clean-build-dep \
-	clean-tests-dep \
 
 .PHONY:\
 clean-all-bin #! Deletes any built libraries/executables
 clean-all-bin: \
 	clean-build-bin \
-	clean-tests-bin \
 
 
 

@@ -94,13 +94,13 @@ clean-build-bin \
 clean-build-obj #! Deletes all .o build object files
 clean-build-obj:
 	@$(call print_message,"Deleting all build .o files...")
-	@rm -f $(TEST_OBJS)
+	@rm -f $(OBJS)
 
 .PHONY:\
 clean-build-dep #! Deletes all .d build dependency files
 clean-build-dep:
 	@$(call print_message,"Deleting all build .d files...")
-	@rm -f $(TEST_DEPS)
+	@rm -f $(DEPS)
 
 .PHONY:\
 clean-build-bin #! Deletes all build binaries
