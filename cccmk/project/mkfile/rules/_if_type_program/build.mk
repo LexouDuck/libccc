@@ -1,4 +1,4 @@
-#! This file holds C-specific rules to build a library
+#! This file holds C-specific rules to build a program
 
 
 
@@ -8,7 +8,7 @@ OBJS := $(SRCS:%.c=$(OBJDIR)%.o)
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := $(OBJS:.o=.d)
 
-# here we add linked library flags for each package
+# here we add dependency library linking flags for each package
 LDLIBS := $(LDLIBS) \
 	$(foreach i,$(PACKAGES_LINKS),$($(i)))
 
@@ -19,13 +19,13 @@ INCLUDES := $(INCLUDES) \
 
 
 .PHONY:\
-build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
+build-debug #! Builds the program, in 'debug' mode (with debug flags and symbol-info)
 build-debug: MODE = debug
 build-debug: CFLAGS += $(CFLAGS_DEBUG)
 build-debug: $(NAME)
 
 .PHONY:\
-build-release #! Builds the library, in 'release' mode (with optimization flags)
+build-release #! Builds the program, in 'release' mode (with optimization flags)
 build-release: MODE = release
 build-release: CFLAGS += $(CFLAGS_RELEASE)
 build-release: $(NAME)
@@ -82,7 +82,7 @@ clean-build-bin:
 
 
 .PHONY:\
-prereq-build #! Checks prerequisite installs to build the library/program
+prereq-build #! Checks prerequisite installs to build the program
 prereq-build:
 	@-$(call check_prereq,'(build) C compiler: $(CC)',\
 		$(CC) --version,\

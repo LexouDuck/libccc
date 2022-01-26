@@ -8,7 +8,7 @@ OBJS := $(SRCS:%.c=$(OBJDIR)%.o)
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := $(OBJS:.o=.d)
 
-# here we add linked library flags for each package
+# here we add dependency library linking flags for each package
 LDLIBS := $(LDLIBS) \
 	$(foreach i,$(PACKAGES_LINKS),$($(i)))
 
@@ -113,7 +113,7 @@ clean-build-bin:
 
 
 .PHONY:\
-prereq-build #! Checks prerequisite installs to build the library/program
+prereq-build #! Checks prerequisite installs to build the library
 prereq-build:
 	@-$(call check_prereq,'(build) C compiler: $(CC)',\
 		$(CC) --version,\
