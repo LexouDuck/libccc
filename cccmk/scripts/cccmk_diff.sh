@@ -65,6 +65,8 @@ print_message "Overview of differences:"
 	#! temporary folder used to check differences with source cccmk templates
 	diffchk_cccpath=".cccmk_diff_old"
 	diffchk_pwdpath=".cccmk_diff_new"
+	rm -rf "$diffchk_cccpath"
+	rm -rf "$diffchk_pwdpath"
 	mkdir "$diffchk_cccpath"
 	mkdir "$diffchk_pwdpath"
 	# copy over files to diffchk folders

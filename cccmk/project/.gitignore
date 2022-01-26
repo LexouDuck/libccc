@@ -27,6 +27,12 @@
 
 
 
+# cccmk
+/.cccmk_diff_*/
+/.cccmk_update/
+
+
+
 # C
 
 ### C intermediary build files
