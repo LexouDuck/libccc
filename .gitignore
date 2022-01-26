@@ -1,10 +1,13 @@
 # PROJECT
 
-obj/
-bin/
-dist/
-lint/
-ref/
+/libccc
+
+/obj/
+/bin/
+/dist/
+/log/
+/ref/
+
 doc/_doxyrest/
 docs/hdr/
 docs/man/
@@ -41,6 +44,12 @@ test/_test.c
 .vs/
 ### Visual Studio Code
 .vscode/
+
+
+
+# cccmk
+/.cccmk_diff_*/
+/.cccmk_update/
 
 
 

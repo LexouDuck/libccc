@@ -17,7 +17,7 @@ format-all:
 
 
 .PHONY:\
-prereq-format #! Checks prerequisite installs to run the code style auto-formatter
+prereq-format #! Checks prerequisite installs to run the automatic code style formatter
 prereq-format:
 	@-$(call check_prereq,'(format) indent',\
 		which indent,\

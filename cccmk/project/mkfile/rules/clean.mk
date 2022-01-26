@@ -15,8 +15,6 @@ clean-all #! Deletes every generated file
 clean-all: \
 	clean-build \
 	clean-tests \
-	clean-obj \
-	clean-bin \
 
 
 

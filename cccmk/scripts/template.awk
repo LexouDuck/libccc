@@ -55,7 +55,11 @@ BEGIN {
 			{
 				sub("%\\[" matched[1] "\\]%", vars[matched[1]], $0);
 			}
-			else { print_error("unknown variable used: " matched[1]); }
+			else
+			{
+				print_error("unknown variable used: " matched[1]);
+				break;
+			}
 		}
 		print;
 	}
