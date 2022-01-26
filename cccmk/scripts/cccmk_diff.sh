@@ -129,8 +129,8 @@ print_message "Overview of differences:"
 		}'
 		echo ''
 	}
-	# if verbose, show diffs for each non-identical file
-	if $verbose
+	# show complete diffs for each file (if verbose, or use specified certain files explicitly)
+	if $verbose || ! [ -z "$command_arg_path" ]
 	then
 		for i in $project_track
 		do

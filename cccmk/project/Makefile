@@ -82,14 +82,15 @@ include $(MKFILES_DIR)config/build.mk
 
 # project-specific rules
 include $(MKFILES_DIR)rules/all.mk
+include $(MKFILES_DIR)rules/init.mk
+include $(MKFILES_DIR)rules/prereq.mk
+include $(MKFILES_DIR)rules/version.mk
+include $(MKFILES_DIR)rules/packages.mk
+
 include $(MKFILES_DIR)rules/lists.mk
 include $(MKFILES_DIR)rules/build.mk
 include $(MKFILES_DIR)rules/install.mk
 
-include $(MKFILES_DIR)rules/init.mk
-include $(MKFILES_DIR)rules/prereq.mk
-include $(MKFILES_DIR)rules/packages.mk
-include $(MKFILES_DIR)rules/version.mk
 include $(MKFILES_DIR)rules/dist.mk
 include $(MKFILES_DIR)rules/clean.mk
 
