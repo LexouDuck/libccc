@@ -11,6 +11,7 @@ MKFILES :=            $(shell cat $(MKFILE_PATH) | grep '^include\b' | cut -d' '
 $(eval MKFILES :=  $(MKFILE_PATH) $(MKFILES))
 MKFILES := $(MKFILES) $(shell cat $(MKFILES)     | grep '^include\b' | cut -d' ' -f 2-)
 $(eval MKFILES := $(MKFILES))
+MKFILES := $(shell echo "$(MKFILES)" | tr '[:space:]' '\n' | sort | uniq)
 
 
 
