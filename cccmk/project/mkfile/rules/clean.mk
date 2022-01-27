@@ -14,6 +14,7 @@ clean: \
 clean-all #! Deletes every generated file
 clean-all: \
 	clean-build \
+%%if tracked(mkfile/rules/_if_flag_testsuite/build-tests.mk):	clean-tests \
 	clean-obj \
 	clean-bin \
 
@@ -23,16 +24,19 @@ clean-all: \
 clean-all-obj #! Deletes all .o files
 clean-all-obj: \
 	clean-build-obj \
+%%if tracked(mkfile/rules/_if_flag_testsuite/build-tests.mk):	clean-tests-obj \
 
 .PHONY:\
 clean-all-dep #! Deletes all .d files
 clean-all-dep: \
 	clean-build-dep \
+%%if tracked(mkfile/rules/_if_flag_testsuite/build-tests.mk):	clean-tests-dep \
 
 .PHONY:\
 clean-all-bin #! Deletes any built libraries/executables
 clean-all-bin: \
 	clean-build-bin \
+%%if tracked(mkfile/rules/_if_flag_testsuite/build-tests.mk):	clean-tests-bin \
 
 
 

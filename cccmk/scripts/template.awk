@@ -1,7 +1,13 @@
+#!/bin/awk
+
 # This script creates a text file from a project template text file
-# Essentially two syntaxes are accepted:
-# 	%[varname]%	is replaced with the content of the variable named 'varname'
-#	%%[array]:	is replaced with 'n' lines, for each element of the 'array' variable
+# Essentially three syntaxes are accepted:
+# 1. variable (string expansion): is replaced with the content of the variable named 'varname'
+# 	%[varname]%
+# 2. loop (array expansion): is replaced with 'n' lines, for each element of the 'array' variable
+#	%%[varname]: 
+# 3. conditional: is put into the output only if the condition evaluates to true
+#	%%if[myfunc(foo,bar)]: ? TODO
 
 function print_message(message)	{ print "cccmk-template: ""\033[34m""message" "\033[0m: " message > "/dev/stderr"; }
 function print_warning(message)	{ print "cccmk-template: ""\033[33m""warning" "\033[0m: " message > "/dev/stderr"; }
@@ -11,6 +17,8 @@ function print_error(  message)	{ print "cccmk-template: ""\033[31m""error"   "\
 function trim_l(str)	{ sub(/^[ \t\r\n]+/ , "", str); return str; }
 function trim_r(str)	{ sub( /[ \t\r\n]+$/, "", str); return str; }
 function trim(  str)	{ return trim_l(trim_r(str)); }
+
+
 
 # This script expects some variables to be predefined via the `variables`
 # `variables` should have keys/values separated with '=' symbols, and different assignements by ';'
@@ -27,7 +35,26 @@ BEGIN {
 }
 
 {
-	if (match($0, /^%%\[([a-zA-Z_]+)\]:/, matched))
+	# condition directive
+	if (match($0, /^%%if[ \t]+([a-zA-Z_]+)\(([^\)]*)\)[ \t]*:/, matched))
+	{
+		if_function = matched[1];
+		split(matched[2], if_arguments, /,[ \t]*/);
+		if (_if(if_function, if_arguments))
+		{
+			line = substr($0, RSTART + RLENGTH);
+			print line;
+		}
+	}
+	else if (/^%%if[ \t]+([a-zA-Z_]+)[^\(]/)
+	{ print_error("expected parentheses after function for '%%if *():' condition directive"); }
+	else if (/^%%if/)
+	{ print_error("expected function name for '%%if *():' condition directive"); }
+	else if (/%%if/)
+	{ print_error("bad syntax - '%%if *():' condition directive should be at the beginning of the line"); }
+
+	# loop directive
+	else if (match($0, /^%%\[([a-zA-Z_]+)\]:/, matched))
 	{
 		if (matched[1] in vars)
 		{
@@ -35,25 +62,28 @@ BEGIN {
 			for (i in array)
 			{
 				line = substr($0, length(matched[0]) + 1);
-				gsub(/%/, array[i], line);
+				gsub(/%%/, array[i], line);
 				print line;
 			}
 		}
 		else { print_error("unknown variable in loop directive: " matched[0]); }
 	}
 	else if (/^%%\[(.*)\]:/)
-	{ print_error("expected variable name after '%%[_]:' loop directive"); }
+	{ print_error("expected array variable name for '%%[*]:' loop directive"); }
 	else if (/^%%/)
-	{ print_error("expected variable name and colon for '%%[_]:' loop directive"); }
+	{ print_error("expected array variable name and brackets for '%%[*]:' loop directive"); }
 	else if (/%%/)
-	{ print_error("bad syntax - '%%[_]:' loop directive should be at the beginning of the line"); }
+	{ print_error("bad syntax - '%%[*]:' loop directive should be at the beginning of the line"); }
+
+	# variable expansion
 	else
 	{
-		while (match($0, /%\[([a-zA-Z_]+)\]%/, matched))
+		line = $0;
+		while (match(line, /%\[([a-zA-Z_]+)\]%/, matched))
 		{
 			if (matched[1] in vars)
 			{
-				sub("%\\[" matched[1] "\\]%", vars[matched[1]], $0);
+				sub("%\\[" matched[1] "\\]%", vars[matched[1]], line);
 			}
 			else
 			{
@@ -61,6 +91,6 @@ BEGIN {
 				break;
 			}
 		}
-		print;
+		print line;
 	}
 }
