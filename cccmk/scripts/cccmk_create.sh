@@ -81,7 +81,7 @@ project_template_recurse()
 					"$selected_files"
 				;;
 			# prompt the user with a y/n question, only copy over files if user answers y/yes
-			_if_flag_*)
+			_if_ask_*)
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Do you wish to include the following files ?""\n`ls "$srcdir/$dir/$subdir/"`"
