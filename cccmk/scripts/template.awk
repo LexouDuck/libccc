@@ -9,10 +9,10 @@
 # 3. conditional: is put into the output only if the condition evaluates to true
 #	%%if[myfunc(foo,bar)]: ? TODO
 
-function print_message(message)	{ print "cccmk-template: ""\033[34m""message" "\033[0m: " message > "/dev/stderr"; }
-function print_warning(message)	{ print "cccmk-template: ""\033[33m""warning" "\033[0m: " message > "/dev/stderr"; }
-function print_success(message)	{ print "cccmk-template: ""\033[32m""success" "\033[0m: " message > "/dev/stderr"; }
-function print_error(  message)	{ print "cccmk-template: ""\033[31m""error"   "\033[0m: " message > "/dev/stderr"; }
+function print_message(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[34m""message" "\033[0m: " message > "/dev/stderr"; }
+function print_warning(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[33m""warning" "\033[0m: " message > "/dev/stderr"; }
+function print_success(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[32m""success" "\033[0m: " message > "/dev/stderr"; }
+function print_error(  message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[31m""error"   "\033[0m: " message > "/dev/stderr"; }
 
 function trim_l(str)	{ sub(/^[ \t\r\n]+/ , "", str); return str; }
 function trim_r(str)	{ sub( /[ \t\r\n]+$/, "", str); return str; }

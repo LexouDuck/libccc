@@ -27,12 +27,12 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
-%%symbols:#undef %
+%%[symbols]:#undef %%
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
-%%symbols:#define %(X)	CONCAT(%_,	X##_NAME)
+%%[symbols]:#define %%(X)	CONCAT(%%_,	X##_NAME)
 //!@}
 
 
@@ -63,13 +63,13 @@
 
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
-#undef %header_guard%
-#include "%header%"
+#undef %[header_guard]%
+#include "%[header]%"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
 //!@{
-%%sources:#include "libccc/../../src/%"
+%%[sources]:#include "libccc/../../src/%%"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -91,12 +91,12 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
-%%symbols:#undef %
+%%[symbols]:#undef %%
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
-%%symbols:#define %(T)	CONCAT(%_,	T)
+%%[symbols]:#define %%(T)	CONCAT(%%_,	T)
 //!@}
 
 
