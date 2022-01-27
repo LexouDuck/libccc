@@ -20,6 +20,27 @@ function trim(  str)	{ return trim_l(trim_r(str)); }
 
 
 
+#! replaces variables in the given 'str', returns a new string
+function template_variable(str)
+{
+	result = str;
+	while (match(result, /%\[([a-zA-Z_]+)\]%/, matched))
+	{
+		if (matched[1] in vars)
+		{
+			sub("%\\[" matched[1] "\\]%", vars[matched[1]], result);
+		}
+		else
+		{
+			print_error("unknown variable used: " matched[1]);
+			break;
+		}
+	}
+	return result;
+}
+
+
+
 # This script expects some variables to be predefined via the `variables`
 # `variables` should have keys/values separated with '=' symbols, and different assignements by ';'
 # example: awk -v variables='foo="bar";hello="world";'
@@ -42,8 +63,7 @@ BEGIN {
 		split(matched[2], if_arguments, /,[ \t]*/);
 		if (_if(if_function, if_arguments))
 		{
-			line = substr($0, RSTART + RLENGTH);
-			print line;
+			print template_variable(substr($0, RSTART + RLENGTH));
 		}
 	}
 	else if (/^%%if[ \t]+([a-zA-Z_]+)[^\(]/)
@@ -63,7 +83,7 @@ BEGIN {
 			{
 				line = substr($0, length(matched[0]) + 1);
 				gsub(/%%/, array[i], line);
-				print line;
+				print template_variable(line);
 			}
 		}
 		else { print_error("unknown variable in loop directive: " matched[0]); }
@@ -78,19 +98,6 @@ BEGIN {
 	# variable expansion
 	else
 	{
-		line = $0;
-		while (match(line, /%\[([a-zA-Z_]+)\]%/, matched))
-		{
-			if (matched[1] in vars)
-			{
-				sub("%\\[" matched[1] "\\]%", vars[matched[1]], line);
-			}
-			else
-			{
-				print_error("unknown variable used: " matched[1]);
-				break;
-			}
-		}
-		print line;
+		print template_variable($0);
 	}
 }

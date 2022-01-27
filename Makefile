@@ -54,14 +54,14 @@ OBJDIR = ./obj/
 BINDIR = ./bin/
 #! The directory for distribution archives (stores `.zip` distributable builds)
 DISTDIR = ./dist/
+#! The directory for temporary (can be used for several things - should always be deleted after use)
+TEMPDIR = ./temp/
 #! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
 #! The directory for test-suite code-coverage output reports
 COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = $(LOGDIR)lint/
-#! The directory for temporary (can be used for several things - should always be deleted after use)
-TEMPDIR = ./temp/
 
 
 
@@ -90,26 +90,26 @@ include $(MKFILES_DIR)config/build-tests.mk
 
 # project-specific rules
 include $(MKFILES_DIR)rules/all.mk
+include $(MKFILES_DIR)rules/init.mk
+include $(MKFILES_DIR)rules/prereq.mk
+include $(MKFILES_DIR)rules/version.mk
+include $(MKFILES_DIR)rules/packages.mk
+
 include $(MKFILES_DIR)rules/lists.mk
 include $(MKFILES_DIR)rules/build.mk
 include $(MKFILES_DIR)rules/lists-tests.mk
 include $(MKFILES_DIR)rules/build-tests.mk
 include $(MKFILES_DIR)rules/install.mk
-
-include $(MKFILES_DIR)rules/init.mk
-include $(MKFILES_DIR)rules/prereq.mk
-include $(MKFILES_DIR)rules/packages.mk
-include $(MKFILES_DIR)rules/version.mk
 include $(MKFILES_DIR)rules/dist.mk
 include $(MKFILES_DIR)rules/clean.mk
 
-include $(MKFILES_DIR)rules/debugging.mk
 include $(MKFILES_DIR)rules/test.mk
 include $(MKFILES_DIR)rules/test-env.mk
 include $(MKFILES_DIR)rules/test-standalone.mk
-include $(MKFILES_DIR)rules/lint.mk
 include $(MKFILES_DIR)rules/coverage.mk
+include $(MKFILES_DIR)rules/debugging.mk
 include $(MKFILES_DIR)rules/format.mk
+include $(MKFILES_DIR)rules/lint.mk
 include $(MKFILES_DIR)rules/doc.mk
 include $(MKFILES_DIR)rules/help-doc.mk
 
