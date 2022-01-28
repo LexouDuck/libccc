@@ -109,7 +109,7 @@ include $(MKFILES_DIR)rules/clean.mk
 %%if tracked(mkfile/rules/_if_multiselect/format.mk)       :include $(MKFILES_DIR)rules/format.mk
 %%if tracked(mkfile/rules/_if_multiselect/lint.mk)         :include $(MKFILES_DIR)rules/lint.mk
 %%if tracked(mkfile/rules/_if_multiselect/doc.mk)          :include $(MKFILES_DIR)rules/doc.mk
-%%if tracked(mkfile/rules/_if_multiselect/help-doc.mk)     :include $(MKFILES_DIR)rules/help-doc.mk
+%%if tracked(mkfile/rules/_if_multiselect/doc-help.mk)     :include $(MKFILES_DIR)rules/doc-help.mk
 
 # general rules
 include $(MKFILES_DIR)utils/refactor.mk

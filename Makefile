@@ -104,18 +104,18 @@ include $(MKFILES_DIR)rules/dist.mk
 include $(MKFILES_DIR)rules/clean.mk
 
 include $(MKFILES_DIR)rules/test.mk
-include $(MKFILES_DIR)rules/test-env.mk
-include $(MKFILES_DIR)rules/test-standalone.mk
 include $(MKFILES_DIR)rules/coverage.mk
 include $(MKFILES_DIR)rules/debugging.mk
 include $(MKFILES_DIR)rules/format.mk
 include $(MKFILES_DIR)rules/lint.mk
 include $(MKFILES_DIR)rules/doc.mk
-include $(MKFILES_DIR)rules/help-doc.mk
+include $(MKFILES_DIR)rules/doc-help.mk
+
+# libccc-specific rules
+include $(MKFILES_DIR)rules/generic.mk
+include $(MKFILES_DIR)rules/test-env.mk
+include $(MKFILES_DIR)rules/test-standalone.mk
 
 # general rules
 include $(MKFILES_DIR)utils/refactor.mk
 include $(MKFILES_DIR)utils/help.mk
-
-# libccc-specific rules
-include $(MKFILES_DIR)rules/generic.mk
