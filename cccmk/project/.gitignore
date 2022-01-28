@@ -1,6 +1,7 @@
 # PROJECT
 
 /%[name]%
+%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk):/%[name]%-test
 
 /obj/
 /bin/

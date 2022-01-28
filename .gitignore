@@ -1,6 +1,8 @@
 # PROJECT
 
 /libccc
+/libccc-test
+/libccc-test*
 
 /obj/
 /bin/
@@ -18,12 +20,11 @@ docs/rst/
 docs/latex/
 docs/docbook/
 docs/html/.doctrees
+
 log/coverage/
 log/**/*.log
 log/**/*.txt
 
-libccc-test*
-libccc_test*
 pclint_*.*
 
 test/_test.c
