@@ -24,15 +24,15 @@ function trim(  str)	{ return trim_l(trim_r(str)); }
 function template_variable(str)
 {
 	result = str;
-	while (match(result, /%\[([a-zA-Z_]+)\]%/, matched))
+	while (match(result, /%\[([a-zA-Z_]+)\]%/, matchvar))
 	{
-		if (matched[1] in vars)
+		if (matchvar[1] in vars)
 		{
-			sub("%\\[" matched[1] "\\]%", vars[matched[1]], result);
+			sub("%\\[" matchvar[1] "\\]%", vars[matchvar[1]], result);
 		}
 		else
 		{
-			print_error("unknown variable used: " matched[1]);
+			print_error("unknown variable used: " matchvar[1]);
 			break;
 		}
 	}
@@ -81,7 +81,7 @@ BEGIN {
 			split(vars[matched[1]], array, /[ \t\n]/);
 			for (i in array)
 			{
-				line = substr($0, length(matched[0]) + 1);
+				line = substr($0, 1 + length(matched[0]));
 				gsub(/%%/, array[i], line);
 				print template_variable(line);
 			}
