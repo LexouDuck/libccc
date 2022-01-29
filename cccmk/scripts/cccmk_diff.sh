@@ -34,6 +34,7 @@ then
 	print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts will be updated."
 	request_files="$tracked_files"
 else
+	command_arg_path="`echo "$command_arg_path" | sed 's|\./||g'`"
 	# iterate over all user-specified files, to populate 'request_files'
 	for i in $command_arg_path
 	do
