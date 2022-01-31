@@ -8,13 +8,13 @@ TEST_OBJS := $(TEST_SRCS:%.c=$(OBJDIR)%.o)
 #! Derive list of dependency files (.d) from list of srcs
 TEST_DEPS := $(TEST_OBJS:.o=.d)
 
-# here we add linked library flags for each package
+# here we add dependency library linking flags for each package
 TEST_LDLIBS := $(TEST_LDLIBS) \
-	$(foreach i,$(PACKAGES_LINK),$($(i)))
+	$(foreach i,$(PACKAGES),$(PACKAGE_$(i)_LINK))
 
 # here we add include header folders for each package
 TEST_INCLUDES := $(TEST_INCLUDES) \
-	$(foreach i,$(PACKAGES_INCLUDE),-I$($(i)))
+	$(foreach i,$(PACKAGES),-I$(PACKAGE_$(i)_INCLUDE))
 
 
 

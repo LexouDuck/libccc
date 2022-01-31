@@ -25,15 +25,15 @@ PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
 #! The list of names of each package (according to the packages list file)
 PACKAGES := $(shell cat $(PACKAGESFILE) | cut -d '@' -f 1)
 
-#! Here, we define necessary variables for each package
+# Here is the list of variables that a package mkfile script should define
 #{
-PACKAGES_VERSIONS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_VERSION)
-PACKAGES_DIRS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_DIR)
-PACKAGES_BINS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_BIN)
-PACKAGES_INCLUDES = $(foreach i,$(PACKAGES),PACKAGE_$(i)_INCLUDE)
-PACKAGES_LINKDIRS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKDIR)
-PACKAGES_LINKLIBS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKLIB)
-PACKAGES_LINKS    = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINK)
+# PACKAGE_%_VERSION : the version number of the package
+# PACKAGE_%_DIR     : the directory in which this package is
+# PACKAGE_%_BIN     : the directory in which the library binaries are stored
+# PACKAGE_%_INCLUDE : the directory/ies to include (without the -I prefix)
+# PACKAGE_%_LINKDIR : the directory/ies to add to library search path (without the -L prefix)
+# PACKAGE_%_LINKLIB : the library name, as it is written for linking (including the -l prefix)
+# PACKAGE_%_LINK    : both LINKDIR and LINKLIB variables together: `-L$(PACKAGE_%_LINKDIR) $(PACKAGE_%_LINKLIB)`
 #}
 
 
