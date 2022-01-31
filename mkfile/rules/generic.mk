@@ -51,16 +51,12 @@ generic:
 		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||' `" ; \
 		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
 		$(call print_message,"Generating generic import file:"$(IO_RESET)" $${output}") ; \
-		header="`echo $${i} | sed 's|\./hdr/||' `" ; \
-		header_guard="`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`" ; \
-		sources="`grep "$${folder}" $(SRCSFILE)`" ; \
-		symbols="`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`" ; \
 		awk \
 			-v variables="\
-				header=$${header};\
-				header_guard=$${header_guard};\
-				sources=$${sources};\
-				symbols=$${symbols};\
+				header=`echo $${i} | sed 's|\./hdr/||' `;\
+				header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`;\
+				sources=`grep "$${folder}" $(SRCSFILE)`;\
+				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`;\
 			" \
 			-f './cccmk/scripts/template.awk' \
 			"$(GENERIC_TEMPLATE)" > $${output} ; \
