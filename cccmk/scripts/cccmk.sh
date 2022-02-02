@@ -267,9 +267,9 @@ fi
 if ! [ -f "./$project_versionfile" ]
 then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
 fi
-if ! [ -f "./$project_packagefile" ]
-then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
-fi
+#if ! [ -f "./$project_packagefile" ]
+#then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
+#fi
 
 # display warning if current folder is missing any necessary project files
 if ! [ -z "$project_missing" ]

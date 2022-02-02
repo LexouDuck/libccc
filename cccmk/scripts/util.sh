@@ -179,10 +179,10 @@ key_input()
 		($'\x1B') 
 			read -rsn2 key
 			case "$key" in
-				(OA) echo up    ;;
-				(OB) echo down  ;;
-				(OC) echo right ;;
-				(OD) echo left  ;;
+				([A) echo up    ;;
+				([B) echo down  ;;
+				([C) echo right ;;
+				([D) echo left  ;;
 				(*) print_verbose " -> Bad input key: $key" ;;
 			esac
 			;;
