@@ -14,7 +14,7 @@ print_message = printf $(IO_CYAN)$(1)$(IO_RESET)"\n"
 
 
 #! These variables are useful in certain contexts where escapes dont work as usual
-ifneq ($(findstring MINGW,$(UNAME_S)),)
+ifneq ($(findstring MINGW,$(shell uname -s)),)
 	# shell is MINGW (for MINGW64_NT and MINGW32_NT)
 	comma	= ,
 	tab 	= \\\\t
