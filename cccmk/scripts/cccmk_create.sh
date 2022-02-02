@@ -76,7 +76,12 @@ project_template_recurse()
 				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
 				selected_files=
 				echo "$prompt_message"
-				prompt_multiselect selected_files `echo "$proposed_files" | tr [:space:] ';' `
+				descriptions=""
+				for i in $proposed_files
+				do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
+				done
+				descriptions="`echo "$descriptions" | tr [:space:] ' '`"
+				prompt_multiselect selected_files "`echo "$proposed_files" | tr [:space:] ';' `" "" "$descriptions"
 				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
 					"$selected_files"
 				;;

@@ -152,12 +152,12 @@ prompt_question()
 
 
 # little helpers for terminal print control and key input
-ESC=$(printf "\033")
+ESC=`printf "\033"`
 cursor_blink_on()   { printf "$ESC[?25h"; }
 cursor_blink_off()  { printf "$ESC[?25l"; }
 cursor_to()         { printf "$ESC[$1;${2:-1}H"; }
-print_inactive()    { printf "$1   $2 "; }
-print_active()      { printf "$1  $ESC[7m $2 $ESC[27m"; }
+print_inactive()    { printf "$1  %-20s  %s"                "$2" "$3" ; }
+print_active()      { printf "$1 $ESC[7m %-20s $ESC[27m %s" "$2" "$3" ; }
 get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
 key_input()
 {
@@ -179,10 +179,10 @@ key_input()
 		($'\x1B') 
 			read -rsn2 key
 			case "$key" in
-				([A) echo up    ;;
-				([B) echo down  ;;
-				([C) echo right ;;
-				([D) echo left  ;;
+				([A|OA) echo up    ;;
+				([B|OB) echo down  ;;
+				([C|OC) echo right ;;
+				([D|OD) echo left  ;;
 				(*) print_verbose " -> Bad input key: $key" ;;
 			esac
 			;;
@@ -192,24 +192,30 @@ key_input()
 
 #! Presents a single-select list prompt to the user
 #! @param $1	retval: return value variable name
-#! @param $2	options: list of selectable values (colon-separated string)
-#! @param $3	default: initially selected value
+#! @param $2	options: list of selectable values (semicolon-separated string)
+#! @param $3 ?	default: initially selected value
+#! @param $4 ?	descriptions: list of value descriptions (semicolon-separated string)
 prompt_select()
 {
 	echo "Select one item in the list below. The controls are:"
 	echo "[<ESCAPE> to cancel/abort operation]"
 	echo "[<UP>/<DOWN> to move selection cursor]"
 	echo "[<ENTER> or <SPACE> to select and proceed]"
-	local retval=$1
-	local options
-	local default
 
+	local retval=$1
+
+	local options
 	IFS=';' read -r -a options <<< "$2"
-	if [[ -z $3 ]]
-	then default=
-	else IFS=';' read -r -a default <<< "$3"
+
+	local default="$3"
+
+	local descriptions
+	if [[ -z "$4" ]]
+	then descriptions=()
+	else IFS=';' read -r -a descriptions <<< "` echo "$4" | tr '[:space:]' ' ' `"
 	fi
-	local selected
+
+	local selected="$default"
 
 	for ((i=0; i<${#options[@]}; i++))
 	do
@@ -227,15 +233,13 @@ prompt_select()
 	local active=0
 	while true; do
 		# print options by overwriting the last lines
-		local idx=0
-		for option in "${options[@]}"
+		for ((i=0; i<${#options[@]}; i++))
 		do
-			cursor_to $(($startrow + $idx))
-			if [ $idx -eq $active ]
-			then print_active   "> " "$option" "$description"
-			else print_inactive "  " "$option" "$description"
+			cursor_to $(($startrow + $i))
+			if [ $i -eq $active ]
+			then print_active   "> " "${options[i]}" "${descriptions[i]}"
+			else print_inactive "  " "${options[i]}" "${descriptions[i]}"
 			fi
-			((idx++))
 		done
 
 		# user key control
@@ -275,8 +279,9 @@ prompt_select()
 
 #! Presents a multi-select list prompt to the user
 #! @param $1	retval: return value variable name
-#! @param $2	options: list of selectable values (colon-separated string)
-#! @param $3	defaults: list of default values (space-separated, true/false)
+#! @param $2	options: list of selectable values (semicolon-separated string)
+#! @param $3 ?	defaults: list of default values (space-separated, true/false)
+#! @param $4 ?	descriptions: list of value descriptions (semicolon-separated string)
 prompt_multiselect()
 {
 	echo "Select any items in the list below. The controls are:"
@@ -284,15 +289,24 @@ prompt_multiselect()
 	echo "[<UP>/<DOWN> to move selection cursor]"
 	echo "[<SPACE> to toggle selected checkbox]"
 	echo "[<ENTER> to confirm and proceed]"
-	local retval=$1
-	local options
-	local defaults
 
+	local retval=$1
+
+	local options
 	IFS=';' read -r -a options <<< "$2"
-	if [[ -z $3 ]]
+
+	local defaults
+	if [[ -z "$3" ]]
 	then defaults=()
 	else IFS=';' read -r -a defaults <<< "$3"
 	fi
+
+	local descriptions
+	if [[ -z "$4" ]]
+	then descriptions=()
+	else IFS=';' read -r -a descriptions <<< "` echo "$4" | tr '[:space:]' ' ' `"
+	fi
+
 	local selected=()
 
 	for ((i=0; i<${#options[@]}; i++))
@@ -324,19 +338,17 @@ prompt_multiselect()
 	local active=0
 	while true; do
 		# print options by overwriting the last lines
-		local idx=0
-		for option in "${options[@]}"
+		for ((i=0; i<${#options[@]}; i++))
 		do
 			local prefix="[ ]"
-			if [[ ${selected[idx]} == $option ]]
+			if [ "${selected[i]}" == "${options[i]}" ]
 			then prefix="[x]"
 			fi
-			cursor_to $(($startrow + $idx))
-			if [ $idx -eq $active ]
-			then print_active   "> $prefix" "$option" "$description"
-			else print_inactive "  $prefix" "$option" "$description"
+			cursor_to $(($startrow + $i))
+			if [ $i -eq $active ]
+			then print_active   "> $prefix" "${options[i]}" "${descriptions[i]}"
+			else print_inactive "  $prefix" "${options[i]}" "${descriptions[i]}"
 			fi
-			((idx++))
 		done
 
 		# user key control
