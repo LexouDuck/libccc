@@ -45,6 +45,7 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 $(NAME): $(OBJS)
 	@printf "Compiling program: "$(NAME)" -> "
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
+	@cp -f $(NAME)	$(BINDIR)$(OSMODE)/
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 

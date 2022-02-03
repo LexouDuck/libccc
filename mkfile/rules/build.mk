@@ -47,8 +47,8 @@ $(NAME_STATIC): $(OBJS)
 	@printf "Compiling static library: "$@" -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
-	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@cp -f $(NAME_STATIC)	$(BINDIR)$(OSMODE)/static/
+	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 
