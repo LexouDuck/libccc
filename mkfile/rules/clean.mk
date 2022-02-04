@@ -5,50 +5,38 @@
 .PHONY:\
 clean #! Deletes any intermediary build files
 clean: \
-	clean-all-obj \
-	clean-all-dep \
+clean-build-obj \
+clean-build-dep \
+clean-tests-obj \
+clean-tests-dep \
 
 
 
 .PHONY:\
 clean-all #! Deletes every generated file
 clean-all: \
-	clean-build \
-	clean-tests \
-	clean-obj \
-	clean-bin \
-
-
-
-.PHONY:\
-clean-all-obj #! Deletes all .o files
-clean-all-obj: \
-	clean-build-obj \
-	clean-tests-obj \
-
-.PHONY:\
-clean-all-dep #! Deletes all .d files
-clean-all-dep: \
-	clean-build-dep \
-	clean-tests-dep \
-
-.PHONY:\
-clean-all-bin #! Deletes any built libraries/executables
-clean-all-bin: \
-	clean-build-bin \
-	clean-tests-bin \
+clean-build \
+clean-tests \
+clean-obj \
+clean-bin \
 
 
 
 .PHONY:\
 clean-obj #! Deletes the ./obj folder
-clean-obj:
+clean-obj: \
+clean-build-obj \
+clean-build-dep \
+clean-tests-obj \
+clean-tests-dep
 	@$(call print_message,"Deleting "$(OBJDIR)" folder...")
 	@rm -rf $(OBJDIR)
 
 .PHONY:\
 clean-bin #! Deletes the ./bin folder
-clean-bin:
+clean-bin: \
+clean-build-bin \
+clean-tests-bin
 	@$(call print_message,"Deleting "$(BINDIR)" folder...")
 	@rm -rf $(BINDIR)
 

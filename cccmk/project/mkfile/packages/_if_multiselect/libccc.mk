@@ -4,8 +4,9 @@
 
 PACKAGE_libccc = libccc
 PACKAGE_libccc_VERSION := $(shell $(call packages_getversion,$(PACKAGE_libccc)))
+PACKAGE_libccc_LIBMODE = static
 PACKAGE_libccc_DIR = $(LIBDIR)libccc/
-PACKAGE_libccc_BIN = $(PACKAGE_libccc_DIR)bin/$(OSMODE)/$(LIBMODE)/
+PACKAGE_libccc_BIN = $(PACKAGE_libccc_DIR)bin/$(OSMODE)/$(PACKAGE_libccc_LIBMODE)/
 PACKAGE_libccc_INCLUDE = $(PACKAGE_libccc_DIR)hdr/
 PACKAGE_libccc_LINKDIR = $(PACKAGE_libccc_BIN)
 PACKAGE_libccc_LINKLIB = -lccc
@@ -48,8 +49,9 @@ update-libccc:
 	@cd $(PACKAGE_libccc_DIR) ; \
 	if git status | grep -q "HEAD detached" ; then \
 		$(call print_warning,"Your git submodule "$$i" is in detached HEAD state.") ; \
-		printf "You need to manually go into the submodule folder and do 'git checkout $(PACKAGE_libccc_GITBRANCH)',\n" ; \
-		printf "after making sure that you have no uncommitted/unpushed local working changes.\n" ; \
+		printf "You need to manually go into the submodule folder and do:\n" ; \
+		printf "$$ git checkout $(PACKAGE_libccc_GITBRANCH)\n" ; \
+		printf "after making sure that you have no uncommitted local working changes.\n" ; \
 	else \
 		newer_version=`$(call package_libccc_checkupdates)` ; \
 		printf "Newest version is '$${newer_version}'.\n" ; \

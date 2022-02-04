@@ -6,7 +6,7 @@ ifeq ($(MKFILE_PATH),)
 $(error To use the 'help.mk' utils, you must set the 'MKFILE_PATH' variable)
 endif
 
-#! The list of files included by the root-level makefile (and any sub-included)
+#! The list of files included by the root-level makefile (and any 1-level nested includes)
 MKFILES :=            $(shell cat $(MKFILE_PATH) | grep '^include\b' | cut -d' ' -f 2-)
 $(eval MKFILES :=  $(MKFILE_PATH) $(MKFILES))
 MKFILES := $(MKFILES) $(shell cat $(MKFILES)     | grep '^include\b' | cut -d' ' -f 2-)

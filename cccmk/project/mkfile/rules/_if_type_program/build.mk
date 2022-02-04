@@ -10,11 +10,11 @@ DEPS := $(OBJS:.o=.d)
 
 # here we add dependency library linking flags for each package
 LDLIBS := $(LDLIBS) \
-	$(foreach i,$(PACKAGES),$(PACKAGE_$(i)_LINK))
+	$(foreach i,$(PACKAGES), $(PACKAGE_$(i)_LINK))
 
 # here we add include header folders for each package
 INCLUDES := $(INCLUDES) \
-	$(foreach i,$(PACKAGES),-I$(PACKAGE_$(i)_INCLUDE))
+	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
 
 
@@ -35,7 +35,7 @@ build-release: $(NAME)
 #! Compiles object files from source files
 $(OBJDIR)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
-	@printf "Compiling file: "$@" -> "
+	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
@@ -43,15 +43,25 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 #! Compiles the project executable
 $(NAME): $(OBJS)
-	@printf "Compiling program: "$(NAME)" -> "
+	@printf "Compiling program: $@ -> "
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
-	@cp -f $(NAME)	$(BINDIR)$(OSMODE)/
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
+	@mkdir -p $(BINDIR)$(OSMODE)/
+	@cp -f $(NAME) $(BINDIR)$(OSMODE)/
+	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)* $(BINDIR)$(OSMODE)/ ;)
 
 
 
 # The following line is for `.d` dependency file handling
 -include $(DEPS)
+
+
+
+.PHONY:\
+mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
+mkdir-build:
+	@$(call print_message,"Creating build folders...")
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i) ;)
 
 
 

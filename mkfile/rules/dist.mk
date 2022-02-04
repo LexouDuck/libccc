@@ -19,6 +19,9 @@ dist: build-release
 
 
 #	@$(call print_message,"Building release (for OSMODE=$(OSMODE))...")
+##if is(type,library):	@$(MAKE) -s re MODE=release LIBMODE=static
+##if is(type,library):	@$(MAKE) -s re MODE=release LIBMODE=dynamic
+##if is(type,program):	@$(MAKE) -s re MODE=release
 
 .PHONY:\
 dist-version #! Creates one ZIP distributable according to the current 'OSMODE' and 'LIBMODE'

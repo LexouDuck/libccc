@@ -25,9 +25,17 @@ PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
 #! The list of names of each package (according to the packages list file)
 PACKAGES := $(shell cat $(PACKAGESFILE) | cut -d '@' -f 1)
 
-# Here is the list of variables that a package mkfile script should define
+
+
+#! There are some PHONY rules that a package mkfile script should define:
+#{
+# make package-% : installs the package into its folder
+# make update-%  : updates the package to its latest available version
+#}
+#! In addition to these rules, here is the list of variables that a package mkfile script should define:
 #{
 # PACKAGE_%_VERSION : the version number of the package
+# PACKAGE_%_LIBMODE : the method of library linking: can be either 'static' or 'dynamic'
 # PACKAGE_%_DIR     : the directory in which this package is
 # PACKAGE_%_BIN     : the directory in which the library binaries are stored
 # PACKAGE_%_INCLUDE : the directory/ies to include (without the -I prefix)
