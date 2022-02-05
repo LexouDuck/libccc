@@ -176,6 +176,7 @@ key_input()
 		(9) echo 9 ;;
 		("")      echo enter ;;
 		($'\x20') echo space ;;
+		(q) echo q ;;
 		($'\x1B') 
 			read -rsn2 key
 			case "$key" in
@@ -198,7 +199,7 @@ key_input()
 prompt_select()
 {
 	echo "Select one item in the list below. The controls are:"
-	echo "[<ESCAPE> to cancel/abort operation]"
+	echo "[<Q> to cancel/abort operation]"
 	echo "[<UP>/<DOWN> to move selection cursor]"
 	echo "[<ENTER> or <SPACE> to select and proceed]"
 
@@ -264,6 +265,9 @@ prompt_select()
 				then active=0
 				fi
 				;;
+			(q)
+				exit 1
+				;;
 		esac
 	done
 
@@ -285,7 +289,7 @@ prompt_select()
 prompt_multiselect()
 {
 	echo "Select any items in the list below. The controls are:"
-	echo "[<ESCAPE> to cancel/abort operation]"
+	echo "[<Q> to cancel/abort operation]"
 	echo "[<UP>/<DOWN> to move selection cursor]"
 	echo "[<SPACE> to toggle selected checkbox]"
 	echo "[<ENTER> to confirm and proceed]"
@@ -370,6 +374,9 @@ prompt_multiselect()
 				if [ $active -ge ${#options[@]} ]
 				then active=0
 				fi
+				;;
+			(q)
+				exit 1
 				;;
 		esac
 	done

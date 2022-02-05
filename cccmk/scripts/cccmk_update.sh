@@ -154,10 +154,10 @@ do
 			while $identical
 			do
 				prompt_select response 'merge;overwrite;unchanged;show_diff' 'merge' '
-					Do a 3-way diff/merge using the git diff3 algorithm, keeping all changes from both files;
+					Do a 3-way diff/merge (using the git diff3 algorithm), keeping all changes from both files;
 					Overwrite your local project file with the latest template from cccmk, losing your changes;
-					Leave your local project file unchanged as-is, and proceed with the update;
-					Show differences between the files, and choose solution after reviewing diff;
+					Leave your local project file unchanged as-is, and proceed;
+					Show differences between the files, and ask again after reviewing diff;
 				'
 				case $response in
 					(merge)     response=true  ; overwrite=false ;;
