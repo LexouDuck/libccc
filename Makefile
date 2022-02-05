@@ -75,12 +75,12 @@ include $(MKFILES_DIR)utils/print.mk
 include $(MKFILES_DIR)utils/ansi.mk
 include $(MKFILES_DIR)utils/sudo.mk
 include $(MKFILES_DIR)utils/ext.mk
-include $(MKFILES_DIR)utils/install.mk
 
 # project-specific rules
 include $(MKFILES_DIR)config/modes.mk
 include $(MKFILES_DIR)config/build.mk
 include $(MKFILES_DIR)config/build-tests.mk
+include $(MKFILES_DIR)config/install.mk
 
 
 
