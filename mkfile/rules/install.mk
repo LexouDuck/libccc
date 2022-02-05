@@ -20,26 +20,26 @@ ifeq ($(LIBMODE),)
 else ifeq ($(LIBMODE),static)
 ifeq ($(INSTALL_SYMLINK),)
 	@$(SUDO) $(INSTALL_DATA) $(NAME_STATIC) \
-		$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_STATIC)
+		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_STATIC)
 else
 	@$(SUDO) $(INSTALL_DATA) $(NAME_STATIC) \
-		$(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_STATIC)
+		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_STATIC)
 	@$(SUDO) ln -sf \
-		$(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_STATIC) \
-		$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_STATIC)
+		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_STATIC) \
+		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_STATIC)
 endif
 	@$(call print_success,"Installed $(NAME_STATIC) to $(INSTALLDIR)/lib/")
 
 else ifeq ($(LIBMODE),dynamic)
 ifeq ($(INSTALL_SYMLINK),)
 	@$(SUDO) $(INSTALL_PROGRAM) $(NAME_DYNAMIC) \
-		$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_DYNAMIC)
+		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_DYNAMIC)
 else
 	@$(SUDO) $(INSTALL_PROGRAM) $(NAME_DYNAMIC) \
-		$(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_DYNAMIC)
+		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_DYNAMIC)
 	@$(SUDO) ln -sf \
-		$(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_DYNAMIC) \
-		$(INSTALLDIR)/lib/$(NAME)$(EXT_LIB_DYNAMIC)
+		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_DYNAMIC) \
+		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_DYNAMIC)
 endif
 	@$(call print_success,"Installed $(NAME_DYNAMIC) to $(INSTALLDIR)/lib/ and .h headers in $(INSTALLDIR)/include/")
 
@@ -57,7 +57,7 @@ uninstall:
 		$(SUDO) rm -f $(INSTALLDIR)/include/$$i ; \
 	done
 	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME_STATIC)
-	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_STATIC)
+	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_STATIC)
 	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME_DYNAMIC)
-	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME)-$(VERSION)$(EXT_LIB_DYNAMIC)
+	@$(SUDO) rm -f $(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_DYNAMIC)
 	@@$(call print_success,"Uninstalled $(NAME) from $(INSTALLDIR)/lib/ and .h headers in $(INSTALLDIR)/include/")

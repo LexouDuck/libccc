@@ -21,5 +21,5 @@ setup: \
 .PHONY:\
 re #! Deletes all generated files and rebuilds `all`
 re: \
-	clean-full \
+	clean \
 	all \
