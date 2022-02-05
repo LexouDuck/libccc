@@ -68,7 +68,7 @@ doc-base: doc-preprocess
 doc-html #! Generates documentation for the project (doxyrest + sphinx)
 doc-html: doc-preprocess
 	@$(call print_message,"Generating XML documentation...")
-	# run it a second time, only to generate XML output for doxyrest
+	@# run it a second time, only to generate XML output for doxyrest
 	@(cat $(DOXYGEN_CONFIG) ; \
 		echo "PROJECT_NUMBER = $(VERSION)" ; \
 		echo "ENABLED_SECTIONS = DOXYREST" ; \
@@ -79,15 +79,12 @@ doc-html: doc-preprocess
 		echo "GENERATE_LATEX = NO" ; \
 		echo "GENERATE_DOCBOOK = NO" ) \
 		| $(DOXYGEN) $(DOXYGEN_FLAGS) -
-	@awk '{ $$0 = gensub(/<\/?computeroutput>/, "``", "g"); print; }' \
-		$(call DOC_OUTPUT,xml)group__libccc__format.xml > \
-		$(call DOC_OUTPUT,xml)group__libccc__format.tmp && mv \
-		$(call DOC_OUTPUT,xml)group__libccc__format.tmp \
-		$(call DOC_OUTPUT,xml)group__libccc__format.xml
+	@# /!\ put any custom XML-fixing code here
 	@$(call print_message,"Generating RST documentation...")
 	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOXYREST_CONFIG) \
 		   $(call DOC_OUTPUT,xml)index.xml \
 		-o $(call DOC_OUTPUT,rst)index.rst
+	@# /!\ put any custom RST-fixing code here
 	@$(call print_message,"Generating HTML documentation...")
 	@ $(SPHINX) $(SPHINX_FLAGS) -c $(SPHINX_CONFIG) -b html \
 		$(call DOC_OUTPUT,rst) \
@@ -109,9 +106,7 @@ doc-preprocess:
 	@$(call print_message,"Preprocessing headers for documentation...")
 	@mkdir -p ./docs/$(HDRDIR)
 	@cp -rf $(HDRDIR)* ./docs/$(HDRDIR)
-	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/monad/%.h, $(HDRS))) ; do \
-		awk '/^#define/ { gsub(/\(T\)/, "<T>"); } { print; }' $$i > $$i.tmp && mv $$i.tmp $$i ; \
-	done
+	@# /!\ put any custom preprocessing code here
 	@$(call print_success,"Successfully pre-processed header files")
 
 
@@ -120,17 +115,13 @@ doc-preprocess:
 mkdir-doc #! Creates all the build folders in the ./doc folder (according to `DOC_OUTPUTS`)
 mkdir-doc:
 	@$(call print_message,"Creating documentation build folders...")
-	@for i in $(DOC_OUTPUTS); do \
-		mkdir -p $${i} ; \
-	done
+	@$(foreach i,$(DOC_OUTPUTS), mkdir -p $(i) ;)
 
 .PHONY:\
 clean-doc #! Deletes any previous builds of documentation website in ./doc folder
 clean-doc:
 	@$(call print_message,"Deleting documentation build folders...")
-	@for i in $(DOC_OUTPUTS); do \
-		rm -rf $${i} ; \
-	done
+	@$(foreach i,$(DOC_OUTPUTS), rm -rf $(i) ;)
 
 	
 
@@ -152,3 +143,4 @@ prereq-doc:
 	@-$(call check_prereq,'(doc) graphviz `dot` graph generator',\
 		dot -V,\
 		$(call install_prereq,graphviz))
+	@# TODO: add LaTeX prereq ?

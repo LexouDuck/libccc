@@ -21,3 +21,8 @@ INSTALL_DATA ?= $(INSTALL) -c -m 644
 
 #! INSTALL_PROGRAM is a GNU-conventional environment variable, but if it is not set, then set default value
 INSTALL_PROGRAM ?= $(INSTALL) -c -m 755
+
+
+
+#! If not empty, then the 'make install' rule will use symlinks when installing, so as to allow multiple coexisting versions
+INSTALL_SYMLINK = true

@@ -37,7 +37,7 @@ package-libccc:
 	@git submodule update --init $(PACKAGE_libccc_DIR)
 	@$(call print_message,"Building package: $(PACKAGE_libccc)...")
 	@$(MAKE) -C $(PACKAGE_libccc_DIR) build-$(MODE)
-	@$(call print_success,"Installed $(PACKAGE_SDL2)@$(PACKAGE_SDL2_VERSION)")
+	@$(call print_success,"Installed $(PACKAGE_libccc)@$(PACKAGE_libccc_VERSION)")
 
 
 

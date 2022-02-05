@@ -68,7 +68,7 @@ doc-base: doc-preprocess
 doc-html #! Generates documentation for the project (doxyrest + sphinx)
 doc-html: doc-preprocess
 	@$(call print_message,"Generating XML documentation...")
-	# run it a second time, only to generate XML output for doxyrest
+	@# run it a second time, only to generate XML output for doxyrest
 	@(cat $(DOXYGEN_CONFIG) ; \
 		echo "PROJECT_NUMBER = $(VERSION)" ; \
 		echo "ENABLED_SECTIONS = DOXYREST" ; \
@@ -120,17 +120,13 @@ doc-preprocess:
 mkdir-doc #! Creates all the build folders in the ./doc folder (according to `DOC_OUTPUTS`)
 mkdir-doc:
 	@$(call print_message,"Creating documentation build folders...")
-	@for i in $(DOC_OUTPUTS); do \
-		mkdir -p $${i} ; \
-	done
+	@$(foreach i,$(DOC_OUTPUTS), mkdir -p $(i) ;)
 
 .PHONY:\
 clean-doc #! Deletes any previous builds of documentation website in ./doc folder
 clean-doc:
 	@$(call print_message,"Deleting documentation build folders...")
-	@for i in $(DOC_OUTPUTS); do \
-		rm -rf $${i} ; \
-	done
+	@$(foreach i,$(DOC_OUTPUTS), rm -rf $(i) ;)
 
 	
 
@@ -152,3 +148,4 @@ prereq-doc:
 	@-$(call check_prereq,'(doc) graphviz `dot` graph generator',\
 		dot -V,\
 		$(call install_prereq,graphviz))
+	@# TODO: add LaTeX prereq ?
