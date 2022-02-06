@@ -64,7 +64,7 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
 	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -install_name @loader_path/$@
 else ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
 else
