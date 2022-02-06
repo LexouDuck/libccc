@@ -47,7 +47,7 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/
-	@cp -f $(NAME) $(BINDIR)$(OSMODE)/
+	@cp -f $@ $(BINDIR)$(OSMODE)/
 	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)* $(BINDIR)$(OSMODE)/ ;)
 
 

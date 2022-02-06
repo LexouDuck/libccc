@@ -43,40 +43,38 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 #! Builds the static-link library '.a' binary file for the current target platform
 $(NAME_STATIC): $(OBJS)
-	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@printf "Compiling static library: $@ -> "
 	@ar -rc $@ $(OBJS)
 	@ranlib $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@mkdir -p             $(BINDIR)$(OSMODE)/static/
-	@cp -f $(NAME_STATIC) $(BINDIR)$(OSMODE)/static/
-	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)$(PACKAGE_$(i)_MODE)/* $(BINDIR)$(OSMODE)/static/ ;)
+	@mkdir -p $(BINDIR)$(OSMODE)/static/
+	@cp -f $@ $(BINDIR)$(OSMODE)/static/
+	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)* $(BINDIR)$(OSMODE)/static/ ;)
 
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
-	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
 	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
 	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
 else ifeq ($(OSMODE),linux)
-	@$(CC) -shared $(CFLAGS) $(LDFLAGS) -o $(NAME_DYNAMIC) $(OBJS) $(LDLIBS)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
 else
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@mkdir -p              $(BINDIR)$(OSMODE)/dynamic/
-	@cp -f $(NAME_DYNAMIC) $(BINDIR)$(OSMODE)/dynamic/
-	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)$(PACKAGE_$(i)_MODE)/* $(BINDIR)$(OSMODE)/dynamic/ ;)
+	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
+	@cp -f $@ $(BINDIR)$(OSMODE)/dynamic/
+	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)* $(BINDIR)$(OSMODE)/dynamic/ ;)
 
 
 
