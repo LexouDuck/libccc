@@ -97,6 +97,7 @@ clean-build #! Deletes all intermediary build-related files
 clean-build: \
 clean-build-obj \
 clean-build-dep \
+clean-build-lib \
 clean-build-bin \
 
 .PHONY:\
@@ -112,12 +113,20 @@ clean-build-dep:
 	@rm -f $(DEPS)
 
 .PHONY:\
-clean-build-bin #! Deletes all build binaries
-clean-build-bin:
+clean-build-lib #! Deletes the built library(ies) in the root project folder
+clean-build-lib:
 	@$(call print_message,"Deleting static library: $(NAME_STATIC)")
 	@rm -f $(NAME_STATIC)
 	@$(call print_message,"Deleting dynamic library: $(NAME_DYNAMIC)")
 	@rm -f $(NAME_DYNAMIC)
+
+.PHONY:\
+clean-build-bin #! Deletes all build binaries in the ./bin folder
+clean-build-bin:
+	@$(call print_message,"Deleting builds in '$(BINDIR)$(OSMODE)/static'...")
+	@rm -f $(BINDIR)$(OSMODE)/static/*
+	@$(call print_message,"Deleting builds in '$(BINDIR)$(OSMODE)/dynamic'...")
+	@rm -f $(BINDIR)$(OSMODE)/dynamic/*
 
 
 

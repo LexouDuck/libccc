@@ -10,11 +10,11 @@ TEST_DEPS := $(TEST_OBJS:.o=.d)
 
 # here we add dependency library linking flags for each package
 TEST_LDLIBS := $(TEST_LDLIBS) \
-	$(foreach i,$(PACKAGES),$(PACKAGE_$(i)_LINK))
+	$(foreach i,$(PACKAGES), $(PACKAGE_$(i)_LINK))
 
 # here we add include header folders for each package
 TEST_INCLUDES := $(TEST_INCLUDES) \
-	$(foreach i,$(PACKAGES),-I$(PACKAGE_$(i)_INCLUDE))
+	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
 
 
@@ -33,17 +33,18 @@ build-tests-release: build-release $(NAME_TEST)
 
 
 #! Compiles object files from source files
-$(OBJDIR)$(TESTDIR)%.o: $(TESTDIR)%.c
+$(OBJDIR)$(TESTDIR)%.o : $(TESTDIR)%.c
 	@mkdir -p $(@D)
-	@printf "Compiling file: "$@" -> "
+	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) -MMD $(TEST_INCLUDES) -c $<
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
 
 #! Builds the testing/CI program
-$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
-	@printf "Compiling testing program: "$@" -> "
+%%if is(type,program):$(NAME_TEST): $(NAME) $(TEST_OBJS)
+%%if is(type,library):$(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
+	@printf "Compiling testing program: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
@@ -59,7 +60,7 @@ clean-tests #! Deletes all intermediary tests-related files
 clean-tests: \
 clean-tests-obj \
 clean-tests-dep \
-clean-tests-bin \
+clean-tests-exe \
 
 .PHONY:\
 clean-tests-obj #! Deletes all .o tests object files
@@ -74,7 +75,7 @@ clean-tests-dep:
 	@rm -f $(TEST_DEPS)
 
 .PHONY:\
-clean-tests-bin #! Deletes all tests binaries
-clean-tests-bin:
-	@$(call print_message,"Deleting test program: "$(NAME_TEST)"")
+clean-tests-exe #! Deletes the built test program in the root project folder
+clean-tests-exe:
+	@$(call print_message,"Deleting program: $(NAME_TEST)")
 	@rm -f $(NAME_TEST)

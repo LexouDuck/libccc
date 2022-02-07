@@ -70,6 +70,7 @@ clean-build #! Deletes all intermediary build-related files
 clean-build: \
 clean-build-obj \
 clean-build-dep \
+clean-build-exe \
 clean-build-bin \
 
 .PHONY:\
@@ -85,10 +86,16 @@ clean-build-dep:
 	@rm -f $(DEPS)
 
 .PHONY:\
-clean-build-bin #! Deletes all build binaries
-clean-build-bin:
+clean-build-exe #! Deletes the built program in the root project folder
+clean-build-exe:
 	@$(call print_message,"Deleting program: $(NAME)")
 	@rm -f $(NAME)
+
+.PHONY:\
+clean-build-bin #! Deletes all build binaries in the ./bin folder
+clean-build-bin:
+	@$(call print_message,"Deleting builds in '$(BINDIR)$(OSMODE)'...")
+	@rm -f $(BINDIR)$(OSMODE)/*
 
 
 
