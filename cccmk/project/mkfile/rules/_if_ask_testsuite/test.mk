@@ -2,14 +2,17 @@
 
 
 
+#! The directory in which to store text logs of the test suite output
+TEST_LOGDIR = $(LOGDIR)test/
+
+
+
 .PHONY:\
 test #! Runs the test suite program, with the given 'ARGS'
 test: $(NAME_TEST)
 	@./$(NAME_TEST) $(ARGS)
 
 
-
-TEST_LOGDIR = $(LOGDIR)test/
 
 .PHONY:\
 test-logs #! Builds and runs the test suite program with the given 'ARGS', logging all results to files

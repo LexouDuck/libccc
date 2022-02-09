@@ -10,7 +10,7 @@ PACKAGESDIR := $(MKFILES_DIR)packages/
 #! The file which stores all dependency package version info
 PACKAGESFILE = $(LISTSDIR)packages.txt
 #! The shell command to output the list of packages (from the set of .mk scripts in PACKAGESDIR)
-echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%=%)@0.0.0-?" ;)
+echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%.mk=%)@0.0.0-?" ;)
 #! The shell command to generate the packages list file, if it doesn't exist
 make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE)
 # if file doesn't exist, create it
