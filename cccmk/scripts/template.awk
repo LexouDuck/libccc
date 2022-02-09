@@ -1,23 +1,22 @@
 #!/bin/awk
 
 # This script creates a text file from a project template text file
-# Essentially three syntaxes are accepted:
+# Here is an example of how this script should be called:
+#	$ awk \
+#		-v variables=" foo=FOO; bar=BAR; " \
+#		-v functions=" myfunc1(2) myfunc2(0) " \
+#		-f "util.awk" \
+#		-f "template-functions.awk" \
+#		-f "template.awk" \
+#		"$inputfile"
+#
+# As for the syntax of the template file's contents, essentially 3 directives are accepted:
 # 1. variable (string expansion): is replaced with the content of the variable named 'varname'
 # 	%[varname]%
 # 2. loop (array expansion): is replaced with 'n' lines, for each element of the 'array' variable
 #	%%[varname]: 
 # 3. conditional: is put into the output only if the condition evaluates to true
 #	%%if[myfunc(foo,bar)]: ? TODO
-
-function print_message(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[34m""message" "\033[0m: " message > "/dev/stderr"; }
-function print_warning(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[33m""warning" "\033[0m: " message > "/dev/stderr"; }
-function print_success(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[32m""success" "\033[0m: " message > "/dev/stderr"; }
-function print_failure(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[31m""failure" "\033[0m: " message > "/dev/stderr"; }
-function print_error(message)	{ print "cccmk-template["FILENAME":"NR"]: ""\033[31m""error"   "\033[0m: " message > "/dev/stderr"; exit 1; }
-
-function trim_l(str)	{ sub(/^[ \t\r\n]+/ , "", str); return str; }
-function trim_r(str)	{ sub( /[ \t\r\n]+$/, "", str); return str; }
-function trim(  str)	{ return trim_l(trim_r(str)); }
 
 
 

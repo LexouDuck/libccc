@@ -311,12 +311,14 @@ cccmk_template()
 		awk_inplace "$inputfile" \
 		-v variables="$variables" \
 		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk"
 	else
 		awk \
 		-v variables="$variables" \
 		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk" \
 		"$inputfile" > "$outputfile"

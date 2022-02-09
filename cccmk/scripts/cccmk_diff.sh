@@ -101,6 +101,7 @@ print_message "Overview of differences:"
 		| awk \
 		-v path_old="$diffchk_cccpath" \
 		-v path_new="$diffchk_pwdpath" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/diff.awk"
 		echo ''
 	}

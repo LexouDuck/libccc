@@ -3,32 +3,14 @@
 # This script is used to print summary diffs of folders
 # It expects to receive a brief diff command's output as input, and two variables: the folderpaths
 # For greater clarity, here is an example of how this script should be called:
-# $	diff -qrs -U-1 "$old" "$new" \
-#	| awk \
-#	-v path_old="$old" \
-#	-v path_new="$new" \
-#	-f diff.awk
+#	$ diff -qrs -U-1 "$old" "$new" \
+#		| awk \
+#		-v path_old="$old" \
+#		-v path_new="$new" \
+#		-f util.awk
+#		-f diff.awk
 
 
-
-function trim_l(str)	{ sub(/^[ \t\r\n]+/ , "", str); return str; }
-function trim_r(str)	{ sub( /[ \t\r\n]+$/, "", str); return str; }
-function trim(  str)	{ return trim_l(trim_r(str)); }
-
-
-
-#! This function executes a shell command, and returns the stdout output as a string
-function command(cmd)
-{
-	output = "";
-	line = "";
-	while (( cmd | getline line ) > 0)
-	{
-		output = output "\n" line;
-	}
-	close(cmd);
-	return (output);
-}
 
 function diffcmd(file_old, file_new)
 {
