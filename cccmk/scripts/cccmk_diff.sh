@@ -101,33 +101,7 @@ print_message "Overview of differences:"
 		| awk \
 		-v path_old="$diffchk_cccpath" \
 		-v path_new="$diffchk_pwdpath" \
-		'BEGIN {
-			io_reset  = "\033[0m";
-			io_red    = "\033[31m";
-			io_green  = "\033[32m";
-			io_yellow = "\033[33m";
-		}
-		{
-			diffchar = " ";
-			filepath = "";
-			if (/^Files /)
-			{
-				filepath = substr($2, length(path_old) + 1);
-				if (/ identical$/)   { diffchar = io_reset  " "; }
-				else if (/ differ$/) { diffchar = io_yellow "!"; }
-				else                 { diffchar = io_reset  "?"; }
-			}
-			else if (/^Only in /)
-			{
-				filepath = substr($3, 0, length(path_old));
-				if (filepath == path_old) { diffchar = io_red   "-"; }
-				if (filepath == path_new) { diffchar = io_green "+"; }
-				filepath = substr($3, length(path_old) + 1);
-				filepath = substr(filepath, 0, length(filepath) - 1);
-				filepath = filepath "/" $4;
-			}
-			print diffchar " " filepath io_reset;
-		}'
+		-f "$CCCMK_PATH_SCRIPTS/diff.awk"
 		echo ''
 	}
 	# show complete diffs for each file (if verbose, or use specified certain files explicitly)
