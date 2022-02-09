@@ -96,15 +96,8 @@ print_message "Overview of differences:"
 	done
 
 	# show mkfile folder tree differences
-	{
-		diff -qrs -U-1 "$diffchk_cccpath" "$diffchk_pwdpath" \
-		| awk \
-		-v path_old="$diffchk_cccpath" \
-		-v path_new="$diffchk_pwdpath" \
-		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
-		-f "$CCCMK_PATH_SCRIPTS/diff.awk"
-		echo ''
-	}
+	cccmk_diff_brief "$diffchk_cccpath" "$diffchk_pwdpath"
+	echo ''
 	# show complete diffs for each file (if verbose, or use specified certain files explicitly)
 	if $verbose || ! [ -z "$command_arg_path" ]
 	then

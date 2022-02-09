@@ -136,18 +136,14 @@ do
 			print_message "The file '$file_pwd' differs from the cccmk template" # (see diff above)"
 			#print_message "NOTE: the cccmk template is shown as old/red, and your file is shown as new/green."
 			if cmp -s "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-			then echo " - user-side changes: no"
-			else echo " - user-side changes: yes"
-				if $verbose
-				then cccmk_diff "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-				fi
+			then printf " - user-side changes: no\n"
+			else printf " - user-side changes: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd" | cut -d' ' -f 3 `\n"
+				
 			fi
 			if cmp -s "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
-			then echo " - cccmk-side updates: no"
-			else echo " - cccmk-side updates: yes"
-				if $verbose
-				then cccmk_diff "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
-				fi
+			then printf " - cccmk-side updates: no\n"
+			else printf " - cccmk-side updates: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new" | cut -d' ' -f 3 `\n"
+				
 			fi
 			echo "How do you wish to update '$file_pwd' ?"
 			identical=true

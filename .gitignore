@@ -1,6 +1,6 @@
 # PROJECT
 
-/libccc
+/libccc.*
 /libccc-test
 /libccc-test*
 
@@ -49,8 +49,8 @@ test/_test.c
 
 
 # cccmk
-/.cccmk_diff_*/
-/.cccmk_update/
+.cccmk_diff_*/
+.cccmk_update/
 
 
 

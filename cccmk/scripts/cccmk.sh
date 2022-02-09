@@ -86,9 +86,14 @@ cccmk_diff()
 {
 	$cccmk_diffcmd --color "$1" "$2" || :
 }
-cccmk_diffsummary()
+cccmk_diff_brief()
 {
-	$cccmk_diffcmd --numstat "$1" "$2" || :
+	diff -qrs -U-1 "$1" "$2" \
+	| awk \
+	-v path_old="$1" \
+	-v path_new="$2" \
+	-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+	-f "$CCCMK_PATH_SCRIPTS/diff.awk"
 }
 
 

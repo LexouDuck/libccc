@@ -22,7 +22,7 @@ function diffcmd(file_old, file_new)
 	result_del = trim(command("echo '" result "' | grep '^[<] ' | wc -l"));
 	result_add = trim(command("echo '" result "' | grep '^[>] ' | wc -l"));
 	# display additions/deletions as red/green numbers respectively
-	return " (" io_red result_del "-" io_reset ", " io_green result_add "+" io_reset ")" ;
+	return " (" io_red "-" result_del io_reset ";" io_green "+" result_add io_reset ")" ;
 }
 
 
