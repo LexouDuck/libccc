@@ -28,8 +28,8 @@ clean-test-logs:
 
 
 .PHONY:\
-test-memleaks #! Builds and runs the test suite program with the given 'ARGS', checking for memory leaks
-test-memleaks: $(NAME_TEST)
+test-memory #! Builds and runs the test suite program with the given 'ARGS', checking for memory leaks
+test-memory: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)leaks/
 ifeq ($(OSMODE),other)
 	@$(call print_error,"Unsupported platform: requires manual configuration") ; exit 1
