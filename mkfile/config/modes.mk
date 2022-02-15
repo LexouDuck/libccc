@@ -54,7 +54,6 @@ OSMODES = \
 	other	\
 # if the OSMODE variable has no value, give it a default value
 ifeq ($(OSMODE),)
-	OSMODE=other
 	ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE=win32
@@ -71,6 +70,7 @@ ifeq ($(OSMODE),)
 			OSMODE=macos
 		endif
 	endif
+	OSMODE?=other
 endif
 
 

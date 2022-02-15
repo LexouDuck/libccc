@@ -10,9 +10,9 @@ format:
 
 
 .PHONY:\
-format-all #! Runs the code style auto-formatter on one or more files given as `ARGS`
+format-all #! Runs the code style auto-formatter on all source code files
 format-all:
-	@$(MAKE) format ARGS="$(ARGS)"
+	@$(MAKE) format ARGS="$(SRCS)"
 
 
 

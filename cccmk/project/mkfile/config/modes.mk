@@ -29,19 +29,19 @@ else ifeq ($(LIBMODE),dynamic)
 else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
-
-#! Define build target name for static library with appropriate file extensions
-NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
-#! Define build target name for dynamic library with appropriate file extensions
-NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
-#! Define build target name for library with appropriate file extension according to LIBMODE
-NAME_LIBMODE = _
-ifeq ($(LIBMODE),static)
-	NAME_LIBMODE = $(NAME_STATIC)
-endif
-ifeq ($(LIBMODE),dynamic)
-	NAME_LIBMODE = $(NAME_DYNAMIC)
-endif
+%%if is(type,library):
+%%if is(type,library):#! Define build target name for static library with appropriate file extensions
+%%if is(type,library):NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
+%%if is(type,library):#! Define build target name for dynamic library with appropriate file extensions
+%%if is(type,library):NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
+%%if is(type,library):#! Define build target name for library with appropriate file extension according to LIBMODE
+%%if is(type,library):NAME_LIBMODE = _
+%%if is(type,library):ifeq ($(LIBMODE),static)
+%%if is(type,library):	NAME_LIBMODE = $(NAME_STATIC)
+%%if is(type,library):endif
+%%if is(type,library):ifeq ($(LIBMODE),dynamic)
+%%if is(type,library):	NAME_LIBMODE = $(NAME_DYNAMIC)
+%%if is(type,library):endif
 
 
 
@@ -54,7 +54,6 @@ OSMODES = \
 	other	\
 # if the OSMODE variable has no value, give it a default value
 ifeq ($(OSMODE),)
-	OSMODE=other
 	ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE=win32
@@ -71,6 +70,7 @@ ifeq ($(OSMODE),)
 			OSMODE=macos
 		endif
 	endif
+	OSMODE?=other
 endif
 
 

@@ -8,8 +8,6 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
-#! The sub-directory in which makefile scripts are stored
-MKFILES_DIR := ./mkfile/
 
 
 
@@ -28,6 +26,9 @@ NAME_TEST = libccc-test
 #######################################
 #      Project folder structure       #
 #######################################
+
+#! The sub-directory in which makefile scripts are stored
+MKFILES_DIR := ./mkfile/
 
 # repository folders
 
@@ -76,7 +77,7 @@ include $(MKFILES_DIR)utils/ansi.mk
 include $(MKFILES_DIR)utils/sudo.mk
 include $(MKFILES_DIR)utils/ext.mk
 
-# project-specific rules
+# project-specific variables
 include $(MKFILES_DIR)config/modes.mk
 include $(MKFILES_DIR)config/build.mk
 include $(MKFILES_DIR)config/build-tests.mk
