@@ -12,12 +12,12 @@ PACKAGESFILE = $(LISTSDIR)packages.txt
 #! The shell command to output the list of packages (from the set of .mk scripts in PACKAGESDIR)
 echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%.mk=%)@0.0.0-?" ;)
 #! The shell command to generate the packages list file, if it doesn't exist
-make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE)
+make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE) && cat $(PACKAGESFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(PACKAGESFILE) ; echo $$?),1)
-$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
-$(shell mkdir -p $(PACKAGESDIR))
-$(shell $(call make_PACKAGESFILE))
+_:=$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
+_:=$(shell mkdir -p $(PACKAGESDIR))
+_:=$(shell $(call make_PACKAGESFILE))
 endif
 #! The raw contents of the packages list file
 PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
