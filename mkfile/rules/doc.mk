@@ -79,6 +79,7 @@ doc-html: doc-preprocess
 		echo "GENERATE_LATEX = NO" ; \
 		echo "GENERATE_DOCBOOK = NO" ) \
 		| $(DOXYGEN) $(DOXYGEN_FLAGS) -
+	@# /!\ put any custom XML-fixing code here
 	@awk '{ $$0 = gensub(/<\/?computeroutput>/, "``", "g"); print; }' \
 		$(call DOC_OUTPUT,xml)group__libccc__format.xml > \
 		$(call DOC_OUTPUT,xml)group__libccc__format.tmp && mv \
@@ -88,6 +89,7 @@ doc-html: doc-preprocess
 	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOXYREST_CONFIG) \
 		   $(call DOC_OUTPUT,xml)index.xml \
 		-o $(call DOC_OUTPUT,rst)index.rst
+	@# /!\ put any custom RST-fixing code here
 	@$(call print_message,"Generating HTML documentation...")
 	@ $(SPHINX) $(SPHINX_FLAGS) -c $(SPHINX_CONFIG) -b html \
 		$(call DOC_OUTPUT,rst) \
@@ -109,6 +111,7 @@ doc-preprocess:
 	@$(call print_message,"Preprocessing headers for documentation...")
 	@mkdir -p ./docs/$(HDRDIR)
 	@cp -rf $(HDRDIR)* ./docs/$(HDRDIR)
+	@# /!\ put any custom source-preprocessing code here
 	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/monad/%.h, $(HDRS))) ; do \
 		awk '/^#define/ { gsub(/\(T\)/, "<T>"); } { print; }' $$i > $$i.tmp && mv $$i.tmp $$i ; \
 	done
