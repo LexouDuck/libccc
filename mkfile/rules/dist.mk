@@ -2,8 +2,12 @@
 
 
 
+#! The folder path which contains distributable archives
+DIST_PATH = $(DISTDIR)
+#! The name to give to the distributable archive file
+DIST_NAME = $(NAME)-$(VERSION)_$(OSMODE).zip
 #! The filepath of the distributable zip archive to produce when calling 'make dist'
-DISTRIBUTABLE = $(DISTDIR)$(NAME)-$(VERSION)_$(OSMODE).zip
+DIST_FILE = $(DIST_PATH)$(DIST_NAME)
 
 
 
@@ -21,8 +25,8 @@ dist-all:
 .PHONY:\
 dist #! Creates a .zip distributable according to the current 'OSMODE' and 'LIBMODE'
 dist: mkdir-dist
-	@if [ -f $(DISTRIBUTABLE) ]; then \
-		$(call print_error,"File already exists: $(DISTRIBUTABLE)") ; \
+	@if [ -f $(DIST_FILE) ]; then \
+		$(call print_error,"File already exists: $(DIST_FILE)") ; \
 	fi
 	@$(MAKE) clean
 	@$(call print_message,"Building release (for OSMODE=$(OSMODE))...")
@@ -32,7 +36,7 @@ ifeq ($(wildcard $(BINDIR)$(OSMODE)/*),)
 	@$(call print_error,"Cannot produce distributable archive for target '$(OSMODE)':")
 	@$(call print_error,"The bin folder is empty: '$(BINDIR)$(OSMODE)/'.")
 else
-	@$(call print_message,"Preparing .zip archive: $(DISTRIBUTABLE)")
+	@$(call print_message,"Preparing .zip archive: $(DIST_FILE)")
 	@rm -rf   $(TEMPDIR)
 	@mkdir -p $(TEMPDIR)
 	@cp -rf $(BINDIR)$(OSMODE)/*  $(TEMPDIR)
@@ -41,7 +45,7 @@ else
 		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
 		cp -f $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
 	done
-	@cd $(TEMPDIR) && zip -r ../$(DISTRIBUTABLE) ./
+	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
 	@rm -rf $(TEMPDIR)
 	@printf " -> "$(IO_GREEN)"OK!"$(IO_RESET)"\n"
 endif
@@ -51,10 +55,10 @@ endif
 .PHONY:\
 mkdir-dist #! Creates the distributable builds folder
 mkdir-dist:
-	@mkdir -p `dirname $(DISTRIBUTABLE)`
+	@mkdir -p $(DIST_PATH)
 
 .PHONY:\
 clean-dist #! Deletes the distributable builds folder
 clean-dist:
 	@$(call print_message,"Deleting distributable builds folder...")
-	@rm -rf `dirname $(DISTRIBUTABLE)`
+	@rm -rf $(DIST_PATH)
