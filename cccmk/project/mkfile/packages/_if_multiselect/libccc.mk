@@ -6,9 +6,9 @@ PACKAGE_libccc = libccc
 PACKAGE_libccc_VERSION := $(shell $(call packages_getversion,$(PACKAGE_libccc)))
 PACKAGE_libccc_LIBMODE = static
 PACKAGE_libccc_DIR = $(LIBDIR)libccc/
-PACKAGE_libccc_BIN = $(PACKAGE_libccc_DIR)bin/$(OSMODE)/$(PACKAGE_libccc_LIBMODE)/
+PACKAGE_libccc_BIN = $(PACKAGE_libccc_DIR)bin/$(OSMODE)/
 PACKAGE_libccc_INCLUDE = $(PACKAGE_libccc_DIR)hdr/
-PACKAGE_libccc_LINKDIR = $(PACKAGE_libccc_BIN)
+PACKAGE_libccc_LINKDIR = $(PACKAGE_libccc_BIN)$(PACKAGE_libccc_LIBMODE)/
 PACKAGE_libccc_LINKLIB = -lccc
 PACKAGE_libccc_LINK = -L$(PACKAGE_libccc_LINKDIR) $(PACKAGE_libccc_LINKLIB)
 
