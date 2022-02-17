@@ -45,7 +45,7 @@ jobs:
       if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
       run: |
         echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
-        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
+        echo "PATH=$PATH:/c/msys64/mingw64/bin" >> $GITHUB_ENV
 
 
 
