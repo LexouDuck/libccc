@@ -29,24 +29,18 @@ clean-coverage \
 
 .PHONY:\
 clean-obj #! Deletes the ./obj folder
-clean-obj: \
-clean-build-obj \
-clean-build-dep \
-clean-tests-obj \
-clean-tests-dep
-	@$(call print_message,"Deleting "$(OBJDIR)" folder...")
+clean-obj:
+	@$(call print_message,"Deleting the $(OBJDIR) folder...")
 	@rm -rf $(OBJDIR)
 
 .PHONY:\
 clean-bin #! Deletes the ./bin folder
-clean-bin: \
-clean-build-bin \
-clean-tests-bin
-	@$(call print_message,"Deleting "$(BINDIR)" folder...")
+clean-bin:
+	@$(call print_message,"Deleting the $(BINDIR) folder...")
 	@rm -rf $(BINDIR)
 
 .PHONY:\
 clean-log #! Deletes the ./log folder
 clean-log:
-	@$(call print_message,"Deleting "$(LOGDIR)" folder...")
+	@$(call print_message,"Deleting the $(LOGDIR) folder...")
 	@rm -rf $(LOGDIR)
