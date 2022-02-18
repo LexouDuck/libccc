@@ -2,6 +2,10 @@
 
 
 
+UNAME_S ?= $(shell uname -s)
+
+
+
 #! The shell command to check whether or not a prerequite program/library is installed
 #	@param 1	The name of the prerequisite to check (can be full name with spaces)
 #	@param 2	The shell command to check whether it exists (exit code 0 means it is ok)

@@ -13,7 +13,7 @@ DOC_OUTPUTS = \
 	./docs/rst/ \
 
 #! Simple function to get a doc output folder from the `DOC_OUTPUTS` list
-DOC_OUTPUT = $(filter %/$(1)/, $(DOC_OUTPUTS))
+docs_folder = $(filter %/$(1)/, $(DOC_OUTPUTS))
 
 
 
@@ -81,26 +81,26 @@ doc-html: doc-preprocess
 		| $(DOXYGEN) $(DOXYGEN_FLAGS) -
 	@# /!\ put any custom XML-fixing code here
 	@awk '{ $$0 = gensub(/<\/?computeroutput>/, "``", "g"); print; }' \
-		$(call DOC_OUTPUT,xml)group__libccc__format.xml > \
-		$(call DOC_OUTPUT,xml)group__libccc__format.tmp && mv \
-		$(call DOC_OUTPUT,xml)group__libccc__format.tmp \
-		$(call DOC_OUTPUT,xml)group__libccc__format.xml
+		$(call docs_folder,xml)group__libccc__format.xml > \
+		$(call docs_folder,xml)group__libccc__format.tmp && mv \
+		$(call docs_folder,xml)group__libccc__format.tmp \
+		$(call docs_folder,xml)group__libccc__format.xml
 	@$(call print_message,"Generating RST documentation...")
 	@$(DOXYREST) $(DOXYREST_FLAGS) -c $(DOXYREST_CONFIG) \
-		   $(call DOC_OUTPUT,xml)index.xml \
-		-o $(call DOC_OUTPUT,rst)index.rst
+		   $(call docs_folder,xml)index.xml \
+		-o $(call docs_folder,rst)index.rst
 	@# /!\ put any custom RST-fixing code here
 	@$(call print_message,"Generating HTML documentation...")
 	@ $(SPHINX) $(SPHINX_FLAGS) -c $(SPHINX_CONFIG) -b html \
-		$(call DOC_OUTPUT,rst) \
-		$(call DOC_OUTPUT,html)
+		$(call docs_folder,rst) \
+		$(call docs_folder,html)
 	@#$(call print_message,"Generating LaTeX documentation...")
 	@#$(SPHINX) $(SPHINX_FLAGS) -c $(SPHINX_CONFIG) -M latexpdf \
-		#$(call DOC_OUTPUT,rst) \
-		#$(call DOC_OUTPUT,pdf)
-	@#$(MAKE) -C $(call DOC_OUTPUT,pdf)latex/ all
-	@mv $(call DOC_OUTPUT,html)page_index.html \
-		$(call DOC_OUTPUT,html)index.html
+		#$(call docs_folder,rst) \
+		#$(call docs_folder,pdf)
+	@#$(MAKE) -C $(call docs_folder,pdf)latex/ all
+	@mv $(call docs_folder,html)page_index.html \
+		$(call docs_folder,html)index.html
 	@$(call print_success,"Generated documentation (doxyrest + sphinx)")
 
 
@@ -111,7 +111,7 @@ doc-preprocess:
 	@$(call print_message,"Preprocessing headers for documentation...")
 	@mkdir -p ./docs/$(HDRDIR)
 	@cp -rf $(HDRDIR)* ./docs/$(HDRDIR)
-	@# /!\ put any custom source-preprocessing code here
+	@# /!\ put any custom preprocessing code here
 	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/monad/%.h, $(HDRS))) ; do \
 		awk '/^#define/ { gsub(/\(T\)/, "<T>"); } { print; }' $$i > $$i.tmp && mv $$i.tmp $$i ; \
 	done
@@ -141,14 +141,14 @@ prereq-doc:
 		$(call install_prereq,doxygen))
 	@-$(call check_prereq,'(doc) Doxyrest',\
 		$(DOXYREST) --version,\
-		$(call print_error,"doxyrest must be manually installed from https://github.com/vovkos/doxyrest"))
+		$(call print_failure,"doxyrest must be manually installed from https://github.com/vovkos/doxyrest"))
 	@-$(call check_prereq,'(doc) Sphinx python doc generator',\
 		$(SPHINX) --version,\
 		$(call install_prereq,sphinx-doc))
 	@-$(call check_prereq,'(doc) Lua',\
 		lua -v,\
 		$(call install_prereq,lua))
-	@-$(call check_prereq,'(doc) graphviz `dot` graph generator',\
+	@-$(call check_prereq,'(doc) dot graphviz graph generator',\
 		dot -V,\
 		$(call install_prereq,graphviz))
 	@# TODO: add LaTeX prereq ?
