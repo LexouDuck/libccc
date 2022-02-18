@@ -36,15 +36,15 @@ jobs:
       run: |
         echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
 
-    - name: Setup (Windows, clang)
-      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'clang') }}
-      run: |
-        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
-
     - name: Setup (Windows, mingw)
       if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
       run: |
         echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
+
+    - name: Setup (Windows, clang)
+      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'clang') }}
+      run: |
+        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
         echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
 
