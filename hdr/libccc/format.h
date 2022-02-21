@@ -48,36 +48,28 @@
 #ifndef __NOSTD__
 	#include <inttypes.h>
 
-	#if __USE_MINGW_ANSI_STDIO
-
-		#undef	PRIu64
-		#if _IS_64BIT
-		#define	PRIu64	"lu"
+	#if (defined(__WINDOWS__) && __USE_MINGW_ANSI_STDIO)
+		#ifdef __clang__
+			#undef	PRIu64
+			#define	PRIu64	"lu"
+			#undef	PRIi64
+			#define	PRIi64	"li"
+			#undef	PRIX64
+			#define	PRIX64	"lX"
+			#undef	PRIo64
+			#define	PRIo64	"lo"
 		#else
-		#define	PRIu64	"llu"
-		#endif
-
-		#undef	PRIi64
-		#if _IS_64BIT
-		#define	PRIi64	"li"
-		#else
-		#define	PRIi64	"lli"
-		#endif
-
-		#undef	PRIX64
-		#if _IS_64BIT
-		#define	PRIX64	"lX"
-		#else
-		#define	PRIX64	"llX"
-		#endif
-
-		#undef	PRIo64
-		#if _IS_64BIT
-		#define	PRIo64	"lo"
-		#else
-		#define	PRIo64	"llo"
+			#undef	PRIu64
+			#define	PRIu64	"llu"
+			#undef	PRIi64
+			#define	PRIi64	"lli"
+			#undef	PRIX64
+			#define	PRIX64	"llX"
+			#undef	PRIo64
+			#define	PRIo64	"llo"
 		#endif
 	#endif
+
 #else
 // TODO: better logic than just using 'long' here, with the __DATAMODEL__ macro ?
 	#define PRIu8	"hhu"
