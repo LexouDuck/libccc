@@ -20,20 +20,27 @@
 
 
 
-inline
-e_cccerror	IO_ChangeMode	(t_char const* filepath, t_io_mode mode)
+e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
+#if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
+	mode = (
+		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
+		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
+	HANDLE_ERROR(SYSTEM,
+		_chmod(filepath, mode),
+		return (ERROR_SYSTEM);)
+#else
 	HANDLE_ERROR(SYSTEM,
 		chmod(filepath, mode),
 		return (ERROR_SYSTEM);)
+#endif
 	return (OK);
 }
 
 
 
-inline
-t_io_mode	IO_GetMode		(t_char const* filepath)
+t_io_mode	IO_GetMode(t_char const* filepath)
 {
 #ifdef __NOSTD__
 	filepath = NULL;
@@ -48,7 +55,10 @@ t_io_mode	IO_GetMode		(t_char const* filepath)
 	HANDLE_ERROR(SYSTEM,
 		stat(filepath, &stat_buffer),
 		return (ERROR_SYSTEM);)
-	result = stat_buffer.st_mode & (S_IRWXU | S_IRWXG | S_IRWXO);
+	result = stat_buffer.st_mode &
+		(ACCESSMODE_USER_RWX |
+		ACCESSMODE_GROUP_RWX |
+		ACCESSMODE_OTHER_RWX);
 	return (result);
 #endif
 }
@@ -56,7 +66,6 @@ t_io_mode	IO_GetMode		(t_char const* filepath)
 
 
 #if 0
-inline
 e_cccerror	IO_ChangeOwner(t_char const* filepath, t_char const* owner, t_char const* group)
 {
 	return (chown(filepath,
