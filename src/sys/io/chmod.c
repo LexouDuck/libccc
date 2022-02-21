@@ -1,10 +1,9 @@
 
 #ifndef __NOSTD__
-	#include <sys/stat.h>
-	// If only windows C API is available, include it
-	#if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
-	#include <io.h>
+	#ifndef _POSIX_C_SOURCE
+	#define _POSIX_C_SOURCE	199309L
 	#endif
+	#include <sys/stat.h>
 #else
 	typedef unsigned int	mode_t;
 	typedef unsigned long	uid_t;
@@ -27,7 +26,7 @@
 e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
-#if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
+#if 0 // (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
 	mode = (
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
