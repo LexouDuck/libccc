@@ -1,6 +1,10 @@
 
 #ifndef __NOSTD__
 	#include <sys/stat.h>
+	// If only windows C API is available, include it
+	#if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
+	#include <io.h>
+	#endif
 #else
 	typedef unsigned int	mode_t;
 	typedef unsigned long	uid_t;
