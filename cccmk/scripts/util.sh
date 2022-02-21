@@ -20,7 +20,7 @@ print_error()   { { printf   "cccmk: ""\033[31m""error""\033[0m: ""$@" ; echo ""
 ### utility functions for string/array/list manipulation
 ###
 
-#! Check if a space-separated list contains a certain string
+#! Check if a space-separated list ($1) contains a certain string ($2)
 contains()
 {
 	if [ -t 0 ] && [ $# -gt 1 ]
@@ -34,7 +34,7 @@ contains()
 	fi
 }
 
-#! Keep only certain items from the space-separated list given as input
+#! Keep only certain items from the space-separated list given as input ($2), with a custom command ($1)
 filter()
 {
 	filter_inner()
@@ -57,7 +57,7 @@ filter()
 
 
 
-#! Call AWK on a file, modifying it in-place
+#! Call AWK on a file ($1), modifying it in-place
 awk_inplace()
 {
 	local file="$1"
