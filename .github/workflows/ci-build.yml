@@ -48,6 +48,12 @@ jobs:
 
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
+    - name: Check compiler defines (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: |
+        make clean-log
+        make test-env-predef
+        for i in `find log -name "predef_*.c"` ; do cat $i ; done
+
 
 
     - name: Build libccc (with ${{matrix.compiler}}, for ${{matrix.os}})
