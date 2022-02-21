@@ -61,7 +61,7 @@ $(NAME): $(OBJS)
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i) ;)
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i) ; )
 
 
 

@@ -61,8 +61,9 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
-	@cp -f $(NAME).def	$(BINDIR)$(OSMODE)/dynamic/
-	@cp -f $(NAME).lib	$(BINDIR)$(OSMODE)/dynamic/
+	@mkdir -p          $(BINDIR)$(OSMODE)/dynamic/
+	@cp -f $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
+	@cp -f $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -install_name @loader_path/$@
 else ifeq ($(OSMODE),linux)
@@ -87,8 +88,8 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ;)
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ;)
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ; )
 
 
 
