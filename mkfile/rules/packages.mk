@@ -16,8 +16,9 @@ make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE) && cat $(PAC
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(PACKAGESFILE) ; echo $$?),1)
 _:=$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
-_:=$(shell mkdir -p $(PACKAGESDIR))
+_:=$(shell mkdir -p `dirname $(PACKAGESFILE)`)
 _:=$(shell $(call make_PACKAGESFILE))
+_:=$(shell mkdir -p $(PACKAGESDIR))
 endif
 #! The raw contents of the packages list file
 PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
