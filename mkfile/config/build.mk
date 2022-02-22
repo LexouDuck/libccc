@@ -53,7 +53,7 @@ CFLAGS_EXTRA ?=
 #	-fanalyzer \
 
 ifeq ($(CC),clang)
-	CFLAGS_OS_WIN += -Wno-missing-braces
+	CFLAGS_OS_WIN += -Wno-missing-braces -fno-ms-compatibility
 endif
 
 
