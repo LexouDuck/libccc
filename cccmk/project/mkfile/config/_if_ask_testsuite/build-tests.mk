@@ -1,0 +1,121 @@
+#! This file holds the variables which configure the code compilation
+
+
+
+#! GNU conventional variable: C Compiler flags & settings
+TEST_CFLAGS = \
+	-Wall \
+	-Wextra \
+	-Winline \
+	-Wpedantic \
+	-Wno-unused-variable \
+	-Wno-unused-parameter \
+	-Wno-format-extra-args \
+	-fstrict-aliasing \
+	-fno-inline \
+	$(TEST_CFLAGS_OS) $(TEST_CFLAGS_EXTRA)
+
+TEST_CFLAGS_DEBUG   = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
+TEST_CFLAGS_RELEASE = -O3
+
+TEST_CFLAGS_OS = _
+TEST_CFLAGS_OS_WIN32 = -D__USE_MINGW_ANSI_STDIO=1
+TEST_CFLAGS_OS_WIN64 = -D__USE_MINGW_ANSI_STDIO=1
+TEST_CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
+TEST_CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
+TEST_CFLAGS_OS_OTHER = 
+ifeq ($(CC),clang)
+	TEST_CFLAGS += -Wno-missing-braces -Wno-gnu-zero-variadic-macro-arguments
+endif
+TEST_CFLAGS_EXTRA = 
+#	-fsanitize=address \
+#	-fsanitize=thread \
+#	-fanalyzer \
+
+
+
+#! GNU conventional variable: C Linker flags & settings
+TEST_LDFLAGS = \
+	$(TEST_LDFLAGS_OS) $(TEST_LDFLAGS_EXTRA)
+
+TEST_LDFLAGS_DEBUG   = 
+TEST_LDFLAGS_RELEASE = 
+
+TEST_LDFLAGS_OS = _
+TEST_LDFLAGS_OS_WIN32 =
+TEST_LDFLAGS_OS_WIN64 =
+TEST_LDFLAGS_OS_LINUX = 
+TEST_LDFLAGS_OS_MACOS = 
+TEST_LDFLAGS_OS_OTHER = 
+
+TEST_LDFLAGS_EXTRA = 
+#	-flto \
+
+
+
+TEST_LDLIBS = \
+	$(NAME_STATIC) \
+	$(TEST_LDLIBS_OS) $(TEST_LDLIBS_EXTRA)
+
+TEST_LDLIBS_DEBUG   = 
+TEST_LDLIBS_RELEASE = 
+
+TEST_LDLIBS_OS = _
+TEST_LDLIBS_OS_WIN32 = -L./ -static-libgcc
+TEST_LDLIBS_OS_WIN64 = -L./ -static-libgcc
+TEST_LDLIBS_OS_LINUX = -lm
+TEST_LDLIBS_OS_MACOS = 
+TEST_LDLIBS_OS_OTHER = 
+
+TEST_LDLIBS_EXTRA = 
+#	-D__NOSTD__=1 \
+#	-L/usr/local/lib -ltsan \
+#	-Wl,-rpath,bin/linux/dynamic/ \
+#	-Wl,-rpath='$$ORIGIN/' \
+
+
+
+TEST_INCLUDES = \
+	-I$(HDRDIR) \
+	-I$(TESTDIR) \
+	$(TEST_INCLUDES_OS) $(TEST_INCLUDES_EXTRA)
+
+TEST_INCLUDES_DEBUG   = 
+TEST_INCLUDES_RELEASE = 
+
+TEST_INCLUDES_OS = _
+TEST_INCLUDES_OS_WIN32 = 
+TEST_INCLUDES_OS_WIN64 = 
+TEST_INCLUDES_OS_LINUX = 
+TEST_INCLUDES_OS_MACOS = 
+TEST_INCLUDES_OS_OTHER = 
+
+
+
+# Set platform-specific variables
+ifeq ($(OSMODE),other)
+	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_OTHER)
+	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_OTHER)
+	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_OTHER)
+	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_OTHER)
+else ifeq ($(OSMODE),win32)
+	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_WIN32)
+	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_WIN32)
+	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_WIN32)
+	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_WIN32)
+else ifeq ($(OSMODE),win64)
+	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_WIN64)
+	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_WIN64)
+	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_WIN64)
+	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_WIN64)
+else ifeq ($(OSMODE),linux)
+	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_LINUX)
+	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_LINUX)
+	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_LINUX)
+	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_LINUX)
+else ifeq ($(OSMODE),macos)
+	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_MACOS)
+	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_MACOS)
+	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_MACOS)
+	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_MACOS)
+endif

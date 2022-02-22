@@ -76,12 +76,17 @@ project_template_recurse()
 				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
 				selected_files=
 				echo "$prompt_message"
-				prompt_multiselect selected_files `echo "$proposed_files" | tr [:space:] ';' `
+				descriptions=""
+				for i in $proposed_files
+				do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
+				done
+				descriptions="`echo "$descriptions" | tr [:space:] ' '`"
+				prompt_multiselect selected_files "`echo "$proposed_files" | tr [:space:] ';' `" "" "$descriptions"
 				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
 					"$selected_files"
 				;;
 			# prompt the user with a y/n question, only copy over files if user answers y/yes
-			_if_flag_*)
+			_if_ask_*)
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Do you wish to include the following files ?""\n`ls "$srcdir/$dir/$subdir/"`"

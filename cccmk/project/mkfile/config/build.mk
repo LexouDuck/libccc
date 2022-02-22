@@ -28,8 +28,16 @@ CFLAGS = \
 	-fstrict-aliasing \
 	$(CFLAGS_OS) $(CFLAGS_EXTRA)
 
-CFLAGS_DEBUG   = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
-CFLAGS_RELEASE = -O3
+#! Compiler flags which are only present in "debug" build mode
+CFLAGS_DEBUG = \
+	-g \
+	-ggdb \
+	-D DEBUG=1 \
+#	-D __NOSTD__=1 \
+
+#! Compiler flags which are only present in "release" build mode
+CFLAGS_RELEASE = \
+	-O3 \
 
 CFLAGS_OS = _
 CFLAGS_OS_WIN32 = -D__USE_MINGW_ANSI_STDIO=1
@@ -38,6 +46,7 @@ CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 CFLAGS_OS_OTHER = 
 
+#! This variable is intentionally empty, to specify additional CFLAGS from the commandline
 CFLAGS_EXTRA ?= 
 #	-fsanitize=address \
 #	-fsanitize=thread \
@@ -57,8 +66,8 @@ LDFLAGS_DEBUG   =
 LDFLAGS_RELEASE = 
 
 LDFLAGS_OS = _
-LDFLAGS_OS_WIN32 =
-LDFLAGS_OS_WIN64 =
+LDFLAGS_OS_WIN32 = 
+LDFLAGS_OS_WIN64 = 
 LDFLAGS_OS_LINUX = 
 LDFLAGS_OS_MACOS = 
 LDFLAGS_OS_OTHER = 

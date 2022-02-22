@@ -1,6 +1,8 @@
 # PROJECT
 
-/%[name]%
+%%if is(type,program):/%[name]%
+%%if is(type,library):/%[name]%.*
+%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk):/%[name]%-test
 
 /obj/
 /bin/
@@ -28,8 +30,8 @@
 
 
 # cccmk
-/.cccmk_diff_*/
-/.cccmk_update/
+.cccmk_diff_*/
+.cccmk_update/
 
 
 

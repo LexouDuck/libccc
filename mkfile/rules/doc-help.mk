@@ -15,12 +15,12 @@ DOC_MATCH = \
 
 #! These are the colors to use for syntax coloring in the doc shell output (ANSI terminal escape sequences)
 #{
-HELPDOC_VARNAME = $(ANSI_TEXT_BOLD)
-HELPDOC_TYPEDEF = $(call ANSI_COLOR_FG,39)
-HELPDOC_KEYWORD = $(call ANSI_COLOR_FG,197)
-HELPDOC_OPERATOR= $(call ANSI_COLOR_FG,208)
-HELPDOC_PREPROC = $(call ANSI,1;38;5;198)
-HELPDOC_COMMENT = $(call ANSI_COLOR_FG,244)
+DOCHELP_VARNAME = $(ANSI_TEXT_BOLD)
+DOCHELP_TYPEDEF = $(call ANSI_COLOR_FG,39)
+DOCHELP_KEYWORD = $(call ANSI_COLOR_FG,197)
+DOCHELP_OPERATOR= $(call ANSI_COLOR_FG,208)
+DOCHELP_PREPROC = $(call ANSI,1;38;5;198)
+DOCHELP_COMMENT = $(call ANSI_COLOR_FG,244)
 #}
 
 #! These are some regular expressions used to syntactically color code shown
@@ -37,33 +37,33 @@ REGEXP_C_GENERIC =($(REGEXP_C_TYPEGEN)(,[ \t]*$(REGEXP_C_TYPEGEN))?)
 
 
 
-HELPDOC_AWK_DECL_CLEANUP = \
+DOCHELP_AWK_DECL_CLEANUP = \
 $$0 = gensub(/\<_[A-Z]+\(\)[ \t]*/,                                  "",         "g");\
 $$0 = gensub(/$(REGEXP_C_TYPEDEF)\($(REGEXP_C_GENERIC)\)/,           "\\1<\\2>", "g");\
 $$0 = gensub(/$(REGEXP_C_SYMBOL)\($(REGEXP_C_GENERIC)\)/,            "\\1<\\2>", "1");\
 $$0 = gensub(/($(REGEXP_C_SYMBOL)(<$(REGEXP_C_GENERIC)>)?)[ \t]*\(/, "\\1\t(",   "1");\
 $$0 = gensub(/[ \t][ \t]+/,                                          "\t",       "g");\
 
-HELPDOC_AWK_DECL_SPACING = \
+DOCHELP_AWK_DECL_SPACING = \
 split($$0, line, "\t");\
 $$0 = sprintf("%-20s %-40s %s", line[1], line[2], line[3]);\
 
-HELPDOC_AWK_SYNTAXCOLORS = \
-$$0 = gensub(/$(REGEXP_C_SYMBOL)(<$(REGEXP_C_GENERIC)>)?([ \t]*)\(/,       $(HELPDOC_VARNAME) "\\1" $(IO_RESET)"\\2\\7(", "1");\
-$$0 = gensub(/^[ \t]*\#[ \t]*$(REGEXP_C_PREPROC)[ \t]+$(REGEXP_C_SYMBOL)/, $(HELPDOC_PREPROC)"\#\\1"$(IO_RESET)" "$(HELPDOC_VARNAME)"\\2"$(IO_RESET), "g");\
-$$0 = gensub(/$(REGEXP_C_KEYWORD)/,                                        $(HELPDOC_KEYWORD) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/$(REGEXP_C_TYPE)/,                                           $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/$(REGEXP_C_TYPE_KW)[ ]+$(REGEXP_C_SYMBOL)/,                  $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/$(REGEXP_C_TYPEDEF)/,                                        $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/$(REGEXP_C_TYPEGEN)/,                                        $(HELPDOC_TYPEDEF) "\\0" $(IO_RESET), "g");\
-$$0 = gensub(/[*\/\-+!&@$$]/,                                              $(HELPDOC_OPERATOR)"\\0" $(IO_RESET), "g");\
-$$0 = gensub(/(\/\/(.*)$$)/,                                               $(HELPDOC_COMMENT) "\\0" $(IO_RESET), "1");\
+DOCHELP_AWK_SYNTAXCOLORS = \
+$$0 = gensub(/$(REGEXP_C_SYMBOL)(<$(REGEXP_C_GENERIC)>)?([ \t]*)\(/,       $(DOCHELP_VARNAME) "\\1" $(IO_RESET)"\\2\\7(", "1");\
+$$0 = gensub(/^[ \t]*\#[ \t]*$(REGEXP_C_PREPROC)[ \t]+$(REGEXP_C_SYMBOL)/, $(DOCHELP_PREPROC)"\#\\1"$(IO_RESET)" "$(DOCHELP_VARNAME)"\\2"$(IO_RESET), "g");\
+$$0 = gensub(/$(REGEXP_C_KEYWORD)/,                                        $(DOCHELP_KEYWORD) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/$(REGEXP_C_TYPE)/,                                           $(DOCHELP_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/$(REGEXP_C_TYPE_KW)[ ]+$(REGEXP_C_SYMBOL)/,                  $(DOCHELP_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/$(REGEXP_C_TYPEDEF)/,                                        $(DOCHELP_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/$(REGEXP_C_TYPEGEN)/,                                        $(DOCHELP_TYPEDEF) "\\0" $(IO_RESET), "g");\
+$$0 = gensub(/[*\/\-+!&@$$]/,                                              $(DOCHELP_OPERATOR)"\\0" $(IO_RESET), "g");\
+$$0 = gensub(/(\/\/(.*)$$)/,                                               $(DOCHELP_COMMENT) "\\0" $(IO_RESET), "1");\
 
 
 
 .PHONY:\
-help-doc #! Displays a summary of any code declarations (uses `DOC_FILES` and `DOC_MATCH`)
-help-doc:
+doc-help #! Displays a summary of any code declarations (uses `DOC_FILES` and `DOC_MATCH`)
+doc-help:
 	@for i in $(DOC_FILES) ; do \
 		$(call print_message,"$${i}") ; \
 		gawk '\
@@ -81,9 +81,9 @@ help-doc:
 			{\
 				if ($(DOC_MATCH))\
 				{\
-					$(HELPDOC_AWK_DECL_CLEANUP)\
-					$(HELPDOC_AWK_DECL_SPACING)\
-					$(HELPDOC_AWK_SYNTAXCOLORS)\
+					$(DOCHELP_AWK_DECL_CLEANUP)\
+					$(DOCHELP_AWK_DECL_SPACING)\
+					$(DOCHELP_AWK_SYNTAXCOLORS)\
 					print;\
 				}\
 				else if (/^[ \t]*#[ \t]*if[ \t]+(0|FALSE|LIBCONFIG)/) { skip = 1; }\
@@ -102,8 +102,8 @@ help-doc:
 
 
 .PHONY:\
-help-doc-full #! Displays documentation for any line matching the given regexp (uses `DOC_FILES` and `DOC_MATCH`)
-help-doc-full:
+doc-help-full #! Displays documentation for any line matching the given regexp (uses `DOC_FILES` and `DOC_MATCH`)
+doc-help-full:
 	@for i in $(DOC_FILES) ; do \
 		gawk '\
 		BEGIN {\
@@ -122,9 +122,9 @@ help-doc-full:
 			{\
 				if ($(DOC_MATCH))\
 				{\
-					$(HELPDOC_AWK_SYNTAXCOLORS)\
+					$(DOCHELP_AWK_SYNTAXCOLORS)\
 					output = $(IO_CYAN) FILENAME $(IO_RESET) "\n";\
-					output = (length(doc) > 0 ? $(HELPDOC_COMMENT) doc $(IO_RESET) "\n" : "");\
+					output = (length(doc) > 0 ? $(DOCHELP_COMMENT) doc $(IO_RESET) "\n" : "");\
 					print output $$0 "\n";\
 					doc = "";\
 					docblock = 0;\

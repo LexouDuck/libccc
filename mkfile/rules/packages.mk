@@ -10,14 +10,15 @@ PACKAGESDIR := $(MKFILES_DIR)packages/
 #! The file which stores all dependency package version info
 PACKAGESFILE = $(LISTSDIR)packages.txt
 #! The shell command to output the list of packages (from the set of .mk scripts in PACKAGESDIR)
-echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%=%)@0.0.0-?" ;)
+echo_PACKAGESFILE = $(foreach i,$(wildcard $(PACKAGESDIR)*.mk), echo "$(i:$(PACKAGESDIR)%.mk=%)@0.0.0-?" ;)
 #! The shell command to generate the packages list file, if it doesn't exist
-make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE)
+make_PACKAGESFILE = { $(call echo_PACKAGESFILE) } > $(PACKAGESFILE) && cat $(PACKAGESFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(PACKAGESFILE) ; echo $$?),1)
-$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
-$(shell mkdir -p $(PACKAGESDIR))
-$(shell $(call make_PACKAGESFILE))
+_:=$(shell $(call print_warning,"packages list file '$(PACKAGESFILE)' doesn't exist - creating now..."))
+_:=$(shell mkdir -p `dirname $(PACKAGESFILE)`)
+_:=$(shell $(call make_PACKAGESFILE))
+_:=$(shell mkdir -p $(PACKAGESDIR))
 endif
 #! The raw contents of the packages list file
 PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
@@ -25,15 +26,23 @@ PACKAGES_INFO := $(shell cat $(PACKAGESFILE))
 #! The list of names of each package (according to the packages list file)
 PACKAGES := $(shell cat $(PACKAGESFILE) | cut -d '@' -f 1)
 
-#! Here, we define necessary variables for each package
+
+
+#! There are some PHONY rules that a package mkfile script should define:
 #{
-PACKAGES_VERSIONS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_VERSION)
-PACKAGES_DIRS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_DIR)
-PACKAGES_BINS     = $(foreach i,$(PACKAGES),PACKAGE_$(i)_BIN)
-PACKAGES_INCLUDES = $(foreach i,$(PACKAGES),PACKAGE_$(i)_INCLUDE)
-PACKAGES_LINKDIRS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKDIR)
-PACKAGES_LINKLIBS = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINKLIB)
-PACKAGES_LINKS    = $(foreach i,$(PACKAGES),PACKAGE_$(i)_LINK)
+# make package-% : installs the package into its folder
+# make update-%  : updates the package to its latest available version
+#}
+#! In addition to these rules, here is the list of variables that a package mkfile script should define:
+#{
+# PACKAGE_%_VERSION : the version number of the package
+# PACKAGE_%_LIBMODE : the method of library linking: can be either 'static' or 'dynamic'
+# PACKAGE_%_DIR     : the directory in which this package is
+# PACKAGE_%_BIN     : the directory in which the library binaries are stored
+# PACKAGE_%_INCLUDE : the directory/ies to include (without the -I prefix)
+# PACKAGE_%_LINKDIR : the directory/ies to add to library search path (without the -L prefix)
+# PACKAGE_%_LINKLIB : the library name, as it is written for linking (including the -l prefix)
+# PACKAGE_%_LINK    : both LINKDIR and LINKLIB variables together: `-L$(PACKAGE_%_LINKDIR) $(PACKAGE_%_LINKLIB)`
 #}
 
 

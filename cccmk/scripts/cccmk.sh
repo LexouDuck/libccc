@@ -10,47 +10,20 @@ if $debug
 then set -x
 fi
 
-# check that necessary shell commands are installed and usable
-
-# check the `diff` command
-if ! diff --version > /dev/null
-then print_error "cccmk requires the shell command 'diff' to be installed and accessible from the \$PATH."
-	exit 1
-fi
-# check the `git` command
-if ! git --version > /dev/null
-then print_error "cccmk requires the shell command 'git' to be installed and accessible from the \$PATH."
-	exit 1
-fi
-# check the `make` command
-if ! make --version > /dev/null
-then print_error "cccmk requires the shell command 'make' to be installed and accessible from the \$PATH."
-	exit 1
-fi
-
 # set the initial values for important program variables
 
 #! If set to `true`, then cccmk will display any `print_verbose` messages
 verbose=$debug
 
+#! The user-specified cccmk command
 command=help
+#! The user-specified arguments to the cccmk command
 command_arg_name=
 command_arg_path=
 
 
 
-# utility functions for logging/io
-
-print_verbose() {
-if $verbose; then { printf "cccmk: ""\033[34m""verbose""\033[0m: ""$@" ; echo "" ; } >&2 ; fi ; }
-print_message() { { printf "cccmk: ""\033[34m""message""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_warning() { { printf "cccmk: ""\033[33m""warning""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_success() { { printf "cccmk: ""\033[32m""success""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_failure() { { printf "cccmk: ""\033[31m""failure""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_error() { print_failure "$@" ; exit 1 ; }
-
-
-
+#! The installation path of cccmk
 cccmk_install=~/Projects/libccc/cccmk
 #cccmk_install=~/.cccmk
 
@@ -61,30 +34,34 @@ then
 	#print_warning "No value provided for CCCMK_PATH, using default: '$CCCMK_PATH'"
 fi
 if ! [ -d "$CCCMK_PATH" ]
-then print_error "Bad install? The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
 	exit 1
 fi
 
+#! The folder which stores cccmk source .sh scripts
 cccmk_dir_scripts="scripts"
-#! The path which stores cccmk source sh scripts
 CCCMK_PATH_SCRIPTS="$CCCMK_PATH/$cccmk_dir_scripts"
 if ! [ -d "$CCCMK_PATH_SCRIPTS" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_scripts' folder: '$CCCMK_PATH_SCRIPTS'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_scripts' folder: '$CCCMK_PATH_SCRIPTS'"
 	exit 1
 fi
 
+#! The folder which stores cccmk template files for new projects
 cccmk_dir_project="project"
-#! The path which stores cccmk template files for new projects
 CCCMK_PATH_PROJECT="$CCCMK_PATH/$cccmk_dir_project"
 if ! [ -d "$CCCMK_PATH_PROJECT" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
+#! The folder which stores cccmk template mkfiles
 cccmk_dir_mkfiles="$cccmk_dir_project/mkfile"
-#! The path which stores cccmk template mkfiles
 CCCMK_PATH_MKFILES="$CCCMK_PATH/$cccmk_dir_mkfiles"
 if ! [ -d "$CCCMK_PATH_MKFILES" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
 	exit 1
 fi
 
@@ -103,17 +80,44 @@ cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc"
 #! The git branch name/revision hash to use when doing a 'cccmk upgrade'
 cccmk_upgrade=dev
 #! The shell command (and arguments) used to perform and display file text diffs
-cccmk_diffcmd="git --no-pager diff --no-index --color"
+cccmk_diffcmd="git --no-pager diff --no-index"
 #cccmk_diffcmd="diff --color"
 cccmk_diff()
 {
-	$cccmk_diffcmd "$1" "$2" || echo ''
+	$cccmk_diffcmd --color "$1" "$2" || :
+}
+cccmk_diff_brief()
+{
+	diff -qrs -U-1 "$1" "$2" \
+	| awk \
+	-v path_old="$1" \
+	-v path_new="$2" \
+	-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+	-f "$CCCMK_PATH_SCRIPTS/diff.awk"
 }
 
 
 
 . $CCCMK_PATH_SCRIPTS/util.sh
 . $CCCMK_PATH_SCRIPTS/help.sh
+. $CCCMK_PATH_SCRIPTS/prompt.sh
+
+
+
+# check that necessary shell commands are installed and usable
+
+# check the `diff` command
+if ! diff --version > /dev/null
+then print_error "cccmk requires the shell command 'diff' to be installed and accessible from the \$PATH."	; exit 1
+fi
+# check the `git` command
+if ! git --version > /dev/null
+then print_error "cccmk requires the shell command 'git' to be installed and accessible from the \$PATH."	; exit 1
+fi
+# check the `make` command
+if ! make --version > /dev/null
+then print_error "cccmk requires the shell command 'make' to be installed and accessible from the \$PATH."	; exit 1
+fi
 
 
 
@@ -267,9 +271,9 @@ fi
 if ! [ -f "./$project_versionfile" ]
 then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
 fi
-if ! [ -f "./$project_packagefile" ]
-then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
-fi
+#if ! [ -f "./$project_packagefile" ]
+#then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
+#fi
 
 # display warning if current folder is missing any necessary project files
 if ! [ -z "$project_missing" ]
@@ -300,16 +304,27 @@ cccmk_template()
 		mkpath=$project_mkpath;
 		versionfile=$project_versionfile;
 		packagefile=$project_packagefile;
+		track=$project_track;
 	"
 	fi
+	local functions="
+		is(2)
+		tracked(1)
+	"
 	if [ -z "$outputfile" ]
 	then
 		awk_inplace "$inputfile" \
 		-v variables="$variables" \
+		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk"
 	else
 		awk \
 		-v variables="$variables" \
+		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk" \
 		"$inputfile" > "$outputfile"
 	fi

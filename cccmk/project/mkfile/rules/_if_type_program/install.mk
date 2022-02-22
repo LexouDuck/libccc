@@ -3,18 +3,27 @@
 
 
 .PHONY:\
-install #! Installs the libraries/programs (copies them from `./bin/` to `/usr/local/`, typically)
+install #! Installs the program (copies files from `./bin/` to `/usr/local/`)
 install: $(NAME)
-	@$(call print_message,"Installing library: $(NAME)...")
-	@mkdir -p $(INSTALLDIR)/bin/
-	@$(INSTALL_PROGRAM) $(NAME) $(INSTALLDIR)/bin/$(NAME)
+	@$(call print_message,"Installing program: $(NAME)...")
+	@$(SUDO) mkdir -p $(INSTALLDIR)/bin/
+ifeq ($(INSTALL_SYMLINK),)
+	@$(SUDO) $(INSTALL_PROGRAM) $(NAME) \
+		$(INSTALLDIR)/bin/$(NAME)
+else
+	@$(SUDO) $(INSTALL_PROGRAM) $(NAME) \
+		$(INSTALLDIR)/bin/$(NAME)-$(VERSION)
+	@$(SUDO) ln -sf \
+		$(INSTALLDIR)/bin/$(NAME)-$(VERSION) \
+		$(INSTALLDIR)/bin/$(NAME)
+endif
 	@$(call print_success,"Installed $(NAME) to $(INSTALLDIR)/bin/")
 
 
 
 .PHONY:\
-uninstall #! Removes the installed libraries/programs (deletes files in `/usr/local/`, typically)
+uninstall #! Removes the installed program (deletes relevant files in `/usr/local/`)
 uninstall:
-	@$(call print_message,"Uninstalling library: $(NAME)...")
-	@rm -f $(INSTALLDIR)/bin/$(NAME)
+	@$(call print_message,"Uninstalling program: $(NAME)...")
+	@$(SUDO) rm -f $(INSTALLDIR)/bin/$(NAME)
 	@$(call print_success,"Uninstalled $(NAME) from $(INSTALLDIR)/bin/")

@@ -12,7 +12,7 @@ BEGIN {
 		phony = 0;
 		print "make " $0 reset;
 	}
-	else if (/^\.PHONY:\\/)
+	else if (/^\.(PHONY|INTERMEDIATE):\\/)
 	{
 		phony = 1;
 	}

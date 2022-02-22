@@ -8,7 +8,7 @@ BEGIN {
 
 	regex_token = "[a-zA-Z0-9_]+";
 	regex_space = "[ \\t\\r\\n]*";
-	regex_equal = "[:+]?=";
+	regex_equal = "[:+?]?=";
 	regex_variable_def = "^" regex_space regex_token regex_space regex_equal;
 	regex_variable_use = "\\$\\(" "(call )?" regex_token "\\)";
 }

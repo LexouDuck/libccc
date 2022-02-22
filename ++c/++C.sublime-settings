@@ -27,5 +27,6 @@ RegReplace:				set up regex replace rules to automatically refactor code with a 
 		"dox",	// doxygen documentation files
 		"dict",	// MacOS config dictionary files
 		"i",	// SWIG template file
+		"enum",
 	],
 }

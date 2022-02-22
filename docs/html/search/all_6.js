@@ -335,7 +335,7 @@ var searchData=
   ['f_5fuint_5foperator_332',['f_uint_operator',['../math_2int_8h.html#ace9ec55d0e0e710a3b8ffe4e2fa5d03f',1,'int.h']]],
   ['false_333',['FALSE',['../bool_8h.html#aa93f0eb578d23995850d61f7d61c55c1',1,'bool.h']]],
   ['false_334',['false',['../bool_8h.html#a65e9886d74aaee76545e83dd09011727',1,'bool.h']]],
-  ['fd_335',['fd',['../vlq_8h.html#a145a63c6aa14d7ae47d8faa4b1f3da99',1,'varfloat::fd()'],['../logger_8h.html#af0a9962aed7bdc5da8937d600d14774b',1,'logger::fd()']]],
+  ['fd_335',['fd',['../logger_8h.html#af0a9962aed7bdc5da8937d600d14774b',1,'logger::fd()'],['../vlq_8h.html#a145a63c6aa14d7ae47d8faa4b1f3da99',1,'varfloat::fd()']]],
   ['fe_336',['fe',['../vlq_8h.html#a025675532f68e89da9210140103a614f',1,'varfloat']]],
   ['feigenbaum_5falpha_337',['FEIGENBAUM_ALPHA',['../constants_8h.html#a3ead96ace17f17b0a1ff9dd6527b6bea',1,'constants.h']]],
   ['feigenbaum_5fdelta_338',['FEIGENBAUM_DELTA',['../constants_8h.html#a2a175aabf9d6f8f8684bb0bece7bc55d',1,'constants.h']]],
@@ -585,7 +585,7 @@ var searchData=
   ['flt_5feval_5fmethod_582',['FLT_EVAL_METHOD',['../float_8h.html#aae38a34e50eb45aca66a037454d9a555',1,'float.h']]],
   ['flt_5frounds_583',['FLT_ROUNDS',['../float_8h.html#a744ae7c1870e42f6b620ccd8f1911895',1,'float.h']]],
   ['foreach_584',['foreach',['../libccc__define_8h.html#a28ab025aeaec3b498d66e2b9cc43c74f',1,'libccc_define.h']]],
-  ['format_585',['format',['../common_8h.html#a4d1d058169df3e6b8117e26c462bf77d',1,'kvt_print::format()'],['../logger_8h.html#ad6cd43f7a50444c14c5bf3efb6d9486d',1,'logger::format()']]],
+  ['format_585',['format',['../logger_8h.html#ad6cd43f7a50444c14c5bf3efb6d9486d',1,'logger::format()'],['../common_8h.html#a4d1d058169df3e6b8117e26c462bf77d',1,'kvt_print::format()']]],
   ['format_2eh_586',['format.h',['../format_8h.html',1,'']]],
   ['fq_587',['fq',['../vlq_8h.html#a217339e23b9e59023310a91e6b80d2a5',1,'varfloat']]],
   ['fs_588',['fs',['../vlq_8h.html#a315e297adbfd331cc42965fcd5dd0407',1,'varfloat']]]

@@ -1,6 +1,6 @@
 var DOCUMENTATION_OPTIONS = {
     URL_ROOT: document.getElementById("documentation_options").getAttribute('data-url_root'),
-    VERSION: 'libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889',
+    VERSION: 'libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5',
     LANGUAGE: 'None',
     COLLAPSE_INDEX: false,
     BUILDER: 'html',

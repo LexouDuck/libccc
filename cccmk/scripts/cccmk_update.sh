@@ -19,29 +19,32 @@ request_files=""
 #! list of updated/merged files
 updated_files=""
 #! list of all tracked files in the current project
-tracked_files=""
+tracked_files_ccc=""
+tracked_files_pwd=""
 
 for i in $project_track
 do
 #	trackedfile_ccc_rev="`echo "$i" | cut -d':' -f 1 `"
-#	trackedfile_cccpath="`echo "$i" | cut -d':' -f 2 `"
+	trackedfile_cccpath="`echo "$i" | cut -d':' -f 2 `"
 	trackedfile_pwdpath="`echo "$i" | cut -d':' -f 3 `"
-	tracked_files="$tracked_files $trackedfile_pwdpath"
+	tracked_files_ccc="$tracked_files_ccc $trackedfile_cccpath"
+	tracked_files_pwd="$tracked_files_pwd $trackedfile_pwdpath"
 done
 
 if [ -z "$command_arg_path" ]
 then
 	print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts will be updated."
-	request_files="$tracked_files"
+	request_files="$tracked_files_pwd"
 else
+	command_arg_path="`echo "$command_arg_path" | sed 's|\./||g'`"
 	# iterate over all user-specified files, to populate 'request_files'
 	for i in $command_arg_path
 	do
-		if ! [ -z "` echo $tracked_files | grep "$i" `" ]
+		if ! [ -z "` echo $tracked_files_pwd | grep -w "$i" `" ]
 		then
 			if [ -d "$i" ] # if this is a folder, recursively add any tracked files inside
 			then
-				for f in $tracked_files
+				for f in $tracked_files_pwd
 				do
 					if ! [ -z "` echo $f | grep "^$i/" `" ]
 					then request_files="$request_files $f"
@@ -52,6 +55,7 @@ else
 				request_files="$request_files $i"
 			else # the file/folder doesnt exist
 				request_files="$request_files $i"
+				print_warning "Tracked file does not exist: '$i'"
 			fi
 		else print_warning "File is not tracked by '$project_cccmkfile' file: '$i'"
 		fi
@@ -132,28 +136,37 @@ do
 			print_message "The file '$file_pwd' differs from the cccmk template" # (see diff above)"
 			#print_message "NOTE: the cccmk template is shown as old/red, and your file is shown as new/green."
 			if cmp -s "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-			then echo " - user-side changes: no"
-			else echo " - user-side changes: yes"
-				if $verbose
-				then cccmk_diff "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-				fi
+			then printf " - user-side changes: no\n"
+			else printf " - user-side changes: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd" | cut -d' ' -f 3 `\n"
+				
 			fi
 			if cmp -s "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
-			then echo " - cccmk-side updates: no"
-			else echo " - cccmk-side updates: yes"
-				if $verbose
-				then cccmk_diff "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
-				fi
+			then printf " - cccmk-side updates: no\n"
+			else printf " - cccmk-side updates: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new" | cut -d' ' -f 3 `\n"
+				
 			fi
 			echo "How do you wish to update '$file_pwd' ?"
-			prompt_select response 'merge;overwrite;unchanged;'
-			case $response in
-				(merge)     response=true  ; overwrite=false ;;
-				(overwrite) response=true  ; overwrite=true  ;;
-				(unchanged) response=false ; overwrite=false ;;
-				(*) print_message "Aborting operation" ; exit 1 ;;
-			esac
-			identical=false
+			identical=true
+			while $identical
+			do
+				prompt_select response 'merge;overwrite;unchanged;show_diff' 'merge' '
+					Do a 3-way diff/merge (using the git diff3 algorithm), keeping all changes from both files;
+					Overwrite your local project file with the latest template from cccmk, losing your changes;
+					Leave your local project file unchanged as-is, and proceed;
+					Show differences between the files, and ask again after reviewing diff;
+				'
+				case $response in
+					(merge)     response=true  ; overwrite=false ;;
+					(overwrite) response=true  ; overwrite=true  ;;
+					(unchanged) response=false ; overwrite=false ;;
+					(show_diff)
+						cccmk_diff "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
+						cccmk_diff "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
+						continue ;;
+					(*) print_message "Aborting operation" ; exit 1 ;;
+				esac
+				identical=false
+			done
 		fi
 	else
 		print_warning "Could not find project tracked file '$path_pwd/$file_pwd'."

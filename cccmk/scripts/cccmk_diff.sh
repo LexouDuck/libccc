@@ -34,6 +34,7 @@ then
 	print_verbose "No scripts filepath(s) given, so all tracked mkfile scripts will be updated."
 	request_files="$tracked_files"
 else
+	command_arg_path="`echo "$command_arg_path" | sed 's|\./||g'`"
 	# iterate over all user-specified files, to populate 'request_files'
 	for i in $command_arg_path
 	do
@@ -95,42 +96,10 @@ print_message "Overview of differences:"
 	done
 
 	# show mkfile folder tree differences
-	{
-		diff -qrs -U-1 "$diffchk_cccpath" "$diffchk_pwdpath" \
-		| awk \
-		-v path_old="$diffchk_cccpath" \
-		-v path_new="$diffchk_pwdpath" \
-		'BEGIN {
-			io_reset  = "\033[0m";
-			io_red    = "\033[31m";
-			io_green  = "\033[32m";
-			io_yellow = "\033[33m";
-		}
-		{
-			diffchar = " ";
-			filepath = "";
-			if (/^Files /)
-			{
-				filepath = substr($2, length(path_old) + 1);
-				if (/ identical$/)   { diffchar = io_reset  " "; }
-				else if (/ differ$/) { diffchar = io_yellow "!"; }
-				else                 { diffchar = io_reset  "?"; }
-			}
-			else if (/^Only in /)
-			{
-				filepath = substr($3, 0, length(path_old));
-				if (filepath == path_old) { diffchar = io_red   "-"; }
-				if (filepath == path_new) { diffchar = io_green "+"; }
-				filepath = substr($3, length(path_old) + 1);
-				filepath = substr(filepath, 0, length(filepath) - 1);
-				filepath = filepath "/" $4;
-			}
-			print diffchar " " filepath io_reset;
-		}'
-		echo ''
-	}
-	# if verbose, show diffs for each non-identical file
-	if $verbose
+	cccmk_diff_brief "$diffchk_cccpath" "$diffchk_pwdpath"
+	echo ''
+	# show complete diffs for each file (if verbose, or use specified certain files explicitly)
+	if $verbose || ! [ -z "$command_arg_path" ]
 	then
 		for i in $project_track
 		do

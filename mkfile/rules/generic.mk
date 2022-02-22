@@ -42,51 +42,6 @@ END {\
 }
 endef
 
-define AWKSCRIPT_FILEFROMTEMPLATE
-function print_error(message)\
-{ print $(IO_RED)"Template error"$(IO_RESET)"($(GENERIC_TEMPLATE)): " message > "/dev/stderr"; }\
-BEGIN {\
-	vars["header"]       = header;\
-	vars["header_guard"] = header_guard;\
-	vars["sources"]      = sources;\
-	vars["symbols"]      = symbols;\
-	split(symbols, symbol_array, /[ \t\n]/);\
-}\
-{\
-	if (match($$0, /^%%([a-zA-Z_]+):/, matched))\
-	{\
-		if (matched[1] in vars)\
-		{\
-			split(vars[matched[1]], array, /[ \t\n]/);\
-			for (i in array)\
-			{\
-				line = substr($$0, length(matched[0]) + 1);\
-				gsub(/%/, array[i], line);\
-				print line;\
-			}\
-		}\
-		else { print_error("unknown variable in loop directive: " matched[0]); }\
-	}\
-	else if (/^%%(.*):/)\
-	{ print_error("expected variable name after '%%_:' loop directive"); }\
-	else if (/^%%/)\
-	{ print_error("expected variable name and colon for '%%_:' loop directive"); }\
-	else if (/%%/)\
-	{ print_error("bad syntax - '%%_:' loop directive should be at the beginning of the line"); }\
-	else if (match($$0, /%([a-zA-Z_]+)%/, matched))\
-	{\
-		if (matched[1] in vars)\
-		{\
-			line = $$0;\
-			sub(/%([a-zA-Z_]+)%/, vars[matched[1]], line);\
-			print line;\
-		}\
-		else { print_error("unknown variable used: " matched[0]); }\
-	}\
-	else print;\
-}
-endef
-
 
 
 .PHONY:\
@@ -97,13 +52,14 @@ generic:
 		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
 		$(call print_message,"Generating generic import file:"$(IO_RESET)" $${output}") ; \
 		awk \
-			-v header="`echo $${i} | sed 's|\./hdr/||' `" \
-			-v header_guard="`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`" \
-			-v sources="`grep "$${folder}" $(SRCSFILE)`" \
-			-v symbols="`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`" \
-			'$(AWKSCRIPT_FILEFROMTEMPLATE)' \
-			"$(GENERIC_TEMPLATE)" \
-			> $${output} ; \
+			-v variables="\
+				header=`echo $${i} | sed 's|\./hdr/||' `;\
+				header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`;\
+				sources=`grep "$${folder}" $(SRCSFILE)`;\
+				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`;\
+			" \
+			-f './cccmk/scripts/template.awk' \
+			"$(GENERIC_TEMPLATE)" > $${output} ; \
 	done
 
 .PHONY:\

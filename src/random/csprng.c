@@ -82,7 +82,7 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 	HANDLE_ERROR(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);)
 	csprng.state = state;
 #ifdef _WIN32
-	WINBOOL result;
+	BOOL result;
 	HANDLE_ERROR(SYSTEM, (csprng.hCryptProv == 0), return (ERROR_SYSTEM);)
 	t_u64 n = (size >> 30);
 	while (n--)
