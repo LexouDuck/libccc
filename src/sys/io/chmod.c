@@ -50,7 +50,7 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
 #if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
 	#ifdef __clang__
-		HANDLE_ERROR_SF(UNSPECIFIED, TRUE,
+		HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
 			return (ERROR_UNSPECIFIED);,
 			"The 'chmod()' function is not implemented on this platform.")
 	#else
