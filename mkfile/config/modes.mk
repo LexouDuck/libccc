@@ -7,7 +7,7 @@ MODES = \
 	debug	\
 	release	\
 # if the MODE variable has no value, give it a default value
-ifeq ($(MODE),)
+ifeq ($(strip $(MODE)),)
 	MODE=debug
 else ifeq ($(MODE),debug)
 else ifeq ($(MODE),release)
@@ -22,7 +22,7 @@ LIBMODES = \
 	static	\
 	dynamic	\
 # if the LIBMODE variable has no value, give it a default value
-ifeq ($(LIBMODE),)
+ifeq ($(strip $(LIBMODE)),)
 	LIBMODE=static
 else ifeq ($(LIBMODE),static)
 else ifeq ($(LIBMODE),dynamic)
@@ -53,7 +53,7 @@ OSMODES = \
 	linux	\
 	other	\
 # if the OSMODE variable has no value, give it a default value
-ifeq ($(OSMODE),)
+ifeq ($(strip $(OSMODE)),)
 	ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE=win32
