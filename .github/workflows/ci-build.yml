@@ -30,12 +30,7 @@ jobs:
 
 
     - name: Setup (Ubuntu)
-      if: ${{ (matrix.os == 'ubuntu-latest') }}
-      run: |
-        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
-
-    - name: Setup (MacOS)
-      if: ${{ (matrix.os == 'macOS-latest') }}
+      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
       run: |
         echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
 
@@ -43,11 +38,6 @@ jobs:
       if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
       run: |
         echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
-
-    - name: Setup (Windows, clang)
-      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'clang') }}
-      run: |
-        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
 
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
