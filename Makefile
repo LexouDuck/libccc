@@ -63,6 +63,7 @@ LINTDIR = ./lint/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
 
+RANLIB ?= ranlib
 
 
 
