@@ -123,9 +123,9 @@ ARFLAGS = \
 	-r \
 	-c \
 
-#! GNU conventional variable: library (for static libraries)
+#! GNU conventional variable: archive symbol table tool (for static libraries)
 RANLIB = ranlib
-#! GNU conventional variable: library options
+#! GNU conventional variable: archive symbol table tool options
 RANLIB_FLAGS = \
 	-D \
 

@@ -123,9 +123,9 @@ INCLUDES_OS_OTHER =
 %%if is(type,library):	-r \
 %%if is(type,library):	-c \
 %%if is(type,library):
-%%if is(type,library):#! GNU conventional variable: library (for static libraries)
+%%if is(type,library):#! GNU conventional variable: archive symbol table tool (for static libraries)
 %%if is(type,library):RANLIB = ranlib
-%%if is(type,library):#! GNU conventional variable: library options
+%%if is(type,library):#! GNU conventional variable: archive symbol table tool options
 %%if is(type,library):RANLIB_FLAGS = \
 %%if is(type,library):	-D \
 
