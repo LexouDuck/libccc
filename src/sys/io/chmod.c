@@ -22,12 +22,14 @@
 
 t_io_mode	IO_GetMode(t_char const* filepath)
 {
-#ifdef __NOSTD__
+	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
+#if (defined(__NOSTD__))
 	filepath = NULL;
+	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
+		return (ERROR_UNSPECIFIED);,
+		"The 'stat()' function is not available for this platform.")
 	return (ERROR_UNSPECIFIED); // TODO
 #else
-	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
-
 	t_io_mode	result = 0;
 	struct stat	stat_buffer;
 
@@ -48,11 +50,15 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
-#if (!defined(__NOSTD__) && !defined(__GNUC__) && defined(__MSVC__))
+#if (defined(__NOSTD__))
+	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
+		return (ERROR_UNSPECIFIED);,
+		"The 'chmod()' function is not available for this platform.")
+#elif (!defined(__GNUC__) && defined(__MSVC__))
 	#ifdef __clang__
-		HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
-			return (ERROR_UNSPECIFIED);,
-			"The 'chmod()' function is not implemented on this platform.")
+	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
+		return (ERROR_UNSPECIFIED);,
+		"The 'chmod()' function is not available for this platform.")
 	#else
 		mode = (
 			((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
