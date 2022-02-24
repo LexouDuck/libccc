@@ -29,15 +29,16 @@ jobs:
 
 
 
-    - name: Setup (Ubuntu)
-      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
-      run: |
-        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
-
-    - name: Setup (Windows, mingw)
-      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
-      run: |
-        echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
+#    - name: Setup (Ubuntu)
+#      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
+#      run: |
+#        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
+#
+#    - name: Setup (Windows, mingw)
+#      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
+#      run: |
+#        printf "OS: $OS\n"
+#        echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
 
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
@@ -50,10 +51,14 @@ jobs:
 
 
     - name: Build libccc (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make build-release CC=$CC
+      run: |
+        printf "OS: $OS\n"
+        printf "uname -o: $(uname -o)\n"
+        printf "uname -s: $(uname -s)\n"
+        make build-release
 
     - name: Build libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make build-tests-release CC=$CC
+      run: make build-tests-release
 
 
 
