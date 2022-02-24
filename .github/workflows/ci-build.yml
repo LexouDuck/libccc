@@ -13,15 +13,12 @@ defaults:
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 30
+    timeout-minutes: 10
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         compiler: [gcc, clang]
-        exclude:
-          - os: windows-latest
-            compiler: clang
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
@@ -29,33 +26,32 @@ jobs:
 
 
 
-#    - name: Setup (Ubuntu)
-#      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
-#      run: |
-#        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
-#
-#    - name: Setup (Windows, mingw)
-#      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
-#      run: |
-#        printf "OS: $OS\n"
-#        echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
-
-#        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
-
-#    - name: Check compiler defines (with ${{matrix.compiler}}, for ${{matrix.os}})
-#      run: |
+    - name: Setup (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: |
+        printf "OS: $OS\n"
+        printf "RUNNER_OS: $RUNNER_OS\n"
+        printf "uname -s: $(uname -s)\n"
+        env
 #        make clean-log
 #        make test-env-predef
 #        for i in `find log -name "predef_*.c"` ; do cat $i ; done
 
+#    - name: Setup (Ubuntu)
+#      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
+#      run: |
+#        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
+
+#    - name: Setup (Windows, mingw)
+#      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
+#      run: |
+#        echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
+
+#        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
+
 
 
     - name: Build libccc (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: |
-        printf "OS: $OS\n"
-        printf "uname -o: $(uname -o)\n"
-        printf "uname -s: $(uname -s)\n"
-        make build-release
+      run: make build-release
 
     - name: Build libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make build-tests-release
