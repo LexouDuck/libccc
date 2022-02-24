@@ -3,7 +3,7 @@
 
 
 #! GNU conventional variable: C Compiler
-CC ?= $(CC_OS)
+CC = $(CC_OS)
 
 CC_OS = _
 CC_OS_WIN32 =   i686-w64-mingw32-gcc
@@ -113,6 +113,21 @@ INCLUDES_OS_WIN64 =
 INCLUDES_OS_LINUX = 
 INCLUDES_OS_MACOS = 
 INCLUDES_OS_OTHER = 
+
+
+
+#! GNU conventional variable: archiver program (for static libraries)
+AR = ar
+#! GNU conventional variable: archiver program options
+ARFLAGS = \
+	-r \
+	-c \
+
+#! GNU conventional variable: library (for static libraries)
+RANLIB = ranlib
+#! GNU conventional variable: library options
+RANLIB_FLAGS = \
+	-D \
 
 
 

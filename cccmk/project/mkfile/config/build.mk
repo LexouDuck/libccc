@@ -3,7 +3,7 @@
 
 
 #! GNU conventional variable: C Compiler
-CC ?= $(CC_OS)
+CC = $(CC_OS)
 
 CC_OS = _
 CC_OS_WIN32 =   i686-w64-mingw32-gcc
@@ -113,6 +113,21 @@ INCLUDES_OS_WIN64 =
 INCLUDES_OS_LINUX = 
 INCLUDES_OS_MACOS = 
 INCLUDES_OS_OTHER = 
+%%if is(type,library):
+%%if is(type,library):
+%%if is(type,library):
+%%if is(type,library):#! GNU conventional variable: archiver program (for static libraries)
+%%if is(type,library):AR = ar
+%%if is(type,library):#! GNU conventional variable: archiver program options
+%%if is(type,library):ARFLAGS = \
+%%if is(type,library):	-r \
+%%if is(type,library):	-c \
+%%if is(type,library):
+%%if is(type,library):#! GNU conventional variable: library (for static libraries)
+%%if is(type,library):RANLIB = ranlib
+%%if is(type,library):#! GNU conventional variable: library options
+%%if is(type,library):RANLIB_FLAGS = \
+%%if is(type,library):	-D \
 
 
 

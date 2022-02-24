@@ -52,25 +52,28 @@ OSMODES = \
 	macos	\
 	linux	\
 	other	\
-# if the OSMODE variable has no value, give it a default value
+# if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
+	OSMODE = other
 	ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-			OSMODE=win32
+			OSMODE = win32
 		endif
 		ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-			OSMODE=win64
+			OSMODE = win64
 		endif
 	else
-		UNAME_S = $(shell uname -s)
+		UNAME_S := $(shell uname -s)
 		ifeq ($(UNAME_S),Linux)
-			OSMODE=linux
+			OSMODE = linux
 		endif
 		ifeq ($(UNAME_S),Darwin)
-			OSMODE=macos
+			OSMODE = macos
 		endif
 	endif
-	OSMODE?=other
+	ifeq ($(OSMODE),other)
+	_:=$(call print_warning,"Could not estimate the current target platform, defaulting to 'OSMODE = other'...")
+	endif
 endif
 
 

@@ -52,9 +52,9 @@ OSMODES = \
 	macos	\
 	linux	\
 	other	\
-# if the OSMODE variable has no value, give it a default value
+# if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
-	OSMODE ?= other
+	OSMODE = other
 	ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE = win32
@@ -71,9 +71,9 @@ ifeq ($(strip $(OSMODE)),)
 			OSMODE = macos
 		endif
 	endif
-endif
-ifeq ($(OSMODE),other)
-_:=$(call print_warning,"Could not estimate the current target platform, defaulting to 'OSMODE = other'...")
+	ifeq ($(OSMODE),other)
+	_:=$(call print_warning,"Could not estimate the current target platform, defaulting to 'OSMODE = other'...")
+	endif
 endif
 
 
@@ -96,9 +96,3 @@ else ifeq ($(OSMODE),macos)
 else
 $(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif
-
-$(info DEBUG: CC = $(CC))
-$(info DEBUG: OS = $(OS))
-$(info DEBUG: RUNNER_OS = $(RUNNER_OS))
-$(info DEBUG: RUNNER_ARCH = $(RUNNER_ARCH))
-$(info DEBUG: PROCESSOR_ARCHITECTURE = $(PROCESSOR_ARCHITECTURE))
