@@ -2,7 +2,11 @@
 #include "libccc/pointer.h"
 
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
 	int	write(int fd, void const* buffer, size_t n);
 #endif
@@ -24,7 +28,7 @@
 
 
 inline
-t_size	IO_Write_Char	(t_fd fd, t_char c)
+t_size	IO_Write_Char(t_fd fd, t_char c)
 {
 	int result = 0;
 	result = write(fd, &c, 1);
@@ -35,7 +39,7 @@ t_size	IO_Write_Char	(t_fd fd, t_char c)
 
 
 inline
-t_size	IO_Write_String	(t_fd fd, t_char const* str)
+t_size	IO_Write_String(t_fd fd, t_char const* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
 	int result = 0;
@@ -47,7 +51,7 @@ t_size	IO_Write_String	(t_fd fd, t_char const* str)
 
 
 inline
-t_size	IO_Write_Data	(t_fd fd, t_u8 const* data, t_size n)
+t_size	IO_Write_Data(t_fd fd, t_u8 const* data, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (data == NULL), return (0);)
 	int result = 0;
@@ -59,7 +63,7 @@ t_size	IO_Write_Data	(t_fd fd, t_u8 const* data, t_size n)
 
 
 inline
-t_size	IO_Write_Line	(t_fd fd, t_char const* str)
+t_size	IO_Write_Line(t_fd fd, t_char const* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
 	int result = 0;
@@ -72,7 +76,7 @@ t_size	IO_Write_Line	(t_fd fd, t_char const* str)
 
 
 
-t_size	IO_Write_Lines	(t_fd fd, t_char const** strarr)
+t_size	IO_Write_Lines(t_fd fd, t_char const** strarr)
 {
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
 	int result = 0;
@@ -90,7 +94,7 @@ t_size	IO_Write_Lines	(t_fd fd, t_char const** strarr)
 
 
 
-t_size	IO_Write_Memory	(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
+t_size	IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
 	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (0);)
 	if (n == 0 || columns == 0)
@@ -117,7 +121,7 @@ t_size	IO_Write_Memory	(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 
 
 
-t_size	IO_Write_Format	(t_fd fd, t_char const* format, ...)
+t_size	IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
 	int		result = 0;

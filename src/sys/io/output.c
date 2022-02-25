@@ -2,7 +2,11 @@
 #include "libccc/pointer.h"
 
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
 	int	write(int fd, char const* buffer, size_t n);
 #endif

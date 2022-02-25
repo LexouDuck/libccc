@@ -3,7 +3,11 @@
 
 #ifndef __NOSTD__
 	#include <stdlib.h>
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
 	typedef int	errno_t;
 	typedef unsigned long	size_t;

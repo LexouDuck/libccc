@@ -1,7 +1,12 @@
 
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#include "libccc/compatibility/msvc/fcntl.h"
+	#else
 	#include <unistd.h>
 	#include <fcntl.h>
+	#endif
 #else
 	int	close(int fd);
 #endif

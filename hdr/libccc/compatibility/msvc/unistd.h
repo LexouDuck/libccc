@@ -10,7 +10,7 @@
 \*============================================================================*/
 
 #ifndef _UNISTD_H
-#define _UNISTD_H    1
+#define _UNISTD_H
 
 /*
 ** This is intended as a drop-in replacement for unistd.h on Windows.
@@ -47,7 +47,13 @@
 #define isatty    _isatty
 #define lseek     _lseek
 
-/* read, write, and close are NOT being #defined here, because while there are file handle specific versions for Windows, they probably don't work for sockets. You need to look at your app and consider whether to call e.g. closesocket(). */
+/*
+**  read(), write(), and close() are NOT being #defined here,
+**  because, while there are file handle specific versions for Windows,
+**  they probably don't work for sockets.
+**  You need to look at your app and consider whether to call the
+**  appropriate function on a case-by-case basis, e.g. closesocket().
+*/
 
 #ifdef _WIN64
 #define ssize_t __int64
@@ -69,4 +75,6 @@ typedef unsigned __int16  uint16_t;
 typedef unsigned __int32  uint32_t;
 typedef unsigned __int64  uint64_t;
 
-#endif /* unistd.h  */
+
+
+#endif /* _UNISTD_H */

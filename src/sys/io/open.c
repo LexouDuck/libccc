@@ -2,8 +2,13 @@
 #include "libccc/sys/io.h"
 
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#include "libccc/compatibility/msvc/fcntl.h"
+	#else
 	#include <unistd.h>
 	#include <fcntl.h>
+	#endif
 #else
 	typedef unsigned int	mode_t;
 	int	open(char const* pathname, int flags, mode_t mode);
