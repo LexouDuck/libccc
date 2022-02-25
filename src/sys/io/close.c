@@ -22,8 +22,13 @@
 inline
 e_cccerror	IO_Close(t_fd fd)
 {
-	HANDLE_ERROR(SYSTEM,
-		close(fd),
+	int result;
+#if (!defined(__GNUC__) && defined(__MSVC__))
+	result = _close(fd);
+#else
+	result = close(fd);
+#endif
+	HANDLE_ERROR(SYSTEM, (result != 0),
 		return (ERROR_SYSTEM);)
 	return (OK);
 }
