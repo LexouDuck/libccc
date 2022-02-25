@@ -1,4 +1,6 @@
 
+#include "libccc.h"
+
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	#include "libccc/compatibility/msvc/unistd.h"

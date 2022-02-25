@@ -19,6 +19,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         compiler: [gcc, clang]
+#        exclude:
+#          - os: windows-latest
+#            compiler: clang
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
@@ -50,15 +53,15 @@ jobs:
 
 
 
-    - name: Build libccc (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make build-release CC=$CC
 
-    - name: Build libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make build-tests-release CC=$CC
 
 
 
-    - name: Test - libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Run test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test ARGS="-a"
 
 

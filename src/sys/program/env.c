@@ -1,4 +1,6 @@
 
+#include "libccc.h"
+
 #define __HASFUNC_SETENV	(_POSIX_C_SOURCE >= 200112L || _BSD_SOURCE) // TODO more accurate feature tests like this everywhere
 
 #ifndef __NOSTD__

@@ -1,4 +1,6 @@
 
+#include "libccc.h"
+
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	#include "libccc/compatibility/msvc/unistd.h"
@@ -28,7 +30,6 @@
 	#define va_copy(d,s)	__builtin_va_copy(d,s)
 #endif
 
-#include "libccc.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
