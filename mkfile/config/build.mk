@@ -127,6 +127,9 @@ INCLUDES_OS_MACOS =
 INCLUDES_OS_OTHER = 
 
 #! This variable is intentionally empty, to specify additional header directories from the commandline
+INCLUDES_EXTRA ?= 
+
+
 
 #! GNU conventional variable: archiver program (for static libraries)
 AR = ar
