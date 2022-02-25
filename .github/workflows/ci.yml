@@ -1,4 +1,4 @@
-name: CI - Build
+name: CI - Build & Test
 
 on:
   push:
@@ -58,14 +58,24 @@ jobs:
 
 
 
+    - name: Test - simple "Hello World" (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make test-helloworld
+
+    - name: Test - libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make test ARGS="-a"
+
+    - name: Test - monads & foreach (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make test-foreach
+
+
+
     - name: Upload build binary artifacts
       uses: actions/upload-artifact@v2
       with:
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
         path: ./libccc.*
 
-    - name: Upload tests binary artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: libccc-tests_${{matrix.os}}_${{matrix.compiler}}
-        path: ./libccc-test*
+#    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
+#      run: make clean ; make build-release CC=${{matrix.compiler}}
+
+# TODO: automate release tag for github ?
