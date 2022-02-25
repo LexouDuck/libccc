@@ -13,18 +13,21 @@
 #define _UNISTD_H
 
 /*
-** This is intended as a drop-in replacement for unistd.h on Windows.
- * Please add functionality as neeeded.
- * https://stackoverflow.com/a/826027/1202830
- */
+**  This is intended as a drop-in replacement for unistd.h on Windows.
+**  You are free to add functionalities to this header, as needed.
+*/
 
 #include <stdlib.h>
 #include <io.h>
 #include <process.h> /* for getpid() and the exec..() family */
 #include <direct.h> /* for _getcwd() and _chdir() */
 
-#define srandom	srand
-#define random	rand
+/* Disable dumb microsoft warnings */
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+
+
 
 /*
 **	Values for the second argument to access.
@@ -35,16 +38,64 @@
 //#define X_OK	1	/* Bitmask for execute permission - unsupported in windows */
 #define F_OK	0	/* Bitmask for existence. */
 
-#define access    _access
-#define dup2      _dup2
-#define execve    _execve
-#define ftruncate _chsize
-#define unlink    _unlink
-#define fileno    _fileno
-#define getcwd    _getcwd
-#define chdir     _chdir
-#define isatty    _isatty
-#define lseek     _lseek
+
+
+#define srandom srand /* random number 'set seed' function */
+#define random  rand  /* random number generator function */
+
+#define access    _access     /* Check a file's permissions */
+#define waccess   _waccess    /* Check a file's permissions (wchar_t) */
+#define access_s  _access_s   /* Check a file's permissions, secure */
+#define waccess_s _waccess_s  /* Check a file's permissions, secure (wchar_t) */
+
+#define open      _open       /* Open file */
+#define wopen     _wopen      /* Open file (wchar_t) */
+#define sopen     _sopen      /* Open file for file sharing */
+#define wsopen    _wsopen     /* Open file for file sharing (wchar_t) */
+#define sopen_s   _sopen_s    /* Open file for file sharing, secure */
+#define wsopen_s  _wsopen_s   /* Open file for file sharing, secure (wchar_t) */
+
+#define close     _close      /* Close file */
+
+#define creat     _creat      /* Create file */
+#define wcreat    _wcreat     /* Create file (wchar_t) */
+
+#define unlink    _unlink     /* Delete file */
+#define wunlink   _wunlink    /* Delete file (wchar_t) */
+
+#define chdir     _chdir      /* Change current working directory */
+#define wchdir    _wchdir     /* Change current working directory */
+#define chdrive   _wchdrive   /* Change current working drive (int,[1=A,26=Z]) */
+#define getcwd    _getcwd     /* Get current working directory */
+
+#define chmod     _chmod      /* Change current working directory */
+#define wchmod    _wchmod     /* Change current working directory */
+
+#define umask     _umask      /* Set file-permission mask */
+#define umask_s   _umask_s    /* Set file-permission mask */
+
+#define chsize    _chsize     /* Change file size */
+#define chsize_s  _chsize_s   /* Change file size, secure */
+#define ftruncate _chsize     /* Change file size */
+
+#define commit    _commit     /* Flush file to disk */
+
+#define dup       _dup        /* Return next available file descriptor for given file */
+#define dup2      _dup2       /* Create second descriptor for given file */
+
+#define eof       _eof        /* Test for end of file */
+#define read      _read       /* Read data from file */
+#define write     _write      /* Write data to file */
+
+#define execve    _execve     /* Execute child process */
+
+#define fileno    _fileno     /* Gets the file descriptor associated with a stream */
+
+#define lseek     _lseek      /* Reposition file pointer to given location */
+#define tell      _tell       /* Get current file-pointer position */
+
+#define isatty    _isatty     /* Determines whether a file descriptor is associated with a character device. */
+
 
 /*
 **  read(), write(), and close() are NOT being #defined here,

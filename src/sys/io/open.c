@@ -33,11 +33,8 @@ inline
 t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 {
 	t_fd	result;
-#if (!defined(__GNUC__) && defined(__MSVC__))
-	result = _open(filepath, flags | OPEN_BINARY, mode);
-#else
+
 	result = open(filepath, flags | OPEN_BINARY, mode);
-#endif
 	HANDLE_ERROR(SYSTEM, (result < 0),
 		return (ERROR_SYSTEM);)
 	return (result);

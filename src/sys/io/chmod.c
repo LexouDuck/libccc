@@ -54,24 +54,15 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
 		return (ERROR_UNSPECIFIED);,
 		"The 'chmod()' function is not available for this platform.")
-#elif (!defined(__GNUC__) && defined(__MSVC__))
-	#ifdef __clang__
-	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
-		return (ERROR_UNSPECIFIED);,
-		"The 'chmod()' function is not available for this platform.")
-	#else
-		mode = (
-			((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
-			((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
-		HANDLE_ERROR(SYSTEM,
-			_chmod(filepath, mode),
-			return (ERROR_SYSTEM);)
-	#endif
-#else
+#endif
+#if (!defined(__GNUC__) && defined(__MSVC__))
+	mode = (
+		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
+		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
+#endif
 	HANDLE_ERROR(SYSTEM,
 		chmod(filepath, mode),
 		return (ERROR_SYSTEM);)
-#endif
 	return (OK);
 }
 
