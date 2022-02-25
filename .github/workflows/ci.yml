@@ -58,14 +58,8 @@ jobs:
 
 
 
-    - name: Test - simple "Hello World" (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make test-helloworld
-
     - name: Test - libccc test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make test ARGS="-a"
-
-    - name: Test - monads & foreach (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make test-foreach
 
 
 
