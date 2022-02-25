@@ -208,7 +208,7 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 #define TEST_INIT(TYPENAME) \
 	char*	args = NULL;							\
 	char*	tmp = NULL;								\
-	size_t	len = 0;								\
+	int		len = 0;								\
 	s_test_##TYPENAME test = (s_test_##TYPENAME)	\
 	{												\
 		.name = test_name,							\

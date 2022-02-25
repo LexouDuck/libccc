@@ -7,7 +7,6 @@ TEST_CFLAGS = \
 	-Wall \
 	-Wextra \
 	-Winline \
-	-Wpedantic \
 	-Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-format-extra-args \
