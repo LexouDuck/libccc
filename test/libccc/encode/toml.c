@@ -142,7 +142,7 @@ TOML_TEST(toml_escape_sq1	, "\".\\\'.\"")	TOML_TEST(toml_escstr_sq1	, "\".'.\"")
 TOML_TEST(toml_escape_sq2	, "\".\\\".\"")
 TOML_TEST(toml_escape_slb	, "\".\\\\.\"")
 TOML_TEST(toml_escape_slf	, "\".\\/.\"")	TOML_TEST(toml_escstr_slf	, "\"./.\"")
-TOML_TEST(toml_escape_spc	, "\".\\ .\"")	TOML_TEST(toml_escstr_spc	, "\". .\"")
+TOML_TEST(toml_escape_spc	, "\".\\ .\"")	TOML_TEST(toml_escstr_spc	, "\".\\\\ .\"") // TODO inspect this test further
 TOML_TEST(toml_escape_tab	, "\".\\t.\"")
 TOML_TEST(toml_escape_nl	, "\".\\n.\"")
 TOML_TEST(toml_escape_cr	, "\".\\r.\"")

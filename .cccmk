@@ -26,7 +26,8 @@ dev:mkfile/utils/help-variables.awk:mkfile/utils/help-variables.awk
 dev:mkfile/utils/prereq.mk:mkfile/utils/prereq.mk
 dev:mkfile/utils/print.mk:mkfile/utils/print.mk
 dev:mkfile/utils/refactor.mk:mkfile/utils/refactor.mk
-dev:mkfile/utils/sudo.mk:mkfile/utils/sudo.mk
+dev:mkfile/utils/shell.mk:mkfile/utils/shell.mk
+dev:mkfile/utils/make.mk:mkfile/utils/make.mk
 dev:mkfile/config/build.mk:mkfile/config/build.mk
 dev:mkfile/config/modes.mk:mkfile/config/modes.mk
 dev:mkfile/rules/_if_type_library/build.mk:mkfile/rules/build.mk

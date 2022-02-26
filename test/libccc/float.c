@@ -109,10 +109,12 @@ void	test_##TYPE##tostr(void)																							\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < -huge)   ",	FALSE,(sizeof(t_##TYPE) <= 4 ?       "-1.0000000200e+20" :       "-1.0000000000e+20"),-1.0e20               , 10);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < +tiny)   ",	FALSE,(sizeof(t_##TYPE) <= 4 ?         "9.999999683e-21" :         "1.000000000e-20"), 1.0e-20              , 9);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > -tiny)   ",	FALSE,(sizeof(t_##TYPE) <= 4 ?        "-9.999999683e-21" :        "-1.000000000e-20"),-1.0e-20              , 9);	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n > +inf)    ",	FALSE,               "+INFINITY", 1.0e100               , 5);	\
-	print_test_##TYPE##tostr(#TYPE"tostr (n < -inf)    ",	FALSE,               "-INFINITY",-1.0e100               , 5);	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n >= +inf)   ",	FALSE,(sizeof(t_##TYPE) <= 4 ?               "+INFINITY" :            "1.00000e+100"), 1.0e100              , 5);	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n <= -inf)   ",	FALSE,(sizeof(t_##TYPE) <= 4 ?               "-INFINITY" :           "-1.00000e+100"),-1.0e100              , 5);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > +inf)    ",	FALSE,               "+INFINITY", 1.0e1000              , 5);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < -inf)    ",	FALSE,               "-INFINITY",-1.0e1000              , 5);	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n >! +inf)   ",	FALSE,               "+INFINITY", 1.0e1000000           , 5);	\
+	print_test_##TYPE##tostr(#TYPE"tostr (n <! -inf)   ",	FALSE,               "-INFINITY",-1.0e1000000           , 5);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (+inf)        ",	FALSE,               "+INFINITY", INFINITY              , 1);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (-inf)        ",	FALSE,               "-INFINITY",-INFINITY              , 1);	\
 	print_test_##TYPE##tostr(#TYPE"tostr (+nan)        ",	FALSE,                     "NAN", NAN                   , 1);	\

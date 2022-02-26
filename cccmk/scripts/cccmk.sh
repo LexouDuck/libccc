@@ -24,7 +24,7 @@ command_arg_path=
 
 
 #! The installation path of cccmk
-cccmk_install=~/Projects/libccc/cccmk
+cccmk_install=~/.cccmk
 #cccmk_install=~/.cccmk
 
 #! The path which stores all cccmk data
@@ -69,8 +69,6 @@ fi
 
 # set the fundamental cccmk variables
 
-#! The installation folder path of cccmk
-cccmk_install=~/Projects/libccc/cccmk
 #! The version number of the currently installed cccmk
 cccmk_version="`( cat "$cccmk_install/VERSION" )`"
 #! The git revision of the currently installed cccmk
@@ -88,7 +86,7 @@ cccmk_diff()
 }
 cccmk_diff_brief()
 {
-	diff -qrs -U-1 "$1" "$2" \
+	diff -qrs -U 1000 "$1" "$2" \
 	| awk \
 	-v path_old="$1" \
 	-v path_new="$2" \

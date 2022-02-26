@@ -1,9 +1,15 @@
 
+#include "libccc.h"
+
 #define __HASFUNC_SETENV	(_POSIX_C_SOURCE >= 200112L || _BSD_SOURCE) // TODO more accurate feature tests like this everywhere
 
 #ifndef __NOSTD__
 	#include <stdlib.h>
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
 	typedef int	errno_t;
 	typedef unsigned long	size_t;

@@ -44,11 +44,11 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 #! Builds the static-link library '.a' binary file for the current target platform
 $(NAME_STATIC): $(OBJS)
 	@printf "Compiling static library: $@ -> "
-	@ar -rc $@ $(OBJS)
-	@ranlib $@
+	@$(AR) $(ARFLAGS) $@ $(OBJS)
+	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
-	@cp -f $@ $(BINDIR)$(OSMODE)/static/
+	@cp -p $@ $(BINDIR)$(OSMODE)/static/
 	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)static/* $(BINDIR)$(OSMODE)/static/ ; )
 
 
@@ -62,19 +62,21 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
 	@mkdir -p          $(BINDIR)$(OSMODE)/dynamic/
-	@cp -f $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
-	@cp -f $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -install_name @loader_path/$@
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-install_name '@loader_path/$@'
 else ifeq ($(OSMODE),linux)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-Wl,-rpath='$$ORIGIN/'
 else
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
-	@cp -f $@ $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
 	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/dynamic/ ; )
 
 
@@ -132,11 +134,14 @@ clean-build-bin:
 
 
 .PHONY:\
-prereq-build #! Checks prerequisite installs to build the library
+prereq-build #! Checks prerequisite installed tools to build a library
 prereq-build:
 	@-$(call check_prereq,'(build) C compiler: $(CC)',\
 		$(CC) --version,\
 		$(call install_prereq,$(CC)))
 	@-$(call check_prereq,'(build) C archiver: $(AR)',\
 		which $(AR),\
+		$(call install_prereq,binutils))
+	@-$(call check_prereq,'(build) C archive symbol table tool: $(RANLIB)',\
+		which $(RANLIB),\
 		$(call install_prereq,binutils))

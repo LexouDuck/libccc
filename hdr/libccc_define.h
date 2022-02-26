@@ -146,6 +146,16 @@ HEADER_CPP
 
 
 
+#if (!defined(__GNUC__) && defined(__MSVC__))
+/* Disable microsoft warnings for posix functions */
+#ifndef _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
+#endif
+#endif
+
+
+
+
 //!@doc The data model for this platform (ie: the sizes of the c builtin integer types)
 //!@{
 #if (__WINDOWS__) // Check platform data model (Windows)

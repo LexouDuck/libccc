@@ -72,10 +72,11 @@ LINTDIR = $(LOGDIR)lint/
 #######################################
 
 # general variables
+include $(MKFILES_DIR)utils/make.mk
+include $(MKFILES_DIR)utils/shell.mk
 include $(MKFILES_DIR)utils/prereq.mk
 include $(MKFILES_DIR)utils/print.mk
 include $(MKFILES_DIR)utils/ansi.mk
-include $(MKFILES_DIR)utils/sudo.mk
 include $(MKFILES_DIR)utils/ext.mk
 
 # project-specific variables

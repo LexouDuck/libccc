@@ -55,6 +55,11 @@ s_date		Time_ToDate_LocalTime(t_time const value)
 
 	Memory_Clear(&tm, sizeof(struct tm));
 #ifdef _WIN32
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	long timezone = 0;
+	if (_get_timezone(&timezone))
+		timezone = 0;
+	#endif
 	localtime_s(&tm, &value);	// localtime_s() is thread-safe, unlike localtime()
 #else
 	localtime_r(&value, &tm);	// localtime_r() is thread-safe, unlike localtime()

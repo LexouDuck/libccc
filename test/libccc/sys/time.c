@@ -118,7 +118,8 @@ s_date	leap_year_date = (s_date)
 	.offset		= 0,
 };
 
-char*	leap_second_str = "2016-12-31 23:59:60";
+char*	leap_second_str  = "2016-12-31 23:59:60";
+char*	leap_second_str_ = "2016-12-31 23:59:59";
 s_date	leap_second_date = (s_date)
 {
 	.year		= 2016,
@@ -210,7 +211,7 @@ void	test_datetostr(void)
 	print_test_datetostr("datetostr                  ",	FALSE,                 xmas_str, SF_UTC, &xmas_date);
 	print_test_datetostr("datetostr                  ",	FALSE,                 ween_str, SF_UTC, &ween_date);
 	print_test_datetostr("datetostr (leap year)      ",	FALSE,            leap_year_str, SF_UTC, &leap_year_date);
-	print_test_datetostr("datetostr (leap second)    ",	FALSE,          leap_second_str, SF_UTC, &leap_second_date);
+	print_test_datetostr("datetostr (leap second)    ",	FALSE,         leap_second_str_, SF_UTC, &leap_second_date);
 	print_test_datetostr("datetostr (bad leap year)  ",	FALSE,                     NULL, SF_UTC, &bad_leap_year_date);
 	print_test_datetostr("datetostr (bad leap second)",	FALSE,                     NULL, SF_UTC, &bad_leap_second_date);
 }

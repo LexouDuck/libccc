@@ -1,4 +1,4 @@
-#! This file holds a cross-platform SUDO variable, for actions which necessitate privileges
+#! This file holds certain utility variables for interacting with a UNIX shell
 
 
 
