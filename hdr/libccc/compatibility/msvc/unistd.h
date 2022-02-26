@@ -96,6 +96,9 @@
 
 #define isatty    _isatty     /* Determines whether a file descriptor is associated with a character device. */
 
+#define getenv    _getenv     /* Gets the value of an environment variable */
+#define putenv    _putenv     /* Sets the value of an environment variable */
+
 
 /*
 **  read(), write(), and close() are NOT being #defined here,
