@@ -65,9 +65,11 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
 	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) -install_name @loader_path/$@
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-install_name '@loader_path/$@'
 else ifeq ($(OSMODE),linux)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-Wl,-rpath='$$ORIGIN/'
 else
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")

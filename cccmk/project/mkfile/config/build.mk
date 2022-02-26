@@ -54,7 +54,8 @@ CFLAGS_EXTRA ?=
 #	-fanalyzer \
 
 ifeq ($(CC),clang)
-	CFLAGS_OS_WIN += -Wno-missing-braces # -fno-ms-compatibility -fgnuc-version=4.2.1
+CFLAGS_OS_WIN32 += -Wno-missing-braces # -fno-ms-compatibility -fgnuc-version=4.2.1
+CFLAGS_OS_WIN64 += -Wno-missing-braces # -fno-ms-compatibility -fgnuc-version=4.2.1
 endif
 
 
@@ -93,11 +94,16 @@ LDLIBS_RELEASE =
 
 #! Platform-specific linked libraries
 LDLIBS_OS = _
-LDLIBS_OS_WIN32 = -L./ -static-libgcc
-LDLIBS_OS_WIN64 = -L./ -static-libgcc
+LDLIBS_OS_WIN32 = 
+LDLIBS_OS_WIN64 = 
 LDLIBS_OS_LINUX = 
 LDLIBS_OS_MACOS = 
 LDLIBS_OS_OTHER = 
+
+ifeq ($(findstring mingw,$(CC)),mingw)
+LDLIBS_OS_WIN32 += -L./ -static-libgcc
+LDLIBS_OS_WIN64 += -L./ -static-libgcc
+endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
 LDLIBS_EXTRA ?= 

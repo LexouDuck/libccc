@@ -160,7 +160,9 @@ HEADER_CPP
 		Error_Set(ERROR_##ERRORTYPE);							\
 		if (HANDLE_ERRORS_##ERRORTYPE)							\
 		{														\
-			Error_Handle(ERROR_##ERRORTYPE, __func__, NULL);	\
+			Error_Handle(ERROR_##ERRORTYPE,						\
+				(char const*)__func__,							\
+				NULL);											\
 		}														\
 
 //! The behavior to handle an error case, with a custom message
@@ -181,7 +183,8 @@ HEADER_CPP
 		Error_Set(ERROR_##ERRORTYPE);							\
 		if (HANDLE_ERRORS_##ERRORTYPE)							\
 		{														\
-			Error_Handle(ERROR_##ERRORTYPE, __func__,			\
+			Error_Handle(ERROR_##ERRORTYPE,						\
+				(char const*)__func__,							\
 				String_Format(__VA_ARGS__));					\
 		}														\
 
