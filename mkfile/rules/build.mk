@@ -18,37 +18,6 @@ INCLUDES := $(INCLUDES) \
 
 
 
-# extra linker flags for dynamic libraries
-LDFLAGS_DYLIB = 
-# windows
-ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
-# windows, mingw
-ifeq ($(findstring mingw,$(CC)),mingw)
-LDFLAGS_DYLIB = \
-		-Wl,--output-def,$(NAME).def \
-		-Wl,--out-implib,$(NAME).lib \
-		-Wl,--export-all-symbols ; \
-	mkdir -p          $(BINDIR)$(OSMODE)/dynamic/ ; \
-	cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/ ; \
-	cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/ ; \
-# windows, clang
-else
-LDFLAGS_DYLIB = --export-all-symbols
-endif
-# macos
-else ifeq ($(OSMODE),macos)
-LDFLAGS_DYLIB = -install_name '@loader_path/$@'
-# linux
-else ifeq ($(OSMODE),linux)
-LDFLAGS_DYLIB = -Wl,-rpath='$$ORIGIN/'
-# other
-else
-_:=$(call print_warning,"Unknown platform: needs manual configuration.")
-_:=$(call print_warning,"You must manually configure the script to build a dynamic library")
-endif
-
-
-
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: MODE = debug
@@ -87,7 +56,24 @@ $(NAME_STATIC): $(OBJS)
 #! Builds the dynamic-link library file(s) for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
 	@printf "Compiling dynamic library: $@ -> "
-	$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) $(LDFLAGS_DYLIB)
+ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-Wl,--output-def,$(NAME).def \
+		-Wl,--out-implib,$(NAME).lib \
+		-Wl,--export-all-symbols
+	@mkdir -p          $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
+else ifeq ($(OSMODE),macos)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-install_name '@loader_path/$@'
+else ifeq ($(OSMODE),linux)
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-Wl,-rpath='$$ORIGIN/'
+else
+	@$(call print_warning,"Unknown platform: needs manual configuration.")
+	@$(call print_warning,"You must manually configure the script to build a dynamic library")
+endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
