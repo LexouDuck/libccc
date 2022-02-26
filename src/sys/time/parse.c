@@ -54,13 +54,13 @@
 	#include <time.h>
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	#define tzset	_tzset
-	extern long	timezone = 0;
-	extern char* tzname[2] = { NULL, NULL };
+	long timezone = 0;
+	char* tzname[2] = { NULL, NULL };
 	#endif
 #else
 	// TODO
 	#define INT64_MAX	-1llu
-	extern long	timezone;
+	extern long timezone;
 	extern char* tzname[2];
 	void tzset(void);
 	void _tzset(void);
