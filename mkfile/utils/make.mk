@@ -12,13 +12,20 @@
 
 
 
+# TODO use .FEATURES variable to enable optional utils ?
+
+
+
+# Here, we define variables for several important punctuation characters.
+# This allows us to "escape" these characters in certain contexts, both in 'make' and 'sh' syntax.
+
 #! Makefile text character variable: newline `\n`
 define C_NL
 
 
 endef
 
-#! Makefile text character variable: tab ``t`
+#! Makefile text character variable: tab `\t`
 C_TAB:=	#
 
 #! Makefile text character variable: space ` `
@@ -29,6 +36,19 @@ C_COLON:=:#!< Makefile text character variable: colon (double-dot) `:`
 C_PERIOD:=.#!< Makefile text character variable: period (dot) `.`
 C_SEMICOLON:=;#!< Makefile text character variable: semi-colon (dot-comma) `;`
 
+#! Makefile text character variable: underscore (low line) `_`
+C_UNDERSCORE:=_
+#! Makefile text character variable: pipe, or (vertical line) `|`
+C_VERTICALBAR:=|
+#! Makefile text character variable: ampersand (and) `&`
+C_AMPERSAND:=&
+
+#! Makefile text character variable: dash (minus) `-`
+C_DASH:=-
+#! Makefile text character variable: cross (plus) `+`
+C_PLUS:=+
+#! Makefile text character variable: tilde (wave) `~`
+C_TILDE:=~
 #! Makefile text character variable: dollar `$`
 C_DOLLAR:=$$
 #! Makefile text character variable: percent `%`
