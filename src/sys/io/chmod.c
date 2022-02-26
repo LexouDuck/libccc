@@ -53,19 +53,17 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
 	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
-#if (defined(__NOSTD__))
+#if (defined(__NOSTD__) || \
+	(!defined(__GNUC__) && defined(__MSVC__) && defined(__clang__))) // TODO figure out why chmod() is not present on all windows envs
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
 		return (ERROR_UNSPECIFIED);,
 		"The 'chmod()' function is not available for this platform.")
-#endif
-#if (!defined(__GNUC__) && defined(__MSVC__))
+#else
+	#if (!defined(__GNUC__) && defined(__MSVC__))
 	mode = (
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
-	HANDLE_ERROR(SYSTEM,
-		_chmod(filepath, mode),
-		return (ERROR_SYSTEM);)
-#else
+	#endif
 	HANDLE_ERROR(SYSTEM,
 		chmod(filepath, mode),
 		return (ERROR_SYSTEM);)
