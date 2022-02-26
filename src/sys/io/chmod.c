@@ -62,10 +62,14 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 	mode = (
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
-#endif
+	HANDLE_ERROR(SYSTEM,
+		_chmod(filepath, mode),
+		return (ERROR_SYSTEM);)
+#else
 	HANDLE_ERROR(SYSTEM,
 		chmod(filepath, mode),
 		return (ERROR_SYSTEM);)
+#endif
 	return (OK);
 }
 
