@@ -17,15 +17,15 @@
 **  You are free to add functionalities to this header, as needed.
 */
 
-#include <stdlib.h>
-#include <io.h>
-#include <process.h> /* for getpid() and the exec..() family */
-#include <direct.h> /* for _getcwd() and _chdir() */
-
 /* Disable dumb microsoft warnings */
 #ifndef _CRT_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #endif
+
+#include <stdlib.h>
+#include <io.h>
+#include <process.h> /* for getpid() and the exec..() family */
+#include <direct.h> /* for _getcwd() and _chdir() */
 
 
 
