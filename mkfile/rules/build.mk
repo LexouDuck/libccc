@@ -28,9 +28,9 @@ LDFLAGS_DYLIB = \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols ; \
-	@mkdir -p          $(BINDIR)$(OSMODE)/dynamic/ ; \
-	@cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/ ; \
-	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/ ; \
+	mkdir -p          $(BINDIR)$(OSMODE)/dynamic/ ; \
+	cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/ ; \
+	cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/ ; \
 # windows, clang
 else
 LDFLAGS_DYLIB = --export-all-symbols
