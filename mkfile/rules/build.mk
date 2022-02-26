@@ -19,6 +19,7 @@ INCLUDES := $(INCLUDES) \
 
 
 # extra linker flags for dynamic libraries
+LDFLAGS_DYLIB = 
 # windows
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 # windows, mingw
@@ -32,7 +33,7 @@ LDFLAGS_DYLIB = \
 	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/ ; \
 # windows, clang
 else
-LDFLAGS_DYLIB = -export-all-symbols
+LDFLAGS_DYLIB = --export-all-symbols
 endif
 # macos
 else ifeq ($(OSMODE),macos)
@@ -86,7 +87,7 @@ $(NAME_STATIC): $(OBJS)
 #! Builds the dynamic-link library file(s) for the current target platform
 $(NAME_DYNAMIC): $(OBJS)
 	@printf "Compiling dynamic library: $@ -> "
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) $(LDFLAGS_DYLIB)
+	$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) $(LDFLAGS_DYLIB)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
