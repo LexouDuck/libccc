@@ -49,7 +49,7 @@ $(NAME_STATIC): $(OBJS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@cp -p $@ $(BINDIR)$(OSMODE)/static/
-	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)static/* $(BINDIR)$(OSMODE)/static/ ; )
+	@$(foreach i,$(PACKAGES), cp -p $(PACKAGE_$(i)_BIN)static/* $(BINDIR)$(OSMODE)/static/ ; )
 
 
 
@@ -77,7 +77,7 @@ endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
-	@$(foreach i,$(PACKAGES), cp -f $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/dynamic/ ; )
+	@$(foreach i,$(PACKAGES), cp -p $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/dynamic/ ; )
 
 
 

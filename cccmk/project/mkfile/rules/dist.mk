@@ -44,7 +44,7 @@ else
 %%if is(type,library):	@mkdir -p $(TEMPDIR)include
 %%if is(type,library):	@for i in $(HDRS) ; do \
 %%if is(type,library):		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
-%%if is(type,library):		cp -f $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
+%%if is(type,library):		cp -p $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
 %%if is(type,library):	done
 	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
 	@rm -rf $(TEMPDIR)

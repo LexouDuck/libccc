@@ -47,8 +47,8 @@ $(NAME): $(OBJS)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $^ $(LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/
-	@cp -f $@ $(BINDIR)$(OSMODE)/
-	@$(foreach i,$(PACKAGES), if [ "$(PACKAGE_$(i)_LIBMODE)" == "dynamic" ] ; then cp -f $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/ ; fi ; )
+	@cp -p $@ $(BINDIR)$(OSMODE)/
+	@$(foreach i,$(PACKAGES), if [ "$(PACKAGE_$(i)_LIBMODE)" == "dynamic" ] ; then cp -p $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/ ; fi ; )
 
 
 

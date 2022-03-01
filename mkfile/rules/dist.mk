@@ -43,7 +43,7 @@ else
 	@mkdir -p $(TEMPDIR)include
 	@for i in $(HDRS) ; do \
 		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
-		cp -f $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
+		cp -p $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
 	done
 	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
 	@rm -rf $(TEMPDIR)

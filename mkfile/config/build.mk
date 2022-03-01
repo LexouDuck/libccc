@@ -49,6 +49,7 @@ CFLAGS_OS_OTHER =
 
 #! This variable is intentionally empty, to specify additional compiler options from the commandline
 CFLAGS_EXTRA ?= 
+#	-D__NOSTD__=1 \
 #	-fsanitize=address \
 #	-fsanitize=thread \
 #	-fanalyzer \
@@ -65,7 +66,7 @@ LDFLAGS = \
 	$(LDFLAGS_OS) $(LDFLAGS_EXTRA)
 
 #! Compiler options which are only present in "debug" build mode
-LDFLAGS_DEBUG   = 
+LDFLAGS_DEBUG = 
 #! Compiler options which are only present in "release" build mode
 LDFLAGS_RELEASE = 
 
@@ -88,7 +89,7 @@ LDLIBS = \
 	$(LDLIBS_OS) $(LDLIBS_EXTRA)
 
 #! Linked libraries which are only present in "debug" build mode
-LDLIBS_DEBUG   = 
+LDLIBS_DEBUG = 
 #! Linked libraries which are only present in "release" build mode
 LDLIBS_RELEASE = 
 
@@ -107,10 +108,7 @@ endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
 LDLIBS_EXTRA ?= 
-#	-D__NOSTD__=1 \
 #	-L/usr/local/lib -ltsan \
-#	-Wl,-rpath,bin/linux/dynamic/ \
-#	-Wl,-rpath='$$ORIGIN/' \
 
 
 
@@ -120,7 +118,7 @@ INCLUDES = \
 	$(INCLUDES_OS) $(INCLUDES_EXTRA)
 
 #! header directories which are only present in "debug" build mode
-INCLUDES_DEBUG   = 
+INCLUDES_DEBUG = 
 #! header directories which are only present in "release" build mode
 INCLUDES_RELEASE = 
 
