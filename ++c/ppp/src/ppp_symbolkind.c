@@ -43,11 +43,11 @@ SYMBOLKIND(func,
 )
 
 SYMBOLKIND(global, 
-	char*	name;	//!< variable/function name
+	char*	name;	//!< variable name
 	char*	type;	//!< associated type
 )
 
 SYMBOLKIND(local,  
-	char*	name;	//!< variable/function name
+	char*	name;	//!< variable name
 	char*	type;	//!< associated type
 )

@@ -42,6 +42,9 @@ YFLAGS =
 all: dirs $(NAME)
 
 test: all
+ifeq ($(strip $(FILE)),)
+	@echo "ERROR: expected FILE argument for this make rule" ; exit 1
+endif
 	@./$(NAME) $(FILE) > "$(OUTFILE)"
 	@echo "=========="
 	@cat "$(OUTFILE)"
@@ -49,6 +52,9 @@ test: all
 debug: LFLAGS += -d
 debug: YFLAGS += -t
 debug: all
+ifeq ($(strip $(FILE)),)
+	@echo "ERROR: expected FILE argument for this make rule" ; exit 1
+endif
 	@./$(NAME) $(FILE) > "$(OUTFILE)"
 	@echo "=========="
 	@cat "$(OUTFILE)"
