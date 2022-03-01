@@ -33,11 +33,11 @@ CFLAGS_DEBUG = \
 	-g \
 	-ggdb \
 	-D DEBUG=1 \
-#	-D __NOSTD__=1 \
 
 #! Compiler flags which are only present in "release" build mode
 CFLAGS_RELEASE = \
 	-O3 \
+#	-flto \
 
 #! Platform-specific compiler options
 CFLAGS_OS = _

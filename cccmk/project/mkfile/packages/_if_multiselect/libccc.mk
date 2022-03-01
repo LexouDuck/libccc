@@ -4,7 +4,7 @@
 
 PACKAGE_libccc = libccc
 PACKAGE_libccc_VERSION := $(shell $(call packages_getversion,$(PACKAGE_libccc)))
-PACKAGE_libccc_LIBMODE = static
+PACKAGE_libccc_LIBMODE ?= static
 PACKAGE_libccc_DIR = $(LIBDIR)libccc/
 PACKAGE_libccc_BIN = $(PACKAGE_libccc_DIR)bin/$(OSMODE)/
 PACKAGE_libccc_INCLUDE = $(PACKAGE_libccc_DIR)hdr/
