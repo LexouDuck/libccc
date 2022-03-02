@@ -96,9 +96,9 @@ cccmk_diff_brief()
 
 
 
-. $CCCMK_PATH_SCRIPTS/util.sh
-. $CCCMK_PATH_SCRIPTS/help.sh
-. $CCCMK_PATH_SCRIPTS/prompt.sh
+.    $CCCMK_PATH_SCRIPTS/util.sh
+.    $CCCMK_PATH_SCRIPTS/help.sh
+bash $CCCMK_PATH_SCRIPTS/prompt.sh
 
 
 
