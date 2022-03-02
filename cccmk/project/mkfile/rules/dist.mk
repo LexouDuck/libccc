@@ -30,9 +30,13 @@ dist: mkdir-dist
 	fi
 	@$(MAKE) clean
 	@$(call print_message,"Building release (for OSMODE=$(OSMODE))...")
-%%if is(type,library):	@$(MAKE) build-release LIBMODE=static
-%%if is(type,library):	@$(MAKE) build-release LIBMODE=dynamic
-%%if is(type,program):	@$(MAKE) build-release
+%%if is(type,library)
+	@$(MAKE) build-release LIBMODE=static
+	@$(MAKE) build-release LIBMODE=dynamic
+%%end if
+%%if is(type,program)
+	@$(MAKE) build-release
+%%end if
 ifeq ($(wildcard $(BINDIR)$(OSMODE)/*),)
 	@$(call print_error,"Cannot produce distributable archive for target '$(OSMODE)':")
 	@$(call print_error,"The bin folder is empty: '$(BINDIR)$(OSMODE)/'.")
@@ -41,11 +45,13 @@ else
 	@rm -rf   $(TEMPDIR)
 	@mkdir -p $(TEMPDIR)
 	@cp -rf $(BINDIR)$(OSMODE)/*  $(TEMPDIR)
-%%if is(type,library):	@mkdir -p $(TEMPDIR)include
-%%if is(type,library):	@for i in $(HDRS) ; do \
-%%if is(type,library):		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
-%%if is(type,library):		cp -p $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
-%%if is(type,library):	done
+%%if is(type,library)
+	@mkdir -p $(TEMPDIR)include
+	@for i in $(HDRS) ; do \
+		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
+		cp -p $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
+	done
+%%end if
 	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
 	@rm -rf $(TEMPDIR)
 	@printf " -> "$(IO_GREEN)"OK!"$(IO_RESET)"\n"

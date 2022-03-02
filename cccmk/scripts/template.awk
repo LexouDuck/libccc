@@ -11,12 +11,21 @@
 #		"$inputfile"
 #
 # As for the syntax of the template file's contents, essentially 3 directives are accepted:
+#
 # 1. variable (string expansion): is replaced with the content of the variable named 'varname'
-# 	%[varname]%
+#	%[varname]%
+#
 # 2. loop (array expansion): is replaced with 'n' lines, for each element of the 'array' variable
-#	%%[varname]: 
+#	%%for (varname): // (single-line version) some code here
+#	%%for (varname)
+#	// (multi-line version) some code here
+#	%%end for
+#
 # 3. conditional: is put into the output only if the condition evaluates to true
-#	%%if[myfunc(foo,bar)]: ? TODO
+#	%%if myfunc(foo,bar): // (single-line version) some code here
+#	%%if myfunc(foo,bar)
+#	// (multi-line version) some code here
+#	%%end if
 
 
 
@@ -53,49 +62,122 @@ BEGIN {
 		vars[var_name] = var_value;
 		#print_message("template variable set: " var_name " = " var_value);
 	}
+	lines_if = "";
+	scope_if = 0;
+	lines_for = "";
+	scope_for = 0;
 }
 
-{
-	# condition directive
-	if (match($0, /^%%if[ \t]+([a-zA-Z_]+)\(([^\)]*)\)[ \t]*:/, matched))
-	{
-		if_function = matched[1];
-		split(matched[2], if_arguments, /,[ \t]*/);
-		if (_if(if_function, if_arguments))
-		{
-			print template_variable(substr($0, RSTART + RLENGTH));
-		}
-	}
-	else if (/^%%if[ \t]+([a-zA-Z_]+)[^\(]/)
-	{ print_error("expected parentheses after function for '%%if *():' condition directive"); }
-	else if (/^%%if/)
-	{ print_error("expected function name for '%%if *():' condition directive"); }
-	else if (/%%if/)
-	{ print_error("bad syntax - '%%if *():' condition directive should be at the beginning of the line"); }
 
+
+{
 	# loop directive
-	else if (match($0, /^%%\[([a-zA-Z_]+)\]:/, matched))
+	if (scope_for != 0)
+	{
+		if (/^%%end[ \t]+for[ \t]*$/)
+		{
+			for (i in array)
+			{
+				line = substr(lines_for, 1, length(lines_for) - 1);
+				gsub(/%%/, array[i], line);
+				print template_variable(line);
+			}
+			lines_for = "";
+			scope_for = 0;
+		}
+		else
+		{
+			line = $0;
+			gsub(/%%/, array[i], line);
+			lines_for = lines_for template_variable($0) "\n";
+		}
+		next;
+	}
+	else if (match($0, /^%%for[ \t]+\(([a-zA-Z_]+)\)[ \t]*/, matched))
 	{
 		if (matched[1] in vars)
 		{
 			split(vars[matched[1]], array, /[ \t\n]/);
-			for (i in array)
+			# single-line
+			if (/^%%for[ \t]+\(([a-zA-Z_]+)\):/)
 			{
-				line = substr($0, 1 + length(matched[0]));
-				gsub(/%%/, array[i], line);
-				print template_variable(line);
+				for (i in array)
+				{
+					line = substr($0, 2 + length(matched[0]));
+					gsub(/%%/, array[i], line);
+					print template_variable(line);
+				}
 			}
+			else # multi-line
+			{
+				lines_for = "";
+				scope_for = 1;
+			}
+			next;
 		}
 		else { print_error("unknown variable in loop directive: " matched[0]); }
 	}
-	else if (/^%%\[(.*)\]:/)
-	{ print_error("expected array variable name for '%%[*]:' loop directive"); }
-	else if (/^%%/)
-	{ print_error("expected array variable name and brackets for '%%[*]:' loop directive"); }
-	else if (/%%/)
-	{ print_error("bad syntax - '%%[*]:' loop directive should be at the beginning of the line"); }
+	else if (/^%%for[ \t]+\((.*)\):/)
+	{ print_error("expected array variable name for '%%for(*):' loop directive"); }
+	else if (/^%%for/)
+	{ print_error("expected array variable name and brackets for '%%for(*):' loop directive"); }
+	else if (/%%for/)
+	{ print_error("bad syntax - '%%for(*):' loop directive should be at the beginning of the line"); }
+
+
+
+	# condition directive
+	if (scope_if != 0)
+	{
+		if (/^%%end[ \t]+if[ \t]*$/)
+		{
+			if (scope_if == 1)
+			{
+				line = substr(lines_if, 1, length(lines_if) - 1);
+				print line;
+			}
+			lines_if = "";
+			scope_if = 0;
+		}
+		else
+		{
+			lines_if = lines_if template_variable($0) "\n";
+		}
+		next;
+	}
+	else if (match($0, /^%%if[ \t]+([a-zA-Z_]+)\(([^\)]*)\)[ \t]*/, matched))
+	{
+		if_function = matched[1];
+		split(matched[2], if_arguments, /,[ \t]*/);
+		if (_if(if_function, if_arguments))
+		{ scope_if = 1; }
+		else
+		{ scope_if = 2; }
+		# single-line
+		if (/^%%if[ \t]+([a-zA-Z_]+)\(([^\)]*)\)[ \t]*:/)
+		{
+			if (scope_if == 1)
+			{ print template_variable(substr($0, RSTART + RLENGTH + 1)); }
+			scope_if = 0;
+		}
+		else # multi-line
+		{
+			lines_if = "";
+		}
+		next;
+	}
+	else if (/^%%if[ \t]+([a-zA-Z_]+)[^\(]/)
+	{ print_error("expected parentheses after function for '%%if *(*):' condition directive"); }
+	else if (/^%%if/)
+	{ print_error("expected function name for '%%if *(*):' condition directive"); }
+	else if (/%%if/)
+	{ print_error("bad syntax - '%%if *(*):' condition directive should be at the beginning of the line"); }
+
+
 
 	# variable expansion
+	if (/^%%/)
+	{ print_warning("unknown template directive, found '%%' at the beginning of the line"); }
 	else
 	{
 		print template_variable($0);

@@ -135,21 +135,23 @@ INCLUDES_EXTRA ?=
 
 
 
-%%if is(type,library):#! GNU conventional variable: archiver program (for static libraries)
-%%if is(type,library):AR = ar
-%%if is(type,library):#! GNU conventional variable: archiver program options
-%%if is(type,library):ARFLAGS = \
-%%if is(type,library):	-r \
-%%if is(type,library):	-c \
-%%if is(type,library):
-%%if is(type,library):#! GNU conventional variable: archive symbol table tool (for static libraries)
-%%if is(type,library):RANLIB = ranlib
-%%if is(type,library):#! GNU conventional variable: archive symbol table tool options
-%%if is(type,library):RANLIB_FLAGS = \
-%%if is(type,library):	-D \
-%%if is(type,library):
-%%if is(type,library):
-%%if is(type,library):
+%%if is(type,library)
+#! GNU conventional variable: archiver program (for static libraries)
+AR = ar
+#! GNU conventional variable: archiver program options
+ARFLAGS = \
+	-r \
+	-c \
+
+#! GNU conventional variable: archive symbol table tool (for static libraries)
+RANLIB = ranlib
+#! GNU conventional variable: archive symbol table tool options
+RANLIB_FLAGS = \
+	-D \
+
+
+
+%%end if
 # Set platform-specific variables
 ifeq ($(OSMODE),other)
 	CC_OS       =       $(CC_OS_OTHER)

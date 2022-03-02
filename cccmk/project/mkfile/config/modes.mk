@@ -29,20 +29,22 @@ else ifeq ($(LIBMODE),dynamic)
 else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
-%%if is(type,library):
-%%if is(type,library):#! Define build target name for static library with appropriate file extensions
-%%if is(type,library):NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
-%%if is(type,library):#! Define build target name for dynamic library with appropriate file extensions
-%%if is(type,library):NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
-%%if is(type,library):#! Define build target name for library with appropriate file extension according to LIBMODE
-%%if is(type,library):NAME_LIBMODE = _
-%%if is(type,library):ifeq ($(LIBMODE),static)
-%%if is(type,library):	NAME_LIBMODE = $(NAME_STATIC)
-%%if is(type,library):endif
-%%if is(type,library):ifeq ($(LIBMODE),dynamic)
-%%if is(type,library):	NAME_LIBMODE = $(NAME_DYNAMIC)
-%%if is(type,library):endif
 
+%%if is(type,library)
+#! Define build target name for static library with appropriate file extensions
+NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
+#! Define build target name for dynamic library with appropriate file extensions
+NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
+#! Define build target name for library with appropriate file extension according to LIBMODE
+NAME_LIBMODE = _
+ifeq ($(LIBMODE),static)
+	NAME_LIBMODE = $(NAME_STATIC)
+endif
+ifeq ($(LIBMODE),dynamic)
+	NAME_LIBMODE = $(NAME_DYNAMIC)
+endif
+
+%%end if
 
 
 #! Define all possible supported platforms
