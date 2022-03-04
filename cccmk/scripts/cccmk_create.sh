@@ -99,12 +99,22 @@ project_template_recurse()
 						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
 				fi
 				;;
+			# only copy over files if $project_lang matches folder name part after '_if_lang_'
+			_if_lang_*)
+				if [ "$subdir" == "_if_lang_$project_lang" ]
+				then
+					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
+					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
+				fi
+				;;
 			# only copy over files if $project_type matches folder name part after '_if_type_'
 			_if_type_*)
 				if [ "$subdir" == "_if_type_$project_type" ]
 				then
 					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
 						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
+					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
 				fi
 				;;
 			# any other '_if_*' folder is unknown syntax
@@ -116,6 +126,7 @@ project_template_recurse()
 			_untracked)
 				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
 					"`list_onlyfiles "$srcdir/$dir/$subdir"`"
+				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
 				;;
 			# for any other normal folder, recurse deeper
 			*)
@@ -174,23 +185,23 @@ esac
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
 	{	echo ""
-		echo "project_author='$project_author'"
-		echo "project_name='$command_arg_name'"
-		echo "project_year='`date "+%Y"`'"
-		echo "project_type='$project_type'"
-		echo "project_cccmk='$project_cccmk'"
-		echo "project_mkfile='$project_mkfile'"
-		echo "project_mkpath='$project_mkpath'"
-		echo "project_versionfile='$project_versionfile'"
-		echo "project_packagefile='$project_packagefile'"
+		echo "project_author=\"$project_author\""
+		echo "project_name=\"$command_arg_name\""
+		echo "project_year=\"`date "+%Y"`\""
+		echo "project_lang=\"$project_lang\""
+		echo "project_type=\"$project_type\""
+		echo "project_cccmk=\"$project_cccmk\""
+		echo "project_versionfile=\"$project_versionfile\""
+		echo "project_packagefile=\"$project_packagefile\""
+		echo "project_track_paths=\"$project_track_paths\""
 	} >> "$project_cccmkfile"
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
 
 	# add tracked files to the '.cccmk' file (with their respective cccmk template git revisions)
-	echo "project_track='" >> "$project_cccmkfile"
+	echo "project_track=\"" >> "$project_cccmkfile"
 	project_template_recurse "$CCCMK_PATH_PROJECT" "." "."
-	echo "'" >> "$project_cccmkfile"
+	echo "\"" >> "$project_cccmkfile"
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
 

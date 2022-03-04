@@ -1,6 +1,7 @@
 project_author='Duquesne'
 project_name='libccc'
 project_year='2020'
+project_lang='c'
 project_type='library'
 project_cccmk='dev'
 project_mkfile='Makefile'

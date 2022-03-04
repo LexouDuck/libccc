@@ -17,9 +17,11 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
 #! Output filename for the %[type]%
 NAME = %[name]%
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :#! Output filename for the test suite program
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :NAME_TEST = %[name]%-test
+%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)
+
+#! Output filename for the test suite program
+NAME_TEST = %[name]%-test
+%%end if
 
 
 
@@ -28,7 +30,7 @@ NAME = %[name]%
 #######################################
 
 #! The sub-directory in which makefile scripts are stored
-MKFILES_DIR := ./%[mkpath]%/
+MKFILES_DIR := ./mkfile/
 
 # repository folders
 
@@ -38,14 +40,22 @@ HDRDIR = ./hdr/
 SRCDIR = ./src/
 #! The directory for dependency library files (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)
 LIBDIR = ./lib/
-%%if tracked(mkfile/rules/_if_multiselect/doc.mk)          :#! The directory for documentation (stores config and scripts to generate doc)
-%%if tracked(mkfile/rules/_if_multiselect/doc.mk)          :DOCDIR = ./doc/
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :#! The directory for testing programs (stores source/header code for the various testing programs)
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :TESTDIR = ./test/
-%%if tracked(.githooks/_if_ask_autoversion/pre-commit)     :#! The directory for git hooks scripts
-%%if tracked(.githooks/_if_ask_autoversion/pre-commit)     :GITHOOKSDIR = ./.githooks/
-%%if tracked(mkfile/rules/lists.mk)                        :#! The directory for important list files (source files, packages)
-%%if tracked(mkfile/rules/lists.mk)                        :LISTSDIR = $(MKFILES_DIR)lists/
+%%if tracked(mkfile/rules/_if_multiselect/doc.mk)
+#! The directory for documentation (stores config and scripts to generate doc)
+DOCDIR = ./doc/
+%%end if
+%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)
+#! The directory for testing programs (stores source/header code for the various testing programs)
+TESTDIR = ./test/
+%%end if
+%%if tracked(.githooks/_if_ask_autoversion/pre-commit)
+#! The directory for git hooks scripts
+GITHOOKSDIR = ./.githooks/
+%%end if
+%%if tracked(mkfile/rules/lists.mk)
+#! The directory for important list files (source files, packages)
+LISTSDIR = $(MKFILES_DIR)lists/
+%%end if
 
 # generated folders
 
@@ -59,10 +69,14 @@ DISTDIR = ./dist/
 TEMPDIR = ./temp/
 #! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
-%%if tracked(mkfile/rules/_if_multiselect/coverage.mk)     :#! The directory for test-suite code-coverage output reports
-%%if tracked(mkfile/rules/_if_multiselect/coverage.mk)     :COVDIR = $(LOGDIR)coverage/
-%%if tracked(mkfile/rules/_if_multiselect/lint.mk)         :#! The directory for linter/static analyzer output logs (stores warnings logs)
-%%if tracked(mkfile/rules/_if_multiselect/lint.mk)         :LINTDIR = $(LOGDIR)lint/
+%%if tracked(mkfile/rules/_if_multiselect/coverage.mk)
+#! The directory for test-suite code-coverage output reports
+COVDIR = $(LOGDIR)coverage/
+%%end if
+%%if tracked(mkfile/rules/_if_multiselect/lint.mk)
+#! The directory for linter/static analyzer output logs (stores warnings logs)
+LINTDIR = $(LOGDIR)lint/
+%%end if
 
 
 

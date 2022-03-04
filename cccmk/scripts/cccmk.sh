@@ -220,18 +220,16 @@ project_year=
 project_type=
 #! Parsed from the .cccmk file: The cccmk commit revision
 project_cccmk="dev"
-#! Parsed from the .cccmk file: The filepath of a project's main makefile
-project_mkfile="Makefile"
-#! Parsed from the .cccmk file: The filepath of a project's makefile scripts folder
-project_mkpath="mkfile"
 #! Parsed from the .cccmk file: The filepath of a project's versioning info file
 project_versionfile="VERSION"
 #! Parsed from the .cccmk file: The filepath of a project's package dependency list file
 project_packagefile="$project_mkpath/lists/packages.txt"
-
+#! Parsed from the .cccmk file: The folders which are to be "fully tracked" by cccmk, if any
+project_track_paths=""
 #! Parsed from the .cccmk file: the list of project files to track with cccmk
 project_track=
-project_scriptfiles=
+
+
 
 #! The list of absent files which are necessary for any project using cccmk
 project_missing=
@@ -245,27 +243,15 @@ else
 	print_verbose "parsed project_author:      '$project_author'"
 	print_verbose "parsed project_name:        '$project_name'"
 	print_verbose "parsed project_year:        '$project_year'"
+	print_verbose "parsed project_lang:        '$project_lang'"
 	print_verbose "parsed project_type:        '$project_type'"
 	print_verbose "parsed project_cccmk:       '$project_cccmk'"
-	print_verbose "parsed project_mkfile:      '$project_mkfile'"
-	print_verbose "parsed project_mkpath:      '$project_mkpath'"
 	print_verbose "parsed project_versionfile: '$project_versionfile'"
 	print_verbose "parsed project_packagefile: '$project_packagefile'"
+	print_verbose "parsed project_track_paths: '$project_track_paths'"
 	print_verbose "parsed project_track:       '$project_track'"
-	project_scriptfiles=''
-	for i in $project_track
-	do
-		project_scriptfiles="$project_scriptfiles `echo "$i" | cut -d':' -f 2 `"
-	done
-	#print_verbose "parsed project_scriptfiles: '$project_scriptfiles'"
 fi
 
-if ! [ -f "./$project_mkfile" ]
-then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
-fi
-if ! [ -d "./$project_mkpath" ]
-then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
-fi
 if ! [ -f "./$project_versionfile" ]
 then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
 fi
@@ -296,12 +282,12 @@ cccmk_template()
 		author=$project_author;
 		name=$project_name;
 		year=$project_year;
+		lang=$project_lang;
 		type=$project_type;
 		cccmk=$project_cccmk;
-		mkfile=$project_mkfile;
-		mkpath=$project_mkpath;
 		versionfile=$project_versionfile;
 		packagefile=$project_packagefile;
+		track_paths=$project_track_paths;
 		track=$project_track;
 	"
 	fi
