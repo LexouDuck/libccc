@@ -17,7 +17,7 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
 #! Output filename for the %[type]%
 NAME = %[name]%
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/test.mk)
 
 #! Output filename for the test suite program
 NAME_TEST = %[name]%-test
@@ -40,11 +40,11 @@ HDRDIR = ./hdr/
 SRCDIR = ./src/
 #! The directory for dependency library files (stores libs - static:`.a` or dynamic:`.dll`/`.dylib`/`.so`)
 LIBDIR = ./lib/
-%%if tracked(mkfile/rules/_if_multiselect/doc.mk)
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/doc.mk)
 #! The directory for documentation (stores config and scripts to generate doc)
 DOCDIR = ./doc/
 %%end if
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/test.mk)
 #! The directory for testing programs (stores source/header code for the various testing programs)
 TESTDIR = ./test/
 %%end if
@@ -52,7 +52,7 @@ TESTDIR = ./test/
 #! The directory for git hooks scripts
 GITHOOKSDIR = ./.githooks/
 %%end if
-%%if tracked(mkfile/rules/lists.mk)
+%%if tracked(_if_ask_mkfile/mkfile/rules/lists.mk)
 #! The directory for important list files (source files, packages)
 LISTSDIR = $(MKFILES_DIR)lists/
 %%end if
@@ -69,11 +69,11 @@ DISTDIR = ./dist/
 TEMPDIR = ./temp/
 #! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
-%%if tracked(mkfile/rules/_if_multiselect/coverage.mk)
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/coverage.mk)
 #! The directory for test-suite code-coverage output reports
 COVDIR = $(LOGDIR)coverage/
 %%end if
-%%if tracked(mkfile/rules/_if_multiselect/lint.mk)
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/lint.mk)
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = $(LOGDIR)lint/
 %%end if
@@ -96,7 +96,7 @@ include $(MKFILES_DIR)utils/ext.mk
 # project-specific variables
 include $(MKFILES_DIR)config/modes.mk
 include $(MKFILES_DIR)config/build.mk
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):include $(MKFILES_DIR)config/build-tests.mk
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/build-tests.mk):include $(MKFILES_DIR)config/build-tests.mk
 include $(MKFILES_DIR)config/install.mk
 
 
@@ -114,19 +114,19 @@ include $(MKFILES_DIR)rules/packages.mk
 
 include $(MKFILES_DIR)rules/lists.mk
 include $(MKFILES_DIR)rules/build.mk
-%%if tracked(mkfile/rules/_if_ask_testsuite/lists-tests.mk):include $(MKFILES_DIR)rules/lists-tests.mk
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):include $(MKFILES_DIR)rules/build-tests.mk
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/lists-tests.mk):include $(MKFILES_DIR)rules/lists-tests.mk
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/build-tests.mk):include $(MKFILES_DIR)rules/build-tests.mk
 include $(MKFILES_DIR)rules/install.mk
 include $(MKFILES_DIR)rules/dist.mk
 include $(MKFILES_DIR)rules/clean.mk
 
-%%if tracked(mkfile/rules/_if_ask_testsuite/test.mk)       :include $(MKFILES_DIR)rules/test.mk
-%%if tracked(mkfile/rules/_if_multiselect/coverage.mk)     :include $(MKFILES_DIR)rules/coverage.mk
-%%if tracked(mkfile/rules/_if_multiselect/debugging.mk)    :include $(MKFILES_DIR)rules/debugging.mk
-%%if tracked(mkfile/rules/_if_multiselect/format.mk)       :include $(MKFILES_DIR)rules/format.mk
-%%if tracked(mkfile/rules/_if_multiselect/lint.mk)         :include $(MKFILES_DIR)rules/lint.mk
-%%if tracked(mkfile/rules/_if_multiselect/doc.mk)          :include $(MKFILES_DIR)rules/doc.mk
-%%if tracked(mkfile/rules/_if_multiselect/doc-help.mk)     :include $(MKFILES_DIR)rules/doc-help.mk
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/test.mk)       :include $(MKFILES_DIR)rules/test.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/coverage.mk)     :include $(MKFILES_DIR)rules/coverage.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/debugging.mk)    :include $(MKFILES_DIR)rules/debugging.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/format.mk)       :include $(MKFILES_DIR)rules/format.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/lint.mk)         :include $(MKFILES_DIR)rules/lint.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/doc.mk)          :include $(MKFILES_DIR)rules/doc.mk
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/doc-help.mk)     :include $(MKFILES_DIR)rules/doc-help.mk
 
 # general rules
 include $(MKFILES_DIR)utils/refactor.mk

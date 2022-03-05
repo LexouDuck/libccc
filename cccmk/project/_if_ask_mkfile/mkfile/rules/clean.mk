@@ -9,9 +9,11 @@ clean-build-obj \
 clean-build-dep \
 %%if is(type,library):clean-build-lib \
 %%if is(type,program):clean-build-exe \
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):clean-tests-obj \
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):clean-tests-dep \
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):clean-tests-exe \
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/build-tests.mk)
+clean-tests-obj \
+clean-tests-dep \
+clean-tests-exe \
+%%end if
 
 
 
@@ -19,12 +21,12 @@ clean-build-dep \
 clean-all #! Deletes every generated file/folder
 clean-all: \
 clean-build \
-%%if tracked(mkfile/rules/_if_ask_testsuite/build-tests.mk):clean-tests \
+%%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/build-tests.mk):clean-tests \
 clean-obj \
 clean-bin \
 clean-log \
-%%if tracked(mkfile/rules/_if_multiselect/doc.mk):clean-doc \
-%%if tracked(mkfile/rules/_if_multiselect/coverage.mk):clean-coverage \
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/doc.mk):clean-doc \
+%%if tracked(_if_ask_mkfile/mkfile/rules/_if_multiselect/coverage.mk):clean-coverage \
 
 
 
