@@ -6,13 +6,23 @@
 ### utility functions for logging/io
 ###
 
+ansi_esc() { printf "\033[""$@""m" ; }
+
+io_reset="`   ansi_esc 0`"
+io_red="`     ansi_esc 31`"
+io_green="`   ansi_esc 32`"
+io_yellow="`  ansi_esc 33`"
+io_blue="`    ansi_esc 34`"
+io_magenta="` ansi_esc 35`"
+io_cyan="`    ansi_esc 36`"
+
 print_verbose() {
-if $verbose; then { printf "cccmk: ""\033[34m""verbose""\033[0m: ""$@" ; echo "" ; } >&2 ; fi ; }
-print_message() { { printf "cccmk: ""\033[34m""message""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_warning() { { printf "cccmk: ""\033[33m""warning""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_success() { { printf "cccmk: ""\033[32m""success""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_failure() { { printf "cccmk: ""\033[31m""failure""\033[0m: ""$@" ; echo "" ; } >&2 ; }
-print_error()   { { printf   "cccmk: ""\033[31m""error""\033[0m: ""$@" ; echo "" ; } >&2 ; exit 1 ; }
+if $verbose; then { printf "cccmk: %s%s%s%s\n" "$io_blue"   "verbose" "$io_reset: " "$@" ; } >&2 ; fi ; }
+print_message() { { printf "cccmk: %s%s%s%s\n" "$io_blue"   "message" "$io_reset: " "$@" ; } >&2 ; }
+print_warning() { { printf "cccmk: %s%s%s%s\n" "$io_yellow" "warning" "$io_reset: " "$@" ; } >&2 ; }
+print_success() { { printf "cccmk: %s%s%s%s\n" "$io_green"  "success" "$io_reset: " "$@" ; } >&2 ; }
+print_failure() { { printf "cccmk: %s%s%s%s\n" "$io_red"    "failure" "$io_reset: " "$@" ; } >&2 ; }
+print_error()   { { printf "cccmk: %s%s%s%s\n" "$io_red"    "error"   "$io_reset: " "$@" ; } >&2 ; exit 1 ; }
 
 
 
@@ -89,6 +99,7 @@ list_onlyfiles()
 {
 	( cd "$1" && ls -ap 2> /dev/null || echo '' ) \
 	| grep -v '/' \
+	| grep -v '.cccmk' \
 	| xargs
 }
 

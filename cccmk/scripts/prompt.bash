@@ -183,7 +183,8 @@ prompt_select()
 				then active=0
 				fi
 				;;
-			(q)
+			(q) echo ""
+				print_message "Operation cancelled."
 				exit 1
 				;;
 		esac
@@ -293,7 +294,8 @@ prompt_multiselect()
 				then active=0
 				fi
 				;;
-			(q)
+			(q) echo ""
+				print_message "Operation cancelled."
 				exit 1
 				;;
 		esac

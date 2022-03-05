@@ -3,10 +3,9 @@
 #! Copies over files from a source directory to the output directory, for creating a project
 project_template_copy()
 {
-	local srcdir="$1"
-	local srcpath="$2"
-	local outpath="$3"
-	local files="$4"
+	local srcpath="$1"
+	local outpath="$2"
+	local files="$3"
 	for i in $files
 	do
 		# skip any project template helper scripts
@@ -18,8 +17,8 @@ project_template_copy()
 		then output_filename="$i"
 		fi
 		# copy source template file over to output folder
-		print_verbose "copying template file: '$srcdir/$srcpath/$i'"
-		cp -p "$srcdir/$srcpath/$i"   "$outpath/$output_filename"
+		print_verbose "copying template file: '$srcpath/$i'"
+		cp -p "$srcpath/$i"   "$outpath/$output_filename"
 		# update the .cccmk project tracker file (only if path is not in an '_untracked' folder)
 		case "$srcpath" in
 			(*_untracked*) ;;
@@ -41,11 +40,15 @@ project_template_recurse()
 	local srcdir="$1"
 	local outdir="$2"
 	local dir="$3"
+	local dest="$4"
+	if [ -z "$dest" ]
+	then dest="$dir"
+	fi
 	local rev="`( cd "$cccmk_install" && git rev-parse HEAD )`"
 	# create destination folder
-	mkdir -p "$outdir/$dir"
+	mkdir -p "$outdir/$dest"
 	# copy over all regular files
-	project_template_copy "$srcdir" "$dir" "$outdir/$dir" \
+	project_template_copy "$srcdir/$dir" "$outdir/$dest" \
 		"`list_onlyfiles "$srcdir/$dir"`"
 	# iterate over all subfolders, and check '_if_*' folders to conditionally copy certain files
 	for subdir in `list_subfolders "$srcdir/$dir"`
@@ -53,68 +56,71 @@ project_template_recurse()
 		case "$subdir" in
 			# prompt the user to select one out of several files
 			_if_select)
+				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs | tr ' ' ';' `
+				selected_file=
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Select the one file you wish to include in your project:"
 				fi
-				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs | tr ' ' ';' `
-				selected_file=
 				echo "$prompt_message"
 				prompt_select selected_file "$proposed_files"
 				if [ -z "$output_filename" ]
 				then output_filename="$selected_file"
 				fi
-				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+				project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 					"$selected_file"
 				;;
 			# prompt the user to select which files they want
 			_if_multiselect)
+				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
+				selected_files=
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Select which files you wish to include in your project:"
 				fi
-				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
-				selected_files=
+				if [ -z "$descriptions" ]
+				then
+					for i in $proposed_files
+					do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
+					done
+					descriptions="`echo "$descriptions" | tr [:space:] ' '`"
+				fi
 				echo "$prompt_message"
-				descriptions=""
-				for i in $proposed_files
-				do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
-				done
-				descriptions="`echo "$descriptions" | tr [:space:] ' '`"
 				prompt_multiselect selected_files "`echo "$proposed_files" | tr [:space:] ';' `" "" "$descriptions"
-				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+				project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 					"$selected_files"
 				;;
 			# prompt the user with a y/n question, only copy over files if user answers y/yes
 			_if_ask_*)
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
-				else prompt_message="Do you wish to include the following files ?""\n`ls "$srcdir/$dir/$subdir/"`"
+				else prompt_message="Do you wish to include the following files ?""\n`ls -Ap "$srcdir/$dir/$subdir/" | tr ' ' '\n' `"
 				fi
 				echo "$prompt_message"
 				prompt_question response 'n'
 				if $response
 				then
-					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
+					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir" "$dest"
 				fi
 				;;
 			# only copy over files if $project_lang matches folder name part after '_if_lang_'
 			_if_lang_*)
 				if [ "$subdir" == "_if_lang_$project_lang" ]
 				then
-					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
-					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
+					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir" "$dest"
 				fi
 				;;
 			# only copy over files if $project_type matches folder name part after '_if_type_'
 			_if_type_*)
 				if [ "$subdir" == "_if_type_$project_type" ]
 				then
-					project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+					project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 						"`list_onlyfiles "$srcdir/$dir/$subdir"`"
-					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
+					project_template_recurse "$srcdir" "$outdir" "$dir/$subdir" "$dest"
 				fi
 				;;
 			# any other '_if_*' folder is unknown syntax
@@ -124,13 +130,13 @@ project_template_recurse()
 				;;
 			# these folders simply hold files which should not be added to the .cccmk project_track list
 			_untracked)
-				project_template_copy "$srcdir" "$dir/$subdir" "$outdir/$dir" \
+				project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 					"`list_onlyfiles "$srcdir/$dir/$subdir"`"
-				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
+				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir" "$dest"
 				;;
 			# for any other normal folder, recurse deeper
 			*)
-				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir"
+				project_template_recurse "$srcdir" "$outdir" "$dir/$subdir" "$dest/$subdir"
 				;;
 		esac
 	done
@@ -148,6 +154,24 @@ then
 	exit 1
 fi
 
+# prompt the user for the project_lang
+echo "What is the programming language for this project ?"
+prompt_select response "c;ts;tsx;" "c" '
+C;
+TypeScript;
+TypeScript-React;
+'
+project_lang="$response"
+
+# prompt the user for the project_type
+echo "Is the project a program, or library ?"
+prompt_select response "program;library;binding;" "program" '
+A "program" project builds a program or application (with a "main" entry point).;
+A "library" project builds a library, which can be used for other projects.;
+A "binding" project builds a library, which interoperates with another language (FFI).;
+'
+project_type="$response"
+
 # prompt the user for the project_author
 echo "Who is the author of this project ?"
 prompt_text response
@@ -158,23 +182,8 @@ then
 	exit 1
 fi
 
-# prompt the user for the project_type
-echo "Is the project a program, or library ?"
-prompt_text response "[program/library/cancel]"
-project_type=""
-response=`echo "$response" | tr [:upper:] [:lower:]` # force lowercase
-case $response in
-	program|library)
-		project_type=$response
-		;;
-	cancel)
-		print_message "Operation cancelled."
-		exit 1
-		;;
-	*)	print_error "Invalid answer, should be either 'program' or 'library'."
-		exit 1
-		;;
-esac
+# automatically fill in the project year
+project_year="`date "+%Y" `"
 
 (
 	# create project folder and cd inside it
@@ -185,23 +194,23 @@ esac
 	echo '#!/bin/sh -e' > "./$project_cccmkfile"
 	chmod 755 "./$project_cccmkfile"
 	{	echo ""
-		echo "project_author=\"$project_author\""
-		echo "project_name=\"$command_arg_name\""
-		echo "project_year=\"`date "+%Y"`\""
-		echo "project_lang=\"$project_lang\""
-		echo "project_type=\"$project_type\""
-		echo "project_cccmk=\"$project_cccmk\""
-		echo "project_versionfile=\"$project_versionfile\""
-		echo "project_packagefile=\"$project_packagefile\""
-		echo "project_track_paths=\"$project_track_paths\""
+		echo "project_author='$project_author'"
+		echo "project_name='$command_arg_name'"
+		echo "project_year='$project_year'"
+		echo "project_lang='$project_lang'"
+		echo "project_type='$project_type'"
+		echo "project_cccmk='$project_cccmk'"
+		echo "project_versionfile='$project_versionfile'"
+		echo "project_packagefile='$project_packagefile'"
+		echo "project_track_paths='$project_track_paths'"
 	} >> "$project_cccmkfile"
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
 
 	# add tracked files to the '.cccmk' file (with their respective cccmk template git revisions)
-	echo "project_track=\"" >> "$project_cccmkfile"
+	echo "project_track='" >> "$project_cccmkfile"
 	project_template_recurse "$CCCMK_PATH_PROJECT" "." "."
-	echo "\"" >> "$project_cccmkfile"
+	echo "'" >> "$project_cccmkfile"
 	# parse the newly created .cccmk prpject tracker file
 	. "./$project_cccmkfile"
 

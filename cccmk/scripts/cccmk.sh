@@ -56,14 +56,6 @@ then echo "cccmk error: Bad installation."
 	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
-#! The folder which stores cccmk template mkfiles
-cccmk_dir_mkfiles="$cccmk_dir_project/mkfile"
-CCCMK_PATH_MKFILES="$CCCMK_PATH/$cccmk_dir_mkfiles"
-if ! [ -d "$CCCMK_PATH_MKFILES" ]
-then echo "cccmk error: Bad installation."
-	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
-	exit 1
-fi
 
 
 
@@ -252,12 +244,17 @@ else
 	print_verbose "parsed project_track:       '$project_track'"
 fi
 
-if ! [ -f "./$project_versionfile" ]
+if [ -z "$project_versionfile" ]
+then :
+elif ! [ -f "./$project_versionfile" ]
 then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
 fi
-#if ! [ -f "./$project_packagefile" ]
-#then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
-#fi
+
+if [ -z "$project_packagefile" ]
+then :
+elif ! [ -f "./$project_packagefile" ]
+then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
+fi
 
 # display warning if current folder is missing any necessary project files
 if ! [ -z "$project_missing" ]

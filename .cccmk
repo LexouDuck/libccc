@@ -4,10 +4,9 @@ project_year='2020'
 project_lang='c'
 project_type='library'
 project_cccmk='dev'
-project_mkfile='Makefile'
-project_mkpath='mkfile'
 project_versionfile='VERSION'
 project_packagefile='mkfile/lists/packages.txt'
+project_track_paths='mkfile'
 project_track='
 dev:CONTRIBUTING.md:CONTRIBUTING.md
 dev:_if_select/MIT.txt:LICENSE
