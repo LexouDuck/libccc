@@ -4,3 +4,22 @@ prompt_message="Select which LICENSE file to use for your project.
 You can learn more about legal licenses at https://choosealicense.com/licenses/"
 
 output_filename="LICENSE"
+
+#proposed_files='none
+#UNLICENSE.txt
+#MIT.txt
+#APACHE.txt
+#LGPLv3.txt
+#GPLv3.txt
+#AGPLv3.txt
+#'
+
+descriptions='
+Do not create a LICENSE file for this project.;
+GNU AGPLv3 - copyleft license (hard) - open-source, and any others must use this same license (any network use counts).;
+APACHE license - permissive license - like the MIT license, but no trademarking allowed.;
+GNU GPLv3 - copyleft license (medium) - open-source, and any others must use this same license.;
+GNU LGPLv3 - copyleft license (soft) - open-source, and any other libraries (not programs) must use this same license.;
+MIT license - permissive license, only condition is to preserve copyright and license.;
+UNLICENSE - no conditions whatsoever, public domain.;
+'

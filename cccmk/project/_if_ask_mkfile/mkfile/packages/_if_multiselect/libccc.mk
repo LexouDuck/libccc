@@ -1,4 +1,4 @@
-#! External package: libccc
+#! Package: libccc - cross-platform standard library for C
 
 
 

@@ -2,4 +2,8 @@
 
 prompt_message="Select which optional makefile utility scripts you wish to include in your project:"
 
-# TODO logic to show descriptions for each script
+# show description for each, using the comment at the beginning of each file
+for i in $proposed_files
+do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
+done
+descriptions="`echo "$descriptions" | tr [:space:] ' '`"

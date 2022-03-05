@@ -56,48 +56,59 @@ project_template_recurse()
 		case "$subdir" in
 			# prompt the user to select one out of several files
 			_if_select)
-				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs | tr ' ' ';' `
+				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs `
 				selected_file=
+				prompt_message=
+				prompt_default=
+				descriptions=
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Select the one file you wish to include in your project:"
 				fi
 				echo "$prompt_message"
-				prompt_select selected_file "$proposed_files"
+				prompt_items="`echo "$proposed_files" | tr [:space:] ';' `"
+				prompt_select selected_file "$prompt_items" "$prompt_default" "$descriptions"
 				if [ -z "$output_filename" ]
 				then output_filename="$selected_file"
 				fi
-				project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
-					"$selected_file"
+				if [ "$selected_file" == "none" ]
+				then print_verbose "No file selected."
+				else
+					project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
+						"$selected_file"
+				fi
 				;;
 			# prompt the user to select which files they want
 			_if_multiselect)
 				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
 				selected_files=
+				prompt_message=
+				prompt_default=
+				descriptions=
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Select which files you wish to include in your project:"
 				fi
-				if [ -z "$descriptions" ]
-				then
-					for i in $proposed_files
-					do descriptions="$descriptions`head -1 "$srcdir/$dir/$subdir/$i" `;"
-					done
-					descriptions="`echo "$descriptions" | tr [:space:] ' '`"
-				fi
 				echo "$prompt_message"
-				prompt_multiselect selected_files "`echo "$proposed_files" | tr [:space:] ';' `" "" "$descriptions"
+				prompt_items="`echo "$proposed_files" | tr [:space:] ';' `"
+				prompt_multiselect selected_files "$prompt_items" "$prompt_default" "$descriptions"
 				project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \
 					"$selected_files"
 				;;
 			# prompt the user with a y/n question, only copy over files if user answers y/yes
 			_if_ask_*)
+				response=
+				prompt_message=
+				prompt_default=
+				descriptions=
 				if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
 				then  . "$srcdir/$dir/$subdir/.cccmk"
 				else prompt_message="Do you wish to include the following files ?""\n`ls -Ap "$srcdir/$dir/$subdir/" | tr ' ' '\n' `"
 				fi
 				echo "$prompt_message"
-				prompt_question response 'n'
+				if [ -z "$response" ]
+				then prompt_question response 'n'
+				fi
 				if $response
 				then
 					project_template_copy "$srcdir/$dir/$subdir" "$outdir/$dest" \

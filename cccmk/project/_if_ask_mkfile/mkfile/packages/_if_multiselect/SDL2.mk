@@ -1,4 +1,4 @@
-#! External package: SDL2
+#! Package: SDL2 - cross-platform framework for windowing, imaging, media, input devices, etc
 
 
 
