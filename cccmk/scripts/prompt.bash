@@ -10,10 +10,10 @@ prompt_text()
 	local retval=$1
 	local answer
 	local helpmsg="$2"
-	if [ -z "$helpmsg" ]
-	then helpmsg="[<ENTER> to confirm and proceed]"
+	if ! [ -z "$helpmsg" ]
+	then echo "$helpmsg"
 	fi
-	echo "$helpmsg"
+	echo "[<ENTER> to confirm and proceed]"
 	read -p "> " answer
 	eval $retval='${answer}'
 }
