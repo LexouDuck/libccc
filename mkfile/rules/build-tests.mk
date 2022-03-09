@@ -48,7 +48,7 @@ else
 $(NAME_TEST): $(NAME_STATIC) $(NAME_DYNAMIC) $(TEST_OBJS)
 endif
 	@printf "Compiling testing program: $@ -> "
-	$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
+	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 

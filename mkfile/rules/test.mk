@@ -51,7 +51,7 @@ else ifeq ($(OSMODE),linux)
 		--track-origins=yes \
 		--verbose \
 		--log-file=$(LOGDIR)leaks/valgrind_$(NAME_TEST).txt \
-		$(NAME_TEST) $(ARGS)
+		./$(NAME_TEST) $(ARGS)
 else ifeq ($(OSMODE),macos)
 	@./$(NAME_TEST) $(ARGS) >> $(LOGDIR)libccc_test.log
 	@$(SUDO) ln -sf "`xcode-select -p`/usr/lib/libLeaksAtExit.dylib" "/usr/local/lib"

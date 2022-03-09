@@ -58,10 +58,10 @@ You can learn more about semver here: https://github.com/semver/semver/blob/mast
 
 endef
 
-# ifneq ($(PARSED_NAME),$(NAME))
-# $(error Project name mismatch: NAME is "$(NAME)", but version file '$(VERSIONFILE)' contains name '$(PARSED_NAME)'.\
-# 	$(VERSION_ERRORMESSAGE))
-# endif
+ifneq ($(PARSED_NAME),$(NAME))
+$(error Project name mismatch: NAME is "$(NAME)", but version file '$(VERSIONFILE)' contains name '$(PARSED_NAME)'.\
+	$(VERSION_ERRORMESSAGE))
+endif
 
 ifeq ($(shell echo "$(VERSIONINFO)" | grep -E '$(REGEXP_NAME)@$(REGEXP_VERSION)-$(REGEXP_METADATA)'),)
 $(error Project version file has invalid format.\
