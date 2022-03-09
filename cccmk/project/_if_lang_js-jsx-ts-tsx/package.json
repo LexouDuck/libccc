@@ -13,15 +13,15 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-%%if tracked(.githooks/):    "prepare": "git config core.hooksPath ./.github/hooks/",
+%%if tracked(.githooks/):    "prepare": "git config core.hooksPath ./.githooks/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "lint": "eslint --config .eslintrc.json ",
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "lint-all": "npm run lint -- src --ext .js,.jsx,.ts,.tsx ",
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "format": "prettier-eslint --config .eslintrc.style.json --write ",
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "format-all": "npm run format -- src --ext .js,.jsx,.ts,.tsx ",
+    "eject": "react-scripts eject"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.2",
@@ -50,7 +50,23 @@
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  "lint-staged": {
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "*.{js,jsx,ts,tsx,css,md}": "echo 'npm run format -- '"
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  },
+%%if is(lang,[jt]s$)
   "engines": {
     "node": ">=14.0"
   }
+%%end if
+%%if is(lang,[jt]sx)
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+%%end if
 }

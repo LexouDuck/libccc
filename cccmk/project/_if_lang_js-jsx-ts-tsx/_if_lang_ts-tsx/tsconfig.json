@@ -4,8 +4,11 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "esModuleInterop": true,
-    "skipLibCheck": false,
+%%if is(lang,ts):    "skipLibCheck": false,
+%%if is(lang,tsx):    "skipLibCheck": true,
     "lib": [
+%%if is(lang,tsx):      "dom",
+%%if is(lang,tsx):      "dom.iterable",
       "esnext"
     ],
     "sourceMap": true,
@@ -19,6 +22,8 @@
     "noFallthroughCasesInSwitch": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
+%%if is(lang,tsx):    "noEmit": true,
+%%if is(lang,tsx):    "jsx": "react-jsx"
   },
   "typeRoots": [
     "@types",
