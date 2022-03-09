@@ -1,5 +1,10 @@
 #! This is the root-level Makefile, which includes all the others
 
+# Custom variable to detect whether we called `emmake make` or not.
+ifdef EMSCRIPTEN
+__EMSCRIPTEN__ = 1
+$(info 'EMSCRIPTEN' is defined, building for emscripten platform)
+endif
 
 
 # NOTE: the two following variables are to stay at the very top of this Makefile and never move
@@ -49,7 +54,11 @@ LISTSDIR = $(MKFILES_DIR)lists/
 # generated folders
 
 #! The directory for object assembly files (stores `.o` files)
+ifdef __EMSCRIPTEN__
+OBJDIR = ./obj/emscripten/
+else
 OBJDIR = ./obj/
+endif
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
 #! The directory for distribution archives (stores `.zip` distributable builds)

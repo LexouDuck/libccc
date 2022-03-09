@@ -44,7 +44,6 @@ ifeq ($(LIBMODE),dynamic)
 endif
 
 
-
 #! Define all possible supported platforms
 OSMODES = \
 	win32	\
@@ -55,7 +54,9 @@ OSMODES = \
 # if the OSMODE variable has no value, give it a default value
 ifeq ($(OSMODE),)
 	OSMODE=other
-	ifeq ($(OS),Windows_NT)
+	ifdef __EMSCRIPTEN__
+		OSMODE=emscripten
+	else ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE=win32
 		endif
@@ -81,6 +82,8 @@ LIBEXT_STATIC=a
 #! The file extension used for dynamic library files
 LIBEXT_DYNAMIC=
 ifeq ($(OSMODE),other)
+	LIBEXT_DYNAMIC=
+else ifeq ($(OSMODE),emscripten)
 	LIBEXT_DYNAMIC=
 else ifeq ($(OSMODE),win32)
 	LIBEXT_DYNAMIC=dll
