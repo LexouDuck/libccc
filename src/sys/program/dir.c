@@ -1,7 +1,14 @@
 
+#include "libccc.h"
+
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
+	typedef unsigned long	size_t;
 	char*	getcwd(char* dest, size_t size);
 #endif
 

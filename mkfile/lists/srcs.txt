@@ -252,6 +252,7 @@ stringarray/divide.c
 stringarray/duplicate.c
 stringarray/equals.c
 stringarray/filter.c
+stringarray/find.c
 stringarray/insert.c
 stringarray/iterate.c
 stringarray/join.c

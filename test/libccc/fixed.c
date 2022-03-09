@@ -180,10 +180,10 @@ int		testsuite_fixed(void)
 	print_nonstd();
 
 //	test_qtostr();
-	test_q16tostr();
-	test_q32tostr();
-	test_q64tostr();
-	test_q128tostr();
+//	test_q16tostr();
+//	test_q32tostr();
+//	test_q64tostr();
+//	test_q128tostr();
 
 	// TODO
 

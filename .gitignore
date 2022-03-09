@@ -1,10 +1,15 @@
 # PROJECT
 
-obj/
-bin/
-dist/
-lint/
-ref/
+/libccc.*
+/libccc-test
+/libccc-test*
+
+/obj/
+/bin/
+/dist/
+/log/
+/ref/
+
 doc/_doxyrest/
 docs/hdr/
 docs/man/
@@ -15,12 +20,11 @@ docs/rst/
 docs/latex/
 docs/docbook/
 docs/html/.doctrees
+
 log/coverage/
 log/**/*.log
 log/**/*.txt
 
-libccc-test*
-libccc_test*
 pclint_*.*
 
 test/_test.c
@@ -41,6 +45,12 @@ test/_test.c
 .vs/
 ### Visual Studio Code
 .vscode/
+
+
+
+# cccmk
+.cccmk_diff_*/
+.cccmk_update/
 
 
 

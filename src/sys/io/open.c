@@ -1,8 +1,13 @@
 
+#include "libccc.h"
 #include "libccc/sys/io.h"
 
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 	#include <fcntl.h>
 #else
 	typedef unsigned int	mode_t;
@@ -30,8 +35,8 @@ t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 	t_fd	result;
 
 	result = open(filepath, flags | OPEN_BINARY, mode);
-	HANDLE_ERROR(SYSTEM,
-		(result == ERROR),
-		return (ERROR_SYSTEM);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0),
+		return (ERROR_SYSTEM);,
+		": could not open \"%s\"", filepath)
 	return (result);
 }

@@ -110,7 +110,7 @@ void	ppp_##KIND(char const* format, ...)				\
 
 DEFINEFUNC_PPP_LOGGING(error  , "ppp: line %i: "C_RED   "error"  C_RESET": %s\n", ppp.errors   += 1;)
 DEFINEFUNC_PPP_LOGGING(warning, "ppp: line %i: "C_YELLOW"warning"C_RESET": %s\n", ppp.warnings += 1;)
-DEFINEFUNC_PPP_LOGGING(message, "ppp: line %i: "C_RESET "message"C_RESET": %s\n", )
+DEFINEFUNC_PPP_LOGGING(message, "ppp: line %i: "C_BLUE  "message"C_RESET": %s\n", )
 
 
 
@@ -237,8 +237,8 @@ int	main(int argc, char** argv)
 		}
 		else
 		{
-			ppp_message("parsing file '%s'", argv[i]);
 			ppp_init();
+			ppp_message("parsing file '%s'", argv[i]);
 			// Open a file handle to a particular file:
 			FILE *file = fopen(argv[i], "r");
 			// Make sure it is valid:

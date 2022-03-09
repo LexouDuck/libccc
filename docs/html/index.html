@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+  <title>libccc &mdash; libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="libccc">
 	<meta property="og:description" content="libccc">
-	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+	<meta property="og:title" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation - libccc">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="page_index.html">
-	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+	<meta property="og:site_name" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation">
 
 
@@ -161,7 +161,7 @@
 </dd>
 </dl>
 <section id="the-project">
-<span id="doxid-index-1autotoc-md1"></span><h2>The Project<a class="headerlink" href="#the-project" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md0"></span><h2>The Project<a class="headerlink" href="#the-project" title="Permalink to this headline"></a></h2>
 <p>The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.</p>
 <p>The first step to accomplishing this is to avoid using the native int/long/short types, which can have different storage size depending on the platform (‘int’ is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that’d be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine’s default storage size). So first of all, using the integer types defined in “stdint.h” (‘int32_t’, ‘uint64_t’, etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren’t present on every platform though - sometimes we will have to settle for the ‘uint_fastX_t’ types, but macros have been provided to make this switch simply). Of course, many times a platform-dependent “fast int” is the best thing to use, and this is made easy using libccc.</p>
 <p>The following categories/headers include the ISO standard library (types, functions, macros):</p>
@@ -199,11 +199,11 @@
 </ul>
 </section>
 <section id="why-does-this-exist">
-<span id="doxid-index-1autotoc-md2"></span><h2>Why does this exist ?<a class="headerlink" href="#why-does-this-exist" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md1"></span><h2>Why does this exist ?<a class="headerlink" href="#why-does-this-exist" title="Permalink to this headline"></a></h2>
 <p>What started as a necessary exercise for the 42 school (called <code class="docutils literal notranslate"><span class="pre">libft</span></code>, as in “lib-forty-two”) quickly became a much more expansive project, now dubbed <code class="docutils literal notranslate"><span class="pre">libccc</span></code> (for comprehensive, customizable, cross-platform). Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take this idea much further. The <code class="docutils literal notranslate"><span class="pre">libft</span></code> project is originally meant as an educational exercise, in which a student learns a lot by “reinventing the wheel” many times over. Here, the goal is to have a standard C library which is: fully cross-platform, uniformized, configurable and customizable, obviously being open source (MIT license) and which offers more than the “bare minimum” that is the C ISO standard library (not to mention, making edge case behaviors far more consistent across various platforms).</p>
 </section>
 <section id="how-to-use-this-library">
-<span id="doxid-index-1autotoc-md3"></span><h2>How to use this library<a class="headerlink" href="#how-to-use-this-library" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md2"></span><h2>How to use this library<a class="headerlink" href="#how-to-use-this-library" title="Permalink to this headline"></a></h2>
 <p>The Makefile simply builds a <code class="docutils literal notranslate"><span class="pre">libccc.a</span></code> library to link to your project. (eg: you can link it with something like <code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">main.c</span> <span class="pre">-I./libccc/hdr/</span> <span class="pre">-L./libccc/</span> <span class="pre">-lccc</span></code>)</p>
 <p>Alternatively, you may add this git repo as a “git submodule” to your own. This allows you to be up to date to the latest version at all times, by simply <code class="docutils literal notranslate"><span class="pre">cd</span></code> -ing over to the submodule folder and doing a <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">pull</span></code>.</p>
 <p>In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in <code class="docutils literal notranslate"><span class="pre">./hdr/libccc_config.h</span></code> which change how the library is compiled). You are encouraged to take a look at this file (<a class="reference external" href="https://github.com/LexouDuck/libccc/blob/master/hdr/libccc_config.h">libccc_config.h</a>), and decide on how you wish to configure the library when using it in your project. In particular:</p>
@@ -214,11 +214,11 @@
 </ul>
 </section>
 <section id="documentation">
-<span id="doxid-index-1autotoc-md4"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md3"></span><h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline"></a></h2>
 <p>The documentation for libccc is available at the following address: <a class="reference external" href="https://lexouduck.github.io/libccc/doc/html/index.html">https://lexouduck.github.io/libccc/doc/html/index.html</a> This documentation website is generated from special comments written directly within the code, so, as usual in C, it is recommended that you take a look at the .h header files located in the <code class="docutils literal notranslate"><span class="pre">hdr</span></code> folder of this repo. Thank you to Doxygen, Doxyrest, Sphinx, and GitHub Pages to make this auto-generated documentation work.</p>
 </section>
 <section id="build-system">
-<span id="doxid-index-1autotoc-md5"></span><h2>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md4"></span><h2>Build system<a class="headerlink" href="#build-system" title="Permalink to this headline"></a></h2>
 <p>This library is built using a cross-platform Makefile, which can build it on most platforms, in both static and dynamic library form.</p>
 <p>There a couple of important custom Makefile variables used, which you should keep in mind:</p>
 <ul class="simple">
@@ -229,11 +229,11 @@
 <p>To learn more about what make scripts are provided, do <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">help</span></code>, which will give a list of all rules and a brief description for each.</p>
 </section>
 <section id="testing">
-<span id="doxid-index-1autotoc-md6"></span><h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md5"></span><h2>Testing<a class="headerlink" href="#testing" title="Permalink to this headline"></a></h2>
 <p>To ensure proper functionality of all these important functions in every edge case, a rather exhaustive testing suite program was implemented, which compares libccc functions to their stdlib ISO equivalent, wherever applicable (otherwise tests expect results that are manually written out and asserted). This test suite program features segfault/signal handling and execution time comparison, among other things. You can test the <code class="docutils literal notranslate"><span class="pre">libccc</span></code> by running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code> : this will compile and run the test suite program from the files found in the <code class="docutils literal notranslate"><span class="pre">./test</span></code> folder.</p>
 </section>
 <section id="continuous-integration">
-<span id="doxid-index-1autotoc-md7"></span><h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md6"></span><h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this headline"></a></h2>
 <p>Every time a new commit/push is done, the automated CI testing job is run, as defined in <code class="docutils literal notranslate"><span class="pre">.github/workflows/ci.yml</span></code> (see the <a class="reference external" href="https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions">official github documentation for Actions and Workflows to learn more</a>).</p>
 <p>This CI job builds everything with a <code class="docutils literal notranslate"><span class="pre">make</span></code>, and runs the testing suite with a <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">test</span></code>. It runs with all of the following configurations:</p>
 <ul class="simple">
@@ -244,7 +244,7 @@
 <p>You can check the latest CI/CD run of libccc over on the <a class="reference external" href="https://github.com/LexouDuck/libccc/actions">GitHub Actions</a> page of this repo.</p>
 </section>
 <section id="contributing">
-<span id="doxid-index-1autotoc-md8"></span><h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md7"></span><h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline"></a></h2>
 <p>Check <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code>, this file serves as a “contributions style guide”. This style was chosen because it allows for more efficient version control and code review.</p>
 <ul class="simple">
 <li><p>TODO add description of coding style to <code class="docutils literal notranslate"><span class="pre">CONTRIBUTING.md</span></code></p></li>

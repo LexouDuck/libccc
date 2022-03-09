@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>enum cccerror &mdash; libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+  <title>enum cccerror &mdash; libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="enum cccerror">
 	<meta property="og:description" content="enum cccerror">
-	<meta property="og:title" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+	<meta property="og:title" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation - enum cccerror">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="enum_cccerror.html">
-	<meta property="og:site_name" content="libccc libccc@0.9.39-2021-12-10_b06e2a9832d72e79d8911b283178a445ff5a5889
+	<meta property="og:site_name" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
  documentation">
 
 
@@ -198,7 +198,7 @@
 <li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/error/errno_macros">https://en.cppreference.com/w/c/error/errno_macros</a></p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">e_cccerror</span></code> error code enum used is meant to not be platform-specific, unlike <code class="docutils literal notranslate"><span class="pre">errno</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">ERROR_SYSTEM_IO</span></code> error code indicates an error which stores an <code class="docutils literal notranslate"><span class="pre">strerror(errno)</span></code> message. As such, it can hold many different messages (as many as your environment defines/uses).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ERROR_SYSTEM</span></code> error code indicates an error which stores an <code class="docutils literal notranslate"><span class="pre">strerror(errno)</span></code> message. As such, it can hold many different messages (as many as your environment defines/uses).</p>
 <p>NOTE: the only errno macros whch are defined by the standard itself are:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">EDOM</span></code> (<code class="docutils literal notranslate"><span class="pre">ERROR_INVALIDARG_MATHDOMAIN</span></code>) Mathematics argument out of domain of function</p></li>
@@ -208,17 +208,17 @@
 <section id="enum-values">
 <h3>Enum Values<a class="headerlink" href="#enum-values" title="Permalink to this headline"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a0458ccc361d6c268458359ac4c20121c"><span id="index-1"></span><span></span><span class="n">ERROR_UNSPECIFIED</span></pre>
-<p>Unspecified error.</p>
+<p>Unspecified error (-1)</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a4edc8aade11e1de7bbbdc04704baae5f"><span id="index-2"></span><span></span><span class="n">ERROR_NONE</span></pre>
-<p>No error.</p>
+<p>No error (0)</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a2c3d9a7a6ca88f7a668bc11e6098db93"><span id="index-3"></span><span></span><span class="n">ERROR_SYSTEM</span></pre>
 <p>System Error: <code class="docutils literal notranslate"><span class="pre">strerror(errno)</span></code> message.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9ae10b5eb2d93393e975b1e8761666c083"><span id="index-4"></span><span></span><span class="n">ERROR_ALLOCFAILURE</span></pre>
-<p>System Error: Memory allocation failure.</p>
+<p>Error: Memory allocation failure.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a2773b4ce09ba99eed305be73f9b1c4e4"><span id="index-5"></span><span></span><span class="n">ERROR_PARSE</span></pre>
-<p>Error while attempting to parse string.</p>
+<p>Error: while attempting to parse string.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a6ad8c4dff62c087896e9eb2f8c327c9a"><span id="index-6"></span><span></span><span class="n">ERROR_PRINT</span></pre>
-<p>Error while attempting to print string.</p>
+<p>Error: while attempting to print string.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9a0e3b6e1adb309e946d29a3eb3382f6fd"><span id="index-7"></span><span></span><span class="n">ERROR_NOTFOUND</span></pre>
 <p>Error: could not find value.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-errors-1ggab30adf8edbfe4bd90411d7eb858633b9ac3005edf484fe813bdd27e1595366897"><span id="index-8"></span><span></span><span class="n">ERROR_INVALIDARGS</span></pre>

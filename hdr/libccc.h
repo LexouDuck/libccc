@@ -61,24 +61,12 @@ HEADER_CPP
 #define	__LIBCCC_POINTER_F
 //!@}
 
-#ifndef __LIBCCC_BOOL_H
 #include "libccc/bool.h"
-#endif
-#ifndef __LIBCCC_CHAR_H
 #include "libccc/char.h"
-#endif
-#ifndef __LIBCCC_INT_H
 #include "libccc/int.h"
-#endif
-#ifndef __LIBCCC_FIXED_H
 #include "libccc/fixed.h"
-#endif
-#ifndef __LIBCCC_FLOAT_H
 #include "libccc/float.h"
-#endif
-#ifndef __LIBCCC_POINTER_H
 #include "libccc/pointer.h"
-#endif
 
 #undef	__LIBCCC_CHAR_H
 #undef	__LIBCCC_CHAR_F

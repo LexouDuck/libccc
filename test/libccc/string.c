@@ -381,7 +381,7 @@ void	print_test_strlcat(char const* test_name, int can_segfault,
 #else
 	TEST_PERFORM_DEST(		strlcat, src, size)
 #endif
-	TEST_PRINT(size,		strlcat, "dest=\"%s\", src=\"%s\", size=%lu", dest_libccc, src, size)
+	TEST_PRINT(size,		strlcat, "dest=\"%s\", src=\"%s\", size=%zu", dest_libccc, src, size)
 	s_test_str test2 = (s_test_str)
 	{
 		.name = test_name,
@@ -1356,7 +1356,7 @@ void	print_test_strinsert(char const* test_name, int can_segfault,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strinsert, dest, src, offset)
-	TEST_PRINT(str,	strinsert, "dest=\"%s\", src=\"%s\", offset=%lu", dest, src, offset)
+	TEST_PRINT(str,	strinsert, "dest=\"%s\", src=\"%s\", offset=%zu", dest, src, offset)
 	TEST_FREE()
 }
 void	test_strinsert(void)
@@ -1380,7 +1380,7 @@ void	print_test_strsub(char const* test_name, int can_segfault,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strsub, str, offset, n)
-	TEST_PRINT(str,	strsub, "str=\"%s\", offset=%lu, n=%zu", str, offset, n)
+	TEST_PRINT(str,	strsub, "str=\"%s\", offset=%zu, n=%zu", str, offset, n)
 	TEST_FREE()
 }
 void	test_strsub(void)

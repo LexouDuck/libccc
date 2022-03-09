@@ -1,0 +1,78 @@
+name: CI - Build & Test
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  ci:
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macOS-latest, windows-latest]
+        compiler: [gcc, clang]
+        exclude:
+          - os: windows-latest
+            compiler: clang
+
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    steps:
+    - uses: actions/checkout@v2
+
+
+
+#    - name: Check (with ${{matrix.compiler}}, for ${{matrix.os}})
+#      run: |
+#        printf "OS: $OS\n"
+#        printf "RUNNER_OS: $RUNNER_OS\n"
+#        printf "uname -s: $(uname -s)\n"
+#        env
+#        make clean-log
+#        make test-env-predef
+#        for i in `find log -name "predef_*.c"` ; do cat $i ; done
+
+    - name: Setup
+      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
+      run: |
+        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
+
+    - name: Setup (Windows, mingw)
+      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
+      run: |
+        echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
+
+#        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
+
+
+
+    - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make build-release CC=$CC
+
+    - name: Build test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make build-tests-release CC=$CC
+
+
+
+    - name: Run test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+      run: make test ARGS="-a"
+
+
+
+    - name: Upload build binary artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
+        path: ./libccc.*
+
+#    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
+#      run: make clean ; make build-release CC=${{matrix.compiler}}
+
+# TODO: automate release tag for github ?

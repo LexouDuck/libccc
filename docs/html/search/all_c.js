@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['length_0',['length',['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_parse::length()'],['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_print::length()'],['../stat_8h.html#af254525fd5a51671ebf256c83a7571ba',1,'prob_mass::length()']]],
+  ['length_0',['length',['../stat_8h.html#af254525fd5a51671ebf256c83a7571ba',1,'prob_mass::length()'],['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_parse::length()'],['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_print::length()']]],
   ['libccc_1',['libccc',['../index.html',1,'']]],
   ['libccc_2eh_2',['libccc.h',['../libccc_8h.html',1,'']]],
   ['libccc_5fconfig_2eh_3',['libccc_config.h',['../libccc__config_8h.html',1,'']]],

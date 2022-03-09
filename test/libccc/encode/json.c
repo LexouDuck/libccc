@@ -7,8 +7,8 @@
 
 // the minimal boilerplate needed to store a single vlue in TOML
 #define JSON_TEST(NAME, STR) \
-	t_utf8 const*	NAME		= "{\"\": "STR"}\n";	\
-	t_utf8 const*	NAME##_min	= "{\"\":"STR"}";		\
+	t_utf8 const*	NAME		= STR"\n";	\
+	t_utf8 const*	NAME##_min	= STR"";	\
 
 
 
@@ -159,7 +159,7 @@ JSON_TEST(json_escape_sq1	, "\".\\\'.\"")	JSON_TEST(json_escstr_sq1	, "\".'.\"")
 JSON_TEST(json_escape_sq2	, "\".\\\".\"")
 JSON_TEST(json_escape_slb	, "\".\\\\.\"")
 JSON_TEST(json_escape_slf	, "\".\\/.\"")	JSON_TEST(json_escstr_slf	, "\"./.\"")
-JSON_TEST(json_escape_spc	, "\".\\ .\"")	JSON_TEST(json_escstr_spc	, "\". .\"")
+JSON_TEST(json_escape_spc	, "\".\\ .\"")	JSON_TEST(json_escstr_spc	, "\".\\\\ .\"") // TODO inspect this test further
 JSON_TEST(json_escape_tab	, "\".\\t.\"")
 JSON_TEST(json_escape_nl	, "\".\\n.\"")
 JSON_TEST(json_escape_cr	, "\".\\r.\"")

@@ -1,7 +1,14 @@
 
+#include "libccc.h"
+
 #ifndef __NOSTD__
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/unistd.h"
+	#else
 	#include <unistd.h>
+	#endif
 #else
+	typedef unsigned long	size_t;
 	char*	strerror(int error);
 	int		write(int fd, void const* buffer, size_t n);
 #endif
@@ -9,8 +16,8 @@
 	#include <errno.h>
 #else
 	#ifndef	errno
-	#define errno	(*_errno())
-	extern	int*	_errno(void);
+	extern	int*	errno(void);
+	#define errno	(*errno())
 	#endif
 #endif
 #ifndef __NOSTD__
@@ -23,7 +30,6 @@
 	#define va_copy(d,s)	__builtin_va_copy(d,s)
 #endif
 
-#include "libccc.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/stringarray.h"

@@ -10,49 +10,22 @@ if $debug
 then set -x
 fi
 
-
-
-# fundamental cccmk variables
-
-#! The git branch/revision to follow ("master" for stable, or "dev" for beta)
-cccmk_git="dev" # TODO dissociate current revision hash and current branch to follow
-#! The git revision (can also be branch name) of the currently installed cccmk
-cccmk_git_rev="dev" #"`git rev-parse HEAD`"
-#! The git repo URL from which to get any cccmk templates
-cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc/$cccmk_git_rev/cccmk"
-#! The installation folder path of cccmk
-cccmk_install=~/Projects/libccc/cccmk
-#! The shell command (and arguments) used to perform and display file text diffs
-cccmk_diffcmd="git --no-pager diff --no-index --color"
-#cccmk_diffcmd="diff --color"
-cccmk_diff()
-{
-	$cccmk_diffcmd "$1" "$2" || echo ''
-}
-
-
+# set the initial values for important program variables
 
 #! If set to `true`, then cccmk will display any `print_verbose` messages
 verbose=$debug
 
-
-
+#! The user-specified cccmk command
 command=help
+#! The user-specified arguments to the cccmk command
 command_arg_name=
 command_arg_path=
 
 
 
-# utility functions for logging/io
-
-print_verbose() {
-if $verbose; then { printf "cccmk: ""\033[34m""verbose" ; printf "\033[0m: ""$@""\n" ; } >&2 ; fi ; }
-print_message() { { printf "cccmk: ""\033[34m""message" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_warning() { { printf "cccmk: ""\033[33m""warning" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_success() { { printf "cccmk: ""\033[32m""success" ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-print_error()   { { printf "cccmk: ""\033[31m""error"   ; printf "\033[0m: ""$@""\n" ; } >&2 ; }
-
-
+#! The installation path of cccmk
+cccmk_install=~/.cccmk
+#cccmk_install=~/.cccmk
 
 #! The path which stores all cccmk data
 if [ -z "$CCCMK_PATH" ]
@@ -61,37 +34,80 @@ then
 	#print_warning "No value provided for CCCMK_PATH, using default: '$CCCMK_PATH'"
 fi
 if ! [ -d "$CCCMK_PATH" ]
-then print_error "Bad install? The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH variable does not point to a valid folder: '$CCCMK_PATH'"
 	exit 1
 fi
 
+#! The folder which stores cccmk source .sh scripts
 cccmk_dir_scripts="scripts"
-#! The path which stores cccmk source sh scripts
 CCCMK_PATH_SCRIPTS="$CCCMK_PATH/$cccmk_dir_scripts"
 if ! [ -d "$CCCMK_PATH_SCRIPTS" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_scripts' folder: '$CCCMK_PATH_SCRIPTS'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_scripts' folder: '$CCCMK_PATH_SCRIPTS'"
 	exit 1
 fi
 
+#! The folder which stores cccmk template files for new projects
 cccmk_dir_project="project"
-#! The path which stores cccmk template files for new projects
 CCCMK_PATH_PROJECT="$CCCMK_PATH/$cccmk_dir_project"
 if ! [ -d "$CCCMK_PATH_PROJECT" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
+then echo "cccmk error: Bad installation."
+	echo "The CCCMK_PATH folder does not contain a '$cccmk_dir_project' folder: '$CCCMK_PATH_PROJECT'"
 	exit 1
 fi
-cccmk_dir_mkfiles="$cccmk_dir_project/mkfile"
-#! The path which stores cccmk template mkfiles
-CCCMK_PATH_MKFILES="$CCCMK_PATH/$cccmk_dir_mkfiles"
-if ! [ -d "$CCCMK_PATH_MKFILES" ]
-then print_error "Bad install? The CCCMK_PATH folder does not contain a '$cccmk_dir_mkfiles' folder: '$CCCMK_PATH_MKFILES'"
-	exit 1
-fi
+
+
+
+# set the fundamental cccmk variables
+
+#! The version number of the currently installed cccmk
+cccmk_version="`( cat "$cccmk_install/VERSION" )`"
+#! The git revision of the currently installed cccmk
+cccmk_git_rev="`( cd "$cccmk_install" ; git rev-parse HEAD )`"
+#! The git repo URL from which to get any cccmk templates
+cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc"
+#! The git branch name/revision hash to use when doing a 'cccmk upgrade'
+cccmk_upgrade=dev
+#! The shell command (and arguments) used to perform and display file text diffs
+cccmk_diffcmd="git --no-pager diff --no-index"
+#cccmk_diffcmd="diff --color"
+cccmk_diff()
+{
+	$cccmk_diffcmd --color "$1" "$2" || :
+}
+cccmk_diff_brief()
+{
+	diff -qrs -U 1000 "$1" "$2" \
+	| awk \
+	-v path_old="$1" \
+	-v path_new="$2" \
+	-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+	-f "$CCCMK_PATH_SCRIPTS/diff.awk"
+}
 
 
 
 . $CCCMK_PATH_SCRIPTS/util.sh
 . $CCCMK_PATH_SCRIPTS/help.sh
+. $CCCMK_PATH_SCRIPTS/prompt.bash
+
+
+
+# check that necessary shell commands are installed and usable
+
+# check the `diff` command
+if ! diff --version > /dev/null
+then print_error "cccmk requires the shell command 'diff' to be installed and accessible from the \$PATH."	; exit 1
+fi
+# check the `git` command
+if ! git --version > /dev/null
+then print_error "cccmk requires the shell command 'git' to be installed and accessible from the \$PATH."	; exit 1
+fi
+# check the `make` command
+if ! make --version > /dev/null
+then print_error "cccmk requires the shell command 'make' to be installed and accessible from the \$PATH."	; exit 1
+fi
 
 
 
@@ -103,26 +119,27 @@ parse_args()
 	else while [ $# -gt 0 ]
 	do
 		case "$1" in
-			-h|--help|help)
+			(-h|--help|help)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_help
 				exit 0
 				;;
-			-v|--version|version)
+			(-v|--version|version)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				show_version
 				exit 0
 				;;
-			-V|--verbose)
+			(-V|--verbose)
 				verbose=true
 				print_verbose "parsed argument: '$1'"
 				;;
-			-*)	print_error "Unknown option: '$1' (try 'cccmk --help')"
+			(-*)
+				print_error "Unknown option: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
-			create)
+			(create)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -le 1 ]
@@ -136,7 +153,7 @@ parse_args()
 				fi
 				shift
 				;;
-			migrate)
+			(migrate)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
@@ -144,27 +161,25 @@ parse_args()
 				else command_arg_path="."
 				fi
 				;;
-			diff)
+			(diff|update)
 				command="$1"
 				print_verbose "parsed command: '$command'"
 				if [ $# -gt 1 ]
-				then command_arg_path="$2" ; shift
-				else command_arg_path="."
+				then
+					shift
+					command_arg_path="$@"
+					while [ $# -gt 1 ]
+					do
+						shift
+					done
 				fi
 				;;
-			update)
+			(upgrade)
 				command="$1"
 				print_verbose "parsed command: '$command'"
-				shift
-				if [ $# -ge 1 ]
-				then command_arg_path="$@"
-				else command_arg_path=""
-				fi
-				while [ $# -gt 1 ]
-				do shift
-				done
 				;;
-			*)	print_error "Invalid argument: '$1' (try 'cccmk --help')"
+			(*)
+				print_error "Invalid argument: '$1' (try 'cccmk --help')"
 				exit 1
 				;;
 		esac
@@ -182,7 +197,7 @@ parse_args "$@"
 
 
 
-# project configuration variables
+# set the project configuration variables
 
 #! The filepath of a project's project-tracker file
 project_cccmkfile=".cccmk"
@@ -197,18 +212,16 @@ project_year=
 project_type=
 #! Parsed from the .cccmk file: The cccmk commit revision
 project_cccmk="dev"
-#! Parsed from the .cccmk file: The filepath of a project's main makefile
-project_mkfile="Makefile"
-#! Parsed from the .cccmk file: The filepath of a project's makefile scripts folder
-project_mkpath="mkfile"
 #! Parsed from the .cccmk file: The filepath of a project's versioning info file
 project_versionfile="VERSION"
 #! Parsed from the .cccmk file: The filepath of a project's package dependency list file
 project_packagefile="$project_mkpath/lists/packages.txt"
-
+#! Parsed from the .cccmk file: The folders which are to be "fully tracked" by cccmk, if any
+project_track_paths=""
 #! Parsed from the .cccmk file: the list of project files to track with cccmk
 project_track=
-project_scriptfiles=
+
+
 
 #! The list of absent files which are necessary for any project using cccmk
 project_missing=
@@ -222,31 +235,24 @@ else
 	print_verbose "parsed project_author:      '$project_author'"
 	print_verbose "parsed project_name:        '$project_name'"
 	print_verbose "parsed project_year:        '$project_year'"
+	print_verbose "parsed project_lang:        '$project_lang'"
 	print_verbose "parsed project_type:        '$project_type'"
 	print_verbose "parsed project_cccmk:       '$project_cccmk'"
-	print_verbose "parsed project_mkfile:      '$project_mkfile'"
-	print_verbose "parsed project_mkpath:      '$project_mkpath'"
 	print_verbose "parsed project_versionfile: '$project_versionfile'"
 	print_verbose "parsed project_packagefile: '$project_packagefile'"
+	print_verbose "parsed project_track_paths: '$project_track_paths'"
 	print_verbose "parsed project_track:       '$project_track'"
-	project_scriptfiles=''
-	for i in $project_track
-	do
-		project_scriptfiles="$project_scriptfiles `echo "$i" | cut -d':' -f 2 `"
-	done
-	#print_verbose "parsed project_scriptfiles: '$project_scriptfiles'"
 fi
 
-if ! [ -f "./$project_mkfile" ]
-then project_missing="$project_missing\n- missing project main makefile: '$project_mkfile'"
-fi
-if ! [ -d "./$project_mkpath" ]
-then project_missing="$project_missing\n- missing makefile scripts folder: '$project_mkpath'"
-fi
-if ! [ -f "./$project_versionfile" ]
+if [ -z "$project_versionfile" ]
+then :
+elif ! [ -f "./$project_versionfile" ]
 then project_missing="$project_missing\n- missing versioning info file: '$project_versionfile'"
 fi
-if ! [ -f "./$project_packagefile" ]
+
+if [ -z "$project_packagefile" ]
+then :
+elif ! [ -f "./$project_packagefile" ]
 then project_missing="$project_missing\n- missing packages dependency list file: '$project_packagefile'"
 fi
 
@@ -273,22 +279,33 @@ cccmk_template()
 		author=$project_author;
 		name=$project_name;
 		year=$project_year;
+		lang=$project_lang;
 		type=$project_type;
 		cccmk=$project_cccmk;
-		mkfile=$project_mkfile;
-		mkpath=$project_mkpath;
 		versionfile=$project_versionfile;
 		packagefile=$project_packagefile;
+		track_paths=$project_track_paths;
+		track=$project_track;
 	"
 	fi
+	local functions="
+		is(2)
+		tracked(1)
+	"
 	if [ -z "$outputfile" ]
 	then
 		awk_inplace "$inputfile" \
 		-v variables="$variables" \
+		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk"
 	else
 		awk \
 		-v variables="$variables" \
+		-v functions="$functions" \
+		-f "$CCCMK_PATH_SCRIPTS/util.awk" \
+		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk" \
 		"$inputfile" > "$outputfile"
 	fi
@@ -304,4 +321,5 @@ case "$command" in
 	migrate) . $CCCMK_PATH_SCRIPTS/cccmk_migrate.sh ;;
 	diff)    . $CCCMK_PATH_SCRIPTS/cccmk_diff.sh    ;;
 	update)  . $CCCMK_PATH_SCRIPTS/cccmk_update.sh  ;;
+	upgrade) . $CCCMK_PATH_SCRIPTS/cccmk_upgrade.sh ;;
 esac

@@ -52,10 +52,15 @@
 #ifndef __NOSTD__
 	#include <locale.h>
 	#include <time.h>
+	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#define tzset	_tzset
+	long timezone = 0;
+	char* tzname[2] = { NULL, NULL };
+	#endif
 #else
 	// TODO
 	#define INT64_MAX	-1llu
-	extern long	timezone;
+	extern long timezone;
 	extern char* tzname[2];
 	void tzset(void);
 	void _tzset(void);
@@ -501,11 +506,7 @@ recurse:
 
 			case 'Z':
 			{
-#ifdef _WIN32
-				_tzset();
-#else
 				tzset();
-#endif
 				if (String_Equals_N_IgnoreCase((t_char const*)buffer, gmt, 3) ||
 					String_Equals_N_IgnoreCase((t_char const*)buffer, utc, 3))
 				{
@@ -699,6 +700,10 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 	t_bitmask_tm written = 0;
 	t_size	parsed;
 
+#if (!defined(__GNUC__) && defined(__MSVC__))
+	if (_get_timezone(&timezone))
+		timezone = 0;
+#endif
 	parsed = strptime_r(str, format, &result, &written);
 	if (parsed == 0)
 		return (0); // TODO handle parsing error here ?

@@ -27,9 +27,11 @@
 	!defined(__GNUC__) || \
 	(defined(__GNUC__) && !defined(_GNU_SOURCE) && !defined(_BSD_SOURCE)))
 
+#ifdef __NOSTD__
 // MSVC implements this as `_vscprintf`, thus we just 'symlink' it here
-#if __MSVC__
+#elif __MSVC__
 #define vscprintf _vscprintf
+// MacOSX implements this one and exposes it by default
 #elif __APPLE__
 #define vscprintf vscprintf
 #endif
@@ -46,8 +48,9 @@ static	int	vscprintf(t_char const* format, va_list args)
 }
 #endif
 
+#ifdef __NOSTD__
 // MacOSX implements this one and exposes it by default
-#if __APPLE__
+#elif __APPLE__
 #define vasprintf vasprintf
 #endif
 
