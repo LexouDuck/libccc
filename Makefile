@@ -1,7 +1,6 @@
 #! This is the root-level Makefile, which includes all the others
 
-# TODO: How can we define this before 'OBJDIR', but still get the `print` macros ?
-# Custom variable to detect whether we called `emmake make` or not.
+# Custom variable to detect when Makefile is called through `emmake make`
 ifdef EMSCRIPTEN
 __EMSCRIPTEN__ = 1
 $(info 'EMSCRIPTEN' is defined, building for emscripten platform)
@@ -29,6 +28,9 @@ NAME = libccc
 
 #! Output filename for the test suite program
 NAME_TEST = libccc-test
+ifdef __EMSCRIPTEN__
+NAME_TEST := $(NAME_TEST).js
+endif
 
 
 
@@ -60,7 +62,7 @@ LISTSDIR = $(MKFILES_DIR)lists/
 
 #! The directory for object assembly files (stores `.o` files)
 ifdef __EMSCRIPTEN__
-OBJDIR = ./obj/emscripten/
+OBJDIR = ./obj/emscripten_obj/
 else
 OBJDIR = ./obj/
 endif
@@ -76,8 +78,6 @@ LOGDIR = ./log/
 COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = $(LOGDIR)lint/
-
-RANLIB ?= ranlib
 
 
 

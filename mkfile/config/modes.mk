@@ -53,9 +53,9 @@ OSMODES = \
 	other	\
 # if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
+	OSMODE = other
 	ifdef __EMSCRIPTEN__
 		OSMODE=emscripten
-	OSMODE = other
 	else ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE = win32

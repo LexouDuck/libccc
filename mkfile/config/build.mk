@@ -3,7 +3,7 @@
 
 
 #! GNU conventional variable: C Compiler
-CC = $(CC_OS)
+CC ?= $(CC_OS)
 
 CC_OS = _
 CC_OS_WIN32 =   i686-w64-mingw32-gcc
@@ -45,8 +45,8 @@ CFLAGS_OS_WIN32      = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_WIN64      = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX      = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS      = -Wno-missing-braces -Wno-language-extension-token
-CFLAGS_OS_OTHER      =
 CFLAGS_OS_EMSCRIPTEN =
+CFLAGS_OS_OTHER      =
 
 #! This variable is intentionally empty, to specify additional compiler options from the commandline
 CFLAGS_EXTRA ?= 
@@ -139,14 +139,14 @@ INCLUDES_EXTRA ?=
 
 
 #! GNU conventional variable: archiver program (for static libraries)
-AR = ar
+AR ?= ar
 #! GNU conventional variable: archiver program options
 ARFLAGS = \
 	-r \
 	-c \
 
 #! GNU conventional variable: archive symbol table tool (for static libraries)
-RANLIB = ranlib
+RANLIB ?= ranlib
 #! GNU conventional variable: archive symbol table tool options
 RANLIB_FLAGS = \
 	-D \
