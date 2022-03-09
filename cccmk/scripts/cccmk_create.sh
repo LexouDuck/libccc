@@ -51,7 +51,7 @@ project_template_copy_recurse()
 	do
 		case "$subdir" in
 			# prompt the user to select one out of several files
-			_if_select)
+			_if_select*)
 				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs `
 				selected_file=
 				prompt_message=
@@ -74,7 +74,7 @@ project_template_copy_recurse()
 				fi
 				;;
 			# prompt the user to select which files they want
-			_if_multiselect)
+			_if_multiselect*)
 				proposed_files=`ls "$srcdir/$dir/$subdir/" | sort --ignore-case | xargs`
 				selected_files=
 				prompt_message=
