@@ -176,7 +176,9 @@ BEGIN {
 
 
 	# variable expansion
-	if (/^%%/)
+	if (/^%%end/)
+	{ print_warning("found stray '" $0 "' command with no preceding multi-line directive"); }
+	else if (/^%%/)
 	{ print_warning("unknown template directive, found '%%' at the beginning of the line"); }
 	else
 	{
