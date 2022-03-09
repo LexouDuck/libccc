@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": false,
+    "lib": [
+      "esnext"
+    ],
+    "sourceMap": true,
+    "baseUrl": ".",
+    "rootDir": "./",
+    "outDir": "./build/",
+    "allowJs": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+  },
+  "typeRoots": [
+    "@types",
+    "./node_modules/@types"
+  ],
+  "include": [
+    "src"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "%[name]%",
+  "version": "0.1.0",
+  "author": "%[author]%",
+  "contributors": [
+    "%[author]%"
+  ],
+  "description": "A React-based web application",
+  "license": "See LICENSE.md",
+  "repository": "",
+  "bugs": "",
+  "homepage": ".",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+%%if tracked(.githooks/):    "prepare": "git config core.hooksPath ./.github/hooks/",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "lint": "eslint --config .eslintrc.json ",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "lint-all": "npm run lint -- src --ext .js,.jsx,.ts,.tsx ",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "format": "prettier-eslint --config .eslintrc.style.json --write ",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "format-all": "npm run format -- src --ext .js,.jsx,.ts,.tsx ",
+  },
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.3",
+    "@testing-library/user-event": "^13.5.0",
+%%if is(lang,tsx):    "@types/jest": "^27.4.1",
+%%if is(lang,tsx):    "@types/node": "^16.11.26",
+%%if is(lang,tsx):    "@types/react": "^17.0.39",
+%%if is(lang,tsx):    "@types/react-dom": "^17.0.13",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "5.0.0",
+%%if is(lang,tsx):    "ts-node": "^10.2.0",
+%%if is(lang,tsx):    "typescript": "^4.6.2",
+    "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "@typescript-eslint/eslint-plugin": "^4.31.0",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "@typescript-eslint/parser": "^4.31.0",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "eslint": "^7.32.0",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "lint-staged": "^11.1.2",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "prettier": "^2.4.0",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "prettier-eslint": "^13.0.0",
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "prettier-eslint-cli": "^5.0.1",
+  },
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  "lint-staged": {
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "*.{js,jsx,ts,tsx,css,md}": "echo 'npm run format -- '"
+%%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  },
+  "engines": {
+    "node": ">=14.0"
+  }
+}
