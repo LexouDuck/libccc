@@ -30,18 +30,16 @@ print_error()   { { printf "cccmk: %s%s%s%s\n" "$io_red"    "error"   "$io_reset
 ### utility functions for string/array/list manipulation
 ###
 
-#! Check if a space-separated list ($1) contains a certain string ($2)
+#! Check if a space-separated list ($2) contains a certain string ($1)
 contains()
 {
-	if [ -t 0 ] && [ $# -gt 1 ]
-	then
-		echo "$1" | grep -w -q "$2"
-	else
-		while read line
-		do
-			echo "$1" | grep -w -q "$line"
-		done
-	fi
+	for i in $2
+	do
+		if [ "$i" == "$1" ]
+		then return 0
+		fi
+	done
+	return 1
 }
 
 #! Keep only certain items from the space-separated list given as input ($2), with a custom command ($1)

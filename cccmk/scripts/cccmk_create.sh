@@ -115,7 +115,8 @@ project_template_copy_recurse()
 				;;
 			# only copy over files if $project_lang matches folder name part after '_if_lang_'
 			_if_lang_*)
-				if [ "$subdir" == "_if_lang_$project_lang" ]
+				values="` echo "$subdir" | cut -d'_' -f 4 | tr '-' ' ' `"
+				if contains "$project_lang" "$values"
 				then
 					for i in `list_onlyfiles "$srcdir/$dir/$subdir"`
 					do project_template_copy "$dir/$subdir" "$dest" "$i"
@@ -125,7 +126,8 @@ project_template_copy_recurse()
 				;;
 			# only copy over files if $project_type matches folder name part after '_if_type_'
 			_if_type_*)
-				if [ "$subdir" == "_if_type_$project_type" ]
+				values="` echo "$subdir" | cut -d'_' -f 4 | tr '-' ' ' `"
+				if contains "$project_type" "$values"
 				then
 					for i in `list_onlyfiles "$srcdir/$dir/$subdir"`
 					do project_template_copy "$dir/$subdir" "$dest" "$i"
@@ -184,8 +186,14 @@ fi
 
 # prompt the user for the project_lang
 printf "$io_cyan""What is the programming language for this project ?""$io_reset\n"
-prompt_select response "c;ts;tsx;" "c" '
+prompt_select response "c;cpp;cs;rs;py;js;jsx;ts;tsx;" "c" '
 C;
+C++;
+C#;
+Rust;
+Python;
+JavaScript;
+JavaScript-React;
 TypeScript;
 TypeScript-React;
 '
