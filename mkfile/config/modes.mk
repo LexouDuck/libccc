@@ -29,6 +29,11 @@ else ifeq ($(LIBMODE),dynamic)
 else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
+ifeq ($(LIBMODE),dynamic)
+ifdef __EMSCRIPTEN__
+$(error Building dynamic library with emscripten is not supported. Please use static mode instead)
+endif
+endif
 
 #! Define build target name for static library with appropriate file extensions
 NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
@@ -50,6 +55,7 @@ OSMODES = \
 	win64	\
 	macos	\
 	linux	\
+	emscripten	\
 	other	\
 # if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
