@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash -e
 
 #! This is the main entry-point script for cccmk
 #! It sets some key variables, and processes commandline arguments

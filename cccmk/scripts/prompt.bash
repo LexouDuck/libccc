@@ -71,12 +71,12 @@ prompt_question()
 
 # little helpers for terminal print control and key input
 ESC=`printf "\033"`
-cursor_blink_on()   { printf "$ESC[?25h"; }
-cursor_blink_off()  { printf "$ESC[?25l"; }
-cursor_to()         { printf "$ESC[$1;${2:-1}H"; }
-print_inactive()    { printf "$1  %-20s  %s"                "$2" "$3" ; }
-print_active()      { printf "$1 $ESC[7m %-20s $ESC[27m %s" "$2" "$3" ; }
-get_cursor_row()    { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
+cursor_show()    { if tput -V > /dev/null ; then tput cnorm ; else printf "$ESC[?25h"; fi ; }
+cursor_hide()    { if tput -V > /dev/null ; then tput civis ; else printf "$ESC[?25l"; fi ; }
+cursor_to()      { printf "$ESC[$1;${2:-1}H"; }
+print_inactive() { printf "$1  %-20s  %s"                "$2" "$3" ; }
+print_active()   { printf "$1 $ESC[7m %-20s $ESC[27m %s" "$2" "$3" ; }
+get_cursor_row() { IFS=';' read -sdR -p $'\E[6n' ROW COL; echo ${ROW#*[}; }
 key_input()
 {
 	local key
@@ -95,17 +95,17 @@ key_input()
 		("")      echo enter ;;
 		($'\x20') echo space ;;
 		(q) echo q ;;
-		($'\x1B') 
+		($'\x1B'|^[)
 			read -rsn2 key
 			case "$key" in
 				([A|OA) echo up    ;;
 				([B|OB) echo down  ;;
 				([C|OC) echo right ;;
 				([D|OD) echo left  ;;
-				(*) print_verbose " -> Bad input key: $key" ;;
+				(*) echo "" >&2 ; print_warning "Bad input key: '$key'" ;;
 			esac
 			;;
-		(*) print_verbose " -> Bad input key: $key" ;;
+		(*) echo "" >&2 ; print_warning "Bad input key: '$key'" ;;
 	esac
 }
 
@@ -136,21 +136,23 @@ prompt_select()
 
 	local selected="$default"
 
-	for ((i=0; i<${#options[@]}; i++))
+	for ((i=0; i<=${#options[@]}; i++))
 	do
 		printf "\n"
 	done
 
 	# determine current screen position for overwriting the options
-	local lastrow=`get_cursor_row`
+	local endrow=`get_cursor_row`
+	local lastrow=$(($endrow - 1))
 	local startrow=$(($lastrow - ${#options[@]}))
 
 	# ensure cursor and input echoing back on upon a ctrl+c during read -s
-	trap "cursor_blink_on; stty echo; printf '\n'; exit" 2
-	cursor_blink_off
+	trap "cursor_to $endrow ; cursor_show ; exit " 2
+	cursor_hide
 
 	local active=0
-	while true; do
+	while true
+	do
 		# print options by overwriting the last lines
 		for ((i=0; i<${#options[@]}; i++))
 		do
@@ -172,28 +174,28 @@ prompt_select()
 				break
 				;;
 			(up)
-				((active--));
+				active=$((active - 1))
 				if [ $active -lt 0 ]
 				then active=$((${#options[@]} - 1))
 				fi
 				;;
 			(down)
-				((active++));
+				active=$((active + 1))
 				if [ $active -ge ${#options[@]} ]
 				then active=0
 				fi
 				;;
-			(q) echo ""
-				print_message "Operation cancelled."
+			(q) echo "" >&2 ; print_message "Operation cancelled."
+				# cursor position back to normal
+				cursor_to $endrow
+				cursor_show
 				exit 1
 				;;
 		esac
 	done
-
 	# cursor position back to normal
-	cursor_to $lastrow
-	printf "\n"
-	cursor_blink_on
+	cursor_to $endrow
+	cursor_show
 
 	eval $retval='${selected}'
 }
@@ -251,15 +253,17 @@ prompt_multiselect()
 	}
 
 	# determine current screen position for overwriting the options
-	local lastrow=`get_cursor_row`
+	local endrow=`get_cursor_row`
+	local lastrow=$(($endrow - 1))
 	local startrow=$(($lastrow - ${#options[@]}))
 
 	# ensure cursor and input echoing back on upon a ctrl+c during read -s
-	trap "cursor_blink_on; stty echo; printf '\n'; exit" 2
-	cursor_blink_off
+	trap "cursor_to $endrow ; cursor_show ; exit " 2
+	cursor_hide
 
 	local active=0
-	while true; do
+	while true
+	do
 		# print options by overwriting the last lines
 		for ((i=0; i<${#options[@]}; i++))
 		do
@@ -283,28 +287,29 @@ prompt_multiselect()
 				break
 				;;
 			(up)
-				((active--));
+				active=$((active - 1))
 				if [ $active -lt 0 ]
 				then active=$((${#options[@]} - 1))
 				fi
 				;;
 			(down)
-				((active++));
+				active=$((active + 1))
 				if [ $active -ge ${#options[@]} ]
 				then active=0
 				fi
 				;;
-			(q) echo ""
-				print_message "Operation cancelled."
+			(q) echo "" >&2 ; print_message "Operation cancelled."
+				# cursor position back to normal
+				cursor_to $endrow
+				cursor_show
 				exit 1
 				;;
 		esac
 	done
 
 	# cursor position back to normal
-	cursor_to $lastrow
-	printf "\n"
-	cursor_blink_on
+	cursor_to $endrow
+	cursor_show
 
 	selected=`echo "${selected[@]}" | xargs`
 	eval $retval='$selected'
