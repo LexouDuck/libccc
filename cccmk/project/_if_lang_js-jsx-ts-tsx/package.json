@@ -50,12 +50,12 @@
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  "lint-staged": {
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):    "*.{js,jsx,ts,tsx,css,md}": "echo 'npm run format -- '"
 %%if tracked(_if_lang_jsx-tsx/_if_ask_eslint/):  },
-%%if is(lang,[jt]s$)
+%%if matches(lang,[jt]s$)
   "engines": {
     "node": ">=14.0"
   }
 %%end if
-%%if is(lang,[jt]sx)
+%%if matches(lang,[jt]sx)
   "browserslist": {
     "production": [
       ">0.2%",

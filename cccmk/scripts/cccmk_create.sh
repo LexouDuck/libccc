@@ -118,6 +118,9 @@ project_template_copy_recurse()
 				values="` echo "$subdir" | cut -d'_' -f 4 | tr '-' ' ' `"
 				if contains "$project_lang" "$values"
 				then
+					if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
+					then  . "$srcdir/$dir/$subdir/.cccmk"
+					fi
 					for i in `list_onlyfiles "$srcdir/$dir/$subdir"`
 					do project_template_copy "$dir/$subdir" "$dest" "$i"
 					done
@@ -129,6 +132,9 @@ project_template_copy_recurse()
 				values="` echo "$subdir" | cut -d'_' -f 4 | tr '-' ' ' `"
 				if contains "$project_type" "$values"
 				then
+					if [ -f "$srcdir/$dir/$subdir/.cccmk" ]
+					then  . "$srcdir/$dir/$subdir/.cccmk"
+					fi
 					for i in `list_onlyfiles "$srcdir/$dir/$subdir"`
 					do project_template_copy "$dir/$subdir" "$dest" "$i"
 					done
@@ -221,6 +227,9 @@ fi
 # automatically fill in the project year
 project_year="`date "+%Y" `"
 
+# by default, do not perform any project after-create operations
+after_create=""
+
 (
 	# create project folder and cd inside it
 	mkdir "$command_arg_path"
@@ -254,14 +263,14 @@ project_year="`date "+%Y" `"
 
 	# create initial project version file
 	echo "$command_arg_name@0.0.0-?" > "$project_versionfile"
+	# initial setup for project, after creation
+	$after_create
 	# set up git repo for new project
 	git init
-	git branch -m master
 	git add --all
+	git branch -m master
 	git commit -m "initial commit"
-	# set up other git/version management things
-	make init
-	make version
+	
 
 	if $verbose
 	then

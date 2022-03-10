@@ -90,7 +90,7 @@ dkms.conf
 
 
 %%end if
-%%if is(lang,js|ts|jsx|tsx)
+%%if matches(lang,[jt]sx?)
 
 # JavaScript
 
