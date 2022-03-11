@@ -1,0 +1,3 @@
+#!/bin/sh -e
+
+prompt_message="Is your program a GUI application (with embedded metadata, icon, etc) ?"
