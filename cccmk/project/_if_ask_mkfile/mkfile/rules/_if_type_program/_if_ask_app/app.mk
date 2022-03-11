@@ -61,7 +61,7 @@ $(APPDIST): $(APPDIST)/$(APPNAME).icns
 	@mv $(APPMETA)                 $(APPDIST)/Contents/Info.plist
 	@cp $(APPDIST)/$(APPNAME).icns $(APPDIST)/Contents/Resources/$(APPNAME).icns
 	@cp $(NAME)                    $(APPDIST)/MacOS/$(APPNAME)
-	@echo "APPL` echo "%[name]%" | awk '{ print substr($$0, 0, 4); }' `" > $(APPDIST)/Contents/PkgInfo
+	@echo "APPL` echo "%[name]%" | cut -c1-4 `" > $(APPDIST)/Contents/PkgInfo
 
 $(APPDIST)/$(APPNAME).icns: $(APPICON)
 	@rm -rf $(APPDIST)/$(APPNAME).iconset

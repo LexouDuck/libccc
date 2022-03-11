@@ -106,9 +106,12 @@ cccmk_diff_brief()
 
 
 
+# general shell utility functions
 . $CCCMK_PATH_SCRIPTS/util.sh
-. $CCCMK_PATH_SCRIPTS/help.sh
+# general shell user-prompting functions
 . $CCCMK_PATH_SCRIPTS/prompt.bash
+# cccmk help doc texts and functions
+. $CCCMK_PATH_SCRIPTS/cccmk_help.sh
 
 
 
@@ -136,35 +139,22 @@ parse_args()
 	then print_warning "No command/arguments given to cccmk, displaying help..."
 	else while [ $# -gt 0 ]
 	do
+		if [ "`echo "$1" | cut -c1-1`" == "-" ]
+		then # options (w/ leading dash)
 		case "$1" in
-			(-h|--help|help)
-				command="$1"
-				print_verbose "parsed command: '$command'"
-				show_help
-				exit 0
-				;;
-			(-v|--version|version)
-				command="$1"
-				print_verbose "parsed command: '$command'"
-				show_version
-				exit 0
-				;;
-			(-V|--verbose)
-				verbose=true
-				print_verbose "parsed argument: '$1'"
-				;;
-			(-w|--ignore-spaces)
-				ignore_spaces=true
-				print_verbose "parsed argument: '$1'"
-				;;
-			(-W|--ignore-blanks)
-				ignore_blanks=true
-				print_verbose "parsed argument: '$1'"
-				;;
+			(-h|--help|help)        command="$1" ; show_help    ; exit 0 ;;
+			(-v|--version|version)  command="$1" ; show_version ; exit 0 ;;
+			(-V|--verbose)          verbose=true ;;
+			(-w|--ignore-spaces)    ignore_spaces=true ;;
+			(-W|--ignore-blanks)    ignore_blanks=true ;;
 			(-*)
-				print_error "Unknown option: '$1' (try 'cccmk --help')"
+				print_failure "Unknown option: '$1' (try 'cccmk --help')"
+				show_usage
 				exit 1
 				;;
+		esac
+		else # commands (no leading dash)
+		case "$1" in
 			(create)
 				command="$1"
 				print_verbose "parsed command: '$command'"
@@ -205,10 +195,12 @@ parse_args()
 				print_verbose "parsed command: '$command'"
 				;;
 			(*)
-				print_error "Invalid argument: '$1' (try 'cccmk --help')"
+				print_failure "Invalid argument: '$1' (try 'cccmk --help')"
+				show_usage
 				exit 1
 				;;
 		esac
+		fi
 		shift # go to next argument
 	done
 	fi

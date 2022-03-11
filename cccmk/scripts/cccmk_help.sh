@@ -115,6 +115,19 @@ show_help()
 
 
 
+#! Displays brief program usage summary
+show_usage()
+{
+	local options=""
+	for i in $cccmk_options
+	do options="$options|-$i"
+	done
+	options="`echo "$options" | cut -c2- `"
+	echo "usage: cccmk [$options] <command> [<args>...]"
+}
+
+
+
 #! Displays program version
 show_version()
 {
