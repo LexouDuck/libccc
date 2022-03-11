@@ -11,6 +11,11 @@ PACKAGE_SDL2_INCLUDE = $(PACKAGE_SDL2_BIN)include/SDL2/
 PACKAGE_SDL2_LINKDIR = $(PACKAGE_SDL2_BIN)bin/
 PACKAGE_SDL2_LINKLIB = -lSDL2
 PACKAGE_SDL2_LINK = -L$(PACKAGE_SDL2_LINKDIR) $(PACKAGE_SDL2_LINKLIB)
+ifeq ($(OSMODE),linux)
+	PACKAGE_SDL2_INCLUDE = $(PACKAGE_SDL2_BIN)include/
+	PACKAGE_SDL2_LINKDIR = $(PACKAGE_SDL2_BIN)build/.libs/
+	PACKAGE_SDL2_LINKLIB += -lm
+endif
 # on MacOS, SDL2 is a framework, so linking is complicated
 ifeq ($(OSMODE),macos)
 	PACKAGE_SDL2_INCLUDE = $(PACKAGE_SDL2_BIN)SDL2.framework/Headers/
@@ -48,9 +53,10 @@ else ifeq ($(OSMODE),macos)
 else ifeq ($(OSMODE),linux)
 	PACKAGE_SDL2_PKG = SDL2-$(PACKAGE_SDL2_VERSION).zip
 	PACKAGE_SDL2_PKG_INSTALL = \
-		unzip $(PACKAGE_SDL2_PKG) -d $(PACKAGE_SDL2_BIN) ; \
+		unzip $(PACKAGE_SDL2_PKG) -d $(PACKAGE_SDL2_DIR) ; \
+		{ mv -f $(PACKAGE_SDL2_DIR)SDL2-$(PACKAGE_SDL2_VERSION)/* $(PACKAGE_SDL2_BIN) && rmdir $(PACKAGE_SDL2_DIR)SDL2-$(PACKAGE_SDL2_VERSION) ; } ; \
 		cd $(PACKAGE_SDL2_BIN) ; \
-		./configure && make && make install
+		./configure && make
 	PACKAGE_SDL2_GETVERSIONS = \
 		grep '.zip'
 else
