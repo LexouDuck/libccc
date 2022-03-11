@@ -1,3 +1,4 @@
+#!/bin/sh -e
 project_author='Duquesne'
 project_name='libccc'
 project_year='2020'
@@ -9,7 +10,7 @@ project_packagefile='mkfile/lists/packages.txt'
 project_track_paths='mkfile'
 project_track='
 dev:CONTRIBUTING.md:CONTRIBUTING.md
-dev:_if_select/MIT.txt:LICENSE
+dev:_if_select_license/MIT.txt:LICENSE
 dev:.gitignore:.gitignore
 dev:.githooks/_if_ask_autoversion/pre-commit:.githooks/pre-commit
 dev:.githooks/_if_ask_autoversion/pre-push:.githooks/pre-push

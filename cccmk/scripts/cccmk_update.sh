@@ -145,7 +145,7 @@ do
 			else printf " - cccmk-side updates: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new" | cut -d' ' -f 3 `\n"
 				
 			fi
-			echo "How do you wish to update '$file_pwd' ?"
+			printf "$io_cyan""How do you wish to update '$file_pwd' ?""$io_reset\n"
 			identical=true
 			while $identical
 			do
@@ -170,7 +170,7 @@ do
 		fi
 	else
 		print_warning "Could not find project tracked file '$path_pwd/$file_pwd'."
-		echo "Do you wish to create the file '$file_pwd' using the template ?"
+		printf "$io_cyan""Do you wish to create the file '$file_pwd' using the template ?""$io_reset\n"
 		prompt_question response 'n'
 		identical=false
 	fi

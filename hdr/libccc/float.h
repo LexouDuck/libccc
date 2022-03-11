@@ -211,8 +211,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	Also, define isnan() for ANSI C compatibility, if needed.
 */
 //!@{
+#ifndef __GNUC__
 #ifndef isnan
 #define isnan(X)	(X != X)
+#endif
 #endif
 #ifndef IS_NAN
 #define IS_NAN(X)		isnan(X)
@@ -244,8 +246,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
 //!@{
+#ifndef __GNUC__
 #ifndef isinf
 #define isinf(X)	(isnan((X) - (X)) && !isnan(X))
+#endif
 #endif
 #ifndef IS_INF
 #define IS_INF(X)		isinf(X)
