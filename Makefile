@@ -9,6 +9,14 @@ MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
+# Custom variable to detect when Makefile is called through `emmake make`
+ifdef EMSCRIPTEN
+__EMSCRIPTEN__ = 1
+$(info "'EMSCRIPTEN' is defined, building for emscripten platform")
+else ifeq ($(OSMODE),emscripten)
+$(error You need to call 'emmake make' instead of simply 'make' if you want to build with emscripten. \
+	see https://emscripten.org/docs/compiling/Building-Projects.html#integrating-with-a-build-system)
+endif
 
 
 #######################################
@@ -20,6 +28,9 @@ NAME = libccc
 
 #! Output filename for the test suite program
 NAME_TEST = libccc-test
+ifdef __EMSCRIPTEN__
+NAME_TEST := $(NAME_TEST).js
+endif
 
 
 
@@ -118,6 +129,8 @@ include $(MKFILES_DIR)rules/doc-help.mk
 include $(MKFILES_DIR)rules/generic.mk
 include $(MKFILES_DIR)rules/test-env.mk
 include $(MKFILES_DIR)rules/test-standalone.mk
+
+include $(MKFILES_DIR)rules/emscripten.mk
 
 # general rules
 include $(MKFILES_DIR)utils/refactor.mk
