@@ -46,8 +46,8 @@ CFLAGS_OS_WIN32 = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_WIN64 = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
-CFLAGS_OS_OTHER =
-CFLAGS_OS_EMSCRIPTEN =
+CFLAGS_OS_OTHER = 
+CFLAGS_OS_EMSCRIPTEN = 
 
 #! This variable is intentionally empty, to specify additional compiler options from the commandline
 CFLAGS_EXTRA ?= 
@@ -74,13 +74,14 @@ LDFLAGS_RELEASE =
 
 #! Platform-specific linker options
 LDFLAGS_OS = _
-LDFLAGS_OS_WIN32 =
-LDFLAGS_OS_WIN64 =
-LDFLAGS_OS_LINUX =
-LDFLAGS_OS_MACOS =
-LDFLAGS_OS_OTHER =
-LDFLAGS_OS_EMSCRIPTEN =
+LDFLAGS_OS_WIN32 = 
+LDFLAGS_OS_WIN64 = 
+LDFLAGS_OS_LINUX = 
+LDFLAGS_OS_MACOS = 
+LDFLAGS_OS_OTHER = 
+LDFLAGS_OS_EMSCRIPTEN = 
 
+#! This variable is intentionally empty, to specify additional linker options from the commandline
 LDFLAGS_EXTRA ?= 
 #	-flto \
 
@@ -97,12 +98,12 @@ LDLIBS_RELEASE =
 
 #! Platform-specific linked libraries
 LDLIBS_OS = _
-LDLIBS_OS_WIN32 =
-LDLIBS_OS_WIN64 =
-LDLIBS_OS_LINUX =
-LDLIBS_OS_MACOS =
-LDLIBS_OS_OTHER =
-LDLIBS_OS_EMSCRIPTEN =
+LDLIBS_OS_WIN32 = 
+LDLIBS_OS_WIN64 = 
+LDLIBS_OS_LINUX = 
+LDLIBS_OS_MACOS = 
+LDLIBS_OS_OTHER = 
+LDLIBS_OS_EMSCRIPTEN = 
 
 ifeq ($(findstring mingw,$(CC)),mingw)
 LDLIBS_OS_WIN32 += -L./ -static-libgcc
@@ -127,12 +128,12 @@ INCLUDES_RELEASE =
 
 #! Platform-specific header directories
 INCLUDES_OS = _
-INCLUDES_OS_WIN32 =
-INCLUDES_OS_WIN64 =
-INCLUDES_OS_LINUX =
-INCLUDES_OS_MACOS =
-INCLUDES_OS_OTHER =
-INCLUDES_OS_EMSCRIPTEN =
+INCLUDES_OS_WIN32 = 
+INCLUDES_OS_WIN64 = 
+INCLUDES_OS_LINUX = 
+INCLUDES_OS_MACOS = 
+INCLUDES_OS_OTHER = 
+INCLUDES_OS_EMSCRIPTEN = 
 
 #! This variable is intentionally empty, to specify additional header directories from the commandline
 INCLUDES_EXTRA ?= 

@@ -5,6 +5,7 @@
 #! The directory in which to store text logs of the test suite output
 TEST_LOGDIR = $(LOGDIR)test/
 
+
 ifdef __EMSCRIPTEN__
 LAUNCH_TEST = node $(NAME_TEST)
 else

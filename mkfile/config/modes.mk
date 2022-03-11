@@ -2,7 +2,6 @@
 
 
 
-
 #! Define all possible build modes
 MODES = \
 	debug	\

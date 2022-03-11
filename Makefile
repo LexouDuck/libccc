@@ -1,6 +1,7 @@
 #! This is the root-level Makefile, which includes all the others
 
 
+
 # NOTE: the two following variables are to stay at the very top of this Makefile and never move
 
 #! The complete absolute path of the root-level makefile
@@ -73,6 +74,7 @@ LOGDIR = ./log/
 COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = $(LOGDIR)lint/
+
 
 
 
