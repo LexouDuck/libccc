@@ -163,8 +163,8 @@ do
 					(overwrite) response=true  ; overwrite=true  ;;
 					(unchanged) response=false ; overwrite=false ;;
 					(show_diff)
-						cccmk_diff "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-						cccmk_diff "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
+						cccmk_diff_fancy "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
+						cccmk_diff_fancy "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
 						continue ;;
 					(*) print_message "Aborting operation" ; exit 1 ;;
 				esac

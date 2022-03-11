@@ -68,10 +68,14 @@ cccmk_options='
 h
 v
 V
+w
+W
 '
-cccmk_doc_flag_h='-h, --help       If provided, display this brief help message and exit.'
-cccmk_doc_flag_v='-v, --version    If provided, display the cccmk version number info and exit.'
-cccmk_doc_flag_V='-V, --verbose    If provided, show additional log messages for detailed info/debugging.'
+cccmk_doc_flag_h='-h, --help           If provided, display this brief help message and exit.'
+cccmk_doc_flag_v='-v, --version        If provided, display the cccmk version number info and exit.'
+cccmk_doc_flag_V='-V, --verbose        If provided, show additional log messages for detailed info/debugging.'
+cccmk_doc_flag_w='-w, --ignore-spaces  If provided, ignore any whitespace characters when checking file diffs.'
+cccmk_doc_flag_W='-W, --ignore-blanks  If provided, ignore any blank or empty lines when checking file diffs.'
 
 
 

@@ -14,6 +14,10 @@ fi
 
 #! If set to `true`, then cccmk will display any `print_verbose` messages
 verbose=$debug
+#! If set to `true`, then cccmk will ignore whitespace characters when checking file diffs
+ignore_spaces=false
+#! If set to `true`, then cccmk will ignore any blank/empty lines when checking file diffs
+ignore_blanks=false
 
 #! The user-specified cccmk command
 command=help
@@ -70,15 +74,29 @@ cccmk_git_url="https://raw.githubusercontent.com/LexouDuck/libccc"
 #! The git branch name/revision hash to use when doing a 'cccmk upgrade'
 cccmk_upgrade=dev
 #! The shell command (and arguments) used to perform and display file text diffs
-cccmk_diffcmd="git --no-pager diff --no-index"
+cccmk_diffcmd="git --no-pager diff --no-index --color"
 #cccmk_diffcmd="diff --color"
-cccmk_diff()
+cccmk_diff_fancy()
 {
-	$cccmk_diffcmd --color "$1" "$2" || :
+	local args=""
+	if $ignore_spaces
+	then args="$args --ignore-space-change"
+	fi
+	if $ignore_blanks
+	then args="$args --ignore-blank-lines"
+	fi
+	$cccmk_diffcmd $args "$1" "$2" || :
 }
 cccmk_diff_brief()
 {
-	diff -qrs -U 1000 "$1" "$2" \
+	local args=""
+	if $ignore_spaces
+	then args="$args --ignore-space-change"
+	fi
+	if $ignore_blanks
+	then args="$args --ignore-blank-lines"
+	fi
+	diff -qrs -U 1000 $args "$1" "$2" \
 	| awk \
 	-v path_old="$1" \
 	-v path_new="$2" \
@@ -133,6 +151,14 @@ parse_args()
 				;;
 			(-V|--verbose)
 				verbose=true
+				print_verbose "parsed argument: '$1'"
+				;;
+			(-w|--ignore-spaces)
+				ignore_spaces=true
+				print_verbose "parsed argument: '$1'"
+				;;
+			(-W|--ignore-blanks)
+				ignore_blanks=true
 				print_verbose "parsed argument: '$1'"
 				;;
 			(-*)

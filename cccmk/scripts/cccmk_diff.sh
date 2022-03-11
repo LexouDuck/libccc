@@ -116,7 +116,7 @@ print_message "Overview of differences:"
 			if [ -f "./$trackedfile_pwdpath" ]
 			then
 				print_message "Tracked file differences: '$trackedfile_pwdpath'"
-				cccmk_diff \
+				cccmk_diff_fancy \
 					"$diffchk_cccpath/$trackedfile_pwdpath" \
 					"$diffchk_pwdpath/$trackedfile_pwdpath"
 			fi
