@@ -1,18 +1,19 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Project
+###
+### Project
+###
 
 %%if is(type,program):/%[name]%
 %%if is(type,library):/%[name]%.*
 %%if tracked(_if_ask_mkfile/mkfile/_if_ask_testsuite/rules/test.mk):/%[name]%-test
 
 # Build
-%%if is(lang,c|cpp|cs|rs)
-/obj/
-/bin/
-%%else
+%%if matches(lang,[jt]sx?)
 /build/
 %%end if
+/obj/
+/bin/
 /dist/
 
 # Testing
@@ -24,24 +25,19 @@
 log.txt
 *.log
 
+# Documentation
+#/doc/
+#/docs/
+
 # Reference material
 /ref/
-
-# local environment variables files
-.env
-.env.dev
-.env.test
-.env.prod
-.env.local
-.env.dev.local
-.env.test.local
-.env.prod.local
 
 
 
 %%if is(lang,c)
-
-# C
+###
+### Language: C
+###
 
 # C intermediary build files
 *.d
@@ -91,13 +87,15 @@ dkms.conf
 
 %%end if
 %%if matches(lang,[jt]sx?)
-
-# JavaScript
+###
+### Language: JavaScript
+###
 
 # node: Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 # node: Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
 # npm
 package-lock.json
 # npm: Dependency directory
@@ -108,6 +106,7 @@ node_modules/
 npm-debug.log*
 # npm: Output of 'npm pack'
 *.tgz
+
 # yarn: Dependency directory
 jspm_packages/
 # Yarn Integrity file
@@ -115,15 +114,17 @@ jspm_packages/
 # yarn logs
 yarn-debug.log*
 yarn-error.log*
-# TypeScript
+
 # TypeScript: v1 declaration files
 typings/
 # TypeScript: cache
 *.tsbuildinfo
-# eslint
+
 # eslint: Optional eslint cache
 .eslintcache
+
 # other tools
+
 # Microbundle cache
 .rpt2_cache/
 .rts2_cache_cjs/
@@ -176,18 +177,26 @@ pids
 
 
 %%end if
+###
+### OS-specific files
+###
 
-
-
-# OS-specific files
+# Windows
 
 # Linux
+
 # MacOS
 .DS-Store
 .DS_Store
-# Windows
 
-# IDE-specific files
+# FAT32
+.Trash-[0-9]*
+
+
+
+###
+### IDE-specific files
+###
 
 *.code-workspace
 # Sublime text
@@ -196,6 +205,22 @@ pids
 .vs/
 # Visual Studio Code
 .vscode/
+
+
+
+###
+### General files
+###
+
+# local environment variables files
+.env
+.env.dev
+.env.test
+.env.prod
+.env.local
+.env.dev.local
+.env.test.local
+.env.prod.local
 
 
 

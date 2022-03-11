@@ -1,18 +1,24 @@
 #!/bin/sh
 
-# Get commit message contents
-MSG_FILE=$1
-FILE_CONTENT="$(cat $MSG_FILE)"
-
-# Initialize constants here
-C_RESET="\e[0m"
-C_RED="\e[31m"
-C_GREEN="\e[32m"
-C_YELLOW="\e[33m"
+#! utility variables for terminal colored output
+ansi_esc() { printf "\033[""$@""m" ; }
+IO_RESET="`   ansi_esc 0`"
+IO_RED="`     ansi_esc 31`"
+IO_GREEN="`   ansi_esc 32`"
+IO_YELLOW="`  ansi_esc 33`"
+IO_BLUE="`    ansi_esc 34`"
+IO_MAGENTA="` ansi_esc 35`"
+IO_CYAN="`    ansi_esc 36`"
 
 ERROR=$C_RED"ERROR"$C_RESET": "
 SUCCESS=$C_GREEN"SUCCESS"$C_RESET": "
 WARNING=$C_YELLOW"WARNING"$C_RESET": "
+
+
+
+# Get commit message contents
+MSG_FILE=$1
+FILE_CONTENT="$(cat $MSG_FILE)"
 
 export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|cleanup|doc|docs|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
 export ERROR_MSG="
