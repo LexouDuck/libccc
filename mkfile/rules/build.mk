@@ -22,21 +22,13 @@ INCLUDES := $(INCLUDES) \
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: MODE = debug
 build-debug: CFLAGS += $(CFLAGS_DEBUG)
-ifdef __EMSCRIPTEN__
-build-debug: $(NAME_STATIC)
-else
 build-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
-endif
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
 build-release: MODE = release
 build-release: CFLAGS += $(CFLAGS_RELEASE)
-ifdef __EMSCRIPTEN__
-build-release: $(NAME_STATIC)
-else
 build-release: $(NAME_STATIC) $(NAME_DYNAMIC)
-endif
 
 
 

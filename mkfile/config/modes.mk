@@ -2,6 +2,7 @@
 
 
 
+
 #! Define all possible build modes
 MODES = \
 	debug	\
@@ -38,7 +39,12 @@ endif
 #! Define build target name for static library with appropriate file extensions
 NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
 #! Define build target name for dynamic library with appropriate file extensions
+ifdef __EMSCRIPTEN__
+NAME_DYNAMIC =
+else
 NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
+endif
+
 #! Define build target name for library with appropriate file extension according to LIBMODE
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -93,6 +99,7 @@ LIBEXT_DYNAMIC=
 ifeq ($(OSMODE),other)
 	LIBEXT_DYNAMIC=
 else ifeq ($(OSMODE),emscripten)
+	# We don't support dynamic libraries with emscripten
 	LIBEXT_DYNAMIC=
 else ifeq ($(OSMODE),win32)
 	LIBEXT_DYNAMIC=dll

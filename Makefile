@@ -1,14 +1,5 @@
 #! This is the root-level Makefile, which includes all the others
 
-# Custom variable to detect when Makefile is called through `emmake make`
-ifdef EMSCRIPTEN
-__EMSCRIPTEN__ = 1
-$(info 'EMSCRIPTEN' is defined, building for emscripten platform)
-else ifeq ($(OSMODE),emscripten)
-$(error You need to call 'emmake make' instead of simply 'make' if you want to build with emscripten. \
-	see https://emscripten.org/docs/compiling/Building-Projects.html#integrating-with-a-build-system)
-endif
-
 
 # NOTE: the two following variables are to stay at the very top of this Makefile and never move
 
@@ -17,6 +8,14 @@ MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 
+# Custom variable to detect when Makefile is called through `emmake make`
+ifdef EMSCRIPTEN
+__EMSCRIPTEN__ = 1
+$(info "'EMSCRIPTEN' is defined, building for emscripten platform")
+else ifeq ($(OSMODE),emscripten)
+$(error You need to call 'emmake make' instead of simply 'make' if you want to build with emscripten. \
+	see https://emscripten.org/docs/compiling/Building-Projects.html#integrating-with-a-build-system)
+endif
 
 
 #######################################
@@ -61,11 +60,7 @@ LISTSDIR = $(MKFILES_DIR)lists/
 # generated folders
 
 #! The directory for object assembly files (stores `.o` files)
-ifdef __EMSCRIPTEN__
-OBJDIR = ./obj/emscripten_obj/
-else
 OBJDIR = ./obj/
-endif
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
 #! The directory for distribution archives (stores `.zip` distributable builds)
@@ -132,6 +127,8 @@ include $(MKFILES_DIR)rules/doc-help.mk
 include $(MKFILES_DIR)rules/generic.mk
 include $(MKFILES_DIR)rules/test-env.mk
 include $(MKFILES_DIR)rules/test-standalone.mk
+
+include $(MKFILES_DIR)rules/emscripten.mk
 
 # general rules
 include $(MKFILES_DIR)utils/refactor.mk
