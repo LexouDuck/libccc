@@ -122,6 +122,9 @@ do
 		cccmk_template "$path_ccc/$file_ccc" "$path_tmp/$file_pwd.new"
 	fi
 
+	# fix file permissions for downloaded file
+	chmod "`file_getmode "$path_ccc/$file_ccc" `" "$path_tmp/$file_pwd.old"
+
 	response=false
 	identical=false
 	overwrite=false

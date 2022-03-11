@@ -71,8 +71,8 @@ prompt_question()
 
 # little helpers for terminal print control and key input
 ESC=`printf "\033"`
-cursor_show()    { if tput -V > /dev/null ; then tput cnorm ; else printf "$ESC[?25h"; fi ; }
-cursor_hide()    { if tput -V > /dev/null ; then tput civis ; else printf "$ESC[?25l"; fi ; }
+cursor_show()    { if tput -V &> /dev/null ; then tput cnorm ; else printf "$ESC[?25h"; fi ; }
+cursor_hide()    { if tput -V &> /dev/null ; then tput civis ; else printf "$ESC[?25l"; fi ; }
 cursor_to()      { printf "$ESC[$1;${2:-1}H"; }
 print_inactive() { printf "$1  %-20s  %s"                "$2" "$3" ; }
 print_active()   { printf "$1 $ESC[7m %-20s $ESC[27m %s" "$2" "$3" ; }

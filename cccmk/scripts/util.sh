@@ -81,6 +81,13 @@ awk_inplace()
 ### utility functions for filesystem operations
 ###
 
+#! Outputs the file permissions mode (in octal format) of the given file
+file_getmode()
+{
+	local get_filemode="stat -c %a $1" ; if $get_filemode &> /dev/null ; then echo "`$get_filemode`" ; fi
+	local get_filemode="stat -f %p $1" ; if $get_filemode &> /dev/null ; then echo "`$get_filemode`" ; fi
+}
+
 #! Get a UNIX UTC timestamp for the last modified date of a file
 file_timestamp()
 {

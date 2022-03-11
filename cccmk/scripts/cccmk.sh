@@ -308,6 +308,8 @@ cccmk_template()
 		-f "$CCCMK_PATH_SCRIPTS/template-functions.awk" \
 		-f "$CCCMK_PATH_SCRIPTS/template.awk" \
 		"$inputfile" > "$outputfile"
+		# preserve file permissions
+		chmod "`file_getmode "$inputfile" `" "$outputfile"
 	fi
 }
 
