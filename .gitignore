@@ -1,62 +1,52 @@
-# PROJECT
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+###
+### Project
+###
 
 /libccc.*
 /libccc-test
 /libccc-test*
 
+# Build
 /obj/
 /bin/
 /dist/
-/log/
-/ref/
 
-doc/_doxyrest/
-docs/hdr/
-docs/man/
-docs/rtf/
-docs/pdf/
-docs/xml/
-docs/rst/
-docs/latex/
-docs/docbook/
-docs/html/.doctrees
-
-log/coverage/
-log/**/*.log
-log/**/*.txt
-
+# Testing
+/log/coverage/
+/log/**/*.log
+/log/**/*.txt
 pclint_*.*
 
-test/_test.c
+# Logs
+/log/
+/logs/
+log.txt
+*.log
+
+# Documentation
+/doc/_doxyrest/
+/docs/hdr/
+/docs/man/
+/docs/rtf/
+/docs/pdf/
+/docs/xml/
+/docs/rst/
+/docs/latex/
+/docs/docbook/
+/docs/html/.doctrees
+
+# Reference material
+/ref/
 
 
 
-# OS/IDE
+###
+### Language: C
+###
 
-### Linux
-### MacOS
-.DS-Store
-.DS_Store
-### Windows
-
-### Sublime text
-*.sublime-workspace
-### Visual Studio
-.vs/
-### Visual Studio Code
-.vscode/
-
-
-
-# cccmk
-.cccmk_diff_*/
-.cccmk_update/
-
-
-
-# C
-
-### C intermediary build files
+# C intermediary build files
 *.d
 *.o
 *.ko
@@ -67,18 +57,18 @@ test/_test.c
 *.exp
 *.gch
 *.pch
-### Libraries (static)
+# Libraries (static)
 *.a
 *.la
 *.lo
 *.lib
-### Libraries (dynamic)
+# Libraries (dynamic)
 *.def
 *.dll
 *.so
 *.so.*
 *.dylib
-### Executables
+# Executables
 *.exe
 *.out
 *.app
@@ -86,12 +76,12 @@ test/_test.c
 *.x86_64
 *.hex
 *.stackdump
-### Debug files
+# Debug files
 *.dSYM/
 *.su
 *.idb
 *.pdb
-### Kernel Module Compile Results
+# Kernel Module Compile Results
 *.mod*
 *.cmd
 .tmp_versions/
@@ -99,3 +89,56 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+
+
+###
+### OS-specific files
+###
+
+# Windows
+
+# Linux
+
+# MacOS
+.DS-Store
+.DS_Store
+
+# FAT32
+.Trash-[0-9]*
+
+
+
+###
+### IDE-specific files
+###
+
+*.code-workspace
+# Sublime text
+*.sublime-workspace
+# Visual Studio
+.vs/
+# Visual Studio Code
+.vscode/
+
+
+
+###
+### General files
+###
+
+# local environment variables files
+.env
+.env.dev
+.env.test
+.env.prod
+.env.local
+.env.dev.local
+.env.test.local
+.env.prod.local
+
+
+
+# cccmk
+.cccmk_diff_*/
+.cccmk_update/

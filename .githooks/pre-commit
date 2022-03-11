@@ -1,12 +1,15 @@
 #!/bin/sh
 
-  IO_RESET="\033[0m"
-    IO_RED="\033[0;31m"
-  IO_GREEN="\033[0;32m"
- IO_YELLOW="\033[0;33m"
-   IO_BLUE="\033[0;34m"
-IO_MAGENTA="\033[0;35m"
-   IO_CYAN="\033[0;36m"
+#! utility variables for terminal colored output
+ansi_esc() { printf "\033[""$@""m" ; }
+IO_RESET="`   ansi_esc 0`"
+IO_RED="`     ansi_esc 31`"
+IO_GREEN="`   ansi_esc 32`"
+IO_YELLOW="`  ansi_esc 33`"
+IO_BLUE="`    ansi_esc 34`"
+IO_MAGENTA="` ansi_esc 35`"
+IO_CYAN="`    ansi_esc 36`"
+
 
 
 # filepath of the version file

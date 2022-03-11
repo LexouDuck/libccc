@@ -29,11 +29,21 @@ else ifeq ($(LIBMODE),dynamic)
 else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
+ifeq ($(LIBMODE),dynamic)
+ifdef __EMSCRIPTEN__
+$(error Building dynamic library with emscripten is not supported. Please use static mode instead)
+endif
+endif
 
 #! Define build target name for static library with appropriate file extensions
 NAME_STATIC  = $(NAME).$(LIBEXT_STATIC)
 #! Define build target name for dynamic library with appropriate file extensions
+ifdef __EMSCRIPTEN__
+NAME_DYNAMIC =
+else
 NAME_DYNAMIC = $(NAME).$(LIBEXT_DYNAMIC)
+endif
+
 #! Define build target name for library with appropriate file extension according to LIBMODE
 NAME_LIBMODE = _
 ifeq ($(LIBMODE),static)
@@ -44,18 +54,20 @@ ifeq ($(LIBMODE),dynamic)
 endif
 
 
-
 #! Define all possible supported platforms
 OSMODES = \
 	win32	\
 	win64	\
 	macos	\
 	linux	\
+	emscripten	\
 	other	\
 # if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
 	OSMODE = other
-	ifeq ($(OS),Windows_NT)
+	ifdef __EMSCRIPTEN__
+		OSMODE=emscripten
+	else ifeq ($(OS),Windows_NT)
 		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
 			OSMODE = win32
 		endif
@@ -84,6 +96,9 @@ LIBEXT_STATIC=a
 #! The file extension used for dynamic library files
 LIBEXT_DYNAMIC=
 ifeq ($(OSMODE),other)
+	LIBEXT_DYNAMIC=
+else ifeq ($(OSMODE),emscripten)
+	# We don't support dynamic libraries with emscripten
 	LIBEXT_DYNAMIC=
 else ifeq ($(OSMODE),win32)
 	LIBEXT_DYNAMIC=dll

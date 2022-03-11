@@ -1,0 +1,561 @@
+{ // NOTE: this eslint config file only contains style rules, for auto-formatting with prettier-eslint
+	"root": true, // this folder is the root-most folder of the project, prevent eslint from looking in parent oflders
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"project": [ "./tsconfig.json", "./tests/tsconfig.json" ]
+	},
+	"plugins": [
+		"@typescript-eslint"/*,*/
+		/*"react",*/
+	],
+	// STYLE RULES
+	"extends":[],
+	"rules": {
+		// STYLE RULES
+		// STYLE: code spacing & whitespace
+		"arrow-spacing":                                            ["warn", { "before": true, "after": true }],
+		"array-bracket-newline":                                    ["warn", "consistent"],
+		"array-bracket-spacing":                                    ["warn", "never"],
+		"array-element-newline":                                    ["warn", "consistent"],
+		"block-spacing":                                            ["warn", "always"],
+%%if matches(lang,jsx?):		"brace-style":                                                                            ["warn", "allman", { "allowSingleLine": true }],
+%%if matches(lang,tsx?):		"brace-style":   ["off"], "@typescript-eslint/brace-style":                               ["warn", "allman", { "allowSingleLine": true }],
+%%if matches(lang,jsx?):		"comma-dangle":                                                                           ["warn", "always-multiline"],
+%%if matches(lang,tsx?):		"comma-dangle":  ["off"], "@typescript-eslint/comma-dangle":                              ["warn", "always-multiline"],
+%%if matches(lang,jsx?):		"comma-spacing":                                                                          ["warn"],
+%%if matches(lang,tsx?):		"comma-spacing": ["off"], "@typescript-eslint/comma-spacing":                             ["warn"],
+		"comma-style":                                              ["warn"],
+		"computed-property-spacing":                                ["warn", "never"],
+		"dot-location":                                             ["warn", "property"],
+%%if matches(lang,jsx?):		"func-call-spacing":                                                                      ["warn", "never"],
+%%if matches(lang,tsx?):		"func-call-spacing": ["off"], "@typescript-eslint/func-call-spacing":                     ["warn", "never"],
+		"function-call-argument-newline":                           ["warn", "consistent"],
+		"function-paren-newline":                                   ["warn", "multiline"],
+		"generator-star-spacing":                                   ["warn", {"before": true, "after": true}],
+		"implicit-arrow-linebreak":                                 ["warn", "beside"],
+%%if matches(lang,jsx?):		"indent":                                                                                 ["warn", "tab", { "SwitchCase": 1 }],
+%%if matches(lang,tsx?):		"indent": ["off"], "@typescript-eslint/indent":                                           ["warn", "tab", { "SwitchCase": 1 }],
+		"key-spacing":                                              ["warn", { "align": "colon" }],
+%%if matches(lang,jsx?):		"keyword-spacing":                                                                        ["warn", { "before": true, "after": true }],
+%%if matches(lang,tsx?):		"keyword-spacing": ["off"], "@typescript-eslint/keyword-spacing":                         ["warn", { "before": true, "after": true }],
+		"linebreak-style":                                          ["warn", "unix"],
+%%if matches(lang,jsx?):		"lines-between-class-members":                                                            ["warn", "always", { "exceptAfterSingleLine": true }],
+%%if matches(lang,tsx?):		"lines-between-class-members": ["off"], "@typescript-eslint/lines-between-class-members": ["warn", "always", { "exceptAfterSingleLine": true }],
+		"multiline-ternary":                                        ["warn", "always-multiline"],
+		"newline-per-chained-call":                                 ["warn", { "ignoreChainWithDepth": 4 }],
+		"no-mixed-spaces-and-tabs":                                 ["warn"],
+		"no-multi-spaces":                                          ["off"], // disallow multiple spaces
+		"no-multiple-empty-lines":                                  ["warn", { "max": 1, "maxBOF": 0, "maxEOF": 0 }],
+		"no-tabs":                                                  ["off"],//["warn", {"allowIndentationTabs": true}],
+		"no-trailing-spaces":                                       ["warn"],
+		"no-whitespace-before-property":                            ["warn"],
+		"nonblock-statement-body-position":                         ["off"], // TODO be more rigid for this one ?
+		"object-curly-newline":                                     ["warn", { "multiline": true, "consistent": true , "minProperties": 3 }],
+%%if matches(lang,jsx?):		"object-curly-spacing":                                                                   ["warn", "always"],
+%%if matches(lang,tsx?):		"object-curly-spacing": ["off"], "@typescript-eslint/object-curly-spacing":               ["warn", "always"],
+		"object-property-newline":                                  ["warn", { "allowAllPropertiesOnSameLine": true }], //
+		"operator-linebreak":                                       ["warn", "before", { "overrides": { "=": "after"}}],
+		"padded-blocks":                                            ["warn", "never"],
+		"padding-line-between-statements":                          ["off"], // TODO check if we can enforce intellgent empty lines
+		"rest-spread-spacing":                                      ["warn", "never"],
+		"semi-style":                                               ["warn", "last"],
+		"semi-spacing":                                             ["warn", { "before": false, "after": true }],
+		"space-before-blocks":                                      ["warn", "always"],
+%%if matches(lang,jsx?):		"space-before-function-paren":                                                            ["warn", { "named": "never", "anonymous": "always", "asyncArrow": "always" }],
+%%if matches(lang,tsx?):		"space-before-function-paren": ["off"], "@typescript-eslint/space-before-function-paren": ["warn", { "named": "never", "anonymous": "always", "asyncArrow": "always" }],
+		"space-in-parens":                                          ["warn", "never"],
+%%if matches(lang,jsx?):		"space-infix-ops":                                                                        ["warn"],
+%%if matches(lang,tsx?):		"space-infix-ops": ["off"], "@typescript-eslint/space-infix-ops":                         ["warn"],
+		"space-unary-ops":                                          ["warn", { "words": true, "nonwords": false }],
+		"switch-colon-spacing":                                     ["warn", { "before": false, "after": true }],
+		"template-curly-spacing":                                   ["warn", "never"],
+		"template-tag-spacing":                                     ["warn", "never"],
+		"yield-star-spacing":                                       ["warn"],
+%%if matches(lang,tsx?)
+		"@typescript-eslint/type-annotation-spacing":               ["warn", { "before": false, "after": false, "overrides": { "arrow": { "before": true, "after": true }} } ],
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/no-adjacent-inline-elements":                        ["warn"], // Prevent adjacent inline elements not separated by whitespace.
+		"react/static-property-placement":                          ["warn"], // Defines where React component static properties should be positioned.
+		"react/jsx-closing-bracket-location":                       ["warn"], // Validate closing bracket location in JSX
+		"react/jsx-closing-tag-location":                           ["warn"], // Validate closing tag location for multiline JSX
+		"react/jsx-curly-newline":                                  ["warn"], // Enforce consistent line breaks inside jsx curly
+		"react/jsx-curly-spacing":                                  ["warn"], // Enforce or disallow spaces inside of curly braces in JSX attributes
+		"react/jsx-equals-spacing":                                 ["warn"], // Disallow or enforce spaces around equal signs in JSX attributes
+		"react/jsx-first-prop-new-line":                            ["warn"], // Ensure proper position of the first property in JSX
+		"react/jsx-indent":                                         ["warn"], // Validate JSX indentation
+		"react/jsx-indent-props":                                   ["warn"], // Validate props indentation in JSX
+		"react/jsx-newline":                                        ["warn"], // Require or prevent a new line after jsx elements and expressions.
+		"react/jsx-one-expression-per-line":                        ["warn"], // Limit to one expression per line in JSX
+		"react/jsx-props-no-multi-spaces":                          ["warn"], // Disallow multiple spaces between inline JSX props
+		"react/jsx-space-before-closing":                           ["warn"], // Validate spacing before closing bracket in JSX
+		"react/jsx-tag-spacing":                                    ["warn"], // Validate whitespace in and around the JSX opening and closing brackets
+%%end if
+
+		// STYLE: nomenclature & sorting choices
+		"func-names":                                               ["off"],//["warn", "as-needed"],
+		"func-name-matching":                                       ["off"],
+		"id-denylist":                                              ["off"],
+		"id-length":                                                ["off"],
+		"id-match":                                                 ["off"],
+		"new-cap":                                                  ["off"],
+		"no-underscore-dangle":                                     ["off"],
+		"sort-keys":                                                ["off"],
+		"sort-vars":                                                ["off"],
+		"sort-imports":                                             ["off", { "allowSeparatedGroups": true }], // enforce sorted import declarations within modules
+%%if matches(lang,tsx?)
+		"@typescript-eslint/naming-convention": [
+			"warn",
+			{ "selector": "function", "format": [ "PascalCase" ] },
+			{ "selector": "variable", "format": [ "camelCase" ] },
+			{ "selector": "variable", "types": [ "array" ], "format": [ "PascalCase" ], "suffix": [ "s" ] },
+			{ "selector": "variable", "types": [ "boolean" ], "format": [ "PascalCase" ], "prefix": [ "is", "has", "are" ] },
+			{ "selector": "typeAlias", "format": [ "PascalCase" ], "prefix": [ "T_" ] },
+			{ "selector": "interface", "format": [ "PascalCase" ], "prefix": [ "I_" ] },
+			{ "selector": "enum", "format": [ "PascalCase" ], "prefix": [ "E_" ] }
+		],
+		"@typescript-eslint/sort-type-union-intersection-members":  ["off"], // Enforces that members of a type union/intersection are sorted alphabetically
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/boolean-prop-naming":                                ["off"], // Enforces consistent naming for boolean props
+		"react/sort-comp":                                          ["off"], // Enforce component methods order
+		"react/sort-prop-types":                                    ["off"], // Enforce propTypes declarations alphabetical sorting
+		"react/jsx-pascal-case":                                    ["off"], // Enforce PascalCase for user-defined JSX components
+		"react/jsx-sort-default-props":                             ["off"], // Enforce default props alphabetical sorting
+		"react/jsx-sort-props":                                     ["off"], // Enforce props alphabetical sorting
+		"react/jsx-handler-names":                                  ["off"], // Enforce event handler naming conventions in JSX
+%%end if
+
+		// STYLE: comment style
+		"capitalized-comments":                                     ["off"],
+		"line-comment-position":                                    ["off"],
+		"lines-around-comment":                                     ["off"],
+		"multiline-comment-style":                                  ["off"],
+		"no-inline-comments":                                       ["off"],
+		"spaced-comment":                                           ["off"],//["warn", "always"],
+
+		// STYLE: maximum limits
+		"max-depth":                                                ["off"],
+		"max-len":                                                  ["warn"],
+		"max-lines":                                                ["off"],
+		"max-lines-per-function":                                   ["off"],
+		"max-nested-callbacks":                                     ["off"],
+		"max-params":                                               ["off"],
+		"max-statements":                                           ["off"],
+		"max-statements-per-line":                                  ["warn", {"max": 1}],
+		"max-classes-per-file":                                     ["off"], // enforce a maximum number of classes per file
+%%if matches(lang,[jt]sx)
+		"react/jsx-max-depth":                                      ["off"], // Validate JSX maximum depth
+		"react/jsx-max-props-per-line":                             ["off"], // Limit maximum of props on a single line in JSX
+%%end if
+
+		// STYLE: code explicitness/synonymity
+		"arrow-body-style":                                         ["warn", "always"], // require braces around arrow function bodies
+		"arrow-parens":                                             ["warn", "always"], // require parentheses around arrow function arguments
+		"consistent-this":                                          ["warn", "this"],
+		"curly":                                                    ["warn", "multi-or-nest"],
+		"default-case-last":                                        ["off"], // enforce default clauses in switch statements to be last
+%%if matches(lang,jsx?):		"dot-notation":                                                                           ["off"], // enforce dot notation whenever possible
+%%if matches(lang,tsx?):		"dot-notation": ["off"], "@typescript-eslint/dot-notation":                               ["off"], // enforce dot notation whenever possible
+		"eol-last":                                                 ["warn", "always"],
+		"func-style":                                               ["warn", "declaration", { "allowArrowFunctions": true }],
+%%if matches(lang,jsx?):		"init-declarations":                                                                      ["off"], // require or disallow initialization in variable declarations
+%%if matches(lang,tsx?):		"init-declarations": ["off"], "@typescript-eslint/init-declarations":                     ["off"], // require or disallow initialization in variable declarations
+		"jsx-quotes":                                               ["warn", "prefer-double"],
+		"new-parens":                                               ["warn"],
+		"no-floating-decimal":                                      ["off"], // disallow leading or trailing decimal points in numeric literals
+		"no-implicit-coercion":                                     ["off"], // disallow shorthand type conversions
+		"no-lonely-if":                                             ["warn"],
+%%if matches(lang,jsx?):		"no-magic-numbers":                                                                       ["off"], // disallow magic numbers
+%%if matches(lang,tsx?):		"no-magic-numbers": ["off"], "@typescript-eslint/no-magic-numbers":                       ["off"], // disallow magic numbers
+		"no-mixed-operators":                                       ["warn"],
+		"no-self-assign":                                           ["off"], // disallow assignments where both sides are exactly the same
+		"no-self-compare":                                          ["off"], // disallow comparisons where both sides are exactly the same
+		"no-unneeded-ternary":                                      ["off"],//["warn"],
+		"object-shorthand":                                         ["off"], // require or disallow method and property shorthand syntax for object literals
+		"one-var":                                                  ["warn", "never"],
+		"one-var-declaration-per-line":                             ["off"],
+		"operator-assignment":                                      ["warn", "always"],
+		"prefer-object-spread":                                     ["off"],//["warn"],
+		"prefer-exponentiation-operator":                           ["off"],//["warn"],
+		"prefer-arrow-callback":                                    ["off"], // require using arrow functions for callbacks
+		"prefer-const":                                             ["off"], // require `const` declarations for variables that are never reassigned after declared
+		"prefer-destructuring":                                     ["off"], // require destructuring from arrays and/or objects
+		"prefer-template":                                          ["off"], // require template literals instead of string concatenation
+		"prefer-regex-literals":                                    ["off"], // disallow use of the `RegExp` constructor in favor of regular expression literals
+		"quote-props":                                              ["warn", "consistent-as-needed"],
+%%if matches(lang,jsx?):		"quotes":                                                                                 ["warn", "double"],
+%%if matches(lang,tsx?):		"quotes": ["off"], "@typescript-eslint/quotes":                                           ["warn", "double"],
+%%if matches(lang,jsx?):		"semi":                                                                                   ["warn", "always"],
+%%if matches(lang,tsx?):		"semi": ["off"], "@typescript-eslint/semi":                                               ["warn", "always"],
+		"unicode-bom":                                              ["warn", "never"],
+		"wrap-regex":                                               ["off"],//["warn"],
+%%if matches(lang,tsx?)
+		"@typescript-eslint/array-type":                            ["off"], // Requires using either T[] or Array<T> for arrays
+		"@typescript-eslint/class-literal-property-style":          ["off"], // Ensures that literals on classes are exposed in a consistent style
+		"@typescript-eslint/consistent-indexed-object-style":       ["off"], // Enforce or disallow the use of the record type
+		"@typescript-eslint/consistent-type-assertions":            ["off"], // Enforces consistent usage of type assertions (`<type>` or `as`)
+		"@typescript-eslint/consistent-type-definitions":           ["off"], // Enforces consistent type definitions (`interface A {}` or `type A = {};`)
+		"@typescript-eslint/consistent-type-imports":               ["off"], // Enforces consistent usage of type imports (`import A from "."` or `import type A from "."`)
+		"@typescript-eslint/explicit-function-return-type":         ["warn"], // Require explicit return types on functions and class methods
+		"@typescript-eslint/explicit-member-accessibility":         ["off"], // Require explicit accessibility modifiers on class properties and methods
+		"@typescript-eslint/explicit-module-boundary-types":        ["off"], // Require explicit return and argument types on exported functions' and classes' public class methods
+		"@typescript-eslint/member-delimiter-style":                ["off"], // Require a specific member delimiter style for interfaces and type literals
+		"@typescript-eslint/member-ordering":                       ["off"], // Require a consistent member declaration order
+		"@typescript-eslint/method-signature-style":                ["off"], // Enforces using a particular method type syntax (`func(arg:string):number;` or `func:(arg:string)=>number;`)
+		"@typescript-eslint/no-unnecessary-type-arguments":         ["off"], // Enforces that type arguments will not be used if not required
+		"@typescript-eslint/no-unnecessary-type-assertion":         ["off"], // Warns if a type assertion does not change the type of an expression
+		"@typescript-eslint/no-unnecessary-type-constraint":        ["off"], // Disallows unnecessary constraints on generic types
+		"@typescript-eslint/non-nullable-type-assertion-style":     ["off"], // Prefers a non-null assertion over explicit type cast when possible
+		"@typescript-eslint/prefer-enum-initializers":              ["off"], // Prefer initializing each enums member value
+		"@typescript-eslint/triple-slash-reference":                ["off"], // Sets preference level for triple slash directives versus ES6-style import declarations
+		"@typescript-eslint/typedef":                               ["off"], // Requires type annotations to exist
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/function-component-definition":                      ["off"], // Standardize the way function component get defined
+		"react/jsx-boolean-value":                                  ["off"], // Enforce boolean attributes notation in JSX
+		"react/jsx-child-element-spacing":                          ["off"], // Ensures inline tags are not rendered without spaces between them
+		"react/jsx-curly-brace-presence":                           ["off"], // Disallow unnecessary JSX expressions when literals alone are sufficient
+		"react/jsx-fragments":                                      ["off"], // Enforce shorthand or standard form for React fragments
+		"react/jsx-no-literals":                                    ["off"], // Prevent using string literals in React component definition
+		"react/jsx-wrap-multilines":                                ["off"], // Prevent missing parentheses around multilines JSX
+%%end if
+
+		// STYLE: forbid features
+%%if matches(lang,jsx?):		"no-array-constructor":                                                                      ["off"],//["warn"],
+%%if matches(lang,tsx?):		"no-array-constructor": ["off"], "@typescript-eslint/no-array-constructor":                  ["off"],//["warn"],
+		"no-bitwise":                                               ["off"], // disallow the use of bitwise operators: `&`, `|`, `<<`, `>>`
+		"no-continue":                                              ["off"], // disallow the use of the `continue` control-flow keyword
+		"no-multi-assign":                                          ["off"], // disallow multiple assignments on a single line
+		"no-negated-condition":                                     ["off"], // disallow the use of negative conditions, where a simpler alternative is possible
+		"no-nested-ternary":                                        ["off"], // disallow the use of ternary operators nested inside other ternary operations
+		"no-new-object":                                            ["off"], // disallow the use of the `new` class constuctor keyword
+		"no-plusplus":                                              ["off"], // disallow the use of `++` and `--` operators, [pre/post]-[in/de]crement
+		"no-ternary":                                               ["off"], // disallow the use of `. ? . : .` ternary operators
+		"no-alert":                                                 ["off"], // disallow the use of `alert`, `confirm`, and `prompt`
+		"no-multi-str":                                             ["off"], // disallow multiline strings
+		"no-sequences":                                             ["off"], // disallow comma operators
+
+
+		// LOGIC RULES
+		// LOGIC: forbid features
+		"no-restricted-exports":                                    ["off"], // disallow specified names in exports
+		"no-restricted-imports":                                    ["off"], // disallow specified modules when loaded by `import`
+		"no-restricted-properties":                                 ["off"], // disallow certain properties on certain objects
+		"no-restricted-globals":                                    ["off"], // disallow specified global variables
+		"no-restricted-syntax":                                     ["off"],
+		"no-caller":                                                ["off"], // disallow the use of `arguments.caller` or `arguments.callee`
+		"no-console":                                               ["off"], // disallow the use of `console`
+		"no-control-regex":                                         ["off"], // disallow control characters in regular expressions
+		"no-extend-native":                                         ["off"], // disallow extending native types
+		"no-labels":                                                ["off"], // disallow labeled statements
+		"no-octal-escape":                                          ["off"], // disallow octal escape sequences in string literals
+		"no-param-reassign":                                        ["off"], // disallow reassigning `function` parameters
+		"no-void":                                                  ["off"], // disallow `void` operators
+		"no-with":                                                  ["off"], // disallow `with` statements
+%%if matches(lang,jsx?):		"no-shadow":                                                                          ["off"], // disallow variable declarations from shadowing variables declared in the outer scope
+%%if matches(lang,tsx?):		"no-shadow": ["off"], "@typescript-eslint/no-shadow":                                 ["off"], // disallow variable declarations from shadowing variables declared in the outer scope
+%%if matches(lang,tsx?)
+		"@typescript-eslint/ban-ts-comment":                        ["off"], // Bans @ts-<directive> comments from being used or requires descriptions after directive
+		"@typescript-eslint/ban-tslint-comment":                    ["off"], // Bans // tslint:<rule-flag> comments from being used
+		"@typescript-eslint/ban-types":                             ["off"], // Bans specific types from being used
+		"@typescript-eslint/no-explicit-any":                       ["warn"],// Disallow usage of the any type
+		"@typescript-eslint/no-parameter-properties":               ["off"], // Disallow the use of parameter properties in class constructors
+		"@typescript-eslint/no-type-alias":                         ["off"], // Disallow the use of type aliases
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/forbid-component-props":                             ["off"], // Forbid certain props on components
+		"react/forbid-dom-props":                                   ["off"], // Forbid certain props on DOM Nodes
+		"react/forbid-elements":                                    ["off"], // Forbid certain elements
+		"react/forbid-foreign-prop-types":                          ["off"], // Forbid using another component's propTypes
+		"react/forbid-prop-types":                                  ["off"], // Forbid certain propTypes
+		"react/no-set-state":                                       ["off"], // Prevent usage of setState
+%%end if
+		
+		// LOGIC: code readability
+		"complexity":                                               ["off"], // enforce a maximum cyclomatic complexity allowed in a program
+%%if matches(lang,jsx?):		"default-param-last":                                                                 ["off"], // enforce default parameters to be last
+%%if matches(lang,tsx?):		"default-param-last": ["off"], "@typescript-eslint/default-param-last":               ["off"], // enforce default parameters to be last
+		"grouped-accessor-pairs":                                   ["off"], // require get/set accessor pairs to be grouped together
+		"no-confusing-arrow":                                       ["off"], // disallow arrow functions where they could be confused with comparisons
+		"no-div-regex":                                             ["off"], // disallow division operators explicitly at the beginning of regular expressions
+%%if matches(lang,jsx?):		"no-duplicate-imports":                                                               ["warn"], // disallow duplicate module imports
+%%if matches(lang,tsx?):		"no-duplicate-imports": ["off"], "@typescript-eslint/no-duplicate-imports":           ["warn"], // disallow duplicate module imports
+		"no-else-return":                                           ["off"], // disallow `else` blocks after `return` statements in `if` statements
+		"no-extra-boolean-cast":                                    ["off"], // disallow unnecessary boolean casts
+%%if matches(lang,jsx?):		"no-extra-parens":                                                                    ["off"], // disallow unnecessary parentheses
+%%if matches(lang,tsx?):		"no-extra-parens": ["off"], "@typescript-eslint/no-extra-parens":                     ["off"], // disallow unnecessary parentheses
+%%if matches(lang,jsx?):		"no-extra-semi":                                                                      ["off"], // disallow unnecessary semicolons
+%%if matches(lang,tsx?):		"no-extra-semi": ["off"], "@typescript-eslint/no-extra-semi":                         ["off"], // disallow unnecessary semicolons
+		"no-octal":                                                 ["off"], // disallow octal literals
+		"no-regex-spaces":                                          ["off"], // disallow multiple spaces in regular expressions
+		"no-return-assign":                                         ["off"], // disallow assignment operators in `return` statements
+		"no-sparse-arrays":                                         ["off"], // disallow sparse arrays
+		"no-undef-init":                                            ["off"], // disallow initializing variables to `undefined`
+		"no-unexpected-multiline":                                  ["off"], // disallow confusing multiline expressions
+		"no-useless-backreference":                                 ["off"], // disallow useless backreferences in regular expressions
+%%if matches(lang,jsx?):		"no-useless-constructor":                                                             ["off"], // disallow unnecessary constructors
+%%if matches(lang,tsx?):		"no-useless-constructor": ["off"], "@typescript-eslint/no-useless-constructor":       ["off"], // disallow unnecessary constructors
+		"no-useless-computed-key":                                  ["off"], // disallow unnecessary computed property keys in objects and classes
+		"no-useless-rename":                                        ["off"], // disallow renaming import, export, and destructured assignments to the same name
+		"no-useless-catch":                                         ["off"], // disallow unnecessary `catch` clauses
+		"no-useless-concat":                                        ["off"], // disallow unnecessary concatenation of literals or template literals
+		"no-useless-escape":                                        ["off"], // disallow unnecessary escape characters
+		"no-useless-return":                                        ["off"], // disallow redundant return statements
+		"vars-on-top":                                              ["off"], // require `var` declarations be placed at the top of their containing scope
+		"wrap-iife":                                                ["off"], // require parentheses around immediate `function` invocations
+		"yoda":                                                     ["off"], // require or disallow "Yoda" conditions
+%%if matches(lang,tsx?)
+		"@typescript-eslint/adjacent-overload-signatures":          ["off"], // Require that member overloads be consecutive
+		"@typescript-eslint/no-confusing-non-null-assertion":       ["off"], // Disallow non-null assertion in locations that may be confusing
+		"@typescript-eslint/no-inferrable-types":                   ["off"], // Disallows explicit type declarations for variables or parameters initialized to a number, string, or boolean
+		"@typescript-eslint/no-extra-non-null-assertion":           ["off"], // Disallow extra non-null assertion
+		"@typescript-eslint/unified-signatures":                    ["off"], // Warns for any two overloads that could be unified into one by using a union or an optional/rest parameter
+		"@typescript-eslint/no-unnecessary-qualifier":              ["off"], // Warns when a namespace qualifier is unnecessary
+		"@typescript-eslint/no-extraneous-class":                   ["off"], // Forbids the use of classes as namespaces
+		"@typescript-eslint/strict-boolean-expressions":            ["off"], // Restricts the types allowed in boolean expressions
+		"@typescript-eslint/restrict-template-expressions":         ["off"], // Enforce template literal expressions to be of string (or configured) type
+		"@typescript-eslint/restrict-plus-operands":                ["off"], // When adding two variables, operands must both be of type number or of type string
+		"@typescript-eslint/prefer-as-const":                       ["off"], // Prefer usage of as const over literal type
+		"@typescript-eslint/prefer-function-type":                  ["off"], // Use function types instead of interfaces with call signatures
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/destructuring-assignment":                           ["off"], // Enforce consistent usage of destructuring assignment of props, state, and context
+		"react/no-multi-comp":                                      ["off"], // Prevent multiple component definition per file
+		"react/self-closing-comp":                                  ["off"], // Prevent extra closing tags for components without children
+		"react/jsx-props-no-spreading":                             ["off"], // Prevent JSX prop spreading
+%%end if
+		
+		// LOGIC: code cleanup for production
+		"no-constant-condition":                                    ["warn"], // disallow constant expressions in conditions
+		"no-empty":                                                 ["warn"], // disallow empty block statements
+		"no-empty-character-class":                                 ["warn"], // disallow empty character classes in regular expressions
+%%if matches(lang,jsx?):		"no-empty-function":                                                                  ["warn"], // disallow empty functions
+%%if matches(lang,tsx?):		"no-empty-function": ["off"], "@typescript-eslint/no-empty-function":                 ["warn"], // disallow empty functions
+		"no-unused-labels":                                         ["warn"], // disallow unused labels
+%%if matches(lang,jsx?):		"no-unused-expressions":                                                              ["warn"], // disallow unused expressions
+%%if matches(lang,tsx?):		"no-unused-expressions": ["off"], "@typescript-eslint/no-unused-expressions":         ["warn"], // disallow unused expressions
+%%if matches(lang,jsx?):		"no-unused-vars":                                                                     ["warn"], // disallow unused variables
+%%if matches(lang,tsx?):		"no-unused-vars": ["off"], "@typescript-eslint/no-unused-vars":                       ["warn"], // disallow unused variables
+		"no-warning-comments":                                      ["warn"], // disallow specified warning terms in comments
+		"no-debugger":                                              ["warn"], // disallow the use of `debugger`
+%%if matches(lang,tsx?)
+		"@typescript-eslint/no-empty-interface":                    ["warn"], // Disallow the declaration of empty interfaces
+		"@typescript-eslint/no-non-null-assertion":                 ["warn"], // Disallows non-null assertions using the ! postfix operator
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/default-props-match-prop-types":                     ["warn"], // Enforce all defaultProps are defined and not "required" in propTypes.
+		"react/no-unused-prop-types":                               ["warn"], // Prevent definitions of unused prop types
+		"react/no-unused-state":                                    ["warn"], // Prevent definition of unused state fields
+		"react/jsx-uses-react":                                     ["warn"], // "no-unused-vars" Prevent React to be marked as unused
+		"react/jsx-uses-vars":                                      ["warn"], // "no-unused-vars" Prevent variables used in JSX to be marked as unused
+%%end if
+		
+		// LOGIC: best practices
+		"accessor-pairs":                                           ["off"], // enforce getter and setter pairs in objects and classes
+		"class-methods-use-this":                                   ["warn"], // enforce that class methods utilize `this`
+		"default-case":                                             ["warn"], // require `default` cases in `switch` statements
+		"eqeqeq":                                                   ["warn"], // require the use of `===` and `!==`
+		"guard-for-in":                                             ["warn"], // require `for-in` loops to include an `if hasOwnProperty` statement
+		"no-await-in-loop":                                         ["warn"], // disallow `await` inside of loops
+		"no-case-declarations":                                     ["warn"], // disallow lexical declarations in case clauses
+		"no-class-assign":                                          ["warn"], // disallow reassigning class members
+		"no-cond-assign":                                           ["warn"], // disallow assignment operators in conditional expressions
+		"no-constructor-return":                                    ["warn"], // disallow returning value from constructor
+		"no-eq-null":                                               ["warn"], // disallow `null` comparisons without type-checking operators
+		"no-ex-assign":                                             ["warn"], // disallow reassigning exceptions in `catch` clauses
+		"no-extra-bind":                                            ["warn"], // disallow unnecessary calls to `.bind()`
+		"no-extra-label":                                           ["warn"], // disallow unnecessary labels
+		"no-func-assign":                                           ["warn"], // disallow reassigning `function` declarations
+		"no-global-assign":                                         ["warn"], // disallow assignments to native objects or read-only global variables
+		"no-import-assign":                                         ["warn"], // disallow assigning to imported bindings
+		"no-inner-declarations":                                    ["warn"], // disallow variable or `function` declarations in nested blocks
+		"no-iterator":                                              ["warn"], // disallow the use of the `__iterator__` propertys
+		"no-new":                                                   ["warn"], // disallow `new` operators outside of assignments or comparisons
+		"no-new-func":                                              ["warn"], // disallow `new` operators with the `Function` object
+		"no-new-wrappers":                                          ["warn"], // disallow `new` operators with the `String`, `Number`, and `Boolean` objects
+		"no-proto":                                                 ["warn"], // disallow the use of the `__proto__` property
+		"no-useless-call":                                          ["warn"], // disallow unnecessary calls to `.call()` and `.apply()`
+%%if matches(lang,jsx?):		"no-dupe-class-members":                                                                ["warn"], // disallow duplicate class members
+%%if matches(lang,tsx?):		"no-dupe-class-members": ["off"], "@typescript-eslint/no-dupe-class-members":           ["warn"], // disallow duplicate class members
+%%if matches(lang,jsx?):		"no-redeclare":                                                                         ["warn"], // disallow variable redeclaration
+%%if matches(lang,tsx?):		"no-redeclare": ["off"], "@typescript-eslint/no-redeclare":                             ["warn"], // disallow variable redeclaration
+%%if matches(lang,jsx?):		"no-throw-literal":                                                                     ["warn"], // disallow throwing literals as exceptions
+%%if matches(lang,tsx?):		"no-throw-literal": ["off"], "@typescript-eslint/no-throw-literal":                     ["warn"], // disallow throwing literals as exceptions
+%%if matches(lang,jsx?):		"return-await":                                                                         ["warn"], // disallow unnecessary `return await`
+%%if matches(lang,tsx?):		"no-return-await": ["off"], "@typescript-eslint/return-await":                          ["warn"], // disallow unnecessary `return await`
+		"no-var":                                                   ["warn"], // require `let` or `const` instead of `var`
+		"prefer-named-capture-group":                               ["warn"], // enforce using named capture group in regular expression
+		"prefer-numeric-literals":                                  ["warn"], // disallow `parseInt()` and `Number.parseInt()` in favor of binary, octal, and hexadecimal literals
+		"prefer-promise-reject-errors":                             ["warn"], // require using Error objects as Promise rejection reasons
+		"prefer-rest-params":                                       ["warn"], // require rest parameters instead of `arguments`
+		"prefer-spread":                                            ["warn"], // require spread operators instead of `.apply()`
+		"radix":                                                    ["warn"], // enforce the consistent use of the radix argument when using `parseInt()`
+		"symbol-description":                                       ["warn"], // require symbol descriptions
+		"valid-typeof":                                             ["warn"], // enforce comparing `typeof` expressions against valid strings
+%%if matches(lang,tsx?)
+		"@typescript-eslint/no-confusing-void-expression":          ["warn"], // Requires expressions of type void to appear in statement position
+		"@typescript-eslint/no-implicit-any-catch":                 ["warn"], // Disallow usage of the implicit any type in catch clauses
+		"@typescript-eslint/no-invalid-void-type":                  ["warn"], // Disallows usage of void type outside of generic or return types
+		"@typescript-eslint/no-namespace":                          ["warn"], // Disallow the use of custom TypeScript modules and namespaces
+		"@typescript-eslint/no-require-imports":                    ["warn"], // Disallows invocation of require
+		"@typescript-eslint/no-this-alias":                         ["warn"], // Disallow aliasing this
+		"@typescript-eslint/no-unnecessary-boolean-literal-compare":["warn"], // Flags unnecessary equality comparisons against boolean literals
+		"@typescript-eslint/no-var-requires":                       ["warn"], // Disallows the use of require statements except in import statements
+		"@typescript-eslint/prefer-for-of":                         ["warn"], // Prefer a ‘for-of’ loop over a standard ‘for’ loop if the index is only used to access the array being iterated
+		"@typescript-eslint/prefer-ts-expect-error":                ["warn"], // Recommends using @ts-expect-error over @ts-ignore
+		"@typescript-eslint/prefer-string-starts-ends-with":        ["warn"], // Enforce the use of String#startsWith and String#endsWith instead of other equivalent methods of checking substrings
+		"@typescript-eslint/prefer-namespace-keyword":              ["warn"], // Require the use of the namespace keyword instead of the module keyword to declare custom TypeScript modules
+		"@typescript-eslint/prefer-includes":                       ["warn"], // Enforce includes method over indexOf method
+		"@typescript-eslint/prefer-nullish-coalescing":             ["warn"], // Enforce the usage of the nullish coalescing operator instead of logical chaining
+		"@typescript-eslint/prefer-optional-chain":                 ["warn"], // Prefer using concise optional chain expressions instead of chained logical ands
+		"@typescript-eslint/prefer-readonly":                       ["warn"], // Requires that private members are marked as readonly if they're never modified outside of the constructor
+		"@typescript-eslint/prefer-readonly-parameter-types":       ["off"], // Requires that function parameters are typed as readonly to prevent accidental mutation of inputs
+		"@typescript-eslint/prefer-reduce-type-parameter":          ["warn"], // Prefer using type parameter when calling Array#reduce instead of casting
+		"@typescript-eslint/prefer-regexp-exec":                    ["warn"], // Enforce that RegExp#exec is used instead of String#match if no global flag is provided
+		"@typescript-eslint/prefer-return-this-type":               ["warn"], // Enforce that this is used when only this type is returned
+		"@typescript-eslint/promise-function-async":                ["warn"], // Requires any function or method that returns a Promise to be marked async
+		"@typescript-eslint/require-array-sort-compare":            ["warn"], // Requires Array#sort calls to always provide a compareFunction
+		"@typescript-eslint/switch-exhaustiveness-check":           ["warn"], // Exhaustiveness checking in switch with union type
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/button-has-type":                                    ["warn"], // Forbid `<button>` element without an explicit "type" attribute
+		"react/display-name":                                       ["warn"], // Prevent missing displayName in a React component definition
+		"react/no-access-state-in-setstate":                        ["warn"], // Reports when this.state is accessed within setState
+		"react/no-array-index-key":                                 ["warn"], // Prevent usage of Array index in keys
+		"react/no-children-prop":                                   ["warn"], // Prevent passing of children as props.
+		"react/no-deprecated":                                      ["warn"], // Prevent usage of deprecated methods
+		"react/no-find-dom-node":                                   ["warn"], // Prevent usage of findDOMNode
+		"react/no-is-mounted":                                      ["warn"], // Prevent usage of isMounted
+		"react/no-string-refs":                                     ["warn"], // Prevent string definitions for references and prevent referencing this.refs
+		"react/no-unsafe":                                          ["warn"], // Prevent usage of unsafe lifecycle methods
+		"react/no-unstable-nested-components":                      ["warn"], // Prevent creating unstable components inside components
+		"react/prefer-es6-class":                                   ["warn"], // Enforce ES5 or ES6 class for React Components
+		"react/prefer-exact-props":                                 ["warn"], // Prefer exact proptype definitions
+		"react/prefer-read-only-props":                             ["warn"], // Require read-only props.
+		"react/prefer-stateless-function":                          ["warn"], // Enforce stateless components to be written as a pure function
+		"react/require-default-props":                              ["warn"], // Enforce a defaultProps definition for every prop that is not a required prop.
+		"react/require-optimization":                               ["warn"], // Enforce React components to have a shouldComponentUpdate method
+		"react/state-in-constructor":                               ["warn"], // State initialization in an ES6 class component should be in a constructor
+		"react/style-prop-object":                                  ["warn"], // Enforce style prop value is an object
+		"react/jsx-filename-extension":                             ["warn"], // Restrict file extensions that may contain JSX
+		"react/jsx-key":                                            ["warn"], // Report missing key props in iterators/collection literals
+		"react/jsx-no-bind":                                        ["warn"], // Prevents usage of Function.prototype.bind and arrow functions in React component props
+		"react/jsx-no-constructed-context-values":                  ["warn"], // Prevents JSX context provider values from taking values that will cause needless rerenders.
+		"react/jsx-no-useless-fragment":                            ["warn"], // Disallow unnecessary fragments
+%%end if
+		
+		// LOGIC: probable logic errors
+		"array-callback-return":                                    ["warn"], // enforce `return` statements in callbacks of array methods
+		"block-scoped-var":                                         ["warn"], // enforce the use of variables within the scope they are defined
+		"consistent-return":                                        ["warn"], // require `return` statements to either always or never specify values
+		"for-direction":                                            ["warn"], // enforce "for" loop update clause moving the counter in the right direction.
+		"getter-return":                                            ["warn"], // enforce `return` statements in getters
+		"no-async-promise-executor":                                ["warn"], // disallow using an async function as a Promise executor
+		"no-compare-neg-zero":                                      ["warn"], // disallow comparing against -0
+		"no-delete-var":                                            ["warn"], // disallow deleting variables
+		"no-dupe-args":                                             ["warn"], // disallow duplicate arguments in `function` definitions
+		"no-dupe-keys":                                             ["warn"], // disallow duplicate keys in object literals
+		"no-dupe-else-if":                                          ["warn"], // disallow duplicate conditions in if-else-if chains
+		"no-duplicate-case":                                        ["warn"], // disallow duplicate case labels
+		"no-empty-pattern":                                         ["warn"], // disallow empty destructuring patterns
+		"no-fallthrough":                                           ["warn"], // disallow fallthrough of `case` statements
+		"no-label-var":                                             ["warn"], // disallow labels that share a name with a variable
+		"no-lone-blocks":                                           ["warn"], // disallow unnecessary nested blocks
+%%if matches(lang,jsx?):		"no-invalid-this":                                                                       ["warn"], // disallow `this` keywords outside of classes or class-like objects
+%%if matches(lang,tsx?):		"no-invalid-this": ["off"], "@typescript-eslint/no-invalid-this":                        ["warn"], // disallow `this` keywords outside of classes or class-like objects
+%%if matches(lang,jsx?):		"no-loop-func":                                                                          ["warn"], // disallow function declarations that contain unsafe references inside loop statements
+%%if matches(lang,tsx?):		"no-loop-func": ["off"], "@typescript-eslint/no-loop-func":                              ["warn"], // disallow function declarations that contain unsafe references inside loop statements
+%%if matches(lang,jsx?):		"no-loss-of-precision":                                                                  ["warn"], // disallow literal numbers that lose precision
+%%if matches(lang,tsx?):		"no-loss-of-precision": ["off"], "@typescript-eslint/no-loss-of-precision":              ["warn"], // disallow literal numbers that lose precision
+		"no-misleading-character-class":                            ["warn"], // disallow characters which are made with multiple code points in character class syntax
+		"no-nonoctal-decimal-escape":                               ["warn"], // disallow `\8` and `\9` escape sequences in string literals
+		"no-promise-executor-return":                               ["warn"], // disallow returning values from Promise executor functions
+		"no-setter-return":                                         ["warn"], // disallow returning values from setters
+		"no-shadow-restricted-names":                               ["warn"], // disallow identifiers from shadowing restricted names
+		"no-template-curly-in-string":                              ["warn"], // disallow template literal placeholder syntax in regular strings
+		"no-unmodified-loop-condition":                             ["warn"], // disallow unmodified loop conditions
+		"no-undef":                                                 ["off"], // disallow the use of undeclared variables unless mentioned in `/*global */` comments - NOTE: typescript already handles this
+		"no-undefined":                                             ["warn"], // disallow the use of `undefined` as an identifier
+		"no-unreachable":                                           ["warn"], // disallow unreachable code after `return`, `throw`, `continue`, and `break` statements
+		"no-unreachable-loop":                                      ["warn"], // disallow loops with a body that allows only one iteration
+		"no-unsafe-negation":                                       ["warn"], // disallow negating the left operand of relational operators
+%%if matches(lang,jsx?):		"no-use-before-define":                                                                  ["warn"], // disallow the use of variables before they are defined
+%%if matches(lang,tsx?):		"no-use-before-define": ["off"], "@typescript-eslint/no-use-before-define":              ["warn"], // disallow the use of variables before they are defined
+%%if matches(lang,jsx?):		"require-await":                                                                         ["warn"], // disallow async functions which have no `await` expression
+%%if matches(lang,tsx?):		"require-await": ["off"], "@typescript-eslint/require-await":                            ["warn"], // disallow async functions which have no `await` expression
+		"require-yield":                                            ["warn"], // require generator functions to contain `yield`
+		"require-unicode-regexp":                                   ["warn"], // enforce the use of `u` flag on RegExp
+		"use-isnan":                                                ["warn"], // require calls to `isNaN()` when checking for `NaN`
+%%if matches(lang,tsx?)
+		"@typescript-eslint/await-thenable":                        ["warn"], // Disallows awaiting a value that is not a Thenable
+		"@typescript-eslint/no-base-to-string":                     ["warn"], // Requires that .toString() is only called on objects which provide useful information when stringified
+		"@typescript-eslint/no-floating-promises":                  ["warn"], // Requires Promise-like values to be handled appropriately
+		"@typescript-eslint/no-for-in-array":                       ["warn"], // Disallow iterating over an array with a for-in loop
+		"@typescript-eslint/no-unnecessary-condition":              ["warn"], // Prevents conditionals where the type is always truthy or always falsy
+		"@typescript-eslint/no-misused-new":                        ["warn"], // Enforce valid definition of new and constructor
+		"@typescript-eslint/no-misused-promises":                   ["warn"], // Avoid using promises in places not designed to handle them
+		"@typescript-eslint/unbound-method":                        ["warn"], // Enforces unbound methods are called with their expected scope
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/no-did-mount-set-state":                             ["warn"], // Prevent usage of setState in componentDidMount
+		"react/no-did-update-set-state":                            ["warn"], // Prevent usage of setState in componentDidUpdate
+		"react/no-direct-mutation-state":                           ["warn"], // Prevent direct mutation of this.state
+		"react/no-redundant-should-component-update":               ["warn"], // Flag shouldComponentUpdate when extending PureComponent
+		"react/no-render-return-value":                             ["warn"], // Prevent usage of the return value of React.render
+		"react/no-this-in-sfc":                                     ["warn"], // Report "this" being used in stateless components
+		"react/no-typos":                                           ["warn"], // Prevent common typos
+		"react/no-unescaped-entities":                              ["warn"], // Detect unescaped HTML entities, which might represent malformed tags
+		"react/no-unknown-property":                                ["warn"], // Prevent usage of unknown DOM property
+		"react/no-will-update-set-state":                           ["warn"], // Prevent usage of setState in componentWillUpdate
+		"react/prop-types":                                         ["warn"], // Prevent missing props validation in a React component definition
+		"react/require-render-return":                              ["warn"], // Enforce ES5 or ES6 class for returning value in render function
+		"react/void-dom-elements-no-children":                      ["warn"], // Prevent passing of children to void DOM elements (e.g. <br />).
+		"react/jsx-no-comment-textnodes":                           ["warn"], // Comments inside children section of tag should be placed inside braces
+		"react/jsx-no-undef":                                       ["warn"], // Disallow undeclared variables in JSX
+%%end if
+		
+		// LOGIC: security risks & vulnerabilities
+		"no-eval":                                                  ["warn"], // disallow the use of `eval()`
+%%if matches(lang,jsx?):		"no-implied-eval":                                                                    ["warn"], // disallow the use of `eval()`-like methods
+%%if matches(lang,tsx?):		"no-implied-eval": ["off"], "@typescript-eslint/no-implied-eval":                     ["warn"], // disallow the use of `eval()`-like methods
+		"no-script-url":                                            ["warn"], // disallow `javascript:` urls
+%%if matches(lang,[jt]sx)
+		"react/no-danger":                                          ["warn"], // Prevent usage of dangerous JSX props
+		"react/no-danger-with-children":                            ["warn"], // Report when a DOM element is using both children and dangerouslySetInnerHTML
+		"react/jsx-no-script-url":                                  ["warn"], // Forbid javascript: URLs
+		"react/jsx-no-target-blank":                                ["warn"], // Forbid target="_blank" attribute without rel="noreferrer"
+%%end if
+		
+		// LOGIC: runtime-error-causing problems
+		"constructor-super":                                        ["warn"], // require `super()` calls in constructors
+		"no-const-assign":                                          ["warn"], // disallow reassigning `const` variables
+		"no-invalid-regexp":                                        ["warn"], // disallow invalid regular expression strings in `RegExp` constructors
+		"no-irregular-whitespace":                                  ["warn"], // disallow irregular uncommon whitespace characters
+		"no-obj-calls":                                             ["warn"], // disallow calling global object properties as functions
+		"no-prototype-builtins":                                    ["warn"], // disallow calling some `Object.prototype` methods directly on objects
+		"no-new-symbol":                                            ["warn"], // disallow `new` operators with the `Symbol` object
+		"no-this-before-super":                                     ["warn"], // disallow `this`/`super` before calling `super()` in constructors
+		"no-unsafe-finally":                                        ["warn"], // disallow control flow statements in `finally` blocks
+		"no-unsafe-optional-chaining":                              ["warn"], // disallow use of optional chaining in contexts where the `undefined` value is not allowed
+		"require-atomic-updates":                                   ["warn"], // disallow assignments that can lead to race conditions due to usage of `await` or `yield`
+%%if matches(lang,tsx?)
+		"@typescript-eslint/no-dynamic-delete":                     ["warn"], // Disallow the delete operator with computed key expressions
+		"@typescript-eslint/no-unsafe-argument":                    ["warn"], // Disallows calling an function with an any type value
+		"@typescript-eslint/no-unsafe-assignment":                  ["warn"], // Disallows assigning any to variables and properties
+		"@typescript-eslint/no-unsafe-call":                        ["warn"], // Disallows calling an any type value
+		"@typescript-eslint/no-unsafe-member-access":               ["warn"], // Disallows member access on any typed variables
+		"@typescript-eslint/no-unsafe-return":                      ["warn"], // Disallows returning any from a function
+		"@typescript-eslint/no-non-null-asserted-optional-chain":   ["warn"], // Disallows using a non-null assertion after an optional chain expression
+		"@typescript-eslint/prefer-literal-enum-member":            ["warn"], // Require that all enum members be literal values to prevent unintended enum member name shadow issues
+%%end if
+%%if matches(lang,[jt]sx)
+		"react/react-in-jsx-scope":                                 ["warn"], // Prevent missing React when using JSX
+		"react/jsx-no-duplicate-props":                             ["warn"], // Enforce no duplicate props
+%%end if
+
+		"camelcase":                                                ["off"]
+	}
+}
+
+

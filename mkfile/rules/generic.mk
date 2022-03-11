@@ -58,6 +58,7 @@ generic:
 				sources=`grep "$${folder}" $(SRCSFILE)`;\
 				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`;\
 			" \
+			-f './cccmk/scripts/util.awk' \
 			-f './cccmk/scripts/template.awk' \
 			"$(GENERIC_TEMPLATE)" > $${output} ; \
 	done

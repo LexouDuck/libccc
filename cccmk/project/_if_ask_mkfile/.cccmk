@@ -1,0 +1,7 @@
+#!/bin/sh -e
+
+prompt_message="Will this project use make (and the mkfile script-based build system) ?"
+
+if [ "$project_type" == "binding" ]
+then response=true
+fi

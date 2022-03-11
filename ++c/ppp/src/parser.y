@@ -44,7 +44,7 @@ int yydebug = 1;
 
 %locations
 
-%token	PP PP_STRING
+%token	PP PP_STRING /* raw macro contents */
 %token	PP_IF PP_ELIF PP_ELSE PP_ENDIF
 %token	PP_IFDEF PP_IFNDEF
 %token	PP_UNDEF PP_DEFINE

@@ -122,6 +122,9 @@ do
 		cccmk_template "$path_ccc/$file_ccc" "$path_tmp/$file_pwd.new"
 	fi
 
+	# fix file permissions for downloaded file
+	chmod "`file_getmode "$path_ccc/$file_ccc" `" "$path_tmp/$file_pwd.old"
+
 	response=false
 	identical=false
 	overwrite=false
@@ -145,7 +148,7 @@ do
 			else printf " - cccmk-side updates: yes `cccmk_diff_brief "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new" | cut -d' ' -f 3 `\n"
 				
 			fi
-			echo "How do you wish to update '$file_pwd' ?"
+			printf "$io_cyan""How do you wish to update '$file_pwd' ?""$io_reset\n"
 			identical=true
 			while $identical
 			do
@@ -160,8 +163,8 @@ do
 					(overwrite) response=true  ; overwrite=true  ;;
 					(unchanged) response=false ; overwrite=false ;;
 					(show_diff)
-						cccmk_diff "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
-						cccmk_diff "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
+						cccmk_diff_fancy "$path_tmp/$file_pwd.old" "$path_pwd/$file_pwd"
+						cccmk_diff_fancy "$path_tmp/$file_pwd.old" "$path_tmp/$file_pwd.new"
 						continue ;;
 					(*) print_message "Aborting operation" ; exit 1 ;;
 				esac
@@ -170,7 +173,7 @@ do
 		fi
 	else
 		print_warning "Could not find project tracked file '$path_pwd/$file_pwd'."
-		echo "Do you wish to create the file '$file_pwd' using the template ?"
+		printf "$io_cyan""Do you wish to create the file '$file_pwd' using the template ?""$io_reset\n"
 		prompt_question response 'n'
 		identical=false
 	fi

@@ -7,8 +7,8 @@
 
 // the minimal boilerplate needed to store a single vlue in TOML
 #define JSON_TEST(NAME, STR) \
-	t_utf8 const*	NAME		= "{\"\": "STR"}\n";	\
-	t_utf8 const*	NAME##_min	= "{\"\":"STR"}";		\
+	t_utf8 const*	NAME		= STR"\n";	\
+	t_utf8 const*	NAME##_min	= STR"";	\
 
 
 
