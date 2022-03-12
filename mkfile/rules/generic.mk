@@ -47,6 +47,9 @@ endef
 .PHONY:\
 generic #! Creates a generic import file for any files given as `GENERIC_HEADERS`
 generic:
+	@if ! [ -d ~/.cccmk ]; then \
+		$(call print_error,"You must install cccmk to use this rule (https://github.com/LexouDuck/libccc)") ; \
+	fi
 	@for i in $(GENERIC_HEADERS) ; do \
 		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||' `" ; \
 		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
@@ -58,8 +61,9 @@ generic:
 				sources=`grep "$${folder}" $(SRCSFILE)`;\
 				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`;\
 			" \
-			-f './cccmk/scripts/util.awk' \
-			-f './cccmk/scripts/template.awk' \
+			-f ~/.cccmk/scripts/util.awk \
+			-f ~/.cccmk/scripts/template-functions.awk \
+			-f ~/.cccmk/scripts/template.awk \
 			"$(GENERIC_TEMPLATE)" > $${output} ; \
 	done
 
