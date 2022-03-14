@@ -1,4 +1,0 @@
-#!/bin/sh -e
-
-# initial project setup
-after_create='make init version'

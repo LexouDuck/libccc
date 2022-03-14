@@ -43,6 +43,11 @@
 
 HEADER_CPP
 
+// This include fixes a problem where <math.h> ends up being included after <libccc/float.h>
+#if LIBCONFIG_USE_STD_MATH
+#include <math.h>
+#endif
+
 #ifndef __DOXYGEN__
 
 /*!@doc

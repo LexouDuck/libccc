@@ -6,11 +6,16 @@
 TEST_LOGDIR = $(LOGDIR)test/
 
 
+ifdef __EMSCRIPTEN__
+LAUNCH_TEST = node $(NAME_TEST)
+else
+LAUNCH_TEST = ./$(NAME_TEST)
+endif
 
 .PHONY:\
 test #! Runs the test suite program, with the given 'ARGS'
 test: $(NAME_TEST)
-	@./$(NAME_TEST) $(ARGS)
+	@$(LAUNCH_TEST) $(ARGS)
 
 
 
@@ -18,7 +23,7 @@ test: $(NAME_TEST)
 test-logs #! Builds and runs the test suite program with the given 'ARGS', logging all results to files
 test-logs: $(NAME_TEST)
 	@mkdir -p $(TEST_LOGDIR)$(OSMODE)/
-	@./$(NAME_TEST) -var --test-all $(ARGS) >> $(TEST_LOGDIR)$(OSMODE)/$(NAME_TEST).txt
+	@$(LAUNCH_TEST) -var --test-all $(ARGS) >> $(TEST_LOGDIR)$(OSMODE)/$(NAME_TEST).txt
 
 .PHONY:\
 clean-test-logs #! Deletes any test suite logs
@@ -33,6 +38,8 @@ test-memory: $(NAME_TEST)
 	@mkdir -p $(LOGDIR)leaks/
 ifeq ($(OSMODE),other)
 	@$(call print_error,"Unsupported platform: requires manual configuration") ; exit 1
+else ifeq ($(OSMODE),emscripten)
+	@$(call print_error,"Unsupported platform: emscripten test-memory not implemented") ; exit 1
 else ifeq ($(OSMODE),win32)
 	@$(call print_error,"Windows 32-bit platform: requires manual configuration") ; exit 1
 else ifeq ($(OSMODE),win64)
