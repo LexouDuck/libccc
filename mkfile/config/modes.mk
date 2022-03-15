@@ -54,6 +54,7 @@ ifeq ($(LIBMODE),dynamic)
 endif
 
 
+
 #! Define all possible supported platforms
 OSMODES = \
 	win32	\
