@@ -43,7 +43,7 @@ HEADER_CPP
 	{														\
 		t_char* tmp_errorname = Error_GetName(ERRORCODE);	\
 		IO_Write_Format(STDERR,								\
-			"libccc: "C_RED"error"C_RESET"(%s): %s\n",		\
+			"libccc: "C_RED"error"C_RESET"[%s]: %s\n",		\
 			tmp_errorname, MESSAGE);						\
 		String_Delete(&tmp_errorname);						\
 	}														\

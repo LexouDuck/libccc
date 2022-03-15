@@ -39,6 +39,14 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+#if __STDC__ >= __STDC_VERSION_C11__
+typedef errno_t	t_errno;
+#else
+typedef int	t_errno;
+#endif
+
+
+
 //! The function pointer type for an error-handling function
 typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 

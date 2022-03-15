@@ -18,6 +18,7 @@
 #endif
 
 #include "libccc.h"
+#include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/sys/time.h"
@@ -43,6 +44,18 @@ void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 
 
 static
+void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* message)
+{
+	Log_FatalError(NULL, message);
+	if (error == ERROR_SYSTEM)
+	{
+		Log_FatalError(NULL, Error_STDC(error));
+	}
+}
+
+
+
+static
 void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
 {
 	t_size	wrote;
@@ -56,136 +69,136 @@ void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char 
 
 
 e_cccerror	Log_VA(s_logger const* logger,
-	t_bool			verbose_only,
-	t_bool			use_errno,
 	int				error_code,
 	t_char const*	prefix,
 	t_char const*	prefix_color,
-	t_char const*	format_str,
+	t_char const*	suffix,
+	t_char const*	format,
 	va_list			args)
 {
-	if (( logger->silence_logs   && !error_code) ||
-		( logger->silence_errors &&  error_code) ||
-		(!logger->verbose        && verbose_only))
-		return (OK);
+	t_char*	timestamp  = (logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL);
+	t_char* prefix_str = NULL;
+	t_char* suffix_str = NULL;
+	t_char*	log_fmt = NULL;
+	t_char*	log_msg = NULL;
+	t_size length;
+	f_ccchandler handlers[ENUMLENGTH_CCCERROR] = {0};
 
-	t_char*	error_str = NULL;
-	if (use_errno)
+	if (format == NULL)
 	{
-		error_str = Error_STDC(errno);
+		Log_FatalError(logger, "Log_VA() received NULL format string argument");
+		return (ERROR_NULLPOINTER);
 	}
-	t_char*	full_format_str = NULL;
-	t_char*	log_msg			= NULL;
-	t_char*	timestamp 		= logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL;
-/*
-	size_t	length = String_Length(time_now_utc);
-	if (length > 0 && time_now_utc[length - 1] == '\n')
-		time_now_utc[length - 1] = '\0';
-*/
-	if (logger->format == LOGFORMAT_ANSI)
+	// temporarily disable error-handling to avoid any infinite recursion
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
-		if (use_errno)
+		handlers[i] = Error_GetHandler(i);
+		Error_SetAllHandlers(Log_Logger_ErrorHandler);
+	}
+	// construct log prefix string, according to current config
+	if (prefix && prefix[0] != '\0')
+	{
+		if (prefix_color && logger->format == LOGFORMAT_ANSI)
+			prefix_str = String_Format("%s%s"C_RESET": ", prefix_color, prefix);
+		else
+			prefix_str = String_Format("%s: ", prefix);
+	}
+	// construct log suffix string, according to current config
+	if (suffix && suffix[0] != '\0')
+	{
+		suffix_str = String_Format("\n -> %s", suffix);
+	}
+
+	if (logger->format != LOGFORMAT_JSON)
+	{
+		t_char* message_str = NULL;
+		message_str = String_Format("%s%s%s",
+			(prefix_str ? prefix_str : ""),
+			format,
+			(suffix_str ? suffix_str : ""));
+		if (message_str == NULL)
 		{
-			full_format_str = String_Format("%s%s%s%s%s%s%s-> %s%s",
-				timestamp ? timestamp : "",
-				prefix_color ? prefix_color : "",
-				prefix,
-				prefix_color ? C_RESET": " : "",
-				format_str,
-				format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n",
-				timestamp ? LOG_TIMESTAMP_INDENT : " ",
-				error_str,
-				error_str[0] != '\0' && error_str[String_Length(error_str) - 1] == '\n' ? "" : "\n");
+			Log_FatalError(logger, "Could not construct log message");
+			goto failure;
 		}
 		else
 		{
-			full_format_str = String_Format("%s%s%s%s%s%s",
-				timestamp ? timestamp : "",
-				prefix_color ? prefix_color : "",
-				prefix,
-				prefix_color ? C_RESET": " : "",
-				format_str,
-				format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n");
+			t_char* tmp = message_str;
+			Error_SetAllHandlers(NULL);
+			message_str = String_ToEscape(message_str, "");
+			Error_SetAllHandlers(Log_Logger_ErrorHandler);
+			String_Delete(&tmp);
 		}
-	}
-	else if (logger->format == LOGFORMAT_TEXT)
-	{
-		if (use_errno)
+		if (logger->timestamp)
 		{
-			full_format_str = String_Format("%s%s%s%s%s-> %s%s",
-				timestamp ? timestamp : "",
-				prefix,
-				format_str,
-				format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n",
-				timestamp ? LOG_TIMESTAMP_INDENT : " ",
-				error_str,
-				error_str[0] != '\0' && error_str[String_Length(error_str) - 1] == '\n' ? "" : "\n");
+			t_char* tmp = timestamp;
+			timestamp = String_Format("    \"timestamp\": \"%s\",\n", timestamp);
+			String_Delete(&tmp);
 		}
-		else
+		t_char* status_str = NULL;
+		if (error_code)
 		{
-			full_format_str = String_Format("%s%s%s%s",
-				timestamp ? timestamp : "",
-				prefix,
-				format_str,
-				format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n");
+			status_str = String_Format("    \"status\": %i\n", error_code);
 		}
-	}
-	else if (logger->format == LOGFORMAT_JSON)
-	{
-		if (use_errno)
-		{
-			full_format_str = String_Format(
-				"\n{"
-				"%s%s%s"
-				"\n    message: \"%s%s%s"
-				"-> %s%s\","
-				"\n    status: %d"
-				"\n}",
-				(timestamp ? "\n    timestamp: " : ""), (timestamp ? timestamp : ""), (timestamp ? ",\n" : ""),
-				prefix, format_str, (format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n"),
-				error_str, (error_str[0] != '\0' && error_str[String_Length(error_str) - 1] == '\n' ? "" : "\n"),
-				error_code
-			);
-		}
-		else
-		{
-			full_format_str = String_Format(
-				"\n{"
-				"%s%s%s"
-				"\n    message: \"%s%s%s\","
-				"\n    status: %d"
-				"\n}",
-				(timestamp ? "\n    timestamp: " : ""), (timestamp ? timestamp : ""), (timestamp ? ",\n" : ""),
-				prefix, format_str, (format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n"),
-				error_code
-			);
-		}
+		log_fmt = String_Format(
+			"{\n"
+			"%s"
+			"%s"
+			"    \"message\": \"%s\",\n"
+			"}\n",
+			(status_str ? status_str : ""),
+			(timestamp  ? timestamp  : ""),
+			message_str);
+		String_Delete(&status_str);
+		String_Delete(&message_str);
 	}
 	else
 	{
-		full_format_str = String_Format(
-			"UNIMPLEMENTED LOGGING FORMAT: %d\n"
-			"%s%s",
-			logger->format,
-			format_str, (format_str[0] != '\0' && format_str[String_Length(format_str) - 1] == '\n' ? "" : "\n")
-		);
+		if (logger->timestamp)
+		{
+			t_char* tmp = timestamp;
+			timestamp = String_Format("%s | ", timestamp);
+			String_Delete(&tmp);
+		}
+		t_char* format_str = String_Duplicate(format);
+		length = String_Length(format_str);
+		if (format_str[length - 1] == '\n')
+			format_str[length - 1] = '\0';
+		log_fmt = String_Format("%s%s%s%s",
+			(timestamp  ? timestamp  : ""),
+			(prefix_str ? prefix_str : ""),
+			format_str,
+			(suffix_str ? suffix_str : ""));
+		if (logger->timestamp)
+		{
+			t_char* tmp = log_fmt;
+			log_fmt = String_Replace_String(log_fmt, "\n", "\n"LOG_TIMESTAMP_INDENT" | ");
+			String_Delete(&tmp);
+		}
 	}
 	String_Delete(&timestamp);
-	String_Delete(&error_str);
+	String_Delete(&prefix_str);
+	String_Delete(&suffix_str);
 
-	if (full_format_str == NULL)
+	if (log_fmt == NULL)
 	{
 		Log_FatalError(logger, "Could not construct log message format string");
-		return (ERROR);
+		goto failure;
 	}
-
+	length = String_Length(log_fmt);
+	if (log_fmt[0] != '\0' && log_fmt[length - 1] != '\n')
+	{
+		log_fmt = Memory_Reallocate(log_fmt, length + 2);
+		log_fmt[length + 0] = '\n';
+		log_fmt[length + 1] = '\0';
+	}
 	// NB: a va_list (in this case, 'args') can only be called ONCE (for every va_start), or else will segfault
-	log_msg = String_Format_VA(full_format_str, args);
-	String_Delete(&full_format_str);
+	log_msg = String_Format_VA(log_fmt, args);
+	String_Delete(&log_fmt);
 	if (log_msg == NULL)
 	{
 		Log_FatalError(logger, "Could not construct log message");
-		return (ERROR);
+		goto failure;
 	}
 	else
 	{
@@ -198,28 +211,43 @@ e_cccerror	Log_VA(s_logger const* logger,
 		}
 	}
 	String_Delete(&log_msg);
-
+	// re-enable error-handling
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		Error_SetHandler(i, handlers[i]);
+	}
 	return (OK);
+
+failure:
+	// re-enable error-handling
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		Error_SetHandler(i, handlers[i]);
+	}
+	// cleanup
+	String_Delete(&timestamp);
+	String_Delete(&prefix_str);
+	String_Delete(&suffix_str);
+	String_Delete(&log_fmt);
+	String_Delete(&log_msg);
+	return (ERROR);
 }
 
 
 
 e_cccerror 	Log(s_logger const* logger,
-	t_bool verbose_only,
-	t_bool use_errno,
-	t_bool is_error,
-	t_char const* format_str, ...)
+	t_char const* message,
+	t_char const* format, ...)
 {
 	e_cccerror result;
 	va_list args;
-	va_start(args, format_str);
+	va_start(args, format);
 	result = Log_VA(logger,
-		verbose_only,
-		use_errno,
-		is_error,
+		OK,
 		NULL,
 		NULL,
-		format_str,
+		message,
+		format,
 		args);
 	va_end(args);
 	return (result);
