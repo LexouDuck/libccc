@@ -109,7 +109,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		suffix_str = String_Format("\n -> %s", suffix);
 	}
 
-	if (logger->format != LOGFORMAT_JSON)
+	if (logger->format == LOGFORMAT_JSON)
 	{
 		t_char* message_str = NULL;
 		message_str = String_Format("%s%s%s",
