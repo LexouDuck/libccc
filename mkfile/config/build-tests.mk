@@ -95,7 +95,7 @@ TEST_LDLIBS_OS_win64 =
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
-TEST_LDLIBS_OS_emscripten =  -lm
+TEST_LDLIBS_OS_emscripten = -lm
 ifneq ($(findstring mingw,$(CC)),)
 TEST_LDLIBS_OS += -L./ -static-libgcc
 endif

@@ -24,7 +24,7 @@ SOURCES="`{ make show-lists ; make help-makefiles ; } | cut -d' ' -f 1 `"
 
 match=false
 
-for i in "$CHANGED"
+for i in $CHANGED
 do
 	if printf "$SOURCES" | grep -q "./$i"
 	then
