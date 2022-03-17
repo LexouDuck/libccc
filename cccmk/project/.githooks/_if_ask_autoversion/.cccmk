@@ -1,3 +1,0 @@
-#!/bin/sh -e
-
-prompt_message="Include the project automatic version incrementing githooks scripts ?"

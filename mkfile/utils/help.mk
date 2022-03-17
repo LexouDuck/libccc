@@ -12,6 +12,8 @@ $(eval MKFILES :=  $(MKFILE_PATH) $(MKFILES))
 MKFILES := $(MKFILES) $(shell cat $(MKFILES)     | grep '^include\b' | cut -d' ' -f 2-)
 $(eval MKFILES := $(MKFILES))
 MKFILES := $(shell echo "$(MKFILES)" | tr '[:space:]' '\n' | awk '!x[$$0]++')
+# make all paths be relative to project root folder
+MKFILES := $(patsubst $(CURRENT_DIR)/%,./%, $(MKFILES))
 
 
 #! Set the root project directory, if not yet set (ROOTDIR is necessary for complex projects)

@@ -1,3 +1,0 @@
-#!/bin/sh -e
-
-prompt_message="Include the automatic git commit message format enforcer githooks script ?"

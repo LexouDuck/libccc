@@ -1,7 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=%[appname]%
-Comment=%[description]%
-Version=%[version]%
-Exec=%[name]%
-Icon=%[icon]%

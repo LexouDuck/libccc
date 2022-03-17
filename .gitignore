@@ -14,12 +14,14 @@
 /dist/
 
 # Testing
-/log/coverage/
-/log/**/*.log
-/log/**/*.txt
+/coverage/
+test/_test.c
 pclint_*.*
 
 # Logs
+/log/coverage/
+/log/**/*.log
+/log/**/*.txt
 /log/
 /logs/
 log.txt

@@ -14,43 +14,23 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
-/*
 
-e_cccerror	LogAll(t_logptrarr const loggers,
-	t_bool verbose_only,
-	t_bool is_error,
-	t_bool use_errno,
-	t_char const* format_str, ...)
-{
-	LOGALL_FUNCTION_CONTENT(verbose_only, is_error, use_errno, "", NULL)
-}
 
-*/
+e_cccerror	   Log_Error	(s_logger    const* logger, t_char const* error, t_char const* format_str, ...)	{                                                                                                               LOGONE_FUNCTION_CONTENT((logger->silence_errors), OK,    error, LOGPREFIX_ERROR, C_RED) }
+e_cccerror	LogAll_Error	(t_logptrarr const loggers, t_char const* error, t_char const* format_str, ...)	{                                                                                                               LOGALL_FUNCTION_CONTENT((logger->silence_errors), OK,    error, LOGPREFIX_ERROR, C_RED) }
+e_cccerror	   Log_Error_STD(s_logger    const* logger, t_errno       error, t_char const* format_str, ...)	{ t_char* errormsg = Error_STDC(error);       t_char* prefix = String_Format(LOGPREFIX_ERROR"[STD:%d]", error); LOGONE_FUNCTION_CONTENT((logger->silence_errors), error, errormsg, prefix,       C_RED) String_Delete(&prefix); String_Delete(&errormsg); }
+e_cccerror	LogAll_Error_STD(t_logptrarr const loggers, t_errno       error, t_char const* format_str, ...)	{ t_char* errormsg = Error_STDC(error);       t_char* prefix = String_Format(LOGPREFIX_ERROR"[STD:%d]", error); LOGALL_FUNCTION_CONTENT((logger->silence_errors), error, errormsg, prefix,       C_RED) String_Delete(&prefix); String_Delete(&errormsg); }
+e_cccerror	   Log_Error_CCC(s_logger    const* logger, e_cccerror    error, t_char const* format_str, ...)	{ t_char* errormsg = Error_GetMessage(error); t_char* prefix = String_Format(LOGPREFIX_ERROR"[CCC:%d]", error); LOGONE_FUNCTION_CONTENT((logger->silence_errors), error, errormsg, prefix,       C_RED) String_Delete(&prefix); String_Delete(&errormsg); }
+e_cccerror	LogAll_Error_CCC(t_logptrarr const loggers, e_cccerror    error, t_char const* format_str, ...)	{ t_char* errormsg = Error_GetMessage(error); t_char* prefix = String_Format(LOGPREFIX_ERROR"[CCC:%d]", error); LOGALL_FUNCTION_CONTENT((logger->silence_errors), error, errormsg, prefix,       C_RED) String_Delete(&prefix); String_Delete(&errormsg); }
 
-// TODO get rid of `int errorcode` errno-value arguments in favor of `e_cccerror` error codes
+e_cccerror	   Log_Failure(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_errors), OK, NULL, LOGPREFIX_FAILURE, C_RED)    }
+e_cccerror	LogAll_Failure(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_errors), OK, NULL, LOGPREFIX_FAILURE, C_RED)    }
+e_cccerror	   Log_Warning(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_WARNING, C_YELLOW) }
+e_cccerror	LogAll_Warning(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_WARNING, C_YELLOW) }
+e_cccerror	   Log_Success(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_SUCCESS, C_GREEN)  }
+e_cccerror	LogAll_Success(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_SUCCESS, C_GREEN)  }
+e_cccerror	   Log_Message(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_MESSAGE, C_BLUE)   }
+e_cccerror	LogAll_Message(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_MESSAGE, C_BLUE)   }
+e_cccerror	   Log_Verbose(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((!logger->verbose),       OK, NULL, LOGPREFIX_VERBOSE, C_BLUE)   }
+e_cccerror	LogAll_Verbose(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((!logger->verbose),       OK, NULL, LOGPREFIX_VERBOSE, C_BLUE)   }
 
-//! To be called when there is an error which does not use errno
-e_cccerror	Log_Error				(s_logger const* logger, int error_code, t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE, error_code,    "Error: ", C_RED)    }
-//! To be called when there is an error that sets errno
-e_cccerror	Log_Error_IO			(s_logger const* logger, int error_code, t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE,  TRUE, error_code, "IO Error: ", C_RED)    }
-//! To be called when there is an important warning to show to the user
-e_cccerror	Log_Warning				(s_logger const* logger,                 t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE,          0,  "Warning: ", C_YELLOW) }
-//! To be called when there is an successful operation (or result) to notify the user of
-e_cccerror	Log_Success				(s_logger const* logger,                 t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE,          0,  "Success: ", C_GREEN)  }
-//! To be called when there is user-useful data to be logged (operation successful with value X returned, etc)
-e_cccerror	Log_Message				(s_logger const* logger,                 t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT(FALSE, FALSE,          0,           "", NULL)     }
-//! To be called when there is "verbose" data to be logged
-e_cccerror	Log_Message_Verbose		(s_logger const* logger,                 t_char const* format_str, ...)		{ LOGONE_FUNCTION_CONTENT( TRUE, FALSE,          0,           "", NULL)     }
-
-//! To be called when there is an error which does not use errno
-e_cccerror	LogAll_Error			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE, FALSE, error_code,    "Error: ", C_RED)    }
-//! To be called when there is an error that sets errno
-e_cccerror	LogAll_Error_IO			(t_logptrarr const loggers, int error_code, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE,  TRUE, error_code, "IO Error: ", C_RED)    }
-// To be called when there is an important warning to show to the user
-e_cccerror	LogAll_Warning			(t_logptrarr const loggers,                 t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE, FALSE,          0,  "Warning: ", C_YELLOW) }
-// To be called when there is an successful operation (or result) to notify the user of
-e_cccerror	LogAll_Success			(t_logptrarr const loggers,                 t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE, FALSE,          0,  "Success: ", C_GREEN)  }
-// To be called when there is user-useful data to be logged (operation successful with value X returned, etc)
-e_cccerror	LogAll_Message			(t_logptrarr const loggers,                 t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT(FALSE, FALSE,          0,           "", NULL)     }
-// To be called when there is "verbose" data to be logged
-e_cccerror	LogAll_Message_Verbose	(t_logptrarr const loggers,                 t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT( TRUE, FALSE,          0,           "", NULL)     }
