@@ -26,7 +26,6 @@ TEST_CFLAGS_MODE_debug = \
 #! C compiler flags which are only present in "release" build mode
 TEST_CFLAGS_MODE_release = \
 	-O3 \
-	-flto \
 	-D RELEASE=1
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
@@ -42,7 +41,8 @@ ifneq ($(findstring clang,$(CC)),)
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
-TEST_CFLAGS_EXTRA = 
+TEST_CFLAGS_EXTRA ?= \
+#	-flto \
 #	-fanalyzer \
 #	-fsanitize=address \
 #	-fsanitize=thread \
@@ -72,7 +72,7 @@ TEST_LDFLAGS_OS_other =
 TEST_LDFLAGS_OS_emscripten = 
 
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
-TEST_LDFLAGS_EXTRA ?= 
+TEST_LDFLAGS_EXTRA ?= \
 
 
 
@@ -101,7 +101,7 @@ TEST_LDLIBS_OS += -L./ -static-libgcc
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
-TEST_LDLIBS_EXTRA ?= 
+TEST_LDLIBS_EXTRA ?= \
 #	-L/usr/local/lib -ltsan \
 
 
@@ -129,4 +129,4 @@ TEST_INCLUDES_OS_other =
 TEST_INCLUDES_OS_emscripten = 
 
 #! This variable is intentionally empty, to specify additional header directories from the commandline
-TEST_INCLUDES_EXTRA ?= 
+TEST_INCLUDES_EXTRA ?= \
