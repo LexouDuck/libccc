@@ -35,6 +35,8 @@ $(error Building dynamic library with emscripten is not supported. Please use st
 endif
 endif
 
+#! Define build target name for library, according to current $(LIBMODE)
+NAME_LIBMODE  = $(NAME_$(LIBMODE))
 #! Define build target name for static library with appropriate file extensions
 NAME_static  = $(NAME).$(LIBEXT_static)
 #! Define build target name for dynamic library with appropriate file extensions
@@ -42,9 +44,6 @@ NAME_dynamic = $(NAME).$(LIBEXT_dynamic)
 ifdef __EMSCRIPTEN__
 NAME_dynamic := 
 endif
-
-#! Define build target name for library with appropriate file extension according to LIBMODE
-NAME_LIBMODE = $(NAME_$(LIBMODE))
 
 
 
@@ -90,16 +89,9 @@ LIBEXT_static=a
 #! The file extension used for dynamic library files
 LIBEXT_dynamic=
 ifeq ($(OSMODE),other)
-<<<<<<< ./mkfile/config/modes.mk
-	LIBEXT_DYNAMIC=
-else ifeq ($(OSMODE),emscripten)
-	# We don't support dynamic libraries with emscripten
-	LIBEXT_DYNAMIC=
-||||||| .cccmk_update/mkfile/config/modes.mk.old
-	LIBEXT_DYNAMIC=
-=======
 	LIBEXT_dynamic=
->>>>>>> .cccmk_update/mkfile/config/modes.mk.new
+else ifeq ($(OSMODE),emscripten)
+	LIBEXT_dynamic=# We don't support dynamic libraries with emscripten
 else ifeq ($(OSMODE),win32)
 	LIBEXT_dynamic=dll
 else ifeq ($(OSMODE),win64)
