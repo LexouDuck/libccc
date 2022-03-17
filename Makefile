@@ -12,7 +12,7 @@ CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
 # Custom variable to detect when Makefile is called through `emmake make`
 ifdef EMSCRIPTEN
 __EMSCRIPTEN__ = 1
-$(info "'EMSCRIPTEN' is defined, building for emscripten platform")
+$(info 'EMSCRIPTEN' is defined, building for emscripten platform...)
 else ifeq ($(OSMODE),emscripten)
 $(error You need to call 'emmake make' instead of simply 'make' if you want to build with emscripten. \
 	see https://emscripten.org/docs/compiling/Building-Projects.html#integrating-with-a-build-system)
