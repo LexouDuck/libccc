@@ -107,8 +107,9 @@ TEST_LDLIBS_EXTRA ?=
 
 
 #! GNU conventional variable: List of included folders, which store header code files
-TEST_INCLUDES = -I$(TESTDIR) \
+TEST_INCLUDES = \
 	-I$(HDRDIR) \
+	-I$(TESTDIR) \
 	$(TEST_INCLUDES_MODE) \
 	$(TEST_INCLUDES_OS) \
 	$(TEST_INCLUDES_EXTRA)
