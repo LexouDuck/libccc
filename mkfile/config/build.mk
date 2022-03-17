@@ -3,14 +3,14 @@
 
 
 #! GNU conventional variable: archiver program (for static libraries)
-AR ?= ar
+AR = ar
 #! GNU conventional variable: archiver program options
 ARFLAGS = \
 	-r \
 	-c \
 
 #! GNU conventional variable: archive symbol table tool (for static libraries)
-RANLIB ?= ranlib
+RANLIB = ranlib
 #! GNU conventional variable: archive symbol table tool options
 RANLIB_FLAGS = \
 	-D \
