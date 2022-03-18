@@ -36,9 +36,9 @@ endif
 endif
 
 #! Define build target name for library, according to current $(LIBMODE)
-NAME_LIBMODE  = $(NAME_$(LIBMODE))
+NAME_LIBMODE = $(NAME_$(LIBMODE))
 #! Define build target name for static library with appropriate file extensions
-NAME_static  = $(NAME).$(LIBEXT_static)
+NAME_static = $(NAME).$(LIBEXT_static)
 #! Define build target name for dynamic library with appropriate file extensions
 NAME_dynamic = $(NAME).$(LIBEXT_dynamic)
 ifdef __EMSCRIPTEN__

@@ -1,6 +1,7 @@
 libccc.h
 libccc/bool.h
 libccc/char.h
+libccc/compatibility/msvc/unistd.h
 libccc/encode/common.h
 libccc/encode/json.h
 libccc/encode/toml.h
