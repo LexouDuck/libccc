@@ -41,7 +41,7 @@ DEFINEFUNC_PARSE_HEX(32)
 
 
 
-#define PARSINGERROR_UTF16	": Could not parse UTF-16 escape sequence: "
+#define PARSINGERROR_UTF16	"Could not parse UTF-16 escape sequence: "
 #define PARSINGERROR_UTF16_SURROGATE	PARSINGERROR_UTF16"2nd half of surrogate pair -> "
 
 t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)

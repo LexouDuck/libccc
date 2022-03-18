@@ -31,39 +31,73 @@
 static
 void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 {
-	t_char*	tmp;
-
-	tmp = String_Concat("Could not write log message to ", output);
+	t_char*	tmp = String_Concat("Could not write log message to ", output);
 //	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
 	if (tmp == NULL)
-		Log_FatalError(logger, "Could not write log message: allocation failure");
-	else Log_FatalError(logger, tmp);
+		Log_Fatal(logger, "Could not write log message: allocation failure");
+	else Log_Fatal(logger, tmp);
 	String_Delete(&tmp);
 }
 
 
 
 static
-void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* message)
+void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* funcname, t_char const* message)
 {
-	Log_FatalError(NULL, message);
+	t_char*	tmp;
+	if (funcname)
+		tmp = String_Format("%s -> %s", funcname, message);
+	else
+		tmp = String_Duplicate(message);
+	Log_Fatal(NULL, tmp);
 	if (error == ERROR_SYSTEM)
 	{
-		Log_FatalError(NULL, Error_STDC(error));
+		Log_Fatal(NULL, Error_STD_Message(error));
 	}
+	String_Delete(&tmp);
 }
 
 
 
-static
-void	Log_VA_Write(s_logger const* logger, t_fd fd, t_char const* output, t_char const* log_msg)
+e_cccerror 	Log(s_logger const* logger,
+	t_char const* message,
+	t_char const* format, ...)
 {
-	t_size	wrote;
+	e_cccerror result;
+	va_list args;
+	va_start(args, format);
+	result = Log_VA(logger,
+		OK,
+		NULL,
+		NULL,
+		message,
+		format,
+		args);
+	va_end(args);
+	return (result);
+}
 
-	wrote = IO_Write_String(fd, log_msg);
-	HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
-		Log_Logger_FatalError(logger, output);
-	HANDLE_ERROR_FINAL()
+
+
+e_cccerror 	Log_Custom(s_logger const* logger,
+	int				error_code,
+	t_char const*	prefix,
+	t_char const*	prefix_color,
+	t_char const*	suffix,
+	t_char const*	format, ...)
+{
+	e_cccerror result;
+	va_list args;
+	va_start(args, format);
+	result = Log_VA(logger,
+		error_code,
+		prefix,
+		prefix_color,
+		suffix,
+		format,
+		args);
+	va_end(args);
+	return (result);
 }
 
 
@@ -76,7 +110,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_char const*	format,
 	va_list			args)
 {
-	t_char*	timestamp  = (logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL);
+	t_char*	timestamp  = NULL;
 	t_char* prefix_str = NULL;
 	t_char* suffix_str = NULL;
 	t_char*	log_fmt = NULL;
@@ -84,16 +118,27 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_size length;
 	f_ccchandler handlers[ENUMLENGTH_CCCERROR] = {0};
 
-	if (format == NULL)
+	if (logger == NULL)
 	{
-		Log_FatalError(logger, "Log_VA() received NULL format string argument");
+		Log_Fatal(logger, "Log_VA() received NULL logger struct argument");
 		return (ERROR_NULLPOINTER);
 	}
+	if (format == NULL)
+	{
+		Log_Fatal(logger, "Log_VA() received NULL format string argument");
+		return (ERROR_NULLPOINTER);
+	}
+
 	// temporarily disable error-handling to avoid any infinite recursion
 	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		handlers[i] = Error_GetHandler(i);
-		Error_SetAllHandlers(Log_Logger_ErrorHandler);
+	}
+	Error_SetAllHandlers(Log_Logger_ErrorHandler);
+
+	if (logger->timestamp)
+	{
+		timestamp = Logger_GetTimestamp(Time_Now());
 	}
 	// construct log prefix string, according to current config
 	if (prefix && prefix[0] != '\0')
@@ -118,15 +163,15 @@ e_cccerror	Log_VA(s_logger const* logger,
 			(suffix_str ? suffix_str : ""));
 		if (message_str == NULL)
 		{
-			Log_FatalError(logger, "Could not construct log message");
+			Log_Fatal(logger, "Could not construct log message");
 			goto failure;
 		}
 		else
 		{
 			t_char* tmp = message_str;
-			Error_SetAllHandlers(NULL);
+//			Error_SetAllHandlers(NULL);
 			message_str = String_ToEscape(message_str, "");
-			Error_SetAllHandlers(Log_Logger_ErrorHandler);
+//			Error_SetAllHandlers(Log_Logger_ErrorHandler);
 			String_Delete(&tmp);
 		}
 		if (logger->timestamp)
@@ -157,7 +202,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (logger->timestamp)
 		{
 			t_char* tmp = timestamp;
-			timestamp = String_Format("%s | ", timestamp);
+			timestamp = String_Format("%s"LOG_TIMESTAMP_SEPARATOR, timestamp);
 			String_Delete(&tmp);
 		}
 		t_char* format_str = String_Duplicate(format);
@@ -172,7 +217,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (logger->timestamp)
 		{
 			t_char* tmp = log_fmt;
-			log_fmt = String_Replace_String(log_fmt, "\n", "\n"LOG_TIMESTAMP_INDENT" | ");
+			log_fmt = String_Replace_String(log_fmt, "\n", "\n" LOG_TIMESTAMP_INDENT LOG_TIMESTAMP_SEPARATOR);
 			String_Delete(&tmp);
 		}
 	}
@@ -182,7 +227,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 
 	if (log_fmt == NULL)
 	{
-		Log_FatalError(logger, "Could not construct log message format string");
+		Log_Fatal(logger, "Could not construct log message format string");
 		goto failure;
 	}
 	length = String_Length(log_fmt);
@@ -197,58 +242,43 @@ e_cccerror	Log_VA(s_logger const* logger,
 	String_Delete(&log_fmt);
 	if (log_msg == NULL)
 	{
-		Log_FatalError(logger, "Could not construct log message");
+		Log_Fatal(logger, "Could not construct log message");
 		goto failure;
 	}
 	else
 	{
 		if (logger->fd > 0)
 		{
-			Log_VA_Write(logger,
-				logger->fd,
-				logger->path,
-				log_msg);
+			t_size	wrote = IO_Write_String(logger->fd, log_msg);
+			// logging itself failed
+			HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
+				Log_Logger_FatalError(logger, logger->path);
+			HANDLE_ERROR_FINAL()
 		}
 	}
 	String_Delete(&log_msg);
+
 	// re-enable error-handling
 	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		Error_SetHandler(i, handlers[i]);
 	}
+
 	return (OK);
 
 failure:
-	// re-enable error-handling
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
-	{
-		Error_SetHandler(i, handlers[i]);
-	}
 	// cleanup
 	String_Delete(&timestamp);
 	String_Delete(&prefix_str);
 	String_Delete(&suffix_str);
 	String_Delete(&log_fmt);
 	String_Delete(&log_msg);
+
+	// re-enable error-handling
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	{
+		Error_SetHandler(i, handlers[i]);
+	}
+
 	return (ERROR);
-}
-
-
-
-e_cccerror 	Log(s_logger const* logger,
-	t_char const* message,
-	t_char const* format, ...)
-{
-	e_cccerror result;
-	va_list args;
-	va_start(args, format);
-	result = Log_VA(logger,
-		OK,
-		NULL,
-		NULL,
-		message,
-		format,
-		args);
-	va_end(args);
-	return (result);
 }

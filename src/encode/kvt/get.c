@@ -21,7 +21,7 @@
 
 
 #define PARSINGERROR_KVTPATH_MESSAGE \
-	"\n"C_RED"ACCESSOR PATH PARSE ERROR"C_RESET": Could not parse accessor path string: "
+	"\n""could not parse KVT_Get() accessor path string: "
 
 #define PARSINGERROR_KVTPATH(CONDITION, ...) \
 	HANDLE_ERROR_SF(PARSE, CONDITION, goto failure;,	\
@@ -108,7 +108,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			t_s64 index = S64_FromString(key);
 			result = KVT_GetArrayItem(result, index);
 			HANDLE_ERROR_SF(NOTFOUND, (result == NULL), goto failure;,
-				" in array for index "SF_S64, index)
+				"no item in array at index "SF_S64, index)
 		}
 		else if (KVT_Get_IsBareKeyChar(str[i]))
 		{	// object accessor: bare key
@@ -122,7 +122,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			i += length;
 			result = KVT_GetObjectItem(result, key); // TODO find a smart way to handle this problem
 			HANDLE_ERROR_SF(KEYNOTFOUND, (result == NULL), goto failure;,
-				": \"%s\"", key)
+				"no key in object matching \"%s\"", key)
 		}
 		else if (str[i] == '\"')
 		{	// object accessor: quoted key
@@ -140,7 +140,7 @@ s_kvt*	KVT_Get(s_kvt const* object, t_char const* format_path, ...)
 			++i;
 			result = KVT_GetObjectItem(result, key); // TODO find a smart way to handle this problem
 			HANDLE_ERROR_SF(KEYNOTFOUND, (result == NULL), goto failure;,
-				": \"%s\"", key)
+				"no key in object matching \"%s\"", key)
 		}
 		else
 		{
@@ -205,7 +205,7 @@ t_bool	KVT_GetValue_Boolean(s_kvt const* item)
 {
 	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_bool)FALSE);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsBoolean(item)),	return ((t_bool)FALSE);,
-		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
+		"attempted to read value as boolean for key \"%s\", but type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.boolean);
 }
 
@@ -213,7 +213,7 @@ t_s64	KVT_GetValue_Integer(s_kvt const* item)
 {
 	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_s64)0);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsInteger(item)),	return ((t_s64)0);,
-		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
+		"attempted to read value as integer for key \"%s\", but type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.integer);
 }
 
@@ -221,7 +221,7 @@ t_f64	KVT_GetValue_Float(s_kvt const* item)
 {
 	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return ((t_f64)NAN);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsFloat(item)),	return ((t_f64)NAN);,
-		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
+		"attempted to read value as float for key \"%s\", but type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.number);
 }
 
@@ -229,7 +229,7 @@ t_char*	KVT_GetValue_String(s_kvt const* item)
 {
 	HANDLE_ERROR(NULLPOINTER, (item == NULL),			return (NULL);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsString(item)),	return (NULL);,
-		", for key \"%s\", type is %s", item->key, KVT_GetTypeName(item->type))
+		"attempted to read value as string for key \"%s\", but type is %s", item->key, KVT_GetTypeName(item->type))
 	return (item->value.string);
 }
 
@@ -242,11 +242,11 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(array) && !KVT_IsObject(array)), return (NULL);,
-		", for key \"%s\", type is %s", array->key, KVT_GetTypeName(array->type))
+		"attempted to read value as array for key \"%s\", but type is %s", array->key, KVT_GetTypeName(array->type))
 	item = array->value.child;
 	HANDLE_ERROR_SF(NOTFOUND, (item == NULL),
 		return (NULL);,
-		": for index %i", index)
+		"no item in array at index %i", index)
 	i = index;
 	if (i == 0)
 		return (item);
@@ -268,7 +268,7 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (item == NULL),
 		return (NULL);,
-		": for index %i", index)
+		"no item in array at index %i", index)
 	return (item);
 }
 
@@ -282,7 +282,7 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (key == NULL), return (NULL);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(object) && !KVT_IsObject(object)), return (NULL);,
-		", for key \"%s\", type is %s", object->key, KVT_GetTypeName(object->type))
+		"attempted to read value as object for key \"%s\", but type is %s", object->key, KVT_GetTypeName(object->type))
 	item = object->value.child;
 	while (item)
 	{
@@ -294,7 +294,7 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 	}
 	HANDLE_ERROR_SF(KEYNOTFOUND, (error),
 		return (NULL);,
-		": \"%s\"", key)
+		"no key in object matching \"%s\"", key)
 	return (NULL);
 }
 

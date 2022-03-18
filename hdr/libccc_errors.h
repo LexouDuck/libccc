@@ -32,6 +32,15 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+
+
+//!@doc The file to include in source files which use `HANDLE_ERROR()`
+//!@{
+#ifndef LIBCONFIG_ERROR_INCLUDE
+#define LIBCONFIG_ERROR_INCLUDE	"libccc/sys/logger.h"
+#endif
+//!@}
+
 //!@doc These macros allow you to configure how libccc handles exceptions/error cases.
 /*!
 **	These macro functions determine how exception cases are to be handled by libccc.
@@ -39,19 +48,45 @@ HEADER_CPP
 */
 //!@{
 #ifdef DEBUG
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
-	{														\
-		t_char* tmp_errorname = Error_GetName(ERRORCODE);	\
-		IO_Write_Format(STDERR,								\
-			"libccc: "C_RED"error"C_RESET"[%s]: %s\n",		\
-			tmp_errorname, MESSAGE);						\
-		String_Delete(&tmp_errorname);						\
-	}														\
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
+	{\
+		static s_logger logger = DEFAULT_LOGGER_STDERR;\
+		t_char const* errorname = Error_CCC_Name(error);\
+		t_char const* error_msg = Error_CCC_Message(error);\
+		t_char* prefix = String_Format(LOGPREFIX_ERROR"[CCC:%d:%s]", error, errorname);\
+		Log_Custom(&logger,\
+			error,\
+			prefix,\
+			IO_COLOR_FG_RED,\
+			MESSAGE,\
+			"%s -> %s", funcname, error_msg);\
+		String_Delete(&prefix);\
+	}\
 
 #else
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
+	{}
 	
 #endif
+//!@}
+
+
+
+//!@doc The action to take when there is an integer overflow (by default, let it continue)
+//!@{
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
+//	return (VALUE);
+#endif
+#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
+#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
+//	if (dest)	*dest = VALUE;	return (i);
+#endif
+
+// TODO implement configurable return values in cases of number overflow with this macro
+#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
+	CONCAT(TYPE,_ERROR)	//!< configurable error value
+//	(VALUE)				//!< saturated type
 //!@}
 
 

@@ -91,7 +91,7 @@ typedef s_logger const* const*	t_logptrarr;
 	/*.in_use = FALSE,*/\
 	.silence_logs   = FALSE,\
 	.silence_errors = TRUE,\
-	.timestamp      = TRUE,\
+	.timestamp      = FALSE,\
 	.verbose        = FALSE,\
 	.obfuscated     = FALSE,\
 	.append         = FALSE,\
@@ -105,7 +105,7 @@ typedef s_logger const* const*	t_logptrarr;
 	/*.in_use = FALSE,*/\
 	.silence_logs   = TRUE,\
 	.silence_errors = FALSE,\
-	.timestamp      = TRUE,\
+	.timestamp      = FALSE,\
 	.verbose        = FALSE,\
 	.obfuscated     = FALSE,\
 	.append         = FALSE,\
@@ -125,7 +125,10 @@ typedef s_logger const* const*	t_logptrarr;
 ** As such, the amount of spaces here is equivalent to the size of a console log timestamp
 */
 #define LOG_TIMESTAMP_INDENT	"                   "
+//! Separator string used between timestamp and message (if applicable)
+#define LOG_TIMESTAMP_SEPARATOR	" | "
 
+//! Indentation string used for LOGFORMAT_JSON
 #define LOG_JSON_INDENT			"        "
 
 
@@ -244,6 +247,15 @@ e_cccerror 	Log(s_logger const* logger,
 	t_char const*	suffix,
 	t_char const*	format, ...);
 #define c_io_log		Log
+
+_FORMAT(printf, 6, 7)
+e_cccerror 	Log_Custom(s_logger const* logger,
+	int				error_code,
+	t_char const*	prefix,
+	t_char const*	prefix_color,
+	t_char const*	suffix,
+	t_char const*	format, ...);
+#define c_io_log_custom	Log_Custom
 
 e_cccerror	Log_VA(s_logger const* logger,
 	int				error_code,

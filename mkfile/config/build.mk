@@ -32,6 +32,7 @@ CC_OS_emscripten = emcc
 
 #! GNU conventional variable: C compiler options
 CFLAGS = \
+	-Werror \
 	-Wall \
 	-Wextra \
 	-Winline \

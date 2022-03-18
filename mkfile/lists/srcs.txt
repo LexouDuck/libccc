@@ -270,7 +270,9 @@ stringarray/split_charset.c
 stringarray/split_str.c
 stringarray/sub.c
 stringarray/wedge.c
-sys/error.c
+sys/error/error_ccc.c
+sys/error/error_std.c
+sys/error/handler.c
 sys/io/chmod.c
 sys/io/close.c
 sys/io/color.c

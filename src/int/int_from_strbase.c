@@ -68,13 +68,13 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 	digit = String_Base_GetLength(base);											\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
 		PARSE_RETURN(U##BITS##_ERROR),												\
-		": number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
+		"number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE),					\
 		PARSE_RETURN(U##BITS##_ERROR),												\
-		": number base (\"%s\") must not have any duplicate characters", base)		\
+		"number base (\"%s\") must not have any duplicate characters", base)		\
 	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2),										\
 		PARSE_RETURN(U##BITS##_ERROR),												\
-		", number base (\"%s\") should be at least 2 chars long", base)				\
+		"number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
 	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
@@ -83,7 +83,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		if (digit >= 0) break;														\
 		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
 			PARSE_RETURN(U##BITS##_ERROR),											\
-			": expected a number (with spaces/sign), but instead got \"%s\"", str)	\
+			"expected a number (with spaces/sign), but instead got \"%s\"", str)	\
 		++i;																		\
 	}																				\
 	if (str[i] == '+' || str[i] == '-')												\
@@ -94,12 +94,11 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		HANDLE_ERROR_SF(PARSE, (digit < 0),											\
 			PARSE_RETURN(U##BITS##_ERROR),											\
-			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
+			"digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
-			" ("#BITS"-bit unsigned integer overflow for \"%s\" with base \"%s\" at "SF_U##BITS")",		\
-			str, base, U##BITS##_MAX)												\
+			#BITS"-bit unsigned integer overflow for \"%s\" with base \"%s\" at "SF_U##BITS, str, base, U##BITS##_MAX)												\
 		result = tmp;																\
 	}																				\
 	if (dest)	*dest = result;														\
@@ -141,13 +140,13 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 	digit = String_Base_GetLength(base);											\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_SIGNCHAR),					\
 		PARSE_RETURN(S##BITS##_ERROR),												\
-		": number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
+		"number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
 	HANDLE_ERROR_SF(INVALIDARGS, (digit == INVALID_BASE_DUPLICATE),					\
 		PARSE_RETURN(S##BITS##_ERROR),												\
-		": number base (\"%s\") must not have any duplicate characters", base)		\
+		"number base (\"%s\") must not have any duplicate characters", base)		\
 	HANDLE_ERROR_SF(LENGTH2SMALL, (digit < 2),										\
 		PARSE_RETURN(S##BITS##_ERROR),												\
-		", number base (\"%s\") should be at least 2 chars long", base)				\
+		"number base (\"%s\") should be at least 2 chars long", base)				\
 	length = (t_size)digit;															\
 	i = 0;																			\
 	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
@@ -156,7 +155,7 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		if (digit >= 0) break;														\
 		HANDLE_ERROR_SF(PARSE, (!str[i] || !Char_IsSpace(str[i])),					\
 			PARSE_RETURN(S##BITS##_ERROR),											\
-			": expected a number (with spaces/sign), but instead got \"%s\"", str)	\
+			"expected a number (with spaces/sign), but instead got \"%s\"", str)	\
 		++i;																		\
 	}																				\
 	negative = FALSE;																\
@@ -173,15 +172,15 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		HANDLE_ERROR_SF(PARSE, (digit < 0),											\
 			PARSE_RETURN(S##BITS##_ERROR),											\
-			": digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
+			"digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
 		tmp = result * length + digit;												\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
-			" ("#BITS"-bit signed integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
+			#BITS"-bit signed integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS,\
 			str, base, S##BITS##_MIN)												\
 		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX),							\
-			" ("#BITS"-bit signed integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS")",		\
+			#BITS"-bit signed integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS,\
 			str, base, S##BITS##_MAX)												\
 		result = tmp;																\
 	}																				\

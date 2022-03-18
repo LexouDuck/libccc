@@ -22,14 +22,15 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 
 
 
-#define PARSINGERROR_JSON_MESSAGE	IO_COLOR_FG_RED"JSON PARSE ERROR"IO_RESET":"
+//! String which is at the beginning of each error log output line
+#define PARSINGERROR_JSON_PREFIX	"\n -> "
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(...) \
 	{																							\
 		t_char* tmp_error;																		\
 		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend("\n"PARSINGERROR_JSON_MESSAGE" ", &tmp_error);				\
+		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error);						\
 		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
 		goto failure;																			\
 	}																							\
@@ -645,7 +646,7 @@ failure:
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
 		return (p->offset);,
-		": at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
+		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
 		column,

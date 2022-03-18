@@ -21,7 +21,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 		{
 			++i;
 			HANDLE_ERROR_SF(PARSE, (i == n || str[i] == '\0'), return (0);,
-				"String ends with backslash, potential buffer overrun")
+				"string ends with backslash, potential buffer overrun:\n%s", str)
 			switch (str[i])
 			{
 				case 'a':	length += 1 * sizeof(t_char);	break; // Alert (Beep, Bell) (added in C89)[1]
@@ -90,7 +90,7 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 		{
 			++index;
 			HANDLE_ERROR_SF(PARSE, (index == n || str[index] == '\0'), return (0);,
-				"String ends with backslash, potential buffer overrun")
+				"string ends with backslash, potential buffer overrun:\n%s", str)
 			switch (str[index])
 			{
 				case 'a':	result[i++] = '\x07';	break; // Alert (Beep, Bell) (added in C89)[1]

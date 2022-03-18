@@ -67,7 +67,8 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 			{
 				if (c & (1 << 4)) // 4-byte character
 				{
-					HANDLE_ERROR_SF(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);, " ('%c'/0x%4.4X)", (c ? c : '\a'), c)
+					HANDLE_ERROR_SF(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);,
+						"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -94,7 +95,8 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 		}
 		else
 		{
-			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);, " ('%c'/0x%4.4X)", (c ? c : '\a'), c)
+			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+				"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
 		}
 	}
 	else return ((t_utf32)c);

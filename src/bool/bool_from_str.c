@@ -55,5 +55,5 @@ t_size	Bool_Parse(t_bool *dest, t_char const* str)
 		PARSE_RETURN(TRUE)
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE), PARSE_RETURN(BOOL_ERROR),
-		": Expected boolean string (\"true\" or \"false\", case-insensitive, or a number), instead got \"%s\"", str)
+		"expected boolean string (\"true\" or \"false\", case-insensitive, or a number), instead got \"%s\"", str)
 }

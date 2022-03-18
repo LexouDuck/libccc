@@ -15,7 +15,7 @@ void	Array_RemoveAt(T)(s_array(T)* array, t_uint index)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
-		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
 		index, array->length)
 	array->length -= 1;
 	if (array->length == 0)
@@ -47,7 +47,7 @@ void	Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*delete)(T))
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
-		", index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
 		index, array->length)
 	array->length -= 1;
 	if (array->length == 0)

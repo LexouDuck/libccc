@@ -15,7 +15,7 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
 	length = StringArray_Length((t_char const**)strarr);
 	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		", index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
 		index, length)
 	length -= 1;
 	if (length == 0)
@@ -45,7 +45,7 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
 	length = StringArray_Length((t_char const**)strarr);
 	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		", index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
 		index, length)
 	length -= 1;
 	if (length == 0)

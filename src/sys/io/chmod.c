@@ -30,7 +30,7 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 	filepath = NULL;
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
 		return (ERROR_UNSPECIFIED);,
-		"The 'stat()' function is not available for this platform.")
+		"the 'stat()' function is not available for this platform.")
 	return (ERROR_UNSPECIFIED); // TODO
 #else
 	t_io_mode	result = 0;
@@ -57,7 +57,7 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 	(!defined(__GNUC__) && defined(__MSVC__) && defined(__clang__))) // TODO figure out why chmod() is not present on all windows envs
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
 		return (ERROR_UNSPECIFIED);,
-		"The 'chmod()' function is not available for this platform.")
+		"the 'chmod()' function is not available for this platform.")
 #else
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	mode = (

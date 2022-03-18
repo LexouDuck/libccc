@@ -9,4 +9,7 @@
 -Wextra
 -Winline
 -Wpedantic
--Wno-gnu-binary-literal
+-Wstrict-prototypes \
+-Wmissing-prototypes \
+-Wold-style-definition \
+-fstrict-aliasing

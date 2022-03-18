@@ -52,32 +52,6 @@ HEADER_CPP
 
 
 
-//!@doc The file to include in source files which use `HANDLE_ERROR()`
-//!@{
-#ifndef LIBCONFIG_ERROR_INCLUDE
-#define LIBCONFIG_ERROR_INCLUDE	"libccc/sys/error.h"
-#endif
-//!@}
-
-//!@doc The action to take when there is an integer overflow (by default, let it continue)
-//!@{
-#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
-//	return (VALUE);
-#endif
-#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
-#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
-//	if (dest)	*dest = VALUE;	return (i);
-#endif
-
-// TODO implement configurable return values in cases of number overflow with this macro
-#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
-	CONCAT(TYPE,_ERROR)	//!< configurable error value
-//	(VALUE)				//!< saturated type
-//!@}
-
-
-
 //!@doc Defines which type/bit size the `t_uint` default unsigned integer type will be.
 /*!
 **	This macro sets the default `t_uint` default unsigned integer type to use.

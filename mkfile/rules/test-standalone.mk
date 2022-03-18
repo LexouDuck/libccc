@@ -83,9 +83,9 @@ $(SRCS_TEST_UNDEFINED) #! Generates a .c file which calls every function declare
 $(SRCS_TEST_UNDEFINED): HDRS := $(filter-out libccc/monad/convert.h,$(HDRS))
 $(SRCS_TEST_UNDEFINED): $(addprefix $(HDRDIR),$(TEST_UNDEFINED_INCLUDES))
 	@printf "Generating testing program: "$@" -> "
-	@$(MAKE) help-doc \
-		HELPDOC_AWK_DECL_SPACING="" \
-		HELPDOC_AWK_SYNTAXCOLORS="" \
+	@$(MAKE) doc-help \
+		DOCHELP_AWK_DECL_SPACING="" \
+		DOCHELP_AWK_SYNTAXCOLORS="" \
 	| grep ');' \
 	| grep -v '[usqfUSQF]128' \
 	| awk '\
