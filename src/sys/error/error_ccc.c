@@ -100,7 +100,7 @@ e_cccerror		Error_CCC_Code(t_char const* name)
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
-	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (String_Equals(Error_CCC[i].name, name))
 		{

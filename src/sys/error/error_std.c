@@ -27,7 +27,7 @@
 
 
 #ifndef ENUMLENGTH_STDERROR
-#define ENUMLENGTH_STDERROR	256
+#define ENUMLENGTH_STDERROR	(t_errno)256
 #endif
 
 //! Define the list of info for all the common POSIX-1/C++11 errno macros
@@ -199,7 +199,7 @@ t_errno		Error_STD_Code(t_char const* name)
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR);)
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
-	for (t_uint i = 0; i < ENUMLENGTH_STDERROR; ++i)
+	for (t_errno i = 0; i < ENUMLENGTH_STDERROR; ++i)
 	{
 		if (String_Equals(Error_STD[i].name, name))
 		{

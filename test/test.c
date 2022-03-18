@@ -27,23 +27,23 @@ int	check_no_test_suites(void)
 static
 void	test_cccerrorhandler(e_cccerror error, t_char const* funcname, t_char const* message)
 {
-/*
-	if (message == NULL)
-	{
-		printf("FATAL ERROR: error handler function ran with NULL message\n");
-		return;
-	}
-*/
 	t_char const* errorname = Error_CCC_Name(error);
 	t_char const* error_msg = Error_CCC_Message(error);
 	t_char* errorlog = String_Format(
 		"libccc: "C_RED"error[CCC:%d:%s]"C_RESET": %s -> %s -> %s%s",
 		error, errorname, funcname, error_msg, message,
-		(message[0] == '\0' || message[String_Length(message) - 1] != '\n') ? "\n" : "");
+		(message == NULL || message[0] == '\0' || message[String_Length(message) - 1] != '\n') ? "\n" : "");
 	if (g_test.last_test_error == NULL)
 		g_test.last_test_error = errorlog;
 	else
-		g_test.last_test_error = String_Merge(&g_test.last_test_error, &errorlog);
+	{
+		size_t len_old = strlen(g_test.last_test_error);
+		size_t len_new = strlen(errorlog);
+		g_test.last_test_error = realloc(g_test.last_test_error, len_old + len_new + sizeof(""));
+		memcpy(g_test.last_test_error + len_old, errorlog, strlen(errorlog));
+		free(errorlog);
+		errorlog = NULL;
+	}
 }
 
 void	test_init(void)
