@@ -1,6 +1,7 @@
 
 #include "libccc.h"
 #include "libccc/memory.h"
+#include "libccc/string.h"
 
 #ifndef __NOSTD__
 	#include <errno.h>
@@ -11,7 +12,6 @@
 	#endif
 #endif
 
-#include "libccc/string.h"
 #include "libccc/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/sys/error.h"
@@ -20,6 +20,7 @@
 
 
 
+//! Define the list of info for each libccc error code
 s_error_info	Error_CCC[ENUMLENGTH_CCCERROR] =
 {
 	{ Error_Handler, ERROR_UNSPECIFIED,  "UNSPECIFIED",  "Unspecified error" },
@@ -27,11 +28,11 @@ s_error_info	Error_CCC[ENUMLENGTH_CCCERROR] =
 	{ Error_Handler, ERROR_SYSTEM,       "SYSTEM",       "System Error: `strerror(errno)` message" },
 	{ Error_Handler, ERROR_ALLOCFAILURE, "ALLOCFAILURE", "System Error: Memory allocation failure" },
 
-	{ Error_Handler, ERROR_PARSE,        "PARSE",        "Parse Error" },
-	{ Error_Handler, ERROR_PRINT,        "PRINT",        "Print Error" },
+	{ Error_Handler, ERROR_PARSE,        "PARSE",        "Parse Error: " },
+	{ Error_Handler, ERROR_PRINT,        "PRINT",        "Print Error: " },
 	{ Error_Handler, ERROR_NOTFOUND,     "NOTFOUND",     "Error: could not find value" },
 
-	{ Error_Handler, ERROR_INVALIDARGS,  "INVALIDARGS",  "Argument Error" },
+	{ Error_Handler, ERROR_INVALIDARGS,  "INVALIDARGS",  "Argument Error: " },
 	{ Error_Handler, ERROR_NULLPOINTER,  "NULLPOINTER",  "Argument Error: null pointer received" },
 	{ Error_Handler, ERROR_MATHDOMAIN,   "MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
 	{ Error_Handler, ERROR_RESULTRANGE,  "RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },

@@ -39,7 +39,7 @@ void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 	String_Delete(&tmp);
 }
 
-/*
+
 
 static
 void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* funcname, t_char const* message)
@@ -57,7 +57,7 @@ void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* funcname, t_char co
 	String_Delete(&tmp);
 }
 
-*/
+
 
 e_cccerror 	Log(s_logger const* logger,
 	t_char const* message,
@@ -110,13 +110,13 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_char const*	format,
 	va_list			args)
 {
-	t_char*	timestamp  = (logger->timestamp ? Logger_GetTimestamp(Time_Now()) : NULL);
+	t_char*	timestamp  = NULL;
 	t_char* prefix_str = NULL;
 	t_char* suffix_str = NULL;
 	t_char*	log_fmt = NULL;
 	t_char*	log_msg = NULL;
 	t_size length;
-//	f_ccchandler handlers[ENUMLENGTH_CCCERROR] = {0};
+	f_ccchandler handlers[ENUMLENGTH_CCCERROR] = {0};
 
 	if (logger == NULL)
 	{
@@ -128,14 +128,18 @@ e_cccerror	Log_VA(s_logger const* logger,
 		Log_Fatal(logger, "Log_VA() received NULL format string argument");
 		return (ERROR_NULLPOINTER);
 	}
-/*
+
 	// temporarily disable error-handling to avoid any infinite recursion
 	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		handlers[i] = Error_GetHandler(i);
-		Error_SetAllHandlers(Log_Logger_ErrorHandler);
 	}
-*/
+	Error_SetAllHandlers(Log_Logger_ErrorHandler);
+
+	if (logger->timestamp)
+	{
+		timestamp = Logger_GetTimestamp(Time_Now());
+	}
 	// construct log prefix string, according to current config
 	if (prefix && prefix[0] != '\0')
 	{
@@ -253,13 +257,13 @@ e_cccerror	Log_VA(s_logger const* logger,
 		}
 	}
 	String_Delete(&log_msg);
-/*
+
 	// re-enable error-handling
 	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		Error_SetHandler(i, handlers[i]);
 	}
-*/
+
 	return (OK);
 
 failure:
@@ -269,12 +273,12 @@ failure:
 	String_Delete(&suffix_str);
 	String_Delete(&log_fmt);
 	String_Delete(&log_msg);
-/*
+
 	// re-enable error-handling
 	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		Error_SetHandler(i, handlers[i]);
 	}
-*/
+
 	return (ERROR);
 }

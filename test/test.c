@@ -23,7 +23,8 @@ int	check_no_test_suites(void)
 	}
 	return (TRUE);
 }
-
+/*
+static
 void	test_cccerrorhandler(e_cccerror error, t_char const* message)
 {
 	if (message == NULL)
@@ -34,9 +35,9 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* message)
 	g_test.last_test_error = String_Format(
 		"%s"C_RED"ERROR"C_RESET"[%s]: %s\n",
 		(g_test.last_test_error ? g_test.last_test_error : ""),
-		Error_GetName(error), message);
+		Error_CCC_Name(error), message);
 }
-
+*/
 void	test_init(void)
 {
 	if (check_no_test_suites())

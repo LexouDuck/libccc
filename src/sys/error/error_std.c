@@ -26,6 +26,7 @@
 
 
 
+//! Define the list of info for all the common POSIX-1/C++11 errno macros
 s_error_info	Error_STD[ENUMLENGTH_STDERROR] =
 {
 	{ Error_Handler, E2BIG,            "E2BIG",            "Argument list too long" },
