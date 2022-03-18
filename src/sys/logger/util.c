@@ -41,28 +41,23 @@
 
 
 
-e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
+e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 {
-	int 	result = 0;
-	t_char* message;
-
-
-	message = Error_STDC(errno);
-	if (message == NULL)
-		return (OK);
 //	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
 
 // only using write()
+	t_char const* prefix;
+	int 	result = 0;
+	t_bool	is_sh;
 	t_fd	fd = (logger ? logger->fd : STDOUT);
-	t_bool	is_sh = IO_IsTerminal(fd);
-	if (is_sh)	write(fd, C_RED,	(sizeof(C_RED)			- sizeof("")));
-	write(fd, "Fatal Error",		(sizeof("Fatal Error")	- sizeof("")));
-	if (is_sh)	write(fd, C_RESET,	(sizeof(C_RESET)		- sizeof("")));
-	write(fd, ": ",					(sizeof(": ")			- sizeof("")));
-	if (str)	write(fd, str,		String_Length(str));
-	write(fd, "\n\t-> ",			(sizeof("\n\t-> ")		- sizeof("")));
-	write(fd, message,				String_Length(message));
-	write(fd, "\n",					(sizeof("\n")			- sizeof("")));
+	is_sh = IO_IsTerminal(fd);
+	prefix = (is_sh ? "libccc: "C_RED"fatal"C_RESET": " : "libccc: fatal: ");
+	result = write(fd, prefix, String_Length(prefix));
+	if (str)
+	{
+		result = write(fd, str, String_Length(str));
+	}
+	result = write(fd, "\n", (sizeof("\n") - sizeof("")));
 
 // printf/dprintf method (less compatible)
 /*
@@ -86,7 +81,6 @@ e_cccerror	Log_FatalError(s_logger const* logger, t_char const* str)
 			(str ? str : ""), message);
 	}
 */
-	String_Delete(&message);
 //	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
 	if (result <= 0)
 		return (ERROR_PRINT);

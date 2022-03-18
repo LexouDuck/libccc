@@ -48,7 +48,7 @@ void	test_init(void)
 	}
 	g_test.totals.tests = 0;
 	g_test.totals.failed = 0;
-	Error_SetAllHandlers(test_cccerrorhandler);
+//	Error_SetAllHandlers(test_cccerrorhandler);
 }
 
 /*

@@ -48,7 +48,18 @@ typedef int	t_errno;
 
 
 //! The function pointer type for an error-handling function
-typedef void (*f_ccchandler)(e_cccerror, t_char const*);
+typedef void (*f_ccchandler)(e_cccerror error, t_char const* funcname, t_char const* message);
+
+
+
+//! This struct holds all relevant information for one error type
+typedef struct error_info
+{
+	f_ccchandler	handler;
+	int				code;
+	t_char const*	name;
+	t_char const*	message;
+}	s_error_info;
 
 
 
@@ -67,63 +78,9 @@ typedef void (*f_ccchandler)(e_cccerror, t_char const*);
 
 /*
 ** ************************************************************************** *|
-**                           Error globals (errno-like)                       *|
+**                       libccc error handling functions                      *|
 ** ************************************************************************** *|
 */
-
-//!@doc Returns a newly allocated error message from the given `errno_value`
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strerror}
-**	@isostd{POSIX,https://linux.die.net/man/3/strerror}
-**
-**	This is equivalent to the STD C `strerror()` functions (thread-safe).
-**
-**	@returns
-**	A newly allocated string which contains the standard errno message.
-*/
-//!@{
-t_char*							Error_STDC(int errno_value);
-#define c_strerror				Error_STDC
-#define c_strerror_r			Error_STDC
-#define c_strerror_s			Error_STDC
-#define Error_STDC_GetMessage	Error_STDC
-//!@}
-
-
-
-//!@doc Returns the latest global error code (thread-safe)
-//!@{
-e_cccerror			Error_Get(void);
-#define c_errorget	Error_Get
-//!@}
-
-//!@doc Sets the global error code (thread-safe)
-//!@{
-e_cccerror			Error_Set(e_cccerror error);
-#define c_errorset	Error_Set
-//!@}
-
-
-
-//!@doc Returns newly allocated error message corresponding to the given `error` number
-//!@{
-t_char*					Error_GetMessage(e_cccerror error);
-#define c_errorgetmsg	Error_GetMessage
-//!@}
-
-//!@doc Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
-//!@{
-t_char*					Error_GetName(e_cccerror error);
-#define c_errorgetname	Error_GetName
-//!@}
-
-//!@doc Returns the error code corresponding the the given error `name` (or)
-//!@{
-e_cccerror				Error_GetCode(t_char const* name);
-#define c_errorgetcode	Error_GetCode
-//!@}
-
-
 
 //!@doc The parent function which handles any error: is called when an error check is `TRUE`
 //!@{
@@ -133,7 +90,7 @@ void					Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
 
 //!@doc The default error handler function (its body can be configured, see #LIBCONFIG_ERROR_DEFAULTHANDLER)
 //!@{
-void					Error_Handler(e_cccerror error, t_char const* message);
+void					Error_Handler(e_cccerror error, t_char const* funcname, t_char const* message);
 #define c_errorhandler	Error_Handler
 //!@}
 
@@ -142,19 +99,200 @@ void					Error_Handler(e_cccerror error, t_char const* message);
 //!@doc Get the currently set handler function for the given `error` code
 //!@{
 f_ccchandler				Error_GetHandler(e_cccerror error);
-#define c_gethandler		Error_GetHandler
+#define c_geterrhandler		Error_GetHandler
 //!@}
 
 //!@doc Set the handler function to call for a certain `error` code
 //!@{
 void						Error_SetHandler(e_cccerror error, f_ccchandler handler);
-#define c_sethandler		Error_SetHandler
+#define c_seterrhandler		Error_SetHandler
 //!@}
 
 //!@doc Set the handler function for every kind of error, at once
 //!@{
 void						Error_SetAllHandlers(f_ccchandler handler);
-#define c_setallhandlers	Error_SetAllHandlers
+#define c_setallerrhandlers	Error_SetAllHandlers
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                         custom error util functions                        *|
+** ************************************************************************** *|
+*/
+
+#ifndef LIBCONFIG_ERROR_DEFAULTFUNCTIONS
+#define LIBCONFIG_ERROR_DEFAULTFUNCTIONS	CCC
+#endif
+
+
+
+#define Error_Message		CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_Message)
+#define c_errormsg			Error_Message
+
+#define Error_GetMessage	CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_GetMessage)
+#define c_errorsmsg			Error_GetMessage
+
+#define Error_Name			CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_Name)
+#define c_errorname			Error_Name
+
+#define Error_GetName		CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_GetName)
+#define c_errorsname		Error_GetName
+
+#define Error_Code			CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_Code)
+#define c_errorcode			Error_Code
+
+
+
+#define Error_Get	CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_Get)
+#define c_errorget	Error_Get
+
+#define Error_Set	CONCAT(CONCAT(Error_,LIBCONFIG_ERROR_DEFAULTFUNCTIONS),_Set)
+#define c_errorset	Error_Set
+
+
+
+/*
+** ************************************************************************** *|
+**                         libccc error util functions                        *|
+** ************************************************************************** *|
+*/
+
+//! Global variable which holds an array of error information structs
+s_error_info	Error_CCC[ENUMLENGTH_CCCERROR];
+
+
+
+//!@doc Returns newly allocated error message corresponding to the given `error` number
+//!@{
+t_char const*				Error_CCC_Message(e_cccerror error);
+#define c_cccerrormsg		Error_CCC_Message
+//!@}
+
+//!@doc Returns newly allocated error message corresponding to the given `error` number
+//!@{
+t_char*						Error_CCC_GetMessage(e_cccerror error);
+#define c_cccerrorsmsg		Error_CCC_GetMessage
+//!@}
+
+
+
+//!@doc Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
+//!@{
+t_char const*				Error_CCC_Name(e_cccerror error);
+#define c_cccerrorname		Error_CCC_Name
+//!@}
+
+//!@doc Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
+//!@{
+t_char*						Error_CCC_GetName(e_cccerror error);
+#define c_cccerrorsname		Error_CCC_GetName
+//!@}
+
+
+
+//!@doc Returns the error code corresponding the the given error `name` (or)
+//!@{
+e_cccerror					Error_CCC_Code(t_char const* name);
+#define c_cccerrorcode		Error_CCC_Code
+//!@}
+
+
+
+//!@doc Returns the latest global error code (thread-safe)
+//!@{
+e_cccerror				Error_CCC_Get(void);
+#define c_cccerrorget	Error_CCC_Get
+//!@}
+
+//!@doc Sets the global error code (thread-safe)
+//!@{
+e_cccerror				Error_CCC_Set(e_cccerror error);
+#define c_cccerrorset	Error_CCC_Set
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                        Error util functions: std errno                     *|
+** ************************************************************************** *|
+*/
+
+#ifndef ENUMLENGTH_STDERROR
+#define ENUMLENGTH_STDERROR	256
+#endif
+
+//! Global variable which holds an array of error information structs
+s_error_info	Error_STD[ENUMLENGTH_STDERROR];
+
+
+
+//!@doc Returns the error message for the given `error`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strerror}
+**	@isostd{POSIX,https://linux.die.net/man/3/strerror}
+**
+**	This is equivalent to the STD C `strerror()` function (not thread-safe).
+**
+**	@returns
+**	A global constant string which contains the standard errno message.
+*/
+//!@{
+t_char const*				Error_STD_Message(t_errno error);
+#define c_stderrormsg		Error_STD_Message
+#define c_strerror			Error_STD_Message
+//!@}
+
+//!@doc Returns a newly allocated error message from the given `error`
+/*!
+**	@see Error_Message_STD
+**
+**	@returns
+**	A newly allocated string which contains the standard errno message.
+*/
+//!@{
+t_char*						Error_STD_GetMessage(t_errno error);
+#define c_stderrorsmsg		Error_STD_GetMessage
+#define c_strerror_r		Error_STD_GetMessage
+#define c_strerror_s		Error_STD_GetMessage
+//!@}
+
+
+
+//!@doc Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
+//!@{
+t_char const*				Error_STD_Name(t_errno error);
+#define c_stderrorname		Error_STD_Name
+//!@}
+
+//!@doc Returns newly allocated error enum item name (ie: `ERROR_UNKNOWN`)
+//!@{
+t_char*						Error_STD_GetName(t_errno error);
+#define c_stderrorsname		Error_STD_GetName
+//!@}
+
+
+
+//!@doc Returns the error code corresponding the the given error `name` (or)
+//!@{
+t_errno						Error_STD_Code(t_char const* name);
+#define c_stderrorcode		Error_STD_Code
+//!@}
+
+
+
+//!@doc Returns the latest global error code (thread-safe)
+//!@{
+t_errno					Error_STD_Get(void);
+#define c_stderrorget	Error_STD_Get
+//!@}
+
+//!@doc Sets the global error code (thread-safe)
+//!@{
+t_errno					Error_STD_Set(t_errno error);
+#define c_stderrorset	Error_STD_Set
 //!@}
 
 
