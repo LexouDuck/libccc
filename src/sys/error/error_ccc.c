@@ -21,32 +21,32 @@
 
 
 //! Define the list of info for each libccc error code
-s_error_info	Error_CCC[ENUMLENGTH_CCCERROR] =
+static s_error_info	Error_CCC[ENUMLENGTH_CCCERROR] =
 {
-	{ Error_Handler, ERROR_UNSPECIFIED,  "UNSPECIFIED",  "Unspecified error" },
+	{ ERROR_UNSPECIFIED,  "UNSPECIFIED",  "Unspecified error" },
 
-	{ Error_Handler, ERROR_SYSTEM,       "SYSTEM",       "System Error: `strerror(errno)` message" },
-	{ Error_Handler, ERROR_ALLOCFAILURE, "ALLOCFAILURE", "System Error: Memory allocation failure" },
+	{ ERROR_SYSTEM,       "SYSTEM",       "System Error: `strerror(errno)` message" },
+	{ ERROR_ALLOCFAILURE, "ALLOCFAILURE", "System Error: Memory allocation failure" },
 
-	{ Error_Handler, ERROR_PARSE,        "PARSE",        "Parse Error: " },
-	{ Error_Handler, ERROR_PRINT,        "PRINT",        "Print Error: " },
-	{ Error_Handler, ERROR_NOTFOUND,     "NOTFOUND",     "Error: could not find value" },
+	{ ERROR_PARSE,        "PARSE",        "Parse Error: " },
+	{ ERROR_PRINT,        "PRINT",        "Print Error: " },
+	{ ERROR_NOTFOUND,     "NOTFOUND",     "Error: could not find value" },
 
-	{ Error_Handler, ERROR_INVALIDARGS,  "INVALIDARGS",  "Argument Error: " },
-	{ Error_Handler, ERROR_NULLPOINTER,  "NULLPOINTER",  "Argument Error: null pointer received" },
-	{ Error_Handler, ERROR_MATHDOMAIN,   "MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
-	{ Error_Handler, ERROR_RESULTRANGE,  "RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },
-	{ Error_Handler, ERROR_NANARGUMENT,  "NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
-	{ Error_Handler, ERROR_ILLEGALBYTES, "ILLEGALBYTES", "Argument Error: illegal byte sequence encountered" },
-	{ Error_Handler, ERROR_INVALIDENUM,  "INVALIDENUM",  "Argument Error: value given is not a valid enum item" },
-	{ Error_Handler, ERROR_INVALIDRANGE, "INVALIDRANGE", "Argument Error: range given is inverted: 'min' is larger than 'max'" },
-	{ Error_Handler, ERROR_INDEX2SMALL,  "INDEX2SMALL",  "Argument Error: index value given is too small" },
-	{ Error_Handler, ERROR_INDEX2LARGE,  "INDEX2LARGE",  "Argument Error: index value given is too large" },
-	{ Error_Handler, ERROR_LENGTH2SMALL, "LENGTH2SMALL", "Argument Error: length value given is too small" },
-	{ Error_Handler, ERROR_LENGTH2LARGE, "LENGTH2LARGE", "Argument Error: length value given is too large" },
-	{ Error_Handler, ERROR_KEYNOTFOUND,  "KEYNOTFOUND",  "Argument Error: could not find item with the given key" },
-	{ Error_Handler, ERROR_WRONGTYPE,    "WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
-	{ Error_Handler, ERROR_DELETEREF,    "DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
+	{ ERROR_INVALIDARGS,  "INVALIDARGS",  "Argument Error: " },
+	{ ERROR_NULLPOINTER,  "NULLPOINTER",  "Argument Error: null pointer received" },
+	{ ERROR_MATHDOMAIN,   "MATHDOMAIN",   "Argument Error: mathematic out of domain error" },
+	{ ERROR_RESULTRANGE,  "RESULTRANGE",  "Argument Error: result cannot be represented within limited range" },
+	{ ERROR_NANARGUMENT,  "NANARGUMENT",  "Argument Error: should not receive NAN as argument" },
+	{ ERROR_ILLEGALBYTES, "ILLEGALBYTES", "Argument Error: illegal byte sequence encountered" },
+	{ ERROR_INVALIDENUM,  "INVALIDENUM",  "Argument Error: value given is not a valid enum item" },
+	{ ERROR_INVALIDRANGE, "INVALIDRANGE", "Argument Error: range given is inverted: 'min' is larger than 'max'" },
+	{ ERROR_INDEX2SMALL,  "INDEX2SMALL",  "Argument Error: index value given is too small" },
+	{ ERROR_INDEX2LARGE,  "INDEX2LARGE",  "Argument Error: index value given is too large" },
+	{ ERROR_LENGTH2SMALL, "LENGTH2SMALL", "Argument Error: length value given is too small" },
+	{ ERROR_LENGTH2LARGE, "LENGTH2LARGE", "Argument Error: length value given is too large" },
+	{ ERROR_KEYNOTFOUND,  "KEYNOTFOUND",  "Argument Error: could not find item with the given key" },
+	{ ERROR_WRONGTYPE,    "WRONGTYPE",    "Argument Error: attempted to read dynamic-type item with wrong type" },
+	{ ERROR_DELETEREF,    "DELETEREF",    "Argument Error: attempted to free an area of constant memory" },
 };
 
 

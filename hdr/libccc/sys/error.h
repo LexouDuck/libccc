@@ -47,20 +47,24 @@ typedef int	t_errno;
 
 
 
-//! The function pointer type for an error-handling function
-typedef void (*f_ccchandler)(e_cccerror error, t_char const* funcname, t_char const* message);
-
-
-
 //! This struct holds all relevant information for one error type
 typedef struct error_info
 {
-	f_ccchandler	handler;
 	int				code;
 	t_char const*	name;
 	t_char const*	message;
 }	s_error_info;
 
+
+
+//! The function pointer type for an error-handling function
+typedef void (*f_ccchandler)(e_cccerror error, t_char const* funcname, t_char const* message);
+//! A struct which holds an association of an error handler function, and its corresponding error code
+typedef struct ccchandler
+{
+	e_cccerror		code;
+	f_ccchandler	handler;
+}	s_ccchandler;
 
 
 // TODO document this
@@ -159,11 +163,6 @@ void						Error_SetAllHandlers(f_ccchandler handler);
 ** ************************************************************************** *|
 */
 
-//! Global variable which holds an array of error information structs
-s_error_info	Error_CCC[ENUMLENGTH_CCCERROR];
-
-
-
 //!@doc Returns newly allocated error message corresponding to the given `error` number
 //!@{
 t_char const*				Error_CCC_Message(e_cccerror error);
@@ -219,15 +218,6 @@ e_cccerror				Error_CCC_Set(e_cccerror error);
 **                        Error util functions: std errno                     *|
 ** ************************************************************************** *|
 */
-
-#ifndef ENUMLENGTH_STDERROR
-#define ENUMLENGTH_STDERROR	256
-#endif
-
-//! Global variable which holds an array of error information structs
-s_error_info	Error_STD[ENUMLENGTH_STDERROR];
-
-
 
 //!@doc Returns the error message for the given `error`
 /*!
