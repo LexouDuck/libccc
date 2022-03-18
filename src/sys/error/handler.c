@@ -64,7 +64,7 @@ void	Error_Handler(e_cccerror error, t_char const* funcname, t_char const* messa
 
 f_ccchandler	Error_GetHandler(e_cccerror error)
 {
-	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (Error_Handlers[i].code == error)
 		{
@@ -76,7 +76,7 @@ f_ccchandler	Error_GetHandler(e_cccerror error)
 
 void	Error_SetHandler(e_cccerror error, f_ccchandler handler)
 {
-	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (Error_Handlers[i].code == error)
 		{
@@ -88,7 +88,7 @@ void	Error_SetHandler(e_cccerror error, f_ccchandler handler)
 
 void	Error_SetAllHandlers(f_ccchandler handler)
 {
-	for (t_uint i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		Error_Handlers[i].handler = handler;
 	}
