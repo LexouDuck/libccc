@@ -47,7 +47,7 @@ t_char*	Program_GetCWD(void)
 	}
 	while (result == NULL && size < MAX_BUFFER_SIZE);
 	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
-		": Could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
+		"could not write date to string, size is too large ("SF_SIZE"), should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)
 	return (OK);
 }

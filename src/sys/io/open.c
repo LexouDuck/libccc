@@ -37,6 +37,6 @@ t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 	result = open(filepath, flags | OPEN_BINARY, mode);
 	HANDLE_ERROR_SF(SYSTEM, (result < 0),
 		return (result);,
-		": could not open \"%s\"", filepath)
+		"could not open \"%s\"", filepath)
 	return (result);
 }

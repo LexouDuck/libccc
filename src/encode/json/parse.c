@@ -646,7 +646,7 @@ failure:
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
 		return (p->offset);,
-		": at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
+		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
 		column,

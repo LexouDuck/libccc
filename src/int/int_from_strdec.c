@@ -26,7 +26,7 @@ t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str, t_size n)			\
 	}																				\
 	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || Char_IsDigit(str[i])),				\
 		PARSE_RETURN(U##BITS##_ERROR),												\
-		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
+		"expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	if (str[i] == '+')																\
 		++i;																		\
 	result = 0;																		\
@@ -35,7 +35,7 @@ t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str, t_size n)			\
 		tmp = result * 10 + (str[i++] - '0');										\
 		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
-			" ("#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS")", str, U##BITS##_MAX)	\
+			#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS, str, U##BITS##_MAX)\
 		result = tmp;																\
 	}																				\
 	if (dest)	*dest = result;														\
@@ -77,7 +77,7 @@ t_size	S##BITS##_Parse_Dec(t_s##BITS* dest, t_char const* str, t_size n)			\
 	HANDLE_ERROR_SF(PARSE,															\
 		!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),					\
 		PARSE_RETURN(S##BITS##_ERROR),												\
-		": expected a number (with spaces/sign), but instead got \"%s\"", str)		\
+		"expected a number (with spaces/sign), but instead got \"%s\"", str)		\
 	negative = FALSE;																\
 	if (str[i] == '-')																\
 	{																				\
@@ -92,10 +92,10 @@ t_size	S##BITS##_Parse_Dec(t_s##BITS* dest, t_char const* str, t_size n)			\
 		tmp = result * 10 + (str[i++] - '0');										\
 		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
-			" ("#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MIN)	\
+			#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS, str, S##BITS##_MIN)\
 		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX),							\
-			" ("#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS")", str, S##BITS##_MAX)	\
+			#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS, str, S##BITS##_MAX)\
 		result = tmp;																\
 	}																				\
 	if (dest)	*dest = (negative ? -(t_s##BITS)result : (t_s##BITS)result);		\

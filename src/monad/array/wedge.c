@@ -14,7 +14,7 @@ s_array(T)*	Array_Wedge(T)(s_array(T)* dest, s_array(T) const* src, t_uint index
 	HANDLE_ERROR(NULLPOINTER, (dest        == NULL), return (dest);)
 	HANDLE_ERROR(NULLPOINTER, (dest->items == NULL), return (dest);)
 	HANDLE_ERROR_SF(INDEX2LARGE, (index > dest->length), return (dest);,
-		", index given ("SF_UINT") is beyond the end of the destination array (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond the end of the destination array (length: "SF_UINT")",
 		index, dest->length)
 	result = (T*)Memory_Allocate(sizeof(T) * (dest->length + src->length));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (dest);)

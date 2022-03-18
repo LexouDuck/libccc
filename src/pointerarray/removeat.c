@@ -15,7 +15,7 @@ void	PointerArray_RemoveAt(void** ptrarr, t_uint index)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
 	length = PointerArray_Length((void const* const*)ptrarr);
 	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		", index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
 		index, length)
 	length -= 1;
 	if (length == 0)
@@ -45,7 +45,7 @@ void	PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*delete)(void*))
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
 	length = PointerArray_Length((void const* const*)ptrarr);
 	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		", index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
 		index, length)
 	length -= 1;
 	if (length == 0)

@@ -342,9 +342,9 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 		}
 	}
 	HANDLE_ERROR_SF(PRINT, (length == 0), return (ERROR);,
-		": Could not print number value for item with key \"%s\"", item->key)
+		"could not print number value for item with key \"%s\"", item->key)
 	HANDLE_ERROR_SF(PRINT, (length > (sizeof(number_buffer) - 1)), return (ERROR);,
-		": Could not print number value for item with key \"%s\" -> buffer overrun occurred", item->key)
+		"could not print number value for item with key \"%s\" -> buffer overrun occurred", item->key)
 	// reserve appropriate space in the output
 	ENSURE(length + sizeof(""))
 	// copy the printed number to the output
@@ -587,7 +587,7 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		case DYNAMICTYPE_RAW:
 		{
 			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
-				": Item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
+				"item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
 			length = String_Length(item->value.string) + sizeof("");
 			ENSURE(length)
 			Memory_Copy(result, item->value.string, length);
@@ -595,7 +595,7 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		}
 		default:
 			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
-				": Cannot print item with key %s, has invalid type (%i)", p->keypath, item->type)
+				"cannot print item with key %s, has invalid type (%i)", p->keypath, item->type)
 	}
 }
 

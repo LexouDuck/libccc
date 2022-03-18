@@ -1057,7 +1057,7 @@ failure:
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
 		return (p->offset);,
-		": at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
+		"at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
 		column,

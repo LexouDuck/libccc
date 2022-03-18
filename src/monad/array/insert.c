@@ -14,7 +14,7 @@ s_array(T)*	Array_Insert(T)(s_array(T)* dest, T item, t_uint index)
 	HANDLE_ERROR(NULLPOINTER, (dest        == NULL), return (dest);)
 	HANDLE_ERROR(NULLPOINTER, (dest->items == NULL), return (dest);)
 	HANDLE_ERROR_SF(INDEX2LARGE, (index > dest->length), return (dest);,
-		", index given ("SF_UINT") is beyond the end of the destination dest (length: "SF_UINT")",
+		"index given ("SF_UINT") is beyond the end of the destination dest (length: "SF_UINT")",
 		index, dest->length)
 	result = (T*)Memory_Allocate(sizeof(T) * (dest->length + 1));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (dest);)
