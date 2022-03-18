@@ -57,7 +57,7 @@ HEADER_CPP
 		Log_Custom(&logger,\
 			error,\
 			prefix,\
-			C_RED,\
+			IO_COLOR_FG_RED,\
 			MESSAGE,\
 			"%s -> %s", funcname, error_msg);\
 		String_Delete(&prefix);\

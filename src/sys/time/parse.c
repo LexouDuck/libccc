@@ -75,7 +75,7 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-#define PARSINGERROR_DATE_MESSAGE	C_RED"DATE PARSE ERROR"C_RESET": "
+#define PARSINGERROR_DATE_MESSAGE	IO_COLOR_FG_RED"DATE PARSE ERROR"C_RESET": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
 	HANDLE_ERROR_SF(PARSE, (TRUE),	\

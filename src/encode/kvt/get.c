@@ -21,7 +21,7 @@
 
 
 #define PARSINGERROR_KVTPATH_MESSAGE \
-	"\n"C_RED"ACCESSOR PATH PARSE ERROR"C_RESET": Could not parse accessor path string: "
+	"\n""Could not parse KVT_Get() accessor path string: "
 
 #define PARSINGERROR_KVTPATH(CONDITION, ...) \
 	HANDLE_ERROR_SF(PARSE, CONDITION, goto failure;,	\
