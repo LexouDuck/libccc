@@ -70,21 +70,25 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 //!@{
 #undef	FALSE
 #define FALSE	(0)
-
+#ifndef __cplusplus
 #undef	false
 #define false	FALSE
+#endif
 //!@}
 
 //!@doc Represents a boolean true value  (1)
 //!@{
 #undef	TRUE
 #define TRUE	(1)
-
+#ifndef __cplusplus
 #undef	true
 #define true	TRUE
+#endif
 //!@}
 
 
+
+#ifndef __cplusplus
 
 //!@doc Boolean logical operator macros
 //!@{
@@ -117,6 +121,8 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 #define bitnot	~
 #endif
 //!@}
+
+#endif
 
 
 
