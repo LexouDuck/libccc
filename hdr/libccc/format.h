@@ -253,24 +253,24 @@ HEADER_CPP
 #define SF_FIXED_HEX_ CONCAT(SF_Q,CONCAT(LIBCONFIG_FIXED_BITS,_HEX_))
 
 #define SF_Q16        "%"SF_Q16_
-#define SF_Q16_       "q" // TODO
+#define SF_Q16_       SF_S16_ // TODO "q"
 #define SF_Q16_HEX    "0x%"SF_Q16_HEX_
-#define SF_Q16_HEX_   "K" // TODO
+#define SF_Q16_HEX_   SF_S16_HEX_ // TODO "K"
 
 #define SF_Q32        "%"SF_Q32_
-#define SF_Q32_       "q" // TODO
+#define SF_Q32_       SF_S32_ // TODO "q"
 #define SF_Q32_HEX    "0x%"SF_Q32_HEX_
-#define SF_Q32_HEX_   "K" // TODO
+#define SF_Q32_HEX_   SF_S32_HEX_ // TODO "K"
 
 #define SF_Q64        "%"SF_Q64_
-#define SF_Q64_       "lq" // TODO
+#define SF_Q64_       SF_S64_ // TODO "lq"
 #define SF_Q64_HEX    "0x%"SF_Q64_HEX_
-#define SF_Q64_HEX_   "lK" // TODO
+#define SF_Q64_HEX_   SF_S64_HEX_ // TODO "lK"
 
 #define SF_Q128       "%"SF_Q128_
-#define SF_Q128_      "Lq" // TODO
+#define SF_Q128_      SF_S128_ // TODO "Lq"
 #define SF_Q128_HEX   "0x%"SF_Q128_HEX_
-#define SF_Q128_HEX_  "llK" // TODO
+#define SF_Q128_HEX_  SF_S128_HEX_ // TODO "LK"
 //!@}
 
 //!@doc String format specifier macros for libccc/float.h

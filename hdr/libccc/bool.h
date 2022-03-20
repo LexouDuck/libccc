@@ -146,9 +146,20 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-//!@doc Get the string representation of a boolean value (TRUE or FALSE)
+//!@doc Get the string representation of a boolean value ("TRUE" or "FALSE")
 //!@{
-_MALLOC()
+t_char const*			Bool_String(t_bool value, t_bool uppercase);
+#define c_boolstr		Bool_String
+//!@}
+
+//!@doc Write the string representation of a boolean value ("TRUE" or "FALSE") into the `dest` buffer
+//!@{
+t_size					Bool_Print(t_char* dest, t_bool value, t_bool uppercase);
+#define c_boolprint		Bool_Print
+//!@}
+
+//!@doc Get a newly allocated string representation of a boolean value ("TRUE" or "FALSE")
+//!@{
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 #define c_booltostr		Bool_ToString
 //!@}

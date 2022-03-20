@@ -18,13 +18,6 @@
 
 
 
-t_bool	Bool_FromString(t_char const* str)
-{
-	t_bool	result = FALSE;
-	Bool_Parse(&result, str);
-	return (result);
-}
-
 t_size	Bool_Parse(t_bool *dest, t_char const* str)
 {
 	t_size	length = 0;
@@ -55,5 +48,14 @@ t_size	Bool_Parse(t_bool *dest, t_char const* str)
 		PARSE_RETURN(TRUE)
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE), PARSE_RETURN(BOOL_ERROR),
-		"expected boolean string (\"true\" or \"false\", case-insensitive, or a number), instead got \"%s\"", str)
+		"expected boolean string (\"TRUE\" or \"FALSE\", case-insensitive, or a number), instead got \"%s\"", str)
+}
+
+
+
+t_bool	Bool_FromString(t_char const* str)
+{
+	t_bool	result = FALSE;
+	Bool_Parse(&result, str);
+	return (result);
 }
