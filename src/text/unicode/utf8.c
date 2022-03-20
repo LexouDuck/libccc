@@ -16,7 +16,9 @@ t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 	t_u8	mask;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
-	HANDLE_ERROR(ILLEGALBYTES, !UTF32_IsValid(c), return (0);)
+	HANDLE_ERROR_SF(ILLEGALBYTES,
+		!UTF32_IsValid(c), return (0);,
+		"invalid unicode character, code point: "SF_U32, c)
 	if (c < UTF8_1BYTE)
 	{
 		dest[0] = (t_u8)c;
@@ -67,7 +69,8 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 			{
 				if (c & (1 << 4)) // 4-byte character
 				{
-					HANDLE_ERROR_SF(ILLEGALBYTES, (c & (1 << 3)), return (ERROR);,
+					HANDLE_ERROR_SF(ILLEGALBYTES,
+						(c & (1 << 3)), return (ERROR);,
 						"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];

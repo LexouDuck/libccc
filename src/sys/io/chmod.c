@@ -37,9 +37,10 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 	struct stat	stat_buffer;
 
 	Memory_Clear(&stat_buffer, sizeof(struct stat));
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		stat(filepath, &stat_buffer),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to stat() failed, with filepath=\"%s\"", filepath)
 	result = stat_buffer.st_mode &
 		(ACCESSMODE_USER_RWX |
 		ACCESSMODE_GROUP_RWX |
@@ -64,9 +65,10 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
 	#endif
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		chmod(filepath, mode),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to chmod() failed, with filepath=\"%s\" and mode=%u", filepath, mode)
 #endif
 	return (OK);
 }

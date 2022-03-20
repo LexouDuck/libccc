@@ -33,9 +33,10 @@ inline
 t_char*	Program_GetEnv(t_char const* name)
 {
 	t_char* result = getenv(name);
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		(result == NULL),
-		return (NULL);)
+		return (NULL);,
+		"call to getenv() failed, with name=\"%s\"", name)
 	return (result);
 }
 
@@ -44,9 +45,11 @@ t_char*	Program_GetEnv(t_char const* name)
 e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwrite)
 {
 #if __HASFUNC_SETENV
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		setenv(name, value, overwrite),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to setenv() failed, with name=\"%s\", value=\"%s\", overwrite="SF_BOOL,
+		name, value, overwrite)
 #else
 	if (!overwrite)
 	{
@@ -54,9 +57,10 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 			return (OK);
 	}
 	t_char* command = String_Format("%s=%s", name, value);
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		putenv(command),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"cal to putenv() failed, with command: `%s`", command)
 	String_Delete(&command);
 #endif
 	return (OK);
