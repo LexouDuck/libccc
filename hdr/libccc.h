@@ -56,10 +56,10 @@ HEADER_CPP
 **	and not any of their functions. As such, `libccc.h` only includes important builtins.
 */
 //!@{
+#define	__LIBCCC_BOOL_F
 #define	__LIBCCC_CHAR_F
 #define	__LIBCCC_TEXT_ASCII_F
 #define	__LIBCCC_TEXT_UNICODE_F
-#define	__LIBCCC_BOOL_F
 #define	__LIBCCC_INT_F
 #define	__LIBCCC_FIXED_F
 #define	__LIBCCC_FLOAT_F
@@ -73,14 +73,14 @@ HEADER_CPP
 #include "libccc/float.h"
 #include "libccc/pointer.h"
 
+#undef	__LIBCCC_BOOL_H
+#undef	__LIBCCC_BOOL_F
 #undef	__LIBCCC_CHAR_H
 #undef	__LIBCCC_CHAR_F
 #undef	__LIBCCC_TEXT_ASCII_H
 #undef	__LIBCCC_TEXT_ASCII_F
 #undef	__LIBCCC_TEXT_UNICODE_H
 #undef	__LIBCCC_TEXT_UNICODE_F
-#undef	__LIBCCC_BOOL_H
-#undef	__LIBCCC_BOOL_F
 #undef	__LIBCCC_INT_H
 #undef	__LIBCCC_INT_F
 #undef	__LIBCCC_FIXED_H

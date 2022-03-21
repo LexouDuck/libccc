@@ -29,6 +29,8 @@ encode/kvt/set.c
 encode/toml/minify.c
 encode/toml/parse.c
 encode/toml/print.c
+enum/enum_from_str.c
+enum/enum_to_str.c
 fixed/fixed.c
 fixed/fixed_from_str.c
 fixed/fixed_to_str.c

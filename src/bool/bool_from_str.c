@@ -18,13 +18,13 @@
 
 
 
-t_size	Bool_Parse(t_bool *dest, t_char const* str)
+t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 {
 	t_size	length = 0;
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(BOOL_ERROR))
-	while (str[i] && Char_IsSpace(str[i]))
+	while (i < n && str[i] && Char_IsSpace(str[i]))
 	{
 		++i;
 		++length;
@@ -53,9 +53,11 @@ t_size	Bool_Parse(t_bool *dest, t_char const* str)
 
 
 
+inline
 t_bool	Bool_FromString(t_char const* str)
 {
 	t_bool	result = FALSE;
-	Bool_Parse(&result, str);
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (BOOL_ERROR);)
+	Bool_Parse(&result, String_Length(str), str);
 	return (result);
 }
