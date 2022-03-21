@@ -98,16 +98,19 @@ dkms.conf
 ### OS-specific files
 ###
 
-# Windows
-
 # Linux
 
 # MacOS
 .DS-Store
 .DS_Store
 
+# Windows
+Thumbs.db
+
 # FAT32
 .Trash-[0-9]*
+.trashes
+.spotlight-v[0-9]*
 
 
 

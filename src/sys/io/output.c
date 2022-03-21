@@ -80,6 +80,7 @@ t_size	IO_Output_Format(t_char const* format, ...)
 	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (0);)
 	result = write(STDOUT, str, String_Length(str));
 	String_Delete(&str);
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd=stdout, for formatted string \"%s\"", format)
 	return (0);
 }

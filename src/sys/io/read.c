@@ -22,7 +22,7 @@
 
 
 
-t_sintmax	IO_Read_File	(t_fd const fd, void* *a_file, t_size max)
+t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 {
 	char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
@@ -52,14 +52,15 @@ t_sintmax	IO_Read_File	(t_fd const fd, void* *a_file, t_size max)
 		)
 	}
 	*(t_u8* *)a_file = file;
-	HANDLE_ERROR(SYSTEM, (result < 0),
+	HANDLE_ERROR_SF(SYSTEM, (result < 0),
 		if (*a_file)
 		{	// free the (likely to be incorrect) buffer
 			Memory_Free(*a_file);
 			*a_file = NULL;
 		}
 		return (result);
-	)
+		,
+		"error occurred while reading from fd#%i", fd)
 	return (length);
 }
 

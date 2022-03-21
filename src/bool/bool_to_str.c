@@ -7,28 +7,40 @@
 
 
 
+static t_char const*	g_str_bool_uppercase[2] = { "FALSE", "TRUE" };
+static t_char const*	g_str_bool_lowercase[2] = { "false", "true" };
+//static t_char const*	g_str_bool_mixedcase[2] = { "False", "True" };
+
+
+
+t_char const*	Bool_String(t_bool value, t_bool uppercase)
+{
+	t_char const* const*	lookup;
+
+	lookup = (uppercase ? g_str_bool_uppercase : g_str_bool_lowercase);
+	return (lookup[value]);
+}
+
+
+
+t_size	Bool_Print(t_char* dest, t_bool value, t_bool uppercase)
+{
+	t_char const* const*	lookup;
+	t_size	length;
+
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
+	length = value ? sizeof("TRUE") : sizeof("FALSE");
+	lookup = (uppercase ? g_str_bool_uppercase : g_str_bool_lowercase);
+	String_Copy_N(dest, lookup[value], length);
+	return (length);
+}
+
+
+
 t_char*	Bool_ToString(t_bool value, t_bool uppercase)
 {
-	t_char*	result;
+	t_char const* const*	lookup;
 
-	result = (t_char*)Memory_Allocate(value ? 5 : 6);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
-	if (value)
-	{
-		result[0] = uppercase ? 'T' : 't';
-		result[1] = uppercase ? 'R' : 'r';
-		result[2] = uppercase ? 'U' : 'u';
-		result[3] = uppercase ? 'E' : 'e';
-		result[4] = '\0';
-	}
-	else
-	{
-		result[0] = uppercase ? 'F' : 'f';
-		result[1] = uppercase ? 'A' : 'a';
-		result[2] = uppercase ? 'L' : 'l';
-		result[3] = uppercase ? 'S' : 's';
-		result[4] = uppercase ? 'E' : 'e';
-		result[5] = '\0';
-	}
-	return (result);
+	lookup = (uppercase ? g_str_bool_uppercase : g_str_bool_lowercase);
+	return (String_Duplicate(lookup[value]));
 }

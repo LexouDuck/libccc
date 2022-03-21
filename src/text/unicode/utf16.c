@@ -13,7 +13,9 @@ t_size		UTF32_ToUTF16(t_utf16* dest, t_utf32 c)
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	if (c >= UTF16_SURROGATE_HI)
 	{
-		HANDLE_ERROR(ILLEGALBYTES, (c < UTF16_SURROGATE_END), return (ERROR);)
+		HANDLE_ERROR_SF(ILLEGALBYTES,
+			(c < UTF16_SURROGATE_END), return (ERROR);,
+			"illegal unicode character, code point: "SF_U32, c)
 		c -= UTF16_BIAS;
 		dest[0] = (c >> 10) + UTF16_SURROGATE_HI;
 		dest[1] = (c & ((1 << 10) - 1)) + UTF16_SURROGATE_LO;
@@ -38,7 +40,9 @@ t_utf32		UTF32_FromUTF16(t_utf16 const* str)
 	{
 		t_utf32 result = (c - UTF16_SURROGATE_HI) << 10;
 		c = str[1];
-		HANDLE_ERROR(ILLEGALBYTES, (c < UTF16_SURROGATE_LO), return (ERROR);)
+		HANDLE_ERROR_SF(ILLEGALBYTES,
+			(c < UTF16_SURROGATE_LO), return (ERROR);,
+			"illegal unicode character, code point: "SF_U32, c)
 		result |= (c - UTF16_SURROGATE_LO);
 		result += UTF16_BIAS;
 		return (result);

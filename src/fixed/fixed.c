@@ -37,8 +37,8 @@ inline t_q##BITS	Q##BITS##_From(											\
 	t_s##BITS numerator,													\
 	t_s##BITS denominator)													\
 {																			\
-	HANDLE_ERROR(MATHDOMAIN, (denominator == 0),							\
-		return (0);)														\
+	HANDLE_ERROR_SF(MATHDOMAIN, (denominator == 0),							\
+		return (0);, "`denominator` argument is zero")						\
 	if (denominator == FIXED_DENOMINATOR)									\
 		return ((t_q##BITS)numerator);										\
 	return ((numerator * FIXED_DENOMINATOR) / denominator);					\
