@@ -50,7 +50,7 @@ HEADER_CPP
 #ifdef DEBUG
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
 	{\
-		static s_logger logger = DEFAULT_LOGGER_STDERR;\
+		s_logger logger = DEFAULT_LOGGER_STDERR;\
 		t_char const* errorname = Error_CCC_Name(error);\
 		t_char const* error_msg = Error_CCC_Message(error);\
 		t_char* prefix = String_Format(LOGPREFIX_ERROR"[CCC:%d:%s]", error, errorname);\
