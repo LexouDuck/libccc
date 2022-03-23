@@ -15,6 +15,11 @@ RANLIB = ranlib
 RANLIB_FLAGS = \
 	-D \
 
+ifdef __EMSCRIPTEN__
+AR = emar
+RANLIB = emranlib
+endif
+
 
 
 #! GNU conventional variable: C compiler

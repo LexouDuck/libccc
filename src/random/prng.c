@@ -108,7 +108,7 @@ void*	PRNG_Get(void* dest, t_size size)
 inline t_uint   PRNG_UInt (t_prng* state)	{ DEFINE_PRNG(t_uint,	return (0);)	return (result); }
 inline t_sint   PRNG_SInt (t_prng* state)	{ DEFINE_PRNG(t_sint,	return (0);)	return (result); }
 inline t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (0);)	return (result); }
-inline t_float  PRNG_Float(t_prng* state)
+t_float  PRNG_Float(t_prng* state)
 {
 	t_float	result = NAN;
 	while (isnan(result))
