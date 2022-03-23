@@ -36,5 +36,5 @@ e_cccerror	Program_OnExit(void (*f)(void))
 		atexit(f),
 		return (ERROR_SYSTEM);,
 		"call to atexit() failed%s", (f == NULL) ? ", function given is NULL" : "")
-	return (OK);
+	return (ERROR_NONE);
 }

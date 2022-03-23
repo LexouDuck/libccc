@@ -1,4 +1,7 @@
 
+#include "libccc.h"
+#include "libccc/enum.h"
+
 #ifndef __NOSTD__
 	#include <stdarg.h>
 #else

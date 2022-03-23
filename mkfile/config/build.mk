@@ -79,6 +79,16 @@ CFLAGS_EXTRA ?= \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
 
+ifneq ($(findstring ++,$(CC)),)
+CFLAGS_EXTRA += \
+	-Wno-deprecated \
+	-Wno-variadic-macros \
+	-Wno-c99-extensions \
+	-Wno-c++11-extensions \
+	-Wno-c++17-extensions \
+	-Wno-return-type-c-linkage
+endif
+
 
 
 #! GNU conventional variable: C linker options

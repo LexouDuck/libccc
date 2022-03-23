@@ -39,7 +39,7 @@ s_list(T)*	List_RemoveAt(T)(s_list(T)* list, t_uint index)
 
 
 _GENERIC()
-s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*delete)(T))
+s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T))
 {
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
@@ -59,7 +59,7 @@ s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*delete)(T))
 	HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL || elem->next == NULL), return (list);,
 		"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
 		index, List_Length(T)(list))
-	delete(elem->item);
+	del(elem->item);
 	tmp = elem->next;
 	elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED

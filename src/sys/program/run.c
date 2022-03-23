@@ -31,5 +31,5 @@ e_cccerror	Program_Run(t_char const* command)
 		system(command),
 		return (ERROR_SYSTEM);,
 		"terminal command failed: \"%s\"", command)
-	return (OK);
+	return (ERROR_NONE);
 }

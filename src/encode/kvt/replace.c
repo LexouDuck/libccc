@@ -43,7 +43,7 @@ e_cccerror	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacemen
 	item->next = NULL;
 	item->prev = NULL;
 	KVT_Delete(item);
-	return (TRUE);
+	return (ERROR_NONE);
 }
 
 e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)

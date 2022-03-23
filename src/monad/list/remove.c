@@ -34,19 +34,19 @@ s_list(T)*	List_Remove(T)(s_list(T)* list, T item)
 
 
 _GENERIC()
-s_list(T)*	List_Remove_F(T)(s_list(T)* list, T item, void (*delete)(T))
+s_list(T)*	List_Remove_F(T)(s_list(T)* list, T item, void (*del)(T))
 {
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	while (elem)
 	{
 		if (T_EQUALS(elem->item, item))
 		{
-			delete(elem->item);
+			del(elem->item);
 			tmp = elem->next;
 			elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED
@@ -89,19 +89,19 @@ s_list(T)*	List_RemoveAll(T)(s_list(T)* list, T item)
 
 
 _GENERIC()
-s_list(T)*	List_RemoveAll_F(T)(s_list(T)* list, T item, void (*delete)(T))
+s_list(T)*	List_RemoveAll_F(T)(s_list(T)* list, T item, void (*del)(T))
 {
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
 	elem = list;
 	while (elem)
 	{
 		if (T_EQUALS(elem->item, item))
 		{
-			delete(elem->item);
+			del(elem->item);
 			tmp = elem->next;
 			elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED

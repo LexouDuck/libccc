@@ -1,5 +1,6 @@
 
 #include "libccc.h"
+#include "libccc/enum.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
 
@@ -57,7 +58,7 @@ t_char const*	Error_CCC_Message(e_cccerror error)
 		return ("");
 	if (error == ERROR_SYSTEM)
 		return (Error_STD_Message(errno));
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; (e_cccerror)i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (Error_CCC[i].code == error)
 		{
@@ -78,7 +79,7 @@ t_char const*	Error_CCC_Name(e_cccerror error)
 {
 	if (error == ERROR_NONE)
 		return ("");
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; (e_cccerror)i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (Error_CCC[i].code == error)
 		{
@@ -100,11 +101,11 @@ e_cccerror		Error_CCC_Code(t_char const* name)
 	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; (e_cccerror)i < ENUMLENGTH_CCCERROR; ++i)
 	{
 		if (String_Equals(Error_CCC[i].name, name))
 		{
-			return (Error_CCC[i].code);
+			return ((e_cccerror)Error_CCC[i].code);
 		}
 	}
 	return (ERROR_UNSPECIFIED);
@@ -112,7 +113,7 @@ e_cccerror		Error_CCC_Code(t_char const* name)
 
 
 
-e_cccerror		LastError = OK; // TODO figure out a way to not use any global state ?
+e_cccerror		LastError = ERROR_NONE; // TODO figure out a way to not use any global state ?
 
 //! TODO using `&errno`, a thread-safe pseudo-global (a list of globals)
 

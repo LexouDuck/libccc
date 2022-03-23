@@ -5,7 +5,7 @@
 
 
 
-void**	PointerArray_Replace(void* const* ptrarr, void const* old, void const* new)
+void**	PointerArray_Replace(void* const* ptrarr, void const* ptr_old, void const* ptr_new)
 {
 	void**	result;
 	t_uint	length;
@@ -18,9 +18,9 @@ void**	PointerArray_Replace(void* const* ptrarr, void const* old, void const* ne
 		return (result);
 	for (t_uint i = 0; i < length; ++i)
 	{
-		if (result[i] == old)
+		if (result[i] == ptr_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (void*)ptr_new;
 		}
 	}
 	return (result);
@@ -28,7 +28,7 @@ void**	PointerArray_Replace(void* const* ptrarr, void const* old, void const* ne
 
 
 
-void**	PointerArray_ReplaceFirst(void* const* ptrarr, void const* old, void const* new, t_uint n)
+void**	PointerArray_ReplaceFirst(void* const* ptrarr, void const* ptr_old, void const* ptr_new, t_uint n)
 {
 	void**	result;
 	t_uint	length;
@@ -43,9 +43,9 @@ void**	PointerArray_ReplaceFirst(void* const* ptrarr, void const* old, void cons
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == old)
+		if (result[i] == ptr_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (void*)ptr_new;
 			n -= 1;
 		}
 	}
@@ -54,7 +54,7 @@ void**	PointerArray_ReplaceFirst(void* const* ptrarr, void const* old, void cons
 
 
 
-void**	PointerArray_ReplaceLast(void* const* ptrarr, void const* old, void const* new, t_uint n)
+void**	PointerArray_ReplaceLast(void* const* ptrarr, void const* ptr_old, void const* ptr_new, t_uint n)
 {
 	void**	result;
 	t_uint	length;
@@ -70,9 +70,9 @@ void**	PointerArray_ReplaceLast(void* const* ptrarr, void const* old, void const
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == old)
+		if (result[i] == ptr_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (void*)ptr_new;
 			n -= 1;
 		}
 	}

@@ -330,8 +330,8 @@ t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 
 //!@doc Removes a single string from the given `strarr`, at the given `index`
 /*!
-**	@param	strarr	The string array in which to remove an string
-**	@param	index	The index of the string to delete from the string array
+**	@param	strarr	The string array in which to remove a string
+**	@param	index	The index of the string to remove from the string array
 **	@returns
 **	The string array given as argument. The string array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `strarr`, unless the `index` given is zero.
@@ -340,9 +340,9 @@ t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
 void					StringArray_RemoveAt(t_char** strarr, t_uint index);
 #define c_strarrdelat	StringArray_RemoveAt
 //!@}
-//!@doc Like Array_RemoveAt(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAt(), but you can supply a custom `del` function
 //!@{
-void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char*));
+void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*));
 #define c_strarrfdelat	StringArray_RemoveAt_F
 //!@}
 
@@ -358,9 +358,9 @@ void					StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_
 void					StringArray_Remove(t_char** strarr, t_char const* str);
 #define c_strarrdelone	StringArray_Remove
 //!@}
-//!@doc Like Array_Remove(), but you can supply a custom `delete` function
+//!@doc Like Array_Remove(), but you can supply a custom `del` function
 //!@{
-void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
+void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*del)(t_char*));
 #define c_strarrfdelone	StringArray_Remove_F
 //!@}
 
@@ -376,60 +376,60 @@ void					StringArray_Remove_F(t_char** strarr, t_char const* str, void (*delete)
 void					StringArray_RemoveAll(t_char** strarr, t_char const* str);
 #define c_strarrdelall	StringArray_RemoveAll
 //!@}
-//!@doc Like Array_RemoveAll(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAll(), but you can supply a custom `del` function
 //!@{
-void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*delete)(t_char*));
+void					StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*del)(t_char*));
 #define c_strarrfdelall	StringArray_RemoveAll_F
 //!@}
 
 
 
-//!@doc Creates a new string array from the given `strarr`, where any occurence of `old` is replaced with `new`
+//!@doc Creates a new string array from the given `strarr`, where any occurence of `str_old` is replaced with `str_new`
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
-**	@param	old		The string to be replaced
-**	@param	new		The replacement for the resulting string array
+**	@param	str_old	The string to be replaced
+**	@param	str_new	The replacement for the resulting string array
 **	@returns
-**	A newly created string array copied from `strarr`, in which in any string equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created string array copied from `strarr`, in which in any string equal to `str_old`
+**	will instead have a value of `str_new`, or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-t_char**				StringArray_Replace(t_char const* const* strarr, t_char const* old, t_char const* new);
+t_char**				StringArray_Replace(t_char const* const* strarr, t_char const* str_old, t_char const* str_new);
 #define c_strarrrep		StringArray_Replace
 //!@}
 
-//!@doc Creates a new string array from the given `strarr`, where the first `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new string array from the given `strarr`, where the first `n` occurences of `str_old` are replaced with `str_new`.
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
-**	@param	old		The string to be replaced
-**	@param	new		The replacement for the resulting string array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	str_old	The string to be replaced
+**	@param	str_new	The replacement for the resulting string array
+**	@param	n		The amount of occurences of `str_old` to replace
 **	@returns
 **	A newly created string array copied from `strarr`, in which in the first (iterating forwards)
-**	`n` encountered strings which are equal to `old` will instead have a value of `new`,
+**	`n` encountered strings which are equal to `str_old` will instead have a value of `str_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n);
+t_char**					StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n);
 #define c_strarrrepfirst	StringArray_ReplaceFirst
 //!@}
 
-//!@doc Creates a new string array from the given `strarr`, where the last `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new string array from the given `strarr`, where the last `n` occurences of `str_old` are replaced with `str_new`.
 /*!
 **	@param	strarr	The string array to use as a basis for copy and string replacement
-**	@param	old		The string to be replaced
-**	@param	new		The replacement for the resulting string array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	str_old	The string to be replaced
+**	@param	str_new	The replacement for the resulting string array
+**	@param	n		The amount of occurences of `str_old` to replace
 **	@returns
 **	A newly created string array copied from `strarr`, in which in the first (iterating backwards)
-**	`n` encountered strings which are equal to `old` will instead have a value of `new`,
+**	`n` encountered strings which are equal to `str_old` will instead have a value of `str_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-t_char**					StringArray_ReplaceLast(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n);
+t_char**					StringArray_ReplaceLast(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n);
 #define c_strarrreplast		StringArray_ReplaceLast
 //!@}
 
@@ -710,7 +710,7 @@ t_uint							StringArray_Count_String(t_char const* const* strarr, t_char const*
 /*!
 **	NOTE: the return value of this `f` function will be assigned to the string in `strarr`
 **	This means that if you wish for your `f` function to return a newly allocated string,
-**	to replace the old one, you should remember to delete the old string.
+**	to replace the old one, you should remember to deallocate the old string.
 **
 **	@param	strarr	The string array to iterate upon.
 **	@param	f		The function to execute for each string in the string array.

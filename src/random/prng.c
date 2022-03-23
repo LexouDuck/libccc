@@ -77,7 +77,7 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 		buffer[i] = (random >> 16) & 0xFF;	if (i++ == n)   break;
 		buffer[i] = (random >> 24) & 0xFF;	if (i++ == n)   break;
 	}
-	return (OK);
+	return (ERROR_NONE);
 }
 
 

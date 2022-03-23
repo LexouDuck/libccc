@@ -156,13 +156,13 @@ void					PointerArray_Free(void** ptrarr);
 #define c_ptrarrfree	PointerArray_Free
 //!@}
 
-//!@doc Deallocates the given `array`, calling the given `delete` function for each item
+//!@doc Deallocates the given `array`, calling the given `del` function for each item
 /*!
 **	@param	ptrarr	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
-void					PointerArray_Free_F(void** ptrarr, void (*delete)(void* ptr));
+void					PointerArray_Free_F(void** ptrarr, void (*del)(void* ptr));
 #define c_ptrarrffree	PointerArray_Free_F
 //!@}
 
@@ -177,13 +177,13 @@ void					PointerArray_Delete(void** *ptrarr);
 #define c_ptrarrdel		PointerArray_Delete
 //!@}
 
-//!@doc Deletes the array inside the given address `ptrarr` (frees and sets to NULL), calling the given `delete` function for each item
+//!@doc Deletes the array inside the given address `ptrarr` (frees and sets to NULL), calling the given `del` function for each item
 /*!
 **	@param	ptrarr	The address of the array whose `items` buffer should be deleted.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
-void					PointerArray_Delete_F(void** *ptrarr, void (*delete)(void* ptr));
+void					PointerArray_Delete_F(void** *ptrarr, void (*del)(void* ptr));
 #define c_ptrarrfdel	PointerArray_Delete_F
 //!@}
 
@@ -253,7 +253,7 @@ void**					PointerArray_Wedge(void** dest, void* const* src, t_uint index);
 //!@doc Removes a single item from the given `array`, at the given `index`
 /*!
 **	@param	ptrarr	The array in which to remove an item
-**	@param	index	The index of the item to delete from the array
+**	@param	index	The index of the item to remove from the array
 **	@returns
 **	The array given as argument. The array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `array`, unless the `index` given is zero.
@@ -263,9 +263,9 @@ void					PointerArray_RemoveAt(void** ptrarr, t_uint index);
 #define c_ptrarrdelat	PointerArray_RemoveAt
 //!@}
 
-//!@doc Like Array_RemoveAt(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAt(), but you can supply a custom `del` function
 //!@{
-void					PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*delete)(void*));
+void					PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*del)(void*));
 #define c_ptrarrfdelat	PointerArray_RemoveAt_F
 //!@}
 
@@ -282,9 +282,9 @@ void					PointerArray_Remove(void** ptrarr, void const* ptr);
 #define c_ptrarrdelone	PointerArray_Remove
 //!@}
 
-//!@doc Like Array_Remove(), but you can supply a custom `delete` function
+//!@doc Like Array_Remove(), but you can supply a custom `del` function
 //!@{
-void					PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*delete)(void*));
+void					PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*del)(void*));
 #define c_ptrarrfdelone	PointerArray_Remove_F
 //!@}
 
@@ -301,60 +301,60 @@ void					PointerArray_RemoveAll(void** ptrarr, void const* ptr);
 #define c_ptrarrdelall	PointerArray_RemoveAll
 //!@}
 
-//!@doc Like Array_RemoveAll(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAll(), but you can supply a custom `del` function
 //!@{
-void					PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*delete)(void*));
+void					PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*del)(void*));
 #define c_ptrarrfdelall	PointerArray_RemoveAll_F
 //!@}
 
 
 
-//!@doc Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
+//!@doc Creates a new array from the given `array`, where any occurence of `ptr_old` is replaced with `ptr_new`
 /*!
 **	@param	ptrarr	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
+**	@param	ptr_old	The item to be replaced
+**	@param	ptr_new	The replacement for the resulting array
 **	@returns
-**	A newly created array copied from `array`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created array copied from `array`, in which in any item equal to `ptr_old`
+**	will instead have a value of `ptr_new`, or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-void**						PointerArray_Replace(void* const* ptrarr, void const* old, void const* new);
+void**						PointerArray_Replace(void* const* ptrarr, void const* ptr_old, void const* ptr_new);
 #define c_ptrarrrep			PointerArray_Replace
 //!@}
 
-//!@doc Creates a new array from the given `array`, where the first `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new array from the given `array`, where the first `n` occurences of `ptr_old` are replaced with `ptr_new`.
 /*!
 **	@param	ptrarr	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	ptr_old	The item to be replaced
+**	@param	ptr_new	The replacement for the resulting array
+**	@param	n		The amount of occurences of `ptr_old` to replace
 **	@returns
 **	A newly created array copied from `strarr`, in which in the first (iterating forwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `ptr_old` will instead have a value of `ptr_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-void**						PointerArray_ReplaceFirst(void* const* ptrarr, void const* old, void const* new, t_uint n);
+void**						PointerArray_ReplaceFirst(void* const* ptrarr, void const* ptr_old, void const* ptr_new, t_uint n);
 #define c_ptrarrrepfirst	PointerArray_ReplaceFirst
 //!@}
 
-//!@doc Creates a new array from the given `array`, where the last `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new array from the given `array`, where the last `n` occurences of `ptr_old` are replaced with `ptr_new`.
 /*!
 **	@param	ptrarr	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	ptr_old	The item to be replaced
+**	@param	ptr_new	The replacement for the resulting array
+**	@param	n		The amount of occurences of `ptr_old` to replace
 **	@returns
 **	A newly created array copied from `strarr`, in which in the first (iterating backwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `ptr_old` will instead have a value of `ptr_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
-void**						PointerArray_ReplaceLast(void* const* ptrarr, void const* old, void const* new, t_uint n);
+void**						PointerArray_ReplaceLast(void* const* ptrarr, void const* ptr_old, void const* ptr_new, t_uint n);
 #define c_ptrarrreplast		PointerArray_ReplaceLast
 //!@}
 

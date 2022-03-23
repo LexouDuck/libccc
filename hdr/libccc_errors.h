@@ -293,7 +293,7 @@ typedef enum cccerror
 
 //	ERROR_,
 
-	ENUMLENGTH_CCCERROR,
+	ENUMLENGTH_CCCERROR
 }	e_cccerror;
 
 /*

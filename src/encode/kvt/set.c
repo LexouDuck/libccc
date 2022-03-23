@@ -16,7 +16,7 @@ e_cccerror	KVT_SetValue_Boolean(s_kvt* object, t_bool value)
 		return (ERROR_WRONGTYPE);,
 		"attempted to read value as boolean, but type is "SF_ENUM, object->type)
 	object->value.boolean = value;
-	return (OK);
+	return (ERROR_NONE);
 }
 
 e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value)
@@ -27,7 +27,7 @@ e_cccerror	KVT_SetValue_Integer(s_kvt* object, t_s64 value)
 		return (ERROR_WRONGTYPE);,
 		"attempted to read value as integer, but type is "SF_ENUM, object->type)
 	object->value.integer = value;
-	return (OK);
+	return (ERROR_NONE);
 }
 
 e_cccerror	KVT_SetValue_Float(s_kvt* object, t_f64 value)
@@ -38,7 +38,7 @@ e_cccerror	KVT_SetValue_Float(s_kvt* object, t_f64 value)
 		return (ERROR_WRONGTYPE);,
 		"attempted to read value as float, but type is "SF_ENUM, object->type)
 	object->value.number = value;
-	return (OK);
+	return (ERROR_NONE);
 }
 
 e_cccerror	KVT_SetValue_String(s_kvt* object, t_char* value)
@@ -57,7 +57,7 @@ e_cccerror	KVT_SetValue_String(s_kvt* object, t_char* value)
 	if (String_Length(value) <= String_Length(object->value.string))
 	{
 		String_Copy(object->value.string, value);
-		return (OK);
+		return (ERROR_NONE);
 	}
     copy = (t_char*)String_Duplicate((t_char const*)value);
 	HANDLE_ERROR(ALLOCFAILURE, (copy == NULL),
@@ -67,5 +67,5 @@ e_cccerror	KVT_SetValue_String(s_kvt* object, t_char* value)
 		Memory_Free(object->value.string);
 	}
 	object->value.string = copy;
-	return (OK);
+	return (ERROR_NONE);
 }

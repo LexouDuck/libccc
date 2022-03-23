@@ -84,7 +84,7 @@ e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 //	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
 	if (result <= 0)
 		return (ERROR_PRINT);
-	return (result);
+	return (ERROR_NONE);
 }
 
 

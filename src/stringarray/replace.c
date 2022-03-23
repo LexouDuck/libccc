@@ -5,7 +5,7 @@
 
 
 
-t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* old, t_char const* new)
+t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* str_old, t_char const* str_new)
 {
 	t_char**	result;
 	t_uint		length;
@@ -18,9 +18,9 @@ t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* old, t_c
 		return (result);
 	for (t_uint i = 0; i < length; ++i)
 	{
-		if (result[i] == old)
+		if (result[i] == str_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (t_char*)str_new;
 		}
 	}
 	return (result);
@@ -28,7 +28,7 @@ t_char**	StringArray_Replace(t_char const* const* strarr, t_char const* old, t_c
 
 
 
-t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n)
+t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;
@@ -43,9 +43,9 @@ t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == old)
+		if (result[i] == str_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (t_char*)str_new;
 			n -= 1;
 		}
 	}
@@ -54,7 +54,7 @@ t_char**	StringArray_ReplaceFirst(t_char const* const* strarr, t_char const* old
 
 
 
-t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* old, t_char const* new, t_uint n)
+t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* str_old, t_char const* str_new, t_uint n)
 {
 	t_char**	result;
 	t_uint		length;
@@ -70,9 +70,9 @@ t_char**	StringArray_ReplaceLast(t_char const* const* strarr, t_char const* old,
 	{
 		if (n == 0)
 			return (result);
-		if (result[i] == old)
+		if (result[i] == str_old)
 		{
-			result[i] = (void*)new;
+			result[i] = (t_char*)str_new;
 			n -= 1;
 		}
 	}

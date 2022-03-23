@@ -51,6 +51,7 @@ typedef enum logformat
 	LOGFORMAT_TEXT = 1, //!< Prints in a format that is friendly for raw text (same as above, but without ANSI color codes)
 	LOGFORMAT_JSON = 2, //!< Prints in a format that can be easily parsed by a JSON parser
 	LOGFORMAT_XML  = 3, //!< Prints in a format that can be easily parsed by an XML parser
+	ENUMLENGTH_LOGFORMAT
 }	e_logformat;
 //!@doc String literal macros for each item of the #e_logformat enumeration
 //!@{
@@ -154,7 +155,7 @@ typedef s_logger const* const*	t_logptrarr;
 /* ************************************************************************** */
 
 #define LOGONE_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
-	e_cccerror	result = OK;					\
+	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	if (SKIP)	return (result);				\
 	va_start(args, format_str);					\
@@ -168,7 +169,7 @@ typedef s_logger const* const*	t_logptrarr;
 	return (result);							\
 
 #define LOGALL_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
-	e_cccerror	result = OK;					\
+	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	for (t_u32 i = 0; loggers[i]; ++i)			\
 	{											\

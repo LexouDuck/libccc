@@ -26,5 +26,5 @@ e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 	{
 		newitem->prev->next = newitem;
 	}
-	return (OK);
+	return (ERROR_NONE);
 }

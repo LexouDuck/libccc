@@ -39,7 +39,7 @@ e_cccerror	KVT_Delete(s_kvt* item)
 		Memory_Delete((void* *)&item);
 		item = next;
 	}
-	return (OK);
+	return (ERROR_NONE);
 }
 
 e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)

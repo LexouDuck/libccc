@@ -30,7 +30,7 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 	t_size		length;
 
 	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
-	file = Memory_New(0);
+	file = (t_u8*)Memory_New(0);
 	HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
 		*a_file = NULL;
 		return (ERROR);

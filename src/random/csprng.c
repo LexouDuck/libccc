@@ -100,7 +100,7 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 	result = fread((char*)dest, 1, size, csprng.urandom);
 	HANDLE_ERROR_SF(SYSTEM, (result != size), return (ERROR_SYSTEM);, "call to fread() on /dev/urandom failed")
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }
 
 

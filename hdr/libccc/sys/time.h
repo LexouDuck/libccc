@@ -277,10 +277,10 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 		.min       = 0,	\
 		.sec       = 0,	\
 		.year      = 0,	\
-		.month     = 0,	\
+		.month     = (e_month)0,	\
 		.day_month = 0,	\
 		.day_year  = 0,	\
-		.day_week  = 0,	\
+		.day_week  = (e_weekday)0,	\
 		.is_dst    = 0,	\
 		.offset    = 0,	\
 	})

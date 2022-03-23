@@ -111,7 +111,7 @@ static s_error_info	Error_STD[ENUMLENGTH_STDERROR] =
 	{ ETXTBSY,          "ETXTBSY",          "Text file busy" },
 	{ EWOULDBLOCK,      "EWOULDBLOCK",      "Operation would block" },
 	{ EXDEV,            "EXDEV",            "Cross-device link" },
-	{ 0 }
+	{ 0, NULL, NULL }
 };
 
 

@@ -36,12 +36,12 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 }
 
 
-void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char*))
+void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 {
 	t_char**	result;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
 	length = StringArray_Length((t_char const**)strarr);
 	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
@@ -61,7 +61,7 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*delete)(t_char
 	{
 		if (i == index)
 		{
-			delete(strarr[i]);
+			del(strarr[i]);
 			result[i] = strarr[i + 1];
 		}
 		else result[i] = strarr[i + 1];

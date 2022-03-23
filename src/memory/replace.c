@@ -5,7 +5,7 @@
 
 
 
-void	Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n)
+void	Memory_Replace(void* ptr, t_u8 byte_old, t_u8 byte_new, t_size n)
 {
 	t_u8*	result;
 	t_size	i;
@@ -15,8 +15,8 @@ void	Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n)
 	i = 0;
 	while (i < n)
 	{
-		if (result[i] == old)
-			result[i] = new;
+		if (result[i] == byte_old)
+			result[i] = byte_new;
 		++i;
 	}
 }

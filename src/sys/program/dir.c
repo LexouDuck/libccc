@@ -49,5 +49,5 @@ t_char*	Program_GetCWD(void)
 	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
 		"could not write date to string, size is too large ("SF_SIZE"), should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)
-	return (OK);
+	return (NULL);
 }

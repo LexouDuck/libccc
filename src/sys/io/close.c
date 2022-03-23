@@ -25,5 +25,5 @@ e_cccerror	IO_Close(t_fd fd)
 		(close(fd) != 0),
 		return (ERROR_SYSTEM);,
 		"call to close() failed, for fd=%i", fd)
-	return (OK);
+	return (ERROR_NONE);
 }

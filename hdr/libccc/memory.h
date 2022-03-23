@@ -343,15 +343,15 @@ void*				Memory_Find(void const* ptr, t_u8 byte, t_size n);
 
 
 
-//!@doc Replaces every `old` byte with `new`, in the `n` byte long memory region starting at `ptr`.
+//!@doc Replaces every `byte_old` byte with `byte_new`, in the `n` byte long memory region starting at `ptr`.
 /*!
 **	@nonstd
 **
 **	Iterates through `n` bytes of memory starting at `ptr`, replacing every
-**	byte equal to `old` with the value `new` instead.
+**	byte equal to `byte_old` with the value `byte_new` instead.
 */
 //!@{
-void				Memory_Replace(void* ptr, t_u8 old, t_u8 new, t_size n);
+void				Memory_Replace(void* ptr, t_u8 byte_old, t_u8 byte_new, t_size n);
 #define c_memrep	Memory_Replace
 //!@}
 
