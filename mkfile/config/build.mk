@@ -45,7 +45,6 @@ CFLAGS = \
 	-Wstrict-prototypes \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
-	-Wno-format-extra-args \
 	-fstrict-aliasing \
 	$(CFLAGS_MODE) \
 	$(CFLAGS_OS) \

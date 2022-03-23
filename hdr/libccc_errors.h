@@ -47,26 +47,20 @@ HEADER_CPP
 **	You may change the logic here (to implement custom exception handling for example).
 */
 //!@{
-#ifdef DEBUG
+#ifndef LIBCONFIG_ERROR_DEFAULTHANDLER
+	#ifdef DEBUG
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
 	{\
 		s_logger logger = DEFAULT_LOGGER_STDERR;\
-		t_char const* errorname = Error_CCC_Name(error);\
-		t_char const* error_msg = Error_CCC_Message(error);\
-		t_char* prefix = String_Format(LOGPREFIX_ERROR"[CCC:%d:%s]", error, errorname);\
-		Log_Custom(&logger,\
-			error,\
-			prefix,\
-			IO_COLOR_FG_RED,\
-			MESSAGE,\
-			"%s -> %s", funcname, error_msg);\
-		String_Delete(&prefix);\
+		Log_Error_CCC(&logger, error,\
+			"%s -> %s", FUNCNAME, MESSAGE);\
 	}\
 
-#else
+	#else
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
 	{}
 	
+	#endif
 #endif
 //!@}
 
