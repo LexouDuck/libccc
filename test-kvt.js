@@ -13,7 +13,7 @@ const kvt_structinfo =
 	["prev",  "s_kvt*",    "*",    4, 4],
 	["key",   "t_utf8*",   "*",    8, 4],
 	["type",  "t_dynamic", "i32", 12, 4],
-	["value", "u_dynamic", "*",   16, 8],
+	["value", "u_dynamic", "i64", 16, 8],
 ];
 
 let DYNAMICTYPE_INVALID	= (0);		//!< value stored is invalid
@@ -44,12 +44,7 @@ let isObject = function(x)
     return (!!x) && (x.constructor === Object);
 };
 
-/**
- * Do a deep equality cehck between two objects/arrays
- * @param a Object
- * @param b Object
- * @returns {boolean}
- */
+/** performs a deep equality check between two values */
 function deepEquals(a, b)
 {
 	if (a === b)
