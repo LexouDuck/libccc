@@ -13,6 +13,7 @@ t_bool	KVT_IsInvalid(s_kvt const* item)
 	if (item == NULL)
 		return (FALSE);
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_INVALID);
+	// TODO check for conflicting type flags
 }
 
 inline

@@ -118,6 +118,14 @@ LDFLAGS_OS_emscripten =
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
 LDFLAGS_EXTRA ?= \
 
+ifdef __EMSCRIPTEN__
+LDFLAGS_MODE_debug += \
+	-s ASSERTIONS=2 \
+	-s SAFE_HEAP=1 \
+	-s STACK_OVERFLOW_CHECK=1 \
+
+endif
+
 
 
 #! GNU conventional variable: C libraries to link against

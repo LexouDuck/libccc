@@ -43,7 +43,7 @@ HEADER_CPP
 */
 
 //! An integer type which works as a bitflag enum, used to express a dynamiclly-typed value's type at runtime
-typedef t_sint		t_dynamic;
+typedef t_uint		t_dynamic;
 
 //! These constants are the enum items/bitflags for the `t_dynamic` dynamic-type enum
 //!@{

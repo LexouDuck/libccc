@@ -29,11 +29,6 @@ else ifeq ($(LIBMODE),dynamic)
 else
 $(error Invalid value for LIBMODE, should be `static` or `dynamic`)
 endif
-ifeq ($(LIBMODE),dynamic)
-ifdef __EMSCRIPTEN__
-$(error Building dynamic library with emscripten is not supported. Please use static mode instead)
-endif
-endif
 
 #! Define build target name for library, according to current $(LIBMODE)
 NAME_LIBMODE = $(NAME_$(LIBMODE))
@@ -41,9 +36,6 @@ NAME_LIBMODE = $(NAME_$(LIBMODE))
 NAME_static = $(NAME).$(LIBEXT_static)
 #! Define build target name for dynamic library with appropriate file extensions
 NAME_dynamic = $(NAME).$(LIBEXT_dynamic)
-ifdef __EMSCRIPTEN__
-NAME_dynamic := 
-endif
 
 
 
@@ -102,4 +94,8 @@ else ifeq ($(OSMODE),macos)
 	LIBEXT_dynamic=dylib
 else
 $(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+endif
+
+ifdef __EMSCRIPTEN__
+NAME_dynamic := $(NAME).js
 endif
