@@ -22,7 +22,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	HANDLE_ERROR(ALLOCFAILURE, (newitem == NULL), goto failure;)
 	// Copy over all vars
 	newitem->type = item->type & (~DYNAMICTYPE_ISREFERENCE);
-	if (item->type & DYNAMICTYPE_NULL)		{ Memory_Clear(&newitem->value, sizeof(union dynamic)); }
+	if (item->type & DYNAMICTYPE_NULL)		{ newitem->value.child = NULL; } // Memory_Clear(&newitem->value, sizeof(u_dynamic)); } // TODO C++ cant handle sizeof() on a forward-declared recursive union type
 	if (item->type & DYNAMICTYPE_BOOLEAN)	{ newitem->value.boolean = item->value.boolean; }
 	if (item->type & DYNAMICTYPE_INTEGER)	{ newitem->value.integer = item->value.integer; }
 	if (item->type & DYNAMICTYPE_FLOAT)		{ newitem->value.number = item->value.number; }

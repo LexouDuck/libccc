@@ -7,15 +7,15 @@
 
 
 
-t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const new)
+t_char*		String_Replace_Char(t_char const* str, t_char const char_old, t_char const char_new)
 {
 	t_char*	result;
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	if (old == new)
+	if (char_old == char_new)
 		return (String_Duplicate(str));
-	if (old == '\0')
+	if (char_old == '\0')
 		return (NULL);
 	i = 0;
 	while (str[i])
@@ -25,7 +25,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 	i = 0;
 	while (str[i])
 	{
-		result[i] = (str[i] == old) ? new : str[i];
+		result[i] = (str[i] == char_old) ? char_new : str[i];
 		++i;
 	}
 	result[i] = '\0';
@@ -34,7 +34,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const old, t_char const n
 
 
 
-t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char const* new)
+t_char*		String_Replace_Charset(t_char const* str, t_char const* cset_old, t_char const* cset_new)
 {
 	t_char*	result;
 	t_size	i;
@@ -42,18 +42,18 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 	int		c_index;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (old == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (new == NULL), return (NULL);)
-	if (old == new)
+	HANDLE_ERROR(NULLPOINTER, (cset_old == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (cset_new == NULL), return (NULL);)
+	if (cset_old == cset_new)
 		return (String_Duplicate(str));
-	if (String_Length(old) != String_Length(new))
+	if (String_Length(cset_old) != String_Length(cset_new))
 		return (NULL);
 	i = 0;
-	while (old[i])
+	while (cset_old[i])
 	{
 		j = i;
-		while (old[++j])
-			if (old[i] == old[j])
+		while (cset_old[++j])
+			if (cset_old[i] == cset_old[j])
 				return (NULL);
 		++i;
 	}
@@ -62,8 +62,8 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = String_IndexOf_Char(old, str[i])) >= 0)
-			result[i] = new[c_index];
+		if ((c_index = String_IndexOf_Char(cset_old, str[i])) >= 0)
+			result[i] = cset_new[c_index];
 		else
 			result[i] = str[i];
 		++i;
@@ -74,77 +74,77 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* old, t_char con
 
 
 
-t_char*		String_Replace_String(t_char const* str, t_char const* old, t_char const* new)
+t_char*		String_Replace_String(t_char const* str, t_char const* str_old, t_char const* str_new)
 {
 	t_char*		result;
 	t_char**	strarr;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (old == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (new == NULL), return (NULL);)
-	if (old == new)
+	HANDLE_ERROR(NULLPOINTER, (str_old == NULL), return (NULL);)
+	HANDLE_ERROR(NULLPOINTER, (str_new == NULL), return (NULL);)
+	if (str_old == str_new)
 		return (String_Duplicate(str));
-	strarr = String_Split_String(str, old);
-	result = String_Join((t_char const**)strarr, new);
+	strarr = String_Split_String(str, str_old);
+	result = String_Join((t_char const**)strarr, str_new);
 	StringArray_Delete(&strarr);
 	return (result);
 }
 
 
 
-void		String_Replace_Char_InPlace(t_char* str, t_char const old, t_char const new)
+void		String_Replace_Char_InPlace(t_char* str, t_char const char_old, t_char const char_new)
 {
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
-	if (old == '\0')
+	if (char_old == '\0')
 		return;
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == old)
-			str[i] = new;
+		if (str[i] == char_old)
+			str[i] = char_new;
 		++i;
 	}
 }
 
 
 
-void		String_Replace_Charset_InPlace(t_char* str, t_char const* old, t_char const* new)
+void		String_Replace_Charset_InPlace(t_char* str, t_char const* cset_old, t_char const* cset_new)
 {
 	t_size	i;
 	t_size	j;
 	int		c_index;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (old == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (new == NULL), return;)
-	if (String_Length(old) != String_Length(new))
+	HANDLE_ERROR(NULLPOINTER, (cset_old == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (cset_new == NULL), return;)
+	if (String_Length(cset_old) != String_Length(cset_new))
 		return;
 	i = 0;
-	while (old[i])
+	while (cset_old[i])
 	{
 		j = i;
-		while (old[++j])
-			if (old[i] == old[j])
+		while (cset_old[++j])
+			if (cset_old[i] == cset_old[j])
 				return;
 		++i;
 	}
 	i = 0;
 	while (str[i])
 	{
-		if ((c_index = String_IndexOf_Char(old, str[i])) >= 0)
-			str[i] = new[c_index];
+		if ((c_index = String_IndexOf_Char(cset_old, str[i])) >= 0)
+			str[i] = cset_new[c_index];
 		++i;
 	}
 }
 
 
 
-void	String_Replace_String_InPlace(t_char** a_str, t_char const* old, t_char const* new)
+void	String_Replace_String_InPlace(t_char** a_str, t_char const* str_old, t_char const* str_new)
 {
 	t_char*	tmp;
-	tmp = String_Replace_String(*a_str, old, new);
+	tmp = String_Replace_String(*a_str, str_old, str_new);
 	String_Delete(a_str);
 	*a_str = tmp;
 }

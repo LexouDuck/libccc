@@ -8,3 +8,12 @@ ifeq ($(OS),Windows_NT)
 else
 	SUDO = sudo
 endif
+
+
+
+#! Shell command used to run a program
+ifdef __EMSCRIPTEN__
+	run = node $(1)
+else
+	run = ./$(1)
+endif

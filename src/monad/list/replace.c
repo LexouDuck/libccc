@@ -6,7 +6,7 @@
 
 
 _GENERIC()
-s_list(T)*	List_Replace(T)(s_list(T) const* list, T old, T new)
+s_list(T)*	List_Replace(T)(s_list(T) const* list, T item_old, T item_new)
 {
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
@@ -17,9 +17,9 @@ s_list(T)*	List_Replace(T)(s_list(T) const* list, T old, T new)
 	elem = result;
 	while (elem)
 	{
-		if (T_EQUALS(elem->item, old))
+		if (T_EQUALS(elem->item, item_old))
 		{
-			elem->item = new;
+			elem->item = item_new;
 		}
 		elem = elem->next;
 	}
@@ -29,7 +29,7 @@ s_list(T)*	List_Replace(T)(s_list(T) const* list, T old, T new)
 
 
 _GENERIC()
-s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n)
+s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T item_old, T item_new, t_uint n)
 {
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
@@ -42,9 +42,9 @@ s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n)
 	{
 		if (n == 0)
 			return (result);
-		if (T_EQUALS(elem->item, old))
+		if (T_EQUALS(elem->item, item_old))
 		{
-			elem->item = new;
+			elem->item = item_new;
 			n -= 1;
 		}
 		elem = elem->next;
@@ -55,7 +55,7 @@ s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n)
 
 
 _GENERIC()
-s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n)
+s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_uint n)
 {
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
@@ -69,9 +69,9 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n)
 	{
 		if (n == 0)
 			return (result);
-		if (T_EQUALS(elem->item, old))
+		if (T_EQUALS(elem->item, item_old))
 		{
-			elem->item = new;
+			elem->item = item_new;
 			n -= 1;
 		}
 		elem = elem->prev;
@@ -80,18 +80,18 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n)
 	t_uint total = 0;
 	for (elem = result; elem != NULL; elem = elem->next)
 	{
-		if (T_EQUALS(elem->item, old))
+		if (T_EQUALS(elem->item, item_old))
 			total += 1;
 	}
 	for (elem = result; elem != NULL; elem = elem->next)
 	{
 		if (n == 0)
 			return (result);
-		if (T_EQUALS(elem->item, old))
+		if (T_EQUALS(elem->item, item_old))
 		{
 			if (total == n)
 			{
-				elem->item = new;
+				elem->item = item_new;
 				n -= 1;
 			}
 			total -= 1;

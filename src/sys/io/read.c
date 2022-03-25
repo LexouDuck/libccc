@@ -30,7 +30,7 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 	t_size		length;
 
 	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
-	file = Memory_New(0);
+	file = (t_u8*)Memory_New(0);
 	HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
 		*a_file = NULL;
 		return (ERROR);
@@ -66,7 +66,7 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 
 
 
-t_sintmax	IO_Read_Lines	(t_fd const fd, t_char** *a_strarr)
+t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 {
 	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return (ERROR);)
 	t_char*		file	= NULL; 
@@ -85,7 +85,7 @@ t_sintmax	IO_Read_Lines	(t_fd const fd, t_char** *a_strarr)
 	return (OK);
 }
 
-t_sintmax	IO_Read_Filepath		(t_char const* filepath, void* *a_file)
+t_sintmax	IO_Read_Filepath(t_char const* filepath, void* *a_file)
 {
 	t_fd		fd		= 0;
 	t_sintmax	status	= 0;
@@ -101,7 +101,7 @@ t_sintmax	IO_Read_Filepath		(t_char const* filepath, void* *a_file)
 	return (status);
 }
 
-char*		IO_Read_Filepath_Text	(t_char const* filepath)
+char*		IO_Read_Filepath_Text(t_char const* filepath)
 {
 	char*		result	= NULL;
 	IO_Read_Filepath(filepath, (void* *)&result);

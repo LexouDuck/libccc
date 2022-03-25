@@ -1,4 +1,9 @@
 
+#include "libccc.h"
+#include "libccc/enum.h"
+#include "libccc/memory.h"
+#include "libccc/string.h"
+
 #ifndef __NOSTD__
 	#include <errno.h>
 #else
@@ -17,9 +22,6 @@
 	#define va_copy(d,s)	__builtin_va_copy(d,s)
 #endif
 
-#include "libccc.h"
-#include "libccc/memory.h"
-#include "libccc/string.h"
 #include "libccc/sys/io.h"
 #include "libccc/sys/time.h"
 #include "libccc/sys/logger.h"
@@ -130,9 +132,9 @@ e_cccerror	Log_VA(s_logger const* logger,
 	}
 
 	// temporarily disable error-handling to avoid any infinite recursion
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
-		handlers[i] = Error_GetHandler(i);
+		handlers[i] = Error_GetHandler((e_cccerror)i);
 	}
 	Error_SetAllHandlers(Log_Logger_ErrorHandler);
 
@@ -233,7 +235,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	length = String_Length(log_fmt);
 	if (log_fmt[0] != '\0' && log_fmt[length - 1] != '\n')
 	{
-		log_fmt = Memory_Reallocate(log_fmt, length + 2);
+		log_fmt = (t_char*)Memory_Reallocate(log_fmt, length + 2);
 		log_fmt[length + 0] = '\n';
 		log_fmt[length + 1] = '\0';
 	}
@@ -259,12 +261,12 @@ e_cccerror	Log_VA(s_logger const* logger,
 	String_Delete(&log_msg);
 
 	// re-enable error-handling
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
-		Error_SetHandler(i, handlers[i]);
+		Error_SetHandler((e_cccerror)i, handlers[i]);
 	}
 
-	return (OK);
+	return (ERROR_NONE);
 
 failure:
 	// cleanup
@@ -275,10 +277,10 @@ failure:
 	String_Delete(&log_msg);
 
 	// re-enable error-handling
-	for (e_cccerror i = 0; i < ENUMLENGTH_CCCERROR; ++i)
+	for (t_enum i = 0; i < ENUMLENGTH_CCCERROR; ++i)
 	{
-		Error_SetHandler(i, handlers[i]);
+		Error_SetHandler((e_cccerror)i, handlers[i]);
 	}
 
-	return (ERROR);
+	return (ERROR_PRINT);
 }

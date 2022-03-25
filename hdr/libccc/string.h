@@ -842,7 +842,7 @@ t_char*						String_Replace_Char(t_char const* str, t_char const char_old, t_cha
 */
 //!@{
 _MALLOC()
-t_char*						String_Replace_Charset(t_char const* str, t_char const* charset_old, t_char const* charset_new);
+t_char*						String_Replace_Charset(t_char const* str, t_char const* cset_old, t_char const* cset_new);
 #define c_strrep_cset		String_Replace_Charset
 //!@}
 

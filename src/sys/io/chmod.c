@@ -70,7 +70,7 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 		return (ERROR_SYSTEM);,
 		"call to chmod() failed, with filepath=\"%s\" and mode=%u", filepath, mode)
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }
 
 

@@ -130,3 +130,8 @@ TEST_INCLUDES_OS_emscripten =
 
 #! This variable is intentionally empty, to specify additional header directories from the commandline
 TEST_INCLUDES_EXTRA ?= \
+
+
+
+#! The directory in which to store text logs of the test suite output
+TEST_LOGDIR = $(LOGDIR)test/

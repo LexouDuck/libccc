@@ -235,14 +235,14 @@ void					Array_Free(T)(s_array(T)* array);
 #define c_arrfree(T)	Array_Free(T)
 //!@}
 
-//!@doc Deallocates the given `array`, calling the given `delete` function for each item
+//!@doc Deallocates the given `array`, calling the given `del` function for each item
 /*!
 **	@param	array	The array whose `items` buffer should be deleted - its `length` will be set to `0`.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
 _GENERIC()
-void					Array_Free_F(T)(s_array(T)* array, void (*delete)(T* item));
+void					Array_Free_F(T)(s_array(T)* array, void (*del)(T* item));
 #define c_arrffree(T)	Array_Free_F(T)
 //!@}
 
@@ -258,14 +258,14 @@ void					Array_Delete(T)(s_array(T)* *a_array);
 #define c_arrdel(T)		Array_Delete(T)
 //!@}
 
-//!@doc Deletes the array inside the given address `a_array` (frees and sets to NULL), calling the given `delete` function for each item
+//!@doc Deletes the array inside the given address `a_array` (frees and sets to NULL), calling the given `del` function for each item
 /*!
 **	@param	a_array	The address of the array whose `items` buffer should be deleted.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
 _GENERIC()
-void					Array_Delete_F(T)(s_array(T)* *a_array, void (*delete)(T* item));
+void					Array_Delete_F(T)(s_array(T)* *a_array, void (*del)(T* item));
 #define c_arrfdel(T)	Array_Delete_F(T)
 //!@}
 
@@ -338,7 +338,7 @@ s_array(T)*				Array_Wedge(T)(s_array(T)* dest, s_array(T) const* src, t_uint in
 //!@doc Removes a single item from the given `array`, at the given `index`
 /*!
 **	@param	array	The array in which to remove an item
-**	@param	index	The index of the item to delete from the array
+**	@param	index	The index of the item to remove from the array
 **	@returns
 **	The array given as argument. The array is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `array`, unless the `index` given is zero.
@@ -349,10 +349,10 @@ void					Array_RemoveAt(T)(s_array(T)* array, t_uint index);
 #define c_arrdelat(T)	Array_RemoveAt(T)
 //!@}
 
-//!@doc Like Array_RemoveAt(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAt(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-void					Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*delete)(T));
+void					Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*del)(T));
 #define c_arrfdelat(T)	Array_RemoveAt_F(T)
 //!@}
 
@@ -370,10 +370,10 @@ void					Array_Remove(T)(s_array(T)* array, T item);
 #define c_arrdelone(T)	Array_Remove(T)
 //!@}
 
-//!@doc Like Array_Remove(), but you can supply a custom `delete` function
+//!@doc Like Array_Remove(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-void					Array_Remove_F(T)(s_array(T)* array, T item, void (*delete)(T));
+void					Array_Remove_F(T)(s_array(T)* array, T item, void (*del)(T));
 #define c_arrfdelone(T)	Array_Remove_F(T)
 //!@}
 
@@ -391,64 +391,64 @@ void					Array_RemoveAll(T)(s_array(T)* array, T item);
 #define c_arrdelall(T)	Array_RemoveAll(T)
 //!@}
 
-//!@doc Like Array_RemoveAll(), but you can supply a custom `delete` function
+//!@doc Like Array_RemoveAll(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-void					Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T));
+void					Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T));
 #define c_arrfdelall(T)	Array_RemoveAll_F(T)
 //!@}
 
 
 
-//!@doc Creates a new array from the given `array`, where any occurence of `old` is replaced with `new`
+//!@doc Creates a new array from the given `array`, where any occurence of `item_old` is replaced with `item_new`
 /*!
-**	@param	array	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
+**	@param	array		The array to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting array
 **	@returns
-**	A newly created array copied from `array`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created array copied from `array`, in which in any item equal to `item_old`
+**	will instead have a value of `item_new`, or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_array(T)*					Array_Replace(T)(s_array(T) const* array, T old, T new);
+s_array(T)*					Array_Replace(T)(s_array(T) const* array, T item_old, T item_new);
 #define c_arrrep(T)			Array_Replace(T)
 //!@}
 
-//!@doc Creates a new array from the given `array`, where the first `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new array from the given `array`, where the first `n` occurences of `item_old` are replaced with `item_new`.
 /*!
-**	@param	array	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	array		The array to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting array
+**	@param	n			The amount of occurences of `item_old` to replace
 **	@returns
 **	A newly created array copied from `strarr`, in which in the first (iterating forwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `item_old` will instead have a value of `item_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_array(T)*					Array_ReplaceFirst(T)(s_array(T) const* array, T old, T new, t_uint n);
+s_array(T)*					Array_ReplaceFirst(T)(s_array(T) const* array, T item_old, T item_new, t_uint n);
 #define c_arrrepfirst(T)	Array_ReplaceFirst(T)
 //!@}
 
-//!@doc Creates a new array from the given `array`, where the last `n` occurences of `old` are replaced with `new`.
+//!@doc Creates a new array from the given `array`, where the last `n` occurences of `item_old` are replaced with `item_new`.
 /*!
-**	@param	array	The array to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting array
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	array		The array to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting array
+**	@param	n			The amount of occurences of `item_old` to replace
 **	@returns
 **	A newly created array copied from `strarr`, in which in the first (iterating backwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `item_old` will instead have a value of `item_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_array(T)*					Array_ReplaceLast(T)(s_array(T) const* array, T old, T new, t_uint n);
+s_array(T)*					Array_ReplaceLast(T)(s_array(T) const* array, T item_old, T item_new, t_uint n);
 #define c_arrreplast(T)		Array_ReplaceLast(T)
 //!@}
 

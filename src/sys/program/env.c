@@ -54,7 +54,7 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 	if (!overwrite)
 	{
 		if (Program_GetEnv(name) != NULL)
-			return (OK);
+			return (ERROR_NONE);
 	}
 	t_char* command = String_Format("%s=%s", name, value);
 	HANDLE_ERROR_SF(SYSTEM,
@@ -63,5 +63,5 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 		"cal to putenv() failed, with command: `%s`", command)
 	String_Delete(&command);
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }

@@ -282,7 +282,7 @@ s_list(T)*				List_Copy(T)(s_list(T)* dest, t_uint dest_i, s_list(T) const* src,
 
 //!@doc Deallocates all the items in the given `list`
 /*!
-**	@param	list	The first element of the list to delete.
+**	@param	list	The first element of the list to remove.
 */
 //!@{
 _GENERIC()
@@ -290,14 +290,14 @@ void					List_Free(T)(s_list(T)* list);
 #define c_lstfree(T)	List_Free(T)
 //!@}
 
-//!@doc Deallocates all the items in the given `list`, calling `delete()` for each item.
+//!@doc Deallocates all the items in the given `list`, calling `del()` for each item.
 /*!
-**	@param	list	The first element of the list to delete.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	list	The first element of the list to remove.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
 _GENERIC()
-void					List_Free_F(T)(s_list(T)* list, void (*delete)(T* item));
+void					List_Free_F(T)(s_list(T)* list, void (*del)(T* item));
 #define c_lstffree(T)	List_Free_F(T)
 //!@}
 
@@ -313,14 +313,14 @@ void					List_Delete(T)(s_list(T)* *a_list);
 #define c_lstdel(T)		List_Delete(T)
 //!@}
 
-//!@doc Deletes all the items in the list starting at `*a_list`, calling `delete()` for each item.
+//!@doc Deletes all the items in the list starting at `*a_list`, calling `del()` for each item.
 /*!
 **	@param	a_list	The address ('&') of the beginning of the list - will be set to NULL.
-**	@param	delete	the function which should be executed for each item before deletion.
+**	@param	del		The function which should be executed for each item before deletion.
 */
 //!@{
 _GENERIC()
-void					List_Delete_F(T)(s_list(T)* *a_list, void (*delete)(T* item));
+void					List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item));
 #define c_lstfdel(T)	List_Delete_F(T)
 //!@}
 
@@ -393,7 +393,7 @@ s_list(T)*				List_Wedge(T)(s_list(T)* list, s_list(T) const* src, t_uint index)
 //!@doc Removes a single item from the given `list`, at the given `index`
 /*!
 **	@param	list	The list in which to remove an item
-**	@param	index	The index of the item to delete from the list
+**	@param	index	The index of the item to remove from the list
 **	@returns
 **	The list given as argument. The list is edited in-place, no allocation is performed.
 **	This pointer will typically be equal to `list`, unless the `index` given is zero.
@@ -404,10 +404,10 @@ s_list(T)*				List_RemoveAt(T)(s_list(T)* list, t_uint index);
 #define c_lstdelat(T)	List_RemoveAt(T)
 //!@}
 
-//!@doc Like List_RemoveAt(), but you can supply a custom `delete` function
+//!@doc Like List_RemoveAt(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-s_list(T)*				List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*delete)(T));
+s_list(T)*				List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T));
 #define c_lstfdelat(T)	List_RemoveAt_F(T)
 //!@}
 
@@ -425,10 +425,10 @@ s_list(T)*				List_Remove(T)(s_list(T)* list, T item);
 #define c_lstdelone(T)	List_Remove(T)
 //!@}
 
-//!@doc Like List_Remove(), but you can supply a custom `delete` function
+//!@doc Like List_Remove(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-s_list(T)*				List_Remove_F(T)(s_list(T)* list, T item, void (*delete)(T));
+s_list(T)*				List_Remove_F(T)(s_list(T)* list, T item, void (*del)(T));
 #define c_lstfdelone(T)	List_Remove_F(T)
 //!@}
 
@@ -446,64 +446,64 @@ s_list(T)*				List_RemoveAll(T)(s_list(T)* list, T item);
 #define c_lstdelall(T)	List_RemoveAll(T)
 //!@}
 
-//!@doc Like List_RemoveAll(), but you can supply a custom `delete` function
+//!@doc Like List_RemoveAll(), but you can supply a custom `del` function
 //!@{
 _GENERIC()
-s_list(T)*				List_RemoveAll_F(T)(s_list(T)* list, T item, void (*delete)(T));
+s_list(T)*				List_RemoveAll_F(T)(s_list(T)* list, T item, void (*del)(T));
 #define c_lstfdelall(T)	List_RemoveAll_F(T)
 //!@}
 
 
 
-//!@doc Creates a new list from the given `list`, where any occurence of `old` is replaced with `new`.
+//!@doc Creates a new list from the given `list`, where any occurence of `item_old` is replaced with `item_new`.
 /*!
-**	@param	list	The list to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting list
+**	@param	list		The list to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting list
 **	@returns
-**	A newly created list copied from `list`, in which in any item equal to `old`
-**	will instead have a value of `new`, or `NULL` if an error occurred.
+**	A newly created list copied from `list`, in which in any item equal to `item_old`
+**	will instead have a value of `item_new`, or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_list(T)*					List_Replace(T)(s_list(T) const* list, T old, T new);
+s_list(T)*					List_Replace(T)(s_list(T) const* list, T item_old, T item_new);
 #define c_lstrep(T)			List_Replace(T)
 //!@}
 
-//!@doc Creates a new list from the given `list`, where the `n` first occurences of `old` are replaced with `new`.
+//!@doc Creates a new list from the given `list`, where the `n` first occurences of `item_old` are replaced with `item_new`.
 /*!
-**	@param	list	The list to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting list
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	list		The list to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting list
+**	@param	n			The amount of occurences of `item_old` to replace
 **	@returns
 **	A newly created list copied from `strarr`, in which in the first (iterating forwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `item_old` will instead have a value of `item_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_list(T)*					List_ReplaceFirst(T)(s_list(T) const* list, T old, T new, t_uint n);
+s_list(T)*					List_ReplaceFirst(T)(s_list(T) const* list, T item_old, T item_new, t_uint n);
 #define c_lstrepfirst(T)	List_ReplaceFirst(T)
 //!@}
 
-//!@doc Creates a new list from the given `list`, where the `n` last occurences of `old` are replaced with `new`.
+//!@doc Creates a new list from the given `list`, where the `n` last occurences of `item_old` are replaced with `item_new`.
 /*!
-**	@param	list	The list to use as a basis for copy and item replacement
-**	@param	old		The item to be replaced
-**	@param	new		The replacement for the resulting list
-**	@param	n		The amount of occurences of `old` to replace
+**	@param	list		The list to use as a basis for copy and item replacement
+**	@param	item_old	The item to be replaced
+**	@param	item_new	The replacement for the resulting list
+**	@param	n			The amount of occurences of `item_old` to replace
 **	@returns
 **	A newly created list copied from `strarr`, in which in the first (iterating backwards)
-**	`n` encountered items which are equal to `old` will instead have a value of `new`,
+**	`n` encountered items which are equal to `item_old` will instead have a value of `item_new`,
 **	or `NULL` if an error occurred.
 */
 //!@{
 _MALLOC()
 _GENERIC()
-s_list(T)*					List_ReplaceLast(T)(s_list(T) const* list, T old, T new, t_uint n);
+s_list(T)*					List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_uint n);
 #define c_lstreplast(T)		List_ReplaceLast(T)
 //!@}
 

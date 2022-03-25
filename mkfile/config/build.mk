@@ -15,6 +15,11 @@ RANLIB = ranlib
 RANLIB_FLAGS = \
 	-D \
 
+ifdef __EMSCRIPTEN__
+AR = emar
+RANLIB = emranlib
+endif
+
 
 
 #! GNU conventional variable: C compiler
@@ -40,7 +45,6 @@ CFLAGS = \
 	-Wstrict-prototypes \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
-	-Wno-format-extra-args \
 	-fstrict-aliasing \
 	$(CFLAGS_MODE) \
 	$(CFLAGS_OS) \
@@ -65,7 +69,7 @@ CFLAGS_OS_win64 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
 CFLAGS_OS_macos = -Wno-language-extension-token
 CFLAGS_OS_linux = -Wno-unused-result -fPIC
 CFLAGS_OS_other = 
-CFLAGS_OS_emscripten = 
+CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
 endif
@@ -78,6 +82,16 @@ CFLAGS_EXTRA ?= \
 #	-fsanitize=thread \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
+
+ifneq ($(findstring ++,$(CC)),)
+CFLAGS_EXTRA += \
+	-Wno-deprecated \
+	-Wno-variadic-macros \
+	-Wno-c99-extensions \
+	-Wno-c++11-extensions \
+	-Wno-c++17-extensions \
+	-Wno-return-type-c-linkage
+endif
 
 
 
@@ -103,6 +117,14 @@ LDFLAGS_OS_emscripten =
 
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
 LDFLAGS_EXTRA ?= \
+
+ifdef __EMSCRIPTEN__
+LDFLAGS_MODE_debug += \
+	-s ASSERTIONS=2 \
+	-s SAFE_HEAP=1 \
+	-s STACK_OVERFLOW_CHECK=1 \
+
+endif
 
 
 

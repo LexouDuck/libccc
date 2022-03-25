@@ -100,7 +100,7 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 	result = fread((char*)dest, 1, size, csprng.urandom);
 	HANDLE_ERROR_SF(SYSTEM, (result != size), return (ERROR_SYSTEM);, "call to fread() on /dev/urandom failed")
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }
 
 
@@ -131,7 +131,7 @@ void*	CSPRNG_Get(void* dest, t_size size)
 inline t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
 inline t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }
 inline t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return (0);)	return (result); }
-inline t_float	CSPRNG_Float(t_csprng* state)
+t_float	CSPRNG_Float(t_csprng* state)
 {
 	t_float	result = NAN;
 	while (isnan(result))

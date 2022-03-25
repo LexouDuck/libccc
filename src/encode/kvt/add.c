@@ -53,7 +53,7 @@ e_cccerror	KVT_AddToArray(s_kvt* array, s_kvt* item)
 			array->value.child->prev = item;
 		}
 	}
-	return (OK);
+	return (ERROR_NONE);
 }
 
 

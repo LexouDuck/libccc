@@ -25,18 +25,18 @@ void	List_Free(T)(s_list(T)* list)
 
 
 _GENERIC()
-void	List_Free_F(T)(s_list(T)* list, void (*delete)(T* item))
+void	List_Free_F(T)(s_list(T)* list, void (*del)(T* item))
 {
 	s_list(T)*	next;
 	s_list(T)*	i;
 
 	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del  == NULL), return;)
 	i = list;
 	while (i)
 	{
 		next = i->next;
-		delete(&i->item);
+		del(&i->item);
 		Memory_Free(i);
 		i = next;
 	}
@@ -65,19 +65,19 @@ void	List_Delete(T)(s_list(T)* *a_list)
 
 
 _GENERIC()
-void	List_Delete_F(T)(s_list(T)* *a_list, void (*delete)(T* item))
+void	List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item))
 {
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (delete  == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del     == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
 	i = *a_list;
 	while (i)
 	{
 		next = i->next;
-		delete(&i->item);
+		del(&i->item);
 		Memory_Free(i);
 		i = next;
 	}

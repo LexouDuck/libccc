@@ -22,17 +22,17 @@ void	Array_Remove(T)(s_array(T)* array, T item)
 
 
 _GENERIC()
-void	Array_Remove_F(T)(s_array(T)* array, T item, void (*delete)(T))
+void	Array_Remove_F(T)(s_array(T)* array, T item, void (*del)(T))
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
 		return;
-	Array_RemoveAt_F(T)(array, index, delete);
+	Array_RemoveAt_F(T)(array, index, del);
 }
 
 
@@ -83,13 +83,13 @@ void	Array_RemoveAll(T)(s_array(T)* array, T item)
 
 
 _GENERIC()
-void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T))
+void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T))
 {
 	T*	result;
 	t_uint	i;
 	t_uint	amount;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
 	if (array->length == 0)
@@ -116,7 +116,7 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*delete)(T))
 	{
 		if (T_EQUALS(array->items[i], item))
 		{
-			delete(array->items[i]);
+			del(array->items[i]);
 			++amount;
 			continue;
 		}

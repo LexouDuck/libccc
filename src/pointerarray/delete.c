@@ -19,13 +19,13 @@ void	PointerArray_Free(void** ptrarr)
 
 
 
-void	PointerArray_Free_F(void** ptrarr, void (*delete)(void* ptr))
+void	PointerArray_Free_F(void** ptrarr, void (*del)(void* ptr))
 {
 	if (ptrarr == NULL)
 		return;
 	for (t_uint i = 0; ptrarr[i]; ++i)
 	{
-		delete(ptrarr[i]);
+		del(ptrarr[i]);
 	}
 	Memory_Free(ptrarr);
 }
@@ -46,14 +46,14 @@ void	PointerArray_Delete(void** *a_ptrarr)
 
 
 
-void	PointerArray_Delete_F(void** *a_ptrarr, void (*delete)(void* ptr))
+void	PointerArray_Delete_F(void** *a_ptrarr, void (*del)(void* ptr))
 {
 	HANDLE_ERROR(NULLPOINTER, (a_ptrarr == NULL), return;)
 	if (*a_ptrarr == NULL)
 		return;
 	for (t_uint i = 0; (*a_ptrarr)[i]; ++i)
 	{
-		delete((*a_ptrarr)[i]);
+		del((*a_ptrarr)[i]);
 	}
 	Memory_Delete((void**)a_ptrarr);
 }

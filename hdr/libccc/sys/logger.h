@@ -51,6 +51,7 @@ typedef enum logformat
 	LOGFORMAT_TEXT = 1, //!< Prints in a format that is friendly for raw text (same as above, but without ANSI color codes)
 	LOGFORMAT_JSON = 2, //!< Prints in a format that can be easily parsed by a JSON parser
 	LOGFORMAT_XML  = 3, //!< Prints in a format that can be easily parsed by an XML parser
+	ENUMLENGTH_LOGFORMAT
 }	e_logformat;
 //!@doc String literal macros for each item of the #e_logformat enumeration
 //!@{
@@ -117,19 +118,31 @@ typedef s_logger const* const*	t_logptrarr;
 
 /*!
 **	The format string to use to display timestamps at the beginning of log lines.
+**	By default, a simple UNIX UTC timestamp format is used (because it is easily sortable):
+**	`YYYY-MM-DD hh:mm:ss`
 */
+#ifndef LOG_TIMESTAMP_FORMAT
 #define LOG_TIMESTAMP_FORMAT	SF_DATE_UNIX" "SF_TIME_UNIX
+#endif
 
 /*!
-** The string to display at the beginning of each new line when outputting text that is multiline
-** As such, the amount of spaces here is equivalent to the size of a console log timestamp
+**	The string to display at the beginning of each new line when outputting text that is multiline
+**	As such, the amount of spaces here is equivalent to the size of a console log timestamp.
+**	@see #LOG_TIMESTAMP_FORMAT macro, which should have the same size as this macro.
+**	By default, there are 19 spaces, which corresponds to a timestamp in the following format:
+**	`YYYY-MM-DD hh:mm:ss`
 */
+#ifndef LOG_TIMESTAMP_INDENT
 #define LOG_TIMESTAMP_INDENT	"                   "
-//! Separator string used between timestamp and message (if applicable)
-#define LOG_TIMESTAMP_SEPARATOR	" | "
+#endif
 
-//! Indentation string used for LOGFORMAT_JSON
-#define LOG_JSON_INDENT			"        "
+//! Separator string used between timestamp and message (if applicable)
+#ifndef LOG_TIMESTAMP_SEPARATOR
+#define LOG_TIMESTAMP_SEPARATOR	" | "
+#endif
+
+//! Indentation string used for LOGFORMAT_JSON (4 spaces by default)
+#define LOG_JSON_INDENT			"    "
 
 
 
@@ -142,7 +155,7 @@ typedef s_logger const* const*	t_logptrarr;
 /* ************************************************************************** */
 
 #define LOGONE_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
-	e_cccerror	result = OK;					\
+	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	if (SKIP)	return (result);				\
 	va_start(args, format_str);					\
@@ -156,7 +169,7 @@ typedef s_logger const* const*	t_logptrarr;
 	return (result);							\
 
 #define LOGALL_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
-	e_cccerror	result = OK;					\
+	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	for (t_u32 i = 0; loggers[i]; ++i)			\
 	{											\

@@ -42,7 +42,7 @@ s_array(T)*	Array_New(T)(t_uint n, T value)
 		return (result);
 	result->items = (T*)Memory_Allocate(sizeof(T) * n);
 	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL),
-		Memory_Delete((void*)&result); return (NULL);)
+		Memory_Delete((void**)&result); return (NULL);)
 	for (t_uint i = 0; i < n; ++i)
 	{
 		result->items[i] = value;
