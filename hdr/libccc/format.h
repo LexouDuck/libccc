@@ -339,6 +339,17 @@ HEADER_CPP
 #define SF_UINTMAX_HEX_ "jX"
 //!@}
 
+#ifdef __EMSCRIPTEN__
+#undef  SF_PTRDIFF_
+#define SF_PTRDIFF_	"i"
+#undef  SF_PTRDIFF_HEX_
+#define SF_PTRDIFF_HEX_	"x"
+#undef  SF_SINTPTR_
+#define SF_SINTPTR_	"i"
+#undef  SF_SINTPTR_HEX_
+#define SF_SINTPTR_HEX_	"x"
+#endif
+
 //!@doc String format specifier macros for libccc/memory.h
 //!@{
 #define SF_MEMORY     "%"SF_MEMORY_
