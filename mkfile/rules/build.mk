@@ -80,8 +80,8 @@ else ifeq ($(OSMODE),linux)
 else ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
 		-s MODULARIZE \
-		-s EXPORTED_FUNCTIONS=_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete \
-		-s EXPORTED_RUNTIME_METHODS=ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8
+		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
+		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]
 else
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
