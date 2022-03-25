@@ -47,7 +47,7 @@ CFLAGS_OS_WIN64 = -D__USE_MINGW_ANSI_STDIO=1
 CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
 CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
 CFLAGS_OS_OTHER = 
-CFLAGS_OS_EMSCRIPTEN = 
+CFLAGS_OS_EMSCRIPTEN = -Wno-unused-result -fPIC -pedantic
 
 #! This variable is intentionally empty, to specify additional compiler options from the commandline
 CFLAGS_EXTRA ?= 
