@@ -258,11 +258,17 @@ function JSON_Encode(json_object)
 	}
 
 	let ptr = jso_to_kvt(null, json_object);
-	return emjs.ccall(
+	let result = emjs.ccall(
 		"JSON_ToString_Minify", // name of C function
 		"string", // return type
 		["number"], // argument types
 		[ptr]); // arguments
+	emjs.ccall(
+		"KVT_Delete", // name of C function
+		null, // return type
+		["number"], // argument types
+		[ptr]);
+	return result;
 }
 
 
