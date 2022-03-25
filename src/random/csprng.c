@@ -50,7 +50,9 @@ t_csprng*	CSPRNG_New(void)
 #else
 	csprng.urandom = fopen("/dev/urandom", "rb");
 #endif
-	HANDLE_ERROR(SYSTEM, (csprng.state == NULL), return (NULL);)
+	HANDLE_ERROR_SF(SYSTEM, (csprng.state == NULL),
+		return (NULL);,
+		"error occurred while initializing crypto-secure PRNG state.")
 	return (csprng.state);
 }
 
@@ -78,38 +80,40 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 {
 	u_csprng	csprng;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR_SF(NULLPOINTER, (dest  == NULL), return (ERROR_NULLPOINTER);, "`dest` argument is NULL")
+	HANDLE_ERROR_SF(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);, "`state` argument is NULL")
 	csprng.state = state;
 #ifdef _WIN32
 	BOOL result;
-	HANDLE_ERROR(SYSTEM, (csprng.hCryptProv == 0), return (ERROR_SYSTEM);)
+	HANDLE_ERROR_SF(SYSTEM, (csprng.hCryptProv == 0), return (ERROR_SYSTEM);, "invalid CSPRNG state (hCryptProv)")
 	t_u64 n = (size >> 30);
 	while (n--)
 	{
 		result = CryptGenRandom(csprng.hCryptProv, (1ul << 30), (BYTE*)dest);
-		HANDLE_ERROR(SYSTEM, (!result), return (ERROR_SYSTEM);)
+		HANDLE_ERROR_SF(SYSTEM, (!result), return (ERROR_SYSTEM);, "call to CryptGenRandom() failed")
 	}
 	result = CryptGenRandom(csprng.hCryptProv, (size & ((1ull << 30) - 1)), (BYTE*)dest);
-	HANDLE_ERROR(SYSTEM, (!result), return (ERROR_SYSTEM);)
+	HANDLE_ERROR_SF(SYSTEM, (!result), return (ERROR_SYSTEM);, "call to CryptGenRandom() failed")
 #else
 	t_size  result;
-	HANDLE_ERROR(SYSTEM, (csprng.urandom == NULL), return (ERROR_SYSTEM);)
+	HANDLE_ERROR_SF(SYSTEM, (csprng.urandom == NULL), return (ERROR_SYSTEM);, "invalid CSPRNG state (urandom)")
 	result = fread((char*)dest, 1, size, csprng.urandom);
-	HANDLE_ERROR(SYSTEM, (result != size), return (ERROR_SYSTEM);)
+	HANDLE_ERROR_SF(SYSTEM, (result != size), return (ERROR_SYSTEM);, "call to fread() on /dev/urandom failed")
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }
 
 
 #define CSPRNG_INIT_STATE() \
-	t_csprng*	state;                                       \
-	state = CSPRNG_New();                                    \
-	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (0);) \
+	t_csprng*	state;                \
+	state = CSPRNG_New();             \
+	HANDLE_ERROR_SF(ALLOCFAILURE,     \
+		(state == NULL), return (0);, \
+		"could not create crypto-secure PRNG state") \
 
 void*	CSPRNG_Get(void* dest, t_size size)
 {
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
+	HANDLE_ERROR_SF(NULLPOINTER, (dest == NULL), return (0);, "`dest` argument is NULL")
 	CSPRNG_INIT_STATE() 
 	if (CSPRNG_Next(state, dest, size)) return (0);
 	CSPRNG_Delete(&state);
@@ -124,10 +128,10 @@ void*	CSPRNG_Get(void* dest, t_size size)
 		&result, sizeof(TYPE)))	\
 		ACTION_ERROR			\
 
-inline t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint,	return (0);)	return (result); }
-inline t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint,	return (0);)	return (result); }
+inline t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
+inline t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }
 inline t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return (0);)	return (result); }
-inline t_float	CSPRNG_Float(t_csprng* state)
+t_float	CSPRNG_Float(t_csprng* state)
 {
 	t_float	result = NAN;
 	while (isnan(result))
@@ -140,17 +144,17 @@ inline t_float	CSPRNG_Float(t_csprng* state)
 
 
 
-#define DEFINE_CSPRNG_RANGE(ACTION_ERROR) \
-	if (min == max)				\
-		return (min);			\
-	HANDLE_ERROR(INVALIDRANGE,	\
-		(min > max),			\
-		ACTION_ERROR)			\
+#define CSPRNG_RANGE_CHECK(ACTION_ERROR, SF_TYPE) \
+	if (min == max)					\
+		return (min);				\
+	HANDLE_ERROR_SF(INVALIDRANGE,	\
+		(min > max), ACTION_ERROR,	\
+		"invalid random range specified (min="SF_TYPE" ; max="SF_TYPE")", min, max)	\
 
-t_uint  CSPRNG_UInt_Range     (t_csprng* state, t_uint  min, t_uint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
-t_sint  CSPRNG_SInt_Range     (t_csprng* state, t_sint  min, t_sint  max) { DEFINE_CSPRNG_RANGE(return (0);)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
-t_fixed CSPRNG_Fixed_Range    (t_csprng* state, t_fixed min, t_fixed max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
-t_float CSPRNG_Float_Range    (t_csprng* state, t_float min, t_float max) { DEFINE_CSPRNG_RANGE(return (0);)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
+t_uint  CSPRNG_UInt_Range     (t_csprng* state, t_uint  min, t_uint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_UINT)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
+t_sint  CSPRNG_SInt_Range     (t_csprng* state, t_sint  min, t_sint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_SINT)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
+t_fixed CSPRNG_Fixed_Range    (t_csprng* state, t_fixed min, t_fixed max) { CSPRNG_RANGE_CHECK(return (0);, SF_FIXED)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
+t_float CSPRNG_Float_Range    (t_csprng* state, t_float min, t_float max) { CSPRNG_RANGE_CHECK(return (0);, SF_FLOAT)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
 
 t_uint  CSPRNG_UInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt       (state);            CSPRNG_Delete(&state);  return (result); }
 t_sint  CSPRNG_SInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt       (state);            CSPRNG_Delete(&state);  return (result); }

@@ -1,4 +1,6 @@
 
+#include "libccc.h"
+#include "libccc/enum.h"
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
@@ -75,10 +77,10 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-#define PARSINGERROR_DATE_MESSAGE	C_RED"DATE PARSE ERROR"C_RESET": "
+#define PARSINGERROR_DATE_MESSAGE	IO_COLOR_FG_RED"DATE PARSE ERROR"C_RESET": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	HANDLE_ERROR_SF(PARSE, (TRUE),	\
+	HANDLE_ERROR_SF(PARSE, (TRUE),		\
 		return (0);,					\
 		MESSAGE, __VA_ARGS__)			\
 
@@ -340,7 +342,7 @@ recurse:
 			{
 				number = 1;
 				number = strptime_parsenumber(&buffer, 1, ENUMLENGTH_MONTH);
-				SET_TM(month, number - 1);
+				SET_TM(month, (e_month)(number - 1));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
@@ -348,7 +350,7 @@ recurse:
 			case 'b':
 			case 'h':
 			{
-				SET_TM(month, strptime_parsestring(&buffer, g_month, g_month_abbreviated, ENUMLENGTH_MONTH));
+				SET_TM(month, (e_month)strptime_parsestring(&buffer, g_month, g_month_abbreviated, ENUMLENGTH_MONTH));
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -383,21 +385,21 @@ recurse:
 
 			case 'w':	/* The day of week, beginning on sunday. */
 			{
-				SET_TM(day_week, strptime_parsenumber(&buffer, WEEKDAY_SUNDAY, WEEKDAY_SATURDAY));
+				SET_TM(day_week, (e_weekday)strptime_parsenumber(&buffer, WEEKDAY_SUNDAY, WEEKDAY_SATURDAY));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'u':	/* The day of week, monday = 1. */
 			{
 				number = strptime_parsenumber(&buffer, WEEKDAY_MONDAY, ENUMLENGTH_WEEKDAY);
-				SET_TM(day_week, number % ENUMLENGTH_WEEKDAY);
+				SET_TM(day_week, (e_weekday)(number % ENUMLENGTH_WEEKDAY));
 				LEGAL_ALT(ALT_O);
 				continue;
 			}
 			case 'A':	/* The day of week, using the locale's form. */
 			case 'a':
 			{
-				SET_TM(day_week, strptime_parsestring(&buffer, g_weekday, g_weekday_abbreviated, ENUMLENGTH_WEEKDAY));
+				SET_TM(day_week, (e_weekday)strptime_parsestring(&buffer, g_weekday, g_weekday_abbreviated, ENUMLENGTH_WEEKDAY));
 				LEGAL_ALT(0);
 				continue;
 			}
@@ -722,7 +724,7 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 			{
 				if (HAS_WRITTEN(day_month) && !HAS_WRITTEN(day_year))
 				{
-					for (e_month i = 0; i < result.month; ++i)
+					for (e_month i = (e_month)0; i < result.month; i = (e_month)(i + 1))
 					{
 						result.day_year += Date_DaysInMonth(i, result.year);
 					}
@@ -731,10 +733,10 @@ t_size		Date_Parse_(s_date* dest, t_char const* str, t_char const* format, t_boo
 				if (HAS_WRITTEN(day_year) && !HAS_WRITTEN(day_month))
 				{
 					t_s32 day = result.day_year;
-					e_month i = result.month;
+					t_enum i = result.month;
 					while (i--)
 					{
-						day -= Date_DaysInMonth(i, result.year);
+						day -= Date_DaysInMonth((e_month)i, result.year);
 					}
 					result.day_month = day;
 				}

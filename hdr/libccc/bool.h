@@ -70,21 +70,25 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 //!@{
 #undef	FALSE
 #define FALSE	(0)
-
+#ifndef __cplusplus
 #undef	false
 #define false	FALSE
+#endif
 //!@}
 
 //!@doc Represents a boolean true value  (1)
 //!@{
 #undef	TRUE
 #define TRUE	(1)
-
+#ifndef __cplusplus
 #undef	true
 #define true	TRUE
+#endif
 //!@}
 
 
+
+#ifndef __cplusplus
 
 //!@doc Boolean logical operator macros
 //!@{
@@ -118,6 +122,8 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 #endif
 //!@}
 
+#endif
+
 
 
 #endif
@@ -140,9 +146,20 @@ TYPEDEF_ALIAS(		t_bool, BOOL, PRIMITIVE)
 
 
 
-//!@doc Get the string representation of a boolean value (TRUE or FALSE)
+//!@doc Get the string representation of a boolean value ("TRUE" or "FALSE")
 //!@{
-_MALLOC()
+t_char const*			Bool_String(t_bool value, t_bool uppercase);
+#define c_boolstr		Bool_String
+//!@}
+
+//!@doc Write the string representation of a boolean value ("TRUE" or "FALSE") into the `dest` buffer
+//!@{
+t_size					Bool_Print(t_char* dest, t_bool value, t_bool uppercase);
+#define c_boolprint		Bool_Print
+//!@}
+
+//!@doc Get a newly allocated string representation of a boolean value ("TRUE" or "FALSE")
+//!@{
 t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 #define c_booltostr		Bool_ToString
 //!@}
@@ -151,7 +168,7 @@ t_char*					Bool_ToString(t_bool value, t_bool uppercase);
 
 //!@doc Parse a boolean value from the given string (can be 1/0/TRUE/FALSE/true/false)
 //!@{
-t_size					Bool_Parse(t_bool *dest, t_char const* str);
+t_size					Bool_Parse(t_bool *dest, t_size n, t_char const* str);
 #define c_boolparse		Bool_Parse
 //!@}
 

@@ -29,7 +29,7 @@ t_char*	String_Find_Char(t_char const* str, t_char c)
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no char '%c' in string \"%s\"", c, str)
+		"no char '%c' found in string \"%s\"", c, str)
 }
 #endif
 
@@ -67,7 +67,7 @@ t_char*	String_Find_Charset(t_char const* str, t_char const* charset)
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no char from charset \"%s\" in string \"%s\"", charset, str)
+		"no char from charset \"%s\" found in string \"%s\"", charset, str)
 }
 #endif
 
@@ -109,7 +109,7 @@ t_char*	String_Find_String(t_char const* str, t_char const* query)
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no string \"%s\" in string \"%s\"", query, str)
+		"no string \"%s\" found in string \"%s\"", query, str)
 }
 #endif
 

@@ -7,6 +7,7 @@
 /libccc.*
 /libccc-test
 /libccc-test*
+/libccc_test-*
 
 # Build
 /obj/
@@ -14,12 +15,14 @@
 /dist/
 
 # Testing
-/log/coverage/
-/log/**/*.log
-/log/**/*.txt
+/coverage/
+test/_test.c
 pclint_*.*
 
 # Logs
+/log/coverage/
+/log/**/*.log
+/log/**/*.txt
 /log/
 /logs/
 log.txt
@@ -96,16 +99,19 @@ dkms.conf
 ### OS-specific files
 ###
 
-# Windows
-
 # Linux
 
 # MacOS
 .DS-Store
 .DS_Store
 
+# Windows
+Thumbs.db
+
 # FAT32
 .Trash-[0-9]*
+.trashes
+.spotlight-v[0-9]*
 
 
 

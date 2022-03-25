@@ -19,13 +19,13 @@ void	Array_Free(T)(s_array(T)* array)
 
 
 _GENERIC()
-void	Array_Free_F(T)(s_array(T)* array, void (*delete)(T* item))
+void	Array_Free_F(T)(s_array(T)* array, void (*del)(T* item))
 {
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del   == NULL), return;)
 	for (t_uint i = 0; i < array->length; ++i)
 	{
-		delete(&array->items[i]);
+		del(&array->items[i]);
 	}
 	Memory_Free(array->items);
 	array->items = NULL;
@@ -50,14 +50,14 @@ void	Array_Delete(T)(s_array(T)* *a_array)
 
 
 _GENERIC()
-void	Array_Delete_F(T)(s_array(T)* *a_array, void (*delete)(T* item))
+void	Array_Delete_F(T)(s_array(T)* *a_array, void (*del)(T* item))
 {
-	HANDLE_ERROR(NULLPOINTER, (delete   == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del      == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (a_array  == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (*a_array == NULL), return;)
 	for (t_uint i = 0; i < (*a_array)->length; ++i)
 	{
-		delete(&(*a_array)->items[i]);
+		del(&(*a_array)->items[i]);
 	}
 	Memory_Free((*a_array)->items);
 	(*a_array)->items = NULL;

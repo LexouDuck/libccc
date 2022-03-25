@@ -15,7 +15,7 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 	s_kvt*	other;
 	s_kvt*	append;
 	s_kvt*	current;
-	s_kvt*	new;
+	s_kvt*	kvt_new;
 
 	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt1), return (NULL);)
 	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt2), return (NULL);)
@@ -37,28 +37,28 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 			if (recurse && KVT_IsObject(other))
 			{
 				if (KVT_IsObject(item))
-					new = KVT_Merge(item, other, recurse);
-				else new = KVT_Duplicate(other, recurse);
+					kvt_new = KVT_Merge(item, other, recurse);
+				else kvt_new = KVT_Duplicate(other, recurse);
 			}
 			else
 			{
-				new = KVT_Duplicate(other, recurse);
+				kvt_new = KVT_Duplicate(other, recurse);
 			}
-			KVT_Replace(result, item, new);
+			KVT_Replace(result, item, kvt_new);
 		}
 		else
 		{
-			new = KVT_Duplicate(other, recurse);
+			kvt_new = KVT_Duplicate(other, recurse);
 			if (append == NULL)
 			{
-				append = new;
-				current = new;
+				append = kvt_new;
+				current = kvt_new;
 			}
 			else
 			{
-				current->next = new;
-				new->prev = current;
-				current = new;
+				current->next = kvt_new;
+				kvt_new->prev = current;
+				current = kvt_new;
 			}
 		}
 		other = other->next;

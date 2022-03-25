@@ -84,7 +84,8 @@ int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 	int				status = GNL_ERROR;
 
 	HANDLE_ERROR(NULLPOINTER, (a_line == NULL), return (GNL_ERROR);)
-	HANDLE_ERROR(INVALIDARGS, (fd < 0), return (GNL_ERROR);)
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (GNL_ERROR);,
+		"`fd` argument given has a negative value: %i", fd)
 	new_line = NULL;
 	status = gnl_read(fd, &new_line);
 	if (status < 0)

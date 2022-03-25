@@ -24,7 +24,7 @@ t_char*	String_Find_N_Char(t_char const* str, t_char c, t_size n)
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no char '%c' in the first %zu chars of string \"%s\"", c, n, str)
+		"no char '%c' found in the first "SF_SIZE" chars of string \"%s\"", c, n, str)
 }
 
 inline
@@ -54,7 +54,7 @@ t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no char from charset \"%s\" in the first %zu chars of string \"%s\"", charset, n, str)
+		"no char from charset \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", charset, n, str)
 }
 
 inline
@@ -94,7 +94,7 @@ t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		", no string \"%s\" in the first %zu chars of string \"%s\"", query, n, str)
+		"no string \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", query, n, str)
 }
 
 inline

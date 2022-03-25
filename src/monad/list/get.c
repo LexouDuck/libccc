@@ -13,7 +13,7 @@ T*	List_Get(T)(s_list(T) const* list, t_uint index)
 	for (t_uint	i = 0; i < index; ++i)
 	{
 		HANDLE_ERROR_SF(INDEX2LARGE, (list->next == NULL), return (NULL);,
-			", index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+			"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
 			index, List_Length(T)(list))
 		list = list->next;
 	}

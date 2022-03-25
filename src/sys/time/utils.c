@@ -67,22 +67,24 @@ void	Date_MakeValid(s_date* date)
 
 	tmp = ENUMLENGTH_WEEKDAY;
 	if (date->day_week >= tmp)
-		date->day_week = (tmp - 1);
+		date->day_week = (e_weekday)(tmp - 1);
 	if (ISNEG(date->day_week))
-		date->day_week = 0;
+		date->day_week = (e_weekday)0;
 
 	tmp = ENUMLENGTH_MONTH;
 	if (date->month >= tmp)
-		date->month = (tmp - 1);
+		date->month = (e_month)(tmp - 1);
 	if (ISNEG(date->month))
-		date->month = 0;
+		date->month = (e_month)0;
 }
 
 
 
 t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 {
-	HANDLE_ERROR(INVALIDENUM, (month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);)
+	HANDLE_ERROR_SF(INVALIDENUM,
+		(month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);,
+		"month enum value is invalid: "SF_ENUM, month)
 	if (month == MONTH_FEBRUARY)
 		return (Date_IsLeapYear(year) ? 29 : 28);
 	else if (month <= 6)
@@ -102,7 +104,7 @@ e_weekday	Date_DayOfTheWeek(s_date* date)
     {
         y -= 1;
     }
-    return ((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY);
+    return ((e_weekday)((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY));
 /*
 // simple epoch-based algorithm
 	t_time t = Date_ToTime(date);
@@ -125,7 +127,9 @@ t_bool	Date_IsLeapYear(t_s32 year)
 
 t_bool	Date_HasLeapSecond(e_month month, t_s32 year)
 {
-	HANDLE_ERROR(INVALIDENUM, (month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);)
+	HANDLE_ERROR_SF(INVALIDENUM,
+		(month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), return (FALSE);,
+		"month enum value is invalid: "SF_ENUM, month)
 	if (month != MONTH_JUNE &&
 		month != MONTH_DECEMBER)
 		return (FALSE);

@@ -26,7 +26,7 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 	t_uint	leapsec;
 
 	HANDLE_ERROR_SF(INVALIDARGS, (!Date_IsValid(date)), return (NULL);,
-		": date given is not a valid calendar date/time")
+		"date given is not a valid calendar date/time")
 	tm = Date_ToSTDC(date);
 	leapsec = (tm.tm_sec >= TIME_MAX_SECONDS) ? (tm.tm_sec - (TIME_MAX_SECONDS - 1)) : 0;
 	tm.tm_sec -= leapsec;
@@ -42,7 +42,7 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 	}
 	while (wrote == 0 && size < MAX_BUFFER_SIZE);
 	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
-		": Could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
+		"could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)
 	result[wrote] = '\0';
 /*	// TODO fix this bad heuristic correction (waiting for ISO to get their story straight concerning leap seconds)

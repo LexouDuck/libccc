@@ -22,12 +22,14 @@ inline
 e_cccerror	Program_Run(t_char const* command)
 {
 	// check if command processor exists
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		system(NULL),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to system() failed")
 	// run terminal command
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		system(command),
-		return (ERROR_SYSTEM);)
-	return (OK);
+		return (ERROR_SYSTEM);,
+		"terminal command failed: \"%s\"", command)
+	return (ERROR_NONE);
 }

@@ -30,16 +30,17 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 	filepath = NULL;
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
 		return (ERROR_UNSPECIFIED);,
-		"The 'stat()' function is not available for this platform.")
+		"the 'stat()' function is not available for this platform.")
 	return (ERROR_UNSPECIFIED); // TODO
 #else
 	t_io_mode	result = 0;
 	struct stat	stat_buffer;
 
 	Memory_Clear(&stat_buffer, sizeof(struct stat));
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		stat(filepath, &stat_buffer),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to stat() failed, with filepath=\"%s\"", filepath)
 	result = stat_buffer.st_mode &
 		(ACCESSMODE_USER_RWX |
 		ACCESSMODE_GROUP_RWX |
@@ -57,18 +58,19 @@ e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 	(!defined(__GNUC__) && defined(__MSVC__) && defined(__clang__))) // TODO figure out why chmod() is not present on all windows envs
 	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
 		return (ERROR_UNSPECIFIED);,
-		"The 'chmod()' function is not available for this platform.")
+		"the 'chmod()' function is not available for this platform.")
 #else
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	mode = (
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
 	#endif
-	HANDLE_ERROR(SYSTEM,
+	HANDLE_ERROR_SF(SYSTEM,
 		chmod(filepath, mode),
-		return (ERROR_SYSTEM);)
+		return (ERROR_SYSTEM);,
+		"call to chmod() failed, with filepath=\"%s\" and mode=%u", filepath, mode)
 #endif
-	return (OK);
+	return (ERROR_NONE);
 }
 
 

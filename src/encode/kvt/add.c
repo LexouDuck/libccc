@@ -53,7 +53,7 @@ e_cccerror	KVT_AddToArray(s_kvt* array, s_kvt* item)
 			array->value.child->prev = item;
 		}
 	}
-	return (OK);
+	return (ERROR_NONE);
 }
 
 
@@ -105,9 +105,10 @@ s_kvt*	KVT_AddToObject_Null(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_null = KVT_CreateNull();
 	e_cccerror error = KVT_AddToObject(object, key, item_null);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_null);
-		return (NULL);)
+		return (NULL);,
+		"could not add null-type value to object, with key=\"%s\"", key)
 	return (item_null);
 }
 
@@ -115,9 +116,10 @@ s_kvt*	KVT_AddToObject_Boolean(s_kvt* object, t_char const* key, t_bool value)
 {
 	s_kvt* item_bool = KVT_CreateBoolean(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_bool);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_bool);
-		return (NULL);)
+		return (NULL);,
+		"could not add boolean-type value to object, with key=\"%s\"", key)
 	return (item_bool);
 }
 
@@ -125,9 +127,10 @@ s_kvt*	KVT_AddToObject_Integer(s_kvt* object, t_char const* key, t_s64 value)
 {
 	s_kvt* item_number = KVT_CreateInteger(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_number);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_number);
-		return (NULL);)
+		return (NULL);,
+		"could not add integer-type value to object, with key=\"%s\"", key)
 	return (item_number);
 }
 
@@ -135,9 +138,10 @@ s_kvt*	KVT_AddToObject_Float(s_kvt* object, t_char const* key, t_f64 value)
 {
 	s_kvt* item_number = KVT_CreateFloat(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_number);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_number);
-		return (NULL);)
+		return (NULL);,
+		"could not add float-type value to object, with key=\"%s\"", key)
 	return (item_number);
 }
 
@@ -145,9 +149,10 @@ s_kvt*	KVT_AddToObject_String(s_kvt* object, t_char const* key, t_char const* st
 {
 	s_kvt* item_string = KVT_CreateString(string);
 	e_cccerror error = KVT_AddToObject(object, key, item_string);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_string);
-		return (NULL);)
+		return (NULL);,
+		"could not add string-type value to object, with key=\"%s\"", key)
 	return (item_string);
 }
 
@@ -155,9 +160,10 @@ s_kvt*	KVT_AddToObject_Raw(s_kvt* object, t_char const* key, t_char const* raw)
 {
 	s_kvt* item_raw = KVT_CreateRaw(raw);
 	e_cccerror error = KVT_AddToObject(object, key, item_raw);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_raw);
-		return (NULL);)
+		return (NULL);,
+		"could not add raw-type value to object, with key=\"%s\"", key)
 	return (item_raw);
 }
 
@@ -165,9 +171,10 @@ s_kvt*	KVT_AddToObject_Object(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_object = KVT_CreateObject();
 	e_cccerror error = KVT_AddToObject(object, key, item_object);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_object);
-		return (NULL);)
+		return (NULL);,
+		"could not add object-type value to object, with key=\"%s\"", key)
 	return (item_object);
 }
 
@@ -175,8 +182,9 @@ s_kvt*	KVT_AddToObject_Array(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_array = KVT_CreateArray();
 	e_cccerror error = KVT_AddToObject(object, key, item_array);
-	HANDLE_ERROR(UNSPECIFIED, (error),
+	HANDLE_ERROR_SF(UNSPECIFIED, (error),
 		KVT_Delete(item_array);
-		return (NULL);)
+		return (NULL);,
+		"could not add array-type value to object, with key=\"%s\"", key)
 	return (item_array);
 }

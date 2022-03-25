@@ -27,8 +27,8 @@ refactor-indent:
 .PHONY:\
 refactor-replace #! On all source files: performs a regular expression match & replace (using args: `OLD` and `NEW`)
 refactor-replace:
-	@if [ "$(OLD)" == "" ]; then $(call print_error,"No 'OLD' argument was specified.") ; exit 1 ; fi
-	@if [ "$(NEW)" == "" ]; then $(call print_error,"No 'NEW' argument was specified.") ; exit 1 ; fi
+	@if [ "$(OLD)" = "" ]; then $(call print_error,"No 'OLD' argument was specified.") ; exit 1 ; fi
+	@if [ "$(NEW)" = "" ]; then $(call print_error,"No 'NEW' argument was specified.") ; exit 1 ; fi
 	@for i in $(SRCS) $(HDRS) ; do \
 		printf "Editing file: $$i -> " ; \
 		sed -E 's/$(OLD)/$(NEW)/g' $$i \

@@ -16,19 +16,26 @@ LDLIBS := $(LDLIBS) \
 INCLUDES := $(INCLUDES) \
 	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
+#! Shell command used to copy over libraries from ./lib into ./bin
+#! @param $(1)	file extension glob
+copylibs = $(foreach i,$(PACKAGES), \
+	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
+		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic) ; do \
+			cp -p "$$i" $(BINDIR)$(OSMODE)/ ; \
+		done ; \
+	fi ; )
+
 
 
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: MODE = debug
-build-debug: CFLAGS += $(CFLAGS_DEBUG)
-build-debug: $(NAME_STATIC) $(NAME_DYNAMIC)
+build-debug: $(NAME_static) $(NAME_dynamic)
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
 build-release: MODE = release
-build-release: CFLAGS += $(CFLAGS_RELEASE)
-build-release: $(NAME_STATIC) $(NAME_DYNAMIC)
+build-release: $(NAME_static) $(NAME_dynamic)
 
 
 
@@ -42,19 +49,19 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 
 #! Builds the static-link library '.a' binary file for the current target platform
-$(NAME_STATIC): $(OBJS)
+$(NAME_static): $(OBJS)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(OBJS)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/static/
 	@cp -p $@ $(BINDIR)$(OSMODE)/static/
-	@$(foreach i,$(PACKAGES), cp -p $(PACKAGE_$(i)_BIN)static/* $(BINDIR)$(OSMODE)/static/ ; )
+	@$(call copylibs)
 
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
-$(NAME_DYNAMIC): $(OBJS)
+$(NAME_dynamic): $(OBJS)
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
@@ -70,6 +77,11 @@ else ifeq ($(OSMODE),macos)
 else ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
+else ifeq ($(OSMODE),emscripten)
+	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+		-s MODULARIZE \
+		-s EXPORTED_FUNCTIONS=_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete \
+		-s EXPORTED_RUNTIME_METHODS=ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8
 else
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
@@ -77,7 +89,7 @@ endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
 	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
-	@$(foreach i,$(PACKAGES), cp -p $(PACKAGE_$(i)_BIN)dynamic/* $(BINDIR)$(OSMODE)/dynamic/ ; )
+	@$(call copylibs)
 
 
 
@@ -118,10 +130,10 @@ clean-build-dep:
 .PHONY:\
 clean-build-lib #! Deletes the built library(ies) in the root project folder
 clean-build-lib:
-	@$(call print_message,"Deleting static library: $(NAME_STATIC)")
-	@rm -f $(NAME_STATIC)
-	@$(call print_message,"Deleting dynamic library: $(NAME_DYNAMIC)")
-	@rm -f $(NAME_DYNAMIC)
+	@$(call print_message,"Deleting static library: $(NAME_static)")
+	@rm -f $(NAME_static)
+	@$(call print_message,"Deleting dynamic library: $(NAME_dynamic)")
+	@rm -f $(NAME_dynamic)
 
 .PHONY:\
 clean-build-bin #! Deletes all build binaries in the ./bin folder

@@ -67,8 +67,8 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 	t_u32   random = 0;
 	t_size  i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);)
+	HANDLE_ERROR_SF(NULLPOINTER, (dest  == NULL), return (ERROR_NULLPOINTER);, "`dest` argument is NULL")
+	HANDLE_ERROR_SF(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);, "`state` argument is NULL")
 	while (i < n)
 	{
 		random = PRNG_U32(state);
@@ -77,20 +77,22 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 		buffer[i] = (random >> 16) & 0xFF;	if (i++ == n)   break;
 		buffer[i] = (random >> 24) & 0xFF;	if (i++ == n)   break;
 	}
-	return (OK);
+	return (ERROR_NONE);
 }
 
 
 #define PRNG_INIT_STATE() \
-	t_prng* state;                                           \
-	state = PRNG_New();                                      \
-	HANDLE_ERROR(ALLOCFAILURE, (state == NULL), return (0);) \
-	PRNG_NewSeed(state);                                     \
+	t_prng* state;                    \
+	state = PRNG_New();               \
+	HANDLE_ERROR_SF(ALLOCFAILURE,     \
+		(state == NULL), return (0);, \
+		"could not create pseudo-RNG state") \
+	PRNG_NewSeed(state); \
 
 
 void*	PRNG_Get(void* dest, t_size size)
 {
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
+	HANDLE_ERROR_SF(NULLPOINTER, (dest == NULL), return (0);, "`dest` argument is NULL")
 	PRNG_INIT_STATE()
 	if (PRNG_Next(state, dest, size)) return (0);
 	PRNG_Delete(&state);
@@ -106,7 +108,7 @@ void*	PRNG_Get(void* dest, t_size size)
 inline t_uint   PRNG_UInt (t_prng* state)	{ DEFINE_PRNG(t_uint,	return (0);)	return (result); }
 inline t_sint   PRNG_SInt (t_prng* state)	{ DEFINE_PRNG(t_sint,	return (0);)	return (result); }
 inline t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (0);)	return (result); }
-inline t_float  PRNG_Float(t_prng* state)
+t_float  PRNG_Float(t_prng* state)
 {
 	t_float	result = NAN;
 	while (isnan(result))
@@ -119,17 +121,17 @@ inline t_float  PRNG_Float(t_prng* state)
 
 
 
-#define DEFINE_PRNG_RANGE(ACTION_ERROR) \
-	if (min == max)				\
-		return (min);			\
-	HANDLE_ERROR(INVALIDRANGE,	\
-		(min > max),			\
-		ACTION_ERROR)			\
+#define PRNG_RANGE_CHECK(ACTION_ERROR, SF_TYPE) \
+	if (min == max)					\
+		return (min);				\
+	HANDLE_ERROR_SF(INVALIDRANGE,	\
+		(min > max), ACTION_ERROR,	\
+		"invalid random range specified (min="SF_TYPE" ; max="SF_TYPE")", min, max)	\
 
-t_uint  PRNG_UInt_Range     (t_prng* state, t_uint  min, t_uint  max)  { DEFINE_PRNG_RANGE(return (0);)	return (         (PRNG_UInt(state) % (max - min)) + min); }
-t_sint  PRNG_SInt_Range     (t_prng* state, t_sint  min, t_sint  max)  { DEFINE_PRNG_RANGE(return (0);)	return (         (PRNG_SInt(state) % (max - min)) + min); }
-t_fixed PRNG_Fixed_Range    (t_prng* state, t_fixed min, t_fixed max)  { DEFINE_PRNG_RANGE(return (0);)	return (Fixed_Mod(PRNG_Fixed(state), (max - min)) + min); }
-t_float PRNG_Float_Range    (t_prng* state, t_float min, t_float max)  { DEFINE_PRNG_RANGE(return (0);)	return (Float_Mod(PRNG_Float(state), (max - min)) + min); }
+t_uint  PRNG_UInt_Range     (t_prng* state, t_uint  min, t_uint  max)  { PRNG_RANGE_CHECK(return (0);, SF_UINT )	return (         (PRNG_UInt(state) % (max - min)) + min); }
+t_sint  PRNG_SInt_Range     (t_prng* state, t_sint  min, t_sint  max)  { PRNG_RANGE_CHECK(return (0);, SF_SINT )	return (         (PRNG_SInt(state) % (max - min)) + min); }
+t_fixed PRNG_Fixed_Range    (t_prng* state, t_fixed min, t_fixed max)  { PRNG_RANGE_CHECK(return (0);, SF_FIXED)	return (Fixed_Mod(PRNG_Fixed(state), (max - min)) + min); }
+t_float PRNG_Float_Range    (t_prng* state, t_float min, t_float max)  { PRNG_RANGE_CHECK(return (0);, SF_FLOAT)	return (Float_Mod(PRNG_Float(state), (max - min)) + min); }
 
 t_uint  PRNG_UInt_Get       (void)                      { PRNG_INIT_STATE()  t_uint  result = PRNG_UInt       (state);            PRNG_Delete(&state);  return (result); }
 t_sint  PRNG_SInt_Get       (void)                      { PRNG_INIT_STATE()  t_sint  result = PRNG_SInt       (state);            PRNG_Delete(&state);  return (result); }

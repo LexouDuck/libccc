@@ -102,7 +102,7 @@ e_cccerror			Program_OnExit(void (*f)(void));
 **	@isostd{C89,https://en.cppreference.com/w/c/program/system}
 */
 //!@{
-int					Program_Run(t_char const* command);
+e_cccerror			Program_Run(t_char const* command);
 #define c_system	Program_Run
 //!@}
 
@@ -122,7 +122,7 @@ t_char*				Program_GetEnv(t_char const* name);
 **	@isostd{POSIX,https://linux.die.net/man/3/setenv}
 */
 //!@{
-int					Program_SetEnv(t_char const* name, t_char const* value, t_bool overwrite);
+e_cccerror			Program_SetEnv(t_char const* name, t_char const* value, t_bool overwrite);
 #define c_setenv	Program_SetEnv
 //!@}
 

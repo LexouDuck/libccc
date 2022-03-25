@@ -31,9 +31,12 @@
 inline
 t_size	IO_Write_Char(t_fd fd, t_char c)
 {
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	int result = 0;
 	result = write(fd, &c, 1);
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for char '%c'", fd, c)
 	return (result);
 }
 
@@ -43,9 +46,12 @@ inline
 t_size	IO_Write_String(t_fd fd, t_char const* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	int result = 0;
 	result = write(fd, str, String_Length(str));
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for string \"%s\"", fd, str)
 	return (result);
 }
 
@@ -55,9 +61,12 @@ inline
 t_size	IO_Write_Data(t_fd fd, t_u8 const* data, t_size n)
 {
 	HANDLE_ERROR(NULLPOINTER, (data == NULL), return (0);)
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	int result = 0;
 	result = write(fd, data, n);
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for data of size=%zu", fd, n)
 	return (result);
 }
 
@@ -67,11 +76,15 @@ inline
 t_size	IO_Write_Line(t_fd fd, t_char const* str)
 {
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	int result = 0;
 	result = write(fd, str, String_Length(str));
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for string \"%s\"", fd, str)
 	result = write(fd, "\n", 1);
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for line return at end of line", fd)
 	return (result);
 }
 
@@ -80,14 +93,18 @@ t_size	IO_Write_Line(t_fd fd, t_char const* str)
 t_size	IO_Write_Lines(t_fd fd, t_char const** strarr)
 {
 	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (0);)
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	int result = 0;
 	int i = 0;
 	while (strarr[i])
 	{
 		result = write(fd, strarr[i], String_Length(strarr[i]));
-		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+		HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+			"call to write() failed on fd#%i, for string array item %i: \"%s\"", fd, i, strarr[i])
 		result = write(fd, "\n", 1);
-		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+		HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+			"call to write() failed on fd#%i, for string array item %i line return", fd, i)
 		++i;
 	}
 	return (result);
@@ -97,6 +114,8 @@ t_size	IO_Write_Lines(t_fd fd, t_char const** strarr)
 
 t_size	IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 {
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (0);)
 	if (n == 0 || columns == 0)
 		return (0);
@@ -108,14 +127,17 @@ t_size	IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 		nibble = (ptr[i] & 0xF0) >> 4;
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
 		result = write(fd, &nibble, 1);
-		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+		HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+			"call to write() failed on fd#%i, for half-byte hi char in byte at index "SF_SIZE, fd, i)
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
 		result = write(fd, &nibble, 1);
-		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+		HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+			"call to write() failed on fd#%i, for half-byte lo char in byte at index "SF_SIZE, fd, i)
 		++i;
 		result = write(fd, (i % columns == 0 ? "\n" : " "), 1);
-		HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+		HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+			"call to write() failed on fd#%i, for memory column separator at index "SF_SIZE, fd, i)
 	}
 	return (result);
 }
@@ -124,6 +146,8 @@ t_size	IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 
 t_size	IO_Write_Format(t_fd fd, t_char const* format, ...)
 {
+	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (0);,
+		"`fd` argument given has a negative value: %i", fd)
 	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
 	int		result = 0;
 	t_char* str = NULL;
@@ -133,7 +157,8 @@ t_size	IO_Write_Format(t_fd fd, t_char const* format, ...)
 	va_end(args);
 	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (0);)
 	result = write(fd, str, String_Length(str));
-	HANDLE_ERROR(SYSTEM, (result < 0), return (0);)
+	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+		"call to write() failed on fd#%i, for formatted string \"%s\"", fd, format)
 	String_Delete(&str);
 	return (result);
 }

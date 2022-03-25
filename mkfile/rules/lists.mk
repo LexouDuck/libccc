@@ -5,7 +5,7 @@
 #! Path of the file which stores the list of header code files
 HDRSFILE = $(LISTSDIR)hdrs.txt
 #! The shell command which outputs the list of header code files
-echo_HDRSFILE = find $(HDRDIR) -name "*.h" | sort | sed 's|$(HDRDIR)/||g'
+echo_HDRSFILE = find $(HDRDIR) -name "*.h" | sort | sed 's|$(HDRDIR)/||g' | awk '{ if (/^libccc\/compatibility\//) {} else { print; } }'
 #! The shell command which generates the list of header code files
 make_HDRSFILE = $(call echo_HDRSFILE) > $(HDRSFILE)
 # if file doesn't exist, create it
@@ -45,5 +45,5 @@ lists:
 .PHONY:\
 show-lists #! Display the list of source/header files
 show-lists:
-	@$(call echo_HDRSFILE)
-	@$(call echo_SRCSFILE)
+	@$(call echo_HDRSFILE) | awk '{ print "$(HDRDIR)" $$0; }'
+	@$(call echo_SRCSFILE) | awk '{ print "$(SRCDIR)" $$0; }'

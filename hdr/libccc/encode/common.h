@@ -43,7 +43,7 @@ HEADER_CPP
 */
 
 //! An integer type which works as a bitflag enum, used to express a dynamiclly-typed value's type at runtime
-typedef t_sint		t_dynamic;
+typedef t_uint		t_dynamic;
 
 //! These constants are the enum items/bitflags for the `t_dynamic` dynamic-type enum
 //!@{
@@ -79,7 +79,7 @@ typedef struct kvt
 
 //	t_utf8*		comment;//!< A comment line associated with this item // TODO
 	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
-	t_dynamic	type;	//!< The type of the item: uses the `TOML_TYPE_*` macros defined above.
+	t_dynamic	type;	//!< The type of the item: uses the `DYNAMICTYPE_*` macros defined above.
 	union dynamic
 	{
 		t_bool		boolean;	//!< #DYNAMICTYPE_BOOLEAN
@@ -381,7 +381,7 @@ t_s64					KVT_GetValue_Integer(s_kvt const* item);
 t_f64					KVT_GetValue_Float	(s_kvt const* item);
 #define c_kvtget_float	KVT_GetValue_Float
 //!@}
-//!@doc Returns the string value contained within the given `item`, or `NULL` if type is not #DYNAMICTYPE_STRING.
+//!@doc Returns the string value contained within the given `item`, or `NULL` if type is not #DYNAMICTYPE_STRING. NB: Whether the string should be freed is specified through the use of the DYNAMICTYPE_ISREFERENCE mask over item->type.
 //!@{
 t_char*					KVT_GetValue_String	(s_kvt const* item);
 #define c_kvtget_string	KVT_GetValue_String

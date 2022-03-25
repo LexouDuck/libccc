@@ -32,26 +32,55 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
+
+
+//!@doc The file to include in source files which use `HANDLE_ERROR()`
+//!@{
+#ifndef LIBCONFIG_ERROR_INCLUDE
+#define LIBCONFIG_ERROR_INCLUDE	"libccc/sys/logger.h"
+#endif
+//!@}
+
 //!@doc These macros allow you to configure how libccc handles exceptions/error cases.
 /*!
 **	These macro functions determine how exception cases are to be handled by libccc.
 **	You may change the logic here (to implement custom exception handling for example).
 */
 //!@{
-#ifdef DEBUG
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
-	{														\
-		t_char* tmp_errorname = Error_GetName(ERRORCODE);	\
-		IO_Write_Format(STDERR,								\
-			"libccc: "C_RED"error"C_RESET"(%s): %s\n",		\
-			tmp_errorname, MESSAGE);						\
-		String_Delete(&tmp_errorname);						\
-	}														\
+#ifndef LIBCONFIG_ERROR_DEFAULTHANDLER
+	#ifdef DEBUG
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
+	{\
+		s_logger logger = DEFAULT_LOGGER_STDERR;\
+		Log_Error_CCC(&logger, error,\
+			"%s -> %s", FUNCNAME, MESSAGE);\
+	}\
 
-#else
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, MESSAGE) \
+	#else
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
+	{}
 	
+	#endif
 #endif
+//!@}
+
+
+
+//!@doc The action to take when there is an integer overflow (by default, let it continue)
+//!@{
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
+//	return (VALUE);
+#endif
+#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
+#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
+//	if (dest)	*dest = VALUE;	return (i);
+#endif
+
+// TODO implement configurable return values in cases of number overflow with this macro
+#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
+	CONCAT(TYPE,_ERROR)	//!< configurable error value
+//	(VALUE)				//!< saturated type
 //!@}
 
 
@@ -258,7 +287,7 @@ typedef enum cccerror
 
 //	ERROR_,
 
-	ENUMLENGTH_CCCERROR,
+	ENUMLENGTH_CCCERROR
 }	e_cccerror;
 
 /*

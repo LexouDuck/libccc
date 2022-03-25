@@ -20,18 +20,17 @@ void	PointerArray_Remove(void** ptrarr, void const* ptr)
 
 
 
-void	PointerArray_Remove_F(void** ptrarr, void const* ptr,
-	void (*delete)(void*))
+void	PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*del)(void*))
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
 	index = PointerArray_IndexOf((void const* const*)ptrarr, ptr);
 	if (index == ERROR)
 		return;
-	PointerArray_RemoveAt_F(ptrarr, index, delete);
+	PointerArray_RemoveAt_F(ptrarr, index, del);
 }
 
 
@@ -75,14 +74,13 @@ void	PointerArray_RemoveAll(void** ptrarr, void const* ptr)
 
 
 
-void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr,
-	void (*delete)(void*))
+void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*del)(void*))
 {
 	t_uint	i;
 	t_uint	amount;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (delete == NULL), return;)
+	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
 	HANDLE_ERROR(NULLPOINTER, (ptr    == NULL), return;)
 	length = PointerArray_Length((void const* const*)ptrarr);
@@ -106,7 +104,7 @@ void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr,
 	{
 		if (ptrarr[i] == ptr)
 		{
-			delete(ptrarr[i]);
+			del(ptrarr[i]);
 			++amount;
 			continue;
 		}

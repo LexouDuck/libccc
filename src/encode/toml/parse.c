@@ -26,14 +26,15 @@ static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 
 
 
-#define PARSINGERROR_TOML_MESSAGE	IO_COLOR_FG_RED"TOML PARSE ERROR"IO_RESET":"
+//! String which is at the beginning of each error log output line
+#define PARSINGERROR_TOML_PREFIX	"\n -> "
 
 //! used to handle errors during parsing
 #define PARSINGERROR_TOML(...) \
 	{																							\
 		t_char* tmp_error;																		\
 		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend("\n"PARSINGERROR_TOML_MESSAGE" ", &tmp_error);				\
+		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error);						\
 		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
 		goto failure;																			\
 	}																							\
@@ -1056,7 +1057,7 @@ failure:
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
 		return (p->offset);,
-		": at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
+		"at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
 		column,

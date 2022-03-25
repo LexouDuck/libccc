@@ -2,7 +2,7 @@
 
 
 
-#! GNU conventional variable: C Compiler flags & settings
+#! GNU conventional variable: C compiler options
 TEST_CFLAGS = \
 	-Wall \
 	-Wextra \
@@ -10,118 +10,128 @@ TEST_CFLAGS = \
 	-Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-format-extra-args \
-	-fstrict-aliasing \
 	-fno-inline \
-	$(TEST_CFLAGS_OS) $(TEST_CFLAGS_EXTRA)
+	-fstrict-aliasing \
+	$(TEST_CFLAGS_MODE) \
+	$(TEST_CFLAGS_OS) \
+	$(TEST_CFLAGS_EXTRA)
 
-TEST_CFLAGS_DEBUG   = -g -ggdb -D DEBUG=1 # -D__NOSTD__=1
-TEST_CFLAGS_RELEASE = -O3
+#! C compiler options which are specific to the current build mode, according to $(MODE)
+TEST_CFLAGS_MODE = $(TEST_CFLAGS_MODE_$(MODE))
+#! C compiler flags which are only present in "debug" build mode
+TEST_CFLAGS_MODE_debug = \
+	-g \
+	-ggdb \
+	-D DEBUG=1
+#! C compiler flags which are only present in "release" build mode
+TEST_CFLAGS_MODE_release = \
+	-O3 \
+	-D RELEASE=1
 
-TEST_CFLAGS_OS = _
-TEST_CFLAGS_OS_WIN32 = -D__USE_MINGW_ANSI_STDIO=1
-TEST_CFLAGS_OS_WIN64 = -D__USE_MINGW_ANSI_STDIO=1
-TEST_CFLAGS_OS_LINUX = -Wno-unused-result -fPIC -pedantic
-TEST_CFLAGS_OS_MACOS = -Wno-missing-braces -Wno-language-extension-token
-TEST_CFLAGS_OS_OTHER = 
-TEST_CFLAGS_OS_EMSCRIPTEN = 
-ifeq ($(CC),clang)
-	TEST_CFLAGS += -Wno-missing-braces -Wno-gnu-zero-variadic-macro-arguments
+#! C compiler options which are platform-specific, according to $(OSMODE)
+TEST_CFLAGS_OS = $(TEST_CFLAGS_OS_$(OSMODE))
+TEST_CFLAGS_OS_win32 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+TEST_CFLAGS_OS_win64 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+TEST_CFLAGS_OS_macos = -Wno-language-extension-token
+TEST_CFLAGS_OS_linux = -Wno-unused-result -fPIC
+TEST_CFLAGS_OS_other = 
+TEST_CFLAGS_OS_emscripten = 
+ifneq ($(findstring clang,$(CC)),)
+	TEST_CFLAGS_OS += -Wno-missing-braces
 endif
-TEST_CFLAGS_EXTRA = 
+
+#! This variable is intentionally empty, to specify additional C compiler options from the commandline
+TEST_CFLAGS_EXTRA ?= \
+#	-flto \
+#	-fanalyzer \
 #	-fsanitize=address \
 #	-fsanitize=thread \
-#	-fanalyzer \
+#	-std=ansi -pedantic \
+#	-D __NOSTD__=1 \
 
 
 
-#! GNU conventional variable: C Linker flags & settings
+#! GNU conventional variable: C linker options
 TEST_LDFLAGS = \
-	$(TEST_LDFLAGS_OS) $(TEST_LDFLAGS_EXTRA)
+	$(TEST_LDFLAGS_MODE) \
+	$(TEST_LDFLAGS_OS) \
+	$(TEST_LDFLAGS_EXTRA)
 
-TEST_LDFLAGS_DEBUG   = 
-TEST_LDFLAGS_RELEASE = 
+#! C linker options which are specific to the current build mode, according to $(MODE)
+TEST_LDFLAGS_MODE = $(TEST_LDFLAGS_MODE_$(MODE))
+TEST_LDFLAGS_debug = 
+TEST_LDFLAGS_release = 
 
-TEST_LDFLAGS_OS = _
-TEST_LDFLAGS_OS_WIN32 = 
-TEST_LDFLAGS_OS_WIN64 = 
-TEST_LDFLAGS_OS_LINUX = 
-TEST_LDFLAGS_OS_MACOS = 
-TEST_LDFLAGS_OS_OTHER = 
-TEST_LDFLAGS_OS_EMSCRIPTEN = 
+#! C linker options which are platform-specific, according to $(OSMODE)
+TEST_LDFLAGS_OS = $(TEST_LDFLAGS_OS_$(OSMODE))
+TEST_LDFLAGS_OS_win32 =
+TEST_LDFLAGS_OS_win64 =
+TEST_LDFLAGS_OS_macos = 
+TEST_LDFLAGS_OS_linux = 
+TEST_LDFLAGS_OS_other = 
+TEST_LDFLAGS_OS_emscripten = 
 
-TEST_LDFLAGS_EXTRA = 
-#	-flto \
+#! This variable is intentionally empty, to specify additional C linker options from the commandline
+TEST_LDFLAGS_EXTRA ?= \
 
 
 
+#! GNU conventional variable: C libraries to link against
 TEST_LDLIBS = \
-	$(NAME_STATIC) \
-	$(TEST_LDLIBS_OS) $(TEST_LDLIBS_EXTRA)
+	$(NAME_LIBMODE) \
+	$(TEST_LDLIBS_MODE) \
+	$(TEST_LDLIBS_OS) \
+	$(TEST_LDLIBS_EXTRA)
 
-TEST_LDLIBS_DEBUG   = 
-TEST_LDLIBS_RELEASE = 
+#! Linked libraries which are specific to the current build mode, according to $(MODE)
+TEST_LDLIBS_MODE = $(TEST_LDLIBS_MODE_$(MODE))
+TEST_LDLIBS_MODE_debug = 
+TEST_LDLIBS_MODE_release = 
 
-TEST_LDLIBS_OS = _
-TEST_LDLIBS_OS_WIN32 = -L./ -static-libgcc
-TEST_LDLIBS_OS_WIN64 = -L./ -static-libgcc
-TEST_LDLIBS_OS_LINUX = -lm
-TEST_LDLIBS_OS_MACOS = 
-TEST_LDLIBS_OS_OTHER = 
-TEST_LDLIBS_OS_EMSCRIPTEN = -lm
+#! Linked libraries which are platform-specific, according to $(OSMODE)
+TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
+TEST_LDLIBS_OS_win32 = 
+TEST_LDLIBS_OS_win64 = 
+TEST_LDLIBS_OS_macos = 
+TEST_LDLIBS_OS_linux = -lm
+TEST_LDLIBS_OS_other = 
+TEST_LDLIBS_OS_emscripten = -lm
+ifneq ($(findstring mingw,$(CC)),)
+TEST_LDLIBS_OS += -L./ -static-libgcc
+endif
 
-TEST_LDLIBS_EXTRA = 
-#	-D__NOSTD__=1 \
+#! This variable is intentionally empty, to specify additional linked libraries from the commandline
+TEST_LDLIBS_EXTRA ?= \
 #	-L/usr/local/lib -ltsan \
-#	-Wl,-rpath,bin/linux/dynamic/ \
-#	-Wl,-rpath='$$ORIGIN/' \
 
 
 
+#! GNU conventional variable: List of included folders, which store header code files
 TEST_INCLUDES = \
 	-I$(HDRDIR) \
 	-I$(TESTDIR) \
-	$(TEST_INCLUDES_OS) $(TEST_INCLUDES_EXTRA)
+	$(TEST_INCLUDES_MODE) \
+	$(TEST_INCLUDES_OS) \
+	$(TEST_INCLUDES_EXTRA)
 
-TEST_INCLUDES_DEBUG   = 
-TEST_INCLUDES_RELEASE = 
+#! Header directories which are specific to the current build mode, according to $(MODE)
+TEST_INCLUDES_MODE = $(TEST_INCLUDES_MODE_$(MODE))
+TEST_INCLUDES_MODE_debug = 
+TEST_INCLUDES_MODE_release = 
 
-TEST_INCLUDES_OS = _
-TEST_INCLUDES_OS_WIN32 = 
-TEST_INCLUDES_OS_WIN64 = 
-TEST_INCLUDES_OS_LINUX = 
-TEST_INCLUDES_OS_MACOS = 
-TEST_INCLUDES_OS_OTHER = 
-TEST_INCLUDES_OS_EMSCRIPTEN = 
+#! Header directories which are platform-specific, according to $(OSMODE)
+TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_$(OSMODE))
+TEST_INCLUDES_OS_win32 = 
+TEST_INCLUDES_OS_win64 = 
+TEST_INCLUDES_OS_macos = 
+TEST_INCLUDES_OS_linux = 
+TEST_INCLUDES_OS_other = 
+TEST_INCLUDES_OS_emscripten = 
 
-# Set platform-specific variables
-ifeq ($(OSMODE),other)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_OTHER)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_OTHER)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_OTHER)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_OTHER)
-else ifeq ($(OSMODE),win32)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_WIN32)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_WIN32)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_WIN32)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_WIN32)
-else ifeq ($(OSMODE),win64)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_WIN64)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_WIN64)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_WIN64)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_WIN64)
-else ifeq ($(OSMODE),linux)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_LINUX)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_LINUX)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_LINUX)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_LINUX)
-else ifeq ($(OSMODE),macos)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_MACOS)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_MACOS)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_MACOS)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_MACOS)
-else ifeq ($(OSMODE),emscripten)
-	TEST_CFLAGS_OS   = $(TEST_CFLAGS_OS_EMSCRIPTEN)
-	TEST_LDFLAGS_OS  = $(TEST_LDFLAGS_OS_EMSCRIPTEN)
-	TEST_LDLIBS_OS   = $(TEST_LDLIBS_OS_EMSCRIPTEN)
-	TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_EMSCRIPTEN)
-endif
+#! This variable is intentionally empty, to specify additional header directories from the commandline
+TEST_INCLUDES_EXTRA ?= \
+
+
+
+#! The directory in which to store text logs of the test suite output
+TEST_LOGDIR = $(LOGDIR)test/

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/sh -e
 
 #! utility variables for terminal colored output
 ansi_esc() { printf "\033[""$@""m" ; }
@@ -12,28 +12,35 @@ IO_CYAN="`    ansi_esc 36`"
 
 
 
-# filepath of the version file
+#! The filepath of the version file
 VERSIONFILE=VERSION
 
-# get list of files with changes in this commit
-FILES=`git diff  --cached  --name-only` # | awk '{ print "\"" $0 "\"" } ' | tr '\n' ' '`
-printf "Files changed:$IO_CYAN\n$FILES\n$IO_RESET"
+#! List of files with changes in this commit
+CHANGED="` git diff --cached --name-only `"
+printf "Files changed:$IO_CYAN\n$CHANGED\n$IO_RESET"
 
-SRCS=`make show-lists && make help-makefiles | cut -d' ' -f 1`
+#! List of important files (which, when changed, should update the version number)
+SOURCES="`{ make show-lists ; make help-makefiles ; } | cut -d' ' -f 1 `"
 
-for i in "$SRCS" ; do
-	if echo "$FILES" | grep -q "$i" ; then
-		match=1
-		FILES="$FILES $i"
+match=false
+
+for i in $CHANGED
+do
+	if printf "$SOURCES" | grep -q "./$i"
+	then
+		match=true
+		break
 	fi
 done
 
-if [ "$match" ]; then
-	printf "Detected changes to source files.\n"
-	if echo "$FILES" | grep -q "$VERSIONFILE" ; then
-		printf "version file '$VERSIONFILE' has already been updated.\n"
+if $match
+then
+	printf "Detected changes to important source files.\n"
+	if printf "$CHANGED" | grep -q "$VERSIONFILE"
+	then
+		printf "Project version file '$VERSIONFILE' has already been updated.\n"
 	else
-		make version-patch || exit 1
+		make version-patch
 		git add $VERSIONFILE
 	fi
 fi

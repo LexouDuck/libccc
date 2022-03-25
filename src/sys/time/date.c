@@ -84,10 +84,10 @@ s_date		Date_FromSTDC(struct tm const* value)
 		.sec		= value->tm_sec,
 		.min		= value->tm_min,
 		.hour		= value->tm_hour,
-		.day_week	= value->tm_wday,
+		.day_week	= (e_weekday)value->tm_wday,
 		.day_month	= value->tm_mday,
 		.day_year	= value->tm_yday,
-		.month		= value->tm_mon,
+		.month		= (e_month)value->tm_mon,
 		.year		= value->tm_year + TM_YEAR_BASE,
 		.is_dst		= value->tm_isdst,
 		.offset		=

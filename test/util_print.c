@@ -28,7 +28,12 @@ void	print_error(char const* format_error, ...)
 
 void	print_percent(double percent)
 {
-	printf("%s%g%%"C_RESET"\n", (percent == 100 ? C_GREEN : (percent >= 90 ? C_YELLOW : C_RED)), percent);
+	char const* color;
+	if (percent >= 100)		color = C_GREEN;
+	else if (percent >= 90)	color = C_YELLOW;
+	else if (percent >= 0)	color = C_RED;
+	else					color = C_RESET;
+	printf("%s%g%%"C_RESET"\n", color, percent);
 }
 
 
@@ -68,20 +73,20 @@ void	print_totals(int amount, int failed, char const* category)
 
 void	print_usage(char const* program_name)
 {
-	printf("\nUSAGE");
-	printf("\n\t%s [TEST_SUITES] [OPTIONS]", program_name);
-	printf("\n");
-	printf("\nTEST_SUITES");
-	printf("\n    If none of these arguments are provided, all of the test suites will be run.");
-	printf("\n    Each of the following arguments runs the corresponding test suite (ie: sequence of unit tests):");
+	printf("\n""USAGE");
+	printf("\n""\t%s [TEST_SUITES] [OPTIONS]", program_name);
+	printf("\n""");
+	printf("\n""TEST_SUITES");
+	printf("\n""    If none of these arguments are provided, all of the test suites will be run.");
+	printf("\n""    Each of the following arguments runs the corresponding test suite (ie: sequence of unit tests):");
 	for (int j = 0; j < TEST_SUITE_AMOUNT; ++j)
 	{
 		printf("\n\t%s", g_test.suites[j].name);
 	}
 	printf("\n");
-	printf("\nOPTIONS");
-	printf("\n    If none of these arguments are provided, this program will only output the total amount of tests passed/failed.");
-	printf("\n    Here is the list of accepted options, both in '-c' char format, and '--string' string format:");
+	printf("\n""OPTIONS");
+	printf("\n""    If none of these arguments are provided, this program will only output the total amount of tests passed/failed.");
+	printf("\n""    Here is the list of accepted options, both in '-c' char format, and '--string' string format:");
 	for (int j = 0; j < TEST_ARGS_AMOUNT; ++j)
 	{
 		printf("\n\t-%c or --%s\t%s", g_test.args[j].arg, g_test.args[j].name, g_test.args[j].description);
@@ -110,7 +115,7 @@ void	print_title(void)
 	printf("  / /  / // . | / ___|   /_  __//  __// __|/_  __/\n");
 	printf(" / /_ / // , < / /___     / /  /  _/ _\\_ \\  / /   \n");
 	printf("/___//_//___-' \\____/    /_/  /____/ \\__-' /_/    \n");
-	printf("                           ==> by duquesne @ 42.fr\n");
+	printf(" ==> from https://github.com/lexouduck/libccc.git \n");
 	printf("==================================================\n");
 	printf("\n");
 	printf(C_YELLOW"NB: All the tests with written in yellow 'can segfault' are NULL pointer tests of some kind."C_RESET"\n\n");
@@ -139,7 +144,7 @@ void	print_nonstd(void)
 	{
 		printf("\n\n");
 		printf(C_BLUE"================ NON-STD FUNCTIONS ================"C_RESET
-			"\nThe following tests are for the functions of this category"
-			"\nwhich are not present in the ISO standard C library.\n");
+			"\n""The following tests are for the functions of this category"
+			"\n""which are not present in the ISO standard C library.\n");
 	}
 }
