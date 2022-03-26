@@ -57,8 +57,8 @@ typedef t_char**	p_strarray;
 */
 //!@{
 _MALLOC()
-t_char**					String_Split_Char(t_char const* str, t_char sep);
-#define c_strsplit_char		String_Split_Char
+t_char**				String_Split_Char(t_char const* str, t_char sep);
+#define c_strsplit_char	String_Split_Char
 //!@}
 
 //!@doc Splits a string into several new sub-strings, with `sep` as the delimiter char
@@ -72,8 +72,8 @@ t_char**					String_Split_Char(t_char const* str, t_char sep);
 */
 //!@{
 _MALLOC()
-t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
-#define c_strsplit_cset		String_Split_Charset
+t_char**				String_Split_Charset(t_char const* str, t_char const* sep_chars);
+#define c_strsplit_cset	String_Split_Charset
 //!@}
 
 //!@doc Splits up the given string `str` into several parts in a string array, using `query` as separator
@@ -92,8 +92,8 @@ t_char**					String_Split_Charset(t_char const* str, t_char const* sep_chars);
 */
 //!@{
 _MALLOC()
-t_char**					String_Split_String(t_char const* str, t_char const* sep);
-#define c_strsplit_str		String_Split_String
+t_char**				String_Split_String(t_char const* str, t_char const* sep);
+#define c_strsplit_str	String_Split_String
 //!@}
 
 
@@ -286,8 +286,8 @@ void					StringArray_Delete(t_char** *a_strarr);
 **	This return will be the same as the given `dest` argument, unless `dest == NULL`.
 */
 //!@{
-t_char**					StringArray_Add(t_char** dest, t_char const* str);
-#define c_strarradd			StringArray_Add
+t_char**				StringArray_Add(t_char** dest, t_char const* str);
+#define c_strarradd		StringArray_Add
 //!@}
 
 //!@doc Inserts the given `string` at the given `index` of the given string array `dest`
@@ -303,8 +303,8 @@ t_char**					StringArray_Add(t_char** dest, t_char const* str);
 **	unless `dest == NULL`, and the `index` given is zero.
 */
 //!@{
-t_char**					StringArray_Insert(t_char** dest, t_char const* str, t_uint index);
-#define c_strarrinsert		StringArray_Insert
+t_char**				StringArray_Insert(t_char** dest, t_char const* str, t_uint index);
+#define c_strarrinsert	StringArray_Insert
 //!@}
 
 
@@ -322,8 +322,8 @@ t_char**					StringArray_Insert(t_char** dest, t_char const* str, t_uint index);
 **	unless `dest == NULL`, or the `index` given is zero.
 */
 //!@{
-t_char**					StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
-#define c_strarrwedge		StringArray_Wedge
+t_char**				StringArray_Wedge(t_char** dest, t_char const** src, t_uint index);
+#define c_strarrwedge	StringArray_Wedge
 //!@}
 
 
@@ -671,8 +671,8 @@ t_sint					StringArray_IndexOf_F(t_char const* const* strarr, t_bool (*match)(t_
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_Char(t_char const* const* strarr, t_char const c);
-#define c_strarrcount_char		StringArray_Count_Char
+t_uint						StringArray_Count_Char(t_char const* const* strarr, t_char const c);
+#define c_strarrcount_char	StringArray_Count_Char
 //!@}
 
 //!	Counts the amount of occurences of any of the chars in the given `charset` in the given string array `strarr`.
@@ -680,8 +680,8 @@ t_uint							StringArray_Count_Char(t_char const* const* strarr, t_char const c)
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_Charset(t_char const* const* strarr, t_char const* cset);
-#define c_strarrcount_cset		StringArray_Count_Charset
+t_uint						StringArray_Count_Charset(t_char const* const* strarr, t_char const* cset);
+#define c_strarrcount_cset	StringArray_Count_Charset
 //!@}
 
 //!	Counts the amount of occurences of the string `query` in the given string array `strarr`.
@@ -689,8 +689,8 @@ t_uint							StringArray_Count_Charset(t_char const* const* strarr, t_char const
 **	TODO document this
 */
 //!@{
-t_uint							StringArray_Count_String(t_char const* const* strarr, t_char const* query);
-#define c_strarrcount_str		StringArray_Count_String
+t_uint						StringArray_Count_String(t_char const* const* strarr, t_char const* query);
+#define c_strarrcount_str	StringArray_Count_String
 //!@}
 
 

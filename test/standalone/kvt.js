@@ -1,3 +1,4 @@
+// This file holds a script to test KVT struct conversion via the emscripten heap
 
 let module_factory = require("./libccc.js");
 module_factory().then((emjs) =>
