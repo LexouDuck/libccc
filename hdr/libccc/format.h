@@ -315,6 +315,7 @@ HEADER_CPP
 #define SF_SIZE_HEX     "0x%"SF_SIZE_HEX_
 #define SF_SIZE_HEX_    "zx"
 
+#ifdef _IS_64BIT
 #define SF_PTRDIFF      "%"SF_PTRDIFF_
 #define SF_PTRDIFF_     "ti"
 #define SF_PTRDIFF_HEX  "0x%"SF_PTRDIFF_HEX_
@@ -328,6 +329,21 @@ HEADER_CPP
 #define SF_SINTPTR_HEX_ "zX"
 #define SF_UINTPTR_HEX  "0x%"SF_UINTPTR_HEX_
 #define SF_UINTPTR_HEX_ "zX"
+#else
+#define SF_PTRDIFF      "%"SF_PTRDIFF_
+#define SF_PTRDIFF_     "i"
+#define SF_PTRDIFF_HEX  "0x%"SF_PTRDIFF_HEX_
+#define SF_PTRDIFF_HEX_ "x"
+
+#define SF_SINTPTR      "%"SF_SINTPTR_
+#define SF_SINTPTR_     "i"
+#define SF_UINTPTR      "%"SF_UINTPTR_
+#define SF_UINTPTR_     "u"
+#define SF_SINTPTR_HEX  "0x%"SF_SINTPTR_HEX_
+#define SF_SINTPTR_HEX_ "X"
+#define SF_UINTPTR_HEX  "0x%"SF_UINTPTR_HEX_
+#define SF_UINTPTR_HEX_ "X"
+#endif
 
 #define SF_SINTMAX      "%"SF_SINTMAX_
 #define SF_SINTMAX_     "ji"
@@ -339,16 +355,6 @@ HEADER_CPP
 #define SF_UINTMAX_HEX_ "jX"
 //!@}
 
-#ifdef __EMSCRIPTEN__
-#undef  SF_PTRDIFF_
-#define SF_PTRDIFF_	"i"
-#undef  SF_PTRDIFF_HEX_
-#define SF_PTRDIFF_HEX_	"x"
-#undef  SF_SINTPTR_
-#define SF_SINTPTR_	"i"
-#undef  SF_SINTPTR_HEX_
-#define SF_SINTPTR_HEX_	"x"
-#endif
 
 //!@doc String format specifier macros for libccc/memory.h
 //!@{
