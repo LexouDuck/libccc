@@ -6,7 +6,7 @@
 ["Video Settings"]
 
 	window_position = { x = -793, y = 75 }
-	window_size = { x = 768, y = 720 }
+	window_size     = { x = 768, y = 720 }
 	window_maximized = false
 	fullscreen = false
 	keep_aspect_ratio = true
@@ -15,15 +15,15 @@
 ["Audio Settings"]
 
 	volume_master = 100
-	volume_music = 100
-	volume_sfx = 100
+	volume_music  = 100
+	volume_sfx    = 100
 	mute = false
 
 ["Input Mapping"]
 
-	joypad_up = { device_guid = "0003000000C82D000000600000000000", device_id = 0, event = "jhat", which = 0, value = 1 }
-	joypad_down = { device_guid = "00030000005E0400008E020000000078", device_id = 0, event = "jhat", which = 0, value = 4 }
-	joypad_left = { device_guid = "000300000025090000E8030000000000", device_id = 0, event = "jhat", which = 0, value = 8 }
+	joypad_up    = { device_guid = "0003000000C82D000000600000000000", device_id = 0, event = "jhat", which = 0, value = 1 }
+	joypad_down  = { device_guid = "00030000005E0400008E020000000078", device_id = 0, event = "jhat", which = 0, value = 4 }
+	joypad_left  = { device_guid = "000300000025090000E8030000000000", device_id = 0, event = "jhat", which = 0, value = 8 }
 	joypad_right = { device_guid = "00030000006F0E0000A6020000000078", device_id = 0, event = "jhat", which = 0, value = 2 }
-	joypad_A = { device_guid = "0003000000C82D000000600000000000", device_id = 0, event = "jbutton", value = 0 }
-	joypad_B = { device_guid = "00000000000000000000000000000000", device_id = 0, event = "jbutton", value = 1 }
+	joypad_A     = { device_guid = "0003000000C82D000000600000000000", device_id = 0, event = "jbutton", value = 0 }
+	joypad_B     = { device_guid = "00000000000000000000000000000000", device_id = 0, event = "jbutton", value = 1 }
