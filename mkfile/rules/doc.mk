@@ -40,6 +40,7 @@ DOXYREST_URL = https://github.com/vovkos/doxyrest/releases/download/doxyrest-$(D
 #! Shell command to install doxyrest prereq
 doxyrest_install = \
 { \
+	rm -r -f $(DOXYREST_DIR) && \
 	mkdir -p $(DOXYREST_DIR) && \
 	curl -L $(DOXYREST_URL)$(DOXYREST_PACKAGE) --progress-bar --output $(DOXYREST_PACKAGE) && \
 	$(call doxyrest_extract) && \
@@ -73,9 +74,14 @@ doxyrest_extract = \
 	rmdir $(DOXYREST_DIR)share \
 
 else ifeq ($(OSMODE),linux)
-DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-linux-x86.tar.xz
+DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-linux-amd64.tar.xz
 doxyrest_extract = \
-	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) \
+	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) && \
+	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64 && \
+	mv -f $(DOXYREST_DIR)share/doxyrest/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)share/doxyrest && \
+	rmdir $(DOXYREST_DIR)share \
 
 else
 doxyrest_install = $(call print_failure,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
@@ -195,10 +201,13 @@ prereq-doc:
 		$(call doxyrest_install))
 	@-$(call check_prereq,'(doc) Sphinx python doc generator',\
 		$(SPHINX) --version,\
-		$(call install_prereq,sphinx-doc))
+		pip3 install -U sphinx)
+	@-$(call check_prereq,'(doc) Sphinx theme: ReadTheDocs.io',\
+		pip3 list | grep 'sphinx-rtd-theme',\
+		pip3 install sphinx_rtd_theme)
 	@-$(call check_prereq,'(doc) Lua',\
 		lua -v,\
-		$(call install_prereq,lua))
+		$(call install_prereq,liblua5.2-0))
 	@-$(call check_prereq,'(doc) dot graphviz graph generator',\
 		dot -V,\
 		$(call install_prereq,graphviz))
