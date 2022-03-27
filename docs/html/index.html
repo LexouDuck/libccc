@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc &mdash; libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+  <title>libccc &mdash; libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="libccc">
 	<meta property="og:description" content="libccc">
-	<meta property="og:title" content="libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+	<meta property="og:title" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation - libccc">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="page_index.html">
-	<meta property="og:site_name" content="libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+	<meta property="og:site_name" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation">
 
 
@@ -65,10 +65,9 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -80,7 +79,6 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -149,13 +147,13 @@
              
   <section id="libccc">
 <span id="doxid-indexpage"></span><span id="index-0"></span><h1>libccc<a class="headerlink" href="#libccc" title="Permalink to this headline"></a></h1>
-<p><span class="target" id="doxid-index-1md-users-alexis-projects-libccc-readme"></span> A comprehensive, cross-platform, customizable standard library for C</p>
+<p><span class="target" id="doxid-index-1md-mnt-d-lexou-projects-c-libccc-readme"></span> A comprehensive, cross-platform, customizable standard library for C</p>
 <dl class="simple">
 <dt><a href="#id1"><span class="problematic" id="id2">`</span></a></dt><dd><p>&lt;<a class="reference external" href="https://github.com/LexouDuck/libccc/actions">https://github.com/LexouDuck/libccc/actions</a>&gt;`__</p>
 </dd>
 </dl>
 <section id="the-project">
-<span id="doxid-index-1autotoc-md1"></span><h2>The Project<a class="headerlink" href="#the-project" title="Permalink to this headline"></a></h2>
+<span id="doxid-index-1autotoc-md0"></span><h2>The Project<a class="headerlink" href="#the-project" title="Permalink to this headline"></a></h2>
 <p>The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.</p>
 <p>The first step to accomplishing this is to avoid using the native int/long/short types, which can have different storage size depending on the platform (‘int’ is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that’d be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine’s default storage size). So first of all, using the integer types defined in “stdint.h” (‘int32_t’, ‘uint64_t’, etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren’t present on every platform though - sometimes we will have to settle for the ‘uint_fastX_t’ types, but macros have been provided to make this switch simply). Of course, many times a platform-dependent “fast int” is the best thing to use, and this is made easy using libccc.</p>
 <p>The following categories/headers include the ISO standard library (types, functions, macros): =============  =====  ==================================================================================================================================================================================================================================================================================

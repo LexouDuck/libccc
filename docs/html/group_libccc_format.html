@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/format.h &mdash; libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+  <title>libccc/format.h &mdash; libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -24,13 +24,13 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="libccc/error.h" href="group_libccc_error.html" />
-    <link rel="prev" title="libccc/char.h" href="group_libccc_char.html" />
+    <link rel="next" title="libccc/char.h" href="group_libccc_char.html" />
+    <link rel="prev" title="struct error_info" href="struct_error_info.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
 	<meta name="Description" content="libccc/format.h">
 	<meta property="og:description" content="libccc/format.h">
-	<meta property="og:title" content="libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+	<meta property="og:title" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation - libccc/format.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_format.html">
-	<meta property="og:site_name" content="libccc libccc@0.10.7-2022-03-26_3220aa17c283218a84e537f986fa87194e78755f
+	<meta property="og:site_name" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation">
 
 
@@ -65,7 +65,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/format.h</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
@@ -75,8 +75,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -88,7 +87,6 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -163,8 +161,8 @@
 
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
-<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
+<a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
@@ -377,21 +375,21 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gad7d5eadf644ae91d36d349364cc9582e"><span class="std std-ref">SF_VECTOR4D_</span></a><span></span><span class="p">(</span><span class="n">PREFIX</span><span class="p">)</span>            <span class="s">&quot;(&quot;</span><a class="reference internal" href="#doxid-group-libccc-format-1gaa6f3e6f8018ac638cbecd00c070067c7"><span class="std std-ref">SF</span></a><span></span><span class="p">(</span><span class="n">VECTOR_AXIS_</span><span class="p">,</span><span class="n">PREFIX</span><span class="p">)</span><span class="s">&quot;, &quot;</span><a class="reference internal" href="#doxid-group-libccc-format-1gaa6f3e6f8018ac638cbecd00c070067c7"><span class="std std-ref">SF</span></a><span></span><span class="p">(</span><span class="n">VECTOR_AXIS_</span><span class="p">,</span><span class="n">PREFIX</span><span class="p">)</span><span class="s">&quot;, &quot;</span><a class="reference internal" href="#doxid-group-libccc-format-1gaa6f3e6f8018ac638cbecd00c070067c7"><span class="std std-ref">SF</span></a><span></span><span class="p">(</span><span class="n">VECTOR_AXIS_</span><span class="p">,</span><span class="n">PREFIX</span><span class="p">)</span><span class="s">&quot;, &quot;</span><a class="reference internal" href="#doxid-group-libccc-format-1gaa6f3e6f8018ac638cbecd00c070067c7"><span class="std std-ref">SF</span></a><span></span><span class="p">(</span><span class="n">VECTOR_AXIS_</span><span class="p">,</span><span class="n">PREFIX</span><span class="p">)</span><span class="s">&quot;)&quot;</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga24ca7ab2485d3ad27fd389be3370aa75"><span class="std std-ref">SF_VECTOR_AXIS</span></a><span></span>  <span class="s">&quot;%&quot;</span><a class="reference internal" href="#doxid-group-libccc-format-1gafac7ba88530886630d83d6393e1a88f5"><span class="std std-ref">SF_VECTOR_AXIS_</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafac7ba88530886630d83d6393e1a88f5"><span class="std std-ref">SF_VECTOR_AXIS_</span></a><span></span> <span class="s">&quot;g&quot;</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacc97b00fd8f86c2e590b7fc53b9ebf21"><span class="std std-ref">String_Build</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacc97b00fd8f86c2e590b7fc53b9ebf21"><span class="std std-ref">String_Build</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gade57a00d12aac06b9768603513a10410"><span class="std std-ref">String_Build_N</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga0b927e0f29d106ed722ce8d7fd61b7c9"><span class="std std-ref">String_Build_N_VA</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga164c8fcd4f8b160918efd724f7370683"><span class="std std-ref">String_Build_VA</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafae038f477a52abad1c3db5215bf9d50"><span class="std std-ref">c_asprintf</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga164c8fcd4f8b160918efd724f7370683"><span class="std std-ref">String_Build_VA</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gafae038f477a52abad1c3db5215bf9d50"><span class="std std-ref">c_asprintf</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gab0a5026241da51c0a778c47aafcce5d8"><span class="std std-ref">c_snprintf</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga547b820d07e6b57ec93c4069217656b5"><span class="std std-ref">c_strfmt</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga8702bd0fce53ba9c47f75931af94cacd"><span class="std std-ref">c_strfmt_va</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaec22df63b1874a7497781018cbf878ed"><span class="std std-ref">c_strformat</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga21a6e87039779b39aed5cf0578da4f52"><span class="std std-ref">c_strformat_va</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga547b820d07e6b57ec93c4069217656b5"><span class="std std-ref">c_strfmt</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga8702bd0fce53ba9c47f75931af94cacd"><span class="std std-ref">c_strfmt_va</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaec22df63b1874a7497781018cbf878ed"><span class="std std-ref">c_strformat</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga21a6e87039779b39aed5cf0578da4f52"><span class="std std-ref">c_strformat_va</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gabe340a7004bdbe20915ebe92a4192c42"><span class="std std-ref">c_strnfmt</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gacad3650aa3c96b0300609c2365b6fab0"><span class="std std-ref">c_strnfmt_va</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga339619f37269bf313930b607d2eb086b"><span class="std std-ref">c_strnformat</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gaeeb1d520f3a7545291703c4c55fd75e8"><span class="std std-ref">c_strnformat_va</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gad3ebb60ff16369cd2d55992a39b1cd9d"><span class="std std-ref">c_vasprintf</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1gad3ebb60ff16369cd2d55992a39b1cd9d"><span class="std std-ref">c_vasprintf</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-format-1ga87a6991aa4af588a65550ca5675fd385"><span class="std std-ref">c_vsnprintf</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-format-1gaf792fdbd3c5bb0f54eef99462c8b80c7"><span class="std std-ref">String_Format_N_VA</span></a></pre>
 </section>
 <section id="detailed-documentation">
@@ -401,7 +399,7 @@
 <p>NOTE: the “SF” abbreviation used here stands for “String Format”.</p>
 <p class="rubric">See also:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format()</span></a></p></li>
+<li><p><a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format()</span></a></p></li>
 <li><p><a class="reference internal" href="#doxid-group-libccc-format-1ga40bcaf6a3b1c791ad9474afefbe44890"><span class="std std-ref">String_Format_N()</span></a></p></li>
 <li><p><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga41a634cb9578e51b7c9ce4ed79567941"><span class="std std-ref">IO_Write_Format()</span></a></p></li>
 <li><p><a class="reference internal" href="group_libccc_sys_io.html#doxid-group-libccc-sys-io-1ga94268d4b33af1cae230c72c289b10a98"><span class="std std-ref">IO_Output_Format()</span></a></p></li>
@@ -424,7 +422,7 @@
 <td><p>The maximum amount of characters to write to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, including the 0’` null terminator</p></td>
 </tr>
 <tr class="row-odd"><td><p>format</p></td>
-<td><p>The format string used to construct the resulting output string. You can learn more about how this works in the doc for <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format()</span></a></p></td>
+<td><p>The format string used to construct the resulting output string. You can learn more about how this works in the doc for <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format()</span></a></p></td>
 </tr>
 <tr class="row-even"><td><p>…</p></td>
 <td><p>The list of variadic arguments, corresponding to the <code class="docutils literal notranslate"><span class="pre">%</span></code> specifiers in the <code class="docutils literal notranslate"><span class="pre">format</span></code> string.</p></td>
@@ -440,7 +438,7 @@
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/io/vsnprintf">https://en.cppreference.com/w/c/io/vsnprintf</a></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span id="index-3"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">String_Format</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span id="index-3"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">String_Format</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...)</span></pre>
 <p>Constructs a string from the given <code class="docutils literal notranslate"><span class="pre">format</span></code> string and multiple args (equivalent to <code class="docutils literal notranslate"><span class="pre">asprintf()</span></code>)</p>
 <p>Constructs a new null-terminated string, which is generated from the given <code class="docutils literal notranslate"><span class="pre">format</span></code> string, as well as any relevant variadic arguments - it is equivalent to the <code class="docutils literal notranslate"><span class="pre">asprintf()</span></code> function.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">format</span></code> string may contain format specifiers (ie: a ‘%’ followed by certain specific text characters, documented below). A format specifier has the following syntax (items between brackets are optional):</p>
@@ -571,7 +569,7 @@ ptrdiff_t*</p></td>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (BSD) <a class="reference external" href="https://linux.die.net/man/3/asprintf">https://linux.die.net/man/3/asprintf</a></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span id="index-4"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">String_Format_VA</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span id="index-4"></span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span><span class="o">*</span> <span class="n">String_Format_VA</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1ga37138ccbd005311d3dbe85f90b484980"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="kt">va_list</span> <span class="n">args</span><span class="p">)</span></pre>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (BSD) <a class="reference external" href="https://linux.die.net/man/3/vasprintf">https://linux.die.net/man/3/vasprintf</a></p></li>
 </ul>
@@ -579,14 +577,14 @@ ptrdiff_t*</p></td>
 <section id="macros">
 <h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
 <span class="target" id="doxid-group-libccc-format-1gaa6f3e6f8018ac638cbecd00c070067c7"><span id="index-5"></span></span><span class="target" id="doxid-group-libccc-format-1gafae038f477a52abad1c3db5215bf9d50"><span id="index-6"></span></span><span class="target" id="doxid-group-libccc-format-1ga547b820d07e6b57ec93c4069217656b5"><span id="index-7"></span></span><span class="target" id="doxid-group-libccc-format-1gaec22df63b1874a7497781018cbf878ed"><span id="index-8"></span></span><span class="target" id="doxid-group-libccc-format-1gacc97b00fd8f86c2e590b7fc53b9ebf21"><span id="index-9"></span></span><span class="target" id="doxid-group-libccc-format-1gad3ebb60ff16369cd2d55992a39b1cd9d"><span id="index-10"></span></span><span class="target" id="doxid-group-libccc-format-1ga8702bd0fce53ba9c47f75931af94cacd"><span id="index-11"></span></span><span class="target" id="doxid-group-libccc-format-1ga21a6e87039779b39aed5cf0578da4f52"><span id="index-12"></span></span><pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-format-1ga164c8fcd4f8b160918efd724f7370683"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="fm">SF</span>(TYPE, PREFIX)    <span class="s">&quot;%&quot;</span> <span class="n">PREFIX</span> <span class="n">SF_</span><span class="err">##</span><span class="n">TYPE</span><span class="err">##</span><span class="n">_</span>
-<span class="cp">#define</span> <span class="fm">c_asprintf</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strfmt</span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strformat</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">String_Build</span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga9ba6ad3bf2cfc927edd126e83f27bcc3"><span class="std std-ref">String_Format</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_vasprintf</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strfmt_va</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strformat_va</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">String_Build_VA</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6b219d2479766f9726fb714f1b70f4e2"><span class="std std-ref">String_Format_VA</span></a></pre>
+<span class="cp">#define</span> <span class="fm">c_asprintf</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strfmt</span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strformat</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">String_Build</span>    <a class="reference internal" href="#doxid-group-libccc-format-1ga6edd2bc8d3370dd44add813a99c13ade"><span class="std std-ref">String_Format</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_vasprintf</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strfmt_va</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strformat_va</span>  <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">String_Build_VA</span> <a class="reference internal" href="#doxid-group-libccc-format-1ga7f3453e9cae34ed342a4ebe457b378cb"><span class="std std-ref">String_Format_VA</span></a></pre>
 <p>This macro is used to make custom “SF_” string format macros.</p>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (C) <a class="reference external" href="https://en.cppreference.com/w/c/variadic">https://en.cppreference.com/w/c/variadic</a></p></li>
@@ -846,8 +844,8 @@ ptrdiff_t*</p></td>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="group_libccc_char.html" class="btn btn-neutral float-left" title="libccc/char.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="group_libccc_error.html" class="btn btn-neutral float-right" title="libccc/error.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="struct_error_info.html" class="btn btn-neutral float-left" title="struct error_info" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_char.html" class="btn btn-neutral float-right" title="libccc/char.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

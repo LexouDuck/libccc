@@ -20,9 +20,9 @@ var enum_8h =
     [ "t_enum", "enum_8h.html#a9c6781a3f054c9243798a7ae5bd5884d", null ],
     [ "s_enum_item", "enum_8h.html#a8541193acde3c0854ac6044fab49057b", null ],
     [ "s_enum_type", "enum_8h.html#adfec865e73cc081fff6261520312ebcf", null ],
-    [ "Enum_String", "enum_8h.html#a12c96e8fcf3eaabf300b261377fb6d97", null ],
+    [ "Enum_String", "enum_8h.html#a92cbc81f93aa70aec0904a47f3ba58ca", null ],
     [ "Enum_Print", "enum_8h.html#aa38fd6e4723676b493ade2235296ea68", null ],
-    [ "Enum_ToString", "enum_8h.html#ab6e5fbc9a80e6fb595c1a3a5e37b0987", null ],
+    [ "Enum_ToString", "enum_8h.html#a17361e12af1db9a721611e0ec5a9d407", null ],
     [ "Enum_Parse", "enum_8h.html#a1368edfc2998346f8b8ce4dc7bc635f6", null ],
     [ "Enum_FromString", "enum_8h.html#a2760c2eed28152941eb296c3b7029ac0", null ]
 ];
