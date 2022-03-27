@@ -201,7 +201,10 @@ prereq-doc:
 		$(call doxyrest_install))
 	@-$(call check_prereq,'(doc) Sphinx python doc generator',\
 		$(SPHINX) --version,\
-		$(call install_prereq,sphinx-doc))
+		pip3 install -U sphinx)
+	@-$(call check_prereq,'(doc) Sphinx theme: ReadTheDocs.io',\
+		pip3 list | grep 'sphinx-rtd-theme',\
+		pip3 install sphinx_rtd_theme)
 	@-$(call check_prereq,'(doc) Lua',\
 		lua -v,\
 		$(call install_prereq,liblua5.2-0))
