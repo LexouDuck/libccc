@@ -157,7 +157,7 @@ var string_8h =
     [ "String_IndexOf_N_String", "string_8h.html#a4e2138a9c0f7e9f27af17a467d097ae4", null ],
     [ "String_Remove", "string_8h.html#ac6e0f133e298c74a3e2c6ff99af42390", null ],
     [ "String_Replace_Char", "string_8h.html#ab4261efe7930d0fe4d74f693ead259fa", null ],
-    [ "String_Replace_Charset", "string_8h.html#a9817e5e20f43c995f4049d0862adf8d5", null ],
+    [ "String_Replace_Charset", "string_8h.html#a0e6ce045a101bc5ed921c112783b9ca6", null ],
     [ "String_Replace_String", "string_8h.html#a3880289620316cd89da6b251aea6d131", null ],
     [ "String_Concat", "string_8h.html#a768c62d18a6af3b524b69712f95482d0", null ],
     [ "String_Append", "string_8h.html#ab47d8b17f76c69e07d6628303b515af0", null ],

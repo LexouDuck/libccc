@@ -1,10 +1,6 @@
 var libccc__config_8h =
 [
     [ "LIBCONFIG_NAMINGSTYLE_TYPES", "libccc__config_8h.html#a8ef160b822ec74fd6c6455647386e506", null ],
-    [ "LIBCONFIG_ERROR_INCLUDE", "libccc__config_8h.html#a381cd02c20f593718c25eb94eb01dd5b", null ],
-    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW", "libccc__config_8h.html#afc0b80a84cf9fa8bbbbe9c2c2af02faa", null ],
-    [ "LIBCONFIG_ERROR_PARSEROVERFLOW", "libccc__config_8h.html#a69367a8a0e32d46fed7db95dfb98c53d", null ],
-    [ "LIBCONFIG_ERROR_OVERFLOW", "libccc__config_8h.html#a6828a236efba31c97cd16e9265945b1e", null ],
     [ "LIBCONFIG_UINT_BITS", "libccc__config_8h.html#a766292ddd3c8a457033e97315863d008", null ],
     [ "LIBCONFIG_UINT_ERROR", "libccc__config_8h.html#a047eb3af34e880e4421fe4fb1c54e553", null ],
     [ "LIBCONFIG_SINT_BITS", "libccc__config_8h.html#a1a9558d537e683386d61b5eea4e0c38d", null ],

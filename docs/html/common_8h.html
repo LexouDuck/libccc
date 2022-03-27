@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('common_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><div class="zoom"><iframe scrolling="no" frameborder="0" src="common_8h__incl.svg" width="100%" height="600"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -134,7 +134,7 @@ Data Structures</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
-<tr class="memitem:a9b772eb1d85f2e5dee7becd9a1c8db5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a9b772eb1d85f2e5dee7becd9a1c8db5a">DYNAMICTYPE_MASK</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(0xFF))</td></tr>
+<tr class="memitem:a9b772eb1d85f2e5dee7becd9a1c8db5a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a9b772eb1d85f2e5dee7becd9a1c8db5a">DYNAMICTYPE_MASK</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(0xFF))</td></tr>
 <tr class="memdesc:a9b772eb1d85f2e5dee7becd9a1c8db5a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The bitmask expressing the 'type enum' portion of a <code>t_dynamic</code> type specifier.  <a href="common_8h.html#a9b772eb1d85f2e5dee7becd9a1c8db5a">More...</a><br /></td></tr>
 <tr class="separator:a9b772eb1d85f2e5dee7becd9a1c8db5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa62d9a6d80e8aae487fb4d645052d0e1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#aa62d9a6d80e8aae487fb4d645052d0e1">KVT_NESTING_LIMIT</a>&#160;&#160;&#160;1000</td></tr>
@@ -149,7 +149,7 @@ Typedefs</h2></td></tr>
 <tr class="memdesc:a4eb42ec03a60eac923b156b0ecd3e279"><td class="mdescLeft">&#160;</td><td class="mdescRight">A general key-value tree struct, used to model data for several file formats: JSON, INI/TOML, YAML, XML, etc.  <a href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">More...</a><br /></td></tr>
 <tr class="separator:a4eb42ec03a60eac923b156b0ecd3e279"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7b4b73728d204144385894e9634d946e"><td class="memItemLeft" align="right" valign="top">typedef union dynamic&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a7b4b73728d204144385894e9634d946e">u_dynamic</a></td></tr>
-<tr class="memdesc:a7b4b73728d204144385894e9634d946e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union type can express a value of any major data type, see <a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221" title="An integer type which works as a bitflag enum, used to express a dynamiclly-typed value&#39;s type at run...">t_dynamic</a>.  <a href="common_8h.html#a7b4b73728d204144385894e9634d946e">More...</a><br /></td></tr>
+<tr class="memdesc:a7b4b73728d204144385894e9634d946e"><td class="mdescLeft">&#160;</td><td class="mdescRight">This union type can express a value of any major data type, see <a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76" title="An integer type which works as a bitflag enum, used to express a dynamiclly-typed value&#39;s type at run...">t_dynamic</a>.  <a href="common_8h.html#a7b4b73728d204144385894e9634d946e">More...</a><br /></td></tr>
 <tr class="separator:a7b4b73728d204144385894e9634d946e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab409c45c2a7c64052b9ba7b1c660f22f"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="common_8h.html#structkvt__parse">kvt_parse</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#ab409c45c2a7c64052b9ba7b1c660f22f">s_kvt_parse</a></td></tr>
 <tr class="memdesc:ab409c45c2a7c64052b9ba7b1c660f22f"><td class="mdescLeft">&#160;</td><td class="mdescRight">This struct is used to parse a data file string (JSON, TOML, YAML, XML, etc)  <a href="common_8h.html#ab409c45c2a7c64052b9ba7b1c660f22f">More...</a><br /></td></tr>
@@ -207,38 +207,38 @@ Functions</h2></td></tr>
 <tr class="separator:a57970de33a00bce461dd409bfa84ce3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af08c16848168fe83f4d63d3d44d3b3b2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="common_8h.html#a4eb42ec03a60eac923b156b0ecd3e279">s_kvt</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#af08c16848168fe83f4d63d3d44d3b3b2">KVT_CreateArray_String</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *const *strings, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> count)</td></tr>
 <tr class="separator:af08c16848168fe83f4d63d3d44d3b3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97c2300fbb9579b50b415b5899d8a644"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a97c2300fbb9579b50b415b5899d8a644">DYNAMICTYPE_INVALID</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(0))</td></tr>
+<tr class="memitem:a97c2300fbb9579b50b415b5899d8a644"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a97c2300fbb9579b50b415b5899d8a644">DYNAMICTYPE_INVALID</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(0))</td></tr>
 <tr class="memdesc:a97c2300fbb9579b50b415b5899d8a644"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored is invalid  <a href="common_8h.html#a97c2300fbb9579b50b415b5899d8a644">More...</a><br /></td></tr>
 <tr class="separator:a97c2300fbb9579b50b415b5899d8a644"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa0417a581806bfa9b365a67062305b60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#aa0417a581806bfa9b365a67062305b60">DYNAMICTYPE_NULL</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 0))</td></tr>
+<tr class="memitem:aa0417a581806bfa9b365a67062305b60"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#aa0417a581806bfa9b365a67062305b60">DYNAMICTYPE_NULL</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 0))</td></tr>
 <tr class="memdesc:aa0417a581806bfa9b365a67062305b60"><td class="mdescLeft">&#160;</td><td class="mdescRight">no value stored  <a href="common_8h.html#aa0417a581806bfa9b365a67062305b60">More...</a><br /></td></tr>
 <tr class="separator:aa0417a581806bfa9b365a67062305b60"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6dc71632afd5a548dfda3a7c3b80fece"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a6dc71632afd5a548dfda3a7c3b80fece">DYNAMICTYPE_BOOLEAN</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 1))</td></tr>
+<tr class="memitem:a6dc71632afd5a548dfda3a7c3b80fece"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a6dc71632afd5a548dfda3a7c3b80fece">DYNAMICTYPE_BOOLEAN</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 1))</td></tr>
 <tr class="memdesc:a6dc71632afd5a548dfda3a7c3b80fece"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as boolean (<code>t_bool</code>)  <a href="common_8h.html#a6dc71632afd5a548dfda3a7c3b80fece">More...</a><br /></td></tr>
 <tr class="separator:a6dc71632afd5a548dfda3a7c3b80fece"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad05bc3438d208190a0f6b562870054b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#ad05bc3438d208190a0f6b562870054b4">DYNAMICTYPE_INTEGER</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 2))</td></tr>
+<tr class="memitem:ad05bc3438d208190a0f6b562870054b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#ad05bc3438d208190a0f6b562870054b4">DYNAMICTYPE_INTEGER</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 2))</td></tr>
 <tr class="memdesc:ad05bc3438d208190a0f6b562870054b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as integer (<code>t_s64</code>)  <a href="common_8h.html#ad05bc3438d208190a0f6b562870054b4">More...</a><br /></td></tr>
 <tr class="separator:ad05bc3438d208190a0f6b562870054b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6655691b2b2ba8dcdac30ccde95e70bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a6655691b2b2ba8dcdac30ccde95e70bf">DYNAMICTYPE_FLOAT</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 3))</td></tr>
+<tr class="memitem:a6655691b2b2ba8dcdac30ccde95e70bf"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a6655691b2b2ba8dcdac30ccde95e70bf">DYNAMICTYPE_FLOAT</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 3))</td></tr>
 <tr class="memdesc:a6655691b2b2ba8dcdac30ccde95e70bf"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as floating-point number: (<code>t_f64</code>)  <a href="common_8h.html#a6655691b2b2ba8dcdac30ccde95e70bf">More...</a><br /></td></tr>
 <tr class="separator:a6655691b2b2ba8dcdac30ccde95e70bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01432bc480fa98f2761ac881c64c0f57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a01432bc480fa98f2761ac881c64c0f57">DYNAMICTYPE_STRING</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 4))</td></tr>
+<tr class="memitem:a01432bc480fa98f2761ac881c64c0f57"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a01432bc480fa98f2761ac881c64c0f57">DYNAMICTYPE_STRING</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 4))</td></tr>
 <tr class="memdesc:a01432bc480fa98f2761ac881c64c0f57"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as string (<code>t_char*</code>)  <a href="common_8h.html#a01432bc480fa98f2761ac881c64c0f57">More...</a><br /></td></tr>
 <tr class="separator:a01432bc480fa98f2761ac881c64c0f57"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a076664a7415297970df0cd6b7dfbfd0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a076664a7415297970df0cd6b7dfbfd0e">DYNAMICTYPE_ARRAY</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 5))</td></tr>
+<tr class="memitem:a076664a7415297970df0cd6b7dfbfd0e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a076664a7415297970df0cd6b7dfbfd0e">DYNAMICTYPE_ARRAY</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 5))</td></tr>
 <tr class="memdesc:a076664a7415297970df0cd6b7dfbfd0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as array of values (no keys)  <a href="common_8h.html#a076664a7415297970df0cd6b7dfbfd0e">More...</a><br /></td></tr>
 <tr class="separator:a076664a7415297970df0cd6b7dfbfd0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5161e279ebaad2a100e734db219cf832"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a5161e279ebaad2a100e734db219cf832">DYNAMICTYPE_OBJECT</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 6))</td></tr>
+<tr class="memitem:a5161e279ebaad2a100e734db219cf832"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a5161e279ebaad2a100e734db219cf832">DYNAMICTYPE_OBJECT</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 6))</td></tr>
 <tr class="memdesc:a5161e279ebaad2a100e734db219cf832"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as dict of values (with keys)  <a href="common_8h.html#a5161e279ebaad2a100e734db219cf832">More...</a><br /></td></tr>
 <tr class="separator:a5161e279ebaad2a100e734db219cf832"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3f6b80eb223376c650c02a53e9476339"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a3f6b80eb223376c650c02a53e9476339">DYNAMICTYPE_RAW</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 7))</td></tr>
+<tr class="memitem:a3f6b80eb223376c650c02a53e9476339"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a3f6b80eb223376c650c02a53e9476339">DYNAMICTYPE_RAW</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 7))</td></tr>
 <tr class="memdesc:a3f6b80eb223376c650c02a53e9476339"><td class="mdescLeft">&#160;</td><td class="mdescRight">value stored as raw string (language-specific syntax)  <a href="common_8h.html#a3f6b80eb223376c650c02a53e9476339">More...</a><br /></td></tr>
 <tr class="separator:a3f6b80eb223376c650c02a53e9476339"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a07277053dea21966e1d09fe8bc0711ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a07277053dea21966e1d09fe8bc0711ec">DYNAMICTYPE_ISREFERENCE</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 8))</td></tr>
+<tr class="memitem:a07277053dea21966e1d09fe8bc0711ec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a07277053dea21966e1d09fe8bc0711ec">DYNAMICTYPE_ISREFERENCE</a>&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 8))</td></tr>
 <tr class="separator:a07277053dea21966e1d09fe8bc0711ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a264a0cf48888e27e006df1f0a84fc221"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a></td></tr>
-<tr class="memdesc:a264a0cf48888e27e006df1f0a84fc221"><td class="mdescLeft">&#160;</td><td class="mdescRight">An integer type which works as a bitflag enum, used to express a dynamiclly-typed value's type at runtime.  <a href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">More...</a><br /></td></tr>
-<tr class="separator:a264a0cf48888e27e006df1f0a84fc221"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9fdfbaa2a1d92306d4893f1b65adda76"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a></td></tr>
+<tr class="memdesc:a9fdfbaa2a1d92306d4893f1b65adda76"><td class="mdescLeft">&#160;</td><td class="mdescRight">An integer type which works as a bitflag enum, used to express a dynamiclly-typed value's type at runtime.  <a href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">More...</a><br /></td></tr>
+<tr class="separator:a9fdfbaa2a1d92306d4893f1b65adda76"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Allocates one single KVT struct </p>
 </td></tr>
@@ -657,11 +657,11 @@ key</td>
 <td class="fielddoc">
 The item's key string, if this item is the child of, or is in the list of subitems of, an object. </td></tr>
 <tr><td class="fieldtype">
-<a id="a744e9fa8ec90162dfcd49126034cca87" name="a744e9fa8ec90162dfcd49126034cca87"></a><a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a></td>
+<a id="a744e9fa8ec90162dfcd49126034cca87" name="a744e9fa8ec90162dfcd49126034cca87"></a><a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a></td>
 <td class="fieldname">
 type</td>
 <td class="fielddoc">
-The type of the item: uses the <code>TOML_TYPE_*</code> macros defined above. </td></tr>
+The type of the item: uses the <code>DYNAMICTYPE_*</code> macros defined above. </td></tr>
 <tr><td class="fieldtype">
 <a id="a1cf45d0f8bc0dc3711eac097e2d29a07" name="a1cf45d0f8bc0dc3711eac097e2d29a07"></a>union <a class="el" href="common_8h.html#unionkvt_1_1dynamic">dynamic</a></td>
 <td class="fieldname">
@@ -865,7 +865,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_INVALID&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(0))</td>
+          <td class="memname">#define DYNAMICTYPE_INVALID&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(0))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -884,7 +884,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_NULL&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 0))</td>
+          <td class="memname">#define DYNAMICTYPE_NULL&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 0))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -902,7 +902,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_BOOLEAN&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 1))</td>
+          <td class="memname">#define DYNAMICTYPE_BOOLEAN&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 1))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -920,7 +920,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_INTEGER&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 2))</td>
+          <td class="memname">#define DYNAMICTYPE_INTEGER&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 2))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -938,7 +938,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_FLOAT&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 3))</td>
+          <td class="memname">#define DYNAMICTYPE_FLOAT&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 3))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -956,7 +956,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_STRING&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 4))</td>
+          <td class="memname">#define DYNAMICTYPE_STRING&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 4))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -974,7 +974,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_ARRAY&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 5))</td>
+          <td class="memname">#define DYNAMICTYPE_ARRAY&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 5))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -992,7 +992,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_OBJECT&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 6))</td>
+          <td class="memname">#define DYNAMICTYPE_OBJECT&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 6))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1010,7 +1010,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_RAW&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 7))</td>
+          <td class="memname">#define DYNAMICTYPE_RAW&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 7))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1028,7 +1028,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_ISREFERENCE&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(1 &lt;&lt; 8))</td>
+          <td class="memname">#define DYNAMICTYPE_ISREFERENCE&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(1 &lt;&lt; 8))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1045,7 +1045,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define DYNAMICTYPE_MASK&#160;&#160;&#160;((<a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221">t_dynamic</a>)(0xFF))</td>
+          <td class="memname">#define DYNAMICTYPE_MASK&#160;&#160;&#160;((<a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76">t_dynamic</a>)(0xFF))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2177,7 +2177,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
       </table>
 </div><div class="memdoc">
 
-<p>This union type can express a value of any major data type, see <a class="el" href="common_8h.html#a264a0cf48888e27e006df1f0a84fc221" title="An integer type which works as a bitflag enum, used to express a dynamiclly-typed value&#39;s type at run...">t_dynamic</a>. </p>
+<p>This union type can express a value of any major data type, see <a class="el" href="common_8h.html#a9fdfbaa2a1d92306d4893f1b65adda76" title="An integer type which works as a bitflag enum, used to express a dynamiclly-typed value&#39;s type at run...">t_dynamic</a>. </p>
 
 <p class="definition">Definition at line <a class="el" href="common_8h_source.html#l00096">96</a> of file <a class="el" href="common_8h_source.html">common.h</a>.</p>
 
@@ -3380,7 +3380,7 @@ the current path of keys, separated by periods (think TOML section tables) </td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p >@doc Returns the string value contained within the given <code>item</code>, or <code>NULL</code> if type is not <a class="el" href="common_8h.html#a01432bc480fa98f2761ac881c64c0f57" title="value stored as string (t_char*)">DYNAMICTYPE_STRING</a>. </p>
+<p >@doc Returns the string value contained within the given <code>item</code>, or <code>NULL</code> if type is not <a class="el" href="common_8h.html#a01432bc480fa98f2761ac881c64c0f57" title="value stored as string (t_char*)">DYNAMICTYPE_STRING</a>. NB: Whether the string should be freed is specified through the use of the DYNAMICTYPE_ISREFERENCE mask over item-&gt;type. </p>
 
 </div>
 </div>
@@ -4563,14 +4563,14 @@ the current path of keys, separated by periods (think TOML section tables) </td>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
-<a id="a264a0cf48888e27e006df1f0a84fc221" name="a264a0cf48888e27e006df1f0a84fc221"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a264a0cf48888e27e006df1f0a84fc221">&#9670;&nbsp;</a></span>t_dynamic</h2>
+<a id="a9fdfbaa2a1d92306d4893f1b65adda76" name="a9fdfbaa2a1d92306d4893f1b65adda76"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9fdfbaa2a1d92306d4893f1b65adda76">&#9670;&nbsp;</a></span>t_dynamic</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="int_8h.html#a59f511594d6552258492ba86f0872744">t_sint</a> t_dynamic</td>
+          <td class="memname"><a class="el" href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a> typedef <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> t_dynamic</td>
         </tr>
       </table>
 </div><div class="memdoc">

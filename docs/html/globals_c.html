@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -204,9 +204,18 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_bitregion&#160;:&#160;<a class="el" href="memory_8h.html#af24828a6b73efaed72dffc65d4f3c230">memory.h</a></li>
 <li>C_BLUE&#160;:&#160;<a class="el" href="ansi_8h.html#a2e4dd0b4af70107f36c2aa60b1195f01">ansi.h</a></li>
 <li>c_boolparse&#160;:&#160;<a class="el" href="bool_8h.html#a471b3762f1564c628736af2a0b50345e">bool.h</a></li>
+<li>c_boolprint&#160;:&#160;<a class="el" href="bool_8h.html#a6568f8b916792ff121a8d1b1df4f1b14">bool.h</a></li>
+<li>c_boolstr&#160;:&#160;<a class="el" href="bool_8h.html#a44663aa80d5fa757f0919e58104fb6ac">bool.h</a></li>
 <li>c_booltostr&#160;:&#160;<a class="el" href="bool_8h.html#a305d53c2f3bb24a8dd85e7c43c7fbaca">bool.h</a></li>
 <li>c_bzero&#160;:&#160;<a class="el" href="memory_8h.html#a715e2a5223c84833c10143e5c653975e">memory.h</a></li>
 <li>c_cbrt&#160;:&#160;<a class="el" href="math_8h.html#aaa61dbab7fea4ebe148cfae39393d5c2">math.h</a></li>
+<li>c_cccerrorcode&#160;:&#160;<a class="el" href="sys_2error_8h.html#a79a27f9f23f5f0203faf7fcedd95b496">error.h</a></li>
+<li>c_cccerrorget&#160;:&#160;<a class="el" href="sys_2error_8h.html#ab1b04dc59a94df095b333ae66d05df87">error.h</a></li>
+<li>c_cccerrormsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#a09790c5afe6b82a097efd388a766cb04">error.h</a></li>
+<li>c_cccerrorname&#160;:&#160;<a class="el" href="sys_2error_8h.html#a2077e75588dc33ba6fb6a0423ce9417d">error.h</a></li>
+<li>c_cccerrorset&#160;:&#160;<a class="el" href="sys_2error_8h.html#abf17dd6536b396f9df30c437b562e378">error.h</a></li>
+<li>c_cccerrorsmsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#a9bd4b672fda8015be3070143b2a9c6cc">error.h</a></li>
+<li>c_cccerrorsname&#160;:&#160;<a class="el" href="sys_2error_8h.html#a0725c9a9da1014c779e265e72660f324">error.h</a></li>
 <li>c_ceil&#160;:&#160;<a class="el" href="math_8h.html#a5e5b23cc171473b3a2f49357f3e544dc">math.h</a></li>
 <li>c_chmod&#160;:&#160;<a class="el" href="io_8h.html#ac9476d3a52b3bf24e0bcf6824cdeabb8">io.h</a></li>
 <li>c_close&#160;:&#160;<a class="el" href="io_8h.html#a5f696cd36c17e157bb8c76130891f42a">io.h</a></li>
@@ -280,13 +289,22 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_distance_uint()&#160;:&#160;<a class="el" href="interval_8h.html#ace8f873f8324c8b5a0fa6fd6788bea20">interval.h</a></li>
 <li>c_div&#160;:&#160;<a class="el" href="math_8h.html#a2d84d069add851cbd300f8dcc8707d9e">math.h</a></li>
 <li>c_dprintf&#160;:&#160;<a class="el" href="io_8h.html#af2b46df5c00e02465b55a611602695cd">io.h</a></li>
+<li>c_enumparse&#160;:&#160;<a class="el" href="enum_8h.html#a7f3565b23e16c56c1da36e31af6d17eb">enum.h</a></li>
+<li>c_enumprint&#160;:&#160;<a class="el" href="enum_8h.html#ac4d41bc683847c3c63247f08ac0b318c">enum.h</a></li>
+<li>c_enumstr&#160;:&#160;<a class="el" href="enum_8h.html#a94ae9b7a887ba450d64611b25f754886">enum.h</a></li>
+<li>c_enumtostr&#160;:&#160;<a class="el" href="enum_8h.html#acb67b3bb7864e2aa4d5465aae98e0f10">enum.h</a></li>
+<li>c_errorcode&#160;:&#160;<a class="el" href="sys_2error_8h.html#a991969938fb4134b879826a9179233ad">error.h</a></li>
 <li>c_errorget&#160;:&#160;<a class="el" href="error_8h.html#aa081a7c63cc6f68afbb6de2882ee37c5">error.h</a></li>
 <li>c_errorgetcode&#160;:&#160;<a class="el" href="error_8h.html#a33fdfa51857c6db88348712e762946b2">error.h</a></li>
 <li>c_errorgetmsg&#160;:&#160;<a class="el" href="error_8h.html#a53ca18f665fe72a005acc04e369ba38c">error.h</a></li>
 <li>c_errorgetname&#160;:&#160;<a class="el" href="error_8h.html#a49a7da4d70e3d1099cdcc97e51db594d">error.h</a></li>
 <li>c_errorhandle&#160;:&#160;<a class="el" href="error_8h.html#a6f24c3f55f178bf27457c83dc8472c30">error.h</a></li>
 <li>c_errorhandler&#160;:&#160;<a class="el" href="error_8h.html#aaf50253b5f04331b53411c92bdaac284">error.h</a></li>
+<li>c_errormsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#a4b43db865ca4e6f5f68bcf9cd7737fda">error.h</a></li>
+<li>c_errorname&#160;:&#160;<a class="el" href="sys_2error_8h.html#af2930a65ac94f878a250bc7ba4a086de">error.h</a></li>
 <li>c_errorset&#160;:&#160;<a class="el" href="error_8h.html#ac6975b1a613faf7248a7926ac8dec641">error.h</a></li>
+<li>c_errorsmsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#aed192892c110e4b397797e22ae7460a9">error.h</a></li>
+<li>c_errorsname&#160;:&#160;<a class="el" href="sys_2error_8h.html#a802e79355aeda53382fd0dbcf83ffe72">error.h</a></li>
 <li>c_esctostr&#160;:&#160;<a class="el" href="string_8h.html#a1efbad8e6eee9deb8947f6df67fb54d3">string.h</a></li>
 <li>c_exit&#160;:&#160;<a class="el" href="program_8h.html#ae58a963b7f09d3035846272e06e078d2">program.h</a></li>
 <li>c_exp&#160;:&#160;<a class="el" href="math_8h.html#a4b58dfa6ac930cca58b4ab013db96001">math.h</a></li>
@@ -561,6 +579,7 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_getbits&#160;:&#160;<a class="el" href="memory_8h.html#a0e434fd038be54a99b94e6adfccadb70">memory.h</a></li>
 <li>c_getcwd&#160;:&#160;<a class="el" href="program_8h.html#a5a4ea8f73b370a0e51fb68434a7d5819">program.h</a></li>
 <li>c_getenv&#160;:&#160;<a class="el" href="program_8h.html#a8be310e4fa3fd9e32faec78196b1bf43">program.h</a></li>
+<li>c_geterrhandler&#160;:&#160;<a class="el" href="sys_2error_8h.html#ab3ab035572d18ecb5b510c71ae947b80">error.h</a></li>
 <li>c_gethandler&#160;:&#160;<a class="el" href="error_8h.html#a6f0273452c81c31c26a0a4dc12c3a5c4">error.h</a></li>
 <li>c_getline&#160;:&#160;<a class="el" href="io_8h.html#a8c267296a21b56df601f980e089da009">io.h</a></li>
 <li>c_getlsb&#160;:&#160;<a class="el" href="memory_8h.html#ad2b5db271fa10dd2e2e88abea105ef8e">memory.h</a></li>
@@ -574,26 +593,8 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_integrate()&#160;:&#160;<a class="el" href="interval_8h.html#a7ca8cb5126d9af299e90a43c03d048b2">interval.h</a></li>
 <li>c_intpow&#160;:&#160;<a class="el" href="math_8h.html#aefbaf75d5ec721e044d34cde795b0db1">math.h</a></li>
 <li>c_io_log&#160;:&#160;<a class="el" href="logger_8h.html#ac86a94f67c42ac58ab178183ae13304a">logger.h</a></li>
-<li>c_io_log_error&#160;:&#160;<a class="el" href="logger_8h.html#a926953ab662fcd157096664f4b449027">logger.h</a></li>
-<li>c_io_log_error_io&#160;:&#160;<a class="el" href="logger_8h.html#a185f8ca35f5d4725de6a2fffd5dd8591">logger.h</a></li>
-<li>c_io_log_fatal&#160;:&#160;<a class="el" href="logger_8h.html#a2411bb0b5f740dfaada767dc05f748b0">logger.h</a></li>
-<li>c_io_log_getsettings&#160;:&#160;<a class="el" href="logger_8h.html#ab3450b34457712bbc627b24e198e839e">logger.h</a></li>
-<li>c_io_log_logsettings&#160;:&#160;<a class="el" href="logger_8h.html#aff7f0a97bf6cfbc3acd3c113d3b282ef">logger.h</a></li>
-<li>c_io_log_message&#160;:&#160;<a class="el" href="logger_8h.html#a57e52dc3d89fb1ce6be5826311e10fc8">logger.h</a></li>
-<li>c_io_log_success&#160;:&#160;<a class="el" href="logger_8h.html#ad74ef79c5b480ad0b6aa77242c1bbc61">logger.h</a></li>
+<li>c_io_log_custom&#160;:&#160;<a class="el" href="logger_8h.html#ad0079bc80a5903d8f8ba1a3a048a88c5">logger.h</a></li>
 <li>c_io_log_va&#160;:&#160;<a class="el" href="logger_8h.html#aa6a9bff3d1711c2c9fa8508792aff5c9">logger.h</a></li>
-<li>c_io_log_verbose&#160;:&#160;<a class="el" href="logger_8h.html#ad00e71735161d8bde1ec31aa21e42cab">logger.h</a></li>
-<li>c_io_log_warning&#160;:&#160;<a class="el" href="logger_8h.html#a0a945ab0ab7ea9c3d34c9ef8ff706c2d">logger.h</a></li>
-<li>c_io_logall_error&#160;:&#160;<a class="el" href="logger_8h.html#af3bda7de2f7ad8b758bcfc00f1491cbb">logger.h</a></li>
-<li>c_io_logall_error_io&#160;:&#160;<a class="el" href="logger_8h.html#aa1c604a4217f2bce4498ad275b4c2369">logger.h</a></li>
-<li>c_io_logall_message&#160;:&#160;<a class="el" href="logger_8h.html#a259ccb69b5832d16caabc0e256233d2f">logger.h</a></li>
-<li>c_io_logall_success&#160;:&#160;<a class="el" href="logger_8h.html#ab0b92d3fbaea8ff25f73a86b06a2b53f">logger.h</a></li>
-<li>c_io_logall_verbose&#160;:&#160;<a class="el" href="logger_8h.html#a7b46f6853fc9c382341a34fa25318993">logger.h</a></li>
-<li>c_io_logall_warning&#160;:&#160;<a class="el" href="logger_8h.html#a17407f83dfdec9fe5e59cfea9bad8ec9">logger.h</a></li>
-<li>c_io_logdelmem&#160;:&#160;<a class="el" href="logger_8h.html#a05575039392576784e7b46bd7d5a81c9">logger.h</a></li>
-<li>c_io_logexit&#160;:&#160;<a class="el" href="logger_8h.html#a2ba6ef18bc58564b1432dd59aa16097e">logger.h</a></li>
-<li>c_io_loginit&#160;:&#160;<a class="el" href="logger_8h.html#ac5c90508853151582a2cbac10ab6ed75">logger.h</a></li>
-<li>c_io_logtime&#160;:&#160;<a class="el" href="logger_8h.html#a172dc13b7bcae889e457ee22ad1a74da">logger.h</a></li>
 <li>c_iocolor&#160;:&#160;<a class="el" href="io_8h.html#a192192b1786a603f7746cb5f30b02d45">io.h</a></li>
 <li>c_isalnum&#160;:&#160;<a class="el" href="char_8h.html#a242a2cdf4bad6eae2fdeb25d5d7bb1c1">char.h</a></li>
 <li>c_isalpha&#160;:&#160;<a class="el" href="char_8h.html#ac50127404adc3420890b06152813af91">char.h</a></li>
@@ -703,7 +704,30 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_log&#160;:&#160;<a class="el" href="math_8h.html#a411424ea4d96ee8ced7126b4a0da17fb">math.h</a></li>
 <li>c_log10&#160;:&#160;<a class="el" href="math_8h.html#af7dbbfb97ec606b0670c3a231e1ff25f">math.h</a></li>
 <li>c_log2&#160;:&#160;<a class="el" href="math_8h.html#a6bb6e4ecbfe0a8761c5e6eda116ee56a">math.h</a></li>
+<li>c_log_error&#160;:&#160;<a class="el" href="logger_8h.html#ae4ea9c37d07a15715d6428807b5c09fd">logger.h</a></li>
+<li>c_log_error_ccc&#160;:&#160;<a class="el" href="logger_8h.html#abfbd162b632f265404ff549ecf3997e1">logger.h</a></li>
+<li>c_log_error_std&#160;:&#160;<a class="el" href="logger_8h.html#ac3bed5055f1b800b553d9b961201c3d9">logger.h</a></li>
+<li>c_log_fail&#160;:&#160;<a class="el" href="logger_8h.html#aa3fee6b18a33a8e23616bb467d2afe8c">logger.h</a></li>
+<li>c_log_fatal&#160;:&#160;<a class="el" href="logger_8h.html#a25f4b487319631d9e19e276e07b55de1">logger.h</a></li>
+<li>c_log_getsettings&#160;:&#160;<a class="el" href="logger_8h.html#a560be122806a511d8ab0f6c8d7dd9555">logger.h</a></li>
+<li>c_log_logsettings&#160;:&#160;<a class="el" href="logger_8h.html#a29a1a01457e6797b622445395ee2d9b7">logger.h</a></li>
+<li>c_log_message&#160;:&#160;<a class="el" href="logger_8h.html#ad7cdf766667ab7619ebf390f36472320">logger.h</a></li>
+<li>c_log_success&#160;:&#160;<a class="el" href="logger_8h.html#a0c5b66bf8be55a16e706548dc758e98d">logger.h</a></li>
+<li>c_log_verbose&#160;:&#160;<a class="el" href="logger_8h.html#a83969c4a157f63fd0281544eeb552ec4">logger.h</a></li>
+<li>c_log_warning&#160;:&#160;<a class="el" href="logger_8h.html#ac5c57cabb50396f7628cc0955124df49">logger.h</a></li>
+<li>c_logall_error&#160;:&#160;<a class="el" href="logger_8h.html#a91975d6623be9c4376debaecd712b0c7">logger.h</a></li>
+<li>c_logall_error_ccc&#160;:&#160;<a class="el" href="logger_8h.html#ab34b7250325aacba45421458270a0c0c">logger.h</a></li>
+<li>c_logall_error_std&#160;:&#160;<a class="el" href="logger_8h.html#aabc5c71057ec6d8ed140b43fdb41dba9">logger.h</a></li>
+<li>c_logall_fail&#160;:&#160;<a class="el" href="logger_8h.html#adb733b69b2069453620cf4607a79f78e">logger.h</a></li>
+<li>c_logall_message&#160;:&#160;<a class="el" href="logger_8h.html#a7d0138a5b26f4c2de1119dd317fb5544">logger.h</a></li>
+<li>c_logall_success&#160;:&#160;<a class="el" href="logger_8h.html#a245ceffcae02731dfab487eb350a3c07">logger.h</a></li>
+<li>c_logall_verbose&#160;:&#160;<a class="el" href="logger_8h.html#aa22edf819d3cd64698820ef60bd5cdcc">logger.h</a></li>
+<li>c_logall_warning&#160;:&#160;<a class="el" href="logger_8h.html#afbfa2151b1bd1aa5e582331c957e8ab4">logger.h</a></li>
+<li>c_logdelmem&#160;:&#160;<a class="el" href="logger_8h.html#a77fa2db10a31d7514dc2636d01f92c09">logger.h</a></li>
+<li>c_logexit&#160;:&#160;<a class="el" href="logger_8h.html#a978f0a98b60dcf4ef7b684531251eaed">logger.h</a></li>
+<li>c_loginit&#160;:&#160;<a class="el" href="logger_8h.html#a1747d53b6b26f50a63a624a36157eff5">logger.h</a></li>
 <li>c_logn&#160;:&#160;<a class="el" href="math_8h.html#adf1883c531d105e5af9446f9808e5a9c">math.h</a></li>
+<li>c_logtime&#160;:&#160;<a class="el" href="logger_8h.html#ad565ab7a991a31b6bfd026dba02a2407">logger.h</a></li>
 <li>c_lstadd&#160;:&#160;<a class="el" href="list_8h.html#a1ada486ced8ccfa4bb5bf6d37cfc650b">list.h</a></li>
 <li>c_lstappend&#160;:&#160;<a class="el" href="list_8h.html#ab603d28cc0b1c0d70032f7594e62d385">list.h</a></li>
 <li>c_lstcmp&#160;:&#160;<a class="el" href="list_8h.html#ac2204e128c04cd69f38940a8ae6a4dfb">list.h</a></li>
@@ -1300,9 +1324,11 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_sdiv&#160;:&#160;<a class="el" href="math_2int_8h.html#ad8718b5bbb79da2c979506e8aac14cab">int.h</a></li>
 <li>c_sequ&#160;:&#160;<a class="el" href="math_2int_8h.html#a06ce62b7269976ca1e11ee947c9d3bf0">int.h</a></li>
 <li>c_sequa&#160;:&#160;<a class="el" href="math_2int_8h.html#a68f3bee5ee5bd770899cd3456fe02ef0">int.h</a></li>
+<li>c_setallerrhandlers&#160;:&#160;<a class="el" href="sys_2error_8h.html#ac5908f8cf1f508a7446315d68447d402">error.h</a></li>
 <li>c_setallhandlers&#160;:&#160;<a class="el" href="error_8h.html#a6595730108cd059ec590ca7bb69e5e99">error.h</a></li>
 <li>c_setbits&#160;:&#160;<a class="el" href="memory_8h.html#a194a94167fd323dc5e7acd71d785a6a6">memory.h</a></li>
 <li>c_setenv&#160;:&#160;<a class="el" href="program_8h.html#a185ac08609091572ce12e8f6395b9ec4">program.h</a></li>
+<li>c_seterrhandler&#160;:&#160;<a class="el" href="sys_2error_8h.html#a73f6f11f2ce9b370dff29cb0d6314241">error.h</a></li>
 <li>c_sethandler&#160;:&#160;<a class="el" href="error_8h.html#afc5695774c50fcee6dd28e750767ddb8">error.h</a></li>
 <li>c_sin&#160;:&#160;<a class="el" href="math_8h.html#a09ee15332598b0dc582c1c5ee19a0f84">math.h</a></li>
 <li>c_sinh&#160;:&#160;<a class="el" href="math_8h.html#a179ab0f7d9cf62fd1d8e722b97cd55fb">math.h</a></li>
@@ -1354,6 +1380,13 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_stat_variance_i&#160;:&#160;<a class="el" href="stat_8h.html#a2ad43eeb3f5502c1bc4b60799bf8427d">stat.h</a></li>
 <li>c_stdctodate&#160;:&#160;<a class="el" href="time_8h.html#a91c5916086e033719f554cb41ad19323">time.h</a></li>
 <li>c_stdctonanotime&#160;:&#160;<a class="el" href="time_8h.html#a3e443262e312ff7d13ffef98baccc1ae">time.h</a></li>
+<li>c_stderrorcode&#160;:&#160;<a class="el" href="sys_2error_8h.html#a202c67e130c42e9e54fd7b9694941dd4">error.h</a></li>
+<li>c_stderrorget&#160;:&#160;<a class="el" href="sys_2error_8h.html#a075a88d3c6cccb9c8fc0095abc12fd3c">error.h</a></li>
+<li>c_stderrormsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#af3f84243faf9551b22f7418d82a0d2a7">error.h</a></li>
+<li>c_stderrorname&#160;:&#160;<a class="el" href="sys_2error_8h.html#a4bb29d9f47f351a319a14de93e2eef2d">error.h</a></li>
+<li>c_stderrorset&#160;:&#160;<a class="el" href="sys_2error_8h.html#af524c8069b612470e69ccabf65774d34">error.h</a></li>
+<li>c_stderrorsmsg&#160;:&#160;<a class="el" href="sys_2error_8h.html#adb21bbd345eff6e436a16131978ad233">error.h</a></li>
+<li>c_stderrorsname&#160;:&#160;<a class="el" href="sys_2error_8h.html#a0d5c9a6b209912d12e68767d312fd320">error.h</a></li>
 <li>c_stostr&#160;:&#160;<a class="el" href="int_8h.html#a411e7440c1c2836eba2eb0d3b5708d84">int.h</a></li>
 <li>c_stostrbase&#160;:&#160;<a class="el" href="int_8h.html#aacbc00c5c1799ab6b314e8809a93b783">int.h</a></li>
 <li>c_stostrbin&#160;:&#160;<a class="el" href="int_8h.html#a5be40058913263c060d283036c2e79e9">int.h</a></li>
@@ -1628,6 +1661,7 @@ $(document).ready(function(){initNavTree('globals_c.html',''); initResizable(); 
 <li>c_strsub&#160;:&#160;<a class="el" href="string_8h.html#af30bb87ad2ad7ce2bff5bea8e117963e">string.h</a></li>
 <li>c_strtobool&#160;:&#160;<a class="el" href="bool_8h.html#a123120e3638bf37a2be1fd7a27117a37">bool.h</a></li>
 <li>c_strtodate&#160;:&#160;<a class="el" href="time_8h.html#aeb21555fa2776f719a2c10c2ebb194ef">time.h</a></li>
+<li>c_strtoenum&#160;:&#160;<a class="el" href="enum_8h.html#add0a6093f68d9c76c68e0fecb1778143">enum.h</a></li>
 <li>c_strtoesc&#160;:&#160;<a class="el" href="string_8h.html#a4f6cc131d78ec6c31f381441fd4a11ae">string.h</a></li>
 <li>c_strtof&#160;:&#160;<a class="el" href="float_8h.html#a6e1ae16c7d549eec53e1dbdcb2c1d073">float.h</a></li>
 <li>c_strtof128&#160;:&#160;<a class="el" href="float_8h.html#af093c8f84614b3235b16ea05889158ee">float.h</a></li>

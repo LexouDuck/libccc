@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,6 +93,9 @@ $(document).ready(function(){initNavTree('array_8h.html',''); initResizable(); }
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">array.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -105,7 +108,7 @@ $(document).ready(function(){initNavTree('array_8h.html',''); initResizable(); }
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="array_8h__incl.svg" width="475" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -113,6 +116,8 @@ $(document).ready(function(){initNavTree('array_8h.html',''); initResizable(); }
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a34271589388611bbce68e1c2bcf4924f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a34271589388611bbce68e1c2bcf4924f">c_arriter</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Iterate&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
+<tr class="separator:a34271589388611bbce68e1c2bcf4924f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Allocates a single-item array from the given <code>item</code> value. </p>
 </div></td></tr>
@@ -144,17 +149,17 @@ Macros</h2></td></tr>
 <tr class="memitem:a9faaef91545f997b0955349b23469f91"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a9faaef91545f997b0955349b23469f91">c_arrdelall</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_RemoveAll&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a9faaef91545f997b0955349b23469f91"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Like Array_RemoveAll(), but you can supply a custom <code>delete</code> function </p>
+<tr><td colspan="2"><div class="groupText"><p >Like Array_RemoveAll(), but you can supply a custom <code>del</code> function </p>
 </div></td></tr>
 <tr class="memitem:a85d86370a463c7add0f9434ac0812bc3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a85d86370a463c7add0f9434ac0812bc3">c_arrfdelall</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_RemoveAll_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a85d86370a463c7add0f9434ac0812bc3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Creates a new array from the given <code>array</code>, where the first <code>n</code> occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<tr><td colspan="2"><div class="groupText"><p >Creates a new array from the given <code>array</code>, where the first <code>n</code> occurences of <code>item_old</code> are replaced with <code>item_new</code>. </p>
 </div></td></tr>
 <tr class="memitem:a60cdc389721fec5c75af79bc0cd4a9d2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a60cdc389721fec5c75af79bc0cd4a9d2">c_arrrepfirst</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_ReplaceFirst&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a60cdc389721fec5c75af79bc0cd4a9d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Creates a new array from the given <code>array</code>, where the last <code>n</code> occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<tr><td colspan="2"><div class="groupText"><p >Creates a new array from the given <code>array</code>, where the last <code>n</code> occurences of <code>item_old</code> are replaced with <code>item_new</code>. </p>
 </div></td></tr>
 <tr class="memitem:a763d296c939af5f0ccbc8ce264cad1f3"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a763d296c939af5f0ccbc8ce264cad1f3">c_arrreplast</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;		Array_ReplaceLast&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a763d296c939af5f0ccbc8ce264cad1f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -223,6 +228,11 @@ Macros</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:a8af49d7d5ccfe97c44d8b6a1a828c8b1"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a8af49d7d5ccfe97c44d8b6a1a828c8b1">c_arrifilter</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Filter_I&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a8af49d7d5ccfe97c44d8b6a1a828c8b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ac275784193dccdcee0c6f677b8aae654"><td class="memItemLeft" align="right" valign="top">void Array_Iterate()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ac275784193dccdcee0c6f677b8aae654">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, void(*f)(T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
+<tr class="separator:ac275784193dccdcee0c6f677b8aae654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0acb682b8260ab1c60b918599864e2e5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a0acb682b8260ab1c60b918599864e2e5">T</a>&#160;&#160;&#160;T_TYPE</td></tr>
 <tr class="memdesc:a0acb682b8260ab1c60b918599864e2e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">set up generic declaration macros, to have <code>mygeneric(T)</code> syntax  <a href="array_8h.html#a0acb682b8260ab1c60b918599864e2e5">More...</a><br /></td></tr>
 <tr class="separator:a0acb682b8260ab1c60b918599864e2e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -278,12 +288,12 @@ Macros</h2></td></tr>
 <tr class="memitem:af848b0a1ba25b1794ebb5b9f0d60e51b"><td class="memItemLeft" align="right" valign="top">void Array_Free()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#af848b0a1ba25b1794ebb5b9f0d60e51b">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>)</td></tr>
 <tr class="separator:af848b0a1ba25b1794ebb5b9f0d60e51b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deallocates the given <code>array</code>, calling the given <code>delete</code> function for each item </p>
+<p >Deallocates the given <code>array</code>, calling the given <code>del</code> function for each item </p>
 </td></tr>
 <tr class="memitem:a3b1f2a8e93f689a94d29cdeb8b3dd25a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a3b1f2a8e93f689a94d29cdeb8b3dd25a">c_arrffree</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Free_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a3b1f2a8e93f689a94d29cdeb8b3dd25a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12f174d0324cf5f9b30ee13761b21902"><td class="memItemLeft" align="right" valign="top">void Array_Free_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a12f174d0324cf5f9b30ee13761b21902">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
-<tr class="separator:a12f174d0324cf5f9b30ee13761b21902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f5c0067ed3fa3efb6e027846e9cd56b"><td class="memItemLeft" align="right" valign="top">void Array_Free_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a6f5c0067ed3fa3efb6e027846e9cd56b">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
+<tr class="separator:a6f5c0067ed3fa3efb6e027846e9cd56b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Deletes the array inside the given address <code>a_array</code> (frees and sets to NULL) </p>
 </td></tr>
@@ -292,12 +302,12 @@ Macros</h2></td></tr>
 <tr class="memitem:abb3826028a33b01e750080e65cd4cc9f"><td class="memItemLeft" align="right" valign="top">void Array_Delete()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#abb3826028a33b01e750080e65cd4cc9f">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) **a_array)</td></tr>
 <tr class="separator:abb3826028a33b01e750080e65cd4cc9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deletes the array inside the given address <code>a_array</code> (frees and sets to NULL), calling the given <code>delete</code> function for each item </p>
+<p >Deletes the array inside the given address <code>a_array</code> (frees and sets to NULL), calling the given <code>del</code> function for each item </p>
 </td></tr>
 <tr class="memitem:ade56177f79722f09148db5ab332fb1a2"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ade56177f79722f09148db5ab332fb1a2">c_arrfdel</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Delete_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:ade56177f79722f09148db5ab332fb1a2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4d2cc9d3e231c12247b0961f863eeb51"><td class="memItemLeft" align="right" valign="top">void Array_Delete_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a4d2cc9d3e231c12247b0961f863eeb51">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) **a_array, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
-<tr class="separator:a4d2cc9d3e231c12247b0961f863eeb51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2bfd791f958db4eee6a5a9d26c526cd6"><td class="memItemLeft" align="right" valign="top">void Array_Delete_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a2bfd791f958db4eee6a5a9d26c526cd6">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) **a_array, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
+<tr class="separator:a2bfd791f958db4eee6a5a9d26c526cd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Appends the given item <code>item</code> to the end of the given array <code>dest</code>. </p>
 </td></tr>
@@ -313,12 +323,12 @@ Macros</h2></td></tr>
 <tr class="memitem:afea5434908f027b6ae9f8ffa7b9816c4"><td class="memItemLeft" align="right" valign="top">void Array_RemoveAt()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#afea5434908f027b6ae9f8ffa7b9816c4">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>)</td></tr>
 <tr class="separator:afea5434908f027b6ae9f8ffa7b9816c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like Array_RemoveAt(), but you can supply a custom <code>delete</code> function </p>
+<p >Like Array_RemoveAt(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
 <tr class="memitem:aaa3a949be3c1d02fe4323b891622560c"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#aaa3a949be3c1d02fe4323b891622560c">c_arrfdelat</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_RemoveAt_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:aaa3a949be3c1d02fe4323b891622560c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7d44601a2e3c1a9e507a5c7573714b26"><td class="memItemLeft" align="right" valign="top">void Array_RemoveAt_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a7d44601a2e3c1a9e507a5c7573714b26">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T))</td></tr>
-<tr class="separator:a7d44601a2e3c1a9e507a5c7573714b26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50279f46a7f60190aaa4a0f04d176bd5"><td class="memItemLeft" align="right" valign="top">void Array_RemoveAt_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a50279f46a7f60190aaa4a0f04d176bd5">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T))</td></tr>
+<tr class="separator:a50279f46a7f60190aaa4a0f04d176bd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Removes the first item from the given <code>array</code> which is equal to the given <code>item</code> </p>
 </td></tr>
@@ -327,21 +337,21 @@ Macros</h2></td></tr>
 <tr class="memitem:a3b20f8c44faa89e226c388e96d9807db"><td class="memItemLeft" align="right" valign="top">void Array_Remove()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a3b20f8c44faa89e226c388e96d9807db">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)</td></tr>
 <tr class="separator:a3b20f8c44faa89e226c388e96d9807db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like Array_Remove(), but you can supply a custom <code>delete</code> function </p>
+<p >Like Array_Remove(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
 <tr class="memitem:a4b85f6c798e29b691d4fd9d45a41cdec"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a4b85f6c798e29b691d4fd9d45a41cdec">c_arrfdelone</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Remove_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a4b85f6c798e29b691d4fd9d45a41cdec"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0c3e449b8b0d026fc167ab9dbb09df0b"><td class="memItemLeft" align="right" valign="top">void Array_Remove_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a0c3e449b8b0d026fc167ab9dbb09df0b">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T))</td></tr>
-<tr class="separator:a0c3e449b8b0d026fc167ab9dbb09df0b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a20d0a7dcc4614e5d52a925b3426ec020"><td class="memItemLeft" align="right" valign="top">void Array_Remove_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a20d0a7dcc4614e5d52a925b3426ec020">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T))</td></tr>
+<tr class="separator:a20d0a7dcc4614e5d52a925b3426ec020"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Creates a new array from the given <code>array</code>, where any occurence of <code>old</code> is replaced with <code>new</code> </p>
+<p >Creates a new array from the given <code>array</code>, where any occurence of <code>item_old</code> is replaced with <code>item_new</code> </p>
 </td></tr>
 <tr class="memitem:a2d52ab1f3d46e3b6e9a277fc10e9484a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a2d52ab1f3d46e3b6e9a277fc10e9484a">c_arrrep</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;			Array_Replace&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a2d52ab1f3d46e3b6e9a277fc10e9484a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f7a6d205f1cf759b95fd8f6c7bb59e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a></td></tr>
-<tr class="separator:a2f7a6d205f1cf759b95fd8f6c7bb59e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd1a554e6048a1efb923536b526ae44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#addd1a554e6048a1efb923536b526ae44">new</a></td></tr>
-<tr class="separator:addd1a554e6048a1efb923536b526ae44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17916dad514480b38c81ebbd3c90e04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ab17916dad514480b38c81ebbd3c90e04">item_old</a></td></tr>
+<tr class="separator:ab17916dad514480b38c81ebbd3c90e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9f0ea98996232c79ee2f1059b0268bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#aa9f0ea98996232c79ee2f1059b0268bc">item_new</a></td></tr>
+<tr class="separator:aa9f0ea98996232c79ee2f1059b0268bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Checks if two arrays have the same content </p>
 </td></tr>
@@ -384,13 +394,6 @@ Macros</h2></td></tr>
 <tr class="separator:aaabbee1de831fde18782ba6b1f79f460"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5bb461bffd8306b6c5c12771318498a7"><td class="memItemLeft" align="right" valign="top">T *Array_Find_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a5bb461bffd8306b6c5c12771318498a7">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) const *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, <a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a>(*<a class="el" href="list_8h.html#a0667963941c6753819c89ba0ebb63b58">match</a>)(T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
 <tr class="separator:a5bb461bffd8306b6c5c12771318498a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Iterates upon each item of the given <code>array</code>, applying the given function <code>f</code> for each of its items. </p>
-</td></tr>
-<tr class="memitem:a34271589388611bbce68e1c2bcf4924f"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#a34271589388611bbce68e1c2bcf4924f">c_arriter</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	Array_Iterate&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
-<tr class="separator:a34271589388611bbce68e1c2bcf4924f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac275784193dccdcee0c6f677b8aae654"><td class="memItemLeft" align="right" valign="top">void Array_Iterate()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="array_8h.html#ac275784193dccdcee0c6f677b8aae654">T</a> (<a class="el" href="convert_8h.html#ae193341a74416208e94eaa51f0726861">s_array</a>(T) *<a class="el" href="array_8h.html#a91863a6e23c98532d3d86e30307dfbf9">array</a>, void(*f)(T <a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
-<tr class="separator:ac275784193dccdcee0c6f677b8aae654"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Like Array_Iterate(), but the user-supplied function receives the current index </p>
 </td></tr>
@@ -1410,32 +1413,32 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting array </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>array</code>, in which in any item equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>array</code>, in which in any item equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>item_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>item_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array to duplicate and invert </td></tr>
@@ -1597,8 +1600,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a12f174d0324cf5f9b30ee13761b21902" name="a12f174d0324cf5f9b30ee13761b21902"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12f174d0324cf5f9b30ee13761b21902">&#9670;&nbsp;</a></span>T() <span class="overload">[4/22]</span></h2>
+<a id="a6f5c0067ed3fa3efb6e027846e9cd56b" name="a6f5c0067ed3fa3efb6e027846e9cd56b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f5c0067ed3fa3efb6e027846e9cd56b">&#9670;&nbsp;</a></span>T() <span class="overload">[4/22]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1613,7 +1616,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1625,7 +1628,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array whose <code>items</code> buffer should be deleted - its <code>length</code> will be set to <code>0</code>. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1656,8 +1659,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a4d2cc9d3e231c12247b0961f863eeb51" name="a4d2cc9d3e231c12247b0961f863eeb51"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4d2cc9d3e231c12247b0961f863eeb51">&#9670;&nbsp;</a></span>T() <span class="overload">[6/22]</span></h2>
+<a id="a2bfd791f958db4eee6a5a9d26c526cd6" name="a2bfd791f958db4eee6a5a9d26c526cd6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2bfd791f958db4eee6a5a9d26c526cd6">&#9670;&nbsp;</a></span>T() <span class="overload">[6/22]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1672,7 +1675,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1684,7 +1687,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a_array</td><td>The address of the array whose <code>items</code> buffer should be deleted. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1719,7 +1722,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">array</td><td>The array in which to remove an item </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the item to delete from the array </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the item to remove from the array </td></tr>
   </table>
   </dd>
 </dl>
@@ -1727,8 +1730,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a7d44601a2e3c1a9e507a5c7573714b26" name="a7d44601a2e3c1a9e507a5c7573714b26"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7d44601a2e3c1a9e507a5c7573714b26">&#9670;&nbsp;</a></span>T() <span class="overload">[8/22]</span></h2>
+<a id="a50279f46a7f60190aaa4a0f04d176bd5" name="a50279f46a7f60190aaa4a0f04d176bd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50279f46a7f60190aaa4a0f04d176bd5">&#9670;&nbsp;</a></span>T() <span class="overload">[8/22]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1749,7 +1752,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1805,8 +1808,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a0c3e449b8b0d026fc167ab9dbb09df0b" name="a0c3e449b8b0d026fc167ab9dbb09df0b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0c3e449b8b0d026fc167ab9dbb09df0b">&#9670;&nbsp;</a></span>T() <span class="overload">[10/22]</span></h2>
+<a id="a20d0a7dcc4614e5d52a925b3426ec020" name="a20d0a7dcc4614e5d52a925b3426ec020"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a20d0a7dcc4614e5d52a925b3426ec020">&#9670;&nbsp;</a></span>T() <span class="overload">[10/22]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1827,7 +1830,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -2433,14 +2436,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f7a6d205f1cf759b95fd8f6c7bb59e1" name="a2f7a6d205f1cf759b95fd8f6c7bb59e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f7a6d205f1cf759b95fd8f6c7bb59e1">&#9670;&nbsp;</a></span>old</h2>
+<a id="ab17916dad514480b38c81ebbd3c90e04" name="ab17916dad514480b38c81ebbd3c90e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17916dad514480b38c81ebbd3c90e04">&#9670;&nbsp;</a></span>item_old</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> old</td>
+          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> item_old</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2449,14 +2452,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="addd1a554e6048a1efb923536b526ae44" name="addd1a554e6048a1efb923536b526ae44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addd1a554e6048a1efb923536b526ae44">&#9670;&nbsp;</a></span>new</h2>
+<a id="aa9f0ea98996232c79ee2f1059b0268bc" name="aa9f0ea98996232c79ee2f1059b0268bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9f0ea98996232c79ee2f1059b0268bc">&#9670;&nbsp;</a></span>item_new</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> new</td>
+          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> item_new</td>
         </tr>
       </table>
 </div><div class="memdoc">

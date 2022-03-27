@@ -1,18 +1,18 @@
-doc/DoxygenLayout.xml:169: warning: Unexpected start tag 'includes' found in scope='group/'!
+doc/doxygen-layout.xml:169: warning: Unexpected start tag 'includes' found in scope='group/'!
 
-doc/DoxygenLayout.xml:170: warning: Unexpected start tag 'includegraph' found in scope='group/'!
+doc/doxygen-layout.xml:170: warning: Unexpected start tag 'includegraph' found in scope='group/'!
 
-doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in scope='group/'!
+doc/doxygen-layout.xml:172: warning: Unexpected start tag 'sourcelink' found in scope='group/'!
 
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:216: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:312: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:312: warning: member index belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:332: warning: member index belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member n belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:775: warning: member map belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:800: warning: member filter belongs to two different groups. The second one found here will be ignored.
@@ -24,15 +24,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:410: warning: member index belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:424: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member item belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member delete belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member del belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:445: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member item belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member delete belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member del belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member n belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:677: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:826: warning: member map belongs to two different groups. The second one found here will be ignored.
@@ -55,12 +55,12 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:397: warning: documented symbol 'void Array_RemoveAll_F' was not declared or defined.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:415: warning: member s_array belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member s_array belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:433: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member s_array belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:451: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:467: warning: member s_array belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:489: warning: member s_array belongs to two different groups. The second one found here will be ignored.
@@ -105,20 +105,20 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:424: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member s_list belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member item belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member delete belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:431: warning: member del belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:445: warning: member s_list belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:445: warning: member item belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member s_list belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member item belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member delete belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:452: warning: member del belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:470: warning: member s_list belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member s_list belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:488: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member s_list belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member old belongs to two different groups. The second one found here will be ignored.
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member new belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member item_old belongs to two different groups. The second one found here will be ignored.
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member item_new belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:506: warning: member n belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:522: warning: member s_list belongs to two different groups. The second one found here will be ignored.
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:543: warning: member s_list belongs to two different groups. The second one found here will be ignored.
@@ -156,16 +156,16 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/string.h:1235: warning: Found unknown command '\x'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/string.h:1236: warning: Found unknown command '\u'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/string.h:1237: warning: Found unknown command '\U'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:86: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:107: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:119: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:140: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:153: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:174: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:194: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:223: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:241: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:246: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:59: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:80: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:92: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:113: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:126: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:147: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:167: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:196: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:214: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:219: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:162: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:177: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:192: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
@@ -273,10 +273,14 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
   parameter 'f'
   parameter 'initial'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/stringarray.h:809: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:249: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:262: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:275: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:288: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'error_code' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix_color' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'args' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:349: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:367: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:385: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:403: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:135: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:173: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:565: warning: Found unknown command '@doc'
@@ -306,15 +310,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'src' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'index' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array1' of command @param is not found in the argument list of s_array(T)
@@ -374,15 +378,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list1' of command @param is not found in the argument list of s_list(T)
@@ -474,15 +478,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'src' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'index' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array1' of command @param is not found in the argument list of s_array(T)
@@ -542,15 +546,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list1' of command @param is not found in the argument list of s_list(T)
@@ -709,10 +713,14 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
   parameter 'f'
   parameter 'initial'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/stringarray.h:809: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:249: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:262: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:275: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:288: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'error_code' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix_color' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'args' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:349: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:367: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:385: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:403: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:135: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:173: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:565: warning: Found unknown command '@doc'
@@ -720,26 +728,26 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:677: warning: Found unknown command '\t'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:738: warning: Found unknown command '@isostd'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:752: warning: Found unknown command '@isostd'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:107: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:119: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:140: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:153: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:174: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:194: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:223: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:241: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:246: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:86: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:107: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:119: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:140: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:153: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:174: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:194: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:223: warning: explicit link request to 'define' could not be resolved
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:241: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:246: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:86: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:80: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:92: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:113: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:126: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:147: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:167: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:196: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:214: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:219: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:59: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:80: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:92: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:113: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:126: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:147: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:167: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:196: warning: explicit link request to 'define' could not be resolved
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:214: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:219: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc_config.h:59: warning: explicit link request to 'define' could not be resolved
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:162: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:177: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
 /Users/alexis/Projects/libccc/docs/hdr/libccc/fixed.h:192: warning: explicit link request to 'FIXED_BITS_FRACTIONPART' could not be resolved
@@ -847,10 +855,14 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
   parameter 'f'
   parameter 'initial'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/stringarray.h:809: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:249: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:262: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:275: warning: Found unknown command '@doc'
-/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:288: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'error_code' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'prefix_color' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:248: warning: argument 'args' of command @param is not found in the argument list of Log(s_logger const *logger, t_char const *suffix, t_char const *format,...)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:349: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:367: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:385: warning: Found unknown command '@doc'
+/Users/alexis/Projects/libccc/docs/hdr/libccc/sys/logger.h:403: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:565: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:577: warning: Found unknown command '@doc'
 /Users/alexis/Projects/libccc/docs/hdr/libccc/sys/time.h:677: warning: Found unknown command '\t'
@@ -880,15 +892,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'src' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'index' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'old' of command @param is not found in the argument list of s_array(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'new' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_old' of command @param is not found in the argument list of s_array(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'item_new' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'n' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array' of command @param is not found in the argument list of s_array(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/array.h:796: warning: argument 'array1' of command @param is not found in the argument list of s_array(T)
@@ -948,15 +960,15 @@ doc/DoxygenLayout.xml:172: warning: Unexpected start tag 'sourcelink' found in s
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'old' of command @param is not found in the argument list of s_list(T)
-/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'new' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_old' of command @param is not found in the argument list of s_list(T)
+/Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'item_new' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'n' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list' of command @param is not found in the argument list of s_list(T)
 /Users/alexis/Projects/libccc/docs/hdr/libccc/monad/list.h:847: warning: argument 'list1' of command @param is not found in the argument list of s_list(T)

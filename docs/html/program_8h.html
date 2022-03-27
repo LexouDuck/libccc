@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('program_8h.html',''); initResizable();
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="program_8h__incl.svg" width="334" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -143,10 +143,10 @@ Macros</h2></td></tr>
 <p >TODO wrapper function for system()</p>
 <p >TODO wrapper function for quick_exit() - <em>Standard library equivalent: </em>(C11) <a href="https://en.cppreference.com/w/c/program/quick_exit">https://en.cppreference.com/w/c/program/quick_exit</a> TODO wrapper function for at_quick_exit() - <em>Standard library equivalent: </em>(C11) <a href="https://en.cppreference.com/w/c/program/at_quick_exit">https://en.cppreference.com/w/c/program/at_quick_exit</a> </p>
 </td></tr>
-<tr class="memitem:ab5148c5e7147330308491717889d1c29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#ab5148c5e7147330308491717889d1c29">c_system</a>&#160;&#160;&#160;<a class="el" href="program_8h.html#a3e90c6422fafb835893c3ca2f5400fd6">Program_Run</a></td></tr>
+<tr class="memitem:ab5148c5e7147330308491717889d1c29"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#ab5148c5e7147330308491717889d1c29">c_system</a>&#160;&#160;&#160;<a class="el" href="program_8h.html#a9faa4d5dc4f26e6a4e837a47affc8ea0">Program_Run</a></td></tr>
 <tr class="separator:ab5148c5e7147330308491717889d1c29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e90c6422fafb835893c3ca2f5400fd6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#a3e90c6422fafb835893c3ca2f5400fd6">Program_Run</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *command)</td></tr>
-<tr class="separator:a3e90c6422fafb835893c3ca2f5400fd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9faa4d5dc4f26e6a4e837a47affc8ea0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#a9faa4d5dc4f26e6a4e837a47affc8ea0">Program_Run</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *command)</td></tr>
+<tr class="separator:a9faa4d5dc4f26e6a4e837a47affc8ea0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >TODO wrapper function for getenv() </p>
 </td></tr>
@@ -157,10 +157,10 @@ Macros</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >TODO wrapper function for setenv() </p>
 </td></tr>
-<tr class="memitem:a185ac08609091572ce12e8f6395b9ec4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#a185ac08609091572ce12e8f6395b9ec4">c_setenv</a>&#160;&#160;&#160;<a class="el" href="program_8h.html#ac6b6f758419fc42cd5e9ea10dffdd555">Program_SetEnv</a></td></tr>
+<tr class="memitem:a185ac08609091572ce12e8f6395b9ec4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#a185ac08609091572ce12e8f6395b9ec4">c_setenv</a>&#160;&#160;&#160;<a class="el" href="program_8h.html#a85fca0a757c3531a8b9d1563569190f1">Program_SetEnv</a></td></tr>
 <tr class="separator:a185ac08609091572ce12e8f6395b9ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac6b6f758419fc42cd5e9ea10dffdd555"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#ac6b6f758419fc42cd5e9ea10dffdd555">Program_SetEnv</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *name, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *<a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>, <a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> overwrite)</td></tr>
-<tr class="separator:ac6b6f758419fc42cd5e9ea10dffdd555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a85fca0a757c3531a8b9d1563569190f1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="program_8h.html#a85fca0a757c3531a8b9d1563569190f1">Program_SetEnv</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *name, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *<a class="el" href="list_8h.html#a4fc7f59e3113e19697159919a5aad095">value</a>, <a class="el" href="bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2">t_bool</a> overwrite)</td></tr>
+<tr class="separator:a85fca0a757c3531a8b9d1563569190f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >TODO wrapper function for getcwd() </p>
 </td></tr>
@@ -280,7 +280,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_system&#160;&#160;&#160;<a class="el" href="program_8h.html#a3e90c6422fafb835893c3ca2f5400fd6">Program_Run</a></td>
+          <td class="memname">#define c_system&#160;&#160;&#160;<a class="el" href="program_8h.html#a9faa4d5dc4f26e6a4e837a47affc8ea0">Program_Run</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -312,7 +312,7 @@ Macros</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_setenv&#160;&#160;&#160;<a class="el" href="program_8h.html#ac6b6f758419fc42cd5e9ea10dffdd555">Program_SetEnv</a></td>
+          <td class="memname">#define c_setenv&#160;&#160;&#160;<a class="el" href="program_8h.html#a85fca0a757c3531a8b9d1563569190f1">Program_SetEnv</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -401,14 +401,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a3e90c6422fafb835893c3ca2f5400fd6" name="a3e90c6422fafb835893c3ca2f5400fd6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e90c6422fafb835893c3ca2f5400fd6">&#9670;&nbsp;</a></span>Program_Run()</h2>
+<a id="a9faa4d5dc4f26e6a4e837a47affc8ea0" name="a9faa4d5dc4f26e6a4e837a47affc8ea0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9faa4d5dc4f26e6a4e837a47affc8ea0">&#9670;&nbsp;</a></span>Program_Run()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Program_Run </td>
+          <td class="memname"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> Program_Run </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>command</em></td><td>)</td>
@@ -443,14 +443,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="ac6b6f758419fc42cd5e9ea10dffdd555" name="ac6b6f758419fc42cd5e9ea10dffdd555"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6b6f758419fc42cd5e9ea10dffdd555">&#9670;&nbsp;</a></span>Program_SetEnv()</h2>
+<a id="a85fca0a757c3531a8b9d1563569190f1" name="a85fca0a757c3531a8b9d1563569190f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a85fca0a757c3531a8b9d1563569190f1">&#9670;&nbsp;</a></span>Program_SetEnv()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int Program_SetEnv </td>
+          <td class="memname"><a class="el" href="libccc__errors_8h.html#a54dc030d7c8bbb1e03a6311fd02fa127">e_cccerror</a> Program_SetEnv </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
           <td class="paramname"><em>name</em>, </td>

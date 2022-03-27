@@ -233,6 +233,34 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_boolstr</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga44663aa80d5fa757f0919e58104fb6ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Bool_String</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga18ea241a1c93febf589ce6c178a8273c</anchor>
+      <arglist>(t_bool value, t_bool uppercase)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_boolprint</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga6568f8b916792ff121a8d1b1df4f1b14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Bool_Print</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>gae6c5931f2ec833fd654c6e26d3b9f64a</anchor>
+      <arglist>(t_char *dest, t_bool value, t_bool uppercase)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_booltostr</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
       <anchor>ga305d53c2f3bb24a8dd85e7c43c7fbaca</anchor>
@@ -256,8 +284,8 @@
       <type>t_size</type>
       <name>Bool_Parse</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>ga62488783726cc91f09321f8d62c37125</anchor>
-      <arglist>(t_bool *dest, t_char const *str)</arglist>
+      <anchor>ga90df3aa4d05f20276ecebb12f5430904</anchor>
+      <arglist>(t_bool *dest, t_size n, t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -3418,10 +3446,10 @@
       <arglist>(t_char const *const *strings, t_uint count)</arglist>
     </member>
     <member kind="variable">
-      <type>HEADER_CPP typedef t_sint</type>
+      <type>HEADER_CPP typedef t_uint</type>
       <name>t_dynamic</name>
       <anchorfile>group__libccc__encode__common.html</anchorfile>
-      <anchor>ga264a0cf48888e27e006df1f0a84fc221</anchor>
+      <anchor>ga9fdfbaa2a1d92306d4893f1b65adda76</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -6364,6 +6392,119 @@
     </member>
   </compound>
   <compound kind="file">
+    <name>enum.h</name>
+    <path>/Users/alexis/Projects/libccc/docs/hdr/libccc/</path>
+    <filename>enum_8h.html</filename>
+    <includes id="libccc_8h" name="libccc.h" local="yes" imported="no">libccc.h</includes>
+    <class kind="struct">enum_item</class>
+    <class kind="struct">enum_type</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>__LIBCCC_ENUM_T</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gaa0180feda32e336a98e6b7c0e3980b22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__LIBCCC_ENUM_F</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga825a5dad5e401b9d3454528cbed1f227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>t_enum</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga9c6781a3f054c9243798a7ae5bd5884d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct enum_item</type>
+      <name>s_enum_item</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga8541193acde3c0854ac6044fab49057b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct enum_type</type>
+      <name>s_enum_type</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gadfec865e73cc081fff6261520312ebcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumstr</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga94ae9b7a887ba450d64611b25f754886</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Enum_String</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga12c96e8fcf3eaabf300b261377fb6d97</anchor>
+      <arglist>(t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumprint</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gac4d41bc683847c3c63247f08ac0b318c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Enum_Print</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gaa38fd6e4723676b493ade2235296ea68</anchor>
+      <arglist>(t_char *dest, t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumtostr</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gacb67b3bb7864e2aa4d5465aae98e0f10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Enum_ToString</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gab6e5fbc9a80e6fb595c1a3a5e37b0987</anchor>
+      <arglist>(t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumparse</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga7f3565b23e16c56c1da36e31af6d17eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Enum_Parse</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga1368edfc2998346f8b8ce4dc7bc635f6</anchor>
+      <arglist>(t_enum *dest, t_size n, t_char const *str, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtoenum</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gadd0a6093f68d9c76c68e0fecb1778143</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_enum</type>
+      <name>Enum_FromString</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga2760c2eed28152941eb296c3b7029ac0</anchor>
+      <arglist>(t_char const *str, s_enum_type const *enum_type)</arglist>
+    </member>
+  </compound>
+  <compound kind="file">
     <name>error.h</name>
     <path>/Users/alexis/Projects/libccc/docs/hdr/libccc/</path>
     <filename>error_8h.html</filename>
@@ -6590,6 +6731,8 @@
     <includes id="string_8h" name="string.h" local="yes" imported="no">libccc/string.h</includes>
     <includes id="format_8h" name="format.h" local="yes" imported="no">libccc/format.h</includes>
     <includes id="io_8h" name="io.h" local="yes" imported="no">libccc/sys/io.h</includes>
+    <class kind="struct">error_info</class>
+    <class kind="struct">ccchandler</class>
     <member kind="define">
       <type>#define</type>
       <name>__LIBCCC_SYS_ERROR_T</name>
@@ -6618,47 +6761,89 @@
       <anchor>ga14423499aeaf3273f27d2ee7ce5f9bb0</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>void(*</type>
-      <name>f_ccchandler</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga81d109bfa058895c1e3b4bf5416d0235</anchor>
-      <arglist>)(e_cccerror, t_char const *)</arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror</name>
+      <name>LIBCONFIG_ERROR_DEFAULTFUNCTIONS</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <anchor>ga97754055b8fbdbcdd1f8ba17745f8d79</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror_r</name>
+      <name>Error_Message</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <anchor>ga61d7b133eadc3b84069082873da662db</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror_s</name>
+      <name>c_errormsg</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad4bec659a2b4a3499b72ff00db48143c</anchor>
+      <anchor>ga4b43db865ca4e6f5f68bcf9cd7737fda</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Error_STDC_GetMessage</name>
+      <name>Error_GetMessage</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga5f54acd83695bf80059da13d9e0202e4</anchor>
+      <anchor>gaf815e706531eaf43482b154a874b6bc9</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_STDC</name>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorsmsg</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gaeed19ee6aa481dfaa137c7c762272b71</anchor>
-      <arglist>(int errno_value)</arglist>
+      <anchor>gaed192892c110e4b397797e22ae7460a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga033ab0dfed015c61e70b51828aee80e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf2930a65ac94f878a250bc7ba4a086de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf5e4180edd6c606231cc7cf91da5d224</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga802e79355aeda53382fd0dbcf83ffe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0e157c7c88bf0c3bcc42a13ef54ef811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga991969938fb4134b879826a9179233ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Get</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gad7b8ae6dfc255e18184af8cd98700388</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -6667,12 +6852,12 @@
       <anchor>gaa081a7c63cc6f68afbb6de2882ee37c5</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>e_cccerror</type>
-      <name>Error_Get</name>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Set</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad94c866af5ac844bc1505ded6c93aa83</anchor>
-      <arglist>(void)</arglist>
+      <anchor>gacb49515bab16d58c1a7d1b43046a48da</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -6681,54 +6866,33 @@
       <anchor>gac6975b1a613faf7248a7926ac8dec641</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>e_cccerror</type>
-      <name>Error_Set</name>
+    <member kind="typedef">
+      <type>int</type>
+      <name>t_errno</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga598851df6c16da4fbb047dfb6c03e5ad</anchor>
-      <arglist>(e_cccerror error)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetmsg</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga53ca18f665fe72a005acc04e369ba38c</anchor>
+      <anchor>gae1a58c9ffc80690d349f05718afab8fd</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_GetMessage</name>
+    <member kind="typedef">
+      <type>struct error_info</type>
+      <name>s_error_info</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga71117dafe78ee6ffd6759182080199d6</anchor>
-      <arglist>(e_cccerror error)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetname</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga49a7da4d70e3d1099cdcc97e51db594d</anchor>
+      <anchor>gab3eb09524986d0de800d86985e638093</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_GetName</name>
+    <member kind="typedef">
+      <type>void(*</type>
+      <name>f_ccchandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad9c1970e6a5b0d1eaa8d271119d9572b</anchor>
-      <arglist>(e_cccerror error)</arglist>
+      <anchor>ga6ff9b25f0a22849e4b564db7107f96ff</anchor>
+      <arglist>)(e_cccerror error, t_char const *funcname, t_char const *message)</arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetcode</name>
+    <member kind="typedef">
+      <type>struct ccchandler</type>
+      <name>s_ccchandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga33fdfa51857c6db88348712e762946b2</anchor>
+      <anchor>gadb48ac60c138d2b61d94fb2de1b9ac1c</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>e_cccerror</type>
-      <name>Error_GetCode</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga77b6d74719daaf5c6750125333f1e458</anchor>
-      <arglist>(t_char const *name)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -6755,14 +6919,14 @@
       <type>void</type>
       <name>Error_Handler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga224c7af49405190664152dc7efc4ae20</anchor>
-      <arglist>(e_cccerror error, t_char const *message)</arglist>
+      <anchor>gaa26698564dfa6be1a0bbb22bc9a58e00</anchor>
+      <arglist>(e_cccerror error, t_char const *funcname, t_char const *message)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_gethandler</name>
+      <name>c_geterrhandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga6f0273452c81c31c26a0a4dc12c3a5c4</anchor>
+      <anchor>gab3ab035572d18ecb5b510c71ae947b80</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -6774,9 +6938,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_sethandler</name>
+      <name>c_seterrhandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gafc5695774c50fcee6dd28e750767ddb8</anchor>
+      <anchor>ga73f6f11f2ce9b370dff29cb0d6314241</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -6788,9 +6952,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_setallhandlers</name>
+      <name>c_setallerrhandlers</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga6595730108cd059ec590ca7bb69e5e99</anchor>
+      <anchor>gac5908f8cf1f508a7446315d68447d402</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -6799,6 +6963,223 @@
       <anchorfile>group__libccc__sys__error.html</anchorfile>
       <anchor>ga7d5a33ad617754de4361c324504026a6</anchor>
       <arglist>(f_ccchandler handler)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrormsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga09790c5afe6b82a097efd388a766cb04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_CCC_Message</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga9a3e1f1af2bb6c549a916ed75ab55a13</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorsmsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga9bd4b672fda8015be3070143b2a9c6cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_CCC_GetMessage</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga8ad82045a9c41c0398f351ffc9870d71</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga2077e75588dc33ba6fb6a0423ce9417d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_CCC_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga05652a74b090028d43f471206bd204f8</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0725c9a9da1014c779e265e72660f324</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_CCC_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gadcb75839c56c91fa60f385f6d8d52c1b</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga79a27f9f23f5f0203faf7fcedd95b496</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6f6fd4e029748ea23b5c46f8f7ae3ead</anchor>
+      <arglist>(t_char const *name)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorget</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gab1b04dc59a94df095b333ae66d05df87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Get</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6888f1ff118cf14fdd4b40e826f2feab</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorset</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gabf17dd6536b396f9df30c437b562e378</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Set</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga687a0e95b6e76e5ff5fd9eb67dccba79</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrormsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf3f84243faf9551b22f7418d82a0d2a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_STD_Message</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaa8bdc68333ba5be772e518eb5bd46de5</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorsmsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gadb21bbd345eff6e436a16131978ad233</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_r</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_s</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gad4bec659a2b4a3499b72ff00db48143c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_STD_GetMessage</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6a30e82dd45bdb3a7d90133d636bfda9</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga4bb29d9f47f351a319a14de93e2eef2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_STD_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaa7feba34fd1fcebda24def60bd5c5897</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0d5c9a6b209912d12e68767d312fd320</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_STD_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga4e59ae818ba3a0b915f4ab6f5ea6931f</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga202c67e130c42e9e54fd7b9694941dd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga236d92584bee466f2bba359ee864dc1c</anchor>
+      <arglist>(t_char const *name)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorget</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga075a88d3c6cccb9c8fc0095abc12fd3c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Get</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gae23cf095e3a7d1e7ce04a8e3aabf4049</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorset</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf524c8069b612470e69ccabf65774d34</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Set</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga056cc9425d088cf8b5d4ee9b7ebd63bc</anchor>
+      <arglist>(t_errno error)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -24028,62 +24409,6 @@
       <anchor>ga848e101e5f7a49c9bf82bc34f956241e</anchor>
       <arglist></arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SInt_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga8bf1cf2caf30a5ffbe48c16bdcf92e90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_smul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gadcf1cd33d958faff9cae067c784ac092</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SInt_Multiply</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gac4deba26cfdd396cd765faac4083cf8b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s8mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gac290ef6f2d7e9ca339b127b4e974cb91</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s16mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga25083deb074fab88f076ff4e9db20940</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s32mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga9b8b04d6a2c3a6bd1dd51a2eb2be9aba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s64mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga2dacd1014f766aa05a808ba90641521a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s128mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gaf942ef876c1cedf4bb04572a2964e5c8</anchor>
-      <arglist></arglist>
-    </member>
     <member kind="typedef">
       <type>t_uint(*</type>
       <name>f_uint_function</name>
@@ -24223,41 +24548,6 @@
       <anchorfile>group__libccc__math__int.html</anchorfile>
       <anchor>gaf2582e20bf91d95e365b63052ed6143e</anchor>
       <arglist>)(t_s128 a, t_s128 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s8</type>
-      <name>S8_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga7746e2b536bc68de87eba050cf8b4712</anchor>
-      <arglist>(t_s8 a, t_s8 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s16</type>
-      <name>S16_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga6a481bff8873fed2ff7b5bab7e65c853</anchor>
-      <arglist>(t_s16 a, t_s16 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s32</type>
-      <name>S32_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga76ff3708e8df69844ea184a78537fd4e</anchor>
-      <arglist>(t_s32 a, t_s32 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s64</type>
-      <name>S64_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gae2c6ffebc92b8242d8e1a6777c9448d8</anchor>
-      <arglist>(t_s64 a, t_s64 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s128</type>
-      <name>S128_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga0a087192755696ed26ff31a28f43b32a</anchor>
-      <arglist>(t_s128 a, t_s128 b)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -24958,6 +25248,97 @@
       <anchorfile>group__libccc__math__int.html</anchorfile>
       <anchor>gabb5c1f1502ca3d6edf075f2188abf722</anchor>
       <arglist>(t_u128 a, t_u128 b)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SInt_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga8bf1cf2caf30a5ffbe48c16bdcf92e90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_smul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gadcf1cd33d958faff9cae067c784ac092</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SInt_Multiply</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gac4deba26cfdd396cd765faac4083cf8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s8mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gac290ef6f2d7e9ca339b127b4e974cb91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s16mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga25083deb074fab88f076ff4e9db20940</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s32mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga9b8b04d6a2c3a6bd1dd51a2eb2be9aba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s64mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga2dacd1014f766aa05a808ba90641521a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s128mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gaf942ef876c1cedf4bb04572a2964e5c8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_s8</type>
+      <name>S8_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga7746e2b536bc68de87eba050cf8b4712</anchor>
+      <arglist>(t_s8 a, t_s8 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s16</type>
+      <name>S16_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga6a481bff8873fed2ff7b5bab7e65c853</anchor>
+      <arglist>(t_s16 a, t_s16 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s32</type>
+      <name>S32_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga76ff3708e8df69844ea184a78537fd4e</anchor>
+      <arglist>(t_s32 a, t_s32 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s64</type>
+      <name>S64_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gae2c6ffebc92b8242d8e1a6777c9448d8</anchor>
+      <arglist>(t_s64 a, t_s64 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s128</type>
+      <name>S128_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga0a087192755696ed26ff31a28f43b32a</anchor>
+      <arglist>(t_s128 a, t_s128 b)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -30440,8 +30821,8 @@
       <type>void</type>
       <name>Memory_Replace</name>
       <anchorfile>group__libccc__memory.html</anchorfile>
-      <anchor>gaac7ea6d813c693c6b0f1a471692d6fff</anchor>
-      <arglist>(void *ptr, t_u8 old, t_u8 new, t_size n)</arglist>
+      <anchor>ga8cddbf24b45a24cf849a2053f0f17d50</anchor>
+      <arglist>(void *ptr, t_u8 byte_old, t_u8 byte_new, t_size n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -30916,8 +31297,8 @@
       <type>void Array_Free_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga12f174d0324cf5f9b30ee13761b21902</anchor>
-      <arglist>(s_array(T) *array, void(*delete)(T *item))</arglist>
+      <anchor>ga6f5c0067ed3fa3efb6e027846e9cd56b</anchor>
+      <arglist>(s_array(T) *array, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -30944,8 +31325,8 @@
       <type>void Array_Delete_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga4d2cc9d3e231c12247b0961f863eeb51</anchor>
-      <arglist>(s_array(T) **a_array, void(*delete)(T *item))</arglist>
+      <anchor>ga2bfd791f958db4eee6a5a9d26c526cd6</anchor>
+      <arglist>(s_array(T) **a_array, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -31000,8 +31381,8 @@
       <type>void Array_RemoveAt_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga7d44601a2e3c1a9e507a5c7573714b26</anchor>
-      <arglist>(s_array(T) *array, t_uint index, void(*delete)(T))</arglist>
+      <anchor>ga50279f46a7f60190aaa4a0f04d176bd5</anchor>
+      <arglist>(s_array(T) *array, t_uint index, void(*del)(T))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -31028,8 +31409,8 @@
       <type>void Array_Remove_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga0c3e449b8b0d026fc167ab9dbb09df0b</anchor>
-      <arglist>(s_array(T) *array, T item, void(*delete)(T))</arglist>
+      <anchor>ga20d0a7dcc4614e5d52a925b3426ec020</anchor>
+      <arglist>(s_array(T) *array, T item, void(*del)(T))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -31054,16 +31435,16 @@
     </member>
     <member kind="variable">
       <type>T</type>
-      <name>old</name>
+      <name>item_old</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga2f7a6d205f1cf759b95fd8f6c7bb59e1</anchor>
+      <anchor>gab17916dad514480b38c81ebbd3c90e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>T T</type>
-      <name>new</name>
+      <name>item_new</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>gaddd1a554e6048a1efb923536b526ae44</anchor>
+      <anchor>gaa9f0ea98996232c79ee2f1059b0268bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -31836,8 +32217,8 @@
       <type>void List_Free_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gae549ae614ae362854e6bad2ab50813ee</anchor>
-      <arglist>(s_list(T) *list, void(*delete)(T *item))</arglist>
+      <anchor>gaffc47ddaa7fec2fbf4b06629eedc0408</anchor>
+      <arglist>(s_list(T) *list, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -31864,8 +32245,8 @@
       <type>void List_Delete_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaef7f04bfa5f85444c5502a571c1d8728</anchor>
-      <arglist>(s_list(T) **a_list, void(*delete)(T *item))</arglist>
+      <anchor>ga42e7aa06c70044a30ba1940e30691116</anchor>
+      <arglist>(s_list(T) **a_list, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -31911,9 +32292,9 @@
     </member>
     <member kind="variable">
       <type>t_uint void(*</type>
-      <name>delete</name>
+      <name>del</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaf0079e7c4d975627d89274a3536a43a0</anchor>
+      <anchor>ga8d372fba43d4aecadeb997c917fbf109</anchor>
       <arglist>)(T))</arglist>
     </member>
     <member kind="define">
@@ -31953,16 +32334,16 @@
     </member>
     <member kind="variable">
       <type>T</type>
-      <name>old</name>
+      <name>item_old</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>ga2f7a6d205f1cf759b95fd8f6c7bb59e1</anchor>
+      <anchor>gab17916dad514480b38c81ebbd3c90e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>T T</type>
-      <name>new</name>
+      <name>item_new</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaddd1a554e6048a1efb923536b526ae44</anchor>
+      <anchor>gaa9f0ea98996232c79ee2f1059b0268bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -32906,8 +33287,8 @@
       <type>void</type>
       <name>PointerArray_Free_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga2fd4493ca132c6ee85b5797afd471f5a</anchor>
-      <arglist>(void **ptrarr, void(*delete)(void *ptr))</arglist>
+      <anchor>ga5ff841d061d6a540c2796be3b1a4acd9</anchor>
+      <arglist>(void **ptrarr, void(*del)(void *ptr))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -32934,8 +33315,8 @@
       <type>void</type>
       <name>PointerArray_Delete_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gacb64c73646732a61a8bfafa8df5dd5d8</anchor>
-      <arglist>(void ***ptrarr, void(*delete)(void *ptr))</arglist>
+      <anchor>ga1bb3c40fc9ccc14ba10ae7d4eed3e8ed</anchor>
+      <arglist>(void ***ptrarr, void(*del)(void *ptr))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33004,8 +33385,8 @@
       <type>void</type>
       <name>PointerArray_RemoveAt_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga7a6bee24423b11992283f2cbd63f20a8</anchor>
-      <arglist>(void **ptrarr, t_uint index, void(*delete)(void *))</arglist>
+      <anchor>ga925a1247a62e477f555a27a229fd1b24</anchor>
+      <arglist>(void **ptrarr, t_uint index, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33032,8 +33413,8 @@
       <type>void</type>
       <name>PointerArray_Remove_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gab3084db2d375fd6827fb93916198ddc4</anchor>
-      <arglist>(void **ptrarr, void const *ptr, void(*delete)(void *))</arglist>
+      <anchor>ga27b6a62dbe02d6b8d43f78d991c028b4</anchor>
+      <arglist>(void **ptrarr, void const *ptr, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33060,8 +33441,8 @@
       <type>void</type>
       <name>PointerArray_RemoveAll_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga81f8dc0133ed002e8c4291faff7a715c</anchor>
-      <arglist>(void **ptrarr, void const *ptr, void(*delete)(void *))</arglist>
+      <anchor>ga9db9c1856e3aded0fa4144a0e26cddd2</anchor>
+      <arglist>(void **ptrarr, void const *ptr, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33074,8 +33455,8 @@
       <type>void **</type>
       <name>PointerArray_Replace</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gab3f80d096d3982ab340e90815f2f55bf</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new)</arglist>
+      <anchor>gafb1657af69e93be6b71ba5224b714a49</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33088,8 +33469,8 @@
       <type>void **</type>
       <name>PointerArray_ReplaceFirst</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga626270290333ea8c2138e1b644117d7d</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new, t_uint n)</arglist>
+      <anchor>gaf32028485044101ec9a0bc1ef79d8cfd</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -33102,8 +33483,8 @@
       <type>void **</type>
       <name>PointerArray_ReplaceLast</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga7c9acf830a6edd11cb3fd6020cdbf023</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new, t_uint n)</arglist>
+      <anchor>gab262b3d3307a4c99c497db7cbb022f88</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -34537,6 +34918,34 @@
       <anchor>ga8965890303e6704d997b69ade5255d46</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strlcat</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gabeb9e07145be6d2dd7e9fc36173d622d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strladd</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gaa1fffb8304ab3bf5d43edf08dd0bf529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stripbrk</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga41e9f8ad06a3dcbf4f559aaefd65f9cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strichrset</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gafa9411945aaed00618d351287d8607fe</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>t_char *</type>
       <name>p_string</name>
@@ -34550,6 +34959,20 @@
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga23ff0387aacd89ccc9d099efe975b3fa</anchor>
       <arglist>(t_size n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>String_Add_L</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga1bec89e534dad4a03d3b8b128048a90c</anchor>
+      <arglist>(t_char *dest, t_char const *src, t_size size)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sintmax</type>
+      <name>String_IndexOf_Charset</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gaafe46a109f6f216f2f1d6adf1c09e542</anchor>
+      <arglist>(t_char const *str, t_char const *charset)</arglist>
     </member>
     <member kind="variable">
       <type>HEADER_CPP typedef t_char *</type>
@@ -34781,27 +35204,6 @@
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga26a2088db2c50d66dac4e55ff4c19f63</anchor>
       <arglist>(t_char *dest, t_char const *src, t_size n)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strlcat</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gabeb9e07145be6d2dd7e9fc36173d622d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strladd</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gaa1fffb8304ab3bf5d43edf08dd0bf529</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>String_Add_L</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga1bec89e534dad4a03d3b8b128048a90c</anchor>
-      <arglist>(t_char *dest, t_char const *src, t_size size)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -35211,27 +35613,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_stripbrk</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga41e9f8ad06a3dcbf4f559aaefd65f9cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strichrset</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gafa9411945aaed00618d351287d8607fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_sintmax</type>
-      <name>String_IndexOf_Charset</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gaafe46a109f6f216f2f1d6adf1c09e542</anchor>
-      <arglist>(t_char const *str, t_char const *charset)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>c_stristr</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga19d86e06232fc00caf960ef880409a36</anchor>
@@ -35402,8 +35783,8 @@
       <type>t_char *</type>
       <name>String_Replace_Charset</name>
       <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga9817e5e20f43c995f4049d0862adf8d5</anchor>
-      <arglist>(t_char const *str, t_char const *charset_old, t_char const *charset_new)</arglist>
+      <anchor>ga0e6ce045a101bc5ed921c112783b9ca6</anchor>
+      <arglist>(t_char const *str, t_char const *cset_old, t_char const *cset_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36157,8 +36538,8 @@
       <type>void</type>
       <name>StringArray_RemoveAt_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga0ddcd1277a9df889224c54a534b378ce</anchor>
-      <arglist>(t_char **strarr, t_uint index, void(*delete)(t_char *))</arglist>
+      <anchor>ga318938ee32aee0498dfa800bf7fed0bb</anchor>
+      <arglist>(t_char **strarr, t_uint index, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36185,8 +36566,8 @@
       <type>void</type>
       <name>StringArray_Remove_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga07667c490fe46884f322c02b82ef4297</anchor>
-      <arglist>(t_char **strarr, t_char const *str, void(*delete)(t_char *))</arglist>
+      <anchor>ga4b33032c600f1574b1ac28d314772c90</anchor>
+      <arglist>(t_char **strarr, t_char const *str, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36213,8 +36594,8 @@
       <type>void</type>
       <name>StringArray_RemoveAll_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga4191accbbe17c2a06f6b1bb6da5f1545</anchor>
-      <arglist>(t_char **strarr, t_char const *str, void(*delete)(t_char *))</arglist>
+      <anchor>ga04d73716c8b7911ec16a5c1d493f0cb3</anchor>
+      <arglist>(t_char **strarr, t_char const *str, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36227,8 +36608,8 @@
       <type>t_char **</type>
       <name>StringArray_Replace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga34baa83a8aaf2f3c7da5ef094d71eedd</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new)</arglist>
+      <anchor>gaeb376c81db37dc218343814ef133bd66</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36241,8 +36622,8 @@
       <type>t_char **</type>
       <name>StringArray_ReplaceFirst</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gad756c6741cbac754277694e4eafba1a1</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new, t_uint n)</arglist>
+      <anchor>ga9e8abc5e942745432c0c55f42a7c50be</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -36255,8 +36636,8 @@
       <type>t_char **</type>
       <name>StringArray_ReplaceLast</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga120d3c02cff5b076121cab8d72a835bd</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new, t_uint n)</arglist>
+      <anchor>ga9a65fa4a5761e2422192c6110831aae4</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -37940,6 +38321,7 @@
     <includes id="libccc__define_8h" name="libccc_define.h" local="yes" imported="no">libccc_define.h</includes>
     <includes id="io_8h" name="io.h" local="yes" imported="no">libccc/sys/io.h</includes>
     <includes id="time_8h" name="time.h" local="yes" imported="no">libccc/sys/time.h</includes>
+    <includes id="sys_2error_8h" name="error.h" local="yes" imported="no">libccc/sys/error.h</includes>
     <class kind="struct">logger</class>
     <member kind="define">
       <type>#define</type>
@@ -37985,6 +38367,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>LOG_TIMESTAMP_SEPARATOR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac6dfa254f6928ad59f4f5ca79547bb37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>LOG_JSON_INDENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga70a419fd2cd69fce858219a1677aa092</anchor>
@@ -38001,15 +38390,57 @@
       <type>#define</type>
       <name>LOGONE_FUNCTION_CONTENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga63c3de50d77deebd22a9fd8b59fc4a43</anchor>
-      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+      <anchor>gabc1dcaab1a49af2082b4f52779c18e1d</anchor>
+      <arglist>(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LOGALL_FUNCTION_CONTENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga92ffd46c3b8e30b7d5265ed04ef51375</anchor>
-      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+      <anchor>ga0e69fed11dbfd04b8e54c939d45614dc</anchor>
+      <arglist>(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_ERROR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga34483936506d8a7ef4d63cf50618e063</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_FAILURE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga41e3e467ad7675fc8ce14846a8b5868e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_WARNING</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga7d157310af02a672841a3c580c02c2b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_SUCCESS</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gab2fb63beb60fbf177a4978289dc581a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_MESSAGE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaba4dfdceb0ad918c58e4a0b61ab0f3b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_VERBOSE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga44bc4fb618e79c723ce7e41292e1c4aa</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -38091,6 +38522,12 @@
       <anchor>ggaaaa102a69c535707178d0d4abae95414ae22e3f3b6c545736219bc1dfb22956dd</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>ENUMLENGTH_LOGFORMAT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ggaaaa102a69c535707178d0d4abae95414aed54c1d1bd9fbdfc7e827dda90228590</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="define">
       <type>#define</type>
       <name>LOGFORMAT_STRING_ANSI</name>
@@ -38121,9 +38558,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_loginit</name>
+      <name>c_loginit</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gac5c90508853151582a2cbac10ab6ed75</anchor>
+      <anchor>ga1747d53b6b26f50a63a624a36157eff5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38142,9 +38579,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logexit</name>
+      <name>c_logexit</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga2ba6ef18bc58564b1432dd59aa16097e</anchor>
+      <anchor>ga978f0a98b60dcf4ef7b684531251eaed</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38163,9 +38600,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logdelmem</name>
+      <name>c_logdelmem</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga05575039392576784e7b46bd7d5a81c9</anchor>
+      <anchor>ga77fa2db10a31d7514dc2636d01f92c09</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38184,9 +38621,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_getsettings</name>
+      <name>c_log_getsettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab3450b34457712bbc627b24e198e839e</anchor>
+      <anchor>ga560be122806a511d8ab0f6c8d7dd9555</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38198,9 +38635,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_logsettings</name>
+      <name>c_log_logsettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaff7f0a97bf6cfbc3acd3c113d3b282ef</anchor>
+      <anchor>ga29a1a01457e6797b622445395ee2d9b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38212,9 +38649,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logtime</name>
+      <name>c_logtime</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga172dc13b7bcae889e457ee22ad1a74da</anchor>
+      <anchor>gad565ab7a991a31b6bfd026dba02a2407</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38233,6 +38670,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>c_io_log_custom</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gad0079bc80a5903d8f8ba1a3a048a88c5</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>c_io_log_va</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gaa6a9bff3d1711c2c9fa8508792aff5c9</anchor>
@@ -38242,21 +38686,28 @@
       <type>e_cccerror</type>
       <name>Log</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga1041ed1acfb6c5636207298f25d9ae97</anchor>
-      <arglist>(s_logger const *logger, t_bool is_verbose_only, t_bool use_errno, t_bool is_error, t_char const *format_str,...)</arglist>
+      <anchor>ga99bc9be442f319d0a4e4c299c8d78d6f</anchor>
+      <arglist>(s_logger const *logger, t_char const *suffix, t_char const *format,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Log_Custom</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga591adcd18be7563a215cb224214bf27c</anchor>
+      <arglist>(s_logger const *logger, int error_code, t_char const *prefix, t_char const *prefix_color, t_char const *suffix, t_char const *format,...)</arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gae25dce800343a2e138855dfd1c300161</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, t_char const *prefix, t_char const *prefix_color, t_char const *format_str, va_list args)</arglist>
+      <anchor>ga461eee2ff9374e063cb6ee9234cccc43</anchor>
+      <arglist>(s_logger const *logger, int error_code, t_char const *prefix, t_char const *prefix_color, t_char const *suffix, t_char const *format, va_list args)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_fatal</name>
+      <name>c_log_fatal</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga2411bb0b5f740dfaada767dc05f748b0</anchor>
+      <anchor>ga25f4b487319631d9e19e276e07b55de1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38275,9 +38726,37 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_error_io</name>
+      <name>c_log_error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga185f8ca35f5d4725de6a2fffd5dd8591</anchor>
+      <anchor>gae4ea9c37d07a15715d6428807b5c09fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga91975d6623be9c4376debaecd712b0c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Log_Error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gab4d16d265863f8292db16f6a46634f85</anchor>
+      <arglist>(s_logger const *logger, t_char const *message, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga5f9748c864304c0dfec08c348eaa4b62</anchor>
+      <arglist>(t_logptrarr const loggers, t_char const *message, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log_error_std</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac3bed5055f1b800b553d9b961201c3d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38289,9 +38768,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_error_io</name>
+      <name>c_logall_error_std</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaa1c604a4217f2bce4498ad275b4c2369</anchor>
+      <anchor>gaabc5c71057ec6d8ed140b43fdb41dba9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38303,51 +38782,93 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Error_IO</name>
+      <name>Log_Error_STD</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga576447913af0a6de21be4de0c832b5fe</anchor>
-      <arglist>(s_logger const *logger, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>ga8ff7f5d7c6a409494024c0587d081eb9</anchor>
+      <arglist>(s_logger const *logger, t_errno error, t_char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Error_IO</name>
+      <name>LogAll_Error_STD</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab45552d0fbdd2fa489b55a5864454413</anchor>
-      <arglist>(t_logptrarr const loggers, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>gaaa7fd1dfe7642ba00cb08cf51f37d16d</anchor>
+      <arglist>(t_logptrarr const loggers, t_errno error, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_error</name>
+      <name>c_log_error_ccc</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga926953ab662fcd157096664f4b449027</anchor>
+      <anchor>gabfbd162b632f265404ff549ecf3997e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_CCCError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaae05809897834df115c174fd5fdfcd85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error_ccc</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gab34b7250325aacba45421458270a0c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_CCCError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga955abf864db6613c6bb4851f73f3db6c</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Error</name>
+      <name>Log_Error_CCC</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga15c1ab9fd03a32c5077e15ccd1bac574</anchor>
-      <arglist>(s_logger const *logger, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>ga61fb47434784a707ef4096f68ffad0a6</anchor>
+      <arglist>(s_logger const *logger, e_cccerror error, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Error_CCC</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa19d0a4f319749cf3571a710431e194c</anchor>
+      <arglist>(t_logptrarr const loggers, e_cccerror error, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_error</name>
+      <name>c_log_fail</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaf3bda7de2f7ad8b758bcfc00f1491cbb</anchor>
+      <anchor>gaa3fee6b18a33a8e23616bb467d2afe8c</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Error</name>
+      <name>Log_Failure</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaf212090e2ac3ed72e1be7cef08927aca</anchor>
-      <arglist>(t_logptrarr const loggers, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>gaa4fb1d5f999ca0e3cbf24f40026552c0</anchor>
+      <arglist>(s_logger const *logger, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_warning</name>
+      <name>c_logall_fail</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga0a945ab0ab7ea9c3d34c9ef8ff706c2d</anchor>
+      <anchor>gadb733b69b2069453620cf4607a79f78e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Failure</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga49ce9775f27201ffdd529d30390d2325</anchor>
+      <arglist>(t_logptrarr const loggers, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log_warning</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac5c57cabb50396f7628cc0955124df49</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38359,9 +38880,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_warning</name>
+      <name>c_logall_warning</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga17407f83dfdec9fe5e59cfea9bad8ec9</anchor>
+      <anchor>gafbfa2151b1bd1aa5e582331c957e8ab4</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38373,9 +38894,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_success</name>
+      <name>c_log_success</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gad74ef79c5b480ad0b6aa77242c1bbc61</anchor>
+      <anchor>ga0c5b66bf8be55a16e706548dc758e98d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38387,9 +38908,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_success</name>
+      <name>c_logall_success</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab0b92d3fbaea8ff25f73a86b06a2b53f</anchor>
+      <anchor>ga245ceffcae02731dfab487eb350a3c07</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38401,9 +38922,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_message</name>
+      <name>c_log_message</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga57e52dc3d89fb1ce6be5826311e10fc8</anchor>
+      <anchor>gad7cdf766667ab7619ebf390f36472320</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38415,9 +38936,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_message</name>
+      <name>c_logall_message</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga259ccb69b5832d16caabc0e256233d2f</anchor>
+      <anchor>ga7d0138a5b26f4c2de1119dd317fb5544</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -38429,9 +38950,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_verbose</name>
+      <name>c_log_verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gad00e71735161d8bde1ec31aa21e42cab</anchor>
+      <anchor>ga83969c4a157f63fd0281544eeb552ec4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38443,16 +38964,16 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Message_Verbose</name>
+      <name>Log_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga96df3867fc0d537b522f736acdd2c1e6</anchor>
+      <anchor>gaf3d5b76032c245eee1d0e1a8c5f205af</anchor>
       <arglist>(s_logger const *logger, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_verbose</name>
+      <name>c_logall_verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7b46f6853fc9c382341a34fa25318993</anchor>
+      <anchor>gaa22edf819d3cd64698820ef60bd5cdcc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -38464,9 +38985,9 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Message_Verbose</name>
+      <name>LogAll_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga617cbaa0ad977d079c9814b798a21c9c</anchor>
+      <anchor>ga76a46764d9c518c62cfa921b3b63f549</anchor>
       <arglist>(t_logptrarr const loggers, t_char const *format_str,...)</arglist>
     </member>
   </compound>
@@ -38546,10 +39067,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>e_cccerror</type>
       <name>Program_Run</name>
       <anchorfile>group__libccc__sys__program.html</anchorfile>
-      <anchor>ga3e90c6422fafb835893c3ca2f5400fd6</anchor>
+      <anchor>ga9faa4d5dc4f26e6a4e837a47affc8ea0</anchor>
       <arglist>(t_char const *command)</arglist>
     </member>
     <member kind="define">
@@ -38574,10 +39095,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>e_cccerror</type>
       <name>Program_SetEnv</name>
       <anchorfile>group__libccc__sys__program.html</anchorfile>
-      <anchor>gac6b6f758419fc42cd5e9ea10dffdd555</anchor>
+      <anchor>ga85fca0a757c3531a8b9d1563569190f1</anchor>
       <arglist>(t_char const *name, t_char const *value, t_bool overwrite)</arglist>
     </member>
     <member kind="define">
@@ -39984,34 +40505,6 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>LIBCONFIG_ERROR_INCLUDE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_OVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
-      <arglist>(TYPE, VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
       <name>LIBCONFIG_UINT_ERROR</name>
       <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga047eb3af34e880e4421fe4fb1c54e553</anchor>
@@ -40149,34 +40642,6 @@
       <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>gaaa6bb8eb6ebe31ebf0fce3b39f0db81e</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_INCLUDE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_OVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
-      <arglist>(TYPE, VALUE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -40970,8 +41435,8 @@
       <type>#define</type>
       <name>LIBCONFIG_ERROR_DEFAULTHANDLER</name>
       <anchorfile>group__libccc__errors.html</anchorfile>
-      <anchor>gaed3ede9327386c55a69e248f4ff5c212</anchor>
-      <arglist>(ERRORCODE, MESSAGE)</arglist>
+      <anchor>gabf381704db8263a33cf5ef6b1104ccc6</anchor>
+      <arglist>(ERRORCODE, FUNCNAME, MESSAGE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -41162,6 +41627,34 @@
       <anchor>gaaf7b32a3fdbc68d6821252921cfc3e98</anchor>
       <arglist>()</arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_INCLUDE</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_OVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
+      <arglist>(TYPE, VALUE)</arglist>
+    </member>
     <member kind="typedef">
       <type>enum cccerror</type>
       <name>e_cccerror</name>
@@ -41313,6 +41806,34 @@
       <anchorfile>group__libccc__errors.html</anchorfile>
       <anchor>ggab30adf8edbfe4bd90411d7eb858633b9aa233cc0d33f1de525989df1624707ebb</anchor>
       <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_INCLUDE</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_OVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
+      <arglist>(TYPE, VALUE)</arglist>
     </member>
   </compound>
   <compound kind="file">
@@ -41665,6 +42186,25 @@
     </member>
   </compound>
   <compound kind="struct">
+    <name>ccchandler</name>
+    <filename>group__libccc__sys__error.html</filename>
+    <anchor>structccchandler</anchor>
+    <member kind="variable">
+      <type>e_cccerror</type>
+      <name>code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>a800c58b10908b67e8a15dbfcc40497cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>f_ccchandler</type>
+      <name>handler</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>a9acc26f56238ccc43d06fa1ce8d0844d</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
     <name>complex</name>
     <filename>group__libccc__math__complex.html</filename>
     <anchor>structcomplex</anchor>
@@ -41755,6 +42295,84 @@
       <name>offset</name>
       <anchorfile>group__libccc__sys__time.html</anchorfile>
       <anchor>aba825084af66eef54266e62be577bf19</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>enum_item</name>
+    <filename>group__libccc__enum.html</filename>
+    <anchor>structenum__item</anchor>
+    <member kind="variable">
+      <type>t_enum</type>
+      <name>value</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>a7acd9c95e9eafbd005a87a19a7ac2275</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>name</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>a6f8be6bfa5058645b47a26b1938610aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>description</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>a522b69027e45d3f1b1a612e96b914254</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>enum_type</name>
+    <filename>group__libccc__enum.html</filename>
+    <anchor>structenum__type</anchor>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>name</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>a6f8be6bfa5058645b47a26b1938610aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>s_enum_item const  *</type>
+      <name>items</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>a48186d9d0b721c05d9c7822097c12efb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_uint</type>
+      <name>length</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>af254525fd5a51671ebf256c83a7571ba</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="struct">
+    <name>error_info</name>
+    <filename>group__libccc__sys__error.html</filename>
+    <anchor>structerror__info</anchor>
+    <member kind="variable">
+      <type>int</type>
+      <name>code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>a45a5b7c00a796a23f01673cef1dbe0a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>a6f8be6bfa5058645b47a26b1938610aa</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="variable">
+      <type>t_char const  *</type>
+      <name>message</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ace0c25ac6536549717b8b4800a04863c</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -41999,16 +42617,16 @@
     </member>
     <member kind="variable">
       <type>t_bool</type>
-      <name>timestamp</name>
+      <name>verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>add6b30f8ac9f1dc24e0b540e19de0e03</anchor>
+      <anchor>a8ca8257433f7bf08549f16a43bce31e5</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>t_bool</type>
-      <name>verbose</name>
+      <name>timestamp</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>a8ca8257433f7bf08549f16a43bce31e5</anchor>
+      <anchor>add6b30f8ac9f1dc24e0b540e19de0e03</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
@@ -42563,34 +43181,6 @@
       <anchorfile>group__libccc__config.html</anchorfile>
       <anchor>ga766292ddd3c8a457033e97315863d008</anchor>
       <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_INCLUDE</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
-      <arglist>(VALUE)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>LIBCONFIG_ERROR_OVERFLOW</name>
-      <anchorfile>group__libccc__config.html</anchorfile>
-      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
-      <arglist>(TYPE, VALUE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -43159,8 +43749,8 @@
       <type>#define</type>
       <name>LIBCONFIG_ERROR_DEFAULTHANDLER</name>
       <anchorfile>group__libccc__errors.html</anchorfile>
-      <anchor>gaed3ede9327386c55a69e248f4ff5c212</anchor>
-      <arglist>(ERRORCODE, MESSAGE)</arglist>
+      <anchor>gabf381704db8263a33cf5ef6b1104ccc6</anchor>
+      <arglist>(ERRORCODE, FUNCNAME, MESSAGE)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -43503,6 +44093,34 @@
       <anchor>ggab30adf8edbfe4bd90411d7eb858633b9aa233cc0d33f1de525989df1624707ebb</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_INCLUDE</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga381cd02c20f593718c25eb94eb01dd5b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_HANDLEOVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>gafc0b80a84cf9fa8bbbbe9c2c2af02faa</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_PARSEROVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga69367a8a0e32d46fed7db95dfb98c53d</anchor>
+      <arglist>(VALUE)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LIBCONFIG_ERROR_OVERFLOW</name>
+      <anchorfile>group__libccc__errors.html</anchorfile>
+      <anchor>ga6828a236efba31c97cd16e9265945b1e</anchor>
+      <arglist>(TYPE, VALUE)</arglist>
+    </member>
   </compound>
   <compound kind="group">
     <name>libccc_naming</name>
@@ -43668,6 +44286,34 @@
       <arglist></arglist>
     </member>
     <member kind="function">
+      <type>t_char const *</type>
+      <name>Bool_String</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga18ea241a1c93febf589ce6c178a8273c</anchor>
+      <arglist>(t_bool value, t_bool uppercase)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_boolstr</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga44663aa80d5fa757f0919e58104fb6ac</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Bool_Print</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>gae6c5931f2ec833fd654c6e26d3b9f64a</anchor>
+      <arglist>(t_char *dest, t_bool value, t_bool uppercase)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_boolprint</name>
+      <anchorfile>group__libccc__bool.html</anchorfile>
+      <anchor>ga6568f8b916792ff121a8d1b1df4f1b14</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
       <type>t_char *</type>
       <name>Bool_ToString</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
@@ -43685,8 +44331,8 @@
       <type>t_size</type>
       <name>Bool_Parse</name>
       <anchorfile>group__libccc__bool.html</anchorfile>
-      <anchor>ga62488783726cc91f09321f8d62c37125</anchor>
-      <arglist>(t_bool *dest, t_char const *str)</arglist>
+      <anchor>ga90df3aa4d05f20276ecebb12f5430904</anchor>
+      <arglist>(t_bool *dest, t_size n, t_char const *str)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -45252,6 +45898,118 @@
       <name>COLOR_ARGB32_B</name>
       <anchorfile>group__libccc__color.html</anchorfile>
       <anchor>gac4783a8cb1ed7522e7c2577eeb9bd3d2</anchor>
+      <arglist></arglist>
+    </member>
+  </compound>
+  <compound kind="group">
+    <name>libccc_enum</name>
+    <title>libccc/enum.h</title>
+    <filename>group__libccc__enum.html</filename>
+    <class kind="struct">enum_item</class>
+    <class kind="struct">enum_type</class>
+    <member kind="define">
+      <type>#define</type>
+      <name>__LIBCCC_ENUM_T</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gaa0180feda32e336a98e6b7c0e3980b22</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>__LIBCCC_ENUM_F</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga825a5dad5e401b9d3454528cbed1f227</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>int</type>
+      <name>t_enum</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga9c6781a3f054c9243798a7ae5bd5884d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct enum_item</type>
+      <name>s_enum_item</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga8541193acde3c0854ac6044fab49057b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="typedef">
+      <type>struct enum_type</type>
+      <name>s_enum_type</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gadfec865e73cc081fff6261520312ebcf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Enum_String</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga12c96e8fcf3eaabf300b261377fb6d97</anchor>
+      <arglist>(t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumstr</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga94ae9b7a887ba450d64611b25f754886</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Enum_Print</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gaa38fd6e4723676b493ade2235296ea68</anchor>
+      <arglist>(t_char *dest, t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumprint</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gac4d41bc683847c3c63247f08ac0b318c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Enum_ToString</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gab6e5fbc9a80e6fb595c1a3a5e37b0987</anchor>
+      <arglist>(t_enum value, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumtostr</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gacb67b3bb7864e2aa4d5465aae98e0f10</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>Enum_Parse</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga1368edfc2998346f8b8ce4dc7bc635f6</anchor>
+      <arglist>(t_enum *dest, t_size n, t_char const *str, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_enumparse</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga7f3565b23e16c56c1da36e31af6d17eb</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_enum</type>
+      <name>Enum_FromString</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>ga2760c2eed28152941eb296c3b7029ac0</anchor>
+      <arglist>(t_char const *str, s_enum_type const *enum_type)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strtoenum</name>
+      <anchorfile>group__libccc__enum.html</anchorfile>
+      <anchor>gadd0a6093f68d9c76c68e0fecb1778143</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -57341,8 +58099,8 @@
       <type>void</type>
       <name>Memory_Replace</name>
       <anchorfile>group__libccc__memory.html</anchorfile>
-      <anchor>gaac7ea6d813c693c6b0f1a471692d6fff</anchor>
-      <arglist>(void *ptr, t_u8 old, t_u8 new, t_size n)</arglist>
+      <anchor>ga8cddbf24b45a24cf849a2053f0f17d50</anchor>
+      <arglist>(void *ptr, t_u8 byte_old, t_u8 byte_new, t_size n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58107,8 +58865,8 @@
       <type>void</type>
       <name>PointerArray_Free_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga2fd4493ca132c6ee85b5797afd471f5a</anchor>
-      <arglist>(void **ptrarr, void(*delete)(void *ptr))</arglist>
+      <anchor>ga5ff841d061d6a540c2796be3b1a4acd9</anchor>
+      <arglist>(void **ptrarr, void(*del)(void *ptr))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58135,8 +58893,8 @@
       <type>void</type>
       <name>PointerArray_Delete_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gacb64c73646732a61a8bfafa8df5dd5d8</anchor>
-      <arglist>(void ***ptrarr, void(*delete)(void *ptr))</arglist>
+      <anchor>ga1bb3c40fc9ccc14ba10ae7d4eed3e8ed</anchor>
+      <arglist>(void ***ptrarr, void(*del)(void *ptr))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58205,8 +58963,8 @@
       <type>void</type>
       <name>PointerArray_RemoveAt_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga7a6bee24423b11992283f2cbd63f20a8</anchor>
-      <arglist>(void **ptrarr, t_uint index, void(*delete)(void *))</arglist>
+      <anchor>ga925a1247a62e477f555a27a229fd1b24</anchor>
+      <arglist>(void **ptrarr, t_uint index, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58233,8 +58991,8 @@
       <type>void</type>
       <name>PointerArray_Remove_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gab3084db2d375fd6827fb93916198ddc4</anchor>
-      <arglist>(void **ptrarr, void const *ptr, void(*delete)(void *))</arglist>
+      <anchor>ga27b6a62dbe02d6b8d43f78d991c028b4</anchor>
+      <arglist>(void **ptrarr, void const *ptr, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58261,8 +59019,8 @@
       <type>void</type>
       <name>PointerArray_RemoveAll_F</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga81f8dc0133ed002e8c4291faff7a715c</anchor>
-      <arglist>(void **ptrarr, void const *ptr, void(*delete)(void *))</arglist>
+      <anchor>ga9db9c1856e3aded0fa4144a0e26cddd2</anchor>
+      <arglist>(void **ptrarr, void const *ptr, void(*del)(void *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58275,8 +59033,8 @@
       <type>void **</type>
       <name>PointerArray_Replace</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>gab3f80d096d3982ab340e90815f2f55bf</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new)</arglist>
+      <anchor>gafb1657af69e93be6b71ba5224b714a49</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58289,8 +59047,8 @@
       <type>void **</type>
       <name>PointerArray_ReplaceFirst</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga626270290333ea8c2138e1b644117d7d</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new, t_uint n)</arglist>
+      <anchor>gaf32028485044101ec9a0bc1ef79d8cfd</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58303,8 +59061,8 @@
       <type>void **</type>
       <name>PointerArray_ReplaceLast</name>
       <anchorfile>group__libccc__pointerarray.html</anchorfile>
-      <anchor>ga7c9acf830a6edd11cb3fd6020cdbf023</anchor>
-      <arglist>(void *const *ptrarr, void const *old, void const *new, t_uint n)</arglist>
+      <anchor>gab262b3d3307a4c99c497db7cbb022f88</anchor>
+      <arglist>(void *const *ptrarr, void const *ptr_old, void const *ptr_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -58689,6 +59447,34 @@
       <anchor>ga8965890303e6704d997b69ade5255d46</anchor>
       <arglist></arglist>
     </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strlcat</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gabeb9e07145be6d2dd7e9fc36173d622d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strladd</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gaa1fffb8304ab3bf5d43edf08dd0bf529</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stripbrk</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga41e9f8ad06a3dcbf4f559aaefd65f9cf</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strichrset</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gafa9411945aaed00618d351287d8607fe</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="typedef">
       <type>t_char *</type>
       <name>p_string</name>
@@ -58702,6 +59488,20 @@
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga23ff0387aacd89ccc9d099efe975b3fa</anchor>
       <arglist>(t_size n)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_size</type>
+      <name>String_Add_L</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>ga1bec89e534dad4a03d3b8b128048a90c</anchor>
+      <arglist>(t_char *dest, t_char const *src, t_size size)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_sintmax</type>
+      <name>String_IndexOf_Charset</name>
+      <anchorfile>group__libccc__string.html</anchorfile>
+      <anchor>gaafe46a109f6f216f2f1d6adf1c09e542</anchor>
+      <arglist>(t_char const *str, t_char const *charset)</arglist>
     </member>
     <member kind="variable">
       <type>HEADER_CPP typedef t_char *</type>
@@ -58932,27 +59732,6 @@
       <name>c_strnadd</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>ga5e1c46f93bb8082cc932a109f4ae0f96</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_size</type>
-      <name>String_Add_L</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga1bec89e534dad4a03d3b8b128048a90c</anchor>
-      <arglist>(t_char *dest, t_char const *src, t_size size)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strlcat</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gabeb9e07145be6d2dd7e9fc36173d622d</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strladd</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gaa1fffb8304ab3bf5d43edf08dd0bf529</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -59363,27 +60142,6 @@
     </member>
     <member kind="function">
       <type>t_sintmax</type>
-      <name>String_IndexOf_Charset</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gaafe46a109f6f216f2f1d6adf1c09e542</anchor>
-      <arglist>(t_char const *str, t_char const *charset)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_stripbrk</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga41e9f8ad06a3dcbf4f559aaefd65f9cf</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_strichrset</name>
-      <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>gafa9411945aaed00618d351287d8607fe</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_sintmax</type>
       <name>String_IndexOf_String</name>
       <anchorfile>group__libccc__string.html</anchorfile>
       <anchor>gae89e8db9290129c8e871c10b977703e0</anchor>
@@ -59547,8 +60305,8 @@
       <type>t_char *</type>
       <name>String_Replace_Charset</name>
       <anchorfile>group__libccc__string.html</anchorfile>
-      <anchor>ga9817e5e20f43c995f4049d0862adf8d5</anchor>
-      <arglist>(t_char const *str, t_char const *charset_old, t_char const *charset_new)</arglist>
+      <anchor>ga0e6ce045a101bc5ed921c112783b9ca6</anchor>
+      <arglist>(t_char const *str, t_char const *cset_old, t_char const *cset_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60133,8 +60891,8 @@
       <type>void</type>
       <name>StringArray_RemoveAt_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga0ddcd1277a9df889224c54a534b378ce</anchor>
-      <arglist>(t_char **strarr, t_uint index, void(*delete)(t_char *))</arglist>
+      <anchor>ga318938ee32aee0498dfa800bf7fed0bb</anchor>
+      <arglist>(t_char **strarr, t_uint index, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60161,8 +60919,8 @@
       <type>void</type>
       <name>StringArray_Remove_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga07667c490fe46884f322c02b82ef4297</anchor>
-      <arglist>(t_char **strarr, t_char const *str, void(*delete)(t_char *))</arglist>
+      <anchor>ga4b33032c600f1574b1ac28d314772c90</anchor>
+      <arglist>(t_char **strarr, t_char const *str, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60189,8 +60947,8 @@
       <type>void</type>
       <name>StringArray_RemoveAll_F</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga4191accbbe17c2a06f6b1bb6da5f1545</anchor>
-      <arglist>(t_char **strarr, t_char const *str, void(*delete)(t_char *))</arglist>
+      <anchor>ga04d73716c8b7911ec16a5c1d493f0cb3</anchor>
+      <arglist>(t_char **strarr, t_char const *str, void(*del)(t_char *))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60203,8 +60961,8 @@
       <type>t_char **</type>
       <name>StringArray_Replace</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga34baa83a8aaf2f3c7da5ef094d71eedd</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new)</arglist>
+      <anchor>gaeb376c81db37dc218343814ef133bd66</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60217,8 +60975,8 @@
       <type>t_char **</type>
       <name>StringArray_ReplaceFirst</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>gad756c6741cbac754277694e4eafba1a1</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new, t_uint n)</arglist>
+      <anchor>ga9e8abc5e942745432c0c55f42a7c50be</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -60231,8 +60989,8 @@
       <type>t_char **</type>
       <name>StringArray_ReplaceLast</name>
       <anchorfile>group__libccc__stringarray.html</anchorfile>
-      <anchor>ga120d3c02cff5b076121cab8d72a835bd</anchor>
-      <arglist>(t_char const *const *strarr, t_char const *old, t_char const *new, t_uint n)</arglist>
+      <anchor>ga9a65fa4a5761e2422192c6110831aae4</anchor>
+      <arglist>(t_char const *const *strarr, t_char const *str_old, t_char const *str_new, t_uint n)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -61063,6 +61821,8 @@
     <name>libccc_sys_error</name>
     <title>libccc/sys/error.h</title>
     <filename>group__libccc__sys__error.html</filename>
+    <class kind="struct">error_info</class>
+    <class kind="struct">ccchandler</class>
     <member kind="define">
       <type>#define</type>
       <name>__LIBCCC_SYS_ERROR_T</name>
@@ -61091,54 +61851,89 @@
       <anchor>ga14423499aeaf3273f27d2ee7ce5f9bb0</anchor>
       <arglist></arglist>
     </member>
-    <member kind="typedef">
-      <type>void(*</type>
-      <name>f_ccchandler</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga81d109bfa058895c1e3b4bf5416d0235</anchor>
-      <arglist>)(e_cccerror, t_char const *)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_STDC</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gaeed19ee6aa481dfaa137c7c762272b71</anchor>
-      <arglist>(int errno_value)</arglist>
-    </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror</name>
+      <name>LIBCONFIG_ERROR_DEFAULTFUNCTIONS</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <anchor>ga97754055b8fbdbcdd1f8ba17745f8d79</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror_r</name>
+      <name>Error_Message</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <anchor>ga61d7b133eadc3b84069082873da662db</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_strerror_s</name>
+      <name>c_errormsg</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad4bec659a2b4a3499b72ff00db48143c</anchor>
+      <anchor>ga4b43db865ca4e6f5f68bcf9cd7737fda</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>Error_STDC_GetMessage</name>
+      <name>Error_GetMessage</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga5f54acd83695bf80059da13d9e0202e4</anchor>
+      <anchor>gaf815e706531eaf43482b154a874b6bc9</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>e_cccerror</type>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorsmsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaed192892c110e4b397797e22ae7460a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga033ab0dfed015c61e70b51828aee80e7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf2930a65ac94f878a250bc7ba4a086de</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf5e4180edd6c606231cc7cf91da5d224</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga802e79355aeda53382fd0dbcf83ffe72</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Error_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0e157c7c88bf0c3bcc42a13ef54ef811</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_errorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga991969938fb4134b879826a9179233ad</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>Error_Get</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad94c866af5ac844bc1505ded6c93aa83</anchor>
-      <arglist>(void)</arglist>
+      <anchor>gad7b8ae6dfc255e18184af8cd98700388</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -61147,12 +61942,12 @@
       <anchor>gaa081a7c63cc6f68afbb6de2882ee37c5</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>e_cccerror</type>
+    <member kind="define">
+      <type>#define</type>
       <name>Error_Set</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga598851df6c16da4fbb047dfb6c03e5ad</anchor>
-      <arglist>(e_cccerror error)</arglist>
+      <anchor>gacb49515bab16d58c1a7d1b43046a48da</anchor>
+      <arglist></arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -61161,46 +61956,32 @@
       <anchor>gac6975b1a613faf7248a7926ac8dec641</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_GetMessage</name>
+    <member kind="typedef">
+      <type>int</type>
+      <name>t_errno</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga71117dafe78ee6ffd6759182080199d6</anchor>
-      <arglist>(e_cccerror error)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetmsg</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga53ca18f665fe72a005acc04e369ba38c</anchor>
+      <anchor>gae1a58c9ffc80690d349f05718afab8fd</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>t_char *</type>
-      <name>Error_GetName</name>
+    <member kind="typedef">
+      <type>struct error_info</type>
+      <name>s_error_info</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gad9c1970e6a5b0d1eaa8d271119d9572b</anchor>
-      <arglist>(e_cccerror error)</arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetname</name>
-      <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga49a7da4d70e3d1099cdcc97e51db594d</anchor>
+      <anchor>gab3eb09524986d0de800d86985e638093</anchor>
       <arglist></arglist>
     </member>
-    <member kind="function">
-      <type>e_cccerror</type>
-      <name>Error_GetCode</name>
+    <member kind="typedef">
+      <type>void(*</type>
+      <name>f_ccchandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga77b6d74719daaf5c6750125333f1e458</anchor>
-      <arglist>(t_char const *name)</arglist>
+      <anchor>ga6ff9b25f0a22849e4b564db7107f96ff</anchor>
+      <arglist>)(e_cccerror error, t_char const *funcname, t_char const *message)</arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_errorgetcode</name>
+    <member kind="typedef">
+      <type>struct ccchandler</type>
+      <name>s_ccchandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga33fdfa51857c6db88348712e762946b2</anchor>
+      <anchor>gadb48ac60c138d2b61d94fb2de1b9ac1c</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -61221,8 +62002,8 @@
       <type>void</type>
       <name>Error_Handler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga224c7af49405190664152dc7efc4ae20</anchor>
-      <arglist>(e_cccerror error, t_char const *message)</arglist>
+      <anchor>gaa26698564dfa6be1a0bbb22bc9a58e00</anchor>
+      <arglist>(e_cccerror error, t_char const *funcname, t_char const *message)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -61240,9 +62021,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_gethandler</name>
+      <name>c_geterrhandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga6f0273452c81c31c26a0a4dc12c3a5c4</anchor>
+      <anchor>gab3ab035572d18ecb5b510c71ae947b80</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -61254,9 +62035,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_sethandler</name>
+      <name>c_seterrhandler</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>gafc5695774c50fcee6dd28e750767ddb8</anchor>
+      <anchor>ga73f6f11f2ce9b370dff29cb0d6314241</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -61268,9 +62049,226 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_setallhandlers</name>
+      <name>c_setallerrhandlers</name>
       <anchorfile>group__libccc__sys__error.html</anchorfile>
-      <anchor>ga6595730108cd059ec590ca7bb69e5e99</anchor>
+      <anchor>gac5908f8cf1f508a7446315d68447d402</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_CCC_Message</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga9a3e1f1af2bb6c549a916ed75ab55a13</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrormsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga09790c5afe6b82a097efd388a766cb04</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_CCC_GetMessage</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga8ad82045a9c41c0398f351ffc9870d71</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorsmsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga9bd4b672fda8015be3070143b2a9c6cc</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_CCC_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga05652a74b090028d43f471206bd204f8</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga2077e75588dc33ba6fb6a0423ce9417d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_CCC_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gadcb75839c56c91fa60f385f6d8d52c1b</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0725c9a9da1014c779e265e72660f324</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6f6fd4e029748ea23b5c46f8f7ae3ead</anchor>
+      <arglist>(t_char const *name)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga79a27f9f23f5f0203faf7fcedd95b496</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Get</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6888f1ff118cf14fdd4b40e826f2feab</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorget</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gab1b04dc59a94df095b333ae66d05df87</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Error_CCC_Set</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga687a0e95b6e76e5ff5fd9eb67dccba79</anchor>
+      <arglist>(e_cccerror error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_cccerrorset</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gabf17dd6536b396f9df30c437b562e378</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_STD_Message</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaa8bdc68333ba5be772e518eb5bd46de5</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrormsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf3f84243faf9551b22f7418d82a0d2a7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga7eaf62f4ec1abea4d11f9f1d4aab6ae9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_STD_GetMessage</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga6a30e82dd45bdb3a7d90133d636bfda9</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorsmsg</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gadb21bbd345eff6e436a16131978ad233</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_r</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga865b297a009d3b300e13925f3167974a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_strerror_s</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gad4bec659a2b4a3499b72ff00db48143c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char const *</type>
+      <name>Error_STD_Name</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaa7feba34fd1fcebda24def60bd5c5897</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga4bb29d9f47f351a319a14de93e2eef2d</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_char *</type>
+      <name>Error_STD_GetName</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga4e59ae818ba3a0b915f4ab6f5ea6931f</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorsname</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga0d5c9a6b209912d12e68767d312fd320</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Code</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga236d92584bee466f2bba359ee864dc1c</anchor>
+      <arglist>(t_char const *name)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorcode</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga202c67e130c42e9e54fd7b9694941dd4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Get</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gae23cf095e3a7d1e7ce04a8e3aabf4049</anchor>
+      <arglist>(void)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorget</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga075a88d3c6cccb9c8fc0095abc12fd3c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_errno</type>
+      <name>Error_STD_Set</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>ga056cc9425d088cf8b5d4ee9b7ebd63bc</anchor>
+      <arglist>(t_errno error)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_stderrorset</name>
+      <anchorfile>group__libccc__sys__error.html</anchorfile>
+      <anchor>gaf524c8069b612470e69ccabf65774d34</anchor>
       <arglist></arglist>
     </member>
   </compound>
@@ -62000,6 +62998,13 @@
     </member>
     <member kind="define">
       <type>#define</type>
+      <name>LOG_TIMESTAMP_SEPARATOR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac6dfa254f6928ad59f4f5ca79547bb37</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
       <name>LOG_JSON_INDENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>ga70a419fd2cd69fce858219a1677aa092</anchor>
@@ -62016,15 +63021,57 @@
       <type>#define</type>
       <name>LOGONE_FUNCTION_CONTENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga63c3de50d77deebd22a9fd8b59fc4a43</anchor>
-      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+      <anchor>gabc1dcaab1a49af2082b4f52779c18e1d</anchor>
+      <arglist>(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>LOGALL_FUNCTION_CONTENT</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga92ffd46c3b8e30b7d5265ed04ef51375</anchor>
-      <arglist>(VERBOSE_ONLY, IS_ERROR, USE_ERRNO, PREFIX, PREFIX_COLOR)</arglist>
+      <anchor>ga0e69fed11dbfd04b8e54c939d45614dc</anchor>
+      <arglist>(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_ERROR</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga34483936506d8a7ef4d63cf50618e063</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_FAILURE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga41e3e467ad7675fc8ce14846a8b5868e</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_WARNING</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga7d157310af02a672841a3c580c02c2b8</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_SUCCESS</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gab2fb63beb60fbf177a4978289dc581a9</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_MESSAGE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaba4dfdceb0ad918c58e4a0b61ab0f3b4</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LOGPREFIX_VERBOSE</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga44bc4fb618e79c723ce7e41292e1c4aa</anchor>
+      <arglist></arglist>
     </member>
     <member kind="typedef">
       <type>enum logformat</type>
@@ -62078,6 +63125,12 @@
       <anchor>ggaaaa102a69c535707178d0d4abae95414ae22e3f3b6c545736219bc1dfb22956dd</anchor>
       <arglist></arglist>
     </member>
+    <member kind="enumvalue">
+      <name>ENUMLENGTH_LOGFORMAT</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ggaaaa102a69c535707178d0d4abae95414aed54c1d1bd9fbdfc7e827dda90228590</anchor>
+      <arglist></arglist>
+    </member>
     <member kind="function">
       <type>void</type>
       <name>Logger_Init</name>
@@ -62087,9 +63140,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_loginit</name>
+      <name>c_loginit</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gac5c90508853151582a2cbac10ab6ed75</anchor>
+      <anchor>ga1747d53b6b26f50a63a624a36157eff5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62108,9 +63161,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logexit</name>
+      <name>c_logexit</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga2ba6ef18bc58564b1432dd59aa16097e</anchor>
+      <anchor>ga978f0a98b60dcf4ef7b684531251eaed</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62129,9 +63182,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logdelmem</name>
+      <name>c_logdelmem</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga05575039392576784e7b46bd7d5a81c9</anchor>
+      <anchor>ga77fa2db10a31d7514dc2636d01f92c09</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62150,9 +63203,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_getsettings</name>
+      <name>c_log_getsettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab3450b34457712bbc627b24e198e839e</anchor>
+      <anchor>ga560be122806a511d8ab0f6c8d7dd9555</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62164,9 +63217,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_logsettings</name>
+      <name>c_log_logsettings</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaff7f0a97bf6cfbc3acd3c113d3b282ef</anchor>
+      <anchor>ga29a1a01457e6797b622445395ee2d9b7</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62178,30 +63231,44 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logtime</name>
+      <name>c_logtime</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga172dc13b7bcae889e457ee22ad1a74da</anchor>
+      <anchor>gad565ab7a991a31b6bfd026dba02a2407</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
       <name>Log</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga1041ed1acfb6c5636207298f25d9ae97</anchor>
-      <arglist>(s_logger const *logger, t_bool is_verbose_only, t_bool use_errno, t_bool is_error, t_char const *format_str,...)</arglist>
+      <anchor>ga99bc9be442f319d0a4e4c299c8d78d6f</anchor>
+      <arglist>(s_logger const *logger, t_char const *suffix, t_char const *format,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Log_Custom</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga591adcd18be7563a215cb224214bf27c</anchor>
+      <arglist>(s_logger const *logger, int error_code, t_char const *prefix, t_char const *prefix_color, t_char const *suffix, t_char const *format,...)</arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
       <name>Log_VA</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gae25dce800343a2e138855dfd1c300161</anchor>
-      <arglist>(s_logger const *logger, t_bool verbose_only, t_bool use_errno, int is_error, t_char const *prefix, t_char const *prefix_color, t_char const *format_str, va_list args)</arglist>
+      <anchor>ga461eee2ff9374e063cb6ee9234cccc43</anchor>
+      <arglist>(s_logger const *logger, int error_code, t_char const *prefix, t_char const *prefix_color, t_char const *suffix, t_char const *format, va_list args)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
       <name>c_io_log</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
       <anchor>gac86a94f67c42ac58ab178183ae13304a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_io_log_custom</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gad0079bc80a5903d8f8ba1a3a048a88c5</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62220,9 +63287,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_fatal</name>
+      <name>c_log_fatal</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga2411bb0b5f740dfaada767dc05f748b0</anchor>
+      <anchor>ga25f4b487319631d9e19e276e07b55de1</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62234,23 +63301,51 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Error_IO</name>
+      <name>Log_Error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga576447913af0a6de21be4de0c832b5fe</anchor>
-      <arglist>(s_logger const *logger, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>gab4d16d265863f8292db16f6a46634f85</anchor>
+      <arglist>(s_logger const *logger, t_char const *message, t_char const *format_str,...)</arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Error_IO</name>
+      <name>LogAll_Error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab45552d0fbdd2fa489b55a5864454413</anchor>
-      <arglist>(t_logptrarr const loggers, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>ga5f9748c864304c0dfec08c348eaa4b62</anchor>
+      <arglist>(t_logptrarr const loggers, t_char const *message, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_error_io</name>
+      <name>c_log_error</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga185f8ca35f5d4725de6a2fffd5dd8591</anchor>
+      <anchor>gae4ea9c37d07a15715d6428807b5c09fd</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga91975d6623be9c4376debaecd712b0c7</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>Log_Error_STD</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga8ff7f5d7c6a409494024c0587d081eb9</anchor>
+      <arglist>(s_logger const *logger, t_errno error, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Error_STD</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaaa7fd1dfe7642ba00cb08cf51f37d16d</anchor>
+      <arglist>(t_logptrarr const loggers, t_errno error, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_log_error_std</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gac3bed5055f1b800b553d9b961201c3d9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62262,9 +63357,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_error_io</name>
+      <name>c_logall_error_std</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaa1c604a4217f2bce4498ad275b4c2369</anchor>
+      <anchor>gaabc5c71057ec6d8ed140b43fdb41dba9</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62276,30 +63371,72 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Error</name>
+      <name>Log_Error_CCC</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga15c1ab9fd03a32c5077e15ccd1bac574</anchor>
-      <arglist>(s_logger const *logger, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>ga61fb47434784a707ef4096f68ffad0a6</anchor>
+      <arglist>(s_logger const *logger, e_cccerror error, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Error_CCC</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaa19d0a4f319749cf3571a710431e194c</anchor>
+      <arglist>(t_logptrarr const loggers, e_cccerror error, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_error</name>
+      <name>c_log_error_ccc</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga926953ab662fcd157096664f4b449027</anchor>
+      <anchor>gabfbd162b632f265404ff549ecf3997e1</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>Log_CCCError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gaae05809897834df115c174fd5fdfcd85</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_error_ccc</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gab34b7250325aacba45421458270a0c0c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>LogAll_CCCError</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga955abf864db6613c6bb4851f73f3db6c</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Error</name>
+      <name>Log_Failure</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaf212090e2ac3ed72e1be7cef08927aca</anchor>
-      <arglist>(t_logptrarr const loggers, int error_code, t_char const *format_str,...)</arglist>
+      <anchor>gaa4fb1d5f999ca0e3cbf24f40026552c0</anchor>
+      <arglist>(s_logger const *logger, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_error</name>
+      <name>c_log_fail</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gaf3bda7de2f7ad8b758bcfc00f1491cbb</anchor>
+      <anchor>gaa3fee6b18a33a8e23616bb467d2afe8c</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>e_cccerror</type>
+      <name>LogAll_Failure</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>ga49ce9775f27201ffdd529d30390d2325</anchor>
+      <arglist>(t_logptrarr const loggers, t_char const *format_str,...)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_logall_fail</name>
+      <anchorfile>group__libccc__sys__logger.html</anchorfile>
+      <anchor>gadb733b69b2069453620cf4607a79f78e</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62311,9 +63448,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_warning</name>
+      <name>c_log_warning</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga0a945ab0ab7ea9c3d34c9ef8ff706c2d</anchor>
+      <anchor>gac5c57cabb50396f7628cc0955124df49</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62325,9 +63462,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_warning</name>
+      <name>c_logall_warning</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga17407f83dfdec9fe5e59cfea9bad8ec9</anchor>
+      <anchor>gafbfa2151b1bd1aa5e582331c957e8ab4</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62339,9 +63476,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_success</name>
+      <name>c_log_success</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gad74ef79c5b480ad0b6aa77242c1bbc61</anchor>
+      <anchor>ga0c5b66bf8be55a16e706548dc758e98d</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62353,9 +63490,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_success</name>
+      <name>c_logall_success</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gab0b92d3fbaea8ff25f73a86b06a2b53f</anchor>
+      <anchor>ga245ceffcae02731dfab487eb350a3c07</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62367,9 +63504,9 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_message</name>
+      <name>c_log_message</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga57e52dc3d89fb1ce6be5826311e10fc8</anchor>
+      <anchor>gad7cdf766667ab7619ebf390f36472320</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -62381,23 +63518,23 @@
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_message</name>
+      <name>c_logall_message</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga259ccb69b5832d16caabc0e256233d2f</anchor>
+      <anchor>ga7d0138a5b26f4c2de1119dd317fb5544</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>Log_Message_Verbose</name>
+      <name>Log_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga96df3867fc0d537b522f736acdd2c1e6</anchor>
+      <anchor>gaf3d5b76032c245eee1d0e1a8c5f205af</anchor>
       <arglist>(s_logger const *logger, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_log_verbose</name>
+      <name>c_log_verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>gad00e71735161d8bde1ec31aa21e42cab</anchor>
+      <anchor>ga83969c4a157f63fd0281544eeb552ec4</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62409,16 +63546,16 @@
     </member>
     <member kind="function">
       <type>e_cccerror</type>
-      <name>LogAll_Message_Verbose</name>
+      <name>LogAll_Verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga617cbaa0ad977d079c9814b798a21c9c</anchor>
+      <anchor>ga76a46764d9c518c62cfa921b3b63f549</anchor>
       <arglist>(t_logptrarr const loggers, t_char const *format_str,...)</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
-      <name>c_io_logall_verbose</name>
+      <name>c_logall_verbose</name>
       <anchorfile>group__libccc__sys__logger.html</anchorfile>
-      <anchor>ga7b46f6853fc9c382341a34fa25318993</anchor>
+      <anchor>gaa22edf819d3cd64698820ef60bd5cdcc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -62525,10 +63662,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>e_cccerror</type>
       <name>Program_Run</name>
       <anchorfile>group__libccc__sys__program.html</anchorfile>
-      <anchor>ga3e90c6422fafb835893c3ca2f5400fd6</anchor>
+      <anchor>ga9faa4d5dc4f26e6a4e837a47affc8ea0</anchor>
       <arglist>(t_char const *command)</arglist>
     </member>
     <member kind="define">
@@ -62553,10 +63690,10 @@
       <arglist></arglist>
     </member>
     <member kind="function">
-      <type>int</type>
+      <type>e_cccerror</type>
       <name>Program_SetEnv</name>
       <anchorfile>group__libccc__sys__program.html</anchorfile>
-      <anchor>gac6b6f758419fc42cd5e9ea10dffdd555</anchor>
+      <anchor>ga85fca0a757c3531a8b9d1563569190f1</anchor>
       <arglist>(t_char const *name, t_char const *value, t_bool overwrite)</arglist>
     </member>
     <member kind="define">
@@ -69906,97 +71043,6 @@
       <anchor>ga848e101e5f7a49c9bf82bc34f956241e</anchor>
       <arglist></arglist>
     </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SInt_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga8bf1cf2caf30a5ffbe48c16bdcf92e90</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_smul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gadcf1cd33d958faff9cae067c784ac092</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>SInt_Multiply</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gac4deba26cfdd396cd765faac4083cf8b</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s8mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gac290ef6f2d7e9ca339b127b4e974cb91</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s16mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga25083deb074fab88f076ff4e9db20940</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s32mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga9b8b04d6a2c3a6bd1dd51a2eb2be9aba</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s64mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga2dacd1014f766aa05a808ba90641521a</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="define">
-      <type>#define</type>
-      <name>c_s128mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gaf942ef876c1cedf4bb04572a2964e5c8</anchor>
-      <arglist></arglist>
-    </member>
-    <member kind="function">
-      <type>t_s8</type>
-      <name>S8_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga7746e2b536bc68de87eba050cf8b4712</anchor>
-      <arglist>(t_s8 a, t_s8 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s16</type>
-      <name>S16_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga6a481bff8873fed2ff7b5bab7e65c853</anchor>
-      <arglist>(t_s16 a, t_s16 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s32</type>
-      <name>S32_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga76ff3708e8df69844ea184a78537fd4e</anchor>
-      <arglist>(t_s32 a, t_s32 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s64</type>
-      <name>S64_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>gae2c6ffebc92b8242d8e1a6777c9448d8</anchor>
-      <arglist>(t_s64 a, t_s64 b)</arglist>
-    </member>
-    <member kind="function">
-      <type>t_s128</type>
-      <name>S128_Mul</name>
-      <anchorfile>group__libccc__math__int.html</anchorfile>
-      <anchor>ga0a087192755696ed26ff31a28f43b32a</anchor>
-      <arglist>(t_s128 a, t_s128 b)</arglist>
-    </member>
     <member kind="typedef">
       <type>t_uint(*</type>
       <name>f_uint_function</name>
@@ -70835,6 +71881,97 @@
       <name>c_u128mul</name>
       <anchorfile>group__libccc__math__int.html</anchorfile>
       <anchor>ga25e87464816e3d7ea415d733a290b07f</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="function">
+      <type>t_s8</type>
+      <name>S8_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga7746e2b536bc68de87eba050cf8b4712</anchor>
+      <arglist>(t_s8 a, t_s8 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s16</type>
+      <name>S16_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga6a481bff8873fed2ff7b5bab7e65c853</anchor>
+      <arglist>(t_s16 a, t_s16 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s32</type>
+      <name>S32_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga76ff3708e8df69844ea184a78537fd4e</anchor>
+      <arglist>(t_s32 a, t_s32 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s64</type>
+      <name>S64_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gae2c6ffebc92b8242d8e1a6777c9448d8</anchor>
+      <arglist>(t_s64 a, t_s64 b)</arglist>
+    </member>
+    <member kind="function">
+      <type>t_s128</type>
+      <name>S128_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga0a087192755696ed26ff31a28f43b32a</anchor>
+      <arglist>(t_s128 a, t_s128 b)</arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SInt_Mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga8bf1cf2caf30a5ffbe48c16bdcf92e90</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_smul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gadcf1cd33d958faff9cae067c784ac092</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>SInt_Multiply</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gac4deba26cfdd396cd765faac4083cf8b</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s8mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gac290ef6f2d7e9ca339b127b4e974cb91</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s16mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga25083deb074fab88f076ff4e9db20940</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s32mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga9b8b04d6a2c3a6bd1dd51a2eb2be9aba</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s64mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>ga2dacd1014f766aa05a808ba90641521a</anchor>
+      <arglist></arglist>
+    </member>
+    <member kind="define">
+      <type>#define</type>
+      <name>c_s128mul</name>
+      <anchorfile>group__libccc__math__int.html</anchorfile>
+      <anchor>gaf942ef876c1cedf4bb04572a2964e5c8</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">
@@ -73114,16 +74251,16 @@
     </member>
     <member kind="variable">
       <type>T</type>
-      <name>old</name>
+      <name>item_old</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga2f7a6d205f1cf759b95fd8f6c7bb59e1</anchor>
+      <anchor>gab17916dad514480b38c81ebbd3c90e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>T T</type>
-      <name>new</name>
+      <name>item_new</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>gaddd1a554e6048a1efb923536b526ae44</anchor>
+      <anchor>gaa9f0ea98996232c79ee2f1059b0268bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -73221,8 +74358,8 @@
       <type>void Array_Free_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga12f174d0324cf5f9b30ee13761b21902</anchor>
-      <arglist>(s_array(T) *array, void(*delete)(T *item))</arglist>
+      <anchor>ga6f5c0067ed3fa3efb6e027846e9cd56b</anchor>
+      <arglist>(s_array(T) *array, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -73249,8 +74386,8 @@
       <type>void Array_Delete_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga4d2cc9d3e231c12247b0961f863eeb51</anchor>
-      <arglist>(s_array(T) **a_array, void(*delete)(T *item))</arglist>
+      <anchor>ga2bfd791f958db4eee6a5a9d26c526cd6</anchor>
+      <arglist>(s_array(T) **a_array, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -73277,8 +74414,8 @@
       <type>void Array_RemoveAt_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga7d44601a2e3c1a9e507a5c7573714b26</anchor>
-      <arglist>(s_array(T) *array, t_uint index, void(*delete)(T))</arglist>
+      <anchor>ga50279f46a7f60190aaa4a0f04d176bd5</anchor>
+      <arglist>(s_array(T) *array, t_uint index, void(*del)(T))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -73305,8 +74442,8 @@
       <type>void Array_Remove_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__array.html</anchorfile>
-      <anchor>ga0c3e449b8b0d026fc167ab9dbb09df0b</anchor>
-      <arglist>(s_array(T) *array, T item, void(*delete)(T))</arglist>
+      <anchor>ga20d0a7dcc4614e5d52a925b3426ec020</anchor>
+      <arglist>(s_array(T) *array, T item, void(*del)(T))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -73848,9 +74985,9 @@
     </member>
     <member kind="variable">
       <type>t_uint void(*</type>
-      <name>delete</name>
+      <name>del</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaf0079e7c4d975627d89274a3536a43a0</anchor>
+      <anchor>ga8d372fba43d4aecadeb997c917fbf109</anchor>
       <arglist>)(T))</arglist>
     </member>
     <member kind="define">
@@ -73862,16 +74999,16 @@
     </member>
     <member kind="variable">
       <type>T</type>
-      <name>old</name>
+      <name>item_old</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>ga2f7a6d205f1cf759b95fd8f6c7bb59e1</anchor>
+      <anchor>gab17916dad514480b38c81ebbd3c90e04</anchor>
       <arglist></arglist>
     </member>
     <member kind="variable">
       <type>T T</type>
-      <name>new</name>
+      <name>item_new</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaddd1a554e6048a1efb923536b526ae44</anchor>
+      <anchor>gaa9f0ea98996232c79ee2f1059b0268bc</anchor>
       <arglist></arglist>
     </member>
     <member kind="define">
@@ -73997,8 +75134,8 @@
       <type>void List_Free_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gae549ae614ae362854e6bad2ab50813ee</anchor>
-      <arglist>(s_list(T) *list, void(*delete)(T *item))</arglist>
+      <anchor>gaffc47ddaa7fec2fbf4b06629eedc0408</anchor>
+      <arglist>(s_list(T) *list, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -74025,8 +75162,8 @@
       <type>void List_Delete_F()</type>
       <name>T</name>
       <anchorfile>group__libccc__monad__list.html</anchorfile>
-      <anchor>gaef7f04bfa5f85444c5502a571c1d8728</anchor>
-      <arglist>(s_list(T) **a_list, void(*delete)(T *item))</arglist>
+      <anchor>ga42e7aa06c70044a30ba1940e30691116</anchor>
+      <arglist>(s_list(T) **a_list, void(*del)(T *item))</arglist>
     </member>
     <member kind="define">
       <type>#define</type>
@@ -76308,10 +77445,10 @@
       <arglist>(s_kvt_print *p, t_size needed)</arglist>
     </member>
     <member kind="variable">
-      <type>HEADER_CPP typedef t_sint</type>
+      <type>HEADER_CPP typedef t_uint</type>
       <name>t_dynamic</name>
       <anchorfile>group__libccc__encode__common.html</anchorfile>
-      <anchor>ga264a0cf48888e27e006df1f0a84fc221</anchor>
+      <anchor>ga9fdfbaa2a1d92306d4893f1b65adda76</anchor>
       <arglist></arglist>
     </member>
     <member kind="function">

@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -103,7 +103,7 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="string_8h__incl.svg" width="359" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -507,10 +507,10 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Replaces every occurence inside <code>str</code> of any char in <code>charset_old</code> with the corresponding char in <code>charset_new</code> </p>
 </td></tr>
-<tr class="memitem:a98ba4fe5a6fc52c7f6e1c099738d37e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a98ba4fe5a6fc52c7f6e1c099738d37e4">c_strrep_cset</a>&#160;&#160;&#160;<a class="el" href="string_8h.html#a9817e5e20f43c995f4049d0862adf8d5">String_Replace_Charset</a></td></tr>
+<tr class="memitem:a98ba4fe5a6fc52c7f6e1c099738d37e4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a98ba4fe5a6fc52c7f6e1c099738d37e4">c_strrep_cset</a>&#160;&#160;&#160;<a class="el" href="string_8h.html#a0e6ce045a101bc5ed921c112783b9ca6">String_Replace_Charset</a></td></tr>
 <tr class="separator:a98ba4fe5a6fc52c7f6e1c099738d37e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9817e5e20f43c995f4049d0862adf8d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a9817e5e20f43c995f4049d0862adf8d5">String_Replace_Charset</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *charset_old, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *charset_new)</td></tr>
-<tr class="separator:a9817e5e20f43c995f4049d0862adf8d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0e6ce045a101bc5ed921c112783b9ca6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="string_8h.html#a0e6ce045a101bc5ed921c112783b9ca6">String_Replace_Charset</a> (<a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *str, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *cset_old, <a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *cset_new)</td></tr>
+<tr class="separator:a0e6ce045a101bc5ed921c112783b9ca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Replaces every occurence inside <code>str</code> of the given string <code>str_old</code> with <code>str_new</code> </p>
 </td></tr>
@@ -702,7 +702,7 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">str</td><td>The string to duplicate, while resolving all escape-sequences to their corresponding char </td></tr>
-    <tr><td class="paramname">any_escape</td><td>If <code>TRUE</code>, every backslash will be understood as an escape character (ie: any escape sequance will function, with any char after the &lsquo;&rsquo;\'`) </td></tr>
+    <tr><td class="paramname">any_escape</td><td>If <code>TRUE</code>, every backslash will be understood as an escape character (ie: any escape sequence will function, with any char after the &lsquo;&rsquo;\'`) </td></tr>
   </table>
   </dd>
 </dl>
@@ -1920,7 +1920,7 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_strrep_cset&#160;&#160;&#160;<a class="el" href="string_8h.html#a9817e5e20f43c995f4049d0862adf8d5">String_Replace_Charset</a></td>
+          <td class="memname">#define c_strrep_cset&#160;&#160;&#160;<a class="el" href="string_8h.html#a0e6ce045a101bc5ed921c112783b9ca6">String_Replace_Charset</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -4178,8 +4178,8 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
 
 </div>
 </div>
-<a id="a9817e5e20f43c995f4049d0862adf8d5" name="a9817e5e20f43c995f4049d0862adf8d5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9817e5e20f43c995f4049d0862adf8d5">&#9670;&nbsp;</a></span>String_Replace_Charset()</h2>
+<a id="a0e6ce045a101bc5ed921c112783b9ca6" name="a0e6ce045a101bc5ed921c112783b9ca6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0e6ce045a101bc5ed921c112783b9ca6">&#9670;&nbsp;</a></span>String_Replace_Charset()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -4194,13 +4194,13 @@ $(document).ready(function(){initNavTree('string_8h.html',''); initResizable(); 
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
-          <td class="paramname"><em>charset_old</em>, </td>
+          <td class="paramname"><em>cset_old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype"><a class="el" href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a> const *&#160;</td>
-          <td class="paramname"><em>charset_new</em>&#160;</td>
+          <td class="paramname"><em>cset_new</em>&#160;</td>
         </tr>
         <tr>
           <td></td>

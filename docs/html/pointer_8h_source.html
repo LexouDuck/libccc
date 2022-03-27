@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -118,7 +118,7 @@ $(document).ready(function(){initNavTree('pointer_8h_source.html',''); initResiz
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#ifndef __NOSTD__</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="preprocessor">    #include &lt;stddef.h&gt;</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#else</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>   size_t;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">typedef</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">long</span>  size_t;</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">typedef</span> <span class="keywordtype">signed</span> <span class="keywordtype">long</span> ptrdiff_t;</div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span><span class="preprocessor">    #define SIZE_MAX    (size_t)-1</span></div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span><span class="preprocessor">    #define PTRDIFF_MIN ((ptrdiff_t)(SIZE_MAX &gt;&gt; 1))</span></div>
@@ -358,7 +358,7 @@ $(document).ready(function(){initNavTree('pointer_8h_source.html',''); initResiz
 <div class="ttc" id="achar_8h_html_a37138ccbd005311d3dbe85f90b484980"><div class="ttname"><a href="char_8h.html#a37138ccbd005311d3dbe85f90b484980">t_char</a></div><div class="ttdeci">t_ascii t_char</div><div class="ttdoc">Primitive type: char, configurable (ASCII or UTF8)</div><div class="ttdef"><b>Definition:</b> <a href="char_8h_source.html#l00058">char.h:58</a></div></div>
 <div class="ttc" id="alibccc_8h_html"><div class="ttname"><a href="libccc_8h.html">libccc.h</a></div></div>
 <div class="ttc" id="alibccc__define_8h_html_a0a0de0a7fd18f12498baa360bd95b046"><div class="ttname"><a href="libccc__define_8h.html#a0a0de0a7fd18f12498baa360bd95b046">HEADER_END</a></div><div class="ttdeci">#define HEADER_END</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00092">libccc_define.h:92</a></div></div>
-<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdoc">Before a function def: indicates that it returns newly allocated ptr.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00580">libccc_define.h:580</a></div></div>
+<div class="ttc" id="alibccc__define_8h_html_a651950e6134e00bc771947f298d148c1"><div class="ttname"><a href="libccc__define_8h.html#a651950e6134e00bc771947f298d148c1">_MALLOC</a></div><div class="ttdeci">#define _MALLOC()</div><div class="ttdoc">Before a function def: indicates that it returns newly allocated ptr.</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00590">libccc_define.h:590</a></div></div>
 <div class="ttc" id="alibccc__define_8h_html_a6e782d6f8a8b80b9b9ba9e1a300a92ab"><div class="ttname"><a href="libccc__define_8h.html#a6e782d6f8a8b80b9b9ba9e1a300a92ab">HEADER_CPP</a></div><div class="ttdeci">#define HEADER_CPP</div><div class="ttdef"><b>Definition:</b> <a href="libccc__define_8h_source.html#l00089">libccc_define.h:89</a></div></div>
 <div class="ttc" id="alibccc__naming_8h_html_a4d319b9aec474f87e5cbd66e82270714"><div class="ttname"><a href="libccc__naming_8h.html#a4d319b9aec474f87e5cbd66e82270714">TYPEDEF_ALIAS</a></div><div class="ttdeci">#define TYPEDEF_ALIAS(TYPE, NAME, KIND)</div><div class="ttdef"><b>Definition:</b> <a href="libccc__naming_8h_source.html#l00098">libccc_naming.h:98</a></div></div>
 <div class="ttc" id="apointer_8h_html_a04ba9c49fd2d657ac2ef5d721deeed9c"><div class="ttname"><a href="pointer_8h.html#a04ba9c49fd2d657ac2ef5d721deeed9c">UIntMax_Parse</a></div><div class="ttdeci">t_size UIntMax_Parse(t_uintmax *dest, t_char const *str)</div></div>

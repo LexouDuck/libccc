@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -98,11 +98,12 @@ $(document).ready(function(){initNavTree('globals_l.html',''); initResizable(); 
 <h3><a id="index_l" name="index_l"></a>- l -</h3><ul>
 <li>LIBCONFIG_CHAR_NAME&#160;:&#160;<a class="el" href="libccc__config_8h.html#a4521abc8a5fd562816f906e5e230ce69">libccc_config.h</a></li>
 <li>LIBCONFIG_CHAR_TYPE&#160;:&#160;<a class="el" href="libccc__config_8h.html#a9bcf9a1f27ed0f7f2c3e3179d73c28f5">libccc_config.h</a></li>
-<li>LIBCONFIG_ERROR_DEFAULTHANDLER&#160;:&#160;<a class="el" href="libccc__errors_8h.html#aed3ede9327386c55a69e248f4ff5c212">libccc_errors.h</a></li>
-<li>LIBCONFIG_ERROR_HANDLEOVERFLOW&#160;:&#160;<a class="el" href="libccc__config_8h.html#afc0b80a84cf9fa8bbbbe9c2c2af02faa">libccc_config.h</a></li>
-<li>LIBCONFIG_ERROR_INCLUDE&#160;:&#160;<a class="el" href="libccc__config_8h.html#a381cd02c20f593718c25eb94eb01dd5b">libccc_config.h</a></li>
-<li>LIBCONFIG_ERROR_OVERFLOW&#160;:&#160;<a class="el" href="libccc__config_8h.html#a6828a236efba31c97cd16e9265945b1e">libccc_config.h</a></li>
-<li>LIBCONFIG_ERROR_PARSEROVERFLOW&#160;:&#160;<a class="el" href="libccc__config_8h.html#a69367a8a0e32d46fed7db95dfb98c53d">libccc_config.h</a></li>
+<li>LIBCONFIG_ERROR_DEFAULTFUNCTIONS&#160;:&#160;<a class="el" href="sys_2error_8h.html#a97754055b8fbdbcdd1f8ba17745f8d79">error.h</a></li>
+<li>LIBCONFIG_ERROR_DEFAULTHANDLER&#160;:&#160;<a class="el" href="libccc__errors_8h.html#abf381704db8263a33cf5ef6b1104ccc6">libccc_errors.h</a></li>
+<li>LIBCONFIG_ERROR_HANDLEOVERFLOW&#160;:&#160;<a class="el" href="libccc__errors_8h.html#afc0b80a84cf9fa8bbbbe9c2c2af02faa">libccc_errors.h</a></li>
+<li>LIBCONFIG_ERROR_INCLUDE&#160;:&#160;<a class="el" href="libccc__errors_8h.html#a381cd02c20f593718c25eb94eb01dd5b">libccc_errors.h</a></li>
+<li>LIBCONFIG_ERROR_OVERFLOW&#160;:&#160;<a class="el" href="libccc__errors_8h.html#a6828a236efba31c97cd16e9265945b1e">libccc_errors.h</a></li>
+<li>LIBCONFIG_ERROR_PARSEROVERFLOW&#160;:&#160;<a class="el" href="libccc__errors_8h.html#a69367a8a0e32d46fed7db95dfb98c53d">libccc_errors.h</a></li>
 <li>LIBCONFIG_FIXED_APPROX&#160;:&#160;<a class="el" href="libccc__config_8h.html#ac3559624016adae60fd6f2985c393fe2">libccc_config.h</a></li>
 <li>LIBCONFIG_FIXED_BITS&#160;:&#160;<a class="el" href="libccc__config_8h.html#ad7eedca7c0c8c0a111bedd2ede0e6ea5">libccc_config.h</a></li>
 <li>LIBCONFIG_FIXED_DENOMINATOR&#160;:&#160;<a class="el" href="libccc__config_8h.html#aef7d6e8fe1fecaa9965f877178c9e48e">libccc_config.h</a></li>
@@ -127,26 +128,32 @@ $(document).ready(function(){initNavTree('globals_l.html',''); initResizable(); 
 <li>List_ToPointerArray()&#160;:&#160;<a class="el" href="convert_8h.html#a8590eae2d5513fea66c23c1885b1f8cd">convert.h</a></li>
 <li>LN_10&#160;:&#160;<a class="el" href="constants_8h.html#ada0599f7ce9a633571e3073fc008091a">constants.h</a></li>
 <li>LN_2&#160;:&#160;<a class="el" href="constants_8h.html#aa94d5c40b9f567f0bb88c23634f9d106">constants.h</a></li>
-<li>Log()&#160;:&#160;<a class="el" href="logger_8h.html#a1041ed1acfb6c5636207298f25d9ae97">logger.h</a></li>
-<li>Log_Error()&#160;:&#160;<a class="el" href="logger_8h.html#a15c1ab9fd03a32c5077e15ccd1bac574">logger.h</a></li>
-<li>Log_Error_IO()&#160;:&#160;<a class="el" href="logger_8h.html#a576447913af0a6de21be4de0c832b5fe">logger.h</a></li>
+<li>Log()&#160;:&#160;<a class="el" href="logger_8h.html#a99bc9be442f319d0a4e4c299c8d78d6f">logger.h</a></li>
+<li>Log_CCCError&#160;:&#160;<a class="el" href="logger_8h.html#aae05809897834df115c174fd5fdfcd85">logger.h</a></li>
+<li>Log_Custom()&#160;:&#160;<a class="el" href="logger_8h.html#a591adcd18be7563a215cb224214bf27c">logger.h</a></li>
+<li>Log_Error()&#160;:&#160;<a class="el" href="logger_8h.html#ab4d16d265863f8292db16f6a46634f85">logger.h</a></li>
+<li>Log_Error_CCC()&#160;:&#160;<a class="el" href="logger_8h.html#a61fb47434784a707ef4096f68ffad0a6">logger.h</a></li>
+<li>Log_Error_STD()&#160;:&#160;<a class="el" href="logger_8h.html#a8ff7f5d7c6a409494024c0587d081eb9">logger.h</a></li>
+<li>Log_Failure()&#160;:&#160;<a class="el" href="logger_8h.html#aa4fb1d5f999ca0e3cbf24f40026552c0">logger.h</a></li>
 <li>Log_Fatal()&#160;:&#160;<a class="el" href="logger_8h.html#a5bd0c8744e4c65c70b3aac49dddf780b">logger.h</a></li>
 <li>Log_FatalError&#160;:&#160;<a class="el" href="logger_8h.html#a8af63972719d757fd37d0253ef7d5c0c">logger.h</a></li>
 <li>LOG_JSON_INDENT&#160;:&#160;<a class="el" href="logger_8h.html#a70a419fd2cd69fce858219a1677aa092">logger.h</a></li>
 <li>Log_Message()&#160;:&#160;<a class="el" href="logger_8h.html#ad06e03b4c289226c7f4b589fc8df8416">logger.h</a></li>
-<li>Log_Message_Verbose()&#160;:&#160;<a class="el" href="logger_8h.html#a96df3867fc0d537b522f736acdd2c1e6">logger.h</a></li>
 <li>Log_Success()&#160;:&#160;<a class="el" href="logger_8h.html#ad0b1fce0dce6333c7a29eecc4615a1fa">logger.h</a></li>
 <li>Log_SystemError&#160;:&#160;<a class="el" href="logger_8h.html#a09b65d258775cbbd577d3457d1b7bb8c">logger.h</a></li>
 <li>LOG_TIMESTAMP_FORMAT&#160;:&#160;<a class="el" href="logger_8h.html#af8a4b7b69c077ba6862ef81badcbaacc">logger.h</a></li>
 <li>LOG_TIMESTAMP_INDENT&#160;:&#160;<a class="el" href="logger_8h.html#a016fd9fef8c6d3b4c7f085ca63dfa402">logger.h</a></li>
-<li>Log_VA()&#160;:&#160;<a class="el" href="logger_8h.html#ae25dce800343a2e138855dfd1c300161">logger.h</a></li>
+<li>LOG_TIMESTAMP_SEPARATOR&#160;:&#160;<a class="el" href="logger_8h.html#ac6dfa254f6928ad59f4f5ca79547bb37">logger.h</a></li>
+<li>Log_VA()&#160;:&#160;<a class="el" href="logger_8h.html#a461eee2ff9374e063cb6ee9234cccc43">logger.h</a></li>
 <li>Log_Verbose&#160;:&#160;<a class="el" href="logger_8h.html#ac4598727ed57c656e288f113ed345712">logger.h</a></li>
 <li>Log_Warning()&#160;:&#160;<a class="el" href="logger_8h.html#ab141a3065bef3ff514e7e908ee3774be">logger.h</a></li>
-<li>LogAll_Error()&#160;:&#160;<a class="el" href="logger_8h.html#af212090e2ac3ed72e1be7cef08927aca">logger.h</a></li>
-<li>LogAll_Error_IO()&#160;:&#160;<a class="el" href="logger_8h.html#ab45552d0fbdd2fa489b55a5864454413">logger.h</a></li>
-<li>LOGALL_FUNCTION_CONTENT&#160;:&#160;<a class="el" href="logger_8h.html#a92ffd46c3b8e30b7d5265ed04ef51375">logger.h</a></li>
+<li>LogAll_CCCError&#160;:&#160;<a class="el" href="logger_8h.html#a955abf864db6613c6bb4851f73f3db6c">logger.h</a></li>
+<li>LogAll_Error()&#160;:&#160;<a class="el" href="logger_8h.html#a5f9748c864304c0dfec08c348eaa4b62">logger.h</a></li>
+<li>LogAll_Error_CCC()&#160;:&#160;<a class="el" href="logger_8h.html#aa19d0a4f319749cf3571a710431e194c">logger.h</a></li>
+<li>LogAll_Error_STD()&#160;:&#160;<a class="el" href="logger_8h.html#aaa7fd1dfe7642ba00cb08cf51f37d16d">logger.h</a></li>
+<li>LogAll_Failure()&#160;:&#160;<a class="el" href="logger_8h.html#a49ce9775f27201ffdd529d30390d2325">logger.h</a></li>
+<li>LOGALL_FUNCTION_CONTENT&#160;:&#160;<a class="el" href="logger_8h.html#a0e69fed11dbfd04b8e54c939d45614dc">logger.h</a></li>
 <li>LogAll_Message()&#160;:&#160;<a class="el" href="logger_8h.html#acd928861038e38a033a22efaf137017d">logger.h</a></li>
-<li>LogAll_Message_Verbose()&#160;:&#160;<a class="el" href="logger_8h.html#a617cbaa0ad977d079c9814b798a21c9c">logger.h</a></li>
 <li>LogAll_Success()&#160;:&#160;<a class="el" href="logger_8h.html#ada1c2e6098403aad92d3a936dc5e7900">logger.h</a></li>
 <li>LogAll_SystemError&#160;:&#160;<a class="el" href="logger_8h.html#aa0373e0af14c49d02ce89dfef92b6021">logger.h</a></li>
 <li>LogAll_Verbose&#160;:&#160;<a class="el" href="logger_8h.html#a1ef54b434bc304d3626d3b78cba737fc">logger.h</a></li>
@@ -166,7 +173,13 @@ $(document).ready(function(){initNavTree('globals_l.html',''); initResizable(); 
 <li>Logger_GetTimestamp()&#160;:&#160;<a class="el" href="logger_8h.html#a994e5dba227c16fa68f64ae69263a83a">logger.h</a></li>
 <li>Logger_Init()&#160;:&#160;<a class="el" href="logger_8h.html#a47c4a4313e7a399114c24171076f8785">logger.h</a></li>
 <li>Logger_LogSettings()&#160;:&#160;<a class="el" href="logger_8h.html#a5fadee1691617b5fdedb74f325a59cd9">logger.h</a></li>
-<li>LOGONE_FUNCTION_CONTENT&#160;:&#160;<a class="el" href="logger_8h.html#a63c3de50d77deebd22a9fd8b59fc4a43">logger.h</a></li>
+<li>LOGONE_FUNCTION_CONTENT&#160;:&#160;<a class="el" href="logger_8h.html#abc1dcaab1a49af2082b4f52779c18e1d">logger.h</a></li>
+<li>LOGPREFIX_ERROR&#160;:&#160;<a class="el" href="logger_8h.html#a34483936506d8a7ef4d63cf50618e063">logger.h</a></li>
+<li>LOGPREFIX_FAILURE&#160;:&#160;<a class="el" href="logger_8h.html#a41e3e467ad7675fc8ce14846a8b5868e">logger.h</a></li>
+<li>LOGPREFIX_MESSAGE&#160;:&#160;<a class="el" href="logger_8h.html#aba4dfdceb0ad918c58e4a0b61ab0f3b4">logger.h</a></li>
+<li>LOGPREFIX_SUCCESS&#160;:&#160;<a class="el" href="logger_8h.html#ab2fb63beb60fbf177a4978289dc581a9">logger.h</a></li>
+<li>LOGPREFIX_VERBOSE&#160;:&#160;<a class="el" href="logger_8h.html#a44bc4fb618e79c723ce7e41292e1c4aa">logger.h</a></li>
+<li>LOGPREFIX_WARNING&#160;:&#160;<a class="el" href="logger_8h.html#a7d157310af02a672841a3c580c02c2b8">logger.h</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

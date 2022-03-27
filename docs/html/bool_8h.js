@@ -18,11 +18,15 @@ var bool_8h =
     [ "BOOL_TOSTRING_UPPER", "bool_8h.html#af35219b0d86aa8bc31acae527eb0a808", null ],
     [ "BOOL_TOSTRING_LOWER", "bool_8h.html#a35de16f48289c04f92dac3404870b5fa", null ],
     [ "BOOL_TOSTRING_MIXED", "bool_8h.html#a6292ad85691e988fc3776741c73f60ec", null ],
+    [ "c_boolstr", "bool_8h.html#a44663aa80d5fa757f0919e58104fb6ac", null ],
+    [ "c_boolprint", "bool_8h.html#a6568f8b916792ff121a8d1b1df4f1b14", null ],
     [ "c_booltostr", "bool_8h.html#a305d53c2f3bb24a8dd85e7c43c7fbaca", null ],
     [ "c_boolparse", "bool_8h.html#a471b3762f1564c628736af2a0b50345e", null ],
     [ "c_strtobool", "bool_8h.html#a123120e3638bf37a2be1fd7a27117a37", null ],
     [ "t_bool", "bool_8h.html#ae02c68c70680b999c74ccda6c6be3af2", null ],
+    [ "Bool_String", "bool_8h.html#a18ea241a1c93febf589ce6c178a8273c", null ],
+    [ "Bool_Print", "bool_8h.html#ae6c5931f2ec833fd654c6e26d3b9f64a", null ],
     [ "Bool_ToString", "bool_8h.html#a95ec08002d49c95fb34068d162908da4", null ],
-    [ "Bool_Parse", "bool_8h.html#a62488783726cc91f09321f8d62c37125", null ],
+    [ "Bool_Parse", "bool_8h.html#a90df3aa4d05f20276ecebb12f5430904", null ],
     [ "Bool_FromString", "bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25", null ]
 ];

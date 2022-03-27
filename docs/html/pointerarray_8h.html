@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -102,7 +102,7 @@ $(document).ready(function(){initNavTree('pointerarray_8h.html',''); initResizab
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="pointerarray_8h__incl.svg" width="330" height="411"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -164,12 +164,12 @@ Variables</h2></td></tr>
 <tr class="memitem:aa79d52f01c16bd6582594e68f48d6a04"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#aa79d52f01c16bd6582594e68f48d6a04">PointerArray_Free</a> (void **ptrarr)</td></tr>
 <tr class="separator:aa79d52f01c16bd6582594e68f48d6a04"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deallocates the given <code>array</code>, calling the given <code>delete</code> function for each item </p>
+<p >Deallocates the given <code>array</code>, calling the given <code>del</code> function for each item </p>
 </td></tr>
-<tr class="memitem:a2e31bc6dceb2985ba36e71b7aa9ab14e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a2e31bc6dceb2985ba36e71b7aa9ab14e">c_ptrarrffree</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a2fd4493ca132c6ee85b5797afd471f5a">PointerArray_Free_F</a></td></tr>
+<tr class="memitem:a2e31bc6dceb2985ba36e71b7aa9ab14e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a2e31bc6dceb2985ba36e71b7aa9ab14e">c_ptrarrffree</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a5ff841d061d6a540c2796be3b1a4acd9">PointerArray_Free_F</a></td></tr>
 <tr class="separator:a2e31bc6dceb2985ba36e71b7aa9ab14e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fd4493ca132c6ee85b5797afd471f5a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a2fd4493ca132c6ee85b5797afd471f5a">PointerArray_Free_F</a> (void **ptrarr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *ptr))</td></tr>
-<tr class="separator:a2fd4493ca132c6ee85b5797afd471f5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5ff841d061d6a540c2796be3b1a4acd9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a5ff841d061d6a540c2796be3b1a4acd9">PointerArray_Free_F</a> (void **ptrarr, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(void *ptr))</td></tr>
+<tr class="separator:a5ff841d061d6a540c2796be3b1a4acd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Deletes the array inside the given address <code>ptrarr</code> (frees and sets to NULL) </p>
 </td></tr>
@@ -178,12 +178,12 @@ Variables</h2></td></tr>
 <tr class="memitem:a80ebc93739a09314fcc6d8e47e40e0d6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a80ebc93739a09314fcc6d8e47e40e0d6">PointerArray_Delete</a> (void ***ptrarr)</td></tr>
 <tr class="separator:a80ebc93739a09314fcc6d8e47e40e0d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deletes the array inside the given address <code>ptrarr</code> (frees and sets to NULL), calling the given <code>delete</code> function for each item </p>
+<p >Deletes the array inside the given address <code>ptrarr</code> (frees and sets to NULL), calling the given <code>del</code> function for each item </p>
 </td></tr>
-<tr class="memitem:ad14a26f9de8f356e95e53795cf67344d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ad14a26f9de8f356e95e53795cf67344d">c_ptrarrfdel</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a></td></tr>
+<tr class="memitem:ad14a26f9de8f356e95e53795cf67344d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ad14a26f9de8f356e95e53795cf67344d">c_ptrarrfdel</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a1bb3c40fc9ccc14ba10ae7d4eed3e8ed">PointerArray_Delete_F</a></td></tr>
 <tr class="separator:ad14a26f9de8f356e95e53795cf67344d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a> (void ***ptrarr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *ptr))</td></tr>
-<tr class="separator:acb64c73646732a61a8bfafa8df5dd5d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bb3c40fc9ccc14ba10ae7d4eed3e8ed"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a1bb3c40fc9ccc14ba10ae7d4eed3e8ed">PointerArray_Delete_F</a> (void ***ptrarr, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(void *ptr))</td></tr>
+<tr class="separator:a1bb3c40fc9ccc14ba10ae7d4eed3e8ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Appends the given item <code>item</code> to the end of the given array <code>dest</code>. </p>
 </td></tr>
@@ -213,12 +213,12 @@ Variables</h2></td></tr>
 <tr class="memitem:a88fa9967e0e5b27a13dc4a9b9625437b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a88fa9967e0e5b27a13dc4a9b9625437b">PointerArray_RemoveAt</a> (void **ptrarr, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>)</td></tr>
 <tr class="separator:a88fa9967e0e5b27a13dc4a9b9625437b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like Array_RemoveAt(), but you can supply a custom <code>delete</code> function </p>
+<p >Like Array_RemoveAt(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
-<tr class="memitem:a163be1b32a059384bc4d0691ebd97f33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a163be1b32a059384bc4d0691ebd97f33">c_ptrarrfdelat</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a7a6bee24423b11992283f2cbd63f20a8">PointerArray_RemoveAt_F</a></td></tr>
+<tr class="memitem:a163be1b32a059384bc4d0691ebd97f33"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a163be1b32a059384bc4d0691ebd97f33">c_ptrarrfdelat</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a925a1247a62e477f555a27a229fd1b24">PointerArray_RemoveAt_F</a></td></tr>
 <tr class="separator:a163be1b32a059384bc4d0691ebd97f33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a6bee24423b11992283f2cbd63f20a8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a7a6bee24423b11992283f2cbd63f20a8">PointerArray_RemoveAt_F</a> (void **ptrarr, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *))</td></tr>
-<tr class="separator:a7a6bee24423b11992283f2cbd63f20a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a925a1247a62e477f555a27a229fd1b24"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a925a1247a62e477f555a27a229fd1b24">PointerArray_RemoveAt_F</a> (void **ptrarr, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#aec6b74e35c2521f4da8cf8a66487dd7c">index</a>, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(void *))</td></tr>
+<tr class="separator:a925a1247a62e477f555a27a229fd1b24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Removes the first item from the given <code>array</code> which is equal to the given <code>item</code> </p>
 </td></tr>
@@ -227,12 +227,12 @@ Variables</h2></td></tr>
 <tr class="memitem:ad2e888ad3e55967562ea1ba738632337"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ad2e888ad3e55967562ea1ba738632337">PointerArray_Remove</a> (void **ptrarr, void const *ptr)</td></tr>
 <tr class="separator:ad2e888ad3e55967562ea1ba738632337"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like Array_Remove(), but you can supply a custom <code>delete</code> function </p>
+<p >Like Array_Remove(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
-<tr class="memitem:aac1621df63ea263b28923acb0151d590"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#aac1621df63ea263b28923acb0151d590">c_ptrarrfdelone</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab3084db2d375fd6827fb93916198ddc4">PointerArray_Remove_F</a></td></tr>
+<tr class="memitem:aac1621df63ea263b28923acb0151d590"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#aac1621df63ea263b28923acb0151d590">c_ptrarrfdelone</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a27b6a62dbe02d6b8d43f78d991c028b4">PointerArray_Remove_F</a></td></tr>
 <tr class="separator:aac1621df63ea263b28923acb0151d590"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3084db2d375fd6827fb93916198ddc4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ab3084db2d375fd6827fb93916198ddc4">PointerArray_Remove_F</a> (void **ptrarr, void const *ptr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *))</td></tr>
-<tr class="separator:ab3084db2d375fd6827fb93916198ddc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a27b6a62dbe02d6b8d43f78d991c028b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a27b6a62dbe02d6b8d43f78d991c028b4">PointerArray_Remove_F</a> (void **ptrarr, void const *ptr, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(void *))</td></tr>
+<tr class="separator:a27b6a62dbe02d6b8d43f78d991c028b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Removes any items which are equal to the given <code>item</code> from the given <code>array</code> </p>
 </td></tr>
@@ -241,33 +241,33 @@ Variables</h2></td></tr>
 <tr class="memitem:ac314304605995d20e6474ab46eabd3b8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ac314304605995d20e6474ab46eabd3b8">PointerArray_RemoveAll</a> (void **ptrarr, void const *ptr)</td></tr>
 <tr class="separator:ac314304605995d20e6474ab46eabd3b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like Array_RemoveAll(), but you can supply a custom <code>delete</code> function </p>
+<p >Like Array_RemoveAll(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
-<tr class="memitem:a63c8b498878abf83f3222f1bff03df8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a63c8b498878abf83f3222f1bff03df8e">c_ptrarrfdelall</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a81f8dc0133ed002e8c4291faff7a715c">PointerArray_RemoveAll_F</a></td></tr>
+<tr class="memitem:a63c8b498878abf83f3222f1bff03df8e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a63c8b498878abf83f3222f1bff03df8e">c_ptrarrfdelall</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a9db9c1856e3aded0fa4144a0e26cddd2">PointerArray_RemoveAll_F</a></td></tr>
 <tr class="separator:a63c8b498878abf83f3222f1bff03df8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81f8dc0133ed002e8c4291faff7a715c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a81f8dc0133ed002e8c4291faff7a715c">PointerArray_RemoveAll_F</a> (void **ptrarr, void const *ptr, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(void *))</td></tr>
-<tr class="separator:a81f8dc0133ed002e8c4291faff7a715c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9db9c1856e3aded0fa4144a0e26cddd2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a9db9c1856e3aded0fa4144a0e26cddd2">PointerArray_RemoveAll_F</a> (void **ptrarr, void const *ptr, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(void *))</td></tr>
+<tr class="separator:a9db9c1856e3aded0fa4144a0e26cddd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Creates a new array from the given <code>array</code>, where any occurence of <code>old</code> is replaced with <code>new</code> </p>
+<p >Creates a new array from the given <code>array</code>, where any occurence of <code>ptr_old</code> is replaced with <code>ptr_new</code> </p>
 </td></tr>
-<tr class="memitem:a82e075746851e81bd20cd6a30036bd8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a82e075746851e81bd20cd6a30036bd8a">c_ptrarrrep</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab3f80d096d3982ab340e90815f2f55bf">PointerArray_Replace</a></td></tr>
+<tr class="memitem:a82e075746851e81bd20cd6a30036bd8a"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a82e075746851e81bd20cd6a30036bd8a">c_ptrarrrep</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#afb1657af69e93be6b71ba5224b714a49">PointerArray_Replace</a></td></tr>
 <tr class="separator:a82e075746851e81bd20cd6a30036bd8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab3f80d096d3982ab340e90815f2f55bf"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ab3f80d096d3982ab340e90815f2f55bf">PointerArray_Replace</a> (void *const *ptrarr, void const *<a class="el" href="list_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a>, void const *<a class="el" href="list_8h.html#addd1a554e6048a1efb923536b526ae44">new</a>)</td></tr>
-<tr class="separator:ab3f80d096d3982ab340e90815f2f55bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb1657af69e93be6b71ba5224b714a49"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#afb1657af69e93be6b71ba5224b714a49">PointerArray_Replace</a> (void *const *ptrarr, void const *ptr_old, void const *ptr_new)</td></tr>
+<tr class="separator:afb1657af69e93be6b71ba5224b714a49"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Creates a new array from the given <code>array</code>, where the first <code>n</code> occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<p >Creates a new array from the given <code>array</code>, where the first <code>n</code> occurences of <code>ptr_old</code> are replaced with <code>ptr_new</code>. </p>
 </td></tr>
-<tr class="memitem:a0103eaf7681b0ff29c858b16f3638314"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a0103eaf7681b0ff29c858b16f3638314">c_ptrarrrepfirst</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a626270290333ea8c2138e1b644117d7d">PointerArray_ReplaceFirst</a></td></tr>
+<tr class="memitem:a0103eaf7681b0ff29c858b16f3638314"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a0103eaf7681b0ff29c858b16f3638314">c_ptrarrrepfirst</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#af32028485044101ec9a0bc1ef79d8cfd">PointerArray_ReplaceFirst</a></td></tr>
 <tr class="separator:a0103eaf7681b0ff29c858b16f3638314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a626270290333ea8c2138e1b644117d7d"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a626270290333ea8c2138e1b644117d7d">PointerArray_ReplaceFirst</a> (void *const *ptrarr, void const *<a class="el" href="list_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a>, void const *<a class="el" href="list_8h.html#addd1a554e6048a1efb923536b526ae44">new</a>, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
-<tr class="separator:a626270290333ea8c2138e1b644117d7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af32028485044101ec9a0bc1ef79d8cfd"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#af32028485044101ec9a0bc1ef79d8cfd">PointerArray_ReplaceFirst</a> (void *const *ptrarr, void const *ptr_old, void const *ptr_new, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:af32028485044101ec9a0bc1ef79d8cfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Creates a new array from the given <code>array</code>, where the last <code>n</code> occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<p >Creates a new array from the given <code>array</code>, where the last <code>n</code> occurences of <code>ptr_old</code> are replaced with <code>ptr_new</code>. </p>
 </td></tr>
-<tr class="memitem:a816ebf817eb5b3bae6424cb73d21fc17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a816ebf817eb5b3bae6424cb73d21fc17">c_ptrarrreplast</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a7c9acf830a6edd11cb3fd6020cdbf023">PointerArray_ReplaceLast</a></td></tr>
+<tr class="memitem:a816ebf817eb5b3bae6424cb73d21fc17"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a816ebf817eb5b3bae6424cb73d21fc17">c_ptrarrreplast</a>&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab262b3d3307a4c99c497db7cbb022f88">PointerArray_ReplaceLast</a></td></tr>
 <tr class="separator:a816ebf817eb5b3bae6424cb73d21fc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7c9acf830a6edd11cb3fd6020cdbf023"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#a7c9acf830a6edd11cb3fd6020cdbf023">PointerArray_ReplaceLast</a> (void *const *ptrarr, void const *<a class="el" href="list_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a>, void const *<a class="el" href="list_8h.html#addd1a554e6048a1efb923536b526ae44">new</a>, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
-<tr class="separator:a7c9acf830a6edd11cb3fd6020cdbf023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab262b3d3307a4c99c497db7cbb022f88"><td class="memItemLeft" align="right" valign="top">void **&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="pointerarray_8h.html#ab262b3d3307a4c99c497db7cbb022f88">PointerArray_ReplaceLast</a> (void *const *ptrarr, void const *ptr_old, void const *ptr_new, <a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> <a class="el" href="list_8h.html#a893734a443486a40663c611a8928205c">n</a>)</td></tr>
+<tr class="separator:ab262b3d3307a4c99c497db7cbb022f88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Creates a new array from the given <code>array</code>, with each item's position being inverted </p>
 </td></tr>
@@ -589,7 +589,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrffree&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a2fd4493ca132c6ee85b5797afd471f5a">PointerArray_Free_F</a></td>
+          <td class="memname">#define c_ptrarrffree&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a5ff841d061d6a540c2796be3b1a4acd9">PointerArray_Free_F</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -621,7 +621,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrfdel&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#acb64c73646732a61a8bfafa8df5dd5d8">PointerArray_Delete_F</a></td>
+          <td class="memname">#define c_ptrarrfdel&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a1bb3c40fc9ccc14ba10ae7d4eed3e8ed">PointerArray_Delete_F</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -701,7 +701,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrfdelat&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a7a6bee24423b11992283f2cbd63f20a8">PointerArray_RemoveAt_F</a></td>
+          <td class="memname">#define c_ptrarrfdelat&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a925a1247a62e477f555a27a229fd1b24">PointerArray_RemoveAt_F</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -733,7 +733,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrfdelone&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab3084db2d375fd6827fb93916198ddc4">PointerArray_Remove_F</a></td>
+          <td class="memname">#define c_ptrarrfdelone&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a27b6a62dbe02d6b8d43f78d991c028b4">PointerArray_Remove_F</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -765,7 +765,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrfdelall&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a81f8dc0133ed002e8c4291faff7a715c">PointerArray_RemoveAll_F</a></td>
+          <td class="memname">#define c_ptrarrfdelall&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a9db9c1856e3aded0fa4144a0e26cddd2">PointerArray_RemoveAll_F</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -781,7 +781,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrrep&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab3f80d096d3982ab340e90815f2f55bf">PointerArray_Replace</a></td>
+          <td class="memname">#define c_ptrarrrep&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#afb1657af69e93be6b71ba5224b714a49">PointerArray_Replace</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -797,7 +797,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrrepfirst&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a626270290333ea8c2138e1b644117d7d">PointerArray_ReplaceFirst</a></td>
+          <td class="memname">#define c_ptrarrrepfirst&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#af32028485044101ec9a0bc1ef79d8cfd">PointerArray_ReplaceFirst</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -813,7 +813,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define c_ptrarrreplast&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#a7c9acf830a6edd11cb3fd6020cdbf023">PointerArray_ReplaceLast</a></td>
+          <td class="memname">#define c_ptrarrreplast&#160;&#160;&#160;<a class="el" href="pointerarray_8h.html#ab262b3d3307a4c99c497db7cbb022f88">PointerArray_ReplaceLast</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1517,8 +1517,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a2fd4493ca132c6ee85b5797afd471f5a" name="a2fd4493ca132c6ee85b5797afd471f5a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fd4493ca132c6ee85b5797afd471f5a">&#9670;&nbsp;</a></span>PointerArray_Free_F()</h2>
+<a id="a5ff841d061d6a540c2796be3b1a4acd9" name="a5ff841d061d6a540c2796be3b1a4acd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5ff841d061d6a540c2796be3b1a4acd9">&#9670;&nbsp;</a></span>PointerArray_Free_F()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1533,7 +1533,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(void *ptr)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1545,7 +1545,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The array whose <code>items</code> buffer should be deleted - its <code>length</code> will be set to <code>0</code>. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1576,8 +1576,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="acb64c73646732a61a8bfafa8df5dd5d8" name="acb64c73646732a61a8bfafa8df5dd5d8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acb64c73646732a61a8bfafa8df5dd5d8">&#9670;&nbsp;</a></span>PointerArray_Delete_F()</h2>
+<a id="a1bb3c40fc9ccc14ba10ae7d4eed3e8ed" name="a1bb3c40fc9ccc14ba10ae7d4eed3e8ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bb3c40fc9ccc14ba10ae7d4eed3e8ed">&#9670;&nbsp;</a></span>PointerArray_Delete_F()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1592,7 +1592,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(void *ptr)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1604,7 +1604,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The address of the array whose <code>items</code> buffer should be deleted. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1764,7 +1764,7 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The array in which to remove an item </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the item to delete from the array </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the item to remove from the array </td></tr>
   </table>
   </dd>
 </dl>
@@ -1772,8 +1772,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7a6bee24423b11992283f2cbd63f20a8" name="a7a6bee24423b11992283f2cbd63f20a8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a6bee24423b11992283f2cbd63f20a8">&#9670;&nbsp;</a></span>PointerArray_RemoveAt_F()</h2>
+<a id="a925a1247a62e477f555a27a229fd1b24" name="a925a1247a62e477f555a27a229fd1b24"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a925a1247a62e477f555a27a229fd1b24">&#9670;&nbsp;</a></span>PointerArray_RemoveAt_F()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1794,7 +1794,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(void *)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1842,8 +1842,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ab3084db2d375fd6827fb93916198ddc4" name="ab3084db2d375fd6827fb93916198ddc4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3084db2d375fd6827fb93916198ddc4">&#9670;&nbsp;</a></span>PointerArray_Remove_F()</h2>
+<a id="a27b6a62dbe02d6b8d43f78d991c028b4" name="a27b6a62dbe02d6b8d43f78d991c028b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a27b6a62dbe02d6b8d43f78d991c028b4">&#9670;&nbsp;</a></span>PointerArray_Remove_F()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1864,7 +1864,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(void *)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1912,8 +1912,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a81f8dc0133ed002e8c4291faff7a715c" name="a81f8dc0133ed002e8c4291faff7a715c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81f8dc0133ed002e8c4291faff7a715c">&#9670;&nbsp;</a></span>PointerArray_RemoveAll_F()</h2>
+<a id="a9db9c1856e3aded0fa4144a0e26cddd2" name="a9db9c1856e3aded0fa4144a0e26cddd2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9db9c1856e3aded0fa4144a0e26cddd2">&#9670;&nbsp;</a></span>PointerArray_RemoveAll_F()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1934,7 +1934,7 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(void *)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1946,8 +1946,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="ab3f80d096d3982ab340e90815f2f55bf" name="ab3f80d096d3982ab340e90815f2f55bf"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3f80d096d3982ab340e90815f2f55bf">&#9670;&nbsp;</a></span>PointerArray_Replace()</h2>
+<a id="afb1657af69e93be6b71ba5224b714a49" name="afb1657af69e93be6b71ba5224b714a49"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb1657af69e93be6b71ba5224b714a49">&#9670;&nbsp;</a></span>PointerArray_Replace()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1962,13 +1962,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>old</em>, </td>
+          <td class="paramname"><em>ptr_old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>new</em>&#160;</td>
+          <td class="paramname"><em>ptr_new</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1980,17 +1980,17 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">ptr_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">ptr_new</td><td>The replacement for the resulting array </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>array</code>, in which in any item equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>array</code>, in which in any item equal to <code>ptr_old</code> will instead have a value of <code>ptr_new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
 
 </div>
 </div>
-<a id="a626270290333ea8c2138e1b644117d7d" name="a626270290333ea8c2138e1b644117d7d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a626270290333ea8c2138e1b644117d7d">&#9670;&nbsp;</a></span>PointerArray_ReplaceFirst()</h2>
+<a id="af32028485044101ec9a0bc1ef79d8cfd" name="af32028485044101ec9a0bc1ef79d8cfd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af32028485044101ec9a0bc1ef79d8cfd">&#9670;&nbsp;</a></span>PointerArray_ReplaceFirst()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2005,13 +2005,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>old</em>, </td>
+          <td class="paramname"><em>ptr_old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>new</em>, </td>
+          <td class="paramname"><em>ptr_new</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2029,18 +2029,18 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">ptr_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">ptr_new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>ptr_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>ptr_old</code> will instead have a value of <code>ptr_new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
 
 </div>
 </div>
-<a id="a7c9acf830a6edd11cb3fd6020cdbf023" name="a7c9acf830a6edd11cb3fd6020cdbf023"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7c9acf830a6edd11cb3fd6020cdbf023">&#9670;&nbsp;</a></span>PointerArray_ReplaceLast()</h2>
+<a id="ab262b3d3307a4c99c497db7cbb022f88" name="ab262b3d3307a4c99c497db7cbb022f88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab262b3d3307a4c99c497db7cbb022f88">&#9670;&nbsp;</a></span>PointerArray_ReplaceLast()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -2055,13 +2055,13 @@ Variables</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>old</em>, </td>
+          <td class="paramname"><em>ptr_old</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void const *&#160;</td>
-          <td class="paramname"><em>new</em>, </td>
+          <td class="paramname"><em>ptr_new</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -2079,13 +2079,13 @@ Variables</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ptrarr</td><td>The array to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting array </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">ptr_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">ptr_new</td><td>The replacement for the resulting array </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>ptr_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created array copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>ptr_old</code> will instead have a value of <code>ptr_new</code>, or <code>NULL</code> if an error occurred. </dd></dl>
 
 </div>
 </div>

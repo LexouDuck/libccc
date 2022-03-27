@@ -9,6 +9,7 @@ var dir_c91b9cc10373ff0ff775332a50dfdee2 =
     [ "bool.h", "bool_8h.html", "bool_8h" ],
     [ "char.h", "char_8h.html", "char_8h" ],
     [ "color.h", "color_8h.html", "color_8h" ],
+    [ "enum.h", "enum_8h.html", "enum_8h" ],
     [ "error.h", "error_8h.html", "error_8h" ],
     [ "fixed.h", "fixed_8h.html", "fixed_8h" ],
     [ "float.h", "float_8h.html", "float_8h" ],

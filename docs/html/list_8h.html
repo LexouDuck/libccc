@@ -31,7 +31,7 @@
  <tr id="projectrow">
   <td id="projectlogo"><img alt="Logo" src="favicon.ico"/></td>
   <td id="projectalign">
-   <div id="projectname">libccc<span id="projectnumber">&#160;0.9.79</span>
+   <div id="projectname">libccc<span id="projectnumber">&#160;0.10.7</span>
    </div>
    <div id="projectbrief">A customizable cross-platform C standard library</div>
   </td>
@@ -93,6 +93,8 @@ $(document).ready(function(){initNavTree('list_8h.html',''); initResizable(); })
 </div>
 
 <div class="header">
+  <div class="summary">
+<a href="#define-members">Macros</a>  </div>
   <div class="headertitle"><div class="title">list.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -105,7 +107,7 @@ $(document).ready(function(){initNavTree('list_8h.html',''); initResizable(); })
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><iframe scrolling="no" frameborder="0" src="list_8h__incl.svg" width="464" height="486"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe>
+<div class="center"><!-- SVG 0 -->
 </div>
 </div>
 </div>
@@ -113,6 +115,8 @@ $(document).ready(function(){initNavTree('list_8h.html',''); initResizable(); })
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
 Macros</h2></td></tr>
+<tr class="memitem:a91c898febcaf2858183de7300b5c3857"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a91c898febcaf2858183de7300b5c3857">c_lstfind</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Find&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
+<tr class="separator:a91c898febcaf2858183de7300b5c3857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Allocates and returns a single list item from the given <code>item</code>. </p>
 </div></td></tr>
@@ -149,7 +153,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a1ea89a50527607df8a87a6f14690d8ff"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a1ea89a50527607df8a87a6f14690d8ff">c_lstdelone</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Remove&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a1ea89a50527607df8a87a6f14690d8ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Like List_Remove(), but you can supply a custom <code>delete</code> function </p>
+<tr><td colspan="2"><div class="groupText"><p >Like List_Remove(), but you can supply a custom <code>del</code> function </p>
 </div></td></tr>
 <tr class="memitem:ac71147f0ac41e6475949df02c093c175"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ac71147f0ac41e6475949df02c093c175">c_lstfdelone</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Remove_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:ac71147f0ac41e6475949df02c093c175"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -159,17 +163,17 @@ Macros</h2></td></tr>
 <tr class="memitem:a9f99edabc579ca502c772d5e30f6c372"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a9f99edabc579ca502c772d5e30f6c372">c_lstdelall</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_RemoveAll&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a9f99edabc579ca502c772d5e30f6c372"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Like List_RemoveAll(), but you can supply a custom <code>delete</code> function </p>
+<tr><td colspan="2"><div class="groupText"><p >Like List_RemoveAll(), but you can supply a custom <code>del</code> function </p>
 </div></td></tr>
 <tr class="memitem:a9d4167202ccff5627a57afd180777f51"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a9d4167202ccff5627a57afd180777f51">c_lstfdelall</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_RemoveAll_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a9d4167202ccff5627a57afd180777f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Creates a new list from the given <code>list</code>, where the <code>n</code> first occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<tr><td colspan="2"><div class="groupText"><p >Creates a new list from the given <code>list</code>, where the <code>n</code> first occurences of <code>item_old</code> are replaced with <code>item_new</code>. </p>
 </div></td></tr>
 <tr class="memitem:ae61fa1c3977357aa594a5b78dc56d4db"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae61fa1c3977357aa594a5b78dc56d4db">c_lstrepfirst</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_ReplaceFirst&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:ae61fa1c3977357aa594a5b78dc56d4db"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Creates a new list from the given <code>list</code>, where the <code>n</code> last occurences of <code>old</code> are replaced with <code>new</code>. </p>
+<tr><td colspan="2"><div class="groupText"><p >Creates a new list from the given <code>list</code>, where the <code>n</code> last occurences of <code>item_old</code> are replaced with <code>item_new</code>. </p>
 </div></td></tr>
 <tr class="memitem:a70dbaab1111e07b84a21586afa6cc610"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a70dbaab1111e07b84a21586afa6cc610">c_lstreplast</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;		List_ReplaceLast&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a70dbaab1111e07b84a21586afa6cc610"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -198,11 +202,6 @@ Macros</h2></td></tr>
 </div></td></tr>
 <tr class="memitem:a566b9d2bc70e319de1f53713d2bdc7da"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a566b9d2bc70e319de1f53713d2bdc7da">c_lstmerge</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Merge&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a566b9d2bc70e319de1f53713d2bdc7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr><td colspan="2"><div class="groupHeader"></div></td></tr>
-<tr><td colspan="2"><div class="groupText"><p >Returns the first encountered item in the given <code>list</code> matching the given <code>item</code> </p>
-</div></td></tr>
-<tr class="memitem:a91c898febcaf2858183de7300b5c3857"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a91c898febcaf2858183de7300b5c3857">c_lstfind</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Find&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
-<tr class="separator:a91c898febcaf2858183de7300b5c3857"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader"></div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p >Gets the amount of occurences of the given <code>item</code> in the given <code>list</code> </p>
 </div></td></tr>
@@ -295,12 +294,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a537756ca083726a6a8cfffaf84bf4777"><td class="memItemLeft" align="right" valign="top">void List_Free()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a537756ca083726a6a8cfffaf84bf4777">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) *<a class="el" href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a>)</td></tr>
 <tr class="separator:a537756ca083726a6a8cfffaf84bf4777"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deallocates all the items in the given <code>list</code>, calling <code><a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete()</a></code> for each item. </p>
+<p >Deallocates all the items in the given <code>list</code>, calling <code><a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del()</a></code> for each item. </p>
 </td></tr>
 <tr class="memitem:af896498fb580618dc90e327e5e4c68d5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#af896498fb580618dc90e327e5e4c68d5">c_lstffree</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Free_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:af896498fb580618dc90e327e5e4c68d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae549ae614ae362854e6bad2ab50813ee"><td class="memItemLeft" align="right" valign="top">void List_Free_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ae549ae614ae362854e6bad2ab50813ee">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) *<a class="el" href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a>, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
-<tr class="separator:ae549ae614ae362854e6bad2ab50813ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affc47ddaa7fec2fbf4b06629eedc0408"><td class="memItemLeft" align="right" valign="top">void List_Free_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#affc47ddaa7fec2fbf4b06629eedc0408">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) *<a class="el" href="list_8h.html#aed8b01b7c6138ddc179c95e2836df1c2">list</a>, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
+<tr class="separator:affc47ddaa7fec2fbf4b06629eedc0408"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Deletes all the items in the list starting at <code>*a_list</code>. </p>
 </td></tr>
@@ -309,12 +308,12 @@ Macros</h2></td></tr>
 <tr class="memitem:a88416f4bcf01a5682670ec75d9374ec8"><td class="memItemLeft" align="right" valign="top">void List_Delete()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a88416f4bcf01a5682670ec75d9374ec8">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) **a_list)</td></tr>
 <tr class="separator:a88416f4bcf01a5682670ec75d9374ec8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Deletes all the items in the list starting at <code>*a_list</code>, calling <code><a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete()</a></code> for each item. </p>
+<p >Deletes all the items in the list starting at <code>*a_list</code>, calling <code><a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del()</a></code> for each item. </p>
 </td></tr>
 <tr class="memitem:a0750acce81036cb84eb0cd220030c29e"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a0750acce81036cb84eb0cd220030c29e">c_lstfdel</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_Delete_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a0750acce81036cb84eb0cd220030c29e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aef7f04bfa5f85444c5502a571c1d8728"><td class="memItemLeft" align="right" valign="top">void List_Delete_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aef7f04bfa5f85444c5502a571c1d8728">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) **a_list, void(*<a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
-<tr class="separator:aef7f04bfa5f85444c5502a571c1d8728"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42e7aa06c70044a30ba1940e30691116"><td class="memItemLeft" align="right" valign="top">void List_Delete_F()&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a42e7aa06c70044a30ba1940e30691116">T</a> (<a class="el" href="list_8h.html#a5fd2869c0a2f0db6a7e1fbfa03378a0b">s_list</a>(T) **a_list, void(*<a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a>)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>))</td></tr>
+<tr class="separator:a42e7aa06c70044a30ba1940e30691116"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Appends the given item <code>item</code> to the end of the given list <code>dest</code>. </p>
 </td></tr>
@@ -323,21 +322,21 @@ Macros</h2></td></tr>
 <tr class="memitem:aaeb0f0ed34c31a834ce36fe4defd6c5e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a></td></tr>
 <tr class="separator:aaeb0f0ed34c31a834ce36fe4defd6c5e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Like List_RemoveAt(), but you can supply a custom <code>delete</code> function </p>
+<p >Like List_RemoveAt(), but you can supply a custom <code>del</code> function </p>
 </td></tr>
 <tr class="memitem:a4dbb4703882932834d30217d7d4666b5"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a4dbb4703882932834d30217d7d4666b5">c_lstfdelat</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;	List_RemoveAt_F&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:a4dbb4703882932834d30217d7d4666b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af0079e7c4d975627d89274a3536a43a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#af0079e7c4d975627d89274a3536a43a0">delete</a> )(<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>))</td></tr>
-<tr class="separator:af0079e7c4d975627d89274a3536a43a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8d372fba43d4aecadeb997c917fbf109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="int_8h.html#a24081be54642dc3413a6201c070cf224">t_uint</a> void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a8d372fba43d4aecadeb997c917fbf109">del</a> )(<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>))</td></tr>
+<tr class="separator:a8d372fba43d4aecadeb997c917fbf109"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
-<p >Creates a new list from the given <code>list</code>, where any occurence of <code>old</code> is replaced with <code>new</code>. </p>
+<p >Creates a new list from the given <code>list</code>, where any occurence of <code>item_old</code> is replaced with <code>item_new</code>. </p>
 </td></tr>
 <tr class="memitem:afcbb57c4315a9ecb8eeb157a5d03dbda"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#afcbb57c4315a9ecb8eeb157a5d03dbda">c_lstrep</a>&#160;&#160;&#160;&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;			List_Replace&lt;<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&gt;</td></tr>
 <tr class="separator:afcbb57c4315a9ecb8eeb157a5d03dbda"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f7a6d205f1cf759b95fd8f6c7bb59e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#a2f7a6d205f1cf759b95fd8f6c7bb59e1">old</a></td></tr>
-<tr class="separator:a2f7a6d205f1cf759b95fd8f6c7bb59e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addd1a554e6048a1efb923536b526ae44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#addd1a554e6048a1efb923536b526ae44">new</a></td></tr>
-<tr class="separator:addd1a554e6048a1efb923536b526ae44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab17916dad514480b38c81ebbd3c90e04"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#ab17916dad514480b38c81ebbd3c90e04">item_old</a></td></tr>
+<tr class="separator:ab17916dad514480b38c81ebbd3c90e04"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9f0ea98996232c79ee2f1059b0268bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="list_8h.html#aa9f0ea98996232c79ee2f1059b0268bc">item_new</a></td></tr>
+<tr class="separator:aa9f0ea98996232c79ee2f1059b0268bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td class="ititle" colspan="2"><p ><a class="anchor" id="amgrp01747264fe7bf50731df0522c351974e"></a> </p>
 <p >Checks if two lists have the same content </p>
 </td></tr>
@@ -1434,7 +1433,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list in which to remove an item </td></tr>
-    <tr><td class="paramname">index</td><td>The index of the item to delete from the list </td></tr>
+    <tr><td class="paramname">index</td><td>The index of the item to remove from the list </td></tr>
   </table>
   </dd>
 </dl>
@@ -1458,32 +1457,32 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting list </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting list </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>list</code>, in which in any item equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>list</code>, in which in any item equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting list </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting list </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>item_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>strarr</code>, in which in the first (iterating forwards) <code>n</code> encountered items which are equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list to use as a basis for copy and item replacement </td></tr>
-    <tr><td class="paramname">old</td><td>The item to be replaced </td></tr>
-    <tr><td class="paramname">new</td><td>The replacement for the resulting list </td></tr>
-    <tr><td class="paramname">n</td><td>The amount of occurences of <code>old</code> to replace </td></tr>
+    <tr><td class="paramname">item_old</td><td>The item to be replaced </td></tr>
+    <tr><td class="paramname">item_new</td><td>The replacement for the resulting list </td></tr>
+    <tr><td class="paramname">n</td><td>The amount of occurences of <code>item_old</code> to replace </td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>old</code> will instead have a value of <code>new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A newly created list copied from <code>strarr</code>, in which in the first (iterating backwards) <code>n</code> encountered items which are equal to <code>item_old</code> will instead have a value of <code>item_new</code>, or <code>NULL</code> if an error occurred.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">list</td><td>The list to duplicate and invert </td></tr>
@@ -1679,15 +1678,15 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">list</td><td>The first element of the list to delete. </td></tr>
+    <tr><td class="paramname">list</td><td>The first element of the list to remove. </td></tr>
   </table>
   </dd>
 </dl>
 
 </div>
 </div>
-<a id="ae549ae614ae362854e6bad2ab50813ee" name="ae549ae614ae362854e6bad2ab50813ee"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae549ae614ae362854e6bad2ab50813ee">&#9670;&nbsp;</a></span>T() <span class="overload">[5/19]</span></h2>
+<a id="affc47ddaa7fec2fbf4b06629eedc0408" name="affc47ddaa7fec2fbf4b06629eedc0408"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affc47ddaa7fec2fbf4b06629eedc0408">&#9670;&nbsp;</a></span>T() <span class="overload">[5/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1702,7 +1701,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1713,8 +1712,8 @@ Macros</h2></td></tr>
 </div><div class="memdoc">
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">list</td><td>The first element of the list to delete. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">list</td><td>The first element of the list to remove. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -1745,8 +1744,8 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="aef7f04bfa5f85444c5502a571c1d8728" name="aef7f04bfa5f85444c5502a571c1d8728"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aef7f04bfa5f85444c5502a571c1d8728">&#9670;&nbsp;</a></span>T() <span class="overload">[7/19]</span></h2>
+<a id="a42e7aa06c70044a30ba1940e30691116" name="a42e7aa06c70044a30ba1940e30691116"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42e7aa06c70044a30ba1940e30691116">&#9670;&nbsp;</a></span>T() <span class="overload">[7/19]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1761,7 +1760,7 @@ Macros</h2></td></tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">void(*)(T *<a class="el" href="list_8h.html#aaeb0f0ed34c31a834ce36fe4defd6c5e">item</a>)&#160;</td>
-          <td class="paramname"><em>delete</em>&#160;</td>
+          <td class="paramname"><em>del</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -1773,7 +1772,7 @@ Macros</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">a_list</td><td>The address ('&amp;') of the beginning of the list - will be set to NULL. </td></tr>
-    <tr><td class="paramname">delete</td><td>the function which should be executed for each item before deletion. </td></tr>
+    <tr><td class="paramname">del</td><td>The function which should be executed for each item before deletion. </td></tr>
   </table>
   </dd>
 </dl>
@@ -2358,14 +2357,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="af0079e7c4d975627d89274a3536a43a0" name="af0079e7c4d975627d89274a3536a43a0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af0079e7c4d975627d89274a3536a43a0">&#9670;&nbsp;</a></span>delete</h2>
+<a id="a8d372fba43d4aecadeb997c917fbf109" name="a8d372fba43d4aecadeb997c917fbf109"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d372fba43d4aecadeb997c917fbf109">&#9670;&nbsp;</a></span>del</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> void(* delete)(<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)) </td>
+          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> void(* del)(<a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>)) </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a>&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -2378,14 +2377,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="a2f7a6d205f1cf759b95fd8f6c7bb59e1" name="a2f7a6d205f1cf759b95fd8f6c7bb59e1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2f7a6d205f1cf759b95fd8f6c7bb59e1">&#9670;&nbsp;</a></span>old</h2>
+<a id="ab17916dad514480b38c81ebbd3c90e04" name="ab17916dad514480b38c81ebbd3c90e04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab17916dad514480b38c81ebbd3c90e04">&#9670;&nbsp;</a></span>item_old</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> old</td>
+          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> item_old</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -2394,14 +2393,14 @@ Macros</h2></td></tr>
 
 </div>
 </div>
-<a id="addd1a554e6048a1efb923536b526ae44" name="addd1a554e6048a1efb923536b526ae44"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#addd1a554e6048a1efb923536b526ae44">&#9670;&nbsp;</a></span>new</h2>
+<a id="aa9f0ea98996232c79ee2f1059b0268bc" name="aa9f0ea98996232c79ee2f1059b0268bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9f0ea98996232c79ee2f1059b0268bc">&#9670;&nbsp;</a></span>item_new</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> new</td>
+          <td class="memname"><a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> <a class="el" href="list_8h.html#a8c0facb09202b83bd33cbdbf223bd3bd">T</a> item_new</td>
         </tr>
       </table>
 </div><div class="memdoc">
