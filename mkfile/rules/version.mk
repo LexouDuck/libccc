@@ -29,9 +29,9 @@ REGEXP_VERSION  := [0-9]+(\.[0-9]+)+
 REGEXP_METADATA := (.*)$
 
 #! The project's name, as parsed from the VERSION file
-PARSED_NAME     := $(shell echo $(VERSIONINFO) | grep -Eo '$(REGEXP_NAME)')
+PARSED_NAME     := $(shell echo $(VERSIONINFO) | egrep -o '$(REGEXP_NAME)')
 #! The project's version number, as parsed from the VERSION file
-PARSED_VERSION  := $(shell echo $(VERSIONINFO) | grep -Eo '$(REGEXP_VERSION)' )
+PARSED_VERSION  := $(shell echo $(VERSIONINFO) | egrep -o '$(REGEXP_VERSION)' )
 #! The project's commit revision hash code, as parsed from the VERSION file
 PARSED_METADATA := $(shell echo $(VERSIONINFO) | cut -d'-' -f 2-)
 

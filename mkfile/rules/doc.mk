@@ -87,7 +87,6 @@ else
 doxyrest_install = $(call print_failure,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
 endif
 
-
 #! Shell command: sphinx-build
 SPHINX = sphinx-build
 #! Shell command: sphinx-build options

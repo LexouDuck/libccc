@@ -108,6 +108,7 @@ dkms.conf
 
 # Windows
 Thumbs.db
+desktop.ini
 
 # FAT32
 .Trash-[0-9]*
