@@ -6,13 +6,13 @@
 MODES = \
 	debug	\
 	release	\
-# if the MODE variable has no value, give it a default value
-ifeq ($(strip $(MODE)),)
-	MODE=debug
-else ifeq ($(MODE),debug)
-else ifeq ($(MODE),release)
+# if the BUILDMODE variable has no value, give it a default value
+ifeq ($(strip $(BUILDMODE)),)
+	BUILDMODE=debug
+else ifeq ($(BUILDMODE),debug)
+else ifeq ($(BUILDMODE),release)
 else
-$(error Invalid value for MODE, should be `debug` or `release`)
+$(error Invalid value for BUILDMODE, should be `debug` or `release`)
 endif
 
 

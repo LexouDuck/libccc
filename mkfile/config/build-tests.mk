@@ -12,19 +12,19 @@ TEST_CFLAGS = \
 	-Wno-format-extra-args \
 	-fno-inline \
 	-fstrict-aliasing \
-	$(TEST_CFLAGS_MODE) \
+	$(TEST_CFLAGS_BUILDMODE) \
 	$(TEST_CFLAGS_OS) \
 	$(TEST_CFLAGS_EXTRA)
 
-#! C compiler options which are specific to the current build mode, according to $(MODE)
-TEST_CFLAGS_MODE = $(TEST_CFLAGS_MODE_$(MODE))
+#! C compiler options which are specific to the current build mode, according to $(BUILDMODE)
+TEST_CFLAGS_BUILDMODE = $(TEST_CFLAGS_BUILDMODE_$(BUILDMODE))
 #! C compiler flags which are only present in "debug" build mode
-TEST_CFLAGS_MODE_debug = \
+TEST_CFLAGS_BUILDMODE_debug = \
 	-g \
 	-ggdb \
 	-D DEBUG=1
 #! C compiler flags which are only present in "release" build mode
-TEST_CFLAGS_MODE_release = \
+TEST_CFLAGS_BUILDMODE_release = \
 	-O3 \
 	-D RELEASE=1
 
@@ -53,12 +53,12 @@ TEST_CFLAGS_EXTRA ?= \
 
 #! GNU conventional variable: C linker options
 TEST_LDFLAGS = \
-	$(TEST_LDFLAGS_MODE) \
+	$(TEST_LDFLAGS_BUILDMODE) \
 	$(TEST_LDFLAGS_OS) \
 	$(TEST_LDFLAGS_EXTRA)
 
-#! C linker options which are specific to the current build mode, according to $(MODE)
-TEST_LDFLAGS_MODE = $(TEST_LDFLAGS_MODE_$(MODE))
+#! C linker options which are specific to the current build mode, according to $(BUILDMODE)
+TEST_LDFLAGS_BUILDMODE = $(TEST_LDFLAGS_BUILDMODE_$(BUILDMODE))
 TEST_LDFLAGS_debug = 
 TEST_LDFLAGS_release = 
 
@@ -79,14 +79,14 @@ TEST_LDFLAGS_EXTRA ?= \
 #! GNU conventional variable: C libraries to link against
 TEST_LDLIBS = \
 	$(NAME_LIBMODE) \
-	$(TEST_LDLIBS_MODE) \
+	$(TEST_LDLIBS_BUILDMODE) \
 	$(TEST_LDLIBS_OS) \
 	$(TEST_LDLIBS_EXTRA)
 
-#! Linked libraries which are specific to the current build mode, according to $(MODE)
-TEST_LDLIBS_MODE = $(TEST_LDLIBS_MODE_$(MODE))
-TEST_LDLIBS_MODE_debug = 
-TEST_LDLIBS_MODE_release = 
+#! Linked libraries which are specific to the current build mode, according to $(BUILDMODE)
+TEST_LDLIBS_BUILDMODE = $(TEST_LDLIBS_BUILDMODE_$(BUILDMODE))
+TEST_LDLIBS_BUILDMODE_debug = 
+TEST_LDLIBS_BUILDMODE_release = 
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
@@ -110,14 +110,14 @@ TEST_LDLIBS_EXTRA ?= \
 TEST_INCLUDES = \
 	-I$(HDRDIR) \
 	-I$(TESTDIR) \
-	$(TEST_INCLUDES_MODE) \
+	$(TEST_INCLUDES_BUILDMODE) \
 	$(TEST_INCLUDES_OS) \
 	$(TEST_INCLUDES_EXTRA)
 
-#! Header directories which are specific to the current build mode, according to $(MODE)
-TEST_INCLUDES_MODE = $(TEST_INCLUDES_MODE_$(MODE))
-TEST_INCLUDES_MODE_debug = 
-TEST_INCLUDES_MODE_release = 
+#! Header directories which are specific to the current build mode, according to $(BUILDMODE)
+TEST_INCLUDES_BUILDMODE = $(TEST_INCLUDES_BUILDMODE_$(BUILDMODE))
+TEST_INCLUDES_BUILDMODE_debug = 
+TEST_INCLUDES_BUILDMODE_release = 
 
 #! Header directories which are platform-specific, according to $(OSMODE)
 TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_$(OSMODE))

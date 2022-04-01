@@ -20,7 +20,7 @@ endif
 
 .PHONY:\
 lint #! Runs a linter on all source files, giving useful additional warnings
-lint: MODE = debug
+lint: BUILDMODE = debug
 ifeq ($(CC),)
 $(warning C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
 else ifneq ($(findstring gcc,$(CC)),)
