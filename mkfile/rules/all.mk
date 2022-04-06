@@ -5,7 +5,7 @@
 .PHONY:\
 all #! Builds all targets (this is the default rule)
 all: \
-build-$(MODE)
+build-$(BUILDMODE)
 
 
 

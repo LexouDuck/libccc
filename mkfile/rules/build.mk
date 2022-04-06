@@ -29,12 +29,12 @@ copylibs = $(foreach i,$(PACKAGES), \
 
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
-build-debug: MODE = debug
+build-debug: BUILDMODE = debug
 build-debug: $(NAME_static) $(NAME_dynamic)
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
-build-release: MODE = release
+build-release: BUILDMODE = release
 build-release: $(NAME_static) $(NAME_dynamic)
 
 

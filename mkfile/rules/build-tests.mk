@@ -20,12 +20,12 @@ TEST_INCLUDES := $(TEST_INCLUDES) \
 
 .PHONY:\
 build-tests-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
-build-tests-debug: MODE = debug
+build-tests-debug: BUILDMODE = debug
 build-tests-debug: build-debug $(NAME_TEST)
 
 .PHONY:\
 build-tests-release #! Builds the library, in 'release' mode (with optimization flags)
-build-tests-release: MODE = release
+build-tests-release: BUILDMODE = release
 build-tests-release: build-release $(NAME_TEST)
 
 
