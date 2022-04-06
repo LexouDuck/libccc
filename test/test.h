@@ -59,6 +59,7 @@ typedef struct test_suite
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
 }				s_test_suite;
+//! The total amount of test suites for libccc
 #define TEST_SUITE_AMOUNT	31
 
 //! This struct stores the total amount of tests failed/passed
