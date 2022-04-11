@@ -396,7 +396,7 @@ class CppLexer(CFamilyLexer):
 
 class IdlLexer(CppLexer):
     """
-    For Intefce Definition Language source code.
+    For Interface Definition Language source code.
     """
     name = 'IDL'
     aliases = ['idl']

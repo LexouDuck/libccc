@@ -542,7 +542,6 @@ HEADER_CPP
 **	A newly allocated string, constructed from the given `format` string and arguments
 */
 //!@{
-
 //! @isostd{BSD,https://linux.die.net/man/3/asprintf}
 _FORMAT(printf, 1, 2)
 _MALLOC()
@@ -551,7 +550,6 @@ t_char*					String_Format(t_char const* format, ...);
 #define c_strfmt		String_Format
 #define c_strformat		String_Format
 #define String_Build	String_Format
-
 //! @isostd{BSD,https://linux.die.net/man/3/vasprintf}
 _MALLOC()
 t_char*					String_Format_VA(t_char const* format, va_list args);
@@ -559,7 +557,6 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 #define c_strfmt_va		String_Format_VA
 #define c_strformat_va	String_Format_VA
 #define String_Build_VA	String_Format_VA
-
 //!@}
 
 
@@ -578,7 +575,6 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 **	You may assume that the returned size will always be less than or equal to `max`.
 */
 //!@{
-
 //!	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
@@ -586,14 +582,12 @@ t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...)
 #define c_strnfmt			String_Format_N
 #define c_strnformat		String_Format_N
 #define String_Build_N		String_Format_N
-
 //!	@isostd{C89,https://en.cppreference.com/w/c/io/vsnprintf}
 t_size						String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args);
 #define c_vsnprintf			String_Format_N_VA
 #define c_strnfmt_va		String_Format_N_VA
 #define c_strnformat_va		String_Format_N_VA
 #define String_Build_N_VA	String_Format_N_VA
-
 //!@}
 
 
