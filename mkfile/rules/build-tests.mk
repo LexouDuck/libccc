@@ -6,7 +6,7 @@
 TEST_OBJS := $(TEST_SRCS:%.c=$(OBJDIR)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
-TEST_DEPS := $(TEST_OBJS:.o=.d)
+TEST_DEPS := $(TEST_OBJS:%.o=%.d)
 
 # here we add dependency library linking flags for each package
 TEST_LDLIBS := $(TEST_LDLIBS) \

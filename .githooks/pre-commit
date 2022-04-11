@@ -20,10 +20,13 @@ CHANGED="` git diff --cached --name-only `"
 printf "Files changed:$IO_CYAN\n$CHANGED\n$IO_RESET"
 
 #! List of important files (which, when changed, should update the version number)
-SOURCES="`{ make show-lists ; make help-makefiles ; } | cut -d' ' -f 1 `"
+SOURCES=""
+SOURCES="$SOURCES ` make help-makefiles | cut -d' ' -f 1 `"
+SOURCES="$SOURCES ` make show-lists `"
+
+
 
 match=false
-
 for i in $CHANGED
 do
 	if printf "$SOURCES" | grep -q "./$i"

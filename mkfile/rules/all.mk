@@ -21,5 +21,6 @@ all \
 setup #! Performs initial setup steps for the project
 setup: \
 init \
+version \
 prereq \
 packages \

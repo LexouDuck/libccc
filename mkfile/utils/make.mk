@@ -2,12 +2,28 @@
 
 
 
+# show warnings for undefined variables by default
+MAKEFLAGS += --warn-undefined-variables
+
+# disable any builtin make rules (better to be explicit, fewer surprises)
+MAKEFLAGS += --no-builtin-rules
+
 # disable any builtin make rules (better to be explicit, fewer surprises)
 .SUFFIXES:
 
+# (uncomment to activate) set every `make` rule to execute in a single shell, instead of the default behavior of using one shell per recipe line
+#.ONESHELL:
 
+# (uncomment to activate) set the default shell that `make` will use to be `bash` rather than the default `sh`
+#SHELL := bash
 
-# enable secondary variable expansion for make target prerequisite lists (uncomment to activate)
+# set rigorous shell flags to fail properly when a command errors
+.SHELLFLAGS := -e -u -c
+
+# have `make` automatically delete the target file when a recipe failed partway through
+.DELETE_ON_ERROR:
+
+# (uncomment to activate) enable secondary variable expansion for make target prerequisite lists
 #.SECONDEXPANSION:
 
 
