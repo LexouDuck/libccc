@@ -62,9 +62,12 @@ packages_getversion = \
 #	@param 2	The new version number to set for the given package
 packages_setversion = \
 	cat $(PACKAGESFILE) \
-	| awk '\
-	{ \
-		if (/^$(1)/) { print "$(1)@$(2)-?"; } \
+	| awk \
+	-v package="$(1)" \
+	-v version="$(2)" \
+	'{ \
+		if ($$0 ~ "^" package) \
+		{ print package "@" version "-?"; } \
 		else { print; } \
 	}'  > packages.temp \
 	&& mv packages.temp $(PACKAGESFILE)

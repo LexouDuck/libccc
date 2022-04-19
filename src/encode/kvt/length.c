@@ -14,6 +14,7 @@ t_sint	KVT_GetArrayLength(s_kvt const* array)
 
 	if (array == NULL)
 		return (0);
+	HANDLE_ERROR(WRONGTYPE, !(KVT_IsArray(array) || KVT_IsObject(array)), return (0);)
 	child = array->value.child;
 	while (child != NULL)
 	{

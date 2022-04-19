@@ -6,6 +6,11 @@
 init #! Performs initial project setup (should be executed once, after cloning the repo)
 init:
 	@$(call print_message,"Setting up project...")
+	@mkdir -p $(LIBDIR)
+	@mkdir -p $(DOCDIR)
+	@mkdir -p $(TESTDIR)
+	@mkdir -p $(GITHOOKSDIR)
+	@mkdir -p $(LISTSDIR)
 	@git submodule update --init --recursive
 	@git config core.hooksPath $(GITHOOKSDIR)
 
