@@ -3,7 +3,7 @@
 
 
 #! Derive list of compiled object files (.o) from list of srcs
-OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.o)
+OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := $(OBJS:%.o=%.d)
@@ -40,7 +40,7 @@ build-release: $(NAME_static) $(NAME_dynamic)
 
 
 #! Compiles object files from source files
-$(OBJDIR)%.o : $(SRCDIR)%.c
+$(OBJOUT)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<

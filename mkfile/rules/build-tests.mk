@@ -3,7 +3,7 @@
 
 
 #! Derive list of compiled object files (.o) from list of srcs
-TEST_OBJS := $(TEST_SRCS:%.c=$(OBJDIR)%.o)
+TEST_OBJS := $(TEST_SRCS:%.c=$(OBJOUT)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 TEST_DEPS := $(TEST_OBJS:%.o=%.d)
@@ -31,7 +31,7 @@ build-tests-release: build-release $(NAME_TEST)
 
 
 #! Compiles object files from source files
-$(OBJDIR)$(TESTDIR)%.o : $(TESTDIR)%.c
+$(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) -MMD $(TEST_INCLUDES) -c $<
