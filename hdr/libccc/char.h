@@ -55,8 +55,8 @@ HEADER_CPP
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte}
 */
-typedef t_ascii	t_char;
-TYPEDEF_ALIAS(	t_char, CHAR, PRIMITIVE)
+typedef LIBCONFIG_CHAR_TYPE	t_char;
+TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 
 
 
