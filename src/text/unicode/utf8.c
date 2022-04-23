@@ -10,58 +10,51 @@
 #define MASK	((1 << 6) - 1)
 
 
-t_size		UTF8_Length(const t_utf8* str, size_t n)
+
+t_sint		UTF8_Length(t_utf8 const* str, size_t n)
 {
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	t_u8	c;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
-
-	t_u8 inverse = ~str[0];
-	if (inverse & (1 << 7))      // If `str[0]` is '0xxxxxxx'
+	c = str[0];
+	if (c & (1 << 7)) // multi-byte character
 	{
-		if (str[0] == '\0')
-			return (0);
-		return (1);
+		if (c & (1 << 6)) // 2-byte character
+		{
+			if (c & (1 << 5)) // 3-byte character
+			{
+				if (c & (1 << 4)) // 4-byte character
+				{
+					HANDLE_ERROR_SF(ILLEGALBYTES,
+						(c & (1 << 3)), return (ERROR);,
+						"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+					return (4);
+				}
+				else
+				{
+					return (3);
+				}
+			}
+			else
+			{
+				return (2);
+			}
+		}
+		else
+		{
+			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+		}
 	}
-	else if (inverse & (1 << 6)) // If `str[0]` is '10xxxxxx'
+	else if (c == '\0')
 	{
-		HANDLE_ERROR_SF(INVALIDARGS, (TRUE), return (0);, "`str` starts in the middle of a utf8 multi-byte sequence");
+		return (0);
 	}
-	else if (inverse & (1 << 5)) // If `str[0]` is '110xxxxx'
-	{
-		if (n < 2)
-			return (0);
-
-		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
-		if ((str[1] >> 6) != 2)
-			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
-		
-		return (2);
-	}
-	else if (inverse & (1 << 4)) // If `str[0]` is '1110xxxx'
-	{
-		if (n < 3)
-			return (0);
-
-		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
-		if ((str[1] >> 6) != 2 || (str[2] >> 6) != 2)
-			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
-		
-		return (3);
-	}
-	else if (inverse & (1 << 3)) // If `str[0]` is '11110xxx'
-	{
-		if (n < 4)
-			return (0);
-
-		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
-		if ((str[1] >> 6) != 2 || (str[2] >> 6) != 2 || (str[3] >> 6) != 2)
-			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
-		
-		return (4);
-	}
-	else
-		HANDLE_ERROR_SF(ILLEGALBYTES, (TRUE), return (0);, "`str` does not point to the start of a valid utf8 sequence")
+	else return (1);
 }
+
+
 
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
@@ -123,7 +116,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 				{
 					HANDLE_ERROR_SF(ILLEGALBYTES,
 						(c & (1 << 3)), return (ERROR);,
-						"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
+						"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -151,7 +144,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 		else
 		{
 			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-				"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
+				"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
 		}
 	}
 	else return ((t_utf32)c);

@@ -29,7 +29,9 @@
 ./test/libccc/stringarray.c
 ./test/libccc/sys/io.c
 ./test/libccc/sys/time.c
+./test/libccc/text/ascii.c
 ./test/libccc/text/regex.c
+./test/libccc/text/unicode.c
 ./test/main.c
 ./test/test.c
 ./test/test_catch.c

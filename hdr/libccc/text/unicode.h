@@ -419,7 +419,7 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 **	Returns 0 if `str` is `NULL`, if `str[0]` is `\0` or if the character is encoded over more bytes than the limit `n` of bytes we can read
 **	Returns 0 and print an error if n is big enough to read the character but `str` is not a valid multibyte sequence
 */
-t_size						UTF8_Length(const t_utf8* str, size_t n);
+t_sint						UTF8_Length(const t_utf8* str, size_t n);
 #define c_mblen				UTF8_Length
 #define c_utf8len			UTF8_Length
 

@@ -442,10 +442,17 @@ void	print_test_strlen(char const* test_name, int can_segfault,
 void	test_strlen(void)
 {
 //	| TEST FUNCTION  | TEST NAME          | CAN SEGV      | TEST ARGS
+	print_test_strlen("strlen            ", FALSE,			"Hello World!");
 	print_test_strlen("strlen            ", FALSE,			test1);
 	print_test_strlen("strlen            ", FALSE,			test2);
 	print_test_strlen("strlen            ", FALSE,			test3);
 	print_test_strlen("strlen            ", FALSE,			"a");
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_cc_c0);
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_cc_c1);
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_utf8_fr);
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_utf8_ru);
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_utf8_jp);
+	print_test_strlen("strlen (unicode)  ", FALSE,			teststr_utf8_ho);
 	print_test_strlen("strlen (empty str)", FALSE,			"");
 	print_test_strlen("strlen (null str) ", SIGNAL_SIGSEGV,	NULL);
 }
