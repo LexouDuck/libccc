@@ -61,7 +61,7 @@ LISTSDIR = $(MKFILES_DIR)lists/
 # generated folders
 
 #! The directory for object assembly files (stores `.o` files)
-OBJDIR = ./obj/
+OBJDIR = ./obj/$(OSMODE)/
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
 #! The directory for distribution archives (stores `.zip` distributable builds)
