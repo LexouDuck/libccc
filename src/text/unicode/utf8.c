@@ -10,6 +10,58 @@
 #define MASK	((1 << 6) - 1)
 
 
+t_size		UTF8_Length(const t_utf8* str, size_t n)
+{
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
+
+	t_u8 inverse = ~str[0];
+	if (inverse & (1 << 7))      // If `str[0]` is '0xxxxxxx'
+	{
+		if (str[0] == '\0')
+			return (0);
+		return (1);
+	}
+	else if (inverse & (1 << 6)) // If `str[0]` is '10xxxxxx'
+	{
+		HANDLE_ERROR_SF(INVALIDARGS, (TRUE), return (0);, "`str` starts in the middle of a utf8 multi-byte sequence");
+	}
+	else if (inverse & (1 << 5)) // If `str[0]` is '110xxxxx'
+	{
+		if (n < 2)
+			return (0);
+
+		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
+		if ((str[1] >> 6) != 2)
+			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
+		
+		return (2);
+	}
+	else if (inverse & (1 << 4)) // If `str[0]` is '1110xxxx'
+	{
+		if (n < 3)
+			return (0);
+
+		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
+		if ((str[1] >> 6) != 2 || (str[2] >> 6) != 2)
+			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
+		
+		return (3);
+	}
+	else if (inverse & (1 << 3)) // If `str[0]` is '11110xxx'
+	{
+		if (n < 4)
+			return (0);
+
+		// ensures that all following bytes of the multi-byte character start are '10xxxxxx'
+		if ((str[1] >> 6) != 2 || (str[2] >> 6) != 2 || (str[3] >> 6) != 2)
+			HANDLE_ERROR(ILLEGALBYTES, (TRUE), return (0);)
+		
+		return (4);
+	}
+	else
+		HANDLE_ERROR_SF(ILLEGALBYTES, (TRUE), return (0);, "`str` does not point to the start of a valid utf8 sequence")
+}
 
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
