@@ -539,14 +539,14 @@ t_size						String_Count_String(t_char const* str, t_char const* query);
 
 //!@doc Finds the first occurence of the given char `c` inside the given string `str`
 /*!
-**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr}
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr} but with support for unicode if t_char is of type t_utf8
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched.
 */
 //!@{
-t_char*							String_Find_Char(t_char const* str, t_char c);
+t_char*							String_Find_Char(t_char const* str, t_utf32 c);
 #define c_strchr				String_Find_Char
 //!@}
 

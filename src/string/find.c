@@ -1,5 +1,6 @@
 
 #include "libccc/string.h"
+#include "libccc/char.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #include <string.h>
@@ -11,22 +12,37 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Find_Char(t_char const* str, t_char c)
+t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 { return (strchr(str, c)); }
 #else
-t_char*	String_Find_Char(t_char const* str, t_char c)
+t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 {
-	t_size	i;
-
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	i = 0;
-	while (TRUE)
+
+	if (c & 0xFFFFFF80) // Searching for a multi-byte utf8 glyph
 	{
-		if (str[i] == c)
-			return ((t_char*)str + i);
-		if (str[i] == '\0')
-			break;
-		++i;
+		// TODO: if t_char is t_ascii then return NULL 
+
+		t_size i = 0;
+		while (str[i] != '\0')
+		{
+			t_utf32 current_char = UTF32_FromUTF8(str + i);
+
+			if (current_char == c)
+				return ((t_char *)str + i);
+
+			i += UTF8_Length(str, SIZE_MAX);
+		}
+	}
+	else // Searching for an ascii character
+	{
+		t_ascii c_as_ascii = (c & 0x8F);
+
+		for (t_size i = 0; str[i] != '\0'; ++i)
+		{
+			if (str[i] == c_as_ascii)
+				return ((t_char*)str + i);
+		}
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
 		"no char '%c' found in string \"%s\"", c, str)
