@@ -36,13 +36,16 @@ t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 	}
 	else // Searching for an ascii character
 	{
-		t_ascii c_as_ascii = (c & 0x8F);
+		t_ascii c_as_ascii = (c & 0x7F);
+		t_size i;
 
-		for (t_size i = 0; str[i] != '\0'; ++i)
+		for (i = 0; str[i] != '\0'; ++i)
 		{
 			if (str[i] == c_as_ascii)
 				return ((t_char*)str + i);
 		}
+		if (c_as_ascii == '\0')
+			return ((t_char*)str + i);
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
 		"no char '%c' found in string \"%s\"", c, str)
