@@ -21,12 +21,16 @@ TEST_INCLUDES := $(TEST_INCLUDES) \
 .PHONY:\
 build-tests-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-tests-debug: BUILDMODE = debug
-build-tests-debug: build-debug $(NAME_TEST)
+build-tests-debug: \
+build-debug \
+$(NAME_TEST) \
 
 .PHONY:\
 build-tests-release #! Builds the library, in 'release' mode (with optimization flags)
 build-tests-release: BUILDMODE = release
-build-tests-release: build-release $(NAME_TEST)
+build-tests-release: \
+build-release \
+$(NAME_TEST) \
 
 
 
@@ -40,7 +44,7 @@ $(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 
 
 #! Builds the testing/CI program
-$(NAME_TEST): $(NAME_static) $(NAME_dynamic) $(TEST_OBJS)
+$(NAME_TEST): $(BINOUT)static/$(NAME_static) $(BINOUT)dynamic/$(NAME_dynamic) $(TEST_OBJS)
 	@printf "Compiling testing program: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
