@@ -62,10 +62,10 @@ LISTSDIR = $(MKFILES_DIR)lists/
 
 #! The directory for object assembly files (stores `.o` files)
 OBJDIR = ./obj/
-OBJOUT = $(OBJDIR)$(BUILDMODE)/$(OSMODE)/
+OBJOUT = $(OBJDIR)$(OSMODE)/
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
-BINOUT = $(BINDIR)$(BUILDMODE)/$(OSMODE)/
+BINOUT = $(BINDIR)$(OSMODE)/
 #! The directory for distribution archives (stores `.zip` distributable builds)
 DISTDIR = ./dist/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
