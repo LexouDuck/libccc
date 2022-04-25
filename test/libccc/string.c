@@ -711,7 +711,7 @@ void	test_strcount_char(void)
 	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_fr, L'œ');
 	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_ru, L'щ');
 	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_jp, L'愛');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_ho, L'𐐔');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_ho, 0x10414);//L'𐐔');
 	print_test_strcount_char("strcount_char (empty str)",	FALSE,			0,    "",    'a');
 	print_test_strcount_char("strcount_char ('\\0 char')",	FALSE,			1,    "sweg", '\0');
 	print_test_strcount_char("strcount_char (null str) ",SIGNAL_SIGSEGV,	0,    NULL,  'a');
@@ -793,7 +793,7 @@ void	test_strchr(void)
 	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
 	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
 	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_ho + 0x17, teststr_utf8_ho, L'𐐔');
+	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
 	print_test_strchr("strchr (c = '\\0')  ",	FALSE,  NULL,                   test3, '\0');
 	print_test_strchr("strchr (null ptr)  ", SIGNAL_SIGSEGV, NULL,              NULL,  'm');
 }
@@ -863,7 +863,7 @@ void	test_strrchr(void)
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_ho + 0x17, teststr_utf8_ho, L'𐐔');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
 	print_test_strrchr("strrchr (c = '\\0')  ", FALSE,          NULL,                   test3, '\0');
 	print_test_strrchr("strrchr (null ptr)  ",  SIGNAL_SIGSEGV, NULL,                   NULL,  'm');
 }
@@ -942,7 +942,7 @@ void	test_strnchr(void)
 	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ',	128);
 	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ',	128);
 	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_ho + 0x17, teststr_utf8_ho, L'𐐔',	128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_ho + 0x17, teststr_utf8_ho,0x10414,	128);
 	print_test_strnchr("strnchr (c = '\\0')  ",	FALSE,			NULL,          test3, '\0', 16);
 	print_test_strnchr("strnchr (n = 0)     ",	FALSE,			NULL,          test1, 'w', 0);
 	print_test_strnchr("strnchr (n = len)   ",	FALSE,			NULL,          test1, '_', test1_len);
