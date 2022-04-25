@@ -22,29 +22,25 @@ t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 	if (c & 0xFFFFFF80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_char is t_ascii then return NULL 
-
 		t_size i = 0;
 		while (str[i] != '\0')
 		{
 			t_utf32 current_char = UTF32_FromUTF8(str + i);
-
 			if (current_char == c)
 				return ((t_char *)str + i);
-
-			i += UTF8_Length(str, SIZE_MAX);
+			i += UTF8_Length(str);
 		}
 	}
 	else // Searching for an ascii character
 	{
-		t_ascii c_as_ascii = (c & 0x7F);
 		t_size i;
-
+		c = (c & 0x7F);
 		for (i = 0; str[i] != '\0'; ++i)
 		{
-			if (str[i] == c_as_ascii)
+			if (str[i] == (t_char)c)
 				return ((t_char*)str + i);
 		}
-		if (c_as_ascii == '\0')
+		if (c == '\0')
 			return ((t_char*)str + i);
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
