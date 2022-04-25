@@ -3,7 +3,7 @@
 
 
 #! Derive list of compiled object files (.o) from list of srcs
-TEST_OBJS := $(TEST_SRCS:%.c=$(OBJDIR)%.o)
+TEST_OBJS := $(TEST_SRCS:%.c=$(OBJOUT)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 TEST_DEPS := $(TEST_OBJS:%.o=%.d)
@@ -21,17 +21,21 @@ TEST_INCLUDES := $(TEST_INCLUDES) \
 .PHONY:\
 build-tests-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-tests-debug: BUILDMODE = debug
-build-tests-debug: build-debug $(NAME_TEST)
+build-tests-debug: \
+build-debug \
+$(NAME_TEST) \
 
 .PHONY:\
 build-tests-release #! Builds the library, in 'release' mode (with optimization flags)
 build-tests-release: BUILDMODE = release
-build-tests-release: build-release $(NAME_TEST)
+build-tests-release: \
+build-release \
+$(NAME_TEST) \
 
 
 
 #! Compiles object files from source files
-$(OBJDIR)$(TESTDIR)%.o : $(TESTDIR)%.c
+$(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) -MMD $(TEST_INCLUDES) -c $<
@@ -40,7 +44,7 @@ $(OBJDIR)$(TESTDIR)%.o : $(TESTDIR)%.c
 
 
 #! Builds the testing/CI program
-$(NAME_TEST): $(NAME_static) $(NAME_dynamic) $(TEST_OBJS)
+$(NAME_TEST): $(BINOUT)static/$(NAME_static) $(BINOUT)dynamic/$(NAME_dynamic) $(TEST_OBJS)
 	@printf "Compiling testing program: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
