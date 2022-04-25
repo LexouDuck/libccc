@@ -967,30 +967,30 @@ void	print_test_strnstr(char const* test_name, int can_segfault,
 #ifdef __APPLE__
 	TEST_PERFORM_LIBC(	strnstr, str, query, n)
 #else
-	TEST_PERFORM(	strnstr, str, query, n)
+	TEST_PERFORM(		strnstr, str, query, n)
 #endif
 	TEST_PRINT(ptr,	strnstr, "str=%p/\"%s\", query=\"%s\", n=%zu", (void*)str, str, query, n)
 }
 void	test_strnstr(void)
 {
-//	| TEST FUNCTION  | TEST NAME              | CAN SEGV       | EXPECTING | TEST ARGS
-	print_test_strnstr("strnstr              ",	FALSE,			test1 + 8,  test1, "mou ", 16);
-	print_test_strnstr("strnstr              ",	FALSE,			NULL,       test1, "??",   test1_len);
-	print_test_strnstr("strnstr              ",	FALSE,			test2 + 4,  test2, "??",   test2_len);
-	print_test_strnstr("strnstr              ",	FALSE,			NULL,       test3, "???",  test3_len);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_cc_c0 + 0x0,    teststr_cc_c0,   "␡",	32);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_cc_c1 + 0x39,   teststr_cc_c1,   "",	32);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_utf8_fr + 0x3B, teststr_utf8_fr, "œ",	32);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_utf8_ru + 0x47, teststr_utf8_ru, "щ",	32);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_utf8_jp + 0x21, teststr_utf8_jp, "愛",	32);
-	print_test_strnstr("strnstr (unicode)    ", FALSE,          teststr_utf8_ho + 0x17, teststr_utf8_ho, "𐐔",	32);
-	print_test_strnstr("strnstr (empty query)",	FALSE,			test1,      test1, "\0",   16);
-	print_test_strnstr("strnstr (n = 0)      ",	FALSE,			NULL,       test1, "mou ", 0);
-	print_test_strnstr("strnstr (n = len)    ",	FALSE,			NULL,       test1, "_",    test1_len);
-	print_test_strnstr("strnstr (n > len)    ",	FALSE,			NULL,       test1, "_",    test1_len + 32);
-	print_test_strnstr("strnstr (null str)   ",	SIGNAL_SIGSEGV,	NULL,       NULL,  "mou ", 16);
-	print_test_strnstr("strnstr (null query) ",	SIGNAL_SIGSEGV,	NULL,       test1, NULL,   16);
-	print_test_strnstr("strnstr (both null)  ",	SIGNAL_SIGSEGV,	NULL,       NULL,  NULL,   16);
+//	| TEST FUNCTION  | TEST NAME              | CAN SEGV       | EXPECTING    | TEST ARGS
+	print_test_strnstr("strnstr              ",	FALSE,          test1 + 8,     test1,           "mou ", 16);
+	print_test_strnstr("strnstr              ",	FALSE,          NULL,          test1,           "??",   test1_len);
+	print_test_strnstr("strnstr              ",	FALSE,          test2 + 4,     test2,           "??",   test2_len);
+	print_test_strnstr("strnstr              ",	FALSE,          NULL,          test3,           "???",  test3_len);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_cc_c0 + 0x0,    teststr_cc_c0,   "␡",	128);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_cc_c1 + 0x39,   teststr_cc_c1,   "",	128);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_utf8_fr + 0x3B, teststr_utf8_fr, "œ",	128);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_utf8_ru + 0x47, teststr_utf8_ru, "щ",	128);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_utf8_jp + 0x21, teststr_utf8_jp, "愛",	128);
+	print_test_strnstr("strnstr (unicode)    ", FALSE, teststr_utf8_ho + 0x17, teststr_utf8_ho, "𐐔",	128);
+	print_test_strnstr("strnstr (empty query)",	FALSE,          test1,         test1,           "\0",   16);
+	print_test_strnstr("strnstr (n = 0)      ",	FALSE,          NULL,          test1,           "mou ", 0);
+	print_test_strnstr("strnstr (n = len)    ",	FALSE,          NULL,          test1,           "_",    test1_len);
+	print_test_strnstr("strnstr (n > len)    ",	FALSE,          NULL,          test1,           "_",    test1_len + 32);
+	print_test_strnstr("strnstr (null str)   ",	SIGNAL_SIGSEGV, NULL,          NULL,            "mou ", 16);
+	print_test_strnstr("strnstr (null query) ",	SIGNAL_SIGSEGV, NULL,          test1,           NULL,   16);
+	print_test_strnstr("strnstr (both null)  ",	SIGNAL_SIGSEGV, NULL,          NULL,            NULL,   16);
 }
 #endif
 
