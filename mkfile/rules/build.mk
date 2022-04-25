@@ -50,6 +50,7 @@ $(BINOUT)dynamic/$(NAME_dynamic) \
 
 #! generated the list of object files
 $(OBJSFILE): $(SRCSFILE)
+	@mkdir -p $(@D)
 	@echo "" > $(OBJSFILE)
 	@$(foreach i,$(OBJS), echo "$(i)" >> $(OBJSFILE) ;)
 
@@ -66,7 +67,7 @@ $(OBJOUT)%.o : $(SRCDIR)%.c
 
 #! Builds the static-link library '.a' binary file for the current target platform
 $(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
-	@mkdir -p $(BINOUT)static/
+	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
@@ -77,14 +78,13 @@ $(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 
 #! Builds the dynamic-link library file(s) for the current target platform
 $(BINOUT)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
-	@mkdir -p $(BINOUT)dynamic/
+	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
-	@mkdir -p          $(BINOUT)dynamic/
 	@cp -p $(NAME).def $(BINOUT)dynamic/
 	@cp -p $(NAME).lib $(BINOUT)dynamic/
 else ifeq ($(OSMODE),macos)
