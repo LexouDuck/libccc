@@ -2,6 +2,8 @@
 
 
 
+objs = $(call pass_as_file,$(OBJS),$(LISTSDIR)objs.txt)
+
 #! Derive list of compiled object files (.o) from list of srcs
 OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
 
@@ -56,7 +58,7 @@ $(OBJOUT)%.o : $(SRCDIR)%.c
 $(BINOUT)static/$(NAME_static): $(OBJS)
 	@mkdir -p $(BINOUT)static/
 	@printf "Compiling static library: $@ -> "
-	@$(AR) $(ARFLAGS) $@ $(OBJS)
+	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call copylibs)
@@ -68,7 +70,7 @@ $(BINOUT)dynamic/$(NAME_dynamic): $(OBJS)
 	@mkdir -p $(BINOUT)dynamic/
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
@@ -76,13 +78,13 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@cp -p $(NAME).def $(BINOUT)dynamic/
 	@cp -p $(NAME).lib $(BINOUT)dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$@'
 else ifeq ($(OSMODE),linux)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
 else ifeq ($(OSMODE),emscripten)
-	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-s MODULARIZE \
 		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
 		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]

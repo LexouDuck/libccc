@@ -17,3 +17,11 @@ run = node $(1)
 else
 run = ./$(1)
 endif
+
+
+
+#! Makefile function used when passing long lists of arguments, to pass them via a file instead
+#	@param 1	The long command-arguments string to pass via file
+#	@param 2	The path of the file to create, to store this long command-arguments string
+pass_as_file = \
+	` echo "$(1)" > "$(2)" && cat "$(2)" `
