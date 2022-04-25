@@ -11,12 +11,12 @@
 
 
 
-t_sint		UTF8_Length(t_utf8 const* str, size_t n)
+t_sint		UTF8_Length(t_utf8 const* str)//, size_t n)
 {
 	t_u8	c;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
-	HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
+	//HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
 	c = str[0];
 	if (c & (1 << 7)) // multi-byte character
 	{

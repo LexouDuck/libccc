@@ -1,4 +1,6 @@
 
+#include <locale.h>
+
 #include "libccc.h"
 #include "libccc/text/unicode.h"
 
@@ -31,39 +33,68 @@ void	test_utf(void)
 void test_mblen(void)	{}
 #warning "mblen() test suite function defined, but the function isn't defined."
 #else
+
+int	utf8len(char const* str)
+{
+	t_u8 c = str[0];
+	if (c & (1 << 7)) // multi-byte character
+	{
+		if (c & (1 << 6)) // 2-byte character
+		{
+			if (c & (1 << 5)) // 3-byte character
+			{
+				if (c & (1 << 4)) // 4-byte character
+				{
+					if (c & (1 << 3))
+					{
+						return (-1);
+					}
+					else return (4);
+				}
+				else return (3);
+			}
+			else return (2);
+		}
+		else return (-1);
+	}
+	else if (c == '\0')
+	{
+		return (0);
+	}
+	else return (1);
+}
+
 void	print_test_mblen(char const* test_name, int can_segfault,
-		t_char const* str,
-		t_size n)
+		t_char const* str)
 {
 	TEST_INIT(sint)
-	t_size length = strlen(str);
 	t_char const* c;
-	if (length > n)
-		length = n;
+	t_size length = strlen(str);
 	for (t_size i = 0; i < length; ++i)
 	{
 		c = (str + i);
 		mblen(NULL, 0); // reset the `mbtowcs()` conversion state
-		TEST_PERFORM_LIBC(		mblen, c, n)
-		TEST_PRINT_LIBC(sint,	mblen, "c=\"%.4s\", n=%zu", c, n)
+		TEST_PERFORM_LIBC(		utf8len, c)
+		TEST_PRINT_LIBC(sint,	utf8len, "c=\"%.4s\"", c)
 	}
 }
 void	test_mblen(void)
 {
+	setlocale(LC_ALL, "en_US.utf8");
 //	| TEST FUNCTION  | TEST NAME          | CAN SEGV      | TEST ARGS
-	print_test_mblen("mblen            ", FALSE,			"Hello World!",  (t_size)-1);
-	print_test_mblen("mblen            ", FALSE,			test1,           (t_size)-1);
-	print_test_mblen("mblen            ", FALSE,			test2,           (t_size)-1);
-	print_test_mblen("mblen            ", FALSE,			test3,           (t_size)-1);
-	print_test_mblen("mblen            ", FALSE,			"a",             (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_cc_c0,   (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_cc_c1,   (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_fr, (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_ru, (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_jp, (t_size)-1);
-	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_ho, (t_size)-1);
-	print_test_mblen("mblen (empty str)", FALSE,			"",              (t_size)-1);
-	print_test_mblen("mblen (null str) ", SIGNAL_SIGSEGV,	NULL,            (t_size)-1);
+	print_test_mblen("mblen            ", FALSE,			"Hello World!"  );
+	print_test_mblen("mblen            ", FALSE,			test1           );
+	print_test_mblen("mblen            ", FALSE,			test2           );
+	print_test_mblen("mblen            ", FALSE,			test3           );
+	print_test_mblen("mblen            ", FALSE,			"a"             );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_cc_c0   );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_cc_c1   );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_fr );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_ru );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_jp );
+	print_test_mblen("mblen (unicode)  ", FALSE,			teststr_utf8_ho );
+	print_test_mblen("mblen (empty str)", FALSE,			""              );
+	print_test_mblen("mblen (null str) ", SIGNAL_SIGSEGV,	NULL            );
 }
 #endif
 
