@@ -52,7 +52,7 @@ $(BINOUT)dynamic/$(NAME_dynamic) \
 $(OBJSFILE): $(SRCSFILE)
 	@mkdir -p $(@D)
 	@printf "" > $(OBJSFILE)
-	@$(foreach i,$(OBJS), printf "$(i)\n" >> $(OBJSFILE) ;)
+	$(foreach i,$(OBJS),	@printf "$(i)\n" >> $(OBJSFILE) $(C_NL))
 
 
 
