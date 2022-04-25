@@ -17,39 +17,44 @@ t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 #else
 t_char*	String_Find_Char(t_char const* str, t_utf32 c)
 {
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	t_size	i = 0;
 
-	if (c & 0xFFFFFF80) // Searching for a multi-byte utf8 glyph
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		// TODO: if t_char is t_ascii then return NULL 
-		t_size i = 0;
-		while (str[i] != '\0')
+		// TODO: if t_char is t_ascii then return NULL
+		t_sint size = 0;
+		t_utf32 current = 0;
+		while (str[i])
 		{
-			t_utf32 current_char = UTF32_FromUTF8(str + i);
-			if (current_char == c)
+			current = UTF32_FromUTF8(str + i);
+			if (current == c)
 				return ((t_char *)str + i);
-			i += UTF8_Length(str);
+			size = UTF8_Length(str + i);
+			if (size <= 0)
+				break;
+			i += size;
 		}
 	}
 	else // Searching for an ascii character
 	{
-		t_size i;
-		c = (c & 0x7F);
-		for (i = 0; str[i] != '\0'; ++i)
+		c &= 0x7F;
+		while (str[i])
 		{
 			if (str[i] == (t_char)c)
 				return ((t_char*)str + i);
+			i += 1;
 		}
-		if (c == '\0')
+		if (str[i] == '\0' && c == '\0')
 			return ((t_char*)str + i);
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		"no char '%c' found in string \"%s\"", c, str)
+		"no char '%c'/0x%X found in string \"%s\"", c, c, str)
 }
 #endif
 
 inline
-t_sintmax	String_IndexOf_Char(t_char const* str, t_char c)
+t_sintmax	String_IndexOf_Char(t_char const* str, t_utf32 c)
 {
 	t_char* result = String_Find_Char(str, c);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)

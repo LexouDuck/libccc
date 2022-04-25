@@ -501,7 +501,7 @@ t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 **	The amount of occurences of t_char `c` in the given string `str`.
 */
 //!@{
-t_size						String_Count_Char(t_char const* str, t_char c);
+t_size						String_Count_Char(t_char const* str, t_utf32 c);
 #define c_strcount_char		String_Count_Char
 //!@}
 
@@ -588,7 +588,7 @@ t_char*							String_Find_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_char*							String_Find_R_Char(t_char const* str, t_char c);
+t_char*							String_Find_R_Char(t_char const* str, t_utf32 c);
 #define c_strrchr				String_Find_R_Char
 #define String_FindLast_Char	String_Find_R_Char
 //!@}
@@ -633,7 +633,7 @@ t_char*							String_Find_R_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_char*							String_Find_N_Char(t_char const* str, t_char c, t_size n);
+t_char*							String_Find_N_Char(t_char const* str, t_utf32 c, t_size n);
 #define c_strnchr				String_Find_N_Char
 //!@}
 
@@ -675,7 +675,7 @@ t_char*							String_Find_N_String(t_char const* str, t_char const* query, t_siz
 **	or -1 if `c` does not exist in `str`.
 */
 //!@{
-t_sintmax							String_IndexOf_Char(t_char const* str, t_char c);
+t_sintmax							String_IndexOf_Char(t_char const* str, t_utf32 c);
 #define c_strichr					String_IndexOf_Char
 //!@}
 
@@ -717,7 +717,7 @@ t_sintmax							String_IndexOf_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_sintmax							String_IndexOf_R_Char(t_char const* str, t_char c);
+t_sintmax							String_IndexOf_R_Char(t_char const* str, t_utf32 c);
 #define c_strirchr					String_IndexOf_R_Char
 #define String_LastIndexOf_Char		String_IndexOf_R_Char
 //!@}
@@ -762,7 +762,7 @@ t_sintmax							String_IndexOf_R_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
+t_sintmax							String_IndexOf_N_Char(t_char const* str, t_utf32 c, t_size n);
 #define c_strinchr					String_IndexOf_N_Char
 //!@}
 
