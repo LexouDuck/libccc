@@ -60,7 +60,7 @@ typedef struct test_suite
 	int		(*test)(void);	//!< Test suite launcher
 }				s_test_suite;
 //! The total amount of test suites for libccc
-#define TEST_SUITE_AMOUNT	31
+#define TEST_SUITE_AMOUNT	33
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
@@ -143,6 +143,13 @@ int		testsuite_encode_toml(void);
 extern char const* test1; extern t_size const test1_len;
 extern char const* test2; extern t_size const test2_len;
 extern char const* test3; extern t_size const test3_len;
+
+extern char const* teststr_cc_c0;
+extern char const* teststr_cc_c1;
+extern char const* teststr_utf8_fr;
+extern char const* teststr_utf8_ru;
+extern char const* teststr_utf8_jp;
+extern char const* teststr_utf8_ho;
 
 
 

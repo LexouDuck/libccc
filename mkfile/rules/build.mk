@@ -2,8 +2,13 @@
 
 
 
+objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
+
+#! Path of the file which stores the list of compiled object files
+OBJSFILE = $(OBJDIR)objs.txt
+
 #! Derive list of compiled object files (.o) from list of srcs
-OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.o)
+OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := $(OBJS:%.o=%.d)
@@ -21,7 +26,7 @@ INCLUDES := $(INCLUDES) \
 copylibs = $(foreach i,$(PACKAGES), \
 	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
 		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic) ; do \
-			cp -p "$$i" $(BINDIR)$(OSMODE)/ ; \
+			cp -p "$$i" $(BINOUT)dynamic/ ; \
 		done ; \
 	fi ; )
 
@@ -30,17 +35,29 @@ copylibs = $(foreach i,$(PACKAGES), \
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: BUILDMODE = debug
-build-debug: $(NAME_static) $(NAME_dynamic)
+build-debug: \
+$(BINOUT)static/$(NAME_static) \
+$(BINOUT)dynamic/$(NAME_dynamic) \
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
 build-release: BUILDMODE = release
-build-release: $(NAME_static) $(NAME_dynamic)
+build-release: \
+$(BINOUT)static/$(NAME_static) \
+$(BINOUT)dynamic/$(NAME_dynamic) \
+
+
+
+#! generated the list of object files
+$(OBJSFILE): $(SRCSFILE)
+	@mkdir -p $(@D)
+	@printf "" > $(OBJSFILE)
+	$(foreach i,$(OBJS),	@printf "$(i)\n" >> $(OBJSFILE) $(C_NL))
 
 
 
 #! Compiles object files from source files
-$(OBJDIR)%.o : $(SRCDIR)%.c
+$(OBJOUT)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
@@ -49,36 +66,35 @@ $(OBJDIR)%.o : $(SRCDIR)%.c
 
 
 #! Builds the static-link library '.a' binary file for the current target platform
-$(NAME_static): $(OBJS)
+$(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
+	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
-	@$(AR) $(ARFLAGS) $@ $(OBJS)
+	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@mkdir -p $(BINDIR)$(OSMODE)/static/
-	@cp -p $@ $(BINDIR)$(OSMODE)/static/
 	@$(call copylibs)
 
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
-$(NAME_dynamic): $(OBJS)
+$(BINOUT)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
+	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
-	@mkdir -p          $(BINDIR)$(OSMODE)/dynamic/
-	@cp -p $(NAME).def $(BINDIR)$(OSMODE)/dynamic/
-	@cp -p $(NAME).lib $(BINDIR)$(OSMODE)/dynamic/
+	@cp -p $(NAME).def $(BINOUT)dynamic/
+	@cp -p $(NAME).lib $(BINOUT)dynamic/
 else ifeq ($(OSMODE),macos)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$@'
 else ifeq ($(OSMODE),linux)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
 else ifeq ($(OSMODE),emscripten)
-	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(OBJS) $(LDLIBS) \
+	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-s MODULARIZE \
 		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
 		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]
@@ -87,8 +103,6 @@ else
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@mkdir -p $(BINDIR)$(OSMODE)/dynamic/
-	@cp -p $@ $(BINDIR)$(OSMODE)/dynamic/
 	@$(call copylibs)
 
 
@@ -102,8 +116,10 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)debug/$(i)/static    ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)debug/$(i)/dynamic   ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)release/$(i)/static  ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)release/$(i)/dynamic ; )
 
 
 
@@ -138,10 +154,10 @@ clean-build-lib:
 .PHONY:\
 clean-build-bin #! Deletes all build binaries in the ./bin folder
 clean-build-bin:
-	@$(call print_message,"Deleting builds in '$(BINDIR)$(OSMODE)/static'...")
-	@rm -f $(BINDIR)$(OSMODE)/static/*
-	@$(call print_message,"Deleting builds in '$(BINDIR)$(OSMODE)/dynamic'...")
-	@rm -f $(BINDIR)$(OSMODE)/dynamic/*
+	@$(call print_message,"Deleting builds in '$(BINOUT)static'...")
+	@rm -f $(BINOUT)static/*
+	@$(call print_message,"Deleting builds in '$(BINOUT)dynamic'...")
+	@rm -f $(BINOUT)dynamic/*
 
 
 
