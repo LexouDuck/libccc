@@ -2,7 +2,7 @@
 
 
 
-objs = ` cat "$(OBJSFILE)" `
+objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
 
 #! Path of the file which stores the list of compiled object files
 OBJSFILE = $(OBJDIR)objs.txt
@@ -51,8 +51,8 @@ $(BINOUT)dynamic/$(NAME_dynamic) \
 #! generated the list of object files
 $(OBJSFILE): $(SRCSFILE)
 	@mkdir -p $(@D)
-	@echo "" > $(OBJSFILE)
-	@$(foreach i,$(OBJS), echo "$(i)" >> $(OBJSFILE) ;)
+	@printf "" > $(OBJSFILE)
+	@$(foreach i,$(OBJS), printf "$(i)\n" >> $(OBJSFILE) ;)
 
 
 
