@@ -2,7 +2,10 @@
 
 
 
-objs = $(call pass_as_file,$(OBJS),$(LISTSDIR)objs.txt)
+objs = ` cat "$(OBJSFILE)" `
+
+#! Path of the file which stores the list of compiled object files
+OBJSFILE = $(LISTSDIR)objs.txt
 
 #! Derive list of compiled object files (.o) from list of srcs
 OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
@@ -45,6 +48,13 @@ $(BINOUT)dynamic/$(NAME_dynamic) \
 
 
 
+#! generated the list of object files
+$(OBJSFILE): $(SRCSFILE)
+	@echo "" > $(OBJSFILE)
+	@$(foreach i,$(OBJS), echo "$(i)" >> $(OBJSFILE) ;)
+
+
+
 #! Compiles object files from source files
 $(OBJOUT)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
@@ -55,7 +65,7 @@ $(OBJOUT)%.o : $(SRCDIR)%.c
 
 
 #! Builds the static-link library '.a' binary file for the current target platform
-$(BINOUT)static/$(NAME_static): $(OBJS)
+$(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(BINOUT)static/
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
@@ -66,7 +76,7 @@ $(BINOUT)static/$(NAME_static): $(OBJS)
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
-$(BINOUT)dynamic/$(NAME_dynamic): $(OBJS)
+$(BINOUT)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(BINOUT)dynamic/
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
