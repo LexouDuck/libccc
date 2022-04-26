@@ -170,9 +170,6 @@ e_cccerror	Log_VA(s_logger const* logger,
 			Log_Fatal(logger, "Could not construct log message");
 			goto failure;
 		}
-//		Error_SetAllHandlers(NULL);
-		JSON_AddToObject_String(json, "message", message_str);
-//		Error_SetAllHandlers(Log_Logger_ErrorHandler);
 		if (logger->timestamp)
 		{
 			JSON_AddToObject_String(json, "timestamp", timestamp);
@@ -181,6 +178,9 @@ e_cccerror	Log_VA(s_logger const* logger,
 		{
 			JSON_AddToObject_Integer(json, "status", error_code);
 		}
+//		Error_SetAllHandlers(NULL);
+		JSON_AddToObject_String(json, "message", message_str);
+//		Error_SetAllHandlers(Log_Logger_ErrorHandler);
 		log_fmt = JSON_ToString_Minify(json);
 		JSON_Delete(json);
 		String_Delete(&message_str);
