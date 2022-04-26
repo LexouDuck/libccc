@@ -48,7 +48,7 @@ $(BINOUT)dynamic/$(NAME_dynamic) \
 
 
 
-#! generated the list of object files
+#! Generates the list of object files
 $(OBJSFILE): $(SRCSFILE)
 	@mkdir -p $(@D)
 	@printf "" > $(OBJSFILE)
@@ -116,10 +116,8 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)debug/$(i)/static    ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)debug/$(i)/dynamic   ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)release/$(i)/static  ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)release/$(i)/dynamic ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ; )
+	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ; )
 
 
 
@@ -135,21 +133,21 @@ clean-build-bin \
 clean-build-obj #! Deletes all .o build object files
 clean-build-obj:
 	@$(call print_message,"Deleting all build .o files...")
-	@rm -f $(OBJS)
+	$(foreach i,$(OBJS),	@rm "$(i)" $(C_NL))
 
 .PHONY:\
 clean-build-dep #! Deletes all .d build dependency files
 clean-build-dep:
 	@$(call print_message,"Deleting all build .d files...")
-	@rm -f $(DEPS)
+	$(foreach i,$(DEPS),	@rm "$(i)" $(C_NL))
 
 .PHONY:\
 clean-build-lib #! Deletes the built library(ies) in the root project folder
 clean-build-lib:
-	@$(call print_message,"Deleting static library: $(NAME_static)")
-	@rm -f $(NAME_static)
-	@$(call print_message,"Deleting dynamic library: $(NAME_dynamic)")
-	@rm -f $(NAME_dynamic)
+	@$(call print_message,"Deleting static library: $(BINOUT)static/$(NAME_static)")
+	@rm -f $(BINOUT)static/$(NAME_static)
+	@$(call print_message,"Deleting dynamic library: $(BINOUT)dynamic/$(NAME_dynamic)")
+	@rm -f $(BINOUT)dynamic/$(NAME_dynamic)
 
 .PHONY:\
 clean-build-bin #! Deletes all build binaries in the ./bin folder

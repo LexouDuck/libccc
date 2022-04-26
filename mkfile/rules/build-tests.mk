@@ -2,6 +2,11 @@
 
 
 
+test_objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
+
+#! Path of the file which stores the list of compiled object files
+TEST_OBJSFILE = $(OBJOUT)objs-test.txt
+
 #! Derive list of compiled object files (.o) from list of srcs
 TEST_OBJS := $(TEST_SRCS:%.c=$(OBJOUT)%.o)
 
@@ -23,14 +28,22 @@ build-tests-debug #! Builds the library, in 'debug' mode (with debug flags and s
 build-tests-debug: BUILDMODE = debug
 build-tests-debug: \
 build-debug \
-$(NAME_TEST) \
+$(NAME_TEST)
 
 .PHONY:\
 build-tests-release #! Builds the library, in 'release' mode (with optimization flags)
 build-tests-release: BUILDMODE = release
 build-tests-release: \
 build-release \
-$(NAME_TEST) \
+$(NAME_TEST)
+
+
+
+#! Generates the list of object files
+$(TEST_OBJSFILE): $(TEST_SRCSFILE)
+	@mkdir -p $(@D)
+	@printf "" > $(TEST_OBJSFILE)
+	$(foreach i,$(call test_objs),	@printf "$(i)\n" >> $(TEST_OBJSFILE) $(C_NL))
 
 
 
@@ -44,9 +57,12 @@ $(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 
 
 #! Builds the testing/CI program
-$(NAME_TEST): $(BINOUT)static/$(NAME_static) $(BINOUT)dynamic/$(NAME_dynamic) $(TEST_OBJS)
+$(NAME_TEST): \
+$(BINOUT)static/$(NAME_static) \
+$(BINOUT)dynamic/$(NAME_dynamic) \
+$(TEST_OBJS)
 	@printf "Compiling testing program: $@ -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(TEST_OBJS) $(TEST_LDLIBS)
+	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(call test_objs) $(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -67,13 +83,13 @@ clean-tests-exe \
 clean-tests-obj #! Deletes all .o tests object files
 clean-tests-obj:
 	@$(call print_message,"Deleting all tests .o files...")
-	@rm -f $(TEST_OBJS)
+	$(foreach i,$(TEST_OBJS),	@rm "$(i)" $(C_NL))
 
 .PHONY:\
 clean-tests-dep #! Deletes all .d tests dependency files
 clean-tests-dep:
 	@$(call print_message,"Deleting all tests .d files...")
-	@rm -f $(TEST_DEPS)
+	$(foreach i,$(TEST_DEPS),	@rm "$(i)" $(C_NL))
 
 .PHONY:\
 clean-tests-exe #! Deletes the built test program in the root project folder
