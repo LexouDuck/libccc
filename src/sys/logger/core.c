@@ -3,6 +3,7 @@
 #include "libccc/enum.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
+#include "libccc/encode/json.h"
 
 #ifndef __NOSTD__
 	#include <errno.h>
@@ -158,45 +159,30 @@ e_cccerror	Log_VA(s_logger const* logger,
 
 	if (logger->format == LOGFORMAT_JSON)
 	{
+		s_json* json = JSON_CreateObject();
 		t_char* message_str = NULL;
 		message_str = String_Format("%s%s%s",
 			(prefix_str ? prefix_str : ""),
 			format,
 			(suffix_str ? suffix_str : ""));
-		if (message_str == NULL)
+		if (message_str == NULL || json == NULL)
 		{
 			Log_Fatal(logger, "Could not construct log message");
 			goto failure;
 		}
-		else
-		{
-			t_char* tmp = message_str;
-//			Error_SetAllHandlers(NULL);
-			message_str = String_ToEscape(message_str, "");
-//			Error_SetAllHandlers(Log_Logger_ErrorHandler);
-			String_Delete(&tmp);
-		}
+//		Error_SetAllHandlers(NULL);
+		JSON_AddToObject_String(json, "message", message_str);
+//		Error_SetAllHandlers(Log_Logger_ErrorHandler);
 		if (logger->timestamp)
 		{
-			t_char* tmp = timestamp;
-			timestamp = String_Format("    \"timestamp\": \"%s\",\n", timestamp);
-			String_Delete(&tmp);
+			JSON_AddToObject_String(json, "timestamp", timestamp);
 		}
-		t_char* status_str = NULL;
 		if (error_code)
 		{
-			status_str = String_Format("    \"status\": %i\n", error_code);
+			JSON_AddToObject_Integer(json, "status", error_code);
 		}
-		log_fmt = String_Format(
-			"{\n"
-			"%s"
-			"%s"
-			"    \"message\": \"%s\",\n"
-			"}\n",
-			(status_str ? status_str : ""),
-			(timestamp  ? timestamp  : ""),
-			message_str);
-		String_Delete(&status_str);
+		log_fmt = JSON_ToString_Minify(json);
+		JSON_Delete(json);
 		String_Delete(&message_str);
 	}
 	else

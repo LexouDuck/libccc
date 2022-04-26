@@ -2,7 +2,7 @@
 
 
 
-test_objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
+test_objs = ` cat "$(TEST_OBJSFILE)" | tr '\n' ' ' `
 
 #! Path of the file which stores the list of compiled object files
 TEST_OBJSFILE = $(OBJOUT)objs-test.txt
@@ -43,7 +43,7 @@ $(NAME_TEST)
 $(TEST_OBJSFILE): $(TEST_SRCSFILE)
 	@mkdir -p $(@D)
 	@printf "" > $(TEST_OBJSFILE)
-	$(foreach i,$(call test_objs),	@printf "$(i)\n" >> $(TEST_OBJSFILE) $(C_NL))
+	$(foreach i,$(TEST_OBJS),	@printf "$(i)\n" >> $(TEST_OBJSFILE) $(C_NL))
 
 
 
@@ -60,6 +60,7 @@ $(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 $(NAME_TEST): \
 $(BINOUT)static/$(NAME_static) \
 $(BINOUT)dynamic/$(NAME_dynamic) \
+$(TEST_OBJSFILE) \
 $(TEST_OBJS)
 	@printf "Compiling testing program: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) $(TEST_LDFLAGS) $(call test_objs) $(TEST_LDLIBS)
