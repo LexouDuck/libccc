@@ -5,7 +5,7 @@
 objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
 
 #! Path of the file which stores the list of compiled object files
-OBJSFILE = $(OBJDIR)objs.txt
+OBJSFILE = $(OBJOUT)objs.txt
 
 #! Derive list of compiled object files (.o) from list of srcs
 OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
