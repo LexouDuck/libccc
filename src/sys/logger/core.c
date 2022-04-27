@@ -201,6 +201,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		result = JSON_ToString_Minify(json);
 		JSON_Delete(json);
 		String_Delete(&message_str);
+		String_Append(&result, "\n");
 	}
 	else
 	{
