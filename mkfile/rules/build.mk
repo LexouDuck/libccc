@@ -133,13 +133,13 @@ clean-build-bin \
 clean-build-obj #! Deletes all .o build object files
 clean-build-obj:
 	@$(call print_message,"Deleting all build .o files...")
-	$(foreach i,$(OBJS),	@rm "$(i)" $(C_NL))
+	$(foreach i,$(OBJS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
 clean-build-dep #! Deletes all .d build dependency files
 clean-build-dep:
 	@$(call print_message,"Deleting all build .d files...")
-	$(foreach i,$(DEPS),	@rm "$(i)" $(C_NL))
+	$(foreach i,$(DEPS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
 clean-build-lib #! Deletes the built library(ies) in the root project folder

@@ -84,13 +84,13 @@ clean-tests-exe \
 clean-tests-obj #! Deletes all .o tests object files
 clean-tests-obj:
 	@$(call print_message,"Deleting all tests .o files...")
-	$(foreach i,$(TEST_OBJS),	@rm "$(i)" $(C_NL))
+	$(foreach i,$(TEST_OBJS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
 clean-tests-dep #! Deletes all .d tests dependency files
 clean-tests-dep:
 	@$(call print_message,"Deleting all tests .d files...")
-	$(foreach i,$(TEST_DEPS),	@rm "$(i)" $(C_NL))
+	$(foreach i,$(TEST_DEPS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
 clean-tests-exe #! Deletes the built test program in the root project folder
