@@ -1186,31 +1186,74 @@ t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
 //!@}
 
 
+
 //! Function to encode (or 'spell out') a unicode character to an ascii string
 /*!
 **	if `dest` is not NULL, writes down the ascii string to `dest` without a final '\0'
 **	One can call the function with a NULL `dest` to just get the number of bytes that would be written to `dest`, and ensure the buffer is big enough
 **
-**	Note: implementation are free to handle unicode character that happen to be in the ASCII range however they want. The character may be just written as-is
-**
-** @param	dest	The buffer in which the output will be written, if non NULL
-** @param	c		The unicode character to encode
-** @returns
-** The number of byte written to `dest`
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		The unicode character to encode
+**	@returns
+**	`ERROR` if the given character cannot be encoded, or
+**	The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
 typedef size_t (*f_char_encoder)(t_ascii *dest, t_utf32 c);
 
-//! Converts `c` to \xFF. Will read at most 1 byte of `str` and write 4 ASCII char to dest
-t_size String_EncodeEscape_xFF(t_char *dest, t_char const* str);
+//! Converts `c` to \xFF
+/*! 
+**	@nonstd
+**	@see f_char_encoder
+**
+**	Converts `c` to \xFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 4 ASCII char to dest to represent the character in the format \xFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \xFF format, or
+**	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							String_EncodeEscape_xFF(t_char *dest, t_utf32 c);
+#define c_strencode_xff			String_EncodeEscape_xFF
 
-//! Converts `c` to \uFFFF. Will read at most 2 byte of `str` and write 6 ASCII char to dest
-t_size String_EncodeEscape_uFFFF(t_char *dest, t_char const* str);
+//! Converts `c` to \xFFFF
+/*! 
+**	@nonstd
+**	@see f_char_encoder
+**
+**	Converts `c` to \xFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFFFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 6 ASCII char to dest to represent the character in the format \xFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \xFFFF format, or
+**	6: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c);
+#define c_strencode_xffff		String_EncodeEscape_xFFFF
 
-//! Converts `c` to \UFFFFFFFF. Will encode at most 4 byte of `str` and write 10 ASCII char to dest
-t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_char const* str);
+//! Converts `c` to \xFFFFFFFF
+/*! 
+**	@nonstd
+**	@see f_char_encoder
+**
+**	Converts `c` to \xFFFFFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `dest` is not NULL, writes 10 ASCII char to dest to represent the character in the format \xFFFFFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	10: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_utf32 c);
+#define c_strencode_xffffffff	String_EncodeEscape_xFFFFFFFF
 
-// TODO: doc
-t_size String_EncodeEscape_smart(t_char *dest, t_char const* str);
+//! Converts `c` to the shortest EncodeEscape format the character can fit. Will write at mose 10 ASCI char to dest
+t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c);
 
 //! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`
 typedef t_bool (*f_should_encode_char)(t_char const* str);
