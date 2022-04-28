@@ -7,14 +7,15 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
-t_size String_EncodeEscape_xFF(t_char *dest, t_char const* str)
+t_size String_EncodeEscape_xFF(t_char *dest, t_utf32 c)
 {
+	if (c > 0xFF)
+		return ERROR;
+
 	if (dest)
 	{
-		t_utf32 unicode = UTF32_FromUTF8(str);
-
-		t_u8 hexa0 = (unicode & 0x0F) >> 0;
-		t_u8 hexa1 = (unicode & 0xF0) >> 4;
+		t_u8 hexa0 = (c & 0x0F) >> 0;
+		t_u8 hexa1 = (c & 0xF0) >> 4;
 
 		dest[0] = '\\';
 		dest[1] = 'x';
@@ -25,16 +26,14 @@ t_size String_EncodeEscape_xFF(t_char *dest, t_char const* str)
 }
 
 
-t_size String_EncodeEscape_uFFFF(t_char *dest, t_char const* str)
+t_size String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c)
 {
 	if (dest)
 	{
-		t_utf32 unicode = UTF32_FromUTF8(str);
-
-		t_u8 hexa0 = (unicode & 0x000F) >> 0;
-		t_u8 hexa1 = (unicode & 0x00F0) >> 4;
-		t_u8 hexa2 = (unicode & 0x0F00) >> 8;
-		t_u8 hexa3 = (unicode & 0xF000) >> 12;
+		t_u8 hexa0 = (c & 0x000F) >> 0;
+		t_u8 hexa1 = (c & 0x00F0) >> 4;
+		t_u8 hexa2 = (c & 0x0F00) >> 8;
+		t_u8 hexa3 = (c & 0xF000) >> 12;
 
 		dest[0] = '\\';
 		dest[1] = 'x';
@@ -46,20 +45,18 @@ t_size String_EncodeEscape_uFFFF(t_char *dest, t_char const* str)
 	return 6;
 }
 
-t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_char const* str)
+t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_utf32 c)
 {
 	if (dest)
 	{
-		t_utf32 unicode = UTF32_FromUTF8(str);
-
-		t_u8 hexa0 = (unicode & 0x0000000F) >> 0;
-		t_u8 hexa1 = (unicode & 0x000000F0) >> 4;
-		t_u8 hexa2 = (unicode & 0x00000F00) >> 8;
-		t_u8 hexa3 = (unicode & 0x0000F000) >> 12;
-		t_u8 hexa4 = (unicode & 0x000F0000) >> 16;
-		t_u8 hexa5 = (unicode & 0x00F00000) >> 20;
-		t_u8 hexa6 = (unicode & 0x0F000000) >> 24;
-		t_u8 hexa7 = (unicode & 0x0000F000) >> 28;
+		t_u8 hexa0 = (c & 0x0000000F) >> 0;
+		t_u8 hexa1 = (c & 0x000000F0) >> 4;
+		t_u8 hexa2 = (c & 0x00000F00) >> 8;
+		t_u8 hexa3 = (c & 0x0000F000) >> 12;
+		t_u8 hexa4 = (c & 0x000F0000) >> 16;
+		t_u8 hexa5 = (c & 0x00F00000) >> 20;
+		t_u8 hexa6 = (c & 0x0F000000) >> 24;
+		t_u8 hexa7 = (c & 0x0000F000) >> 28;
 
 		dest[0] = '\\';
 		dest[1] = 'x';
@@ -75,19 +72,17 @@ t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_char const* str)
 	return 10;
 }
 
-t_size String_EncodeEscape_smart(t_char *dest, t_char const* str)
+t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c)
 {
-	t_utf32 c = UTF32_FromUTF8(str);
-
 	if (UTF32_IsValid(c))
 	{
 		if (c < 0x10000)
-			return String_EncodeEscape_uFFFF(dest, str);
+			return String_EncodeEscape_uFFFF(dest, c);
 		else
-			return String_EncodeEscape_UFFFFFFFFF(dest, str);
+			return String_EncodeEscape_UFFFFFFFFF(dest, c);
 	}
 	else
-			return String_EncodeEscape_xFF(dest, str);
+			return String_EncodeEscape_xFF(dest, c);
 }
 
 // TODO: I feel like this could be a niche standard function
@@ -99,7 +94,8 @@ static size_t Write_Alias(t_char *dest, size_t n, t_char const* alias)
 	if (alias_length >= n)
 		return 0;
 
-	String_Copy(dest, alias);
+	if (dest)
+		String_Copy(dest, alias);
 	return alias_length;
 }
 
@@ -139,7 +135,7 @@ t_sint String_ToEscapeNew(
 	if (n == 0)
 		n = SIZE_MAX;
 
-	t_sint getlength_result = String_ToEscapeGetLength(str, charset, charset_alias, should_encode_char, char_encoder);
+	t_sint getlength_result = String_ToEscapeBuf(NULL, SIZE_MAX, str, charset, charset_alias, should_encode_char, char_encoder);
 	if (getlength_result == -1)
 		return -1;
 
@@ -177,7 +173,7 @@ t_sint String_ToEscapeBuf(
 	HANDLE_ERROR_SF(INVALIDARGS, (String_Length(charset) != StringArray_Length(charset_alias)), return (-1);, "`charset` and `charset_alias` are of different length");
 	if (n == 0)
 		n = SIZE_MAX;
-	for (; wr_idx < (n - 1) && str[rd_idx]; rd_idx += UTF8_Length(str + rd_idx, SIZE_MAX))
+	for (; wr_idx < (n - 1) && str[rd_idx]; rd_idx += UTF8_Length(str + rd_idx))
 	{
 		size_t writeable = n - wr_idx - 1;
 		size_t written = 0;
@@ -204,50 +200,8 @@ t_sint String_ToEscapeBuf(
 			break;
 		wr_idx += written;
 	}
-	dest[wr_idx] = '\0';
-	return (rd_idx);
-}
-
-
-// TODO: how not to repeat ourselves here...
-t_sint	String_ToEscapeGetLength(
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
-		f_char_encoder char_encoder)
-{
-	t_size	wr_idx = 0;
-	t_size	rd_idx = 0;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return -1;)
-	HANDLE_ERROR(NULLPOINTER, (charset_alias == NULL), return -1;)
-	HANDLE_ERROR_SF(INVALIDARGS, (String_Length(charset) != StringArray_Length(charset_alias)), return (-1);, "`charset` and `charset_alias` are of different length");
-	for (; str[rd_idx]; rd_idx += UTF8_Length(str + rd_idx, SIZE_MAX))
-	{
-		size_t written = 0;
-
-		if (should_encode_char(str + rd_idx))
-		{
-			written = Write_Encoded(NULL, str, SIZE_MAX, char_encoder);
-		}
-		else
-		{
-			t_char const *find_res = String_Find_Char(charset, str[rd_idx]);
-
-			if (find_res != NULL)
-			{
-				int charset_idx = find_res - charset;
-
-				if (charset_alias[charset_idx])
-					written = Write_Alias(NULL, SIZE_MAX, charset_alias[charset_idx]);
-				else
-					written = Write_Encoded(NULL, str, SIZE_MAX, char_encoder);
-			}
-		}
-		if (written == 0)
-			break;
-		wr_idx += written;
-	}
+	if (dest)
+		dest[wr_idx] = '\0';
 	return (wr_idx);
 }
+

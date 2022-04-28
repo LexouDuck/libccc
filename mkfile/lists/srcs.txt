@@ -223,6 +223,7 @@
 ./src/string/delete.c
 ./src/string/duplicate.c
 ./src/string/equals.c
+./src/string/escape.c
 ./src/string/find.c
 ./src/string/find_n.c
 ./src/string/find_r.c

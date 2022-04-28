@@ -1632,6 +1632,46 @@ void	test_strimap(void)
 #endif
 
 
+void	print_test_EncodeEscape_xFF(char const* test_name, int can_segfault,
+		t_ascii const* expecting_dest,
+		t_size expecting,
+		t_utf32 c)
+{
+	t_ascii dest_libccc[5];
+	memset(dest_libccc, 0, 5);
+
+	TEST_INIT(size)
+	TEST_PERFORM_DEST(strencode_xff, c)
+
+	if (expecting != test.result)
+	{
+		// TODO: return value differ ! That's an error !!!
+		printf("Error: return value differ for test '%s':\nExpected: %lu\n Actual: %lu\n", test_name, expecting, test.result);
+	}
+
+
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strencode_xff",
+		.can_sig = can_segfault,
+		.result = dest_libccc,
+		.expect = expecting_dest,
+		.result_sig = test.result_sig,
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, "args");
+}
+void	test_EncodeEscape_xFF(void)
+{
+//	| TEST FUNCTION            | TEST NAME            | CAN SEGV       | EXPECTING DEST | EXPECTING RET | TEST ARG
+	print_test_EncodeEscape_xFF("\\0"                 , FALSE          , "\\x00"        , 4             , '\0');
+	print_test_EncodeEscape_xFF("ascii 'u' (\\x55)"   , FALSE          , "\\x55"        , 4             , '\x55');
+	print_test_EncodeEscape_xFF("132 (\\x84)"         , FALSE          , "\\x84"        , 4             , '\x84');
+	print_test_EncodeEscape_xFF("255 (\\xFF)"         , FALSE          , "\\xFF"        , 4             , '\xFF');
+	print_test_EncodeEscape_xFF("too big"             , FALSE          , ""             , ERROR         , UTF32_FromUTF8("愛"));
+}
 
 /*
 ** ************************************************************************** *|
@@ -1713,6 +1753,7 @@ int		testsuite_string(void)
 //	test_strireduce();
 //	test_strfold();
 //	test_strifold();
+	test_EncodeEscape_xFF();
 
 	return (0);
 }
