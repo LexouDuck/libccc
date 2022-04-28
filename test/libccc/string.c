@@ -1666,10 +1666,10 @@ void	print_test_EncodeEscape_xFF(char const* test_name, int can_segfault,
 void	test_EncodeEscape_xFF(void)
 {
 //	| TEST FUNCTION            | TEST NAME            | CAN SEGV       | EXPECTING DEST | EXPECTING RET | TEST ARG
-	print_test_EncodeEscape_xFF("\\0"                 , FALSE          , "\\x00"        , 4             , '\0');
-	print_test_EncodeEscape_xFF("ascii 'u' (\\x55)"   , FALSE          , "\\x55"        , 4             , '\x55');
-	print_test_EncodeEscape_xFF("132 (\\x84)"         , FALSE          , "\\x84"        , 4             , '\x84');
-	print_test_EncodeEscape_xFF("255 (\\xFF)"         , FALSE          , "\\xFF"        , 4             , '\xFF');
+	print_test_EncodeEscape_xFF("\\0"                 , FALSE          , "\\x00"        , 4             , UTF32_FromUTF8("\0"));
+	print_test_EncodeEscape_xFF("ascii 'u' (\\x55)"   , FALSE          , "\\x55"        , 4             , UTF32_FromUTF8("\x55"));
+	print_test_EncodeEscape_xFF("177 (\\xB1)"         , FALSE          , "\\xB1"        , 4             , UTF32_FromUTF8("±"));
+	print_test_EncodeEscape_xFF("255 (\\xFF)"         , FALSE          , "\\xFF"        , 4             , UTF32_FromUTF8("ÿ"));
 	print_test_EncodeEscape_xFF("too big"             , FALSE          , ""             , ERROR         , UTF32_FromUTF8("愛"));
 }
 
