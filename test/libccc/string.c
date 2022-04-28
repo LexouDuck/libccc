@@ -1632,7 +1632,7 @@ void	test_strimap(void)
 #endif
 
 
-void	print_test_EncodeEscape_xFF(char const* test_name, int can_segfault,
+void	print_test_strencode_xff(char const* test_name, int can_segfault,
 		t_ascii const* expecting_dest,
 		t_size expecting,
 		t_utf32 c)
@@ -1642,14 +1642,7 @@ void	print_test_EncodeEscape_xFF(char const* test_name, int can_segfault,
 
 	TEST_INIT(size)
 	TEST_PERFORM_DEST(strencode_xff, c)
-
-	if (expecting != test.result)
-	{
-		// TODO: return value differ ! That's an error !!!
-		printf("Error: return value differ for test '%s':\nExpected: %lu\n Actual: %lu\n", test_name, expecting, test.result);
-	}
-
-
+	TEST_PRINT(size, strencode_xff, "dest=\"%s\", c='%c'/%X", dest_libccc, c, c)
 	s_test_str test2 = (s_test_str)
 	{
 		.name = test_name,
@@ -1661,16 +1654,16 @@ void	print_test_EncodeEscape_xFF(char const* test_name, int can_segfault,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
-	print_test_str(&test2, "args");
+	print_test_str(&test2, NULL);
 }
-void	test_EncodeEscape_xFF(void)
+void	test_strencode_xff(void)
 {
-//	| TEST FUNCTION            | TEST NAME            | CAN SEGV       | EXPECTING DEST | EXPECTING RET | TEST ARG
-	print_test_EncodeEscape_xFF("\\0"                 , FALSE          , "\\x00"        , 4             , '\0');
-	print_test_EncodeEscape_xFF("ascii 'u' (\\x55)"   , FALSE          , "\\x55"        , 4             , '\x55');
-	print_test_EncodeEscape_xFF("132 (\\x84)"         , FALSE          , "\\x84"        , 4             , '\x84');
-	print_test_EncodeEscape_xFF("255 (\\xFF)"         , FALSE          , "\\xFF"        , 4             , '\xFF');
-	print_test_EncodeEscape_xFF("too big"             , FALSE          , ""             , ERROR         , UTF32_FromUTF8("愛"));
+//	| TEST FUNCTION         | TEST NAME                        | CAN SEGV       | EXPECTING DEST | EXPECTING RET | TEST ARG
+	print_test_strencode_xff("strencode_xff (\\0)             ", FALSE          , "\\x00"        , 4             , '\0');
+	print_test_strencode_xff("strencode_xff (ascii 'u':\\x55) ", FALSE          , "\\x55"        , 4             , '\x55');
+	print_test_strencode_xff("strencode_xff (132:\\x84)       ", FALSE          , "\\x84"        , 4             , '\x84');
+	print_test_strencode_xff("strencode_xff (255:\\xFF)       ", FALSE          , "\\xFF"        , 4             , '\xFF');
+	print_test_strencode_xff("strencode_xff (too big)         ", FALSE          , ""             , ERROR         , UTF32_FromUTF8("愛"));
 }
 
 /*
@@ -1753,7 +1746,7 @@ int		testsuite_string(void)
 //	test_strireduce();
 //	test_strfold();
 //	test_strifold();
-	test_EncodeEscape_xFF();
+	test_strencode_xff();
 
 	return (0);
 }
