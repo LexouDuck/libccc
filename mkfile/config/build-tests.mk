@@ -59,8 +59,8 @@ TEST_LDFLAGS = \
 
 #! C linker options which are specific to the current build mode, according to $(BUILDMODE)
 TEST_LDFLAGS_BUILDMODE = $(TEST_LDFLAGS_BUILDMODE_$(BUILDMODE))
-TEST_LDFLAGS_debug = 
-TEST_LDFLAGS_release = 
+TEST_LDFLAGS_BUILDMODE_debug = 
+TEST_LDFLAGS_BUILDMODE_release = 
 
 #! C linker options which are platform-specific, according to $(OSMODE)
 TEST_LDFLAGS_OS = $(TEST_LDFLAGS_OS_$(OSMODE))
@@ -78,7 +78,7 @@ TEST_LDFLAGS_EXTRA ?= \
 
 #! GNU conventional variable: C libraries to link against
 TEST_LDLIBS = \
-	$(NAME_LIBMODE) \
+	$(BINOUT)$(LIBMODE)/$(NAME_LIBMODE) \
 	$(TEST_LDLIBS_BUILDMODE) \
 	$(TEST_LDLIBS_OS) \
 	$(TEST_LDLIBS_EXTRA)

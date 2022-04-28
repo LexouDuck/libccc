@@ -1,4 +1,5 @@
 
+#include "libccc.h"
 #include "libccc/text/regex.h"
 
 #include "test.h"

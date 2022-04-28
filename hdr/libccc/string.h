@@ -501,7 +501,7 @@ t_bool						String_HasOnly(t_char const* str, t_char const* charset);
 **	The amount of occurences of t_char `c` in the given string `str`.
 */
 //!@{
-t_size						String_Count_Char(t_char const* str, t_char c);
+t_size						String_Count_Char(t_char const* str, t_utf32 c);
 #define c_strcount_char		String_Count_Char
 //!@}
 
@@ -539,14 +539,14 @@ t_size						String_Count_String(t_char const* str, t_char const* query);
 
 //!@doc Finds the first occurence of the given char `c` inside the given string `str`
 /*!
-**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr}
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr} but with support for unicode if t_char is of type t_utf8
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched.
 */
 //!@{
-t_char*							String_Find_Char(t_char const* str, t_char c);
+t_char*							String_Find_Char(t_char const* str, t_utf32 c);
 #define c_strchr				String_Find_Char
 //!@}
 
@@ -588,7 +588,7 @@ t_char*							String_Find_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_char*							String_Find_R_Char(t_char const* str, t_char c);
+t_char*							String_Find_R_Char(t_char const* str, t_utf32 c);
 #define c_strrchr				String_Find_R_Char
 #define String_FindLast_Char	String_Find_R_Char
 //!@}
@@ -633,7 +633,7 @@ t_char*							String_Find_R_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_char*							String_Find_N_Char(t_char const* str, t_char c, t_size n);
+t_char*							String_Find_N_Char(t_char const* str, t_utf32 c, t_size n);
 #define c_strnchr				String_Find_N_Char
 //!@}
 
@@ -675,7 +675,7 @@ t_char*							String_Find_N_String(t_char const* str, t_char const* query, t_siz
 **	or -1 if `c` does not exist in `str`.
 */
 //!@{
-t_sintmax							String_IndexOf_Char(t_char const* str, t_char c);
+t_sintmax							String_IndexOf_Char(t_char const* str, t_utf32 c);
 #define c_strichr					String_IndexOf_Char
 //!@}
 
@@ -717,7 +717,7 @@ t_sintmax							String_IndexOf_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_sintmax							String_IndexOf_R_Char(t_char const* str, t_char c);
+t_sintmax							String_IndexOf_R_Char(t_char const* str, t_utf32 c);
 #define c_strirchr					String_IndexOf_R_Char
 #define String_LastIndexOf_Char		String_IndexOf_R_Char
 //!@}
@@ -762,7 +762,7 @@ t_sintmax							String_IndexOf_R_String(t_char const* str, t_char const* query);
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax							String_IndexOf_N_Char(t_char const* str, t_char c, t_size n);
+t_sintmax							String_IndexOf_N_Char(t_char const* str, t_utf32 c, t_size n);
 #define c_strinchr					String_IndexOf_N_Char
 //!@}
 
@@ -1184,6 +1184,72 @@ t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
 #define String_Encode			String_ToEscape
 #define String_ToPrintable		String_ToEscape
 //!@}
+
+
+//! Function to encode (or 'spell out') a unicode character to an ascii string
+/*!
+**	if `dest` is not NULL, writes down the ascii string to `dest` without a final '\0'
+**	One can call the function with a NULL `dest` to just get the number of bytes that would be written to `dest`, and ensure the buffer is big enough
+**
+**	Note: implementation are free to handle unicode character that happen to be in the ASCII range however they want. The character may be just written as-is
+**
+** @param	dest	The buffer in which the output will be written, if non NULL
+** @param	c		The unicode character to encode
+** @returns
+** The number of byte written to `dest`
+*/
+typedef size_t (*f_char_encoder)(t_ascii *dest, t_utf32 c);
+
+//! Converts `c` to \xFF. Will read at most 1 byte of `str` and write 4 ASCII char to dest
+t_size String_EncodeEscape_xFF(t_char *dest, t_char const* str);
+
+//! Converts `c` to \uFFFF. Will read at most 2 byte of `str` and write 6 ASCII char to dest
+t_size String_EncodeEscape_uFFFF(t_char *dest, t_char const* str);
+
+//! Converts `c` to \UFFFFFFFF. Will encode at most 4 byte of `str` and write 10 ASCII char to dest
+t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_char const* str);
+
+// TODO: doc
+t_size String_EncodeEscape_smart(t_char *dest, t_char const* str);
+
+//! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`
+typedef t_bool (*f_should_encode_char)(t_char const* str);
+
+
+// Gets the length of the string that `String_ToEscapeStr` would return. or -1 on error
+t_sint	String_ToEscapeGetLength(
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* charset_alias,
+		f_should_encode_char should_encode_char,
+		f_char_encoder char_encoder);
+
+// mallocs and return a new string
+t_char*	String_ToEscapeStr(
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* charset_alias,
+		f_should_encode_char should_encode_char,
+		f_char_encoder char_encoder);
+
+// the current `String_Print` behavior: mallocs and fills up to *dest up to n*sizeof(t_char). if (n == 0) n = SIZE_MAX
+t_sint String_ToEscapeNew(
+		t_char* *dest,
+		size_t n,
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* charset_alias,
+		f_should_encode_char should_encode_char,
+		f_char_encoder char_encoder);
+
+t_sint String_ToEscapeBuf(
+		t_char *dest,
+		size_t n,
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* charset_alias,
+		f_should_encode_char should_encode_char,
+		f_char_encoder char_encoder);
 
 //!@}
 

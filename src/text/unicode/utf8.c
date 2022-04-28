@@ -11,6 +11,51 @@
 
 
 
+t_sint		UTF8_Length(t_utf8 const* str)//, size_t n)
+{
+	t_u8	c;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	//HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
+	c = str[0];
+	if (c & (1 << 7)) // multi-byte character
+	{
+		if (c & (1 << 6)) // 2-byte character
+		{
+			if (c & (1 << 5)) // 3-byte character
+			{
+				if (c & (1 << 4)) // 4-byte character
+				{
+					HANDLE_ERROR_SF(ILLEGALBYTES,
+						(c & (1 << 3)), return (ERROR);,
+						"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+					return (4);
+				}
+				else
+				{
+					return (3);
+				}
+			}
+			else
+			{
+				return (2);
+			}
+		}
+		else
+		{
+			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+		}
+	}
+	else if (c == '\0')
+	{
+		return (0);
+	}
+	else return (1);
+}
+
+
+
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
 	t_u8	mask;
@@ -71,7 +116,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 				{
 					HANDLE_ERROR_SF(ILLEGALBYTES,
 						(c & (1 << 3)), return (ERROR);,
-						"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
+						"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
 					mask = ((1 << 3) - 1);
 					result |= (c & mask) << (6 * 3);	c = str[1];
 					result |= (c & MASK) << (6 * 2);	c = str[2];
@@ -99,7 +144,7 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 		else
 		{
 			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-				"illegal UTF-8 character: '%c'/0x%4.4X", (c ? c : '\a'), c)
+				"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
 		}
 	}
 	else return ((t_utf32)c);

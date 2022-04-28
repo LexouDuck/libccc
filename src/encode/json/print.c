@@ -116,6 +116,11 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 		else if (c < UTF8_3BYTE)	length = 3;
 		else if (c < UTF8_4BYTE)	length = 4;
 		if (UTF32_IsPrintable(c) &&
+			(c != '\b') &&
+			(c != '\t') &&
+			(c != '\n') &&
+			(c != '\f') &&
+			(c != '\r') &&
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy

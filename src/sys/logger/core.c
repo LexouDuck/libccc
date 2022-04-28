@@ -3,6 +3,7 @@
 #include "libccc/enum.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
+#include "libccc/encode/json.h"
 
 #ifndef __NOSTD__
 	#include <errno.h>
@@ -115,8 +116,8 @@ e_cccerror	Log_VA(s_logger const* logger,
 	t_char*	timestamp  = NULL;
 	t_char* prefix_str = NULL;
 	t_char* suffix_str = NULL;
-	t_char*	log_fmt = NULL;
-	t_char*	log_msg = NULL;
+	t_char*	message = NULL;
+	t_char*	result = NULL;
 	t_size length;
 	f_ccchandler handlers[ENUMLENGTH_CCCERROR] = {0};
 
@@ -138,6 +139,23 @@ e_cccerror	Log_VA(s_logger const* logger,
 	}
 	Error_SetAllHandlers(Log_Logger_ErrorHandler);
 
+	// Construct log message body from format/variadic arguments
+	// NB: a va_list (in this case, 'args') can only be called ONCE (for every va_start), or else will segfault
+	message = String_Format_VA(format, args);
+	if (message == NULL)
+	{
+		Log_Fatal(logger, "Could not construct log message body");
+		goto failure;
+	}
+	length = String_Length(message);
+	if (message[0] != '\0' && message[length - 1] != '\n')
+	{
+		message = (t_char*)Memory_Reallocate(message, length + 2);
+		message[length + 0] = '\n';
+		message[length + 1] = '\0';
+	}
+
+	// Get log timestamp string
 	if (logger->timestamp)
 	{
 		timestamp = Logger_GetTimestamp(Time_Now());
@@ -158,46 +176,32 @@ e_cccerror	Log_VA(s_logger const* logger,
 
 	if (logger->format == LOGFORMAT_JSON)
 	{
+		s_json* json = JSON_CreateObject();
 		t_char* message_str = NULL;
 		message_str = String_Format("%s%s%s",
 			(prefix_str ? prefix_str : ""),
-			format,
+			message,
 			(suffix_str ? suffix_str : ""));
-		if (message_str == NULL)
+		if (message_str == NULL || json == NULL)
 		{
-			Log_Fatal(logger, "Could not construct log message");
+			Log_Fatal(logger, "Could not construct log message json");
 			goto failure;
-		}
-		else
-		{
-			t_char* tmp = message_str;
-//			Error_SetAllHandlers(NULL);
-			message_str = String_ToEscape(message_str, "");
-//			Error_SetAllHandlers(Log_Logger_ErrorHandler);
-			String_Delete(&tmp);
 		}
 		if (logger->timestamp)
 		{
-			t_char* tmp = timestamp;
-			timestamp = String_Format("    \"timestamp\": \"%s\",\n", timestamp);
-			String_Delete(&tmp);
+			JSON_AddToObject_String(json, "timestamp", timestamp);
 		}
-		t_char* status_str = NULL;
 		if (error_code)
 		{
-			status_str = String_Format("    \"status\": %i\n", error_code);
+			JSON_AddToObject_Integer(json, "status", error_code);
 		}
-		log_fmt = String_Format(
-			"{\n"
-			"%s"
-			"%s"
-			"    \"message\": \"%s\",\n"
-			"}\n",
-			(status_str ? status_str : ""),
-			(timestamp  ? timestamp  : ""),
-			message_str);
-		String_Delete(&status_str);
+//		Error_SetAllHandlers(NULL);
+		JSON_AddToObject_String(json, "message", message_str);
+//		Error_SetAllHandlers(Log_Logger_ErrorHandler);
+		result = JSON_ToString_Minify(json);
+		JSON_Delete(json);
 		String_Delete(&message_str);
+		String_Append(&result, "\n");
 	}
 	else
 	{
@@ -207,58 +211,41 @@ e_cccerror	Log_VA(s_logger const* logger,
 			timestamp = String_Format("%s"LOG_TIMESTAMP_SEPARATOR, timestamp);
 			String_Delete(&tmp);
 		}
-		t_char* format_str = String_Duplicate(format);
-		length = String_Length(format_str);
-		if (format_str[length - 1] == '\n')
-			format_str[length - 1] = '\0';
-		log_fmt = String_Format("%s%s%s%s",
+		t_char* message_str = String_Duplicate(message);
+		length = String_Length(message_str);
+		if (message_str[length - 1] == '\n')
+			message_str[length - 1] = '\0';
+		result = String_Format("%s%s%s%s",
 			(timestamp  ? timestamp  : ""),
 			(prefix_str ? prefix_str : ""),
-			format_str,
+			message_str,
 			(suffix_str ? suffix_str : ""));
+		if (result == NULL)
+		{
+			Log_Fatal(logger, "Could not construct log message head");
+			goto failure;
+		}
 		if (logger->timestamp)
 		{
-			t_char* tmp = log_fmt;
-			log_fmt = String_Replace_String(log_fmt, "\n", "\n" LOG_TIMESTAMP_INDENT LOG_TIMESTAMP_SEPARATOR);
+			t_char* tmp = result;
+			result = String_Replace_String(result, "\n", "\n" LOG_TIMESTAMP_INDENT LOG_TIMESTAMP_SEPARATOR);
 			String_Delete(&tmp);
 		}
 	}
 	String_Delete(&timestamp);
 	String_Delete(&prefix_str);
 	String_Delete(&suffix_str);
+	String_Delete(&message);
 
-	if (log_fmt == NULL)
+	if (logger->fd > 0)
 	{
-		Log_Fatal(logger, "Could not construct log message format string");
-		goto failure;
+		t_size	wrote = IO_Write_String(logger->fd, result);
+		// logging itself failed
+		HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
+			Log_Logger_FatalError(logger, logger->path);
+		HANDLE_ERROR_FINAL()
 	}
-	length = String_Length(log_fmt);
-	if (log_fmt[0] != '\0' && log_fmt[length - 1] != '\n')
-	{
-		log_fmt = (t_char*)Memory_Reallocate(log_fmt, length + 2);
-		log_fmt[length + 0] = '\n';
-		log_fmt[length + 1] = '\0';
-	}
-	// NB: a va_list (in this case, 'args') can only be called ONCE (for every va_start), or else will segfault
-	log_msg = String_Format_VA(log_fmt, args);
-	String_Delete(&log_fmt);
-	if (log_msg == NULL)
-	{
-		Log_Fatal(logger, "Could not construct log message");
-		goto failure;
-	}
-	else
-	{
-		if (logger->fd > 0)
-		{
-			t_size	wrote = IO_Write_String(logger->fd, log_msg);
-			// logging itself failed
-			HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
-				Log_Logger_FatalError(logger, logger->path);
-			HANDLE_ERROR_FINAL()
-		}
-	}
-	String_Delete(&log_msg);
+	String_Delete(&result);
 
 	// re-enable error-handling
 	for (t_enum i = 0; i < ENUMLENGTH_CCCERROR; ++i)
@@ -273,8 +260,8 @@ failure:
 	String_Delete(&timestamp);
 	String_Delete(&prefix_str);
 	String_Delete(&suffix_str);
-	String_Delete(&log_fmt);
-	String_Delete(&log_msg);
+	String_Delete(&message);
+	String_Delete(&result);
 
 	// re-enable error-handling
 	for (t_enum i = 0; i < ENUMLENGTH_CCCERROR; ++i)

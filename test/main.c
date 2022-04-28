@@ -18,10 +18,16 @@ static char const* program_name = NULL;
 ** ************************************************************************** *|
 */
 
-char const* test1 = "Omae wa mou shindeiru.\0";		t_size const test1_len = 23;
-char const* test2 = "Nani???\0";					t_size const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.\0";	t_size const test3_len = 27;
+char const* test1 = "Omae wa mou shindeiru.";		t_size const test1_len = 23;
+char const* test2 = "Nani???";						t_size const test2_len = 8;
+char const* test3 = "Un ange mange de la fange.";	t_size const test3_len = 27;
 
+char const* teststr_cc_c0	= "␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟";
+char const* teststr_cc_c1	= "";
+char const* teststr_utf8_fr	= "Être à même de ça, d'air sûr — manger du maïs à l'œil… D'où la paix sur l'île de son âme…";
+char const* teststr_utf8_ru	= "Яцк Ничолсон ; сталин ленин троцкий хрущев москва";
+char const* teststr_utf8_jp	= "お前はもう死んでいる - 愛 - 私は実体の小さな学生です";
+char const* teststr_utf8_ho	= "�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻";
 
 
 s_program	g_test;
@@ -69,8 +75,8 @@ static void	init(void)
 		(s_test_suite){ FALSE, "string",			testsuite_string },
 		(s_test_suite){ FALSE, "stringarray",		testsuite_stringarray },
 		(s_test_suite){ FALSE, "color",				testsuite_color },
-//		(s_test_suite){ FALSE, "text/ascii",		testsuite_text_ascii },
-//		(s_test_suite){ FALSE, "text/unicode",		testsuite_text_unicode },
+		(s_test_suite){ FALSE, "text/ascii",		testsuite_text_ascii },
+		(s_test_suite){ FALSE, "text/unicode",		testsuite_text_unicode },
 		(s_test_suite){ FALSE, "text/regex",		testsuite_text_regex },
 		(s_test_suite){ FALSE, "sys/io",			testsuite_sys_io },
 		(s_test_suite){ FALSE, "sys/time",			testsuite_sys_time },

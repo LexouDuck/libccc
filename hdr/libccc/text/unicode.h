@@ -406,8 +406,22 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 ** ************************************************************************** *|
 */
 
-// TODO UTF8_Length(), to mirror the mblen() function
-
+//!@doc Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`
+/*!
+**	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mblen}
+**
+**	Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`
+**	@param str		Pointer to the first byte of the utf8 character
+**
+**	@returns
+**	The size (in bytes) of the given utf8 character.
+**	Returns 0 if `str[0]` is `\0`
+**	Returns -1 if `str` is `NULL`, //TODO: keep? or if the character is encoded over more bytes than the limit `n` of bytes we can read
+**	//TODO: keep? Returns -1 if n is big enough to read the character but `str` is not a valid multibyte sequence
+*/
+t_sint						UTF8_Length(const t_utf8* str);
+#define c_mblen				UTF8_Length
+#define c_utf8len			UTF8_Length
 
 
 //!@doc Converts the given Unicode char `c` to its UTF-8 equivalent representation
