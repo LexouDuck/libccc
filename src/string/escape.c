@@ -77,15 +77,12 @@ t_size String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c)
 
 t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c)
 {
-	if (UTF32_IsValid(c))
-	{
-		if (c < 0x10000)
-			return String_EncodeEscape_uFFFF(dest, c);
-		else
-			return String_EncodeEscape_UFFFFFFFF(dest, c);
-	}
+	if (c <= 0xFF)
+		return String_EncodeEscape_xFF(dest, c);
+	else if (c <= 0xFFFF)
+		return String_EncodeEscape_uFFFF(dest, c);
 	else
-			return String_EncodeEscape_xFF(dest, c);
+		return String_EncodeEscape_UFFFFFFFF(dest, c);
 }
 
 // TODO: I feel like this could be a niche standard function

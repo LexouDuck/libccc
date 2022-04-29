@@ -1253,7 +1253,8 @@ t_size							String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c);
 #define c_strencode_Uffffffff	String_EncodeEscape_UFFFFFFFF
 
 //! Converts `c` to the shortest EncodeEscape format the character can fit. Will write at mose 10 ASCI char to dest
-t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c);
+t_size 						String_EncodeEscape_smart(t_char *dest, t_utf32 c);
+#define c_strencode_smart	String_EncodeEscape_smart
 
 //! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`
 typedef t_bool (*f_should_encode_char)(t_char const* str);

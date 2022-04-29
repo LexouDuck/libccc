@@ -1758,6 +1758,50 @@ void	test_strencode_Uffffffff(void)
 	print_test_strencode_Uffffffff("😇 ((\\U0001F607)"               , FALSE    , "\\U0001F607"    , 10            , UTF32_FromUTF8("😇"));
 }
 #endif
+
+#ifndef c_strencode_smart
+void test_strencode_smart(void)	{}
+#warning "strencode_smart() test suite function defined, but the function isn't defined."
+#else
+void	print_test_strencode_smart(char const* test_name, int can_segfault,
+		t_ascii const* expecting_dest,
+		t_size expecting,
+		t_utf32 c)
+{
+	t_ascii dest_libccc[11];
+	memset(dest_libccc, 0, 11);
+
+	TEST_INIT(size)
+	TEST_PERFORM_DEST(strencode_smart, c)
+	TEST_PRINT(size, strencode_smart, "dest=\"%s\", c='%c'/%X", dest_libccc, c, c)
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strencode_smart",
+		.can_sig = can_segfault,
+		.result = dest_libccc,
+		.expect = expecting_dest,
+		.result_sig = test.result_sig,
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, NULL);
+}
+
+void	test_strencode_smart(void)
+{
+//	| TEST FUNCTION           | TEST NAME                        | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+	print_test_strencode_smart("\\0"                             , FALSE    , "\\x00"          , 4             , UTF32_FromUTF8("\0"));
+	print_test_strencode_smart("ascii 'u' (\\U00000055)"         , FALSE    , "\\x55"          , 4             , UTF32_FromUTF8("\x55"));
+	print_test_strencode_smart("177 (\\U000000B1)"               , FALSE    , "\\xB1"          , 4             , UTF32_FromUTF8("±"));
+	print_test_strencode_smart("255 (\\U000000FF)"               , FALSE    , "\\xFF"          , 4             , UTF32_FromUTF8("ÿ"));
+	print_test_strencode_smart("24859 (\\U0000611B)"             , FALSE    , "\\u611B"        , 6             , UTF32_FromUTF8("愛"));
+	print_test_strencode_smart("헐((\\U000D5D0)"                 , FALSE    , "\\uD5D0"        , 6             , UTF32_FromUTF8("헐"));
+	print_test_strencode_smart("<not a character> (\\U0000FFFF)" , FALSE    , "\\uFFFF"        , 6             , UTF32_FromUTF8("￿"));
+	print_test_strencode_smart("𐀀 ((\\U00010000)"                , FALSE    , "\\U00010000"    , 10            , UTF32_FromUTF8("𐀀"));
+	print_test_strencode_smart("😇 ((\\U0001F607)"               , FALSE    , "\\U0001F607"    , 10            , UTF32_FromUTF8("😇"));
+}
+#endif
 /*
 ** ************************************************************************** *|
 **                            Test Suite Function                             *|
@@ -1841,6 +1885,7 @@ int		testsuite_string(void)
 	test_strencode_xff();
 	test_strencode_uffff();
 	test_strencode_Uffffffff();
+	test_strencode_smart();
 
 	return (0);
 }
