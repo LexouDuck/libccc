@@ -3,7 +3,7 @@
 
 
 #! The list of files which should be parsed by the `help-doc` rules (by default, all source code headers)
-DOC_FILES = $(addprefix $(HDRDIR),$(HDRS))
+DOC_FILES = $(HDRS)
 #! The awk condition to match a line (the default is an expression to match any c function declaration)
 DOC_MATCH = \
 	/[ \t]+[a-zA-Z_0-9]+[ \t]*\(.*\);$$/ && \
