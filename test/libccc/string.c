@@ -1034,8 +1034,12 @@ void	print_test_strtoesc(char const* test_name, int can_segfault,
 }
 void	test_strtoesc(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION    | TEST NAME      | CAN SEGV | EXPECTING                                                  | TEST ARGS
+	print_test_strtoesc("no escape"     , FALSE    , "hello world !"                                            , "hello world !"                                   , NULL);
+	print_test_strtoesc("empty string"  , FALSE    , ""                                                         , ""                                                , NULL);
+	print_test_strtoesc("basic escapes" , FALSE    , "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , "\tThis\nis a text \\with \v escaped\"symbols \'" , NULL);
+	print_test_strtoesc("with charset"  , FALSE    , "I d\\x6F n\\x6Ft like the letter \\x6F"                   , "I do not like the letter o"                      , "o");
+	print_test_strtoesc("all escapes"   , FALSE    , "hard \\\\\\'\\\"\\/\\?\\a\\b\\t\\n\\v\\f\\r\\e string"    , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             , NULL);
 }
 #endif
 
@@ -1630,6 +1634,7 @@ void	test_strimap(void)
 	print_test_strimap("strimap (both null)",	SIGNAL_SIGSEGV,	NULL,            NULL,                     NULL);
 }
 #endif
+
 
 
 #ifndef c_strencode_xff

@@ -1140,6 +1140,8 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\'`	Apostrophe
 **	- `\"`	Double quotes
+**	- `\/`	Forward Slash
+**	- `\?`	Question mark (used to avoid trigraphs)
 **	- `\0`	Null character (string terminator)
 **	- `\a`	Bell/Alert/Audible
 **	- `\b`	Backspace
