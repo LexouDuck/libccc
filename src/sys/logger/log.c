@@ -92,14 +92,14 @@ e_cccerror	LogAll_Error_CCC(t_logptrarr const loggers, e_cccerror error, t_char 
 	}
 }
 
-e_cccerror	   Log_Failure(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_errors), OK, NULL, LOGPREFIX_FAILURE, IO_COLOR_FG_RED)    }
-e_cccerror	LogAll_Failure(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_errors), OK, NULL, LOGPREFIX_FAILURE, IO_COLOR_FG_RED)    }
-e_cccerror	   Log_Warning(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_WARNING, IO_COLOR_FG_YELLOW) }
-e_cccerror	LogAll_Warning(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_WARNING, IO_COLOR_FG_YELLOW) }
-e_cccerror	   Log_Success(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_SUCCESS, IO_COLOR_FG_GREEN)  }
-e_cccerror	LogAll_Success(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_SUCCESS, IO_COLOR_FG_GREEN)  }
-e_cccerror	   Log_Message(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_MESSAGE, IO_COLOR_FG_BLUE)   }
-e_cccerror	LogAll_Message(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),   OK, NULL, LOGPREFIX_MESSAGE, IO_COLOR_FG_BLUE)   }
-e_cccerror	   Log_Verbose(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((!logger->verbose),       OK, NULL, LOGPREFIX_VERBOSE, IO_COLOR_FG_BLUE)   }
-e_cccerror	LogAll_Verbose(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((!logger->verbose),       OK, NULL, LOGPREFIX_VERBOSE, IO_COLOR_FG_BLUE)   }
+e_cccerror	   Log_Failure(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_errors),                   OK, NULL, LOGPREFIX_FAILURE, IO_COLOR_FG_RED)    }
+e_cccerror	LogAll_Failure(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_errors),                   OK, NULL, LOGPREFIX_FAILURE, IO_COLOR_FG_RED)    }
+e_cccerror	   Log_Warning(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_WARNING, IO_COLOR_FG_YELLOW) }
+e_cccerror	LogAll_Warning(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_WARNING, IO_COLOR_FG_YELLOW) }
+e_cccerror	   Log_Success(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_SUCCESS, IO_COLOR_FG_GREEN)  }
+e_cccerror	LogAll_Success(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_SUCCESS, IO_COLOR_FG_GREEN)  }
+e_cccerror	   Log_Message(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_MESSAGE, IO_COLOR_FG_BLUE)   }
+e_cccerror	LogAll_Message(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs),                     OK, NULL, LOGPREFIX_MESSAGE, IO_COLOR_FG_BLUE)   }
+e_cccerror	   Log_Verbose(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_logs || !logger->verbose), OK, NULL, LOGPREFIX_VERBOSE, IO_COLOR_FG_BLUE)   }
+e_cccerror	LogAll_Verbose(t_logptrarr const loggers, t_char const* format_str, ...)	{ LOGALL_FUNCTION_CONTENT((logger->silence_logs || !logger->verbose), OK, NULL, LOGPREFIX_VERBOSE, IO_COLOR_FG_BLUE)   }
 
