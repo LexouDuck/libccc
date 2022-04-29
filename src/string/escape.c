@@ -28,6 +28,9 @@ t_size String_EncodeEscape_xFF(t_char *dest, t_utf32 c)
 
 t_size String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c)
 {
+	if (c > 0xFFFF)
+		return ERROR;
+
 	if (dest)
 	{
 		t_u8 hexa0 = (c & 0x000F) >> 0;
@@ -36,7 +39,7 @@ t_size String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c)
 		t_u8 hexa3 = (c & 0xF000) >> 12;
 
 		dest[0] = '\\';
-		dest[1] = 'x';
+		dest[1] = 'u';
 		dest[2] = (hexa3 < 10) ? (hexa3 + '0') : (hexa3 - 10 + 'A');
 		dest[3] = (hexa2 < 10) ? (hexa2 + '0') : (hexa2 - 10 + 'A');
 		dest[4] = (hexa1 < 10) ? (hexa1 + '0') : (hexa1 - 10 + 'A');
@@ -45,7 +48,7 @@ t_size String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c)
 	return 6;
 }
 
-t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_utf32 c)
+t_size String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c)
 {
 	if (dest)
 	{
@@ -56,15 +59,15 @@ t_size String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_utf32 c)
 		t_u8 hexa4 = (c & 0x000F0000) >> 16;
 		t_u8 hexa5 = (c & 0x00F00000) >> 20;
 		t_u8 hexa6 = (c & 0x0F000000) >> 24;
-		t_u8 hexa7 = (c & 0x0000F000) >> 28;
+		t_u8 hexa7 = (c & 0xF0000000) >> 28;
 
 		dest[0] = '\\';
-		dest[1] = 'x';
+		dest[1] = 'U';
 		dest[2] = (hexa7 < 10) ? (hexa7 + '0') : (hexa7 - 10 + 'A');
 		dest[3] = (hexa6 < 10) ? (hexa6 + '0') : (hexa6 - 10 + 'A');
 		dest[4] = (hexa5 < 10) ? (hexa5 + '0') : (hexa5 - 10 + 'A');
-		dest[5] = (hexa4 < 10) ? (hexa4 + '0') : (hexa5 - 10 + 'A');
-		dest[6] = (hexa3 < 10) ? (hexa3 + '0') : (hexa4 - 10 + 'A');
+		dest[5] = (hexa4 < 10) ? (hexa4 + '0') : (hexa4 - 10 + 'A');
+		dest[6] = (hexa3 < 10) ? (hexa3 + '0') : (hexa3 - 10 + 'A');
 		dest[7] = (hexa2 < 10) ? (hexa2 + '0') : (hexa2 - 10 + 'A');
 		dest[8] = (hexa1 < 10) ? (hexa1 + '0') : (hexa1 - 10 + 'A');
 		dest[9] = (hexa0 < 10) ? (hexa0 + '0') : (hexa0 - 10 + 'A');
@@ -79,7 +82,7 @@ t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c)
 		if (c < 0x10000)
 			return String_EncodeEscape_uFFFF(dest, c);
 		else
-			return String_EncodeEscape_UFFFFFFFFF(dest, c);
+			return String_EncodeEscape_UFFFFFFFF(dest, c);
 	}
 	else
 			return String_EncodeEscape_xFF(dest, c);

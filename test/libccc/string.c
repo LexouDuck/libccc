@@ -1632,6 +1632,10 @@ void	test_strimap(void)
 #endif
 
 
+#ifndef c_strencode_xff
+void test_strencode_xff(void)	{}
+#warning "strencode_xff() test suite function defined, but the function isn't defined."
+#else
 void	print_test_strencode_xff(char const* test_name, int can_segfault,
 		t_ascii const* expecting_dest,
 		t_size expecting,
@@ -1656,16 +1660,104 @@ void	print_test_strencode_xff(char const* test_name, int can_segfault,
 	};
 	print_test_str(&test2, NULL);
 }
+
 void	test_strencode_xff(void)
 {
-//	| TEST FUNCTION            | TEST NAME            | CAN SEGV       | EXPECTING DEST | EXPECTING RET | TEST ARG
-	print_test_strencode_xff("\\0"                 , FALSE          , "\\x00"        , 4             , UTF32_FromUTF8("\0"));
-	print_test_strencode_xff("ascii 'u' (\\x55)"   , FALSE          , "\\x55"        , 4             , UTF32_FromUTF8("\x55"));
-	print_test_strencode_xff("177 (\\xB1)"         , FALSE          , "\\xB1"        , 4             , UTF32_FromUTF8("±"));
-	print_test_strencode_xff("255 (\\xFF)"         , FALSE          , "\\xFF"        , 4             , UTF32_FromUTF8("ÿ"));
-	print_test_strencode_xff"too big"             , FALSE          , ""             , ERROR         , UTF32_FromUTF8("愛"));
+//	| TEST FUNCTION         | TEST NAME            | CAN SEGV | EXPECTING DEST | EXPECTING RET | TEST ARG
+	print_test_strencode_xff("\\0"                 , FALSE    , "\\x00"        , 4             , UTF32_FromUTF8("\0"));
+	print_test_strencode_xff("ascii 'u' (\\x55)"   , FALSE    , "\\x55"        , 4             , UTF32_FromUTF8("\x55"));
+	print_test_strencode_xff("177 (\\xB1)"         , FALSE    , "\\xB1"        , 4             , UTF32_FromUTF8("±"));
+	print_test_strencode_xff("255 (\\xFF)"         , FALSE    , "\\xFF"        , 4             , UTF32_FromUTF8("ÿ"));
+	print_test_strencode_xff("too big"             , FALSE    , ""             , ERROR         , UTF32_FromUTF8("愛"));
+}
+#endif
+
+#ifndef c_strencode_uffff
+void test_strencode_uffff(void)	{}
+#warning "strencode_uffff() test suite function defined, but the function isn't defined."
+#else
+void	print_test_strencode_uffff(char const* test_name, int can_segfault,
+		t_ascii const* expecting_dest,
+		t_size expecting,
+		t_utf32 c)
+{
+	t_ascii dest_libccc[7];
+	memset(dest_libccc, 0, 7);
+
+	TEST_INIT(size)
+	TEST_PERFORM_DEST(strencode_uffff, c)
+	TEST_PRINT(size, strencode_uffff, "dest=\"%s\", c='%c'/%X", dest_libccc, c, c)
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strencode_uffff",
+		.can_sig = can_segfault,
+		.result = dest_libccc,
+		.expect = expecting_dest,
+		.result_sig = test.result_sig,
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, NULL);
 }
 
+void	test_strencode_uffff(void)
+{
+//	| TEST FUNCTION           | TEST NAME               | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+	print_test_strencode_uffff("\\0"                    , FALSE    , "\\u0000"        , 6             , UTF32_FromUTF8("\0"));
+	print_test_strencode_uffff("ascii 'u' (\\u0055)"    , FALSE    , "\\u0055"        , 6             , UTF32_FromUTF8("\x55"));
+	print_test_strencode_uffff("177 (\\u00B1)"          , FALSE    , "\\u00B1"        , 6             , UTF32_FromUTF8("±"));
+	print_test_strencode_uffff("255 (\\u00FF)"          , FALSE    , "\\u00FF"        , 6             , UTF32_FromUTF8("ÿ"));
+	print_test_strencode_uffff("24859 (\\u611B)"        , FALSE    , "\\u611B"        , 6             , UTF32_FromUTF8("愛"));
+	print_test_strencode_uffff("헐((\\uD5D0)"           , FALSE    , "\\uD5D0"        , 6             , UTF32_FromUTF8("헐"));
+	print_test_strencode_uffff("max value (\\uFFFF)"    , FALSE    , "\\uFFFF"        , 6             , UTF32_FromUTF8("￿"));
+	print_test_strencode_uffff("too big ((\\U00010000)" , FALSE    , ""               , ERROR         , UTF32_FromUTF8("𐀀"));
+}
+#endif
+
+#ifndef c_strencode_Uffffffff
+void test_strencode_Uffffffff(void)	{}
+#warning "strencode_Uffffffff() test suite function defined, but the function isn't defined."
+#else
+void	print_test_strencode_Uffffffff(char const* test_name, int can_segfault,
+		t_ascii const* expecting_dest,
+		t_size expecting,
+		t_utf32 c)
+{
+	t_ascii dest_libccc[11];
+	memset(dest_libccc, 0, 11);
+
+	TEST_INIT(size)
+	TEST_PERFORM_DEST(strencode_Uffffffff, c)
+	TEST_PRINT(size, strencode_Uffffffff, "dest=\"%s\", c='%c'/%X", dest_libccc, c, c)
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strencode_Uffffffff",
+		.can_sig = can_segfault,
+		.result = dest_libccc,
+		.expect = expecting_dest,
+		.result_sig = test.result_sig,
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, NULL);
+}
+
+void	test_strencode_Uffffffff(void)
+{
+//	| TEST FUNCTION               | TEST NAME                        | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+	print_test_strencode_Uffffffff("\\0"                             , FALSE    , "\\U00000000"    , 10            , UTF32_FromUTF8("\0"));
+	print_test_strencode_Uffffffff("ascii 'u' (\\U00000055)"         , FALSE    , "\\U00000055"    , 10            , UTF32_FromUTF8("\x55"));
+	print_test_strencode_Uffffffff("177 (\\U000000B1)"               , FALSE    , "\\U000000B1"    , 10            , UTF32_FromUTF8("±"));
+	print_test_strencode_Uffffffff("255 (\\U000000FF)"               , FALSE    , "\\U000000FF"    , 10            , UTF32_FromUTF8("ÿ"));
+	print_test_strencode_Uffffffff("24859 (\\U0000611B)"             , FALSE    , "\\U0000611B"    , 10            , UTF32_FromUTF8("愛"));
+	print_test_strencode_Uffffffff("헐((\\U000D5D0)"                 , FALSE    , "\\U0000D5D0"    , 10            , UTF32_FromUTF8("헐"));
+	print_test_strencode_Uffffffff("<not a character> (\\U0000FFFF)" , FALSE    , "\\U0000FFFF"    , 10            , UTF32_FromUTF8("￿"));
+	print_test_strencode_Uffffffff("𐀀 ((\\U00010000)"                , FALSE    , "\\U00010000"    , 10            , UTF32_FromUTF8("𐀀"));
+	print_test_strencode_Uffffffff("😇 ((\\U0001F607)"               , FALSE    , "\\U0001F607"    , 10            , UTF32_FromUTF8("😇"));
+}
+#endif
 /*
 ** ************************************************************************** *|
 **                            Test Suite Function                             *|
@@ -1747,6 +1839,8 @@ int		testsuite_string(void)
 //	test_strfold();
 //	test_strifold();
 	test_strencode_xff();
+	test_strencode_uffff();
+	test_strencode_Uffffffff();
 
 	return (0);
 }

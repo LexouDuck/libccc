@@ -1234,7 +1234,7 @@ t_size							String_EncodeEscape_xFF(t_char *dest, t_utf32 c);
 **	6: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
 t_size							String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c);
-#define c_strencode_xffff		String_EncodeEscape_xFFFF
+#define c_strencode_uffff		String_EncodeEscape_uFFFF
 
 //! Converts `c` to \xFFFFFFFF
 /*! 
@@ -1249,8 +1249,8 @@ t_size							String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c);
 **	@returns
 **	10: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size							String_EncodeEscape_UFFFFFFFFF(t_char *dest, t_utf32 c);
-#define c_strencode_xffffffff	String_EncodeEscape_xFFFFFFFF
+t_size							String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c);
+#define c_strencode_Uffffffff	String_EncodeEscape_UFFFFFFFF
 
 //! Converts `c` to the shortest EncodeEscape format the character can fit. Will write at mose 10 ASCI char to dest
 t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c);
