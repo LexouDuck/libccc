@@ -1129,20 +1129,23 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 ** ************************************************************************** *|
 */
 
-//! Creates a new string from `str`, replacing special characters with appropriate escape-sequences
+#define String_Print	String_ToAnsiEscapedBuf
+
+//! Creates a new string from `str`, replacing special characters with ANSII-like escape-sequences
 /*!
 **	@nonstd
 **
 **	Returns a new null-terminated string where every non-printable character
 **	of `str` is replaced by either its `normal` escape sequence (if available)
-**	or a '\\xFF'-type byte/unicode escape sequence if no simple short escape sequence exists.
+**	or encodes the character with either a '\xFF'-type '\uFFFF'-type or a 
+**	'\UFFFFFFFF'-type byte/unicode escape sequence if no simple short escape 
+**	sequence exists.
 **	Here is the list of characters which will be escaped by default:
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\'`	Apostrophe
 **	- `\"`	Double quotes
 **	- `\/`	Forward Slash
 **	- `\?`	Question mark (used to avoid trigraphs)
-**	- `\0`	Null character (string terminator)
 **	- `\a`	Bell/Alert/Audible
 **	- `\b`	Backspace
 **	- `\t`	Tab character
@@ -1152,41 +1155,53 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\r`	Carriage return
 **	- `\e`	Escape
 **	- `\x??`		Byte value, written as hexadecimal
-**	- TODO `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
-**	- TODO `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
+**	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
+**	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 */
-//!@{
-
-/*!@doc
-**	@param	dest			The destination string
-**	@param	str				The string to print/duplicate, with escape-sequences
-**	@param	n				The maximum amount of characters to print (infinite if `0` is given)
-**	@param	charset_extra	A string containing any extra characters which should be escaped
-**							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
-**	@returns
-**	The amount of characters parsed from the given `str`.
-*/
-//!@{
-t_size							String_Print(t_char* *dest, t_char const* str, t_size n, t_char const* charset_extra);
-#define c_strprint				String_Print
-//!@}
-
-/*!@doc
-**	@param	str				The string to print/duplicate, with escape-sequences
-**	@param	charset_extra	A string containing any extra characters which should be escaped
-**							(ie: any char in `charset_extra` will become a `\x??` byte escape sequence)
-**	@returns
-**	A newly allocated string from the given `str` (can be larger than `str`),
-**	in which any special characters are replaced with an appropriate escape-sequence.
-*/
-//!@{
 _MALLOC()
-t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
-#define c_strtoesc				String_ToEscape
-#define String_Encode			String_ToEscape
-#define String_ToPrintable		String_ToEscape
-//!@}
+t_char*					String_ToAnsiEscaped(t_char const* str);
+#define c_strtoesc		String_ToAnsiEscaped
 
+
+//! Equivalent of `String_ToAnsiEscaped` but writes in the given `dest` buffer.
+/*!
+**	@nonstd
+**
+**	One can call with NULL `dest` to get the size it would write
+**
+**	@returns
+**	The amount of byte written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size					String_ToAnsiEscapedBuf(t_char *dest, size_t max_writelen, t_char const* str);
+
+//! Creates a new string from `str`, replacing special characters with JSON-like escape-sequences
+/*!
+**	@nonstd
+**
+**	Returns a new null-terminated json-compliant string.
+**	Non-pritable characters are escaped with a `\uFFFF` format except for these escape sequences:
+**	- `\\`	`\` (a single backslash, escaping the escape character)
+**	- `\"`	Double quotes
+**	- `\b`	Backspace
+**	- `\t`	Tab character
+**	- `\n`	Line feed
+**	- `\f`	Form-feed
+**	- `\r`	Carriage return
+*/
+_MALLOC()
+t_char*					String_ToJsonEscaped(t_char const* str);
+#define c_strtojsonesc	String_ToAnsiEscaped
+
+//! Equivalent of `String_ToJsonEscaped` but writes in the given `dest` buffer.
+/*!
+**	@nonstd
+**
+**	One can call with NULL `dest` to get the size it would write
+**
+**	@returns
+**	The amount of byte written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size					String_ToJsonEscapedBuf(t_char *dest, size_t max_writelen, t_char const* str);
 
 
 //! Function to encode (or 'spell out') a unicode character to an ascii string
@@ -1202,99 +1217,128 @@ t_char*							String_ToEscape(t_char const* str, t_char const* charset_extra);
 */
 typedef size_t (*f_char_encoder)(t_ascii *dest, t_utf32 c);
 
-//! Converts `c` to \xFF
-/*! 
-**	@nonstd
-**	@see f_char_encoder
-**
-**	Converts `c` to \xFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
-**	If `c` is too big to be encoded with this format (if c > 0xFF), then `ERROR` is returned and nothing is written
-**	If `dest` is not NULL, writes 4 ASCII char to dest to represent the character in the format \xFF
-**
-**	@param	dest	The buffer in which the output will be written, if non NULL
-**	@param	c		the unicode character to encode
-**	@returns
-**	`ERROR`: if the given character cannot be encoded with \xFF format, or
-**	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
-*/
-t_size							String_EncodeEscape_xFF(t_char *dest, t_utf32 c);
-#define c_strencode_xff			String_EncodeEscape_xFF
+#define ENCODER_xFF				UTF32_ToEscaped_xFF
+#define ENCODER_uFFFF			UTF32_ToEscaped_uFFFF
+#define ENCODER_UFFFFFFFF		UTF32_ToEscaped_UFFFFFFFF
+#define ENCODER_smart			UTF32_ToEscaped_smart
 
-//! Converts `c` to \xFFFF
-/*! 
-**	@nonstd
-**	@see f_char_encoder
-**
-**	Converts `c` to \xFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
-**	If `c` is too big to be encoded with this format (if c > 0xFFFF), then `ERROR` is returned and nothing is written
-**	If `dest` is not NULL, writes 6 ASCII char to dest to represent the character in the format \xFFFF
-**
-**	@param	dest	The buffer in which the output will be written, if non NULL
-**	@param	c		the unicode character to encode
-**	@returns
-**	`ERROR`: if the given character cannot be encoded with \xFFFF format, or
-**	6: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
-*/
-t_size							String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c);
-#define c_strencode_uffff		String_EncodeEscape_uFFFF
-
-//! Converts `c` to \xFFFFFFFF
-/*! 
-**	@nonstd
-**	@see f_char_encoder
-**
-**	Converts `c` to \xFFFFFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
-**	If `dest` is not NULL, writes 10 ASCII char to dest to represent the character in the format \xFFFFFFFF
-**
-**	@param	dest	The buffer in which the output will be written, if non NULL
-**	@param	c		the unicode character to encode
-**	@returns
-**	10: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
-*/
-t_size							String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c);
-#define c_strencode_Uffffffff	String_EncodeEscape_UFFFFFFFF
-
-//! Converts `c` to the shortest EncodeEscape format the character can fit. Will write at mose 10 ASCI char to dest
-t_size 						String_EncodeEscape_smart(t_char *dest, t_utf32 c);
-#define c_strencode_smart	String_EncodeEscape_smart
 
 //! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`
-typedef t_bool (*f_should_encode_char)(t_char const* str);
+typedef t_bool (*f_force_encoding_for)(t_char const* str);
+
+t_bool ForceEncodingFor_NonPrintable(t_char const* str);
 
 
-// Gets the length of the string that `String_ToEscapeStr` would return. or -1 on error
-t_sint	String_ToEscapeGetLength(
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
-		f_char_encoder char_encoder);
 
 // mallocs and return a new string
-t_char*	String_ToEscapeStr(
+// note: force_encoding_for can be NULL. char_encoder maybe NULL but will cause a fail if we need to encode a char
+
+//! Creates a new string from `str` escaping any relevant characters
+/*!
+**	@nonstd
+**
+**	Returns a new string where every character in `charset`
+**	is replaced by its alias in `aliases`, or encoded with `char_encoder`
+**	if its alias is NULL or if `force_encoding_for` returns TRUE
+**
+**	`force_encoding_for` takes precedence over `charset`/`aliases`, and will directly encode a character
+**	without checking if it has an alias
+**
+**	@param	str					The input string whose content will be copied and escaped
+**	@param	charset				String containing all characters to escape by an alias
+**	@param	aliases				String array containing the alias of every character of `charset`.
+**									A character in `charset` corresponds to an alias in `aliases` by index.
+**									If an alias is `NULL`, then the character will be encoded instead
+**	@param	force_encoding_for	Predicate that can force a given character to be encoded by returning `TRUE`.
+**									If `force_encoding_for` is `NULL`, only character of `charset` that don't
+**									have an alias will be encoded.
+**	@param	char_encoder		Function taking care of encoding a character.
+**									If `NULL`, the function will fail if it ever needs to encode a character,
+**									but will succeed if it never needs to do so.
+**									@see f_char_encoder
+**
+**	@returns
+**	The new alloc'd string containing the escaped version of `str`, or
+**	NULL in case of error
+*/
+_MALLOC()
+t_char*	String_ToEscaped(
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
-// the current `String_Print` behavior: mallocs and fills up to *dest up to n*sizeof(t_char). if (n == 0) n = SIZE_MAX
-t_sint String_ToEscapeNew(
-		t_char* *dest,
-		size_t n,
+//! More exhaustive version of `String_ToEscaped`
+/*
+**	@see String_ToEscaped
+**
+**	All 'out parameters` are only set if non `NULL` and if the call is successful
+**	otherwise, their value is left untouched
+**
+**	@params	out_len			Used to return the length of returned string
+**	@params	out_readlen		Used to return the length read from input string. Useful when max_writelen is given
+**	@params	max_writelen	Maximum length of string to return. No limit if set to `SIZE_ERROR`.
+**								The function takes care of not reaching `max_writelen` in the middle of
+**								an alias or encoded char by realizing there is not enough space and stopping
+**								before writting it.
+**								This means that the returned string may be shorter than `max_writelen` even
+**								when it was limited by it
+*/
+_MALLOC()
+t_char*	String_ToEscaped_(
+		t_size *out_len,
+		t_size *out_readlen,
+		t_size max_writelen,
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
-t_sint String_ToEscapeBuf(
+//! Same as `String_ToEscaped` except it will write the escaped string directly to `dest`
+/*
+**	@see String_ToEscaped
+**
+**	If `dest` is NULL, nothing is written and the number of bytes that would be written is returned.
+**
+**	@param	dest			The buffer to write the escaped string to, it not `NULL`
+**	@params	max_writelen	Maximum length of string to return. No limit if set to `SIZE_ERROR`.
+**								The function takes care of not reaching `max_writelen` in the middle of
+**								an alias or encoded char by realizing there is not enough space and stopping
+**								before writting it.
+**								This means that the returned string may be shorter than `max_writelen` even
+**								when it was limited by it
+**	@returns
+**	The number of bytes written to `dest` or that would have been written to `dest` if it was not `NULL`, or
+**	SIZE_ERROR in case of error
+*/
+t_size String_ToEscapedBuf(
 		t_char *dest,
-		size_t n,
+		size_t max_writelen,
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
+		f_char_encoder char_encoder);
+
+//! More exhaustive version of `String_ToEscapedBuf`
+/*
+**	@see String_ToEscapedBuf
+**
+**	All 'out parameters` are only set if non `NULL` and if the call is successful
+**	otherwise, their value is left untouched
+**
+**	@params	out_readlen		Used to return the length read from input string. Useful when max_writelen is given
+*/
+t_size String_ToEscapedBuf_(
+		t_char *dest,
+		t_size *out_readlen,
+		size_t max_writelen,
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
 //!@}

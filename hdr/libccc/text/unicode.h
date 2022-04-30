@@ -491,6 +491,74 @@ t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 //!@}
 
 
+//! Converts `c` to \xFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \xFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 4 ASCII char to dest to represent the character in the format \xFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \xFF format, or
+**	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							UTF32_ToEscaped_xFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_xff		UTF32_ToEscaped_xFF
+#define c_wcencode_xff			UTF32_ToEscaped_xFF
+
+//! Converts `c` to \uFFFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \uFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFFFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 6 ASCII char to dest to represent the character in the format \uFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \uFFFF format, or
+**	6: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							UTF32_ToEscaped_uFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_uffff		UTF32_ToEscaped_uFFFF
+#define c_wcencode_xffff		UTF32_ToEscaped_uFFFF
+
+//! Converts `c` to \UFFFFFFFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \UFFFFFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `dest` is not NULL, writes 10 ASCII char to dest to represent the character in the format \UFFFFFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	10: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							UTF32_ToEscaped_UFFFFFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_Uffffffff	UTF32_ToEscaped_UFFFFFFFF
+#define c_wcencode_Uffffffff	UTF32_ToEscaped_UFFFFFFFF
+
+//! Converts `c` to the shortest format the character can fit in. Will write at mose 10 ASCI char to dest
+/*! 
+**	@nonstd
+**
+**	Converts `c` to the shortest format the character can fit in. Either \xFF or \uFFFF or \UFFFFFFFF where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `dest` is not NULL, writes at most 10 ASCII char to dest to represent the character
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL. This is at most 10
+*/
+t_size 						UTF32_ToEscaped_smart(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_smart	UTF32_ToEscaped_smart
+#define c_wcencode_smart	UTF32_ToEscaped_smart
+
 
 //!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
 /*!

@@ -7,91 +7,68 @@
 
 #include LIBCONFIG_ERROR_INCLUDE
 
-t_size String_EncodeEscape_xFF(t_char *dest, t_utf32 c)
-{
-	if (c > 0xFF)
-		return ERROR;
 
-	if (dest)
+t_bool ForceEncodingFor_NonPrintable(t_char const* str)
+{
+	return !UTF32_IsPrintable(UTF32_FromUTF8(str));
+}
+
+_MALLOC()
+t_char* String_ToAnsiEscaped(t_char const* str)
+{
+	t_size expected_len = String_ToAnsiEscapedBuf(NULL, SIZE_ERROR, str);
+	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+
+	if (String_ToAnsiEscapedBuf(result, expected_len, str) == SIZE_ERROR)
 	{
-		t_u8 hexa0 = (c & 0x0F) >> 0;
-		t_u8 hexa1 = (c & 0xF0) >> 4;
-
-		dest[0] = '\\';
-		dest[1] = 'x';
-		dest[2] = (hexa1 < 10) ? (hexa1 + '0') : (hexa1 - 10 + 'A');
-		dest[3] = (hexa0 < 10) ? (hexa0 + '0') : (hexa0 - 10 + 'A');
+		String_Delete(&result);
+		return (NULL);
 	}
-	return 4;
+	return result;
+}
+
+t_size					String_ToAnsiEscapedBuf(t_char *dest, size_t max_writelen, t_char const* str)
+{
+	t_char charset[]        = {   '\\' ,  '\'' ,    '"' ,   '/' ,   '?' ,  '\a' ,  '\b' ,  '\t' ,  '\n' ,  '\v' ,  '\f' ,  '\r' , '\x1B' };
+	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" ,  "\\e" };
+
+	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_smart);
 }
 
 
-t_size String_EncodeEscape_uFFFF(t_char *dest, t_utf32 c)
+_MALLOC()
+t_char* String_ToJsonEscaped(t_char const* str)
 {
-	if (c > 0xFFFF)
-		return ERROR;
+	t_size expected_len = String_ToJsonEscapedBuf(NULL, SIZE_ERROR, str);
+	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
-	if (dest)
+	if (String_ToJsonEscapedBuf(result, expected_len, str) == SIZE_ERROR)
 	{
-		t_u8 hexa0 = (c & 0x000F) >> 0;
-		t_u8 hexa1 = (c & 0x00F0) >> 4;
-		t_u8 hexa2 = (c & 0x0F00) >> 8;
-		t_u8 hexa3 = (c & 0xF000) >> 12;
-
-		dest[0] = '\\';
-		dest[1] = 'u';
-		dest[2] = (hexa3 < 10) ? (hexa3 + '0') : (hexa3 - 10 + 'A');
-		dest[3] = (hexa2 < 10) ? (hexa2 + '0') : (hexa2 - 10 + 'A');
-		dest[4] = (hexa1 < 10) ? (hexa1 + '0') : (hexa1 - 10 + 'A');
-		dest[5] = (hexa0 < 10) ? (hexa0 + '0') : (hexa0 - 10 + 'A');
+		String_Delete(&result);
+		return (NULL);
 	}
-	return 6;
+	return result;
 }
 
-t_size String_EncodeEscape_UFFFFFFFF(t_char *dest, t_utf32 c)
+t_size String_ToJsonEscapedBuf(t_char *dest, size_t max_writelen, t_char const* str)
 {
-	if (dest)
-	{
-		t_u8 hexa0 = (c & 0x0000000F) >> 0;
-		t_u8 hexa1 = (c & 0x000000F0) >> 4;
-		t_u8 hexa2 = (c & 0x00000F00) >> 8;
-		t_u8 hexa3 = (c & 0x0000F000) >> 12;
-		t_u8 hexa4 = (c & 0x000F0000) >> 16;
-		t_u8 hexa5 = (c & 0x00F00000) >> 20;
-		t_u8 hexa6 = (c & 0x0F000000) >> 24;
-		t_u8 hexa7 = (c & 0xF0000000) >> 28;
+	t_char charset[]        = {  '\b' ,  '\f' ,  '\n' ,  '\r' ,  '\t' ,  '"' ,   '\\'};
+	t_char const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\"" , "\\\\"};
 
-		dest[0] = '\\';
-		dest[1] = 'U';
-		dest[2] = (hexa7 < 10) ? (hexa7 + '0') : (hexa7 - 10 + 'A');
-		dest[3] = (hexa6 < 10) ? (hexa6 + '0') : (hexa6 - 10 + 'A');
-		dest[4] = (hexa5 < 10) ? (hexa5 + '0') : (hexa5 - 10 + 'A');
-		dest[5] = (hexa4 < 10) ? (hexa4 + '0') : (hexa4 - 10 + 'A');
-		dest[6] = (hexa3 < 10) ? (hexa3 + '0') : (hexa3 - 10 + 'A');
-		dest[7] = (hexa2 < 10) ? (hexa2 + '0') : (hexa2 - 10 + 'A');
-		dest[8] = (hexa1 < 10) ? (hexa1 + '0') : (hexa1 - 10 + 'A');
-		dest[9] = (hexa0 < 10) ? (hexa0 + '0') : (hexa0 - 10 + 'A');
-	}
-	return 10;
+	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_uFFFF);
 }
 
-t_size String_EncodeEscape_smart(t_char *dest, t_utf32 c)
-{
-	if (c <= 0xFF)
-		return String_EncodeEscape_xFF(dest, c);
-	else if (c <= 0xFFFF)
-		return String_EncodeEscape_uFFFF(dest, c);
-	else
-		return String_EncodeEscape_UFFFFFFFF(dest, c);
-}
 
-// TODO: I feel like this could be a niche standard function
-//! writes `alias` into `dest` and return number of byte written. If `n` is not big enough to write the entire alias, nothing is written
-static size_t Write_Alias(t_char *dest, size_t n, t_char const* alias)
+
+
+
+static size_t Write_Alias(t_char *dest, size_t max_writelen, t_char const* alias)
 {
 	size_t alias_length = String_Length(alias);
 
-	if (alias_length >= n)
+	if (alias_length >= max_writelen)
 		return 0;
 
 	if (dest)
@@ -99,88 +76,102 @@ static size_t Write_Alias(t_char *dest, size_t n, t_char const* alias)
 	return alias_length;
 }
 
-static size_t Write_Encoded(t_char *dest, t_char const* str, t_size writeable, f_char_encoder encoder)
+static size_t Write_Encoded(t_char *dest, t_char const* str, t_size writeable_len, f_char_encoder encoder)
 {
 	t_utf32 c = UTF32_FromUTF8(str);
 
-	if (encoder(NULL, c) > writeable)
+	if (encoder(NULL, c) > writeable_len)
 		return 0;
 	return encoder(dest, c);
 }
 
-t_char*	String_ToEscapeStr(
+
+t_char*	String_ToEscaped(
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
-	t_char *result = NULL;
-	String_ToEscapeNew(&result, 0, str, charset, charset_alias, should_encode_char, char_encoder);
-	return result;
+	return String_ToEscaped_(NULL, NULL, SIZE_ERROR, str, charset, aliases, force_encoding_for, char_encoder);
 }
 
-t_sint String_ToEscapeNew(
-		t_char* *dest,
-		size_t n,
+t_char*	String_ToEscaped_(
+		t_size *out_len,
+		t_size *out_readlen,
+		t_size max_writelen,
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
 	t_char *result;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (-1););
-	if (n == 0)
-		n = SIZE_MAX;
+	if (max_writelen == SIZE_ERROR)
+		max_writelen = SIZE_MAX;
 
-	t_sint getlength_result = String_ToEscapeBuf(NULL, SIZE_MAX, str, charset, charset_alias, should_encode_char, char_encoder);
-	if (getlength_result == -1)
-		return -1;
+	t_size expected_len = String_ToEscapedBuf(NULL, SIZE_MAX, str, charset, aliases, force_encoding_for, char_encoder);
+	if (expected_len == SIZE_ERROR)
+		return (SIZE_ERROR);
 
-	t_size length = (t_size)getlength_result;
-	if (length > n)
-		length = n;
-	result = (t_char*)Memory_Allocate(length + sizeof(t_char));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), *dest = NULL; return (-1);)
+	if (expected_len > max_writelen)
+		expected_len = max_writelen;
+	result = (t_char*)Memory_Allocate(expected_len + sizeof(t_char));
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (SIZE_ERROR);)
 
-	if (String_ToEscapeBuf(result, length, str, charset, charset_alias, should_encode_char, char_encoder) == -1)
+	
+	t_size actual_len = String_ToEscapedBuf_(result, out_readlen, expected_len, str, charset, aliases, force_encoding_for, char_encoder);
+	if (actual_len == SIZE_ERROR)
 	{
 		String_Delete(&result);
-		*dest = NULL;
-		return -1;
+		return (SIZE_ERROR);
 	}
 
-	*dest = result;
-	return length;
+	if (out_len)
+		*out_len = actual_len;
+	return result;
 }
 
-t_sint String_ToEscapeBuf(
+t_size	String_ToEscapedBuf(
 		t_char *dest,
-		size_t n,
+		t_size max_writelen,
 		t_char const* str,
 		t_char const* charset,
-		t_char const* const* charset_alias,
-		f_should_encode_char should_encode_char,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
+		f_char_encoder char_encoder)
+{
+	return String_ToEscapedBuf_(dest, NULL, max_writelen, str, charset, aliases, force_encoding_for, char_encoder);
+}
+
+t_size String_ToEscapedBuf_(
+		t_char *dest,
+		t_size *out_readlen,
+		size_t max_writelen,
+		t_char const* str,
+		t_char const* charset,
+		t_char const* const* aliases,
+		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
 	t_size	wr_idx = 0;
 	t_size	rd_idx = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return -1;)
-	HANDLE_ERROR(NULLPOINTER, (charset_alias == NULL), return -1;)
-	HANDLE_ERROR_SF(INVALIDARGS, (String_Length(charset) != StringArray_Length(charset_alias)), return (-1);, "`charset` and `charset_alias` are of different length");
-	if (n == 0)
-		n = SIZE_MAX;
-	for (; wr_idx < (n - 1) && str[rd_idx]; rd_idx += UTF8_Length(str + rd_idx))
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (SIZE_ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (aliases == NULL), return (SIZE_ERROR);)
+	HANDLE_ERROR_SF(INVALIDARGS, (String_Length(charset) != StringArray_Length(aliases)), return ((SIZE_ERROR));, "`charset` and `aliases` are of different length");
+	if (max_writelen == SIZE_ERROR)
+		max_writelen = SIZE_MAX;
+	for (; wr_idx < (max_writelen - 1) && str[rd_idx]; rd_idx += UTF8_Length(str + rd_idx))
 	{
-		size_t writeable = n - wr_idx - 1;
+		size_t writeable_len = max_writelen - wr_idx - 1;
 		size_t written = 0;
 
-		if (should_encode_char(str + rd_idx))
+		if (force_encoding_for != NULL && force_encoding_for(str + rd_idx))
 		{
-			written = Write_Encoded(dest, str, writeable, char_encoder);
+			HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), return (SIZE_ERROR);)
+			written = Write_Encoded(dest, str, writeable_len, char_encoder);
 		}
 		else
 		{
@@ -190,10 +181,13 @@ t_sint String_ToEscapeBuf(
 			{
 				int charset_idx = find_res - charset;
 
-				if (charset_alias[charset_idx])
-					written = Write_Alias(dest, writeable, charset_alias[charset_idx]);
+				if (aliases[charset_idx])
+					written = Write_Alias(dest, writeable_len, aliases[charset_idx]);
 				else
-					written = Write_Encoded(dest, str, writeable, char_encoder);
+				{
+					HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), return (SIZE_ERROR);)
+					written = Write_Encoded(dest, str, writeable_len, char_encoder);
+				}
 			}
 		}
 		if (written == 0)
@@ -202,6 +196,8 @@ t_sint String_ToEscapeBuf(
 	}
 	if (dest)
 		dest[wr_idx] = '\0';
+	if (out_readlen)
+		*out_readlen = rd_idx;
 	return (wr_idx);
 }
 
