@@ -315,6 +315,7 @@ HEADER_CPP
 #define SF_SIZE_HEX     "0x%"SF_SIZE_HEX_
 #define SF_SIZE_HEX_    "zx"
 
+#ifdef _IS_64BIT
 #define SF_PTRDIFF      "%"SF_PTRDIFF_
 #define SF_PTRDIFF_     "ti"
 #define SF_PTRDIFF_HEX  "0x%"SF_PTRDIFF_HEX_
@@ -328,6 +329,21 @@ HEADER_CPP
 #define SF_SINTPTR_HEX_ "zX"
 #define SF_UINTPTR_HEX  "0x%"SF_UINTPTR_HEX_
 #define SF_UINTPTR_HEX_ "zX"
+#else
+#define SF_PTRDIFF      "%"SF_PTRDIFF_
+#define SF_PTRDIFF_     "i"
+#define SF_PTRDIFF_HEX  "0x%"SF_PTRDIFF_HEX_
+#define SF_PTRDIFF_HEX_ "x"
+
+#define SF_SINTPTR      "%"SF_SINTPTR_
+#define SF_SINTPTR_     "i"
+#define SF_UINTPTR      "%"SF_UINTPTR_
+#define SF_UINTPTR_     "u"
+#define SF_SINTPTR_HEX  "0x%"SF_SINTPTR_HEX_
+#define SF_SINTPTR_HEX_ "X"
+#define SF_UINTPTR_HEX  "0x%"SF_UINTPTR_HEX_
+#define SF_UINTPTR_HEX_ "X"
+#endif
 
 #define SF_SINTMAX      "%"SF_SINTMAX_
 #define SF_SINTMAX_     "ji"
@@ -339,16 +355,6 @@ HEADER_CPP
 #define SF_UINTMAX_HEX_ "jX"
 //!@}
 
-#ifdef __EMSCRIPTEN__
-#undef  SF_PTRDIFF_
-#define SF_PTRDIFF_	"i"
-#undef  SF_PTRDIFF_HEX_
-#define SF_PTRDIFF_HEX_	"x"
-#undef  SF_SINTPTR_
-#define SF_SINTPTR_	"i"
-#undef  SF_SINTPTR_HEX_
-#define SF_SINTPTR_HEX_	"x"
-#endif
 
 //!@doc String format specifier macros for libccc/memory.h
 //!@{
@@ -536,7 +542,6 @@ HEADER_CPP
 **	A newly allocated string, constructed from the given `format` string and arguments
 */
 //!@{
-
 //! @isostd{BSD,https://linux.die.net/man/3/asprintf}
 _FORMAT(printf, 1, 2)
 _MALLOC()
@@ -545,7 +550,6 @@ t_char*					String_Format(t_char const* format, ...);
 #define c_strfmt		String_Format
 #define c_strformat		String_Format
 #define String_Build	String_Format
-
 //! @isostd{BSD,https://linux.die.net/man/3/vasprintf}
 _MALLOC()
 t_char*					String_Format_VA(t_char const* format, va_list args);
@@ -553,7 +557,6 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 #define c_strfmt_va		String_Format_VA
 #define c_strformat_va	String_Format_VA
 #define String_Build_VA	String_Format_VA
-
 //!@}
 
 
@@ -572,7 +575,6 @@ t_char*					String_Format_VA(t_char const* format, va_list args);
 **	You may assume that the returned size will always be less than or equal to `max`.
 */
 //!@{
-
 //!	@isostd{C89,https://en.cppreference.com/w/c/io/snprintf}
 _FORMAT(printf, 3, 4)
 t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...);
@@ -580,14 +582,12 @@ t_size						String_Format_N(t_char* dest, t_size max, t_char const* format, ...)
 #define c_strnfmt			String_Format_N
 #define c_strnformat		String_Format_N
 #define String_Build_N		String_Format_N
-
 //!	@isostd{C89,https://en.cppreference.com/w/c/io/vsnprintf}
 t_size						String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args);
 #define c_vsnprintf			String_Format_N_VA
 #define c_strnfmt_va		String_Format_N_VA
 #define c_strnformat_va		String_Format_N_VA
 #define String_Build_N_VA	String_Format_N_VA
-
 //!@}
 
 

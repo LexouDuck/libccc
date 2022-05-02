@@ -75,7 +75,7 @@ typedef t_uint		t_dynamic;
 typedef struct kvt
 {
 	struct kvt*	next;	//!< linked-list pointer to neighboring items (is `NULL` for the last item in the list)
-	struct kvt*	prev;	//!< linked-list pointer to neighboring items (for the first item, `prev` will point to the end of the list)
+	struct kvt*	prev;	//!< linked-list pointer to neighboring items (for the first item, `prev` will point to the last item)
 
 //	t_utf8*		comment;//!< A comment line associated with this item // TODO
 	t_utf8*		key;	//!< The item's key string, if this item is the child of, or is in the list of subitems of, an object.
@@ -87,7 +87,7 @@ typedef struct kvt
 		t_f64		number;		//!< #DYNAMICTYPE_FLOAT
 		t_utf8*		string;		//!< #DYNAMICTYPE_STRING or #DYNAMICTYPE_RAW
 		struct kvt*	child;		//!< #DYNAMICTYPE_ARRAY or #DYNAMICTYPE_OBJECT
-	}	value;	//!< The item's stored value (can be of any type)
+	}	value;	//!< The item's stored value (can be of any type, according to `type`)
 }	s_kvt;
 
 

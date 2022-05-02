@@ -7,7 +7,7 @@
 
 
 
-static void skip_oneline_comment(t_char** input)
+static void skip_oneline_comment(t_utf8** input)
 {
 	*input += STRING_LENGTH("//");
 
@@ -21,7 +21,7 @@ static void skip_oneline_comment(t_char** input)
 	}
 }
 
-static void skip_multiline_comment(t_char** input)
+static void skip_multiline_comment(t_utf8** input)
 {
 	*input += STRING_LENGTH("/*");
 
@@ -35,7 +35,7 @@ static void skip_multiline_comment(t_char** input)
 	}
 }
 
-static void minify_string(t_char** input, t_char** output)
+static void minify_string(t_utf8** input, t_utf8** output)
 {
 	(*output)[0] = (*input)[0];
 	*input += STRING_LENGTH("\"");
@@ -61,9 +61,9 @@ static void minify_string(t_char** input, t_char** output)
 	}
 }
 
-void	JSON_Minify(t_char* json)
+void	JSON_Minify(t_utf8* json)
 {
-	t_char* into = json;
+	t_utf8* into = json;
 
 	if (json == NULL)
 		return;
@@ -95,7 +95,7 @@ void	JSON_Minify(t_char* json)
 				break;
 
 			case '\"':
-				minify_string(&json, (t_char**)&into);
+				minify_string(&json, (t_utf8**)&into);
 				break;
 
 			default:

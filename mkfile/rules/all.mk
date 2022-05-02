@@ -5,7 +5,7 @@
 .PHONY:\
 all #! Builds all targets (this is the default rule)
 all: \
-build-$(MODE)
+build-$(BUILDMODE)
 
 
 
@@ -21,5 +21,6 @@ all \
 setup #! Performs initial setup steps for the project
 setup: \
 init \
+version \
 prereq \
 packages \

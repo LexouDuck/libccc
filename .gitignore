@@ -30,6 +30,7 @@ log.txt
 
 # Documentation
 /doc/_doxyrest/
+/doc/doxyrest/
 /docs/hdr/
 /docs/man/
 /docs/rtf/
@@ -107,6 +108,7 @@ dkms.conf
 
 # Windows
 Thumbs.db
+desktop.ini
 
 # FAT32
 .Trash-[0-9]*

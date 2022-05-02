@@ -9,6 +9,19 @@
 
 
 
+#ifdef __EMSCRIPTEN__ // TODO remove this when emscripten fixes their bad code
+#undef	PTRDIFF_MIN
+#define PTRDIFF_MIN  (t_ptrdiff)INT32_MIN
+#undef	PTRDIFF_MAX
+#define PTRDIFF_MAX  (t_ptrdiff)INT32_MAX
+#undef	INTPTR_MIN
+#define INTPTR_MIN  (t_sintptr)INT32_MIN
+#undef	INTPTR_MAX
+#define INTPTR_MAX  (t_sintptr)INT32_MAX
+#endif
+
+
+
 #define DEFINEFUNC_UINT_FROMSTRDEC(UINT_TYPE, UINT_NAME, UINT_MACRO) \
 t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 {																						\

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/monad/convert.h &mdash; libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
+  <title>libccc/monad/convert.h &mdash; libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="libccc/monad/convert.h">
 	<meta property="og:description" content="libccc/monad/convert.h">
-	<meta property="og:title" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
+	<meta property="og:title" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation - libccc/monad/convert.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_monad_convert.html">
-	<meta property="og:site_name" content="libccc libccc@0.9.79-2022-02-17_fa47fcd8df6abecb3d122f586d576367663b9eb5
+	<meta property="og:site_name" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
  documentation">
 
 
@@ -65,10 +65,10 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
@@ -79,7 +79,6 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -160,26 +159,26 @@
 <p>This header defines conversions functions between the generic monad types. <a class="reference internal" href="#details-group-libccc-monad-convert"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
 
-<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga8590eae2d5513fea66c23c1885b1f8cd"><span class="std std-ref">List_ToPointerArray</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-monad-convert-1gae193341a74416208e94eaa51f0726861"><span class="std std-ref">s_array</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+<span class="kt">void</span><span class="o">**</span> <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga2ba99ba7db12342f9877303a5372d99c"><span class="std std-ref">List_ToPointerArray</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaff8c475d60d1e84635718056fe52148a"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-monad-convert-1gae193341a74416208e94eaa51f0726861"><span class="std std-ref">s_array</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
 
 <span class="c1">// macros</span>
 
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span>   <span class="n">T_TYPE</span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-convert-1ga4b35dcb35d6e6052480f748d0b21d613"><span></span><span class="n">c_lsttoarr</span></span><span></span>   <span class="n">List_ToArray</span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-convert-1gafcbfe8a3e073f2cf7aa7ea02a8a7e151"><span></span><span class="n">c_lsttoptrarr</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga8590eae2d5513fea66c23c1885b1f8cd"><span class="std std-ref">List_ToPointerArray</span></a></pre>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-monad-convert-1gafcbfe8a3e073f2cf7aa7ea02a8a7e151"><span></span><span class="n">c_lsttoptrarr</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-monad-convert-1ga2ba99ba7db12342f9877303a5372d99c"><span class="std std-ref">List_ToPointerArray</span></a></pre>
 </section>
 <section id="detailed-documentation">
 <span id="details-group-libccc-monad-convert"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <p>This header defines conversions functions between the generic monad types.</p>
 <section id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1ga8590eae2d5513fea66c23c1885b1f8cd"><span id="index-1"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">List_ToPointerArray</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga9720a9aac4da7916016f571a45e8b826"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1ga2ba99ba7db12342f9877303a5372d99c"><span id="index-1"></span><span></span><span class="kt">void</span><span class="o">**</span> <span class="n">List_ToPointerArray</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1gaff8c475d60d1e84635718056fe52148a"><span class="std std-ref">s_list</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span><span class="o">*</span> <span class="n">list</span><span class="p">)</span></pre>
 <p>Converts the given <code class="docutils literal notranslate"><span class="pre">list</span></code> to a NULL-terminated pointer array</p>
 <p>Creates a new jagged array (2D pointer array) from the given list <code class="docutils literal notranslate"><span class="pre">*a_lst</span></code>. The top-level pointer array is terminated by a NULL pointer. The underlying <code class="docutils literal notranslate"><span class="pre">lst.item</span></code> data is not copied, only the pointers are.</p>
 <p class="rubric">Returns:</p>
 <p>The resulting pointer array converted from the given list, or <code class="docutils literal notranslate"><span class="pre">NULL</span></code> if an error occurred.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1gae193341a74416208e94eaa51f0726861"><span id="index-2"></span><span></span><span class="kt">s_array</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-convert-1gae193341a74416208e94eaa51f0726861"><span id="index-2"></span><span></span><span class="kt">s_array</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span> <span class="k">const</span></pre>
 <p>Monadic compound storage types: <code class="docutils literal notranslate"><span class="pre">Array</span></code> indexed contiguous storage (fast access, slow for size-changes) <code class="docutils literal notranslate"><span class="pre">List</span></code> indexed fragmented storage (slow access, fast for size-changes) <code class="docutils literal notranslate"><span class="pre">Hash</span></code> unordered bucket-like storage (fast, slightly more memory-hungry) TODO <code class="docutils literal notranslate"><span class="pre">KeyVal</span></code> key+value pair (simple struct with a string and value) <code class="docutils literal notranslate"><span class="pre">Dict</span></code> named storage (configurable) TODO <code class="docutils literal notranslate"><span class="pre">Dict&lt;Array&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Dict&lt;List&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Dict&lt;Hash&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree</span></code> nested storage (configurable) TODO <code class="docutils literal notranslate"><span class="pre">Tree&lt;Array&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree&lt;List&gt;</span></code>? <code class="docutils literal notranslate"><span class="pre">Tree&lt;Hash&gt;</span></code>?</p>
 <p>Converts the given <code class="docutils literal notranslate"><span class="pre">list</span></code> to an array</p>
 <p>Creates a new contiguous memory array from the given linked list. It sets this array pointer to the <code class="docutils literal notranslate"><span class="pre">items</span></code> pointer of the given <code class="docutils literal notranslate"><span class="pre">array</span></code>. It also sets the <code class="docutils literal notranslate"><span class="pre">item_size</span></code> and <code class="docutils literal notranslate"><span class="pre">length</span></code> fields of this <code class="docutils literal notranslate"><span class="pre">array</span></code>.</p>

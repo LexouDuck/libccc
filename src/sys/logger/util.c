@@ -120,16 +120,16 @@ t_char*	Logger_GetSettings(s_logger const* logger)
 		default: break;
 	}
 	result = String_Format(
-		"\n"LOG_TIMESTAMP_INDENT"\tLogger settings:"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Silence normal logs and warnings: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Silence error logs: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Show TimeStamp: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Verbose mode: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Obfuscated mode: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Append mode: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Format mode: %s"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to fd: %d"
-		"\n"LOG_TIMESTAMP_INDENT"\t- Logging to file: \"%s\"",
+		"\nLogger settings:"
+		"\n\t- Silence normal logs and warnings: %s"
+		"\n\t- Silence error logs: %s"
+		"\n\t- Show TimeStamp: %s"
+		"\n\t- Verbose mode: %s"
+		"\n\t- Obfuscated mode: %s"
+		"\n\t- Append mode: %s"
+		"\n\t- Format mode: %s"
+		"\n\t- Logging to fd: %d"
+		"\n\t- Logging to file: \"%s\"",
 		(logger->silence_logs   ? "ON" : "OFF"),
 		(logger->silence_errors ? "ON" : "OFF"),
 		(logger->timestamp      ? "ON" : "OFF"),

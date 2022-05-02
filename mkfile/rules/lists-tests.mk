@@ -11,6 +11,7 @@ make_TEST_HDRSFILE = $(call echo_TEST_HDRSFILE) > $(TEST_HDRSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(TEST_HDRSFILE) ; echo $$?),1)
 $(shell $(call print_warning,"test suite header code list file '$(TEST_HDRSFILE)' doesn't exist - creating now..."))
+$(shell mkdir -p $(TESTDIR))
 $(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_TEST_HDRSFILE))
 endif
@@ -28,6 +29,7 @@ make_TEST_SRCSFILE = $(call echo_TEST_SRCSFILE) > $(TEST_SRCSFILE)
 # if file doesn't exist, create it
 ifeq ($(shell test -f $(TEST_SRCSFILE) ; echo $$?),1)
 $(shell $(call print_warning,"test suite source code list file '$(TEST_SRCSFILE)' doesn't exist - creating now..."))
+$(shell mkdir -p $(TESTDIR))
 $(shell mkdir -p $(LISTSDIR))
 $(shell $(call make_TEST_SRCSFILE))
 endif

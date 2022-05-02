@@ -15,11 +15,11 @@ test-helloworld: $(NAME_TEST_HELLOWORLD)
 	@$(call run,$(NAME_TEST_HELLOWORLD)) $(ARGS)
 	@rm $(NAME_TEST_HELLOWORLD)
 
-$(NAME_TEST_HELLOWORLD): build-$(MODE) $(SRCS_TEST_HELLOWORLD)
+$(NAME_TEST_HELLOWORLD): all $(SRCS_TEST_HELLOWORLD)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
 		-I$(HDRDIR) $(SRCS_TEST_HELLOWORLD) \
-		-L./ -lccc
+		$(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -33,11 +33,11 @@ test-foreach: $(NAME_TEST_FOREACH)
 	@$(call run,$(NAME_TEST_FOREACH)) $(ARGS)
 	@rm $(NAME_TEST_FOREACH)
 
-$(NAME_TEST_FOREACH): build-$(MODE) $(SRCS_TEST_FOREACH)
+$(NAME_TEST_FOREACH): all $(SRCS_TEST_FOREACH)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
 		-I$(HDRDIR) $(SRCS_TEST_FOREACH) \
-		-L./ -lccc
+		$(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -51,11 +51,11 @@ test-kvt: $(NAME_TEST_KVT)
 	@$(call run,$(NAME_TEST_KVT)) $(ARGS)
 	@rm $(NAME_TEST_KVT)
 
-$(NAME_TEST_KVT): build-$(MODE) $(SRCS_TEST_KVT)
+$(NAME_TEST_KVT): all $(SRCS_TEST_KVT)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) \
 		-I$(HDRDIR) $(SRCS_TEST_KVT) \
-		-L./ -lccc
+		$(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -69,11 +69,11 @@ test-undefined: $(NAME_TEST_UNDEFINED)
 	@$(call run,$(NAME_TEST_UNDEFINED)) $(ARGS)
 	@rm $(NAME_TEST_UNDEFINED)
 
-$(NAME_TEST_UNDEFINED): build-$(MODE) $(SRCS_TEST_UNDEFINED)
+$(NAME_TEST_UNDEFINED): all $(SRCS_TEST_UNDEFINED)
 	@printf "Compiling testing program: "$@" -> "
-	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_DEBUG) -Wno-unused-variable \
+	@$(CC) -o $@ $(TEST_CFLAGS) $(CFLAGS_BUILDMODE_debug) -Wno-unused-variable \
 		-I$(HDRDIR) $(SRCS_TEST_UNDEFINED) \
-		-L./ -lccc
+		$(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 TEST_UNDEFINED_INCLUDES = $(HDRS:libccc/monad/%.h=libccc/monad/%.c)

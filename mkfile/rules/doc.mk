@@ -25,11 +25,67 @@ DOXYGEN_FLAGS =
 DOXYGEN_CONFIG = $(DOCDIR)doxygen-config.doxygen
 
 #! Shell command: doxyrest
-DOXYREST = $(DOCDIR)_doxyrest/bin/doxyrest
+DOXYREST = $(DOXYREST_DIR)bin/doxyrest
 #! Shell command: doxyrest options
 DOXYREST_FLAGS = 
+#! The installation folder for doxyrest
+DOXYREST_DIR = $(DOCDIR)doxyrest/
 #! The configuration file used by doxyrest
 DOXYREST_CONFIG = $(DOCDIR)doxyrest-config.lua
+#! The version number of doxyrest to install with `make prereq`
+DOXYREST_VERSION = 2.1.3
+#! The link from which to get doxyrest to install  with `make prereq`
+DOXYREST_URL = https://github.com/vovkos/doxyrest/releases/download/doxyrest-$(DOXYREST_VERSION)/
+
+#! Shell command to install doxyrest prereq
+doxyrest_install = \
+{ \
+	rm -r -f $(DOXYREST_DIR) && \
+	mkdir -p $(DOXYREST_DIR) && \
+	curl -L $(DOXYREST_URL)$(DOXYREST_PACKAGE) --progress-bar --output $(DOXYREST_PACKAGE) && \
+	$(call doxyrest_extract) && \
+	cp -pf $(DOCDIR)_doxyrest/frame/cfamily/utils.lua $(DOXYREST_DIR)frame/cfamily/utils.lua && \
+	cp -pf $(DOCDIR)_doxyrest/sphinx/cpplexer.py      $(DOXYREST_DIR)sphinx/cpplexer.py      && \
+	cp -pf $(DOCDIR)_doxyrest/sphinx/doxyrest.py      $(DOXYREST_DIR)sphinx/doxyrest.py      && \
+	$(call print_success,"Installed doxyrest (in folder: $(DOXYREST_DIR))") ; \
+} ; rm -f $(DOXYREST_PACKAGE)
+
+ifeq ($(OSMODE),other)
+doxyrest_install = $(call print_warning,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
+
+else ifeq ($(OSMODE),win32)
+DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-windows-x86.7z
+doxyrest_extract = \
+	7z x $(DOXYREST_PACKAGE) -o$(DOXYREST_DIR) \
+
+else ifeq ($(OSMODE),win64)
+DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-windows-amd64.7z
+doxyrest_extract = \
+	7z x $(DOXYREST_PACKAGE) -o$(DOXYREST_DIR) \
+
+else ifeq ($(OSMODE),macos)
+DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-mac.tar.xz
+doxyrest_extract = \
+	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) && \
+	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-mac/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-mac && \
+	mv -f $(DOXYREST_DIR)share/doxyrest/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)share/doxyrest && \
+	rmdir $(DOXYREST_DIR)share \
+
+else ifeq ($(OSMODE),linux)
+DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-linux-amd64.tar.xz
+doxyrest_extract = \
+	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) && \
+	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64 && \
+	mv -f $(DOXYREST_DIR)share/doxyrest/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)share/doxyrest && \
+	rmdir $(DOXYREST_DIR)share \
+
+else
+doxyrest_install = $(call print_failure,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
+endif
 
 #! Shell command: sphinx-build
 SPHINX = sphinx-build
@@ -131,7 +187,7 @@ clean-doc:
 	@$(call print_message,"Deleting documentation build folders...")
 	@$(foreach i,$(DOC_OUTPUTS), rm -rf $(i) ;)
 
-	
+
 
 .PHONY:\
 prereq-doc #! Checks prerequisite installs to generate the documentation
@@ -141,13 +197,16 @@ prereq-doc:
 		$(call install_prereq,doxygen))
 	@-$(call check_prereq,'(doc) Doxyrest',\
 		$(DOXYREST) --version,\
-		$(call print_failure,"doxyrest must be manually installed from https://github.com/vovkos/doxyrest"))
+		$(call doxyrest_install))
 	@-$(call check_prereq,'(doc) Sphinx python doc generator',\
 		$(SPHINX) --version,\
-		$(call install_prereq,sphinx-doc))
+		pip3 install -U sphinx)
+	@-$(call check_prereq,'(doc) Sphinx theme: ReadTheDocs.io',\
+		pip3 list | grep 'sphinx-rtd-theme',\
+		pip3 install sphinx_rtd_theme)
 	@-$(call check_prereq,'(doc) Lua',\
 		lua -v,\
-		$(call install_prereq,lua))
+		$(call install_prereq,liblua5.2-0))
 	@-$(call check_prereq,'(doc) dot graphviz graph generator',\
 		dot -V,\
 		$(call install_prereq,graphviz))

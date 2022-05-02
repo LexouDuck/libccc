@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['prob_5fmass_0',['prob_mass',['../stat_8h.html#structprob__mass',1,'']]]
+  ['nanotime_5102',['nanotime',['../time_8h.html#structnanotime',1,'']]]
 ];

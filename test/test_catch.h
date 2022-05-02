@@ -39,7 +39,7 @@ typedef enum signal
 	SIGNAL_SIGABRT	= (1 << 4),	//!< Signal emitted: aborted execution - abnormal termination condition
 	SIGNAL_SIGFPE	= (1 << 5),	//!< Signal emitted: floating point exception - e.g. `2.0 / 0` or `sqrt(NAN)`
 ENUMLENGTH_SIGNAL
-}			e_signal;
+}	e_signal;
 
 
 

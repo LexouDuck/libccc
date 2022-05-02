@@ -1,4 +1,36 @@
 
+/*!@file test.h
+**
+**	How to create a testing function for a libccc function:
+**	```c
+**	void    print_test_<func>(char const* test_name, int can_segfault,
+**	        <args>)
+**	{
+**	    TEST_INIT(<test_type>)
+**	    TEST_PERFORM_<test_kind>(<func>, <args>)
+**	    TEST_PRINT(<test_type>, <func>, <printf_format_for_args>, <args>)
+**	    TEST_FREE()
+**	}
+**	```
+**	- `<func>`: name of the function (in C-like lowercase namingstyle, so that the preprocessor can check if the function is `#define`d or not, and run the test accordingly)
+**	- `<args>`: the arguments that the function takes
+**	- `<test_type>`: the suffix part of the testing result-check function to use (for the list of available testing functions, see `libccc/test/test-utils.h`, lines ~100 to ~200)
+**	- `<test_kind>`: this suffix part of the `TEST_PERFORM_*()` macro function indicates if there exists an approriate counterpart function in the stdlibc, or if the expected test result is manually written for each test
+**
+**	How to create a test suite function for a libccc function:	
+**	```c
+**	void    test_<func>(void)
+**	{
+**	//  | TEST FUNCTION  | TEST NAME             | CAN SEGFAULT     | TEST ARGS
+**	    print_test_<func>("<func> (<argdetails>)",<expects_segfault>, <test_args>)
+**	}
+**	```
+**	- `<argdetails>`: short string which tells how this test in particular is special
+**	- `<expects_segfault>`: whether or not this test passes or fails if the function segfaults
+**	- `<printf_format_for_args>`: format string to show arguments given for this test, for the `libccc-test -a` flag
+**	- `<test_args>`: the actual hardcoded literal values to give as arguments for this test
+*/
+
 #ifndef LIBCCC_TEST_H
 #define LIBCCC_TEST_H
 
@@ -59,7 +91,8 @@ typedef struct test_suite
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
 }				s_test_suite;
-#define TEST_SUITE_AMOUNT	31
+//! The total amount of test suites for libccc
+#define TEST_SUITE_AMOUNT	33
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
@@ -142,6 +175,13 @@ int		testsuite_encode_toml(void);
 extern char const* test1; extern t_size const test1_len;
 extern char const* test2; extern t_size const test2_len;
 extern char const* test3; extern t_size const test3_len;
+
+extern char const* teststr_cc_c0;
+extern char const* teststr_cc_c1;
+extern char const* teststr_utf8_fr;
+extern char const* teststr_utf8_ru;
+extern char const* teststr_utf8_jp;
+extern char const* teststr_utf8_ho;
 
 
 

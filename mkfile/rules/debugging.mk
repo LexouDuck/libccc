@@ -3,7 +3,7 @@
 
 
 #! The list of output files for 'debug-macros' - essentially just the list of sources, but in the ./obj folder
-SRCS_PREPROCESSED = $(SRCS:%.c=$(OBJDIR)%.c)
+SRCS_PREPROCESSED = $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.c)
 
 #! This rule runs the preprocessing step for each .c file, and outputs to obj
 $(OBJDIR)%.c: $(SRCDIR)%.c

@@ -1,6 +1,10 @@
 var libccc__errors_8h =
 [
-    [ "LIBCONFIG_ERROR_DEFAULTHANDLER", "libccc__errors_8h.html#aed3ede9327386c55a69e248f4ff5c212", null ],
+    [ "LIBCONFIG_ERROR_INCLUDE", "libccc__errors_8h.html#a381cd02c20f593718c25eb94eb01dd5b", null ],
+    [ "LIBCONFIG_ERROR_DEFAULTHANDLER", "libccc__errors_8h.html#abf381704db8263a33cf5ef6b1104ccc6", null ],
+    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW", "libccc__errors_8h.html#afc0b80a84cf9fa8bbbbe9c2c2af02faa", null ],
+    [ "LIBCONFIG_ERROR_PARSEROVERFLOW", "libccc__errors_8h.html#a69367a8a0e32d46fed7db95dfb98c53d", null ],
+    [ "LIBCONFIG_ERROR_OVERFLOW", "libccc__errors_8h.html#a6828a236efba31c97cd16e9265945b1e", null ],
     [ "HANDLE_ERRORS_UNSPECIFIED", "libccc__errors_8h.html#ae5d355046b01088d146d87fcc68c1782", null ],
     [ "HANDLE_ERRORS_SYSTEM", "libccc__errors_8h.html#abd69827bfc508bf61093a74430fa555f", null ],
     [ "HANDLE_ERRORS_ALLOCFAILURE", "libccc__errors_8h.html#a19b9dbd8608f36c0386986813f0fc021", null ],

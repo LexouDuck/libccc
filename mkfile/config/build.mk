@@ -46,19 +46,19 @@ CFLAGS = \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
 	-fstrict-aliasing \
-	$(CFLAGS_MODE) \
+	$(CFLAGS_BUILDMODE) \
 	$(CFLAGS_OS) \
 	$(CFLAGS_EXTRA)
 
-#! C compiler options which are specific to the current build mode, according to $(MODE)
-CFLAGS_MODE = $(CFLAGS_MODE_$(MODE))
+#! C compiler options which are specific to the current build mode, according to $(BUILDMODE)
+CFLAGS_BUILDMODE = $(CFLAGS_BUILDMODE_$(BUILDMODE))
 #! C compiler flags which are only present in "debug" build mode
-CFLAGS_MODE_debug = \
+CFLAGS_BUILDMODE_debug = \
 	-g \
 	-ggdb \
 	-D DEBUG=1
 #! C compiler flags which are only present in "release" build mode
-CFLAGS_MODE_release = \
+CFLAGS_BUILDMODE_release = \
 	-O3 \
 	-D RELEASE=1
 
@@ -97,14 +97,14 @@ endif
 
 #! GNU conventional variable: C linker options
 LDFLAGS = \
-	$(LDFLAGS_MODE) \
+	$(LDFLAGS_BUILDMODE) \
 	$(LDFLAGS_OS) \
 	$(LDFLAGS_EXTRA)
 
-#! C linker options which are specific to the current build mode, according to $(MODE)
-LDFLAGS_MODE = $(LDFLAGS_MODE_$(MODE))
-LDFLAGS_MODE_debug = 
-LDFLAGS_MODE_release = 
+#! C linker options which are specific to the current build mode, according to $(BUILDMODE)
+LDFLAGS_BUILDMODE = $(LDFLAGS_BUILDMODE_$(BUILDMODE))
+LDFLAGS_BUILDMODE_debug = 
+LDFLAGS_BUILDMODE_release = 
 
 #! C linker options which are platform-specific, according to $(OSMODE)
 LDFLAGS_OS = $(LDFLAGS_OS_$(OSMODE))
@@ -130,14 +130,14 @@ endif
 
 #! GNU conventional variable: C libraries to link against
 LDLIBS = \
-	$(LDLIBS_MODE) \
+	$(LDLIBS_BUILDMODE) \
 	$(LDLIBS_OS) \
 	$(LDLIBS_EXTRA)
 
-#! Linked libraries which are specific to the current build mode, according to $(MODE)
-LDLIBS_MODE = $(LDLIBS_MODE_$(MODE))
-LDLIBS_MODE_debug = 
-LDLIBS_MODE_release = 
+#! Linked libraries which are specific to the current build mode, according to $(BUILDMODE)
+LDLIBS_BUILDMODE = $(LDLIBS_BUILDMODE_$(BUILDMODE))
+LDLIBS_BUILDMODE_debug = 
+LDLIBS_BUILDMODE_release = 
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 LDLIBS_OS = $(LDLIBS_OS_$(OSMODE))
@@ -160,14 +160,14 @@ LDLIBS_EXTRA ?= \
 #! GNU conventional variable: List of included folders, which store header code files
 INCLUDES = \
 	-I$(HDRDIR) \
-	$(INCLUDES_MODE) \
+	$(INCLUDES_BUILDMODE) \
 	$(INCLUDES_OS) \
 	$(INCLUDES_EXTRA)
 
-#! Header directories which are specific to the current build mode, according to $(MODE)
-INCLUDES_MODE = $(INCLUDES_MODE_$(MODE))
-INCLUDES_MODE_debug = 
-INCLUDES_MODE_release = 
+#! Header directories which are specific to the current build mode, according to $(BUILDMODE)
+INCLUDES_BUILDMODE = $(INCLUDES_BUILDMODE_$(BUILDMODE))
+INCLUDES_BUILDMODE_debug = 
+INCLUDES_BUILDMODE_release = 
 
 #! Header directories which are platform-specific, according to $(OSMODE)
 INCLUDES_OS = $(INCLUDES_OS_$(OSMODE))

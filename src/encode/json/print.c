@@ -116,6 +116,11 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 		else if (c < UTF8_3BYTE)	length = 3;
 		else if (c < UTF8_4BYTE)	length = 4;
 		if (UTF32_IsPrintable(c) &&
+			(c != '\b') &&
+			(c != '\t') &&
+			(c != '\n') &&
+			(c != '\f') &&
+			(c != '\r') &&
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy
@@ -183,7 +188,7 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 	if (bigint) // TODO handle variable-length integers
 	{
 		t_s64	d = item->value.integer;
-		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, SF_S64"n", d);
+		length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, SF_S64, d);
 	}
 	else
 	{
@@ -200,13 +205,23 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 		else
 		{
 			// Try 15 decimal places of precision to avoid nonsignificant nonzero digits
-			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.15g", d);
+			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%#1.15g", d);
 			// Check whether the original t_f64 can be recovered
 			test = F64_FromString(number_buffer);
 			if (test != d)
 			{
 				// If not, print with 17 decimal places of precision
-				length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%1.17g", d);
+				length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "%#1.17g", d);
+			}
+			// remove unnecessary trailing zeroes
+			for (i = length - 1; i > 0; --i)
+			{
+				if (number_buffer[i] == '0')
+				{
+					number_buffer[i] = '\0';
+					length--;
+				}
+				else break;
 			}
 		}
 	}

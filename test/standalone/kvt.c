@@ -32,9 +32,11 @@ int main()//(int argc, char** argv)
 	if (file == NULL) { IO_Output_Line(IO_COLOR_FG_RED"FILE ERROR"IO_RESET);	return (ERROR); }
 	for (t_uint i = 0; i < AMOUNT; ++i)
 	{
-		s_kvt* kvt = JSON_FromString(file);
+		s_kvt* kvt;
+		t_char* str;
+		kvt = JSON_FromString(file);
 		if (kvt == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PARSE ERROR"IO_RESET);	return (ERROR); }
-		t_char* str = JSON_ToString(kvt);
+		str = JSON_ToString(kvt);
 		if (str == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PRINT ERROR"IO_RESET);	return (ERROR); }
 		IO_Output_Line((AMOUNT == 1) ? str :
 			String_Format(SF_UINT":\t%.30s", i, str));

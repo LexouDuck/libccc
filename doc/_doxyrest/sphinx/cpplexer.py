@@ -45,26 +45,23 @@ class CFamilyLexer(RegexLexer):
         'whitespace': [
             # preprocessor directives: without whitespace
             (r'^#\s*if\s+0', Comment.Preproc, 'if0'),
-            (r'^#\s*', Comment.Preproc, 'macro'),
+            (r'^#\s*',       Comment.Preproc, 'macro'),
             # or with whitespace
-            (r'^(' + c_ws1 + r')(#\s*if\s+0)',
-             bygroups(using(this), Comment.Preproc), 'if0'),
-            (r'^(' + c_ws1 + r')(#\s*)',
-             bygroups(using(this), Comment.Preproc), 'macro'),
-            (r'\n', Text),
-            (r'\s+', Text),
+            (r'^(' + c_ws1 + r')(#\s*if\s+0)', bygroups(using(this), Comment.Preproc), 'if0'),
+            (r'^(' + c_ws1 + r')(#\s*)',       bygroups(using(this), Comment.Preproc), 'macro'),
+            (r'\n',   Text),
+            (r'\s+',  Text),
             (r'\\\n', Text),  # line continuation
-            (r'//(\n|(.|\n)*?[^\\](\n|$))', Comment.Single),
+            (r'//(\n|(.|\n)*?[^\\](\n|$))',     Comment.Single),
             (r'/(\\\n)?[*](.|\n)*?[*](\\\n)?/', Comment.Multiline),
         ],
         'statements': [
             (r'(L|u|U|u8)?(\")', bygroups(Keyword.Type, String), 'string'),
             (r'(L|u|U|u8)?(\')', bygroups(Keyword.Type, String.Char), 'char'),
-            (r'([0-9]+\.[0-9]*|\.[0-9]+|[0-9]+)([eE])([+-]?)([0-9]+)([LlFf]?)\b', bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
-            (r'([0-9]+\.[0-9]*|\.[0-9]+)([LlFf]?)\b',                             bygroups(Number.Float, Keyword.Type)),
-            (r'([0-9]+)([LlFf])\b',                                               bygroups(Number.Float, Keyword.Type)),
-            (r'(0x[0-9a-fA-F]+\.[0-9a-fA-F]*|\.[0-9a-fA-F]+|[0-9a-fA-F]+)([pP])([+-]?)([0-9]+)([LlFf]*)',
-                bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
+            (r'([0-9]+\.[0-9]*|\.[0-9]+|[0-9]+)([eE])([+-]?)([0-9]+)([LlFf]?)\b',                         bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
+            (r'([0-9]+\.[0-9]*|\.[0-9]+)([LlFf]?)\b',                                                     bygroups(Number.Float, Keyword.Type)),
+            (r'([0-9]+)([LlFf])\b',                                                                       bygroups(Number.Float, Keyword.Type)),
+            (r'(0x[0-9a-fA-F]+\.[0-9a-fA-F]*|\.[0-9a-fA-F]+|[0-9a-fA-F]+)([pP])([+-]?)([0-9]+)([LlFf]*)', bygroups(Number.Float, Keyword.Constant, Operator, Number, Keyword.Type)),
             (r'(0x[0-9a-fA-F]+)([LlUu]*)', bygroups(Number.Hex,     Keyword.Type)),
             (r'(0b[01]+)([LlUu]*)',        bygroups(Number.Bin,     Keyword.Type)), # GNU extension: binary literals
             (r'(0[0-7]+)([LlUu]*)',        bygroups(Number.Oct,     Keyword.Type)),
@@ -399,7 +396,7 @@ class CppLexer(CFamilyLexer):
 
 class IdlLexer(CppLexer):
     """
-    For Intefce Definition Language source code.
+    For Interface Definition Language source code.
     """
     name = 'IDL'
     aliases = ['idl']
