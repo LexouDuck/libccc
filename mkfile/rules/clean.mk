@@ -21,6 +21,16 @@ clean-build \
 clean-tests \
 clean-obj \
 clean-bin \
+
+
+
+.PHONY:\
+clean-full #! Deletes every generated file/folder (even files checked in to the repo !!!)
+clean-full: \
+clean-build \
+clean-tests \
+clean-obj \
+clean-bin \
 clean-log \
 clean-doc \
 clean-coverage \
