@@ -1,5 +1,3 @@
-// DZ_COMMIT_STOP
-#include <stdio.h>
 
 #include "libccc/text/unicode.h"
 #include "libccc/pointer.h"

@@ -72,7 +72,11 @@ void	print_test_mblen(char const* test_name, int can_segfault, t_char const* str
 	for (t_size i = 0; i < length; ++i)
 	{
 		c = (str + i);
-		t_sint expecting = (i % expecting_ ? -1 : expecting_);
+		t_sint expecting;
+		if (expecting_ == ERROR)
+			expecting = ERROR;
+		else
+			expecting = (i % expecting_ ? -1 : expecting_);
 		TEST_PERFORM(utf8len, c);
 		TEST_PRINT(sint, utf8len, "c=\"%.*s\"", expecting_, c)
 	}
@@ -92,7 +96,7 @@ void	test_mblen(void)
 	print_test_mblen("mblen (unicode)  ", FALSE,			"ЯцкНичолсонсталинленинтроцкийхрущевмосква", 2 );
 	print_test_mblen("mblen (unicode)  ", FALSE,			"お前はもう死んでいる愛私は実体の小さな学生です", 3 );
 	print_test_mblen("mblen (unicode)  ", FALSE,			 "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃", 4 );
-	print_test_mblen("mblen invalid seq", FALSE,			 "\x80\xC0\xE0\xF0\xF8\xFC\xFE\xFF\xFE\xFC\xF8\xF0\xE0\xC0", -1 );
+	print_test_mblen("mblen invalid seq", FALSE,			 "\x80\xC0\xE0\xF0\xF8\xFC\xFE\xFF\xFE\xFC\xF8\xF0\xE0\xC0", ERROR );
 	print_test_mblen("mblen (empty str)", FALSE,			""              , 0);
 	print_test_mblen("mblen (null str) ", SIGNAL_SIGSEGV,	NULL            , ERROR);
 }
