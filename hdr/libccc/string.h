@@ -1160,7 +1160,7 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 */
 _MALLOC()
 t_char*					String_ToAnsiEscaped(t_char const* str);
-#define c_strtoesc		String_ToAnsiEscaped
+#define c_strtoesc_ansi	String_ToAnsiEscaped
 
 
 //! Equivalent of `String_ToAnsiEscaped` but writes in the given `dest` buffer.
@@ -1190,7 +1190,7 @@ t_size					String_ToAnsiEscapedBuf(t_char *dest, size_t max_writelen, t_char con
 */
 _MALLOC()
 t_char*					String_ToJsonEscaped(t_char const* str);
-#define c_strtojsonesc	String_ToAnsiEscaped
+#define c_strtoesc_json		String_ToAnsiEscaped
 
 //! Equivalent of `String_ToJsonEscaped` but writes in the given `dest` buffer.
 /*!
@@ -1227,6 +1227,8 @@ typedef size_t (*f_char_encoder)(t_ascii *dest, t_utf32 c);
 typedef t_bool (*f_force_encoding_for)(t_char const* str);
 
 t_bool ForceEncodingFor_NonPrintable(t_char const* str);
+t_bool ForceEncodingFor_NonAscii(t_char const* str);
+t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str);
 
 
 
@@ -1244,11 +1246,15 @@ t_bool ForceEncodingFor_NonPrintable(t_char const* str);
 **	`force_encoding_for` takes precedence over `charset`/`aliases`, and will directly encode a character
 **	without checking if it has an alias
 **
+**	KNOWN ISSUE: Does not work with empty string as long as `SIZE_ERROR` macro is `0`.        DZ_ON_REFACTOR_OF_SIZE_ERROR: delete this line, it'll have solved the issue
+**
 **	@param	str					The input string whose content will be copied and escaped
 **	@param	charset				String containing all characters to escape by an alias
 **	@param	aliases				String array containing the alias of every character of `charset`.
 **									A character in `charset` corresponds to an alias in `aliases` by index.
 **									If an alias is `NULL`, then the character will be encoded instead
+**									The array doesn't have to be null-terminated, but needs to be of same size
+**									as `charset`
 **	@param	force_encoding_for	Predicate that can force a given character to be encoded by returning `TRUE`.
 **									If `force_encoding_for` is `NULL`, only character of `charset` that don't
 **									have an alias will be encoded.
@@ -1269,16 +1275,21 @@ t_char*	String_ToEscaped(
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
-//! More exhaustive version of `String_ToEscaped`
+#define c_strtoesc	String_ToEscaped
+
+//! Exhaustive version of `String_ToEscaped`
 /*
 **	@see String_ToEscaped
 **
-**	All 'out parameters` are only set if non `NULL` and if the call is successful
-**	otherwise, their value is left untouched
+**	All 'out parameters` are optional and will be initialized even if the function fails
 **
 **	@params	out_len			Used to return the length of returned string
+**								`SIZE_ERROR` in case of failure
 **	@params	out_readlen		Used to return the length read from input string. Useful when max_writelen is given
-**	@params	max_writelen	Maximum length of string to return. No limit if set to `SIZE_ERROR`.
+**								Even if the function fails, represent the number of byte that could successfully 
+**								be read before the error. `str + out_readlen` will always point to the first byte
+**								of a multi-byte sequence
+**	@params	max_resultlen	Maximum length of string to return (excluding final '\0'). No limit if set to `SIZE_ERROR`.
 **								The function takes care of not reaching `max_writelen` in the middle of
 **								an alias or encoded char by realizing there is not enough space and stopping
 **								before writting it.
@@ -1286,24 +1297,30 @@ t_char*	String_ToEscaped(
 **								when it was limited by it
 */
 _MALLOC()
-t_char*	String_ToEscaped_(
+t_char*	String_ToEscaped_e(
 		t_size *out_len,
 		t_size *out_readlen,
-		t_size max_writelen,
+		t_size max_resultlen,
 		t_char const* str,
 		t_char const* charset,
 		t_char const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
+#define c_strtoesc_e	String_ToEscaped_e
+
 //! Same as `String_ToEscaped` except it will write the escaped string directly to `dest`
 /*
 **	@see String_ToEscaped
 **
 **	If `dest` is NULL, nothing is written and the number of bytes that would be written is returned.
+**	Even in case of error, `dest` will be null-terminated and will be filled whatever was successfully
+**	written before the error
 **
-**	@param	dest			The buffer to write the escaped string to, it not `NULL`
-**	@params	max_writelen	Maximum length of string to return. No limit if set to `SIZE_ERROR`.
+**	CAUTION: unlike the non-"Buf" variant, `max_writlen` is the number of bytes allowed to be written INCLUDING final '\0'
+**
+**	@param	dest			The buffer to write the escaped string to, if not `NULL`
+**	@params	max_writelen	Maximum length of string to return (including final '\0'). No limit if set to `SIZE_ERROR`.
 **								The function takes care of not reaching `max_writelen` in the middle of
 **								an alias or encoded char by realizing there is not enough space and stopping
 **								before writting it.
@@ -1322,16 +1339,20 @@ t_size String_ToEscapedBuf(
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
 
-//! More exhaustive version of `String_ToEscapedBuf`
+//! Exhaustive version of `String_ToEscapedBuf`
 /*
 **	@see String_ToEscapedBuf
 **
-**	All 'out parameters` are only set if non `NULL` and if the call is successful
-**	otherwise, their value is left untouched
+**	All 'out parameters` are optional and will be initialized even if the function fails
+**
+**	CAUTION: unlike the non-"Buf" variant, `max_writlen` is the number of bytes allowed to be written INCLUDING final '\0'
 **
 **	@params	out_readlen		Used to return the length read from input string. Useful when max_writelen is given
+**								Even if the function fails, represent the number of byte that could successfully 
+**								be read before the error. `str + out_readlen` will always point to the first byte
+**								of a multi-byte sequence
 */
-t_size String_ToEscapedBuf_(
+t_size String_ToEscapedBuf_e(
 		t_char *dest,
 		t_size *out_readlen,
 		size_t max_writelen,

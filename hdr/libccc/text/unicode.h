@@ -411,13 +411,13 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 **	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mblen}
 **
 **	Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`
+**
 **	@param str		Pointer to the first byte of the utf8 character
 **
 **	@returns
 **	The size (in bytes) of the given utf8 character.
 **	Returns 0 if `str[0]` is `\0`
-**	Returns -1 if `str` is `NULL`, //TODO: keep? or if the character is encoded over more bytes than the limit `n` of bytes we can read
-**	//TODO: keep? Returns -1 if n is big enough to read the character but `str` is not a valid multibyte sequence
+**	Returns -1 if `str` is `NULL` or not a valid multibyte sequence
 */
 t_sint						UTF8_Length(const t_utf8* str);
 #define c_mblen				UTF8_Length
@@ -634,6 +634,20 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 //!@}
 
 
+/*
+** ************************************************************************** *|
+**                                   Utils                                    *|
+** ************************************************************************** *|
+*/
+
+//!@doc Copies the utf8 character into `dest`
+/*!
+**	@returns
+**	The number of bytes written to `dest`, or
+**	`SIZE_ERROR` on error, in which case nothing was written to `dest`
+*/
+t_size				UTF8_Copy(t_utf8* dest, t_utf8 const* str);
+#define c_mbcpy		UTF8_Copy
 
 // TODO UTF32_Charset()
 

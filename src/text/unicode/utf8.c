@@ -150,6 +150,18 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 	else return ((t_utf32)c);
 }
 
+t_size UTF8_Copy(t_utf8* dest, t_utf8 const* str)
+{
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (SIZE_ERROR);)
+
+	t_sint length = UTF8_Length(str);
+	if (length == ERROR)
+		return SIZE_ERROR;
+
+	for (int i = 0; i < length; ++i)
+		dest[i] = str[i];
+	return length;
+}
 
 /*
 void	UTF32_Print_UTF8(t_utf8* dest, t_utf32 c)
