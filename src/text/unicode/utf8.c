@@ -1,3 +1,5 @@
+// DZ_COMMIT_STOP
+#include <stdio.h>
 
 #include "libccc/text/unicode.h"
 #include "libccc/pointer.h"
@@ -9,50 +11,54 @@
 
 #define MASK	((1 << 6) - 1)
 
+#define CHECK_FOLLOWUP_BYTE(idx) HANDLE_ERROR_SF(ILLEGALBYTES, ((((t_u8)str[(idx)]) >> 6) != 2), return (ERROR);, "illegal UTF-8 at idx "#idx": '%c'/0x%4.4X", (str[(idx)] ? str[(idx)] : '\a'), str[(idx)])
 
-
-t_sint		UTF8_Length(t_utf8 const* str)//, size_t n)
+t_sint		UTF8_Length(t_utf8 const* str)
 {
 	t_u8	c;
+	t_u8	inverse;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
-	//HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
 	c = str[0];
-	if (c & (1 << 7)) // multi-byte character
+	inverse = ~c;
+
+	if (inverse & (1 << 7)) // 0xxxxxxx
 	{
-		if (c & (1 << 6)) // 2-byte character
-		{
-			if (c & (1 << 5)) // 3-byte character
-			{
-				if (c & (1 << 4)) // 4-byte character
-				{
-					HANDLE_ERROR_SF(ILLEGALBYTES,
-						(c & (1 << 3)), return (ERROR);,
-						"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
-					return (4);
-				}
-				else
-				{
-					return (3);
-				}
-			}
-			else
-			{
-				return (2);
-			}
-		}
-		else
-		{
-			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
-		}
+		if (c == '\0')
+			return 0;
+		return 1;
 	}
-	else if (c == '\0')
+	else if (inverse & (1 << 6)) // 10xxxxxx
 	{
-		return (0);
+		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
 	}
-	else return (1);
+	else if (inverse & (1 << 5)) // 110xxxxx
+	{
+		CHECK_FOLLOWUP_BYTE(1);
+		return 2;
+	}
+	else if (inverse & (1 << 4)) // 1110xxxx
+	{
+		CHECK_FOLLOWUP_BYTE(1);
+		CHECK_FOLLOWUP_BYTE(2);
+		return 3;
+	}
+	else if (inverse & (1 << 3)) // 11110xxx
+	{
+		CHECK_FOLLOWUP_BYTE(1);
+		CHECK_FOLLOWUP_BYTE(2);
+		CHECK_FOLLOWUP_BYTE(3);
+		return 4;
+	}
+	else // 11111xxx
+	{
+		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
+	}
 }
+
+t_sint	UTF8_Length_N(const t_utf8* str, t_size n);
 
 
 

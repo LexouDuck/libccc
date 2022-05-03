@@ -423,6 +423,23 @@ t_sint						UTF8_Length(const t_utf8* str);
 #define c_mblen				UTF8_Length
 #define c_utf8len			UTF8_Length
 
+//!@doc Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`, but at most `n` bytes
+/*!
+**	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mblen}
+**
+**	Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`, but at most `n` bytes
+**
+**	@param str		Pointer to the first byte of the utf8 character
+**
+**	@returns
+**	The size (in bytes) of the given utf8 character.
+**	Returns 0 if `str[0]` is `\0`
+**	Returns -1 if `str` is `NULL`, on more bytes than `n`, or not a valid multibyte sequence
+*/
+t_sint						UTF8_Length_N(const t_utf8* str, t_size n);
+#define c_mbnlen			UTF8_Length_N
+#define c_utf8nlen			UTF8_Length_N
+
 
 //!@doc Converts the given Unicode char `c` to its UTF-8 equivalent representation
 /*!

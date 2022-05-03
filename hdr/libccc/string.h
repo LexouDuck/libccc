@@ -324,7 +324,7 @@ t_size				String_Add_L(t_char* dest, t_char const* src, t_size size);
 ** ************************************************************************** *|
 */
 
-//!@doc Get the length (in bytes) of a string
+//!@doc Get the length (in bytes) of a string, excluding final '\0'
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strlen}
 **
@@ -336,9 +336,53 @@ t_size				String_Length(t_char const* str);
 #define c_strlen	String_Length
 //!@}
 
-// TODO strnlen() String_Length_N
+//!@doc Get the length (in bytes) of a string, excluding final '\0', but at most `n` bytes 
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strlen}
+**
+**	@returns
+**	`String_Length(str)` if that is less than `n`, or `n` if there is no '\0' among the first `n` bytes of the string
+*/
+//!@{
+t_size				String_Length_N(t_char const* str, t_size n);
+#define c_strnlen	String_Length_N
+//!@}
 
 
+//!@doc Get the length (in number of grapheme) of string
+/*!
+**	@nonstd
+**
+**	If the string does not contain multi-byte character, this function is equivalent to String_Length
+**
+**	@returns
+**	The number of graphemes of the given null-terminated string `str`, or
+**	`ERROR` if the string contains invalid multi-byte characters
+*/
+//!@{
+t_sint						String_GraphemeCount(t_char const* str);
+#define c_strglen			String_GraphemeCount
+#define c_mbglen			String_GraphemeCount
+//!@}
+
+//!@doc Get the length (in number of grapheme) of a utf8 string, but reading at most `n` bytes
+/*!
+**	@nonstd
+**
+**	If the string does not contain multi-byte character, this function is equivalent to String_Length_N
+**
+**	Only returns the number of grapheme fully read within the first `n` bytes of `str`.
+**	If the `n` limit cuts in the middle of a grapheme, it is not counted in the total.
+**
+**	@returns
+**	The number of graphemes in the first `n` bytes of the given null-terminated string `str`, or
+**	`ERROR` if the string contains invalid multi-byte characters in the first `n` bytes
+*/
+//!@{
+t_sint						String_GraphemeCount_N(t_char const* str, t_size n);
+#define c_strnglen			String_GraphemeCount_N
+#define c_mbnglen			String_GraphemeCount_N
+//!@}
 
 //!@doc	Checks whether the two given strings match
 /*!

@@ -262,6 +262,7 @@
 ./src/string/iterate.c
 ./src/string/join.c
 ./src/string/length.c
+./src/string/length_n.c
 ./src/string/map.c
 ./src/string/new.c
 ./src/string/pad.c

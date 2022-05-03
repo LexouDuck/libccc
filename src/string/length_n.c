@@ -9,28 +9,21 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-
-#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_size	String_Length(t_char const* str)
-{ return (strlen(str)); }
-#else
-inline
-t_size	String_Length(t_char const* str)
+t_size	String_Length_N(t_char const* str, t_size n)
 {
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
 	i = 0;
-	while (str[i])
+	while (str[i] && i < n)
 	{
 		++i;
 	}
 	return (i);
 }
-#endif
 
-t_sint	String_GraphemeCount(t_char const* str)
+t_sint	String_GraphemeCount_N(t_char const* str, t_size n)
 {
 	t_size	i;
 	t_sint	result = 0;
@@ -39,7 +32,7 @@ t_sint	String_GraphemeCount(t_char const* str)
 	i = 0;
 	while (str[i])
 	{
-		t_sint charlen = UTF8_Length(str);
+		t_sint charlen = UTF8_Length_N(str, n);
 		if (charlen == ERROR)
 			return ERROR;
 		i += charlen;
@@ -47,4 +40,3 @@ t_sint	String_GraphemeCount(t_char const* str)
 	}
 	return (i);
 }
-

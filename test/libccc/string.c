@@ -1075,9 +1075,34 @@ void	test_strtoesc(void)
 	print_test_strtoesc("encoded char too big"       , FALSE, SIZE_ERROR, 5,NULL, SIZE_ERROR                             , "@⍇\n𒍅¨쫊󿿿��������������", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
 
 	print_test_strtoesc("max_writelen limited"       , FALSE, 3, 3, "TOT", 3                             , "TOTO MANGE DU FOIN", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("max_writelen limited in middle of multi-byte char: 1 byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 15 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("max_writelen limited in middle of multi-byte char: 2 bytes"       , FALSE, 14, 12, "Ich hei\\xDFe J", 16 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("max_writelen limited in middle of multi-byte char: last byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 17 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("max_writelen limited right after multi-byte char"       , FALSE, 18, 14, "Ich hei\\xDFe J\\xFC", 18 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 
+	t_char charset_a[]        = {           'a' };
+	t_char const* aliases_a[] = { "backslash a" };
+	print_test_strtoesc("max_writelen limited in middle of alias : 1 byte", FALSE, 24, 4, "backslash albackslash ak", 25 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("max_writelen limited in middle of alias : 5 bytes", FALSE, 24, 4, "backslash albackslash ak", 30 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("max_writelen limited in middle of alias : last byte", FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("max_writelen limited right after alias", FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
+
+	t_char charset_withmultibyte[]       = {           '나', '중', ' ' };
+	t_char const* aliases_witmultibyte[] = { "너", "중 (not 中)", "<space>" };
+	print_test_strtoesc("multibyte charset and alias", FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+	print_test_strtoesc("max_writlen limited multibyte charset and alias", FALSE, 24, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+	print_test_strtoesc("max_writlen limited multibyte charset and alias in middle of alias", FALSE, 16, 10, "너는<space>너", 28, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+
+	// multibyte charset with ascii worth values in the middle
 	// n-limited, with middle of alias/encoding cut
 	// empty charset
+	// alias with multi-byte char
+	// diff size aliases - charset
+	// null alias
+	//
+	// UTF8_Length with invalids
+	// UTF8_Length_N
+	// String_GraphemeCount, and with invalids
 }
 #endif
 
