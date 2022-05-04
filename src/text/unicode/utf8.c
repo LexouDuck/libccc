@@ -9,108 +9,66 @@
 
 #define MASK	((1 << 6) - 1)
 
-#define CHECK_FOLLOWUP_BYTE(idx) HANDLE_ERROR_SF(ILLEGALBYTES, ((((t_u8)str[(idx)]) >> 6) != 2), return (ERROR);, "illegal UTF-8 at idx "#idx": '%c'/0x%4.4X", (str[(idx)] ? str[(idx)] : '\a'), str[(idx)])
-
 t_sint		UTF8_Length(t_utf8 const* str)
 {
 	t_u8	c;
-	t_u8	inverse;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	c = str[0];
-	inverse = ~c;
-
-	if (inverse & (1 << 7)) // 0xxxxxxx
+	if (c & (1 << 7)) // multi-byte character
 	{
-		if (c == '\0')
-			return 0;
-		return 1;
+		if (c & (1 << 6)) // 2-byte character
+		{
+			if (c & (1 << 5)) // 3-byte character
+			{
+				if (c & (1 << 4)) // 4-byte character
+				{
+					HANDLE_ERROR_SF(ILLEGALBYTES,
+						(c & (1 << 3)), return (ERROR);,
+						"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+					return (4);
+				}
+				else
+				{
+					return (3);
+				}
+			}
+			else
+			{
+				return (2);
+			}
+		}
+		else
+		{
+			HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
+		}
 	}
-	else if (inverse & (1 << 6)) // 10xxxxxx
+	else if (c == '\0')
 	{
-		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
+		return (0);
 	}
-	else if (inverse & (1 << 5)) // 110xxxxx
-	{
-		CHECK_FOLLOWUP_BYTE(1);
-		return 2;
-	}
-	else if (inverse & (1 << 4)) // 1110xxxx
-	{
-		CHECK_FOLLOWUP_BYTE(1);
-		CHECK_FOLLOWUP_BYTE(2);
-		return 3;
-	}
-	else if (inverse & (1 << 3)) // 11110xxx
-	{
-		CHECK_FOLLOWUP_BYTE(1);
-		CHECK_FOLLOWUP_BYTE(2);
-		CHECK_FOLLOWUP_BYTE(3);
-		return 4;
-	}
-	else // 11111xxx
-	{
-		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
-	}
+	else return (1);
 }
 
-t_sint	UTF8_Length_N(const t_utf8* str, t_size n)
+t_bool UTF8_IsValid(const t_utf8* str, t_size* out_length)
 {
-	t_u8	c;
-	t_u8	inverse;
+	if (out_length) *out_length = SIZE_ERROR;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
-	c = str[0];
-	inverse = ~c;
+	t_sint length = UTF8_Length(str);
+	if (length == ERROR)
+		return (FALSE);
 
-	if (inverse & (1 << 7)) // 0xxxxxxx
-	{
-		if (c == '\0')
-			return 0;
-		return 1;
-	}
-	else if (inverse & (1 << 6)) // 10xxxxxx
-	{
-		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
-	}
-	else if (inverse & (1 << 5)) // 110xxxxx
-	{
-		if (n < 2)
-			return ERROR;
+	for (int i = 0; i < length - 1; ++i)
+		HANDLE_ERROR_SF(ILLEGALBYTES,
+				(((t_u8)str[i]) >> 6) != 2,
+				return (FALSE);,
+				"illegal UTF-8 at idx %d: '%c'/0x%4.4X", i, (str[i] ? str[i] : '\a'), str[i]
+			);
 
-		CHECK_FOLLOWUP_BYTE(1);
-		return 2;
-	}
-	else if (inverse & (1 << 4)) // 1110xxxx
-	{
-		if (n < 3)
-			return ERROR;
-
-		CHECK_FOLLOWUP_BYTE(1);
-		CHECK_FOLLOWUP_BYTE(2);
-		return 3;
-	}
-	else if (inverse & (1 << 3)) // 11110xxx
-	{
-		if (n < 4)
-			return ERROR;
-
-		CHECK_FOLLOWUP_BYTE(1);
-		CHECK_FOLLOWUP_BYTE(2);
-		CHECK_FOLLOWUP_BYTE(3);
-		return 4;
-	}
-	else // 11111xxx
-	{
-		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
-			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
-	}
+	if (out_length) *out_length = length;
+	return TRUE;
 }
-
-
 
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
@@ -231,8 +189,8 @@ t_sint	UTF8_SymbolCount(t_utf8 const* str)
 	i = 0;
 	while (str[i])
 	{
-		t_sint charlen = UTF8_Length(str + i);
-		if (charlen == ERROR)
+		t_size charlen;
+		if (!UTF8_IsValid(str + i, &charlen))
 			return ERROR;
 		i += charlen;
 		++result;
@@ -250,8 +208,10 @@ t_sint	UTF8_SymbolCount_N(t_utf8 const* str, t_size n)
 	i = 0;
 	while (i < n && str[i])
 	{
-		t_sint charlen = UTF8_Length_N(str + i, n - i);
-		if (charlen == ERROR)
+		t_sint charlen = UTF8_Length(str + i);
+		if (charlen > 0 && (t_size)charlen > n)
+			break;
+		if (charlen == ERROR || !UTF8_IsValid(str + i, NULL))
 			return ERROR;
 		i += charlen;
 		++result;

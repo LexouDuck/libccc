@@ -406,39 +406,42 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 ** ************************************************************************** *|
 */
 
-//!@doc Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`
+//!@doc Determine the number of bytes in the UTF-8 sequence whose first byte is pointed to by `str` by reading the first byte
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mblen}
 **
-**	Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`
+**	Determine the number of bytes in the UTF-8 sequence whose first byte is pointed to by `str`
+**	Does not check for validity of the bytes in the sequence, only reads the first byte
 **
 **	@param str		Pointer to the first byte of the utf8 character
 **
 **	@returns
-**	The size (in bytes) of the given utf8 character.
-**	Returns 0 if `str[0]` is `\0`
-**	Returns -1 if `str` is `NULL` or not a valid multibyte sequence
+**	The size (in bytes) of the given utf8 sequence.
+**	Returns 0 if `str[0]` is `\0` or if `str` is NULL
+**	Returns `ERROR` if `str` is `NULL`, or if the first byte is not the start of a valid utf8 sequence
 */
 t_sint						UTF8_Length(const t_utf8* str);
 #define c_mblen				UTF8_Length
 #define c_utf8len			UTF8_Length
 
-//!@doc Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`, but at most `n` bytes
+
+//!@doc Check if the given utf8 string points to a valid utf8 sequence
 /*!
-**	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/mblen}
+**	@nonstd
 **
-**	Determine the number of bytes in the UTF-8 encoded character whose first byte is pointed to by `str`, but at most `n` bytes
-**
-**	@param str		Pointer to the first byte of the utf8 character
+**	@param	str			pointer to the start of the utf8 sequence to check.
+**	@param	out_length	optional pointer to write the length of the sequence in byte.
+**							Unused if `NULL`
+**							If sequence is valid, is equivalent to the result of UTF8_Length
+**							If sequence is not valid, is set to `SIZE_ERROR`
 **
 **	@returns
-**	The size (in bytes) of the given utf8 character.
-**	Returns 0 if `str[0]` is `\0`
-**	Returns -1 if `str` is `NULL`, on more bytes than `n`, or not a valid multibyte sequence
+**	`TRUE` if the given string `str` points to a valid utf8 sequence,
+**	otherwise returns `FALSE`.
 */
-t_sint						UTF8_Length_N(const t_utf8* str, t_size n);
-#define c_mbnlen			UTF8_Length_N
-#define c_utf8nlen			UTF8_Length_N
+//!@{
+t_bool						UTF8_IsValid(const t_utf8* str, t_size* out_length);
+//!@}
 
 
 //!@doc Get the length (in number of grapheme) of string
