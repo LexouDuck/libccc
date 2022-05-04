@@ -28,6 +28,21 @@ char const* teststr_utf8_fr	= "Être à même de ça, d'air sûr — manger du m
 char const* teststr_utf8_ru	= "Яцк Ничолсон ; сталин ленин троцкий хрущев москва";
 char const* teststr_utf8_jp	= "お前はもう死んでいる - 愛 - 私は実体の小さな学生です";
 char const* teststr_utf8_ho	= "�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻";
+char const* teststr_utf8_one_symbol_two_seq =   "\xF0\x9F\x91\x8B"  /* U+1F44B: 'WAVING HAND SIGN' */
+                                                "\xF0\x9F\x8F\xBB"; /* U+1F3FB: 'EMOJI MODIFIER FITZPATRICK TYPE-1-2' */
+
+char const* teststr_utf8_one_symbol_three_seq = "നും"; /* U+0D28, U+0D41, U+0D02 */
+
+char const* teststr_utf8_hardcore	= 
+#include "utf8_hardcore.inc"
+;
+
+t_size const teststr_utf8_hardcore_len = 5101; // Number of graphemes
+t_size const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
+
+
+
+
 
 
 s_program	g_test;

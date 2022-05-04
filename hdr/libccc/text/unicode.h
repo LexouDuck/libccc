@@ -441,6 +441,45 @@ t_sint						UTF8_Length_N(const t_utf8* str, t_size n);
 #define c_utf8nlen			UTF8_Length_N
 
 
+//!@doc Get the length (in number of grapheme) of string
+/*!
+**	@nonstd
+**
+**	If the string does not contain multi-byte character, this function is equivalent to String_Length
+**
+**	KNOWN ISSUE: does not support modifier such as skin tones
+**
+**	@returns
+**	The number of graphemes of the given null-terminated string `str`, or
+**	`ERROR` if the string contains invalid multi-byte characters
+*/
+//!@{
+t_sint						UTF8_SymbolCount(t_utf8 const* str);
+#define c_utf8scount		UTF8_SymbolCount
+#define c_mbscount			UTF8_SymbolCount
+//!@}
+
+//!@doc Get the length (in number of grapheme) of a utf8 string, but reading at most `n` bytes
+/*!
+**	@nonstd
+**
+**	If the string does not contain multi-byte character, this function is equivalent to String_Length_N
+**
+**	Only returns the number of grapheme fully read within the first `n` bytes of `str`.
+**	If the `n` limit cuts in the middle of a grapheme, it is not counted in the total.
+**
+**	KNOWN ISSUE: does not support modifier such as skin tones
+**
+**	@returns
+**	The number of graphemes in the first `n` bytes of the given null-terminated string `str`, or
+**	`ERROR` if the string contains invalid multi-byte characters in the first `n` bytes
+*/
+//!@{
+t_sint						UTF8_SymbolCount_N(t_utf8 const* str, t_size n);
+#define c_utf8nscount		UTF8_SymbolCount_N
+#define c_mbnscount			UTF8_SymbolCount_N
+//!@}
+
 //!@doc Converts the given Unicode char `c` to its UTF-8 equivalent representation
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/multibyte/wctomb}

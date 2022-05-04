@@ -22,21 +22,3 @@ t_size	String_Length_N(t_char const* str, t_size n)
 	}
 	return (i);
 }
-
-t_sint	String_GraphemeCount_N(t_char const* str, t_size n)
-{
-	t_size	i;
-	t_sint	result = 0;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	i = 0;
-	while (str[i])
-	{
-		t_sint charlen = UTF8_Length_N(str, n);
-		if (charlen == ERROR)
-			return ERROR;
-		i += charlen;
-		++result;
-	}
-	return (i);
-}

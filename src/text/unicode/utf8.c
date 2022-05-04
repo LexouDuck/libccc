@@ -56,7 +56,59 @@ t_sint		UTF8_Length(t_utf8 const* str)
 	}
 }
 
-t_sint	UTF8_Length_N(const t_utf8* str, t_size n);
+t_sint	UTF8_Length_N(const t_utf8* str, t_size n)
+{
+	t_u8	c;
+	t_u8	inverse;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	c = str[0];
+	inverse = ~c;
+
+	if (inverse & (1 << 7)) // 0xxxxxxx
+	{
+		if (c == '\0')
+			return 0;
+		return 1;
+	}
+	else if (inverse & (1 << 6)) // 10xxxxxx
+	{
+		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
+	}
+	else if (inverse & (1 << 5)) // 110xxxxx
+	{
+		if (n < 2)
+			return ERROR;
+
+		CHECK_FOLLOWUP_BYTE(1);
+		return 2;
+	}
+	else if (inverse & (1 << 4)) // 1110xxxx
+	{
+		if (n < 3)
+			return ERROR;
+
+		CHECK_FOLLOWUP_BYTE(1);
+		CHECK_FOLLOWUP_BYTE(2);
+		return 3;
+	}
+	else if (inverse & (1 << 3)) // 11110xxx
+	{
+		if (n < 4)
+			return ERROR;
+
+		CHECK_FOLLOWUP_BYTE(1);
+		CHECK_FOLLOWUP_BYTE(2);
+		CHECK_FOLLOWUP_BYTE(3);
+		return 4;
+	}
+	else // 11111xxx
+	{
+		HANDLE_ERROR_SF(ILLEGALBYTES, TRUE, return (ERROR);,
+			"illegal UTF-8 char start byte: '%c'/0x%4.4X", (str[0] ? str[0] : '\a'), str[0])
+	}
+}
 
 
 
@@ -165,6 +217,46 @@ t_size UTF8_Copy(t_utf8* dest, t_utf8 const* str)
 	for (int i = 0; i < length; ++i)
 		dest[i] = str[i];
 	return length;
+}
+
+
+
+// TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
+t_sint	UTF8_SymbolCount(t_utf8 const* str)
+{
+	t_size	i;
+	t_sint	result = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	i = 0;
+	while (str[i])
+	{
+		t_sint charlen = UTF8_Length(str + i);
+		if (charlen == ERROR)
+			return ERROR;
+		i += charlen;
+		++result;
+	}
+	return (result);
+}
+
+// TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
+t_sint	UTF8_SymbolCount_N(t_utf8 const* str, t_size n)
+{
+	t_size	i;
+	t_sint	result = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	i = 0;
+	while (i < n && str[i])
+	{
+		t_sint charlen = UTF8_Length_N(str + i, n - i);
+		if (charlen == ERROR)
+			return ERROR;
+		i += charlen;
+		++result;
+	}
+	return (result);
 }
 
 /*

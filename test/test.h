@@ -182,6 +182,9 @@ extern char const* teststr_utf8_fr;
 extern char const* teststr_utf8_ru;
 extern char const* teststr_utf8_jp;
 extern char const* teststr_utf8_ho;
+extern char const* teststr_utf8_one_symbol_two_seq ;
+extern char const* teststr_utf8_one_symbol_three_seq ;
+extern char const* teststr_utf8_hardcore; extern t_size const teststr_utf8_hardcore_len; extern t_size const teststr_utf8_hardcore_bytelen;
 
 
 

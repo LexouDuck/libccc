@@ -30,21 +30,3 @@ t_size	String_Length(t_char const* str)
 }
 #endif
 
-t_sint	String_GraphemeCount(t_char const* str)
-{
-	t_size	i;
-	t_sint	result = 0;
-
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	i = 0;
-	while (str[i])
-	{
-		t_sint charlen = UTF8_Length(str);
-		if (charlen == ERROR)
-			return ERROR;
-		i += charlen;
-		++result;
-	}
-	return (i);
-}
-

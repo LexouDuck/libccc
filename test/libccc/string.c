@@ -463,6 +463,7 @@ void	test_strlen(void)
 #endif
 
 
+
 #ifndef c_strcmp
 void test_strcmp(void)	{}
 #warning "strcmp() test suite function defined, but the function isn't defined."
@@ -1100,9 +1101,6 @@ void	test_strtoesc(void)
 	// diff size aliases - charset
 	// null alias
 	//
-	// UTF8_Length with invalids
-	// UTF8_Length_N
-	// String_GraphemeCount, and with invalids
 }
 #endif
 
