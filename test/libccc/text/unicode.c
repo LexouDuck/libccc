@@ -52,20 +52,20 @@ void	test_mblen(void)
 {
 	setlocale(LC_ALL, "en_US.utf8");
 //	| TEST FUNCTION  | TEST NAME          | CAN SEGV      | TEST ARGS
-	print_test_mblen("mblen            " , FALSE          , "Hello World!"                                             , 1);
-	print_test_mblen("mblen            " , FALSE          , test1                                                      , 1);
-	print_test_mblen("mblen            " , FALSE          , test2                                                      , 1);
-	print_test_mblen("mblen            " , FALSE          , test3                                                      , 1);
-	print_test_mblen("mblen            " , FALSE          , "a"                                                        , 1);
-	print_test_mblen("mblen (unicode)  " , FALSE          , teststr_cc_c0                                              , 3);
-	print_test_mblen("mblen (unicode)  " , FALSE          , teststr_cc_c1                                              , 3);
-	print_test_mblen("mblen (unicode)  " , FALSE          , "Êàêçûïàœùîâ"                                              , 2 );
-	print_test_mblen("mblen (unicode)  " , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"                , 2 );
-	print_test_mblen("mblen (unicode)  " , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です"           , 3 );
-	print_test_mblen("mblen (unicode)  " , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                                        , 4 );
-	print_test_mblen("mblen invalid seq" , FALSE          , "\x80\xC0\xE0\xF0\xF8\xFC\xFE\xFF\xFE\xFC\xF8\xF0\xE0\xC0" , ERROR );
-	print_test_mblen("mblen (empty str)" , FALSE          , ""                                                         , 0);
-	print_test_mblen("mblen (null str) " , SIGNAL_SIGSEGV , NULL                                                       , ERROR);
+	print_test_mblen("mblen            " , FALSE          , "Hello World!"                                   , 1);
+	print_test_mblen("mblen            " , FALSE          , test1                                            , 1);
+	print_test_mblen("mblen            " , FALSE          , test2                                            , 1);
+	print_test_mblen("mblen            " , FALSE          , test3                                            , 1);
+	print_test_mblen("mblen            " , FALSE          , "a"                                              , 1);
+	print_test_mblen("mblen (unicode)  " , FALSE          , teststr_cc_c0                                    , 3);
+	print_test_mblen("mblen (unicode)  " , FALSE          , teststr_cc_c1                                    , 3);
+	print_test_mblen("mblen (unicode)  " , FALSE          , "Êàêçûïàœùîâ"                                    , 2 );
+	print_test_mblen("mblen (unicode)  " , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"      , 2 );
+	print_test_mblen("mblen (unicode)  " , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です" , 3 );
+	print_test_mblen("mblen (unicode)  " , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                              , 4 );
+	print_test_mblen("mblen invalid seq" , FALSE          , "\xA9\xF9"                                       , ERROR );
+	print_test_mblen("mblen (empty str)" , FALSE          , ""                                               , 0);
+	print_test_mblen("mblen (null str) " , SIGNAL_SIGSEGV , NULL                                             , ERROR);
 }
 #endif
 
@@ -103,7 +103,7 @@ void	test_mbnlen(void)
 	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"                , SIZE_MAX , 2 );
 	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です"           , SIZE_MAX , 3 );
 	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                                        , SIZE_MAX , 4 );
-	print_test_mbnlen("mbnlen invalid seq"     , FALSE          , "\x80\xC0\xE0\xF0\xF8\xFC\xFE\xFF\xFE\xFC\xF8\xF0\xE0\xC0" , SIZE_MAX , ERROR );
+	print_test_mbnlen("mbnlen invalid seq"     , FALSE          , "\xA9\xF9"                                                 , SIZE_MAX , ERROR );
 	print_test_mbnlen("mbnlen (empty str)"     , FALSE          , ""                                                         , SIZE_MAX , 0);
 	print_test_mbnlen("mbnlen (null str) "     , SIGNAL_SIGSEGV , NULL                                                       , SIZE_MAX , ERROR);
 
@@ -320,9 +320,7 @@ void	print_test_utf8nscount(char const* test_name, int can_segfault,
 		t_size n)
 {
 	TEST_INIT(sint)
-	printf("testing %s\n", str);
 	TEST_PERFORM(utf8nscount, str, n)
-	printf("done %s\n", str);
 	TEST_PRINT(sint, utf8nscount, "str=\"%32s\", expecting='%d', n='%zu'", str, expecting, n)
 }
 void	test_utf8nscount(void)
