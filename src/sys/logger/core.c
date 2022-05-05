@@ -147,13 +147,6 @@ e_cccerror	Log_VA(s_logger const* logger,
 		Log_Fatal(logger, "Could not construct log message body");
 		goto failure;
 	}
-	length = String_Length(message);
-	if (message[0] != '\0' && message[length - 1] != '\n')
-	{
-		message = (t_char*)Memory_Reallocate(message, length + 2);
-		message[length + 0] = '\n';
-		message[length + 1] = '\0';
-	}
 
 	// Get log timestamp string
 	if (logger->timestamp)
@@ -236,6 +229,14 @@ e_cccerror	Log_VA(s_logger const* logger,
 	String_Delete(&prefix_str);
 	String_Delete(&suffix_str);
 	String_Delete(&message);
+
+	length = String_Length(result);
+	if (result[0] != '\0' && result[length - 1] != '\n')
+	{
+		result = (t_char*)Memory_Reallocate(result, length + 2);
+		result[length + 0] = '\n';
+		result[length + 1] = '\0';
+	}
 
 	if (logger->fd > 0)
 	{
