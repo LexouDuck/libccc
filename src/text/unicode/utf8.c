@@ -51,7 +51,7 @@ t_sint		UTF8_Length(t_utf8 const* str)
 	else return (1);
 }
 
-t_bool UTF8_IsValid(const t_utf8* str, t_size* out_length)
+t_bool UTF8_IsSeqValid(const t_utf8* str, t_size* out_length)
 {
 	if (out_length) *out_length = SIZE_ERROR;
 
@@ -72,6 +72,44 @@ t_bool UTF8_IsValid(const t_utf8* str, t_size* out_length)
 	if (out_length) *out_length = length;
 	return TRUE;
 }
+
+t_bool UTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* out_bytecount)
+{
+	return UTF8_IsStringValid_N(str, SIZE_MAX, out_symcount, out_bytecount);
+}
+
+t_bool UTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcount, t_size* out_bytecount)
+{
+	t_size symcount = 0;
+	t_size bytecount = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),
+			if (out_symcount)  *out_symcount  = SIZE_ERROR;
+			if (out_bytecount) *out_bytecount = SIZE_ERROR;
+			return (FALSE);
+		)
+
+	while (str[bytecount])
+	{
+		t_size seq_len = UTF8_Length(str + bytecount);
+
+		if (bytecount + seq_len > n)
+			break;
+		if (!UTF8_IsSeqValid(str + bytecount, NULL))
+		{
+			if (out_symcount)  *out_symcount  = symcount;
+			if (out_bytecount) *out_bytecount = bytecount;
+			return FALSE;
+		}
+		++symcount;
+		bytecount += seq_len;
+	}
+
+	if (out_symcount)  *out_symcount  = symcount;
+	if (out_bytecount) *out_bytecount = bytecount;
+	return TRUE;
+}
+
 
 t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
@@ -193,7 +231,7 @@ t_sint	UTF8_SymbolCount(t_utf8 const* str)
 	while (str[i])
 	{
 		t_size charlen;
-		if (!UTF8_IsValid(str + i, &charlen))
+		if (!UTF8_IsSeqValid(str + i, &charlen))
 			return ERROR;
 		i += charlen;
 		++result;
@@ -214,7 +252,7 @@ t_sint	UTF8_SymbolCount_N(t_utf8 const* str, t_size n)
 		t_sint charlen = UTF8_Length(str + i);
 		if (charlen > 0 && (t_size)charlen > n)
 			break;
-		if (charlen == ERROR || !UTF8_IsValid(str + i, NULL))
+		if (charlen == ERROR || !UTF8_IsSeqValid(str + i, NULL))
 			return ERROR;
 		i += charlen;
 		++result;

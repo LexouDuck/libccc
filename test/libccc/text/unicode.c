@@ -34,10 +34,10 @@ void test_mblen(void)	{}
 #warning "mblen() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mblen(char const* test_name, int can_segfault, t_char const* str, t_sint expecting)
+void	print_test_mblen(char const* test_name, int can_segfault, t_utf8 const* str, t_sint expecting)
 {
 	TEST_INIT(sint)
-	t_char const* c;
+	t_utf8 const* c;
 	t_size length = strlen(str);
 	int step = (expecting != ERROR ? expecting : 1);
 
@@ -69,52 +69,167 @@ void	test_mblen(void)
 }
 #endif
 
-#ifndef c_isvalid
-void test_isvalid(void)	{}
-#warning "isvalid() test suite function defined, but the function isn't defined."
+#ifndef c_mbisseqvalid
+void test_mbisseqvalid(void)	{}
+#warning "mbisseqvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_isvalid(char const* test_name, int can_segfault, t_char const* str, t_bool expecting, t_size expecting_length)
+void	print_test_mbisseqvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size expecting_length)
 {
 	int step = (expecting_length != SIZE_ERROR ? expecting_length : 1);
 
 	for (t_size i = 0; i < (str ? strlen(str) : 1); i += step)
 	{
-		t_char const* c = str + i;
+		t_utf8 const* c = str + i;
 		t_size out_length;
 
 		{
 			TEST_INIT(bool)
-			TEST_PERFORM(utf8isvalid, c, &out_length);
-			TEST_PRINT(bool, utf8isvalid, "c=\"%.*s\", first byte='%hhX'", step, c, *c)
+			TEST_PERFORM(mbisseqvalid, c, &out_length);
+			TEST_PRINT(bool, mbisseqvalid, "c=\"%.*s\", first byte='%hhX'", step, c, *c)
 		}
 
 		{
 			TEST_INIT(size)
 			test.result = out_length;
 			test.expect = expecting_length;
-			TEST_PRINT(size, utf8isvalid out_length, "c=\"%.*s\", first byte='%hhX'", step, c, *c);
+			TEST_PRINT(size, utf8mbisseqvalid out_length, "c=\"%.*s\", first byte='%hhX'", step, c, *c);
 		}
 	}
 }
-void	test_isvalid(void)
+void	test_mbisseqvalid(void)
 {
 //	| TEST FUNCTION   | TEST NAME            | CAN SEGV       | TEST ARGS
-	print_test_isvalid("isvalid            "  , FALSE         , "Hello World!"                                  , TRUE , 1);
-	print_test_isvalid("isvalid            "  , FALSE         , test1                                           , TRUE , 1);
-	print_test_isvalid("isvalid            "  , FALSE         , test2                                           , TRUE , 1);
-	print_test_isvalid("isvalid            "  , FALSE         , test3                                           , TRUE , 1);
-	print_test_isvalid("isvalid            "  , FALSE         , "a"                                             , TRUE , 1);
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , teststr_cc_c0                                   , TRUE , 3);
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , teststr_cc_c1                                   , TRUE , 3);
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "Êàêçûïàœùîâ"                                   , TRUE , 2 );
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"     , TRUE , 2 );
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "お前はもう死んでいる愛私は実体の小さな学生です", TRUE , 3 );
-	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                             , TRUE , 4 );
-	print_test_isvalid("isvalid invalid seq 1", FALSE         , "\xA9\xF9"                                      , FALSE, SIZE_ERROR );
-	print_test_isvalid("isvalid invalid seq 2", FALSE         , "\xE0\xA0"                                      , FALSE, SIZE_ERROR );
-	print_test_isvalid("isvalid (empty str)"  , FALSE         , ""                                              , TRUE , 0);
-	print_test_isvalid("isvalid (null str) "  , SIGNAL_SIGSEGV, NULL                                            , FALSE, SIZE_ERROR);
+	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , "Hello World!"                                  , TRUE , 1);
+	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , test1                                           , TRUE , 1);
+	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , test2                                           , TRUE , 1);
+	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , test3                                           , TRUE , 1);
+	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , "a"                                             , TRUE , 1);
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , teststr_cc_c0                                   , TRUE , 3);
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , teststr_cc_c1                                   , TRUE , 3);
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , "Êàêçûïàœùîâ"                                   , TRUE , 2 );
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"     , TRUE , 2 );
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , "お前はもう死んでいる愛私は実体の小さな学生です", TRUE , 3 );
+	print_test_mbisseqvalid("mbisseqvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                             , TRUE , 4 );
+	print_test_mbisseqvalid("mbisseqvalid invalid seq 1", FALSE         , "\xA9\xF9"                                      , FALSE, SIZE_ERROR );
+	print_test_mbisseqvalid("mbisseqvalid invalid seq 2", FALSE         , "\xE0\xA0"                                      , FALSE, SIZE_ERROR );
+	print_test_mbisseqvalid("mbisseqvalid (empty str)"  , FALSE         , ""                                              , TRUE , 0);
+	print_test_mbisseqvalid("mbisseqvalid (null str) "  , SIGNAL_SIGSEGV, NULL                                            , FALSE, SIZE_ERROR);
+}
+#endif
+
+#ifndef c_mbisstrvalid
+void test_mbisstrvalid(void)	{}
+#warning "mbisstrvalid() test suite function defined, but the function isn't defined."
+#else
+
+void	print_test_mbisstrvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size expecting_symcount, t_size expecting_bytecount)
+{
+	t_size actual_symcount;
+	t_size actual_bytecount;
+
+	{
+		TEST_INIT(bool)
+		TEST_PERFORM(mbisstrvalid, str, &actual_symcount, &actual_bytecount);
+		TEST_PRINT(bool, mbisstrvalid, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+
+	{
+		TEST_INIT(size)
+		test.result =    actual_symcount;
+		test.expect = expecting_symcount;
+		TEST_PRINT(size, mbisstrvalid out_symcount, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+	{
+		TEST_INIT(size)
+		test.result =    actual_bytecount;
+		test.expect = expecting_bytecount;
+		TEST_PRINT(size, mbisstrvalid out_bytecount, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+}
+void	test_mbisstrvalid(void)
+{
+//	| TEST FUNCTION        | TEST NAME                  | CAN SEGV      | TEST ARGS
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , 12           , 12);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test1                      , TRUE , test1_len - 1, test1_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test2                      , TRUE , test2_len - 1, test2_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test3                      , TRUE , test3_len - 1, test3_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "a"                        , TRUE , 1            , 1);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c0              , TRUE , 32           , 96);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c1              , TRUE , 32           , 96);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , 89           , 106);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , 49           , 90);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , 29           , 75 );
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , 17           , 68 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, 0            , 0 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, 0            , 0 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, 17           , 38 );
+	print_test_mbisstrvalid("mbisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , 0            , 0);
+	print_test_mbisstrvalid("mbisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_ERROR   , SIZE_ERROR);
+}
+#endif
+
+#ifndef c_mbnisstrvalid
+void test_mbnisstrvalid(void)	{}
+#warning "mbnisstrvalid() test suite function defined, but the function isn't defined."
+#else
+
+void	print_test_mbnisstrvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size n, t_size expecting_symcount, t_size expecting_bytecount)
+{
+	t_size actual_symcount;
+	t_size actual_bytecount;
+
+	{
+		TEST_INIT(bool)
+		TEST_PERFORM(mbnisstrvalid, str, n, &actual_symcount, &actual_bytecount);
+		TEST_PRINT(bool, mbnisstrvalid, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+
+	{
+		TEST_INIT(size)
+		test.result =    actual_symcount;
+		test.expect = expecting_symcount;
+		TEST_PRINT(size, mbnisstrvalid out_symcount, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+	{
+		TEST_INIT(size)
+		test.result =    actual_bytecount;
+		test.expect = expecting_bytecount;
+		TEST_PRINT(size, mbnisstrvalid out_bytecount, "c=\"%s\", first byte='%hhX'", str, (unsigned char)(str ? *str : '\a'))
+	}
+}
+void	test_mbnisstrvalid(void)
+{
+//	| TEST FUNCTION        | TEST NAME                  | CAN SEGV      | TEST ARGS
+	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , SIZE_MAX, 12           , 12);
+	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test1                      , TRUE , SIZE_MAX, test1_len - 1, test1_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test2                      , TRUE , SIZE_MAX, test2_len - 1, test2_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test3                      , TRUE , SIZE_MAX, test3_len - 1, test3_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , "a"                        , TRUE , SIZE_MAX, 1            , 1);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_cc_c0              , TRUE , SIZE_MAX, 32           , 96);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_cc_c1              , TRUE , SIZE_MAX, 32           , 96);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , SIZE_MAX, 89           , 106);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , SIZE_MAX, 49           , 90);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , SIZE_MAX, 29           , 75 );
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , SIZE_MAX, 17           , 68 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, SIZE_MAX, 0            , 0 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, SIZE_MAX, 0            , 0 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, SIZE_MAX, 17           , 38 );
+	print_test_mbnisstrvalid("mbnisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , SIZE_MAX, 0            , 0);
+	print_test_mbnisstrvalid("mbnisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_MAX, SIZE_ERROR   , SIZE_ERROR);
+
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited"    , FALSE         , "Hello World!"             , TRUE , 5, 5           , 5);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 1", FALSE         , "a"             , TRUE , 5, 2           , 4);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 2", FALSE         , "a"             , TRUE , 6, 2           , 4);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited after mb", FALSE         , "a"             , TRUE , 7, 3           , 7);
+
+	// These are valid because we don't check for the validity of the last symbol unless `n` is big enough to include that last symbol in the valid string
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in invalid mb 1", FALSE         , "abc\xE0\xA0\xFF"             , TRUE , 4, 3           , 3);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in invalid mb 2", FALSE         , "abc\xE0\xA0\xFF"             , TRUE , 5, 3           , 3);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in invalid mb 3", FALSE         , "abc\xE0\xA0\xFF"             , FALSE , 6, 3           , 3);
+
+	// Here the first byte of the last symbol is not valid, so we can't even check if we have enough space to include the symbol
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in invalid mb 4", FALSE         , "abc\xFF\xA0\xFF"             , FALSE , 4, 3           , 3);
 }
 #endif
 
@@ -381,7 +496,9 @@ int		testsuite_text_unicode(void)
 	print_nonstd();
 
 	test_mblen();
-	test_isvalid();
+	test_mbisseqvalid();
+	test_mbisstrvalid();
+	test_mbnisstrvalid();
 
 	test_utf32encode_xff();
 	test_utf32encode_uffff();

@@ -182,9 +182,24 @@ t_size String_ToEscapedBuf_e(
 	t_size	wr_idx = 0;
 	t_size	rd_idx = SIZE_ERROR; // value to return in *out_readlen function fails before parsing begins
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL)    , goto failure;)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), goto failure;)
-	HANDLE_ERROR(NULLPOINTER, (aliases == NULL), goto failure;)
+	{
+		HANDLE_ERROR(NULLPOINTER, (str == NULL)    , goto failure;)
+		HANDLE_ERROR(NULLPOINTER, (charset == NULL), goto failure;)
+		HANDLE_ERROR(NULLPOINTER, (aliases == NULL), goto failure;)
+		t_size charset_symcount;
+		t_size charset_bytecount;
+		if (!UTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
+			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
+					"Charset contains invalid sequence at symbol %zu (byte %zu): \"%.4s\"", charset_symcount, charset_bytecount + 1, charset + charset_bytecount + 1
+				);
+
+		t_size aliases_count = StringArray_Length(aliases);
+		if (charset_symcount != aliases_count)
+			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
+					"Charset contains %zu symbols (%zu bytes), but there are %zu aliases. These numbers should be equal.", charset_symcount, charset_bytecount, aliases_count
+				);
+	}
+
 	rd_idx = 0;
 
 	if (max_writelen == SIZE_ERROR)
@@ -197,7 +212,7 @@ t_size String_ToEscapedBuf_e(
 		t_size len_written = 0;
 		printf("In the loop, rd_idx: %zu, wr_idx: %zu, read: '%s', can write %zu more\n", rd_idx, wr_idx, str+rd_idx, writeable_len);
 		t_size len_read;
-		if (!UTF8_IsValid(read_head, &len_read))
+		if (!UTF8_IsSeqValid(read_head, &len_read))
 				HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
 
 		if (force_encoding_for != NULL && force_encoding_for(read_head))

@@ -425,7 +425,7 @@ t_sint						UTF8_Length(const t_utf8* str);
 #define c_utf8len			UTF8_Length
 
 
-//!@doc Check if the given utf8 string points to a valid utf8 sequence
+//!@doc Check if the given pointer points to a valid utf8 sequence
 /*!
 **	@nonstd
 **
@@ -440,10 +440,74 @@ t_sint						UTF8_Length(const t_utf8* str);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF8_IsValid(const t_utf8* str, t_size* out_length);
-#define c_utf8isvalid		UTF8_IsValid
-#define mbisvalid			UTF8_IsValid
+t_bool						UTF8_IsSeqValid(const t_utf8* str, t_size* out_length);
+#define c_utf8isseqvalid	UTF8_IsSeqValid
+#define c_mbisseqvalid		UTF8_IsSeqValid
 //!@}
+
+
+//!@doc Check if the entire null-terminated utf8 string is valid
+/*
+**	@nonstd
+**
+**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see UTF8_IsSeqValid) until the terminating
+**	null character
+**
+**	@param	str					pointer to the beginning of the null-terminated uft8 string
+**	@param	out_symbolcount		(optional) if not `NULL`, will be set to the total number of symbols.
+**									If the entire string is valid, will be equivalent to the result of `UTF8_SymbolCount`
+**									If the entire string is not valid, will be set to the number of valid symbols before
+**									the failure point
+**									if `str` is `NULL`, is set to SIZE_ERROR
+**	@param	out_bytecount		(optional) if not `NULL`, will be set to the total number of byte.
+**									If the entire string is valid, will be equivalent to the result of `String_Length`
+**									If the entire string is not valid, will be set to the number of valid bytes before
+**									the failure point
+**									if `str` is `NULL`, is set to SIZE_ERROR
+**
+**	@returns
+**	`TRUE` if the given utf8 string is entirely made up of valid UTF8 sequences until the terminating '\0',
+**	otherwise returns `FALSE`
+**
+*/
+t_bool						UTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* out_bytecount);
+#define c_utf8isstrvalid	UTF8_IsStringValid
+#define c_mbisstrvalid		UTF8_IsStringValid
+
+//!@doc Check if the entire null-terminated utf8 string is valid, reading at most `n` bytes
+/*
+**	@nonstd
+**
+**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see UTF8_IsSeqValid) until the terminating
+**	null character or until `n` bytes.
+**	If `n` is reached in the middle of a UTF8 sequence, then `TRUE` is returned. However, it is only safe to read the
+**	`out_bytecount` bytes of the string, anything after that will not have been checked (including the utf8 sequence
+**	that could not be fully read because of the `n` bytes read limit)
+**
+**
+**	@param	str					pointer to the beginning of the null-terminated uft8 string
+**	@param	out_symbolcount		(optional) if not `NULL`, will be set to the total number of symbols.
+**									If the entire string is valid, will be equivalent to the result of `UTF8_SymbolCount`
+**									If the entire string is not valid, will be set to the number of valid symbols before
+**									the failure point
+**									if `str` is `NULL`, is set to SIZE_ERROR
+**	@param	out_bytecount		(optional) if not `NULL`, will be set to the total number of byte.
+**									If the entire string is valid, will be equivalent to the result of `String_Length`
+**									If the entire string is not valid, will be set to the number of valid bytes before
+**									the failure point
+**									Even though the parameter is optional for API consistency, only `out_bytes` can be
+**									safely read when the function returns `TRUE`, so it is highly adviced to use this
+**									out parameter
+**									if `str` is `NULL`, is set to SIZE_ERROR
+**
+**	@returns
+**	`TRUE` if the given utf8 string is entirely made up of valid UTF8 sequences until the terminating '\0',
+**	otherwise returns `FALSE`
+**
+*/
+t_bool						UTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcount, t_size* out_bytecount);
+#define c_utf8nisstrvalid	UTF8_IsStringValid_N
+#define c_mbnisstrvalid		UTF8_IsStringValid_N
 
 
 //!@doc Get the length (in number of grapheme) of string
