@@ -289,25 +289,25 @@ void	print_test_utf8scount(char const* test_name, int can_segfault,
 void	test_utf8scount(void)
 {
 //	| TEST FUNCTION  | TEST NAME                        | CAN SEGV      | EXPECT                    | TEST ARGS
-	print_test_utf8scount("utf8scount            "      , FALSE          , 12                        , "Hello World!");
-	print_test_utf8scount("utf8scount            "      , FALSE          , 22                        , test1);
-	print_test_utf8scount("utf8scount            "      , FALSE          , 7                         , test2);
-	print_test_utf8scount("utf8scount            "      , FALSE          , 26                        , test3);
-	print_test_utf8scount("utf8scount            "      , FALSE          , 1                         , "a");
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 32                        , teststr_cc_c0);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 32                        , teststr_cc_c1);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 89                        , teststr_utf8_fr);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 49                        , teststr_utf8_ru);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 29                        , teststr_utf8_jp);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 15                        , teststr_utf8_ho);
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 1                         , teststr_utf8_one_symbol_two_seq );
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , 1                         , teststr_utf8_one_symbol_three_seq );
-	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , teststr_utf8_hardcore_len , teststr_utf8_hardcore);
-	print_test_utf8scount("utf8scount (empty str)"      , FALSE          , 0                         , "");
-	print_test_utf8scount("utf8scount (null str) "      , SIGNAL_SIGSEGV , -1                        , NULL);
-	print_test_utf8scount("utf8scount invalid unicode 1" , FALSE          , -1                        , "my string \xE0oopsy");
-	print_test_utf8scount("utf8scount invalid unicode 2" , FALSE          , -1                        , "\xFF");
-	print_test_utf8scount("utf8scount invalid unicode 3" , FALSE          , -1                        , "\xE0\xA0");
+	print_test_utf8scount("utf8scount            "      , FALSE         , 12                       , "Hello World!");
+	print_test_utf8scount("utf8scount            "      , FALSE         , 22                       , test1);
+	print_test_utf8scount("utf8scount            "      , FALSE         , 7                        , test2);
+	print_test_utf8scount("utf8scount            "      , FALSE         , 26                       , test3);
+	print_test_utf8scount("utf8scount            "      , FALSE         , 1                        , "a");
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 32                       , teststr_cc_c0);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 32                       , teststr_cc_c1);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 89                       , teststr_utf8_fr);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 49                       , teststr_utf8_ru);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 29                       , teststr_utf8_jp);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 15                       , teststr_utf8_ho);
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 1                        , teststr_utf8_one_symbol_two_seq );
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 1                        , teststr_utf8_one_symbol_three_seq );
+	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , teststr_utf8_hardcore_len, teststr_utf8_hardcore);
+	print_test_utf8scount("utf8scount (empty str)"      , FALSE         , 0                        , "");
+	print_test_utf8scount("utf8scount (null str) "      , SIGNAL_SIGSEGV, -1                       , NULL);
+	print_test_utf8scount("utf8scount invalid unicode 1", FALSE         , -1                       , "my string \xE0oopsy");
+	print_test_utf8scount("utf8scount invalid unicode 2", FALSE         , -1                       , "\xFF");
+	print_test_utf8scount("utf8scount invalid unicode 3", FALSE         , -1                       , "\xE0\xA0");
 }
 #endif
 
@@ -326,29 +326,37 @@ void	print_test_utf8nscount(char const* test_name, int can_segfault,
 }
 void	test_utf8nscount(void)
 {
-//	| TEST FUNCTION  | TEST NAME                          | CAN SEGV      | EXPECT                    | TEST ARGS
-	print_test_utf8nscount("utf8nscount            "      , FALSE          , 12                        , "Hello World!"                    , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount            "      , FALSE          , 22                        , test1                             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount            "      , FALSE          , 7                         , test2                             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount            "      , FALSE          , 26                        , test3                             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount            "      , FALSE          , 1                         , "a"                               , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 32                        , teststr_cc_c0                     , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 32                        , teststr_cc_c1                     , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 89                        , teststr_utf8_fr                   , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 49                        , teststr_utf8_ru                   , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 29                        , teststr_utf8_jp                   , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 15                        , teststr_utf8_ho                   , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 1                         , teststr_utf8_one_symbol_two_seq   , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , 1                         , teststr_utf8_one_symbol_three_seq , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , teststr_utf8_hardcore_len , teststr_utf8_hardcore             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (empty str)"      , FALSE          , 0                         , ""                                , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (null str) "      , SIGNAL_SIGSEGV , -1                        , NULL                              , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode 1" , FALSE          , -1                        , "my string \xE0oopsy"             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode 2" , FALSE          , -1                        , "\xFF"                            , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode 3" , FALSE          , -1                        , "\xE0\xA0"                        , SIZE_MAX);
+//	| TEST FUNCTION  | TEST NAME                                        | CAN SEGV      | EXPECT                    | TEST ARGS
+	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 12                       , "Hello World!"                   , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 22                       , test1                            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 7                        , test2                            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 26                       , test3                            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 1                        , "a"                              , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 32                       , teststr_cc_c0                    , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 32                       , teststr_cc_c1                    , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 89                       , teststr_utf8_fr                  , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 49                       , teststr_utf8_ru                  , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 29                       , teststr_utf8_jp                  , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 15                       , teststr_utf8_ho                  , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 1                        , teststr_utf8_one_symbol_two_seq  , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 1                        , teststr_utf8_one_symbol_three_seq, SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , teststr_utf8_hardcore_len, teststr_utf8_hardcore            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (empty str)"                    , FALSE         , 0                        , ""                               , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (null str) "                    , SIGNAL_SIGSEGV, ERROR                    , NULL                             , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 1"              , FALSE         , ERROR                    , "my string \xE0oopsy"            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 2"              , FALSE         , ERROR                    , "\xFF"                           , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 3"              , FALSE         , ERROR                    , "\xE0\xA0"                       , SIZE_MAX);
 
+	print_test_utf8nscount("utf8nscount n-limited"                      , FALSE         , 5                        , "Hello World!"                   , 5);
+	print_test_utf8nscount("utf8nscount n-limited 0"                    , FALSE         , 0                        , "Hello World!"                   , 0);
+	print_test_utf8nscount("utf8nscount n-limited in unicode 1"         , FALSE         , 0                        , "愛"                             , 1);
+	print_test_utf8nscount("utf8nscount n-limited in unicode 2"         , FALSE         , 0                        , "愛"                             , 2);
+	print_test_utf8nscount("utf8nscount n-limited after unicode"        , FALSE         , 1                        , "愛"                             , 3);
+	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 1" , FALSE         , ERROR                    , "\xFF"                           , 2);
 
-	// TODO: n-specific tests
+	// Note: that test returns 0 because \xE0 is a valid start of a 3 bytes utf8 sequence, and we can only read 2 bytes so we do not have room to check for validity
+	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 2" , FALSE         , 0                        , "\xE0\xA0"                       , 2);
+	print_test_utf8nscount("utf8nscount n-limited after invalid unicode", FALSE         , ERROR                    , "\xE0\xA0"                       , 3);
 }
 #endif
 
@@ -377,7 +385,7 @@ int		testsuite_text_unicode(void)
 	test_utf32encode_smart();
 		
 	test_utf8scount();
-	/* test_utf8nscount(); */
+	test_utf8nscount();
 
 	// TODO
 
