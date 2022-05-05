@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 #include "libccc/char.h"
 #include "libccc/string.h"
 #include "libccc/stringarray.h"
@@ -80,18 +78,14 @@ t_size String_ToJsonEscapedBuf(t_char *dest, t_size max_writelen, t_char const* 
 static t_size Write_Alias(t_char *dest, t_size max_writelen, t_char const* alias)
 {
 	t_size expected_len = String_Length(alias);
-	/* printf("alias length is %zu\n", expected_len); */
 
 	if (expected_len > max_writelen)
 		return 0;
-	/* printf("can write\n"); */
 
 	if (dest)
 	{
-		/* printf("writting\n"); */
 		String_Copy(dest, alias);
 	}
-	/* printf("written\n"); */
 	return expected_len;
 }
 
@@ -192,12 +186,6 @@ t_size String_ToEscapedBuf_e(
 			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
 					"Charset contains invalid sequence at symbol %zu (byte %zu): \"%.4s\"", charset_symcount, charset_bytecount + 1, charset + charset_bytecount + 1
 				);
-
-		t_size aliases_count = StringArray_Length(aliases);
-		if (charset_symcount != aliases_count)
-			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
-					"Charset contains %zu symbols (%zu bytes), but there are %zu aliases. These numbers should be equal.", charset_symcount, charset_bytecount, aliases_count
-				);
 	}
 
 	rd_idx = 0;
@@ -210,14 +198,12 @@ t_size String_ToEscapedBuf_e(
 		t_char const* read_head = str + rd_idx;
 		t_size writeable_len = max_writelen - wr_idx - 1;
 		t_size len_written = 0;
-		printf("In the loop, rd_idx: %zu, wr_idx: %zu, read: '%s', can write %zu more\n", rd_idx, wr_idx, str+rd_idx, writeable_len);
 		t_size len_read;
 		if (!UTF8_IsSeqValid(read_head, &len_read))
 				HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
 
 		if (force_encoding_for != NULL && force_encoding_for(read_head))
 		{
-			/* printf("Forced encoding\n"); */
 			HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;) // TODO: `HANDLE_ERROR` or `if` ?
 			len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
 			if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
@@ -229,17 +215,14 @@ t_size String_ToEscapedBuf_e(
 
 			if (find_res != NULL)
 			{
-				/* printf("getting index, counting glyphs from %ld bytes\n", find_res - charset); */
 				int index = UTF8_SymbolCount_N(charset, find_res - charset);
 
-				/* printf("This char is in charset at index %d, its alias is \"%s\"\n", index, aliases[index]); */
 				if (aliases[index])
 				{
 					len_written = Write_Alias(write_head, writeable_len, aliases[index]);
 				}
 				else
 				{
-					/* printf("encoding the char...\n"); */
 					HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;) // TODO: `HANDLE_ERROR` or `if` ?
 					len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
 					if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
@@ -248,22 +231,17 @@ t_size String_ToEscapedBuf_e(
 			}
 			else 
 			{
-				/* printf("No escaping\n"); */
 				len_written = (t_size)len_read;
 				if (dest)
 					String_Copy_N(write_head, read_head, (t_size)len_read);
 			}
 		}
-		/* printf("Read '%.*s' (%zu) | wrote %zu\n", (int)len_read, read_head, (t_size)len_read, len_written); */
-		/* if (dest) printf("Written '%.*s' (%zu)\n", (int)len_written, write_head, (t_size)len_written); */
 
 		if (len_written == 0)
 			break;
-		/* printf("TOTO A LA PLAGE\n"); */
 		wr_idx += len_written;
 		rd_idx += len_read;
 	}
-	/* printf("SUCCESS: str[%zu] is %u %zu, %d bytes | wr_idx is %zu, max_writelen is %zu\n\n", rd_idx, (unsigned char)str[rd_idx], (t_size)UTF32_FromUTF8(str + rd_idx), UTF8_Length(str + rd_idx), wr_idx, max_writelen); */
 	if (dest)
 		dest[wr_idx] = '\0';
 	if (out_readlen)
@@ -271,7 +249,6 @@ t_size String_ToEscapedBuf_e(
 	return (wr_idx);
 
 failure:
-	/* printf("FAILURE at %zu, out_arstin is %p\n\n", rd_idx, (void *)out_readlen); */
 	if (dest)
 		dest[wr_idx] = '\0';
 	if (out_readlen)

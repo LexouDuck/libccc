@@ -1042,9 +1042,7 @@ void	print_test_strtoesc(char const* test_name, int can_segfault,
 #define STRTOESC_ARGS "str=\"%s\", max_writelen='" SF_SIZE "', charset=\"%s\"", str, max_writelen, charset
 	{
 		TEST_INIT(str)
-			printf("========================================================================================================================================================================\n\n");
 		TEST_PERFORM(strtoesc_e, &out_len, &out_readlen, max_writelen, str, charset, aliases, force_encoding_for, char_encoder)
-			printf("\n\n======================================================================================================================================================================\n");
 		TEST_PRINT(str, strtoesc_e, STRTOESC_ARGS)
 		TEST_FREE()
 	}
@@ -1090,6 +1088,11 @@ void	test_strtoesc(void)
 	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : last byte", FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writelen limited right after alias", FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
 
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 1"       , FALSE, 10, 4, "\\U0001F600"       , 11, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 2"       , FALSE, 10, 4, "\\U0001F600"       , 13, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 3"       , FALSE, 10, 4, "\\U0001F600"       , 15, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited right after encoding", FALSE, 16, 7, "\\U0001F600\\u320E", 16, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+
 	t_char const* charset_withmultibyte = "나중 ";
 	t_char const* aliases_witmultibyte[] = { "너", "중 (not 中)", "<space>" };
 	print_test_strtoesc("strtoesc multibyte charset and alias", FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
@@ -1100,15 +1103,12 @@ void	test_strtoesc(void)
 	t_char const* aliases_c_null_a[] = { "C", NULL, "A" };
 	print_test_strtoesc("strtoesc null alias", FALSE, 60, 54, "Aurious to see if my \\x62C\\x62y hCndles null CliCs AorreAtly", SIZE_ERROR, "curious to see if my baby handles null alias correctly", charset_abc, aliases_c_null_a, NULL, ENCODER_xFF);
 	
-	t_char const* charset_abcde = "abcde";
-	t_char const* aliases_abcdef[] = { "a", "b", "c", "d", "e", "f" };
-	print_test_strtoesc("strtoesc invalid charset-alias", FALSE, SIZE_ERROR, SIZE_ERROR, NULL, SIZE_ERROR, "Can't because the is more alias than symbols in charset", charset_abcde, aliases_abcdef, NULL, ENCODER_xFF);
+	t_char const* charset_invalid = "abc\xE0de";
+	print_test_strtoesc("strtoesc invalid mb sequence in charset", FALSE, SIZE_ERROR, SIZE_ERROR, NULL, SIZE_ERROR, "my charset :(", charset_invalid, aliases_ansi, NULL, ENCODER_xFF);
 
-	// multibyte charset with ascii worth values in the middle
-	// n-limited, with middle of alias/encoding cut
-	// empty charset
-	// alias with multi-byte char
-	// diff size aliases - charset
+	t_char const* charset_empty = "";
+	t_char const* aliases_empty[] = { };
+	print_test_strtoesc("strtoesc empty charset and aliases", FALSE, 27, 27, "This call does nothing 😀", SIZE_ERROR, "This call does nothing 😀", charset_empty, aliases_empty, NULL, NULL);
 }
 #endif
 
