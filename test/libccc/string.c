@@ -782,21 +782,23 @@ void	print_test_strchr(char const* test_name, int can_segfault,
 }
 void	test_strchr(void)
 {
-//	| TEST FUNCTION  | TEST NAME            | CAN SEGV | EXPECTS               | TEST ARGS
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test1, 'm');
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test2, '?');
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test3, ' ');
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test1, '_');
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test2, '_');
-	print_test_strchr("strchr             ",	FALSE,  NULL,                   test3, '_');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_cc_c0 + 0x0,    teststr_cc_c0,   L'␡');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_cc_c1 + 0x39,   teststr_cc_c1,   L'');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
-	print_test_strchr("strchr (unicode)   ",    FALSE,  teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
-	print_test_strchr("strchr (c = '\\0')  ",	FALSE,  NULL,                   test3, '\0');
-	print_test_strchr("strchr (null ptr)  ", SIGNAL_SIGSEGV, NULL,              NULL,  'm');
+//	| TEST FUNCTION  | TEST NAME           | CAN SEGV      | EXPECTS               | TEST ARGS
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test1          , 'm');
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test2          , '?');
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test3          , ' ');
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test1          , '_');
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test2          , '_');
+	print_test_strchr("strchr             ", FALSE         , NULL                  , test3          , '_');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_cc_c0   + 0x0 , teststr_cc_c0  , L'␡');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_cc_c1   + 0x39, teststr_cc_c1  , L'');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
+	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
+	print_test_strchr("strchr (c = '\\0') ", FALSE         , NULL                  , test3          , '\0');
+	print_test_strchr("strchr (null ptr)  ", SIGNAL_SIGSEGV, NULL                  , NULL           , 'm');
+
+	// TODO: test unicode symbols encoded on multiple utf8 sequences
 }
 #endif
 
@@ -1040,9 +1042,9 @@ void	print_test_strtoesc(char const* test_name, int can_segfault,
 #define STRTOESC_ARGS "str=\"%s\", max_writelen='" SF_SIZE "', charset=\"%s\"", str, max_writelen, charset
 	{
 		TEST_INIT(str)
-			printf("==============================================================================================================================================================================================================\n\n");
+			printf("========================================================================================================================================================================\n\n");
 		TEST_PERFORM(strtoesc_e, &out_len, &out_readlen, max_writelen, str, charset, aliases, force_encoding_for, char_encoder)
-			printf("\n\n==============================================================================================================================================================================================================\n");
+			printf("\n\n======================================================================================================================================================================\n");
 		TEST_PRINT(str, strtoesc_e, STRTOESC_ARGS)
 		TEST_FREE()
 	}
@@ -1061,7 +1063,7 @@ void	print_test_strtoesc(char const* test_name, int can_segfault,
 }
 void	test_strtoesc(void)
 {
-	t_char charset_ansi[]        = {   '\\' ,  '\'' ,    '"' ,   '/' ,   '?' ,  '\a' ,  '\b' ,  '\t' ,  '\n' ,  '\v' ,  '\f' ,  '\r' , '\x1B' };
+	t_char const* charset_ansi   = "\\\'\"/?\a\b\t\n\v\f\r\x1B" ;
 	t_char const* aliases_ansi[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" ,  "\\e" };
 
 
@@ -1081,17 +1083,17 @@ void	test_strtoesc(void)
 	print_test_strtoesc("max_writelen limited in middle of multi-byte char: last byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 17 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("max_writelen limited right after multi-byte char"       , FALSE, 18, 14, "Ich hei\\xDFe J\\xFC", 18 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 
-	t_char charset_a[]        = {           'a' };
+	t_char const* charset_a = "a";
 	t_char const* aliases_a[] = { "backslash a" };
 	print_test_strtoesc("max_writelen limited in middle of alias : 1 byte", FALSE, 24, 4, "backslash albackslash ak", 25 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("max_writelen limited in middle of alias : 5 bytes", FALSE, 24, 4, "backslash albackslash ak", 30 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("max_writelen limited in middle of alias : last byte", FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("max_writelen limited right after alias", FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
 
-	t_char charset_withmultibyte[]       = {           '나', '중', ' ' };
+	t_char const* charset_withmultibyte = "나중 ";
 	t_char const* aliases_witmultibyte[] = { "너", "중 (not 中)", "<space>" };
 	print_test_strtoesc("multibyte charset and alias", FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
-	print_test_strtoesc("max_writlen limited multibyte charset and alias", FALSE, 24, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+	print_test_strtoesc("max_writlen limited multibyte charset and alias", FALSE, 32, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
 	print_test_strtoesc("max_writlen limited multibyte charset and alias in middle of alias", FALSE, 16, 10, "너는<space>너", 28, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
 
 	// multibyte charset with ascii worth values in the middle
@@ -1100,7 +1102,6 @@ void	test_strtoesc(void)
 	// alias with multi-byte char
 	// diff size aliases - charset
 	// null alias
-	//
 }
 #endif
 
