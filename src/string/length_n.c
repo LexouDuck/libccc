@@ -1,6 +1,5 @@
 
 #include "libccc/string.h"
-#include "libccc/text/unicode.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #include <string.h>
