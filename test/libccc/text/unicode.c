@@ -354,8 +354,12 @@ void	test_utf8nscount(void)
 	print_test_utf8nscount("utf8nscount n-limited after unicode"        , FALSE         , 1                        , "愛"                             , 3);
 	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 1" , FALSE         , ERROR                    , "\xFF"                           , 2);
 
-	// Note: that test returns 0 because \xE0 is a valid start of a 3 bytes utf8 sequence, and we can only read 2 bytes so we do not have room to check for validity
+	// Note: that test returns 0 because \xE0\XA0 is a valid start of a 3 bytes utf8 sequence, and we are not allowed to read the last byte and check validity
 	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 2" , FALSE         , 0                        , "\xE0\xA0"                       , 2);
+	// Note: there we technically could see that this sequence is invalid by reading only 2 bytes, but we know from the start we don't have room to read the entire sequence so we never bother checking
+	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 3" , FALSE         , 0                        , "\xE0\xE0"                       , 2);
+	// \xA0 is NOT a valid start of a utf8 sequence
+	print_test_utf8nscount("utf8nscount n-limited in invalid unicode 4" , FALSE         , ERROR                    , "\xA0\xE0\xA0"                   , 2);
 	print_test_utf8nscount("utf8nscount n-limited after invalid unicode", FALSE         , ERROR                    , "\xE0\xA0"                       , 3);
 }
 #endif
