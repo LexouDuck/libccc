@@ -769,7 +769,8 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 /*!
 **	@returns
 **	The number of bytes written to `dest`, or
-**	`SIZE_ERROR` on error, in which case nothing was written to `dest`
+**	`SIZE_ERROR` if either parameter is `NULL` or if the utf8 sequence is invalid,
+**	in which case nothing was written to `dest`
 */
 t_size				UTF8_Copy(t_utf8* dest, t_utf8 const* str);
 #define c_mbcpy		UTF8_Copy

@@ -207,13 +207,14 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 
 t_size UTF8_Copy(t_utf8* dest, t_utf8 const* str)
 {
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (SIZE_ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (SIZE_ERROR);)
 
-	t_sint length = UTF8_Length(str);
-	if (length == ERROR)
+	t_size length;
+	if (!UTF8_IsSeqValid(str, &length))
 		return SIZE_ERROR;
 
-	for (int i = 0; i < length; ++i)
+	for (t_size i = 0; i < length; ++i)
 		dest[i] = str[i];
 	return length;
 }
