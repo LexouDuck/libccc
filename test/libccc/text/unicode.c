@@ -39,7 +39,7 @@ void	print_test_mblen(char const* test_name, int can_segfault, t_char const* str
 	TEST_INIT(sint)
 	t_char const* c;
 	t_size length = strlen(str);
-	t_size step = (expecting != ERROR ? expecting : 1);
+	int step = (expecting != ERROR ? expecting : 1);
 
 	for (t_size i = 0; i < length; i += step)
 	{
@@ -50,7 +50,6 @@ void	print_test_mblen(char const* test_name, int can_segfault, t_char const* str
 }
 void	test_mblen(void)
 {
-	setlocale(LC_ALL, "en_US.utf8");
 //	| TEST FUNCTION  | TEST NAME          | CAN SEGV      | TEST ARGS
 	print_test_mblen("mblen            " , FALSE          , "Hello World!"                                   , 1);
 	print_test_mblen("mblen            " , FALSE          , test1                                            , 1);
@@ -64,58 +63,60 @@ void	test_mblen(void)
 	print_test_mblen("mblen (unicode)  " , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です" , 3 );
 	print_test_mblen("mblen (unicode)  " , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                              , 4 );
 	print_test_mblen("mblen invalid seq" , FALSE          , "\xA9\xF9"                                       , ERROR );
+	print_test_mblen("mblen invalid seq" , FALSE          , "\xF9"                                           , ERROR );
 	print_test_mblen("mblen (empty str)" , FALSE          , ""                                               , 0);
 	print_test_mblen("mblen (null str) " , SIGNAL_SIGSEGV , NULL                                             , ERROR);
 }
 #endif
 
-#ifndef c_mbnlen
-void test_mbnlen(void)	{}
-#warning "mbnlen() test suite function defined, but the function isn't defined."
+#ifndef c_isvalid
+void test_isvalid(void)	{}
+#warning "isvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mbnlen(char const* test_name, int can_segfault, t_char const* str, t_size n, t_sint expecting)
+void	print_test_isvalid(char const* test_name, int can_segfault, t_char const* str, t_bool expecting, t_size expecting_length)
 {
-	TEST_INIT(sint)
-	t_char const* c;
-	t_size length = strlen(str);
-	t_size step = (expecting != ERROR ? expecting : 1);
+	int step = (expecting_length != SIZE_ERROR ? expecting_length : 1);
 
-	for (t_size i = 0; i < length; i += step)
+	for (t_size i = 0; i < (str ? strlen(str) : 1); i += step)
 	{
-		c = (str + i);
-		TEST_PERFORM(utf8nlen, c, n);
-		TEST_PRINT(sint, utf8len, "c=\"%.*s\", n='%d'", step, c, n)
+		t_char const* c = str + i;
+		t_size out_length;
+
+		{
+			TEST_INIT(bool)
+			TEST_PERFORM(utf8isvalid, c, &out_length);
+			TEST_PRINT(bool, utf8isvalid, "c=\"%.*s\", first byte='%hhX'", step, c, *c)
+		}
+
+		{
+			TEST_INIT(size)
+			test.result = out_length;
+			test.expect = expecting_length;
+			TEST_PRINT(size, utf8isvalid out_length, "c=\"%.*s\", first byte='%hhX'", step, c, *c);
+		}
 	}
 }
-void	test_mbnlen(void)
+void	test_isvalid(void)
 {
-	setlocale(LC_ALL, "en_US.utf8");
-//	| TEST FUNCTION  | TEST NAME               | CAN SEGV       | TEST ARGS
-	print_test_mbnlen("mbnlen            "     , FALSE          , "Hello World!"                                             , SIZE_MAX , 1);
-	print_test_mbnlen("mbnlen            "     , FALSE          , test1                                                      , SIZE_MAX , 1);
-	print_test_mbnlen("mbnlen            "     , FALSE          , test2                                                      , SIZE_MAX , 1);
-	print_test_mbnlen("mbnlen            "     , FALSE          , test3                                                      , SIZE_MAX , 1);
-	print_test_mbnlen("mbnlen            "     , FALSE          , "a"                                                        , SIZE_MAX , 1);
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , teststr_cc_c0                                              , SIZE_MAX , 3);
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , teststr_cc_c1                                              , SIZE_MAX , 3);
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "Êàêçûïàœùîâ"                                              , SIZE_MAX , 2 );
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"                , SIZE_MAX , 2 );
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です"           , SIZE_MAX , 3 );
-	print_test_mbnlen("mbnlen (unicode)  "     , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                                        , SIZE_MAX , 4 );
-	print_test_mbnlen("mbnlen invalid seq"     , FALSE          , "\xA9\xF9"                                                 , SIZE_MAX , ERROR );
-	print_test_mbnlen("mbnlen (empty str)"     , FALSE          , ""                                                         , SIZE_MAX , 0);
-	print_test_mbnlen("mbnlen (null str) "     , SIGNAL_SIGSEGV , NULL                                                       , SIZE_MAX , ERROR);
-
-	print_test_mbnlen("mbnlen n-limited to 1"  , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"                , 1        , ERROR );
-	print_test_mbnlen("mbnlen  "               , FALSE          , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"                , 2        , 2);
-	print_test_mbnlen("mbnlen n-limited to 2 " , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です"           , 2        , ERROR );
-	print_test_mbnlen("mbnlen "                , FALSE          , "お前はもう死んでいる愛私は実体の小さな学生です"           , 3        , 3 );
-	print_test_mbnlen("mbnlen n-limited to 3 " , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                                        , 3        , ERROR );
-	print_test_mbnlen("mbnlen "                , FALSE          , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                                        , 4        , 4 );
+//	| TEST FUNCTION   | TEST NAME            | CAN SEGV       | TEST ARGS
+	print_test_isvalid("isvalid            "  , FALSE         , "Hello World!"                                  , TRUE , 1);
+	print_test_isvalid("isvalid            "  , FALSE         , test1                                           , TRUE , 1);
+	print_test_isvalid("isvalid            "  , FALSE         , test2                                           , TRUE , 1);
+	print_test_isvalid("isvalid            "  , FALSE         , test3                                           , TRUE , 1);
+	print_test_isvalid("isvalid            "  , FALSE         , "a"                                             , TRUE , 1);
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , teststr_cc_c0                                   , TRUE , 3);
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , teststr_cc_c1                                   , TRUE , 3);
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "Êàêçûïàœùîâ"                                   , TRUE , 2 );
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "ЯцкНичолсонсталинленинтроцкийхрущевмосква"     , TRUE , 2 );
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "お前はもう死んでいる愛私は実体の小さな学生です", TRUE , 3 );
+	print_test_isvalid("isvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"                             , TRUE , 4 );
+	print_test_isvalid("isvalid invalid seq 1", FALSE         , "\xA9\xF9"                                      , FALSE, SIZE_ERROR );
+	print_test_isvalid("isvalid invalid seq 2", FALSE         , "\xE0\xA0"                                      , FALSE, SIZE_ERROR );
+	print_test_isvalid("isvalid (empty str)"  , FALSE         , ""                                              , TRUE , 0);
+	print_test_isvalid("isvalid (null str) "  , SIGNAL_SIGSEGV, NULL                                            , FALSE, SIZE_ERROR);
 }
 #endif
-
 
 #ifndef c_utf32encode_xff
 void test_utf32encode_xff(void)	{}
@@ -283,7 +284,7 @@ void	print_test_utf8scount(char const* test_name, int can_segfault,
 {
 	TEST_INIT(sint)
 	TEST_PERFORM(utf8scount, str)
-	TEST_PRINT(sint, utf8scount, "str=\"%32s\", expecting='%d'", str, expecting)
+	TEST_PRINT(sint, utf8scount, "str=\"%.32s%s\", expecting='%d'", str, (expecting > 32 ? "..." : ""), expecting)
 }
 void	test_utf8scount(void)
 {
@@ -304,9 +305,9 @@ void	test_utf8scount(void)
 	print_test_utf8scount("utf8scount (unicode)  "      , FALSE          , teststr_utf8_hardcore_len , teststr_utf8_hardcore);
 	print_test_utf8scount("utf8scount (empty str)"      , FALSE          , 0                         , "");
 	print_test_utf8scount("utf8scount (null str) "      , SIGNAL_SIGSEGV , -1                        , NULL);
-	print_test_utf8scount("utf8scount invalid unicode " , FALSE          , -1                        , "my string \xE0oopsy");
-	print_test_utf8scount("utf8scount invalid unicode " , FALSE          , -1                        , "\xFF");
-	print_test_utf8scount("utf8scount invalid unicode " , FALSE          , -1                        , "\xE0\xA0");
+	print_test_utf8scount("utf8scount invalid unicode 1" , FALSE          , -1                        , "my string \xE0oopsy");
+	print_test_utf8scount("utf8scount invalid unicode 2" , FALSE          , -1                        , "\xFF");
+	print_test_utf8scount("utf8scount invalid unicode 3" , FALSE          , -1                        , "\xE0\xA0");
 }
 #endif
 
@@ -321,7 +322,7 @@ void	print_test_utf8nscount(char const* test_name, int can_segfault,
 {
 	TEST_INIT(sint)
 	TEST_PERFORM(utf8nscount, str, n)
-	TEST_PRINT(sint, utf8nscount, "str=\"%32s\", expecting='%d', n='%zu'", str, expecting, n)
+	TEST_PRINT(sint, utf8nscount, "str=\"%.32s%s\", expecting='%d', n='%zu'", str, (expecting > 32 ? "..." : ""), expecting, n)
 }
 void	test_utf8nscount(void)
 {
@@ -342,9 +343,9 @@ void	test_utf8nscount(void)
 	print_test_utf8nscount("utf8nscount (unicode)  "      , FALSE          , teststr_utf8_hardcore_len , teststr_utf8_hardcore             , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (empty str)"      , FALSE          , 0                         , ""                                , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (null str) "      , SIGNAL_SIGSEGV , -1                        , NULL                              , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode " , FALSE          , -1                        , "my string \xE0oopsy"             , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode " , FALSE          , -1                        , "\xFF"                            , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount invalid unicode " , FALSE          , -1                        , "\xE0\xA0"                        , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 1" , FALSE          , -1                        , "my string \xE0oopsy"             , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 2" , FALSE          , -1                        , "\xFF"                            , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount invalid unicode 3" , FALSE          , -1                        , "\xE0\xA0"                        , SIZE_MAX);
 
 
 	// TODO: n-specific tests
@@ -368,7 +369,7 @@ int		testsuite_text_unicode(void)
 	print_nonstd();
 
 	test_mblen();
-	// TODO
+	test_isvalid();
 
 	test_utf32encode_xff();
 	test_utf32encode_uffff();
@@ -376,7 +377,9 @@ int		testsuite_text_unicode(void)
 	test_utf32encode_smart();
 		
 	test_utf8scount();
-	test_utf8nscount();
+	/* test_utf8nscount(); */
+
+	// TODO
 
 	return (OK);
 }

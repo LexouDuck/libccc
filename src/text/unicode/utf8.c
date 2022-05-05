@@ -55,11 +55,14 @@ t_bool UTF8_IsValid(const t_utf8* str, t_size* out_length)
 {
 	if (out_length) *out_length = SIZE_ERROR;
 
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
 	t_sint length = UTF8_Length(str);
 	if (length == ERROR)
+	{
 		return (FALSE);
+	}
 
-	for (int i = 0; i < length - 1; ++i)
+	for (int i = 1; i < length; ++i)
 		HANDLE_ERROR_SF(ILLEGALBYTES,
 				(((t_u8)str[i]) >> 6) != 2,
 				return (FALSE);,
@@ -182,8 +185,8 @@ t_size UTF8_Copy(t_utf8* dest, t_utf8 const* str)
 // TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
 t_sint	UTF8_SymbolCount(t_utf8 const* str)
 {
-	t_size	i;
-	t_sint	result = 0;
+	t_size i;
+	t_sint result = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	i = 0;
@@ -201,8 +204,8 @@ t_sint	UTF8_SymbolCount(t_utf8 const* str)
 // TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
 t_sint	UTF8_SymbolCount_N(t_utf8 const* str, t_size n)
 {
-	t_size	i;
-	t_sint	result = 0;
+	t_size i;
+	t_sint result = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
 	i = 0;

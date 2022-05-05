@@ -441,6 +441,8 @@ t_sint						UTF8_Length(const t_utf8* str);
 */
 //!@{
 t_bool						UTF8_IsValid(const t_utf8* str, t_size* out_length);
+#define c_utf8isvalid		UTF8_IsValid
+#define mbisvalid			UTF8_IsValid
 //!@}
 
 
