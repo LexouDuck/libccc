@@ -25,16 +25,16 @@ t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str)
 
 
 _MALLOC()
-t_char* String_ToAnsiEscaped(t_char const* str)
+t_char* String_ToAsciiEscaped(t_char const* str)
 {
-	t_size expected_len = String_ToAnsiEscapedBuf(NULL, SIZE_ERROR, str);
+	t_size expected_len = String_ToAsciiEscapedBuf(NULL, SIZE_ERROR, str);
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
 	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
-	if (String_ToAnsiEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
+	if (String_ToAsciiEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
 	{
 		String_Delete(&result);
 		return (NULL);
@@ -42,7 +42,7 @@ t_char* String_ToAnsiEscaped(t_char const* str)
 	return result;
 }
 
-t_size String_ToAnsiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
+t_size String_ToAsciiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
 {
 	t_char const* charset   =     "\\"     "'"     "\""     "/"     "?"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
 	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };

@@ -1138,9 +1138,9 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 ** ************************************************************************** *|
 */
 
-#define String_Print	String_ToAnsiEscapedBuf
+#define String_Print	String_ToAsciiEscapedBuf
 
-//! Creates a new string from `str`, replacing special characters with ANSII-like escape-sequences
+//! Creates a new string from `str`, replacing special characters with ASCII escape-sequences
 /*!
 **	@nonstd
 **
@@ -1167,11 +1167,11 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 */
 _MALLOC()
-t_ascii*				String_ToAnsiEscaped(t_char const* str);
-#define c_strtoansiesc	String_ToAnsiEscaped
+t_ascii*				String_ToAsciiEscaped(t_char const* str);
+#define c_strtoasciiesc	String_ToAsciiEscaped
 
 
-//! Equivalent of `String_ToAnsiEscaped` but writes in the given `dest` buffer.
+//! Equivalent of `String_ToAsciiEscaped` but writes in the given `dest` buffer.
 /*!
 **	@nonstd
 **
@@ -1180,7 +1180,7 @@ t_ascii*				String_ToAnsiEscaped(t_char const* str);
 **	@returns
 **	The amount of byte written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size					String_ToAnsiEscapedBuf(t_ascii *dest, size_t max_writelen, t_char const* str);
+t_size					String_ToAsciiEscapedBuf(t_ascii *dest, size_t max_writelen, t_char const* str);
 
 //! Creates a new string from `str`, replacing special characters with JSON-like escape-sequences
 /*!
