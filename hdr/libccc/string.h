@@ -1377,13 +1377,14 @@ t_size String_ToEscapedBuf_e(
 /*!
 **	@nonstd
 **
+**	Inverse of `String_ToAsciiEscaped`
+**
 **	Returns a new null-terminated string where every valid backslash escape sequence
 **	is converted to its corresponding string byte.
 **	Here is the list of character escape sequences which will be properly parsed:
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\'`	Apostrophe
 **	- `\"`	Double quotes
-**	- `\0`	Null character (string terminator)
 **	- `\a`	Bell/Alert/Audible
 **	- `\b`	Backspace
 **	- `\t`	Tab character
@@ -1409,21 +1410,24 @@ t_size String_ToEscapedBuf_e(
 **	The amount of characters parsed from the given `str`.
 */
 //!@{
-t_size							String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escape);
+t_size							String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escape);
 #define c_strparse				String_Parse
 //!@}
 
 /*!@doc
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
-**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
-**						(ie: any escape sequence will function, with any char after the `'\'`)
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character. 
+**						Every backslashed character will be resolved to either the character this known escape 
+**						sequence represents, or simply character if this escape sequence is not known (effectively
+**						removing the backslash)
+**
 **	@returns
 **	A newly allocated modified copy of the given `str` (can be smaller than `str`),
 **	with any escape-sequences transformed into their target character value.
 */
 //!@{
 _MALLOC()
-t_char*							String_FromEscape(t_char const* str, t_bool any_escape);
+t_utf8*							String_FromEscape(t_char const* str, t_bool any_escape);
 #define c_esctostr				String_FromEscape
 #define String_Decode			String_FromEscape
 #define String_FromPrintable	String_FromEscape
@@ -1436,6 +1440,8 @@ t_char*							String_FromEscape(t_char const* str, t_bool any_escape);
 //!@doc Get an inverted version of the given string `str`
 /*!
 **	@nonstd
+**
+**	Does not support utf8 characters
 **
 **	@returns
 **	A newly allocated string which is a copy of the given string `str`,

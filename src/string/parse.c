@@ -71,7 +71,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 
 
 
-t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escape)
+t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escape)
 {
 	t_char*	result;
 	t_char	tmp[9] = { 0 };
@@ -103,7 +103,6 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 				case 'e':	result[i++] = '\x1B';	break; // Escape
 				case '\'':	result[i++] = '\'';		break; // Single quotation mark
 				case '\"':	result[i++] = '\"';		break; // Double quotation mark
-				case  '?':	result[i++] = '?';		break; // Question mark (used to avoid trigraphs)
 				case  '/':	result[i++] = '/';		break; // Forward Slash
 				case '\\':	result[i++] = '\\';		break; // Backslash
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
@@ -139,7 +138,7 @@ t_size	String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any_escap
 
 
 inline
-t_char*	String_FromEscape(t_char const* str, t_bool any_escape)
+t_utf8*	String_FromEscape(t_char const* str, t_bool any_escape)
 {
 	t_char*	result = NULL;
 	String_Parse(&result, str, 0, any_escape);

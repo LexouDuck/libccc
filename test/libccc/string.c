@@ -1138,7 +1138,7 @@ void	test_strtoasciiesc(void)
 	print_test_strtoasciiesc("strtoasciiesc all escapes"        , FALSE    , "hard \\\\\\'\\\"\\/?\\a\\b\\t\\n\\v\\f\\r\\e string"      , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             );
 	print_test_strtoasciiesc("strtoasciiesc encoded char"       , FALSE    , "\\u751F\\u65E5\\u5FEB\\u6A02"                             , "生日快樂"                                        );
 	print_test_strtoasciiesc("strtoasciiesc harder encoded char", FALSE    , "\\U00012345,\\u2347\\n\\xA8\\uCACA"                       , "𒍅,⍇\n¨쫊"                                        );
-	print_test_strtoasciiesc("strtoasciiesc NULL", TRUE     , NULL                                                                      , NULL                                              );
+	print_test_strtoasciiesc("strtoasciiesc NULL"               , TRUE     , NULL                                                       , NULL                                              );
 }
 #endif
 
@@ -1158,14 +1158,14 @@ void	print_test_strtojsonesc(char const* test_name, int can_segfault,
 void	test_strtojsonesc(void)
 {
 //	| TEST FUNCTION        | TEST NAME                    | CAN SEGV | EXPECTING                                          | TEST ARGS
-	print_test_strtojsonesc("strtojsonesc no escape"      , FALSE    , "hello world !"                                    , "hello world !"                                   );
+	print_test_strtojsonesc("strtojsonesc no escape"      , FALSE    , "hello world !"                                    , "hello world !"                              );
 	// DZ_ON_REFACTOR_OF_SIZE_ERROR: uncomment next test
-	// print_test_strtojsonesc("strtojsonesc empty string", FALSE    , ""                                                 , ""                                                );
-	print_test_strtojsonesc("strtojsonesc basic escapes"  , FALSE    , "\\tThis\\nis a text \\\\with escaped\\\"symbols '", "\tThis\nis a text \\with escaped\"symbols '" );
-	print_test_strtojsonesc("strtojsonesc all escapes"    , FALSE    , "hard '\\\"/?\\b\\t\\n\\f\\r string"               , "hard '\"/?\b\t\n\f\r string"             );
+	// print_test_strtojsonesc("strtojsonesc empty string", FALSE    , ""                                                 , ""                                           );
+	print_test_strtojsonesc("strtojsonesc basic escapes"  , FALSE    , "\\tThis\\nis a text \\\\with escaped\\\"symbols '", "\tThis\nis a text \\with escaped\"symbols '");
+	print_test_strtojsonesc("strtojsonesc all escapes"    , FALSE    , "hard '\\\"/?\\b\\t\\n\\f\\r string"               , "hard '\"/?\b\t\n\f\r string"                );
 
-	print_test_strtojsonesc("strtojsonesc utf8 char"      , FALSE    , "生日快樂!"                                        , "生日快樂!"                                        );
-	print_test_strtojsonesc("strtojsonesc char encoding"  , FALSE    , "Weird \\u000B non \\u0007\\u001B printables"      , "Weird \v non \a\e printables"                                  );
+	print_test_strtojsonesc("strtojsonesc utf8 char"      , FALSE    , "生日快樂!"                                        , "生日快樂!"                                  );
+	print_test_strtojsonesc("strtojsonesc char encoding"  , FALSE    , "Weird \\u000B non \\u0007\\u001B printables"      , "Weird \v non \a\e printables"               );
 	print_test_strtojsonesc("strtojsonesc NULL"           , TRUE     , NULL                                               , NULL);
 }
 
@@ -1181,14 +1181,32 @@ void	print_test_esctostr(char const* test_name, int can_segfault,
 		t_bool escape_any)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	esctostr, str, escape_any)
-	TEST_PRINT(str,	esctostr, "str=\"%s\", escape_any=%s", str, (escape_any ? "TRUE" : "FALSE"))
+	TEST_PERFORM(esctostr, str, escape_any)
+	TEST_PRINT(str, esctostr, "str=\"%s\", escape_any=%s", str, (escape_any ? "TRUE" : "FALSE"))
 	TEST_FREE()
 }
 void	test_esctostr(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION    | TEST NAME                       |CAN SEGV| EXPECTING                                  | TEST ARGS
+	print_test_esctostr("esctostr 1"                     , FALSE  , "Hello world!"                              , "Hello world!"                                                      , TRUE);
+	print_test_esctostr("esctostr 2"                     , FALSE  , "Hello\tworld!"                             , "Hello\\tworld!"                                                    , TRUE);
+	print_test_esctostr("esctostr 3"                     , FALSE  , "Th\tes\ve§ar\ee㈎un\t\ticode😇characters\a", "Th\\tes\\ve\\xa7ar\\ee\\u320eun\\t\\ticode\\U0001f607characters\\a", FALSE);
+	print_test_esctostr("esctostr all sequences"         , FALSE  , "\\'\"\a\b\t\n\v\f\r\e"                     , "\\\\\\'\\\"\\a\\b\\t\\n\\v\\f\\r\\e"                               , FALSE);
+	print_test_esctostr("esctostr escape_any true"       , FALSE  , "wc3oui-oui dans son \t\axi!@"              , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , TRUE);
+	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These§are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , FALSE);
+	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These§are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , FALSE);
+
+	// There do not work and crash the test suite
+	/* print_test_esctostr("esctostr error invalid seq 1"   , FALSE  , NULL                                       , "\\xA"                                                              , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 2"   , FALSE  , NULL                                       , "\\xAG"                                                             , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 3"   , FALSE  , NULL                                       , "\\xLOL"                                                            , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 4"   , FALSE  , NULL                                       , "\\uE0"                                                             , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 5"   , FALSE  , NULL                                       , "\\uE0Y2"                                                           , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 6"   , FALSE  , NULL                                       , "\\uE02Y"                                                           , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 7"   , FALSE  , NULL                                       , "\\UE023"                                                           , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 8"   , FALSE  , NULL                                       , "\\U0234ABC"                                                        , FALSE); */
+	/* print_test_esctostr("esctostr error invalid seq 9"   , FALSE  , NULL                                       , "\\U0234GBCD"                                                       , FALSE); */
+	print_test_esctostr("esctostr NULL"                  , TRUE   , NULL                                       , NULL                                                                , TRUE);
 }
 #endif
 
