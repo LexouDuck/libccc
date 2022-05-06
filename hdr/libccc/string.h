@@ -1144,11 +1144,10 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 /*!
 **	@nonstd
 **
-**	Returns a new null-terminated string where every non-printable character
-**	of `str` is replaced by either its `normal` escape sequence (if available)
-**	or encodes the character with either a '\xFF'-type '\uFFFF'-type or a 
-**	'\UFFFFFFFF'-type byte/unicode escape sequence if no simple short escape 
-**	sequence exists.
+**	Returns a new null-terminated string where every non-printable or non-ascii
+**	character of `str` is replaced by either its `normal` escape sequence (if 
+**	available) or encodes the character with either a '\xFF'-type '\uFFFF'-type
+**	or a '\UFFFFFFFF'-type escape sequence if no alias sequence exists (like "\n").
 **	Here is the list of characters which will be escaped by default:
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\'`	Apostrophe
@@ -1168,8 +1167,8 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
 */
 _MALLOC()
-t_char*					String_ToAnsiEscaped(t_char const* str);
-#define c_strtoesc_ansi	String_ToAnsiEscaped
+t_ascii*				String_ToAnsiEscaped(t_char const* str);
+#define c_strtoansiesc	String_ToAnsiEscaped
 
 
 //! Equivalent of `String_ToAnsiEscaped` but writes in the given `dest` buffer.
@@ -1181,7 +1180,7 @@ t_char*					String_ToAnsiEscaped(t_char const* str);
 **	@returns
 **	The amount of byte written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size					String_ToAnsiEscapedBuf(t_char *dest, size_t max_writelen, t_char const* str);
+t_size					String_ToAnsiEscapedBuf(t_ascii *dest, size_t max_writelen, t_char const* str);
 
 //! Creates a new string from `str`, replacing special characters with JSON-like escape-sequences
 /*!
@@ -1199,7 +1198,7 @@ t_size					String_ToAnsiEscapedBuf(t_char *dest, size_t max_writelen, t_char con
 */
 _MALLOC()
 t_char*					String_ToJsonEscaped(t_char const* str);
-#define c_strtoesc_json		String_ToAnsiEscaped
+#define c_strtojsonesc	String_ToJsonEscaped
 
 //! Equivalent of `String_ToJsonEscaped` but writes in the given `dest` buffer.
 /*!
@@ -1248,12 +1247,12 @@ t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str);
 /*!
 **	@nonstd
 **
-**	Returns a new string where every character in `charset`
-**	is replaced by its alias in `aliases`, or encoded with `char_encoder`
-**	if its alias is NULL or if `force_encoding_for` returns TRUE
+**	Returns a new string where every character is escaped according to the parameters:
 **
-**	`force_encoding_for` takes precedence over `charset`/`aliases`, and will directly encode a character
-**	without checking if it has an alias
+**	Every character in `charset` or for which `force_encoding_for` returns `TRUE` will be escaped.
+**	If the character is in `charset` and it's corresponding alias (the value of `aliases` at the 
+**	same index) is not `NULL`, then the alias will be written.
+**	Otherwise, the character will be encoded with `char_encoder`
 **
 **	KNOWN ISSUE: Does not work with empty string as long as `SIZE_ERROR` macro is `0`.        DZ_ON_REFACTOR_OF_SIZE_ERROR: delete this line, it'll have solved the issue
 **
@@ -1264,7 +1263,7 @@ t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str);
 **									If an alias is `NULL`, then the character will be encoded instead
 **									The array doesn't have to be null-terminated, but needs to be of same size
 **									as `charset`
-**	@param	force_encoding_for	Predicate that can force a given character to be encoded by returning `TRUE`.
+**	@param	force_encoding_for	Predicate that can force a given character to be escaped by returning `TRUE`.
 **									If `force_encoding_for` is `NULL`, only character of `charset` that don't
 **									have an alias will be encoded.
 **	@param	char_encoder		Function taking care of encoding a character.
@@ -1288,7 +1287,7 @@ t_char*	String_ToEscaped(
 
 //! Exhaustive version of `String_ToEscaped`
 /*
-**	@see String_ToEscaped
+**	@see String_ToEscaped, only additional parameters are documented here
 **
 **	All 'out parameters` are optional and will be initialized even if the function fails
 **
@@ -1320,13 +1319,13 @@ t_char*	String_ToEscaped_e(
 
 //! Same as `String_ToEscaped` except it will write the escaped string directly to `dest`
 /*
-**	@see String_ToEscaped
+**	@see String_ToEscaped, only additional parameters are documented here
 **
 **	If `dest` is NULL, nothing is written and the number of bytes that would be written is returned.
 **	Even in case of error, `dest` will be null-terminated and will be filled whatever was successfully
 **	written before the error
 **
-**	CAUTION: unlike the non-"Buf" variant, `max_writlen` is the number of bytes allowed to be written INCLUDING final '\0'
+**	CAUTION: unlike the non-"Buf" variant, `max_writelen` is the number of bytes allowed to be written INCLUDING final '\0'
 **
 **	@param	dest			The buffer to write the escaped string to, if not `NULL`
 **	@params	max_writelen	Maximum length of string to return (including final '\0'). No limit if set to `SIZE_ERROR`.

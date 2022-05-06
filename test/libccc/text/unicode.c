@@ -150,22 +150,23 @@ void	print_test_mbisstrvalid(char const* test_name, int can_segfault, t_utf8 con
 void	test_mbisstrvalid(void)
 {
 //	| TEST FUNCTION        | TEST NAME                  | CAN SEGV      | TEST ARGS
-	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , 12           , 12);
-	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test1                      , TRUE , test1_len - 1, test1_len - 1);
-	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test2                      , TRUE , test2_len - 1, test2_len - 1);
-	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test3                      , TRUE , test3_len - 1, test3_len - 1);
-	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "a"                        , TRUE , 1            , 1);
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c0              , TRUE , 32           , 96);
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c1              , TRUE , 32           , 96);
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , 89           , 106);
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , 49           , 90);
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , 29           , 75 );
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , 17           , 68 );
-	print_test_mbisstrvalid("mbisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, 0            , 0 );
-	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, 0            , 0 );
-	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, 17           , 38 );
-	print_test_mbisstrvalid("mbisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , 0            , 0);
-	print_test_mbisstrvalid("mbisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_ERROR   , SIZE_ERROR);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , 12                       , 12);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test1                      , TRUE , test1_len - 1            , test1_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test2                      , TRUE , test2_len - 1            , test2_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test3                      , TRUE , test3_len - 1            , test3_len - 1);
+	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "a"                        , TRUE , 1                        , 1);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c0              , TRUE , 32                       , 96);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_cc_c1              , TRUE , 32                       , 96);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , 89                       , 106);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , 49                       , 90);
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , 29                       , 75 );
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , 17                       , 68 );
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_hardcore      , TRUE , teststr_utf8_hardcore_len, teststr_utf8_hardcore_bytelen - 1 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, 0                        , 0 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, 0                        , 0 );
+	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, 17                       , 38 );
+	print_test_mbisstrvalid("mbisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , 0                        , 0);
+	print_test_mbisstrvalid("mbisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_ERROR               , SIZE_ERROR);
 }
 #endif
 

@@ -1061,8 +1061,8 @@ void	print_test_strtoesc(char const* test_name, int can_segfault,
 }
 void	test_strtoesc(void)
 {
-	t_char const* charset_ansi   = "\\\'\"/?\a\b\t\n\v\f\r\x1B" ;
-	t_char const* aliases_ansi[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" ,  "\\e" };
+	t_char const* charset_ansi   =     "\\"     "'"     "\""     "/"     "?"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
+	t_char const* aliases_ansi[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
 
 //	| TEST FUNCTION    | TEST NAME       | CAN SEGV | EXPECTING                 | TEST ARGS
@@ -1071,95 +1071,102 @@ void	test_strtoesc(void)
 	print_test_strtoesc("strtoesc basic escapes"  , FALSE    ,47, 41, "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , SIZE_ERROR, "\tThis\nis a text \\with \v escaped\"symbols \'", charset_ansi, aliases_ansi, NULL, NULL );
 	print_test_strtoesc("strtoesc one escape"  , FALSE    ,2, 1, "\\\\" , SIZE_ERROR, "\\", charset_ansi, aliases_ansi, NULL, NULL);
 	print_test_strtoesc("strtoesc only escapes"  , FALSE    ,18, 9, "\\\\\\n\\t\\e\\r\\v\\v\\v\\v" , SIZE_ERROR, "\\\n\t\x1B\r\v\v\v\v", charset_ansi, aliases_ansi, NULL, NULL);
-
+	
 	print_test_strtoesc("strtoesc encoded char"       , FALSE, 24, 12,   "\\u751F\\u65E5\\u5FEB\\u6A02", SIZE_ERROR                             , "生日快樂", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
 	print_test_strtoesc("strtoesc encoded char too big"       , FALSE, SIZE_ERROR, 5,NULL, SIZE_ERROR                             , "@⍇\n𒍅¨쫊󿿿��������������", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
-
+	
 	print_test_strtoesc("strtoesc max_writelen limited"       , FALSE, 3, 3, "TOT", 3                             , "TOTO MANGE DU FOIN", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 1 byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 15 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 2 bytes"       , FALSE, 14, 12, "Ich hei\\xDFe J", 16 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: last byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 17 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("strtoesc max_writelen limited right after multi-byte char"       , FALSE, 18, 14, "Ich hei\\xDFe J\\xFC", 18 , "Ich heiße Jürgen Volkswagen", charset_ansi, aliases_ansi, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
-
+	
 	t_char const* charset_a = "a";
 	t_char const* aliases_a[] = { "backslash a" };
 	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 1 byte", FALSE, 24, 4, "backslash albackslash ak", 25 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 5 bytes", FALSE, 24, 4, "backslash albackslash ak", 30 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : last byte", FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writelen limited right after alias", FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
-
+	
 	print_test_strtoesc("strtoesc max_writelen limited in encoding 1"       , FALSE, 10, 4, "\\U0001F600"       , 11, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
 	print_test_strtoesc("strtoesc max_writelen limited in encoding 2"       , FALSE, 10, 4, "\\U0001F600"       , 13, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
 	print_test_strtoesc("strtoesc max_writelen limited in encoding 3"       , FALSE, 10, 4, "\\U0001F600"       , 15, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
 	print_test_strtoesc("strtoesc max_writelen limited right after encoding", FALSE, 16, 7, "\\U0001F600\\u320E", 16, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
-
+	
 	t_char const* charset_withmultibyte = "나중 ";
 	t_char const* aliases_witmultibyte[] = { "너", "중 (not 中)", "<space>" };
 	print_test_strtoesc("strtoesc multibyte charset and alias", FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias", FALSE, 32, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
 	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias in middle of alias", FALSE, 16, 10, "너는<space>너", 28, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
-
+	
 	t_char const* charset_abc = "abc";
 	t_char const* aliases_c_null_a[] = { "C", NULL, "A" };
 	print_test_strtoesc("strtoesc null alias", FALSE, 60, 54, "Aurious to see if my \\x62C\\x62y hCndles null CliCs AorreAtly", SIZE_ERROR, "curious to see if my baby handles null alias correctly", charset_abc, aliases_c_null_a, NULL, ENCODER_xFF);
 	
 	t_char const* charset_invalid = "abc\xE0de";
 	print_test_strtoesc("strtoesc invalid mb sequence in charset", FALSE, SIZE_ERROR, SIZE_ERROR, NULL, SIZE_ERROR, "my charset :(", charset_invalid, aliases_ansi, NULL, ENCODER_xFF);
-
+	
 	t_char const* charset_empty = "";
 	t_char const* aliases_empty[] = { };
 	print_test_strtoesc("strtoesc empty charset and aliases", FALSE, 27, 27, "This call does nothing 😀", SIZE_ERROR, "This call does nothing 😀", charset_empty, aliases_empty, NULL, NULL);
+
+	// TODO: test error when `char_encoder` is NULL but needs to encode
+	// TODO: test that the "Buf" does fill the `dest` buffer even in case of error
 }
 #endif
 
-#ifndef c_strtoesc_ansi
-void test_strtoesc_ansi(void)	{}
-#warning "strtoesc_ansi() test suite function defined, but the function isn't defined."
+#ifndef c_strtoansiesc
+void test_strtoansiesc(void)	{}
+#warning "strtoansiesc() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtoesc_ansi(char const* test_name, int can_segfault,
+void	print_test_strtoansiesc(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(strtoesc_ansi, str)
-	TEST_PRINT(str,	strtoesc_ansi, "str=\"%s\"", str)
+	TEST_PERFORM(strtoansiesc, str)
+	TEST_PRINT(str, strtoansiesc, "str=\"%s\"", str)
 	TEST_FREE()
 }
-void	test_strtoesc_ansi(void)
+void	test_strtoansiesc(void)
 {
-/* //	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS */
-/* 	print_test_strtoesc_ansi("no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   ); */
-/* 	// print_test_strtoesc_ansi("empty string"       , FALSE    , ""                                                         , ""                                                ); */
-/* 	print_test_strtoesc_ansi("basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , "\tThis\nis a text \\with \v escaped\"symbols \'" ); */
-/* 	print_test_strtoesc_ansi("all escapes"        , FALSE    , "hard \\\\\\'\\\"\\/\\?\\a\\b\\t\\n\\v\\f\\r\\e string"    , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             ); */
-/* 	print_test_strtoesc_ansi("encoded char"       , FALSE    , "\\u751F\\u65E5\\u5FEB\\u6A02"                             , "生日快樂"                                        ); */
-/* 	print_test_strtoesc_ansi("harder encoded char", FALSE    , "\\U00012345,\\u2347\\n\\xA8\\CACA"                        , "𒍅,⍇\n¨쫊󿿿��������������"                                        ); */
+//	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS
+	print_test_strtoansiesc("strtoansiesc no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   );
+	// DZ_ON_REFACTOR_OF_SIZE_ERROR: uncomment next test
+	// print_test_strtoansiesc("strtoansiesc empty string"       , FALSE    , ""                                                         , ""                                                );
+	print_test_strtoansiesc("strtoansiesc basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , "\tThis\nis a text \\with \v escaped\"symbols \'" );
+	print_test_strtoansiesc("strtoansiesc all escapes"        , FALSE    , "hard \\\\\\'\\\"\\/\\?\\a\\b\\t\\n\\v\\f\\r\\e string"    , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             );
+	print_test_strtoansiesc("strtoansiesc encoded char"       , FALSE    , "\\u751F\\u65E5\\u5FEB\\u6A02"                             , "生日快樂"                                        );
+	print_test_strtoansiesc("strtoansiesc harder encoded char", FALSE    , "\\U00012345,\\u2347\\n\\xA8\\uCACA"                       , "𒍅,⍇\n¨쫊"                                        );
 }
 #endif
 
-#ifndef c_strtoesc_json
-void test_strtoesc_json(void)	{}
-#warning "strtoesc_json() test suite function defined, but the function isn't defined."
+#ifndef c_strtojsonesc
+void test_strtojsonesc(void)	{}
+#warning "strtojsonesc() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtoesc_json(char const* test_name, int can_segfault,
+void	print_test_strtojsonesc(char const* test_name, int can_segfault,
 		char const* expecting,
 		char const* str)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(strtoesc_json, str)
-	TEST_PRINT(str,	strtoesc_json, "str=\"%s\"", str)
+	TEST_PERFORM(strtojsonesc, str)
+	TEST_PRINT(str, strtojsonesc, "str=\"%s\"", str)
 	TEST_FREE()
 }
-void	test_strtoesc_json(void)
+void	test_strtojsonesc(void)
 {
-/* //	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS */
-/* 	print_test_strtoesc_json("no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   ); */
-/* 	// print_test_strtoesc_json("empty string"       , FALSE    , ""                                                         , ""                                                ); */
-/* 	print_test_strtoesc_json("basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , "\tThis\nis a text \\with \v escaped\"symbols \'" ); */
-/* 	print_test_strtoesc_json("all escapes"        , FALSE    , "hard \\'\\\"/?\a\\b\\t\\n\v\\f\\r\e string"               , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             ); */
-/* 	print_test_strtoesc_json("encoded char"       , FALSE    , "\\u751F\\u65E5\\u5FEB\\u6A02"                             , "生日快樂"                                        ); */
-/* 	print_test_strtoesc_json("harder encoded char", FALSE    , NULL /* cannot encode, char too big                      , "𒍅,⍇\n¨쫊󿿿��������������"                                        ); */
+//	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS
+	print_test_strtojsonesc("strtojsonesc no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   );
+	// DZ_ON_REFACTOR_OF_SIZE_ERROR: uncomment next test
+	// print_test_strtojsonesc("strtojsonesc empty string"       , FALSE    , ""                                                         , ""                                                );
+	print_test_strtojsonesc("strtojsonesc basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with escaped\\\"symbols '" , "\tThis\nis a text \\with escaped\"symbols '" );
+	print_test_strtojsonesc("strtojsonesc all escapes"        , FALSE    , "hard '\\\"/?\\b\\t\\n\\f\\r string"               , "hard '\"/?\b\t\n\f\r string"             );
+	
+	print_test_strtojsonesc("strtojsonesc utf8 char"       , FALSE    , "生日快樂!"                             , "生日快樂!"                                        );
+	print_test_strtojsonesc("strtojsonesc char encoding"       , FALSE    , "Weird \\u000B non \\u0007\\u001B printables", "Weird \v non \a\e printables"                                  );
 }
+
 #endif
 
 
@@ -1811,8 +1818,8 @@ int		testsuite_string(void)
 	test_strnchr();
 	test_strrstr();
 	test_strtoesc();
-	test_strtoesc_ansi();
-	test_strtoesc_json();
+	test_strtoansiesc();
+	test_strtojsonesc();
 	test_esctostr();
 //	test_strrep_char();
 //	test_strrep_cset();

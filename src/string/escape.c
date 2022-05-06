@@ -28,6 +28,9 @@ _MALLOC()
 t_char* String_ToAnsiEscaped(t_char const* str)
 {
 	t_size expected_len = String_ToAnsiEscapedBuf(NULL, SIZE_ERROR, str);
+	if (expected_len == SIZE_ERROR)
+		return (NULL);
+
 	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
@@ -39,12 +42,12 @@ t_char* String_ToAnsiEscaped(t_char const* str)
 	return result;
 }
 
-t_size					String_ToAnsiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
+t_size String_ToAnsiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
 {
-	t_char charset[]        = {   '\\' ,  '\'' ,    '"' ,   '/' ,   '?' ,  '\a' ,  '\b' ,  '\t' ,  '\n' ,  '\v' ,  '\f' ,  '\r' , '\x1B' };
-	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" ,  "\\e" };
+	t_char const* charset   =     "\\"     "'"     "\""     "/"     "?"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
+	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
-	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_smart);
+	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonAsciiOrNonPrintable, ENCODER_smart);
 }
 
 
@@ -52,6 +55,9 @@ _MALLOC()
 t_char* String_ToJsonEscaped(t_char const* str)
 {
 	t_size expected_len = String_ToJsonEscapedBuf(NULL, SIZE_ERROR, str);
+	if (expected_len == SIZE_ERROR)
+		return (NULL);
+
 	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
@@ -65,8 +71,8 @@ t_char* String_ToJsonEscaped(t_char const* str)
 
 t_size String_ToJsonEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
 {
-	t_char charset[]        = {  '\b' ,  '\f' ,  '\n' ,  '\r' ,  '\t' ,  '"' ,   '\\'};
-	t_char const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\"" , "\\\\"};
+	t_char const* charset   =    "\b"    "\f"    "\n"    "\r"    "\t"     "\""     "\\";
+	t_char const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\\\"" , "\\\\"};
 
 	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_uFFFF);
 }
@@ -131,7 +137,9 @@ t_char*	String_ToEscaped_e(
 
 	if (out_len) *out_len = SIZE_ERROR;
 
-	t_size expected_len = String_ToEscapedBuf_e(NULL, out_readlen, (max_resultlen != SIZE_ERROR && max_resultlen != SIZE_MAX ? max_resultlen + 1 : SIZE_ERROR), str, charset, aliases, force_encoding_for, char_encoder);
+	// The `max_resultlen` of `*ToEscapedBuf` does include the final '\0', unlike the `max_resultlen` of `*ToEscape`
+	t_size new_max_resultlen = (max_resultlen != SIZE_ERROR && max_resultlen != SIZE_MAX ? max_resultlen + 1 : SIZE_ERROR);
+	t_size expected_len = String_ToEscapedBuf_e(NULL, out_readlen, new_max_resultlen, str, charset, aliases, force_encoding_for, char_encoder);
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
@@ -200,41 +208,36 @@ t_size String_ToEscapedBuf_e(
 		t_size len_written = 0;
 		t_size len_read;
 		if (!UTF8_IsSeqValid(read_head, &len_read))
-				HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
+			HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
 
-		if (force_encoding_for != NULL && force_encoding_for(read_head))
+		t_char const *alias = NULL;
+		t_char const *find_res = String_Find_Char(charset, UTF32_FromUTF8(read_head));
+
+		if (find_res != NULL)
 		{
-			HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;) // TODO: `HANDLE_ERROR` or `if` ?
-			len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
-			if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
-				goto failure;
+			int index = UTF8_SymbolCount_N(charset, find_res - charset);
+			alias = aliases[index];
+		}
+
+		if (find_res != NULL || (force_encoding_for && force_encoding_for(read_head)))
+		{
+			if (alias)
+			{
+				len_written = Write_Alias(write_head, writeable_len, alias);
+			}
+			else
+			{
+				HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;)
+				len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
+				if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
+					goto failure;
+			}
 		}
 		else
 		{
-			t_char const *find_res = String_Find_Char(charset, UTF32_FromUTF8(str + rd_idx));
-
-			if (find_res != NULL)
-			{
-				int index = UTF8_SymbolCount_N(charset, find_res - charset);
-
-				if (aliases[index])
-				{
-					len_written = Write_Alias(write_head, writeable_len, aliases[index]);
-				}
-				else
-				{
-					HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;) // TODO: `HANDLE_ERROR` or `if` ?
-					len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
-					if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
-						goto failure;
-				}
-			}
-			else 
-			{
-				len_written = (t_size)len_read;
-				if (dest)
-					String_Copy_N(write_head, read_head, (t_size)len_read);
-			}
+			len_written = len_read;
+			if (dest)
+				String_Copy_N(write_head, read_head, len_read);
 		}
 
 		if (len_written == 0)
