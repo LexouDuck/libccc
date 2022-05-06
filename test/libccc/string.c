@@ -1130,14 +1130,15 @@ void	print_test_strtoasciiesc(char const* test_name, int can_segfault,
 }
 void	test_strtoasciiesc(void)
 {
-//	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS
+//	| TEST FUNCTION         | TEST NAME                         | CAN SEGV | EXPECTING                                                  | TEST ARGS
 	print_test_strtoasciiesc("strtoasciiesc no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   );
 	// DZ_ON_REFACTOR_OF_SIZE_ERROR: uncomment next test
-	// print_test_strtoasciiesc("strtoasciiesc empty string"       , FALSE    , ""                                                         , ""                                                );
+	// print_test_strtoasciiesc("strtoasciiesc empty string"    , FALSE    , ""                                                         , ""                                                );
 	print_test_strtoasciiesc("strtoasciiesc basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , "\tThis\nis a text \\with \v escaped\"symbols \'" );
-	print_test_strtoasciiesc("strtoasciiesc all escapes"        , FALSE    , "hard \\\\\\'\\\"\\/\\?\\a\\b\\t\\n\\v\\f\\r\\e string"    , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             );
+	print_test_strtoasciiesc("strtoasciiesc all escapes"        , FALSE    , "hard \\\\\\'\\\"\\/?\\a\\b\\t\\n\\v\\f\\r\\e string"      , "hard \\'\"/?\a\b\t\n\v\f\r\e string"             );
 	print_test_strtoasciiesc("strtoasciiesc encoded char"       , FALSE    , "\\u751F\\u65E5\\u5FEB\\u6A02"                             , "生日快樂"                                        );
 	print_test_strtoasciiesc("strtoasciiesc harder encoded char", FALSE    , "\\U00012345,\\u2347\\n\\xA8\\uCACA"                       , "𒍅,⍇\n¨쫊"                                        );
+	print_test_strtoasciiesc("strtoasciiesc NULL", TRUE     , NULL                                                                      , NULL                                              );
 }
 #endif
 
@@ -1156,20 +1157,19 @@ void	print_test_strtojsonesc(char const* test_name, int can_segfault,
 }
 void	test_strtojsonesc(void)
 {
-//	| TEST FUNCTION         | TEST NAME           | CAN SEGV | EXPECTING                                                  | TEST ARGS
-	print_test_strtojsonesc("strtojsonesc no escape"          , FALSE    , "hello world !"                                            , "hello world !"                                   );
+//	| TEST FUNCTION        | TEST NAME                    | CAN SEGV | EXPECTING                                          | TEST ARGS
+	print_test_strtojsonesc("strtojsonesc no escape"      , FALSE    , "hello world !"                                    , "hello world !"                                   );
 	// DZ_ON_REFACTOR_OF_SIZE_ERROR: uncomment next test
-	// print_test_strtojsonesc("strtojsonesc empty string"       , FALSE    , ""                                                         , ""                                                );
-	print_test_strtojsonesc("strtojsonesc basic escapes"      , FALSE    , "\\tThis\\nis a text \\\\with escaped\\\"symbols '" , "\tThis\nis a text \\with escaped\"symbols '" );
-	print_test_strtojsonesc("strtojsonesc all escapes"        , FALSE    , "hard '\\\"/?\\b\\t\\n\\f\\r string"               , "hard '\"/?\b\t\n\f\r string"             );
-	
-	print_test_strtojsonesc("strtojsonesc utf8 char"       , FALSE    , "生日快樂!"                             , "生日快樂!"                                        );
-	print_test_strtojsonesc("strtojsonesc char encoding"       , FALSE    , "Weird \\u000B non \\u0007\\u001B printables", "Weird \v non \a\e printables"                                  );
+	// print_test_strtojsonesc("strtojsonesc empty string", FALSE    , ""                                                 , ""                                                );
+	print_test_strtojsonesc("strtojsonesc basic escapes"  , FALSE    , "\\tThis\\nis a text \\\\with escaped\\\"symbols '", "\tThis\nis a text \\with escaped\"symbols '" );
+	print_test_strtojsonesc("strtojsonesc all escapes"    , FALSE    , "hard '\\\"/?\\b\\t\\n\\f\\r string"               , "hard '\"/?\b\t\n\f\r string"             );
+
+	print_test_strtojsonesc("strtojsonesc utf8 char"      , FALSE    , "生日快樂!"                                        , "生日快樂!"                                        );
+	print_test_strtojsonesc("strtojsonesc char encoding"  , FALSE    , "Weird \\u000B non \\u0007\\u001B printables"      , "Weird \v non \a\e printables"                                  );
+	print_test_strtojsonesc("strtojsonesc NULL"           , TRUE     , NULL                                               , NULL);
 }
 
 #endif
-
-
 
 #ifndef c_esctostr
 void test_esctostr(void)	{}

@@ -44,8 +44,8 @@ t_char* String_ToAsciiEscaped(t_char const* str)
 
 t_size String_ToAsciiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
 {
-	t_char const* charset   =     "\\"     "'"     "\""     "/"     "?"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
-	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
+	t_char const* charset   =     "\\"     "'"     "\""     "/"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
+	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
 	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonAsciiOrNonPrintable, ENCODER_smart);
 }
