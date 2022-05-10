@@ -1103,7 +1103,9 @@ void	test_strtoesc(void)
 	t_char const* aliases_c_null_a[] = { "C", NULL, "A" };
 	print_test_strtoesc("strtoesc null alias", FALSE, 60, 54, "Aurious to see if my \\x62C\\x62y hCndles null CliCs AorreAtly", SIZE_ERROR, "curious to see if my baby handles null alias correctly", charset_abc, aliases_c_null_a, NULL, ENCODER_xFF);
 	
-	t_char const* charset_invalid = "abc\xE0de";
+	t_char const* charset_invalid = "abc" "\xE0" "de";
+	//                                     ^~~~ 11100000, invalid start seq. In a different string to avoid warning
+
 	print_test_strtoesc("strtoesc invalid mb sequence in charset", FALSE, SIZE_ERROR, SIZE_ERROR, NULL, SIZE_ERROR, "my charset :(", charset_invalid, aliases_ascii, NULL, ENCODER_xFF);
 	
 	t_char const* charset_empty = "";
