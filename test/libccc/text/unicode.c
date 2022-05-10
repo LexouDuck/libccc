@@ -160,7 +160,7 @@ void	test_mbisstrvalid(void)
 	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , 89                       , 106);
 	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , 49                       , 90);
 	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , 29                       , 75 );
-	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , 17                       , 68 );
+	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃" , TRUE , 17                       , 68 );
 	print_test_mbisstrvalid("mbisstrvalid (unicode)  "  , FALSE         , teststr_utf8_hardcore      , TRUE , teststr_utf8_hardcore_len, teststr_utf8_hardcore_bytelen - 1 );
 	print_test_mbisstrvalid("mbisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, 0                        , 0 );
 	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, 0                        , 0 );

@@ -111,7 +111,9 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 					tmp[0] = str[++index];
 					tmp[1] = str[++index];
 					tmp[2] = '\0';
-					result[i++] = U8_FromString_Hex(tmp);
+					HANDLE_ERROR(PARSE, (!Char_IsDigit_Hex(tmp[0]) || !Char_IsDigit_Hex(tmp[1])),
+						result[i++] = '?';)
+					else result[i++] = U8_FromString_Hex(tmp);
 					break;
 
 				default:

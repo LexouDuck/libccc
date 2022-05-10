@@ -1065,49 +1065,40 @@ void	test_strtoesc(void)
 	t_char const* aliases_ascii[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\?" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
 
-//	| TEST FUNCTION    | TEST NAME       | CAN SEGV | EXPECTING                 | TEST ARGS
-	print_test_strtoesc("strtoesc simple"         , FALSE    , 13 , 13 , "hello world !" , SIZE_ERROR , "hello world !" , charset_ascii , aliases_ascii , NULL , ENCODER_xFF);
-	// print_test_strtoesc("strtoesc empty"          , FALSE    , 0  , 0  , ""              , SIZE_ERROR , ""              , charset_ascii , aliases_ascii , NULL , ENCODER_xFF);
-	print_test_strtoesc("strtoesc basic escapes"  , FALSE    ,47, 41, "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , SIZE_ERROR, "\tThis\nis a text \\with \v escaped\"symbols \'", charset_ascii, aliases_ascii, NULL, NULL );
-	print_test_strtoesc("strtoesc one escape"  , FALSE    ,2, 1, "\\\\" , SIZE_ERROR, "\\", charset_ascii, aliases_ascii, NULL, NULL);
-	print_test_strtoesc("strtoesc only escapes"  , FALSE    ,18, 9, "\\\\\\n\\t\\e\\r\\v\\v\\v\\v" , SIZE_ERROR, "\\\n\t\x1B\r\v\v\v\v", charset_ascii, aliases_ascii, NULL, NULL);
-	
-	print_test_strtoesc("strtoesc encoded char"       , FALSE, 24, 12,   "\\u751F\\u65E5\\u5FEB\\u6A02", SIZE_ERROR                             , "生日快樂", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
-	print_test_strtoesc("strtoesc encoded char too big"       , FALSE, SIZE_ERROR, 5,NULL, SIZE_ERROR                             , "@⍇\n𒍅¨쫊󿿿��������������", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
-	
-	print_test_strtoesc("strtoesc max_writelen limited"       , FALSE, 3, 3, "TOT", 3                             , "TOTO MANGE DU FOIN", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
-	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 1 byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 15 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
-	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 2 bytes"       , FALSE, 14, 12, "Ich hei\\xDFe J", 16 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+//	| TEST FUNCTION    | TEST NAME                                                                    | SEGV | EXPECTING                 | TEST ARGS
+	print_test_strtoesc("strtoesc simple"                                                             , FALSE, 13 , 13 , "hello world !" , SIZE_ERROR , "hello world !" , charset_ascii , aliases_ascii , NULL , ENCODER_xFF);
+//	print_test_strtoesc("strtoesc empty"                                                              , FALSE, 0  , 0  , ""              , SIZE_ERROR , ""              , charset_ascii , aliases_ascii , NULL , ENCODER_xFF);
+	print_test_strtoesc("strtoesc basic escapes"                                                      , FALSE, 47,  41, "\\tThis\\nis a text \\\\with \\v escaped\\\"symbols \\\'" , SIZE_ERROR, "\tThis\nis a text \\with \v escaped\"symbols \'", charset_ascii, aliases_ascii, NULL, NULL );
+	print_test_strtoesc("strtoesc one escape"                                                         , FALSE, 2,   1, "\\\\" , SIZE_ERROR, "\\", charset_ascii, aliases_ascii, NULL, NULL);
+	print_test_strtoesc("strtoesc only escapes"                                                       , FALSE, 18,  9, "\\\\\\n\\t\\e\\r\\v\\v\\v\\v" , SIZE_ERROR, "\\\n\t\x1B\r\v\v\v\v", charset_ascii, aliases_ascii, NULL, NULL);
+	print_test_strtoesc("strtoesc encoded char"                                                       , FALSE, 24, 12,   "\\u751F\\u65E5\\u5FEB\\u6A02", SIZE_ERROR                             , "生日快樂", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
+	print_test_strtoesc("strtoesc encoded char too big"                                               , FALSE, SIZE_ERROR, 5,NULL, SIZE_ERROR                             , "@⍇\n𒍅¨쫊󿿿?????????????", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_uFFFF                                        );
+	print_test_strtoesc("strtoesc max_writelen limited"                                               , FALSE, 3, 3, "TOT", 3                             , "TOTO MANGE DU FOIN", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 1 byte"          , FALSE, 14, 12, "Ich hei\\xDFe J", 15 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
+	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: 2 bytes"         , FALSE, 14, 12, "Ich hei\\xDFe J", 16 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
 	print_test_strtoesc("strtoesc max_writelen limited in middle of multi-byte char: last byte"       , FALSE, 14, 12, "Ich hei\\xDFe J", 17 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
-	print_test_strtoesc("strtoesc max_writelen limited right after multi-byte char"       , FALSE, 18, 14, "Ich hei\\xDFe J\\xFC", 18 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );
-	
+	print_test_strtoesc("strtoesc max_writelen limited right after multi-byte char"                   , FALSE, 18, 14, "Ich hei\\xDFe J\\xFC", 18 , "Ich heiße Jürgen Volkswagen", charset_ascii, aliases_ascii, ForceEncodingFor_NonAscii, ENCODER_smart                                        );	
 	t_char const* charset_a = "a";
 	t_char const* aliases_a[] = { "backslash a" };
-	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 1 byte", FALSE, 24, 4, "backslash albackslash ak", 25 , "alakazam", charset_a, aliases_a, NULL, NULL);
-	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 5 bytes", FALSE, 24, 4, "backslash albackslash ak", 30 , "alakazam", charset_a, aliases_a, NULL, NULL);
-	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : last byte", FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
-	print_test_strtoesc("strtoesc max_writelen limited right after alias", FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
-	
-	print_test_strtoesc("strtoesc max_writelen limited in encoding 1"       , FALSE, 10, 4, "\\U0001F600"       , 11, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
-	print_test_strtoesc("strtoesc max_writelen limited in encoding 2"       , FALSE, 10, 4, "\\U0001F600"       , 13, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
-	print_test_strtoesc("strtoesc max_writelen limited in encoding 3"       , FALSE, 10, 4, "\\U0001F600"       , 15, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
-	print_test_strtoesc("strtoesc max_writelen limited right after encoding", FALSE, 16, 7, "\\U0001F600\\u320E", 16, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
-	
+	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 1 byte"                   , FALSE, 24, 4, "backslash albackslash ak", 25 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : 5 bytes"                  , FALSE, 24, 4, "backslash albackslash ak", 30 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writelen limited in middle of alias : last byte"                , FALSE, 24, 4, "backslash albackslash ak", 34 , "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writelen limited right after alias"                             , FALSE, 35, 5, "backslash albackslash akbackslash a", 35, "alakazam", charset_a, aliases_a, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 1"                                 , FALSE, 10, 4, "\\U0001F600"       , 11, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 2"                                 , FALSE, 10, 4, "\\U0001F600"       , 13, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited in encoding 3"                                 , FALSE, 10, 4, "\\U0001F600"       , 15, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
+	print_test_strtoesc("strtoesc max_writelen limited right after encoding"                          , FALSE, 16, 7, "\\U0001F600\\u320E", 16, "😀㈎π", charset_a, aliases_a, ForceEncodingFor_NonAscii, ENCODER_smart);
 	t_char const* charset_withmultibyte = "나중 ";
 	t_char const* aliases_witmultibyte[] = { "너", "중 (not 中)", "<space>" };
-	print_test_strtoesc("strtoesc multibyte charset and alias", FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
-	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias", FALSE, 32, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
-	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias in middle of alias", FALSE, 16, 10, "너는<space>너", 28, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
-	
+	print_test_strtoesc("strtoesc multibyte charset and alias"                                        , FALSE, 45, 23, "너는<space>너중 (not 中)에<space>만너", SIZE_ERROR, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias"                    , FALSE, 32, 16, "너는<space>너중 (not 中)에", 34, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
+	print_test_strtoesc("strtoesc max_writlen limited multibyte charset and alias in middle of alias" , FALSE, 16, 10, "너는<space>너", 28, "나는 나중에 만나", charset_withmultibyte, aliases_witmultibyte, NULL, NULL);
 	t_char const* charset_abc = "abc";
 	t_char const* aliases_c_null_a[] = { "C", NULL, "A" };
 	print_test_strtoesc("strtoesc null alias", FALSE, 60, 54, "Aurious to see if my \\x62C\\x62y hCndles null CliCs AorreAtly", SIZE_ERROR, "curious to see if my baby handles null alias correctly", charset_abc, aliases_c_null_a, NULL, ENCODER_xFF);
-	
 	t_char const* charset_invalid = "abc" "\xE0" "de";
-	//                                     ^~~~ 11100000, invalid start seq. In a different string to avoid warning
-
+	//                                     ^~~~ 11100000, invalid UTF8 start byte. In a different string to avoid warning
 	print_test_strtoesc("strtoesc invalid mb sequence in charset", FALSE, SIZE_ERROR, SIZE_ERROR, NULL, SIZE_ERROR, "my charset :(", charset_invalid, aliases_ascii, NULL, ENCODER_xFF);
-	
 	t_char const* charset_empty = "";
 	t_char const* aliases_empty[] = { };
 	print_test_strtoesc("strtoesc empty charset and aliases", FALSE, 27, 27, "This call does nothing 😀", SIZE_ERROR, "This call does nothing 😀", charset_empty, aliases_empty, NULL, NULL);
@@ -1189,27 +1180,30 @@ void	print_test_esctostr(char const* test_name, int can_segfault,
 }
 void	test_esctostr(void)
 {
-//	| TEST FUNCTION    | TEST NAME                       |CAN SEGV| EXPECTING                                  | TEST ARGS
-	print_test_esctostr("esctostr 1"                     , FALSE  , "Hello world!"                              , "Hello world!"                                                      , TRUE);
-	print_test_esctostr("esctostr 2"                     , FALSE  , "Hello\tworld!"                             , "Hello\\tworld!"                                                    , TRUE);
-	print_test_esctostr("esctostr 3"                     , FALSE  , "Th\tes\ve§ar\ee㈎un\t\ticode😇characters\a", "Th\\tes\\ve\\xa7ar\\ee\\u320eun\\t\\ticode\\U0001f607characters\\a", FALSE);
-	print_test_esctostr("esctostr all sequences"         , FALSE  , "\\'\"\a\b\t\n\v\f\r\e"                     , "\\\\\\'\\\"\\a\\b\\t\\n\\v\\f\\r\\e"                               , FALSE);
-	print_test_esctostr("esctostr escape_any true"       , FALSE  , "wc3oui-oui dans son \t\axi!@"              , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , TRUE);
-	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These§are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , FALSE);
-	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These§are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , FALSE);
-
-	// There do not work and crash the test suite
-	/* print_test_esctostr("esctostr error invalid seq 1"   , FALSE  , NULL                                       , "\\xA"                                                              , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 2"   , FALSE  , NULL                                       , "\\xAG"                                                             , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 3"   , FALSE  , NULL                                       , "\\xLOL"                                                            , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 4"   , FALSE  , NULL                                       , "\\uE0"                                                             , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 5"   , FALSE  , NULL                                       , "\\uE0Y2"                                                           , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 6"   , FALSE  , NULL                                       , "\\uE02Y"                                                           , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 7"   , FALSE  , NULL                                       , "\\UE023"                                                           , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 8"   , FALSE  , NULL                                       , "\\U0234ABC"                                                        , FALSE); */
-	/* print_test_esctostr("esctostr error invalid seq 9"   , FALSE  , NULL                                       , "\\U0234GBCD"                                                       , FALSE); */
-	print_test_esctostr("esctostr NULL"                  , TRUE   , NULL                                       , NULL                                                                , TRUE);
-}
+//	| TEST FUNCTION    | TEST NAME                       |CAN SEGV| EXPECTING                                         | TEST ARGS
+	print_test_esctostr("esctostr 1"                     , FALSE  , "Hello world!"                                     , "Hello world!"                                                      , TRUE);
+	print_test_esctostr("esctostr 2"                     , FALSE  , "Hello\tworld!"                                    , "Hello\\tworld!"                                                    , TRUE);
+	print_test_esctostr("esctostr 3"                     , FALSE  , "Th\tes\ve""\xA7""ar\ee㈎\t\tunicode😇characters\a", "Th\\tes\\ve\\xA7ar\\ee\\u320E\\t\\tunicode\\U0001f607characters\\a", TRUE);
+	print_test_esctostr("esctostr 4"                     , FALSE  , "Th\tes\ve""\xA7""ar\ee㈎\t\tunicode😇characters\a", "Th\\tes\\ve\\xA7ar\\ee\\u320E\\t\\tunicode\\U0001f607characters\\a", FALSE);
+	print_test_esctostr("esctostr all sequences"         , FALSE  , "\\'\"\a\b\t\n\v\f\r\e"                            , "\\\\\\'\\\"\\a\\b\\t\\n\\v\\f\\r\\e"                               , FALSE);
+	print_test_esctostr("esctostr escape_any TRUE"       , FALSE  , "wc3oui-oui dans son \t\a?!@"                      , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , TRUE);
+	print_test_esctostr("esctostr escape_any FALSE"      , FALSE  , "\\w\\c\\3oui-oui dans son \t\a?\\!\\@"            , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , FALSE);
+	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , TRUE);
+	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , FALSE);
+	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , TRUE);
+	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , FALSE);
+	/* These do not work and crash the test suite
+	print_test_esctostr("esctostr error invalid seq 1"   , FALSE  , NULL                                               , "\\xA"                                                              , FALSE);
+	print_test_esctostr("esctostr error invalid seq 2"   , FALSE  , NULL                                               , "\\xAG"                                                             , FALSE);
+	print_test_esctostr("esctostr error invalid seq 3"   , FALSE  , NULL                                               , "\\xLOL"                                                            , FALSE);
+	print_test_esctostr("esctostr error invalid seq 4"   , FALSE  , NULL                                               , "\\uE0"                                                             , FALSE);
+	print_test_esctostr("esctostr error invalid seq 5"   , FALSE  , NULL                                               , "\\uE0Y2"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 6"   , FALSE  , NULL                                               , "\\uE02Y"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 7"   , FALSE  , NULL                                               , "\\UE023"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 8"   , FALSE  , NULL                                               , "\\U0234ABC"                                                        , FALSE);
+	print_test_esctostr("esctostr error invalid seq 9"   , FALSE  , NULL                                               , "\\U0234GBCD"                                                       , FALSE);
+	print_test_esctostr("esctostr NULL"                  , TRUE   , NULL                                               , NULL                                                                , TRUE);
+*/}
 #endif
 
 
