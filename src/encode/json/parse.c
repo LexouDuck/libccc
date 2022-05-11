@@ -174,6 +174,7 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 	return (OK);
 
 failure:
+	String_Delete(&number);
 	return (ERROR);
 }
 
@@ -578,6 +579,10 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 
 failure:
+	if (p->result != NULL)
+	{
+		JSON_Delete(p->result);
+	}
 	return (ERROR);
 }
 
@@ -647,6 +652,7 @@ failure:
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
+		String_Delete(&p->error);
 		return (p->offset);,
 		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
@@ -656,6 +662,7 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	String_Delete(&p->error);
 	return (p->offset);
 }
 

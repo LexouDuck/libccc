@@ -1056,6 +1056,7 @@ failure:
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
+		String_Delete(&p->error);
 		return (p->offset);,
 		"at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
@@ -1065,6 +1066,7 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	String_Delete(&p->error);
 	return (p->offset);
 }
 
