@@ -242,7 +242,8 @@ s_kvt*	KVT_GetArrayItem(s_kvt const* array, t_sint index)
 
 	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(array) && !KVT_IsObject(array)), return (NULL);,
-		"attempted to read value as array for key \"%s\", but type is %s", array->key, KVT_GetTypeName(array->type))
+		"attempted to get value inside array \"%s\", but it is not an ARRAY - its type is %s",
+		array->key, KVT_GetTypeName(array->type))
 	item = array->value.child;
 	HANDLE_ERROR_SF(NOTFOUND, (item == NULL),
 		return (NULL);,
@@ -282,7 +283,8 @@ s_kvt* KVT_GetObjectItem_(s_kvt const* object, t_char const* key, t_bool case_se
 	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (key == NULL), return (NULL);)
 	HANDLE_ERROR_SF(WRONGTYPE, (!KVT_IsArray(object) && !KVT_IsObject(object)), return (NULL);,
-		"attempted to read value as object for key \"%s\", but type is %s", object->key, KVT_GetTypeName(object->type))
+		"attempted to get value inside object \"%s\", but it is not an OBJECT - its type is %s",
+		object->key, KVT_GetTypeName(object->type))
 	item = object->value.child;
 	while (item)
 	{
