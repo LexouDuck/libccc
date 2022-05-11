@@ -31,7 +31,9 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 		t_char* tmp_error;																		\
 		tmp_error = String_Format(__VA_ARGS__);													\
 		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error);						\
-		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		if (p != NULL)																			\
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
+		else String_Delete(&tmp_error);															\
 		goto failure;																			\
 	}																							\
 
@@ -114,8 +116,8 @@ failure:
 static
 t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 {
-	t_utf8*	number;
-	t_size	length;
+	t_utf8*	number = NULL;
+	t_size	length = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
@@ -594,6 +596,7 @@ t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//,
 	s_json_parse parser;
 	s_json_parse* p = &parser;
 	s_json* result = NULL;
+	t_size column = 0;
 
 	Memory_Clear(p, sizeof(s_json_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
@@ -629,21 +632,6 @@ failure:
 	{
 		JSON_Delete(result);
 	}
-	if (str != NULL)
-	{
-/*
-		t_size	position = 0;
-		if (p.offset < p.length)
-			position = p.offset;
-		else if (p.length > 0)
-			position = p.length - 1;
-		if (return_parse_end != NULL)
-		{
-			*return_parse_end = (str + position);
-		}
-*/
-	}
-	t_size column = 0;
 	while (p->offset - column != 0)
 	{
 		if (p->content[p->offset - column] == '\n')

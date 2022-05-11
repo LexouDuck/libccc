@@ -35,7 +35,9 @@ static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 		t_char* tmp_error;																		\
 		tmp_error = String_Format(__VA_ARGS__);													\
 		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error);						\
-		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		if (p != NULL)																			\
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
+		else String_Delete(&tmp_error);															\
 		goto failure;																			\
 	}																							\
 
@@ -216,8 +218,8 @@ void		TOML_Parse(t_fd fd, s_config* config, s_logger const* logger)
 static
 t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 {
-	t_utf8*	number;
-	t_size	length;
+	t_utf8*	number = NULL;
+	t_size	length = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
@@ -263,6 +265,7 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 	return (OK);
 
 failure:
+	String_Delete(&number);
 	return (ERROR);
 }
 
@@ -996,6 +999,7 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 {
 	s_toml_parse parser;
 	s_toml_parse* p = &parser;
+	t_size column = 0;
 
 	Memory_Clear(p, sizeof(s_toml_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
@@ -1030,24 +1034,9 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 failure:
 	if (p->result != NULL)
 	{
-//		TOML_Delete(p->result);
-		p->result = NULL;
+		//TOML_Delete(p->result);
+		p->result = NULL; // TODO fix this leak !!!!!
 	}
-	if (str != NULL)
-	{
-/*
-		t_size	position = 0;
-		if (p.offset < p.length)
-			position = p.offset;
-		else if (p.length > 0)
-			position = p.length - 1;
-		if (return_parse_end != NULL)
-		{
-			*return_parse_end = (str + position);
-		}
-*/
-	}
-	t_size column = 0;
 	while (p->offset - column != 0)
 	{
 		if (p->content[p->offset - column] == '\n')
