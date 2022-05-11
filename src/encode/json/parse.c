@@ -584,6 +584,7 @@ failure:
 	if (p->result != NULL)
 	{
 		JSON_Delete(p->result);
+		p->result = NULL;
 	}
 	return (ERROR);
 }
@@ -601,12 +602,13 @@ t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//,
 	Memory_Clear(p, sizeof(s_json_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
 		if (dest) *dest = NULL;
-		return (p->offset);)
+		return (p->offset);
+	)
 	p->content = str;
 	p->length = n; 
 	p->offset = UTF8_ByteOrderMark(str);
-	p->line = 1;
 	p->strict = strict;
+	p->line = 1;
 	result = JSON_Item();
 	if (result == NULL)
 		PARSINGERROR_JSON("Got null result: memory failure")
@@ -631,6 +633,7 @@ failure:
 	if (result != NULL)
 	{
 		JSON_Delete(result);
+		result = NULL;
 	}
 	while (p->offset - column != 0)
 	{

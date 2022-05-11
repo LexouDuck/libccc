@@ -999,7 +999,6 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 {
 	s_toml_parse parser;
 	s_toml_parse* p = &parser;
-	t_size column = 0;
 
 	Memory_Clear(p, sizeof(s_toml_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
@@ -1034,9 +1033,10 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 failure:
 	if (p->result != NULL)
 	{
-		//TOML_Delete(p->result);
-		p->result = NULL; // TODO fix this leak !!!!!
+//		TOML_Delete(p->result); // TODO fix this leak !!!!!!
+		p->result = NULL;
 	}
+	t_size column = 0;
 	while (p->offset - column != 0)
 	{
 		if (p->content[p->offset - column] == '\n')
