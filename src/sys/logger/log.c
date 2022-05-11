@@ -43,6 +43,7 @@ e_cccerror	   Log_Error_STD(s_logger    const* logger, t_errno error, t_char con
 	t_char* prefix = String_Format(LOGPREFIX_ERROR"[STD:%d:%s]", error, errorname);
 	LOGONE_FUNCTION_CONTENT((logger->silence_errors), error, error_msg, prefix, IO_COLOR_FG_RED)
 	String_Delete(&prefix);
+	return (OK);
 }
 e_cccerror	LogAll_Error_STD(t_logptrarr const loggers, t_errno error, t_char const* format_str, ...)
 {
@@ -51,6 +52,7 @@ e_cccerror	LogAll_Error_STD(t_logptrarr const loggers, t_errno error, t_char con
 	t_char* prefix = String_Format(LOGPREFIX_ERROR"[STD:%d:%s]", error, errorname);
 	LOGALL_FUNCTION_CONTENT((logger->silence_errors), error, error_msg, prefix, IO_COLOR_FG_RED)
 	String_Delete(&prefix);
+	return (OK);
 }
 
 e_cccerror	   Log_Error_CCC(s_logger    const* logger, e_cccerror error, t_char const* format_str, ...)
@@ -71,6 +73,7 @@ e_cccerror	   Log_Error_CCC(s_logger    const* logger, e_cccerror error, t_char 
 		LOGONE_FUNCTION_CONTENT((logger->silence_errors), error, error_msg, prefix, IO_COLOR_FG_RED)
 		String_Delete(&prefix);
 	}
+	return (OK);
 }
 e_cccerror	LogAll_Error_CCC(t_logptrarr const loggers, e_cccerror error, t_char const* format_str, ...)
 {
@@ -90,6 +93,7 @@ e_cccerror	LogAll_Error_CCC(t_logptrarr const loggers, e_cccerror error, t_char 
 		LOGALL_FUNCTION_CONTENT((logger->silence_errors), error, error_msg, prefix, IO_COLOR_FG_RED)
 		String_Delete(&prefix);
 	}
+	return (OK);
 }
 
 e_cccerror	   Log_Failure(s_logger    const* logger, t_char const* format_str, ...)	{ LOGONE_FUNCTION_CONTENT((logger->silence_errors),                   OK, NULL, LOGPREFIX_FAILURE, IO_COLOR_FG_RED)    }
