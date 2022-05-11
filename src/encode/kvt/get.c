@@ -310,10 +310,10 @@ s_kvt*	KVT_GetObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
 
 t_bool	KVT_HasObjectItem_IgnoreCase(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_(object, key, FALSE, TRUE) ? TRUE : FALSE);
+	return (KVT_GetObjectItem_(object, key, FALSE, FALSE) ? TRUE : FALSE);
 }
 
 t_bool	KVT_HasObjectItem_CaseSensitive(s_kvt const* object, t_char const* key)
 {
-	return (KVT_GetObjectItem_(object, key, TRUE, TRUE) ? TRUE : FALSE);
+	return (KVT_GetObjectItem_(object, key, TRUE, FALSE) ? TRUE : FALSE);
 }
