@@ -27,7 +27,10 @@ int main()//(int argc, char** argv)
 #ifdef FILE
 	file = String_Duplicate(FILE);
 #else
-	file = IO_Read_Filepath_Text(FILEPATH);
+	file =
+		IO_Read_Filepath_Text(FILEPATH)
+//		#include "../"FILEPATH
+	;
 #endif
 	if (file == NULL) { IO_Output_Line(IO_COLOR_FG_RED"FILE ERROR"IO_RESET);	return (ERROR); }
 	for (t_uint i = 0; i < AMOUNT; ++i)
@@ -38,10 +41,11 @@ int main()//(int argc, char** argv)
 		if (kvt == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PARSE ERROR"IO_RESET);	return (ERROR); }
 		str = JSON_ToString(kvt);
 		if (str == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PRINT ERROR"IO_RESET);	return (ERROR); }
-		IO_Output_Line((AMOUNT == 1) ? str :
-			String_Format(SF_UINT":\t%.30s", i, str));
+		t_char* output = String_Format(SF_UINT":\t%.30s", i, str);
+		IO_Output_Line((AMOUNT == 1) ? str : output);
 		KVT_Delete(kvt);
 		String_Delete(&str);
+		String_Delete(&output);
 	}
 	String_Delete(&file);
 	return (OK);
