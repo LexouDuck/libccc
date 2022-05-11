@@ -403,6 +403,7 @@ static
 t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 {
 	s_json* head = NULL; // linked list head
+	s_json* new_item = NULL;
 	s_json* current_item = NULL;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
@@ -433,7 +434,7 @@ t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == '}'))
 			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
-		s_json* new_item = JSON_Item();
+		new_item = JSON_Item();
 		if (new_item == NULL)
 			PARSINGERROR_JSON("Could not parse object: Allocation failure")
 		// attach next item to list

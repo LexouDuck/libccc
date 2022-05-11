@@ -637,7 +637,7 @@ static t_utf8*	c_json_##STRICT##_##MINIFY(t_utf8* json)	\
 {															\
 	s_json* tmp = JSON_FromString_##STRICT(json);			\
 	t_utf8* result = JSON_ToString_##MINIFY(tmp);			\
-	free(tmp);												\
+	if (tmp != NULL)	JSON_Delete(tmp);					\
 	return (result);										\
 }															\
 void	print_test_json_##STRICT##_##MINIFY(char const* test_name, int can_segfault,\
