@@ -19,10 +19,10 @@ t_size	String_Count_Char(t_char const* str, t_utf32 c)
 		t_utf32 current = 0;
 		while (str[i])
 		{
-			current = UTF32_FromUTF8(str + i);
+			current = CharUTF32_FromUTF8(str + i);
 			if (current == c)
 				result += 1;
-			size = UTF8_Length(str + i);
+			size = CharUTF8_Length(str + i);
 			if (size <= 0)
 				break;
 			i += size;

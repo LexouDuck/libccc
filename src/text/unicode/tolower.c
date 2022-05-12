@@ -11,10 +11,10 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_utf32	UTF32_ToLowercase(t_utf32 c)
+t_utf32	CharUTF32_ToLowercase(t_utf32 c)
 { return (towlower(c)); }
 #else
-t_utf32	UTF32_ToLowercase(t_utf32 c)
+t_utf32	CharUTF32_ToLowercase(t_utf32 c)
 {
 	if ('A' <= c && c <= 'Z')						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
 	if (0xC0 <= c && c < 0xDF)						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL

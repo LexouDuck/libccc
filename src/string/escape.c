@@ -9,12 +9,12 @@
 
 t_bool ForceEncodingFor_NonPrintable(t_char const* str)
 {
-	return !UTF32_IsPrintable(UTF32_FromUTF8(str));
+	return !CharUTF32_IsPrintable(CharUTF32_FromUTF8(str));
 }
 
 t_bool ForceEncodingFor_NonAscii(t_char const* str)
 {
-	return !UTF32_IsASCII(UTF32_FromUTF8(str));
+	return !CharUTF32_IsASCII(CharUTF32_FromUTF8(str));
 }
 
 t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str)
@@ -97,7 +97,7 @@ static t_size Write_Alias(t_char *dest, t_size max_writelen, t_char const* alias
 
 static t_size Write_Encoded(t_char *dest, t_char const* str, t_size writeable_len, f_char_encoder encoder)
 {
-	t_utf32 c = UTF32_FromUTF8(str);
+	t_utf32 c = CharUTF32_FromUTF8(str);
 	//note: `str` has already been check for validity, call could not fail
 
 	t_size expected_len = encoder(NULL, c);
@@ -190,7 +190,7 @@ t_size String_ToEscapedBuf_e(
 		HANDLE_ERROR(NULLPOINTER, (aliases == NULL), goto failure;)
 		t_size charset_symcount;
 		t_size charset_bytecount;
-		if (!UTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
+		if (!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
 			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
 					"Charset contains invalid sequence at symbol %zu (byte %zu): \"%.4s\"", charset_symcount, charset_bytecount + 1, charset + charset_bytecount + 1
 				);
@@ -207,15 +207,15 @@ t_size String_ToEscapedBuf_e(
 		t_size writeable_len = max_writelen - wr_idx - 1;
 		t_size len_written = 0;
 		t_size len_read;
-		if (!UTF8_IsSeqValid(read_head, &len_read))
+		if (!CharUTF8_IsSeqValid(read_head, &len_read))
 			HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
 
 		t_char const *alias = NULL;
-		t_char const *find_res = String_Find_Char(charset, UTF32_FromUTF8(read_head));
+		t_char const *find_res = String_Find_Char(charset, CharUTF32_FromUTF8(read_head));
 
 		if (find_res != NULL)
 		{
-			int index = UTF8_SymbolCount_N(charset, find_res - charset);
+			int index = CharUTF8_SymbolCount_N(charset, find_res - charset);
 			alias = aliases[index];
 		}
 

@@ -8,7 +8,7 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-t_size UTF32_ToEscaped_xFF(t_char *dest, t_utf32 c)
+t_size CharUTF32_ToEscaped_xFF(t_char *dest, t_utf32 c)
 {
 	if (c > 0xFF)
 		return ERROR;
@@ -26,7 +26,7 @@ t_size UTF32_ToEscaped_xFF(t_char *dest, t_utf32 c)
 	return 4;
 }
 
-t_size UTF32_ToEscaped_uFFFF(t_char *dest, t_utf32 c)
+t_size CharUTF32_ToEscaped_uFFFF(t_char *dest, t_utf32 c)
 {
 	if (c > 0xFFFF)
 		return ERROR;
@@ -48,7 +48,7 @@ t_size UTF32_ToEscaped_uFFFF(t_char *dest, t_utf32 c)
 	return 6;
 }
 
-t_size UTF32_ToEscaped_UFFFFFFFF(t_char *dest, t_utf32 c)
+t_size CharUTF32_ToEscaped_UFFFFFFFF(t_char *dest, t_utf32 c)
 {
 	if (dest)
 	{
@@ -75,13 +75,13 @@ t_size UTF32_ToEscaped_UFFFFFFFF(t_char *dest, t_utf32 c)
 	return 10;
 }
 
-t_size UTF32_ToEscaped_smart(t_char *dest, t_utf32 c)
+t_size CharUTF32_ToEscaped_smart(t_char *dest, t_utf32 c)
 {
 	if (c <= 0xFF)
-		return UTF32_ToEscaped_xFF(dest, c);
+		return CharUTF32_ToEscaped_xFF(dest, c);
 	else if (c <= 0xFFFF)
-		return UTF32_ToEscaped_uFFFF(dest, c);
+		return CharUTF32_ToEscaped_uFFFF(dest, c);
 	else
-		return UTF32_ToEscaped_UFFFFFFFF(dest, c);
+		return CharUTF32_ToEscaped_UFFFFFFFF(dest, c);
 }
 

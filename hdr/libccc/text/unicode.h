@@ -146,9 +146,9 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsLetter(t_utf32 c);
-#define c_wcisalpha		UTF32_IsLetter
-#define UTF32_IsAlpha	UTF32_IsLetter
+t_bool						CharUTF32_IsLetter(t_utf32 c);
+#define c_wcisalpha			CharUTF32_IsLetter
+#define CharUTF32_IsAlpha	CharUTF32_IsLetter
 //!@}
 
 //!@doc Check if the given char `c` is a uppercase letter character
@@ -161,9 +161,9 @@ t_bool					UTF32_IsLetter(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsUppercase(t_utf32 c);
-#define c_wcisupper		UTF32_IsUppercase
-#define UTF32_IsUpper	UTF32_IsUppercase
+t_bool						CharUTF32_IsUppercase(t_utf32 c);
+#define c_wcisupper			CharUTF32_IsUppercase
+#define CharUTF32_IsUpper	CharUTF32_IsUppercase
 //!@}
 
 //!@doc Check if the given char `c` is an lowercase letter character
@@ -176,9 +176,9 @@ t_bool					UTF32_IsUppercase(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsLowercase(t_utf32 c);
-#define c_wcislower		UTF32_IsLowercase
-#define UTF32_IsLower	UTF32_IsLowercase
+t_bool					CharUTF32_IsLowercase(t_utf32 c);
+#define c_wcislower		CharUTF32_IsLowercase
+#define CharUTF32_IsLower	CharUTF32_IsLowercase
 //!@}
 
 //!@doc Check if the given char `c` is alphanumeric (letter or digit) character
@@ -191,9 +191,9 @@ t_bool					UTF32_IsLowercase(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsAlphaNumeric(t_utf32 c);
-#define c_wcisalnum		UTF32_IsAlphaNumeric
-#define UTF32_IsAlNum	UTF32_IsAlphaNumeric
+t_bool						CharUTF32_IsAlphaNumeric(t_utf32 c);
+#define c_wcisalnum			CharUTF32_IsAlphaNumeric
+#define CharUTF32_IsAlNum	CharUTF32_IsAlphaNumeric
 //!@}
 
 
@@ -208,10 +208,10 @@ t_bool					UTF32_IsAlphaNumeric(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
-#define c_wcisdigit			UTF32_IsDigit_Decimal
-#define UTF32_IsDigit		UTF32_IsDigit_Decimal
-#define UTF32_IsDigit_Dec	ASCII_IsDigit_Decimal
+t_bool							CharUTF32_IsDigit_Decimal(t_utf32 c);
+#define c_wcisdigit				CharUTF32_IsDigit_Decimal
+#define CharUTF32_IsDigit		CharUTF32_IsDigit_Decimal
+#define CharUTF32_IsDigit_Dec	CharUTF32_IsDigit_Decimal
 //!@}
 
 //!@doc Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789ABCDEFabcdef`)
@@ -224,9 +224,9 @@ t_bool						UTF32_IsDigit_Decimal(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF32_IsDigit_Hexadecimal(t_utf32 c);
-#define c_wcisxdigit		UTF32_IsDigit_Hexadecimal
-#define UTF32_IsDigit_Hex	UTF32_IsDigit_Hexadecimal
+t_bool							CharUTF32_IsDigit_Hexadecimal(t_utf32 c);
+#define c_wcisxdigit			CharUTF32_IsDigit_Hexadecimal
+#define CharUTF32_IsDigit_Hex	CharUTF32_IsDigit_Hexadecimal
 //!@}
 
 //!@doc Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
@@ -239,9 +239,9 @@ t_bool						UTF32_IsDigit_Hexadecimal(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF32_IsDigit_Octal(t_utf32 c);
-#define c_wcisodigit		UTF32_IsDigit_Octal
-#define UTF32_IsDigit_Oct	UTF32_IsDigit_Octal
+t_bool							CharUTF32_IsDigit_Octal(t_utf32 c);
+#define c_wcisodigit			CharUTF32_IsDigit_Octal
+#define CharUTF32_IsDigit_Oct	CharUTF32_IsDigit_Octal
 //!@}
 
 //!@doc Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
@@ -254,9 +254,9 @@ t_bool						UTF32_IsDigit_Octal(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF32_IsDigit_Binary(t_utf32 c);
-#define c_wcisbdigit		UTF32_IsDigit_Binary
-#define UTF32_IsDigit_Bin	UTF32_IsDigit_Binary
+t_bool							CharUTF32_IsDigit_Binary(t_utf32 c);
+#define c_wcisbdigit			CharUTF32_IsDigit_Binary
+#define CharUTF32_IsDigit_Bin	CharUTF32_IsDigit_Binary
 //!@}
 
 
@@ -271,9 +271,9 @@ t_bool						UTF32_IsDigit_Binary(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsWhiteSpace(t_utf32 c);
-#define c_wcisspace		UTF32_IsWhiteSpace
-#define UTF32_IsSpace	UTF32_IsWhiteSpace
+t_bool						CharUTF32_IsWhiteSpace(t_utf32 c);
+#define c_wcisspace			CharUTF32_IsWhiteSpace
+#define CharUTF32_IsSpace	CharUTF32_IsWhiteSpace
 //!@}
 
 //!@doc Check if the given char `c` is a punctuation character
@@ -286,9 +286,9 @@ t_bool					UTF32_IsWhiteSpace(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsPunctuation(t_utf32 c);
-#define c_wcispunct		UTF32_IsPunctuation
-#define UTF32_IsPunct	UTF32_IsPunctuation
+t_bool						CharUTF32_IsPunctuation(t_utf32 c);
+#define c_wcispunct			CharUTF32_IsPunctuation
+#define CharUTF32_IsPunct	CharUTF32_IsPunctuation
 //!@}
 
 // TODO https://en.cppreference.com/w/c/string/wide/iswcntrl
@@ -303,9 +303,9 @@ t_bool					UTF32_IsPunctuation(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsPrintable(t_utf32 c);
-#define c_wcisprint		UTF32_IsPrintable
-#define UTF32_IsPrint	UTF32_IsPrintable
+t_bool						CharUTF32_IsPrintable(t_utf32 c);
+#define c_wcisprint			CharUTF32_IsPrintable
+#define CharUTF32_IsPrint	CharUTF32_IsPrintable
 //!@}
 
 //!@doc Check if the given char `c` is an ASCII-compatible char (non-Unicode)
@@ -318,8 +318,8 @@ t_bool					UTF32_IsPrintable(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsASCII(t_utf32 c);
-#define c_wcisascii		UTF32_IsASCII
+t_bool					CharUTF32_IsASCII(t_utf32 c);
+#define c_wcisascii		CharUTF32_IsASCII
 //!@}
 
 //!@doc Check if the given char `c` is a valid Unicode code point
@@ -332,8 +332,8 @@ t_bool					UTF32_IsASCII(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					UTF32_IsValid(t_utf32 c);
-#define c_wcisvalid		UTF32_IsValid
+t_bool					CharUTF32_IsValid(t_utf32 c);
+#define c_wcisvalid		CharUTF32_IsValid
 //!@}
 
 
@@ -349,9 +349,9 @@ t_bool					UTF32_IsValid(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
-#define c_wcincharset		UTF32_IsInCharset
-#define Unicode_IsInCharset	UTF32_IsInCharset
+t_bool						CharUTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
+#define c_wcincharset		CharUTF32_IsInCharset
+#define Unicode_IsInCharset	CharUTF32_IsInCharset
 //!@}
 
 
@@ -376,9 +376,9 @@ t_bool						UTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 **	or returns `c` itself if it is not a letter character.
 */
 //!@{
-t_utf32						UTF32_ToUppercase(t_utf32 c);
-#define c_wctoupper			UTF32_ToUppercase
-#define UTF32_ToUpper		UTF32_ToUppercase
+t_utf32							CharUTF32_ToUppercase(t_utf32 c);
+#define c_wctoupper				CharUTF32_ToUppercase
+#define CharUTF32_ToUpper		CharUTF32_ToUppercase
 //!@}
 
 //!@doc Get the lowercase version of the given char `c`, if possible
@@ -391,12 +391,12 @@ t_utf32						UTF32_ToUppercase(t_utf32 c);
 **	or returns `c` itself if it is not a letter character.
 */
 //!@{
-t_utf32						UTF32_ToLowercase(t_utf32 c);
-#define c_wctolower			UTF32_ToLowercase
-#define UTF32_ToLower		UTF32_ToLowercase
+t_utf32							CharUTF32_ToLowercase(t_utf32 c);
+#define c_wctolower				CharUTF32_ToLowercase
+#define CharUTF32_ToLower		CharUTF32_ToLowercase
 //!@}
 
-// TODO UTF32_ToASCII()
+// TODO CharUTF32_ToASCII()
 
 
 
@@ -420,9 +420,9 @@ t_utf32						UTF32_ToLowercase(t_utf32 c);
 **	Returns 0 if `str[0]` is `\0` or if `str` is NULL
 **	Returns `ERROR` if `str` is `NULL`, or if the first byte is not the start of a valid utf8 sequence
 */
-t_sint						UTF8_Length(const t_utf8* str);
-#define c_mblen				UTF8_Length
-#define c_utf8len			UTF8_Length
+t_sint						CharUTF8_Length(const t_utf8* str);
+#define c_mblen				CharUTF8_Length
+#define c_utf8len			CharUTF8_Length
 
 
 //!@doc Check if the given pointer points to a valid utf8 sequence
@@ -432,7 +432,7 @@ t_sint						UTF8_Length(const t_utf8* str);
 **	@param	str			pointer to the start of the utf8 sequence to check.
 **	@param	out_length	optional pointer to write the length of the sequence in byte.
 **							Unused if `NULL`
-**							If sequence is valid, is equivalent to the result of UTF8_Length
+**							If sequence is valid, is equivalent to the result of CharUTF8_Length
 **							If sequence is not valid, is set to `SIZE_ERROR`
 **
 **	@returns
@@ -440,9 +440,9 @@ t_sint						UTF8_Length(const t_utf8* str);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool						UTF8_IsSeqValid(const t_utf8* str, t_size* out_length);
-#define c_utf8isseqvalid	UTF8_IsSeqValid
-#define c_mbisseqvalid		UTF8_IsSeqValid
+t_bool						CharUTF8_IsSeqValid(const t_utf8* str, t_size* out_length);
+#define c_utf8isseqvalid	CharUTF8_IsSeqValid
+#define c_mbisseqvalid		CharUTF8_IsSeqValid
 //!@}
 
 
@@ -450,12 +450,12 @@ t_bool						UTF8_IsSeqValid(const t_utf8* str, t_size* out_length);
 /*
 **	@nonstd
 **
-**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see UTF8_IsSeqValid) until the terminating
+**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see CharUTF8_IsSeqValid) until the terminating
 **	null character
 **
 **	@param	str					pointer to the beginning of the null-terminated uft8 string
 **	@param	out_symbolcount		(optional) if not `NULL`, will be set to the total number of symbols.
-**									If the entire string is valid, will be equivalent to the result of `UTF8_SymbolCount`
+**									If the entire string is valid, will be equivalent to the result of `CharUTF8_SymbolCount`
 **									If the entire string is not valid, will be set to the number of valid symbols before
 **									the failure point
 **									if `str` is `NULL`, is set to SIZE_ERROR
@@ -470,15 +470,15 @@ t_bool						UTF8_IsSeqValid(const t_utf8* str, t_size* out_length);
 **	otherwise returns `FALSE`
 **
 */
-t_bool						UTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* out_bytecount);
-#define c_utf8isstrvalid	UTF8_IsStringValid
-#define c_mbisstrvalid		UTF8_IsStringValid
+t_bool						CharUTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* out_bytecount);
+#define c_utf8isstrvalid	CharUTF8_IsStringValid
+#define c_mbisstrvalid		CharUTF8_IsStringValid
 
 //!@doc Check if the entire null-terminated utf8 string is valid, reading at most `n` bytes
 /*
 **	@nonstd
 **
-**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see UTF8_IsSeqValid) until the terminating
+**	Check if the entire utf8 string in composed of only valid utf8 sequences (@see CharUTF8_IsSeqValid) until the terminating
 **	null character or until `n` bytes.
 **	If `n` is reached in the middle of a UTF8 sequence, then `TRUE` is returned. However, it is only safe to read the
 **	`out_bytecount` bytes of the string, anything after that will not have been checked (including the utf8 sequence
@@ -487,7 +487,7 @@ t_bool						UTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* 
 **
 **	@param	str					pointer to the beginning of the null-terminated uft8 string
 **	@param	out_symbolcount		(optional) if not `NULL`, will be set to the total number of symbols.
-**									If the entire string is valid, will be equivalent to the result of `UTF8_SymbolCount`
+**									If the entire string is valid, will be equivalent to the result of `CharUTF8_SymbolCount`
 **									If the entire string is not valid, will be set to the number of valid symbols before
 **									the failure point
 **									if `str` is `NULL`, is set to SIZE_ERROR
@@ -505,9 +505,9 @@ t_bool						UTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* 
 **	otherwise returns `FALSE`
 **
 */
-t_bool						UTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcount, t_size* out_bytecount);
-#define c_utf8nisstrvalid	UTF8_IsStringValid_N
-#define c_mbnisstrvalid		UTF8_IsStringValid_N
+t_bool						CharUTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcount, t_size* out_bytecount);
+#define c_utf8nisstrvalid	CharUTF8_IsStringValid_N
+#define c_mbnisstrvalid		CharUTF8_IsStringValid_N
 
 
 //!@doc Get the length (in number of grapheme) of string
@@ -523,9 +523,9 @@ t_bool						UTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcou
 **	`ERROR` if the string contains invalid multi-byte characters
 */
 //!@{
-t_sint						UTF8_SymbolCount(t_utf8 const* str);
-#define c_utf8scount		UTF8_SymbolCount
-#define c_mbscount			UTF8_SymbolCount
+t_sint						CharUTF8_SymbolCount(t_utf8 const* str);
+#define c_utf8scount		CharUTF8_SymbolCount
+#define c_mbscount			CharUTF8_SymbolCount
 //!@}
 
 //!@doc Get the length (in number of grapheme) of a utf8 string, but reading at most `n` bytes
@@ -544,9 +544,9 @@ t_sint						UTF8_SymbolCount(t_utf8 const* str);
 **	`ERROR` if the string contains invalid multi-byte characters in the first `n` bytes
 */
 //!@{
-t_sint						UTF8_SymbolCount_N(t_utf8 const* str, t_size n);
-#define c_utf8nscount		UTF8_SymbolCount_N
-#define c_mbnscount			UTF8_SymbolCount_N
+t_sint						CharUTF8_SymbolCount_N(t_utf8 const* str, t_size n);
+#define c_utf8nscount		CharUTF8_SymbolCount_N
+#define c_mbnscount			CharUTF8_SymbolCount_N
 //!@}
 
 //!@doc Converts the given Unicode char `c` to its UTF-8 equivalent representation
@@ -561,9 +561,9 @@ t_sint						UTF8_SymbolCount_N(t_utf8 const* str, t_size n);
 **	The size (in bytes) of the character written (can be 0, 1, 2, 3, or 4)
 */
 //!@{
-t_size						UTF32_ToUTF8(t_utf8* dest, t_utf32 c);
-#define c_wctomb			UTF32_ToUTF8
-#define c_wctoutf8			UTF32_ToUTF8
+t_size						CharUTF32_ToUTF8(t_utf8* dest, t_utf32 c);
+#define c_wctomb			CharUTF32_ToUTF8
+#define c_wctoutf8			CharUTF32_ToUTF8
 //!@}
 
 //!@doc Converts the given Unicode char `c` to its UTF-16 equivalent representation
@@ -578,9 +578,9 @@ t_size						UTF32_ToUTF8(t_utf8* dest, t_utf32 c);
 **	The size (in bytes) of the character written (can be 0, 2, or 4)
 */
 //!@{
-t_size						UTF32_ToUTF16(t_utf16* dest, t_utf32 c);
-#define c_wctomb2			UTF32_ToUTF16
-#define c_wctoutf16			UTF32_ToUTF16
+t_size						CharUTF32_ToUTF16(t_utf16* dest, t_utf32 c);
+#define c_wctomb2			CharUTF32_ToUTF16
+#define c_wctoutf16			CharUTF32_ToUTF16
 //!@}
 
 
@@ -595,9 +595,9 @@ t_size						UTF32_ToUTF16(t_utf16* dest, t_utf32 c);
 **	The Unicode code point value for the character pointed to by `str`
 */
 //!@{
-t_utf32						UTF32_FromUTF8(t_utf8 const* str);
-#define c_mbtowc			UTF32_FromUTF8
-#define c_utf8towc			UTF32_FromUTF8
+t_utf32						CharUTF32_FromUTF8(t_utf8 const* str);
+#define c_mbtowc			CharUTF32_FromUTF8
+#define c_utf8towc			CharUTF32_FromUTF8
 //!@}
 
 //!@doc Returns the Unicode code point value (UTF-32) for the first UTF-16 character in `str`
@@ -610,9 +610,9 @@ t_utf32						UTF32_FromUTF8(t_utf8 const* str);
 **	The Unicode code point value for the character pointed to by `str`
 */
 //!@{
-t_utf32						UTF32_FromUTF16(t_utf16 const* str);
-#define c_mb2towc			UTF32_FromUTF16
-#define c_utf16towc			UTF32_FromUTF16
+t_utf32						CharUTF32_FromUTF16(t_utf16 const* str);
+#define c_mb2towc			CharUTF32_FromUTF16
+#define c_utf16towc			CharUTF32_FromUTF16
 //!@}
 
 
@@ -630,9 +630,9 @@ t_utf32						UTF32_FromUTF16(t_utf16 const* str);
 **	`ERROR`: if the given character cannot be encoded with \xFF format, or
 **	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size							UTF32_ToEscaped_xFF(t_ascii *dest, t_utf32 c);
-#define c_utf32encode_xff		UTF32_ToEscaped_xFF
-#define c_wcencode_xff			UTF32_ToEscaped_xFF
+t_size							CharUTF32_ToEscaped_xFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_xff		CharUTF32_ToEscaped_xFF
+#define c_wcencode_xff			CharUTF32_ToEscaped_xFF
 
 //! Converts `c` to \uFFFF
 /*! 
@@ -648,9 +648,9 @@ t_size							UTF32_ToEscaped_xFF(t_ascii *dest, t_utf32 c);
 **	`ERROR`: if the given character cannot be encoded with \uFFFF format, or
 **	6: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size							UTF32_ToEscaped_uFFFF(t_ascii *dest, t_utf32 c);
-#define c_utf32encode_uffff		UTF32_ToEscaped_uFFFF
-#define c_wcencode_xffff		UTF32_ToEscaped_uFFFF
+t_size							CharUTF32_ToEscaped_uFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_uffff		CharUTF32_ToEscaped_uFFFF
+#define c_wcencode_xffff		CharUTF32_ToEscaped_uFFFF
 
 //! Converts `c` to \UFFFFFFFF
 /*! 
@@ -664,9 +664,9 @@ t_size							UTF32_ToEscaped_uFFFF(t_ascii *dest, t_utf32 c);
 **	@returns
 **	10: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size							UTF32_ToEscaped_UFFFFFFFF(t_ascii *dest, t_utf32 c);
-#define c_utf32encode_Uffffffff	UTF32_ToEscaped_UFFFFFFFF
-#define c_wcencode_Uffffffff	UTF32_ToEscaped_UFFFFFFFF
+t_size							CharUTF32_ToEscaped_UFFFFFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_Uffffffff	CharUTF32_ToEscaped_UFFFFFFFF
+#define c_wcencode_Uffffffff	CharUTF32_ToEscaped_UFFFFFFFF
 
 //! Converts `c` to the shortest format the character can fit in. Will write at mose 10 ASCI char to dest
 /*! 
@@ -680,9 +680,9 @@ t_size							UTF32_ToEscaped_UFFFFFFFF(t_ascii *dest, t_utf32 c);
 **	@returns
 **	The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL. This is at most 10
 */
-t_size 						UTF32_ToEscaped_smart(t_ascii *dest, t_utf32 c);
-#define c_utf32encode_smart	UTF32_ToEscaped_smart
-#define c_wcencode_smart	UTF32_ToEscaped_smart
+t_size 						CharUTF32_ToEscaped_smart(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_smart	CharUTF32_ToEscaped_smart
+#define c_wcencode_smart	CharUTF32_ToEscaped_smart
 
 
 //!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
@@ -695,8 +695,8 @@ t_size 						UTF32_ToEscaped_smart(t_ascii *dest, t_utf32 c);
 **	or `-1`(#ERROR) if there was a parsing error.
 */
 //!@{
-t_utf32					UTF32_FromEscape(t_ascii const* str);
-#define c_wcparse		UTF32_FromEscape
+t_utf32					CharUTF32_FromEscape(t_ascii const* str);
+#define c_wcparse		CharUTF32_FromEscape
 //!@}
 
 //!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
@@ -711,8 +711,8 @@ t_utf32					UTF32_FromEscape(t_ascii const* str);
 **	The total amount of bytes read from the given `str` buffer.
 */
 //!@{
-t_size					UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
-#define c_wcnparse		UTF32_Parse
+t_size					CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
+#define c_wcnparse		CharUTF32_Parse
 //!@}
 
 
@@ -730,8 +730,8 @@ t_size					UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n);
 **	or the length of the UTF-8 byte order mark (ie: `3`)
 */
 //!@{
-t_sint				UTF8_ByteOrderMark(t_utf8 const* str);
-#define c_mbbom		UTF8_ByteOrderMark
+t_sint				CharUTF8_ByteOrderMark(t_utf8 const* str);
+#define c_mbbom		CharUTF8_ByteOrderMark
 //!@}
 
 //!@doc Parses a UTF-16 BOM (byte order mark) in `str`
@@ -742,8 +742,8 @@ t_sint				UTF8_ByteOrderMark(t_utf8 const* str);
 **	also note: the return is negative for a big-endian BOM (ie: `-2`)
 */
 //!@{
-t_sint				UTF16_ByteOrderMark(t_utf16 const* str);
-#define c_mb2bom	UTF16_ByteOrderMark
+t_sint				CharUTF16_ByteOrderMark(t_utf16 const* str);
+#define c_mb2bom	CharUTF16_ByteOrderMark
 //!@}
 
 //!@doc Parses a UTF-32 BOM (byte order mark) in `str`
@@ -754,8 +754,8 @@ t_sint				UTF16_ByteOrderMark(t_utf16 const* str);
 **	also note: the return is negative for a big-endian BOM (ie: `-4`)
 */
 //!@{
-t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
-#define c_wcbom		UTF32_ByteOrderMark
+t_sint				CharUTF32_ByteOrderMark(t_utf32 const* str);
+#define c_wcbom		CharUTF32_ByteOrderMark
 //!@}
 
 
@@ -772,10 +772,10 @@ t_sint				UTF32_ByteOrderMark(t_utf32 const* str);
 **	`SIZE_ERROR` if either parameter is `NULL` or if the utf8 sequence is invalid,
 **	in which case nothing was written to `dest`
 */
-t_size				UTF8_Copy(t_utf8* dest, t_utf8 const* str);
-#define c_mbcpy		UTF8_Copy
+t_size				CharUTF8_Copy(t_utf8* dest, t_utf8 const* str);
+#define c_mbcpy		CharUTF8_Copy
 
-// TODO UTF32_Charset()
+// TODO CharUTF32_Charset()
 
 // TODO enum e_unicode
 //!< 0x0000 — 0x007F	Basic Latin

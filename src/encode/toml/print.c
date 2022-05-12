@@ -188,7 +188,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8((t_utf8*)input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
@@ -209,7 +209,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 			}
 			default:
 			{
-				if (!UTF32_IsPrintable(c))
+				if (!CharUTF32_IsPrintable(c))
 				{
 					escape_chars += 5;	// UTF-32 escape sequence \uXXXX
 					if (c >= UTF8_3BYTE)
@@ -239,13 +239,13 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8((t_utf8*)input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
 		else if (c < UTF8_3BYTE)	length = 3;
 		else if (c < UTF8_4BYTE)	length = 4;
-		if (UTF32_IsPrintable(c) &&
+		if (CharUTF32_IsPrintable(c) &&
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy
@@ -271,7 +271,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 				default: // escape and print as unicode codepoint
 				{
 					t_utf16 u[2] = {0};
-					length = UTF32_ToUTF16(u, c);
+					length = CharUTF32_ToUTF16(u, c);
 					if (length > 0)
 					{
 						String_Format_N(str, 6, "u%4.4X", u[0]);

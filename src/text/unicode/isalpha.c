@@ -11,11 +11,11 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	UTF32_IsUppercase(t_utf32 c)
+t_bool	CharUTF32_IsUppercase(t_utf32 c)
 { return (iswupper(c)); }
 #else
 // TODO UTF handling
-t_bool	UTF32_IsUppercase(t_utf32 c)
+t_bool	CharUTF32_IsUppercase(t_utf32 c)
 {
 	return ('A' <= c && c <= 'Z');
 }
@@ -25,11 +25,11 @@ t_bool	UTF32_IsUppercase(t_utf32 c)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	UTF32_IsLowercase(t_utf32 c)
+t_bool	CharUTF32_IsLowercase(t_utf32 c)
 { return (iswlower(c)); }
 #else
 // TODO UTF handling
-t_bool	UTF32_IsLowercase(t_utf32 c)
+t_bool	CharUTF32_IsLowercase(t_utf32 c)
 {
 	return ('a' <= c && c <= 'z');
 }
@@ -39,11 +39,11 @@ t_bool	UTF32_IsLowercase(t_utf32 c)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	UTF32_IsLetter(t_utf32 c)
+t_bool	CharUTF32_IsLetter(t_utf32 c)
 { return (iswalpha(c)); }
 #else
 // TODO UTF handling
-t_bool	UTF32_IsLetter(t_utf32 c)
+t_bool	CharUTF32_IsLetter(t_utf32 c)
 {
 	return (('A' <= c && c <= 'Z') ||
 			('a' <= c && c <= 'z'));
@@ -54,11 +54,11 @@ t_bool	UTF32_IsLetter(t_utf32 c)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
+t_bool	CharUTF32_IsAlphaNumeric(t_utf32 c)
 { return (iswalnum(c)); }
 #else
 // TODO UTF handling
-t_bool	UTF32_IsAlphaNumeric(t_utf32 c)
+t_bool	CharUTF32_IsAlphaNumeric(t_utf32 c)
 {
 	return (('A' <= c && c <= 'Z') ||
 			('a' <= c && c <= 'z') ||

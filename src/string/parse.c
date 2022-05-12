@@ -67,7 +67,7 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 	}																			\
 	tmp[((_BITS_) / 4)] = '\0';													\
 	unicode = U##_BITS_##_FromString_Hex(tmp);									\
-	i += UTF32_ToUTF8((t_utf8*)result + i, unicode);							\
+	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode);							\
 
 
 

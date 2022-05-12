@@ -33,7 +33,7 @@ t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
 		{
 			while (i && (str[i] & 0xC0) == 0x80)
 				i -= 1;
-			current = UTF32_FromUTF8(str + i);
+			current = CharUTF32_FromUTF8(str + i);
 			if (current == c)
 				return ((t_char *)str + i);
 			if (i == 0)

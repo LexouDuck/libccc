@@ -7,11 +7,10 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-
 //! parse a 4-digit hexadecimal number from the given `str`
 #define DEFINEFUNC_PARSE_HEX(BITS) \
 static																\
-t_bool	UTF32_Parse_Hex_##BITS(t_u##BITS* dest, t_ascii const* str)	\
+t_bool	CharUTF32_Parse_Hex_##BITS(t_u##BITS* dest, t_ascii const* str)	\
 {																	\
 	t_u##BITS result;												\
 	t_size i;														\
@@ -44,7 +43,7 @@ DEFINEFUNC_PARSE_HEX(32)
 #define PARSINGERROR_UTF16	"Could not parse UTF-16 escape sequence: "
 #define PARSINGERROR_UTF16_SURROGATE	PARSINGERROR_UTF16"2nd half of surrogate pair -> "
 
-t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
+t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 {
 	t_utf32	result = 0;
 	t_size	length;
@@ -64,7 +63,7 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 		HANDLE_ERROR_SF(PARSE, (n < length), return (ERROR);,
 			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
 		i += 1;
-		HANDLE_ERROR_SF(PARSE, (UTF32_Parse_Hex_32(&result, str + i)), return (ERROR);, // get the whole UTF-32 sequence
+		HANDLE_ERROR_SF(PARSE, (CharUTF32_Parse_Hex_32(&result, str + i)), return (ERROR);, // get the whole UTF-32 sequence
 			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 8;
 	}
@@ -74,7 +73,7 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 		HANDLE_ERROR_SF(PARSE, (n < length), return (ERROR);,
 			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
 		i += 1;
-		HANDLE_ERROR_SF(PARSE, (UTF32_Parse_Hex_16(&code1, str + i)), return (ERROR);, // get the first UTF-16 sequence
+		HANDLE_ERROR_SF(PARSE, (CharUTF32_Parse_Hex_16(&code1, str + i)), return (ERROR);, // get the first UTF-16 sequence
 			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 		i += 4;
 		HANDLE_ERROR_SF(PARSE, (((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END))), return (ERROR);,
@@ -91,7 +90,7 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 			HANDLE_ERROR_SF(PARSE, (str[i] != 'u'), return (ERROR);,
 				PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 'u' char")
 			i += 1;
-			HANDLE_ERROR_SF(PARSE, (UTF32_Parse_Hex_16(&code2, str + 2)), return (ERROR);, // get the second UTF-16 sequence
+			HANDLE_ERROR_SF(PARSE, (CharUTF32_Parse_Hex_16(&code2, str + 2)), return (ERROR);, // get the second UTF-16 sequence
 				PARSINGERROR_UTF16_SURROGATE"not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			i += 4;
 			HANDLE_ERROR_SF(PARSE, ((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END)), return (ERROR);,
@@ -115,10 +114,10 @@ t_size		UTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 
 
 
-t_utf32		UTF32_FromEscape(t_ascii const* str)
+t_utf32		CharUTF32_FromEscape(t_ascii const* str)
 {
 	t_utf32	result = ERROR;
-	if (UTF32_Parse(&result, str, 0))
+	if (CharUTF32_Parse(&result, str, 0))
 		return (result);
 	return (ERROR);
 }

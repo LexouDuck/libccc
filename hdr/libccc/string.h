@@ -1224,10 +1224,10 @@ t_size					String_ToJsonEscapedBuf(t_char *dest, size_t max_writelen, t_char con
 */
 typedef size_t (*f_char_encoder)(t_ascii *dest, t_utf32 c);
 
-#define ENCODER_xFF				UTF32_ToEscaped_xFF
-#define ENCODER_uFFFF			UTF32_ToEscaped_uFFFF
-#define ENCODER_UFFFFFFFF		UTF32_ToEscaped_UFFFFFFFF
-#define ENCODER_smart			UTF32_ToEscaped_smart
+#define ENCODER_xFF				CharUTF32_ToEscaped_xFF
+#define ENCODER_uFFFF			CharUTF32_ToEscaped_uFFFF
+#define ENCODER_UFFFFFFFF		CharUTF32_ToEscaped_UFFFFFFFF
+#define ENCODER_smart			CharUTF32_ToEscaped_smart
 
 
 //! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`

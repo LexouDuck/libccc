@@ -7,7 +7,7 @@
 
 
 
-t_sint	UTF8_ByteOrderMark(t_utf8 const* str)
+t_sint	CharUTF8_ByteOrderMark(t_utf8 const* str)
 {
 	t_sint	i = 0;
 
@@ -20,7 +20,7 @@ t_sint	UTF8_ByteOrderMark(t_utf8 const* str)
 
 
 
-t_sint	UTF16_ByteOrderMark(t_utf16 const* wstr)
+t_sint	CharUTF16_ByteOrderMark(t_utf16 const* wstr)
 {
 	t_u8*	str = (t_u8*)wstr; 
 	t_sint	i = 0;
@@ -45,7 +45,7 @@ t_sint	UTF16_ByteOrderMark(t_utf16 const* wstr)
 
 
 
-t_sint	UTF32_ByteOrderMark(t_utf32 const* wstr)
+t_sint	CharUTF32_ByteOrderMark(t_utf32 const* wstr)
 {
 	t_u8*	str = (t_u8*)wstr; 
 	t_sint	i = 0;
