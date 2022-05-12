@@ -516,7 +516,7 @@ static t_utf8*	c_toml_##STRICT##_##MINIFY(t_utf8* toml)	\
 {															\
 	s_toml* tmp = TOML_FromString_##STRICT(toml);			\
 	t_utf8* result = TOML_ToString_##MINIFY(tmp);			\
-	free(tmp);												\
+	if (tmp != NULL)	TOML_Delete(tmp);					\
 	return (result);										\
 }															\
 void	print_test_toml_##STRICT##_##MINIFY(char const* test_name, int can_segfault,\

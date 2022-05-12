@@ -1295,7 +1295,8 @@ t_size							String_Parse(t_char* *dest, t_char const* str, t_size n, t_bool any
 #define c_strparse				String_Parse
 //!@}
 
-/*!@doc
+//!@doc
+/*!
 **	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
 **	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
 **						(ie: any escape sequence will function, with any char after the `'\'`)
