@@ -1186,22 +1186,24 @@ void	test_esctostr(void)
 	print_test_esctostr("esctostr 3"                     , FALSE  , "Th\tes\ve""\xA7""ar\ee㈎\t\tunicode😇characters\a", "Th\\tes\\ve\\xA7ar\\ee\\u320E\\t\\tunicode\\U0001f607characters\\a", TRUE);
 	print_test_esctostr("esctostr 4"                     , FALSE  , "Th\tes\ve""\xA7""ar\ee㈎\t\tunicode😇characters\a", "Th\\tes\\ve\\xA7ar\\ee\\u320E\\t\\tunicode\\U0001f607characters\\a", FALSE);
 	print_test_esctostr("esctostr all sequences"         , FALSE  , "\\'\"\a\b\t\n\v\f\r\e"                            , "\\\\\\'\\\"\\a\\b\\t\\n\\v\\f\\r\\e"                               , FALSE);
-	print_test_esctostr("esctostr escape_any TRUE"       , FALSE  , "wc3oui-oui dans son \t\a?!@"                      , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , TRUE);
-	print_test_esctostr("esctostr escape_any FALSE"      , FALSE  , "\\w\\c\\3oui-oui dans son \t\a?\\!\\@"            , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , FALSE);
+	print_test_esctostr("esctostr escape_any TRUE"       , FALSE  , "wc3oui-oui dans son \t\a\bi!@"                    , "\\w\\c\\3oui-oui dans son \\t\\a\\b\\i\\!\\@"                      , TRUE);
+	print_test_esctostr("esctostr escape_any FALSE"      , FALSE  , "\\w\\c\\3oui-oui dans son \t\a\b\\i\\!\\@"        , "\\w\\c\\3oui-oui dans son \\t\\a\\b\\i\\!\\@"                      , FALSE);
+	print_test_esctostr("esctostr escape_any TRUE"       , FALSE  , NULL                                               , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , TRUE);
+	print_test_esctostr("esctostr escape_any FALSE"      , FALSE  , NULL                                               , "\\w\\c\\3oui-oui dans son \\t\\a\\x\\i\\!\\@"                      , FALSE);
 	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , TRUE);
 	print_test_esctostr("esctostr encoded char UPPERCASE", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xA7are\\u320Eunicode\\U0001F607characters"                  , FALSE);
 	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , TRUE);
 	print_test_esctostr("esctostr encoded char lowercase", FALSE  , "These""\xA7""are㈎unicode😇characters"            , "These\\xa7are\\u320eunicode\\U0001f607characters"                  , FALSE);
 	// These do not work and crash the test suite
-//	print_test_esctostr("esctostr error invalid seq 1"   , FALSE  , NULL                                               , "\\xA"                                                              , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 2"   , FALSE  , NULL                                               , "\\xAG"                                                             , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 3"   , FALSE  , NULL                                               , "\\xLOL"                                                            , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 4"   , FALSE  , NULL                                               , "\\uE0"                                                             , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 5"   , FALSE  , NULL                                               , "\\uE0Y2"                                                           , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 6"   , FALSE  , NULL                                               , "\\uE02Y"                                                           , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 7"   , FALSE  , NULL                                               , "\\UE023"                                                           , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 8"   , FALSE  , NULL                                               , "\\U0234ABC"                                                        , FALSE);
-//	print_test_esctostr("esctostr error invalid seq 9"   , FALSE  , NULL                                               , "\\U0234GBCD"                                                       , FALSE);
+	print_test_esctostr("esctostr error invalid seq 1"   , FALSE  , NULL                                               , "\\xA"                                                              , FALSE);
+	print_test_esctostr("esctostr error invalid seq 2"   , FALSE  , NULL                                               , "\\xAG"                                                             , FALSE);
+	print_test_esctostr("esctostr error invalid seq 3"   , FALSE  , NULL                                               , "\\xLOL"                                                            , FALSE);
+	print_test_esctostr("esctostr error invalid seq 4"   , FALSE  , NULL                                               , "\\uE0"                                                             , FALSE);
+	print_test_esctostr("esctostr error invalid seq 5"   , FALSE  , NULL                                               , "\\uE0Y2"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 6"   , FALSE  , NULL                                               , "\\uE02Y"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 7"   , FALSE  , NULL                                               , "\\UE023"                                                           , FALSE);
+	print_test_esctostr("esctostr error invalid seq 8"   , FALSE  , NULL                                               , "\\U0234ABC"                                                        , FALSE);
+	print_test_esctostr("esctostr error invalid seq 9"   , FALSE  , NULL                                               , "\\U0234GBCD"                                                       , FALSE);
 	print_test_esctostr("esctostr NULL"                  , TRUE   , NULL                                               , NULL                                                                , TRUE);
 }
 #endif
