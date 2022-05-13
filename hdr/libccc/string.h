@@ -1145,9 +1145,9 @@ t_char*					String_Pad_R(t_char const* str, t_char c, t_size length);
 **	@nonstd
 **
 **	Returns a new null-terminated string where every non-printable or non-ascii
-**	character of `str` is replaced by either its `normal` escape sequence (if 
-**	available) or encodes the character with either a '\xFF'-type '\uFFFF'-type
-**	or a '\UFFFFFFFF'-type escape sequence if no alias sequence exists (like "\n").
+**	character of `str` is replaced by either its "normal" escape sequence (if 
+**	available) or encodes the character with either a `\xFF`, `\uFFFF`, or `\UFFFFFFFF`
+**	escape sequence if no simple alias sequence exists (like `"\n"` for instance).
 **	Here is the list of characters which will be escaped by default:
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\'`	Apostrophe

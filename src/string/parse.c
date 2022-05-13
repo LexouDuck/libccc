@@ -76,6 +76,7 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 	t_char*	result;
 	t_char	tmp[9] = { 0 };
 	t_utf32	unicode;
+	t_bool	error = FALSE;
 	t_size	index = 0;
 	t_size	i = 0;
 
@@ -108,11 +109,10 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
-					tmp[0] = str[++index];
-					tmp[1] = str[++index];
+					tmp[0] = str[++index];	if (!Char_IsDigit_Hex(tmp[0]))	error = TRUE;
+					tmp[1] = str[++index];	if (!Char_IsDigit_Hex(tmp[1]))	error = TRUE;
 					tmp[2] = '\0';
-					HANDLE_ERROR(PARSE, (!Char_IsDigit_Hex(tmp[0]) || !Char_IsDigit_Hex(tmp[1])),
-						result[i++] = '?';)
+					HANDLE_ERROR(PARSE, (error), result[i++] = '?';)
 					else result[i++] = U8_FromString_Hex(tmp);
 					break;
 
