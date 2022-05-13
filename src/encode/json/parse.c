@@ -31,7 +31,9 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 		t_char* tmp_error;																		\
 		tmp_error = String_Format(__VA_ARGS__);													\
 		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error);						\
-		if (p) p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error));	\
+		if (p != NULL)																			\
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
+		else String_Delete(&tmp_error);															\
 		goto failure;																			\
 	}																							\
 
@@ -114,8 +116,8 @@ failure:
 static
 t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 {
-	t_utf8*	number;
-	t_size	length;
+	t_utf8*	number = NULL;
+	t_size	length = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
 	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
@@ -174,6 +176,7 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 	return (OK);
 
 failure:
+	String_Delete(&number);
 	return (ERROR);
 }
 
@@ -403,6 +406,7 @@ static
 t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 {
 	s_json* head = NULL; // linked list head
+	s_json* new_item = NULL;
 	s_json* current_item = NULL;
 
 	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
@@ -433,7 +437,7 @@ t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 		if (!p->strict && CAN_PARSE(0) && (p->content[p->offset] == '}'))
 			goto success; // allow trailing commas when not in strict mode
 		// allocate next item
-		s_json* new_item = JSON_Item();
+		new_item = JSON_Item();
 		if (new_item == NULL)
 			PARSINGERROR_JSON("Could not parse object: Allocation failure")
 		// attach next item to list
@@ -577,6 +581,11 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 
 failure:
+	if (p->result != NULL)
+	{
+		JSON_Delete(p->result);
+		p->result = NULL;
+	}
 	return (ERROR);
 }
 
@@ -588,16 +597,19 @@ t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//,
 	s_json_parse parser;
 	s_json_parse* p = &parser;
 	s_json* result = NULL;
+	t_size column = 0;
 
 	Memory_Clear(p, sizeof(s_json_parse));
 	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
 		if (dest) *dest = NULL;
-		return (p->offset);)
+		return (p->offset);
+	)
 	p->content = str;
 	p->length = n; 
 	p->offset = CharUTF8_ByteOrderMark(str);
 	p->line = 1;
 	p->strict = strict;
+	p->line = 1;
 	result = JSON_Item();
 	if (result == NULL)
 		PARSINGERROR_JSON("Got null result: memory failure")
@@ -622,22 +634,8 @@ failure:
 	if (result != NULL)
 	{
 		JSON_Delete(result);
+		result = NULL;
 	}
-	if (str != NULL)
-	{
-/*
-		t_size	position = 0;
-		if (p.offset < p.length)
-			position = p.offset;
-		else if (p.length > 0)
-			position = p.length - 1;
-		if (return_parse_end != NULL)
-		{
-			*return_parse_end = (str + position);
-		}
-*/
-	}
-	t_size column = 0;
 	while (p->offset - column != 0)
 	{
 		if (p->content[p->offset - column] == '\n')
@@ -646,6 +644,7 @@ failure:
 	}
 	HANDLE_ERROR_SF(PARSE, (TRUE),
 		if (dest) *dest = NULL;
+		String_Delete(&p->error);
 		return (p->offset);,
 		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
@@ -655,6 +654,7 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	String_Delete(&p->error);
 	return (p->offset);
 }
 

@@ -218,6 +218,8 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 			{
 				if (number_buffer[i] == '0')
 				{
+					if (number_buffer[i - 1] == '.')
+						break ;
 					number_buffer[i] = '\0';
 					length--;
 				}

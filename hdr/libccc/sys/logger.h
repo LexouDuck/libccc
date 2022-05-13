@@ -154,12 +154,19 @@ typedef s_logger const* const*	t_logptrarr;
 /*                            Logger Body Macros                              */
 /* ************************************************************************** */
 
-#define LOGONE_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
+#define LOGONE_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR, FREE_STRINGS) \
 	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	if (logger == NULL)							\
+	{											\
+		FREE_STRINGS							\
 		return (ERROR_NULLPOINTER);				\
-	if (SKIP)	return (result);				\
+	}											\
+	if (SKIP)									\
+	{											\
+		FREE_STRINGS							\
+		return (result);						\
+	}											\
 	va_start(args, format_str);					\
 	result = Log_VA(logger,						\
 		ERRORINT,								\
@@ -168,17 +175,25 @@ typedef s_logger const* const*	t_logptrarr;
 		ERRORMSG,								\
 		format_str, args);						\
 	va_end(args);								\
+	FREE_STRINGS								\
 	return (result);							\
 
-#define LOGALL_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR) \
+#define LOGALL_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR, FREE_STRINGS) \
 	e_cccerror	result = ERROR_NONE;			\
 	va_list		args;							\
 	if (loggers == NULL)						\
+	{											\
+		FREE_STRINGS							\
 		return (ERROR_NULLPOINTER);				\
+	}											\
 	for (t_u32 i = 0; loggers[i]; ++i)			\
 	{											\
 		s_logger const* logger = loggers[i];	\
-		if (SKIP)	continue;					\
+		if (SKIP)								\
+		{										\
+			FREE_STRINGS						\
+			return (result);					\
+		}										\
 		va_start(args, format_str);				\
 		result = Log_VA(logger,					\
 			ERRORINT,							\
@@ -188,6 +203,7 @@ typedef s_logger const* const*	t_logptrarr;
 			format_str, args);					\
 		va_end(args);							\
 	}											\
+	FREE_STRINGS								\
 	return (result);							\
 
 

@@ -178,6 +178,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (message_str == NULL || json == NULL)
 		{
 			Log_Fatal(logger, "Could not construct log message json");
+			String_Delete(&message_str);
 			goto failure;
 		}
 		if (logger->timestamp)
@@ -216,6 +217,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (result == NULL)
 		{
 			Log_Fatal(logger, "Could not construct log message head");
+			String_Delete(&message_str);
 			goto failure;
 		}
 		if (logger->timestamp)
@@ -224,6 +226,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 			result = String_Replace_String(result, "\n", "\n" LOG_TIMESTAMP_INDENT LOG_TIMESTAMP_SEPARATOR);
 			String_Delete(&tmp);
 		}
+		String_Delete(&message_str);
 	}
 	String_Delete(&timestamp);
 	String_Delete(&prefix_str);
