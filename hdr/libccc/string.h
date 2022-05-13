@@ -27,6 +27,7 @@
 #include "libccc.h"
 
 #include "libccc/format.h" // TODO remove this include ? (breaking change)
+#include "libccc/text/unicode.h"
 
 HEADER_CPP
 

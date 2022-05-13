@@ -8,7 +8,7 @@
 
 
 
-t_bool	ASCII_IsInCharset(t_ascii c, t_ascii const* charset)
+t_bool	CharASCII_IsInCharset(t_ascii c, t_ascii const* charset)
 {
 	t_size	i;
 

@@ -12,11 +12,11 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_ascii	ASCII_ToUppercase(t_ascii c)
+t_ascii	CharASCII_ToUppercase(t_ascii c)
 { return (toupper(c)); }
 #else
 inline
-t_ascii	ASCII_ToUppercase(t_ascii c)
+t_ascii	CharASCII_ToUppercase(t_ascii c)
 {
 	return (('a' <= c && c <= 'z') ? (c - ('a' - 'A')) : c);
 }
@@ -26,11 +26,11 @@ t_ascii	ASCII_ToUppercase(t_ascii c)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_ascii	ASCII_ToLowercase(t_ascii c)
+t_ascii	CharASCII_ToLowercase(t_ascii c)
 { return (tolower(c)); }
 #else
 inline
-t_ascii	ASCII_ToLowercase(t_ascii c)
+t_ascii	CharASCII_ToLowercase(t_ascii c)
 {
 	return (('A' <= c && c <= 'Z') ? (c + ('a' - 'A')) : c);
 }
