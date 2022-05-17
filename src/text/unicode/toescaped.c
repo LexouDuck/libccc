@@ -10,7 +10,7 @@
 
 t_size CharUTF32_ToEscaped_xFF(t_char *dest, t_utf32 c)
 {
-	if (c > 0xFF)
+	if (c > 0xFF) // TODO: this is dangerous because of signedness
 		return ERROR;
 
 	if (dest)

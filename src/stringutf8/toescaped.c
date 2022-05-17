@@ -1,101 +1,101 @@
-#include "libccc/char.h"
-#include "libccc/string.h"
-#include "libccc/stringarray.h"
+#include "libccc/stringutf8.h"
+#include "libccc/stringascii.h"
 #include "libccc/memory.h"
 #include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-t_bool ForceEncodingFor_NonPrintable(t_char const* str)
+// TODO: This should very unconveniently return `FALSE` for `modifier sequence` codepoints ONLY if it appears at the beginning of the string
+t_bool ForceEncodingFor_NonPrintable(t_utf8 const* str)
 {
 	return !CharUTF32_IsPrintable(CharUTF32_FromUTF8(str));
 }
 
-t_bool ForceEncodingFor_NonAscii(t_char const* str)
+t_bool ForceEncodingFor_NonASCII(t_utf8 const* str)
 {
 	return !CharUTF32_IsASCII(CharUTF32_FromUTF8(str));
 }
 
-t_bool ForceEncodingFor_NonAsciiOrNonPrintable(t_char const* str)
+t_bool ForceEncodingFor_NonASCIIOrNonPrintable(t_utf8 const* str)
 {
 	return ForceEncodingFor_NonPrintable(str)
-		|| ForceEncodingFor_NonAscii(str);
+		|| ForceEncodingFor_NonASCII(str);
 }
 
 
 _MALLOC()
-t_char* String_ToAsciiEscaped(t_char const* str)
+t_utf8* StringUTF8_ToASCIIEscaped(t_utf8 const* str)
 {
-	t_size expected_len = String_ToAsciiEscapedBuf(NULL, SIZE_ERROR, str);
+	t_size expected_len = StringUTF8_ToASCIIEscapedBuf(NULL, SIZE_ERROR, str);
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
-	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
+	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
-	if (String_ToAsciiEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
+	if (StringUTF8_ToASCIIEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
 	{
-		String_Delete(&result);
+		StringASCII_Delete(&result);
 		return (NULL);
 	}
 	return result;
 }
 
-t_size String_ToAsciiEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
+t_size StringUTF8_ToASCIIEscapedBuf(t_utf8 *dest, t_size max_writelen, t_utf8 const* str)
 {
-	t_char const* charset   =     "\\"     "'"     "\""     "/"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
-	t_char const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
+	t_utf8 const* charset   =     "\\"     "'"     "\""     "/"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
+	t_utf8 const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
-	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonAsciiOrNonPrintable, ENCODER_smart);
+	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonASCIIOrNonPrintable, ENCODER_smart);
 }
 
 
 _MALLOC()
-t_char* String_ToJsonEscaped(t_char const* str)
+t_utf8* StringUTF8_ToJsonEscaped(t_utf8 const* str)
 {
-	t_size expected_len = String_ToJsonEscapedBuf(NULL, SIZE_ERROR, str);
+	t_size expected_len = StringUTF8_ToJsonEscapedBuf(NULL, SIZE_ERROR, str);
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
-	t_char* result = Memory_Allocate((expected_len + 1) * sizeof(t_char));
+	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
-	if (String_ToJsonEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
+	if (StringUTF8_ToJsonEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
 	{
-		String_Delete(&result);
+		StringASCII_Delete(&result);
 		return (NULL);
 	}
 	return result;
 }
 
-t_size String_ToJsonEscapedBuf(t_char *dest, t_size max_writelen, t_char const* str)
+t_size StringUTF8_ToJsonEscapedBuf(t_utf8 *dest, t_size max_writelen, t_utf8 const* str)
 {
-	t_char const* charset   =    "\b"    "\f"    "\n"    "\r"    "\t"     "\""     "\\";
-	t_char const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\\\"" , "\\\\"};
+	t_utf8 const* charset   =    "\b"    "\f"    "\n"    "\r"    "\t"     "\""     "\\";
+	t_utf8 const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\\\"" , "\\\\"};
 
-	return String_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_uFFFF);
+	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_uFFFF);
 }
 
 
 
 
 
-static t_size Write_Alias(t_char *dest, t_size max_writelen, t_char const* alias)
+static t_size Write_Alias(t_utf8 *dest, t_size max_writelen, t_utf8 const* alias)
 {
-	t_size expected_len = String_Length(alias);
+	t_size expected_len = StringASCII_Length(alias);
 
 	if (expected_len > max_writelen)
 		return 0;
 
 	if (dest)
 	{
-		String_Copy(dest, alias);
+		StringASCII_Copy(dest, alias);
 	}
 	return expected_len;
 }
 
-static t_size Write_Encoded(t_char *dest, t_char const* str, t_size writeable_len, f_char_encoder encoder)
+static t_size Write_Encoded(t_utf8 *dest, t_utf8 const* str, t_size writeable_len, f_char_encoder encoder)
 {
 	t_utf32 c = CharUTF32_FromUTF8(str);
 	//note: `str` has already been check for validity, call could not fail
@@ -113,44 +113,44 @@ static t_size Write_Encoded(t_char *dest, t_char const* str, t_size writeable_le
 }
 
 
-t_char*	String_ToEscaped(
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* aliases,
+t_utf8*	StringUTF8_ToEscaped(
+		t_utf8 const* str,
+		t_utf8 const* charset,
+		t_utf8 const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
-	return String_ToEscaped_e(NULL, NULL, SIZE_ERROR, str, charset, aliases, force_encoding_for, char_encoder);
+	return StringUTF8_ToEscaped_e(NULL, NULL, SIZE_ERROR, str, charset, aliases, force_encoding_for, char_encoder);
 }
 
-t_char*	String_ToEscaped_e(
+t_utf8*	StringUTF8_ToEscaped_e(
 		t_size *out_len,
 		t_size *out_readlen,
 		t_size max_resultlen,
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* aliases,
+		t_utf8 const* str,
+		t_utf8 const* charset,
+		t_utf8 const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
-	t_char *result;
+	t_utf8 *result;
 
 	if (out_len) *out_len = SIZE_ERROR;
 
 	// The `max_resultlen` of `*ToEscapedBuf` does include the final '\0', unlike the `max_resultlen` of `*ToEscape`
 	t_size new_max_resultlen = (max_resultlen != SIZE_ERROR && max_resultlen != SIZE_MAX ? max_resultlen + 1 : SIZE_ERROR);
-	t_size expected_len = String_ToEscapedBuf_e(NULL, out_readlen, new_max_resultlen, str, charset, aliases, force_encoding_for, char_encoder);
+	t_size expected_len = StringUTF8_ToEscapedBuf_e(NULL, out_readlen, new_max_resultlen, str, charset, aliases, force_encoding_for, char_encoder);
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
-	result = (t_char*)Memory_Allocate(expected_len + sizeof(t_char));
+	result = (t_utf8*)Memory_Allocate(expected_len + sizeof(t_utf8));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 
 	
-	t_size actual_len = String_ToEscapedBuf_e(result, out_readlen, expected_len + 1, str, charset, aliases, force_encoding_for, char_encoder);
+	t_size actual_len = StringUTF8_ToEscapedBuf_e(result, out_readlen, expected_len + 1, str, charset, aliases, force_encoding_for, char_encoder);
 	if (actual_len == SIZE_ERROR)
 	{
-		String_Delete(&result);
+		StringASCII_Delete(&result);
 		return (NULL);
 	}
 
@@ -159,25 +159,25 @@ t_char*	String_ToEscaped_e(
 	return result;
 }
 
-t_size	String_ToEscapedBuf(
-		t_char *dest,
+t_size	StringUTF8_ToEscapedBuf(
+		t_utf8 *dest,
 		t_size max_writelen,
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* aliases,
+		t_utf8 const* str,
+		t_utf8 const* charset,
+		t_utf8 const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
-	return String_ToEscapedBuf_e(dest, NULL, max_writelen, str, charset, aliases, force_encoding_for, char_encoder);
+	return StringUTF8_ToEscapedBuf_e(dest, NULL, max_writelen, str, charset, aliases, force_encoding_for, char_encoder);
 }
 
-t_size String_ToEscapedBuf_e(
-		t_char *dest,
+t_size StringUTF8_ToEscapedBuf_e(
+		t_utf8 *dest,
 		t_size *out_readlen,
 		t_size max_writelen,
-		t_char const* str,
-		t_char const* charset,
-		t_char const* const* aliases,
+		t_utf8 const* str,
+		t_utf8 const* charset,
+		t_utf8 const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder)
 {
@@ -202,16 +202,16 @@ t_size String_ToEscapedBuf_e(
 		max_writelen = SIZE_MAX;
 	while (wr_idx < (max_writelen - 1) && str[rd_idx] != '\0')
 	{
-		t_char* write_head = (dest ? dest + wr_idx : NULL);
-		t_char const* read_head = str + rd_idx;
+		t_utf8* write_head = (dest ? dest + wr_idx : NULL);
+		t_utf8 const* read_head = str + rd_idx;
 		t_size writeable_len = max_writelen - wr_idx - 1;
 		t_size len_written = 0;
 		t_size len_read;
 		if (!CharUTF8_IsSeqValid(read_head, &len_read))
 			HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
 
-		t_char const *alias = NULL;
-		t_char const *find_res = String_Find_Char(charset, CharUTF32_FromUTF8(read_head));
+		t_utf8 const *alias = NULL;
+		t_utf8 const *find_res = StringASCII_Find_Char(charset, CharUTF32_FromUTF8(read_head));
 
 		if (find_res != NULL)
 		{
@@ -237,7 +237,7 @@ t_size String_ToEscapedBuf_e(
 		{
 			len_written = len_read;
 			if (dest)
-				String_Copy_N(write_head, read_head, len_read);
+				StringASCII_Copy_N(write_head, read_head, len_read);
 		}
 
 		if (len_written == 0)

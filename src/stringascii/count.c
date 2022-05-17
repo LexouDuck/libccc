@@ -1,5 +1,5 @@
 
-#include "libccc/string.h"
+#include "libccc/stringascii.h"
 #include "libccc/char.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

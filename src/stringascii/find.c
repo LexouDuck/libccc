@@ -1,4 +1,3 @@
-
 #include "libccc/string.h"
 #include "libccc/char.h"
 

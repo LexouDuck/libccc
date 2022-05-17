@@ -297,6 +297,8 @@ t_bool						CharUTF32_IsPunctuation(t_utf32 c);
 /*!
 **	@isostd{C95,https://en.cppreference.com/w/c/string/wide/iswprint}
 **
+**	// TODO: return `FALSE` for modifier sequence but also expose a `CharUTF32_IsModifierSequence` or something
+**
 **	@param	c	The character to check
 **	@returns
 **	`TRUE` if the given char `c` is a printable Unicode character,

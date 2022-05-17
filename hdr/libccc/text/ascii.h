@@ -399,6 +399,21 @@ t_ascii						CharASCII_ToLowercase(t_ascii c);
 //!@}
 
 
+//! Converts `c` to \xFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \xFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 4 ASCII char to dest to represent the character in the format \xFF
+**	This function's behavior is kept consisten with `CharUTF8_ToEscaped_xFF`
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size CharASCII_ToEscaped_xFF(t_ascii *dest, t_ascii c);
 
 #endif
 
