@@ -11,10 +11,10 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Copy(t_char* dest, t_char const* src)
+t_ascii*	String_Copy(t_ascii* dest, t_ascii const* src)
 { return (strcpy(dest, src)); }
 #else
-t_char*	String_Copy(t_char* dest, t_char const* src)
+t_ascii*	String_Copy(t_ascii* dest, t_ascii const* src)
 {
 	t_size	i;
 
@@ -35,12 +35,12 @@ t_char*	String_Copy(t_char* dest, t_char const* src)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
+t_ascii*	String_Copy_N(t_ascii* dest, t_ascii const* src, t_size n)
 { return (strncpy(dest, src, n)); }
 #else
-t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
+t_ascii*	String_Copy_N(t_ascii* dest, t_ascii const* src, t_size n)
 {
-	t_char*	str;
+	t_ascii*	str;
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
@@ -67,10 +67,10 @@ t_char*	String_Copy_N(t_char* dest, t_char const* src, t_size n)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 inline
-t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
+t_size	String_Copy_L(t_ascii* dest, t_ascii const* src, t_size size)
 { return (strlcpy(dest, src, size)); }
 #else
-t_size	String_Copy_L(t_char* dest, t_char const* src, t_size size)
+t_size	String_Copy_L(t_ascii* dest, t_ascii const* src, t_size size)
 {
 	t_size	i;
 

@@ -37,7 +37,7 @@
 #endif
 
 #ifndef 	vscprintf
-static	int	vscprintf(t_char const* format, va_list args)
+static	int	vscprintf(t_ascii const* format, va_list args)
 {
 	va_list args_copy;
 
@@ -55,12 +55,12 @@ static	int	vscprintf(t_char const* format, va_list args)
 #endif
 
 #ifndef 	vasprintf
-static	int	vasprintf(t_char** a_str, t_char const* format, va_list args)
+static	int	vasprintf(t_ascii** a_str, t_ascii const* format, va_list args)
 {
 	int length = vscprintf(format, args);
 	if (length == -1)
 		return -1;
-	t_char* str = (t_char*)Memory_Allocate((size_t)length + sizeof(""));
+	t_ascii* str = (t_ascii*)Memory_Allocate((size_t)length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (-1);)
 	int result = vsnprintf(str, length + 1, format, args);
 	if (result == -1)
@@ -77,10 +77,10 @@ static	int	vasprintf(t_char** a_str, t_char const* format, va_list args)
 
 
 
-t_char*	String_Format_VA(t_char const* format, va_list args)
+t_ascii*	String_Format_VA(t_ascii const* format, va_list args)
 {
 	int result;
-	t_char* str = NULL;
+	t_ascii* str = NULL;
 
 	result = vasprintf(&str, format, args);
 	if (result < 0)
@@ -92,10 +92,10 @@ t_char*	String_Format_VA(t_char const* format, va_list args)
 	return (str);
 }
 
-t_char*	String_Format(t_char const* format, ...)
+t_ascii*	String_Format(t_ascii const* format, ...)
 {
 	int result;
-	t_char* str = NULL;
+	t_ascii* str = NULL;
 	va_list args;
 
 	va_start(args, format);
@@ -112,7 +112,7 @@ t_char*	String_Format(t_char const* format, ...)
 
 
 
-t_size	String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_list args)
+t_size	String_Format_N_VA(t_ascii* dest, t_size max, t_ascii const* format, va_list args)
 {
 	t_size result;
 
@@ -120,7 +120,7 @@ t_size	String_Format_N_VA(t_char* dest, t_size max, t_char const* format, va_lis
 	return (result);
 }
 
-t_size	String_Format_N(t_char* dest, t_size max, t_char const* format, ...)
+t_size	String_Format_N(t_ascii* dest, t_size max, t_ascii const* format, ...)
 {
 	t_size result;
 	va_list args;

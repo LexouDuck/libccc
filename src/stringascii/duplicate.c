@@ -13,12 +13,12 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2001__)
 inline
-t_char*	String_Duplicate(t_char const* str)
+t_ascii*	String_Duplicate(t_ascii const* str)
 { return (strdup(str)); }
 #else
-t_char*	String_Duplicate(t_char const* str)
+t_ascii*	String_Duplicate(t_ascii const* str)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -45,12 +45,12 @@ t_char*	String_Duplicate(t_char const* str)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2008__)
 inline
-t_char*	String_Duplicate_N(t_char const* str, t_size n)
+t_ascii*	String_Duplicate_N(t_ascii const* str, t_size n)
 { return (strndup(str, n)); }
 #else
-t_char*	String_Duplicate_N(t_char const* str, t_size n)
+t_ascii*	String_Duplicate_N(t_ascii const* str, t_size n)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -75,9 +75,9 @@ t_char*	String_Duplicate_N(t_char const* str, t_size n)
 
 
 
-t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
+t_ascii*	String_Duplicate_Char(t_ascii const* str, t_ascii const c)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -101,9 +101,9 @@ t_char*	String_Duplicate_Char(t_char const* str, t_char const c)
 
 
 
-t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
+t_ascii*	String_Duplicate_Charset(t_ascii const* str, t_ascii const* charset)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -127,9 +127,9 @@ t_char*	String_Duplicate_Charset(t_char const* str, t_char const* charset)
 
 
 
-t_char*	String_Duplicate_String(t_char const* str, t_char const* target)
+t_ascii*	String_Duplicate_String(t_ascii const* str, t_ascii const* target)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	n;
 	t_size	i;

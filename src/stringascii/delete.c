@@ -7,7 +7,7 @@
 
 
 inline
-void	String_Free(t_char* str)
+void	String_Free(t_ascii* str)
 {
 	Memory_Free(str);
 }
@@ -15,7 +15,7 @@ void	String_Free(t_char* str)
 
 
 inline
-void	String_Delete(t_char** a_str)
+void	String_Delete(t_ascii** a_str)
 {
 	HANDLE_ERROR(NULLPOINTER, (a_str == NULL), return;)
 	if (*a_str)

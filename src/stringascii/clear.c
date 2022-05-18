@@ -5,7 +5,7 @@
 
 
 
-void	String_Clear(t_char* str)
+void	String_Clear(t_ascii* str)
 {
 	t_size	i;
 

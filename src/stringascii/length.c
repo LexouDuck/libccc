@@ -11,11 +11,11 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_size	String_Length(t_char const* str)
+t_size	String_Length(t_ascii const* str)
 { return (strlen(str)); }
 #else
 inline
-t_size	String_Length(t_char const* str)
+t_size	String_Length(t_ascii const* str)
 {
 	t_size	i;
 

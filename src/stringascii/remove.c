@@ -8,11 +8,11 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 static
-t_sintmax	String_Remove_IndexOf(t_char const* str, t_char const* query)
+t_sintmax	String_Remove_IndexOf(t_ascii const* str, t_ascii const* query)
 { return (strstr(str, query)); }
 #else
 static
-t_sintmax	String_Remove_IndexOf(t_char const* str, t_char const* query)
+t_sintmax	String_Remove_IndexOf(t_ascii const* str, t_ascii const* query)
 {
 	t_size	i;
 
@@ -38,10 +38,10 @@ t_sintmax	String_Remove_IndexOf(t_char const* str, t_char const* query)
 
 
 
-t_char*	String_Remove(t_char const* str, t_char const* query)
+t_ascii*	String_Remove(t_ascii const* str, t_ascii const* query)
 {
 	t_sintmax	matches;
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	length_query;
 	t_size	i;
@@ -53,7 +53,7 @@ t_char*	String_Remove(t_char const* str, t_char const* query)
 	length_query = String_Length(query);
 	i = matches * length_query;
 	length = (length < i) ? 0 : length - i;
-	result = (t_char*)Memory_Allocate(length + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	matches = String_Remove_IndexOf(str, query);
 	i = 0;

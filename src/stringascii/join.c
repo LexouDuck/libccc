@@ -7,7 +7,7 @@
 
 
 static
-void	String_Join_GetWordAndCharCount(t_char const** strarr, t_sint* w_nb, t_sint* c_nb)
+void	String_Join_GetWordAndCharCount(t_ascii const** strarr, t_sint* w_nb, t_sint* c_nb)
 {
 	t_sint str_at;
 
@@ -21,7 +21,7 @@ void	String_Join_GetWordAndCharCount(t_char const** strarr, t_sint* w_nb, t_sint
 }
 
 static
-void	String_Join_FoldIntoString(t_char* dest, t_char const** strarr, t_char const* separator)
+void	String_Join_FoldIntoString(t_ascii* dest, t_ascii const** strarr, t_ascii const* separator)
 {
 	t_sint i;
 	t_sint words;
@@ -50,9 +50,9 @@ void	String_Join_FoldIntoString(t_char* dest, t_char const** strarr, t_char cons
 	dest[i] = '\0';
 }
 
-t_char*		String_Join(t_char const** strarr, t_char const* separator)
+t_ascii*		String_Join(t_ascii const** strarr, t_ascii const* separator)
 {
-	t_char*	str;
+	t_ascii*	str;
 	t_sint	strarr_strs;
 	t_sint	strarr_chars;
 	t_sint	total_sep_chars;

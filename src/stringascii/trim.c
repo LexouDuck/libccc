@@ -6,7 +6,7 @@
 
 
 
-t_char*		String_Trim(t_char const* str, t_char const* charset)
+t_ascii*		String_Trim(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	offset;
 	t_size	length;
@@ -34,7 +34,7 @@ t_char*		String_Trim(t_char const* str, t_char const* charset)
 	return (String_Sub(str, offset, length));
 }
 
-t_char*		String_Trim_L(t_char const* str, t_char const* charset)
+t_ascii*		String_Trim_L(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
@@ -53,7 +53,7 @@ t_char*		String_Trim_L(t_char const* str, t_char const* charset)
 
 
 
-t_char*		String_Trim_R(t_char const* str, t_char const* charset)
+t_ascii*		String_Trim_R(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 

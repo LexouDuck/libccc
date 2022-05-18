@@ -6,9 +6,9 @@
 
 
 
-t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
+t_ascii*	String_Map(t_ascii const* str, t_ascii (*map)(t_ascii c))
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -17,7 +17,7 @@ t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)Memory_Allocate(length + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
@@ -31,9 +31,9 @@ t_char*	String_Map(t_char const* str, t_char (*map)(t_char c))
 
 
 
-t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
+t_ascii*	String_Map_I(t_ascii const* str, t_ascii (*map)(t_ascii c, t_size index))
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -42,7 +42,7 @@ t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)Memory_Allocate(length + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < length)
@@ -56,9 +56,9 @@ t_char*	String_Map_I(t_char const* str, t_char (*map)(t_char c, t_size index))
 
 
 
-t_char*	String_Map_InPlace(t_char** a_str, t_char (*f)(t_char))
+t_ascii*	String_Map_InPlace(t_ascii** a_str, t_ascii (*f)(t_ascii))
 {
-	t_char*	tmp;
+	t_ascii*	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (a_str == NULL), return (NULL);)

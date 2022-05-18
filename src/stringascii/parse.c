@@ -10,7 +10,7 @@
 
 
 static
-t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
+t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 {
 	t_size	length = 0;
 	t_size	i = 0;
@@ -24,33 +24,33 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 				"string ends with backslash, potential buffer overrun:\n%s", str)
 			switch (str[i])
 			{
-				case 'a':	length += 1 * sizeof(t_char);	break; // Alert (Beep, Bell) (added in C89)[1]
-				case 'b':	length += 1 * sizeof(t_char);	break; // Backspace
-				case 't':	length += 1 * sizeof(t_char);	break; // Horizontal Tab
-				case 'n':	length += 1 * sizeof(t_char);	break; // Newline (Line Feed); see notes below
-				case 'v':	length += 1 * sizeof(t_char);	break; // Vertical Tab
-				case 'f':	length += 1 * sizeof(t_char);	break; // Form-feed
-				case 'r':	length += 1 * sizeof(t_char);	break; // Carriage Return
-				case 'e':	length += 1 * sizeof(t_char);	break; // Escape
-				case '\'':	length += 1 * sizeof(t_char);	break; // Single quotation mark
-				case '\"':	length += 1 * sizeof(t_char);	break; // Double quotation mark
-				case  '?':	length += 1 * sizeof(t_char);	break; // Question mark (used to avoid trigraphs)
-				case  '/':	length += 1 * sizeof(t_char);	break; // Forward slash
-				case '\\':	length += 1 * sizeof(t_char);	break; // Backslash
-				case 'x':	length += 1 * sizeof(t_char);	break; // Hexadecimal t_char value
-				case 'u':	length += 2 * sizeof(t_char);	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
-				case 'U':	length += 4 * sizeof(t_char);	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
+				case 'a':	length += 1 * sizeof(t_ascii);	break; // Alert (Beep, Bell) (added in C89)[1]
+				case 'b':	length += 1 * sizeof(t_ascii);	break; // Backspace
+				case 't':	length += 1 * sizeof(t_ascii);	break; // Horizontal Tab
+				case 'n':	length += 1 * sizeof(t_ascii);	break; // Newline (Line Feed); see notes below
+				case 'v':	length += 1 * sizeof(t_ascii);	break; // Vertical Tab
+				case 'f':	length += 1 * sizeof(t_ascii);	break; // Form-feed
+				case 'r':	length += 1 * sizeof(t_ascii);	break; // Carriage Return
+				case 'e':	length += 1 * sizeof(t_ascii);	break; // Escape
+				case '\'':	length += 1 * sizeof(t_ascii);	break; // Single quotation mark
+				case '\"':	length += 1 * sizeof(t_ascii);	break; // Double quotation mark
+				case  '?':	length += 1 * sizeof(t_ascii);	break; // Question mark (used to avoid trigraphs)
+				case  '/':	length += 1 * sizeof(t_ascii);	break; // Forward slash
+				case '\\':	length += 1 * sizeof(t_ascii);	break; // Backslash
+				case 'x':	length += 1 * sizeof(t_ascii);	break; // Hexadecimal t_ascii value
+				case 'u':	length += 2 * sizeof(t_ascii);	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
+				case 'U':	length += 4 * sizeof(t_ascii);	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				default:
-					if (Char_IsDigit_Oct(str[i])) // Octal t_char value
-						length += 1 * sizeof(t_char);
+					if (Char_IsDigit_Oct(str[i])) // Octal t_ascii value
+						length += 1 * sizeof(t_ascii);
 					else if (any_escape)
-						length += 1 * sizeof(t_char);
+						length += 1 * sizeof(t_ascii);
 					else
-						length += 2 * sizeof(t_char);
+						length += 2 * sizeof(t_ascii);
 					break;
 			}
 		}
-		length += 1 * sizeof(t_char);
+		length += 1 * sizeof(t_ascii);
 		++i;
 	}
 	return (length);
@@ -73,10 +73,10 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 
 
 
-t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escape)
+t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_escape)
 {
-	t_char*	result = NULL;
-	t_char	tmp[9] = { 0 };
+	t_ascii*	result = NULL;
+	t_ascii	tmp[9] = { 0 };
 	t_utf32	unicode = 0;
 	t_bool	error = FALSE;
 	t_size	index = 0;
@@ -85,7 +85,7 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), goto failure;)
 	if (n == 0)
 		n = SIZE_MAX;
-	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape, n) + sizeof(""));
+	result = (t_ascii*)Memory_New(String_Parse_GetLength(str, any_escape, n) + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	while (index < n && str[index])
 	{
@@ -108,8 +108,8 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 				case '\"':	result[i++] = '\"';		break; // Double quotation mark
 				case  '/':	result[i++] = '/';		break; // Forward Slash
 				case '\\':	result[i++] = '\\';		break; // Backslash
-				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
-				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
+				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
+				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
 					tmp[0] = str[++index];	if (!Char_IsDigit_Hex(tmp[0]))	error = TRUE;
 					tmp[1] = str[++index];	if (!Char_IsDigit_Hex(tmp[1]))	error = TRUE;
@@ -150,9 +150,9 @@ failure:
 
 
 inline
-t_utf8*	String_FromEscape(t_char const* str, t_bool any_escape)
+t_utf8*	String_FromEscape(t_ascii const* str, t_bool any_escape)
 {
-	t_char*	result = NULL;
+	t_ascii*	result = NULL;
 	String_Parse(&result, str, 0, any_escape);
 	return (result);
 }

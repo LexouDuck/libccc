@@ -7,9 +7,9 @@
 
 
 
-t_char*		String_Replace_Char(t_char const* str, t_char const char_old, t_char const char_new)
+t_ascii*		String_Replace_Char(t_ascii const* str, t_ascii const char_old, t_ascii const char_new)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	i;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
@@ -20,7 +20,7 @@ t_char*		String_Replace_Char(t_char const* str, t_char const char_old, t_char co
 	i = 0;
 	while (str[i])
 		++i;
-	result = (t_char*)Memory_Allocate(i + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (str[i])
@@ -34,9 +34,9 @@ t_char*		String_Replace_Char(t_char const* str, t_char const char_old, t_char co
 
 
 
-t_char*		String_Replace_Charset(t_char const* str, t_char const* cset_old, t_char const* cset_new)
+t_ascii*		String_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_ascii const* cset_new)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	i;
 	t_size	j;
 	int		c_index;
@@ -57,7 +57,7 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* cset_old, t_cha
 				return (NULL);
 		++i;
 	}
-	result = (t_char*)Memory_Allocate(i + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (str[i])
@@ -74,10 +74,10 @@ t_char*		String_Replace_Charset(t_char const* str, t_char const* cset_old, t_cha
 
 
 
-t_char*		String_Replace_String(t_char const* str, t_char const* str_old, t_char const* str_new)
+t_ascii*		String_Replace_String(t_ascii const* str, t_ascii const* str_old, t_ascii const* str_new)
 {
-	t_char*		result;
-	t_char**	strarr;
+	t_ascii*		result;
+	t_ascii**	strarr;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (str_old == NULL), return (NULL);)
@@ -85,14 +85,14 @@ t_char*		String_Replace_String(t_char const* str, t_char const* str_old, t_char 
 	if (str_old == str_new)
 		return (String_Duplicate(str));
 	strarr = String_Split_String(str, str_old);
-	result = String_Join((t_char const**)strarr, str_new);
+	result = String_Join((t_ascii const**)strarr, str_new);
 	StringArray_Delete(&strarr);
 	return (result);
 }
 
 
 
-void		String_Replace_Char_InPlace(t_char* str, t_char const char_old, t_char const char_new)
+void		String_Replace_Char_InPlace(t_ascii* str, t_ascii const char_old, t_ascii const char_new)
 {
 	t_size	i;
 
@@ -110,7 +110,7 @@ void		String_Replace_Char_InPlace(t_char* str, t_char const char_old, t_char con
 
 
 
-void		String_Replace_Charset_InPlace(t_char* str, t_char const* cset_old, t_char const* cset_new)
+void		String_Replace_Charset_InPlace(t_ascii* str, t_ascii const* cset_old, t_ascii const* cset_new)
 {
 	t_size	i;
 	t_size	j;
@@ -141,9 +141,9 @@ void		String_Replace_Charset_InPlace(t_char* str, t_char const* cset_old, t_char
 
 
 
-void	String_Replace_String_InPlace(t_char** a_str, t_char const* str_old, t_char const* str_new)
+void	String_Replace_String_InPlace(t_ascii** a_str, t_ascii const* str_old, t_ascii const* str_new)
 {
-	t_char*	tmp;
+	t_ascii*	tmp;
 	tmp = String_Replace_String(*a_str, str_old, str_new);
 	String_Delete(a_str);
 	*a_str = tmp;

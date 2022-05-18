@@ -5,7 +5,7 @@
 
 
 
-inline void	String_Set(t_char* str, t_char c)
+inline void	String_Set(t_ascii* str, t_ascii c)
 {
 	t_size	i;
 

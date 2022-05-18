@@ -5,7 +5,7 @@
 
 
 
-void	String_Iterate(t_char* str, void (*f)(t_char* c))
+void	String_Iterate(t_ascii* str, void (*f)(t_ascii* c))
 {
 	t_size	i;
 
@@ -21,7 +21,7 @@ void	String_Iterate(t_char* str, void (*f)(t_char* c))
 
 
 
-void	String_Iterate_I(t_char* str, void (*f)(t_char* c, t_size index))
+void	String_Iterate_I(t_ascii* str, void (*f)(t_ascii* c, t_size index))
 {
 	t_size	i;
 

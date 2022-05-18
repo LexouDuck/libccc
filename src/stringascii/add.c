@@ -11,10 +11,10 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Add(t_char* dest, t_char const* src)
+t_ascii*	String_Add(t_ascii* dest, t_ascii const* src)
 { return (strcat(dest, src)); }
 #else
-t_char*	String_Add(t_char* dest, t_char const* src)
+t_ascii*	String_Add(t_ascii* dest, t_ascii const* src)
 {
 	t_size	length;
 	t_size	i;
@@ -39,10 +39,10 @@ t_char*	String_Add(t_char* dest, t_char const* src)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Add_N(t_char* dest, t_char const* src, t_size n)
+t_ascii*	String_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 { return (strncat(dest, src, n)); }
 #else
-t_char*	String_Add_N(t_char* dest, t_char const* src, t_size n)
+t_ascii*	String_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 {
 	t_size	length;
 	t_size	i;
@@ -72,10 +72,10 @@ t_char*	String_Add_N(t_char* dest, t_char const* src, t_size n)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 inline
-t_size	String_Add_L(t_char* dest, t_char const* src, t_size size)
+t_size	String_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
 { return (strlcat(dest, src, size)); }
 #else
-t_size	String_Add_L(t_char* dest, t_char const* src, t_size size)
+t_size	String_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
 {
 	t_size	dst_len;
 	t_size	src_len;

@@ -6,9 +6,9 @@
 
 
 
-t_char*		String_Concat(t_char const* str1, t_char const* str2)
+t_ascii*		String_Concat(t_ascii const* str1, t_ascii const* str2)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length1;
 	t_size	length2;
 	t_size	i;
@@ -17,7 +17,7 @@ t_char*		String_Concat(t_char const* str1, t_char const* str2)
 	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return (NULL);)
 	length1 = String_Length(str1);
 	length2 = String_Length(str2);
-	result = (t_char*)Memory_Allocate(length1 + length2 + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(length1 + length2 + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	for (i = 0; i < length1; ++i)
 	{
@@ -33,9 +33,9 @@ t_char*		String_Concat(t_char const* str1, t_char const* str2)
 
 
 
-t_char*	String_Append(t_char** a_dest, t_char const* src)
+t_ascii*	String_Append(t_ascii** a_dest, t_ascii const* src)
 {
-	t_char*	tmp;
+	t_ascii*	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
@@ -47,9 +47,9 @@ t_char*	String_Append(t_char** a_dest, t_char const* src)
 
 
 
-t_char*	String_Prepend(t_char const* src, t_char** a_dest)
+t_ascii*	String_Prepend(t_ascii const* src, t_ascii** a_dest)
 {
-	t_char*	tmp;
+	t_ascii*	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
@@ -61,9 +61,9 @@ t_char*	String_Prepend(t_char const* src, t_char** a_dest)
 
 
 
-t_char*	String_Merge(t_char** a_str1, t_char** a_str2)
+t_ascii*	String_Merge(t_ascii** a_str1, t_ascii** a_str2)
 {
-	t_char*	result;
+	t_ascii*	result;
 
 	HANDLE_ERROR(NULLPOINTER, (a_str1 == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (a_str2 == NULL), return (NULL);)

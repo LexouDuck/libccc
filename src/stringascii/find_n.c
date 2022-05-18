@@ -10,21 +10,21 @@
 
 
 
-t_char*	String_Find_N_Char(t_char const* str, t_utf32 c, t_size n)
+t_ascii*	String_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 {
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		// TODO: if t_char is t_ascii then return NULL
+		// TODO: if t_ascii is t_ascii then return NULL
 		t_sint size = 0;
 		t_utf32 current = 0;
 		while (i < n && str[i])
 		{
 			current = CharUTF32_FromUTF8(str + i);
 			if (current == c)
-				return ((t_char *)str + i);
+				return ((t_ascii *)str + i);
 			size = CharUTF8_Length(str + i);
 			if (size <= 0)
 				break;
@@ -36,28 +36,28 @@ t_char*	String_Find_N_Char(t_char const* str, t_utf32 c, t_size n)
 		c &= 0x7F;
 		while (i < n && str[i])
 		{
-			if (str[i] == (t_char)c)
-				return ((t_char*)str + i);
+			if (str[i] == (t_ascii)c)
+				return ((t_ascii*)str + i);
 			i += 1;
 		}
 		if (str[i] == '\0' && c == '\0')
-			return ((t_char*)str + i);
+			return ((t_ascii*)str + i);
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
 		"no char '%c'/0x%X found in the first "SF_SIZE" chars of string \"%s\"", c, c, n, str)
 }
 
 inline
-t_sintmax	String_IndexOf_N_Char(t_char const* str, t_utf32 c, t_size n)
+t_sintmax	String_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 {
-	t_char* result = String_Find_N_Char(str, c, n);
+	t_ascii* result = String_Find_N_Char(str, c, n);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }
 
 
 
-t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n)
+t_ascii*	String_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n)
 {
 	t_size	i;
 
@@ -69,7 +69,7 @@ t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((t_char*)str + i);
+				return ((t_ascii*)str + i);
 		}
 		++i;
 	}
@@ -78,16 +78,16 @@ t_char*	String_Find_N_Charset(t_char const* str, t_char const* charset, t_size n
 }
 
 inline
-t_sintmax	String_IndexOf_N_Charset(t_char const* str, t_char const* charset, t_size n)
+t_sintmax	String_IndexOf_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n)
 {
-	t_char* result = String_Find_N_Charset(str, charset, n);
+	t_ascii* result = String_Find_N_Charset(str, charset, n);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }
 
 
 
-t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
+t_ascii*	String_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n)
 {
 	t_size	length;
 	t_size	match;
@@ -110,7 +110,7 @@ t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 				break;
 		}
 		if (match == length)
-			return ((t_char*)str + i);
+			return ((t_ascii*)str + i);
 		++i;
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
@@ -118,9 +118,9 @@ t_char*	String_Find_N_String(t_char const* str, t_char const* query, t_size n)
 }
 
 inline
-t_sintmax	String_IndexOf_N_String(t_char const* str, t_char const* query, t_size n)
+t_sintmax	String_IndexOf_N_String(t_ascii const* str, t_ascii const* query, t_size n)
 {
-	t_char* result = String_Find_N_String(str, query, n);
+	t_ascii* result = String_Find_N_String(str, query, n);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }

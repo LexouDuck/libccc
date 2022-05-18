@@ -6,9 +6,9 @@
 
 
 
-t_char*	String_Reverse(t_char const* str)
+t_ascii*	String_Reverse(t_ascii const* str)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 	t_size	j;
@@ -17,7 +17,7 @@ t_char*	String_Reverse(t_char const* str)
 	length = 0;
 	while (str[length])
 		++length;
-	result = (t_char*)Memory_Allocate(length + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	j = length - 1;

@@ -6,9 +6,9 @@
 
 
 
-t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
+t_ascii*	String_Insert(t_ascii const* dest, t_ascii const* src, t_size offset)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	len_dst;
 	t_size	len_src;
 	t_size	i;
@@ -17,7 +17,7 @@ t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
 	len_dst = String_Length(dest);
 	len_src = String_Length(src);
-	result = (t_char*)Memory_Allocate(len_dst + len_src + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(len_dst + len_src + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = (t_size)-1;
 	while (++i < offset)
@@ -34,9 +34,9 @@ t_char*	String_Insert(t_char const* dest, t_char const* src, t_size offset)
 
 
 
-t_char*	String_Insert_InPlace(t_char** a_dest, t_char const* src, t_u32 index)
+t_ascii*	String_Insert_InPlace(t_ascii** a_dest, t_ascii const* src, t_u32 index)
 {
-	t_char*	tmp;
+	t_ascii*	tmp;
 
 	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
 	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)

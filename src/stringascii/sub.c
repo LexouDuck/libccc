@@ -6,9 +6,9 @@
 
 
 
-t_char*	String_Sub(t_char const* str, t_size index, t_size n)
+t_ascii*	String_Sub(t_ascii const* str, t_size index, t_size n)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -20,7 +20,7 @@ t_char*	String_Sub(t_char const* str, t_size index, t_size n)
 		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index)
 	HANDLE_ERROR_SF(LENGTH2LARGE, (index + n > length), return (NULL);,
 		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index + n)
-	result = (t_char*)Memory_Allocate(n + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	i = 0;
 	while (i < n)

@@ -6,9 +6,9 @@
 
 
 
-t_char*		String_Pad(t_char const* str, t_char c, t_size size)
+t_ascii*		String_Pad(t_ascii const* str, t_ascii c, t_size size)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
@@ -17,7 +17,7 @@ t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	result = (t_char*)Memory_Allocate(size + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	result[size] = '\0';
 	i = 0;
@@ -50,9 +50,9 @@ t_char*		String_Pad(t_char const* str, t_char c, t_size size)
 
 
 
-t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
+t_ascii*		String_Pad_L(t_ascii const* str, t_ascii c, t_size size)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	offset;
 	t_size	length;
 	t_size	i;
@@ -61,7 +61,7 @@ t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	result = (t_char*)Memory_Allocate(size + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	result[size] = '\0';
 	if (size < length)
@@ -94,9 +94,9 @@ t_char*		String_Pad_L(t_char const* str, t_char c, t_size size)
 
 
 
-t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
+t_ascii*		String_Pad_R(t_ascii const* str, t_ascii c, t_size size)
 {
-	t_char*	result;
+	t_ascii*	result;
 	t_size	length;
 	t_size	i;
 
@@ -104,7 +104,7 @@ t_char*		String_Pad_R(t_char const* str, t_char c, t_size size)
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
-	result = (t_char*)Memory_Allocate(size + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
 	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
 	result[size] = '\0';
 	i = 0;

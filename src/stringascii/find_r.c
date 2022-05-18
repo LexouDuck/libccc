@@ -12,22 +12,22 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
+t_ascii*	String_Find_R_Char(t_ascii const* str, t_utf32 c)
 { return (strchr(str, c)); }
 #else
-t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
+t_ascii*	String_Find_R_Char(t_ascii const* str, t_utf32 c)
 {
 	t_size	i = 0;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
 	if (c == '\0')
-		return ((t_char*)(str + i));
+		return ((t_ascii*)(str + i));
 	i = String_Length(str);
 	if (i == 0)
 		return (NULL);
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		// TODO: if t_char is t_ascii then return NULL
+		// TODO: if t_ascii is t_ascii then return NULL
 		t_utf32 current = 0;
 		while (i--)
 		{
@@ -35,7 +35,7 @@ t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
 				i -= 1;
 			current = CharUTF32_FromUTF8(str + i);
 			if (current == c)
-				return ((t_char *)str + i);
+				return ((t_ascii *)str + i);
 			if (i == 0)
 				break;
 		}
@@ -45,8 +45,8 @@ t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
 		c &= 0x7F;
 		while (i--)
 		{
-			if (str[i] == (t_char)c)
-				return ((t_char*)str + i);
+			if (str[i] == (t_ascii)c)
+				return ((t_ascii*)str + i);
 		}
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
@@ -55,16 +55,16 @@ t_char*	String_Find_R_Char(t_char const* str, t_utf32 c)
 #endif
 
 inline
-t_sintmax	String_IndexOf_R_Char(t_char const* str, t_utf32 c)
+t_sintmax	String_IndexOf_R_Char(t_ascii const* str, t_utf32 c)
 {
-	t_char* result = String_Find_R_Char(str, c);
+	t_ascii* result = String_Find_R_Char(str, c);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }
 
 
 
-t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
+t_ascii*	String_Find_R_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
@@ -74,7 +74,7 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 	while (str[i])
 		++i;
 	if (charset[0] == '\0')
-		return ((t_char*)(str + i));
+		return ((t_ascii*)(str + i));
 	else if (i == 0)
 		return (NULL);
 	while (i--)
@@ -82,7 +82,7 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((t_char*)str + i);
+				return ((t_ascii*)str + i);
 		}
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
@@ -90,16 +90,16 @@ t_char*	String_Find_R_Charset(t_char const* str, t_char const* charset)
 }
 
 inline
-t_sintmax	String_IndexOf_R_Charset(t_char const* str, t_char const* charset)
+t_sintmax	String_IndexOf_R_Charset(t_ascii const* str, t_ascii const* charset)
 {
-	t_char* result = String_Find_R_Charset(str, charset);
+	t_ascii* result = String_Find_R_Charset(str, charset);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }
 
 
 
-t_char*	String_Find_R_String(t_char const* str, t_char const* query)
+t_ascii*	String_Find_R_String(t_ascii const* str, t_ascii const* query)
 {
 	t_size	length;
 	t_size	match;
@@ -124,16 +124,16 @@ t_char*	String_Find_R_String(t_char const* str, t_char const* query)
 				break;
 		}
 		if (match == length)
-			return ((t_char*)str + i);
+			return ((t_ascii*)str + i);
 	}
 	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
 		"no string \"%s\" found in string \"%s\"", query, str)
 }
 
 inline
-t_sintmax	String_IndexOf_R_String(t_char const* str, t_char const* query)
+t_sintmax	String_IndexOf_R_String(t_ascii const* str, t_ascii const* query)
 {
-	t_char* result = String_Find_R_String(str, query);
+	t_ascii* result = String_Find_R_String(str, query);
 	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
 	return (result - str);
 }

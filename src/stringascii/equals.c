@@ -6,7 +6,7 @@
 
 
 
-t_bool	String_Equals(t_char const* str1, t_char const* str2)
+t_bool	String_Equals(t_ascii const* str1, t_ascii const* str2)
 {
 	t_size i;
 
@@ -26,7 +26,7 @@ t_bool	String_Equals(t_char const* str1, t_char const* str2)
 
 
 
-t_bool	String_Equals_N(t_char const* str1, t_char const* str2, t_size n)
+t_bool	String_Equals_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
 	t_size i;
 
@@ -48,7 +48,7 @@ t_bool	String_Equals_N(t_char const* str1, t_char const* str2, t_size n)
 
 
 
-t_bool	String_Equals_IgnoreCase(t_char const* str1, t_char const* str2)
+t_bool	String_Equals_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 {
 	t_size i;
 
@@ -70,7 +70,7 @@ t_bool	String_Equals_IgnoreCase(t_char const* str1, t_char const* str2)
 
 
 
-t_bool	String_Equals_N_IgnoreCase(t_char const* str1, t_char const* str2, t_size n)
+t_bool	String_Equals_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
 	t_size i;
 

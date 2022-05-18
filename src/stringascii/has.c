@@ -5,7 +5,7 @@
 
 
 
-t_bool		String_Has(t_char const* str, t_char const* charset)
+t_bool		String_Has(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 	t_size	c;
@@ -29,7 +29,7 @@ t_bool		String_Has(t_char const* str, t_char const* charset)
 
 
 
-t_bool		String_HasOnly(t_char const* str, t_char const* charset)
+t_bool		String_HasOnly(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 	t_size	c;
