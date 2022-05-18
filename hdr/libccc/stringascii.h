@@ -79,7 +79,7 @@ typedef t_ascii	(*f_string_ascii_map_i)			(unsigned int, t_ascii)
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_New(t_size n);
+t_ascii*			StringASCII_New(t_size n);
 #define c_strnew	StringASCII_New
 //!@}
 
@@ -98,7 +98,7 @@ t_ascii*				StringASCII_New(t_size n);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_New_C(t_size n, t_ascii c);
+t_ascii*			StringASCII_New_C(t_size n, t_ascii c);
 #define c_strcnew	StringASCII_New_C
 //!@}
 
@@ -134,7 +134,7 @@ void				StringASCII_Delete(t_ascii* *a_str);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Duplicate(t_ascii const* str);
+t_ascii*			StringASCII_Duplicate(t_ascii const* str);
 #define c_strdup	StringASCII_Duplicate
 //!@}
 
@@ -149,7 +149,7 @@ t_ascii*				StringASCII_Duplicate(t_ascii const* str);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Duplicate_N(t_ascii const* str, t_size n);
+t_ascii*			StringASCII_Duplicate_N(t_ascii const* str, t_size n);
 #define c_strndup	StringASCII_Duplicate_N
 //!@}
 
@@ -164,7 +164,7 @@ t_ascii*				StringASCII_Duplicate_N(t_ascii const* str, t_size n);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Duplicate_Char(t_ascii const* str, t_ascii const c);
+t_ascii*			StringASCII_Duplicate_Char(t_ascii const* str, t_ascii const c);
 #define c_strchrdup	StringASCII_Duplicate_Char
 //!@}
 
@@ -179,7 +179,7 @@ t_ascii*				StringASCII_Duplicate_Char(t_ascii const* str, t_ascii const c);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Duplicate_Charset(t_ascii const* str, t_ascii const* charset);
+t_ascii*			StringASCII_Duplicate_Charset(t_ascii const* str, t_ascii const* charset);
 #define c_strcstdup	StringASCII_Duplicate_Charset
 //!@}
 
@@ -194,7 +194,7 @@ t_ascii*				StringASCII_Duplicate_Charset(t_ascii const* str, t_ascii const* cha
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Duplicate_String(t_ascii const* str, t_ascii const* target);
+t_ascii*			StringASCII_Duplicate_String(t_ascii const* str, t_ascii const* target);
 #define c_strstrdup	StringASCII_Duplicate_String
 //!@}
 
@@ -237,7 +237,7 @@ void				StringASCII_Set(t_ascii* str, t_ascii c);
 **	`dest` (no allocation is performed).
 */
 //!@{
-t_ascii*				StringASCII_Copy(t_ascii* dest, t_ascii const* src);
+t_ascii*			StringASCII_Copy(t_ascii* dest, t_ascii const* src);
 #define c_strcpy	StringASCII_Copy
 //!@}
 
@@ -251,7 +251,7 @@ t_ascii*				StringASCII_Copy(t_ascii* dest, t_ascii const* src);
 **	`dest` (no allocation is performed).
 */
 //!@{
-t_ascii*				StringASCII_Copy_N(t_ascii* dest, t_ascii const* src, t_size n);
+t_ascii*			StringASCII_Copy_N(t_ascii* dest, t_ascii const* src, t_size n);
 #define c_strncpy	StringASCII_Copy_N
 //!@}
 
@@ -282,7 +282,7 @@ t_size				StringASCII_Copy_L(t_ascii* dest, t_ascii const* src, t_size size);
 **	`dest` (no allocation is performed).
 */
 //!@{
-t_ascii*				StringASCII_Add(t_ascii* dest, t_ascii const* src);
+t_ascii*			StringASCII_Add(t_ascii* dest, t_ascii const* src);
 #define c_strcat	StringASCII_Add
 #define c_stradd	StringASCII_Add
 //!@}
@@ -297,7 +297,7 @@ t_ascii*				StringASCII_Add(t_ascii* dest, t_ascii const* src);
 **	`dest` (no allocation is performed).
 */
 //!@{
-t_ascii*				StringASCII_Add_N(t_ascii* dest, t_ascii const* src, t_size n);
+t_ascii*			StringASCII_Add_N(t_ascii* dest, t_ascii const* src, t_size n);
 #define c_strncat	StringASCII_Add_N
 #define c_strnadd	StringASCII_Add_N
 //!@}
@@ -360,8 +360,8 @@ t_size				StringASCII_Length_N(t_ascii const* str, t_size n);
 **	`FALSE` otherwise
 */
 //!@{
-t_bool					StringASCII_Equals(t_ascii const* str1, t_ascii const* str2);
-#define c_strequ		StringASCII_Equals
+t_bool				StringASCII_Equals(t_ascii const* str1, t_ascii const* str2);
+#define c_strequ	StringASCII_Equals
 //!@}
 
 //!@doc	Checks whether the first `n` chars of the two given strings match
@@ -373,8 +373,8 @@ t_bool					StringASCII_Equals(t_ascii const* str1, t_ascii const* str2);
 **	`FALSE` otherwise
 */
 //!@{
-t_bool					StringASCII_Equals_N(t_ascii const* str1, t_ascii const* str2, t_size n);
-#define c_strnequ		StringASCII_Equals_N
+t_bool				StringASCII_Equals_N(t_ascii const* str1, t_ascii const* str2, t_size n);
+#define c_strnequ	StringASCII_Equals_N
 //!@}
 
 //!@doc	Checks whether the two given strings match (case-insensitive)
@@ -420,8 +420,8 @@ t_bool					StringASCII_Equals_N_IgnoreCase(t_ascii const* str1, t_ascii const* s
 **	or `0` if `str1` and `str2` have identical content.
 */
 //!@{
-t_sint					StringASCII_Compare(t_ascii const* str1, t_ascii const* str2);
-#define c_strcmp		StringASCII_Compare
+t_sint				StringASCII_Compare(t_ascii const* str1, t_ascii const* str2);
+#define c_strcmp	StringASCII_Compare
 //!@}
 
 //!@doc Compares the first `n` chars of the two given strings
@@ -433,8 +433,8 @@ t_sint					StringASCII_Compare(t_ascii const* str1, t_ascii const* str2);
 **	or `0` if `str1` and `str2` have identical content.
 */
 //!@{
-t_sint					StringASCII_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n);
-#define c_strncmp		StringASCII_Compare_N
+t_sint				StringASCII_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n);
+#define c_strncmp	StringASCII_Compare_N
 //!@}
 
 //!@doc Compares the two given strings (case-insensitive)
@@ -480,8 +480,8 @@ t_sint					StringASCII_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* 
 **	of any character found inside `charset`, otherwise returns `FALSE`.
 */
 //!@{
-t_bool						StringASCII_Has(t_ascii const* str, t_ascii const* charset);
-#define c_strhas			StringASCII_Has
+t_bool				StringASCII_Has(t_ascii const* str, t_ascii const* charset);
+#define c_strhas	StringASCII_Has
 //!@}
 
 //!@doc Check if the given `str` only contains characters from `charset`
@@ -493,8 +493,8 @@ t_bool						StringASCII_Has(t_ascii const* str, t_ascii const* charset);
 **	are contained within the string `charset`, otherwise returns `FALSE`.
 */
 //!@{
-t_bool						StringASCII_HasOnly(t_ascii const* str, t_ascii const* charset);
-#define c_strhasonly		StringASCII_HasOnly
+t_bool					StringASCII_HasOnly(t_ascii const* str, t_ascii const* charset);
+#define c_strhasonly	StringASCII_HasOnly
 //!@}
 
 
@@ -561,8 +561,8 @@ t_size						StringASCII_Count_String(t_ascii const* str, t_ascii const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_Char(t_ascii const* str, t_utf32 c);
-#define c_strchr				StringASCII_Find_Char
+t_ascii*			StringASCII_Find_Char(t_ascii const* str, t_utf32 c);
+#define c_strchr	StringASCII_Find_Char
 //!@}
 
 //!@doc Finds the first occurence of any char in `charset` inside the given string `str`
@@ -574,9 +574,9 @@ t_ascii*							StringASCII_Find_Char(t_ascii const* str, t_utf32 c);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset);
-#define c_strpbrk				StringASCII_Find_Charset
-#define c_strchrset				StringASCII_Find_Charset
+t_ascii*				StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset);
+#define c_strpbrk		StringASCII_Find_Charset
+#define c_strchrset		StringASCII_Find_Charset
 //!@}
 
 //!@doc Finds the first occurence of the string `query` inside the given string `str`
@@ -588,8 +588,8 @@ t_ascii*							StringASCII_Find_Charset(t_ascii const* str, t_ascii const* chars
 **	or `NULL` if nothing matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_String(t_ascii const* str, t_ascii const* query);
-#define c_strstr				StringASCII_Find_String
+t_ascii*			StringASCII_Find_String(t_ascii const* str, t_ascii const* query);
+#define c_strstr	StringASCII_Find_String
 //!@}
 
 
@@ -606,7 +606,7 @@ t_ascii*							StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
 */
 //!@{
 t_ascii*							StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c);
-#define c_strrchr				StringASCII_Find_R_Char
+#define c_strrchr					StringASCII_Find_R_Char
 #define StringASCII_FindLast_Char	StringASCII_Find_R_Char
 //!@}
 
@@ -619,9 +619,9 @@ t_ascii*							StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_R_Charset(t_ascii const* str, t_ascii const* charset);
-#define c_strrpbrk				StringASCII_Find_R_Charset
-#define c_strrchrset			StringASCII_Find_R_Charset
+t_ascii*								StringASCII_Find_R_Charset(t_ascii const* str, t_ascii const* charset);
+#define c_strrpbrk						StringASCII_Find_R_Charset
+#define c_strrchrset					StringASCII_Find_R_Charset
 #define StringASCII_FindLast_Charset	StringASCII_Find_R_Charset
 //!@}
 
@@ -634,9 +634,9 @@ t_ascii*							StringASCII_Find_R_Charset(t_ascii const* str, t_ascii const* cha
 **	or `NULL` if nothing matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_R_String(t_ascii const* str, t_ascii const* query);
-#define c_strrstr				StringASCII_Find_R_String
-#define StringASCII_FindLast_String	StringASCII_Find_R_String
+t_ascii*								StringASCII_Find_R_String(t_ascii const* str, t_ascii const* query);
+#define c_strrstr						StringASCII_Find_R_String
+#define StringASCII_FindLast_String		StringASCII_Find_R_String
 //!@}
 
 
@@ -652,8 +652,8 @@ t_ascii*							StringASCII_Find_R_String(t_ascii const* str, t_ascii const* quer
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_ascii*							StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n);
-#define c_strnchr				StringASCII_Find_N_Char
+t_ascii*			StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n);
+#define c_strnchr	StringASCII_Find_N_Char
 //!@}
 
 //!@doc Finds the first occurence of any char in `charset` inside the first `n` chars of the given string `str`
@@ -665,9 +665,9 @@ t_ascii*							StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n);
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_ascii*							StringASCII_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n);
-#define c_strnpbrk				StringASCII_Find_N_Charset
-#define c_strnchrset			StringASCII_Find_N_Charset
+t_ascii*				StringASCII_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n);
+#define c_strnpbrk		StringASCII_Find_N_Charset
+#define c_strnchrset	StringASCII_Find_N_Charset
 //!@}
 
 //!@doc Finds the first occurence of the string `query` inside the first `n` chars of the given string `str`
@@ -679,8 +679,8 @@ t_ascii*							StringASCII_Find_N_Charset(t_ascii const* str, t_ascii const* cha
 **	or `NULL` if nothing matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_ascii*							StringASCII_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n);
-#define c_strnstr				StringASCII_Find_N_String
+t_ascii*			StringASCII_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n);
+#define c_strnstr	StringASCII_Find_N_String
 //!@}
 
 
@@ -696,8 +696,8 @@ t_ascii*							StringASCII_Find_N_String(t_ascii const* str, t_ascii const* quer
 **	or -1 if `c` does not exist in `str`.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_Char(t_ascii const* str, t_utf32 c);
-#define c_strichr					StringASCII_IndexOf_Char
+t_sintmax			StringASCII_IndexOf_Char(t_ascii const* str, t_utf32 c);
+#define c_strichr	StringASCII_IndexOf_Char
 //!@}
 
 //!@doc Finds the first occurence of any char in `charset` inside the given string `str`
@@ -709,9 +709,9 @@ t_sintmax							StringASCII_IndexOf_Char(t_ascii const* str, t_utf32 c);
 **	or -1 if `c` does not exist in `str`.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* charset);
-#define c_stripbrk					StringASCII_IndexOf_Charset
-#define c_strichrset				StringASCII_IndexOf_Charset
+t_sintmax				StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* charset);
+#define c_stripbrk		StringASCII_IndexOf_Charset
+#define c_strichrset	StringASCII_IndexOf_Charset
 //!@}
 
 //!@doc Finds the first occurence of the string `query` inside the given string `str`
@@ -723,8 +723,8 @@ t_sintmax							StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* c
 **	or -1 if `query` does not exist in str.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query);
-#define c_stristr					StringASCII_IndexOf_String
+t_sintmax			StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query);
+#define c_stristr	StringASCII_IndexOf_String
 //!@}
 
 
@@ -740,9 +740,9 @@ t_sintmax							StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* qu
 **	or `NULL` if no char matched.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_R_Char(t_ascii const* str, t_utf32 c);
-#define c_strirchr					StringASCII_IndexOf_R_Char
-#define StringASCII_LastIndexOf_Char		StringASCII_IndexOf_R_Char
+t_sintmax								StringASCII_IndexOf_R_Char(t_ascii const* str, t_utf32 c);
+#define c_strirchr						StringASCII_IndexOf_R_Char
+#define StringASCII_LastIndexOf_Char	StringASCII_IndexOf_R_Char
 //!@}
 
 //!@doc Finds the last occurence of any char in `charset` inside the given string `str`
@@ -754,9 +754,9 @@ t_sintmax							StringASCII_IndexOf_R_Char(t_ascii const* str, t_utf32 c);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_R_Charset(t_ascii const* str, t_ascii const* charset);
-#define c_strirpbrk					StringASCII_IndexOf_R_Charset
-#define c_strirchrset				StringASCII_IndexOf_R_Charset
+t_sintmax								StringASCII_IndexOf_R_Charset(t_ascii const* str, t_ascii const* charset);
+#define c_strirpbrk						StringASCII_IndexOf_R_Charset
+#define c_strirchrset					StringASCII_IndexOf_R_Charset
 #define StringASCII_LastIndexOf_Charset	StringASCII_IndexOf_R_Charset
 //!@}
 
@@ -769,8 +769,8 @@ t_sintmax							StringASCII_IndexOf_R_Charset(t_ascii const* str, t_ascii const*
 **	or `NULL` if nothing matched.
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_R_String(t_ascii const* str, t_ascii const* query);
-#define c_strirstr					StringASCII_IndexOf_R_String
+t_sintmax								StringASCII_IndexOf_R_String(t_ascii const* str, t_ascii const* query);
+#define c_strirstr						StringASCII_IndexOf_R_String
 #define StringASCII_LastIndexOf_String	StringASCII_IndexOf_R_String
 //!@}
 
@@ -787,8 +787,8 @@ t_sintmax							StringASCII_IndexOf_R_String(t_ascii const* str, t_ascii const* 
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n);
-#define c_strinchr					StringASCII_IndexOf_N_Char
+t_sintmax				StringASCII_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n);
+#define c_strinchr		StringASCII_IndexOf_N_Char
 //!@}
 
 //!@doc Finds the first occurence of any char in `charset` inside the first `n` chars of the given string `str`
@@ -800,9 +800,9 @@ t_sintmax							StringASCII_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n);
-#define c_strinpbrk					StringASCII_IndexOf_N_Charset
-#define c_strinchrset				StringASCII_IndexOf_N_Charset
+t_sintmax					StringASCII_IndexOf_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n);
+#define c_strinpbrk			StringASCII_IndexOf_N_Charset
+#define c_strinchrset		StringASCII_IndexOf_N_Charset
 //!@}
 
 //!@doc Finds the first occurence of the string `query` inside the first `n` chars of the given string `str`
@@ -814,8 +814,8 @@ t_sintmax							StringASCII_IndexOf_N_Charset(t_ascii const* str, t_ascii const*
 **	or `NULL` if nothing matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax							StringASCII_IndexOf_N_String(t_ascii const* str, t_ascii const* query, t_size n);
-#define c_strinstr					StringASCII_IndexOf_N_String
+t_sintmax				StringASCII_IndexOf_N_String(t_ascii const* str, t_ascii const* query, t_size n);
+#define c_strinstr		StringASCII_IndexOf_N_String
 //!@}
 
 
@@ -836,7 +836,7 @@ t_sintmax							StringASCII_IndexOf_N_String(t_ascii const* str, t_ascii const* 
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Remove(t_ascii const* str, t_ascii const* query);
+t_ascii*				StringASCII_Remove(t_ascii const* str, t_ascii const* query);
 #define c_strremove		StringASCII_Remove
 //!@}
 
@@ -852,7 +852,7 @@ t_ascii*					StringASCII_Remove(t_ascii const* str, t_ascii const* query);
 */
 //!@{
 _MALLOC()
-t_ascii*						StringASCII_Replace_Char(t_ascii const* str, t_ascii const char_old, t_ascii const char_new);
+t_ascii*					StringASCII_Replace_Char(t_ascii const* str, t_ascii const char_old, t_ascii const char_new);
 #define c_strrep_char		StringASCII_Replace_Char
 //!@}
 
@@ -867,7 +867,7 @@ t_ascii*						StringASCII_Replace_Char(t_ascii const* str, t_ascii const char_ol
 */
 //!@{
 _MALLOC()
-t_ascii*						StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_ascii const* cset_new);
+t_ascii*					StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_ascii const* cset_new);
 #define c_strrep_cset		StringASCII_Replace_Charset
 //!@}
 
@@ -883,7 +883,7 @@ t_ascii*						StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cse
 */
 //!@{
 _MALLOC()
-t_ascii*						StringASCII_Replace_String(t_ascii const* str, t_ascii const* str_old, t_ascii const* str_new);
+t_ascii*					StringASCII_Replace_String(t_ascii const* str, t_ascii const* str_old, t_ascii const* str_new);
 #define c_strrep_str		StringASCII_Replace_String
 //!@}
 
@@ -904,7 +904,7 @@ t_ascii*						StringASCII_Replace_String(t_ascii const* str, t_ascii const* str_
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Concat(t_ascii const* str1, t_ascii const* str2);
+t_ascii*				StringASCII_Concat(t_ascii const* str1, t_ascii const* str2);
 #define c_strconcat		StringASCII_Concat
 //!@}
 
@@ -918,7 +918,7 @@ t_ascii*					StringASCII_Concat(t_ascii const* str1, t_ascii const* str2);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Append(t_ascii* *dest, t_ascii const* src);
+t_ascii*				StringASCII_Append(t_ascii* *dest, t_ascii const* src);
 #define c_strappend		StringASCII_Append
 //!@}
 
@@ -932,7 +932,7 @@ t_ascii*					StringASCII_Append(t_ascii* *dest, t_ascii const* src);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Prepend(t_ascii const* src, t_ascii* *dest);
+t_ascii*				StringASCII_Prepend(t_ascii const* src, t_ascii* *dest);
 #define c_strprepend	StringASCII_Prepend
 //!@}
 
@@ -947,7 +947,7 @@ t_ascii*					StringASCII_Prepend(t_ascii const* src, t_ascii* *dest);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Merge(t_ascii* *a_str1, t_ascii* *a_str2);
+t_ascii*				StringASCII_Merge(t_ascii* *a_str1, t_ascii* *a_str2);
 #define c_strmerge		StringASCII_Merge
 //!@}
 
@@ -967,7 +967,7 @@ t_ascii*					StringASCII_Merge(t_ascii* *a_str1, t_ascii* *a_str2);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Join(t_ascii const** strarr, t_ascii const* sep);
+t_ascii*				StringASCII_Join(t_ascii const** strarr, t_ascii const* sep);
 #define c_strjoin		StringASCII_Join
 //!@}
 
@@ -987,7 +987,7 @@ t_ascii*					StringASCII_Join(t_ascii const** strarr, t_ascii const* sep);
 **	replaces it with the result. Also returns the result.
 */
 //!@{
-t_ascii*							StringASCII_Insert_InPlace(t_ascii* *dest, t_ascii const* src, t_u32 index);
+t_ascii*						StringASCII_Insert_InPlace(t_ascii* *dest, t_ascii const* src, t_u32 index);
 #define c_strinsert_inplace		StringASCII_Insert_InPlace
 //!@}
 
@@ -1045,8 +1045,8 @@ void								StringASCII_Replace_String_InPlace(t_ascii* *a_str, t_ascii const* s
 **	The newly allocated string which replaces `*a_str`.
 */
 //!@{
-t_ascii*							StringASCII_Map_InPlace(t_ascii* *a_str, t_ascii (*map)(t_ascii));
-#define c_strmap_inplace		StringASCII_Map_InPlace
+t_ascii*					StringASCII_Map_InPlace(t_ascii* *a_str, t_ascii (*map)(t_ascii));
+#define c_strmap_inplace	StringASCII_Map_InPlace
 //!@}
 
 
@@ -1067,7 +1067,7 @@ t_ascii*							StringASCII_Map_InPlace(t_ascii* *a_str, t_ascii (*map)(t_ascii))
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Trim(t_ascii const* str, t_ascii const* charset);
+t_ascii*				StringASCII_Trim(t_ascii const* str, t_ascii const* charset);
 #define c_strtrim		StringASCII_Trim
 //!@}
 
@@ -1081,7 +1081,7 @@ t_ascii*					StringASCII_Trim(t_ascii const* str, t_ascii const* charset);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Trim_L(t_ascii const* str, t_ascii const* charset);
+t_ascii*				StringASCII_Trim_L(t_ascii const* str, t_ascii const* charset);
 #define c_strtriml		StringASCII_Trim_L
 //!@}
 
@@ -1095,7 +1095,7 @@ t_ascii*					StringASCII_Trim_L(t_ascii const* str, t_ascii const* charset);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Trim_R(t_ascii const* str, t_ascii const* charset);
+t_ascii*				StringASCII_Trim_R(t_ascii const* str, t_ascii const* charset);
 #define c_strtrimr		StringASCII_Trim_R
 //!@}
 
@@ -1112,7 +1112,7 @@ t_ascii*					StringASCII_Trim_R(t_ascii const* str, t_ascii const* charset);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Pad(t_ascii const* str, t_ascii c, t_size length);
+t_ascii*				StringASCII_Pad(t_ascii const* str, t_ascii c, t_size length);
 #define c_strpad		StringASCII_Pad
 //!@}
 
@@ -1127,7 +1127,7 @@ t_ascii*					StringASCII_Pad(t_ascii const* str, t_ascii c, t_size length);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Pad_L(t_ascii const* str, t_ascii c, t_size length);
+t_ascii*				StringASCII_Pad_L(t_ascii const* str, t_ascii c, t_size length);
 #define c_strpadl		StringASCII_Pad_L
 //!@}
 
@@ -1142,7 +1142,7 @@ t_ascii*					StringASCII_Pad_L(t_ascii const* str, t_ascii c, t_size length);
 */
 //!@{
 _MALLOC()
-t_ascii*					StringASCII_Pad_R(t_ascii const* str, t_ascii c, t_size length);
+t_ascii*				StringASCII_Pad_R(t_ascii const* str, t_ascii c, t_size length);
 #define c_strpadr		StringASCII_Pad_R
 //!@}
 
@@ -1212,7 +1212,7 @@ t_size					StringASCII_ToASCIIEscapedBuf(t_ascii *dest, size_t max_writelen, t_a
 **	- `\r`	Carriage return
 */
 _MALLOC()
-t_ascii*					StringASCII_ToJsonEscaped(t_ascii const* str);
+t_ascii*				StringASCII_ToJsonEscaped(t_ascii const* str);
 #define c_strtojsonesc	StringASCII_ToJsonEscaped
 
 //! Equivalent of `StringASCII_ToJsonEscaped` but writes in the given `dest` buffer.
@@ -1398,8 +1398,8 @@ t_size StringASCII_ToEscapedBuf_e(
 **	The amount of characters parsed from the given `str`.
 */
 //!@{
-t_size							StringASCII_Parse(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
-#define c_strparse				StringASCII_Parse
+t_size					StringASCII_Parse(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
+#define c_strparse		StringASCII_Parse
 //!@}
 
 //!@doc
@@ -1438,8 +1438,8 @@ t_ascii*							StringASCII_FromEscape(t_ascii const* str, t_bool any_escape);
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Reverse(t_ascii const* str);
-#define c_strrev		StringASCII_Reverse
+t_ascii*			StringASCII_Reverse(t_ascii const* str);
+#define c_strrev	StringASCII_Reverse
 //!@}
 
 
@@ -1470,8 +1470,8 @@ t_ascii*				StringASCII_Insert(t_ascii const* dest, t_ascii const* src, t_size i
 */
 //!@{
 _MALLOC()
-t_ascii*				StringASCII_Sub(t_ascii const* str, t_size index, t_size n);
-#define c_strsub		StringASCII_Sub
+t_ascii*			StringASCII_Sub(t_ascii const* str, t_size index, t_size n);
+#define c_strsub	StringASCII_Sub
 //!@}
 
 
