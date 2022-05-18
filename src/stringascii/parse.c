@@ -62,8 +62,10 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 #define	String_Parse_Unicode(_BITS_) \
 	for (t_u8 c = 0; c < ((_BITS_) / 8); ++c)									\
 	{																			\
-		tmp[c*2+0] = str[++index]; if (!Char_IsDigit_Hex(str[index]))	break;	\
-		tmp[c*2+1] = str[++index]; if (!Char_IsDigit_Hex(str[index]))	break;	\
+		tmp[c*2+0] = str[++index];												\
+		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; }			\
+		tmp[c*2+1] = str[++index];												\
+		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; }			\
 	}																			\
 	tmp[((_BITS_) / 4)] = '\0';													\
 	unicode = U##_BITS_##_FromString_Hex(tmp);									\
@@ -73,17 +75,18 @@ t_size	String_Parse_GetLength(t_char const* str, t_bool any_escape, t_size n)
 
 t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escape)
 {
-	t_char*	result;
+	t_char*	result = NULL;
 	t_char	tmp[9] = { 0 };
-	t_utf32	unicode;
+	t_utf32	unicode = 0;
+	t_bool	error = FALSE;
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(NULL);)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), goto failure;)
 	if (n == 0)
 		n = SIZE_MAX;
 	result = (t_char*)Memory_New(String_Parse_GetLength(str, any_escape, n) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), PARSE_RETURN(NULL);)
+	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
 	while (index < n && str[index])
 	{
 		if (str[index] == '\\') // escape sequence
@@ -108,8 +111,8 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_char (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
-					tmp[0] = str[++index];
-					tmp[1] = str[++index];
+					tmp[0] = str[++index];	if (!Char_IsDigit_Hex(tmp[0]))	error = TRUE;
+					tmp[1] = str[++index];	if (!Char_IsDigit_Hex(tmp[1]))	error = TRUE;
 					tmp[2] = '\0';
 					result[i++] = U8_FromString_Hex(tmp);
 					break;
@@ -126,13 +129,22 @@ t_size	String_Parse(t_utf8* *dest, t_char const* str, t_size n, t_bool any_escap
 					}
 					break;
 			}
+			HANDLE_ERROR(PARSE, (error), goto failure;)
 		}
 		else result[i++] = str[index];
 		++index;
 	}
 	result[i] = '\0';
-	if (dest)	*dest = result;
+	if (dest)
+		*dest = result;
 	return (index);
+failure:
+	if (result != NULL)
+	{
+		String_Delete(&result);
+	}
+	*dest = NULL;
+	return (i);
 }
 
 
