@@ -1,12 +1,12 @@
 
-#include "libccc/stringascii.h"
+#include "libccc/text/stringascii.h"
 #include "libccc/char.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
-t_size	String_Count_ascii(t_ascii const* str, t_utf32 c)
+t_size	StringASCII_Count_Char(t_ascii const* str, t_utf32 c)
 {
 	t_size	result = 0;
 	t_size	i = 0;
@@ -45,7 +45,7 @@ t_size	String_Count_ascii(t_ascii const* str, t_utf32 c)
 
 
 
-t_size	String_Count_asciiset(t_ascii const* str, t_ascii const* charset)
+t_size	StringASCII_Count_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	result;
 	t_size	i;

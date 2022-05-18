@@ -1,5 +1,5 @@
-#include "libccc/stringutf8.h"
-#include "libccc/stringascii.h"
+#include "libccc/text/stringutf8.h"
+#include "libccc/text/stringascii.h"
 #include "libccc/memory.h"
 #include "libccc/math.h"
 

@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/stringascii.h                     |    __    __  ___      _____  | ||
+||  libccc/text/stringascii.h                |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -28,7 +28,7 @@
 
 #include "libccc/format.h" // TODO remove this include ? (breaking change)
 #include "libccc/text/ascii.h"
-#include "libccc/stringutf8.h" // TODO: remove asap
+#include "libccc/text/stringutf8.h" // TODO: remove asap
 
 HEADER_CPP
 

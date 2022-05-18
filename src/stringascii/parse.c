@@ -2,7 +2,7 @@
 #include "libccc/char.h"
 #include "libccc/int.h"
 #include "libccc/memory.h"
-#include "libccc/string.h"
+#include "libccc/text/stringascii.h"
 #include "libccc/text/unicode.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

@@ -1,6 +1,6 @@
 
 #include "libccc/char.h"
-#include "libccc/string.h"
+#include "libccc/text/stringascii.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #include <string.h>

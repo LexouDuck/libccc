@@ -1,6 +1,6 @@
 #include "libccc/text/ascii.h"
-#include "libccc/stringascii.h"
-#include "libccc/stringutf8.h"
+#include "libccc/text/stringascii.h"
+#include "libccc/text/stringutf8.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

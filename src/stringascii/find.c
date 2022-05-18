@@ -1,4 +1,4 @@
-#include "libccc/string.h"
+#include "libccc/text/stringascii.h"
 #include "libccc/char.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS

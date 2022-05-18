@@ -1,6 +1,6 @@
 
 #include "libccc/memory.h"
-#include "libccc/string.h"
+#include "libccc/text/stringascii.h"
 #include "libccc/format.h"
 
 #ifndef __NOSTD__
