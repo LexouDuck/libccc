@@ -12,7 +12,7 @@
 void test_utf(void)	{}
 #warning "utf() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf(char const* test_name, int can_segfault,
+void	print_test_utf(char const* test_name, t_testflags flags,
 		char const* str,
 		char c)
 {
@@ -20,7 +20,7 @@ void	print_test_utf(char const* test_name, int can_segfault,
 }
 void	test_utf(void)
 {
-//	| TEST FUNCTION  | TEST NAME             |CAN SEGV| TEST ARGS
+//	| TEST FUNCTION  | TEST NAME             |TESTFLAG| TEST ARGS
 	// TODO
 }
 #endif
@@ -34,7 +34,7 @@ void test_mblen(void)	{}
 #warning "mblen() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mblen(char const* test_name, int can_segfault, t_utf8 const* str, t_sint expecting)
+void	print_test_mblen(char const* test_name, t_testflags flags, t_utf8 const* str, t_sint expecting)
 {
 	TEST_INIT(sint)
 	t_utf8 const* c;
@@ -50,7 +50,7 @@ void	print_test_mblen(char const* test_name, int can_segfault, t_utf8 const* str
 }
 void	test_mblen(void)
 {
-//	| TEST FUNCTION  | TEST NAME          | CAN SEGV      | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          | TESTFLAGS     | TEST ARGS
 	print_test_mblen("mblen            " , FALSE          , "Hello World!"                                   , 1);
 	print_test_mblen("mblen            " , FALSE          , test1                                            , 1);
 	print_test_mblen("mblen            " , FALSE          , test2                                            , 1);
@@ -65,7 +65,7 @@ void	test_mblen(void)
 	print_test_mblen("mblen invalid seq" , FALSE          , "\xA9\xF9"                                       , ERROR );
 	print_test_mblen("mblen invalid seq" , FALSE          , "\xF9"                                           , ERROR );
 	print_test_mblen("mblen (empty str)" , FALSE          , ""                                               , 0);
-	print_test_mblen("mblen (null str) " , SIGNAL_SIGSEGV , NULL                                             , ERROR);
+	print_test_mblen("mblen (null str) " , ALLOW_SIGSEGV , NULL                                             , ERROR);
 }
 #endif
 
@@ -74,7 +74,7 @@ void test_mbisseqvalid(void)	{}
 #warning "mbisseqvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mbisseqvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size expecting_length)
+void	print_test_mbisseqvalid(char const* test_name, t_testflags flags, t_utf8 const* str, t_bool expecting, t_size expecting_length)
 {
 	int step = (expecting_length != SIZE_ERROR ? expecting_length : 1);
 
@@ -99,7 +99,7 @@ void	print_test_mbisseqvalid(char const* test_name, int can_segfault, t_utf8 con
 }
 void	test_mbisseqvalid(void)
 {
-//	| TEST FUNCTION   | TEST NAME            | CAN SEGV       | TEST ARGS
+//	| TEST FUNCTION   | TEST NAME            | TESTFLAGS      | TEST ARGS
 	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , "Hello World!"                                  , TRUE , 1);
 	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , test1                                           , TRUE , 1);
 	print_test_mbisseqvalid("mbisseqvalid            "  , FALSE         , test2                                           , TRUE , 1);
@@ -114,7 +114,7 @@ void	test_mbisseqvalid(void)
 	print_test_mbisseqvalid("mbisseqvalid invalid seq 1", FALSE         , "\xA9\xF9"                                      , FALSE, SIZE_ERROR );
 	print_test_mbisseqvalid("mbisseqvalid invalid seq 2", FALSE         , "\xE0\xA0"                                      , FALSE, SIZE_ERROR );
 	print_test_mbisseqvalid("mbisseqvalid (empty str)"  , FALSE         , ""                                              , TRUE , 0);
-	print_test_mbisseqvalid("mbisseqvalid (null str) "  , SIGNAL_SIGSEGV, NULL                                            , FALSE, SIZE_ERROR);
+	print_test_mbisseqvalid("mbisseqvalid (null str) "  , ALLOW_SIGSEGV, NULL                                            , FALSE, SIZE_ERROR);
 }
 #endif
 
@@ -123,7 +123,7 @@ void test_mbisstrvalid(void)	{}
 #warning "mbisstrvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mbisstrvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size expecting_symcount, t_size expecting_bytecount)
+void	print_test_mbisstrvalid(char const* test_name, t_testflags flags, t_utf8 const* str, t_bool expecting, t_size expecting_symcount, t_size expecting_bytecount)
 {
 	t_size actual_symcount;
 	t_size actual_bytecount;
@@ -149,7 +149,7 @@ void	print_test_mbisstrvalid(char const* test_name, int can_segfault, t_utf8 con
 }
 void	test_mbisstrvalid(void)
 {
-//	| TEST FUNCTION        | TEST NAME                  | CAN SEGV      | TEST ARGS
+//	| TEST FUNCTION        | TEST NAME                  | TESTFLAGS     | TEST ARGS
 	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , 12                       , 12);
 	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test1                      , TRUE , test1_len - 1            , test1_len - 1);
 	print_test_mbisstrvalid("mbisstrvalid            "  , FALSE         , test2                      , TRUE , test2_len - 1            , test2_len - 1);
@@ -166,7 +166,7 @@ void	test_mbisstrvalid(void)
 	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, 0                        , 0 );
 	print_test_mbisstrvalid("mbisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, 17                       , 38 );
 	print_test_mbisstrvalid("mbisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , 0                        , 0);
-	print_test_mbisstrvalid("mbisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_ERROR               , SIZE_ERROR);
+	print_test_mbisstrvalid("mbisstrvalid (null str) "  , ALLOW_SIGSEGV, NULL                       , FALSE, SIZE_ERROR               , SIZE_ERROR);
 }
 #endif
 
@@ -175,7 +175,7 @@ void test_mbnisstrvalid(void)	{}
 #warning "mbnisstrvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mbnisstrvalid(char const* test_name, int can_segfault, t_utf8 const* str, t_bool expecting, t_size n, t_size expecting_symcount, t_size expecting_bytecount)
+void	print_test_mbnisstrvalid(char const* test_name, t_testflags flags, t_utf8 const* str, t_bool expecting, t_size n, t_size expecting_symcount, t_size expecting_bytecount)
 {
 	t_size actual_symcount;
 	t_size actual_bytecount;
@@ -201,7 +201,7 @@ void	print_test_mbnisstrvalid(char const* test_name, int can_segfault, t_utf8 co
 }
 void	test_mbnisstrvalid(void)
 {
-//	| TEST FUNCTION        | TEST NAME                  | CAN SEGV      | TEST ARGS
+//	| TEST FUNCTION        | TEST NAME                  | TESTFLAGS     | TEST ARGS
 	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , SIZE_MAX, 12           , 12);
 	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test1                      , TRUE , SIZE_MAX, test1_len - 1, test1_len - 1);
 	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test2                      , TRUE , SIZE_MAX, test2_len - 1, test2_len - 1);
@@ -217,7 +217,7 @@ void	test_mbnisstrvalid(void)
 	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, SIZE_MAX, 0            , 0 );
 	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, SIZE_MAX, 17           , 38 );
 	print_test_mbnisstrvalid("mbnisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , SIZE_MAX, 0            , 0);
-	print_test_mbnisstrvalid("mbnisstrvalid (null str) "  , SIGNAL_SIGSEGV, NULL                       , FALSE, SIZE_MAX, SIZE_ERROR   , SIZE_ERROR);
+	print_test_mbnisstrvalid("mbnisstrvalid (null str) "  , ALLOW_SIGSEGV, NULL                       , FALSE, SIZE_MAX, SIZE_ERROR   , SIZE_ERROR);
 
 	print_test_mbnisstrvalid("mbnisstrvalid n-limited"    , FALSE         , "Hello World!"             , TRUE , 5, 5           , 5);
 	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 1", FALSE         , "a"             , TRUE , 5, 2           , 4);
@@ -238,7 +238,7 @@ void	test_mbnisstrvalid(void)
 void test_utf32encode_xff(void)	{}
 #warning "utf32encode_xff() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf32encode_xff(char const* test_name, int can_segfault,
+void	print_test_utf32encode_xff(char const* test_name, t_testflags flags,
 		t_ascii const* expecting_dest,
 		t_size expecting,
 		t_utf32 c)
@@ -261,7 +261,7 @@ void	print_test_utf32encode_xff(char const* test_name, int can_segfault,
 
 void	test_utf32encode_xff(void)
 {
-//	| TEST FUNCTION         | TEST NAME            | CAN SEGV | EXPECTING DEST | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION         | TEST NAME            | TESTFLAGS| EXPECTING DEST | EXPECTING RET | TEST ARG
 	print_test_utf32encode_xff("\\0"                 , FALSE    , "\\x00"        , 4             , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_xff("ascii 'u' (\\x55)"   , FALSE    , "\\x55"        , 4             , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_xff("177 (\\xB1)"         , FALSE    , "\\xB1"        , 4             , UTF32_FromUTF8("±"));
@@ -274,7 +274,7 @@ void	test_utf32encode_xff(void)
 void test_utf32encode_uffff(void)	{}
 #warning "utf32encode_uffff() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf32encode_uffff(char const* test_name, int can_segfault,
+void	print_test_utf32encode_uffff(char const* test_name, t_testflags flags,
 		t_ascii const* expecting_dest,
 		t_size expecting,
 		t_utf32 c)
@@ -297,7 +297,7 @@ void	print_test_utf32encode_uffff(char const* test_name, int can_segfault,
 
 void	test_utf32encode_uffff(void)
 {
-//	| TEST FUNCTION           | TEST NAME               | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION           | TEST NAME               | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
 	print_test_utf32encode_uffff("\\0"                    , FALSE    , "\\u0000"        , 6             , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_uffff("ascii 'u' (\\u0055)"    , FALSE    , "\\u0055"        , 6             , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_uffff("177 (\\u00B1)"          , FALSE    , "\\u00B1"        , 6             , UTF32_FromUTF8("±"));
@@ -313,7 +313,7 @@ void	test_utf32encode_uffff(void)
 void test_utf32encode_Uffffffff(void)	{}
 #warning "utf32encode_Uffffffff() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf32encode_Uffffffff(char const* test_name, int can_segfault,
+void	print_test_utf32encode_Uffffffff(char const* test_name, t_testflags flags,
 		t_ascii const* expecting_dest,
 		t_size expecting,
 		t_utf32 c)
@@ -337,7 +337,7 @@ void	print_test_utf32encode_Uffffffff(char const* test_name, int can_segfault,
 
 void	test_utf32encode_Uffffffff(void)
 {
-//	| TEST FUNCTION               | TEST NAME                        | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION               | TEST NAME                        | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
 	print_test_utf32encode_Uffffffff("\\0"                             , FALSE    , "\\U00000000"    , 10            , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_Uffffffff("ascii 'u' (\\U00000055)"         , FALSE    , "\\U00000055"    , 10            , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_Uffffffff("177 (\\U000000B1)"               , FALSE    , "\\U000000B1"    , 10            , UTF32_FromUTF8("±"));
@@ -354,7 +354,7 @@ void	test_utf32encode_Uffffffff(void)
 void test_utf32encode_smart(void)	{}
 #warning "utf32encode_smart() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf32encode_smart(char const* test_name, int can_segfault,
+void	print_test_utf32encode_smart(char const* test_name, t_testflags flags,
 		t_ascii const* expecting_dest,
 		t_size expecting,
 		t_utf32 c)
@@ -377,7 +377,7 @@ void	print_test_utf32encode_smart(char const* test_name, int can_segfault,
 
 void	test_utf32encode_smart(void)
 {
-//	| TEST FUNCTION           | TEST NAME                        | CAN SEGV | EXPECTING DEST   | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION           | TEST NAME                        | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
 	print_test_utf32encode_smart("\\0"                             , FALSE    , "\\x00"          , 4             , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_smart("ascii 'u' (\\U00000055)"         , FALSE    , "\\x55"          , 4             , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_smart("177 (\\U000000B1)"               , FALSE    , "\\xB1"          , 4             , UTF32_FromUTF8("±"));
@@ -394,7 +394,7 @@ void	test_utf32encode_smart(void)
 void test_utf8scount(void)	{}
 #warning "utf8scount() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf8scount(char const* test_name, int can_segfault,
+void	print_test_utf8scount(char const* test_name, t_testflags flags,
 		t_sint expecting,
 		char const* str)
 {
@@ -404,7 +404,7 @@ void	print_test_utf8scount(char const* test_name, int can_segfault,
 }
 void	test_utf8scount(void)
 {
-//	| TEST FUNCTION  | TEST NAME                        | CAN SEGV      | EXPECT                    | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME                        | TESTFLAGS     | EXPECT                    | TEST ARGS
 	print_test_utf8scount("utf8scount            "      , FALSE         , 12                       , "Hello World!");
 	print_test_utf8scount("utf8scount            "      , FALSE         , 22                       , test1);
 	print_test_utf8scount("utf8scount            "      , FALSE         , 7                        , test2);
@@ -420,7 +420,7 @@ void	test_utf8scount(void)
 	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , 1                        , teststr_utf8_one_symbol_three_seq );
 	print_test_utf8scount("utf8scount (unicode)  "      , FALSE         , teststr_utf8_hardcore_len, teststr_utf8_hardcore);
 	print_test_utf8scount("utf8scount (empty str)"      , FALSE         , 0                        , "");
-	print_test_utf8scount("utf8scount (null str) "      , SIGNAL_SIGSEGV, -1                       , NULL);
+	print_test_utf8scount("utf8scount (null str) "      , ALLOW_SIGSEGV, -1                       , NULL);
 	print_test_utf8scount("utf8scount invalid unicode 1", FALSE         , -1                       , "my string \xE0oopsy");
 	print_test_utf8scount("utf8scount invalid unicode 2", FALSE         , -1                       , "\xFF");
 	print_test_utf8scount("utf8scount invalid unicode 3", FALSE         , -1                       , "\xE0\xA0");
@@ -431,7 +431,7 @@ void	test_utf8scount(void)
 void test_utf8nscount(void)	{}
 #warning "utf8nscount() test suite function defined, but the function isn't defined."
 #else
-void	print_test_utf8nscount(char const* test_name, int can_segfault,
+void	print_test_utf8nscount(char const* test_name, t_testflags flags,
 		t_sint expecting,
 		char const* str,
 		t_size n)
@@ -442,7 +442,7 @@ void	print_test_utf8nscount(char const* test_name, int can_segfault,
 }
 void	test_utf8nscount(void)
 {
-//	| TEST FUNCTION  | TEST NAME                                        | CAN SEGV      | EXPECT                    | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME                                        | TESTFLAGS     | EXPECT                    | TEST ARGS
 	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 12                       , "Hello World!"                   , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 22                       , test1                            , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount            "                    , FALSE         , 7                        , test2                            , SIZE_MAX);
@@ -458,7 +458,7 @@ void	test_utf8nscount(void)
 	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , 1                        , teststr_utf8_one_symbol_three_seq, SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (unicode)  "                    , FALSE         , teststr_utf8_hardcore_len, teststr_utf8_hardcore            , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (empty str)"                    , FALSE         , 0                        , ""                               , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (null str) "                    , SIGNAL_SIGSEGV, ERROR                    , NULL                             , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (null str) "                    , ALLOW_SIGSEGV, ERROR                    , NULL                             , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 1"              , FALSE         , ERROR                    , "my string \xE0oopsy"            , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 2"              , FALSE         , ERROR                    , "\xFF"                           , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 3"              , FALSE         , ERROR                    , "\xE0\xA0"                       , SIZE_MAX);

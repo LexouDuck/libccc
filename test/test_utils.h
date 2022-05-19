@@ -113,12 +113,12 @@ typedef struct test_##NAME	\
 {							\
 	char const*	name;		/*!< the name of this unit test */\
 	char const*	function;	/*!< the name of the function tested */\
-	bool		can_sig;	/*!< if TRUE, this test may cause a program-ending error */\
+	t_testflags	flags;		/*!< the various test bitflags, see #t_testflags */\
 	TYPE		result;		/*!< the result of the tested function */\
 	e_signal	result_sig;	/*!< the signal emitted by the tested function, if any */\
 	TYPE		expect;		/*!< the result which is expected to pass this test */\
 	e_signal	expect_sig;	/*!< the signal emitted by the expect function, if any */\
-	size_t		length;		/*!< used by certain types, notably 'mem'(void*) and 'list'(s_list*) */\
+	size_t		length;		/*!< used by certain types, notably 'mem'(`void*`) and 'list'(`s_list*`) */\
 	s_timer		timer;		/*!< the execution performance timer for this test */\
 }			s_test_##NAME;	\
 void	print_test_##NAME(s_test_##NAME* test, char const* args);
@@ -207,14 +207,14 @@ DEFINEFUNC_PRINT_TEST(alloc,	char const*)
 */
 #define TEST_INIT(TYPENAME) \
 	char*	args = NULL;							\
-	char*	tmp = NULL;								\
 	int		len = 0;								\
 	s_test_##TYPENAME test = (s_test_##TYPENAME)	\
 	{												\
 		.name = test_name,							\
-		.can_sig = can_segfault,					\
+		.flags = flags,								\
 	};												\
-	if (can_segfault && !g_test.flags.test_nullptrs)\
+	if (!g_test.config.test_nullptrs &&				\
+		(flags & FLAG_SIGSEGV))						\
 		return;										\
 
 

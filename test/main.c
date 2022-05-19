@@ -55,18 +55,18 @@ s_program	g_test;
 ** ************************************************************************** *|
 */
 
-static void	handle_arg_verbose()		{ g_test.flags.verbose		 = TRUE; }
-static void	handle_arg_show_args()		{ g_test.flags.show_args	 = TRUE; }
-static void	handle_arg_show_errors()	{ g_test.flags.show_errors	 = TRUE; }
-static void	handle_arg_show_result()	{ g_test.flags.show_result	 = TRUE; }
-static void	handle_arg_show_escaped()	{ g_test.flags.show_escaped	 = TRUE; }
-static void handle_arg_show_speed()		{ g_test.flags.show_speed	 = TRUE; }
-static void	handle_arg_test_nullptrs()	{ g_test.flags.test_nullptrs = TRUE; }
-static void	handle_arg_test_overflow()	{ g_test.flags.test_overflow = TRUE; }
+static void	handle_arg_verbose()		{ g_test.config.verbose       = TRUE; }
+static void	handle_arg_show_args()		{ g_test.config.show_args     = TRUE; }
+static void	handle_arg_show_errors()	{ g_test.config.show_errors   = TRUE; }
+static void	handle_arg_show_result()	{ g_test.config.show_result   = TRUE; }
+static void	handle_arg_show_escaped()	{ g_test.config.show_escaped  = TRUE; }
+static void handle_arg_show_speed()		{ g_test.config.show_speed    = TRUE; }
+static void	handle_arg_test_nullptrs()	{ g_test.config.test_nullptrs = TRUE; }
+static void	handle_arg_test_overflow()	{ g_test.config.test_overflow = TRUE; }
 static void	handle_arg_test_all()
 {
-	g_test.flags.test_nullptrs = TRUE;
-	g_test.flags.test_overflow = TRUE;
+	g_test.config.test_nullptrs = TRUE;
+	g_test.config.test_overflow = TRUE;
 }
 
 /*
@@ -75,7 +75,7 @@ static void	handle_arg_test_all()
 static void	init(void)
 {
 	// default every option to FALSE
-	memset(&g_test.flags, 0, sizeof(s_test_flags));
+	memset(&g_test.config, 0, sizeof(s_test_config));
 
 	static const s_test_suite suites[TEST_SUITE_AMOUNT] =
 	{
@@ -203,7 +203,7 @@ int	main(int argc, char** argv)
 	program_name = argv[0];
 
 	init();
-	init_segfault_handler();
+	init_signal_handler();
 
 	// Handle main program arguments
 	int	match;

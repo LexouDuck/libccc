@@ -30,7 +30,7 @@
 void test_booltostr(void)	{}
 #warning "booltostr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_booltostr(char const* test_name, int can_segfault,
+void	print_test_booltostr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		t_bool value,
 		t_bool uppercase)
@@ -42,7 +42,7 @@ void	print_test_booltostr(char const* test_name, int can_segfault,
 }
 void	test_booltostr(void)
 {
-//	| TEST FUNCTION       | TEST NAME                   |CAN SEGV|EXPECTING| TEST ARGS
+//	| TEST FUNCTION       | TEST NAME                   |TESTFLAG|EXPECTING| TEST ARGS
 	print_test_booltostr("booltostr (n = min)     ",	FALSE,  "false",      0, FALSE);
 	print_test_booltostr("booltostr (n = min)     ",	FALSE,  "FALSE",      0, TRUE);
 	print_test_booltostr("booltostr               ",	FALSE,   "true",      1, FALSE);
@@ -50,7 +50,7 @@ void	test_booltostr(void)
 	print_test_booltostr("booltostr               ",	FALSE,   "TRUE",     42, TRUE);
 	print_test_booltostr("booltostr (n = max)     ",	FALSE,   "true",    255, FALSE);
 	print_test_booltostr("booltostr (n = max)     ",	FALSE,   "TRUE",    255, TRUE);
-	if (g_test.flags.test_overflow)
+	if (g_test.config.test_overflow)
 	{
 		print_test_booltostr("booltostr (n < min)     ",	FALSE,  "false",     -1, FALSE);
 		print_test_booltostr("booltostr (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
@@ -76,7 +76,7 @@ void	test_booltostr(void)
 void test_strtobool(void)	{}
 #warning "strtobool() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtobool(char const* test_name, int can_segfault,
+void	print_test_strtobool(char const* test_name, t_testflags flags,
 		t_bool expecting,
 		char const* str)
 {
@@ -86,7 +86,7 @@ void	print_test_strtobool(char const* test_name, int can_segfault,
 }
 void	test_strtobool(void)
 { 
-//	| TEST FUNCTION       | TEST NAME                   |CAN SEGV| EXPECTING | TEST ARGS
+//	| TEST FUNCTION       | TEST NAME                   |TESTFLAG| EXPECTING | TEST ARGS
 	print_test_strtobool("strtobool (F, uppercase)  ",	FALSE,    FALSE,                 "FALSE");
 	print_test_strtobool("strtobool (F, lowercase)  ",	FALSE,    FALSE,                 "False");
 	print_test_strtobool("strtobool (F, mixedcase)  ",	FALSE,    FALSE,                 "false");
@@ -178,7 +178,7 @@ void	test_strtobool(void)
 	print_test_strtobool("strtobool                 ",	FALSE,     TRUE,                 "42.e2");
 	print_test_strtobool("strtobool                 ",	FALSE,     TRUE,                "42.0e2");
 	print_test_strtobool("strtobool                 ",	FALSE,     TRUE,               "42.00e2");
-	if (g_test.flags.test_overflow)
+	if (g_test.config.test_overflow)
 	{
 		print_test_strtobool("strtobool (str < 0)       ",	FALSE,     TRUE,                    "-1");
 		print_test_strtobool("strtobool (str < 0)       ",	FALSE,     TRUE,                   "-1.");

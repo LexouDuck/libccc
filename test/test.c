@@ -73,19 +73,15 @@ void	print_test(
 	char const*	args,
 	char const*	result,
 	char const*	expect,
-	int			can_sig,
+	t_testflags	flags,
 	int			error,
 	char const*	warning)
 {
 	static char const*  previous = NULL;
 
 	g_test.totals.tests += 1;
-	if (error)
-	{
-		g_test.totals.failed += 1;
-	}
 	g_test.last_test_failed = error;
-	if (g_test.flags.verbose || error || warning)
+	if (g_test.config.verbose || error || warning)
 	{
 		if (args == NULL)
 		{
@@ -97,19 +93,19 @@ void	print_test(
 				(previous[0] == '_' ? previous + 1 : previous),
 				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
-			if (can_sig & 1)
-				printf("%s - "C_YELLOW"can segfault"C_RESET, test_name);
+			if (flags & FLAG_SIGNALMASK)
+				printf("%s - "C_YELLOW"can signal"C_RESET, test_name);
 			else printf("%s", test_name);
 			printf(" | ");
 		}
 	}
-	if (g_test.last_test_failed || g_test.flags.verbose)
+	if (g_test.last_test_failed || g_test.config.verbose)
 	{
-		if (g_test.flags.show_args && args)
+		if (g_test.config.show_args && args)
 		{
 			printf("(%s)\t=> ", args);
 		}
-		if (g_test.flags.show_errors && g_test.last_test_error)
+		if (g_test.config.show_errors && g_test.last_test_error)
 		{
 			printf("\n%s", g_test.last_test_error);
 		}
@@ -119,41 +115,65 @@ void	print_test(
 		free(g_test.last_test_error);
 		g_test.last_test_error = NULL;
 	}
+
 	if (error)
 	{
-		if (str_equals(expect, "(n/a)"))
-			printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
-		else printf(C_RED"TEST FAILED:\n");
-		if (function[0] == '_')
+		if (flags & FLAG_WARNING)
 		{
-			static char const* expected = "Expected";
-			int length_expected = (int)sizeof("Expected");
-			int length_function = (int)strlen(function) + 1;
-			length_expected = (length_expected > length_function) ? length_expected : length_function;
-			length_function = length_expected - length_function + 1;
-			printf(">%*.*s%s: (%s)\n"
-					">%*.*s: (%s)\n"C_RESET,
-				length_function,
-				length_function,
-				"c",
-				function, result,
-				length_expected,
-				length_expected,
-				expected, expect);
+			if (warning)
+			{
+				printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
+			}
+			else
+			{
+				printf(C_YELLOW"Warning"C_RESET": failed benign test for function %s()\n"
+					"- received: (%s)\n"
+					"- expected: (%s)\n",
+					function,
+					result,
+					expect);
+			}
+			g_test.totals.warnings += 1;
 		}
 		else
 		{
-			printf( ">c_%s: (%s)\n"
-					">  %s: (%s)\n"C_RESET,
-				function, result,
-				function, expect);
+			if (str_equals(expect, "(n/a)"))
+				printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
+			else printf(C_RED"TEST FAILED:\n");
+			if (function[0] == '_')
+			{
+				static char const* expected = "Expected";
+				int length_expected = (int)sizeof("Expected");
+				int length_function = (int)strlen(function) + 1;
+				length_expected = (length_expected > length_function) ? length_expected : length_function;
+				length_function = length_expected - length_function + 1;
+				printf(">%*.*s%s: (%s)\n"
+						">%*.*s: (%s)\n"C_RESET,
+					length_function,
+					length_function,
+					"c",
+					function, result,
+					length_expected,
+					length_expected,
+					expected, expect);
+			}
+			else
+			{
+				printf( ">c_%s: (%s)\n"
+						">  %s: (%s)\n"C_RESET,
+					function, result,
+					function, expect);
+			}
+			g_test.totals.failed += 1;
 		}
 	}
 	else if (warning)
 	{
 		printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
+		if (flags & FLAG_WARNING)
+			g_test.totals.warnings += 1;
 	}
-	else if (g_test.flags.verbose)
+	else if (g_test.config.verbose)
 	{
 		printf(C_GREEN"OK!"C_RESET"\n");
 	}
@@ -176,7 +196,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	print_test(test->name, test->function, args,											\
 		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
 		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)),	\
-		test->can_sig,																		\
+		test->flags,																		\
 		error, NULL);																		\
 }																							\
 
@@ -254,15 +274,16 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 				"- expected: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n",					\
 			test->result,																	\
 			test->expect);																	\
+		g_test.totals.warnings += 1;														\
 		if (len == 0)																		\
 			return;																			\
 	}																						\
 	print_test(test->name, test->function, args,											\
 		(test->result_sig ? signals[test->result_sig] : str_result),						\
 		(test->expect_sig ? signals[test->expect_sig] : str_expect),						\
-		test->can_sig,																		\
+		test->flags,																		\
 		error, (warning ? tmp : NULL));														\
-	if (tmp)	free(tmp);																	\
+	if (tmp)	{ free(tmp); }																\
 }																							\
 
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
@@ -313,7 +334,7 @@ void	print_test_sign(s_test_sign* test, char const* args)
 	print_test(test->name, test->function, args,
 		(test->result_sig ? signals[test->result_sig] : s64tostr(test->result)),
 		(test->expect_sig ? signals[test->expect_sig] : s64tostr(test->expect)),
-		test->can_sig,
+		test->flags,
 		error, (warning ? tmp : NULL));
 	if (tmp)	free(tmp);
 }
@@ -332,7 +353,7 @@ void	print_test_ptr(s_test_ptr* test, char const* args)
 	print_test(test->name, test->function, args,
 		(test->result_sig ? signals[test->result_sig] : tmp_result),
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
-		test->can_sig,
+		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
@@ -355,7 +376,7 @@ void	print_test_mem(s_test_mem* test, char const* args)
 	print_test(test->name, test->function, args,
 		(test->result_sig ? signals[test->result_sig] : tmp_result),
 		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
-		test->can_sig,
+		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
@@ -366,8 +387,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 void	print_test_str(s_test_str* test, char const* args)
 {
 	char* tmp;
-	char* tmp_result = (test->result == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->result) : strdup(test->result)));
-	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.flags.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
+	char* tmp_result = (test->result == NULL ? NULL : (g_test.config.show_escaped ? strtoescape(test->result) : strdup(test->result)));
+	char* tmp_expect = (test->expect == NULL ? NULL : (g_test.config.show_escaped ? strtoescape(test->expect) : strdup(test->expect)));
 	int error;
 
 	tmp = tmp_result;	tmp_result = strsurround(tmp_result, '\"', '\"');	if (tmp) { free(tmp); tmp = NULL; }
@@ -381,7 +402,7 @@ void	print_test_str(s_test_str* test, char const* args)
 	print_test(test->name, test->function, args,
 		tmp_result ? tmp_result : "NULL",
 		tmp_expect ? tmp_expect : "NULL",
-		test->can_sig,
+		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
@@ -411,13 +432,13 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	print_test(test->name, test->function, args,
 		tmp_result,
 		tmp_expect,
-		test->can_sig,
+		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);
 	if (tmp_expect)	free(tmp_expect);
 // TODO call print_test() here
 /*
-	if (error || g_test.flags.verbose)
+	if (error || g_test.config.verbose)
 	{
 		printf("\n%s -> ", test->name);
 	}
@@ -428,7 +449,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 			printf("The call to c_%s(...) returned NULL.", test->function);
 		else printf("Every char should be '\\0', but '%c' was read at index %zu.", test->result[i], i);
 	}
-	else if (g_test.flags.verbose)
+	else if (g_test.config.verbose)
 		printf(C_GREEN"OK!"C_RESET);
 */
 }
@@ -476,7 +497,7 @@ void	print_test_strarr(s_test_strarr* test, char const* args)
 	print_test(test->name, test->function, args,
 		str_result,
 		str_expect,
-		test->can_sig,
+		test->flags,
 		error, NULL);
 failure:
 	if (str_result) free(str_result);
@@ -510,7 +531,7 @@ void	print_test_list(s_test_list* test, char const* args)
 	int error = FALSE;
 	if (test->name)
 	{
-		if (test->can_sig)
+		if (test->flags)
 			 printf("\n%s - "C_YELLOW"can segfault"C_RESET, test->name);
 		else printf("\n%s", test->name);
 		printf(" -> ");
@@ -598,6 +619,6 @@ void	print_test_date(s_test_date* test, char const* args)
 	print_test(test->name, test->function, args,
 		str_result,
 		str_expect,
-		test->can_sig,
+		test->flags,
 		error, NULL);
 }
