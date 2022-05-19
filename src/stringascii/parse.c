@@ -10,6 +10,36 @@
 
 
 static
+t_ascii	String_Parse_GetEscape(t_ascii escapechar)
+{
+	static const struct { t_ascii esc; t_ascii chr; } lookuptable[] =
+	{
+		{ .esc =  '0',	.chr = '\x00',	}, // Null-terminator
+		{ .esc =  'a',	.chr = '\a',	}, // Alert (Beep, Bell) (added in C89)[1]
+		{ .esc =  'b',	.chr = '\b',	}, // Backspace
+		{ .esc =  't',	.chr = '\t',	}, // Horizontal Tab
+		{ .esc =  'n',	.chr = '\n',	}, // Newline (Line Feed); see notes below
+		{ .esc =  'v',	.chr = '\v',	}, // Vertical Tab
+		{ .esc =  'f',	.chr = '\f',	}, // Form-feed
+		{ .esc =  'r',	.chr = '\r',	}, // Carriage Return
+		{ .esc =  'e',	.chr = '\x1B',	}, // Escape
+		{ .esc = '\'',	.chr = '\'',	}, // Single quotation mark
+		{ .esc = '\"',	.chr = '\"',	}, // Double quotation mark
+		{ .esc =  '/',	.chr =  '/',	}, // Forward slash
+		{ .esc = '\\',	.chr = '\\',	}, // Backslash
+		{ .esc = '\0' }
+	};
+	for (t_uint i = 0; lookuptable[i].esc != '\0'; ++i)
+	{
+		if (lookuptable[i].esc == escapechar)
+			return (lookuptable[i].chr);
+	}
+	return (ERROR);
+}
+
+
+
+static
 t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 {
 	t_size	length = 0;
@@ -22,21 +52,10 @@ t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 			++i;
 			HANDLE_ERROR_SF(PARSE, (i == n || str[i] == '\0'), return (0);,
 				"string ends with backslash, potential buffer overrun:\n%s", str)
-			switch (str[i])
+			if (String_Parse_GetEscape(str[i]) != ERROR)
+				length += 1 * sizeof(t_ascii);
+			else switch (str[i])
 			{
-				case 'a':	length += 1 * sizeof(t_ascii);	break; // Alert (Beep, Bell) (added in C89)[1]
-				case 'b':	length += 1 * sizeof(t_ascii);	break; // Backspace
-				case 't':	length += 1 * sizeof(t_ascii);	break; // Horizontal Tab
-				case 'n':	length += 1 * sizeof(t_ascii);	break; // Newline (Line Feed); see notes below
-				case 'v':	length += 1 * sizeof(t_ascii);	break; // Vertical Tab
-				case 'f':	length += 1 * sizeof(t_ascii);	break; // Form-feed
-				case 'r':	length += 1 * sizeof(t_ascii);	break; // Carriage Return
-				case 'e':	length += 1 * sizeof(t_ascii);	break; // Escape
-				case '\'':	length += 1 * sizeof(t_ascii);	break; // Single quotation mark
-				case '\"':	length += 1 * sizeof(t_ascii);	break; // Double quotation mark
-				case  '?':	length += 1 * sizeof(t_ascii);	break; // Question mark (used to avoid trigraphs)
-				case  '/':	length += 1 * sizeof(t_ascii);	break; // Forward slash
-				case '\\':	length += 1 * sizeof(t_ascii);	break; // Backslash
 				case 'x':	length += 1 * sizeof(t_ascii);	break; // Hexadecimal t_ascii value
 				case 'u':	length += 2 * sizeof(t_ascii);	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				case 'U':	length += 4 * sizeof(t_ascii);	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
@@ -94,20 +113,11 @@ t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_esca
 			++index;
 			HANDLE_ERROR_SF(PARSE, (index == n || str[index] == '\0'), return (0);,
 				"string ends with backslash, potential buffer overrun:\n%s", str)
-			switch (str[index])
+			t_ascii	escapechar = String_Parse_GetEscape(str[index]);
+			if (escapechar != ERROR)
+				result[i++] = escapechar;
+			else switch (str[index])
 			{
-				case 'a':	result[i++] = '\x07';	break; // Alert (Beep, Bell) (added in C89)[1]
-				case 'b':	result[i++] = '\x08';	break; // Backspace
-				case 't':	result[i++] = '\x09';	break; // Horizontal Tab
-				case 'n':	result[i++] = '\x0A';	break; // Newline (Line Feed); see notes below
-				case 'v':	result[i++] = '\x0B';	break; // Vertical Tab
-				case 'f':	result[i++] = '\x0C';	break; // Formfeed
-				case 'r':	result[i++] = '\x0D';	break; // Carriage Return
-				case 'e':	result[i++] = '\x1B';	break; // Escape
-				case '\'':	result[i++] = '\'';		break; // Single quotation mark
-				case '\"':	result[i++] = '\"';		break; // Double quotation mark
-				case  '/':	result[i++] = '/';		break; // Forward Slash
-				case '\\':	result[i++] = '\\';		break; // Backslash
 				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value

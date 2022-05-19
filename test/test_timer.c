@@ -76,7 +76,7 @@ void	print_timer_result(s_timer* t, t_s64 compare)
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };
 
-	if (!g_test.flags.verbose || !g_test.flags.show_speed)
+	if (!g_test.config.verbose || !g_test.config.show_speed)
 		return;
 
 	t->result_time = timer_getdiff(t->result_start, t->result_end);

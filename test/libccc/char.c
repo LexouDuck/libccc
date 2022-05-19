@@ -7,9 +7,10 @@
 
 
 
-static void	print_char_foreword(void)
+static
+void	print_char_foreword(void)
 {
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("\n==> "C_BLUE"The following tests are done by comparing your 'c_' functions to the ctype.h standard functions."C_RESET);
 		printf("\n==> "C_BLUE"Ideally, all of these char function tests should succeed, and no output will be shown."C_RESET);
@@ -22,7 +23,9 @@ static void	print_char_foreword(void)
 
 
 #define TEST_PERFORM_CHAR_(FUNCTION, ERRORPREFIX) \
-	printf( ERRORPREFIX "c_%s(c = '%c'/0x%4.4X)\treturned 0x%.4X,\tbut the C stdlib equivalent returned 0x%.4X\n", #FUNCTION, c, c, result, expect);
+	printf(ERRORPREFIX"c_%s(c = '%c'/0x%4.4X)\treturned 0x%.4X,\tbut the C stdlib equivalent returned 0x%.4X\n",\
+		#FUNCTION, c, c, result, expect);\
+	g_test.totals.warnings += 1;\
 
 #define TEST_PERFORM_CHAR(FUNCTION, STRICT) \
 	g_test.totals.tests += 1;						\
@@ -53,7 +56,7 @@ static void	print_char_foreword(void)
 ** ************************************************************************** *|
 */
 
-int		testsuite_char(void)
+int	testsuite_char(void)
 {
 	print_suite_title("libccc/char");
 
@@ -105,7 +108,7 @@ int		testsuite_char(void)
 		TEST_PERFORM_CHAR(tolower, FALSE)
 	}
 
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		if (errors || warnings)
 		{

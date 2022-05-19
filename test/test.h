@@ -3,7 +3,7 @@
 **
 **	How to create a testing function for a libccc function:
 **	```c
-**	void    print_test_<func>(char const* test_name, int can_segfault,
+**	void    print_test_<func>(char const* test_name, t_testflags flags,
 **	        <args>)
 **	{
 **	    TEST_INIT(<test_type>)
@@ -65,7 +65,7 @@ typedef struct test_arg
 	char		arg;			//!< The "character version" of this argument (ie: `-a`)
 	char const*	name;			//!< The "string version" of this argument (ie: `--arg`)
 	char const* description;	//!< The description for this argument (displayed when doing `--help`)
-}				s_test_arg;
+}	s_test_arg;
 //! The amount of different arguments accepted by the test suite
 #define TEST_ARGS_AMOUNT	10
 
@@ -80,7 +80,7 @@ typedef struct test_flags
 	bool	show_escaped;	//!< if `TRUE`, display strings with non-printable characters as escape sequences
 	bool	test_nullptrs;	//!< if `TRUE`, perform all NULL pointer tests
 	bool	test_overflow;	//!< if `TRUE`, perform all the libccc_convert overflowing number tests
-}				s_test_flags;
+}	s_test_config;
 
 
 
@@ -90,16 +90,17 @@ typedef struct test_suite
 	bool		run;		//!< If 0, does not run
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
-}				s_test_suite;
+}	s_test_suite;
 //! The total amount of test suites for libccc
 #define TEST_SUITE_AMOUNT	33
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
 {
-	int		tests;	//!< The total amount of tests ran.
-	int		failed; //!< The amount of tests which had an ERROR result.
-}				s_test_totals;
+	int	tests;		//!< The total amount of tests ran.
+	int	failed; 	//!< The total amount of tests which had an ERROR result.
+	int	warnings;	//!< The total amount of warnings issued by the test suite.
+}	s_test_totals;
 
 
 
@@ -109,10 +110,10 @@ typedef struct program
 	bool			last_test_failed;			//!< is `TRUE` if the latest test performed had an error.
 	char*			last_test_error;			//!< contains any error output by libccc during the latest test
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
-	s_test_flags	flags;						//!< Stores the main program argument options (as boolean flags)
+	s_test_config	config;						//!< Stores the main program argument options (as boolean flags)
 	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument
 	s_test_suite	suites[TEST_SUITE_AMOUNT];	//!< Stores info of which test suites should be run or not
-}				s_program;
+}	s_program;
 
 //! Global variable to access the program state data from anywhere
 extern s_program	g_test;

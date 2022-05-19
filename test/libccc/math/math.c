@@ -22,7 +22,7 @@
 
 void	print_math_foreword(void)
 {
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("\n\n"C_BLUE"Floating-point (%d-bit %s precision) math functions"C_RESET"\n\n",
 #if LIBCONFIG_FLOAT_BITS == 32
@@ -42,7 +42,7 @@ void	print_math_foreword(void)
 
 void	print_math_title(char const * title)
 {
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("\n\n"C_BLUE"%s"C_RESET"\n", title);
 	}
@@ -155,7 +155,7 @@ t_float	c_get_largest_f(s_array_float values)
 		if (IS_NAN(errors.items[i]) || errors.items[i] > fabs(precision * expects[i]))							\
 		{																										\
 			++failed_tests;																						\
-			if (g_test.flags.verbose && g_test.flags.show_args && precision < fabs(results[i] - expects[i]))	\
+			if (g_test.config.verbose && g_test.config.show_args && precision < fabs(results[i] - expects[i]))	\
 			{																									\
 				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "C_RED"%g"C_RESET")\n",	\
 					i, results[i], expects[i], errors.items[i]);												\
@@ -169,7 +169,7 @@ t_float	c_get_largest_f(s_array_float values)
 	g_test.totals.tests += tests;								\
 	g_test.totals.failed += failed_tests;						\
 	t_float percent = (tests - failed_tests) * 100. / tests;	\
-	if (g_test.flags.verbose || percent < 90.)					\
+	if (g_test.config.verbose || percent < 90.)					\
 	{															\
 		printf("\n%s\n", func_name);							\
 		printf(__VA_ARGS__);									\
@@ -179,7 +179,7 @@ t_float	c_get_largest_f(s_array_float values)
 
 static void	print_test_math(s_timer timer, s_array_float errors, t_float precision)
 {
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		c_stat_quicksort_f(errors);
 		printf_colored("Largest error",			precision, c_get_largest_f(errors));
@@ -187,12 +187,12 @@ static void	print_test_math(s_timer timer, s_array_float errors, t_float precisi
 		printf_colored("Median error",			precision, c_stat_median_f(errors));
 		printf_colored("Standard deviation",	precision, sqrt(c_stat_variance_f(errors)));
 	}
-	if (g_test.flags.show_speed)
+	if (g_test.config.show_speed)
 	{
 		printf("-> Execution time:");
 		print_timer_result(&timer, TRUE);
 	}
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("\n");
 	}

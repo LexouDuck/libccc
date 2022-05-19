@@ -178,7 +178,7 @@ s_date	bad_leap_second_date = (s_date)
 void test_datetostr(void)	{}
 #warning "datetostr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_datetostr(char const* test_name, int can_segfault,
+void	print_test_datetostr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* format,
 		s_date const* date)
@@ -204,7 +204,7 @@ void	test_datetostr(void)
 	s_date now_date = Date_FromSTDC(now_tm);
 	char now_str[DATE_STR_BUFFER];
 	strftime(now_str, DATE_STR_BUFFER, SF_UTC, now_tm);
-/*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
+/*	| TEST FUNCTION     | TEST NAME                  |TESTFLAG| EXPECTING              | TEST ARGS				*/
 	print_test_datetostr("datetostr                  ",	FALSE,                  y99_str, SF_UTC, &y99_date);
 	print_test_datetostr("datetostr                  ",	FALSE,                  y2k_str, SF_UTC, &y2k_date);
 	print_test_datetostr("datetostr                  ",	FALSE,                  now_str, SF_UTC, &now_date);
@@ -223,7 +223,7 @@ void	test_datetostr(void)
 void test_strtodate(void)	{}
 #warning "strtodate() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtodate(char const* test_name, int can_segfault,
+void	print_test_strtodate(char const* test_name, t_testflags flags,
 		s_date expecting,
 		char const* format,
 		char const* str)
@@ -239,7 +239,7 @@ void	test_strtodate(void)
 	s_date now_date = Date_FromSTDC(now_tm);
 	char now_str[DATE_STR_BUFFER];
 	strftime(now_str, DATE_STR_BUFFER, SF_UTC, now_tm);
-/*	| TEST FUNCTION     | TEST NAME                  |CAN SEGV| EXPECTING              | TEST ARGS				*/
+/*	| TEST FUNCTION     | TEST NAME                  |TESTFLAG| EXPECTING              | TEST ARGS				*/
 	print_test_strtodate("strtodate                  ",	FALSE,                 y99_date, SF_UTC, y99_str);
 	print_test_strtodate("strtodate                  ",	FALSE,                 y2k_date, SF_UTC, y2k_str);
 	print_test_strtodate("strtodate                  ",	FALSE,                 now_date, SF_UTC, now_str);

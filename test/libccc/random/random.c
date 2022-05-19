@@ -18,7 +18,7 @@ s_sorted_int	print_test_random(int samples)
 
 	rng = Random_New();
 
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("Statistic repartition test of RNG (sample size: %d)\n", samples);
 	}
@@ -37,10 +37,10 @@ s_sorted_int	print_test_random(int samples)
 		printf("%d, ", values.items[i]);
 	printf("\n");
 */
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 		printf("Quicksorting...");
 	result = c_stat_quicksort_i_new(values);
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 		printf("Done !\n");
 /*
 	for (int i = 0; i < result.length - 1; ++i)
