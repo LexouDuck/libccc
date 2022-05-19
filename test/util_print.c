@@ -38,7 +38,7 @@ void	print_percent(double percent)
 
 
 
-void	print_totals(int amount, int failed, char const* category)
+void	print_totals(int amount, int failed, int warnings, char const* category)
 {
 	double percent = (amount == 0 ? 100. : ((amount - failed) * 100. / amount));
 
@@ -54,6 +54,8 @@ void	print_totals(int amount, int failed, char const* category)
 	printf("- Tests: %s%d failed"C_RESET" / %s%d passed"C_RESET"\n",
 		(failed == 0 ? C_GREEN : C_RED), failed,
 		(amount ? (passed == amount ? C_GREEN : C_YELLOW) : C_RED), passed);
+	if (warnings)
+		printf("- Warnings: "C_YELLOW"%d warnings issued"C_RESET"\n", warnings);
 	printf("- Success rate: ");
 	if (amount == 0)
 		print_percent(0);

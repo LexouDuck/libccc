@@ -261,10 +261,21 @@ int	main(int argc, char** argv)
 			g_test.suites[i].test();
 			suite.tests = g_test.totals.tests - suite.tests;
 			suite.failed = g_test.totals.failed - suite.failed;
+			suite.warnings = g_test.totals.warnings - suite.warnings;
 			if (suite.tests)
-				print_totals(suite.tests, suite.failed, g_test.suites[i].name);
+			{
+				print_totals(
+					suite.tests,
+					suite.failed,
+					suite.warnings,
+					g_test.suites[i].name);
+			}
 		}
 	}
-	print_totals(g_test.totals.tests, g_test.totals.failed, NULL);
+	print_totals(
+		g_test.totals.tests,
+		g_test.totals.failed,
+		g_test.totals.warnings,
+		NULL);
 	return (g_test.totals.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS);
 }

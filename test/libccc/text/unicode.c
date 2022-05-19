@@ -175,7 +175,12 @@ void test_mbnisstrvalid(void)	{}
 #warning "mbnisstrvalid() test suite function defined, but the function isn't defined."
 #else
 
-void	print_test_mbnisstrvalid(char const* test_name, t_testflags flags, t_utf8 const* str, t_bool expecting, t_size n, t_size expecting_symcount, t_size expecting_bytecount)
+void	print_test_mbnisstrvalid(char const* test_name, t_testflags flags,
+	t_utf8 const* str,
+	t_bool expecting,
+	t_size n,
+	t_size expecting_symcount,
+	t_size expecting_bytecount)
 {
 	t_size actual_symcount;
 	t_size actual_bytecount;
@@ -201,28 +206,28 @@ void	print_test_mbnisstrvalid(char const* test_name, t_testflags flags, t_utf8 c
 }
 void	test_mbnisstrvalid(void)
 {
-//	| TEST FUNCTION        | TEST NAME                  | TESTFLAGS     | TEST ARGS
-	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , "Hello World!"             , TRUE , SIZE_MAX, 12           , 12);
-	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test1                      , TRUE , SIZE_MAX, test1_len - 1, test1_len - 1);
-	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test2                      , TRUE , SIZE_MAX, test2_len - 1, test2_len - 1);
-	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , test3                      , TRUE , SIZE_MAX, test3_len - 1, test3_len - 1);
-	print_test_mbnisstrvalid("mbnisstrvalid            "  , FALSE         , "a"                        , TRUE , SIZE_MAX, 1            , 1);
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_cc_c0              , TRUE , SIZE_MAX, 32           , 96);
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_cc_c1              , TRUE , SIZE_MAX, 32           , 96);
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_fr            , TRUE , SIZE_MAX, 89           , 106);
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_ru            , TRUE , SIZE_MAX, 49           , 90);
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , teststr_utf8_jp            , TRUE , SIZE_MAX, 29           , 75 );
-	print_test_mbnisstrvalid("mbnisstrvalid (unicode)  "  , FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"        , TRUE , SIZE_MAX, 17           , 68 );
-	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                 , FALSE, SIZE_MAX, 0            , 0 );
-	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                 , FALSE, SIZE_MAX, 0            , 0 );
-	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0", FALSE, SIZE_MAX, 17           , 38 );
-	print_test_mbnisstrvalid("mbnisstrvalid (empty str)"  , FALSE         , ""                         , TRUE , SIZE_MAX, 0            , 0);
-	print_test_mbnisstrvalid("mbnisstrvalid (null str) "  , ALLOW_SIGSEGV, NULL                       , FALSE, SIZE_MAX, SIZE_ERROR   , SIZE_ERROR);
+//	| TEST FUNCTION          | TEST NAME                  | TESTFLAGS     | TEST ARGS
+	print_test_mbnisstrvalid("mbnisstrvalid              ", FALSE         , "Hello World!"                 	, TRUE , SIZE_MAX, 12           , 12);
+	print_test_mbnisstrvalid("mbnisstrvalid              ", FALSE         , test1                          	, TRUE , SIZE_MAX, test1_len - 1, test1_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid              ", FALSE         , test2                          	, TRUE , SIZE_MAX, test2_len - 1, test2_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid              ", FALSE         , test3                          	, TRUE , SIZE_MAX, test3_len - 1, test3_len - 1);
+	print_test_mbnisstrvalid("mbnisstrvalid              ", FALSE         , "a"                            	, TRUE , SIZE_MAX, 1            , 1);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , teststr_cc_c0                  	, TRUE , SIZE_MAX, 32           , 96);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , teststr_cc_c1                  	, TRUE , SIZE_MAX, 32           , 96);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , teststr_utf8_fr                	, TRUE , SIZE_MAX, 89           , 106);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , teststr_utf8_ru                	, TRUE , SIZE_MAX, 49           , 90);
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , teststr_utf8_jp                	, TRUE , SIZE_MAX, 29           , 75 );
+	print_test_mbnisstrvalid("mbnisstrvalid (unicode)    ", FALSE         , "𑢰𐐔𐐯𐑅𐐨𐑉𐐯𐐻🨀🨁🨂🨃🨄🨅🩪􏾵񟾃"     	, TRUE , SIZE_MAX, 17           , 68 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 1", FALSE         , "\xA9\xF9"                     	, FALSE, SIZE_MAX, 0            , 0 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "\xE0\xA0"                     	, FALSE, SIZE_MAX, 0            , 0 );
+	print_test_mbnisstrvalid("mbnisstrvalid invalid seq 2", FALSE         , "𐑉𐐯𐐻🨀🨁🨂🨃 and then \xE0\xA0"	, FALSE, SIZE_MAX, 17           , 38 );
+	print_test_mbnisstrvalid("mbnisstrvalid (empty str)  ", FALSE         , ""                             	, TRUE , SIZE_MAX, 0            , 0);
+	print_test_mbnisstrvalid("mbnisstrvalid (null str)   ", ALLOW_SIGSEGV , NULL                          	, FALSE, SIZE_MAX, SIZE_ERROR   , SIZE_ERROR);
 
-	print_test_mbnisstrvalid("mbnisstrvalid n-limited"    , FALSE         , "Hello World!"             , TRUE , 5, 5           , 5);
-	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 1", FALSE         , "a"             , TRUE , 5, 2           , 4);
-	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 2", FALSE         , "a"             , TRUE , 6, 2           , 4);
-	print_test_mbnisstrvalid("mbnisstrvalid n-limited after mb", FALSE         , "a"             , TRUE , 7, 3           , 7);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited         ", FALSE         , "Hello World!"             , TRUE , 5, 5           , 5);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 1 ", FALSE         , "a"                    , TRUE , 5, 2           , 4);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited in mb 2 ", FALSE         , "a"                    , TRUE , 6, 2           , 4);
+	print_test_mbnisstrvalid("mbnisstrvalid n-limited after mb", FALSE         , "a"                    , TRUE , 7, 3           , 7);
 
 	// These are valid because we don't check for the validity of the last symbol unless `n` is big enough to include that last symbol in the valid string
 	print_test_mbnisstrvalid("mbnisstrvalid n-limited in invalid mb 1", FALSE         , "abc\xE0\xA0\xFF"             , TRUE , 4, 3           , 3);
@@ -261,7 +266,7 @@ void	print_test_utf32encode_xff(char const* test_name, t_testflags flags,
 
 void	test_utf32encode_xff(void)
 {
-//	| TEST FUNCTION         | TEST NAME            | TESTFLAGS| EXPECTING DEST | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION           | TEST NAME            | TESTFLAGS| EXPECTING DEST | EXPECTING RET | TEST ARG
 	print_test_utf32encode_xff("\\0"                 , FALSE    , "\\x00"        , 4             , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_xff("ascii 'u' (\\x55)"   , FALSE    , "\\x55"        , 4             , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_xff("177 (\\xB1)"         , FALSE    , "\\xB1"        , 4             , UTF32_FromUTF8("±"));
@@ -297,15 +302,15 @@ void	print_test_utf32encode_uffff(char const* test_name, t_testflags flags,
 
 void	test_utf32encode_uffff(void)
 {
-//	| TEST FUNCTION           | TEST NAME               | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
-	print_test_utf32encode_uffff("\\0"                    , FALSE    , "\\u0000"        , 6             , UTF32_FromUTF8("\0"));
-	print_test_utf32encode_uffff("ascii 'u' (\\u0055)"    , FALSE    , "\\u0055"        , 6             , UTF32_FromUTF8("\x55"));
-	print_test_utf32encode_uffff("177 (\\u00B1)"          , FALSE    , "\\u00B1"        , 6             , UTF32_FromUTF8("±"));
-	print_test_utf32encode_uffff("255 (\\u00FF)"          , FALSE    , "\\u00FF"        , 6             , UTF32_FromUTF8("ÿ"));
-	print_test_utf32encode_uffff("24859 (\\u611B)"        , FALSE    , "\\u611B"        , 6             , UTF32_FromUTF8("愛"));
-	print_test_utf32encode_uffff("헐((\\uD5D0)"           , FALSE    , "\\uD5D0"        , 6             , UTF32_FromUTF8("헐"));
-	print_test_utf32encode_uffff("max value (\\uFFFF)"    , FALSE    , "\\uFFFF"        , 6             , UTF32_FromUTF8("￿"));
-	print_test_utf32encode_uffff("too big ((\\U00010000)" , FALSE    , ""               , ERROR         , UTF32_FromUTF8("𐀀"));
+//	| TEST FUNCTION             | TEST NAME                 | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
+	print_test_utf32encode_uffff("\\0"                    	, FALSE    , "\\u0000"        , 6             , UTF32_FromUTF8("\0"));
+	print_test_utf32encode_uffff("ascii 'u' (\\u0055)"   	, FALSE    , "\\u0055"        , 6             , UTF32_FromUTF8("\x55"));
+	print_test_utf32encode_uffff("177 (\\u00B1)"         	, FALSE    , "\\u00B1"        , 6             , UTF32_FromUTF8("±"));
+	print_test_utf32encode_uffff("255 (\\u00FF)"         	, FALSE    , "\\u00FF"        , 6             , UTF32_FromUTF8("ÿ"));
+	print_test_utf32encode_uffff("24859 (\\u611B)"       	, FALSE    , "\\u611B"        , 6             , UTF32_FromUTF8("愛"));
+	print_test_utf32encode_uffff("헐((\\uD5D0)"           	, FALSE    , "\\uD5D0"        , 6             , UTF32_FromUTF8("헐"));
+	print_test_utf32encode_uffff("max value (\\uFFFF)"    	, FALSE    , "\\uFFFF"        , 6             , UTF32_FromUTF8("￿"));
+	print_test_utf32encode_uffff("too big ((\\U00010000)" 	, FALSE    , ""               , ERROR         , UTF32_FromUTF8("𐀀"));
 }
 #endif
 
@@ -337,16 +342,16 @@ void	print_test_utf32encode_Uffffffff(char const* test_name, t_testflags flags,
 
 void	test_utf32encode_Uffffffff(void)
 {
-//	| TEST FUNCTION               | TEST NAME                        | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
-	print_test_utf32encode_Uffffffff("\\0"                             , FALSE    , "\\U00000000"    , 10            , UTF32_FromUTF8("\0"));
-	print_test_utf32encode_Uffffffff("ascii 'u' (\\U00000055)"         , FALSE    , "\\U00000055"    , 10            , UTF32_FromUTF8("\x55"));
-	print_test_utf32encode_Uffffffff("177 (\\U000000B1)"               , FALSE    , "\\U000000B1"    , 10            , UTF32_FromUTF8("±"));
-	print_test_utf32encode_Uffffffff("255 (\\U000000FF)"               , FALSE    , "\\U000000FF"    , 10            , UTF32_FromUTF8("ÿ"));
-	print_test_utf32encode_Uffffffff("24859 (\\U0000611B)"             , FALSE    , "\\U0000611B"    , 10            , UTF32_FromUTF8("愛"));
-	print_test_utf32encode_Uffffffff("헐((\\U000D5D0)"                 , FALSE    , "\\U0000D5D0"    , 10            , UTF32_FromUTF8("헐"));
-	print_test_utf32encode_Uffffffff("<not a character> (\\U0000FFFF)" , FALSE    , "\\U0000FFFF"    , 10            , UTF32_FromUTF8("￿"));
-	print_test_utf32encode_Uffffffff("𐀀 ((\\U00010000)"                , FALSE    , "\\U00010000"    , 10            , UTF32_FromUTF8("𐀀"));
-	print_test_utf32encode_Uffffffff("😇 ((\\U0001F607)"               , FALSE    , "\\U0001F607"    , 10            , UTF32_FromUTF8("😇"));
+//	| TEST FUNCTION                 | TEST NAME                         | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
+	print_test_utf32encode_Uffffffff("\\0"                             	, FALSE    , "\\U00000000"    , 10            , UTF32_FromUTF8("\0"));
+	print_test_utf32encode_Uffffffff("ascii 'u' (\\U00000055)"         	, FALSE    , "\\U00000055"    , 10            , UTF32_FromUTF8("\x55"));
+	print_test_utf32encode_Uffffffff("177 (\\U000000B1)"              	, FALSE    , "\\U000000B1"    , 10            , UTF32_FromUTF8("±"));
+	print_test_utf32encode_Uffffffff("255 (\\U000000FF)"              	, FALSE    , "\\U000000FF"    , 10            , UTF32_FromUTF8("ÿ"));
+	print_test_utf32encode_Uffffffff("24859 (\\U0000611B)"            	, FALSE    , "\\U0000611B"    , 10            , UTF32_FromUTF8("愛"));
+	print_test_utf32encode_Uffffffff("헐((\\U000D5D0)"                 	, FALSE    , "\\U0000D5D0"    , 10            , UTF32_FromUTF8("헐"));
+	print_test_utf32encode_Uffffffff("<not a character> (\\U0000FFFF)" 	, FALSE    , "\\U0000FFFF"    , 10            , UTF32_FromUTF8("￿"));
+	print_test_utf32encode_Uffffffff("𐀀 ((\\U00010000)"                	, FALSE    , "\\U00010000"    , 10            , UTF32_FromUTF8("𐀀"));
+	print_test_utf32encode_Uffffffff("😇 ((\\U0001F607)"               	, FALSE    , "\\U0001F607"    , 10            , UTF32_FromUTF8("😇"));
 }
 #endif
 
@@ -377,7 +382,7 @@ void	print_test_utf32encode_smart(char const* test_name, t_testflags flags,
 
 void	test_utf32encode_smart(void)
 {
-//	| TEST FUNCTION           | TEST NAME                           | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
+//	| TEST FUNCTION             | TEST NAME                         | TESTFLAGS| EXPECTING DEST   | EXPECTING RET | TEST ARG
 	print_test_utf32encode_smart("\\0"                            	, FALSE    , "\\x00"          , 4             , UTF32_FromUTF8("\0"));
 	print_test_utf32encode_smart("ascii 'u' (\\U00000055)"        	, FALSE    , "\\x55"          , 4             , UTF32_FromUTF8("\x55"));
 	print_test_utf32encode_smart("177 (\\U000000B1)"             	, FALSE    , "\\xB1"          , 4             , UTF32_FromUTF8("±"));
@@ -458,7 +463,7 @@ void	test_utf8nscount(void)
 	print_test_utf8nscount("utf8nscount (unicode)                      ", FLAG_WARNING  , 1                        , teststr_utf8_one_symbol_three_seq, SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (unicode)                      ", FLAG_WARNING  , teststr_utf8_hardcore_len, teststr_utf8_hardcore            , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount (empty str)                    ", FALSE         , 0                        , ""                               , SIZE_MAX);
-	print_test_utf8nscount("utf8nscount (null str)                     ", ALLOW_SIGSEGV, ERROR                    , NULL                             , SIZE_MAX);
+	print_test_utf8nscount("utf8nscount (null str)                     ", ALLOW_SIGSEGV , ERROR                    , NULL                             , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 1              ", FALSE         , ERROR                    , "my string \xE0oopsy"            , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 2              ", FALSE         , ERROR                    , "\xFF"                           , SIZE_MAX);
 	print_test_utf8nscount("utf8nscount invalid unicode 3              ", FALSE         , ERROR                    , "\xE0\xA0"                       , SIZE_MAX);

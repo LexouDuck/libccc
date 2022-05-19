@@ -58,7 +58,7 @@ typedef struct list_int 	s_list_int ;	//!< @see "libccc/monad/list.h"
 
 void	print_error(char const* format_error, ...);
 void	print_percent(double percent);
-void	print_totals(int amount, int failed, char const* category);
+void	print_totals(int amount, int failed, int warnings, char const* category);
 void	print_usage(char const* program_name);
 void	print_suite_title(char const* suite_name);
 void	print_title(void);
