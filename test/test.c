@@ -126,7 +126,7 @@ void	print_test(
 			}
 			else
 			{
-				printf(C_YELLOW"Warning"C_RESET": failed benign test for function %s()\n"
+				printf(C_YELLOW"Warning"C_RESET": failed test: %s\n"
 					"- received: (%s)\n"
 					"- expected: (%s)\n",
 					function,
