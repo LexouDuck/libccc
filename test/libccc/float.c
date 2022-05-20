@@ -34,7 +34,7 @@
 #define f128_SF	"%+#.*Lg"
 
 #define DEFINETEST_FLOAT_TO_STR(TYPE) \
-void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
+void	print_test_##TYPE##tostr(char const* test_name, t_testflags flags,		\
 		char const* expecting,													\
 		t_##TYPE number,														\
 		t_u8 precision)															\
@@ -46,7 +46,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
 }																				\
 void	test_##TYPE##tostr(void)																							\
 {																															\
-/*	| TEST FUNCTION         | TEST NAME                   |CAN SEGV| EXPECTING              | TEST ARGS				*/		\
+/*	| TEST FUNCTION         | TEST NAME                   |TESTFLAG| EXPECTING              | TEST ARGS				*/		\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                       "1", 1.                   , 0);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                     "1.0", 1.                   , 1);	\
 	print_test_##TYPE##tostr(#TYPE"tostr               ",	FALSE,                    "1.00", 1.                   , 2);	\
@@ -296,7 +296,7 @@ DEFINETEST_FLOAT_TO_STRBIN(float) // TODO
 */
 
 #define DEFINETEST_STR_TO_FLOAT(TYPE) \
-void	print_test_strto##TYPE(char const* test_name, int can_segfault,	\
+void	print_test_strto##TYPE(char const* test_name, t_testflags flags,	\
 		t_##TYPE expecting,												\
 		char const* str)												\
 {																		\
@@ -306,7 +306,7 @@ void	print_test_strto##TYPE(char const* test_name, int can_segfault,	\
 }																		\
 void	test_strto##TYPE(void)																									\
 {																																\
-/*	| TEST FUNCTION       | TEST NAME                     |CAN SEGV| EXPECTING                | TEST ARGS					*/	\
+/*	| TEST FUNCTION       | TEST NAME                     |TESTFLAG| EXPECTING                | TEST ARGS					*/	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         0.L, "0"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         1.L, "1"                          );	\
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         2.L, "2"                          );	\
@@ -1363,7 +1363,7 @@ void	test_strto##TYPE(void)																									\
 	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP"                     );	\
 	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP0"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (empty str)   ",	FALSE,                         NAN, ""                           );	\
-	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	SEGV,                            0, NULL                         );	\
+	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	FLAG_SIGSEGV,                    0, NULL                         );	\
 }
 
 #ifndef c_strtof32

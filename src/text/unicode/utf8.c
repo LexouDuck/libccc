@@ -9,14 +9,11 @@
 
 #define MASK	((1 << 6) - 1)
 
-
-
-t_sint		UTF8_Length(t_utf8 const* str)//, size_t n)
+t_sint		CharUTF8_Length(t_utf8 const* str)
 {
 	t_u8	c;
 
 	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
-	//HANDLE_ERROR(INVALIDARGS, (n == 0), return (0);)
 	c = str[0];
 	if (c & (1 << 7)) // multi-byte character
 	{
@@ -54,15 +51,73 @@ t_sint		UTF8_Length(t_utf8 const* str)//, size_t n)
 	else return (1);
 }
 
+t_bool CharUTF8_IsSeqValid(const t_utf8* str, t_size* out_length)
+{
+	if (out_length) *out_length = SIZE_ERROR;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
+	t_sint length = CharUTF8_Length(str);
+	if (length == ERROR)
+	{
+		return (FALSE);
+	}
+
+	for (int i = 1; i < length; ++i)
+		HANDLE_ERROR_SF(ILLEGALBYTES,
+				(((t_u8)str[i]) >> 6) != 2,
+				return (FALSE);,
+				"illegal UTF-8 at idx %d: '%c'/0x%4.4X", i, (str[i] ? str[i] : '\a'), str[i]
+			);
+
+	if (out_length) *out_length = length;
+	return TRUE;
+}
+
+t_bool CharUTF8_IsStringValid(const t_utf8* str, t_size* out_symcount, t_size* out_bytecount)
+{
+	return CharUTF8_IsStringValid_N(str, SIZE_MAX, out_symcount, out_bytecount);
+}
+
+t_bool CharUTF8_IsStringValid_N(const t_utf8* str, t_size n, t_size* out_symcount, t_size* out_bytecount)
+{
+	t_size symcount = 0;
+	t_size bytecount = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL),
+			if (out_symcount)  *out_symcount  = SIZE_ERROR;
+			if (out_bytecount) *out_bytecount = SIZE_ERROR;
+			return (FALSE);
+		)
+
+	while (str[bytecount])
+	{
+		t_size seq_len = CharUTF8_Length(str + bytecount);
+
+		if (bytecount + seq_len > n)
+			break;
+		if (!CharUTF8_IsSeqValid(str + bytecount, NULL))
+		{
+			if (out_symcount)  *out_symcount  = symcount;
+			if (out_bytecount) *out_bytecount = bytecount;
+			return FALSE;
+		}
+		++symcount;
+		bytecount += seq_len;
+	}
+
+	if (out_symcount)  *out_symcount  = symcount;
+	if (out_bytecount) *out_bytecount = bytecount;
+	return TRUE;
+}
 
 
-t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
+t_size		CharUTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 {
 	t_u8	mask;
 
 	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
 	HANDLE_ERROR_SF(ILLEGALBYTES,
-		!UTF32_IsValid(c), return (0);,
+		!CharUTF32_IsValid(c), return (0);,
 		"invalid unicode character, code point: "SF_U32, c)
 	if (c < UTF8_1BYTE)
 	{
@@ -98,7 +153,7 @@ t_size		UTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 
 
 
-t_utf32		UTF32_FromUTF8(t_utf8 const* str)
+t_utf32		CharUTF32_FromUTF8(t_utf8 const* str)
 {
 	t_utf32	result = 0;
 	t_u8	mask;
@@ -150,9 +205,64 @@ t_utf32		UTF32_FromUTF8(t_utf8 const* str)
 	else return ((t_utf32)c);
 }
 
+t_size CharUTF8_Copy(t_utf8* dest, t_utf8 const* str)
+{
+	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (SIZE_ERROR);)
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (SIZE_ERROR);)
+
+	t_size length;
+	if (!CharUTF8_IsSeqValid(str, &length))
+		return SIZE_ERROR;
+
+	for (t_size i = 0; i < length; ++i)
+		dest[i] = str[i];
+	return length;
+}
+
+
+
+// TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
+t_sint	CharUTF8_SymbolCount(t_utf8 const* str)
+{
+	t_size i;
+	t_sint result = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	i = 0;
+	while (str[i])
+	{
+		t_size charlen;
+		if (!CharUTF8_IsSeqValid(str + i, &charlen))
+			return ERROR;
+		i += charlen;
+		++result;
+	}
+	return (result);
+}
+
+// TODO: Handle multi-utf8sequence characters, such as skin tone modifier etc
+t_sint	CharUTF8_SymbolCount_N(t_utf8 const* str, t_size n)
+{
+	t_size i;
+	t_sint result = 0;
+
+	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	i = 0;
+	while (i < n && str[i])
+	{
+		t_sint charlen = CharUTF8_Length(str + i);
+		if (charlen > 0 && (t_size)charlen > n)
+			break;
+		if (charlen == ERROR || !CharUTF8_IsSeqValid(str + i, NULL))
+			return ERROR;
+		i += charlen;
+		++result;
+	}
+	return (result);
+}
 
 /*
-void	UTF32_Print_UTF8(t_utf8* dest, t_utf32 c)
+void	CharUTF32_Print_UTF8(t_utf8* dest, t_utf32 c)
 {
 	t_uint	utf8_length = 0;
 	t_uint	utf8_position = 0;

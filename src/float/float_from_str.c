@@ -48,7 +48,7 @@ t_float	Float_Parse_CheckSpecial(t_char const* str		)
 	}
 	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
 		String_Equals_N_IgnoreCase(str, "INF", 3) ||
-		UTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
+		CharUTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
 		if (sign == '-')	return (-INF);
 		if (sign == '+')	return (+INF);

@@ -10,7 +10,7 @@ void test_memalloc(void)	{}
 #warning "memalloc() test suite function defined, but the function isn't defined."
 #else
 #define memalloc(n)	malloc(n)
-void	print_test_memalloc(char const* test_name, int can_segfault,
+void	print_test_memalloc(char const* test_name, t_testflags flags,
 		t_size n)
 {
 	TEST_INIT(alloc)
@@ -21,7 +21,7 @@ void	print_test_memalloc(char const* test_name, int can_segfault,
 }
 void	test_memalloc(void)
 {
-//	| TEST FUNCTION    | TEST NAME              |CAN SEGV|TEST ARGS
+//	| TEST FUNCTION    | TEST NAME              |TESTFLAG|TEST ARGS
 	// TODO
 }
 #endif
@@ -33,7 +33,7 @@ void test_memnew(void)	{}
 #warning "memnew() test suite function defined, but the function isn't defined."
 #else
 static void*	memnew(t_size n) { void* result = malloc(n);	memset(result, 0, n);	return (result); }
-void	print_test_memnew(char const* test_name, int can_segfault,
+void	print_test_memnew(char const* test_name, t_testflags flags,
 		t_size n)
 {
 	TEST_INIT(alloc)
@@ -44,7 +44,7 @@ void	print_test_memnew(char const* test_name, int can_segfault,
 }
 void	test_memnew(void)
 {
-//	| TEST FUNCTION  | TEST NAME              |CAN SEGV|TEST ARGS
+//	| TEST FUNCTION  | TEST NAME              |TESTFLAG|TEST ARGS
 	print_test_memnew("memnew              ",	FALSE,	8);
 	print_test_memnew("memnew (n = 0xFFFF) ",	FALSE,	0xFFFF);
 	print_test_memnew("memnew (n = 0x10000)",	FALSE,	0x10000);
@@ -63,7 +63,7 @@ void	test_memnew(void)
 void test_memfree(void)	{}
 #warning "memfree() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memfree(char const* test_name, int can_segfault,
+void	print_test_memfree(char const* test_name, t_testflags flags,
 		void* expecting,
 		void* ptr)
 {
@@ -76,7 +76,7 @@ void	test_memfree(void)
 	t_size const length = 16;
 	void* test = (void*)malloc(length);
 	memset(test, 0, length);
-//	| TEST FUNCTION  | TEST NAME        | CAN SEGV | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME        | TESTFLAGS| TEST ARGS
 /* TODO figure out how to test this function
 	print_test_memfree("memfree",	          	FALSE,	test);
 	print_test_memfree("memfree (null ptr)",	FALSE,	NULL);
@@ -91,7 +91,7 @@ void test_memdel(void)	{}
 #warning "memdel() test suite function defined, but the function isn't defined."
 #else
 static void	memdel(void** ptr) { free(*ptr); ptr = NULL; }
-void	print_test_memdel(char const* test_name, int can_segfault,
+void	print_test_memdel(char const* test_name, t_testflags flags,
 		void** expecting,
 		void** ptr)
 {
@@ -104,14 +104,14 @@ void	test_memdel(void)
 	t_size const length = 16;
 	void* test_result;
 	void* test_expect;
-//	| TEST FUNCTION  | TEST NAME         | CAN SEGV       | EXPECTING     | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME         | TESTFLAGS      | EXPECTING     | TEST ARGS
 	test_result = (void*)malloc(length);
 	test_expect = (void*)malloc(length);
 	print_test_memdel("memdel",	          	FALSE,			&test_expect,	&test_result);
 	test_result = (void*)malloc(length);
 	test_expect = (void*)malloc(length);
-	print_test_memdel("memdel (null arg)",	SIGNAL_SIGSEGV,	&test_expect,	&test_result); // TODO figure out how to recover from this
-	print_test_memdel("memdel (null ptr)",	SIGNAL_SIGSEGV,	NULL,			NULL); // TODO figure out how to recover from this
+	print_test_memdel("memdel (null arg)",	ALLOW_SIGSEGV,	&test_expect,	&test_result); // TODO figure out how to recover from this
+	print_test_memdel("memdel (null ptr)",	ALLOW_SIGSEGV,	NULL,			NULL); // TODO figure out how to recover from this
 }
 #endif
 
@@ -121,7 +121,7 @@ void	test_memdel(void)
 void test_memset(void)	{}
 #warning "memset() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memset(char const* test_name, int can_segfault,
+void	print_test_memset(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		int byte,
@@ -138,7 +138,7 @@ void	test_memset(void)
 	char str2[] = "Omae wa mou shindeiru.";
 	int n1 = 0x6969;
 	int n2 = 0x6969;
-//	| TEST FUNCTION  | TEST NAME        | CAN SEGV         | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME        | TESTFLAGS        | TEST ARGS
 	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       'a',    7);
 	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       'b',    1);
 	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       '_',    16);
@@ -146,7 +146,7 @@ void	test_memset(void)
 	print_test_memset("memset (c > 127)",    FALSE,			str1,       str2,       '\x88', 5);
 	print_test_memset("memset (int*)   ",    FALSE,			(char*)&n1, (char*)&n2, 0xBABA, 4);
 	print_test_memset("memset (n = 0)  ",    FALSE,			str1,       str2,       '\0',   0);
-	print_test_memset("memset (null ptr)", SIGNAL_SIGSEGV, 	str1,       str2,       '_',    5);
+	print_test_memset("memset (null ptr)", ALLOW_SIGSEGV, 	str1,       str2,       '_',    5);
 }
 #endif
 
@@ -162,7 +162,7 @@ void test_memclr(void)	{}
 #else
 #define memclr(dest, n)	bzero(dest, n)
 #endif
-void	print_test_memclr(char const* test_name, int can_segfault,
+void	print_test_memclr(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		t_size n)
@@ -178,14 +178,14 @@ void	test_memclr(void)
 	char str2[] = "Omae wa mou shindeiru.";
 	int n1 = 0x6969;
 	int n2 = 0x6969;
-//	| TEST FUNCTION  | TEST NAME                | CAN SEGV     | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME                | TESTFLAGS    | TEST ARGS
 	print_test_memclr("memclr/bzero (str)  ",   	FALSE,		str1,       str2,       3);
 	print_test_memclr("memclr/bzero (str)  ",   	FALSE,		str1,       str2,       8);
 	print_test_memclr("memclr/bzero (str)  ",   	FALSE,		str1,       str2,       12);
 	print_test_memclr("memclr/bzero (str)  ",   	FALSE,		str1,       str2,       16);
 	print_test_memclr("memclr/bzero (int*) ",   	FALSE,		(char*)&n1, (char*)&n2, sizeof(int));
 	print_test_memclr("memclr/bzero (n = 0)",   	FALSE,		str1,       str2,       0);
-	print_test_memclr("memclr/bzero (null ptr)",SIGNAL_SIGSEGV,	NULL,       NULL,       2);
+	print_test_memclr("memclr/bzero (null ptr)",ALLOW_SIGSEGV,	NULL,       NULL,       2);
 }
 #endif
 
@@ -195,7 +195,7 @@ void	test_memclr(void)
 void test_memcpy(void)	{}
 #warning "memcpy() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memcpy(char const* test_name, int can_segfault,
+void	print_test_memcpy(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
@@ -217,7 +217,7 @@ void	test_memcpy(void)
 	uint64_t n1 = 0x00ABCDEF6969CACA;
 	uint64_t n2 = 0x00ABCDEF6969CACA;
 	uint64_t n = 0x22446688AABBCCDD;
-//	| TEST FUNCTION  | TEST NAME            | CAN SEGV        | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME            | TESTFLAGS       | TEST ARGS
 	print_test_memcpy("memcpy (str)       ", FALSE,				str1, str2, test1, test1_len);
 	print_test_memcpy("memcpy (str)       ", FALSE,				str1, str2, test2, test2_len);
 	print_test_memcpy("memcpy (str)       ", FALSE,				str1, str2, test3, 20);
@@ -226,10 +226,10 @@ void	test_memcpy(void)
 	print_test_memcpy("memcpy (str)       ", FALSE,				str1, str2, test3, strlen(str1));
 	print_test_memcpy("memcpy (int*)      ", FALSE,				(char*)&n1, (char*)&n2, (char const *)&n, sizeof(n));
 	print_test_memcpy("memcpy (n = 0)     ", FALSE,				str1, str2, test2, 0);
-	print_test_memcpy("memcpy (n > srclen)", SIGNAL_SIGSEGV,	str1, str2, test2, test2_len + 5);
-	print_test_memcpy("memcpy (null dest) ", SIGNAL_SIGSEGV, 	NULL, NULL, test2, test2_len);
-	print_test_memcpy("memcpy (null src)  ", SIGNAL_SIGSEGV, 	str1, str2, NULL,  test2_len);
-	print_test_memcpy("memcpy (both null) ", SIGNAL_SIGSEGV, 	NULL, NULL, NULL,  test2_len);
+	print_test_memcpy("memcpy (n > srclen)", ALLOW_SIGSEGV,	str1, str2, test2, test2_len + 5);
+	print_test_memcpy("memcpy (null dest) ", ALLOW_SIGSEGV, 	NULL, NULL, test2, test2_len);
+	print_test_memcpy("memcpy (null src)  ", ALLOW_SIGSEGV, 	str1, str2, NULL,  test2_len);
+	print_test_memcpy("memcpy (both null) ", ALLOW_SIGSEGV, 	NULL, NULL, NULL,  test2_len);
 	// TODO add overlapping memory test
 }
 #endif
@@ -240,7 +240,7 @@ void	test_memcpy(void)
 void test_memccpy(void)	{}
 #warning "memccpy() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memccpy(char const* test_name, int can_segfault,
+void	print_test_memccpy(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
@@ -277,7 +277,7 @@ void	test_memccpy(void)
 	uint64_t n1 = 0x00ABCDEF6969CAFE;	char* num1 = (char*)&n1;
 	uint64_t n2 = 0x00ABCDEF6969CAFE;	char* num2 = (char*)&n2;
 	uint64_t n  = 0x22446688AABBCCDD;	char* num  = (char*)&n;
-//	| TEST FUNCTION   | TEST NAME             | CAN SEGV       | TEST ARGS
+//	| TEST FUNCTION   | TEST NAME             | TESTFLAGS      | TEST ARGS
 	print_test_memccpy("memccpy (str)       ", FALSE,			str1, str2, test1, '\r', test1_len);
 	print_test_memccpy("memccpy (str)       ", FALSE,			str1, str2, test1, 'w',  test1_len);
 	print_test_memccpy("memccpy (str)       ", FALSE,			str1, str2, test1, ' ',  test1_len);
@@ -296,9 +296,9 @@ void	test_memccpy(void)
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\xB0', 8);
 	print_test_memccpy("memccpy (int*)      ", FALSE,			num1, num2, num,   0xAA, sizeof(n));
 //	print_test_memccpy("memccpy (c = '\\0')  ",FALSE,			str1, str2, test3, '\0', test3_len + 2); // TODO fix this test
-	print_test_memccpy("memccpy (null dest) ", SIGNAL_SIGSEGV,	NULL, NULL, test3, 'e',  test3_len + 2);
-	print_test_memccpy("memccpy (null src)  ", SIGNAL_SIGSEGV,	str1, str2, NULL,  'e',  5);
-	print_test_memccpy("memccpy (both null) ", SIGNAL_SIGSEGV,	NULL, NULL, NULL,  'e',  5);
+	print_test_memccpy("memccpy (null dest) ", ALLOW_SIGSEGV,	NULL, NULL, test3, 'e',  test3_len + 2);
+	print_test_memccpy("memccpy (null src)  ", ALLOW_SIGSEGV,	str1, str2, NULL,  'e',  5);
+	print_test_memccpy("memccpy (both null) ", ALLOW_SIGSEGV,	NULL, NULL, NULL,  'e',  5);
 	// TODO add overlapping memory test
 }
 #endif
@@ -309,7 +309,7 @@ void	test_memccpy(void)
 void test_memmove(void)	{}
 #warning "memmove() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memmove(char const* test_name, int can_segfault, int show_dest_arg,
+void	print_test_memmove(char const* test_name, t_testflags flags, int show_dest_arg,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
@@ -331,15 +331,15 @@ void	test_memmove(void)
 {
 	char str1[] = "Omae wa mou shindeiru.";
 	char str2[] = "Omae wa mou shindeiru.";
-//	| TEST FUNCTION   | TEST NAME            | CAN SEGV       |TEST 'dest'?| TEST ARGS
+//	| TEST FUNCTION   | TEST NAME            | TESTFLAGS      |TEST 'dest'?| TEST ARGS
 	print_test_memmove("memmove (str)      ", FALSE,			TRUE, 		str1, str2, test1, test1_len);
 	print_test_memmove("memmove (str)      ", FALSE,			TRUE, 		str1, str2, test2, test2_len);
 	print_test_memmove("memmove (str)      ", FALSE,			TRUE, 		str1, str2, test3, 20);
 	print_test_memmove("memmove (n = 0)    ", FALSE,			TRUE, 		str1, str2, test1, 0);
-	print_test_memmove("memmove (null src) ", SIGNAL_SIGSEGV,	TRUE, 		str1, str2, NULL,  5);
-	print_test_memmove("memmove (null dest)", SIGNAL_SIGSEGV,	FALSE,		NULL, NULL, test1, 5);
-	print_test_memmove("memmove (both null)", SIGNAL_SIGSEGV,	FALSE,		NULL, NULL, NULL,  5);
-	print_test_memmove("memmove (both null)", SIGNAL_SIGSEGV,	FALSE,		NULL, NULL, NULL,  5);
+	print_test_memmove("memmove (null src) ", ALLOW_SIGSEGV,	TRUE, 		str1, str2, NULL,  5);
+	print_test_memmove("memmove (null dest)", ALLOW_SIGSEGV,	FALSE,		NULL, NULL, test1, 5);
+	print_test_memmove("memmove (both null)", ALLOW_SIGSEGV,	FALSE,		NULL, NULL, NULL,  5);
+	print_test_memmove("memmove (both null)", ALLOW_SIGSEGV,	FALSE,		NULL, NULL, NULL,  5);
 	// TODO add overlapping memory test
 //	TODO change the testing function so that the following test can be done with a simple one-line function call
 /*
@@ -357,7 +357,7 @@ void	test_memmove(void)
 void test_memchr(void)	{}
 #warning "memchr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memchr(char const* test_name, int can_segfault,
+void	print_test_memchr(char const* test_name, t_testflags flags,
 		void const* ptr,
 		t_u8 byte,
 		t_size n)
@@ -369,7 +369,7 @@ void	print_test_memchr(char const* test_name, int can_segfault,
 void	test_memchr(void)
 {
 	uint64_t n = 0x22446688AABBCCDD;
-//	| TEST FUNCTION  | TEST NAME          | CAN SEGV       | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          | TESTFLAGS      | TEST ARGS
 	print_test_memchr("memchr (str)     ", FALSE,			test1,    'u',  test1_len);
 	print_test_memchr("memchr (str)     ", FALSE,			test2,    '?',  test2_len);
 	print_test_memchr("memchr (str)     ", FALSE,			test3,    'u',  test3_len);
@@ -378,7 +378,7 @@ void	test_memchr(void)
 	print_test_memchr("memchr (c='\\0')  ",FALSE,			test1,    '\0', test1_len);
 	print_test_memchr("memchr (c='\\0')  ",FALSE,			test3,    '\0', test3_len + 1);
 	print_test_memchr("memchr (n = 0)   ", FALSE,			test1,    'u',  0);
-	print_test_memchr("memchr (null ptr)", SIGNAL_SIGSEGV, 	NULL,     'c',  4);
+	print_test_memchr("memchr (null ptr)", ALLOW_SIGSEGV, 	NULL,     'c',  4);
 }
 #endif
 
@@ -388,7 +388,7 @@ void	test_memchr(void)
 void test_memcmp(void)	{}
 #warning "memcmp() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memcmp(char const* test_name, int can_segfault,
+void	print_test_memcmp(char const* test_name, t_testflags flags,
 		char const* ptr1,
 		char const* ptr2,
 		t_size n)
@@ -402,7 +402,7 @@ void	test_memcmp(void)
 	uint64_t n1 = 0x00ABCDEF6969CACA;
 	uint64_t n2 = 0x00ABCDEF6969CACA;
 	uint64_t n = 0x22446688AABBCCDD;
-//	| TEST FUNCTION  | TEST NAME          | CAN SEGV       | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          | TESTFLAGS      | TEST ARGS
 	print_test_memcmp("memcmp (str)  ",     FALSE,			test1, test1, test1_len);
 	print_test_memcmp("memcmp (str)  ",     FALSE,			test1, test2, test2_len);
 	print_test_memcmp("memcmp (str)  ",     FALSE,			test1, test3, test3_len);
@@ -418,9 +418,9 @@ void	test_memcmp(void)
 	print_test_memcmp("memcmp (int*) ",     FALSE,			(char*)&n1, (char*)&n1,	sizeof(n1));
 	print_test_memcmp("memcmp (n = 0)",     FALSE,			test2, test3, 0);
 //	print_test_memcmp("memcmp (int*) ",     FALSE,			&na,   &nb,   4);
-	print_test_memcmp("memcmp (null str1)", SIGNAL_SIGSEGV,	NULL,  test3, test3_len);
-	print_test_memcmp("memcmp (null str2)", SIGNAL_SIGSEGV, test2, NULL,  test3_len);
-	print_test_memcmp("memcmp (both null)", SIGNAL_SIGSEGV, NULL,  NULL,  test3_len);
+	print_test_memcmp("memcmp (null str1)", ALLOW_SIGSEGV,	NULL,  test3, test3_len);
+	print_test_memcmp("memcmp (null str2)", ALLOW_SIGSEGV, test2, NULL,  test3_len);
+	print_test_memcmp("memcmp (both null)", ALLOW_SIGSEGV, NULL,  NULL,  test3_len);
 	// note that some implementations of memcmp can know the type of argument in input,
 	// so they actually return *(int*)nra - *(int*)nrb -> not just considering memory as
 	// one continous sequence of bytes, like is implied in the man pages for memcmp().
@@ -434,7 +434,7 @@ void	test_memcmp(void)
 void test_memdup(void)	{}
 #warning "memdup() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memdup(char const* test_name, int can_segfault,
+void	print_test_memdup(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* src,
 		t_size n)
@@ -449,7 +449,7 @@ void	test_memdup(void)
 {
 	uint64_t n1 = 0x00ABCDEF6969CACA;
 	uint64_t n = 0x22446688AABBCCDD;
-//	| TEST FUNCTION  | TEST NAME           | CAN SEGV         | EXPECTING | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME           | TESTFLAGS        | EXPECTING | TEST ARGS
 	print_test_memdup("memdup (str)       ", FALSE,				test1,		test1, test1_len);
 	print_test_memdup("memdup (str)       ", FALSE,				test2,		test2, test2_len);
 	print_test_memdup("memdup (str)       ", FALSE,				test3,		test3, test3_len);
@@ -460,8 +460,8 @@ void	test_memdup(void)
 	print_test_memdup("memdup (n = 1)     ", FALSE,				test1,		test1, 1);
 	print_test_memdup("memdup (n = 0)     ", FALSE,				test1,		test1, 0);
 	print_test_memdup("memdup (empty str) ", FALSE,				"", 		"",    1);
-	print_test_memdup("memdup (n > srclen)", SIGNAL_SIGSEGV,	test1,		test1, 0);
-	print_test_memdup("memdup (null ptr)  ", SIGNAL_SIGSEGV,	NULL, 		NULL,  test1_len);
+	print_test_memdup("memdup (n > srclen)", ALLOW_SIGSEGV,	test1,		test1, 0);
+	print_test_memdup("memdup (null ptr)  ", ALLOW_SIGSEGV,	NULL, 		NULL,  test1_len);
 }
 #endif
 
@@ -477,7 +477,7 @@ void	print_test_memswap(void)
 }
 void	test_memswap(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
 //	TODO
 }
 #endif
@@ -488,7 +488,7 @@ void	test_memswap(void)
 void test_memrep(void)	{}
 #warning "memrep() test suite function defined, but the function isn't defined."
 #else
-void	print_test_memrep(char const* test_name, int can_segfault,
+void	print_test_memrep(char const* test_name, t_testflags flags,
 		char const* expecting,
 		void* ptr,
 		t_u8 old,
@@ -505,7 +505,7 @@ void	test_memrep(void)
 	char* tst1 = strdup("Omae wa mou shindeiru.\0");		t_size const tst1_len = 23;
 	char* tst2 = strdup("Nani???\0");						t_size const tst2_len = 8;
 	char* tst3 = strdup("Un ange mange de la fange.\0");	t_size const tst3_len = 27;
-//	| TEST FUNCTION  | TEST NAME             | CAN SEGV       | EXPECTING                      | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME             | TESTFLAGS      | EXPECTING                      | TEST ARGS
 	print_test_memrep("memrep              ", FALSE,			"O_ae wa _ou shindeiru.",       tst1, 'm', '_', 16);
 	print_test_memrep("memrep              ", FALSE,			"O_ae wa _ou shindeiru$",       tst1, '.', '$', tst1_len - 1);
 	print_test_memrep("memrep              ", FALSE,			"O_ae\twa\t_ou\tshindeiru$",    tst1, ' ', '\t',tst1_len - 1);
@@ -516,8 +516,8 @@ void	test_memrep(void)
 	print_test_memrep("memrep              ", FALSE,			"Un an_e man_e de la fan_e.\0", tst3, 'g', '_', tst3_len - 1);
 	print_test_memrep("memrep (old = '\\0') ",FALSE,			tst1,                           tst1, '\0','a', 16);
 	print_test_memrep("memrep (n = 0)      ", FALSE,			tst1,                           tst1, ' ', 'a', 0);
-//	print_test_memrep("memrep (n > len)    ", SIGNAL_SIGSEGV,	NULL,                           tst3, '_', 'a', tst3_len + 64);
-	print_test_memrep("memrep (null str)   ", SIGNAL_SIGSEGV,	NULL,                           NULL, '_', 'a', 16);
+//	print_test_memrep("memrep (n > len)    ", ALLOW_SIGSEGV,	NULL,                           tst3, '_', 'a', tst3_len + 64);
+	print_test_memrep("memrep (null str)   ", ALLOW_SIGSEGV,	NULL,                           NULL, '_', 'a', 16);
 	free(tst1);
 	free(tst2);
 	free(tst3);
@@ -538,7 +538,7 @@ void	print_test_getbits(void)
 }
 void	test_getbits(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
 //	TODO
 }
 #endif

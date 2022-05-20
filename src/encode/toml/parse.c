@@ -367,10 +367,10 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 						break;
 					case 'u': // UTF-32 literal TODO ensure 4 hex chars
 					case 'U': // UTF-32 literal TODO ensure 8 hex chars
-						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
+						sequence_length = CharUTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_TOML("Could not parse string: Failed to convert UTF16-literal to UTF-8")
-						output_ptr += UTF32_ToUTF8(output_ptr, c);
+						output_ptr += CharUTF32_ToUTF8(output_ptr, c);
 						break;
 					default: // TODO non-strict escape sequence handling
 						PARSINGERROR_TOML("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
@@ -1007,7 +1007,7 @@ t_size	TOML_Parse_(s_toml* *dest, t_char const* str, t_size n, t_bool strict)
 	)
 	p->content = str;
 	p->length = n; 
-	p->offset = UTF8_ByteOrderMark(str);
+	p->offset = CharUTF8_ByteOrderMark(str);
 	p->strict = strict;
 	p->line = 1;
 	p->result = TOML_Item();

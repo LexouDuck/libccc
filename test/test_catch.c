@@ -5,21 +5,21 @@
 
 
 
-char const*	signals[ENUMLENGTH_SIGNAL + 1] =
+char const*	const signals[ENUMLENGTH_SIGNAL + 1] =
 {
-	"",
+	"", //!< no signal emitted
 	"#SIGTERM",	//!< (SIGnal: TERMination request)
-	"#SIGSEGV",	//!< (SIGnal: SEGmentation Violation)
 	"#SIGINT",	//!< (SIGnal: INTerrupt) external
-	"#SIGILL",	//!< (SIGnal: ILLegal instruction)
 	"#SIGABRT",	//!< (SIGnal: ABoRTed execution)
+	"#SIGSEGV",	//!< (SIGnal: SEGmentation Violation)
+	"#SIGILL",	//!< (SIGnal: ILLegal instruction)
 	"#SIGFPE",	//!< (SIGnal: Floating-Point Exception)
 	NULL
 };
 
 
 
-e_signal	sig;
+e_signal	sig = SIGNAL_NULL;
 
 jmp_buf	restore;
 
@@ -40,14 +40,14 @@ void	signal_handler(int signaltype)
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 #endif
 {
-	e_signal value;
+	e_signal value = SIGNAL_NULL;
 	switch (signaltype)
 	{
 //		case SIGTERM:	value = SIGNAL_SIGTERM;	break;
-		case SIGSEGV:	value = SIGNAL_SIGSEGV;	break;
-		case SIGINT:	value = SIGNAL_SIGINT;	break;
-		case SIGILL:	value = SIGNAL_SIGILL;	break;
+//		case SIGINT:/*	value = SIGNAL_SIGINT;	break; */ return;
 		case SIGABRT:	value = SIGNAL_SIGABRT;	break;
+		case SIGSEGV:	value = SIGNAL_SIGSEGV;	break;
+		case SIGILL:	value = SIGNAL_SIGILL;	break;
 		case SIGFPE:	value = SIGNAL_SIGFPE;	break;
 		default:		value = SIGNAL_NULL;	break;
 	}
@@ -56,14 +56,14 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 
 
 
-void	init_segfault_handler(void)
+void	init_signal_handler(void)
 {
 #ifdef __MINGW32__
 //	signal(SIGTERM,	signal_handler);
-	signal(SIGSEGV,	signal_handler);
-	signal(SIGINT,	signal_handler);
-	signal(SIGILL,	signal_handler);
+//	signal(SIGINT,	signal_handler);
 	signal(SIGABRT,	signal_handler);
+	signal(SIGSEGV,	signal_handler);
+	signal(SIGILL,	signal_handler);
 	signal(SIGFPE,	signal_handler);
 #else
 	memset(&signal_action, 0, sizeof(struct sigaction));
@@ -71,10 +71,10 @@ void	init_segfault_handler(void)
 	signal_action.sa_flags     = SA_NODEFER;
 	signal_action.sa_sigaction = signal_handler;
 //	sigaction(SIGTERM,	&signal_action, NULL);
-	sigaction(SIGSEGV,	&signal_action, NULL);
-	sigaction(SIGINT,	&signal_action, NULL);
-	sigaction(SIGILL,	&signal_action, NULL);
+//	sigaction(SIGINT,	&signal_action, NULL);
 	sigaction(SIGABRT,	&signal_action, NULL);
+	sigaction(SIGSEGV,	&signal_action, NULL);
+	sigaction(SIGILL,	&signal_action, NULL);
 	sigaction(SIGFPE,	&signal_action, NULL);
 #endif
 }

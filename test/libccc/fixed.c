@@ -28,7 +28,7 @@
 */
 
 #define DEFINETEST_FIXED_TO_STR(TYPE, NAME) \
-void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
+void	print_test_##TYPE##tostr(char const* test_name, t_testflags flags,		\
 		char const* expecting,													\
 		t_##TYPE number)														\
 {																				\
@@ -44,7 +44,7 @@ void	print_test_##TYPE##tostr(char const* test_name, int can_segfault,		\
 }																				\
 void	test_##TYPE##tostr(void)																												\
 {																																				\
-/*	| TEST FUNCTION         | TEST NAME                  |CAN SEGV| EXPECTING                       | TEST ARGS								*/	\
+/*	| TEST FUNCTION         | TEST NAME                  |TESTFLAG| EXPECTING                       | TEST ARGS								*/	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/256)", NAME##_From( 0,                       1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1.(0/256)", NAME##_From(+1,                       1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-1.(0/256)", NAME##_From(-1,                       1));	\
@@ -67,7 +67,7 @@ void	test_##TYPE##tostr(void)																												\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-111.(0/256)", NAME##_From(-111,                     1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 min)     ",	FALSE,                   "-128.(0/256)", NAME##_From(-128,                     1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 max)     ",	FALSE,                    "127.(0/256)", NAME##_From(+127,                     1));	\
-	if (g_test.flags.test_overflow) {																											\
+	if (g_test.config.test_overflow) {																											\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 min)     ",	FALSE,                   "-129.(0/256)", NAME##_From(-129,                     1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 max)     ",	FALSE,                    "128.(0/256)", NAME##_From(+128,                     1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 maxdigit)",	FALSE,                 "-99999.(0/256)", NAME##_From(-99999,                   1));	\
@@ -81,7 +81,7 @@ void	test_##TYPE##tostr(void)																												\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000.(0/256)", NAME##_From(+10000,                   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 16min)     ",	FALSE,                 "-32768.(0/256)", NAME##_From(-32768,                   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "32767.(0/256)", NAME##_From(+32767,                   1));	\
-	if (g_test.flags.test_overflow) {																											\
+	if (g_test.config.test_overflow) {																											\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                 "-32769.(0/256)", NAME##_From(-32769,                   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "32768.(0/256)", NAME##_From(+32768,                   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999.(0/256)", NAME##_From(-9999999,                 1));	\
@@ -95,7 +95,7 @@ void	test_##TYPE##tostr(void)																												\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321.(0/256)", NAME##_From(+987654321,               1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 32min)     ",	FALSE,            "-2147483648.(0/256)", NAME##_From(-2147483648,              1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "2147483647.(0/256)", NAME##_From(+2147483647,              1));	\
-	if (g_test.flags.test_overflow) {																											\
+	if (g_test.config.test_overflow) {																											\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,            "-2147483649.(0/256)", NAME##_From(-2147483649,              1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "2147483648.(0/256)", NAME##_From(+2147483648,              1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999.(0/256)", NAME##_From(-999999999999,            1));	\
@@ -109,7 +109,7 @@ void	test_##TYPE##tostr(void)																												\
 	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999.(0/256)", NAME##_From(+999999999999,            1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808.(0/256)", NAME##_From(-9223372036854775808ll,   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,    "9223372036854775807.(0/256)", NAME##_From(+9223372036854775807ll,   1));	\
-	if (g_test.flags.test_overflow) {																											\
+	if (g_test.config.test_overflow) {																											\
 	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809.(0/256)", NAME##_From(-9223372036854775809ll,   1));	\
 	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,    "9223372036854775808.(0/256)", NAME##_From(+9223372036854775808ll,   1));	\
 /*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999.(0/256)", NAME##_From(-999999999999999999999ll, 1));*/\

@@ -70,10 +70,6 @@ typedef struct ccchandler
 // TODO document this
 #define PARSE_RETURN(VALUE) \
 	{	if (dest)	*dest = (VALUE);	return (i);	}
-// TODO document this
-#define PRINT_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
 
 
 #endif

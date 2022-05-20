@@ -16,10 +16,6 @@
 **	This header defines all the functions/sets related to single ASCII chars.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte}
-**
-**	@see
-**	- libccc/text/ascii.h
-**	- libccc/text/unicode.h
 */
 
 /*
@@ -38,7 +34,6 @@
 #include "libccc.h"
 
 #include "libccc/text/ascii.h"
-#include "libccc/text/unicode.h"
 
 HEADER_CPP
 
@@ -51,11 +46,11 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Primitive type: `char`, configurable (ASCII or UTF8)
+//! Primitive type: `char`
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte}
 */
-typedef LIBCONFIG_CHAR_TYPE	t_char;
+typedef char	t_char;
 TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 
 
@@ -138,49 +133,29 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 */
 
 //!@doc Check if the given char `c` is a letter character (lowercase or uppercase)
-/*!
-**	@see
-**	- ASCII_IsLetter()
-**	- UTF32_IsLetter()
-*/
 //!@{
-#define					Char_IsLetter	CONCAT(LIBCONFIG_CHAR_NAME,_IsLetter)
+#define					Char_IsLetter	CharASCII_IsLetter
 #define c_isalpha		Char_IsLetter
 #define Char_IsAlpha	Char_IsLetter
 //!@}
 
 //!@doc Check if the given char `c` is a uppercase letter character
-/*!
-**	@see
-**	- ASCII_IsUppercase()
-**	- UTF32_IsUppercase()
-*/
 //!@{
-#define					Char_IsUppercase	CONCAT(LIBCONFIG_CHAR_NAME,_IsUppercase)
+#define					Char_IsUppercase	CharASCII_IsUppercase
 #define c_isupper		Char_IsUppercase
 #define Char_IsUpper	Char_IsUppercase
 //!@}
 
 //!@doc Check if the given char `c` is an lowercase letter character
-/*!
-**	@see
-**	- ASCII_IsLowercase()
-**	- UTF32_IsLowercase()
-*/
 //!@{
-#define					Char_IsLowercase	CONCAT(LIBCONFIG_CHAR_NAME,_IsLowercase)
+#define					Char_IsLowercase	CharASCII_IsLowercase
 #define c_islower		Char_IsLowercase
 #define Char_IsLower	Char_IsLowercase
 //!@}
 
 //!@doc Check if the given char `c` is alphanumeric (letter or digit) character
-/*!
-**	@see
-**	- ASCII_IsAlphaNumeric()
-**	- UTF32_IsAlphaNumeric()
-*/
 //!@{
-#define					Char_IsAlphaNumeric	CONCAT(LIBCONFIG_CHAR_NAME,_IsAlphaNumeric)
+#define					Char_IsAlphaNumeric	CharASCII_IsAlphaNumeric
 #define c_isalnum		Char_IsAlphaNumeric
 #define Char_IsAlNum	Char_IsAlphaNumeric
 //!@}
@@ -188,13 +163,8 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 
 
 //!@doc Check if the given char `c` is a decimal digit character (ie: #CHARSET_DEC: `0123456789`)
-/*!
-**	@see
-**	- ASCII_IsDigit_Decimal()
-**	- UTF32_IsDigit_Decimal()
-*/
 //!@{
-#define						Char_IsDigit_Decimal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit)
+#define						Char_IsDigit_Decimal	CharASCII_IsDigit
 #define c_isdigit			Char_IsDigit_Decimal
 #define c_isdigitdec		Char_IsDigit_Decimal
 #define Char_IsDigit		Char_IsDigit_Decimal
@@ -202,39 +172,24 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 //!@}
 
 //!@doc Checks if the given char `c` is a hexadecimal digit character (ie: #CHARSET_HEX: `0123456789abcdefABCDEF`)
-/*!
-**	@see
-**	- ASCII_IsDigit_Hexadecimal()
-**	- UTF32_IsDigit_Hexadecimal()
-*/
 //!@{
-#define						Char_IsDigit_Hexadecimal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Hex)
+#define						Char_IsDigit_Hexadecimal	CharASCII_IsDigit_Hex
 #define c_isxdigit			Char_IsDigit_Hexadecimal
 #define c_isdigithex		Char_IsDigit_Hexadecimal
 #define Char_IsDigit_Hex	Char_IsDigit_Hexadecimal
 //!@}
 
 //!@doc Checks if the given char `c` is a octal-base digit character (ie: #CHARSET_OCT: `01234567`)
-/*!
-**	@see
-**	- ASCII_IsDigit_Octal()
-**	- UTF32_IsDigit_Octal()
-*/
 //!@{
-#define						Char_IsDigit_Octal	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Oct)
+#define						Char_IsDigit_Octal	CharASCII_IsDigit_Oct
 #define c_isodigit			Char_IsDigit_Octal
 #define c_isdigitoct		Char_IsDigit_Octal
 #define Char_IsDigit_Oct	Char_IsDigit_Octal
 //!@}
 
 //!@doc Checks if the given char `c` is a binary-base digit character (ie: '0' or '1')
-/*!
-**	@see
-**	- ASCII_IsDigit_Binary()
-**	- UTF32_IsDigit_Binary()
-*/
 //!@{
-#define						Char_IsDigit_Binary	CONCAT(LIBCONFIG_CHAR_NAME,_IsDigit_Bin)
+#define						Char_IsDigit_Binary	CharASCII_IsDigit_Bin
 #define c_isbdigit			Char_IsDigit_Binary
 #define c_isdigitbin		Char_IsDigit_Binary
 #define Char_IsDigit_Bin	Char_IsDigit_Binary
@@ -243,25 +198,15 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 
 
 //!@doc Check if the given char `c` is whitespace character (' ','\\t','\\r','\\n','\\f','\\v')
-/*!
-**	@see
-**	- ASCII_IsWhiteSpace()
-**	- UTF32_IsWhiteSpace()
-*/
 //!@{
-#define					Char_IsWhiteSpace	CONCAT(LIBCONFIG_CHAR_NAME,_IsWhiteSpace)
+#define					Char_IsWhiteSpace	CharASCII_IsWhiteSpace
 #define c_isspace		Char_IsWhiteSpace
 #define Char_IsSpace	Char_IsWhiteSpace
 //!@}
 
 //!@doc Check if the given char `c` is a punctuation character
-/*!
-**	@see
-**	- ASCII_IsPunctuation()
-**	- UTF32_IsPunctuation()
-*/
 //!@{
-#define					Char_IsPunctuation	CONCAT(LIBCONFIG_CHAR_NAME,_IsPunctuation)
+#define					Char_IsPunctuation	CharASCII_IsPunctuation
 #define c_ispunct		Char_IsPunctuation
 #define Char_IsPunct	Char_IsPunctuation
 //!@}
@@ -269,13 +214,8 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 // TODO https://en.cppreference.com/w/c/string/byte/iscntrl
 
 //!@doc Check if the given char `c` is a printable ASCII character
-/*!
-**	@see
-**	- ASCII_IsPrintable()
-**	- UTF32_IsPrintable()
-*/
 //!@{
-#define					Char_IsPrintable	CONCAT(LIBCONFIG_CHAR_NAME,_IsPrintable)
+#define					Char_IsPrintable	CharASCII_IsPrintable
 #define c_isprint		Char_IsPrintable
 #define Char_IsPrint	Char_IsPrintable
 //!@}
@@ -283,14 +223,8 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 // TODO https://en.cppreference.com/w/c/string/byte/isgraph
 
 //!@doc Check if the given char `c` is a valid character integer
-/*!
-**	@see
-**	- ASCII_IsValid()
-**	- UTF32_IsValid()
-**	- UTF32_IsASCII()
-*/
 //!@{
-#define					Char_IsValid	CONCAT(LIBCONFIG_CHAR_NAME,_IsValid)
+#define					Char_IsValid	CharASCII_IsValid
 #define c_isascii		Char_IsValid
 #define c_isvalid		Char_IsValid
 //!@}
@@ -298,13 +232,8 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 
 
 //!@doc Check if the given char `c` is contained in the given 'charset'
-/*!
-**	@see
-**	- ASCII_IsInCharset()
-**	- UTF32_IsInCharset()
-*/
 //!@{
-#define					Char_IsInCharset	CONCAT(LIBCONFIG_CHAR_NAME,_IsInCharset)
+#define					Char_IsInCharset	CharASCII_IsInCharset
 #define c_isincharset	Char_IsInCharset
 //!@}
 
@@ -317,25 +246,15 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 */
 
 //!@doc Get the uppercase version of the given char `c`, if possible
-/*!
-**	@see
-**	- ASCII_ToUppercase()
-**	- UTF32_ToUppercase()
-*/
 //!@{
-#define					Char_ToUppercase	CONCAT(LIBCONFIG_CHAR_NAME,_ToUppercase)
+#define					Char_ToUppercase	CharASCII_ToUppercase
 #define c_toupper		Char_ToUppercase
 #define Char_ToUpper	Char_ToUppercase
 //!@}
 
 //!@doc Get the lowercase version of the given char `c`, if possible
-/*!
-**	@see
-**	- ASCII_ToLowercase()
-**	- UTF32_ToLowercase()
-*/
 //!@{
-#define					Char_ToLowercase	CONCAT(LIBCONFIG_CHAR_NAME,_ToLowercase)
+#define					Char_ToLowercase	CharASCII_ToLowercase
 #define c_tolower		Char_ToLowercase
 #define Char_ToLower	Char_ToLowercase
 //!@}

@@ -30,7 +30,7 @@
 void test_sizetostr(void)	{}
 #warning "sizetostr() test suite function defined, but the function isn't defined."
 #else
-void	print_test_sizetostr(char const* test_name, int can_segfault,
+void	print_test_sizetostr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		t_size number)
 {
@@ -41,7 +41,7 @@ void	print_test_sizetostr(char const* test_name, int can_segfault,
 }
 void	test_sizetostr(void)
 {
-//	| TEST FUNCTION       | TEST NAME                    |CAN SEGV| EXPECTING              | TEST ARGS
+//	| TEST FUNCTION       | TEST NAME                    |TESTFLAG| EXPECTING              | TEST ARGS
 	print_test_sizetostr("sizetostr               ",	FALSE,                      "1", 1                     );
 	print_test_sizetostr("sizetostr               ",	FALSE,                     "42", 42                    );
 	print_test_sizetostr("sizetostr               ",	FALSE,                    "777", 777                   );
@@ -55,7 +55,7 @@ void	test_sizetostr(void)
 		case 4:	print_test_sizetostr("sizetostr (n = max)     ",	FALSE,             "4294967295", 4294967295            ); break;
 		case 8:	print_test_sizetostr("sizetostr (n = max)     ",	FALSE,   "18446744073709551615", 18446744073709551615UL); break;
 	}
-	if (g_test.flags.test_overflow)
+	if (g_test.config.test_overflow)
 	{
 		print_test_sizetostr("sizetostr (n < min)     ",	FALSE,                     "-1", -1                    );
 		switch (sizeof(t_size))
@@ -83,7 +83,7 @@ void	test_sizetostr(void)
 void test_strtosize(void)	{}
 #warning "strtosize() test suite function defined, but the function isn't defined."
 #else
-void	print_test_strtosize(char const* test_name, int can_segfault,
+void	print_test_strtosize(char const* test_name, t_testflags flags,
 		t_size expecting,
 		char const* str)
 {
@@ -93,7 +93,7 @@ void	print_test_strtosize(char const* test_name, int can_segfault,
 }
 void	test_strtosize(void)
 {
-//	| TEST FUNCTION      | TEST NAME                     |CAN SEGV| EXPECTING                 | TEST ARGS
+//	| TEST FUNCTION      | TEST NAME                     |TESTFLAG| EXPECTING                 | TEST ARGS
 	print_test_strtosize("strtosize",               	FALSE,                           0, "0"                          );
 	print_test_strtosize("strtosize",               	FALSE,                           1, "1"                          );
 	print_test_strtosize("strtosize",               	FALSE,                          42, "42"                         );
@@ -169,8 +169,8 @@ void	test_strtosize(void)
 	print_test_strtosize("strtosize (n = max)     ",	FALSE,      18446744073709551615UL, "18446744073709551615"       );
 	print_test_strtosize("strtosize (n = min)     ",	FALSE,                           0, "0"                          );
 	print_test_strtosize("strtosize (empty str)   ",	FALSE,                           0, ""                           );
-	print_test_strtosize("strtosize (null str)    ",	TRUE | (1 << 2),                 0, NULL                         );
-	if (g_test.flags.test_overflow)
+	print_test_strtosize("strtosize (null str)    ",	ALLOW_SIGSEGV,                  0, NULL                         );
+	if (g_test.config.test_overflow)
 	{
 		print_test_strtosize("strtosize (n < min)     ",	FALSE,                           0, "-1"                         );
 	/*	print_test_strtosize("strtosize (n > max)     ",	FALSE,      18446744073709551616UL, "18446744073709551616"       );*/

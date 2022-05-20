@@ -11,10 +11,10 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_utf32	UTF32_ToUppercase(t_utf32 c)
+t_utf32	CharUTF32_ToUppercase(t_utf32 c)
 { return (towupper(c)); }
 #else
-t_utf32	UTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
+t_utf32	CharUTF32_ToUppercase(t_utf32 c) // TODO make lookup table for weird 'if's with no discernible pattern
 {
 	if ('a' <= c && c <= 'z')						return (c - 0x20);			// LATIN_SMALL					-> LATIN_CAPITAL
 	if (0xC0 <= c && c < 0xDF)						return (c);					// 								-> LATIN_CAPITAL
