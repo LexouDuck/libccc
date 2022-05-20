@@ -42,6 +42,7 @@
 ./hdr/libccc/random/csprng.h
 ./hdr/libccc/random/prng.h
 ./hdr/libccc/random/random.h
+./hdr/libccc/stringarray.h
 ./hdr/libccc/string.h
 ./hdr/libccc/sys/ansi.h
 ./hdr/libccc/sys/error.h
@@ -51,7 +52,6 @@
 ./hdr/libccc/sys/time.h
 ./hdr/libccc/text/ascii.h
 ./hdr/libccc/text/regex.h
-./hdr/libccc/text/stringarray.h
 ./hdr/libccc/text/stringascii.h
 ./hdr/libccc/text/stringutf8.h
 ./hdr/libccc/text/unicode.h
