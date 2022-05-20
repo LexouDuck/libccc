@@ -81,6 +81,7 @@ void	print_test(
 
 	g_test.totals.tests += 1;
 	g_test.last_test_failed = error;
+	g_test.last_test_warned = (warning != NULL);
 	if (g_test.config.verbose || error || warning)
 	{
 		if (args == NULL)
@@ -99,7 +100,9 @@ void	print_test(
 			printf(" | ");
 		}
 	}
-	if (g_test.last_test_failed || g_test.config.verbose)
+	if (g_test.last_test_failed ||
+		g_test.last_test_warned ||
+		g_test.config.verbose)
 	{
 		if (g_test.config.show_args && args)
 		{

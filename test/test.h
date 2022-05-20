@@ -108,6 +108,7 @@ typedef struct test_totals
 typedef struct program
 {
 	bool			last_test_failed;			//!< is `TRUE` if the latest test performed had an error.
+	bool			last_test_warned;			//!< is `TRUE` if the latest test performed issued a warning.
 	char*			last_test_error;			//!< contains any error output by libccc during the latest test
 	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
 	s_test_config	config;						//!< Stores the main program argument options (as boolean flags)
