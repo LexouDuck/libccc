@@ -14,7 +14,7 @@
 
 
 #include "libccc.h"
-#include "libccc/text/stringascii.h"
+#include "libccc/text/string_ascii.h"
 #include "libccc/char.h"
 
 HEADER_CPP

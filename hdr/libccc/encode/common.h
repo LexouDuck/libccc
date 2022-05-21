@@ -31,7 +31,7 @@
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/pointer.h"
-#include "libccc/text/unicode.h"
+#include "libccc/text/char_unicode.h"
 
 HEADER_CPP
 

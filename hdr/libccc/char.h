@@ -33,7 +33,7 @@
 
 #include "libccc.h"
 
-#include "libccc/text/ascii.h"
+#include "libccc/text/char_ascii.h"
 
 HEADER_CPP
 

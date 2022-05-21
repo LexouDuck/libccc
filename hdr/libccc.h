@@ -22,8 +22,8 @@
 **	- `libccc/float.h`
 **	- `libccc/pointer.h`
 **	- `libccc/char.h`
-**	- `libccc/text/ascii.h`
-**	- `libccc/text/unicode.h`
+**	- `libccc/text/char_ascii.h`
+**	- `libccc/text/char_unicode.h`
 **	
 **	Note that none of the functions from these headers are included/exposed.
 **	If you wish to use the utility functions from a header, you must manually include it:
