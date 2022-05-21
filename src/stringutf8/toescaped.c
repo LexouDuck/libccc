@@ -222,7 +222,7 @@ t_size StringUTF8_ToEscapedBuf_e(
 
 		if (find_res != NULL)
 		{
-			int index = CharUTF8_SymbolCount_N(charset, find_res - charset);
+			t_sint index = CharUTF8_SymbolCount_N(charset, find_res - charset);
 			alias = aliases[index];
 		}
 

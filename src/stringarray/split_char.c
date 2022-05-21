@@ -7,9 +7,9 @@
 
 
 static
-int	String_Split_Char_GetCount(t_char const* str, t_char c)
+t_uint	String_Split_Char_GetCount(t_char const* str, t_char c)
 {
-	int		result;
+	t_uint	result;
 	t_bool	separator;
 	t_size	i;
 
@@ -43,8 +43,8 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 	t_char**	result;
 	t_size	offset;
 	t_size	length;
-	int		count;
-	int		i;
+	t_uint	count;
+	t_uint	i;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to split given is NULL")
 		return (NULL);

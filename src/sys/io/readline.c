@@ -27,12 +27,12 @@
 
 
 static
-int		gnl_read(t_fd const fd, t_char** a_newline)
+t_sint		IO_Read_NextLine_Read(t_fd const fd, t_char** a_newline)
 {
 	static t_size	buf_pos = 0;
 	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
-	int				status = 0;
-	int				offset = 0;
+	t_sint			status = 0;
+	t_size			offset = 0;
 	t_char*			temp = NULL;
 	t_bool			end_of_buffer = FALSE;
 	t_bool			done_new_line = FALSE;
@@ -79,10 +79,10 @@ int		gnl_read(t_fd const fd, t_char** a_newline)
 
 
 
-int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
+t_sint		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 {
 	t_char*			new_line = NULL;
-	int				status = GNL_ERROR;
+	t_sint			status = GNL_ERROR;
 
 	if CCCERROR((a_line == NULL), ERROR_NULLPOINTER, "current line address given is NULL")
 		return (GNL_ERROR);
@@ -90,7 +90,7 @@ int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 		"`fd` argument given has a negative value: %i", fd)
 	return (GNL_ERROR);
 	new_line = NULL;
-	status = gnl_read(fd, &new_line);
+	status = IO_Read_NextLine_Read(fd, &new_line);
 	if (status < 0)
 	{
 		String_Delete(&new_line);

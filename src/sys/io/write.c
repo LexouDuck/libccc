@@ -110,7 +110,7 @@ t_size	IO_Write_Lines(t_fd fd, t_char const** strarr)
 		"`fd` argument given has a negative value: %i", fd)
 		return (0);
 	int result = 0;
-	int i = 0;
+	t_uint i = 0;
 	while (strarr[i])
 	{
 		result = write(fd, strarr[i], String_Length(strarr[i]));

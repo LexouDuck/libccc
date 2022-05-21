@@ -10,7 +10,7 @@
 
 static
 inline
-int	Int_Parse_GetHexDigit(char c)
+t_u8	Int_Parse_GetHexDigit(t_char c)
 {
 	if ('0' <= c && c <= '9')
 		return (c - '0');

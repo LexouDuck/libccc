@@ -9,7 +9,7 @@
 t_char**	String_Divide(t_char const* str, t_size n)
 {
 	t_char**	result;
-	int		lines;
+	t_uint		lines;
 	t_size	length;
 	t_size	i;
 

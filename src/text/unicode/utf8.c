@@ -65,7 +65,7 @@ t_bool CharUTF8_IsSeqValid(const t_utf8* str, t_size* out_length)
 		return (FALSE);
 	}
 
-	for (int i = 1; i < length; ++i)
+	for (t_sint i = 1; i < length; ++i)
 		if CCCERROR((((t_u8)str[i] >> 6) != 2), ERROR_ILLEGALBYTES,
 			"illegal UTF-8 at idx %d: '%c'/0x%4.4X",
 			i, (str[i] ? str[i] : '\a'), str[i])

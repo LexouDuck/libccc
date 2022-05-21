@@ -41,7 +41,7 @@ t_ascii*		String_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_
 	t_ascii*	result;
 	t_size	i;
 	t_size	j;
-	int		c_index;
+	t_sintmax	c_index;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);
@@ -82,7 +82,7 @@ t_ascii*		String_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_
 
 t_ascii*		String_Replace_String(t_ascii const* str, t_ascii const* str_old, t_ascii const* str_new)
 {
-	t_ascii*		result;
+	t_ascii*	result;
 	t_ascii**	strarr;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
@@ -124,7 +124,7 @@ void		String_Replace_Charset_InPlace(t_ascii* str, t_ascii const* cset_old, t_as
 {
 	t_size	i;
 	t_size	j;
-	int		c_index;
+	t_sintmax	c_index;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return;

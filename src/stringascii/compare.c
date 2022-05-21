@@ -29,10 +29,10 @@ t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i])
-			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+			return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 	}
-	return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+	return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 }
 #endif
 
@@ -59,12 +59,12 @@ t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 	while (str1[i] && str2[i])
 	{
 		if (str1[i] != str2[i])
-			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+			return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 		if (i == n)
 			return (0);
 	}
-	return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+	return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 }
 #endif
 
@@ -91,10 +91,10 @@ t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 		if (str1[i] != str2[i] &&
 			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
 			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
-			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+			return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 	}
-	return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+	return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 }
 #endif
 
@@ -123,11 +123,11 @@ t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_s
 		if (str1[i] != str2[i] &&
 			!(Char_IsLower(str1[i]) && Char_ToUpper(str1[i]) == str2[i]) &&
 			!(Char_IsUpper(str1[i]) && Char_ToLower(str1[i]) == str2[i]))
-			return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+			return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 		++i;
 		if (i == n)
 			return (0);
 	}
-	return ((int)((t_u8)str1[i] - (t_u8)str2[i]));
+	return ((t_sint)((t_u8)str1[i] - (t_u8)str2[i]));
 }
 #endif
