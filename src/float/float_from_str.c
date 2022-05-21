@@ -21,11 +21,6 @@
 
 
 
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
-
 //! The maximum amount of digits that can be printed to the mantissa
 #define MAXLEN_MANTISSA	(64)
 
@@ -126,7 +121,7 @@ t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str, t_size n)		\
 	t_size	i = 0;															\
 																			\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		PARSE_RETURN(F##BITS##_ERROR);										\
+		goto failure;														\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
 	for (i = 0; (i < n && str[i]); ++i)										\
@@ -144,6 +139,9 @@ t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str, t_size n)		\
 		}																	\
 	}																		\
 	return (F##BITS##_Parse_Dec(dest, str, n - i));							\
+failure:																	\
+	if (dest)	*dest = F##BITS##_ERROR;									\
+	return (i);																\
 }																			\
 inline t_f##BITS	F##BITS##_FromString(t_char const* str)					\
 {																			\
@@ -167,7 +165,7 @@ t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_size	i = 0;															\
 																			\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		PARSE_RETURN(F##BITS##_ERROR);										\
+		goto failure;														\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
 	while (i < n && str[i] && Char_IsSpace(str[i]))							\
@@ -176,11 +174,11 @@ t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n)	\
 	}																		\
 	result = Float_Parse_CheckSpecial(str + i);								\
 	if (result != 0.)														\
-		PARSE_RETURN(result);												\
+		goto success;														\
 	if (Float_Parse_CheckInvalid(str + i))									\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit(str[i])))	\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 if (!LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && !LIBCONFIG_USE_STD_MATH) {} /* stdlib wrappers */\
 else if (BITS == 32) { result = strtof(str + i, &tmp);	i += (tmp - str);	goto success; }	\
 else if (BITS == 64) { result = strtod(str + i, &tmp);	i += (tmp - str);	goto success; }	\
@@ -226,6 +224,9 @@ else				 { result = strtold(str + i, &tmp);	i += (tmp - str);	goto success; }	\
 success:																	\
 	if (dest)	*dest = result;												\
 	return (i);																\
+failure:																	\
+	if (dest)	*dest = F##BITS##_ERROR;									\
+	return (i);																\
 }																			\
 inline t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
 {																			\
@@ -249,7 +250,7 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_size		i = 0;														\
 																			\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		PARSE_RETURN(F##BITS##_ERROR);										\
+		goto failure;														\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
 	while (i < n && str[i] && Char_IsSpace(str[i]))							\
@@ -258,11 +259,11 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
 	}																		\
 	result = Float_Parse_CheckSpecial(str + i);								\
 	if (result != 0.)														\
-		PARSE_RETURN(result);												\
+		goto success;														\
 	if (Float_Parse_CheckInvalid(str + i))									\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Hex(str[i])))	\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 	negative = (str[i] == '-');												\
 	str_mantissa = (negative || str[i] == '+') ?							\
 		(str + i + 1) : (str + i);											\
@@ -271,7 +272,8 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
 	if (String_HasOnly(tmp, "0"))											\
 	{																		\
 		Memory_Free(tmp);													\
-		PARSE_RETURN(0. * result);											\
+		result *= 0.;														\
+		goto success;														\
 	}																		\
 	i += U64_Parse_Hex(&mantissa, tmp, n - i);								\
 	result *= (mantissa * F##BITS##_INIT_VALUE) *							\
@@ -308,6 +310,9 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
 success:																	\
 	if (dest)	*dest = result;												\
 	return (i);																\
+failure:																	\
+	if (dest)	*dest = F##BITS##_ERROR;									\
+	return (i);																\
 }																			\
 inline t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)				\
 {																			\
@@ -326,7 +331,7 @@ t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_size		i = 0;														\
 																			\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		PARSE_RETURN(F##BITS##_ERROR);										\
+		goto failure;														\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
 	while (i < n && str[i] && Char_IsSpace(str[i]))							\
@@ -337,13 +342,16 @@ t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n)	\
 	if (result != 0.)														\
 		goto success;														\
 	if (Float_Parse_CheckInvalid(str + i))									\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Oct(str[i])))	\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 /* TODO */	\
 success:																	\
 	if (dest)	*dest = result;												\
 	return (0);																\
+failure:																	\
+	if (dest)	*dest = F##BITS##_ERROR;									\
+	return (i);																\
 }																			\
 inline t_f##BITS	F##BITS##_FromString_Oct(t_char const* str)				\
 {																			\
@@ -362,7 +370,7 @@ t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_size		i = 0;														\
 																			\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		PARSE_RETURN(F##BITS##_ERROR);										\
+		goto failure;														\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
 	while (i < n && str[i] && Char_IsSpace(str[i]))							\
@@ -371,14 +379,18 @@ t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n)	\
 	}																		\
 	result = Float_Parse_CheckSpecial(str + i);								\
 	if (result != 0.)														\
-		PARSE_RETURN(result);												\
+		goto success;														\
 	if (Float_Parse_CheckInvalid(str + i))									\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Bin(str[i])))	\
-		PARSE_RETURN(NAN);													\
+		goto failure;														\
 /* TODO */	\
+success:																	\
 	if (dest)	*dest = NAN;												\
 	return (0);																\
+failure:																	\
+	if (dest)	*dest = F##BITS##_ERROR;									\
+	return (i);																\
 }																			\
 inline t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)				\
 {																			\

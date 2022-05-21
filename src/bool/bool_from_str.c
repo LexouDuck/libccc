@@ -61,9 +61,11 @@ t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 		goto failure;
 
 success:
-	PARSE_RETURN(result);
+	if (dest)	*dest = result;
+	return (i);
 failure:
-	PARSE_RETURN(BOOL_ERROR);
+	if (dest)	*dest = BOOL_ERROR;
+	return (i);
 }
 
 

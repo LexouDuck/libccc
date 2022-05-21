@@ -67,10 +67,6 @@ typedef struct ccchandler
 }	s_ccchandler;
 
 
-// TODO document this
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
 
 #endif
 #ifndef __LIBCCC_SYS_ERROR_F

@@ -56,7 +56,8 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 	if (dest)	*dest = result;															\
 	return (i);																			\
 failure:																				\
-	PARSE_RETURN(UINT_MACRO##_ERROR);													\
+	if (dest)	*dest = UINT_MACRO##_ERROR;												\
+	return (i);																			\
 }																						\
 inline UINT_TYPE	UINT_NAME##_FromString(t_char const* str)							\
 {																						\
@@ -114,7 +115,8 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 	if (dest)	*dest = (negative ? -(SINT_TYPE)result : (SINT_TYPE)result);			\
 	return (i);																			\
 failure:																				\
-	PARSE_RETURN(SINT_MACRO##_ERROR);													\
+	if (dest)	*dest = SINT_MACRO##_ERROR;												\
+	return (i);																			\
 }																						\
 inline SINT_TYPE	SINT_NAME##_FromString(t_char const* str)							\
 {																						\

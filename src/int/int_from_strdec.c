@@ -45,7 +45,8 @@ t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str, t_size n)			\
 	if (dest)	*dest = result;														\
 	return (i);																		\
 failure:																			\
-	PARSE_RETURN(U##BITS##_ERROR);													\
+	if (dest)	*dest = U##BITS##_ERROR;											\
+	return (i);																		\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Dec(t_char const* str)						\
 {																					\
@@ -113,7 +114,8 @@ t_size	S##BITS##_Parse_Dec(t_s##BITS* dest, t_char const* str, t_size n)			\
 	if (dest)	*dest = (negative ? -(t_s##BITS)result : (t_s##BITS)result);		\
 	return (i);																		\
 failure:																			\
-	PARSE_RETURN(S##BITS##_ERROR);													\
+	if (dest)	*dest = S##BITS##_ERROR;											\
+	return (i);																		\
 }																					\
 inline t_s##BITS	S##BITS##_FromString_Dec(t_char const* str)						\
 {																					\
