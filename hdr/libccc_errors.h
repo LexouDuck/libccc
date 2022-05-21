@@ -173,12 +173,6 @@ HEADER_CPP
 #define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
 	(FALSE)
 
-#define HANDLE_ERROR(         ERRORTYPE, CONDITION, ACTION) 
-#define HANDLE_ERROR_BEGIN(   ERRORTYPE, CONDITION) 
-#define HANDLE_ERROR_SF(      ERRORTYPE, CONDITION, ACTION, ...) 
-#define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) 
-#define HANDLE_ERROR_FINAL() 
-
 #else // error-checking enabled
 
 /*!
@@ -190,59 +184,7 @@ HEADER_CPP
         _ERRORTYPE_,					\
         SHOULDHANDLE_##_ERRORTYPE_,		\
         (const char*)__func__,			\
-        __VA_ARGS__))
-
-/*!
-**	@param ERRORTYPE	The type of error to emit (an #e_cccerror value)
-**	@param CONDITION	The condition to check the error
-**	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
-**						NOTE: if there is a comma in the `ACTION`, you should instead use
-**							the HANDLE_ERROR_BEGIN() and HANDLE_ERROR_FINAL() macros.
-*/
-//!@{
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
-	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)					\
-	ACTION														\
-	HANDLE_ERROR_FINAL()										\
-
-#define HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		if (SHOULDHANDLE_##ERRORTYPE)							\
-		{														\
-			Error_Handle(ERROR_##ERRORTYPE,						\
-				(char const*)__func__,							\
-				NULL);											\
-		}														\
-
-//! The behavior to handle an error case, with a custom message
-/*!
-**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
-**	@param CONDITION	The condition to check the error
-**	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
-**	@param ...			The custom error message (format string and args, like `printf()`)
-*/
-#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
-	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)	\
-	ACTION														\
-	HANDLE_ERROR_FINAL()										\
-
-#define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		if (SHOULDHANDLE_##ERRORTYPE)							\
-		{														\
-			Error_Handle(ERROR_##ERRORTYPE,						\
-				(char const*)__func__,							\
-				String_Format(__VA_ARGS__));					\
-		}														\
-
-
-
-#define HANDLE_ERROR_FINAL() \
-	}															\
+        __VA_ARGS__))					\
 
 //!@}
 
