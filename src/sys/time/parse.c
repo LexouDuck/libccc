@@ -80,7 +80,7 @@ __weak_alias(strptime,_strptime)
 #define PARSINGERROR_DATE_MESSAGE	IO_COLOR_FG_RED"DATE PARSE ERROR"C_RESET": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	if CCCERROR((TRUE), ERROR_PARSE,	\
+	if CCCERROR(TRUE, ERROR_PARSE,	\
 		MESSAGE, __VA_ARGS__)			\
 		return (0);						\
 

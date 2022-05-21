@@ -1055,7 +1055,7 @@ failure:
 			break;
 		column++;
 	}
-	if CCCERROR((TRUE), ERROR_PARSE,
+	if CCCERROR(TRUE, ERROR_PARSE,
 		"at nesting depth %u: line %zu, column %zu (char index %zu: '%c'/0x%X)%s\n",
 		p->depth,
 		p->line,
@@ -1077,7 +1077,7 @@ failure:
 
 t_size	TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str, t_size n)
 {
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
 		return (SIZE_ERROR);
 	if (n == 0)
 		n = String_Length(str);
@@ -1086,7 +1086,7 @@ t_size	TOML_Parse_Lenient(s_toml* *dest, t_utf8 const* str, t_size n)
 
 t_size	TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str, t_size n)
 {
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
 		return (SIZE_ERROR);
 	if (n == 0)
 		n = String_Length(str);
@@ -1098,7 +1098,7 @@ t_size	TOML_Parse_Strict(s_toml* *dest, t_utf8 const* str, t_size n)
 s_toml*	TOML_FromString_Lenient(t_utf8 const* str)
 {
 	s_toml*	result;
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
 		return (NULL);
 	TOML_Parse_(&result, str, String_Length(str), FALSE);
 	return (result);
@@ -1107,7 +1107,7 @@ s_toml*	TOML_FromString_Lenient(t_utf8 const* str)
 s_toml*	TOML_FromString_Strict(t_utf8 const* str)
 {
 	s_toml*	result;
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
 		return (NULL);
 	TOML_Parse_(&result, str, String_Length(str), TRUE);
 	return (result);

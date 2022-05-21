@@ -119,9 +119,9 @@ t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 	}
 	else
 	{
-		if CCCERROR((TRUE), ERROR_PARSE, 
-			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 'u' char")
-			return (ERROR);
+		CCCERROR(TRUE, ERROR_PARSE,
+			PARSINGERROR_UTF16"not a valid UTF-16 escape sequence, expected 'u' char");
+		return (ERROR);
 	}
 	*dest = result;
 	return (i);

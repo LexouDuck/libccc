@@ -16,7 +16,7 @@ t_size	U##BITS##_Parse(t_u##BITS *dest, t_char const* str, t_size n)				\
 	t_size	i = 0;																	\
 																					\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	for (i = 0; (i < n - 1 && str[i]); ++i)											\
@@ -37,6 +37,8 @@ t_size	U##BITS##_Parse(t_u##BITS *dest, t_char const* str, t_size n)				\
 		}																			\
 	}																				\
 	return (U##BITS##_Parse_Dec(dest, str, n - i));									\
+failure:																			\
+	PARSE_RETURN(S##BITS##_ERROR);													\
 }																					\
 inline t_u##BITS	U##BITS##_FromString(t_char const* str)							\
 {																					\
@@ -62,7 +64,7 @@ t_size	S##BITS##_Parse(t_s##BITS *dest, t_char const* str, t_size n)				\
 	t_size	i = 0;																	\
 																					\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	for (i = 0; (i < n - 1 && str[i]); ++i)											\
@@ -83,6 +85,8 @@ t_size	S##BITS##_Parse(t_s##BITS *dest, t_char const* str, t_size n)				\
 		}																			\
 	}																				\
 	return (S##BITS##_Parse_Dec(dest, str, n - i));									\
+failure:																			\
+	PARSE_RETURN(S##BITS##_ERROR);													\
 }																					\
 inline t_s##BITS	S##BITS##_FromString(t_char const* str)							\
 {																					\

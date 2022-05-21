@@ -8,7 +8,7 @@
 _GENERIC()
 s_list(T) const*	List_Find(T)(s_list(T) const* list, T item)
 {
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -16,8 +16,8 @@ s_list(T) const*	List_Find(T)(s_list(T) const* list, T item)
 			return (list);
 		list = list->next;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, NULL)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, NULL);
+	return (NULL);
 }
 
 
@@ -25,7 +25,9 @@ s_list(T) const*	List_Find(T)(s_list(T) const* list, T item)
 _GENERIC()
 s_list(T) const*	List_Find_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 {
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((match == NULL), ERROR_NULLPOINTER, "match() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -33,8 +35,8 @@ s_list(T) const*	List_Find_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 			return (list);
 		list = list->next;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, NULL)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, NULL);
+	return (NULL);
 }
 
 
@@ -44,7 +46,7 @@ t_sint	List_IndexOf(T)(s_list(T) const* list, T item)
 {
 	t_uint	i;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (ERROR);
 	i = 0;
 	while (list)
@@ -54,8 +56,8 @@ t_sint	List_IndexOf(T)(s_list(T) const* list, T item)
 		list = list->next;
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, NULL)
-		return (ERROR);
+	CCCERROR(TRUE, ERROR_NOTFOUND, NULL);
+	return (ERROR);
 }
 
 
@@ -65,7 +67,9 @@ t_sint	List_IndexOf_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 {
 	t_uint	i;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((match == NULL), ERROR_NULLPOINTER, "match() function given is NULL")
+		return (ERROR);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (ERROR);
 	i = 0;
 	while (list)
@@ -75,6 +79,6 @@ t_sint	List_IndexOf_F(T)(s_list(T) const* list, t_bool (*match)(T item))
 		list = list->next;
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, NULL)
-		return (ERROR);
+	CCCERROR(TRUE, ERROR_NOTFOUND, NULL);
+	return (ERROR);
 }

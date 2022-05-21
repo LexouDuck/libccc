@@ -17,9 +17,9 @@ t_char* const*	StringArray_Find(t_char* const* strarr, t_char const* str)
 		if (String_Equals(strarr[i], str))
 			return (&(strarr[i]));
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no string matching \"%s\" found in string array of length "SF_UINT, str, length)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no string matching \"%s\" found in string array of length "SF_UINT, str, length);
+	return (NULL);
 }
 
 
@@ -35,9 +35,9 @@ t_char* const*	StringArray_Find_F(t_char* const* strarr, t_bool (*match)(t_char 
 		if (match(strarr[i]))
 			return (&(strarr[i]));
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no matching string found in string array of length "SF_UINT, length)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no matching string found in string array of length "SF_UINT, length);
+	return (NULL);
 }
 
 
@@ -53,9 +53,9 @@ t_sint	StringArray_IndexOf(t_char const* const* strarr, t_char const* str)
 		if (String_Equals(strarr[i], str))
 			return (i);
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no string matching \"%s\" found in string array of length "SF_UINT, str, length)
-		return (ERROR);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no string matching \"%s\" found in string array of length "SF_UINT, str, length);
+	return (ERROR);
 }
 
 
@@ -71,7 +71,7 @@ t_sint	StringArray_IndexOf_F(t_char const* const* strarr, t_bool (*match)(t_char
 		if (match(strarr[i]))
 			return (i);
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no matching string found in string array of length "SF_UINT, length)
-		return (ERROR);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no matching string found in string array of length "SF_UINT, length);
+	return (ERROR);
 }

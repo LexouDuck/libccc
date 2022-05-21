@@ -600,11 +600,10 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 			Memory_Copy(result, item->value.string, length);
 			return (OK);
 		}
-		default:
-			if CCCERROR((TRUE), ERROR_PRINT, 
-				"cannot print item with key %s, has invalid type (%i)", p->keypath, item->type)
-				return (ERROR);
 	}
+	CCCERROR(TRUE, ERROR_PRINT, 
+		"cannot print item with key %s, has invalid type (%i)", p->keypath, item->type);
+	return (ERROR);
 }
 
 

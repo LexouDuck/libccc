@@ -18,8 +18,8 @@ t_char const*	Enum_String(t_enum value, s_enum_type const* enum_type)
 			return (enum_type->items[i].name);
 		}
 	}
-	if CCCERROR((TRUE), ERROR_INVALIDENUM, NULL)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_INVALIDENUM, "Invalid enum value (%d) for enum type %s", value, enum_type->name);
+	return (NULL);
 }
 
 t_size	Enum_Print(t_char* dest, t_enum value, s_enum_type const* enum_type)

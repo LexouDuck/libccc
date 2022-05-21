@@ -24,7 +24,7 @@ t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 	t_size	length = 0;
 	t_size	i = 0;
 
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "destination buffer is NULL")
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination buffer is NULL")
 		goto failure;
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse is NULL")
 		goto failure;
@@ -38,8 +38,10 @@ t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 		++length;
 	}
 	if (Char_IsDigit(str[i]) && SInt_FromString(str + i))
+	{
 		result = TRUE;
 		goto success;
+	}
 	if (String_Equals_N_IgnoreCase(str + i, STRING_0, LENGTH_0) &&
 		(length - i <= LENGTH_0 || !Char_IsAlphaNumeric(str[i + LENGTH_0])))
 	{
@@ -54,15 +56,12 @@ t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 		result = TRUE;
 		goto success;
 	}
-	if CCCERROR((TRUE), ERROR_PARSE, 
-		"expected boolean string (\"TRUE\" or \"FALSE\", case-insensitive, or a number), instead got \"%s\"",
-		str)
-	{
-		PARSE_RETURN(BOOL_ERROR);
-	}
+	CCCERROR(TRUE, ERROR_PARSE, 
+		"expected boolean string (\"TRUE\" or \"FALSE\", case-insensitive, or a number), instead got \"%s\"", str);
+		goto failure;
 
 success:
-	PARSE_RETURN(BOOL_ERROR);
+	PARSE_RETURN(result);
 failure:
 	PARSE_RETURN(BOOL_ERROR);
 }

@@ -24,8 +24,7 @@ t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 		return (NULL);
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		// TODO: if t_ascii is t_ascii then
-		return NULL
+		// TODO: if t_ascii is t_ascii then return NULL
 		t_sint size = 0;
 		t_utf32 current = 0;
 		while (str[i])
@@ -51,9 +50,9 @@ t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 		if (str[i] == '\0' && c == '\0')
 			return ((t_ascii*)str + i);
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no char '%c'/0x%X found in string \"%s\"", c, c, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no char '%c'/0x%X found in string \"%s\"", c, c, str);
+	return (NULL);
 }
 #endif
 
@@ -95,9 +94,9 @@ t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
 		}
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no char from charset \"%s\" found in string \"%s\"", charset, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, 
+		"no char from charset \"%s\" found in string \"%s\"", charset, str);
+	return (NULL);
 }
 #endif
 
@@ -143,9 +142,9 @@ t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
 		}
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no string \"%s\" found in string \"%s\"", query, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no string \"%s\" found in string \"%s\"", query, str);
+	return (NULL);
 }
 #endif
 

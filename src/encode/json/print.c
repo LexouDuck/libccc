@@ -472,11 +472,10 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 			Memory_Copy(result, item->value.string, raw_length);
 			return (OK);
 		}
-		default:
-			if CCCERROR((TRUE), ERROR_PRINT, 
-				"cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
-				return (ERROR);
 	}
+	CCCERROR(TRUE, ERROR_PRINT, 
+		"cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type);
+	return (ERROR);
 }
 
 

@@ -30,8 +30,8 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 			return (result + i);
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND,
-		"no byte 0x%2.2X found in memory region 0x%p (length: "SF_SIZE")", byte, ptr, n)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no byte 0x%2.2X found in memory region 0x%p (length: "SF_SIZE")", byte, ptr, n);
+	return (NULL);
 }
 #endif

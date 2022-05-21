@@ -60,21 +60,21 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 	t_size	i = 0;																	\
 																					\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
-		PARSE_RETURN(U##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((base == NULL), ERROR_NULLPOINTER, "numeric base string is NULL")	\
-		PARSE_RETURN(U##BITS##_ERROR);												\
+		goto failure;																\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	digit = String_Base_GetLength(base);											\
 	if CCCERROR((digit == INVALID_BASE_SIGNCHAR), ERROR_INVALIDARGS,				\
 		"number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
-		PARSE_RETURN(U##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((digit == INVALID_BASE_DUPLICATE), ERROR_INVALIDARGS,				\
 		"number base (\"%s\") must not have any duplicate characters", base)		\
-		PARSE_RETURN(U##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((digit < 2), ERROR_LENGTH2SMALL,									\
 		"number base (\"%s\") should be at least 2 chars long", base)				\
-		PARSE_RETURN(U##BITS##_ERROR);												\
+		goto failure;																\
 	length = (t_size)digit;															\
 	i = 0;																			\
 	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
@@ -83,7 +83,7 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		if (digit >= 0) break;														\
 		if CCCERROR((!str[i] || !Char_IsSpace(str[i])), ERROR_PARSE,				\
 			"expected a number (with spaces/sign), but instead got \"%s\"", str)	\
-			PARSE_RETURN(U##BITS##_ERROR);											\
+			goto failure;															\
 		++i;																		\
 	}																				\
 	if (str[i] == '+' || str[i] == '-')												\
@@ -94,16 +94,21 @@ t_size	U##BITS##_Parse_Base(t_u##BITS* dest, t_char const* str, t_char const* ba
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		if CCCERROR((digit < 0), ERROR_PARSE,										\
 			"digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
-			PARSE_RETURN(U##BITS##_ERROR);											\
+			goto failure;															\
 		tmp = result * length + digit;												\
 		if CCCERROR((tmp < result), ERROR_RESULTRANGE,								\
 			#BITS"-bit unsigned integer overflow for \"%s\" with base \"%s\" at "SF_U##BITS,\
 			str, base, U##BITS##_MAX)												\
+		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX);							\
+		}																			\
 		result = tmp;																\
 	}																				\
+/*success:*/																		\
 	if (dest)	*dest = result;														\
 	return (i);																		\
+failure:																			\
+	PARSE_RETURN(U##BITS##_ERROR);													\
 }																					\
 inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\
@@ -133,21 +138,21 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 	t_size	i = 0;																	\
 																					\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((base == NULL), ERROR_NULLPOINTER, "numeric base string is NULL")	\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	digit = String_Base_GetLength(base);											\
 	if CCCERROR((digit == INVALID_BASE_SIGNCHAR), ERROR_INVALIDARGS,				\
 		"number base (\"%s\") cannot contain sign chars ('+' or '-')", base)		\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((digit == INVALID_BASE_DUPLICATE), ERROR_INVALIDARGS,				\
 		"number base (\"%s\") must not have any duplicate characters", base)		\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	if CCCERROR((digit < 2), ERROR_LENGTH2SMALL,									\
 		"number base (\"%s\") should be at least 2 chars long", base)				\
-		PARSE_RETURN(S##BITS##_ERROR);												\
+		goto failure;																\
 	length = (t_size)digit;															\
 	i = 0;																			\
 	while (i < n && !(str[i] == '+' || str[i] == '-'))								\
@@ -156,7 +161,7 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		if (digit >= 0) break;														\
 		if CCCERROR((!str[i] || !Char_IsSpace(str[i])), ERROR_PARSE,				\
 			"expected a number (with spaces/sign), but instead got \"%s\"", str)	\
-			PARSE_RETURN(S##BITS##_ERROR);											\
+			goto failure;															\
 		++i;																		\
 	}																				\
 	negative = FALSE;																\
@@ -173,20 +178,27 @@ t_size	S##BITS##_Parse_Base(t_s##BITS* dest, t_char const* str, t_char const* ba
 		digit = String_Base_IsInBase(base, length, str[i++]);						\
 		if CCCERROR((digit < 0), ERROR_PARSE,										\
 			"digit char '%c' is not in number base \"%s\"", str[i - 1], base)		\
-			PARSE_RETURN(S##BITS##_ERROR);											\
+			goto failure;															\
 		tmp = result * length + digit;												\
 		if CCCERROR((negative && tmp > (t_u##BITS)S##BITS##_MIN), ERROR_RESULTRANGE,\
 			#BITS"-bit signed integer underflow for \"%s\" with base \"%s\" at "SF_S##BITS,\
 			str, base, S##BITS##_MIN)												\
+		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN)							\
+		}																			\
 		if CCCERROR((!negative && tmp > (t_u##BITS)S##BITS##_MAX), ERROR_RESULTRANGE,\
 			#BITS"-bit signed integer overflow for \"%s\" with base \"%s\" at "SF_S##BITS,\
 			str, base, S##BITS##_MAX)												\
+		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX)							\
+		}																			\
 		result = tmp;																\
 	}																				\
+/*success:*/																		\
 	if (dest)	*dest = (negative ? -(t_s##BITS)result : (t_s##BITS)result);		\
 	return (i);																		\
+failure:																			\
+	PARSE_RETURN(S##BITS##_ERROR);													\
 }																					\
 inline t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\

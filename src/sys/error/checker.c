@@ -34,10 +34,12 @@ t_bool Error_If(e_cccerror errorcode,
         }
         else
         {
+            va_start(args, format);
             Error_Handle(errorcode,
                 funcname,
                 String_Format_VA(format, args));
+            va_end(args);
         }
     }
-    return (TRUE); // tres important, comme ca le if-body sera toujours executé
+    return (TRUE);
 }

@@ -44,9 +44,9 @@ t_ascii*	String_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 		if (str[i] == '\0' && c == '\0')
 			return ((t_ascii*)str + i);
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no char '%c'/0x%X found in the first "SF_SIZE" chars of string \"%s\"", c, c, n, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, 
+		"no char '%c'/0x%X found in the first "SF_SIZE" chars of string \"%s\"", c, c, n, str);
+	return (NULL);
 }
 
 inline
@@ -78,9 +78,9 @@ t_ascii*	String_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_siz
 		}
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no char from charset \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", charset, n, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, 
+		"no char from charset \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", charset, n, str);
+	return (NULL);
 }
 
 inline
@@ -122,9 +122,9 @@ t_ascii*	String_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n
 			return ((t_ascii*)str + i);
 		++i;
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, 
-		"no string \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", query, n, str)
-		return (NULL);
+	CCCERROR(TRUE, ERROR_NOTFOUND, 
+		"no string \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", query, n, str);
+	return (NULL);
 }
 
 inline

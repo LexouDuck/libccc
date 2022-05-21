@@ -9,9 +9,9 @@
 
 t_size	Enum_Parse(t_enum *dest, t_size n, t_char const* str, s_enum_type const* enum_type)
 {
-	if CCCERROR((dest      == NULL), ERROR_NULLPOINTER, "destination given is NULL")
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination given is NULL")
 		return (SIZE_ERROR);
-	if CCCERROR((str       == NULL), ERROR_NULLPOINTER, "string to parse is NULL")
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse is NULL")
 		return (SIZE_ERROR);
 	if CCCERROR((enum_type == NULL), ERROR_NULLPOINTER, "enum_type struct given is NULL")
 		return (SIZE_ERROR);
@@ -26,8 +26,8 @@ t_size	Enum_Parse(t_enum *dest, t_size n, t_char const* str, s_enum_type const* 
 			return (n);
 		}
 	}
-	if CCCERROR((TRUE), ERROR_NOTFOUND, "enum type \"%s\" has no item named \"%s\"", enum_type->name, str)
-		return (SIZE_ERROR);
+	CCCERROR(TRUE, ERROR_NOTFOUND, "enum type \"%s\" has no item named \"%s\"", enum_type->name, str);
+	return (SIZE_ERROR);
 }
 
 

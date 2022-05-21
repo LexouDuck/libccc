@@ -24,7 +24,7 @@ t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str, t_size n)				\
 	t_q##BITS	fraction = 0;															\
 	t_size	i = 0;																		\
 																						\
-	if CCCERROR(NULLPOINTER, (str == NULL), "string to parse given is NULL")			\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
 		PARSE_RETURN(Q##BITS##_ERROR);													\
 	if (n == 0)																			\
 		n = SIZE_MAX;																	\

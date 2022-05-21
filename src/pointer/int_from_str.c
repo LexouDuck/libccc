@@ -30,14 +30,14 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 	t_size	i = 0;																		\
 																						\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
-		PARSE_RETURN(UINT_MACRO##_ERROR)												\
+		goto failure;																	\
 	while (str[i] && Char_IsSpace(str[i]))												\
 	{																					\
 		++i;																			\
 	}																					\
 	if CCCERROR(!(str[i] == '+' || Char_IsDigit(str[i])), ERROR_PARSE,					\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)			\
-		PARSE_RETURN(UINT_MACRO##_ERROR);												\
+		goto failure;																	\
 	if (str[i] == '+')																	\
 		++i;																			\
 	result = 0;																			\
@@ -46,12 +46,17 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 		tmp = result * 10 + (str[i++] - '0');											\
 		if CCCERROR((tmp < result), ERROR_RESULTRANGE,									\
 			#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO,	\
-			str, (UINT_TYPE)															\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX)UINT_MACRO##_MAX)			\
+			str, (UINT_TYPE)UINT_MACRO##_MAX)											\
+		{																				\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX)							\
+		}																				\
 		result = tmp;																	\
 	}																					\
+/*success:*/																			\
 	if (dest)	*dest = result;															\
 	return (i);																			\
+failure:																				\
+	PARSE_RETURN(UINT_MACRO##_ERROR);													\
 }																						\
 inline UINT_TYPE	UINT_NAME##_FromString(t_char const* str)							\
 {																						\
@@ -71,14 +76,14 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 	t_size	i = 0;																		\
 																						\
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
-		PARSE_RETURN(SINT_MACRO##_ERROR);												\
+		goto failure;																	\
 	while (str[i] && Char_IsSpace(str[i]))												\
 	{																					\
 		++i;																			\
 	}																					\
 	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE,	\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)			\
-		PARSE_RETURN(SINT_MACRO##_ERROR);												\
+		goto failure;																	\
 	negative = FALSE;																	\
 	if (str[i] == '-')																	\
 	{																					\
@@ -94,15 +99,22 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 		if CCCERROR((negative && tmp > (UINT_TYPE)SINT_MACRO##_MIN), ERROR_RESULTRANGE,	\
 			#SINT_MACRO"-bit signed integer underflow for \"%s\" at "SF_##SINT_MACRO,	\
 			str, SINT_MACRO##_MIN)														\
+		{																				\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MIN)							\
+		}																				\
 		if CCCERROR((!negative && tmp > (UINT_TYPE)SINT_MACRO##_MAX), ERROR_RESULTRANGE,\
 			#SINT_MACRO"-bit signed integer overflow for \"%s\" at "SF_##SINT_MACRO,	\
 			str, SINT_MACRO##_MAX)														\
+		{																				\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MAX)							\
+		}																				\
 		result = tmp;																	\
 	}																					\
+/*success:*/																			\
 	if (dest)	*dest = (negative ? -(SINT_TYPE)result : (SINT_TYPE)result);			\
 	return (i);																			\
+failure:																				\
+	PARSE_RETURN(SINT_MACRO##_ERROR);													\
 }																						\
 inline SINT_TYPE	SINT_NAME##_FromString(t_char const* str)							\
 {																						\

@@ -653,7 +653,7 @@ failure:
 			break;
 		column++;
 	}
-	if CCCERROR((TRUE), ERROR_PARSE,
+	if CCCERROR(TRUE, ERROR_PARSE,
 		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,

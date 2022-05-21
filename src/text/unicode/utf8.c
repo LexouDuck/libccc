@@ -41,9 +41,9 @@ t_sint		CharUTF8_Length(t_utf8 const* str)
 		}
 		else
 		{
-			if CCCERROR(TRUE, ERROR_ILLEGALBYTES,
-				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
-				return (ERROR);
+			CCCERROR(TRUE, ERROR_ILLEGALBYTES,
+				"illegal UTF-8 char start byte: '%c'/0x%4.4X", (c ? c : '\a'), c);
+			return (ERROR);
 		}
 	}
 	else if (c == '\0')
@@ -202,9 +202,9 @@ t_utf32		CharUTF32_FromUTF8(t_utf8 const* str)
 		}
 		else
 		{
-			if CCCERROR(TRUE, ERROR_ILLEGALBYTES,
-				"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c)
-				return (ERROR);
+			CCCERROR(TRUE, ERROR_ILLEGALBYTES,
+				"illegal UTF-8 byte: '%c'/0x%4.4X", (c ? c : '\a'), c);
+			return (ERROR);
 		}
 	}
 	else return ((t_utf32)c);

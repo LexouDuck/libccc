@@ -70,11 +70,11 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
 #define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
-//	return (VALUE);
+{}	//	return (VALUE);
 #endif
 #ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
 #define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
-//	if (dest)	*dest = VALUE;	return (i);
+{}	//	if (dest)	*dest = VALUE;	return (i);
 #endif
 
 // TODO implement configurable return values in cases of number overflow with this macro
@@ -181,6 +181,10 @@ HEADER_CPP
 
 #else // error-checking enabled
 
+/*!
+**	@param _CONDITION_	The condition which checks if an error occurred
+**	@param _ERRORTYPE_	The type of error to emit (an #e_cccerror value)
+*/
 #define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
     ((_CONDITION_) && Error_If(			\
         _ERRORTYPE_,					\
