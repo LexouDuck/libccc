@@ -3,7 +3,7 @@
 
 
 #! Define all possible build modes
-MODES = \
+BUILDMODES = \
 	debug	\
 	release	\
 # if the BUILDMODE variable has no value, give it a default value

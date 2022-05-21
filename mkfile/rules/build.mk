@@ -5,10 +5,10 @@
 objs = ` cat "$(OBJSFILE)" | tr '\n' ' ' `
 
 #! Path of the file which stores the list of compiled object files
-OBJSFILE = $(OBJOUT)objs.txt
+OBJSFILE = $(OBJPATH)objs.txt
 
 #! Derive list of compiled object files (.o) from list of srcs
-OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJOUT)%.o)
+OBJS := $(SRCS:$(SRCDIR)%.c=$(OBJPATH)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 DEPS := $(OBJS:%.o=%.d)
@@ -26,7 +26,7 @@ INCLUDES := $(INCLUDES) \
 copylibs = $(foreach i,$(PACKAGES), \
 	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
 		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic) ; do \
-			cp -p "$$i" $(BINOUT)dynamic/ ; \
+			cp -p "$$i" $(BINPATH)dynamic/ ; \
 		done ; \
 	fi ; )
 
@@ -36,15 +36,15 @@ copylibs = $(foreach i,$(PACKAGES), \
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: BUILDMODE = debug
 build-debug: \
-$(BINOUT)static/$(NAME_static) \
-$(BINOUT)dynamic/$(NAME_dynamic) \
+$(BINPATH)static/$(NAME_static) \
+$(BINPATH)dynamic/$(NAME_dynamic) \
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
 build-release: BUILDMODE = release
 build-release: \
-$(BINOUT)static/$(NAME_static) \
-$(BINOUT)dynamic/$(NAME_dynamic) \
+$(BINPATH)static/$(NAME_static) \
+$(BINPATH)dynamic/$(NAME_dynamic) \
 
 
 
@@ -57,7 +57,7 @@ $(OBJSFILE): $(SRCSFILE)
 
 
 #! Compiles object files from source files
-$(OBJOUT)%.o : $(SRCDIR)%.c
+$(OBJPATH)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
@@ -66,7 +66,7 @@ $(OBJOUT)%.o : $(SRCDIR)%.c
 
 
 #! Builds the static-link library '.a' binary file for the current target platform
-$(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
+$(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
@@ -77,7 +77,7 @@ $(BINOUT)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
-$(BINOUT)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
+$(BINPATH)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
@@ -85,8 +85,8 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
 		-Wl,--export-all-symbols
-	@cp -p $(NAME).def $(BINOUT)dynamic/
-	@cp -p $(NAME).lib $(BINOUT)dynamic/
+	@cp -p $(NAME).def $(BINPATH)dynamic/
+	@cp -p $(NAME).lib $(BINPATH)dynamic/
 else ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$@'
@@ -144,18 +144,18 @@ clean-build-dep:
 .PHONY:\
 clean-build-lib #! Deletes the built library(ies) in the root project folder
 clean-build-lib:
-	@$(call print_message,"Deleting static library: $(BINOUT)static/$(NAME_static)")
-	@rm -f $(BINOUT)static/$(NAME_static)
-	@$(call print_message,"Deleting dynamic library: $(BINOUT)dynamic/$(NAME_dynamic)")
-	@rm -f $(BINOUT)dynamic/$(NAME_dynamic)
+	@$(call print_message,"Deleting static library: $(BINPATH)static/$(NAME_static)")
+	@rm -f $(BINPATH)static/$(NAME_static)
+	@$(call print_message,"Deleting dynamic library: $(BINPATH)dynamic/$(NAME_dynamic)")
+	@rm -f $(BINPATH)dynamic/$(NAME_dynamic)
 
 .PHONY:\
 clean-build-bin #! Deletes all build binaries in the ./bin folder
 clean-build-bin:
-	@$(call print_message,"Deleting builds in '$(BINOUT)static'...")
-	@rm -f $(BINOUT)static/*
-	@$(call print_message,"Deleting builds in '$(BINOUT)dynamic'...")
-	@rm -f $(BINOUT)dynamic/*
+	@$(call print_message,"Deleting builds in '$(BINPATH)static'...")
+	@rm -f $(BINPATH)static/*
+	@$(call print_message,"Deleting builds in '$(BINPATH)dynamic'...")
+	@rm -f $(BINPATH)dynamic/*
 
 
 

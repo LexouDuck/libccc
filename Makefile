@@ -62,18 +62,20 @@ LISTSDIR = $(MKFILES_DIR)lists/
 
 #! The directory for compiled object files (stores `.o` and `.d` files)
 OBJDIR = ./obj/
-OBJOUT = $(OBJDIR)$(OSMODE)/
+OBJPATH = $(OBJDIR)$(BUILDMODE)_$(OSMODE)/
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
-BINOUT = $(BINDIR)$(OSMODE)/
+BINPATH = $(BINDIR)$(BUILDMODE)_$(OSMODE)/
+#! The directory for output logs (stores `.txt` outputs of the test suite program)
+LOGDIR = ./log/
+LOGPATH = $(LOGDIR)$(BUILDMODE)_$(OSMODE)/
+#! The directory for test-suite code-coverage output reports
+COVDIR = $(LOGDIR)coverage/
+COVPATH = $(COVDIR)$(BUILDMODE)_$(OSMODE)/
 #! The directory for distribution archives (stores `.zip` distributable builds)
 DISTDIR = ./dist/
 #! The directory for temporary (can be used for several things - should always be deleted after use)
 TEMPDIR = ./temp/
-#! The directory for output logs (stores `.txt` outputs of the test suite program)
-LOGDIR = ./log/
-#! The directory for test-suite code-coverage output reports
-COVDIR = $(LOGDIR)coverage/
 #! The directory for linter/static analyzer output logs (stores warnings logs)
 LINTDIR = $(LOGDIR)lint/
 

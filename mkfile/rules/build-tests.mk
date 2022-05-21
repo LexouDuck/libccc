@@ -5,10 +5,10 @@
 test_objs = ` cat "$(TEST_OBJSFILE)" | tr '\n' ' ' `
 
 #! Path of the file which stores the list of compiled object files
-TEST_OBJSFILE = $(OBJOUT)objs-test.txt
+TEST_OBJSFILE = $(OBJPATH)objs-test.txt
 
 #! Derive list of compiled object files (.o) from list of srcs
-TEST_OBJS := $(TEST_SRCS:%.c=$(OBJOUT)%.o)
+TEST_OBJS := $(TEST_SRCS:%.c=$(OBJPATH)%.o)
 
 #! Derive list of dependency files (.d) from list of srcs
 TEST_DEPS := $(TEST_OBJS:%.o=%.d)
@@ -48,7 +48,7 @@ $(TEST_OBJSFILE): $(TEST_SRCSFILE)
 
 
 #! Compiles object files from source files
-$(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
+$(OBJPATH)$(TESTDIR)%.o : $(TESTDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
 	@$(CC) -o $@ $(TEST_CFLAGS) -MMD $(TEST_INCLUDES) -c $<
@@ -58,8 +58,8 @@ $(OBJOUT)$(TESTDIR)%.o : $(TESTDIR)%.c
 
 #! Builds the testing/CI program
 $(NAME_TEST): \
-$(BINOUT)static/$(NAME_static) \
-$(BINOUT)dynamic/$(NAME_dynamic) \
+$(BINPATH)static/$(NAME_static) \
+$(BINPATH)dynamic/$(NAME_dynamic) \
 $(TEST_OBJSFILE) \
 $(TEST_OBJS)
 	@printf "Compiling testing program: $@ -> "

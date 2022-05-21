@@ -5,8 +5,8 @@
 .PHONY:\
 install #! Installs the library (copies files from `./bin/` to `/usr/local/`, according to LIBMODE)
 install: \
-$(BINOUT)static/$(NAME_static) \
-$(BINOUT)dynamic/$(NAME_dynamic)
+$(BINPATH)static/$(NAME_static) \
+$(BINPATH)dynamic/$(NAME_dynamic)
 	@$(call print_message,"Installing library: $(NAME)...")
 	@# install header files
 	@$(SUDO) mkdir -p $(INSTALLDIR)/include/
@@ -21,10 +21,10 @@ ifeq ($(LIBMODE),)
 
 else ifeq ($(LIBMODE),static)
 ifeq ($(INSTALL_SYMLINK),)
-	@$(SUDO) $(INSTALL_DATA) $(BINOUT)static/$(NAME_static) \
+	@$(SUDO) $(INSTALL_DATA) $(BINPATH)static/$(NAME_static) \
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_static)
 else
-	@$(SUDO) $(INSTALL_DATA) $(BINOUT)static/$(NAME_static) \
+	@$(SUDO) $(INSTALL_DATA) $(BINPATH)static/$(NAME_static) \
 		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_static)
 	@$(SUDO) ln -sf \
 		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_static) \
@@ -34,10 +34,10 @@ endif
 
 else ifeq ($(LIBMODE),dynamic)
 ifeq ($(INSTALL_SYMLINK),)
-	@$(SUDO) $(INSTALL_PROGRAM) $(BINOUT)dynamic/$(NAME_dynamic) \
+	@$(SUDO) $(INSTALL_PROGRAM) $(BINPATH)dynamic/$(NAME_dynamic) \
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_dynamic)
 else
-	@$(SUDO) $(INSTALL_PROGRAM) $(BINOUT)dynamic/$(NAME_dynamic) \
+	@$(SUDO) $(INSTALL_PROGRAM) $(BINPATH)dynamic/$(NAME_dynamic) \
 		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_dynamic)
 	@$(SUDO) ln -sf \
 		$(INSTALLDIR)/lib/$(NAME).$(VERSION).$(LIBEXT_dynamic) \
