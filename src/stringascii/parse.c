@@ -50,8 +50,9 @@ t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 		if (str[i] == '\\') // escape sequence
 		{
 			++i;
-			HANDLE_ERROR_SF(PARSE, (i == n || str[i] == '\0'), return (0);,
+			if CCCERROR((i == n || str[i] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
+				return (0);
 			if (String_Parse_GetEscape(str[i]) != ERROR)
 				length += 1 * sizeof(t_ascii);
 			else switch (str[i])
@@ -88,7 +89,7 @@ t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 	}																			\
 	tmp[((_BITS_) / 4)] = '\0';													\
 	unicode = U##_BITS_##_FromString_Hex(tmp);									\
-	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode);							\
+	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode);						\
 
 
 
@@ -101,18 +102,21 @@ t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_esca
 	t_size	index = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), goto failure;)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		goto failure;
 	if (n == 0)
 		n = SIZE_MAX;
 	result = (t_ascii*)Memory_New(String_Parse_GetLength(str, any_escape, n) + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	while (index < n && str[index])
 	{
 		if (str[index] == '\\') // escape sequence
 		{
 			++index;
-			HANDLE_ERROR_SF(PARSE, (index == n || str[index] == '\0'), return (0);,
+			if CCCERROR((index == n || str[index] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
+				return (0);
 			t_ascii	escapechar = String_Parse_GetEscape(str[index]);
 			if (escapechar != ERROR)
 				result[i++] = escapechar;
@@ -139,7 +143,8 @@ t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_esca
 					}
 					break;
 			}
-			HANDLE_ERROR(PARSE, (error), goto failure;)
+			if CCCERROR((error), ERROR_PARSE, NULL)
+				goto failure;
 		}
 		else result[i++] = str[index];
 		++index;

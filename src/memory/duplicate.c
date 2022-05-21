@@ -11,9 +11,11 @@ void*	Memory_Duplicate(const void* ptr, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (NULL);)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	result = (t_u8*)Memory_Allocate(n);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	source = (t_u8*)ptr;
 	i = 0;
 	while (i < n)

@@ -17,10 +17,10 @@ s_kvt*	KVT_Merge(s_kvt const* kvt1, s_kvt const* kvt2, t_bool recurse)
 	s_kvt*	current;
 	s_kvt*	kvt_new;
 
-	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt1), return (NULL);)
-	HANDLE_ERROR(WRONGTYPE, !KVT_IsObject(kvt2), return (NULL);)
+	if CCCERROR(!KVT_IsObject(kvt1), ERROR_WRONGTYPE, "merge can only be done with two OBJECT-typed KVTs")	return (NULL);
+	if CCCERROR(!KVT_IsObject(kvt2), ERROR_WRONGTYPE, "merge can only be done with two OBJECT-typed KVTs")	return (NULL);
 	result = KVT_Duplicate(kvt1, recurse);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)	return (NULL);
 	append = NULL;
 	other = kvt2->value.child;
 	while (other)

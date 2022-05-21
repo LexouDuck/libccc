@@ -12,19 +12,21 @@ t_char**	StringArray_Pad_L(t_char const* const* strarr, t_char const c, t_uint n
 	t_uint		strarr_length;
 	t_uint		i;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	strarr_length = StringArray_Length(strarr);
 	result = StringArray_New(strarr_length);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (strarr[i])
 	{
 		result[i] = String_Pad_L(strarr[i], c, n);
-		HANDLE_ERROR(ALLOCFAILURE, (result[i] == NULL),
+		if CCCERROR((result[i] == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
 			StringArray_Delete(&result);
 			return (NULL);
-		})
+		}
 		++i;
 	}
 	result[i] = NULL;

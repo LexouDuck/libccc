@@ -13,12 +13,14 @@ t_ascii*		String_Pad(t_ascii const* str, t_ascii c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
 	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result[size] = '\0';
 	i = 0;
 	while (i < size)
@@ -57,12 +59,14 @@ t_ascii*		String_Pad_L(t_ascii const* str, t_ascii c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
 	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result[size] = '\0';
 	if (size < length)
 	{
@@ -100,12 +104,14 @@ t_ascii*		String_Pad_R(t_ascii const* str, t_ascii c, t_size size)
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	length = String_Length(str);
 	if (size == length)
 		return (String_Duplicate(str));
 	result = (t_ascii*)Memory_Allocate(size + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result[size] = '\0';
 	i = 0;
 	while (i < size && str[i])

@@ -11,8 +11,10 @@ s_list(T)*	List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item))
 	s_list(T)*	result = NULL;
 	s_list(T)*	item;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		if (filter(list->item))
@@ -34,8 +36,10 @@ s_list(T)*	List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_ui
 	s_list(T)*	item;
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	i = 0;
 	while (list)
 	{

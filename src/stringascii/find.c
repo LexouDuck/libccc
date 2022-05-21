@@ -12,16 +12,20 @@
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
-{ return (strchr(str, c)); }
+{
+	return (strchr(str, c));
+}
 #else
 t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 {
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		// TODO: if t_ascii is t_ascii then return NULL
+		// TODO: if t_ascii is t_ascii then
+		return NULL
 		t_sint size = 0;
 		t_utf32 current = 0;
 		while (str[i])
@@ -47,8 +51,9 @@ t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 		if (str[i] == '\0' && c == '\0')
 			return ((t_ascii*)str + i);
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char '%c'/0x%X found in string \"%s\"", c, c, str)
+		return (NULL);
 }
 #endif
 
@@ -56,7 +61,8 @@ inline
 t_sintmax	String_IndexOf_Char(t_ascii const* str, t_utf32 c)
 {
 	t_ascii* result = String_Find_Char(str, c);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -65,14 +71,18 @@ t_sintmax	String_IndexOf_Char(t_ascii const* str, t_utf32 c)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
-{ return (strpbrk(str, charset)); }
+{
+	return (strpbrk(str, charset));
+}
 #else
 t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+		return (NULL);
 	if (charset[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -85,8 +95,9 @@ t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
 		}
 		++i;
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char from charset \"%s\" found in string \"%s\"", charset, str)
+		return (NULL);
 }
 #endif
 
@@ -94,7 +105,8 @@ inline
 t_sintmax	String_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_ascii* result = String_Find_Charset(str, charset);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -103,14 +115,18 @@ t_sintmax	String_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
-{ return (strstr(str, query)); }
+{
+	return (strstr(str, query));
+}
 #else
 t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((query == NULL), ERROR_NULLPOINTER, "query string given is NULL")
+		return (NULL);
 	if (query[0] == '\0')
 		return (NULL);
 	i = 0;
@@ -127,8 +143,9 @@ t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
 		}
 		++i;
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no string \"%s\" found in string \"%s\"", query, str)
+		return (NULL);
 }
 #endif
 
@@ -136,6 +153,7 @@ inline
 t_sintmax	String_IndexOf_String(t_ascii const* str, t_ascii const* query)
 {
 	t_ascii* result = String_Find_String(str, query);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }

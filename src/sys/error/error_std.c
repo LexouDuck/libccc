@@ -196,7 +196,8 @@ t_char*		Error_STD_GetName(t_errno error)
 
 t_errno		Error_STD_Code(t_char const* name)
 {
-	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR);)
+	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "error name given is NULL")
+		return (ERROR);
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
 	for (t_errno i = 0; i < ENUMLENGTH_STDERROR; ++i)

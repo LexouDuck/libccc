@@ -17,7 +17,8 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 	result = 0.;
 	i = 0;
 	rng = Random_New();
-	HANDLE_ERROR(ALLOCFAILURE, (rng == NULL), return (NAN);)
+	if CCCERROR((rng == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NAN);
 	while (i < SAMPLE_NB)
 	{
 		rand_input.vector.x = Random_Float_Range(rng, domain.start.vector.x, domain.end.vector.x);
@@ -65,9 +66,9 @@ inline t_s16	c_distance_s16(t_s16 x, t_s16 y)	{ return (ABS(x - y)); }
 inline t_s32	c_distance_s32(t_s32 x, t_s32 y)	{ return (ABS(x - y)); }
 inline t_s64	c_distance_s64(t_s64 x, t_s64 y)	{ return (ABS(x - y)); }
 
-inline t_float	c_distance_float(t_float x, t_float y)	{ return (ABS(x - y)); }
 inline t_uint	c_distance_uint(t_uint x, t_uint y)		{ return (x - y); }
-inline t_sint	c_distance_int(t_sint x, t_sint y)		{ return (ABS(x - y)); }
+inline t_sint	c_distance_sint(t_sint x, t_sint y)		{ return (ABS(x - y)); }
+inline t_float	c_distance_float(t_float x, t_float y)	{ return (ABS(x - y)); }
 
 //t_float		c_distance_2d()
 

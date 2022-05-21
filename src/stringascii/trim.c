@@ -11,8 +11,10 @@ t_ascii*		String_Trim(t_ascii const* str, t_ascii const* charset)
 	t_size	offset;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "trim charset given is NULL")
+		return (NULL);
 	offset = 0;
 	length = 0;
 	while (str[length])
@@ -38,8 +40,10 @@ t_ascii*		String_Trim_L(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "trim charset given is NULL")
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
@@ -57,8 +61,10 @@ t_ascii*		String_Trim_R(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "trim charset given is NULL")
+		return (NULL);
 	i = String_Length(str);
 	while (i--)
 	{

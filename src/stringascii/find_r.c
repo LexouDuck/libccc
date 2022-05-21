@@ -13,13 +13,16 @@
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Find_R_Char(t_ascii const* str, t_utf32 c)
-{ return (strchr(str, c)); }
+{
+	return (strchr(str, c));
+}
 #else
 t_ascii*	String_Find_R_Char(t_ascii const* str, t_utf32 c)
 {
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	if (c == '\0')
 		return ((t_ascii*)(str + i));
 	i = String_Length(str);
@@ -49,8 +52,9 @@ t_ascii*	String_Find_R_Char(t_ascii const* str, t_utf32 c)
 				return ((t_ascii*)str + i);
 		}
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char '%c'/0x%X found in string \"%s\"", c, c, str)
+		return (NULL);
 }
 #endif
 
@@ -58,7 +62,8 @@ inline
 t_sintmax	String_IndexOf_R_Char(t_ascii const* str, t_utf32 c)
 {
 	t_ascii* result = String_Find_R_Char(str, c);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -68,8 +73,10 @@ t_ascii*	String_Find_R_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+		return (NULL);
 	i = 0;
 	while (str[i])
 		++i;
@@ -85,15 +92,17 @@ t_ascii*	String_Find_R_Charset(t_ascii const* str, t_ascii const* charset)
 				return ((t_ascii*)str + i);
 		}
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char from charset \"%s\" found in string \"%s\"", charset, str)
+		return (NULL);
 }
 
 inline
 t_sintmax	String_IndexOf_R_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_ascii* result = String_Find_R_Charset(str, charset);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -105,8 +114,10 @@ t_ascii*	String_Find_R_String(t_ascii const* str, t_ascii const* query)
 	t_size	match;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((query == NULL), ERROR_NULLPOINTER, "query string given is NULL")
+		return (NULL);
 	length = 0;
 	while (query[length])
 		++length;
@@ -126,14 +137,16 @@ t_ascii*	String_Find_R_String(t_ascii const* str, t_ascii const* query)
 		if (match == length)
 			return ((t_ascii*)str + i);
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no string \"%s\" found in string \"%s\"", query, str)
+		return (NULL);
 }
 
 inline
 t_sintmax	String_IndexOf_R_String(t_ascii const* str, t_ascii const* query)
 {
 	t_ascii* result = String_Find_R_String(str, query);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }

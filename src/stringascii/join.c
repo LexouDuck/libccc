@@ -58,8 +58,10 @@ t_ascii*		String_Join(t_ascii const** strarr, t_ascii const* separator)
 	t_sint	total_sep_chars;
 	t_sint	total_chars;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (separator == NULL), return (NULL);)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
+	if CCCERROR((separator == NULL), ERROR_NULLPOINTER, "separator given is NULL")
+		return (NULL);
 	if (strarr[0] == NULL)
 		return (String_Duplicate(""));
 	strarr_strs = 0;
@@ -68,7 +70,8 @@ t_ascii*		String_Join(t_ascii const** strarr, t_ascii const* separator)
 	total_sep_chars = (strarr_strs - 1) * String_Length(separator);
 	total_chars = total_sep_chars + strarr_chars;
 	str = String_New(total_chars + 1);
-	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	String_Join_FoldIntoString(str, strarr, separator);
 	return (str);
 }

@@ -11,11 +11,12 @@ t_char**	StringArray_Reverse(t_char const* const* strarr)
 	t_uint	length;
 	t_uint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	length = StringArray_Length(strarr);
-	HANDLE_ERROR(NULLPOINTER, (length > 0 && strarr == NULL), return (NULL);)
 	result = StringArray_New(length);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	index = length - 1;
 	for (t_uint i = 0; i < length; ++i, --index)
 	{

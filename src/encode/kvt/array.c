@@ -14,17 +14,21 @@
 	s_kvt* p = NULL;									\
 	s_kvt* array = NULL;								\
 														\
-	HANDLE_ERROR(NULLPOINTER, (source == NULL),			\
-		return (NULL);)									\
+	if CCCERROR((source == NULL), ERROR_NULLPOINTER,	\
+		"source array given is NULL")					\
+		return (NULL);									\
 	array = KVT_CreateArray();							\
-	HANDLE_ERROR(ALLOCFAILURE, (array == NULL),			\
-		return (NULL);)									\
+	if CCCERROR((array == NULL), ERROR_ALLOCFAILURE, NULL)	\
+		return (NULL);									\
 	for (i = 0; i < count; i++)							\
 	{													\
 		n = KVT_Create##_TYPE_(source[i]);				\
-		HANDLE_ERROR(ALLOCFAILURE, (n == NULL),			\
+		if CCCERROR((n == NULL), ERROR_ALLOCFAILURE,	\
+			"could not create KVT array item of type `"#_TYPE_"` at index "SF_UINT, i)\
+		{												\
 			KVT_Delete(array);							\
-			return (NULL);)								\
+			return (NULL);								\
+		}												\
 		if (i == 0)										\
 		{												\
 			array->value.child = n;						\

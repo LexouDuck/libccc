@@ -17,7 +17,8 @@ void	String_Free(t_ascii* str)
 inline
 void	String_Delete(t_ascii** a_str)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_str == NULL), return;)
+	if CCCERROR((a_str == NULL), ERROR_NULLPOINTER, "string address given is NULL")
+		return;
 	if (*a_str)
 	{
 		Memory_Free(*a_str);

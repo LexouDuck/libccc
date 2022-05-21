@@ -56,10 +56,13 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 	t_size		i;
 	t_size		j;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (sep_chars == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to split given is NULL")
+		return (NULL);
+	if CCCERROR((sep_chars == NULL), ERROR_NULLPOINTER, "separator charset given is NULL")
+		return (NULL);
 	result = StringArray_New(String_Split_WordCount(str, sep_chars));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	j = 0;
 	while (i < String_Split_WordCount(str, sep_chars))
@@ -71,7 +74,8 @@ t_char**	String_Split_Charset(t_char const* str, t_char const* sep_chars)
 		wstart = j--;
 		length = String_Split_SingleWordLetterCount(str, wstart, sep_chars);
 		result[i] = String_New(length);
-		HANDLE_ERROR(ALLOCFAILURE, (result[i] == NULL), return (NULL);)
+		if CCCERROR((result[i] == NULL), ERROR_ALLOCFAILURE, NULL)
+			return (NULL);
 		while (++j < wstart + length)
 		{
 			result[i][j - wstart] = str[j];

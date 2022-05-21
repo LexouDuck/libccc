@@ -20,10 +20,14 @@
 
 t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 {
+	t_bool	result;
 	t_size	length = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), PARSE_RETURN(BOOL_ERROR))
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "destination buffer is NULL")
+		goto failure;
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse is NULL")
+		goto failure;
 	while (i < n && str[i] && Char_IsSpace(str[i]))
 	{
 		++i;
@@ -34,21 +38,33 @@ t_size	Bool_Parse(t_bool *dest, t_size n, t_char const* str)
 		++length;
 	}
 	if (Char_IsDigit(str[i]) && SInt_FromString(str + i))
-		PARSE_RETURN(TRUE)
+		result = TRUE;
+		goto success;
 	if (String_Equals_N_IgnoreCase(str + i, STRING_0, LENGTH_0) &&
 		(length - i <= LENGTH_0 || !Char_IsAlphaNumeric(str[i + LENGTH_0])))
 	{
 		i += LENGTH_0;
-		PARSE_RETURN(FALSE)
+		result = FALSE;
+		goto success;
 	}
 	if (String_Equals_N_IgnoreCase(str + i, STRING_1, LENGTH_1) &&
 		(length - i <= LENGTH_1 || !Char_IsAlphaNumeric(str[i + LENGTH_1])))
 	{
 		i += LENGTH_1;
-		PARSE_RETURN(TRUE)
+		result = TRUE;
+		goto success;
 	}
-	HANDLE_ERROR_SF(PARSE, (TRUE), PARSE_RETURN(BOOL_ERROR),
-		"expected boolean string (\"TRUE\" or \"FALSE\", case-insensitive, or a number), instead got \"%s\"", str)
+	if CCCERROR((TRUE), ERROR_PARSE, 
+		"expected boolean string (\"TRUE\" or \"FALSE\", case-insensitive, or a number), instead got \"%s\"",
+		str)
+	{
+		PARSE_RETURN(BOOL_ERROR);
+	}
+
+success:
+	PARSE_RETURN(BOOL_ERROR);
+failure:
+	PARSE_RETURN(BOOL_ERROR);
 }
 
 
@@ -57,7 +73,8 @@ inline
 t_bool	Bool_FromString(t_char const* str)
 {
 	t_bool	result = FALSE;
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (BOOL_ERROR);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+		return (BOOL_ERROR);
 	Bool_Parse(&result, String_Length(str), str);
 	return (result);
 }

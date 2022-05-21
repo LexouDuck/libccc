@@ -13,12 +13,14 @@ t_ascii*	String_Reverse(t_ascii const* str)
 	t_size	i;
 	t_size	j;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	length = 0;
 	while (str[length])
 		++length;
 	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	j = length - 1;
 	while (i < length)

@@ -14,7 +14,8 @@ t_ascii*	String_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 {
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
@@ -43,15 +44,17 @@ t_ascii*	String_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 		if (str[i] == '\0' && c == '\0')
 			return ((t_ascii*)str + i);
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char '%c'/0x%X found in the first "SF_SIZE" chars of string \"%s\"", c, c, n, str)
+		return (NULL);
 }
 
 inline
 t_sintmax	String_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 {
 	t_ascii* result = String_Find_N_Char(str, c, n);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -61,8 +64,10 @@ t_ascii*	String_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_siz
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+		return (NULL);
 	i = 0;
 	while (str[i] && i <= n)
 	{
@@ -73,15 +78,17 @@ t_ascii*	String_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_siz
 		}
 		++i;
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no char from charset \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", charset, n, str)
+		return (NULL);
 }
 
 inline
 t_sintmax	String_IndexOf_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n)
 {
 	t_ascii* result = String_Find_N_Charset(str, charset, n);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }
 
@@ -93,8 +100,10 @@ t_ascii*	String_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n
 	t_size	match;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((query == NULL), ERROR_NULLPOINTER, "query string given is NULL")
+		return (NULL);
 	length = 0;
 	while (query[length])
 		++length;
@@ -113,14 +122,16 @@ t_ascii*	String_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n
 			return ((t_ascii*)str + i);
 		++i;
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
+	if CCCERROR((TRUE), ERROR_NOTFOUND, 
 		"no string \"%s\" found in the first "SF_SIZE" chars of string \"%s\"", query, n, str)
+		return (NULL);
 }
 
 inline
 t_sintmax	String_IndexOf_N_String(t_ascii const* str, t_ascii const* query, t_size n)
 {
 	t_ascii* result = String_Find_N_String(str, query, n);
-	HANDLE_ERROR(NOTFOUND, (result == NULL), return (ERROR);)
+	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
+		return (ERROR);
 	return (result - str);
 }

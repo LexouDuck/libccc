@@ -61,7 +61,8 @@ static	int	vasprintf(t_ascii** a_str, t_ascii const* format, va_list args)
 	if (length == -1)
 		return -1;
 	t_ascii* str = (t_ascii*)Memory_Allocate((size_t)length + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (-1);)
+	if CCCERROR((str == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (-1);
 	int result = vsnprintf(str, length + 1, format, args);
 	if (result == -1)
 	{

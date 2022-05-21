@@ -12,11 +12,12 @@ void	PointerArray_RemoveAt(void** ptrarr, t_uint index)
 	void**	result;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
 	length = PointerArray_Length((void const* const*)ptrarr);
-	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
-		index, length)
+	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
+		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")", index, length)	
+		return;
 	length -= 1;
 	if (length == 0)
 	{
@@ -25,7 +26,8 @@ void	PointerArray_RemoveAt(void** ptrarr, t_uint index)
 		return;
 	}
 //	result = (void const**)Memory_Allocate(sizeof(void const*) * length);
-//	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+//		return;
 	result = ptrarr;
 	for (t_uint i = index; i < length; ++i)
 	{
@@ -41,12 +43,14 @@ void	PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*del)(void*))
 	void**	result;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
 	length = PointerArray_Length((void const* const*)ptrarr);
-	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
-		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")",
-		index, length)
+	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
+		"index given ("SF_UINT") is beyond end of ptrarr (length: "SF_UINT")", index, length)	
+		return;
 	length -= 1;
 	if (length == 0)
 	{
@@ -55,7 +59,8 @@ void	PointerArray_RemoveAt_F(void** ptrarr, t_uint index, void (*del)(void*))
 		return;
 	}
 //	result = (void const**)Memory_Allocate(length * sizeof(void const*));
-//	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+//		return;
 	result = ptrarr;
 	for (t_uint i = index; i < length; ++i)
 	{

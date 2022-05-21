@@ -9,7 +9,9 @@
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 static
 t_sintmax	String_Remove_IndexOf(t_ascii const* str, t_ascii const* query)
-{ return (strstr(str, query)); }
+{
+	return (strstr(str, query));
+}
 #else
 static
 t_sintmax	String_Remove_IndexOf(t_ascii const* str, t_ascii const* query)
@@ -46,15 +48,18 @@ t_ascii*	String_Remove(t_ascii const* str, t_ascii const* query)
 	t_size	length_query;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((query == NULL), ERROR_NULLPOINTER, "string to remove given is NULL")
+		return (NULL);
 	matches = String_Count_String(str, query);
 	length = String_Length(str);
 	length_query = String_Length(query);
 	i = matches * length_query;
 	length = (length < i) ? 0 : length - i;
 	result = (t_ascii*)Memory_Allocate(length + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	matches = String_Remove_IndexOf(str, query);
 	i = 0;
 	while (i < length)

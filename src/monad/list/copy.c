@@ -15,14 +15,14 @@ s_list(T)*	List_Copy(T)(
 	t_uint dest_length;
 	t_uint src_length;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src  == NULL), return (NULL);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
+	if CCCERROR((src  == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
 	dest_length = List_Length(T)(dest);
 	src_length  = List_Length(T)(src);
-	HANDLE_ERROR(INDEX2LARGE, (dest_i >= dest_length),    return (NULL);)
-	HANDLE_ERROR(INDEX2LARGE, ( src_i >=  src_length),    return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (dest_i + n > dest_length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, ( src_i + n >  src_length), return (NULL);)
+	if CCCERROR((dest_i >= dest_length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i >=  src_length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR((dest_i + n > dest_length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i + n >  src_length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
 	if (n == 0)
 		n = src_length - src_i;
 	result = dest;

@@ -12,10 +12,10 @@ void*		Memory_Join(
 	t_u8*	result;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptr1 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptr2 == NULL), return (NULL);)
+	if CCCERROR((ptr1 == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((ptr2 == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
 	result = (t_u8*)Memory_Allocate(length1 + length2 + 1);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return (NULL);
 	i = 0;
 	while (i < length1)
 	{
@@ -40,8 +40,10 @@ void*	Memory_Append(
 {
 	void*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
+	if CCCERROR((a_dest == NULL), ERROR_NULLPOINTER, "destination address given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "buffer to append given is NULL")
+		return (NULL);
 	tmp = Memory_Join(
 		*a_dest, dest_length,
 		src, src_length);
@@ -58,8 +60,10 @@ void*	Memory_Prepend(
 {
 	void*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
+	if CCCERROR((a_dest == NULL), ERROR_NULLPOINTER, "destination address given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "buffer to append given is NULL")
+		return (NULL);
 	tmp = Memory_Join(
 		src, src_length,
 		*a_dest, dest_length);
@@ -76,8 +80,10 @@ void*	Memory_Merge(
 {
 	void*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (a_ptr1 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (a_ptr2 == NULL), return (NULL);)
+	if CCCERROR((a_ptr1 == NULL), ERROR_NULLPOINTER, "ptr1 address given is NULL")
+		return (NULL);
+	if CCCERROR((a_ptr2 == NULL), ERROR_NULLPOINTER, "ptr2 address given is NULL")
+		return (NULL);
 	result = Memory_Join(
 		*a_ptr1, length1,
 		*a_ptr2, length2);

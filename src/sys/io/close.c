@@ -21,9 +21,8 @@
 inline
 e_cccerror	IO_Close(t_fd fd)
 {
-	HANDLE_ERROR_SF(SYSTEM,
-		(close(fd) != 0),
-		return (ERROR_SYSTEM);,
+	if CCCERROR((close(fd) != 0), ERROR_SYSTEM,
 		"call to close() failed, for fd=%i", fd)
+		return (ERROR_SYSTEM);
 	return (ERROR_NONE);
 }

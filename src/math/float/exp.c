@@ -11,7 +11,8 @@ MATH_DECL_REALFUNCTION(Exp, exp)
 #define DEFINEFUNC_FLOAT_EXP(BITS) \
 t_f##BITS		F##BITS##_Exp(t_f##BITS x)				\
 {														\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);									\
 	if (x < -10.)										\
 		return (0.);									\
 	t_f##BITS result = (x + 8.);						\

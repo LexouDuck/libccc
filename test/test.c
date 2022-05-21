@@ -194,7 +194,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	if (test->result_sig)																	\
 		error = !test->expect_sig;															\
 	else if (test->expect_sig)																\
-		error = !HANDLE_ERRORS_NULLPOINTER;													\
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER;													\
 	else error = (test->result != test->expect);											\
 	print_test(test->name, test->function, args,											\
 		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
@@ -254,7 +254,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	if (test->result_sig)																	\
 		error = !test->expect_sig;															\
 	else if (test->expect_sig)																\
-		error = !HANDLE_ERRORS_NULLPOINTER;													\
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER;													\
 	else error = (test->result != test->expect);											\
 	if (isnan(test->result) && isnan(test->expect))											\
 		error = FALSE;																		\
@@ -309,7 +309,7 @@ void	print_test_sign(s_test_sign* test, char const* args)
 	if (test->result_sig)
 		error = !test->expect_sig;
 	else if (test->expect_sig)
-		error = !HANDLE_ERRORS_NULLPOINTER;
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER;
 	else
 	{
 		test->result_sig = 0; // reuse this variable to store sign (-1, 0, +1)

@@ -10,8 +10,10 @@ t_bool		String_Has(t_ascii const* str, t_ascii const* charset)
 	t_size	i;
 	t_size	c;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (FALSE);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset given is NULL")
+		return (FALSE);
 	i = 0;
 	while (str[i])
 	{
@@ -35,8 +37,10 @@ t_bool		String_HasOnly(t_ascii const* str, t_ascii const* charset)
 	t_size	c;
 	t_bool	match;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (FALSE);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (FALSE);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset given is NULL")
+		return (FALSE);
 	i = 0;
 	while (str[i])
 	{

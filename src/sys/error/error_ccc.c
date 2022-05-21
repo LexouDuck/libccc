@@ -98,7 +98,8 @@ t_char*			Error_CCC_GetName(e_cccerror error)
 
 e_cccerror		Error_CCC_Code(t_char const* name)
 {
-	HANDLE_ERROR(NULLPOINTER, (name == NULL), return (ERROR_UNSPECIFIED);)
+	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "error name given is NULL")
+		return (ERROR_UNSPECIFIED);
 	if (name[0] == '\0') // empty string
 		return (ERROR_NONE);
 	for (t_enum i = 0; (e_cccerror)i < ENUMLENGTH_CCCERROR; ++i)

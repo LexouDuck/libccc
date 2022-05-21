@@ -9,21 +9,26 @@
 
 
 #define DEFINEFUNC_UINT_MUL(BITS) \
-inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)		\
-{																\
-	HANDLE_ERROR(RESULTRANGE,									\
-		(Memory_GetMSB(a) + Memory_GetMSB(b) >= BITS),			\
-		LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX))			\
-	return (a * b);												\
+inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)				\
+{																		\
+	if CCCERROR((Memory_GetMSB(a) + Memory_GetMSB(b) >= BITS),			\
+		ERROR_RESULTRANGE, NULL)										\
+	{																	\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(U##BITS##_MAX)					\
+	}																	\
+	return (a * b);														\
 }
 
 #define DEFINEFUNC_SINT_MUL(BITS) \
-inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)		\
-{																\
-	HANDLE_ERROR(RESULTRANGE,									\
-		(Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
-		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ? S##BITS##_MAX : S##BITS##_MIN))\
-	return (a * b);												\
+inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
+{																		\
+	if CCCERROR((Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
+		ERROR_RESULTRANGE, NULL)										\
+	{																	\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ?				\
+			S##BITS##_MAX : S##BITS##_MIN)								\
+	}																	\
+	return (a * b);														\
 }
 
 /*

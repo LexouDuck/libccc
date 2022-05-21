@@ -16,17 +16,17 @@ t_size	U##BITS##_Parse_Bin(t_u##BITS* dest, t_char const* str, t_size n)			\
 	t_u##BITS	tmp;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
-		PARSE_RETURN(U##BITS##_ERROR))												\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
+		PARSE_RETURN(U##BITS##_ERROR)												\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	while (i < n && str[i] && Char_IsSpace(str[i]))									\
 	{																				\
 		++i;																		\
 	}																				\
-	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || Char_IsDigit_Bin(str[i])),			\
-		PARSE_RETURN(U##BITS##_ERROR),												\
+	if CCCERROR(!(str[i] == '+' || Char_IsDigit_Bin(str[i])), ERROR_PARSE,			\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)		\
+		PARSE_RETURN(U##BITS##_ERROR);												\
 	if (str[i] == '+')																\
 		++i;																		\
 	if (str[i] == '0' && str[i + 1] == 'b')											\
@@ -35,9 +35,10 @@ t_size	U##BITS##_Parse_Bin(t_u##BITS* dest, t_char const* str, t_size n)			\
 	while (i < n && str[i] && Char_IsDigit_Bin(str[i]))								\
 	{																				\
 		tmp = result * 2 + (str[i++] - '0');										\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),								\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX),							\
-			#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS, str, U##BITS##_MAX)\
+		if CCCERROR((tmp < result), ERROR_RESULTRANGE,								\
+			#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS,			\
+			str, U##BITS##_MAX)														\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX)							\
 		result = tmp;																\
 	}																				\
 	if (dest)	*dest = result;														\
@@ -68,18 +69,17 @@ t_size	S##BITS##_Parse_Bin(t_s##BITS* dest, t_char const* str, t_size n)			\
 	t_bool	negative;																\
 	t_size	i = 0;																	\
 																					\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),										\
-		PARSE_RETURN(S##BITS##_ERROR))												\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")	\
+		PARSE_RETURN(S##BITS##_ERROR)												\
 	if (n == 0)																		\
 		n = SIZE_MAX;																\
 	while (i < n && str[i] && Char_IsSpace(str[i]))									\
 	{																				\
 		++i;																		\
 	}																				\
-	HANDLE_ERROR_SF(PARSE,															\
-		!(str[i] == '+' || str[i] == '-' || Char_IsDigit_Bin(str[i])),				\
-		PARSE_RETURN(S##BITS##_ERROR),												\
+	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit_Bin(str[i])), ERROR_PARSE,	\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)		\
+		PARSE_RETURN(S##BITS##_ERROR);												\
 	negative = FALSE;																\
 	if (str[i] == '-')																\
 	{																				\
@@ -94,12 +94,14 @@ t_size	S##BITS##_Parse_Bin(t_s##BITS* dest, t_char const* str, t_size n)			\
 	while (i < n && str[i] && Char_IsDigit_Bin(str[i]))								\
 	{																				\
 		tmp = result * 2 + (str[i++] - '0');										\
-		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (t_u##BITS)S##BITS##_MIN),	\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN),							\
-			#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS, str, S##BITS##_MIN)\
-		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (t_u##BITS)S##BITS##_MAX),	\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX),							\
-			#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS, str, S##BITS##_MAX)\
+		if CCCERROR((negative && tmp > (t_u##BITS)S##BITS##_MIN), ERROR_RESULTRANGE,\
+			#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS,			\
+			str, S##BITS##_MIN)														\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN)							\
+		if CCCERROR((!negative && tmp > (t_u##BITS)S##BITS##_MAX), ERROR_RESULTRANGE,\
+			#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS,			\
+			str, S##BITS##_MAX)														\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX)							\
 		result = tmp;																\
 	}																				\
 	if (dest)	*dest = (negative ? -(t_s##BITS)result : (t_s##BITS)result);		\

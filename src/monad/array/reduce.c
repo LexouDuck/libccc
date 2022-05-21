@@ -11,8 +11,10 @@ void*	Array_Reduce(T)(s_array(T) const* array,
 {
 	void*		accumulator = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		accumulator = f(array->items[i], accumulator);
@@ -26,8 +28,10 @@ void*	Array_Reduce_I(T)(s_array(T) const* array,
 {
 	void*		accumulator = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		accumulator = f(array->items[i], accumulator, i);
@@ -43,8 +47,10 @@ void*	Array_Fold(T)(s_array(T) const* array,
 {
 	void*		accumulator = initial;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		accumulator = f(array->items[i], accumulator);
@@ -58,8 +64,10 @@ void*	Array_Fold_I(T)(s_array(T) const* array,
 {
 	void*		accumulator = initial;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		accumulator = f(array->items[i], accumulator, i);

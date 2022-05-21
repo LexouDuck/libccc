@@ -11,10 +11,9 @@ s_array(T)*	Array_Reverse(T)(s_array(T) const* array)
 	s_array(T)*	result;
 	t_uint		index;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
 	result = Array_New(T)(array->length, T_NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return (NULL);
 	index = array->length - 1;
 	for (t_uint i = 0; i < result->length; ++i, --index)
 	{

@@ -12,7 +12,8 @@ s_list(T)*	List_RemoveAt(T)(s_list(T)* list, t_uint index)
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	elem = list;
 	if (index == 0)
 	{
@@ -24,9 +25,10 @@ s_list(T)*	List_RemoveAt(T)(s_list(T)* list, t_uint index)
 	{
 		elem = elem->next;
 	}
-	HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL || elem->next == NULL), return (list);,
+	if CCCERROR((elem == NULL || elem->next == NULL), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
 		index, List_Length(T)(list))
+		return (list);
 	tmp = elem->next;
 	elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED
@@ -44,7 +46,8 @@ s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T))
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	elem = list;
 	if (index == 0)
 	{
@@ -56,9 +59,10 @@ s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T))
 	{
 		elem = elem->next;
 	}
-	HANDLE_ERROR_SF(INDEX2LARGE, (elem == NULL || elem->next == NULL), return (list);,
+	if CCCERROR((elem == NULL || elem->next == NULL), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
 		index, List_Length(T)(list))
+		return (list);
 	del(elem->item);
 	tmp = elem->next;
 	elem->next = tmp->next;

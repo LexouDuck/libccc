@@ -12,10 +12,13 @@ t_char**		StringArray_Map(t_char const* const* strarr,
 {
 	t_char**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	result = StringArray_New(StringArray_Length(strarr));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	for (t_uint i = 0; strarr[i]; ++i)
 	{
 		result[i] = map(strarr[i]);
@@ -30,10 +33,13 @@ t_char**		StringArray_Map_I(t_char const* const* strarr,
 {
 	t_char**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	result = StringArray_New(StringArray_Length(strarr));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	for (t_uint i = 0; strarr[i]; ++i)
 	{
 		result[i] = map(strarr[i], i);

@@ -10,8 +10,11 @@ void	PointerArray_Remove(void** ptrarr, void const* ptr)
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER,
+		"pointer given is NULL, which is used for the pointer array terminator")
+		return;
 	index = PointerArray_IndexOf((void const* const*)ptrarr, ptr);
 	if (index == ERROR)
 		return;
@@ -24,9 +27,13 @@ void	PointerArray_Remove_F(void** ptrarr, void const* ptr, void (*del)(void*))
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is null")
+		return;
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER,
+		"pointer given is NULL, which is used for the pointer array terminator")
+		return;
 	index = PointerArray_IndexOf((void const* const*)ptrarr, ptr);
 	if (index == ERROR)
 		return;
@@ -41,8 +48,11 @@ void	PointerArray_RemoveAll(void** ptrarr, void const* ptr)
 	t_uint	amount;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER,
+		"pointer given is NULL, which is used for the pointer array terminator")
+		return;
 	length = PointerArray_Length((void const* const*)ptrarr);
 	if (length == 0)
 		return;
@@ -80,9 +90,13 @@ void	PointerArray_RemoveAll_F(void** ptrarr, void const* ptr, void (*del)(void*)
 	t_uint	amount;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (ptr    == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is null")
+		return;
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER,
+		"pointer given is NULL, which is used for the pointer array terminator")
+		return;
 	length = PointerArray_Length((void const* const*)ptrarr);
 	if (ptrarr[0] == NULL)
 		return;

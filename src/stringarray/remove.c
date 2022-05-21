@@ -11,8 +11,11 @@ void	StringArray_Remove(t_char** strarr, t_char const* str)
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
+		"string given is NULL, which is used for the string array terminator")
+		return;
 	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
@@ -25,9 +28,13 @@ void	StringArray_Remove_F(t_char** strarr, t_char const* str, void (*del)(t_char
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (del    == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
+		"string given is NULL, which is used for the string array terminator")
+		return;
 	index = PointerArray_IndexOf((void const* const*)strarr, str);
 	if (index == ERROR)
 		return;
@@ -42,8 +49,11 @@ void	StringArray_RemoveAll(t_char** strarr, t_char const* str)
 	t_uint	amount;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
+		"string given is NULL, which is used for the string array terminator")
+		return;
 	length = StringArray_Length((t_char const**)strarr);
 	if (length == 0)
 		return;
@@ -81,9 +91,13 @@ void	StringArray_RemoveAll_F(t_char** strarr, t_char const* str, void (*del)(t_c
 	t_uint	amount;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (del    == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (str    == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER,
+		"string given is NULL, which is used for the string array terminator")
+		return;
 	length = StringArray_Length((t_char const**)strarr);
 	if (strarr[0] == NULL)
 		return;

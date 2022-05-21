@@ -12,7 +12,8 @@ t_ascii*	String_New(t_size n)
 	t_size	i;
 
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
@@ -31,7 +32,8 @@ t_ascii*	String_New_C(t_size n, t_ascii c)
 	t_size	i;
 
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{

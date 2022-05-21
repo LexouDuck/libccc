@@ -6,7 +6,8 @@
 
 
 
-static int	String_Split_Char_GetCount(t_char const* str, t_char c)
+static
+int	String_Split_Char_GetCount(t_char const* str, t_char c)
 {
 	int		result;
 	t_bool	separator;
@@ -45,10 +46,12 @@ t_char**		String_Split_Char(t_char const* str, t_char c)
 	int		count;
 	int		i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to split given is NULL")
+		return (NULL);
 	count = String_Split_Char_GetCount(str, c);
 	result = StringArray_New(count);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	offset = 0;
 	length = 0;
 	i = 0;

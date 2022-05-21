@@ -20,8 +20,10 @@ void*	Memory_Copy(void* dest, void const* src, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (dest);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, NULL)
+		return (dest);
 	result = (t_u8*)dest;
 	source = (t_u8*)src;
 	i = 0;
@@ -42,8 +44,10 @@ void*	Memory_Copy_C(void* dest, void const* src, t_u8 byte, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (dest);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, NULL)
+		return (dest);
 	result = (t_u8*)dest;
 	source = (t_u8*)src;
 	i = 0;

@@ -42,12 +42,14 @@ t_char*	Program_GetCWD(void)
 			size = MIN_BUFFER_SIZE;
 		else size *= 2;
 		buffer = String_New(size);
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+			return (NULL);
 		result = getcwd(buffer, size - 1);
 	}
 	while (result == NULL && size < MAX_BUFFER_SIZE);
-	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
+	if CCCERROR((size >= MAX_BUFFER_SIZE), ERROR_INVALIDARGS, 
 		"could not write date to string, size is too large ("SF_SIZE"), should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)
+		return (NULL);
 	return (NULL);
 }

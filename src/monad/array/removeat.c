@@ -12,11 +12,13 @@ void	Array_RemoveAt(T)(s_array(T)* array, t_uint index)
 {
 	T*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
-		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
-		index, array->length)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+		return;
+	if CCCERROR((array->length <= index), ERROR_INDEX2LARGE, 
+		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")", index, array->length)
+		return;
 	array->length -= 1;
 	if (array->length == 0)
 	{
@@ -25,7 +27,8 @@ void	Array_RemoveAt(T)(s_array(T)* array, t_uint index)
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return;
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		if (i < index)
@@ -43,12 +46,15 @@ void	Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*del)(T))
 {
 	T*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
-	HANDLE_ERROR_SF(INDEX2LARGE, (array->length <= index), return;,
-		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")",
-		index, array->length)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "delete() function given is NULL")
+		return;
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+		return;
+	if CCCERROR((array->length <= index), ERROR_INDEX2LARGE, 
+		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")", index, array->length)
+		return;
 	array->length -= 1;
 	if (array->length == 0)
 	{
@@ -57,7 +63,8 @@ void	Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*del)(T))
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return;
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		if (i < index)

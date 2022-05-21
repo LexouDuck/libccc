@@ -38,7 +38,8 @@ int		gnl_read(t_fd const fd, t_char** a_newline)
 	t_bool			done_new_line = FALSE;
 
 	*a_newline = String_New(0);
-	HANDLE_ERROR(ALLOCFAILURE, (*a_newline == NULL), return (GNL_ERROR);)
+	if CCCERROR((*a_newline == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (GNL_ERROR);
 	while (!done_new_line)
 	{
 		if (buf_pos == IO_BUFFER_SIZE)
@@ -83,9 +84,11 @@ int		IO_Read_NextLine(t_fd const fd, t_char** a_line)
 	t_char*			new_line = NULL;
 	int				status = GNL_ERROR;
 
-	HANDLE_ERROR(NULLPOINTER, (a_line == NULL), return (GNL_ERROR);)
-	HANDLE_ERROR_SF(INVALIDARGS, (fd < 0), return (GNL_ERROR);,
+	if CCCERROR((a_line == NULL), ERROR_NULLPOINTER, "current line address given is NULL")
+		return (GNL_ERROR);
+	if CCCERROR((fd < 0), ERROR_INVALIDARGS, 
 		"`fd` argument given has a negative value: %i", fd)
+	return (GNL_ERROR);
 	new_line = NULL;
 	status = gnl_read(fd, &new_line);
 	if (status < 0)

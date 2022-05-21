@@ -13,7 +13,9 @@
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
-{ return (strcmp(str1, str2)); }
+{
+	return (strcmp(str1, str2));
+}
 #else
 t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 {
@@ -21,8 +23,8 @@ t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (str1 == NULL), return ((str1 - str2));)
-	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return ((str1 - str2));)
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -39,7 +41,9 @@ t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
-{ return (strncmp(str1, str2, n)); }
+{
+	return (strncmp(str1, str2, n));
+}
 #else
 t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
@@ -47,8 +51,8 @@ t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 
 	if (str1 == str2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (str1 == NULL), return ((str1 - str2));)
-	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return ((str1 - str2));)
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
 	if (n == 0)
 		return (0);
 	i = 0;
@@ -69,7 +73,9 @@ t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
-{ return (strcasecmp(str1, str2)); }
+{
+	return (strcasecmp(str1, str2));
+}
 #else
 t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 {
@@ -77,8 +83,8 @@ t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (str1 == NULL), return ((str1 - str2));)
-	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return ((str1 - str2));)
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -97,7 +103,9 @@ t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_size n)
-{ return (strncasecmp(str1, str2, n)); }
+{
+	return (strncasecmp(str1, str2, n));
+}
 #else
 t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
@@ -105,8 +113,8 @@ t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_s
 
 	if (str1 == str2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (str1 == NULL), return ((str1 - str2));)
-	HANDLE_ERROR(NULLPOINTER, (str2 == NULL), return ((str1 - str2));)
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
 	if (n == 0)
 		return (0);
 	i = 0;

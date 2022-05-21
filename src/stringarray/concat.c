@@ -14,12 +14,15 @@ t_char**	StringArray_Concat(t_char const* const* strarr1, t_char const* const* s
 	t_size	length2;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr1 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (strarr2 == NULL), return (NULL);)
+	if CCCERROR((strarr1 == NULL), ERROR_NULLPOINTER, "left-hand-side string array given is NULL")
+		return (NULL);
+	if CCCERROR((strarr2 == NULL), ERROR_NULLPOINTER, "right-hand-side string array given is NULL")
+		return (NULL);
 	length1 = StringArray_Length(strarr1);
 	length2 = StringArray_Length(strarr2);
 	result = (t_char**)Memory_Allocate(sizeof(t_char*) * (length1 + length2 + 1));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < length1)
 	{
@@ -42,8 +45,10 @@ t_char**	StringArray_Append(t_char** *a_dest, t_char const* const* src)
 {
 	t_char**	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
+	if CCCERROR((a_dest == NULL), ERROR_NULLPOINTER, "destination string array address is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string array to append given is NULL")
+		return (NULL);
 	tmp = StringArray_Concat((t_char const* const*)*a_dest, src);
 	StringArray_Delete(a_dest);
 	*a_dest = tmp;
@@ -56,8 +61,10 @@ t_char**	StringArray_Prepend(t_char const* const* src, t_char** *a_dest)
 {
 	t_char**	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (a_dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (NULL);)
+	if CCCERROR((a_dest == NULL), ERROR_NULLPOINTER, "destination string array address is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string array to prepend given is NULL")
+		return (NULL);
 	tmp = StringArray_Concat(src, (t_char const* const*)*a_dest);
 	StringArray_Delete(a_dest);
 	*a_dest = tmp;
@@ -70,8 +77,10 @@ t_char**	StringArray_Merge(t_char** *a_strarr1, t_char** *a_strarr2)
 {
 	t_char**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (a_strarr1 == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (a_strarr2 == NULL), return (NULL);)
+	if CCCERROR((a_strarr1 == NULL), ERROR_NULLPOINTER, "left-hand-side string array given is NULL")
+		return (NULL);
+	if CCCERROR((a_strarr2 == NULL), ERROR_NULLPOINTER, "right-hand-side string array given is NULL")
+		return (NULL);
 	result = StringArray_Concat((t_char const**)*a_strarr1, (t_char const**)*a_strarr2);
 	StringArray_Delete(a_strarr1);
 	StringArray_Delete(a_strarr2);

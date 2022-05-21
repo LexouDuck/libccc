@@ -12,7 +12,8 @@ s_list(T)*	List_Remove(T)(s_list(T)* list, T item)
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	elem = list;
 	while (elem)
 	{
@@ -39,8 +40,10 @@ s_list(T)*	List_Remove_F(T)(s_list(T)* list, T item, void (*del)(T))
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	elem = list;
 	while (elem)
 	{
@@ -68,7 +71,8 @@ s_list(T)*	List_RemoveAll(T)(s_list(T)* list, T item)
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	elem = list;
 	while (elem)
 	{
@@ -94,8 +98,10 @@ s_list(T)*	List_RemoveAll_F(T)(s_list(T)* list, T item, void (*del)(T))
 	s_list(T)*	elem;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	elem = list;
 	while (elem)
 	{

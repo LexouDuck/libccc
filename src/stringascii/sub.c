@@ -12,16 +12,20 @@ t_ascii*	String_Sub(t_ascii const* str, t_size index, t_size n)
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	length = 0;
 	while (str[length])
 		++length;
-	HANDLE_ERROR_SF(INDEX2LARGE, (index > length), return (NULL);,
+	if CCCERROR((index > length), ERROR_INDEX2LARGE, 
 		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index)
-	HANDLE_ERROR_SF(LENGTH2LARGE, (index + n > length), return (NULL);,
+	return (NULL);
+	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE, 
 		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index + n)
+	return (NULL);
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{

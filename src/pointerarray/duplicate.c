@@ -11,10 +11,11 @@ void**		PointerArray_Duplicate(void* const* ptrarr)
 	t_uint	i;
 	void**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (*ptrarr == NULL), return (NULL);)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array address given is NULL")
+		return (NULL);
 	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (ptrarr[i])
 	{

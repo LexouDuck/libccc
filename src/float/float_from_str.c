@@ -33,7 +33,7 @@
 
 //! Returns 1 if the given 'number' is either NaN, or +/- infinity
 static
-t_float	Float_Parse_CheckSpecial(t_char const* str		)
+t_float	Float_Parse_CheckSpecial(t_char const* str)
 {
 	char sign = *str;
 	if (sign == '-' || sign == '+')
@@ -59,12 +59,13 @@ t_float	Float_Parse_CheckSpecial(t_char const* str		)
 
 //! Returns `TRUE` if the given `str` contains any invalid characters for float parsing, or FALSE otherwise
 static
-t_bool	Float_Parse_CheckInvalid(t_char const* str	)
+t_bool	Float_Parse_CheckInvalid(t_char const* str)
 {
 	t_size	count_expon;
 	t_size	count_signs;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (ERROR);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (*str == '\0')
 		return (ERROR);
 	if (*str != '+' &&
@@ -124,7 +125,7 @@ t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str, t_size n)		\
 	t_char const* s = NULL;													\
 	t_size	i = 0;															\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),								\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)						\
 		PARSE_RETURN(F##BITS##_ERROR))										\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
@@ -165,7 +166,7 @@ t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_char*		tmp;														\
 	t_size	i = 0;															\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),								\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)						\
 		PARSE_RETURN(F##BITS##_ERROR))										\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
@@ -241,7 +242,7 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_char*		tmp;														\
 	t_size		i = 0;														\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),								\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)						\
 		PARSE_RETURN(F##BITS##_ERROR))										\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
@@ -312,7 +313,7 @@ t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_f##BITS	result;														\
 	t_size		i = 0;														\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),								\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)						\
 		PARSE_RETURN(F##BITS##_ERROR))										\
 	if (n == 0)																\
 		n = SIZE_MAX;														\
@@ -348,7 +349,7 @@ t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n)	\
 	t_f##BITS	result;														\
 	t_size		i = 0;														\
 																			\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),								\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)						\
 		PARSE_RETURN(F##BITS##_ERROR))										\
 	if (n == 0)																\
 		n = SIZE_MAX;														\

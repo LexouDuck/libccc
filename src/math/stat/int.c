@@ -25,7 +25,8 @@ s_array_int	c_stat_new_ilst(t_uint length)
 	if (length == 0)
 		return (result);
 	result.items = (TYPE*)Memory_Allocate(sizeof(TYPE) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
+	if CCCERROR((result.items == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	result.length = length;
 	return (result);
 }
@@ -34,7 +35,7 @@ s_array_int	c_stat_new_ilst(t_uint length)
 
 void	c_stat_free_ilst(s_array_int *ilst)
 {
-	HANDLE_ERROR(NULLPOINTER, (ilst == NULL), return;)
+	if CCCERROR((ilst == NULL), ERROR_NULLPOINTER, NULL) return;
 	if (ilst->items)
 	{
 		Memory_Free(ilst->items);
@@ -70,8 +71,8 @@ s_array_int	c_stat_merge_ilst(
 	t_uint				i;
 	t_uint				j;
 
-	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_int){ 0, NULL });)
-	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_int){ 0, NULL });)
+	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_int){ 0, NULL });
+	if CCCERROR((append == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_int){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_ilst(0));
 	else if (!start->items || start->length == 0)
@@ -270,9 +271,11 @@ s_prob_mass	c_stat_new_pmf(t_uint length)
 	result.length = 0;
 	if (length == 0)	return (result);
 	result.value = (t_float*)Memory_Allocate(length * sizeof(t_float));
-	HANDLE_ERROR(ALLOCFAILURE, (result.value == NULL), return (result);)
+	if CCCERROR((result.value == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	result.prob = (t_float*)Memory_Allocate(length * sizeof(t_float));
-	HANDLE_ERROR(ALLOCFAILURE, (result.prob == NULL), return (result);)
+	if CCCERROR((result.prob == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	result.length = length;
 	return (result);
 }
@@ -281,7 +284,8 @@ s_prob_mass	c_stat_new_pmf(t_uint length)
 
 void		c_stat_free_pmf(s_prob_mass *drv)
 {
-	HANDLE_ERROR(NULLPOINTER, (drv == NULL), return;)
+	if CCCERROR((drv == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	if (drv->value)
 	{
 		Memory_Free(drv->value);

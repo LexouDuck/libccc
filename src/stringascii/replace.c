@@ -12,7 +12,8 @@ t_ascii*		String_Replace_Char(t_ascii const* str, t_ascii const char_old, t_asci
 	t_ascii*	result;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
 	if (char_old == char_new)
 		return (String_Duplicate(str));
 	if (char_old == '\0')
@@ -21,7 +22,8 @@ t_ascii*		String_Replace_Char(t_ascii const* str, t_ascii const char_old, t_asci
 	while (str[i])
 		++i;
 	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
@@ -41,9 +43,12 @@ t_ascii*		String_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_
 	t_size	j;
 	int		c_index;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (cset_old == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (cset_new == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((cset_old == NULL), ERROR_NULLPOINTER, "old charset string given is NULL")
+		return (NULL);
+	if CCCERROR((cset_new == NULL), ERROR_NULLPOINTER, "new charset string given is NULL")
+		return (NULL);
 	if (cset_old == cset_new)
 		return (String_Duplicate(str));
 	if (String_Length(cset_old) != String_Length(cset_new))
@@ -58,7 +63,8 @@ t_ascii*		String_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_
 		++i;
 	}
 	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
@@ -79,9 +85,12 @@ t_ascii*		String_Replace_String(t_ascii const* str, t_ascii const* str_old, t_as
 	t_ascii*		result;
 	t_ascii**	strarr;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (str_old == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (str_new == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (NULL);
+	if CCCERROR((str_old == NULL), ERROR_NULLPOINTER, "old replace string given is NULL")
+		return (NULL);
+	if CCCERROR((str_new == NULL), ERROR_NULLPOINTER, "new replace string given is NULL")
+		return (NULL);
 	if (str_old == str_new)
 		return (String_Duplicate(str));
 	strarr = String_Split_String(str, str_old);
@@ -96,7 +105,8 @@ void		String_Replace_Char_InPlace(t_ascii* str, t_ascii const char_old, t_ascii 
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return;
 	if (char_old == '\0')
 		return;
 	i = 0;
@@ -116,9 +126,12 @@ void		String_Replace_Charset_InPlace(t_ascii* str, t_ascii const* cset_old, t_as
 	t_size	j;
 	int		c_index;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (cset_old == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (cset_new == NULL), return;)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return;
+	if CCCERROR((cset_old == NULL), ERROR_NULLPOINTER, "old charset string given is NULL")
+		return;
+	if CCCERROR((cset_new == NULL), ERROR_NULLPOINTER, "new charset string given is NULL")
+		return;
 	if (String_Length(cset_old) != String_Length(cset_new))
 		return;
 	i = 0;

@@ -56,21 +56,23 @@ t_utf8*	KVT_Print_EnsureBuffer(s_kvt_print* p, t_size needed)
 #ifdef c_realloc // TODO make this ifdef check more robust ?
 	// reallocate with realloc if available
 	newbuffer = (t_utf8*)Memory_Reallocate(p->result, newsize);
-	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
+	if CCCERROR((newbuffer == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
 		Memory_Free(p->result);
 		p->length = 0;
 		p->result = NULL;
 		return (NULL);
-	)
+	}
 #else
 	// otherwise reallocate manually
 	newbuffer = (t_utf8*)Memory_Allocate(newsize);
-	HANDLE_ERROR(ALLOCFAILURE, (newbuffer == NULL),
+	if CCCERROR((newbuffer == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
 		Memory_Free(p->result);
 		p->length = 0;
 		p->result = NULL;
 		return (NULL);
-	)
+	}
 	Memory_Copy(newbuffer, p->result, p->offset + 1);
 	Memory_Free(p->result);
 #endif

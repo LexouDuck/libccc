@@ -36,7 +36,8 @@ t_s##BITS	S##BITS##_Root2(t_s##BITS x)		\
     t_s##BITS result = 0;						\
     t_s##BITS one = (t_s##BITS)1 << (BITS - 2);	\
 												\
-	HANDLE_ERROR(MATHDOMAIN, (x < 0), return (S##BITS##_ERROR);)\
+	if CCCERROR((x < 0), ERROR_MATHDOMAIN, NULL)\
+        return (S##BITS##_ERROR);               \
     while (one > x)								\
     {											\
         one >>= 2;								\

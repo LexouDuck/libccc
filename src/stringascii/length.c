@@ -19,7 +19,8 @@ t_size	String_Length(t_ascii const* str)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (0);
 	i = 0;
 	while (str[i])
 	{

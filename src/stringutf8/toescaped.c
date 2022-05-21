@@ -32,7 +32,8 @@ t_utf8* StringUTF8_ToASCIIEscaped(t_utf8 const* str)
 		return (NULL);
 
 	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 
 	if (StringUTF8_ToASCIIEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
 	{
@@ -59,7 +60,8 @@ t_utf8* StringUTF8_ToJsonEscaped(t_utf8 const* str)
 		return (NULL);
 
 	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 
 	if (StringUTF8_ToJsonEscapedBuf(result, expected_len + 1, str) == SIZE_ERROR)
 	{
@@ -107,7 +109,8 @@ static t_size Write_Encoded(t_utf8 *dest, t_utf8 const* str, t_size writeable_le
 		return 0;
 	t_size actual_len = encoder(dest, c);
 	
-	HANDLE_ERROR(INVALIDARGS, (expected_len != actual_len), return ((t_size)-1);) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
+	if CCCERROR((expected_len != actual_len), ERROR_INVALIDARGS, NULL)
+		return ((t_size)-1); // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size-1" to "SIZE_ERROR"
 
 	return actual_len;
 }
@@ -144,7 +147,8 @@ t_utf8*	StringUTF8_ToEscaped_e(
 		return (NULL);
 
 	result = (t_utf8*)Memory_Allocate(expected_len + sizeof(t_utf8));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 
 	
 	t_size actual_len = StringUTF8_ToEscapedBuf_e(result, out_readlen, expected_len + 1, str, charset, aliases, force_encoding_for, char_encoder);
@@ -185,15 +189,18 @@ t_size StringUTF8_ToEscapedBuf_e(
 	t_size	rd_idx = SIZE_ERROR; // value to return in *out_readlen function fails before parsing begins
 
 	{
-		HANDLE_ERROR(NULLPOINTER, (str == NULL)    , goto failure;)
-		HANDLE_ERROR(NULLPOINTER, (charset == NULL), goto failure;)
-		HANDLE_ERROR(NULLPOINTER, (aliases == NULL), goto failure;)
+		if CCCERROR((str == NULL)    , ERROR_NULLPOINTER, NULL) goto failure;
+		if CCCERROR((charset == NULL), ERROR_NULLPOINTER, NULL) goto failure;
+		if CCCERROR((aliases == NULL), ERROR_NULLPOINTER, NULL) goto failure;
 		t_size charset_symcount;
 		t_size charset_bytecount;
 		if (!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
-			HANDLE_ERROR_SF(INVALIDARGS, TRUE, goto failure;,
-					"Charset contains invalid sequence at symbol %zu (byte %zu): \"%.4s\"", charset_symcount, charset_bytecount + 1, charset + charset_bytecount + 1
-				);
+			if CCCERROR(TRUE, ERROR_INVALIDARGS,
+				"Charset contains invalid sequence at symbol "SF_SIZE" (byte "SF_SIZE"): \"%.4s\"",
+				charset_symcount,
+				charset_bytecount + 1,
+				charset + charset_bytecount + 1)
+				goto failure;
 	}
 
 	rd_idx = 0;
@@ -208,7 +215,7 @@ t_size StringUTF8_ToEscapedBuf_e(
 		t_size len_written = 0;
 		t_size len_read;
 		if (!CharUTF8_IsSeqValid(read_head, &len_read))
-			HANDLE_ERROR(ILLEGALBYTES, TRUE, goto failure;)
+			if CCCERROR(TRUE, ERROR_ILLEGALBYTES, NULL) goto failure;
 
 		t_utf8 const *alias = NULL;
 		t_utf8 const *find_res = StringASCII_Find_Char(charset, CharUTF32_FromUTF8(read_head));
@@ -227,7 +234,8 @@ t_size StringUTF8_ToEscapedBuf_e(
 			}
 			else
 			{
-				HANDLE_ERROR(NULLPOINTER, (char_encoder == NULL), goto failure;)
+				if CCCERROR((char_encoder == NULL), ERROR_NULLPOINTER, NULL)
+					goto failure;
 				len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
 				if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
 					goto failure;

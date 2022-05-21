@@ -25,7 +25,8 @@ s_array_float	c_stat_new_flst(t_uint length)
 	if (length == 0)
 		return (result);
 	result.items = (TYPE*)Memory_Allocate(sizeof(TYPE) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (result);)
+	if CCCERROR((result.items == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	result.length = length;
 	return (result);
 }
@@ -34,7 +35,8 @@ s_array_float	c_stat_new_flst(t_uint length)
 
 void	c_stat_free_flst(s_array_float *flst)
 {
-	HANDLE_ERROR(NULLPOINTER, (flst == NULL), return;)
+	if CCCERROR((flst == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	if (flst->items)
 	{
 		Memory_Free(flst->items);
@@ -70,8 +72,8 @@ s_array(float) 	c_stat_merge_flst(
 	t_uint	i;
 	t_uint	j;
 
-	HANDLE_ERROR(NULLPOINTER, (start  == NULL), return ((s_array_float){ 0, NULL });)
-	HANDLE_ERROR(NULLPOINTER, (append == NULL), return ((s_array_float){ 0, NULL });)
+	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_float){ 0, NULL });
+	if CCCERROR((append == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_float){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
 	else if (!start->items || start->length == 0)

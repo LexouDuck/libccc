@@ -32,9 +32,8 @@ void	Program_Exit(int exit_code)
 inline
 e_cccerror	Program_OnExit(void (*f)(void))
 {
-	HANDLE_ERROR_SF(SYSTEM,
-		atexit(f),
-		return (ERROR_SYSTEM);,
+	if CCCERROR(atexit(f), ERROR_SYSTEM,
 		"call to atexit() failed%s", (f == NULL) ? ", function given is NULL" : "")
+		return (ERROR_SYSTEM);
 	return (ERROR_NONE);
 }

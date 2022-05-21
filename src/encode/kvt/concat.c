@@ -25,15 +25,15 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 		!kvt2_isarray && !kvt2_isobject)
 	{	// create a new array to store both values
 		result = KVT_CreateArray();
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
+		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) goto failure;
 		concat = KVT_Duplicate(kvt1, TRUE);
-		HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+		if CCCERROR((concat == NULL), ERROR_ALLOCFAILURE, NULL) goto failure;
 		error = KVT_AddToArray_Item(result, concat);
-		HANDLE_ERROR(UNSPECIFIED, (error), goto failure;)
+		if CCCERROR((error), ERROR_UNSPECIFIED, NULL) goto failure;
 		concat = KVT_Duplicate(kvt2, TRUE);
-		HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+		if CCCERROR((concat == NULL), ERROR_ALLOCFAILURE, NULL) goto failure;
 		error = KVT_AddToArray_Item(result, concat);
-		HANDLE_ERROR(UNSPECIFIED, (error), goto failure;)
+		if CCCERROR((error), ERROR_UNSPECIFIED, NULL) goto failure;
 	}
 	else if (kvt1_isarray && kvt2_isarray)
 		return (KVT_Concat_Array(kvt1, kvt2));
@@ -42,16 +42,16 @@ s_kvt*	KVT_Concat(s_kvt const* kvt1, s_kvt const* kvt2)
 	else // concatenate arrays (put objects inside array if needed)
 	{
 		result = KVT_Duplicate(kvt1, TRUE);
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
+		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) goto failure;
 		concat = KVT_Duplicate(kvt2, TRUE);
-		HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+		if CCCERROR((concat == NULL), ERROR_ALLOCFAILURE, NULL) goto failure;
 
 		if (kvt1_isarray)
 			KVT_AddToArray_Item(result, concat);
 		else if (kvt2_isarray)
 			KVT_Insert_InArray(result, 0, concat);
 	}
-	HANDLE_ERROR(UNSPECIFIED, (result == NULL), goto failure;)
+	if CCCERROR((result == NULL), ERROR_UNSPECIFIED, NULL) goto failure;
 	return (result);
 
 failure:
@@ -67,12 +67,22 @@ s_kvt*	KVT_Concat_Array(s_kvt const* kvt1, s_kvt const* kvt2)
 	s_kvt*	result = NULL;
 	s_kvt*	concat = NULL;
 
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(kvt1)), return (NULL);)
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsArray(kvt2)), return (NULL);)
+	if CCCERROR((kvt1 == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
+	if CCCERROR((kvt2 == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
+	if CCCERROR(!KVT_IsArray(kvt1), ERROR_WRONGTYPE,
+		"expected kvt of type ARRAY, but got type %u", kvt1->type)
+		return (NULL);
+	if CCCERROR(!KVT_IsArray(kvt2), ERROR_WRONGTYPE,
+		"expected kvt of type ARRAY, but got type %u", kvt2->type)
+		return (NULL);
 	result = KVT_Duplicate(kvt1, TRUE);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	concat = KVT_Duplicate(kvt2, TRUE);
-	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+	if CCCERROR((concat == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 
 	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
 	concat->value.child->prev = result->value.child->prev;
@@ -93,12 +103,22 @@ s_kvt*	KVT_Concat_Object(s_kvt const* kvt1, s_kvt const* kvt2)
 	s_kvt*	result = NULL;
 	s_kvt*	concat = NULL;
 
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsObject(kvt1)), return (NULL);)
-	HANDLE_ERROR(WRONGTYPE, (!KVT_IsObject(kvt2)), return (NULL);)
+	if CCCERROR((kvt1 == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
+	if CCCERROR((kvt2 == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
+	if CCCERROR(!KVT_IsObject(kvt1), ERROR_WRONGTYPE,
+		"expected kvt of type OBJECT, but got type %u", kvt1->type)
+		return (NULL);
+	if CCCERROR(!KVT_IsObject(kvt2), ERROR_WRONGTYPE,
+		"expected kvt of type OBJECT, but got type %u", kvt2->type)
+		return (NULL);
 	result = KVT_Duplicate(kvt1, TRUE);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	concat = KVT_Duplicate(kvt2, TRUE);
-	HANDLE_ERROR(ALLOCFAILURE, (concat == NULL), goto failure;)
+	if CCCERROR((concat == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 
 	result->value.child->prev->next = concat->value.child; // use `prev` to access last element without looping
 	concat->value.child->prev = result->value.child->prev;

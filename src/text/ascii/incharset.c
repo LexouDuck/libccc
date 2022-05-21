@@ -12,7 +12,8 @@ t_bool	CharASCII_IsInCharset(t_ascii c, t_ascii const* charset)
 {
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (FALSE);)
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+		return (FALSE);
 	i = 0;
 	while (charset[i])
 	{

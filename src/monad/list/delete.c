@@ -12,7 +12,8 @@ void	List_Free(T)(s_list(T)* list)
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	i = list;
 	while (i)
 	{
@@ -30,8 +31,10 @@ void	List_Free_F(T)(s_list(T)* list, void (*del)(T* item))
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (del  == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	i = list;
 	while (i)
 	{
@@ -50,8 +53,10 @@ void	List_Delete(T)(s_list(T)* *a_list)
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
+	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
+	if CCCERROR((*a_list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	i = *a_list;
 	while (i)
 	{
@@ -70,9 +75,12 @@ void	List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item))
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	HANDLE_ERROR(NULLPOINTER, (del     == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (a_list  == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (*a_list == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
+	if CCCERROR((*a_list == NULL), ERROR_NULLPOINTER, NULL)
+		return;
 	i = *a_list;
 	while (i)
 	{

@@ -12,9 +12,11 @@ s_list(T)*	List_Reverse(T)(s_list(T) const* list)
 	s_list(T)*	previous;
 	s_list(T)*	current;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	result = List_Duplicate(T)(list);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	previous = result;
 	result = result->next;
 	current = result;

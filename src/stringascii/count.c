@@ -11,7 +11,8 @@ t_size	StringASCII_Count_Char(t_ascii const* str, t_utf32 c)
 	t_size	result = 0;
 	t_size	i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (0);
 	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
@@ -51,8 +52,10 @@ t_size	StringASCII_Count_Charset(t_ascii const* str, t_ascii const* charset)
 	t_size	i;
 	t_size	j;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (charset == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (0);
+	if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+		return (0);
 	result = 0;
 	i = 0;
 	while (str[i])
@@ -79,8 +82,10 @@ t_size	String_Count_String(t_ascii const* str, t_ascii const* query)
 	t_size	i;
 	t_size	j;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (query == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (0);
+	if CCCERROR((query == NULL), ERROR_NULLPOINTER, "query string given is NULL")
+		return (0);
 	result = 0;
 	length = 0;
 	while (query[length])

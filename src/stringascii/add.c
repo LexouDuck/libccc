@@ -12,15 +12,19 @@
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Add(t_ascii* dest, t_ascii const* src)
-{ return (strcat(dest, src)); }
+{
+	return (strcat(dest, src));
+}
 #else
 t_ascii*	String_Add(t_ascii* dest, t_ascii const* src)
 {
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (dest);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string to append given is NULL")
+		return (dest);
 	length = 0;
 	while (dest[length])
 		++length;
@@ -40,15 +44,19 @@ t_ascii*	String_Add(t_ascii* dest, t_ascii const* src)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
 t_ascii*	String_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
-{ return (strncat(dest, src, n)); }
+{
+	return (strncat(dest, src, n));
+}
 #else
 t_ascii*	String_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 {
 	t_size	length;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (dest);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string to append given is NULL")
+		return (dest);
 	length = 0;
 	while (dest[length])
 		++length;
@@ -73,7 +81,9 @@ t_ascii*	String_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 inline
 t_size	String_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
-{ return (strlcat(dest, src, size)); }
+{
+	return (strlcat(dest, src, size));
+}
 #else
 t_size	String_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
 {
@@ -81,8 +91,10 @@ t_size	String_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
 	t_size	src_len;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (src == NULL), return (0);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
+		return (0);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string to append given is NULL")
+		return (0);
 	src_len = 0;
 	while (src[src_len])
 		++src_len;

@@ -12,11 +12,13 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 	t_char**	result;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
 	length = StringArray_Length((t_char const**)strarr);
-	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
+	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
 		index, length)
+		return;
 	length -= 1;
 	if (length == 0)
 	{
@@ -25,7 +27,8 @@ void	StringArray_RemoveAt(t_char** strarr, t_uint index)
 		return;
 	}
 //	result = (t_char const**)String_Allocate(sizeof(t_char const*) * length);
-//	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+//		return;
 	result = strarr;
 	for (t_uint i = index; i < length; ++i)
 	{
@@ -41,12 +44,15 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 	t_char**	result;
 	t_uint	length;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
 	length = StringArray_Length((t_char const**)strarr);
-	HANDLE_ERROR_SF(INDEX2LARGE, (length <= index), return;,
+	if CCCERROR((length <= index), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of string array (length: "SF_UINT")",
 		index, length)
+		return;
 	length -= 1;
 	if (length == 0)
 	{
@@ -55,7 +61,8 @@ void	StringArray_RemoveAt_F(t_char** strarr, t_uint index, void (*del)(t_char*))
 		return;
 	}
 //	result = (t_char const**)String_Allocate(length * sizeof(t_char const*));
-//	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+//	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+//		return;
 	result = strarr;
 	for (t_uint i = index; i < length; ++i)
 	{
