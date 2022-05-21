@@ -30,7 +30,7 @@
 static
 t_float	Float_Parse_CheckSpecial(t_char const* str)
 {
-	char sign = *str;
+	t_char sign = *str;
 	if (sign == '-' || sign == '+')
 	{
 		++str;

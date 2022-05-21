@@ -51,7 +51,7 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 /*	// TODO fix this bad heuristic correction (waiting for ISO to get their story straight concerning leap seconds)
 	if (leapsec) 
 	{
-		char target[4] = { '%','S','\0','\0' };
+		t_char target[4] = { '%','S','\0','\0' };
 		t_char* secs = String_Find_String(format, target);
 		if (secs)
 		{

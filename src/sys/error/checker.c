@@ -17,29 +17,29 @@
 
 
 t_bool Error_If(e_cccerror errorcode,
-    t_bool shouldhandle,
-    char const* funcname,
-    char const* format, ...)
+	t_bool shouldhandle,
+	t_char const* funcname,
+	t_char const* format, ...)
 {
-    va_list args;
+	va_list args;
 
-    Error_Set(errorcode);
-    if (shouldhandle)
-    {
-        if (format == NULL)
-        {
-            Error_Handle(errorcode,
-                funcname,
-                NULL);
-        }
-        else
-        {
-            va_start(args, format);
-            Error_Handle(errorcode,
-                funcname,
-                String_Format_VA(format, args));
-            va_end(args);
-        }
-    }
-    return (TRUE);
+	Error_Set(errorcode);
+	if (shouldhandle)
+	{
+		if (format == NULL)
+		{
+			Error_Handle(errorcode,
+				funcname,
+				NULL);
+		}
+		else
+		{
+			va_start(args, format);
+			Error_Handle(errorcode,
+				funcname,
+				String_Format_VA(format, args));
+			va_end(args);
+		}
+	}
+	return (TRUE);
 }

@@ -30,7 +30,7 @@ static
 t_sint		IO_Read_NextLine_Read(t_fd const fd, t_char** a_newline)
 {
 	static t_size	buf_pos = 0;
-	static char		buffer[IO_BUFFER_SIZE + 1] = {0};
+	static t_char	buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sint			status = 0;
 	t_size			offset = 0;
 	t_char*			temp = NULL;

@@ -81,7 +81,7 @@ DEFINEFUNC_UINT_TOSTRBASE(128)
 t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 {																		\
 	t_char*	result;														\
-	char	digits[BITS];												\
+	t_char	digits[BITS];												\
 	t_size	length;														\
 	t_size	i;															\
 	t_u##BITS	n;														\

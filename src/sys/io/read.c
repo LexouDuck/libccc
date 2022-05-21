@@ -24,7 +24,7 @@
 
 t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 {
-	char		buffer[IO_BUFFER_SIZE + 1] = {0};
+	t_char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
 	t_u8*		file = NULL;
 	t_size		length;
@@ -105,9 +105,9 @@ t_sintmax	IO_Read_Filepath(t_char const* filepath, void* *a_file)
 	return (status);
 }
 
-char*		IO_Read_Filepath_Text(t_char const* filepath)
+t_char*		IO_Read_Filepath_Text(t_char const* filepath)
 {
-	char*	result	= NULL;
+	t_char*	result	= NULL;
 	IO_Read_Filepath(filepath, (void* *)&result);
 	return (result);
 }

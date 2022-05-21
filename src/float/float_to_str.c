@@ -153,7 +153,7 @@ failure:																	\
 t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 {																	\
 	t_char*	result = NULL;											\
-	char	digits[BITS];											\
+	t_char	digits[BITS];											\
 	t_u8	i;														\
 	t_u64	n;														\
 	result = Float_ToString_CheckSpecial(number);					\

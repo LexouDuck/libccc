@@ -100,7 +100,7 @@ t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 e_weekday	Date_DayOfTheWeek(s_date* date)
 {
 // algorithm courtesy of Tomohiko Sakamoto
-    static char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+    static t_char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
     t_s32 y = date->year;
     if (date->month < MONTH_MARCH)
     {

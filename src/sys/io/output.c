@@ -29,7 +29,7 @@
 
 
 inline
-t_size	IO_Output_Char(char c)
+t_size	IO_Output_Char(t_char c)
 {
 	return (IO_Write_Char(STDOUT, c));
 }
