@@ -38,6 +38,7 @@
 ./hdr/libccc/random/csprng.h
 ./hdr/libccc/random/prng.h
 ./hdr/libccc/random/random.h
+./hdr/libccc/stringarray.h
 ./hdr/libccc/string.h
 ./hdr/libccc/stringarray.h
 ./hdr/libccc/sys/ansi.h

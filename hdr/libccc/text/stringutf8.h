@@ -26,7 +26,6 @@
 
 #include "libccc.h"
 
-#include "libccc/format.h" // TODO remove this include ? (breaking change)
 #include "libccc/text/unicode.h"
 
 HEADER_CPP
@@ -58,7 +57,7 @@ typedef t_utf8	(*f_string_UTF8_map_i)			(unsigned int, t_utf8)
 
 
 
-#define StringUTF8_Print	StringUTF8_ToUtf8EscapedBuf
+#define StringUTF8_Print	StringUTF8_ToASCIIEscapedBuf
 
 //! Creates a new string from `str`, replacing special characters with ascii escape-sequences
 /*!
