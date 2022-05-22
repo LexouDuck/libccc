@@ -5,7 +5,7 @@
 
 
 
-void*		Memory_Join(
+void*		Memory_Concat(
 	void const* ptr1, t_size length1,
 	void const* ptr2, t_size length2)
 {
@@ -47,7 +47,7 @@ void*	Memory_Append(
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "buffer to append given is NULL")
 		return (NULL);
-	tmp = Memory_Join(
+	tmp = Memory_Concat(
 		*a_dest, dest_length,
 		src, src_length);
 	Memory_Delete(a_dest);
@@ -67,7 +67,7 @@ void*	Memory_Prepend(
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "buffer to append given is NULL")
 		return (NULL);
-	tmp = Memory_Join(
+	tmp = Memory_Concat(
 		src, src_length,
 		*a_dest, dest_length);
 	Memory_Delete(a_dest);
@@ -87,7 +87,7 @@ void*	Memory_Merge(
 		return (NULL);
 	if CCCERROR((a_ptr2 == NULL), ERROR_NULLPOINTER, "right-hand-side pointer address given is NULL")
 		return (NULL);
-	result = Memory_Join(
+	result = Memory_Concat(
 		*a_ptr1, length1,
 		*a_ptr2, length2);
 	Memory_Delete(a_ptr1);
