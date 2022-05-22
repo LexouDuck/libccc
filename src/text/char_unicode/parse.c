@@ -48,10 +48,10 @@ DEFINEFUNC_PARSE_HEX(32)
 t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 {
 	t_utf32	result = 0;
-	t_size	length;
+	t_size	length = 0;
 	t_size	i = 0;
-	t_u16	code1;
-	t_u16	code2;
+	t_u16	code1 = 0;
+	t_u16	code2 = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (ERROR);
