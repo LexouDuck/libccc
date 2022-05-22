@@ -16,9 +16,9 @@
 
 
 
-s_array_float	c_stat_new_flst(t_uint length)
+s_array(float)	c_stat_new_flst(t_uint length)
 {
-	s_array_float	result;
+	s_array(float)	result;
 
 	result.items = NULL;
 	result.length = 0;
@@ -33,7 +33,7 @@ s_array_float	c_stat_new_flst(t_uint length)
 
 
 
-void	c_stat_free_flst(s_array_float *flst)
+void	c_stat_free_flst(s_array(float) *flst)
 {
 	if CCCERROR((flst == NULL), ERROR_NULLPOINTER, "array of floats given is NULL")
 		return;
@@ -48,9 +48,9 @@ void	c_stat_free_flst(s_array_float *flst)
 
 
 static
-s_array_float	c_stat_flst_dup(s_array_float const flst)
+s_array(float)	c_stat_flst_dup(s_array(float) const flst)
 {
-	s_array_float	result;
+	s_array(float)	result;
 
 	result = c_stat_new_flst(flst.length);
 	if (!result.items)
@@ -73,9 +73,9 @@ s_array(float) 	c_stat_merge_flst(
 	t_uint	j;
 
 	if CCCERROR((start == NULL), ERROR_NULLPOINTER, "array of floats given is NULL")
-		return ((s_array_float){ 0, NULL });
+		return ((s_array(float)){ 0, NULL });
 	if CCCERROR((append == NULL), ERROR_NULLPOINTER, "array of floats to append given is NULL")
-		return ((s_array_float){ 0, NULL });
+		return ((s_array(float)){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
 	else if (!start->items || start->length == 0)
@@ -109,7 +109,7 @@ s_array(float) 	c_stat_merge_flst(
 */
 static
 void		c_stat_quicksort_f_rec(
-	s_array_float	tmp_lst,
+	s_array(float)	tmp_lst,
 	t_uint			start,
 	t_uint			end)
 {
@@ -155,9 +155,9 @@ void		c_stat_quicksort_f_rec(
 
 
 
-s_array_float 	c_stat_quicksort_f_new(s_array_float const flst)
+s_array(float) 	c_stat_quicksort_f_new(s_array(float) const flst)
 {
-	s_array_float	result;
+	s_array(float)	result;
 
 	if (flst.length <= 1)
 		return (flst);
@@ -168,7 +168,7 @@ s_array_float 	c_stat_quicksort_f_new(s_array_float const flst)
 
 
 
-void		c_stat_quicksort_f(s_array_float flst)
+void		c_stat_quicksort_f(s_array(float) flst)
 {
 	c_stat_quicksort_f_rec(flst, 0, flst.length - 1);
 }
@@ -185,7 +185,7 @@ t_float		c_stat_median_f(s_sorted_float const flst)
 
 
 
-t_float		c_stat_average_f(s_array_float const flst)
+t_float		c_stat_average_f(s_array(float) const flst)
 {
 	TYPE	sum;
 	t_uint	i;
@@ -207,7 +207,7 @@ t_float		c_stat_average_f(s_array_float const flst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float		c_stat_variance_f(s_array_float const flst)
+t_float		c_stat_variance_f(s_array(float) const flst)
 {
 	TYPE	sum;
 	t_uint	i;
@@ -231,7 +231,7 @@ t_float		c_stat_variance_f(s_array_float const flst)
 // TODO
 /*
 inline
-t_float		c_stat_stddev_f(s_array_float const flst)
+t_float		c_stat_stddev_f(s_array(float) const flst)
 {
 	
 }

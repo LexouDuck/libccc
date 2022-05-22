@@ -16,9 +16,9 @@
 
 
 
-s_array_int	c_stat_new_ilst(t_uint length)
+s_array(int)	c_stat_new_ilst(t_uint length)
 {
-	s_array_int		result;
+	s_array(int)		result;
 
 	result.items = NULL;
 	result.length = 0;
@@ -33,7 +33,7 @@ s_array_int	c_stat_new_ilst(t_uint length)
 
 
 
-void	c_stat_free_ilst(s_array_int *ilst)
+void	c_stat_free_ilst(s_array(int) *ilst)
 {
 	if CCCERROR((ilst == NULL), ERROR_NULLPOINTER, "array of ints given is NULL")
 		return;
@@ -48,9 +48,9 @@ void	c_stat_free_ilst(s_array_int *ilst)
 
 
 static
-s_array_int	c_stat_ilst_dup(s_array_int const ilst)
+s_array(int)	c_stat_ilst_dup(s_array(int) const ilst)
 {
-	s_array_int	result;
+	s_array(int)	result;
 
 	result = c_stat_new_ilst(ilst.length);
 	if (!result.items)
@@ -64,18 +64,18 @@ s_array_int	c_stat_ilst_dup(s_array_int const ilst)
 
 
 
-s_array_int	c_stat_merge_ilst(
-	s_array_int *start,
-	s_array_int *append)
+s_array(int)	c_stat_merge_ilst(
+	s_array(int) *start,
+	s_array(int) *append)
 {
-	s_array_int			result;
+	s_array(int)			result;
 	t_uint				i;
 	t_uint				j;
 
 	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, "array of ints given is NULL")
-		return ((s_array_int){ 0, NULL });
+		return ((s_array(int)){ 0, NULL });
 	if CCCERROR((append == NULL), ERROR_NULLPOINTER, "array of ints to append to given is NULL")
-		return ((s_array_int){ 0, NULL });
+		return ((s_array(int)){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_ilst(0));
 	else if (!start->items || start->length == 0)
@@ -109,7 +109,7 @@ s_array_int	c_stat_merge_ilst(
 */
 static
 void		c_stat_quicksort_i_rec(
-	s_array_int	tmp_lst,
+	s_array(int)	tmp_lst,
 	t_uint		start,
 	t_uint		end)
 {
@@ -155,9 +155,9 @@ void		c_stat_quicksort_i_rec(
 
 
 
-s_array_int c_stat_quicksort_i_new(s_array_int const ilst)
+s_array(int) c_stat_quicksort_i_new(s_array(int) const ilst)
 {
-	s_array_int	result;
+	s_array(int)	result;
 
 	if (ilst.length <= 1)
 		return (ilst);
@@ -168,7 +168,7 @@ s_array_int c_stat_quicksort_i_new(s_array_int const ilst)
 
 
 
-void		c_stat_quicksort_i(s_array_int ilst)
+void		c_stat_quicksort_i(s_array(int) ilst)
 {
 	c_stat_quicksort_i_rec(ilst, 0, ilst.length - 1);
 }
@@ -183,7 +183,7 @@ t_float		c_stat_median_i(s_sorted_int const ilst)
 		(ilst.items[ilst.length / 2] + ilst.items[ilst.length / 2 + 1]) / 2);
 }
 
-t_float		c_stat_average_i(s_array_int const ilst)
+t_float		c_stat_average_i(s_array(int) const ilst)
 {
 	t_float		sum;
 	t_uint		i;
@@ -204,7 +204,7 @@ t_float		c_stat_average_i(s_array_int const ilst)
 ** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
 **	operations (n subtractions).
 */
-t_float		c_stat_variance_i(s_array_int const ilst)
+t_float		c_stat_variance_i(s_array(int) const ilst)
 {
 	t_float		sum;
 	t_uint		i;
@@ -228,7 +228,7 @@ t_float		c_stat_variance_i(s_array_int const ilst)
 // TODO
 /*
 inline
-t_float		c_stat_stddev_i(s_array_int const ilst)
+t_float		c_stat_stddev_i(s_array(int) const ilst)
 {
 
 }
@@ -304,10 +304,10 @@ void		c_stat_free_pmf(s_prob_mass *drv)
 
 
 
-s_set_int	c_stat_ilst_to_iset(s_array_int const ilst)
+s_set_int	c_stat_ilst_to_iset(s_array(int) const ilst)
 {
-	s_array_int	result;
-	s_array_int	set;
+	s_array(int)	result;
+	s_array(int)	set;
 	t_uint		i;
 	t_uint		j;
 
@@ -336,7 +336,7 @@ s_set_int	c_stat_ilst_to_iset(s_array_int const ilst)
 
 
 
-t_uint		c_stat_ilst_count(s_array_int ilst, TYPE elem)
+t_uint		c_stat_ilst_count(s_array(int) ilst, TYPE elem)
 {
 	t_uint	i;
 	t_uint	result;
@@ -354,10 +354,10 @@ t_uint		c_stat_ilst_count(s_array_int ilst, TYPE elem)
 
 
 
-s_prob_mass	c_stat_ilst_to_pmf(s_array_int const ilst)
+s_prob_mass	c_stat_ilst_to_pmf(s_array(int) const ilst)
 {
 	s_prob_mass	result;
-	s_array_int	set;
+	s_array(int)	set;
 	t_uint		i;
 	t_float		inv_sample_size;
 
