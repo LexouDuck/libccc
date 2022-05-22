@@ -38,6 +38,8 @@ TEST_CFLAGS_OS_other =
 TEST_CFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
+else
+	TEST_CFLAGS_OS += -Wno-unused-value
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
