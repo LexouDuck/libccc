@@ -288,8 +288,8 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 **	@nonstd
 */
 //!@{
-void*					Memory_Join(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
-#define c_memjoin		Memory_Join
+void*					Memory_Concat(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
+#define c_memconcat		Memory_Concat
 //!@}
 
 //!@doc Return a newly allocated memory region, by concatenating `*a_dest` (deletes old) and `src`
@@ -317,6 +317,26 @@ void*					Memory_Prepend(void const* src, t_size src_length, void* *a_dest, t_si
 //!@{
 void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size length2);
 #define c_memmerge		Memory_Merge
+//!@}
+
+
+
+//!@doc Return a newly allocated memory region, by concatenating all of the memory buffers in `ptrarr`
+/*!
+**	@nonstd
+**	
+**	This function is the inverse operation of the Memory_Split() function.
+**
+**	@param	ptrarr		The array of buffers to join together (terminated by a `NULL` pointer).
+**	@param	lengths		The array which expresses the size (in bytes) for each memory buffer.
+**	@param	separator	The separator buffer, which is to be added between each joined buffer.
+**	@returns
+**	A newly-allocated memory buffer which is the concatenation of all the buffers contained in
+**	the given pointer array `ptrarr`, with a copy of the `separator` buffer in-between each.
+*/
+//!@{
+void*					Memory_Join(void const** ptrarr, t_size const* lengths, void const* separator, t_size separator_length);
+#define c_memjoin		Memory_Join
 //!@}
 
 

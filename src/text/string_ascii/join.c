@@ -50,6 +50,8 @@ void	String_Join_FoldIntoString(t_ascii* dest, t_ascii const** strarr, t_ascii c
 	dest[i] = '\0';
 }
 
+
+
 t_ascii*		String_Join(t_ascii const** strarr, t_ascii const* separator)
 {
 	t_ascii*	str;
