@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/text/char_unicode.h                    |    __    __  ___      _____  | ||
+||  libccc/text/char_unicode.h               |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -9,8 +9,8 @@
 ||                                                                            ||
 \*============================================================================*/
 
-#ifndef __LIBCCC_TEXT_UNICODE_H
-#define __LIBCCC_TEXT_UNICODE_H
+#ifndef __LIBCCC_CHAR_UNICODE_H
+#define __LIBCCC_CHAR_UNICODE_H
 /*!@group{libccc_text_unicode,7,libccc/text/char_unicode.h}
 **
 **	This header defines all the functions related to Unicode text encodings.
@@ -31,8 +31,8 @@
 
 HEADER_CPP
 
-#ifndef __LIBCCC_TEXT_UNICODE_T
-#define __LIBCCC_TEXT_UNICODE_T
+#ifndef __LIBCCC_CHAR_UNICODE_T
+#define __LIBCCC_CHAR_UNICODE_T
 
 /*
 ** ************************************************************************** *|
@@ -127,8 +127,8 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 
 
 #endif
-#ifndef __LIBCCC_TEXT_UNICODE_F
-#define __LIBCCC_TEXT_UNICODE_F
+#ifndef __LIBCCC_CHAR_UNICODE_F
+#define __LIBCCC_CHAR_UNICODE_F
 
 /*
 ** ************************************************************************** *|

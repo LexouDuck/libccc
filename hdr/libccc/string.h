@@ -11,13 +11,31 @@
 
 #ifndef __LIBCCC_STRING_H
 #define __LIBCCC_STRING_H
+/*!@group{libccc_string,18,libccc/string.h}
+**
+**	This header defines the common standard string manipulation functions.
+**	NOTE: This header includes both ASCII and UTF8 string function APIs.
+**
+**	@isostd{C,https://en.cppreference.com/w/c/string/byte#StringASCII_manipulation}
+*/
 
+/*
+** ************************************************************************** *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
 
 #include "libccc.h"
 #include "libccc/text/string_ascii.h"
 #include "libccc/char.h"
 
 HEADER_CPP
+
+/*
+** ************************************************************************** *|
+**                                 Definitions                                *|
+** ************************************************************************** *|
+*/
 
 typedef t_char*	p_str;
 typedef t_char*	p_string;
@@ -29,6 +47,13 @@ typedef void	(*f_string_iterate_i)	(unsigned int, t_char* );
 typedef t_char	(*f_string_map)			(t_char);
 typedef t_char	(*f_string_map_i)		(unsigned int, t_char);
 
+
+
+/*
+** ************************************************************************** *|
+**                              String functions                              *|
+** ************************************************************************** *|
+*/
 
 #define String_New                     StringASCII_New
 #define String_New_C                   StringASCII_New_C

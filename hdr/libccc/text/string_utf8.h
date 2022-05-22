@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/stringutf8.h                      |    __    __  ___      _____  | ||
+||  libccc/text/string_utf8.h                |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_STRING_UTF8_H
 #define __LIBCCC_STRING_UTF8_H
-/*!@group{libccc_mbstringUTF8,18,libccc/string.h}
+/*!@group{libccc_string_utf8,18,libccc/text/string_utf8.h}
 **
 **	This header defines the common standard UTF8 text string manipulation functions.
 **

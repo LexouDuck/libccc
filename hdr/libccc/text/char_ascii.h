@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/text/char_ascii.h                      |    __    __  ___      _____  | ||
+||  libccc/text/char_ascii.h                 |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -9,9 +9,9 @@
 ||                                                                            ||
 \*============================================================================*/
 
-#ifndef __LIBCCC_TEXT_ASCII_H
-#define __LIBCCC_TEXT_ASCII_H
-/*!@group{libccc_text_ascii,6,libccc/text/char_ascii.h}
+#ifndef __LIBCCC_CHAR_ASCII_H
+#define __LIBCCC_CHAR_ASCII_H
+/*!@group{libccc_char_ascii,6,libccc/text/char_ascii.h}
 **
 **	This header defines all the functions related to ASCII text (7-bit chars).
 **
@@ -28,8 +28,8 @@
 
 HEADER_CPP
 
-#ifndef __LIBCCC_TEXT_ASCII_T
-#define __LIBCCC_TEXT_ASCII_T
+#ifndef __LIBCCC_CHAR_ASCII_T
+#define __LIBCCC_CHAR_ASCII_T
 
 /*
 ** ************************************************************************** *|
@@ -135,8 +135,8 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 
 
 #endif
-#ifndef __LIBCCC_TEXT_ASCII_F
-#define __LIBCCC_TEXT_ASCII_F
+#ifndef __LIBCCC_CHAR_ASCII_F
+#define __LIBCCC_CHAR_ASCII_F
 
 /*
 ** ************************************************************************** *|

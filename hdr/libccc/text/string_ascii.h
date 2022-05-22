@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/text/string_ascii.h                |    __    __  ___      _____  | ||
+||  libccc/text/string_ascii.h               |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -11,7 +11,7 @@
 
 #ifndef __LIBCCC_STRING_ASCII_H
 #define __LIBCCC_STRING_ASCII_H
-/*!@group{libccc_stringascii,18,libccc/string.h}
+/*!@group{libccc_string_ascii,18,libccc/text/string_ascii.h}
 **
 **	This header defines the common standard ascii text string manipulation functions.
 **

@@ -13,7 +13,8 @@
 #define __LIBCCC_CHAR_H
 /*!@group{libccc_char,10,libccc/char.h}
 **
-**	This header defines all the functions/sets related to single ASCII chars.
+**	This header defines all the functions/sets related to text characters.
+**	NOTE: This header includes both ASCII and UTF8 char function APIs.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte}
 */
