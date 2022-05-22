@@ -121,6 +121,7 @@
 ./src/memory/duplicate.c
 ./src/memory/find.c
 ./src/memory/iterate.c
+./src/memory/join.c
 ./src/memory/map.c
 ./src/memory/merge.c
 ./src/memory/move.c
