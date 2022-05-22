@@ -72,7 +72,7 @@ int		testsuite_text_char_unicode(void)
 
 	int warnings = 0;
 	int errors = 0;
-	t_utf32 max = 0x10000;
+	t_utf32 max = 0x20000;
 	t_utf32 c = 0;
 	t_sint result;
 	t_sint expect;
@@ -87,7 +87,7 @@ int		testsuite_text_char_unicode(void)
 	TEST_PERFORM_CHAR(is, iswprint, TRUE)
 //	TEST_PERFORM_CHAR(is, iswascii, TRUE)
 */
-	TEST_PERFORM_CHAR(to, towupper, TRUE)
+//	TEST_PERFORM_CHAR(to, towupper, TRUE)
 //	TEST_PERFORM_CHAR(to, towlower, TRUE)
 
 	if (g_test.config.verbose)

@@ -190,8 +190,10 @@ t_size StringUTF8_ToEscapedBuf_e(
 	t_size	rd_idx = SIZE_ERROR; // value to return in *out_readlen function fails before parsing begins
 
 	{
-		if CCCERROR((char_encoder == NULL), ERROR_NULLPOINTER, "char_encoder() function given is NULL")
-			goto failure;
+//		if CCCERROR((force_encoding_for == NULL), ERROR_NULLPOINTER, "force_encoding_for() function given is NULL")
+//			goto failure;
+//		if CCCERROR((char_encoder == NULL), ERROR_NULLPOINTER, "char_encoder() function given is NULL")
+//			goto failure;
 		if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 			goto failure;
 		if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
@@ -200,13 +202,12 @@ t_size StringUTF8_ToEscapedBuf_e(
 			goto failure;
 		t_size charset_symcount;
 		t_size charset_bytecount;
-		if (!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
-			if CCCERROR(TRUE, ERROR_INVALIDARGS,
-				"Charset contains invalid sequence at symbol "SF_SIZE" (byte "SF_SIZE"): \"%.4s\"",
-				charset_symcount,
-				charset_bytecount + 1,
-				charset + charset_bytecount + 1)
-				goto failure;
+		if CCCERROR(!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount), ERROR_INVALIDARGS,
+			"Charset contains invalid sequence at symbol "SF_SIZE" (byte "SF_SIZE"): \"%.4s\"",
+			charset_symcount,
+			charset_bytecount + 1,
+			charset + charset_bytecount + 1)
+			goto failure;
 	}
 
 	rd_idx = 0;
@@ -220,8 +221,8 @@ t_size StringUTF8_ToEscapedBuf_e(
 		t_size writeable_len = max_writelen - wr_idx - 1;
 		t_size len_written = 0;
 		t_size len_read;
-		if (!CharUTF8_IsSeqValid(read_head, &len_read))
-			if CCCERROR(TRUE, ERROR_ILLEGALBYTES, NULL) goto failure;
+		if CCCERROR(!CharUTF8_IsSeqValid(read_head, &len_read), ERROR_ILLEGALBYTES, NULL)
+			goto failure;
 
 		t_utf8 const *alias = NULL;
 		t_utf8 const *find_res = StringASCII_Find_Char(charset, CharUTF32_FromUTF8(read_head));
