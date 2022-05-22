@@ -72,22 +72,22 @@ int		testsuite_text_char_unicode(void)
 
 	int warnings = 0;
 	int errors = 0;
-	t_utf32 max = 0x12000;
+	t_utf32 max = 0x32000;
 	t_utf32 c = 0;
 	t_sint result;
 	t_sint expect;
-
+/*
 	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
 	TEST_PERFORM_CHAR(is, iswupper, TRUE)
 	TEST_PERFORM_CHAR(is, iswlower, TRUE)
 	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
 	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
 	TEST_PERFORM_CHAR(is, iswspace, TRUE)
-//	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
-//	TEST_PERFORM_CHAR(is, iswprint, TRUE)
+	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
+	TEST_PERFORM_CHAR(is, iswprint, TRUE)
 //	TEST_PERFORM_CHAR(is, iswascii, TRUE)
-
-	TEST_PERFORM_CHAR(to, towupper, TRUE)
+*/
+//	TEST_PERFORM_CHAR(to, towupper, TRUE)
 	TEST_PERFORM_CHAR(to, towlower, TRUE)
 
 	if (g_test.config.verbose)
