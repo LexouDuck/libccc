@@ -5,6 +5,7 @@
 #include <string.h>
 #include <setjmp.h>
 #include <signal.h>
+#include <locale.h>
 
 #include "test.h"
 
@@ -90,9 +91,10 @@ static void	init(void)
 		(s_test_suite){ FALSE, "string",			testsuite_string },
 		(s_test_suite){ FALSE, "stringarray",		testsuite_stringarray },
 		(s_test_suite){ FALSE, "color",				testsuite_color },
-		(s_test_suite){ FALSE, "text/ascii",		testsuite_text_ascii },
-		(s_test_suite){ FALSE, "text/unicode",		testsuite_text_unicode },
+		(s_test_suite){ FALSE, "text/char_ascii",	testsuite_text_char_ascii },
+		(s_test_suite){ FALSE, "text/char_unicode",	testsuite_text_char_unicode },
 		(s_test_suite){ FALSE, "text/regex",		testsuite_text_regex },
+		(s_test_suite){ FALSE, "text/unicode",		testsuite_text_unicode },
 		(s_test_suite){ FALSE, "sys/io",			testsuite_sys_io },
 		(s_test_suite){ FALSE, "sys/time",			testsuite_sys_time },
 		(s_test_suite){ FALSE, "math/math",			testsuite_math },
@@ -204,6 +206,8 @@ int	main(int argc, char** argv)
 
 	init();
 	init_signal_handler();
+	// set locale to null
+	setlocale(LC_ALL, "");
 
 	// Handle main program arguments
 	int	match;

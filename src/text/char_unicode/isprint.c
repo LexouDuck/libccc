@@ -1,4 +1,5 @@
 
+#include "libccc/text/char_ascii.h"
 #include "libccc/text/char_unicode.h"
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
@@ -49,10 +50,11 @@ t_bool	CharUTF32_IsPrintable(t_utf32 c)
 // TODO UTF handling
 t_bool	CharUTF32_IsPrintable(t_utf32 c)
 {
-	return (!(c < 0x20) &&	// C0 control code char
-		!(c == 0x7F) &&	// DEL character
-		!(0x80 <= c && c < 0xA0) &&	// C1 control code char
-		CharUTF32_IsValid(c));
+	return (!(c < 0x20) // C0 control code char
+		&& !(c == 0x7F) // DEL character
+		&& !(0x80 <= c && c < 0xA0) // C1 control code char
+		&& CharUTF32_IsValid(c) // NOTE: this is different from the standard iswprint(), which returns 0 for every unicode char
+	);
 }
 #endif
 

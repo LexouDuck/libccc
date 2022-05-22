@@ -14,6 +14,8 @@
 /*!@group{libccc_enum,11,libccc/enum.h}
 **
 **	This header defines several utility functions and macros for enumerations.
+**	In particular, the structure defined here can be used to manipulate fully
+**	dynamic run-time enum types.
 */
 
 /*

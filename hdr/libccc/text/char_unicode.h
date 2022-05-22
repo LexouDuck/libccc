@@ -147,6 +147,7 @@ TYPEDEF_ALIAS(			t_utf32, UTF32, PRIMITIVE)
 */
 //!@{
 t_bool						CharUTF32_IsLetter(t_utf32 c);
+#define c_iswalpha			CharUTF32_IsLetter
 #define c_wcisalpha			CharUTF32_IsLetter
 #define CharUTF32_IsAlpha	CharUTF32_IsLetter
 //!@}
@@ -162,6 +163,7 @@ t_bool						CharUTF32_IsLetter(t_utf32 c);
 */
 //!@{
 t_bool						CharUTF32_IsUppercase(t_utf32 c);
+#define c_iswupper			CharUTF32_IsUppercase
 #define c_wcisupper			CharUTF32_IsUppercase
 #define CharUTF32_IsUpper	CharUTF32_IsUppercase
 //!@}
@@ -176,8 +178,9 @@ t_bool						CharUTF32_IsUppercase(t_utf32 c);
 **	otherwise returns `FALSE`.
 */
 //!@{
-t_bool					CharUTF32_IsLowercase(t_utf32 c);
-#define c_wcislower		CharUTF32_IsLowercase
+t_bool						CharUTF32_IsLowercase(t_utf32 c);
+#define c_iswlower			CharUTF32_IsLowercase
+#define c_wcislower			CharUTF32_IsLowercase
 #define CharUTF32_IsLower	CharUTF32_IsLowercase
 //!@}
 
@@ -192,6 +195,7 @@ t_bool					CharUTF32_IsLowercase(t_utf32 c);
 */
 //!@{
 t_bool						CharUTF32_IsAlphaNumeric(t_utf32 c);
+#define c_iswalnum			CharUTF32_IsAlphaNumeric
 #define c_wcisalnum			CharUTF32_IsAlphaNumeric
 #define CharUTF32_IsAlNum	CharUTF32_IsAlphaNumeric
 //!@}
@@ -209,6 +213,7 @@ t_bool						CharUTF32_IsAlphaNumeric(t_utf32 c);
 */
 //!@{
 t_bool							CharUTF32_IsDigit_Decimal(t_utf32 c);
+#define c_iswdigit				CharUTF32_IsDigit_Decimal
 #define c_wcisdigit				CharUTF32_IsDigit_Decimal
 #define CharUTF32_IsDigit		CharUTF32_IsDigit_Decimal
 #define CharUTF32_IsDigit_Dec	CharUTF32_IsDigit_Decimal
@@ -225,6 +230,7 @@ t_bool							CharUTF32_IsDigit_Decimal(t_utf32 c);
 */
 //!@{
 t_bool							CharUTF32_IsDigit_Hexadecimal(t_utf32 c);
+#define c_iswxdigit				CharUTF32_IsDigit_Hexadecimal
 #define c_wcisxdigit			CharUTF32_IsDigit_Hexadecimal
 #define CharUTF32_IsDigit_Hex	CharUTF32_IsDigit_Hexadecimal
 //!@}
@@ -272,6 +278,7 @@ t_bool							CharUTF32_IsDigit_Binary(t_utf32 c);
 */
 //!@{
 t_bool						CharUTF32_IsWhiteSpace(t_utf32 c);
+#define c_iswspace			CharUTF32_IsWhiteSpace
 #define c_wcisspace			CharUTF32_IsWhiteSpace
 #define CharUTF32_IsSpace	CharUTF32_IsWhiteSpace
 //!@}
@@ -287,6 +294,7 @@ t_bool						CharUTF32_IsWhiteSpace(t_utf32 c);
 */
 //!@{
 t_bool						CharUTF32_IsPunctuation(t_utf32 c);
+#define c_iswpunct			CharUTF32_IsPunctuation
 #define c_wcispunct			CharUTF32_IsPunctuation
 #define CharUTF32_IsPunct	CharUTF32_IsPunctuation
 //!@}
@@ -306,6 +314,7 @@ t_bool						CharUTF32_IsPunctuation(t_utf32 c);
 */
 //!@{
 t_bool						CharUTF32_IsPrintable(t_utf32 c);
+#define c_iswprint			CharUTF32_IsPrintable
 #define c_wcisprint			CharUTF32_IsPrintable
 #define CharUTF32_IsPrint	CharUTF32_IsPrintable
 //!@}
@@ -379,6 +388,7 @@ t_bool						CharUTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
 */
 //!@{
 t_utf32							CharUTF32_ToUppercase(t_utf32 c);
+#define c_towupper				CharUTF32_ToUppercase
 #define c_wctoupper				CharUTF32_ToUppercase
 #define CharUTF32_ToUpper		CharUTF32_ToUppercase
 //!@}
@@ -394,6 +404,7 @@ t_utf32							CharUTF32_ToUppercase(t_utf32 c);
 */
 //!@{
 t_utf32							CharUTF32_ToLowercase(t_utf32 c);
+#define c_towlower				CharUTF32_ToLowercase
 #define c_wctolower				CharUTF32_ToLowercase
 #define CharUTF32_ToLower		CharUTF32_ToLowercase
 //!@}

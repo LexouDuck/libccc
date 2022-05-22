@@ -156,6 +156,7 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 //!@{
 t_bool						CharASCII_IsLetter(t_ascii c);
 #define c_iscalpha			CharASCII_IsLetter
+#define c_cisalpha			CharASCII_IsLetter
 #define CharASCII_IsAlpha	CharASCII_IsLetter
 //!@}
 
@@ -171,6 +172,7 @@ t_bool						CharASCII_IsLetter(t_ascii c);
 //!@{
 t_bool						CharASCII_IsUppercase(t_ascii c);
 #define c_iscupper			CharASCII_IsUppercase
+#define c_cisupper			CharASCII_IsUppercase
 #define CharASCII_IsUpper	CharASCII_IsUppercase
 //!@}
 
@@ -186,6 +188,7 @@ t_bool						CharASCII_IsUppercase(t_ascii c);
 //!@{
 t_bool						CharASCII_IsLowercase(t_ascii c);
 #define c_isclower			CharASCII_IsLowercase
+#define c_cislower			CharASCII_IsLowercase
 #define CharASCII_IsLower	CharASCII_IsLowercase
 //!@}
 
@@ -201,6 +204,7 @@ t_bool						CharASCII_IsLowercase(t_ascii c);
 //!@{
 t_bool						CharASCII_IsAlphaNumeric(t_ascii c);
 #define c_iscalnum			CharASCII_IsAlphaNumeric
+#define c_cisalnum			CharASCII_IsAlphaNumeric
 #define CharASCII_IsAlNum	CharASCII_IsAlphaNumeric
 //!@}
 
@@ -218,7 +222,7 @@ t_bool						CharASCII_IsAlphaNumeric(t_ascii c);
 //!@{
 t_bool							CharASCII_IsDigit_Decimal(t_ascii c);
 #define c_iscdigit				CharASCII_IsDigit_Decimal
-#define c_iscdigitdec			CharASCII_IsDigit_Decimal
+#define c_cisdigit				CharASCII_IsDigit_Decimal
 #define CharASCII_IsDigit		CharASCII_IsDigit_Decimal
 #define CharASCII_IsDigit_Dec	CharASCII_IsDigit_Decimal
 //!@}
@@ -235,7 +239,7 @@ t_bool							CharASCII_IsDigit_Decimal(t_ascii c);
 //!@{
 t_bool							CharASCII_IsDigit_Hexadecimal(t_ascii c);
 #define c_iscxdigit				CharASCII_IsDigit_Hexadecimal
-#define c_iscdigithex			CharASCII_IsDigit_Hexadecimal
+#define c_cisxdigit				CharASCII_IsDigit_Hexadecimal
 #define CharASCII_IsDigit_Hex	CharASCII_IsDigit_Hexadecimal
 //!@}
 
@@ -251,7 +255,7 @@ t_bool							CharASCII_IsDigit_Hexadecimal(t_ascii c);
 //!@{
 t_bool							CharASCII_IsDigit_Octal(t_ascii c);
 #define c_iscodigit				CharASCII_IsDigit_Octal
-#define c_iscdigitoct			CharASCII_IsDigit_Octal
+#define c_cisodigit				CharASCII_IsDigit_Octal
 #define CharASCII_IsDigit_Oct	CharASCII_IsDigit_Octal
 //!@}
 
@@ -267,7 +271,7 @@ t_bool							CharASCII_IsDigit_Octal(t_ascii c);
 //!@{
 t_bool							CharASCII_IsDigit_Binary(t_ascii c);
 #define c_iscbdigit				CharASCII_IsDigit_Binary
-#define c_iscdigitbin			CharASCII_IsDigit_Binary
+#define c_cisbdigit				CharASCII_IsDigit_Binary
 #define CharASCII_IsDigit_Bin	CharASCII_IsDigit_Binary
 //!@}
 
@@ -293,6 +297,7 @@ t_bool							CharASCII_IsDigit_Binary(t_ascii c);
 //!@{
 t_bool						CharASCII_IsWhiteSpace(t_ascii c);
 #define c_iscspace			CharASCII_IsWhiteSpace
+#define c_cisspace			CharASCII_IsWhiteSpace
 #define CharASCII_IsSpace	CharASCII_IsWhiteSpace
 //!@}
 
@@ -308,6 +313,7 @@ t_bool						CharASCII_IsWhiteSpace(t_ascii c);
 //!@{
 t_bool						CharASCII_IsPunctuation(t_ascii c);
 #define c_iscpunct			CharASCII_IsPunctuation
+#define c_cispunct			CharASCII_IsPunctuation
 #define CharASCII_IsPunct	CharASCII_IsPunctuation
 //!@}
 
@@ -325,6 +331,7 @@ t_bool						CharASCII_IsPunctuation(t_ascii c);
 //!@{
 t_bool						CharASCII_IsPrintable(t_ascii c);
 #define c_iscprint			CharASCII_IsPrintable
+#define c_cisprint			CharASCII_IsPrintable
 #define CharASCII_IsPrint	CharASCII_IsPrintable
 //!@}
 
@@ -340,7 +347,8 @@ t_bool						CharASCII_IsPrintable(t_ascii c);
 //!@{
 t_bool					CharASCII_IsValid(t_ascii c);
 #define c_iscascii		CharASCII_IsASCII
-#define c_iscvalid		CharASCII_IsValid
+#define c_cisascii		CharASCII_IsASCII
+#define c_isccvalid		CharASCII_IsValid
 //!@}
 
 
@@ -357,7 +365,7 @@ t_bool					CharASCII_IsValid(t_ascii c);
 */
 //!@{
 t_bool					CharASCII_IsInCharset(t_ascii c, t_ascii const* charset);
-#define c_iscincharset	CharASCII_IsInCharset
+#define c_isccincharset	CharASCII_IsInCharset
 //!@}
 
 
@@ -380,6 +388,7 @@ t_bool					CharASCII_IsInCharset(t_ascii c, t_ascii const* charset);
 //!@{
 t_ascii						CharASCII_ToUppercase(t_ascii c);
 #define c_tocupper			CharASCII_ToUppercase
+#define c_ctoupper			CharASCII_ToUppercase
 #define CharASCII_ToUpper	CharASCII_ToUppercase
 //!@}
 
@@ -395,6 +404,7 @@ t_ascii						CharASCII_ToUppercase(t_ascii c);
 //!@{
 t_ascii						CharASCII_ToLowercase(t_ascii c);
 #define c_toclower			CharASCII_ToLowercase
+#define c_ctolower			CharASCII_ToLowercase
 #define CharASCII_ToLower	CharASCII_ToLowercase
 //!@}
 

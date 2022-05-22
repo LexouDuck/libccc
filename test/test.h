@@ -91,8 +91,6 @@ typedef struct test_suite
 	char const*	name;		//!< Name for test suite to identify
 	int		(*test)(void);	//!< Test suite launcher
 }	s_test_suite;
-//! The total amount of test suites for libccc
-#define TEST_SUITE_AMOUNT	33
 
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
@@ -101,6 +99,11 @@ typedef struct test_totals
 	int	failed; 	//!< The total amount of tests which had an ERROR result.
 	int	warnings;	//!< The total amount of warnings issued by the test suite.
 }	s_test_totals;
+
+
+
+//! The total amount of test suites for libccc
+#define TEST_SUITE_AMOUNT	34
 
 
 
@@ -144,9 +147,10 @@ int		testsuite_pointerarray(void);
 int		testsuite_string(void);
 int		testsuite_stringarray(void);
 int		testsuite_color(void);
-int		testsuite_text_ascii(void);
-int		testsuite_text_unicode(void);
+int		testsuite_text_char_ascii(void);
+int		testsuite_text_char_unicode(void);
 int		testsuite_text_regex(void);
+int		testsuite_text_unicode(void);
 int		testsuite_sys_io(void);
 int		testsuite_sys_time(void);
 int		testsuite_math(void);
