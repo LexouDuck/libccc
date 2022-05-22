@@ -33,6 +33,12 @@ copylibs = $(foreach i,$(PACKAGES), \
 
 
 .PHONY:\
+build #! Builds the library, with the default BUILDMODE (typically debug)
+build: \
+$(BINPATH)static/$(NAME_static) \
+$(BINPATH)dynamic/$(NAME_dynamic) \
+
+.PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
 build-debug: BUILDMODE = debug
 build-debug: \

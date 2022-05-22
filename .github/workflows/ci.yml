@@ -54,10 +54,10 @@ jobs:
 
 
     - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make build-release CC=$CC
+      run: make build BUILDMODE=release CC=$CC
 
     - name: Build test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
-      run: make build-tests-release CC=$CC
+      run: make build-tests BUILDMODE=release CC=$CC
 
 
 
