@@ -17,17 +17,20 @@ t_utf32	CharUTF32_ToLowercase(t_utf32 c)
 t_utf32	CharUTF32_ToLowercase(t_utf32 c)
 {
 	if ('A' <= c && c <= 'Z')						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
+
 	if (c == 0xD7)									return (c);					// NOTE: exception: ×
 	if (0xC0 <= c && c < 0xDF)						return (c + 0x20);			// LATIN_CAPITAL					-> LATIN_SMALL
 	if (0xE0 <= c && c < 0xFF)						return (c);					// 									-> LATIN_SMALL
-	if (c == 0x0178)								return (0x00FF);			// LATIN_CAPITAL_extA_Y_DIAERESIS	-> LATIN_SMALL_extA_Y_wDIAERESIS
+
 	if (0x0100 <= c && c < 0x0130 && (c % 2 == 0))	return (c + 1);				// LATIN_CAPITAL_extA				-> LATIN_SMALL_extA
 	if (c == 0x0130)								return ('i');				// LATIN_CAPITAL_extA_I_wDOT		-> LATIN_SMALL_I
 	if (c == 0x0131)								return (c);					// NOTE: exception: 		-> LATIN_SMALL_extA_DOTLESS_I
 	if (0x0132 <= c && c < 0x0138 && (c % 2 == 0))	return (c + 1);				// LATIN_CAPITAL_extA				-> LATIN_SMALL_extA
 	if (0x0139 <= c && c < 0x0149 && (c % 2 == 1))	return (c + 1);				// LATIN_CAPITAL_extA				-> LATIN_SMALL_extA
 	if (0x014A <= c && c < 0x0178 && (c % 2 == 0))	return (c + 1);				// LATIN_CAPITAL_extA				-> LATIN_SMALL_extA
+	if (c == 0x0178)								return (0x00FF);			// LATIN_CAPITAL_extA_Y_DIAERESIS	-> LATIN_SMALL_extA_Y_wDIAERESIS
 	if (0x0179 <= c && c < 0x017F && (c % 2 == 1))	return (c + 1);				// LATIN_CAPITAL_extA				-> LATIN_SMALL_extA
+
 
 	if (c == 0x0181)								return (0x0253);			// LATIN_CAPITAL_extI_B_wHOOK		-> LATIN_SMALL_extI_B_wHOOK
 	if (0x0182 <= c && c < 0x0186 && (c % 2 == 0))	return (c + 1);				// LATIN_CAPITAL_extB				-> LATIN_SMALL_extB
