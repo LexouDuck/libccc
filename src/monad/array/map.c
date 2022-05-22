@@ -11,8 +11,10 @@ s_array(T)*	Array_Map(T)(s_array(T) const* array, T (*map)(T item))
 {
 	s_array(T)*	result;
 
-	if CCCERROR((map   == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	result = Array_New(T)(array->length, T_NULL);
@@ -31,8 +33,10 @@ s_array(T)*	Array_Map_I(T)(s_array(T) const* array, T (*map)(T item, t_uint inde
 {
 	s_array(T)*	result;
 
-	if CCCERROR((map   == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	result = Array_New(T)(array->length, T_NULL);

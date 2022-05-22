@@ -120,10 +120,13 @@
 ./src/memory/delete.c
 ./src/memory/duplicate.c
 ./src/memory/find.c
+./src/memory/iterate.c
+./src/memory/map.c
 ./src/memory/merge.c
 ./src/memory/move.c
 ./src/memory/new.c
 ./src/memory/print.c
+./src/memory/reduce.c
 ./src/memory/replace.c
 ./src/memory/set.c
 ./src/memory/swap.c

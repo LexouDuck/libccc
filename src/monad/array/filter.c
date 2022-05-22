@@ -14,8 +14,10 @@ s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 	t_uint	length;
 	t_uint	i;
 
-	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
-	if CCCERROR((array  == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
@@ -56,8 +58,10 @@ s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, 
 	t_uint	length;
 	t_uint	i;
 
-	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
-	if CCCERROR((array  == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);

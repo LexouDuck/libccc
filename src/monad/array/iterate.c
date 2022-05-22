@@ -12,9 +12,9 @@ void	Array_Iterate(T)(s_array(T)* array, void (*f)(T item))
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return;
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -30,9 +30,9 @@ void	Array_Iterate_I(T)(s_array(T)* array, void (*f)(T item, t_uint index))
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return;
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	for (i = 0; i < array->length; ++i)
 	{
