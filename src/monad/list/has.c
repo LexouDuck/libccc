@@ -8,7 +8,7 @@
 _GENERIC()
 t_bool	List_Has(T)(s_list(T) const* list, s_list(T) const* target)
 {
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (FALSE);
 	while (list)
 	{
@@ -24,7 +24,7 @@ t_bool	List_Has(T)(s_list(T) const* list, s_list(T) const* target)
 _GENERIC()
 t_bool	List_HasOnly(T)(s_list(T) const* list, s_list(T) const* target)
 {
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (FALSE);
 	while (list)
 	{

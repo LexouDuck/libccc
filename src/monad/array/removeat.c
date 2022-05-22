@@ -14,7 +14,7 @@ void	Array_RemoveAt(T)(s_array(T)* array, t_uint index)
 
 	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	if CCCERROR((array->length <= index), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")", index, array->length)
@@ -50,7 +50,7 @@ void	Array_RemoveAt_F(T)(s_array(T)* array, t_uint index, void (*del)(T))
 		return;
 	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	if CCCERROR((array->length <= index), ERROR_INDEX2LARGE, 
 		"index given ("SF_UINT") is beyond end of array (length: "SF_UINT")", index, array->length)

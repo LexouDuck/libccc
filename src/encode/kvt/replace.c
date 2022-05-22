@@ -10,9 +10,12 @@
 
 e_cccerror	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
 {
-	if CCCERROR((parent      == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
-	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
-	if CCCERROR((item        == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
+	if CCCERROR((parent == NULL), ERROR_NULLPOINTER, "KVT parent item given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT child item given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, "KVT replacement item given is NULL")
+		return (ERROR_NULLPOINTER);
 	if CCCERROR((replacement == item), ERROR_INVALIDARGS, "cannot replace kvt item with itself")
 		return (ERROR_INVALIDARGS);
 	replacement->next = item->next;
@@ -51,7 +54,7 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt*	item;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
 		return (ERROR_NULLPOINTER);
 	item = KVT_GetArrayItem(array, index);
 	if CCCERROR((item == NULL), ERROR_INVALIDARGS,
@@ -65,9 +68,12 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 static
 e_cccerror KVT_Replace_InObject_(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
-	if CCCERROR((object      == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
-	if CCCERROR((key         == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
-	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((key == NULL), ERROR_NULLPOINTER, "KVT item key given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, "KVT replacement item given is NULL")
+		return (ERROR_NULLPOINTER);
 	// replace the name in the replacement
 	if (replacement->key != NULL)
 	{

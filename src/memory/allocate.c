@@ -26,7 +26,7 @@ void*	Memory_Allocate(t_size size)
 inline
 void*	Memory_Reallocate(void* ptr, t_size size)
 {
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
 	return (realloc(ptr, size));
 }
@@ -37,7 +37,7 @@ void*	Memory_Reallocate(void* ptr, t_size size)
 inline
 void	Memory_Deallocate(void* ptr)
 {
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return;
 	free(ptr);
 }

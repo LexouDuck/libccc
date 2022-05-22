@@ -9,7 +9,7 @@
 
 t_char const*	Enum_String(t_enum value, s_enum_type const* enum_type)
 {
-	if CCCERROR((enum_type == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((enum_type == NULL), ERROR_NULLPOINTER, "dynamic enum type given is NULL")
 		return (NULL);
 	for (t_uint i = 0; i < enum_type->length; ++i)
 	{
@@ -26,7 +26,7 @@ t_size	Enum_Print(t_char* dest, t_enum value, s_enum_type const* enum_type)
 {
 	t_char const*	name;
 	t_size	length;
-	if CCCERROR((enum_type == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((enum_type == NULL), ERROR_NULLPOINTER, "dynamic enum type given is NULL")
 		return (0);
 	name = Enum_String(value, enum_type);
 	if (name == NULL)

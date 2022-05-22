@@ -10,7 +10,7 @@
 
 e_cccerror	KVT_Delete(s_kvt* item)
 {
-	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
 		return (ERROR_NULLPOINTER);
 	s_kvt* next = NULL;
 	while (item != NULL)
@@ -47,7 +47,7 @@ e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
 		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromArray(array, index);
 	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
@@ -60,7 +60,7 @@ e_cccerror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
 		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromObject_IgnoreCase(object, key);
 	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
@@ -73,7 +73,7 @@ e_cccerror	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
 		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromObject_CaseSensitive(object, key);
 	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,

@@ -74,7 +74,7 @@ inline
 t_bool	Bool_FromString(t_char const* str)
 {
 	t_bool	result = FALSE;
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
 		return (BOOL_ERROR);
 	Bool_Parse(&result, String_Length(str), str);
 	return (result);

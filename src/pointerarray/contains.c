@@ -9,9 +9,9 @@ t_bool	PointerArray_Contains(void const* const* ptrarr, void const* ptr)
 {
 	t_uint	length;
 
-	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
 		return (FALSE);
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer to match given is NULL")
 		return (FALSE);
 	length = PointerArray_Length(ptrarr);
 	for (t_uint i = 0; i < length; ++i)

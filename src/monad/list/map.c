@@ -11,9 +11,9 @@ s_list(T)*		List_Map(T)(s_list(T) const* list, T (*map)(T item))
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
-		return (NULL);
 	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -35,9 +35,9 @@ s_list(T)*		List_Map_I(T)(s_list(T) const* list, T (*map)(T item, t_uint index))
 	s_list(T)*	elem;
 	t_uint	i;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
-		return (NULL);
 	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	i = 0;
 	while (list)

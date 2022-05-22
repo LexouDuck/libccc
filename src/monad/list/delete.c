@@ -12,7 +12,7 @@ void	List_Free(T)(s_list(T)* list)
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return;
 	i = list;
 	while (i)
@@ -33,7 +33,7 @@ void	List_Free_F(T)(s_list(T)* list, void (*del)(T* item))
 
 	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
 		return;
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return;
 	i = list;
 	while (i)
@@ -53,7 +53,7 @@ void	List_Delete(T)(s_list(T)* *a_list)
 	s_list(T)*	next;
 	s_list(T)*	i;
 
-	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, "list address given is NULL")
 		return;
 	if CCCERROR((*a_list == NULL), ERROR_NULLPOINTER, NULL)
 		return;
@@ -77,7 +77,7 @@ void	List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item))
 
 	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
 		return;
-	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((a_list == NULL), ERROR_NULLPOINTER, "list address given is NULL")
 		return;
 	if CCCERROR((*a_list == NULL), ERROR_NULLPOINTER, NULL)
 		return;

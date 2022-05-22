@@ -10,7 +10,7 @@ t_uint	List_Count(T)(s_list(T) const* list, T item)
 {
 	t_uint	result = 0;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (0);
 	while (list)
 	{

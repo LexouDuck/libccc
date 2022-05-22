@@ -19,7 +19,7 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 	t_u8*	result;
 	t_size	i;
 
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
 	byte &= 0xFF;
 	result = (t_u8* )ptr;

@@ -11,7 +11,7 @@ void*	Memory_Duplicate(const void* ptr, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
 	result = (t_u8*)Memory_Allocate(n);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

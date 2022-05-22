@@ -15,8 +15,10 @@ s_list(T)*	List_Copy(T)(
 	t_uint dest_length;
 	t_uint src_length;
 
-	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
-	if CCCERROR((src  == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination list given is NULL")
+		return (NULL);
+	if CCCERROR((src  == NULL), ERROR_NULLPOINTER, "source list given is NULL")
+		return (NULL);
 	dest_length = List_Length(T)(dest);
 	src_length  = List_Length(T)(src);
 	if CCCERROR((dest_i >= dest_length), ERROR_INDEX2LARGE, NULL)	return (NULL);

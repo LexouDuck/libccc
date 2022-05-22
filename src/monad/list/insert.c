@@ -14,7 +14,7 @@ s_list(T)*	List_Insert(T)(s_list(T)* dest, T item, t_uint index)
 	s_list(T)*	elem;
 	s_list(T)*	newitem;
 
-//	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)
+//	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination list given is NULL")
 //		return (NULL);
 	newitem = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
 	if CCCERROR((newitem == NULL), ERROR_ALLOCFAILURE, NULL)

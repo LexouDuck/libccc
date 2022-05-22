@@ -11,9 +11,9 @@ s_array(T)*	Array_Duplicate(T)(s_array(T) const* array)
 {
 	s_array(T)*	result;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return (NULL);
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return (NULL);
 	result = (s_array(T)*)Memory_New(sizeof(s_array(T)));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

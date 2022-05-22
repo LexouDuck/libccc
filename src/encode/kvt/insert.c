@@ -11,7 +11,8 @@ e_cccerror	KVT_Insert_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt* after_inserted = NULL;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
+		return (ERROR_NULLPOINTER);
 	after_inserted = KVT_GetArrayItem(array, index);
 	if CCCERROR((after_inserted == NULL), ERROR_INDEX2LARGE,
 		"invalid index for kvt array item insert: "SF_SINT, index)

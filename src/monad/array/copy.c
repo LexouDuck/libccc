@@ -11,8 +11,10 @@ s_array(T)*	Array_Copy(T)(
 	s_array(T) const* src, t_uint src_i,
 	t_uint n)
 {
-	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
-	if CCCERROR(( src == NULL), ERROR_NULLPOINTER, NULL)	return (NULL);
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination array given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source array given is NULL")
+		return (NULL);
 	if CCCERROR((dest_i >= dest->length), ERROR_INDEX2LARGE, NULL)	return (NULL);
 	if CCCERROR(( src_i >=  src->length), ERROR_INDEX2LARGE, NULL)	return (NULL);
 	if CCCERROR((dest_i + n > dest->length), ERROR_LENGTH2LARGE, NULL)	return (NULL);

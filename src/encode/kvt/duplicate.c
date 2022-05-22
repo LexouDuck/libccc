@@ -16,7 +16,7 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	s_kvt*	next = NULL;
 	s_kvt*	child = NULL;
 
-	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
 		goto failure;
 	// Create new item
 	newitem = KVT_Item();

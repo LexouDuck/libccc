@@ -10,7 +10,7 @@ void	Memory_Replace(void* ptr, t_u8 byte_old, t_u8 byte_new, t_size n)
 	t_u8*	result;
 	t_size	i;
 
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return;
 	result = (t_u8*)ptr;
 	i = 0;

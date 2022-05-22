@@ -12,10 +12,13 @@ void*		Memory_Join(
 	t_u8*	result;
 	t_size	i;
 
-	if CCCERROR((ptr1 == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
-	if CCCERROR((ptr2 == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((ptr1 == NULL), ERROR_NULLPOINTER, "left-hand-side pointer given is NULL")
+		return (NULL);
+	if CCCERROR((ptr2 == NULL), ERROR_NULLPOINTER, "right-hand-side pointer given is NULL")
+		return (NULL);
 	result = (t_u8*)Memory_Allocate(length1 + length2 + 1);
-	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return (NULL);
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < length1)
 	{
@@ -80,9 +83,9 @@ void*	Memory_Merge(
 {
 	void*	result;
 
-	if CCCERROR((a_ptr1 == NULL), ERROR_NULLPOINTER, "ptr1 address given is NULL")
+	if CCCERROR((a_ptr1 == NULL), ERROR_NULLPOINTER, "left-hand-side pointer address given is NULL")
 		return (NULL);
-	if CCCERROR((a_ptr2 == NULL), ERROR_NULLPOINTER, "ptr2 address given is NULL")
+	if CCCERROR((a_ptr2 == NULL), ERROR_NULLPOINTER, "right-hand-side pointer address given is NULL")
 		return (NULL);
 	result = Memory_Join(
 		*a_ptr1, length1,

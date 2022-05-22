@@ -10,7 +10,8 @@ s_array(T)*	Array_Replace(T)(s_array(T) const* array, T item_old, T item_new)
 {
 	s_array(T)*	result;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	result = Array_Duplicate(T)(array);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
@@ -34,7 +35,8 @@ s_array(T)*	Array_ReplaceFirst(T)(s_array(T) const* array, T item_old, T item_ne
 {
 	s_array(T)*	result;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	result = Array_Duplicate(T)(array);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
@@ -61,7 +63,8 @@ s_array(T)*	Array_ReplaceLast(T)(s_array(T) const* array, T item_old, T item_new
 {
 	s_array(T)*	result;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	result = Array_Duplicate(T)(array);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);

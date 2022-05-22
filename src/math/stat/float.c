@@ -35,7 +35,7 @@ s_array_float	c_stat_new_flst(t_uint length)
 
 void	c_stat_free_flst(s_array_float *flst)
 {
-	if CCCERROR((flst == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((flst == NULL), ERROR_NULLPOINTER, "array of floats given is NULL")
 		return;
 	if (flst->items)
 	{
@@ -72,8 +72,10 @@ s_array(float) 	c_stat_merge_flst(
 	t_uint	i;
 	t_uint	j;
 
-	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_float){ 0, NULL });
-	if CCCERROR((append == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_float){ 0, NULL });
+	if CCCERROR((start == NULL), ERROR_NULLPOINTER, "array of floats given is NULL")
+		return ((s_array_float){ 0, NULL });
+	if CCCERROR((append == NULL), ERROR_NULLPOINTER, "array of floats to append given is NULL")
+		return ((s_array_float){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_flst(0));
 	else if (!start->items || start->length == 0)

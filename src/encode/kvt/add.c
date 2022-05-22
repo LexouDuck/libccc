@@ -14,7 +14,7 @@ s_kvt*	KVT_AddTo_CreateReference(s_kvt const* item)
 {
 	s_kvt* reference = NULL;
 
-	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
 		return (NULL);
 	reference = KVT_Item();
 	if CCCERROR((reference == NULL), ERROR_ALLOCFAILURE, NULL)
@@ -33,9 +33,9 @@ e_cccerror	KVT_AddToArray(s_kvt* array, s_kvt* item)
 {
 	s_kvt* child = NULL;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "destination KVT array given is NULL")
 		return (ERROR_NULLPOINTER);
-	if CCCERROR((item  == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item to add given is NULL")
 		return (ERROR_NULLPOINTER);
 	if CCCERROR((array == item), ERROR_INVALIDARGS, "cannot add array to itself")
 		return (ERROR_INVALIDARGS);
@@ -68,11 +68,11 @@ e_cccerror	KVT_AddToObject(s_kvt* object, t_char const* key, s_kvt* item)
 {
 	t_char* new_key = NULL;
 
-	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "destination KVT object given is NULL")
 		return (ERROR_NULLPOINTER);
-	if CCCERROR((key    == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((key == NULL), ERROR_NULLPOINTER, "KVT object key to add given is NULL")
 		return (ERROR_NULLPOINTER);
-	if CCCERROR((item   == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT object item to add is NULL")
 		return (ERROR_NULLPOINTER);
 	if CCCERROR((object == item), ERROR_INVALIDARGS, "cannot add object to itself")
 		return (ERROR_INVALIDARGS);

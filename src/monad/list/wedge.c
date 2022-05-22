@@ -14,7 +14,7 @@ s_list(T)*	List_Wedge(T)(s_list(T)* dest, s_list(T) const* src, t_uint index)
 	s_list(T)*	elem;
 	s_list(T)*	newitem;
 
-//	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)
+//	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination list given is NULL")
 //		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "list to insert given is NULL")
 		return (NULL);

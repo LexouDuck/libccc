@@ -13,7 +13,7 @@ t_size	Memory_Print(t_char* *dest, void const* ptr, t_size n)
 	t_char	lo;
 	t_size	i = 0;
 
-	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (0);
 	result = (t_char*)Memory_Alloc(n * 3);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

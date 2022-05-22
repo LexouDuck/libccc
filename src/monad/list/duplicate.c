@@ -13,7 +13,7 @@ s_list(T)*	List_Duplicate(T)(s_list(T) const* list)
 	s_list(T)*	elem = NULL;
 	s_list(T)*	tmp;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{

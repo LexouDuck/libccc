@@ -12,7 +12,7 @@ void**	PointerArray_Sub(void* const* ptrarr, t_uint index, t_uint n)
 	t_uint		length;
 	t_uint		i;
 
-	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
 		return (NULL);
 	length = PointerArray_Length((void const* const*)ptrarr);
 	if CCCERROR((index > length), ERROR_INDEX2LARGE,

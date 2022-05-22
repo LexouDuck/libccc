@@ -12,7 +12,7 @@ s_list(T)*	List_Reverse(T)(s_list(T) const* list)
 	s_list(T)*	previous;
 	s_list(T)*	current;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	result = List_Duplicate(T)(list);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

@@ -35,7 +35,8 @@ s_array_int	c_stat_new_ilst(t_uint length)
 
 void	c_stat_free_ilst(s_array_int *ilst)
 {
-	if CCCERROR((ilst == NULL), ERROR_NULLPOINTER, NULL) return;
+	if CCCERROR((ilst == NULL), ERROR_NULLPOINTER, "array of ints given is NULL")
+		return;
 	if (ilst->items)
 	{
 		Memory_Free(ilst->items);
@@ -71,8 +72,10 @@ s_array_int	c_stat_merge_ilst(
 	t_uint				i;
 	t_uint				j;
 
-	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_int){ 0, NULL });
-	if CCCERROR((append == NULL), ERROR_NULLPOINTER, NULL) return ((s_array_int){ 0, NULL });
+	if CCCERROR((start  == NULL), ERROR_NULLPOINTER, "array of ints given is NULL")
+		return ((s_array_int){ 0, NULL });
+	if CCCERROR((append == NULL), ERROR_NULLPOINTER, "array of ints to append to given is NULL")
+		return ((s_array_int){ 0, NULL });
 	if (start->length == 0 && append->length == 0)
 		return (c_stat_new_ilst(0));
 	else if (!start->items || start->length == 0)

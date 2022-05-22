@@ -40,7 +40,8 @@ s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
+		return (NULL);
 	tmp = KVT_GetArrayItem(array, index);
 	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
 		"could not detach array value, invalid index: "SF_SINT, index)
@@ -52,7 +53,8 @@ s_kvt*	KVT_Detach_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (NULL);
 	tmp = KVT_GetObjectItem(object, key);
 	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not detach object value, no matching key: \"%s\"", key)
@@ -64,7 +66,8 @@ s_kvt*	KVT_Detach_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (NULL);
 	tmp = KVT_GetObjectItem_CaseSensitive(object, key);
 	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not detach object value, no matching key: \"%s\"", key)

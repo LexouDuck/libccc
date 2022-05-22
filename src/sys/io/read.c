@@ -72,7 +72,8 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 
 t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 {
-	if CCCERROR((a_strarr == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
+	if CCCERROR((a_strarr == NULL), ERROR_NULLPOINTER, "destination string array address given is NULL")
+		return (ERROR);
 	t_char*		file	= NULL; 
 	t_char**	result	= NULL;
 	t_sintmax	status	= OK;

@@ -11,9 +11,9 @@ void	Array_Remove(T)(s_array(T)* array, T item)
 {
 	t_sint	index;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
@@ -30,9 +30,9 @@ void	Array_Remove_F(T)(s_array(T)* array, T item, void (*del)(T))
 
 	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
 		return;
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
@@ -49,9 +49,9 @@ void	Array_RemoveAll(T)(s_array(T)* array, T item)
 	t_uint	i;
 	t_uint	amount;
 
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	if (array->length == 0)
 		return;
@@ -99,9 +99,9 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T))
 
 	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
 		return;
-	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return;
-	if CCCERROR((array->items == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
 		return;
 	if (array->length == 0)
 		return;

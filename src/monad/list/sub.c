@@ -14,7 +14,7 @@ s_list(T)*		List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n)
 	s_list(T)*	tmp;
 	t_uint		length;
 
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	length = List_Length(T)(list);
 	if CCCERROR((index >= length), ERROR_INDEX2LARGE, NULL)

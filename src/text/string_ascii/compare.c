@@ -23,8 +23,8 @@ t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (0);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -51,8 +51,8 @@ t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 
 	if (str1 == str2)
 		return (0);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
 	if (n == 0)
 		return (0);
 	i = 0;
@@ -83,8 +83,8 @@ t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (0);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -113,8 +113,8 @@ t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_s
 
 	if (str1 == str2)
 		return (0);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return ((str1 - str2));
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return ((str1 - str2));
 	if (n == 0)
 		return (0);
 	i = 0;

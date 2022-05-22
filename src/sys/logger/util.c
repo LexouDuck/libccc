@@ -43,7 +43,8 @@
 
 e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 {
-//	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
+//	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, NULL)
+//		return (ERROR_NULLPOINTER);
 
 // only using write()
 	t_char const* prefix;
@@ -153,7 +154,8 @@ e_cccerror	Logger_LogSettings(s_logger const* logger)
 	e_cccerror result;
 	t_char*	tmp;
 
-	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, NULL) return (ERROR_NULLPOINTER);
+	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, "logger given is NULL")
+		return (ERROR_NULLPOINTER);
 	tmp = Logger_GetSettings(logger);
 	result = Log_Message(logger, "%s", tmp);
 	String_Delete(&tmp);

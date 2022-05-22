@@ -12,8 +12,8 @@ t_bool	String_Equals(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (TRUE);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -32,8 +32,8 @@ t_bool	String_Equals_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 
 	if (str1 == str2 || n == 0)
 		return (TRUE);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -54,8 +54,8 @@ t_bool	String_Equals_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 
 	if (str1 == str2)
 		return (TRUE);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
 	i = 0;
 	while (str1[i] && str2[i])
 	{
@@ -76,8 +76,8 @@ t_bool	String_Equals_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_si
 
 	if (str1 == str2 || n == 0)
 		return (TRUE);
-	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
-	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
+	if CCCERROR((str1 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
+	if CCCERROR((str2 == NULL), ERROR_NULLPOINTER, NULL)	return (FALSE);
 	i = 0;
 	while (str1[i] && str2[i])
 	{

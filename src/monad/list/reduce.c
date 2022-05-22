@@ -13,7 +13,7 @@ void*	List_Reduce(T)(s_list(T) const* list,
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return (NULL);
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -32,7 +32,7 @@ void*	List_Reduce_I(T)(s_list(T) const* list,
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return (NULL);
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -52,7 +52,7 @@ void*	List_Fold(T)(s_list(T) const* list,
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return (NULL);
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{
@@ -71,7 +71,7 @@ void*	List_Fold_I(T)(s_list(T) const* list,
 
 	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
 		return (NULL);
-	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
 		return (NULL);
 	while (list)
 	{

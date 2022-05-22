@@ -20,9 +20,9 @@ void*	Memory_Move(void* dest, void const* src, t_size n)
 	t_u8*	source;
 	t_size	i;
 
-	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination pointer given is NULL")
 		return (NULL);
-	if CCCERROR((src == NULL), ERROR_NULLPOINTER, NULL)
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source pointer given is NULL")
 		return (dest);
 	if (dest && dest == src)
 		return (dest);

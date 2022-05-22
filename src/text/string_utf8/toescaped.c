@@ -190,9 +190,14 @@ t_size StringUTF8_ToEscapedBuf_e(
 	t_size	rd_idx = SIZE_ERROR; // value to return in *out_readlen function fails before parsing begins
 
 	{
-		if CCCERROR((str == NULL)    , ERROR_NULLPOINTER, NULL) goto failure;
-		if CCCERROR((charset == NULL), ERROR_NULLPOINTER, NULL) goto failure;
-		if CCCERROR((aliases == NULL), ERROR_NULLPOINTER, NULL) goto failure;
+		if CCCERROR((char_encoder == NULL), ERROR_NULLPOINTER, "char_encoder() function given is NULL")
+			goto failure;
+		if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+			goto failure;
+		if CCCERROR((charset == NULL), ERROR_NULLPOINTER, "charset string given is NULL")
+			goto failure;
+		if CCCERROR((aliases == NULL), ERROR_NULLPOINTER, "array of escape aliases given is NULL")
+			goto failure;
 		t_size charset_symcount;
 		t_size charset_bytecount;
 		if (!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount))
@@ -235,8 +240,6 @@ t_size StringUTF8_ToEscapedBuf_e(
 			}
 			else
 			{
-				if CCCERROR((char_encoder == NULL), ERROR_NULLPOINTER, NULL)
-					goto failure;
 				len_written = Write_Encoded(write_head, read_head, writeable_len, char_encoder);
 				if (len_written == ((t_size)-1)) // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
 					goto failure;
