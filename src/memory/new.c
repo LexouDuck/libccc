@@ -11,7 +11,8 @@ void*	Memory_New(t_size size)
 	t_size	i;
 
 	result = (t_u8* )Memory_Allocate(size);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{
@@ -29,7 +30,8 @@ void*	Memory_New_C(t_size size, char c)
 	t_size	i;
 
 	result = (t_u8* )Memory_Allocate(size);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < size)
 	{

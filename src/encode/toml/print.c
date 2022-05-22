@@ -176,7 +176,8 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 	t_size	result_length = 0;
 	t_size	escape_chars = 0; //!< amount of additional characters needed for escaping
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	// empty string
 	if (input == NULL)
 	{
@@ -188,7 +189,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8((t_utf8*)input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
@@ -209,7 +210,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 			}
 			default:
 			{
-				if (!UTF32_IsPrintable(c))
+				if (!CharUTF32_IsPrintable(c))
 				{
 					escape_chars += 5;	// UTF-32 escape sequence \uXXXX
 					if (c >= UTF8_3BYTE)
@@ -239,13 +240,13 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8((t_utf8*)input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8((t_utf8*)input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
 		else if (c < UTF8_3BYTE)	length = 3;
 		else if (c < UTF8_4BYTE)	length = 4;
-		if (UTF32_IsPrintable(c) &&
+		if (CharUTF32_IsPrintable(c) &&
 			(c != '\"') &&
 			(c != '\\'))
 		{	// normal character, copy
@@ -271,7 +272,7 @@ t_bool	TOML_Print_StringPtr(t_utf8 const* input, s_toml_print* p)
 				default: // escape and print as unicode codepoint
 				{
 					t_utf16 u[2] = {0};
-					length = UTF32_ToUTF16(u, c);
+					length = CharUTF32_ToUTF16(u, c);
 					if (length > 0)
 					{
 						String_Format_N(str, 6, "u%4.4X", u[0]);
@@ -311,7 +312,8 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 	t_f64	test = 0.0;
 	t_utf8	number_buffer[TOML_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (bigint) // TODO handle variable-length integers
 	{
 		t_s64	d = item->value.integer;
@@ -341,10 +343,12 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 			}
 		}
 	}
-	HANDLE_ERROR_SF(PRINT, (length == 0), return (ERROR);,
+	if CCCERROR((length == 0), ERROR_PRINT, 
 		"could not print number value for item with key \"%s\"", item->key)
-	HANDLE_ERROR_SF(PRINT, (length > (sizeof(number_buffer) - 1)), return (ERROR);,
-		"could not print number value for item with key \"%s\" -> buffer overrun occurred", item->key)
+		return (ERROR);
+	if CCCERROR((length > (sizeof(number_buffer) - 1)), ERROR_PRINT,
+		"could not print number value for item with key \"%s\": buffer overrun occurred", item->key)
+		return (ERROR);
 	// reserve appropriate space in the output
 	ENSURE(length + sizeof(""))
 	// copy the printed number to the output
@@ -368,7 +372,8 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	s_toml*	current_item = item->value.child;
 	t_bool	multiline = p->format && TOML_Print_IsObjectComplex(item);
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
@@ -464,7 +469,8 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 	s_toml*	current_item = item->value.child;
 	t_bool	multiline = p->format && TOML_Print_IsObjectComplex(item);
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
 	if (multiline && p->offset >= 2 &&
@@ -586,17 +592,18 @@ t_bool	TOML_Print_Value(s_toml const* item, s_toml_print* p)
 		}
 		case DYNAMICTYPE_RAW:
 		{
-			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
+			if CCCERROR((item->value.string == NULL), ERROR_PRINT, 
 				"item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
+				return (ERROR);
 			length = String_Length(item->value.string) + sizeof("");
 			ENSURE(length)
 			Memory_Copy(result, item->value.string, length);
 			return (OK);
 		}
-		default:
-			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
-				"cannot print item with key %s, has invalid type (%i)", p->keypath, item->type)
 	}
+	CCCERROR(TRUE, ERROR_PRINT, 
+		"cannot print item with key %s, has invalid type (%i)", p->keypath, item->type);
+	return (ERROR);
 }
 
 
@@ -678,8 +685,10 @@ t_bool	TOML_Print_KeyValuePair(s_toml const* item, s_toml_print* p, t_bool full_
 	t_utf8* result = NULL;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 
 	if (TOML_Print_Key(item, p, full_path))
 		return (ERROR);
@@ -706,8 +715,10 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 	t_utf8*	result = NULL;
 	s_toml*	current_item = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 
 	if (p->format)
 	{
@@ -730,7 +741,8 @@ t_bool	TOML_Print_Lines(s_toml const* item, s_toml_print* p)
 			p->offset += p->depth;
 		}
 		// print value
-		HANDLE_ERROR(NULLPOINTER, (current_item == NULL), return (ERROR);)
+		if CCCERROR((current_item == NULL), ERROR_NULLPOINTER, NULL)
+			return (ERROR);
 /* TODO array tables
 		else if ((current_item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY &&
 			TOML_Print_IsObjectComplex(current_item))
@@ -780,7 +792,8 @@ t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 	p->format = format;
 	p->length = default_buffer_size;
 	p->result = (t_utf8*)Memory_Allocate(default_buffer_size);
-	HANDLE_ERROR(ALLOCFAILURE, (p->result == NULL), goto failure;)
+	if CCCERROR((p->result == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	// print the value
 	if (TOML_Print_Lines(item, p))
 		goto failure;
@@ -788,13 +801,15 @@ t_utf8*	TOML_Print_(s_toml const* item, t_bool format)
 #ifdef Memory_Realloc // check if reallocate is available
 	{
 		printed = (t_utf8*)Memory_Reallocate(p->result, p->offset + 1);
-		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		if CCCERROR((printed == NULL), ERROR_ALLOCFAILURE, NULL)
+			goto failure;
 		p->result = NULL;
 	}
 #else // otherwise copy the TOML over to a new buffer
 	{
 		printed = (t_utf8*)Memory_Allocate(p->offset + 1);
-		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		if CCCERROR((printed == NULL), ERROR_ALLOCFAILURE, NULL)
+			goto failure;
 		Memory_Copy(printed, p->result, MIN(p->length, p->offset + 1));
 		printed[p->offset] = '\0'; // just to be sure
 		Memory_Free(p->result); // free the buffer
@@ -821,7 +836,8 @@ t_size	TOML_Print_Pretty(t_utf8* dest, s_toml const* item, t_size n)
 	s_toml_print p;
 
 	Memory_Clear(&p, sizeof(s_toml_print));
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT given is NULL")
+		return (SIZE_ERROR);
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
@@ -839,7 +855,8 @@ t_size	TOML_Print_Minify(t_utf8* dest, s_toml const* item, t_size n)
 	s_toml_print p;
 
 	Memory_Clear(&p, sizeof(s_toml_print));
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT given is NULL")
+		return (SIZE_ERROR);
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
@@ -871,9 +888,11 @@ t_utf8*	TOML_Print_Buffered(s_toml const* item, t_sint prebuffer, t_bool format)
 {
 	s_toml_print p = { 0 };
 
-	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (ERROR);)
+	if CCCERROR((prebuffer < 0), ERROR_LENGTH2SMALL, NULL)
+		return (NULL);
 	p.result = (t_utf8*)Memory_Allocate((t_size)prebuffer);
-	HANDLE_ERROR(ALLOCFAILURE, (p.result == NULL), return (NULL);)
+	if CCCERROR((p.result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;

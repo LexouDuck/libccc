@@ -46,9 +46,11 @@
 ./hdr/libccc/sys/logger.h
 ./hdr/libccc/sys/program.h
 ./hdr/libccc/sys/time.h
-./hdr/libccc/text/ascii.h
+./hdr/libccc/text/char_ascii.h
+./hdr/libccc/text/char_unicode.h
 ./hdr/libccc/text/regex.h
-./hdr/libccc/text/unicode.h
+./hdr/libccc/text/string_ascii.h
+./hdr/libccc/text/string_utf8.h
 ./hdr/libccc_config.h
 ./hdr/libccc_define.h
 ./hdr/libccc_errors.h

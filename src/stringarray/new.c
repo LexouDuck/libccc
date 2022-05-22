@@ -13,7 +13,8 @@ t_char**	StringArray_New(t_uint length)
 	t_char**	result;
 
 	result = (t_char**)Memory_New(sizeof(t_char*) * (length + 1));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	return (result);
 }
 
@@ -25,17 +26,18 @@ t_char**	StringArray_New_C(t_uint y, t_size x, const t_char c)
 	t_uint	i;
 
 	result = StringArray_New(y);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < y)
 	{
 		result[i] = String_New(x);
-		HANDLE_ERROR(ALLOCFAILURE, (result[i] == NULL),
+		if CCCERROR((result[i] == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
 			result[i] = NULL;
 			StringArray_Delete(&result);
 			return (NULL);
-		})
+		}
 		Memory_Set(result[i], c, x);
 		result[i][x] = '\0';
 		++i;

@@ -10,10 +10,10 @@ s_array(T)*	Array_Replace(T)(s_array(T) const* array, T item_old, T item_new)
 {
 	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
 	result = Array_Duplicate(T)(array);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	if (result->items == NULL)
 		return (result);
 	result->length = array->length;
@@ -34,10 +34,10 @@ s_array(T)*	Array_ReplaceFirst(T)(s_array(T) const* array, T item_old, T item_ne
 {
 	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
 	result = Array_Duplicate(T)(array);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	if (result->items == NULL)
 		return (result);
 	result->length = array->length;
@@ -61,10 +61,10 @@ s_array(T)*	Array_ReplaceLast(T)(s_array(T) const* array, T item_old, T item_new
 {
 	s_array(T)*	result;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array->length > 0 && array->items == NULL), return (NULL);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL) return (NULL);
 	result = Array_Duplicate(T)(array);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	if (result->items == NULL)
 		return (result);
 	result->length = array->length;

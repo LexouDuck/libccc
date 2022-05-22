@@ -10,11 +10,12 @@ t_sint	List_Compare(T)(s_list(T) const* list1, s_list(T) const* list2, t_sint (*
 {
 	t_sint	result;
 
-	HANDLE_ERROR(NULLPOINTER, (compare == NULL), return (ERROR);)
+	if CCCERROR((compare == NULL), ERROR_NULLPOINTER, "compare() function given is NULL")
+		return (ERROR);
 	if (list1 == list2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (ERROR);)
+	if CCCERROR((list1 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
+	if CCCERROR((list2 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
 	while (list1 && list2)
 	{
 		result = compare(list1->item, list2->item);
@@ -33,11 +34,12 @@ t_sint	List_Compare_N(T)(s_list(T) const* list1, s_list(T) const* list2, t_sint 
 {
 	t_sint	result;
 
-	HANDLE_ERROR(NULLPOINTER, (compare == NULL), return (ERROR);)
+	if CCCERROR((compare == NULL), ERROR_NULLPOINTER, "compare() function given is NULL")
+		return (ERROR);
 	if (list1 == list2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (list1 == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (list2 == NULL), return (ERROR);)
+	if CCCERROR((list1 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
+	if CCCERROR((list2 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
 	while (list1 && list2 && n--)
 	{
 		result = compare(list1->item, list2->item);

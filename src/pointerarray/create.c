@@ -23,7 +23,8 @@ void**	PointerArray_Create(t_uint n, ...)
 	void**	result;
 
 	result = (void**)PointerArray_New(n, NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (n == 0)
 		return (result);
 	va_start(args, n);

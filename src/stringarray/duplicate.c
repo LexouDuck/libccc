@@ -12,10 +12,11 @@ t_char**		StringArray_Duplicate(t_char const* const* strarr)
 	t_uint	i;
 	t_char**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (*strarr == NULL), return (NULL);)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	result = StringArray_New(StringArray_Length(strarr));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (strarr[i])
 	{

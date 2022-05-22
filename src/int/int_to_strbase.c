@@ -13,7 +13,8 @@ t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 	t_size	i;
 	t_size	j;
 
-	HANDLE_ERROR(NULLPOINTER, (base == NULL), return (0);)
+	if CCCERROR((base == NULL), ERROR_NULLPOINTER, "numeric base string given is NULL")
+		return (0);
 	i = 0;
 	while (base[i])
 	{
@@ -37,7 +38,7 @@ t_size	Int_ToString_Base_GetLength(t_char const* base, t_bool sign)
 t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 {																		\
 	t_char*	result;														\
-	char	digits[BITS];												\
+	t_char	digits[BITS];												\
 	t_size	length;														\
 	t_size	i;															\
 	t_u##BITS	n;														\
@@ -55,7 +56,8 @@ t_char*	U##BITS##_ToString_Base(t_u##BITS number, t_char const* base)	\
 	if (i == 0)															\
 		digits[i++] = base[0];											\
 	result = (t_char*)Memory_Allocate(i + 1);							\
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)				\
+		return (NULL);													\
 	n = 0;																\
 	while (i--)															\
 	{																	\
@@ -79,7 +81,7 @@ DEFINEFUNC_UINT_TOSTRBASE(128)
 t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 {																		\
 	t_char*	result;														\
-	char	digits[BITS];												\
+	t_char	digits[BITS];												\
 	t_size	length;														\
 	t_size	i;															\
 	t_u##BITS	n;														\
@@ -97,7 +99,8 @@ t_char*	S##BITS##_ToString_Base(t_s##BITS number, t_char const* base)	\
 		n /= length;													\
 	}																	\
 	result = (t_char*)Memory_Allocate(i + 2);							\
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)		\
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)				\
+		return (NULL);													\
 	result[0] = (number == 0) ? base[0] : '-';							\
 	n = (number <= 0) ? 1 : 0;											\
 	while (i--)															\

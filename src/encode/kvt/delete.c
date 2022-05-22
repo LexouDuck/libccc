@@ -10,7 +10,8 @@
 
 e_cccerror	KVT_Delete(s_kvt* item)
 {
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR_NULLPOINTER);
 	s_kvt* next = NULL;
 	while (item != NULL)
 	{
@@ -46,10 +47,12 @@ e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromArray(array, index);
-	HANDLE_ERROR_SF(INDEX2LARGE, (tmp == NULL), return (ERROR_INDEX2LARGE);,
+	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
 		"could not delete array value, invalid index: "SF_SINT, index)
+		return (ERROR_INDEX2LARGE);
 	return (KVT_Delete(tmp));
 }
 
@@ -57,11 +60,12 @@ e_cccerror	KVT_Delete_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromObject_IgnoreCase(object, key);
-	HANDLE_ERROR_SF(KEYNOTFOUND,
-		(tmp == NULL), return (ERROR_KEYNOTFOUND);,
+	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not delete object value, no matching key: \"%s\"", key)
+		return (ERROR_KEYNOTFOUND);
 	return (KVT_Delete(tmp));
 }
 
@@ -69,10 +73,11 @@ e_cccerror	KVT_Delete_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromObject_CaseSensitive(object, key);
-	HANDLE_ERROR_SF(KEYNOTFOUND,
-		(tmp == NULL), return (ERROR_KEYNOTFOUND);,
+	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not delete object value, no matching key: \"%s\"", key)
+		return (ERROR_KEYNOTFOUND);
 	return (KVT_Delete(tmp));
 }

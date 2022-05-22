@@ -12,8 +12,10 @@ void	PointerArray_Iterate(void** ptrarr,
 	t_uint	i;
 	void*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
 	i = 0;
 	while (ptrarr[i])
 	{
@@ -33,8 +35,10 @@ void	PointerArray_Iterate_I(void** ptrarr,
 	t_uint	i;
 	void*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return;
 	i = 0;
 	while (ptrarr[i])
 	{

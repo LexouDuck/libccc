@@ -129,11 +129,14 @@ t_u16		c_distance_u16 (t_u16  x, t_u16  y);
 t_u32		c_distance_u32 (t_u32  x, t_u32  y);
 t_u64		c_distance_u64 (t_u64  x, t_u64  y);
 
-t_sint		c_distance_int (t_sint x, t_sint y);
+t_sint		c_distance_sint(t_sint x, t_sint y);
 t_s8		c_distance_s8  (t_s8  x, t_s8  y);
 t_s16		c_distance_s16 (t_s16 x, t_s16 y);
 t_s32		c_distance_s32 (t_s32 x, t_s32 y);
 t_s64		c_distance_s64 (t_s64 x, t_s64 y);
+
+#define c_distance_int \
+		c_distance_sint
 
 // TODO distance manh, eucl, inf for 2d, 3d and 4d
 

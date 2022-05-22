@@ -45,9 +45,9 @@
 #include <libccc/sys/logger.h>
 #include <libccc/sys/program.h>
 #include <libccc/sys/time.h>
-#include <libccc/text/ascii.h>
+#include <libccc/text/char_ascii.h>
 #include <libccc/text/regex.h>
-#include <libccc/text/unicode.h>
+#include <libccc/text/char_unicode.h>
 #include <libccc_config.h>
 #include <libccc_define.h>
 #include <libccc_errors.h>

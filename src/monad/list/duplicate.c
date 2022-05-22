@@ -13,7 +13,8 @@ s_list(T)*	List_Duplicate(T)(s_list(T) const* list)
 	s_list(T)*	elem = NULL;
 	s_list(T)*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		if (!(tmp = (s_list(T)*)Memory_Duplicate(list, sizeof(s_list(T)))))

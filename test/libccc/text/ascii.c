@@ -2,7 +2,8 @@
 #include <ctype.h>
 
 #include "libccc.h"
-#include "libccc/text/ascii.h"
+#include "libccc/text/char_ascii.h"
+#include "libccc/text/char_unicode.h"
 
 #include "test.h"
 
@@ -90,7 +91,7 @@ int		testsuite_text_ascii(void)
 		TEST_PERFORM_CHAR(tolower, FALSE)
 	}
 
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		if (errors || warnings)
 		{

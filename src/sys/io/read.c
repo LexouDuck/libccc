@@ -24,17 +24,19 @@
 
 t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 {
-	char		buffer[IO_BUFFER_SIZE + 1] = {0};
+	t_char		buffer[IO_BUFFER_SIZE + 1] = {0};
 	t_sintmax	result;
 	t_u8*		file = NULL;
 	t_size		length;
 
-	HANDLE_ERROR(NULLPOINTER, (a_file == NULL), return (ERROR);)
+	if CCCERROR((a_file == NULL), ERROR_NULLPOINTER, "destination address given is NULL")
+		return (ERROR);
 	file = (t_u8*)Memory_New(0);
-	HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
+	if CCCERROR((file == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
 		*a_file = NULL;
 		return (ERROR);
-	)
+	}
 	if (max == 0)
 		max = (t_size)-1;
 	buffer[IO_BUFFER_SIZE] = '\0';
@@ -46,21 +48,23 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 			buffer[result] = '\0';
 		}
 		Memory_Append((void**)&file, length - result, buffer, result);
-		HANDLE_ERROR(ALLOCFAILURE, (file == NULL),
+		if CCCERROR((file == NULL), ERROR_ALLOCFAILURE, NULL)
+		{
 			*a_file = NULL;
 			return (ERROR);
-		)
+		}
 	}
 	*(t_u8* *)a_file = file;
-	HANDLE_ERROR_SF(SYSTEM, (result < 0),
+	if CCCERROR((result < 0), ERROR_SYSTEM, 
+		"error occurred while reading from fd#%i", fd)
+	{
 		if (*a_file)
 		{	// free the (likely to be incorrect) buffer
 			Memory_Free(*a_file);
 			*a_file = NULL;
 		}
 		return (result);
-		,
-		"error occurred while reading from fd#%i", fd)
+	}	
 	return (length);
 }
 
@@ -68,7 +72,7 @@ t_sintmax	IO_Read_File(t_fd const fd, void* *a_file, t_size max)
 
 t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return (ERROR);)
+	if CCCERROR((a_strarr == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
 	t_char*		file	= NULL; 
 	t_char**	result	= NULL;
 	t_sintmax	status	= OK;
@@ -87,8 +91,8 @@ t_sintmax	IO_Read_Lines(t_fd const fd, t_char** *a_strarr)
 
 t_sintmax	IO_Read_Filepath(t_char const* filepath, void* *a_file)
 {
-	t_fd		fd		= 0;
-	t_sintmax	status	= 0;
+	t_fd		fd = 0;
+	t_sintmax	status = 0;
 
 	fd = IO_Open(filepath, O_RDONLY, 0);
 	if (fd < 0)
@@ -101,9 +105,9 @@ t_sintmax	IO_Read_Filepath(t_char const* filepath, void* *a_file)
 	return (status);
 }
 
-char*		IO_Read_Filepath_Text(t_char const* filepath)
+t_char*		IO_Read_Filepath_Text(t_char const* filepath)
 {
-	char*		result	= NULL;
+	t_char*	result	= NULL;
 	IO_Read_Filepath(filepath, (void* *)&result);
 	return (result);
 }

@@ -7,10 +7,11 @@
 
 
 #define DEFINEFUNC_FIXED_MOD(BITS) \
-inline t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b)			\
-{																	\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (Q##BITS##_ERROR);)	\
-	return ((a * FIXED_DENOMINATOR) % b);							\
+inline t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b)	\
+{															\
+	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
+		return (Q##BITS##_ERROR);							\
+	return ((a * FIXED_DENOMINATOR) % b);					\
 } // TODO fix this and test
 
 

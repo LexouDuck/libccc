@@ -11,8 +11,8 @@ t_bool	Memory_Swap(void* ptr1, void* ptr2, t_size size)
 	t_u8*	p2;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptr1 == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (ptr2 == NULL), return (ERROR);)
+	if CCCERROR((ptr1 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
+	if CCCERROR((ptr2 == NULL), ERROR_NULLPOINTER, NULL) return (ERROR);
 	if (ptr1 == ptr2 || size == 0)
 		return (OK);
 	else if (size == 1 && *(t_u8*)(ptr1) == *(t_u8*)(ptr2))

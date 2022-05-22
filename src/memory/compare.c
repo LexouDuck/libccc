@@ -24,8 +24,8 @@ t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 	p2 = (t_u8*)ptr2;
 	if (p1 == p2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (p1 == NULL), return ((p1 - p2));)
-	HANDLE_ERROR(NULLPOINTER, (p2 == NULL), return ((p1 - p2));)
+	if CCCERROR((p1 == NULL), ERROR_NULLPOINTER, NULL) return ((p1 - p2));
+	if CCCERROR((p2 == NULL), ERROR_NULLPOINTER, NULL) return ((p1 - p2));
 	i = 0;
 	while (i < n)
 	{
@@ -54,8 +54,8 @@ t_bool		Memory_Equals(void const* ptr1, void const* ptr2, t_size n)
 	p2 = (t_u8*)ptr2;
 	if (p1 == p2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (p1 == NULL), return ((p1 - p2));)
-	HANDLE_ERROR(NULLPOINTER, (p2 == NULL), return ((p1 - p2));)
+	if CCCERROR((p1 == NULL), ERROR_NULLPOINTER, NULL) return ((p1 - p2));
+	if CCCERROR((p2 == NULL), ERROR_NULLPOINTER, NULL) return ((p1 - p2));
 	i = 0;
 	while (i < n)
 	{

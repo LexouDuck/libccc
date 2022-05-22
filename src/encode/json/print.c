@@ -46,7 +46,8 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	t_size result_length = 0;
 	t_size escape_chars = 0; //!< amount of additional characters needed for escaping
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	// empty string
 	if (input == NULL)
 	{
@@ -58,7 +59,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8(input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8(input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
@@ -79,7 +80,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 			}
 			default:
 			{
-				if (!UTF32_IsPrintable(c))
+				if (!CharUTF32_IsPrintable(c))
 				{
 					escape_chars += 5;	// UTF-16 escape sequence \uXXXX
 					if (c >= UTF8_3BYTE)
@@ -109,13 +110,13 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 	input_ptr = input;
 	while (*input_ptr != '\0')
 	{
-		t_utf32 c = UTF32_FromUTF8(input_ptr);
+		t_utf32 c = CharUTF32_FromUTF8(input_ptr);
 		t_size length = 1;
 			 if (c < UTF8_1BYTE)	length = 1;
 		else if (c < UTF8_2BYTE)	length = 2;
 		else if (c < UTF8_3BYTE)	length = 3;
 		else if (c < UTF8_4BYTE)	length = 4;
-		if (UTF32_IsPrintable(c) &&
+		if (CharUTF32_IsPrintable(c) &&
 			(c != '\b') &&
 			(c != '\t') &&
 			(c != '\n') &&
@@ -144,7 +145,7 @@ t_bool	JSON_Print_StringPtr(t_utf8 const* input, s_json_print* p)
 				default: // escape and print as unicode codepoint
 				{
 					t_utf16	u[2] = { 0, 0 };
-					t_size	i = UTF32_ToUTF16(u, c);
+					t_size	i = CharUTF32_ToUTF16(u, c);
 					if (i > 0)
 					{
 						String_Format_N(str, 6, "u%4.4X", u[0]);
@@ -184,7 +185,8 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 	t_f64	test = 0.0;
 	t_utf8	number_buffer[JSON_NUMBER_BUFFERSIZE] = {0}; // temporary buffer to print the number into
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (bigint) // TODO handle variable-length integers
 	{
 		t_s64	d = item->value.integer;
@@ -227,10 +229,12 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 			}
 		}
 	}
-	HANDLE_ERROR_SF(PRINT, (length == 0), return (ERROR);,
+	if CCCERROR((length == 0), ERROR_PRINT, 
 		"could not print number value for item with key \"%s\"", item->key)
-	HANDLE_ERROR_SF(PRINT, (length > (sizeof(number_buffer) - 1)), return (ERROR);,
+		return (ERROR);
+	if CCCERROR((length > (sizeof(number_buffer) - 1)), ERROR_PRINT,
 		"could not print number value for item with key \"%s\" -> buffer overrun occurred", item->key)
+		return (ERROR);
 	// reserve appropriate space in the output
 	ENSURE(length + sizeof(""))
 	// copy the printed number to the output
@@ -255,7 +259,8 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	t_size	length = 0;
 	t_bool	multiline = p->format;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
@@ -336,7 +341,8 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 	t_size	length = 0;
 	t_bool	multiline = p->format;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
 	if (multiline && p->offset >= 2 &&
@@ -430,8 +436,10 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 	t_utf8* result = NULL;
 	t_utf8 const* str = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	switch ((item->type) & DYNAMICTYPE_MASK)
 	{
 		case DYNAMICTYPE_INTEGER: return (JSON_Print_Number(item, p, TRUE));
@@ -456,17 +464,18 @@ t_bool	JSON_Print_Value(s_json const* item, s_json_print* p)
 		case DYNAMICTYPE_RAW:
 		{
 			t_size raw_length = 0;
-			HANDLE_ERROR_SF(PRINT, (item->value.string == NULL), return (ERROR);,
+			if CCCERROR((item->value.string == NULL), ERROR_PRINT, 
 				"item with key \"%s\" is of 'raw string' type, but its value is null", item->key)
+				return (ERROR);
 			raw_length = String_Length(item->value.string) + sizeof("");
 			ENSURE(raw_length)
 			Memory_Copy(result, item->value.string, raw_length);
 			return (OK);
 		}
-		default:
-			HANDLE_ERROR_SF(PRINT, (TRUE), return (ERROR);,
-				"cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type)
 	}
+	CCCERROR(TRUE, ERROR_PRINT, 
+		"cannot print item with key \"%s\", has invalid type (%i)", item->key, item->type);
+	return (ERROR);
 }
 
 
@@ -500,7 +509,8 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 	p->format = format;
 	p->length = default_buffer_size;
 	p->result = (t_utf8*)Memory_Allocate(default_buffer_size);
-	HANDLE_ERROR(ALLOCFAILURE, (p->result == NULL), goto failure;)
+	if CCCERROR((p->result == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	// print the value
 	if (JSON_Print_Value(item, p))
 		goto failure;
@@ -510,13 +520,15 @@ t_utf8*	JSON_Print_(s_json const* item, t_bool format)
 #ifdef c_realloc // check if reallocate is available
 	{
 		printed = (t_utf8*)Memory_Reallocate(p->result, p->offset + 1);
-		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		if CCCERROR((printed == NULL), ERROR_ALLOCFAILURE, NULL)
+			goto failure;
 		p->result = NULL;
 	}
 #else // otherwise copy the JSON over to a new buffer
 	{
 		printed = (t_utf8*)Memory_Allocate(p->offset + 1);
-		HANDLE_ERROR(ALLOCFAILURE, (printed == NULL), goto failure;)
+		if CCCERROR((printed == NULL), ERROR_ALLOCFAILURE, NULL)
+			goto failure;
 		Memory_Copy(printed, p->result, MIN(p->length, p->offset + 1));
 		printed[p->offset] = '\0'; // just to be sure
 		Memory_Free(p->result); // free the buffer
@@ -543,7 +555,8 @@ t_size	JSON_Print_Pretty(t_utf8* dest, s_json const* item, t_size n)
 	s_json_print p;
 
 	Memory_Clear(&p, sizeof(s_json_print));
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
+		return (0);
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
@@ -561,7 +574,8 @@ t_size	JSON_Print_Minify(t_utf8* dest, s_json const* item, t_size n)
 	s_json_print p;
 
 	Memory_Clear(&p, sizeof(s_json_print));
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (0);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
+		return (0);
 	if (n == 0)
 		n = SIZE_MAX;
 	p.item = item;
@@ -593,9 +607,11 @@ t_utf8*	JSON_Print_Buffered(s_json const* item, t_sint prebuffer, t_bool format)
 {
 	s_json_print p = { 0 };
 
-	HANDLE_ERROR(LENGTH2SMALL, (prebuffer < 0), return (ERROR);)
+	if CCCERROR((prebuffer < 0), ERROR_LENGTH2SMALL, NULL)
+		return (ERROR);
 	p.result = (t_utf8*)Memory_Allocate((t_size)prebuffer);
-	HANDLE_ERROR(ALLOCFAILURE, (p.result == NULL), return (NULL);)
+	if CCCERROR((p.result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	p.length = (t_size)prebuffer;
 	p.offset = 0;
 	p.noalloc = FALSE;

@@ -14,8 +14,10 @@ void**	PointerArray_Join(void* const** ptrarrs, void* const* sep)
 	t_uint	length_sep;
 	t_uint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarrs == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (sep     == NULL), return (NULL);)
+	if CCCERROR((ptrarrs == NULL), ERROR_NULLPOINTER, "array of pointer arrays given is NULL")
+		return (NULL);
+	if CCCERROR((sep == NULL), ERROR_NULLPOINTER, "pointer array separator given is NULL")
+		return (NULL);
 	if (ptrarrs[0] == NULL)
 		return (PointerArray_New(0, NULL));
 	total = 0;

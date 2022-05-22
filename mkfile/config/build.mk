@@ -72,6 +72,8 @@ CFLAGS_OS_other =
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
+else
+	CFLAGS_OS += -Wno-unused-value
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
@@ -83,6 +85,7 @@ CFLAGS_EXTRA ?= \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
 
+# these fixes allow libccc to be compiled using a C++ compiler
 ifneq ($(findstring ++,$(CC)),)
 CFLAGS_EXTRA += \
 	-Wno-deprecated \

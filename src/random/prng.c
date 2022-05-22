@@ -47,14 +47,16 @@ t_prng* PRNG_New(void)
 	t_prng* result;
 
 	result = (t_prng*)Memory_Allocate(sizeof(t_prng));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	PRNG_SetSeed(result, PRNG_SEED_DEFAULT);
 	return (result);
 }
 
 void    PRNG_Delete(t_prng* *a_state)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_state == NULL), return;)
+	if CCCERROR((a_state == NULL), ERROR_NULLPOINTER, "PRNG state address given is NULL")
+		return;
 	Memory_Free(*a_state);
 	*a_state = NULL;
 }
@@ -67,8 +69,10 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 	t_u32   random = 0;
 	t_size  i = 0;
 
-	HANDLE_ERROR_SF(NULLPOINTER, (dest  == NULL), return (ERROR_NULLPOINTER);, "`dest` argument is NULL")
-	HANDLE_ERROR_SF(NULLPOINTER, (state == NULL), return (ERROR_NULLPOINTER);, "`state` argument is NULL")
+	if CCCERROR((dest  == NULL), ERROR_NULLPOINTER, "destination pointer is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((state == NULL), ERROR_NULLPOINTER, "PRNG state argument is NULL")
+		return (ERROR_NULLPOINTER);
 	while (i < n)
 	{
 		random = PRNG_U32(state);
@@ -82,19 +86,23 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 
 
 #define PRNG_INIT_STATE() \
-	t_prng* state;                    \
-	state = PRNG_New();               \
-	HANDLE_ERROR_SF(ALLOCFAILURE,     \
-		(state == NULL), return (0);, \
-		"could not create pseudo-RNG state") \
-	PRNG_NewSeed(state); \
+	t_prng* state;                    			\
+	state = PRNG_New();               			\
+	if CCCERROR((state == NULL),				\
+		ERROR_ALLOCFAILURE,						\
+		"could not create pseudo-RNG state")	\
+		return (0);								\
+	PRNG_NewSeed(state); 						\
 
 
 void*	PRNG_Get(void* dest, t_size size)
 {
-	HANDLE_ERROR_SF(NULLPOINTER, (dest == NULL), return (0);, "`dest` argument is NULL")
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER,
+		"destination pointer is NULL")
+		return (0);
 	PRNG_INIT_STATE()
-	if (PRNG_Next(state, dest, size)) return (0);
+	if (PRNG_Next(state, dest, size))
+		return (0);
 	PRNG_Delete(&state);
 	return (dest);
 }
@@ -121,12 +129,15 @@ t_float  PRNG_Float(t_prng* state)
 
 
 
-#define PRNG_RANGE_CHECK(ACTION_ERROR, SF_TYPE) \
-	if (min == max)					\
-		return (min);				\
-	HANDLE_ERROR_SF(INVALIDRANGE,	\
-		(min > max), ACTION_ERROR,	\
-		"invalid random range specified (min="SF_TYPE" ; max="SF_TYPE")", min, max)	\
+#define PRNG_RANGE_CHECK(_ACTION_, _SF_TYPE_) \
+	if (min == max)										\
+		return (min);									\
+	if CCCERROR((min > max), ERROR_INVALIDRANGE,		\
+		"invalid random range specified "				\
+		"(min="_SF_TYPE_" ; max="_SF_TYPE_")", min, max)\
+	{													\
+		_ACTION_										\
+	}													\
 
 t_uint  PRNG_UInt_Range     (t_prng* state, t_uint  min, t_uint  max)  { PRNG_RANGE_CHECK(return (0);, SF_UINT )	return (         (PRNG_UInt(state) % (max - min)) + min); }
 t_sint  PRNG_SInt_Range     (t_prng* state, t_sint  min, t_sint  max)  { PRNG_RANGE_CHECK(return (0);, SF_SINT )	return (         (PRNG_SInt(state) % (max - min)) + min); }

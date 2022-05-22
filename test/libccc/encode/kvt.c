@@ -20,7 +20,7 @@
 void test_kvt_(void)	{}
 #warning "kvt_() test suite function defined, but the function isn't defined."
 #else
-void	print_test_kvt_(char const* test_name, int can_segfault,
+void	print_test_kvt_(char const* test_name, t_testflags flags,
 		char const* str,
 		char c)
 {
@@ -28,7 +28,7 @@ void	print_test_kvt_(char const* test_name, int can_segfault,
 }
 void	test_kvt_(void)
 {
-//	| TEST FUNCTION  | TEST NAME             |CAN SEGV| TEST ARGS
+//	| TEST FUNCTION  | TEST NAME             |TESTFLAG| TEST ARGS
 	// TODO
 }
 #endif
@@ -39,7 +39,7 @@ void	test_kvt_(void)
 void test_kvtget(void)	{}
 #warning "kvtget() test suite function defined, but the function isn't defined."
 #else
-void	print_test_kvtget(char const* test_name, int can_segfault, \
+void	print_test_kvtget(char const* test_name, t_testflags flags, \
 		s_kvt const*	expecting,			\
 		s_kvt const*	item,				\
 		t_char const*	format, ...)		\
@@ -89,7 +89,7 @@ void	test_kvtget(void)
 	s_kvt*	kvt_nest_arrays_0	= KVT_GetArrayItem	(kvt_nest_arrays, 0);
 	s_kvt*	kvt_nest_arrays_1	= KVT_GetArrayItem	(kvt_nest_arrays, 1);
 	s_kvt*	kvt_nest_object		= KVT_GetObjectItem	(kvt_test_object, "nest_object");
-//	| TEST FUNCTION  | TEST NAME             |CAN SEGV| EXPECTING		| TEST ARGS
+//	| TEST FUNCTION  | TEST NAME             |TESTFLAG| EXPECTING		| TEST ARGS
 	// TODO
 	print_test_kvtget("kvtget                ", FALSE,	kvt,				kvt, "");
 	print_test_kvtget("kvtget (spaces syntax)", FALSE,	kvt_test_bool_0,	kvt, "test_bool_0");

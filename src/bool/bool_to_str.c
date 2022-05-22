@@ -28,7 +28,8 @@ t_size	Bool_Print(t_char* dest, t_bool value, t_bool uppercase)
 	t_char const* const*	lookup;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (0);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
+		return (0);
 	length = value ? sizeof("TRUE") : sizeof("FALSE");
 	lookup = (uppercase ? g_str_bool_uppercase : g_str_bool_lowercase);
 	String_Copy_N(dest, lookup[value], length);

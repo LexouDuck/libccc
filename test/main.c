@@ -28,6 +28,21 @@ char const* teststr_utf8_fr	= "Être à même de ça, d'air sûr — manger du m
 char const* teststr_utf8_ru	= "Яцк Ничолсон ; сталин ленин троцкий хрущев москва";
 char const* teststr_utf8_jp	= "お前はもう死んでいる - 愛 - 私は実体の小さな学生です";
 char const* teststr_utf8_ho	= "�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻";
+char const* teststr_utf8_one_symbol_two_seq =   "\xF0\x9F\x91\x8B"  /* U+1F44B: 'WAVING HAND SIGN' */
+                                                "\xF0\x9F\x8F\xBB"; /* U+1F3FB: 'EMOJI MODIFIER FITZPATRICK TYPE-1-2' */
+
+char const* teststr_utf8_one_symbol_three_seq = "നും"; /* U+0D28, U+0D41, U+0D02 */
+
+char const* teststr_utf8_hardcore	= 
+#include "utf8_hardcore.inc"
+;
+
+t_size const teststr_utf8_hardcore_len = 5101; // Number of graphemes
+t_size const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
+
+
+
+
 
 
 s_program	g_test;
@@ -40,18 +55,18 @@ s_program	g_test;
 ** ************************************************************************** *|
 */
 
-static void	handle_arg_verbose()		{ g_test.flags.verbose		 = TRUE; }
-static void	handle_arg_show_args()		{ g_test.flags.show_args	 = TRUE; }
-static void	handle_arg_show_errors()	{ g_test.flags.show_errors	 = TRUE; }
-static void	handle_arg_show_result()	{ g_test.flags.show_result	 = TRUE; }
-static void	handle_arg_show_escaped()	{ g_test.flags.show_escaped	 = TRUE; }
-static void handle_arg_show_speed()		{ g_test.flags.show_speed	 = TRUE; }
-static void	handle_arg_test_nullptrs()	{ g_test.flags.test_nullptrs = TRUE; }
-static void	handle_arg_test_overflow()	{ g_test.flags.test_overflow = TRUE; }
+static void	handle_arg_verbose()		{ g_test.config.verbose       = TRUE; }
+static void	handle_arg_show_args()		{ g_test.config.show_args     = TRUE; }
+static void	handle_arg_show_errors()	{ g_test.config.show_errors   = TRUE; }
+static void	handle_arg_show_result()	{ g_test.config.show_result   = TRUE; }
+static void	handle_arg_show_escaped()	{ g_test.config.show_escaped  = TRUE; }
+static void handle_arg_show_speed()		{ g_test.config.show_speed    = TRUE; }
+static void	handle_arg_test_nullptrs()	{ g_test.config.test_nullptrs = TRUE; }
+static void	handle_arg_test_overflow()	{ g_test.config.test_overflow = TRUE; }
 static void	handle_arg_test_all()
 {
-	g_test.flags.test_nullptrs = TRUE;
-	g_test.flags.test_overflow = TRUE;
+	g_test.config.test_nullptrs = TRUE;
+	g_test.config.test_overflow = TRUE;
 }
 
 /*
@@ -60,7 +75,7 @@ static void	handle_arg_test_all()
 static void	init(void)
 {
 	// default every option to FALSE
-	memset(&g_test.flags, 0, sizeof(s_test_flags));
+	memset(&g_test.config, 0, sizeof(s_test_config));
 
 	static const s_test_suite suites[TEST_SUITE_AMOUNT] =
 	{
@@ -188,7 +203,7 @@ int	main(int argc, char** argv)
 	program_name = argv[0];
 
 	init();
-	init_segfault_handler();
+	init_signal_handler();
 
 	// Handle main program arguments
 	int	match;
@@ -246,10 +261,21 @@ int	main(int argc, char** argv)
 			g_test.suites[i].test();
 			suite.tests = g_test.totals.tests - suite.tests;
 			suite.failed = g_test.totals.failed - suite.failed;
+			suite.warnings = g_test.totals.warnings - suite.warnings;
 			if (suite.tests)
-				print_totals(suite.tests, suite.failed, g_test.suites[i].name);
+			{
+				print_totals(
+					suite.tests,
+					suite.failed,
+					suite.warnings,
+					g_test.suites[i].name);
+			}
 		}
 	}
-	print_totals(g_test.totals.tests, g_test.totals.failed, NULL);
+	print_totals(
+		g_test.totals.tests,
+		g_test.totals.failed,
+		g_test.totals.warnings,
+		NULL);
 	return (g_test.totals.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS);
 }

@@ -58,8 +58,10 @@ s_json_parse*	JSON_Parse_SkipWhiteSpace(s_json_parse* p)
 {
 	t_size i;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (NULL);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
+	if CCCERROR((p->content == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (CAN_PARSE(0))
 	{
 		if (p->content[p->offset] == '\n')
@@ -119,8 +121,10 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 	t_utf8*	number = NULL;
 	t_size	length = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((p->content == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (p->strict)
 	{
 		for (length = 0; CAN_PARSE(length); ++length)
@@ -192,8 +196,10 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	t_size	skipped_bytes;
 	t_utf32	c;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((p->content == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	// not a string
 	if (!CAN_PARSE(0))
 		PARSINGERROR_JSON("Could not parse string: Unexpected end of input before string")
@@ -270,7 +276,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						break;
 					case 'u': // UTF-16 literal
 						c = '\0';
-						sequence_length = UTF32_Parse(&c, input_ptr, (input_end - input_ptr));
+						sequence_length = CharUTF32_Parse(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 						else if (c < UTF8_1BYTE)	{ if (offset + 1 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (1-byte char)") }
@@ -278,7 +284,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						else if (c < UTF8_3BYTE)	{ if (offset + 3 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (3-byte char)") }
 						else if (c <= UTF8_4BYTE)	{ if (offset + 4 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (4-byte char)") }
 						else						{ PARSINGERROR_JSON("Could not parse string: Illegal unicode char encountered") }
-						offset += UTF32_ToUTF8(output + offset, c);
+						offset += CharUTF32_ToUTF8(output + offset, c);
 						break;
 					default: // TODO non-strict escape sequence handling
 						PARSINGERROR_JSON("Could not parse string: Invalid string escape sequence encountered: \"\\%c\"", input_ptr[1])
@@ -317,8 +323,10 @@ t_bool	JSON_Parse_Array(s_json* item, s_json_parse* p)
 	s_json* current_item = NULL;
 	t_uint index;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((p->content == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (p->depth >= KVT_NESTING_LIMIT)
 		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
@@ -409,8 +417,10 @@ t_bool	JSON_Parse_Object(s_json* item, s_json_parse* p)
 	s_json* new_item = NULL;
 	s_json* current_item = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (p == NULL), return (ERROR);)
-	HANDLE_ERROR(NULLPOINTER, (p->content == NULL), return (ERROR);)
+	if CCCERROR((p == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
+	if CCCERROR((p->content == NULL), ERROR_NULLPOINTER, NULL)
+		return (ERROR);
 	if (p->depth >= KVT_NESTING_LIMIT)
 		PARSINGERROR_JSON("Could not parse JSON: nested too deep, max depth of nesting is %u", KVT_NESTING_LIMIT)
 	p->depth++;
@@ -600,13 +610,15 @@ t_size	JSON_Parse_(s_json* *dest, t_utf8 const* str, t_size n, t_bool strict)//,
 	t_size column = 0;
 
 	Memory_Clear(p, sizeof(s_json_parse));
-	HANDLE_ERROR(LENGTH2SMALL, (n < 1),
+	if CCCERROR((n < 1), ERROR_LENGTH2SMALL, NULL)
+	{
 		if (dest) *dest = NULL;
 		return (p->offset);
-	)
+	}
 	p->content = str;
 	p->length = n; 
-	p->offset = UTF8_ByteOrderMark(str);
+	p->offset = CharUTF8_ByteOrderMark(str);
+	p->line = 1;
 	p->strict = strict;
 	p->line = 1;
 	result = JSON_Item();
@@ -641,10 +653,7 @@ failure:
 			break;
 		column++;
 	}
-	HANDLE_ERROR_SF(PARSE, (TRUE),
-		if (dest) *dest = NULL;
-		String_Delete(&p->error);
-		return (p->offset);,
+	if CCCERROR(TRUE, ERROR_PARSE,
 		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
@@ -653,6 +662,11 @@ failure:
 		p->content[p->offset] ? p->content[p->offset] : '\a',
 		p->content[p->offset],
 		p->error)
+	{
+		if (dest) *dest = NULL;
+		String_Delete(&p->error);
+		return (p->offset);
+	}
 	String_Delete(&p->error);
 	return (p->offset);
 }
@@ -661,7 +675,8 @@ failure:
 
 t_size	JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (SIZE_ERROR);
 	if (n == 0)
 		n = String_Length(str);
 	return (JSON_Parse_(dest, str, n, FALSE));
@@ -669,7 +684,8 @@ t_size	JSON_Parse_Lenient(s_json* *dest, t_utf8 const* str, t_size n)
 
 t_size	JSON_Parse_Strict(s_json* *dest, t_utf8 const* str, t_size n)
 {
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (SIZE_ERROR);
 	if (n == 0)
 		n = String_Length(str);
 	return (JSON_Parse_(dest, str, n, TRUE));
@@ -680,7 +696,8 @@ t_size	JSON_Parse_Strict(s_json* *dest, t_utf8 const* str, t_size n)
 s_json*	JSON_FromString_Lenient(t_utf8 const* str)
 {
 	s_json*	result;
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (NULL);
 	JSON_Parse_(&result, str, String_Length(str), FALSE);
 	return (result);
 }
@@ -688,7 +705,8 @@ s_json*	JSON_FromString_Lenient(t_utf8 const* str)
 s_json*	JSON_FromString_Strict(t_utf8 const* str)
 {
 	s_json*	result;
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (NULL);
 	JSON_Parse_(&result, str, String_Length(str), TRUE);
 	return (result);
 }

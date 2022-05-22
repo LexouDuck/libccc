@@ -48,7 +48,8 @@ t_f##BITS	F##BITS##_Cos(t_f##BITS x)					\
 	t_f##BITS	x_pow4;									\
 	t_f##BITS	x_pow6;									\
 	t_f##BITS	x_pow8;									\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);									\
 	sign = 0;											\
 	if (x < 0.)											\
 		x = -x;											\
@@ -105,7 +106,8 @@ t_f##BITS	F##BITS##_Sin(t_f##BITS x)					\
 	t_f##BITS	x_pow9;									\
 	t_f##BITS	x_pow11;								\
 	t_f##BITS	x_pow13;								\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);									\
 	sign = 0;											\
 	if (x < 0.)											\
 	{													\
@@ -160,9 +162,11 @@ MATH_DECL_REALFUNCTION(Tan, tan)
 t_f##BITS	F##BITS##_Tan(t_f##BITS x)						\
 {															\
 	t_f##BITS	cosine;										\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)		\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)			\
+		return (NAN);										\
 	cosine = F##BITS##_Cos(x);								\
-	HANDLE_ERROR(MATHDOMAIN, (cosine == 0.), return (NAN);)	\
+	if CCCERROR((cosine == 0.), ERROR_MATHDOMAIN, NULL)		\
+		return (NAN);										\
 	return (F##BITS##_Sin(x) / cosine);						\
 }
 // fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
@@ -223,8 +227,10 @@ MATH_DECL_REALFUNCTION(ArcCos, acos)
 #define DEFINEFUNC_FLOAT_ARCCOS(BITS) \
 t_f##BITS		F##BITS##_ArcCos(t_f##BITS x)						\
 {																	\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)				\
-	HANDLE_ERROR(MATHDOMAIN, (F##BITS##_Abs(x) > 1.), return (NAN);)\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)					\
+		return (NAN);												\
+	if CCCERROR((F##BITS##_Abs(x) > 1.), ERROR_MATHDOMAIN, NULL)	\
+		return (NAN);												\
 	if (F##BITS##_Abs(x) == 1.)										\
 		return (INFINITY * SIGN(x));								\
 	t_f##BITS result = HALF_PI;										\
@@ -263,8 +269,10 @@ MATH_DECL_REALFUNCTION(ArcSin, asin)
 #define DEFINEFUNC_FLOAT_ARCSIN(BITS) \
 t_f##BITS	F##BITS##_ArcSin(t_f##BITS x)							\
 {																	\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)				\
-	HANDLE_ERROR(MATHDOMAIN, (F##BITS##_Abs(x) > 1.), return (NAN);)\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)					\
+		return (NAN);												\
+	if CCCERROR((F##BITS##_Abs(x) > 1.), ERROR_MATHDOMAIN, NULL)	\
+		return (NAN);												\
 	if (F##BITS##_Abs(x) == 1.)										\
 		return (INFINITY * SIGN(x));								\
 	t_f##BITS result = 0;											\
@@ -303,7 +311,8 @@ MATH_DECL_REALFUNCTION(ArcTan, atan)
 #define DEFINEFUNC_FLOAT_ARCTAN(BITS) \
 t_f##BITS	F##BITS##_ArcTan(t_f##BITS x)				\
 {														\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);									\
 	if (x == 0)											\
 		return (0);										\
 	t_f##BITS abs_x = F##BITS##_Abs(x);					\
@@ -362,7 +371,8 @@ MATH_DECL_REALOPERATOR(ArcTan2, atan2)
 #define DEFINEFUNC_FLOAT_ARCTAN2(BITS) \
 t_f##BITS	F##BITS##_ArcTan2(t_f##BITS y, t_f##BITS x)					\
 {																		\
-	HANDLE_ERROR(NANARGUMENT, (IS_NAN(x) || IS_NAN(y)), return (NAN);)	\
+	if CCCERROR((IS_NAN(x) || IS_NAN(y)), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);													\
 	static const t_f##BITS pi_lo = 1.2246467991473531772E-16;			\
 	if (y == 0.0)														\
 		return ((x < 0 ? PI : 0) * SIGN(x));							\

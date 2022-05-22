@@ -29,7 +29,8 @@ s_array	List_ToArray(s_list const** a_lst)
 	}
 	result.item_count = (count + 1);
 	result.items = (void*)Memory_Allocate(result.item_count * result.item_size);
-	HANDLE_ERROR(ALLOCFAILURE, (result.items == NULL), return (ARRAY_NULL);)
+	if CCCERROR((result.items == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (ARRAY_NULL);
 	i = 0;
 	while (lst && ++i < count)
 	{
@@ -59,7 +60,8 @@ void**	List_ToPointerArray(s_list const** a_lst)
 	count = List_(lst);
 	length = (count + 1) * sizeof(void* );
 	result = (void**)Memory_Allocate(length);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (lst && i < count)
 	{

@@ -11,8 +11,10 @@ void*	List_Reduce(T)(s_list(T) const* list,
 {
 	void*		accumulator = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		accumulator = f(list->item, accumulator);
@@ -28,8 +30,10 @@ void*	List_Reduce_I(T)(s_list(T) const* list,
 	void*		accumulator = NULL;
 	t_uint		i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		accumulator = f(list->item, accumulator, i++);
@@ -46,8 +50,10 @@ void*	List_Fold(T)(s_list(T) const* list,
 {
 	void*		accumulator = initial;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		accumulator = f(list->item, accumulator);
@@ -63,8 +69,10 @@ void*	List_Fold_I(T)(s_list(T) const* list,
 	void*		accumulator = initial;
 	t_uint		i = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return (NULL);
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, NULL)
+		return (NULL);
 	while (list)
 	{
 		accumulator = f(list->item, accumulator, i++);

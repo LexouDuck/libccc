@@ -70,11 +70,11 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
 #define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
-//	return (VALUE);
+{}	//	return (VALUE);
 #endif
 #ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
 #define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
-//	if (dest)	*dest = VALUE;	return (i);
+{}	//	if (dest)	*dest = VALUE;	return (i);
 #endif
 
 // TODO implement configurable return values in cases of number overflow with this macro
@@ -90,75 +90,73 @@ HEADER_CPP
 **	These "plural-named" can be used to activate or deactivate exception handling at will.
 */
 //!@{
-#ifndef HANDLE_ERRORS_UNSPECIFIED
-#define HANDLE_ERRORS_UNSPECIFIED  1
+#ifndef SHOULDHANDLE_ERROR_UNSPECIFIED
+#define SHOULDHANDLE_ERROR_UNSPECIFIED  1
 #endif
 
-#ifndef HANDLE_ERRORS_SYSTEM
-#define HANDLE_ERRORS_SYSTEM       1
+#ifndef SHOULDHANDLE_ERROR_SYSTEM
+#define SHOULDHANDLE_ERROR_SYSTEM       1
 #endif
-#ifndef HANDLE_ERRORS_ALLOCFAILURE
-#define HANDLE_ERRORS_ALLOCFAILURE 1
-#endif
-
-#ifndef HANDLE_ERRORS_PARSE
-#define HANDLE_ERRORS_PARSE        1
-#endif
-#ifndef HANDLE_ERRORS_PRINT
-#define HANDLE_ERRORS_PRINT        1
-#endif
-#ifndef HANDLE_ERRORS_NOTFOUND
-#define HANDLE_ERRORS_NOTFOUND     1
+#ifndef SHOULDHANDLE_ERROR_ALLOCFAILURE
+#define SHOULDHANDLE_ERROR_ALLOCFAILURE 1
 #endif
 
-#ifndef HANDLE_ERRORS_INVALIDARGS
-#define HANDLE_ERRORS_INVALIDARGS  1
+#ifndef SHOULDHANDLE_ERROR_PARSE
+#define SHOULDHANDLE_ERROR_PARSE        1
 #endif
-#ifndef HANDLE_ERRORS_NULLPOINTER
-#define HANDLE_ERRORS_NULLPOINTER  1
+#ifndef SHOULDHANDLE_ERROR_PRINT
+#define SHOULDHANDLE_ERROR_PRINT        1
 #endif
-#ifndef HANDLE_ERRORS_MATHDOMAIN
-#define HANDLE_ERRORS_MATHDOMAIN   1
+#ifndef SHOULDHANDLE_ERROR_NOTFOUND
+#define SHOULDHANDLE_ERROR_NOTFOUND     1
 #endif
-#ifndef HANDLE_ERRORS_RESULTRANGE
-#define HANDLE_ERRORS_RESULTRANGE  1
+
+#ifndef SHOULDHANDLE_ERROR_INVALIDARGS
+#define SHOULDHANDLE_ERROR_INVALIDARGS  1
 #endif
-#ifndef HANDLE_ERRORS_NANARGUMENT
-#define HANDLE_ERRORS_NANARGUMENT  1
+#ifndef SHOULDHANDLE_ERROR_NULLPOINTER
+#define SHOULDHANDLE_ERROR_NULLPOINTER  1
 #endif
-#ifndef HANDLE_ERRORS_ILLEGALBYTES
-#define HANDLE_ERRORS_ILLEGALBYTES 1
+#ifndef SHOULDHANDLE_ERROR_MATHDOMAIN
+#define SHOULDHANDLE_ERROR_MATHDOMAIN   1
 #endif
-#ifndef HANDLE_ERRORS_INVALIDENUM
-#define HANDLE_ERRORS_INVALIDENUM  1
+#ifndef SHOULDHANDLE_ERROR_RESULTRANGE
+#define SHOULDHANDLE_ERROR_RESULTRANGE  1
 #endif
-#ifndef HANDLE_ERRORS_INVALIDRANGE
-#define HANDLE_ERRORS_INVALIDRANGE 1
+#ifndef SHOULDHANDLE_ERROR_NANARGUMENT
+#define SHOULDHANDLE_ERROR_NANARGUMENT  1
 #endif
-#ifndef HANDLE_ERRORS_INDEX2SMALL
-#define HANDLE_ERRORS_INDEX2SMALL  1
+#ifndef SHOULDHANDLE_ERROR_ILLEGALBYTES
+#define SHOULDHANDLE_ERROR_ILLEGALBYTES 1
 #endif
-#ifndef HANDLE_ERRORS_INDEX2LARGE
-#define HANDLE_ERRORS_INDEX2LARGE  1
+#ifndef SHOULDHANDLE_ERROR_INVALIDENUM
+#define SHOULDHANDLE_ERROR_INVALIDENUM  1
 #endif
-#ifndef HANDLE_ERRORS_LENGTH2SMALL
-#define HANDLE_ERRORS_LENGTH2SMALL 1
+#ifndef SHOULDHANDLE_ERROR_INVALIDRANGE
+#define SHOULDHANDLE_ERROR_INVALIDRANGE 1
 #endif
-#ifndef HANDLE_ERRORS_LENGTH2LARGE
-#define HANDLE_ERRORS_LENGTH2LARGE 1
+#ifndef SHOULDHANDLE_ERROR_INDEX2SMALL
+#define SHOULDHANDLE_ERROR_INDEX2SMALL  1
 #endif
-#ifndef HANDLE_ERRORS_KEYNOTFOUND
-#define HANDLE_ERRORS_KEYNOTFOUND  1
+#ifndef SHOULDHANDLE_ERROR_INDEX2LARGE
+#define SHOULDHANDLE_ERROR_INDEX2LARGE  1
 #endif
-#ifndef HANDLE_ERRORS_WRONGTYPE
-#define HANDLE_ERRORS_WRONGTYPE    1
+#ifndef SHOULDHANDLE_ERROR_LENGTH2SMALL
+#define SHOULDHANDLE_ERROR_LENGTH2SMALL 1
 #endif
-#ifndef HANDLE_ERRORS_DELETEREF
-#define HANDLE_ERRORS_DELETEREF    1
+#ifndef SHOULDHANDLE_ERROR_LENGTH2LARGE
+#define SHOULDHANDLE_ERROR_LENGTH2LARGE 1
+#endif
+#ifndef SHOULDHANDLE_ERROR_KEYNOTFOUND
+#define SHOULDHANDLE_ERROR_KEYNOTFOUND  1
+#endif
+#ifndef SHOULDHANDLE_ERROR_WRONGTYPE
+#define SHOULDHANDLE_ERROR_WRONGTYPE    1
+#endif
+#ifndef SHOULDHANDLE_ERROR_DELETEREF
+#define SHOULDHANDLE_ERROR_DELETEREF    1
 #endif
 //!@}
-
-
 
 /*!
 **	This `#define` enables libccc error-handling when set to `1`.
@@ -168,69 +166,27 @@ HEADER_CPP
 */
 #define CHECK_ERRORS	1
 
-#if CHECK_ERRORS // error-checking enabled
+
+
+#if (CHECK_ERRORS == 0) // error-checking disabled
+
+#define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
+	(FALSE)
+
+#else // error-checking enabled
 
 /*!
-**	@param ERRORTYPE	The type of error to emit (an #e_cccerror value)
-**	@param CONDITION	The condition to check the error
-**	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
-**						NOTE: if there is a comma in the `ACTION`, you should instead use
-**							the HANDLE_ERROR_BEGIN() and HANDLE_ERROR_FINAL() macros.
+**	@param _CONDITION_	The condition which checks if an error occurred
+**	@param _ERRORTYPE_	The type of error to emit (an #e_cccerror value)
 */
-//!@{
-#define HANDLE_ERROR(ERRORTYPE, CONDITION, ACTION) \
-	HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION)					\
-	ACTION														\
-	HANDLE_ERROR_FINAL()										\
-
-#define HANDLE_ERROR_BEGIN(ERRORTYPE, CONDITION) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		if (HANDLE_ERRORS_##ERRORTYPE)							\
-		{														\
-			Error_Handle(ERROR_##ERRORTYPE,						\
-				(char const*)__func__,							\
-				NULL);											\
-		}														\
-
-//! The behavior to handle an error case, with a custom message
-/*!
-**	@param ERRORTYPE	The type of error to emit (an `e_cccerror` value)
-**	@param CONDITION	The condition to check the error
-**	@param ACTION		The actions(s) to perform after handling (`return`, `break`, etc)
-**	@param ...			The custom error message (format string and args, like `printf()`)
-*/
-#define HANDLE_ERROR_SF(ERRORTYPE, CONDITION, ACTION, ...) \
-	HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, __VA_ARGS__)	\
-	ACTION														\
-	HANDLE_ERROR_FINAL()										\
-
-#define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) \
-	if (CONDITION)												\
-	{															\
-		Error_Set(ERROR_##ERRORTYPE);							\
-		if (HANDLE_ERRORS_##ERRORTYPE)							\
-		{														\
-			Error_Handle(ERROR_##ERRORTYPE,						\
-				(char const*)__func__,							\
-				String_Format(__VA_ARGS__));					\
-		}														\
-
-
-
-#define HANDLE_ERROR_FINAL() \
-	}															\
+#define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
+    ((_CONDITION_) && Error_If(			\
+        _ERRORTYPE_,					\
+        SHOULDHANDLE_##_ERRORTYPE_,		\
+        (const char*)__func__,			\
+        __VA_ARGS__))					\
 
 //!@}
-
-#else // error-checking disabled
-
-#define HANDLE_ERROR(         ERRORTYPE, CONDITION, ACTION) 
-#define HANDLE_ERROR_BEGIN(   ERRORTYPE, CONDITION) 
-#define HANDLE_ERROR_SF(      ERRORTYPE, CONDITION, ACTION, ...) 
-#define HANDLE_ERROR_BEGIN_SF(ERRORTYPE, CONDITION, ...) 
-#define HANDLE_ERROR_FINAL() 
 
 #endif
 

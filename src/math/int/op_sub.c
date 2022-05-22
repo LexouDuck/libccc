@@ -11,8 +11,10 @@
 #define DEFINEFUNC_UINT_SUB(BITS) \
 inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 {															\
-	HANDLE_ERROR(RESULTRANGE, (a < b),						\
-		LIBCONFIG_ERROR_HANDLEOVERFLOW(0))					\
+	if CCCERROR((a < b), ERROR_RESULTRANGE, NULL)			\
+	{														\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(0)					\
+	}														\
 	return (a - b);											\
 }
 
@@ -21,10 +23,14 @@ inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) != SIGN(b))						\
 	{														\
-		HANDLE_ERROR(RESULTRANGE, (a > S##BITS##_MAX + b),	\
-			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX))	\
-		HANDLE_ERROR(RESULTRANGE, (a < S##BITS##_MIN + b),	\
-			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN))	\
+		if CCCERROR((a > S##BITS##_MAX + b), ERROR_RESULTRANGE, NULL)	\
+		{													\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MAX)	\
+		}													\
+		if CCCERROR((a < S##BITS##_MIN + b), ERROR_RESULTRANGE, NULL)	\
+		{													\
+			LIBCONFIG_ERROR_HANDLEOVERFLOW(S##BITS##_MIN)	\
+		}													\
 	}														\
 	return (a - b);											\
 }

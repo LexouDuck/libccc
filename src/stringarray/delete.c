@@ -21,7 +21,9 @@ void	StringArray_Free(t_char** strarr)
 
 void	StringArray_Delete(t_char** *a_strarr)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_strarr == NULL), return;)
+	if CCCERROR((a_strarr == NULL), ERROR_NULLPOINTER,
+		"string array address given is NULL")
+		return;
 	if (*a_strarr)
 	{
 		for (t_uint i = 0; (*a_strarr)[i]; ++i)

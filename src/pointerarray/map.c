@@ -11,10 +11,13 @@ void**		PointerArray_Map(void* const* ptrarr,
 {
 	void**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return (NULL);
 	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	for (t_uint i = 0; ptrarr[i]; ++i)
 	{
 		result[i] = map(ptrarr[i]);
@@ -29,10 +32,13 @@ void**		PointerArray_Map_I(void* const* ptrarr,
 {
 	void**	result;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (map == NULL), return (NULL);)
+	if CCCERROR((map == NULL), ERROR_NULLPOINTER, "map() function given is NULL")
+		return (NULL);
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return (NULL);
 	result = PointerArray_New(PointerArray_Length((void const* const*)ptrarr), NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	for (t_uint i = 0; ptrarr[i]; ++i)
 	{
 		result[i] = map(ptrarr[i], i);

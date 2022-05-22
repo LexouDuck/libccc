@@ -218,8 +218,8 @@ MATH_DECL_REALFUNCTION(Root2, sqrt)
 #define DEFINEFUNC_FLOAT_ROOT2(BITS) \
 t_f##BITS	F##BITS##_Root2(t_f##BITS x)							\
 {																	\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)				\
-	HANDLE_ERROR(MATHDOMAIN, (x < 0.), return (NAN);)				\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)	return (NAN);	\
+	if CCCERROR((x < 0.), ERROR_MATHDOMAIN, NULL)	return (NAN);	\
 	/* Newton derivative approximation by iteration */				\
 	static const t_s32	max_i = 4;									\
 	t_s32	i;														\
@@ -265,7 +265,7 @@ MATH_DECL_REALFUNCTION(Root3, cbrt)
 #define DEFINEFUNC_FLOAT_ROOT3(BITS) \
 t_f##BITS	F##BITS##_Root3(t_f##BITS x)							\
 {																	\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)				\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);	\
 	/* Newton derivative approximation by iteration */				\
 	static const t_s32	max_i = 4;									\
 	t_s32	i;														\
@@ -308,8 +308,9 @@ DEFINEFUNC_FLOAT_ROOT3(128)
 #define DEFINEFUNC_FLOAT_ROOTN(BITS) \
 t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n)					\
 {																	\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)				\
-	HANDLE_ERROR(MATHDOMAIN, (n % 2 == 0 && x < 0), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);	\
+	if CCCERROR((n % 2 == 0 && x < 0), ERROR_MATHDOMAIN, NULL)		\
+		return (NAN);												\
 	/* Newton derivative approximation by iteration */				\
 	static const t_s32	max_i = 4;									\
 	t_s32	i;														\

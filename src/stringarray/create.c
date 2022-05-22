@@ -24,7 +24,8 @@ t_char**	StringArray_Create(t_uint n, ...)
 	t_char**	result;
 
 	result = (t_char**)StringArray_New(n);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (n == 0)
 		return (result);
 	va_start(args, n);

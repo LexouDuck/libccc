@@ -225,29 +225,6 @@ HEADER_CPP
 
 
 
-//!@doc Defines which type the `t_char` default text character type will be
-/*!
-**	This macro sets the default `t_char` text string character type and methods to use.
-**	With the default settings, `t_char` resolves to `t_ascii`, and its functions work accordingly
-**	(ie: the `Char_ToUpper()` function is really an alias for the `ASCII_IsUpper()` function).
-**
-**	There are 2 possible accepted values for these:
-**
-**	|`TYPE_CHAR`|`NAME_CHAR`| Value pair description                    |
-**	|-----------|-----------|-------------------------------------------|
-**	| `t_ascii` | `ASCII`   | for simple 8-bit ASCII character strings  |
-**	| `t_utf32` | `UTF32`   | for unicode 32-bit wide character strings |
-*/
-//!@{
-#ifndef LIBCONFIG_CHAR_TYPE
-#define LIBCONFIG_CHAR_TYPE		t_ascii
-#endif
-#ifndef LIBCONFIG_CHAR_NAME
-#define LIBCONFIG_CHAR_NAME		ASCII
-#endif
-//!@}
-
-
 
 //!@doc Defines which type the `t_rand` default random state type will be
 /*!

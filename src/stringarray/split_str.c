@@ -69,7 +69,10 @@ t_sintmax	String_Split_String_IndexOf(t_char const* str, t_char const* query)
 
 
 static
-t_char*	String_Split_String_GetNextChunk(t_char const* str, t_uint str_len, t_char const* sub, t_uint sub_len, t_uint *i)
+t_char*	String_Split_String_GetNextChunk(
+	t_char const* str, t_uint str_len,
+	t_char const* sub, t_uint sub_len,
+	t_uint *i)
 {
 	t_char*		result;
 	t_sintmax	new_len;
@@ -97,13 +100,15 @@ t_char**	String_Split_String(t_char const* str, t_char const* sub)
 	t_uint	i;
 	t_uint	j;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (sub == NULL), return (NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to split given is NULL")
+		return (NULL);
+	if CCCERROR((sub == NULL), ERROR_NULLPOINTER, "string separator given is NULL")
+		return (NULL);
 	if (sub[0] == '\0')
 		return (String_Divide(str, 1));
 	reslen = String_Split_String_CountDistinctSubs(str, sub) + 1;
 	result = StringArray_New(reslen);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return (NULL);
 	i = 0;
 	j = 0;
 	if (reslen == 1)

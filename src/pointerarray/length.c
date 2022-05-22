@@ -9,7 +9,8 @@ t_uint	PointerArray_Length(void const* const* ptrarr)
 {
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (0);)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, NULL)
+		return (0);
 	i = 0;
 	while (ptrarr[i])
 	{

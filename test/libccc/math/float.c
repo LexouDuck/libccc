@@ -8,7 +8,7 @@
 #if 0 // test template
 
 #define DEFINETEST_FLOAT_(BITS) \
-void	print_test_f##BITS##(char const* test_name, int can_segfault,		\
+void	print_test_f##BITS##(char const* test_name, t_testflags flags,		\
 		t_f##BITS	expecting,												\
 		t_f##BITS	a,														\
 		t_f##BITS	b)														\
@@ -19,7 +19,7 @@ void	print_test_f##BITS##(char const* test_name, int can_segfault,		\
 }																			\
 void	test_f##BITS##(void)												\
 {																			\
-/*	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS */	\
+/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */	\
 /*	print_test_f##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/	\
 }
 

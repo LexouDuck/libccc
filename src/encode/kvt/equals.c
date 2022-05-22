@@ -16,8 +16,8 @@ t_bool	KVT_Equals(s_kvt const* a, s_kvt const* b, t_bool case_sensitive)
 	else if (b == NULL)	return (FALSE);
 	if ((a->type & DYNAMICTYPE_MASK) != (b->type & DYNAMICTYPE_MASK))
 		return (FALSE);
-	HANDLE_ERROR(INVALIDARGS, (KVT_IsInvalid(a)), return (FALSE);)
-	HANDLE_ERROR(INVALIDARGS, (KVT_IsInvalid(b)), return (FALSE);)
+	if CCCERROR((KVT_IsInvalid(a)), ERROR_INVALIDARGS, NULL) return (FALSE);
+	if CCCERROR((KVT_IsInvalid(b)), ERROR_INVALIDARGS, NULL) return (FALSE);
 	// check if type is valid
 	switch (a->type & DYNAMICTYPE_MASK)
 	{

@@ -12,7 +12,8 @@ MATH_DECL_REALOPERATOR(Pow, pow)
 #define DEFINEFUNC_MATH_FLOAT_POW(BITS) \
 inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
 {															\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)		\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)			\
+		return (NAN);										\
 	return (F##BITS##_Exp(y * F##BITS##_Ln(x)));			\
 }
 // crazy approximate method
@@ -46,7 +47,8 @@ DEFINEFUNC_MATH_FLOAT_POW(128)
 #define DEFINEFUNC_MATH_FLOAT_INTPOW(BITS) \
 t_f##BITS	F##BITS##_IntPow(t_f##BITS x, t_sint n)		\
 {														\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
+		return (NAN);									\
 	t_f##BITS	tmp;									\
 	if (n == 0)											\
 		return (1.);									\
