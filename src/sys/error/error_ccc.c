@@ -13,7 +13,7 @@
 	#endif
 #endif
 
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/sys/error.h"
 

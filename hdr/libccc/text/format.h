@@ -1,6 +1,6 @@
 /*============================================================================*\
 ||                                            ______________________________  ||
-||  libccc/format.h                          |    __    __  ___      _____  | ||
+||  libccc/text/format.h                     |    __    __  ___      _____  | ||
 ||                                           |   / /\  / /\/ . |\   /  __|\ | ||
 ||  https://github.com/LexouDuck/libccc.git  |  / /_/ / / / . <_/  |  /___| | ||
 ||                                           | /___/\/_/ /___,'\   \____/\  | ||
@@ -9,9 +9,9 @@
 ||                                                                            ||
 \*============================================================================*/
 
-#ifndef __LIBCCC_FORMAT_H
-#define __LIBCCC_FORMAT_H
-/*!@group{libccc_format,10,libccc/format.h}
+#ifndef __LIBCCC_TEXT_FORMAT_H
+#define __LIBCCC_TEXT_FORMAT_H
+/*!@group{libccc_text_format,10,libccc/text/format.h}
 **
 **	This header defines printf-style functions, and their format specifiers.
 **

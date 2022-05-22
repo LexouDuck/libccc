@@ -25,7 +25,7 @@
 #include "libccc.h"
 
 #include "libccc/string.h"
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 
 HEADER_CPP

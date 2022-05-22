@@ -8,7 +8,6 @@
 ./hdr/libccc/enum.h
 ./hdr/libccc/fixed.h
 ./hdr/libccc/float.h
-./hdr/libccc/format.h
 ./hdr/libccc/image/color.h
 ./hdr/libccc/int.h
 ./hdr/libccc/math.h
@@ -48,6 +47,7 @@
 ./hdr/libccc/sys/time.h
 ./hdr/libccc/text/char_ascii.h
 ./hdr/libccc/text/char_unicode.h
+./hdr/libccc/text/format.h
 ./hdr/libccc/text/regex.h
 ./hdr/libccc/text/string_ascii.h
 ./hdr/libccc/text/string_utf8.h

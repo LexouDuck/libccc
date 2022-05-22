@@ -26,7 +26,7 @@
 
 #include "libccc.h"
 
-#include "libccc/format.h" // TODO remove this include ? (breaking change)
+#include "libccc/text/format.h" // TODO remove this include ? (breaking change)
 #include "libccc/text/char_ascii.h"
 #include "libccc/text/string_utf8.h" // TODO: remove asap
 

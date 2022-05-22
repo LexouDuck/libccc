@@ -1,7 +1,7 @@
 
 #include <math.h>
 
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
