@@ -83,7 +83,7 @@ t_bool	CharUTF32_IsLowercase(t_utf32 c)
 	if (c == 0x024B)								return (TRUE); // ɋ
 	if (c == 0x024D)								return (TRUE); // ɍ
 	if (c == 0x024F)								return (TRUE); // ɏ
-	if (c == 0x0294)								return (FALSE); // ʔ
+	if (c == 0x0294)								return (TRUE); // ʔ
 	if (0x250 <= c && c <= 0x2B8)					return (TRUE);
 	if (c == 0x02C0)								return (TRUE); // ˀ
 	if (c == 0x02C1)								return (TRUE); // ˁ
