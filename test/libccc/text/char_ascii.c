@@ -87,6 +87,10 @@ int		testsuite_text_char_ascii(void)
 	t_utf32 min = 0x0;
 	t_utf32 max = 0x80;
 
+	bool strict = TRUE;
+#ifdef _WIN32
+	strict = FALSE;
+#endif
 	TEST_PERFORM_CHAR(is, islower, TRUE)
 	TEST_PERFORM_CHAR(is, isupper, TRUE)
 	TEST_PERFORM_CHAR(is, isalpha, TRUE)
@@ -94,7 +98,7 @@ int		testsuite_text_char_ascii(void)
 	TEST_PERFORM_CHAR(is, isdigit, TRUE)
 	TEST_PERFORM_CHAR(is, isspace, TRUE)
 	TEST_PERFORM_CHAR(is, ispunct, TRUE)
-	TEST_PERFORM_CHAR(is, isprint, TRUE)
+	TEST_PERFORM_CHAR(is, isprint, strict)
 	TEST_PERFORM_CHAR(is, isascii, TRUE)
 
 	TEST_PERFORM_CHAR(to, tolower, TRUE)
