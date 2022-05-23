@@ -82,7 +82,7 @@ static void	init(void)
 	{
 	#undef ENUM
 	#define ENUM(_name_, _func_, _enum_, ...) \
-		(s_test_suite){ FALSE, _name_, _func_, (s_test_totals){ 0 } },
+		(s_test_suite){ FALSE, _name_, _func_, /*(s_test_totals)*/{ 0 } },
 	#include "test_suites.enum"
 	#undef ENUM
 	};

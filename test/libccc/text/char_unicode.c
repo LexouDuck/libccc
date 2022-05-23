@@ -87,18 +87,18 @@ int		testsuite_text_char_unicode(void)
 	t_utf32 min = 0x0;
 	t_utf32 max = 0x80;
 
-	TEST_PERFORM_CHAR(is, islower, TRUE)
-	TEST_PERFORM_CHAR(is, isupper, TRUE)
-	TEST_PERFORM_CHAR(is, isalpha, TRUE)
-	TEST_PERFORM_CHAR(is, isalnum, TRUE)
-	TEST_PERFORM_CHAR(is, isdigit, TRUE)
-	TEST_PERFORM_CHAR(is, isspace, TRUE)
-	TEST_PERFORM_CHAR(is, ispunct, TRUE)
-	TEST_PERFORM_CHAR(is, isprint, TRUE)
-	TEST_PERFORM_CHAR(is, isascii, TRUE)
+	TEST_PERFORM_CHAR(is, iswlower, TRUE)
+	TEST_PERFORM_CHAR(is, iswupper, TRUE)
+	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
+	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
+	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
+	TEST_PERFORM_CHAR(is, iswspace, TRUE)
+	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
+	TEST_PERFORM_CHAR(is, iswprint, TRUE)
+//	TEST_PERFORM_CHAR(is, iswvalid, TRUE)
 
-	TEST_PERFORM_CHAR(to, tolower, TRUE)
-	TEST_PERFORM_CHAR(to, toupper, TRUE)
+	TEST_PERFORM_CHAR(to, towlower, TRUE)
+	TEST_PERFORM_CHAR(to, towupper, TRUE)
 
 	printf("\n""NOTE: The following tests go beyond the ASCII plane (128 and above)."
 		"\n\t""As such, libc implmentations vary, so it is quite normal to have many warnings.\n\n");
