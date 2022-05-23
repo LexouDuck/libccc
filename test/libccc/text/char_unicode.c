@@ -81,9 +81,9 @@ int		testsuite_text_char_unicode(void)
 
 	int warnings = 0;
 	int errors = 0;
-	t_utf32 c = 0;
 	t_sint result;
 	t_sint expect;
+	t_utf32 c = 0;
 	t_utf32 min = 0x0;
 	t_utf32 max = 0x80;
 
