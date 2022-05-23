@@ -149,7 +149,7 @@ HEADER_CPP
 //!@doc String format specifier macros for libccc/string.h
 //!@{
 #define SF_STRING   "%"SF_STRING_
-#define SF_STRING_  CONCAT(SF_STRING_,CONCAT(LIBCONFIG_CHAR_NAME,_))
+#define SF_STRING_  "s"
 
 #define SF_STRING_ASCII  "%"SF_STRING_ASCII_
 #define SF_STRING_ASCII_ "s"
