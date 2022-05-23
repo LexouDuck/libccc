@@ -79,8 +79,8 @@ int		testsuite_text_char_unicode(void)
 
 //	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
 	TEST_PERFORM_CHAR(is, iswupper, TRUE)
-/*
 	TEST_PERFORM_CHAR(is, iswlower, TRUE)
+/*
 	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
 	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
 	TEST_PERFORM_CHAR(is, iswspace, TRUE)
