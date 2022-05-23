@@ -277,13 +277,17 @@
 ./src/text/char_ascii/incharset.c
 ./src/text/char_ascii/isalpha.c
 ./src/text/char_ascii/isdigit.c
+./src/text/char_ascii/islower.c
 ./src/text/char_ascii/isprint.c
+./src/text/char_ascii/isupper.c
 ./src/text/char_ascii/to.c
 ./src/text/char_ascii/toescaped.c
 ./src/text/char_unicode/incharset.c
 ./src/text/char_unicode/isalpha.c
 ./src/text/char_unicode/isdigit.c
+./src/text/char_unicode/islower.c
 ./src/text/char_unicode/isprint.c
+./src/text/char_unicode/isupper.c
 ./src/text/char_unicode/parse.c
 ./src/text/char_unicode/toescaped.c
 ./src/text/char_unicode/tolower.c

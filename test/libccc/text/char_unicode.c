@@ -16,10 +16,10 @@
 		"\t""returned 0x%X," \
 		"\t""but libc %s() returned 0x%X\n", \
 		#FUNCTION, \
-		c, c, \
-		result, \
+		(wint_t)c, c, \
+		(wint_t)result, \
 		#FUNCTION, \
-		expect);
+		(wint_t)expect);
 
 #define TEST_PERFORM_CHAR_to(FUNCTION, ERRORPREFIX) \
 	printf(ERRORPREFIX \
@@ -27,10 +27,10 @@
 		"\t""returned "SF_TEXTCHAR"," \
 		"\t""but libc %s() returned "SF_TEXTCHAR"\n", \
 		#FUNCTION, \
-		c, c, \
-		result, result, \
+		(wint_t)c, c, \
+		(wint_t)result, result, \
 		#FUNCTION, \
-		expect, expect); \
+		(wint_t)expect, expect); \
 
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
 	c = 0;												\
@@ -76,9 +76,10 @@ int		testsuite_text_char_unicode(void)
 	t_utf32 c = 0;
 	t_sint result;
 	t_sint expect;
-/*
-	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
+
+//	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
 	TEST_PERFORM_CHAR(is, iswupper, TRUE)
+/*
 	TEST_PERFORM_CHAR(is, iswlower, TRUE)
 	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
 	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
