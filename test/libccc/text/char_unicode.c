@@ -33,7 +33,7 @@
 		(wint_t)expect, expect); \
 
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
-	c = 0;												\
+	c = min;											\
 	while (c++ < max)									\
 	{													\
 		g_test.totals.tests += 1;						\
@@ -72,23 +72,24 @@ int		testsuite_text_char_unicode(void)
 
 	int warnings = 0;
 	int errors = 0;
-	t_utf32 max = 0x20000;
 	t_utf32 c = 0;
+	t_utf32 min = 0x0;
+	t_utf32 max = 0x10000;
 	t_sint result;
 	t_sint expect;
 
-	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
-	TEST_PERFORM_CHAR(is, iswupper, TRUE)
-	TEST_PERFORM_CHAR(is, iswlower, TRUE)
-	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
-	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
-	TEST_PERFORM_CHAR(is, iswspace, TRUE)
-//	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
-//	TEST_PERFORM_CHAR(is, iswprint, TRUE)
-//	TEST_PERFORM_CHAR(is, iswascii, TRUE)
+//	TEST_PERFORM_CHAR(is, iswlower, FALSE)
+//	TEST_PERFORM_CHAR(is, iswupper, FALSE)
+//	TEST_PERFORM_CHAR(is, iswalpha, FALSE)
+//	TEST_PERFORM_CHAR(is, iswalnum, FALSE)
+	TEST_PERFORM_CHAR(is, iswdigit, FALSE)
+	TEST_PERFORM_CHAR(is, iswspace, FALSE)
+//	TEST_PERFORM_CHAR(is, iswpunct, FALSE)
+//	TEST_PERFORM_CHAR(is, iswprint, FALSE)
+//	TEST_PERFORM_CHAR(is, iswascii, FALSE)
 
-	TEST_PERFORM_CHAR(to, towupper, TRUE)
 	TEST_PERFORM_CHAR(to, towlower, TRUE)
+	TEST_PERFORM_CHAR(to, towupper, TRUE)
 
 	if (g_test.config.verbose)
 	{

@@ -33,7 +33,7 @@
 		expect, expect); \
 
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
-	c = 0;												\
+	c = min;											\
 	while (c++ < max)									\
 	{													\
 		g_test.totals.tests += 1;						\
@@ -72,14 +72,15 @@ int		testsuite_text_char_ascii(void)
 
 	int warnings = 0;
 	int errors = 0;
-	t_utf32 max = 0x7F;
 	t_utf32 c = 0;
+	t_utf32 min = 0x0;
+	t_utf32 max = 0x7F;
 	t_sint result;
 	t_sint expect;
 
-	TEST_PERFORM_CHAR(is, isalpha, TRUE)
-	TEST_PERFORM_CHAR(is, isupper, TRUE)
 	TEST_PERFORM_CHAR(is, islower, TRUE)
+	TEST_PERFORM_CHAR(is, isupper, TRUE)
+	TEST_PERFORM_CHAR(is, isalpha, TRUE)
 	TEST_PERFORM_CHAR(is, isalnum, TRUE)
 	TEST_PERFORM_CHAR(is, isdigit, TRUE)
 	TEST_PERFORM_CHAR(is, isspace, TRUE)
@@ -87,8 +88,8 @@ int		testsuite_text_char_ascii(void)
 	TEST_PERFORM_CHAR(is, isprint, TRUE)
 	TEST_PERFORM_CHAR(is, isascii, TRUE)
 
-	TEST_PERFORM_CHAR(to, toupper, TRUE)
 	TEST_PERFORM_CHAR(to, tolower, TRUE)
+	TEST_PERFORM_CHAR(to, toupper, TRUE)
 
 	if (g_test.config.verbose)
 	{

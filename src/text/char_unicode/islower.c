@@ -59,17 +59,50 @@ t_bool	CharUTF32_IsLowercase(t_utf32 c)
 	if (c == 0x01BD)								return (TRUE); // ƽ
 	if (c == 0x01BE)								return (TRUE); // ƾ
 	if (c == 0x01BF)								return (TRUE); // ƿ
+	if (c == 0x01C5)								return (TRUE); // ǅ
 	if (c == 0x01C6)								return (TRUE); // ǆ
+	if (c == 0x01C8)								return (TRUE); // ǈ
 	if (c == 0x01C9)								return (TRUE); // ǉ
 	if (c == 0x01CC)								return (TRUE); // ǌ
+	if (c == 0x01CB)								return (TRUE); // ǋ
 	if (c == 0x01CE)								return (TRUE); // ǎ
 	if (0x1D0 <= c && c < 0x1DD && (c % 2 == 0))	return (TRUE);
 	if (c == 0x01F0)								return (TRUE); // ǰ
 	if (c == 0x01F1)								return (FALSE); // Ǳ
+	if (c == 0x01F2)								return (TRUE); // ǲ
 	if (c == 0x01F7)								return (FALSE); // Ƿ
-	if (c == 0x0221)								return (FALSE); // ȡ
+	if (c == 0x0221)								return (TRUE); // ȡ
 	if (0x1DD <= c && c < 0x234 && (c % 2 == 1))	return (TRUE);
-	if (0x250 <= c && c < 0x2B0)					return (TRUE);
+	if (0x234 <= c && c < 0x23A)					return (TRUE);
+	if (c == 0x023C)								return (TRUE); // ȼ
+	if (c == 0x023F)								return (TRUE); // ȿ
+	if (c == 0x0240)								return (TRUE); // ɀ
+	if (c == 0x0242)								return (TRUE); // ɂ
+	if (c == 0x0247)								return (TRUE); // ɇ
+	if (c == 0x0249)								return (TRUE); // ɉ
+	if (c == 0x024B)								return (TRUE); // ɋ
+	if (c == 0x024D)								return (TRUE); // ɍ
+	if (c == 0x024F)								return (TRUE); // ɏ
+	if (c == 0x0294)								return (FALSE); // ʔ
+	if (0x250 <= c && c <= 0x2B8)					return (TRUE);
+	if (c == 0x02C0)								return (TRUE); // ˀ
+	if (c == 0x02C1)								return (TRUE); // ˁ
+	if (c == 0x02E0)								return (TRUE); // ˠ
+	if (c == 0x02E1)								return (TRUE); // ˡ
+	if (c == 0x02E2)								return (TRUE); // ˢ
+	if (c == 0x02E3)								return (TRUE); // ˣ
+	if (c == 0x02E4)								return (TRUE); // ˤ
+	if (c == 0x0345)								return (TRUE); // 
+	if (c == 0x0371)								return (TRUE); // ͱ
+	if (c == 0x0373)								return (TRUE); // ͳ
+	if (c == 0x0377)								return (TRUE); // ͷ
+	if (c == 0x037A)								return (TRUE); // ͺ
+	if (c == 0x037B)								return (TRUE); // ͻ
+	if (c == 0x037C)								return (TRUE); // ͼ
+	if (c == 0x037D)								return (TRUE); // ͽ
+	if (c == 0x03F8)								return (TRUE); // ϸ
+	if (c == 0x03FB)								return (TRUE); // ϻ
+	if (c == 0x03FC)								return (TRUE); // ϼ
 	if (c == 0x0390)								return (TRUE); // ΐ
 	if (0x3AC <= c && c < 0x3CF)					return (TRUE);
 	if (c == 0x03D0)								return (TRUE); // ϐ
@@ -88,17 +121,32 @@ t_bool	CharUTF32_IsLowercase(t_utf32 c)
 	if (c == 0x0487)								return (FALSE); // '҇
 	if (c == 0x0489)								return (FALSE); // '҉
 	if (0x460 <= c && c < 0x4C0 && (c % 2 == 1))	return (TRUE);
+	if (c == 0x04CF)								return (TRUE); // ӏ
 	if (0x4C1 <= c && c < 0x4D0 && (c % 2 == 0))	return (TRUE);
+	if (c == 0x04FB)								return (TRUE); // ӻ
+	if (c == 0x04FD)								return (TRUE); // ӽ
+	if (c == 0x04FF)								return (TRUE); // ӿ
 	if (0x4D0 <= c && c < 0x4FA && (c % 2 == 1))	return (TRUE);
 	if (0x500 <= c && c < 0x510 && (c % 2 == 1))	return (TRUE);
-	if (0x561 <= c && c < 0x588)					return (TRUE);
+	if (0x510 <= c && c < 0x530 && (c % 2 == 1))	return (TRUE);
+	if (c == 0x0560)								return (TRUE);
+	if (0x561 <= c && c <= 0x588)					return (TRUE);
 
-	if (0x1E96 <= c && c < 0x1E9C)					return (TRUE);
-	if (c == 0x1E9D)								return (FALSE); // ẝ
-	if (c == 0x1E9F)								return (FALSE); // ẟ
-	if (c == 0x1EFB)								return (FALSE); // ỻ
-	if (c == 0x1EFD)								return (FALSE); // ỽ
-	if (c == 0x1EFF)								return (FALSE); // ỿ
+	if (c == 0x10FB)								return (FALSE); // ჻
+	if (c == 0x10FC)								return (FALSE); // ჼ
+	if (0x10D0 <= c && c < 0x1100)					return (TRUE);
+
+	if (0x13F8 <= c && c < 0x13FE)					return (TRUE);
+
+	if (0x1C80 <= c && c < 0x1C89)					return (TRUE);
+
+	if (0x1D00 <= c && c < 0x1DC0)					return (TRUE);
+
+	if (c == 0x1E9E)								return (FALSE);
+	if (0x1E96 <= c && c < 0x1EA0)					return (TRUE);
+	if (c == 0x1EFB)								return (TRUE); // ỻ
+	if (c == 0x1EFD)								return (TRUE); // ỽ
+	if (c == 0x1EFF)								return (TRUE); // ỿ
 	if (0x1E00 <= c && c < 0x1F00 && (c % 2 == 1))	return (TRUE);
 	if (c == 0x1F16)								return (FALSE); // ἖
 	if (c == 0x1F17)								return (FALSE); // ἗
@@ -124,6 +172,8 @@ t_bool	CharUTF32_IsLowercase(t_utf32 c)
 
 	if (c == 0x2071)								return (TRUE); // ⁱ
 	if (c == 0x207F)								return (TRUE); // ⁿ
+	if (0x2090 <= c && c < 0x209D)					return (TRUE);
+
 	if (c == 0x210A)								return (TRUE); // ℊ
 	if (c == 0x210E)								return (TRUE); // ℎ
 	if (c == 0x210F)								return (TRUE); // ℏ
@@ -131,11 +181,17 @@ t_bool	CharUTF32_IsLowercase(t_utf32 c)
 	if (c == 0x212F)								return (TRUE); // ℯ
 	if (c == 0x2134)								return (TRUE); // ℴ
 	if (c == 0x2139)								return (TRUE); // ℹ
+	if (c == 0x213C)								return (TRUE); // ℼ
 	if (c == 0x213D)								return (TRUE); // ℽ
 	if (c == 0x2146)								return (TRUE); // ⅆ
 	if (c == 0x2147)								return (TRUE); // ⅇ
 	if (c == 0x2148)								return (TRUE); // ⅈ
 	if (c == 0x2149)								return (TRUE); // ⅉ
+	if (c == 0x214E)								return (TRUE); // ⅎ
+	if (0x2170 <= c && c < 0x2180)					return (TRUE);
+	if (c == 0x2184)								return (TRUE); // ↄ
+	if (0x24D0 <= c && c < 0x24EA)					return (TRUE);
+	if (0x2C30 <= c && c < 0x2C60)					return (TRUE);
 
 	if (0xFB00 <= c && c < 0xFB07)					return (TRUE);
 	if (0xFB13 <= c && c < 0xFB18)					return (TRUE);
