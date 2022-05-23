@@ -81,15 +81,14 @@ int		testsuite_text_char_unicode(void)
 	TEST_PERFORM_CHAR(is, iswupper, TRUE)
 	TEST_PERFORM_CHAR(is, iswlower, TRUE)
 	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
-/*
 	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
 	TEST_PERFORM_CHAR(is, iswspace, TRUE)
-	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
-	TEST_PERFORM_CHAR(is, iswprint, TRUE)
+//	TEST_PERFORM_CHAR(is, iswpunct, TRUE)
+//	TEST_PERFORM_CHAR(is, iswprint, TRUE)
 //	TEST_PERFORM_CHAR(is, iswascii, TRUE)
-*/
-//	TEST_PERFORM_CHAR(to, towupper, TRUE)
-//	TEST_PERFORM_CHAR(to, towlower, TRUE)
+
+	TEST_PERFORM_CHAR(to, towupper, TRUE)
+	TEST_PERFORM_CHAR(to, towlower, TRUE)
 
 	if (g_test.config.verbose)
 	{

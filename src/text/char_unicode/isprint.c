@@ -18,25 +18,18 @@ t_bool	CharUTF32_IsSpace(t_utf32 c)
 // TODO UTF handling
 t_bool	CharUTF32_IsSpace(t_utf32 c)
 {
-	return ((c == ' ') || ('\t' <= c && c <= '\r'));
-}
-#endif
-
-
-
-#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
-t_bool	CharUTF32_IsPunctuation(t_utf32 c)
-{ return (iswpunct(c)); }
-#else
-// TODO UTF handling
-t_bool	CharUTF32_IsPunctuation(t_utf32 c)
-{
-	return (
-		('!' <= c && c <= '/') ||
-		(':' <= c && c <= '@') ||
-		('[' <= c && c <= '`') ||
-		('{' <= c && c <= '~'));
+	if (c == ' ')					return (TRUE);
+	if ('\t' <= c && c <= '\r')		return (TRUE);
+	if (c == 0x0085)				return (TRUE); // 
+	if (c == 0x00A0)				return (TRUE); //  
+	if (c == 0x1680)				return (TRUE); //  
+	if (0x2000 <= c && c < 0x200C)	return (TRUE); // ​
+	if (c == 0x2028)				return (TRUE); //  
+	if (c == 0x2029)				return (TRUE); //  
+	if (c == 0x202F)				return (TRUE); //  
+	if (c == 0x205F)				return (TRUE); //  
+	if (c == 0x3000)				return (TRUE); // 　
+	return (FALSE);
 }
 #endif
 

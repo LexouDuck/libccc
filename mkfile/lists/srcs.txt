@@ -287,6 +287,7 @@
 ./src/text/char_unicode/isdigit.c
 ./src/text/char_unicode/islower.c
 ./src/text/char_unicode/isprint.c
+./src/text/char_unicode/ispunct.c
 ./src/text/char_unicode/isupper.c
 ./src/text/char_unicode/parse.c
 ./src/text/char_unicode/toescaped.c
