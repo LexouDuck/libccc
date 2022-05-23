@@ -146,7 +146,7 @@ t_bool	CharUTF32_IsPunctuation(t_utf32 c)
 
 	if (0x268A <= c && c <= 0x2700)	return (TRUE);
 	if (0x2776 <= c && c <= 0x2798)	return (TRUE);
-	if (0x27C0 <= c && c <= 0x27B0)	return (TRUE);
+	if (0x27B0 <= c && c <= 0x27C0)	return (TRUE);
 
 	if (0x2E80 <= c && c <= 0x2EF4)	return (TRUE);
 	if (0x2F00 <= c && c <= 0x2FFB)	return (TRUE);
