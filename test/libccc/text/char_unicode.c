@@ -33,10 +33,11 @@
 		(wint_t)expect, expect); \
 
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
+	warnings = 0;										\
+	errors   = 0;										\
 	c = min;											\
 	while (c++ < max)									\
 	{													\
-		g_test.totals.tests += 1;						\
 		result = c_##FUNCTION(c);						\
 		expect =     FUNCTION(c);						\
 		if (result != expect)							\
@@ -51,11 +52,19 @@
 			else										\
 			{											\
 				warnings++;								\
-				TEST_PERFORM_CHAR_##KIND(FUNCTION,		\
-					C_YELLOW"Warning"C_RESET": ")		\
+				if (g_test.config.verbose)				\
+					TEST_PERFORM_CHAR_##KIND(FUNCTION,	\
+						C_YELLOW"Warning"C_RESET": ")	\
 				g_test.totals.warnings += 1;			\
 			}											\
 		}												\
+		g_test.totals.tests += 1;						\
+	}													\
+	if (errors || warnings)								\
+	{													\
+		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max);	\
+		printf("- %s%d"C_RESET" errors""\n", (errors   == 0 ? C_GREEN : C_RED),    errors  );	\
+		printf("- %s%d"C_RESET" warnings\n", (warnings == 0 ? C_GREEN : C_YELLOW), warnings);	\
 	}
 
 
@@ -73,32 +82,42 @@ int		testsuite_text_char_unicode(void)
 	int warnings = 0;
 	int errors = 0;
 	t_utf32 c = 0;
-	t_utf32 min = 0x0;
-	t_utf32 max = 0x20000;
 	t_sint result;
 	t_sint expect;
+	t_utf32 min = 0x0;
+	t_utf32 max = 0x80;
 
-//	TEST_PERFORM_CHAR(is, iswlower, FALSE)
+	TEST_PERFORM_CHAR(is, islower, TRUE)
+	TEST_PERFORM_CHAR(is, isupper, TRUE)
+	TEST_PERFORM_CHAR(is, isalpha, TRUE)
+	TEST_PERFORM_CHAR(is, isalnum, TRUE)
+	TEST_PERFORM_CHAR(is, isdigit, TRUE)
+	TEST_PERFORM_CHAR(is, isspace, TRUE)
+	TEST_PERFORM_CHAR(is, ispunct, TRUE)
+	TEST_PERFORM_CHAR(is, isprint, TRUE)
+	TEST_PERFORM_CHAR(is, isascii, TRUE)
+
+	TEST_PERFORM_CHAR(to, tolower, TRUE)
+	TEST_PERFORM_CHAR(to, toupper, TRUE)
+
+	printf("\n""NOTE: The following tests go beyond the ASCII plane (128 and above)."
+		"\n\t""As such, libc implmentations vary, so it is quite normal to have many warnings.\n\n");
+
+	min = 0x80;
+	max = 0x20000;
+
+	TEST_PERFORM_CHAR(is, iswlower, FALSE)
 	TEST_PERFORM_CHAR(is, iswupper, FALSE)
-//	TEST_PERFORM_CHAR(is, iswalpha, FALSE)
-//	TEST_PERFORM_CHAR(is, iswalnum, FALSE)
+	TEST_PERFORM_CHAR(is, iswalpha, FALSE)
+	TEST_PERFORM_CHAR(is, iswalnum, FALSE)
 	TEST_PERFORM_CHAR(is, iswdigit, FALSE)
 	TEST_PERFORM_CHAR(is, iswspace, FALSE)
 	TEST_PERFORM_CHAR(is, iswpunct, FALSE)
 //	TEST_PERFORM_CHAR(is, iswprint, FALSE)
-//	TEST_PERFORM_CHAR(is, iswascii, FALSE)
+//	TEST_PERFORM_CHAR(is, iswvalid, FALSE)
 
-//	TEST_PERFORM_CHAR(to, towlower, TRUE)
-//	TEST_PERFORM_CHAR(to, towupper, TRUE)
+	TEST_PERFORM_CHAR(to, towlower, FALSE)
+	TEST_PERFORM_CHAR(to, towupper, FALSE)
 
-	if (g_test.config.verbose)
-	{
-		if (errors || warnings)
-		{
-			printf("\nWhile testing every ascii up to %d, got in total:", max);
-			printf("\n- %s%d"C_RESET" errors",	 (errors	== 0 ? C_GREEN : C_RED),	errors);
-			printf("\n- %s%d"C_RESET" warnings", (warnings	== 0 ? C_GREEN : C_YELLOW),	warnings);
-		}
-	}
 	return (OK);
 }
