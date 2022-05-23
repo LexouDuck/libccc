@@ -84,14 +84,6 @@ typedef struct test_flags
 
 
 
-//! This struct stores one test suite (typically, one header file)
-typedef struct test_suite
-{
-	bool		run;		//!< If 0, does not run
-	char const*	name;		//!< Name for test suite to identify
-	int		(*test)(void);	//!< Test suite launcher
-}	s_test_suite;
-
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
 {
@@ -100,8 +92,25 @@ typedef struct test_totals
 	int	warnings;	//!< The total amount of warnings issued by the test suite.
 }	s_test_totals;
 
+//! This struct stores one test suite (typically, one header file)
+typedef struct test_suite
+{
+	bool		run;		//!< If 0, does not run
+	char const*	name;		//!< Name for test suite to identify
+	int		(*test)(void);	//!< Test suite launcher
+	s_test_totals	totals;	//!< Stores the total amounts of tests ran/failed
+}	s_test_suite;
 
 
+
+typedef enum test_suite_libccc
+{
+#undef ENUM
+#define ENUM(_name_, _func_, _enum_, ...) \
+	_enum_,
+#include "test_suites.enum"
+#undef ENUM
+}	e_test_suite_libccc;
 //! The total amount of test suites for libccc
 #define TEST_SUITE_AMOUNT	34
 
@@ -110,10 +119,10 @@ typedef struct test_totals
 //! This struct holds all program state data
 typedef struct program
 {
-	bool			last_test_failed;			//!< is `TRUE` if the latest test performed had an error.
-	bool			last_test_warned;			//!< is `TRUE` if the latest test performed issued a warning.
-	char*			last_test_error;			//!< contains any error output by libccc during the latest test
-	s_test_totals	totals;						//!< Stores the total amounts of tests ran/failed
+	e_test_suite_libccc current_suite;			//!< Index of the currently running test suite
+	bool			last_test_failed;			//!< Is `TRUE` if the latest test performed had an error.
+	bool			last_test_warned;			//!< Is `TRUE` if the latest test performed issued a warning.
+	char*			last_test_error;			//!< Contains any error output by libccc during the latest test
 	s_test_config	config;						//!< Stores the main program argument options (as boolean flags)
 	s_test_arg		args[TEST_ARGS_AMOUNT];		//!< Stores the chars/names and descriptions for each valid program argument
 	s_test_suite	suites[TEST_SUITE_AMOUNT];	//!< Stores info of which test suites should be run or not
@@ -136,44 +145,11 @@ void	test_init(void);
 /*
 **	Test suite functions
 */
-int		testsuite_bool(void);
-int		testsuite_char(void);
-int		testsuite_int(void);
-int		testsuite_fixed(void);
-int		testsuite_float(void);
-int		testsuite_memory(void);
-int		testsuite_pointer(void);
-int		testsuite_pointerarray(void);
-int		testsuite_string(void);
-int		testsuite_stringarray(void);
-int		testsuite_color(void);
-int		testsuite_text_char_ascii(void);
-int		testsuite_text_char_unicode(void);
-int		testsuite_text_regex(void);
-int		testsuite_text_unicode(void);
-int		testsuite_sys_io(void);
-int		testsuite_sys_time(void);
-int		testsuite_math(void);
-int		testsuite_math_int(void);
-int		testsuite_math_fixed(void);
-int		testsuite_math_float(void);
-int		testsuite_math_stat(void);
-int		testsuite_math_algebra(void);
-int		testsuite_math_complex(void);
-int		testsuite_math_random(void);
-int		testsuite_math_vlq(void);
-int		testsuite_monad_array(void);
-int		testsuite_monad_list(void);
-int		testsuite_monad_hashmap(void);
-//int	testsuite_monad_stack(void);
-//int	testsuite_monad_queue(void);
-int		testsuite_monad_dict(void);
-int		testsuite_monad_tree(void);
-int		testsuite_encode_kvt(void);
-int		testsuite_encode_json(void);
-int		testsuite_encode_toml(void);
-//int	testsuite_encode_yaml(void);
-//int	testsuite_encode_xml(void);
+#undef ENUM
+#define ENUM(_name_, _func_, _enum_, ...) \
+int	_func_(void);
+#include "test_suites.enum"
+#undef ENUM
 
 /*
 **	Global variables used in tests
@@ -191,6 +167,10 @@ extern char const* teststr_utf8_ho;
 extern char const* teststr_utf8_one_symbol_two_seq ;
 extern char const* teststr_utf8_one_symbol_three_seq ;
 extern char const* teststr_utf8_hardcore; extern t_size const teststr_utf8_hardcore_len; extern t_size const teststr_utf8_hardcore_bytelen;
+
+
+
+int	print_results(s_test_suite const* suites);
 
 
 

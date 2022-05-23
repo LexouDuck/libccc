@@ -52,11 +52,12 @@ void	test_init(void)
 	{	// if no test suites have been specified, run all of them
 		for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 		{
+			g_test.suites[i].totals.tests = 0;
+			g_test.suites[i].totals.failed = 0;
+			g_test.suites[i].totals.warnings = 0;
 			g_test.suites[i].run = TRUE;
 		}
 	}
-	g_test.totals.tests = 0;
-	g_test.totals.failed = 0;
 	Error_SetAllHandlers(test_cccerrorhandler);
 }
 
@@ -79,7 +80,7 @@ void	print_test(
 {
 	static char const*  previous = NULL;
 
-	g_test.totals.tests += 1;
+	g_test.suites[g_test.current_suite].totals.tests += 1;
 	g_test.last_test_failed = error;
 	g_test.last_test_warned = (warning != NULL);
 	if (g_test.config.verbose || error || warning)
@@ -136,7 +137,7 @@ void	print_test(
 					result,
 					expect);
 			}
-			g_test.totals.warnings += 1;
+			g_test.suites[g_test.current_suite].totals.warnings += 1;
 		}
 		else
 		{
@@ -167,14 +168,14 @@ void	print_test(
 					function, result,
 					function, expect);
 			}
-			g_test.totals.failed += 1;
+			g_test.suites[g_test.current_suite].totals.failed += 1;
 		}
 	}
 	else if (warning)
 	{
 		printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
 		if (flags & FLAG_WARNING)
-			g_test.totals.warnings += 1;
+			g_test.suites[g_test.current_suite].totals.warnings += 1;
 	}
 	else if (g_test.config.verbose)
 	{
@@ -277,7 +278,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 				"- expected: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n",					\
 			test->result,																	\
 			test->expect);																	\
-		g_test.totals.warnings += 1;														\
+		g_test.suites[g_test.current_suite].totals.warnings += 1;							\
 		if (len == 0)																		\
 			return;																			\
 	}																						\

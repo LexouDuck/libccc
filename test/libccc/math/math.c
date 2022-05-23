@@ -166,8 +166,8 @@ t_float	c_get_largest_f(s_array_float values)
 
 
 #define TEST_PRINT_MATH(...) \
-	g_test.totals.tests += tests;								\
-	g_test.totals.failed += failed_tests;						\
+	g_test.suites[TESTSUITE_MATH].totals.tests += tests;		\
+	g_test.suites[TESTSUITE_MATH].totals.failed += failed_tests;\
 	t_float percent = (tests - failed_tests) * 100. / tests;	\
 	if (g_test.config.verbose || percent < 90.)					\
 	{															\

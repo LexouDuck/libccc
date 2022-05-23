@@ -38,14 +38,14 @@ void	print_percent(double percent)
 
 
 
-void	print_totals(int amount, int failed, int warnings, char const* category)
+void	print_totals(int amount, int failed, int warnings, char const* suite_name)
 {
 	double percent = (amount == 0 ? 100. : ((amount - failed) * 100. / amount));
 
 	printf("\n\n");
 	printf("|========================================\n");
-	if (category)
-		printf("|  Test suite: libccc/%s\n", category);
+	if (suite_name == NULL)
+		 printf("|  Test suite: libccc/%s\n", suite_name);
 	else printf("|  In total:\n");
 	printf("|========================================\n");
 	printf("- Amount of tests: %d\n", amount);
@@ -60,7 +60,7 @@ void	print_totals(int amount, int failed, int warnings, char const* category)
 	if (amount == 0)
 		print_percent(0);
 	else print_percent(percent);
-	if (category == NULL)
+	if (suite_name == NULL)
 	{
 		if (failed)
 		{
@@ -69,6 +69,40 @@ void	print_totals(int amount, int failed, int warnings, char const* category)
 		else printf("\n"C_GREEN"SUCCESS: All tests passed."C_RESET"\n");
 	}
 	printf("\n");
+}
+
+
+
+int	print_results(s_test_suite const* suites)
+{
+	int total_tests = 0;
+	int total_failed = 0;
+	int total_warnings = 0;
+	double percent = 0;
+
+	printf("\n\n");
+	printf("|========================================\n");
+	printf("| Final results:\n");
+	printf("|========================================\n");
+	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
+	{
+		percent = (total_tests == 0 ? 100. : ((total_tests - total_failed) * 100. / total_tests));
+		printf(" - %-20s: (%s%8d"C_RESET" tests, %s%8d"C_RESET" failed, %s%8d"C_RESET" warnings)\t-> ",
+			suites[i].name,
+			(suites[i].totals.tests    == 0 ? C_YELLOW : ""),       suites[i].totals.tests,
+			(suites[i].totals.failed   == 0 ? C_GREEN  : C_RED),    suites[i].totals.failed,
+			(suites[i].totals.warnings == 0 ? C_GREEN  : C_YELLOW), suites[i].totals.warnings);
+		print_percent(percent);
+		total_tests    += suites[i].totals.tests;
+		total_failed   += suites[i].totals.failed;
+		total_warnings += suites[i].totals.warnings;
+	}
+	print_totals(
+		total_tests,
+		total_failed,
+		total_warnings,
+		NULL);
+	return (total_failed > 0);
 }
 
 

@@ -38,7 +38,6 @@
 	c = min;											\
 	while (c++ < max)									\
 	{													\
-		g_test.totals.tests += 1;						\
 		result = c_##FUNCTION(c);						\
 		expect =     FUNCTION(c);						\
 		if (result != expect)							\
@@ -48,7 +47,7 @@
 				errors++;								\
 				TEST_PERFORM_CHAR_##KIND(FUNCTION,		\
 					C_RED"Error"C_RESET": ")			\
-				g_test.totals.failed += 1;				\
+				g_test.suites[TESTSUITE_TEXT_CHAR_ASCII].totals.failed += 1;\
 			}											\
 			else										\
 			{											\
@@ -56,9 +55,10 @@
 				if (g_test.config.verbose)				\
 					TEST_PERFORM_CHAR_##KIND(FUNCTION,	\
 						C_YELLOW"Warning"C_RESET": ")	\
-				g_test.totals.warnings += 1;			\
+				g_test.suites[TESTSUITE_TEXT_CHAR_ASCII].totals.warnings += 1;\
 			}											\
 		}												\
+		g_test.suites[TESTSUITE_TEXT_CHAR_ASCII].totals.tests += 1;\
 	}													\
 	if (errors || warnings)								\
 	{													\

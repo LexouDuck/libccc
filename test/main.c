@@ -80,44 +80,11 @@ static void	init(void)
 
 	static const s_test_suite suites[TEST_SUITE_AMOUNT] =
 	{
-		(s_test_suite){ FALSE, "bool",				testsuite_bool },
-		(s_test_suite){ FALSE, "char",				testsuite_char },
-		(s_test_suite){ FALSE, "int",				testsuite_int },
-		(s_test_suite){ FALSE, "fixed",				testsuite_fixed },
-		(s_test_suite){ FALSE, "float",				testsuite_float },
-		(s_test_suite){ FALSE, "memory",			testsuite_memory },
-		(s_test_suite){ FALSE, "pointer",			testsuite_pointer },
-		(s_test_suite){ FALSE, "pointerarray",		testsuite_pointerarray },
-		(s_test_suite){ FALSE, "string",			testsuite_string },
-		(s_test_suite){ FALSE, "stringarray",		testsuite_stringarray },
-		(s_test_suite){ FALSE, "color",				testsuite_color },
-		(s_test_suite){ FALSE, "text/char_ascii",	testsuite_text_char_ascii },
-		(s_test_suite){ FALSE, "text/char_unicode",	testsuite_text_char_unicode },
-		(s_test_suite){ FALSE, "text/regex",		testsuite_text_regex },
-		(s_test_suite){ FALSE, "text/unicode",		testsuite_text_unicode },
-		(s_test_suite){ FALSE, "sys/io",			testsuite_sys_io },
-		(s_test_suite){ FALSE, "sys/time",			testsuite_sys_time },
-		(s_test_suite){ FALSE, "math/math",			testsuite_math },
-		(s_test_suite){ FALSE, "math/int",			testsuite_math_int },
-		(s_test_suite){ FALSE, "math/fixed",		testsuite_math_fixed },
-		(s_test_suite){ FALSE, "math/float",		testsuite_math_float },
-		(s_test_suite){ FALSE, "math/stat",			testsuite_math_stat },
-		(s_test_suite){ FALSE, "math/algebra",		testsuite_math_algebra },
-		(s_test_suite){ FALSE, "math/complex",		testsuite_math_complex },
-		(s_test_suite){ FALSE, "math/random",		testsuite_math_random },
-		(s_test_suite){ FALSE, "math/vlq",			testsuite_math_vlq },
-		(s_test_suite){ FALSE, "monad/array",		testsuite_monad_array },
-		(s_test_suite){ FALSE, "monad/list",		testsuite_monad_list },
-		(s_test_suite){ FALSE, "monad/hashmap",		testsuite_monad_hashmap },
-//		(s_test_suite){ FALSE, "monad/stack",		testsuite_monad_stack },
-//		(s_test_suite){ FALSE, "monad/queue",		testsuite_monad_queue },
-		(s_test_suite){ FALSE, "monad/dict",		testsuite_monad_dict },
-		(s_test_suite){ FALSE, "monad/tree",		testsuite_monad_tree },
-		(s_test_suite){ FALSE, "encode/kvt",		testsuite_encode_kvt },
-		(s_test_suite){ FALSE, "encode/json",		testsuite_encode_json },
-		(s_test_suite){ FALSE, "encode/toml",		testsuite_encode_toml },
-//		(s_test_suite){ FALSE, "encode/yaml",		testsuite_encode_yaml },
-//		(s_test_suite){ FALSE, "encode/xml",		testsuite_encode_xml },
+	#undef ENUM
+	#define ENUM(_name_, _func_, _enum_, ...) \
+		(s_test_suite){ FALSE, _name_, _func_, (s_test_totals){ 0 } },
+	#include "test_suites.enum"
+	#undef ENUM
 	};
 	memcpy(g_test.suites, suites, sizeof(s_test_suite) * TEST_SUITE_AMOUNT);
 
@@ -256,30 +223,23 @@ int	main(int argc, char** argv)
 	print_title();
 	print_endian_warning();
 	test_init();
-	s_test_totals suite;
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
 		if (g_test.suites[i].run)
 		{
-			suite = g_test.totals;
+			g_test.current_suite = (e_test_suite_libccc)i;
 			g_test.suites[i].test();
-			suite.tests = g_test.totals.tests - suite.tests;
-			suite.failed = g_test.totals.failed - suite.failed;
-			suite.warnings = g_test.totals.warnings - suite.warnings;
-			if (suite.tests)
+			if (g_test.suites[i].totals.tests)
 			{
 				print_totals(
-					suite.tests,
-					suite.failed,
-					suite.warnings,
+					g_test.suites[i].totals.tests,
+					g_test.suites[i].totals.failed,
+					g_test.suites[i].totals.warnings,
 					g_test.suites[i].name);
 			}
 		}
 	}
-	print_totals(
-		g_test.totals.tests,
-		g_test.totals.failed,
-		g_test.totals.warnings,
-		NULL);
-	return (g_test.totals.failed > 0 ? EXIT_FAILURE : EXIT_SUCCESS);
+	if (print_results(g_test.suites))
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
