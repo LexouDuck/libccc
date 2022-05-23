@@ -77,11 +77,11 @@ int		testsuite_text_char_unicode(void)
 	t_sint result;
 	t_sint expect;
 
-//	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
+	TEST_PERFORM_CHAR(is, iswalpha, TRUE)
 	TEST_PERFORM_CHAR(is, iswupper, TRUE)
 	TEST_PERFORM_CHAR(is, iswlower, TRUE)
-/*
 	TEST_PERFORM_CHAR(is, iswalnum, TRUE)
+/*
 	TEST_PERFORM_CHAR(is, iswdigit, TRUE)
 	TEST_PERFORM_CHAR(is, iswspace, TRUE)
 	TEST_PERFORM_CHAR(is, iswpunct, TRUE)

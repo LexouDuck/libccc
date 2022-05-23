@@ -17,6 +17,16 @@ t_bool	CharUTF32_IsLetter(t_utf32 c)
 // TODO UTF handling
 t_bool	CharUTF32_IsLetter(t_utf32 c)
 {
+	if (c == 0x01C5)				return (TRUE); // ǅ
+	if (c == 0x01C8)				return (TRUE); // ǈ
+	if (c == 0x01CB)				return (TRUE); // ǋ
+	if (c == 0x01F2)				return (TRUE); // ǲ
+	if (c == 0x04F6)				return (FALSE); // Ӷ
+	if (c == 0x04F7)				return (FALSE); // ӷ
+	if (0x1F88 <= c && c < 0x1FB0)	return (TRUE);
+	if (c == 0x1FBC)				return (TRUE); // ᾼ
+	if (c == 0x1FCC)				return (TRUE); // ῌ
+	if (c == 0x1FFC)				return (TRUE); // ῼ
 	return (CharUTF32_IsLowercase(c) ||
 			CharUTF32_IsUppercase(c));
 }
