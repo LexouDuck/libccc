@@ -14,10 +14,13 @@ s_list(T)*		List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n)
 	s_list(T)*	tmp;
 	t_uint		length;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	length = List_Length(T)(list);
-	HANDLE_ERROR(INDEX2LARGE, (index >= length),    return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
+	if CCCERROR((index >= length), ERROR_INDEX2LARGE, NULL)
+		return (NULL);
+	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE, NULL)
+		return (NULL);
 	if (n == 0)
 		n = length - index;
 	while (list && index--)
@@ -31,11 +34,11 @@ s_list(T)*		List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n)
 	while (list && n--)
 	{
 		tmp = (s_list(T)*)Memory_Duplicate(list, sizeof(s_list(T)));
-		HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL),
+		if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
 			List_Free(T)(tmp);
 			return (NULL);
-		})
+		}
 		if (result == NULL)
 			result = tmp;
 		else

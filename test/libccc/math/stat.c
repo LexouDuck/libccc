@@ -1,7 +1,7 @@
 
 #include <math.h>
 
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math/stat.h"
 #include "libccc/random/random.h"
@@ -34,7 +34,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	t_float	tmp;
 	t_float	decile_inc = samples / 10.;
 
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
 		printf("\tMedian:   %12f | intmax   :"SF_U64"\n", c_stat_median_i(values_sorted), intmax);
@@ -66,7 +66,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 			values_sorted.items[(t_u32)(decile_inc * 9)],
 			values_sorted.items[samples - 1]);
 	}
-//	if (g_test.flags.show_args) // TODO special program option for this ?
+//	if (g_test.config.show_args) // TODO special program option for this ?
 //	{
 //		printf("\tDeciles uint:\n"
 //			"\t\t 0: %12lu\n"
@@ -121,7 +121,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 
 	pmf = c_stat_ilst_to_pmf(values_sorted);
 
-	if (g_test.flags.verbose && g_test.flags.show_args) // TODO special program option for this ?
+	if (g_test.config.verbose && g_test.config.show_args) // TODO special program option for this ?
 	{
 		printf("Probability mass function for the RNG\n");
 		for (t_uint i = 0; i < pmf.length; ++i)
@@ -134,7 +134,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	{
 		tmp += pmf.prob[i];
 	}
-	if (g_test.flags.verbose)
+	if (g_test.config.verbose)
 	{
 		printf("Sum of probs: %.12f\n", tmp);
 	}

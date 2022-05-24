@@ -8,8 +8,10 @@
 _GENERIC()
 t_bool	Array_Has(T)(s_array(T) const* array, s_array(T) const* target)
 {
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (FALSE);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (FALSE);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (FALSE);
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return (FALSE);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		if (Array_Contains(T)(target, array->items[i]))
@@ -22,8 +24,10 @@ t_bool	Array_Has(T)(s_array(T) const* array, s_array(T) const* target)
 _GENERIC()
 t_bool	Array_HasOnly(T)(s_array(T) const* array, s_array(T) const* target)
 {
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (FALSE);)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return (FALSE);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (FALSE);
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return (FALSE);
 	for (t_uint i = 0; i < array->length; ++i)
 	{
 		if (!Array_Contains(T)(target, array->items[i]))

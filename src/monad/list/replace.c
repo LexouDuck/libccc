@@ -11,9 +11,11 @@ s_list(T)*	List_Replace(T)(s_list(T) const* list, T item_old, T item_new)
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	result = List_Duplicate(T)(list);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	elem = result;
 	while (elem)
 	{
@@ -34,9 +36,11 @@ s_list(T)*	List_ReplaceFirst(T)(s_list(T) const* list, T item_old, T item_new, t
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	result = List_Duplicate(T)(list);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	elem = result;
 	while (elem)
 	{
@@ -60,9 +64,11 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_
 	s_list(T)*	result = NULL;
 	s_list(T)*	elem;
 
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return (NULL);)
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
 	result = List_Duplicate(T)(list);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	elem = result->prev;
 	while (elem)

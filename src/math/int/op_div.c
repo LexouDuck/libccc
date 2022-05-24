@@ -7,17 +7,19 @@
 
 
 #define DEFINEFUNC_UINT_DIV(BITS) \
-inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)			\
-{																	\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (U##BITS##_ERROR);)	\
-	return (a / b);													\
+inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)	\
+{															\
+	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
+		return (U##BITS##_ERROR);							\
+	return (a / b);											\
 }
 
 #define DEFINEFUNC_SINT_DIV(BITS) \
-inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)			\
-{																	\
-	HANDLE_ERROR(MATHDOMAIN, (b == 0), return (S##BITS##_ERROR);)	\
-	return (a / b);													\
+inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
+{															\
+	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
+		return (S##BITS##_ERROR);							\
+	return (a / b);											\
 }
 
 /*

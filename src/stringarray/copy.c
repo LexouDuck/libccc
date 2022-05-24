@@ -10,14 +10,16 @@ t_char**	StringArray_Copy(
 	t_char const* const* src, t_uint src_i,
 	t_uint n)
 {
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, ( src == NULL), return (NULL);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string array given is NULL")
+		return (NULL);
+	if CCCERROR(( src == NULL), ERROR_NULLPOINTER, "source string array given is NULL")
+		return (NULL);
 	t_uint	dest_length = StringArray_Length((t_char const**)dest);
 	t_uint	src_length  = StringArray_Length((t_char const**)src);
-	HANDLE_ERROR(INDEX2LARGE, (dest_i >= dest_length),    return (NULL);)
-	HANDLE_ERROR(INDEX2LARGE, ( src_i >=  src_length),    return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (dest_i + n > dest_length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, ( src_i + n >  src_length), return (NULL);)
+	if CCCERROR((dest_i >= dest_length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i >=  src_length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR((dest_i + n > dest_length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i + n >  src_length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
 	if (n == 0)
 		n = src_length - src_i;
 	for (t_uint i = 0; i < n; ++i)

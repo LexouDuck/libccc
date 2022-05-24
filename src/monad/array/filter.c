@@ -14,12 +14,15 @@ s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 	t_uint	length;
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array  == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
+	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	length = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -28,7 +31,8 @@ s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL), return (result);)
+	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (result->items == NULL)
 		return (result);
 	result->length = length;
@@ -54,12 +58,15 @@ s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, 
 	t_uint	length;
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (array  == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return (NULL);
 	if (array->length == 0 || array->items == NULL)
 		return ((s_array(T)*)Memory_New(sizeof(s_array(T))));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * array->length);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
+	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	length = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -68,7 +75,8 @@ s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, 
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result->items == NULL), return (result);)
+	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (result->items == NULL)
 		return (result);
 	result->length = length;

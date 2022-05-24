@@ -23,7 +23,8 @@ s_complex*	Complex_New(t_float re, t_float im)
 	s_complex* result;
 
 	result = (s_complex*)Memory_Allocate(sizeof(s_complex));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result->re = re;
 	result->im = im;
 	return (result);

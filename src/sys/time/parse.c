@@ -80,9 +80,9 @@ __weak_alias(strptime,_strptime)
 #define PARSINGERROR_DATE_MESSAGE	IO_COLOR_FG_RED"DATE PARSE ERROR"C_RESET": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	HANDLE_ERROR_SF(PARSE, (TRUE),		\
-		return (0);,					\
+	if CCCERROR(TRUE, ERROR_PARSE,	\
 		MESSAGE, __VA_ARGS__)			\
+		return (0);						\
 
 
 
@@ -759,8 +759,10 @@ t_size		Date_Parse(s_date* dest, t_char const* str, t_char const* format)
 	s_date result = DATE_NULL;
 	t_size parsed;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (0);
+	if CCCERROR((format == NULL), ERROR_NULLPOINTER, "date parsing format string given is NULL")
+		return (0);
 	parsed = Date_Parse_(&result, str, format, FALSE, TRUE);
 	if (dest)	*dest = result;
 	return (parsed);
@@ -773,8 +775,10 @@ t_size		Date_Parse_Min(s_date* dest, t_char const* str, t_char const* format)
 	s_date result = DATE_NULL;
 	t_size parsed;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (0);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (0);
+	if CCCERROR((format == NULL), ERROR_NULLPOINTER, "date parsing format string given is NULL")
+		return (0);
 	parsed = Date_Parse_(&result, str, format, TRUE, TRUE);
 	if (dest)	*dest = result;
 	return (parsed);
@@ -786,8 +790,10 @@ s_date		Date_FromString(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (DATE_NULL);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (DATE_NULL);
+	if CCCERROR((format == NULL), ERROR_NULLPOINTER, "date parsing format string given is NULL")
+		return (DATE_NULL);
 	Date_Parse_(&result, str, format, FALSE, FALSE);
 	return (result);
 }
@@ -798,8 +804,10 @@ s_date		Date_FromString_Min(t_char const* str, t_char const* format)
 {
 	s_date result = DATE_NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (str == NULL), return (DATE_NULL);)
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (DATE_NULL);)
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")
+		return (DATE_NULL);
+	if CCCERROR((format == NULL), ERROR_NULLPOINTER, "date parsing format string given is NULL")
+		return (DATE_NULL);
 	Date_Parse_(&result, str, format, TRUE, FALSE);
 	return (result);
 }

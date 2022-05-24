@@ -16,25 +16,28 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 	s_kvt*	next = NULL;
 	s_kvt*	child = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), goto failure;)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
+		goto failure;
 	// Create new item
 	newitem = KVT_Item();
-	HANDLE_ERROR(ALLOCFAILURE, (newitem == NULL), goto failure;)
+	if CCCERROR((newitem == NULL), ERROR_ALLOCFAILURE, NULL)
+		goto failure;
 	// Copy over all vars
 	newitem->type = item->type & (~DYNAMICTYPE_ISREFERENCE);
 	if (item->type & DYNAMICTYPE_NULL)		{ newitem->value.child = NULL; } // Memory_Clear(&newitem->value, sizeof(u_dynamic)); } // TODO C++ cant handle sizeof() on a forward-declared recursive union type
 	if (item->type & DYNAMICTYPE_BOOLEAN)	{ newitem->value.boolean = item->value.boolean; }
 	if (item->type & DYNAMICTYPE_INTEGER)	{ newitem->value.integer = item->value.integer; }
 	if (item->type & DYNAMICTYPE_FLOAT)		{ newitem->value.number = item->value.number; }
-	if (item->type & DYNAMICTYPE_STRING)	{ newitem->value.string = String_Duplicate(item->value.string); HANDLE_ERROR(ALLOCFAILURE, (newitem->value.string == NULL), goto failure;) }
-	if (item->type & DYNAMICTYPE_RAW)		{ newitem->value.string = String_Duplicate(item->value.string); HANDLE_ERROR(ALLOCFAILURE, (newitem->value.string == NULL), goto failure;) }
+	if (item->type & DYNAMICTYPE_STRING)	{ newitem->value.string = String_Duplicate(item->value.string); if CCCERROR((newitem->value.string == NULL), ERROR_ALLOCFAILURE, NULL) goto failure; }
+	if (item->type & DYNAMICTYPE_RAW)		{ newitem->value.string = String_Duplicate(item->value.string); if CCCERROR((newitem->value.string == NULL), ERROR_ALLOCFAILURE, NULL) goto failure; }
 	if (item->type & DYNAMICTYPE_ARRAY)		{ newitem->value.child = NULL; }
 	if (item->type & DYNAMICTYPE_OBJECT)	{ newitem->value.child = NULL; }
 
 	if (item->key)
 	{
 		newitem->key = String_Duplicate(item->key);
-		HANDLE_ERROR(ALLOCFAILURE, (newitem->key == NULL), goto failure;)
+		if CCCERROR((newitem->key == NULL), ERROR_ALLOCFAILURE, NULL)
+			goto failure;
 	}
 	// If non-recursive, then we're done!
 	if (!recurse)
@@ -49,7 +52,8 @@ s_kvt*	KVT_Duplicate(s_kvt const* item, t_bool recurse)
 		while (child != NULL)
 		{
 			newchild = KVT_Duplicate(child, TRUE); // Duplicate (with recurse) each item in the `->next` chain
-			HANDLE_ERROR(ALLOCFAILURE, (newchild == NULL), goto failure;)
+			if CCCERROR((newchild == NULL), ERROR_ALLOCFAILURE, NULL)
+				goto failure;
 			if (next != NULL)
 			{	// If `newitem->child` already set, then crosswire `->prev` and `->next` and move on
 				next->next = newchild;

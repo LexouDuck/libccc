@@ -1,5 +1,5 @@
 
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
 
@@ -8,7 +8,7 @@
 #if 0 // test template
 
 #define DEFINETEST_FIXED_(BITS) \
-void	print_test_q##BITS##(char const* test_name, int can_segfault,		\
+void	print_test_q##BITS##(char const* test_name, t_testflags flags,		\
 		t_q##BITS	expecting,												\
 		t_q##BITS	a,														\
 		t_q##BITS	b)														\
@@ -19,7 +19,7 @@ void	print_test_q##BITS##(char const* test_name, int can_segfault,		\
 }																			\
 void	test_q##BITS##(void)												\
 {																			\
-/*	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS */	\
+/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */	\
 	print_test_q##BITS##("q"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	\
 }
 

@@ -17,7 +17,9 @@ t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n)
 
 	if (n == 0)
 		return (0);
-	HANDLE_ERROR(LENGTH2LARGE, (n > UINTMAX_BITS), n = UINTMAX_BITS;)
+	if CCCERROR((n > UINTMAX_BITS), ERROR_LENGTH2LARGE,
+		"bit amount given (%u bits) is beyond the largest integer type (%u bits)", n, UINTMAX_BITS)
+		n = UINTMAX_BITS;
 	i = bit / 8;
 	b = bit % 8;
 	if (b + n <= 8) // fits entirely inside one byte, no need to loop
@@ -58,7 +60,9 @@ void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value)
 
 	if (n == 0)
 		return;
-	HANDLE_ERROR(LENGTH2LARGE, (n > UINTMAX_BITS), n = UINTMAX_BITS;)
+	if CCCERROR((n > UINTMAX_BITS), ERROR_LENGTH2LARGE,
+		"bit amount given (%u bits) is beyond the largest integer type (%u bits)", n, UINTMAX_BITS)
+		n = UINTMAX_BITS;
 	i = bit / 8;
 	b = bit % 8;
 	value = Memory_BitRegion(value, 0, n);
@@ -102,10 +106,12 @@ t_uintmax	Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 length)
 {
 	t_uintmax	mask;
 
-	HANDLE_ERROR(INDEX2LARGE, (bit >= UINTMAX_BITS),
-		return (0);)
-	HANDLE_ERROR(LENGTH2LARGE, (bit + length >= UINTMAX_BITS),
-		return (0);)
+	if CCCERROR((bit >= UINTMAX_BITS), ERROR_INDEX2LARGE,
+		"bit region start (%u) is beyond the largest integer type (%u bits)", bit, UINTMAX_BITS)
+		return (0);
+	if CCCERROR((bit + length >= UINTMAX_BITS), ERROR_LENGTH2LARGE,
+		"bit region end (%u) is beyond the largest integer type (%u bits)", bit + length, UINTMAX_BITS)
+		return (0);
 	if (length >= UINTMAX_BITS)
 		mask = ~0;
 	else

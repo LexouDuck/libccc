@@ -10,10 +10,10 @@ t_bool	Array_Equals(T)(s_array(T) const* array1, s_array(T) const* array2)
 {
 	if (array1 == array2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (array1 - array2);)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (array1 - array2);)
-	HANDLE_ERROR(NULLPOINTER, (array1->items == NULL), return (array1->items - array2->items);)
-	HANDLE_ERROR(NULLPOINTER, (array2->items == NULL), return (array1->items - array2->items);)
+	if CCCERROR((array1 == NULL), ERROR_NULLPOINTER, NULL) return (array1 - array2);
+	if CCCERROR((array2 == NULL), ERROR_NULLPOINTER, NULL) return (array1 - array2);
+	if CCCERROR((array1->items == NULL), ERROR_NULLPOINTER, NULL) return (array1->items - array2->items);
+	if CCCERROR((array2->items == NULL), ERROR_NULLPOINTER, NULL) return (array1->items - array2->items);
 	if (array1->length == array2->length && array1->items == array2->items)
 		return (0);
 	for (t_uint i = 0; (i < array1->length) && (i < array2->length); ++i)
@@ -30,10 +30,10 @@ t_bool	Array_Equals_N(T)(s_array(T) const* array1, s_array(T) const* array2, t_u
 {
 	if (array1 == array2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (array1 == NULL), return (array1 - array2);)
-	HANDLE_ERROR(NULLPOINTER, (array2 == NULL), return (array1 - array2);)
-	HANDLE_ERROR(NULLPOINTER, (array1->items == NULL), return (array1->items - array2->items);)
-	HANDLE_ERROR(NULLPOINTER, (array2->items == NULL), return (array1->items - array2->items);)
+	if CCCERROR((array1 == NULL), ERROR_NULLPOINTER, NULL) return (array1 - array2);
+	if CCCERROR((array2 == NULL), ERROR_NULLPOINTER, NULL) return (array1 - array2);
+	if CCCERROR((array1->items == NULL), ERROR_NULLPOINTER, NULL) return (array1->items - array2->items);
+	if CCCERROR((array2->items == NULL), ERROR_NULLPOINTER, NULL) return (array1->items - array2->items);
 	if (array1->length == array2->length && array1->items == array2->items)
 		return (0);
 	for (t_uint i = 0; (i < n) && (i < array1->length) && (i < array2->length); ++i)

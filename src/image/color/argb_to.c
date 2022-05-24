@@ -61,7 +61,8 @@ t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB16_CHANNEL;
 	t_argb16 result;
 
-	HANDLE_ERROR(NULLPOINTER, (color == NULL), return (0);)
+	if CCCERROR((color == NULL), ERROR_NULLPOINTER, "color struct given is NULL")
+		return (0);
 	result = (t_argb16)((color->a > 0) ? COLOR_ARGB16_A : 0);
 	result |= (t_argb16)(color->r * factor) << COLOR_ARGB16_R_BITINDEX;
 	result |= (t_argb16)(color->g * factor) << COLOR_ARGB16_G_BITINDEX;
@@ -74,7 +75,8 @@ t_argb32	Color_ARGB_To_ARGB32(s_argb const* color)
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL;
 	t_argb32 result = 0;
 
-	HANDLE_ERROR(NULLPOINTER, (color == NULL), return (0);)
+	if CCCERROR((color == NULL), ERROR_NULLPOINTER, "color struct given is NULL")
+		return (0);
 	result |= (t_argb32)(color->a * factor) << COLOR_ARGB32_A_BITINDEX;
 	result |= (t_argb32)(color->r * factor) << COLOR_ARGB32_R_BITINDEX;
 	result |= (t_argb32)(color->g * factor) << COLOR_ARGB32_G_BITINDEX;

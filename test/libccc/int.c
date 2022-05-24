@@ -1,7 +1,7 @@
 
 #include "libccc.h"
 #include "libccc/bool.h"
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
 
@@ -29,7 +29,7 @@
 */
 
 #define DEFINETEST_UINT_TO_STR(BITS) \
-void	print_test_u##BITS##tostr(char const* test_name, int can_segfault,		\
+void	print_test_u##BITS##tostr(char const* test_name, t_testflags flags,		\
 		char const* expecting,													\
 		t_u##BITS number)														\
 {																				\
@@ -40,7 +40,7 @@ void	print_test_u##BITS##tostr(char const* test_name, int can_segfault,		\
 }																				\
 void	test_u##BITS##tostr(void)																							\
 {																															\
-/*	| TEST FUNCTION          | TEST NAME                      |CAN SEGV| EXPECTING             | TEST ARGS			*/		\
+/*	| TEST FUNCTION          | TEST NAME                      |TESTFLAG| EXPECTING             | TEST ARGS			*/		\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n = min)       ",	FALSE,                      "0", 0                     );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                      "1", 1                     );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                      "9", 9                     );	\
@@ -55,7 +55,7 @@ void	test_u##BITS##tostr(void)																							\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                    "128", 128                   );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                    "129", 129                   );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n = 8max)      ",	FALSE,                    "255", 255                   );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n < 8min)      ",	FALSE,                     "-1", -1                    );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 8max)      ",	FALSE,                    "256", 256                   );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 8maxdigit) ",	FALSE,                  "99999", 99999                 );	\
@@ -67,7 +67,7 @@ void	test_u##BITS##tostr(void)																							\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                   "7777", 7777                  );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,                  "10000", 10000                 );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n = 16max)     ",	FALSE,                  "65535", 65535                 );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n < 16min)     ",	FALSE,                     "-1", -1                    );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 16max)     ",	FALSE,                  "65536", 65536                 );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 16maxdigit)",	FALSE,                "9999999", 9999999               );	\
@@ -79,7 +79,7 @@ void	test_u##BITS##tostr(void)																							\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,              "555555555", 555555555             );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,              "987654321", 987654321             );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n = 32max)     ",	FALSE,             "4294967295", 4294967295            );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n < 32min)     ",	FALSE,                     "-1", -1                    );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 32max)     ",	FALSE,             "4294967296", 4294967296            );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999          );	\
@@ -92,7 +92,7 @@ void	test_u##BITS##tostr(void)																							\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,        "999999999999000", 999999999999000ul     );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr                 ",	FALSE,     "999999999999000999", 999999999999000999ul  );	\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n = 64max)     ",	FALSE,   "18446744073709551615", 18446744073709551615ul);	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_u##BITS##tostr("u"#BITS"tostr (n < 64min)     ",	FALSE,                     "-1", -1                    );	\
 /*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64max)     ",	FALSE,   "18446744073709551616", 18446744073709551616ul); */\
 /*	print_test_u##BITS##tostr("u"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999ul);*/\
@@ -139,7 +139,7 @@ DEFINETEST_UINT_TO_STR(128)
 
 
 #define DEFINETEST_SINT_TO_STR(BITS) \
-void	print_test_s##BITS##tostr(char const* test_name, int can_segfault,		\
+void	print_test_s##BITS##tostr(char const* test_name, t_testflags flags,		\
 		char const* expecting,													\
 		t_s##BITS number)														\
 {																				\
@@ -150,7 +150,7 @@ void	print_test_s##BITS##tostr(char const* test_name, int can_segfault,		\
 }																				\
 void	test_s##BITS##tostr(void)																							\
 {																															\
-/*	| TEST FUNCTION          | TEST NAME                     |CAN SEGV| EXPECTING              | TEST ARGS				*/	\
+/*	| TEST FUNCTION          | TEST NAME                     |TESTFLAG| EXPECTING              | TEST ARGS				*/	\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,                      "1", 1                      );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,                     "-1",-1                      );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,                     "10", 10                     );	\
@@ -161,7 +161,7 @@ void	test_s##BITS##tostr(void)																							\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,                   "-111",-111                    );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 8min)      ",	FALSE,                   "-128",-128                    );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 8max)      ",	FALSE,                    "127", 127                    );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n < 8min)      ",	FALSE,                   "-129",-129                    );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 8max)      ",	FALSE,                    "128", 128                    );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 8maxdigit) ",	FALSE,                  "99999", 99999                  );	\
@@ -175,7 +175,7 @@ void	test_s##BITS##tostr(void)																							\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,                  "10000",+10000                  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 16min)     ",	FALSE,                 "-32768",-32768                  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 16max)     ",	FALSE,                  "32767", 32767                  );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n < 16min)     ",	FALSE,                 "-32769",-32769                  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 16max)     ",	FALSE,                  "32768", 32768                  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 16maxdigit)",	FALSE,                "9999999", 9999999                );	\
@@ -189,7 +189,7 @@ void	test_s##BITS##tostr(void)																							\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,              "987654321", 987654321              );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 32min)     ",	FALSE,            "-2147483648",-2147483648             );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 32max)     ",	FALSE,             "2147483647", 2147483647             );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n < 32min)     ",	FALSE,            "-2147483649",-2147483649             );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 32max)     ",	FALSE,             "2147483648", 2147483648             );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 32maxdigit)",	FALSE,           "999999999999", 999999999999           );	\
@@ -205,7 +205,7 @@ void	test_s##BITS##tostr(void)																							\
 	print_test_s##BITS##tostr("s"#BITS"tostr                 ",	FALSE,          "-999999999999",-999999999999ll         );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808",-9223372036854775808ll  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n = 64max)     ",	FALSE,    "9223372036854775807", 9223372036854775807ll  );	\
-	if (g_test.flags.test_overflow) {																						\
+	if (g_test.config.test_overflow) {																						\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809",-9223372036854775809ll  );	\
 	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64max)     ",	FALSE,    "9223372036854775808", 9223372036854775808ll  );	\
 /*	print_test_s##BITS##tostr("s"#BITS"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999", 999999999999999999999ll);*/\
@@ -258,7 +258,7 @@ DEFINETEST_SINT_TO_STR(128)
 */
 
 #define DEFINETEST_UINT_TO_STRHEX(BITS) \
-void	print_test_u##BITS##tostrhex(char const* test_name, int can_segfault,		\
+void	print_test_u##BITS##tostrhex(char const* test_name, t_testflags flags,		\
 		char const* expecting,														\
 		t_u##BITS number)															\
 {																					\
@@ -269,7 +269,7 @@ void	print_test_u##BITS##tostrhex(char const* test_name, int can_segfault,		\
 }																					\
 void	test_u##BITS##tostrhex(void)																								\
 {																																	\
-/*	| TEST FUNCTION             | TEST NAME                          |CAN SEGV| EXPECTING              | TEST ARGS				*/	\
+/*	| TEST FUNCTION             | TEST NAME                          |TESTFLAG| EXPECTING              | TEST ARGS				*/	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = min)       ",	FALSE,                      "0", 0                     );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                      "1", 1                     );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                      "2", 2                     );	\
@@ -279,7 +279,7 @@ void	test_u##BITS##tostrhex(void)																								\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                     "2A", 42                    );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                     "6F", 111                   );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 8max)      ",	FALSE,                     "FF", 255                   );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 8min)      ",	FALSE,                 "-1", -1                    );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 8max)      ",	FALSE,                "100", 256                   );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 8maxdigit) ",	FALSE,              "1869F", 99999                 );	\
@@ -290,7 +290,7 @@ void	test_u##BITS##tostrhex(void)																								\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                    "30A", 778                   );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                   "2710", 10000                 );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 16max)     ",	FALSE,                   "FFFF", 65535                 );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 16min)     ",	FALSE,                 "-1", -1                    );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 16max)     ",	FALSE,              "10000", 65536                 );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 16maxdigit)",	FALSE,             "98967F", 9999999               );	\
@@ -301,7 +301,7 @@ void	test_u##BITS##tostrhex(void)																								\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,                "75BCD15", 123456789             );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,               "3ADE68B1", 987654321             );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 32max)     ",	FALSE,               "FFFFFFFF", 4294967295            );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 32min)     ",	FALSE,                 "-1", -1                    );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 32max)     ",	FALSE,          "100000000", 4294967296            );	\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 32maxdigit)",	FALSE,         "E8D4A50FFF", 999999999999          );	\
@@ -313,7 +313,7 @@ void	test_u##BITS##tostrhex(void)																								\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A50FFF", 999999999999ul        );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex                 ",	FALSE,             "E8D4A51000", 1000000000000ul       );	\
 	print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n = 64max)     ",	FALSE,       "FFFFFFFFFFFFFFFF", 18446744073709551615ul);	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n < 64min)     ",	FALSE,                 "-1", -1                    );	\
 		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64max)     ",	FALSE,  "10000000000000000", 18446744073709551616ul);*/	\
 		/*print_test_u##BITS##tostrhex("u"#BITS"tostrhex (n > 64maxdigit)",	FALSE,                  "0", 999999999999999999999ul);*/\
@@ -366,7 +366,7 @@ DEFINETEST_UINT_TO_STRHEX(128)
 */
 
 #define DEFINETEST_SINT_TO_STRBASE(BITS) \
-void	print_test_s##BITS##tostrbase(char const* test_name, int can_segfault,		\
+void	print_test_s##BITS##tostrbase(char const* test_name, t_testflags flags,		\
 		char const* expecting,														\
 		t_s##BITS number,															\
 		char const* base)															\
@@ -378,7 +378,7 @@ void	print_test_s##BITS##tostrbase(char const* test_name, int can_segfault,		\
 }																					\
 void	test_s##BITS##tostrbase(void)																													\
 {																																						\
-/*	| TEST FUNCTION              | TEST NAME                          |CAN SEGV| EXPECTING                | TEST ARGS								*/	\
+/*	| TEST FUNCTION              | TEST NAME                          |TESTFLAG| EXPECTING                | TEST ARGS								*/	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,                         "1",                   1,               "01");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,                        NULL,                   1,               "+1");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase                 ",	FALSE,                        NULL,                   0,                "m");	\
@@ -406,7 +406,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 8max, oct) ",	FALSE,                       "177",                 127,         "01234567");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 8min, bin) ",	FALSE,                 "-10000000",                -128,               "01");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 8max, bin) ",	FALSE,                   "1111111",                 127,               "01");	\
-	if (g_test.flags.test_overflow) {																													\
+	if (g_test.config.test_overflow) {																													\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n < 8min)      ",	FALSE,                  "-129",                -129,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 8max)      ",	FALSE,                   "128",                 128,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 8maxdigit) ",	FALSE,                    NULL,               99999,               "01");	\
@@ -428,7 +428,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 16max, oct)",	FALSE,                     "77777",               32767,         "01234567");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 16min, bin)",	FALSE,         "-1000000000000000",              -32768,               "01");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 16max, bin)",	FALSE,           "111111111111111",               32767,               "01");	\
-	if (g_test.flags.test_overflow) {																													\
+	if (g_test.config.test_overflow) {																													\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n < 16min)     ",	FALSE,                "-32769",              -32769,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 16max)     ",	FALSE,                 "32768",               32768,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 16maxdigit)",	FALSE,                    NULL,             9999999,               "01");	\
@@ -446,7 +446,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 32max, oct)",	FALSE,               "17777777777",          2147483647,         "01234567");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 32min, bin)",	FALSE,"-10000000000000000000000000000000",  -2147483648,               "01");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 32max, bin)",	FALSE,  "1111111111111111111111111111111",   2147483647,               "01");	\
-	if (g_test.flags.test_overflow) {																													\
+	if (g_test.config.test_overflow) {																													\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n < 32min)     ",	FALSE,           "-2147483649",         -2147483649,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 32max)     ",	FALSE,            "2147483648",          2147483648,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 32maxdigit)",	FALSE,                    NULL,        999999999999,               "01");	\
@@ -465,7 +465,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 64max, oct)",	FALSE,     "777777777777777777777", 9223372036854775807,         "01234567");	\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 64min, bin)",	FALSE,"-1000000000000000000000000000000000000000000000000000000000000000",-9223372036854775808,"01");\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n = 64max, bin)",	FALSE,  "111111111111111111111111111111111111111111111111111111111111111", 9223372036854775807,"01");\
-	if (g_test.flags.test_overflow) {																													\
+	if (g_test.config.test_overflow) {																													\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n < 64min)     ",	FALSE,  "-9223372036854775808",-9223372036854775808,       "0123456789");	\
 		print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 64max)     ",	FALSE,   "9223372036854775808", 9223372036854775808,       "0123456789");	\
 	/*	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999,               "01");*/	\
@@ -473,7 +473,7 @@ void	test_s##BITS##tostrbase(void)																													\
 	}																																					\
 	}}}																																					\
 	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (empty base)    ",	FALSE,                        NULL,                  42,                 "");	\
-	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (null base)     ",	SIGNAL_SIGSEGV,               NULL,                  42,               NULL);	\
+	print_test_s##BITS##tostrbase("s"#BITS"tostrbase (null base)     ",	ALLOW_SIGSEGV,               NULL,                  42,               NULL);	\
 }
 
 #ifndef c_s8tostrbase
@@ -514,7 +514,7 @@ DEFINETEST_SINT_TO_STRBASE(128)
 
 
 #define DEFINETEST_UINT_TO_STRBASE(BITS) \
-void	print_test_u##BITS##tostrbase(char const* test_name, int can_segfault,		\
+void	print_test_u##BITS##tostrbase(char const* test_name, t_testflags flags,		\
 		char const* expecting,														\
 		t_u##BITS number,															\
 		char const* base)															\
@@ -526,7 +526,7 @@ void	print_test_u##BITS##tostrbase(char const* test_name, int can_segfault,		\
 }																					\
 void	test_u##BITS##tostrbase(void)																												\
 {																																					\
-/*	| TEST FUNCTION              | TEST NAME                         |CAN SEGV|  EXPECTING              | TEST ARGS								*/	\
+/*	| TEST FUNCTION              | TEST NAME                         |TESTFLAG|  EXPECTING              | TEST ARGS								*/	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = min, dec)  ",	FALSE,                       "0",                   0,       "0123456789");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = min, hex)  ",	FALSE,                       "0",                   0, "0123456789ABCDEF");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = min, oct)  ",	FALSE,                       "0",                   0,         "01234567");	\
@@ -553,7 +553,7 @@ void	test_u##BITS##tostrbase(void)																												\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 8max, hex) ",	FALSE,                      "FF",                 255, "0123456789ABCDEF");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 8max, oct) ",	FALSE,                     "377",                 255,         "01234567");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 8max, bin) ",	FALSE,                "11111111",                 255,               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n < 8min)      ",	FALSE,                  "-1",                  -1,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 8max)      ",	FALSE,                 "256",                 256,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 8maxdigit) ",	FALSE,                  NULL,               99999,               "01");	\
@@ -574,7 +574,7 @@ void	test_u##BITS##tostrbase(void)																												\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 16max, hex)",	FALSE,                    "FFFF",               65535, "0123456789ABCDEF");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 16max, oct)",	FALSE,                  "177777",               65535,         "01234567");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 16max, bin)",	FALSE,        "1111111111111111",               65535,               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n < 16min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 16max)     ",	FALSE,               "65536",               65536,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 16maxdigit)",	FALSE,                  NULL,             9999999,               "01");	\
@@ -589,7 +589,7 @@ void	test_u##BITS##tostrbase(void)																												\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 32max, hex)",	FALSE,                "FFFFFFFF",          4294967295, "0123456789ABCDEF");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 32max, oct)",	FALSE,             "37777777777",          4294967295,         "01234567");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 32max, bin)",	FALSE, "11111111111111111111111111111111", 4294967295,               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n < 32min)     ",	FALSE,                  "-1",                  -1,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 32max)     ",	FALSE,          "4294967296",          4294967296,       "0123456789");	\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 32maxdigit)",	FALSE,                  NULL,        999999999999,               "01");	\
@@ -601,7 +601,7 @@ void	test_u##BITS##tostrbase(void)																												\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 64max, hex)",	FALSE,      "FFFFFFFFFFFFFFFF",18446744073709551615llu,"0123456789ABCDEF");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 64max, oct)",	FALSE,"1777777777777777777777",18446744073709551615llu,        "01234567");	\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n = 64max, bin)",	FALSE,"1111111111111111111111111111111111111111111111111111111111111111", 18446744073709551615UL,"01");\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n < 64min)     ",	FALSE,                  "-1",                      -1,   "0123456789");	\
 	/*	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 64max)     ",	FALSE,"18446744073709551616",  18446744073709551616UL,   "0123456789");*/\
 	/*	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (n > 64maxdigit)",	FALSE,                  NULL, 999999999999999999999LL,           "01");*/\
@@ -609,7 +609,7 @@ void	test_u##BITS##tostrbase(void)																												\
 	}																																				\
 	}}}																																				\
 	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (empty base)  ",	FALSE,                      NULL,                  42,                 "");	\
-	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (null base)   ",	SIGNAL_SIGSEGV,             NULL,                  42,               NULL);	\
+	print_test_u##BITS##tostrbase("u"#BITS"tostrbase (null base)   ",	ALLOW_SIGSEGV,             NULL,                  42,               NULL);	\
 }
 
 #ifndef c_u8tostrbase
@@ -661,7 +661,7 @@ DEFINETEST_UINT_TO_STRBASE(128)
 */
 
 #define DEFINETEST_STR_TO_UINT(BITS) \
-void	print_test_strtou##BITS(char const* test_name, int can_segfault,	\
+void	print_test_strtou##BITS(char const* test_name, t_testflags flags,	\
 		t_u##BITS expecting,												\
 		char const* str)													\
 {																			\
@@ -671,7 +671,7 @@ void	print_test_strtou##BITS(char const* test_name, int can_segfault,	\
 }																			\
 void test_strtou##BITS(void)																										\
 {																																	\
-/*	| TEST FUNCTION        | TEST NAME                       |CAN SEGV| EXPECTING                 | TEST ARGS					*/	\
+/*	| TEST FUNCTION        | TEST NAME                       |TESTFLAG| EXPECTING                 | TEST ARGS					*/	\
 	print_test_strtou##BITS("strtou"#BITS" (n = min)       ",	FALSE,                           0, "0"                          );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           1, "1"                          );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           2, "2"                          );	\
@@ -742,7 +742,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\\25627165465413"           );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                           0, "\2568"                      );	\
 	print_test_strtou##BITS("strtou"#BITS" (n = 8 max)     ",	FALSE,                         255, "255"                        );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtou##BITS("strtou"#BITS" (n < 8 min)     ",	FALSE,                       0, "-1"                         );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 8 max)     ",	FALSE,                     256,  "256"                       );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 8 maxdigit)",	FALSE,                   99999,  "99999"                     );	\
@@ -766,7 +766,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                        5486, "5486helllo"                 );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                       30000, "30000f"                     );	\
 	print_test_strtou##BITS("strtou"#BITS" (n = 16max)     ",	FALSE,                       65535, "65535"                      );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtou##BITS("strtou"#BITS" (n < 16min)     ",	FALSE,                       0, "-32769"                     );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 16max)     ",	FALSE,                   65536, "65536"                      );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 16maxdigit)",	FALSE,                 9999999, "9999999"                    );	\
@@ -781,7 +781,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                  1000000000,  "1000000000"                );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                  1000000000, "+1000000000"                );	\
 	print_test_strtou##BITS("strtou"#BITS" (n = 32max)     ",	FALSE,                  4294967295, "4294967295"                 );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtou##BITS("strtou"#BITS" (n < 32min)     ",	FALSE,                       0, "-1"                         );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 32max)     ",	FALSE,              4294967296, "4294967296"                 );	\
 		print_test_strtou##BITS("strtou"#BITS" (n > 32maxdigit)",	FALSE,            999999999999, "999999999999"               );	\
@@ -796,7 +796,7 @@ void test_strtou##BITS(void)																										\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                 +3000000000, "+3000000000"                );	\
 	print_test_strtou##BITS("strtou"#BITS"                 ",	FALSE,                  3000000000,  "3000000000"                );	\
 	print_test_strtou##BITS("strtou"#BITS" (n = 64min)     ",	FALSE,                           0, "0"                          );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtou##BITS("strtou"#BITS" (n < 64min)     ",	FALSE,                       0, "-1"                         );	\
 	/*	print_test_strtou##BITS("strtou"#BITS" (n > 64max)     ",	FALSE,  18446744073709551616UL, "18446744073709551616"       );*/\
 	/*	print_test_strtou##BITS("strtou"#BITS" (n > 64maxdigit)",	FALSE, 999999999999999999999LL, "999999999999999999999"      );*/\
@@ -804,7 +804,7 @@ void test_strtou##BITS(void)																										\
 	}																																\
 	}}}																																\
 	print_test_strtou##BITS("strtos"#BITS" (empty str)     ",	FALSE,                       0, ""                           );		\
-	print_test_strtou##BITS("strtos"#BITS" (null str)      ",	SEGV,                        0, NULL                         );		\
+	print_test_strtou##BITS("strtos"#BITS" (null str)      ",	ALLOW_SIGSEGV,              0, NULL                         );		\
 }
 
 #ifndef c_strtou8
@@ -845,7 +845,7 @@ DEFINETEST_STR_TO_UINT(128)
 
 
 #define DEFINETEST_STR_TO_SINT(BITS) \
-void	print_test_strtos##BITS(char const* test_name, int can_segfault,	\
+void	print_test_strtos##BITS(char const* test_name, t_testflags flags,	\
 		t_s##BITS expecting,												\
 		char const* str)													\
 {																			\
@@ -855,7 +855,7 @@ void	print_test_strtos##BITS(char const* test_name, int can_segfault,	\
 }																			\
 void test_strtos##BITS(void)																										\
 {																																	\
-/*	| TEST FUNCTION       | TEST NAME                         |CAN SEGV| EXPECTING                 | TEST ARGS					*/	\
+/*	| TEST FUNCTION       | TEST NAME                         |TESTFLAG| EXPECTING                 | TEST ARGS					*/	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "0"                          );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           1, "1"                          );	\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                          42, "42"                         );	\
@@ -924,7 +924,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                           0, "\2568"                      );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 8 min)     ",	FALSE,                        -128, "-128"                       );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 8 max)     ",	FALSE,                         127, " 127"                       );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtos##BITS("strtos"#BITS" (n < 8 min)     ",	FALSE,                    -129, "-129"                       );	\
 		print_test_strtos##BITS("strtos"#BITS" (n > 8 max)     ",	FALSE,                     128, " 128"                       );	\
 		print_test_strtos##BITS("strtos"#BITS" (n < 8 maxdigit)",	FALSE,                  -99999, "-99999"                     );	\
@@ -948,7 +948,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                       30000, "30000f"                     );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 16min)     ",	FALSE,                      -32768, "-32768"                     );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 16max)     ",	FALSE,                       32767, " 32767"                     );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtos##BITS("strtos"#BITS" (n < 16min)     ",	FALSE,                  -32769, "-32769"                     );	\
 		print_test_strtos##BITS("strtos"#BITS" (n > 16max)     ",	FALSE,                   32768,  "32768"                     );	\
 		print_test_strtos##BITS("strtos"#BITS" (n < 16maxdigit)",	FALSE,                -9999999, "-9999999"                   );	\
@@ -964,7 +964,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                  1000000000,  "1000000000"                );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 32min)     ",	FALSE,                 -2147483648, "-2147483648"                );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 32max)     ",	FALSE,                  2147483647,  "2147483647"                );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtos##BITS("strtos"#BITS" (n < 32min)     ",	FALSE,             -2147483649, "-2147483649"                );	\
 		print_test_strtos##BITS("strtos"#BITS" (n > 32max)     ",	FALSE,              2147483648,  "2147483648"                );	\
 		print_test_strtos##BITS("strtos"#BITS" (n < 32maxdigit)",	FALSE,           -999999999999, "-999999999999"              );	\
@@ -979,7 +979,7 @@ void test_strtos##BITS(void)																										\
 	print_test_strtos##BITS("strtos"#BITS"                 ",	FALSE,                  3000000000,  "3000000000"                );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 64min)     ",	FALSE,      -9223372036854775808LL, "-9223372036854775808"       );	\
 	print_test_strtos##BITS("strtos"#BITS" (n = 64max)     ",	FALSE,       9223372036854775807LL,  "9223372036854775807"       );	\
-	if (g_test.flags.test_overflow) {																								\
+	if (g_test.config.test_overflow) {																								\
 		print_test_strtos##BITS("strtos"#BITS" (n < 64min)     ",	FALSE,  -9223372036854775809LL, "-9223372036854775809"       );	\
 		print_test_strtos##BITS("strtos"#BITS" (n > 64max)     ",	FALSE,   9223372036854775808LL,  "9223372036854775808"       );	\
 /*		print_test_strtos##BITS("strtos"#BITS" (n < 64maxdigit)",	FALSE,-999999999999999999999LL, "-999999999999999999999"     );*/\
@@ -987,7 +987,7 @@ void test_strtos##BITS(void)																										\
 	}																																\
 	}}}																																\
 	print_test_strtos##BITS("strtos"#BITS" (empty str)     ",	FALSE,                           0, ""                           );	\
-	print_test_strtos##BITS("strtos"#BITS" (null str)      ",	SEGV,                            0, NULL                         );	\
+	print_test_strtos##BITS("strtos"#BITS" (null str)      ",	ALLOW_SIGSEGV,                  0, NULL                         );	\
 }
 
 #ifndef c_strtos8
@@ -1028,7 +1028,7 @@ DEFINETEST_STR_TO_SINT(128)
 
 
 #define DEFINETEST_STRHEX_TO_UINT(BITS) \
-void	print_test_strhextou##BITS(char const* test_name, int can_segfault,	\
+void	print_test_strhextou##BITS(char const* test_name, t_testflags flags,	\
 		t_u##BITS expecting,												\
 		char const* str)													\
 {																			\
@@ -1038,7 +1038,7 @@ void	print_test_strhextou##BITS(char const* test_name, int can_segfault,	\
 }																			\
 void	test_strhextou##BITS(void)														\
 {																						\
-/*	| TEST FUNCTION  | TEST NAME          |CAN SEGV| EXPECTING | TEST ARGS			*/	\
+/*	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS			*/	\
 /*	TODO */																				\
 }																						\
 
@@ -1093,7 +1093,7 @@ DEFINETEST_STRHEX_TO_UINT(128)
 */
 
 #define DEFINETEST_STRBASE_TO_UINT(BITS) \
-void	print_test_strbasetou##BITS(char const* test_name, int can_segfault,		\
+void	print_test_strbasetou##BITS(char const* test_name, t_testflags flags,		\
 		t_u##BITS expecting,														\
 		char const* number,															\
 		char const* base)															\
@@ -1104,7 +1104,7 @@ void	print_test_strbasetou##BITS(char const* test_name, int can_segfault,		\
 }																					\
 void	test_strbasetou##BITS(void)																												\
 {																																					\
-/*	| TEST FUNCTION          | TEST NAME                             |CAN SEGV|      EXPECTING              | TEST ARGS							*/	\
+/*	| TEST FUNCTION          | TEST NAME                             |TESTFLAG|      EXPECTING              | TEST ARGS							*/	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = min, dec)  ",	FALSE,                      0,                   "0",       "0123456789");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = min, hex)  ",	FALSE,                      0,                   "0", "0123456789ABCDEF");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = min, oct)  ",	FALSE,                      0,                   "0",         "01234567");	\
@@ -1133,7 +1133,7 @@ void	test_strbasetou##BITS(void)																												\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 8 max, hex)",	FALSE,                    255,                  "FF", "0123456789ABCDEF");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 8 max, oct)",	FALSE,                    255,                 "377",         "01234567");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 8 max, bin)",	FALSE,                    255,            "11111111",               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 8 min)     ",	FALSE,                 -1,                  "-1",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n > 8 max)     ",	FALSE,                256,                 "256",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 8 maxdigit)",	FALSE,             -99999,              "-99999",       "0123456789");	\
@@ -1153,7 +1153,7 @@ void	test_strbasetou##BITS(void)																												\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 16max, hex)",	FALSE,                  65535,                "FFFF", "0123456789ABCDEF");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 16max, oct)",	FALSE,                  65535,              "177777",         "01234567");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 16max, bin)",	FALSE,                  65535,    "1111111111111111",               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 16min)     ",	FALSE,                 -1,                  "-1",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n > 16max)     ",	FALSE,              65536,               "65536",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 16maxdigit)",	FALSE,           -9999999,            "-9999999",       "0123456789");	\
@@ -1166,7 +1166,7 @@ void	test_strbasetou##BITS(void)																												\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 32max, hex)",	FALSE,             4294967295,            "FFFFFFFF", "0123456789ABCDEF");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 32max, oct)",	FALSE,             4294967295,         "37777777777",         "01234567");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 32max, bin)",	FALSE,             4294967295,"11111111111111111111111111111111",   "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 32min)     ",	FALSE,                 -1,                  "-1",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n > 32max)     ",	FALSE,         4294967296,          "4294967296",       "0123456789");	\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 32maxdigit)",	FALSE,      -999999999999,       "-999999999999",       "0123456789");	\
@@ -1178,7 +1178,7 @@ void	test_strbasetou##BITS(void)																												\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 64max, hex)",	FALSE, 18446744073709551615UL,      "FFFFFFFFFFFFFFFF","0123456789ABCDEF");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 64max, oct)",	FALSE, 18446744073709551615UL,"1777777777777777777777",        "01234567");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (n = 64max, bin)",	FALSE, 18446744073709551615UL,"1111111111111111111111111111111111111111111111111111111111111111","01");\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetou##BITS("strbasetou"#BITS" (n < 64min)     ",FALSE,                      -1,                    "-1",  "0123456789");	\
 	/*	print_test_strbasetou##BITS("strbasetou"#BITS" (n > 64max)     ",FALSE,  18446744073709551616UL,  "18446744073709551616",  "0123456789");*/	\
 	/*	print_test_strbasetou##BITS("strbasetou"#BITS" (n < 64maxdigit)",FALSE,-999999999999999999999LL,"-999999999999999999999",  "0123456789");*/	\
@@ -1188,9 +1188,9 @@ void	test_strbasetou##BITS(void)																												\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (empty base)    ",	FALSE,                      0,                  "01",                 "");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (empty number)  ",	FALSE,                      0,                    "",               "01");	\
 	print_test_strbasetou##BITS("strbasetou"#BITS" (both empty)    ",	FALSE,                      0,                    "",                 "");	\
-	print_test_strbasetou##BITS("strbasetou"#BITS" (null base)     ",	SEGV,                       0,                  "01",               NULL);	\
-	print_test_strbasetou##BITS("strbasetou"#BITS" (null number)   ",	SEGV,                       0,                  NULL,               "01");	\
-	print_test_strbasetou##BITS("strbasetou"#BITS" (both null)     ",	SEGV,                       0,                  NULL,               NULL);	\
+	print_test_strbasetou##BITS("strbasetou"#BITS" (null base)     ",	ALLOW_SIGSEGV,             0,                  "01",               NULL);	\
+	print_test_strbasetou##BITS("strbasetou"#BITS" (null number)   ",	ALLOW_SIGSEGV,             0,                  NULL,               "01");	\
+	print_test_strbasetou##BITS("strbasetou"#BITS" (both null)     ",	ALLOW_SIGSEGV,             0,                  NULL,               NULL);	\
 }
 
 #ifndef c_strbasetou8
@@ -1231,7 +1231,7 @@ DEFINETEST_STRBASE_TO_UINT(128)
 
 
 #define DEFINETEST_STRBASE_TO_SINT(BITS) \
-void	print_test_strbasetos##BITS(char const* test_name, int can_segfault,		\
+void	print_test_strbasetos##BITS(char const* test_name, t_testflags flags,		\
 		t_s##BITS expecting,														\
 		char const* number,															\
 		char const* base)															\
@@ -1242,7 +1242,7 @@ void	print_test_strbasetos##BITS(char const* test_name, int can_segfault,		\
 }																					\
 void	test_strbasetos##BITS(void)																													\
 {																																					\
-/*	| TEST FUNCTION            | TEST NAME                           |CAN SEGV|  EXPECTING          | TEST ARGS									*/	\
+/*	| TEST FUNCTION            | TEST NAME                           |TESTFLAG|  EXPECTING          | TEST ARGS									*/	\
 	print_test_strbasetos##BITS("strbasetos"#BITS"                 ",	FALSE,                     0,                    "0",               "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS"                 ",	FALSE,                     1,                    "1",               "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS"                 ",	FALSE,                     2,                   "10",               "01");	\
@@ -1274,7 +1274,7 @@ void	test_strbasetos##BITS(void)																													\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 8 max, oct)",	FALSE,                   127,                  "177",         "01234567");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 8 min, bin)",	FALSE,                  -128,            "-10000000",               "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 8 max, bin)",	FALSE,                   127,              "1111111",               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 8 min)     ",	FALSE,              -129,                 "-129",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n > 8 max)     ",	FALSE,               128,                  "128",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 8 maxdigit)",	FALSE,            -99999,               "-99999",       "0123456789");	\
@@ -1298,7 +1298,7 @@ void	test_strbasetos##BITS(void)																													\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 16max, oct)",	FALSE,                 32767,                "77777",         "01234567");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 16min, bin)",	FALSE,                -32768,    "-1000000000000000",               "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 16max, bin)",	FALSE,                 32767,      "111111111111111",               "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 16min)     ",	FALSE,            -32769,               "-32769",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n > 16max)     ",	FALSE,             32768,                "32768",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 16maxdigit)",	FALSE,          -9999999,             "-9999999",       "0123456789");	\
@@ -1314,7 +1314,7 @@ void	test_strbasetos##BITS(void)																													\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 32max, oct)",	FALSE,            2147483647,          "17777777777",         "01234567");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 32min, bin)",	FALSE,           -2147483648,"-10000000000000000000000000000000",   "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 32max, bin)",	FALSE,            2147483647,  "1111111111111111111111111111111",   "01");	\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 32min)     ",	FALSE,       -2147483649,          "-2147483649",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n > 32max)     ",	FALSE,        2147483648,           "2147483648",       "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 32maxdigit)",	FALSE,     -999999999999,        "-999999999999",       "0123456789");	\
@@ -1330,7 +1330,7 @@ void	test_strbasetos##BITS(void)																													\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 64max, oct)",	FALSE,   9223372036854775807,  "777777777777777777777",       "01234567");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 64min, bin)",	FALSE,  -9223372036854775808,"-1000000000000000000000000000000000000000000000000000000000000000","01");\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (n = 64max, bin)",	FALSE,   9223372036854775807,  "111111111111111111111111111111111111111111111111111111111111111","01");\
-	if (g_test.flags.test_overflow) {																												\
+	if (g_test.config.test_overflow) {																												\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n > 64max)     ",FALSE,   9223372036854775808,   "9223372036854775808",    "0123456789");	\
 		print_test_strbasetos##BITS("strbasetos"#BITS" (n < 64min)     ",FALSE,  -9223372036854775808,  "-9223372036854775808",    "0123456789");	\
 	/*	print_test_strbasetos##BITS("strbasetos"#BITS" (n < 64maxdigit)",FALSE, 999999999999999999999, "999999999999999999999",    "0123456789");*/	\
@@ -1340,9 +1340,9 @@ void	test_strbasetos##BITS(void)																													\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (empty base)    ",	FALSE,                     0,                   "01",                "");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (empty number)  ",	FALSE,                     0,                     "",              "01");	\
 	print_test_strbasetos##BITS("strbasetos"#BITS" (both empty)    ",	FALSE,                     0,                     "",                "");	\
-	print_test_strbasetos##BITS("strbasetos"#BITS" (null base)     ",	SEGV,                      0,                   "01",              NULL);	\
-	print_test_strbasetos##BITS("strbasetos"#BITS" (null number)   ",	SEGV,                      0,                   NULL,              "01");	\
-	print_test_strbasetos##BITS("strbasetos"#BITS" (both null)     ",	SEGV,                      0,                   NULL,              NULL);	\
+	print_test_strbasetos##BITS("strbasetos"#BITS" (null base)     ",	ALLOW_SIGSEGV,            0,                   "01",              NULL);	\
+	print_test_strbasetos##BITS("strbasetos"#BITS" (null number)   ",	ALLOW_SIGSEGV,            0,                   NULL,              "01");	\
+	print_test_strbasetos##BITS("strbasetos"#BITS" (both null)     ",	ALLOW_SIGSEGV,            0,                   NULL,              NULL);	\
 }
 
 #ifndef c_strbasetos8

@@ -19,7 +19,8 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 	t_u8*	result;
 	t_size	i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return (NULL);)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
+		return (NULL);
 	byte &= 0xFF;
 	result = (t_u8* )ptr;
 	i = 0;
@@ -29,7 +30,8 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 			return (result + i);
 		++i;
 	}
-	HANDLE_ERROR_SF(NOTFOUND, (TRUE), return (NULL);,
-		"no byte 0x%2.2X found in memory region 0x%p (length: "SF_SIZE")", byte, ptr, n)
+	CCCERROR(TRUE, ERROR_NOTFOUND,
+		"no byte 0x%2.2X found in memory region 0x%p (length: "SF_SIZE")", byte, ptr, n);
+	return (NULL);
 }
 #endif

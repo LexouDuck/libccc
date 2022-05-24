@@ -1,5 +1,5 @@
 
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/int.h"
 #include "libccc/math/int.h"
 
@@ -34,7 +34,7 @@
 #if 0 // test template
 
 #define DEFINETEST_UINT_(BITS) \
-void	print_test_u##BITS##(char const* test_name, int can_segfault,		\
+void	print_test_u##BITS##(char const* test_name, t_testflags flags,		\
 		t_u##BITS	a,														\
 		t_u##BITS	b)														\
 {																			\
@@ -44,7 +44,7 @@ void	print_test_u##BITS##(char const* test_name, int can_segfault,		\
 }																			\
 void	test_u##BITS##(void)												\
 {																			\
-/*	| TEST FUNCTION        | TEST NAME        |CAN SEGV| EXPECTING           | TEST ARGS */	\
+/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */	\
 /*	print_test_u##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/	\
 }
 
@@ -86,7 +86,7 @@ DEFINETEST_UINT_(128)
 #endif
 
 #define DEFINETEST_UINT_OPERATOR(OP, FUNC, BITS) \
-void	print_test_u##BITS##FUNC(char const* test_name, int can_segfault,	\
+void	print_test_u##BITS##FUNC(char const* test_name, t_testflags flags,	\
 		t_u##BITS	expecting,												\
 		t_u##BITS	a,														\
 		t_u##BITS	b)														\
@@ -97,7 +97,7 @@ void	print_test_u##BITS##FUNC(char const* test_name, int can_segfault,	\
 }																			\
 void	test_u##BITS##FUNC(void)											\
 {																			\
-/*	| TEST FUNCTION        | TEST NAME              |CAN SEGV| TEST		*/	\
+/*	| TEST FUNCTION        | TEST NAME              |TESTFLAG| TEST		*/	\
 /*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 0) );*/	\
 /*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 0) );*/	\
 	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 1) );	\
@@ -190,7 +190,7 @@ void test_u128mod(void)	{}
 
 
 #define DEFINETEST_SINT_OPERATOR(OP, FUNC, BITS) \
-void	print_test_s##BITS##FUNC(char const* test_name, int can_segfault,	\
+void	print_test_s##BITS##FUNC(char const* test_name, t_testflags flags,	\
 		t_s##BITS	expecting,												\
 		t_s##BITS	a,														\
 		t_s##BITS	b)														\
@@ -201,7 +201,7 @@ void	print_test_s##BITS##FUNC(char const* test_name, int can_segfault,	\
 }																			\
 void	test_s##BITS##FUNC(void)											\
 {																			\
-/*	| TEST FUNCTION         | TEST NAME             |CAN SEGV| TEST		*/	\
+/*	| TEST FUNCTION         | TEST NAME             |TESTFLAG| TEST		*/	\
 /*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 0) );*/	\
 /*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 0) );*/	\
 	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 1) );	\

@@ -29,27 +29,34 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 	UINT_TYPE	tmp;																	\
 	t_size	i = 0;																		\
 																						\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),											\
-		PARSE_RETURN(UINT_MACRO##_ERROR))												\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
+		goto failure;																	\
 	while (str[i] && Char_IsSpace(str[i]))												\
 	{																					\
 		++i;																			\
 	}																					\
-	HANDLE_ERROR_SF(PARSE, !(str[i] == '+' || Char_IsDigit(str[i])),					\
-		PARSE_RETURN(UINT_MACRO##_ERROR),												\
+	if CCCERROR(!(str[i] == '+' || Char_IsDigit(str[i])), ERROR_PARSE,					\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)			\
+		goto failure;																	\
 	if (str[i] == '+')																	\
 		++i;																			\
 	result = 0;																			\
 	while (str[i] && Char_IsDigit(str[i]))												\
 	{																					\
 		tmp = result * 10 + (str[i++] - '0');											\
-		HANDLE_ERROR_SF(RESULTRANGE, (tmp < result),									\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX),							\
-			#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO, str, (UINT_TYPE)UINT_MACRO##_MAX)\
+		if CCCERROR((tmp < result), ERROR_RESULTRANGE,									\
+			#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO,	\
+			str, (UINT_TYPE)UINT_MACRO##_MAX)											\
+		{																				\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX)							\
+		}																				\
 		result = tmp;																	\
 	}																					\
+/*success:*/																			\
 	if (dest)	*dest = result;															\
+	return (i);																			\
+failure:																				\
+	if (dest)	*dest = UINT_MACRO##_ERROR;												\
 	return (i);																			\
 }																						\
 inline UINT_TYPE	UINT_NAME##_FromString(t_char const* str)							\
@@ -69,16 +76,15 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 	t_bool	negative;																	\
 	t_size	i = 0;																		\
 																						\
-	HANDLE_ERROR(NULLPOINTER, (str == NULL),											\
-		PARSE_RETURN(SINT_MACRO##_ERROR))												\
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
+		goto failure;																	\
 	while (str[i] && Char_IsSpace(str[i]))												\
 	{																					\
 		++i;																			\
 	}																					\
-	HANDLE_ERROR_SF(PARSE,																\
-		!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])),						\
-		PARSE_RETURN(SINT_MACRO##_ERROR),												\
+	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE,	\
 		"expected a number (with spaces/sign), but instead got \"%s\"", str)			\
+		goto failure;																	\
 	negative = FALSE;																	\
 	if (str[i] == '-')																	\
 	{																					\
@@ -91,15 +97,25 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 	while (str[i] && Char_IsDigit(str[i]))												\
 	{																					\
 		tmp = result * 10 + (str[i++] - '0');											\
-		HANDLE_ERROR_SF(RESULTRANGE, (negative && tmp > (UINT_TYPE)SINT_MACRO##_MIN),	\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MIN),							\
-			#SINT_MACRO"-bit signed integer underflow for \"%s\" at "SF_##SINT_MACRO, str, SINT_MACRO##_MIN)\
-		HANDLE_ERROR_SF(RESULTRANGE, (!negative && tmp > (UINT_TYPE)SINT_MACRO##_MAX),	\
-			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MAX),							\
-			#SINT_MACRO"-bit signed integer overflow for \"%s\" at "SF_##SINT_MACRO, str, SINT_MACRO##_MAX)\
+		if CCCERROR((negative && tmp > (UINT_TYPE)SINT_MACRO##_MIN), ERROR_RESULTRANGE,	\
+			#SINT_MACRO"-bit signed integer underflow for \"%s\" at "SF_##SINT_MACRO,	\
+			str, SINT_MACRO##_MIN)														\
+		{																				\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MIN)							\
+		}																				\
+		if CCCERROR((!negative && tmp > (UINT_TYPE)SINT_MACRO##_MAX), ERROR_RESULTRANGE,\
+			#SINT_MACRO"-bit signed integer overflow for \"%s\" at "SF_##SINT_MACRO,	\
+			str, SINT_MACRO##_MAX)														\
+		{																				\
+			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MAX)							\
+		}																				\
 		result = tmp;																	\
 	}																					\
+/*success:*/																			\
 	if (dest)	*dest = (negative ? -(SINT_TYPE)result : (SINT_TYPE)result);			\
+	return (i);																			\
+failure:																				\
+	if (dest)	*dest = SINT_MACRO##_ERROR;												\
 	return (i);																			\
 }																						\
 inline SINT_TYPE	SINT_NAME##_FromString(t_char const* str)							\

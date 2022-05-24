@@ -10,8 +10,10 @@ t_char**	StringArray_Insert(t_char** dest, t_char const* str, t_uint index)
 	t_char**	result;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (str  == NULL), return (NULL);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string array given is NULL")
+		return (NULL);
+	if CCCERROR((str  == NULL), ERROR_NULLPOINTER, "string to insert given is NULL")
+		return (NULL);
 	length = StringArray_Length((t_char const**)dest);
 	result = StringArray_New(length + 1);
 	for (t_uint i = 0; i <= length; ++i)

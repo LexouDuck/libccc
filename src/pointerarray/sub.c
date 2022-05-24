@@ -12,21 +12,22 @@ void**	PointerArray_Sub(void* const* ptrarr, t_uint index, t_uint n)
 	t_uint		length;
 	t_uint		i;
 
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return (NULL);
 	length = PointerArray_Length((void const* const*)ptrarr);
-	HANDLE_ERROR(INDEX2LARGE, (index > length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
+	if CCCERROR((index > length), ERROR_INDEX2LARGE,
+		"subsection start index "SF_UINT" is greater than pointer array length: "SF_UINT, index, length)
+		return (NULL);
+	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE,
+		"subsection end index "SF_UINT" is greater than pointer array length: "SF_UINT, index + n, length)
+		return (NULL);
 	result = PointerArray_New(n, NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
 		result[i] = ptrarr[index + i];
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL),
-		{
-			PointerArray_Delete(&result);
-			return (NULL);
-		})
 		++i;
 	}
 	result[i] = NULL;

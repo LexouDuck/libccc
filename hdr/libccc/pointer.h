@@ -136,7 +136,8 @@ TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
 //!@}
 
 
-
+// @Lexou When you'll do the `#define SIZE_ERROR ((t_size)-1)` refactor, 
+// search for the string "DZ_ON_REFACTOR_OF_SIZE_ERROR" in the code and see what you need to do
 #if (LIBCONFIG_UINT_ERROR == 0)
 
 	#define SIZE_ERROR	0

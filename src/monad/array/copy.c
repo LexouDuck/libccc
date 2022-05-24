@@ -11,12 +11,14 @@ s_array(T)*	Array_Copy(T)(
 	s_array(T) const* src, t_uint src_i,
 	t_uint n)
 {
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, ( src == NULL), return (NULL);)
-	HANDLE_ERROR(INDEX2LARGE, (dest_i >= dest->length),    return (NULL);)
-	HANDLE_ERROR(INDEX2LARGE, ( src_i >=  src->length),    return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (dest_i + n > dest->length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, ( src_i + n >  src->length), return (NULL);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination array given is NULL")
+		return (NULL);
+	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source array given is NULL")
+		return (NULL);
+	if CCCERROR((dest_i >= dest->length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i >=  src->length), ERROR_INDEX2LARGE, NULL)	return (NULL);
+	if CCCERROR((dest_i + n > dest->length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
+	if CCCERROR(( src_i + n >  src->length), ERROR_LENGTH2LARGE, NULL)	return (NULL);
 	if (n == 0)
 		n = src->length - src_i;
 	for (t_uint i = 0; i < n; ++i)

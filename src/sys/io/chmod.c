@@ -25,22 +25,22 @@
 
 t_io_mode	IO_GetMode(t_char const* filepath)
 {
-	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((filepath == NULL), ERROR_NULLPOINTER, "filepath given is NULL")
+		return (ERROR_NULLPOINTER);
 #if (defined(__NOSTD__))
 	filepath = NULL;
-	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument to avoid warning
-		return (ERROR_UNSPECIFIED);,
-		"the 'stat()' function is not available for this platform.")
+	if CCCERROR((TRUE | mode), ERROR_UNSPECIFIED, // use the 'mode' argument to avoid warning
+		"the stat() function is not available for this platform.")
+		return (ERROR_UNSPECIFIED);
 	return (ERROR_UNSPECIFIED); // TODO
 #else
 	t_io_mode	result = 0;
 	struct stat	stat_buffer;
 
 	Memory_Clear(&stat_buffer, sizeof(struct stat));
-	HANDLE_ERROR_SF(SYSTEM,
-		stat(filepath, &stat_buffer),
-		return (ERROR_SYSTEM);,
+	if CCCERROR(stat(filepath, &stat_buffer), ERROR_SYSTEM,
 		"call to stat() failed, with filepath=\"%s\"", filepath)
+		return (ERROR_SYSTEM);
 	result = stat_buffer.st_mode &
 		(ACCESSMODE_USER_RWX |
 		ACCESSMODE_GROUP_RWX |
@@ -53,22 +53,22 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 
 e_cccerror	IO_ChangeMode(t_char const* filepath, t_io_mode mode)
 {
-	HANDLE_ERROR(NULLPOINTER, (filepath == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((filepath == NULL), ERROR_NULLPOINTER, "filepath given is NULL")
+		return (ERROR_NULLPOINTER);
 #if (defined(__NOSTD__) || \
 	(!defined(__GNUC__) && defined(__MSVC__) && defined(__clang__))) // TODO figure out why chmod() is not present on all windows envs
-	HANDLE_ERROR_SF(UNSPECIFIED, (TRUE | mode), // use the 'mode' argument here to avoid unused arg warning
-		return (ERROR_UNSPECIFIED);,
+	if CCCERROR((TRUE | mode), ERROR_UNSPECIFIED, // use the 'mode' argument here to avoid unused arg warning
 		"the 'chmod()' function is not available for this platform.")
+		return (ERROR_UNSPECIFIED);
 #else
 	#if (!defined(__GNUC__) && defined(__MSVC__))
 	mode = (
 		((mode & ACCESSMODE_USER_R) ? _S_IREAD  : 0) |
 		((mode & ACCESSMODE_USER_W) ? _S_IWRITE : 0));
 	#endif
-	HANDLE_ERROR_SF(SYSTEM,
-		chmod(filepath, mode),
-		return (ERROR_SYSTEM);,
+	if CCCERROR(chmod(filepath, mode), ERROR_SYSTEM,
 		"call to chmod() failed, with filepath=\"%s\" and mode=%u", filepath, mode)
+		return (ERROR_SYSTEM);
 #endif
 	return (ERROR_NONE);
 }

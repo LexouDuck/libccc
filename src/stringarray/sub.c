@@ -13,21 +13,25 @@ t_char**	StringArray_Sub(t_char const* const* strarr, t_uint index, t_uint n)
 	t_uint		length;
 	t_uint		i;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return (NULL);)
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return (NULL);
 	length = StringArray_Length(strarr);
-	HANDLE_ERROR(INDEX2LARGE, (index > length), return (NULL);)
-	HANDLE_ERROR(LENGTH2LARGE, (index + n > length), return (NULL);)
+	if CCCERROR((index > length), ERROR_INDEX2LARGE, NULL)
+		return (NULL);
+	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE, NULL)
+		return (NULL);
 	result = StringArray_New(n);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	i = 0;
 	while (i < n)
 	{
 		result[i] = String_Duplicate(strarr[index + i]);
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL),
+		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
 			StringArray_Delete(&result);
 			return (NULL);
-		})
+		}
 		++i;
 	}
 	result[i] = NULL;

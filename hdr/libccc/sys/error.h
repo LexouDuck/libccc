@@ -25,7 +25,7 @@
 #include "libccc.h"
 
 #include "libccc/string.h"
-#include "libccc/format.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 
 HEADER_CPP
@@ -67,14 +67,6 @@ typedef struct ccchandler
 }	s_ccchandler;
 
 
-// TODO document this
-#define PARSE_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-// TODO document this
-#define PRINT_RETURN(VALUE) \
-	{	if (dest)	*dest = (VALUE);	return (i);	}
-
-
 
 #endif
 #ifndef __LIBCCC_SYS_ERROR_F
@@ -86,7 +78,16 @@ typedef struct ccchandler
 ** ************************************************************************** *|
 */
 
-//!@doc The parent function which handles any error: is called when an error check is `TRUE`
+//!@doc The root-most error handling-function: used in `if ()` statements, to check and handle errors
+//!@{
+t_bool Error_If(e_cccerror errorcode,
+    t_bool shouldhandle,
+    char const* funcname,
+    char const* format, ...);
+#define c_error		Error_If
+//!@}
+
+//!@doc The parent function which handles any error: is called when an error check evaluates to `TRUE`
 //!@{
 void					Error_Handle(e_cccerror error, t_char const* funcname, t_char* message);
 #define c_errorhandle	Error_Handle

@@ -12,11 +12,14 @@ t_sint	PointerArray_Compare(void const* const* ptrarr1, void const* const* ptrar
 	t_uint	length1;
 	t_uint	length2;
 
-	HANDLE_ERROR(NULLPOINTER, (compare == NULL), return (0);)
+	if CCCERROR((compare == NULL), ERROR_NULLPOINTER, "compare() function given is NULL")
+		return (0);
 	if (ptrarr1 == ptrarr2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (ptrarr1 == NULL), return ((ptrarr1 - ptrarr2));)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr2 == NULL), return ((ptrarr1 - ptrarr2));)
+	if CCCERROR((ptrarr1 == NULL), ERROR_NULLPOINTER, "left-hand-side pointer array given is NULL")
+		return ((ptrarr1 - ptrarr2));
+	if CCCERROR((ptrarr2 == NULL), ERROR_NULLPOINTER, "right-hand-side pointer array given is NULL")
+		return ((ptrarr1 - ptrarr2));
 	length1 = PointerArray_Length((void const* const*)ptrarr1);
 	length2 = PointerArray_Length((void const* const*)ptrarr2);
 	if (length1 == length2 && ptrarr1 == ptrarr2)
@@ -39,11 +42,14 @@ t_sint	PointerArray_Compare_N(void const* const* ptrarr1, void const* const* ptr
 	t_uint	length1;
 	t_uint	length2;
 
-	HANDLE_ERROR(NULLPOINTER, (compare == NULL), return (0);)
+	if CCCERROR((compare == NULL), ERROR_NULLPOINTER, "compare() function given is NULL")
+		return (0);
 	if (ptrarr1 == ptrarr2)
 		return (0);
-	HANDLE_ERROR(NULLPOINTER, (ptrarr1 == NULL), return ((ptrarr1 - ptrarr2));)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr2 == NULL), return ((ptrarr1 - ptrarr2));)
+	if CCCERROR((ptrarr1 == NULL), ERROR_NULLPOINTER, "left-hand-side pointer array given is NULL")
+		return ((ptrarr1 - ptrarr2));
+	if CCCERROR((ptrarr2 == NULL), ERROR_NULLPOINTER, "right-hand-side pointer array given is NULL")
+		return ((ptrarr1 - ptrarr2));
 	length1 = PointerArray_Length((void const* const*)ptrarr1);
 	length2 = PointerArray_Length((void const* const*)ptrarr2);
 	if (length1 == length2 && ptrarr1 == ptrarr2)

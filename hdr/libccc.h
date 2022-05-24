@@ -22,8 +22,8 @@
 **	- `libccc/float.h`
 **	- `libccc/pointer.h`
 **	- `libccc/char.h`
-**	- `libccc/text/ascii.h`
-**	- `libccc/text/unicode.h`
+**	- `libccc/text/char_ascii.h`
+**	- `libccc/text/char_unicode.h`
 **	
 **	Note that none of the functions from these headers are included/exposed.
 **	If you wish to use the utility functions from a header, you must manually include it:
@@ -60,8 +60,8 @@ HEADER_CPP
 //!@{
 #define	__LIBCCC_BOOL_F
 #define	__LIBCCC_CHAR_F
-#define	__LIBCCC_TEXT_ASCII_F
-#define	__LIBCCC_TEXT_UNICODE_F
+#define	__LIBCCC_CHAR_ASCII_F
+#define	__LIBCCC_CHAR_UNICODE_F
 #define	__LIBCCC_INT_F
 #define	__LIBCCC_FIXED_F
 #define	__LIBCCC_FLOAT_F
@@ -79,10 +79,10 @@ HEADER_CPP
 #undef	__LIBCCC_BOOL_F
 #undef	__LIBCCC_CHAR_H
 #undef	__LIBCCC_CHAR_F
-#undef	__LIBCCC_TEXT_ASCII_H
-#undef	__LIBCCC_TEXT_ASCII_F
-#undef	__LIBCCC_TEXT_UNICODE_H
-#undef	__LIBCCC_TEXT_UNICODE_F
+#undef	__LIBCCC_CHAR_ASCII_H
+#undef	__LIBCCC_CHAR_ASCII_F
+#undef	__LIBCCC_CHAR_UNICODE_H
+#undef	__LIBCCC_CHAR_UNICODE_F
 #undef	__LIBCCC_INT_H
 #undef	__LIBCCC_INT_F
 #undef	__LIBCCC_FIXED_H

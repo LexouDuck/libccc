@@ -43,7 +43,8 @@
 
 e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 {
-//	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+//	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, NULL)
+//		return (ERROR_NULLPOINTER);
 
 // only using write()
 	t_char const* prefix;
@@ -81,7 +82,8 @@ e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 			(str ? str : ""), message);
 	}
 */
-//	HANDLE_ERROR(SYSTEM, (result == 0), return (ERROR_PRINT);)
+//	if CCCERROR((result == 0), ERROR_SYSTEM, NULL)
+//		return (ERROR_PRINT);
 	if (result <= 0)
 		return (ERROR_PRINT);
 	return (ERROR_NONE);
@@ -97,7 +99,8 @@ t_char*	Logger_GetTimestamp(t_time utc)
 
 	date = Time_ToDate_UTC(utc);
 	result = String_New(max);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	Date_ToString_N(result, max, &date, LOG_TIMESTAMP_FORMAT);
 	return (result);
 }
@@ -110,7 +113,8 @@ t_char*	Logger_GetSettings(s_logger const* logger)
 	t_char*		result = NULL;
 	t_char const*	logformat = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (NULL);)
+	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, "logger struct given is NULL")
+		return (NULL);
 	switch (logger->format)
 	{
 		case LOGFORMAT_ANSI: logformat = LOGFORMAT_STRING_ANSI; break;
@@ -150,7 +154,8 @@ e_cccerror	Logger_LogSettings(s_logger const* logger)
 	e_cccerror result;
 	t_char*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (logger == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((logger == NULL), ERROR_NULLPOINTER, "logger given is NULL")
+		return (ERROR_NULLPOINTER);
 	tmp = Logger_GetSettings(logger);
 	result = Log_Message(logger, "%s", tmp);
 	String_Delete(&tmp);

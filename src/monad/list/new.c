@@ -13,11 +13,13 @@ s_list(T)*	List_New(T)(t_uint n, T value)
 	s_list(T)*	elem;
 	s_list(T)*	newitem;
 
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (NULL);)
+	if CCCERROR((n == 0), ERROR_LENGTH2SMALL, NULL)
+		return (NULL);
 	for (t_uint i = 0; i < n; ++i)
 	{
 		newitem = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
-		HANDLE_ERROR(ALLOCFAILURE, (newitem == NULL), break;)
+		if CCCERROR((newitem == NULL), ERROR_ALLOCFAILURE, NULL)
+			break;
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		newitem->prev = NULL;
 #endif

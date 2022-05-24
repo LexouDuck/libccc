@@ -10,10 +10,14 @@
 
 e_cccerror	KVT_Replace(s_kvt* const parent, s_kvt* const item, s_kvt* replacement)
 {
-	HANDLE_ERROR(NULLPOINTER, (parent      == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (replacement == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (item        == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(INVALIDARGS, (replacement == item), return (ERROR_INVALIDARGS);)
+	if CCCERROR((parent == NULL), ERROR_NULLPOINTER, "KVT parent item given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT child item given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, "KVT replacement item given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((replacement == item), ERROR_INVALIDARGS, "cannot replace kvt item with itself")
+		return (ERROR_INVALIDARGS);
 	replacement->next = item->next;
 	replacement->prev = item->prev;
 	if (replacement->next != NULL)
@@ -50,9 +54,12 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 {
 	s_kvt*	item;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
+		return (ERROR_NULLPOINTER);
 	item = KVT_GetArrayItem(array, index);
-	HANDLE_ERROR(INDEX2SMALL, (item == NULL), return (ERROR_INDEX2SMALL);)
+	if CCCERROR((item == NULL), ERROR_INVALIDARGS,
+		"could not get kvt array item at index "SF_SINT, index)
+		return (ERROR_INDEX2SMALL);
 	return (KVT_Replace(array, item, newitem));
 }
 
@@ -61,9 +68,12 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 static
 e_cccerror KVT_Replace_InObject_(s_kvt* object, t_char const* key, s_kvt* replacement, t_bool case_sensitive)
 {
-	HANDLE_ERROR(NULLPOINTER, (object      == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (key         == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (replacement == NULL), return (ERROR_NULLPOINTER);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((key == NULL), ERROR_NULLPOINTER, "KVT item key given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((replacement == NULL), ERROR_NULLPOINTER, "KVT replacement item given is NULL")
+		return (ERROR_NULLPOINTER);
 	// replace the name in the replacement
 	if (replacement->key != NULL)
 	{

@@ -50,7 +50,8 @@ t_char*	Size_ToString_Pretty(t_size number)
 	if (i == 0)
 		digits[i++] = 0;
 	result = (t_char*)Memory_Allocate(i + 3);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	n = 0;
 	while (i--)
 		result[n++] = '0' + digits[i];

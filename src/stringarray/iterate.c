@@ -13,8 +13,10 @@ void	StringArray_Iterate(t_char** strarr,
 	t_uint	i;
 	t_char*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
 	i = 0;
 	while (strarr[i])
 	{
@@ -34,8 +36,10 @@ void	StringArray_Iterate_I(t_char** strarr,
 	t_uint	i;
 	t_char*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (strarr == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((strarr == NULL), ERROR_NULLPOINTER, "string array given is NULL")
+		return;
 	i = 0;
 	while (strarr[i])
 	{

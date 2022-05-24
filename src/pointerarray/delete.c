@@ -21,6 +21,8 @@ void	PointerArray_Free(void** ptrarr)
 
 void	PointerArray_Free_F(void** ptrarr, void (*del)(void* ptr))
 {
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
 	if (ptrarr == NULL)
 		return;
 	for (t_uint i = 0; ptrarr[i]; ++i)
@@ -34,7 +36,8 @@ void	PointerArray_Free_F(void** ptrarr, void (*del)(void* ptr))
 
 void	PointerArray_Delete(void** *a_ptrarr)
 {
-	HANDLE_ERROR(NULLPOINTER, (a_ptrarr == NULL), return;)
+	if CCCERROR((a_ptrarr == NULL), ERROR_NULLPOINTER, "pointer array address given is NULL")
+		return;
 	if (*a_ptrarr == NULL)
 		return;
 	for (t_uint i = 0; (*a_ptrarr)[i]; ++i)
@@ -48,7 +51,10 @@ void	PointerArray_Delete(void** *a_ptrarr)
 
 void	PointerArray_Delete_F(void** *a_ptrarr, void (*del)(void* ptr))
 {
-	HANDLE_ERROR(NULLPOINTER, (a_ptrarr == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((a_ptrarr == NULL), ERROR_NULLPOINTER, "pointer array address given is NULL")
+		return;
 	if (*a_ptrarr == NULL)
 		return;
 	for (t_uint i = 0; (*a_ptrarr)[i]; ++i)

@@ -288,8 +288,8 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 **	@nonstd
 */
 //!@{
-void*					Memory_Join(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
-#define c_memjoin		Memory_Join
+void*					Memory_Concat(void const* ptr1, t_size length1, void const* ptr2, t_size length2);
+#define c_memconcat		Memory_Concat
 //!@}
 
 //!@doc Return a newly allocated memory region, by concatenating `*a_dest` (deletes old) and `src`
@@ -317,6 +317,26 @@ void*					Memory_Prepend(void const* src, t_size src_length, void* *a_dest, t_si
 //!@{
 void*					Memory_Merge(void* *a_ptr1, t_size length1, void* *a_ptr2, t_size length2);
 #define c_memmerge		Memory_Merge
+//!@}
+
+
+
+//!@doc Return a newly allocated memory region, by concatenating all of the memory buffers in `ptrarr`
+/*!
+**	@nonstd
+**	
+**	This function is the inverse operation of the Memory_Split() function.
+**
+**	@param	ptrarr		The array of buffers to join together (terminated by a `NULL` pointer).
+**	@param	lengths		The array which expresses the size (in bytes) for each memory buffer.
+**	@param	separator	The separator buffer, which is to be added between each joined buffer.
+**	@returns
+**	A newly-allocated memory buffer which is the concatenation of all the buffers contained in
+**	the given pointer array `ptrarr`, with a copy of the `separator` buffer in-between each.
+*/
+//!@{
+void*					Memory_Join(void const** ptrarr, t_size const* lengths, void const* separator, t_size separator_length);
+#define c_memjoin		Memory_Join
 //!@}
 
 
@@ -437,6 +457,102 @@ t_size				Memory_Print(t_char* *dest, void const* ptr, t_size n);
 //!@{
 t_char*				Memory_ToString(void const* ptr, t_size n);
 #define c_memtostr	Memory_ToString
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                         Array: functional operations                       *|
+** ************************************************************************** *|
+*/
+
+//!@doc Iterates upon each byte of the given `ptr`, applying the given function `f` for each of its items.
+/*!
+**	@param	ptr		The memory buffer whose items should be iterated upon
+**	@param	n		The amount of bytes in the memory buffer pointed to by `ptr`
+**	@param	f		The function to call for each byte of the given `ptr`
+*/
+//!@{
+void					Memory_Iterate(void* ptr, t_size n, void (*f)(t_u8 byte));
+#define c_memiter		Memory_Iterate
+//!@}
+
+//!@doc Like Memory_Iterate(), but the user-supplied function receives the current index
+//!@{
+void					Memory_Iterate_I(void* ptr, t_size n, void (*f)(t_u8 byte, t_uint index));
+#define c_memiiter		Memory_Iterate_I
+//!@}
+
+
+
+//!@doc Creates a new memory buffer which is the result of applying the given `map` function for each byte of `ptr`.
+/*!
+**	@param	ptr		The memory buffer whose items should be iterated upon
+**	@param	n		The amount of bytes in the memory buffer pointed to by `ptr`
+**	@param	map		The function to call for each byte of the given `ptr`
+**	@returns
+**	A new memory buffer, created by storing the return values of each call to the given `map` function.
+*/
+//!@{
+_MALLOC()
+void*					Memory_Map(void const* ptr, t_size n, t_u8 (*map)(t_u8 byte));
+#define c_memmap		Memory_Map
+//!@}
+
+//!@doc Like Memory_Map(), but the user-supplied function receives the current index
+//!@{
+_MALLOC()
+void*					Memory_Map_I(void const* ptr, t_size n, t_u8 (*map)(t_u8 byte, t_uint index));
+#define c_memimap		Memory_Map_I
+//!@}
+
+
+
+//!@doc Creates a single value by executing the given function `f` for each byte of the given `ptr` 
+/*!
+**	The difference between Memory_Reduce() and Memory_Fold() is that with this function,
+**	the initial value which will be passed as the `acc` parameter is a `NULL` pointer.
+**
+**	@param	ptr		The memory buffer to iterate upon
+**	@param	n		The amount of bytes in the memory buffer pointed to by `ptr`
+**	@param	reduce	The user-specified function to execute for each byte of `ptr`.
+**					It takes the previous return value `acc` as argument, and its return value may be of any type
+**	@returns
+**	A single value, of any type, which is created by calling `f()` for each byte of the given `ptr`.
+*/
+//!@{
+void*					Memory_Reduce(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* acc));
+#define c_memreduce		Memory_Reduce
+//!@}
+
+//!@doc Like Memory_Reduce(), but the user-supplied function receives the current index
+//!@{
+void*					Memory_Reduce_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* acc, t_uint index));
+#define c_memireduce	Memory_Reduce_I
+//!@}
+
+//!@doc Creates a single value by executing the given function `f` for each byte of the given `ptr` 
+/*!
+**	The difference between Memory_Fold() and Memory_Reduce() is that with this function,
+**	you can supply an initial value for the `acc` parameter, which will be passed to the first call of `f`.
+**
+**	@param	ptr		The memory buffer to iterate upon
+**	@param	n		The amount of bytes in the memory buffer pointed to by `ptr`
+**	@param	reduce	The user-specified function to execute for each byte of `ptr`.
+**					It takes the previous return value `acc` as argument, and its return value may be of any type
+**	@returns
+**	A single value, of any type, which is created by calling `f()` for each byte of the given `ptr`.
+*/
+//!@{
+void*					Memory_Fold(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* acc), void* initial);
+#define c_memfold		Memory_Fold
+//!@}
+
+//!@doc Like Memory_Reduce(), but the user-supplied function receives the current index
+//!@{
+void*					Memory_Fold_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* acc, t_uint index), void* initial);
+#define c_memifold		Memory_Fold_I
 //!@}
 
 

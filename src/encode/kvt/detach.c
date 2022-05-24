@@ -9,8 +9,10 @@
 
 s_kvt*	KVT_Detach(s_kvt* parent, s_kvt* const item)
 {
-	HANDLE_ERROR(NULLPOINTER, (parent == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (item   == NULL), return (NULL);)
+	if CCCERROR((parent == NULL), ERROR_NULLPOINTER, "`parent` to detach item from, is NULL")
+		return (NULL);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "`item` argument given is NULL")
+		return (NULL);
 	if (item != parent->value.child)
 	{	// not the first element
 		item->prev->next = item->next;
@@ -38,11 +40,12 @@ s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (NULL);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "KVT array given is NULL")
+		return (NULL);
 	tmp = KVT_GetArrayItem(array, index);
-	HANDLE_ERROR_SF(INDEX2LARGE,
-		(tmp == NULL), return (NULL);,
+	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
 		"could not detach array value, invalid index: "SF_SINT, index)
+		return (NULL);
 	return (KVT_Detach(array, tmp));
 }
 
@@ -50,11 +53,12 @@ s_kvt*	KVT_Detach_FromObject_IgnoreCase(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (NULL);
 	tmp = KVT_GetObjectItem(object, key);
-	HANDLE_ERROR_SF(KEYNOTFOUND,
-		(tmp == NULL), return (NULL);,
+	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not detach object value, no matching key: \"%s\"", key)
+		return (NULL);
 	return (KVT_Detach(object, tmp));
 }
 
@@ -62,10 +66,11 @@ s_kvt*	KVT_Detach_FromObject_CaseSensitive(s_kvt* object, t_char const* key)
 {
 	s_kvt*	tmp;
 
-	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (NULL);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "KVT object given is NULL")
+		return (NULL);
 	tmp = KVT_GetObjectItem_CaseSensitive(object, key);
-	HANDLE_ERROR_SF(KEYNOTFOUND,
-		(tmp == NULL), return (NULL);,
+	if CCCERROR((tmp == NULL), ERROR_KEYNOTFOUND,
 		"could not detach object value, no matching key: \"%s\"", key)
+		return (NULL);
 	return (KVT_Detach(object, tmp));
 }

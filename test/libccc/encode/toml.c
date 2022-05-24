@@ -519,7 +519,7 @@ static t_utf8*	c_toml_##STRICT##_##MINIFY(t_utf8* toml)	\
 	if (tmp != NULL)	TOML_Delete(tmp);					\
 	return (result);										\
 }															\
-void	print_test_toml_##STRICT##_##MINIFY(char const* test_name, int can_segfault,\
+void	print_test_toml_##STRICT##_##MINIFY(char const* test_name, t_testflags flags,\
 		char const* expecting,														\
 		char const* str)															\
 {																					\
@@ -530,7 +530,7 @@ void	print_test_toml_##STRICT##_##MINIFY(char const* test_name, int can_segfault
 }																					\
 void	test_toml_##STRICT##_##MINIFY(void)																																			\
 {																																													\
-/*	| TEST FUNCTION                    | TEST NAME                                          | CAN SEGV   | EXPECTING                              | TEST ARGS					*/	\
+/*	| TEST FUNCTION                    | TEST NAME                                          | TESTFLAGS  | EXPECTING                              | TEST ARGS					*/	\
 	print_test_toml_##STRICT##_##MINIFY("null pointer               ("#STRICT" -> "#MINIFY")",FALSE,		NULL,									NULL);							\
 	print_test_toml_##STRICT##_##MINIFY("empty string               ("#STRICT" -> "#MINIFY")",FALSE,		NULL,									"");							\
 	print_test_toml_##STRICT##_##MINIFY("toml_null                  ("#STRICT" -> "#MINIFY")",FALSE,		toml_null##_MIN,						toml_null);						\

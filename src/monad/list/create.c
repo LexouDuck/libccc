@@ -35,13 +35,15 @@ s_list(T)*	List_Create(T)(t_uint n, ...)
 	s_list(T)*	elem;
 	s_list(T)*	newitem;
 
-	HANDLE_ERROR(LENGTH2SMALL, (n == 0), return (NULL);)
+	if CCCERROR((n == 0), ERROR_LENGTH2SMALL, NULL)
+		return (NULL);
 	va_start(args, n);
 	for (t_uint i = 0; i < n; ++i)
 	{
 		item = va_arg(args, T);
 		newitem = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
-		HANDLE_ERROR(ALLOCFAILURE, (newitem == NULL), break;)
+		if CCCERROR((newitem == NULL), ERROR_ALLOCFAILURE, NULL)
+			break;
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		newitem->prev = NULL;
 #endif

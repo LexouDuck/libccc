@@ -15,8 +15,10 @@ t_char**	StringArray_Join(t_char const* const* * strarrs, t_char const* const* s
 	t_uint	length_sep;
 	t_uint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (strarrs == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (sep     == NULL), return (NULL);)
+	if CCCERROR((strarrs == NULL), ERROR_NULLPOINTER, "array of string arrays given is NULL")
+		return (NULL);
+	if CCCERROR((sep == NULL), ERROR_NULLPOINTER, "string array separator given is NULL")
+		return (NULL);
 	if (strarrs[0] == NULL)
 		return (StringArray_New(0));
 	total = 0;

@@ -14,7 +14,8 @@ MATH_DECL_REALFUNCTION(CosH, cosh)
 #define DEFINEFUNC_FLOAT_COSH(BITS) \
 t_f##BITS	F##BITS##_CosH(t_f##BITS x)							\
 {																\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)			\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)				\
+		return (NAN);											\
 	if (x == 0)													\
 		return (1);												\
 	else if (x < -3.2457)	return (F##BITS##_Exp(-x - LN_2));	\
@@ -48,7 +49,8 @@ MATH_DECL_REALFUNCTION(SinH, sinh)
 #define DEFINEFUNC_FLOAT_SINH(BITS) \
 t_f##BITS	F##BITS##_SinH(t_f##BITS x)							\
 {																\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)			\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)				\
+		return (NAN);											\
 	if (x == 0)													\
 		return (0);												\
 	else if (x < -PI)	return (-F##BITS##_Exp(-x - LN_2));		\
@@ -83,7 +85,8 @@ MATH_DECL_REALFUNCTION(TanH, tanh)
 #define DEFINEFUNC_FLOAT_TANH(BITS) \
 t_f##BITS	F##BITS##_TanH(t_f##BITS x)							\
 {																\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)			\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)				\
+		return (NAN);											\
 	if (x == 0)													\
 		return (0);												\
 	t_f##BITS abs_x = F##BITS##_Abs(x);							\
@@ -127,8 +130,8 @@ MATH_DECL_REALFUNCTION(InvCosH, acosh)
 #define DEFINEFUNC_FLOAT_INVCOSH(BITS) \
 t_f##BITS	F##BITS##_InvCosH(t_f##BITS x)								\
 {																		\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)					\
-	HANDLE_ERROR(MATHDOMAIN, (x < 1.), return (NAN);)					\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)	return (NAN);		\
+	if CCCERROR((x < 1.), ERROR_MATHDOMAIN, NULL)	return (NAN);		\
 	if (x < 20)															\
 		return (1.37 * F##BITS##_Root2(x - 1) - 0.122 * (x - 1));		\
 	else																\
@@ -156,7 +159,7 @@ MATH_DECL_REALFUNCTION(InvSinH, asinh)
 #define DEFINEFUNC_FLOAT_INVSINH(BITS) \
 t_f##BITS	F##BITS##_InvSinH(t_f##BITS x)								\
 {																		\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)					\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);		\
 	if (x == 0)															\
 		return (0);														\
 	else if (x < -20)	return (-F##BITS##_Ln(-x - 1) - INV_SQRT_2);	\
@@ -187,8 +190,9 @@ MATH_DECL_REALFUNCTION(InvTanH, atanh)
 t_f##BITS	F##BITS##_InvTanH(t_f##BITS x)								\
 {																		\
 	static const t_f##BITS p = 0.6232;									\
-	HANDLE_ERROR(NANARGUMENT, IS_NAN(x), return (NAN);)					\
-	HANDLE_ERROR(MATHDOMAIN, (F##BITS##_Abs(x) > 1.), return (NAN);)	\
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);		\
+	if CCCERROR((F##BITS##_Abs(x) > 1.), ERROR_MATHDOMAIN, NULL)		\
+		return (NAN);													\
 	if (x == 0)															\
 		return (0);														\
 	if (x < -0.6)	return (+F##BITS##_Ln(p * +x + p) * 0.5);			\

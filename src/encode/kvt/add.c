@@ -14,9 +14,11 @@ s_kvt*	KVT_AddTo_CreateReference(s_kvt const* item)
 {
 	s_kvt* reference = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (item == NULL), return (NULL);)
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item given is NULL")
+		return (NULL);
 	reference = KVT_Item();
-	HANDLE_ERROR(ALLOCFAILURE, (reference == NULL), return (NULL);)
+	if CCCERROR((reference == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	Memory_Copy(reference, item, sizeof(s_kvt));
 	reference->key = NULL;
 	reference->type |= DYNAMICTYPE_ISREFERENCE;
@@ -31,9 +33,12 @@ e_cccerror	KVT_AddToArray(s_kvt* array, s_kvt* item)
 {
 	s_kvt* child = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (item  == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(INVALIDARGS, (array == item), return (ERROR_INVALIDARGS);)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "destination KVT array given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT item to add given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((array == item), ERROR_INVALIDARGS, "cannot add array to itself")
+		return (ERROR_INVALIDARGS);
 	child = array->value.child;
 	// To find the last item in array quickly, we use prev in array
 	if (child == NULL)
@@ -63,12 +68,17 @@ e_cccerror	KVT_AddToObject(s_kvt* object, t_char const* key, s_kvt* item)
 {
 	t_char* new_key = NULL;
 
-	HANDLE_ERROR(NULLPOINTER, (object == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (key    == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(NULLPOINTER, (item   == NULL), return (ERROR_NULLPOINTER);)
-	HANDLE_ERROR(INVALIDARGS, (object == item), return (ERROR_INVALIDARGS);)
+	if CCCERROR((object == NULL), ERROR_NULLPOINTER, "destination KVT object given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((key == NULL), ERROR_NULLPOINTER, "KVT object key to add given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((item == NULL), ERROR_NULLPOINTER, "KVT object item to add is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((object == item), ERROR_INVALIDARGS, "cannot add object to itself")
+		return (ERROR_INVALIDARGS);
 	new_key = (t_char*)String_Duplicate((t_char const*)key);
-	HANDLE_ERROR(ALLOCFAILURE, (new_key == NULL), return (ERROR_ALLOCFAILURE);)
+	if CCCERROR((new_key == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (ERROR_ALLOCFAILURE);
 	if (item->key)
 		Memory_Free(item->key);
 	item->key = new_key;
@@ -105,10 +115,10 @@ s_kvt*	KVT_AddToObject_Null(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_null = KVT_CreateNull();
 	e_cccerror error = KVT_AddToObject(object, key, item_null);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_null);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add null-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_null);
+		return (NULL);
 	return (item_null);
 }
 
@@ -116,10 +126,10 @@ s_kvt*	KVT_AddToObject_Boolean(s_kvt* object, t_char const* key, t_bool value)
 {
 	s_kvt* item_bool = KVT_CreateBoolean(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_bool);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_bool);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add boolean-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_bool);
+		return (NULL);
 	return (item_bool);
 }
 
@@ -127,10 +137,10 @@ s_kvt*	KVT_AddToObject_Integer(s_kvt* object, t_char const* key, t_s64 value)
 {
 	s_kvt* item_number = KVT_CreateInteger(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_number);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_number);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add integer-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_number);
+		return (NULL);
 	return (item_number);
 }
 
@@ -138,10 +148,10 @@ s_kvt*	KVT_AddToObject_Float(s_kvt* object, t_char const* key, t_f64 value)
 {
 	s_kvt* item_number = KVT_CreateFloat(value);
 	e_cccerror error = KVT_AddToObject(object, key, item_number);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_number);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add float-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_number);
+		return (NULL);
 	return (item_number);
 }
 
@@ -149,10 +159,10 @@ s_kvt*	KVT_AddToObject_String(s_kvt* object, t_char const* key, t_char const* st
 {
 	s_kvt* item_string = KVT_CreateString(string);
 	e_cccerror error = KVT_AddToObject(object, key, item_string);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_string);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add string-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_string);
+		return (NULL);
 	return (item_string);
 }
 
@@ -160,10 +170,10 @@ s_kvt*	KVT_AddToObject_Raw(s_kvt* object, t_char const* key, t_char const* raw)
 {
 	s_kvt* item_raw = KVT_CreateRaw(raw);
 	e_cccerror error = KVT_AddToObject(object, key, item_raw);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_raw);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add raw-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_raw);
+		return (NULL);
 	return (item_raw);
 }
 
@@ -171,10 +181,10 @@ s_kvt*	KVT_AddToObject_Object(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_object = KVT_CreateObject();
 	e_cccerror error = KVT_AddToObject(object, key, item_object);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_object);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add object-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_object);
+		return (NULL);
 	return (item_object);
 }
 
@@ -182,9 +192,9 @@ s_kvt*	KVT_AddToObject_Array(s_kvt* object, t_char const* key)
 {
 	s_kvt* item_array = KVT_CreateArray();
 	e_cccerror error = KVT_AddToObject(object, key, item_array);
-	HANDLE_ERROR_SF(UNSPECIFIED, (error),
-		KVT_Delete(item_array);
-		return (NULL);,
+	if CCCERROR((error), ERROR_UNSPECIFIED, 
 		"could not add array-type value to object, with key=\"%s\"", key)
+	KVT_Delete(item_array);
+		return (NULL);
 	return (item_array);
 }

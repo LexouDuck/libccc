@@ -11,8 +11,10 @@ void	Array_Remove(T)(s_array(T)* array, T item)
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return;
 	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
 		return;
@@ -26,9 +28,12 @@ void	Array_Remove_F(T)(s_array(T)* array, T item, void (*del)(T))
 {
 	t_sint	index;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return;
 	index = Array_IndexOf(T)(array, item);
 	if (index == ERROR)
 		return;
@@ -44,8 +49,10 @@ void	Array_RemoveAll(T)(s_array(T)* array, T item)
 	t_uint	i;
 	t_uint	amount;
 
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return;
 	if (array->length == 0)
 		return;
 	amount = 0;
@@ -64,7 +71,8 @@ void	Array_RemoveAll(T)(s_array(T)* array, T item)
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return;
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{
@@ -89,9 +97,12 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T))
 	t_uint	i;
 	t_uint	amount;
 
-	HANDLE_ERROR(NULLPOINTER, (del == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (array->items == NULL), return;)
+	if CCCERROR((del == NULL), ERROR_NULLPOINTER, "del() function given is NULL")
+		return;
+	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
+		return;
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return;
 	if (array->length == 0)
 		return;
 	amount = 0;
@@ -110,7 +121,7 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T))
 		return;
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return;)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return;
 	amount = 0;
 	for (i = 0; i < array->length; ++i)
 	{

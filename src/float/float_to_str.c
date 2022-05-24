@@ -122,13 +122,16 @@ t_char*	F##BITS##_ToString_Exp(t_f##BITS number, t_u8 precision)			\
 	sign = (number < 0);													\
 	number = (sign ? -number : number);										\
 	result_exponent = S16_ToString(F##BITS##_GetExp10(number));				\
-	HANDLE_ERROR(ALLOCFAILURE, (result_exponent == NULL), goto failure;)	\
+	if CCCERROR((result_exponent == NULL), ERROR_ALLOCFAILURE, NULL)		\
+		goto failure;														\
 	result_mantissa = F##BITS##_ToString_Dec(number, precision);			\
-	HANDLE_ERROR(ALLOCFAILURE, (result_mantissa == NULL), goto failure;)	\
+	if CCCERROR((result_mantissa == NULL), ERROR_ALLOCFAILURE, NULL)		\
+		goto failure;														\
 	result = (t_char*)Memory_Allocate(2 + (t_u8)sign						\
 			+ String_Length(result_mantissa)								\
 			+ String_Length(result_exponent));								\
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), goto failure;)				\
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)					\
+		goto failure;														\
 	i = 0;																	\
 	if (sign)																\
 		result[i++] = '-';													\
@@ -150,7 +153,7 @@ failure:																	\
 t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 {																	\
 	t_char*	result = NULL;											\
-	char	digits[BITS];											\
+	t_char	digits[BITS];											\
 	t_u8	i;														\
 	t_u64	n;														\
 	result = Float_ToString_CheckSpecial(number);					\
@@ -169,7 +172,8 @@ t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision)	\
 				digits[i++] = '0';									\
 	}																\
 	result = (t_char*)Memory_Allocate(i + 2);						\
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)	\
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)			\
+		return (NULL);												\
 	result[0] = (number == 0) ? '0' : '-';							\
 	n = (number <= 0) ? 1 : 0;										\
 	while (i--)														\

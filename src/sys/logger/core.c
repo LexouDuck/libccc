@@ -35,7 +35,7 @@ static
 void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 {
 	t_char*	tmp = String_Concat("Could not write log message to ", output);
-//	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return;)
+//	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL) return;
 	if (tmp == NULL)
 		Log_Fatal(logger, "Could not write log message: allocation failure");
 	else Log_Fatal(logger, tmp);
@@ -245,9 +245,10 @@ e_cccerror	Log_VA(s_logger const* logger,
 	{
 		t_size	wrote = IO_Write_String(logger->fd, result);
 		// logging itself failed
-		HANDLE_ERROR_BEGIN(PRINT, (wrote == 0))
+		if CCCERROR((wrote == 0), ERROR_PRINT, NULL)
+		{
 			Log_Logger_FatalError(logger, logger->path);
-		HANDLE_ERROR_FINAL()
+		}
 	}
 	String_Delete(&result);
 

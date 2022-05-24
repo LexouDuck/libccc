@@ -25,8 +25,9 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 	t_size	wrote = 0;
 	t_uint	leapsec;
 
-	HANDLE_ERROR_SF(INVALIDARGS, (!Date_IsValid(date)), return (NULL);,
+	if CCCERROR((!Date_IsValid(date)), ERROR_INVALIDARGS,
 		"date given is not a valid calendar date/time")
+		return (NULL);
 	tm = Date_ToSTDC(date);
 	leapsec = (tm.tm_sec >= TIME_MAX_SECONDS) ? (tm.tm_sec - (TIME_MAX_SECONDS - 1)) : 0;
 	tm.tm_sec -= leapsec;
@@ -37,18 +38,20 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 			size = String_Length(format) + 1;
 		else size *= 2;
 		result = String_New(size);
-		HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+		if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+			return (NULL);
 		wrote = strftime(result, size - 1, format, &tm);
 	}
 	while (wrote == 0 && size < MAX_BUFFER_SIZE);
-	HANDLE_ERROR_SF(INVALIDARGS, (size >= MAX_BUFFER_SIZE), return (NULL);,
+	if CCCERROR((size >= MAX_BUFFER_SIZE), ERROR_INVALIDARGS, 
 		"could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
 		size, MAX_BUFFER_SIZE)
+		return (NULL);
 	result[wrote] = '\0';
 /*	// TODO fix this bad heuristic correction (waiting for ISO to get their story straight concerning leap seconds)
 	if (leapsec) 
 	{
-		char target[4] = { '%','S','\0','\0' };
+		t_char target[4] = { '%','S','\0','\0' };
 		t_char* secs = String_Find_String(format, target);
 		if (secs)
 		{

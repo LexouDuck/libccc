@@ -8,8 +8,10 @@
 _GENERIC()
 void	List_Iterate(T)(s_list(T)* list, void (*f)(T item))
 {
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return;
 	while (list)
 	{
 		f(list->item);
@@ -24,8 +26,10 @@ void	List_Iterate_I(T)(s_list(T)* list, void (*f)(T item, t_uint index))
 {
 	t_uint i;
 
-	HANDLE_ERROR(NULLPOINTER, (f == NULL), return;)
-	HANDLE_ERROR(NULLPOINTER, (list == NULL), return;)
+	if CCCERROR((f == NULL), ERROR_NULLPOINTER, "f() function given is NULL")
+		return;
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return;
 	i = 0;
 	while (list)
 	{

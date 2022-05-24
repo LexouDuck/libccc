@@ -14,13 +14,16 @@ void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr
 	t_uint	length;
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return (NULL);
 	length = PointerArray_Length((void const* const*)ptrarr);
 	if (length == 0 || ptrarr == NULL)
 		return ((void**)Memory_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
+	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result_length = 0;
 	for (i = 0; i < length; ++i)
 	{
@@ -29,7 +32,8 @@ void**	PointerArray_Filter(void* const* ptrarr, t_bool (*filter)(void const* ptr
 			++result_length;
 	}
 	result = PointerArray_New(result_length, NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (result_length == 0)
 		return (result);
 	t_uint	index = 0;
@@ -55,13 +59,16 @@ void**	PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void const* p
 	t_uint	length;
 	t_uint	i;
 
-	HANDLE_ERROR(NULLPOINTER, (filter == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptrarr == NULL), return (NULL);)
+	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
+		return (NULL);
+	if CCCERROR((ptrarr == NULL), ERROR_NULLPOINTER, "pointer array given is NULL")
+		return (NULL);
 	length = PointerArray_Length((void const* const*)ptrarr);
 	if (length == 0 || ptrarr == NULL)
 		return ((void**)Memory_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
-	HANDLE_ERROR(ALLOCFAILURE, (tmp == NULL), return (NULL);)
+	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result_length = 0;
 	for (i = 0; i < length; ++i)
 	{
@@ -70,7 +77,8 @@ void**	PointerArray_Filter_I(void* const* ptrarr, t_bool (*filter)(void const* p
 			++result_length;
 	}
 	result = PointerArray_New(result_length, NULL);
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (result);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (result_length == 0)
 		return (result);
 	t_uint	index = 0;

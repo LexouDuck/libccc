@@ -10,8 +10,10 @@ void**	PointerArray_Insert(void** dest, void const* ptr, t_uint index)
 	void**	result;
 	t_size	length;
 
-	HANDLE_ERROR(NULLPOINTER, (dest == NULL), return (NULL);)
-	HANDLE_ERROR(NULLPOINTER, (ptr  == NULL), return (NULL);)
+	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination pointer array given is NULL")
+		return (NULL);
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
+		return (NULL);
 	length = PointerArray_Length((void const* const*)dest);
 	result = PointerArray_New(length + 1, NULL);
 	for (t_uint i = 0; i <= length; ++i)

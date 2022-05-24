@@ -29,7 +29,7 @@
 
 
 inline
-t_size	IO_Output_Char(char c)
+t_size	IO_Output_Char(t_char c)
 {
 	return (IO_Write_Char(STDOUT, c));
 }
@@ -70,17 +70,19 @@ t_size	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 
 t_size	IO_Output_Format(t_char const* format, ...)
 {
-	HANDLE_ERROR(NULLPOINTER, (format == NULL), return (0);)
+	if CCCERROR((format == NULL), ERROR_NULLPOINTER, "format string given is NULL")
+		return (0);
 	int result;
 	t_char* str;
 	va_list args;
 	va_start(args, format);
 	str = String_Format_VA(format, args);
 	va_end(args);
-	HANDLE_ERROR(ALLOCFAILURE, (str == NULL), return (0);)
+	if CCCERROR((str == NULL), ERROR_ALLOCFAILURE, NULL) return (0);
 	result = write(STDOUT, str, String_Length(str));
 	String_Delete(&str);
-	HANDLE_ERROR_SF(SYSTEM, (result < 0), return (0);,
+	if CCCERROR((result < 0), ERROR_SYSTEM, 
 		"call to write() failed on fd=stdout, for formatted string \"%s\"", format)
+		return (0);
 	return (0);
 }

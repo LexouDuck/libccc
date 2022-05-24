@@ -8,7 +8,8 @@
 inline
 void	Memory_Delete(void* *ptr)
 {
-	HANDLE_ERROR(NULLPOINTER, (ptr == NULL), return;)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer address given is NULL")
+		return;
 	if (*ptr)
 	{
 		Memory_Free(*ptr);

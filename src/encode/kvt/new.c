@@ -9,6 +9,7 @@
 s_kvt*	KVT_Item(void)
 {
 	s_kvt*	result = (s_kvt*)Memory_New(sizeof(s_kvt));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	return (result);
 }

@@ -36,7 +36,8 @@ s_vector2d*	Vector2D_New(t_float x, t_float y)
 	s_vector2d* result;
 
 	result = (s_vector2d*)Memory_Allocate(sizeof(s_vector2d));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result->x = x;
 	result->y = y;
 	return (result);
@@ -49,7 +50,8 @@ s_vector3d*	Vector3D_New(t_float x, t_float y, t_float z)
 	s_vector3d* result;
 
 	result = (s_vector3d*)Memory_Allocate(sizeof(s_vector3d));
-	HANDLE_ERROR(ALLOCFAILURE, (result == NULL), return (NULL);)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result->x = x;
 	result->y = y;
 	result->z = z;
