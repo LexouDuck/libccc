@@ -273,6 +273,30 @@ void					Array_Delete_F(T)(s_array(T)* *a_array, void (*del)(T* item));
 
 /*
 ** ************************************************************************** *|
+**                         Array: conversion operations                       *|
+** ************************************************************************** *|
+*/
+
+//!@doc Creates a new array, converted from the given memory buffer `ptr` and size `n`
+//!@{
+_MALLOC()
+_GENERIC()
+s_array(T)*					Array_From(T)(T* ptr, t_uint n);
+#define c_arrfrom(T)		Array_From(T)
+//!@}
+
+//!@doc Creates a new pointer array, converted from the given pointer array
+//!@{
+_MALLOC()
+_GENERIC()
+void**						Array_ToPointerArray(T)(s_array(T) const* array);
+#define c_arrtoptrarr(T)	Array_ToPointerArray(T)
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
 **                          Array: editing operations                         *|
 ** ************************************************************************** *|
 */

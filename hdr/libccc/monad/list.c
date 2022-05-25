@@ -42,6 +42,8 @@
 #undef List_Free_F
 #undef List_Delete
 #undef List_Delete_F
+#undef List_From
+#undef List_ToPointerArray
 #undef List_Add
 #undef List_Insert
 #undef List_Wedge
@@ -100,6 +102,8 @@
 #define List_Free_F(X)	CONCAT(List_Free_F_,	X##_NAME)
 #define List_Delete(X)	CONCAT(List_Delete_,	X##_NAME)
 #define List_Delete_F(X)	CONCAT(List_Delete_F_,	X##_NAME)
+#define List_From(X)	CONCAT(List_From_,	X##_NAME)
+#define List_ToPointerArray(X)	CONCAT(List_ToPointerArray_,	X##_NAME)
 #define List_Add(X)	CONCAT(List_Add_,	X##_NAME)
 #define List_Insert(X)	CONCAT(List_Insert_,	X##_NAME)
 #define List_Wedge(X)	CONCAT(List_Wedge_,	X##_NAME)
@@ -175,34 +179,34 @@
 
 //! Include all source files, to generate code for all generic functions
 //!@{
-#include "libccc/../../src/monad/list/add.c"
-#include "libccc/../../src/monad/list/compare.c"
-#include "libccc/../../src/monad/list/concat.c"
-#include "libccc/../../src/monad/list/contains.c"
-#include "libccc/../../src/monad/list/copy.c"
-#include "libccc/../../src/monad/list/count.c"
-#include "libccc/../../src/monad/list/create.c"
-#include "libccc/../../src/monad/list/delete.c"
-#include "libccc/../../src/monad/list/duplicate.c"
-#include "libccc/../../src/monad/list/equals.c"
-#include "libccc/../../src/monad/list/filter.c"
-#include "libccc/../../src/monad/list/find.c"
-#include "libccc/../../src/monad/list/get.c"
-#include "libccc/../../src/monad/list/has.c"
-#include "libccc/../../src/monad/list/insert.c"
-#include "libccc/../../src/monad/list/item.c"
-#include "libccc/../../src/monad/list/iterate.c"
-#include "libccc/../../src/monad/list/length.c"
-#include "libccc/../../src/monad/list/map.c"
-#include "libccc/../../src/monad/list/new.c"
-#include "libccc/../../src/monad/list/reduce.c"
-#include "libccc/../../src/monad/list/remove.c"
-#include "libccc/../../src/monad/list/removeat.c"
-#include "libccc/../../src/monad/list/replace.c"
-#include "libccc/../../src/monad/list/reverse.c"
-#include "libccc/../../src/monad/list/set.c"
-#include "libccc/../../src/monad/list/sub.c"
-#include "libccc/../../src/monad/list/wedge.c"
+#include "libccc/../.././src/monad/list/add.c"
+#include "libccc/../.././src/monad/list/compare.c"
+#include "libccc/../.././src/monad/list/concat.c"
+#include "libccc/../.././src/monad/list/contains.c"
+#include "libccc/../.././src/monad/list/copy.c"
+#include "libccc/../.././src/monad/list/count.c"
+#include "libccc/../.././src/monad/list/create.c"
+#include "libccc/../.././src/monad/list/delete.c"
+#include "libccc/../.././src/monad/list/duplicate.c"
+#include "libccc/../.././src/monad/list/equals.c"
+#include "libccc/../.././src/monad/list/filter.c"
+#include "libccc/../.././src/monad/list/find.c"
+#include "libccc/../.././src/monad/list/get.c"
+#include "libccc/../.././src/monad/list/has.c"
+#include "libccc/../.././src/monad/list/insert.c"
+#include "libccc/../.././src/monad/list/item.c"
+#include "libccc/../.././src/monad/list/iterate.c"
+#include "libccc/../.././src/monad/list/length.c"
+#include "libccc/../.././src/monad/list/map.c"
+#include "libccc/../.././src/monad/list/new.c"
+#include "libccc/../.././src/monad/list/reduce.c"
+#include "libccc/../.././src/monad/list/remove.c"
+#include "libccc/../.././src/monad/list/removeat.c"
+#include "libccc/../.././src/monad/list/replace.c"
+#include "libccc/../.././src/monad/list/reverse.c"
+#include "libccc/../.././src/monad/list/set.c"
+#include "libccc/../.././src/monad/list/sub.c"
+#include "libccc/../.././src/monad/list/wedge.c"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -239,6 +243,8 @@
 #undef List_Free_F
 #undef List_Delete
 #undef List_Delete_F
+#undef List_From
+#undef List_ToPointerArray
 #undef List_Add
 #undef List_Insert
 #undef List_Wedge
@@ -297,6 +303,8 @@
 #define List_Free_F(T)	CONCAT(List_Free_F_,	T)
 #define List_Delete(T)	CONCAT(List_Delete_,	T)
 #define List_Delete_F(T)	CONCAT(List_Delete_F_,	T)
+#define List_From(T)	CONCAT(List_From_,	T)
+#define List_ToPointerArray(T)	CONCAT(List_ToPointerArray_,	T)
 #define List_Add(T)	CONCAT(List_Add_,	T)
 #define List_Insert(T)	CONCAT(List_Insert_,	T)
 #define List_Wedge(T)	CONCAT(List_Wedge_,	T)

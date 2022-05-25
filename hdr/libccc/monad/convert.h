@@ -66,8 +66,18 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-// TODO: s_list(T)*	Array_ToList(s_array(T) const* array);
-// TODO: void**		Array_ToPointerArray(s_array(T) const* array);
+//!@doc Creates a new linked list, converted from the given `array`
+/*!
+**	Creates a new linked list chain, by copying each item of the given `array`.
+**
+**	@returns
+**	The pointer to the first `s_list` struct in the chain which constitutes the
+**	resulting linked list, converted from the given array,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+s_list(T)*					Array_ToList(T)(s_array(T) const* array);
+#define c_arrtolst(T)		Array_ToList(T)
 
 
 
@@ -77,7 +87,7 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//!@doc Converts the given `list` to an array
+//!@doc Creates a new generic array, converted from the given `list`
 /*!
 **	Creates a new contiguous memory array from the given linked list.
 **	It sets this array pointer to the `items` pointer of the given `array`.
@@ -88,24 +98,8 @@ HEADER_CPP
 **	or `NULL` if an error occurred.
 */
 //!@{
-s_array(T)*				List_ToArray(s_list(T) const* list);
-#define c_lsttoarr		List_ToArray
-//!@}
-
-//!@doc Converts the given `list` to a NULL-terminated pointer array
-/*!
-**	Creates a new jagged array (2D pointer array) from the given list `*a_lst`.
-**	The top-level pointer array is terminated by a NULL pointer.
-**	The underlying `lst.item` data is not copied, only the pointers are.
-**
-**	@returns
-**	The resulting pointer array converted from the given list,
-**	or `NULL` if an error occurred.
-*/
-//!@{
-_MALLOC()
-void**					List_ToPointerArray(s_list(T) const* list);
-#define c_lsttoptrarr	List_ToPointerArray
+s_array(T)*					List_ToArray(T)(s_list(T) const* list);
+#define c_lsttoarr(T)		List_ToArray(T)
 //!@}
 
 

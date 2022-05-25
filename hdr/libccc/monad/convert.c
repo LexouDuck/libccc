@@ -67,7 +67,7 @@
 
 //! Include all source files, to generate code for all generic functions
 //!@{
-#include "libccc/../../src/monad/convert/list.c"
+#include "libccc/../.././src/monad/convert/list.c"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again

@@ -3,6 +3,7 @@
 
 #! If not explicitly specified, use full of list of all generic headers
 GENERIC_HEADERS ?= $(wildcard $(HDRDIR)libccc/monad/*.h)
+GENERIC_OUTPUTS = $(GENERIC_HEADERS:%.h=%.c)
 
 #! The file which holds the template of C code to make an importable generic-type code header
 GENERIC_TEMPLATE = $(MKFILES_DIR)rules/generic.template.c
@@ -46,26 +47,28 @@ endef
 
 .PHONY:\
 generic #! Creates a generic import file for any files given as `GENERIC_HEADERS`
-generic:
+generic: \
+clean-generic \
+$(GENERIC_OUTPUTS)
+
+$(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
 	@if ! [ -d ~/.cccmk ]; then \
-		$(call print_error,"You must install cccmk to use this rule (https://github.com/LexouDuck/libccc)") ; \
-	fi
-	@for i in $(GENERIC_HEADERS) ; do \
-		folder="`echo $${i} | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)libccc/||' `" ; \
-		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
-		$(call print_message,"Generating generic import file:"$(IO_RESET)" $${output}") ; \
+		$(call print_error,"You must install cccmk to use this rule (https://github.com/LexouDuck/cccmk)") ; \
+	else \
+		folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
+		$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
 		awk \
 			-v variables="\
-				header=`echo $${i} | sed 's|\./hdr/||' `;\
-				header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' $${i}`;\
-				sources=`grep "$${folder}" $(SRCSFILE)`;\
-				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' $${i} | uniq`;\
+				header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
+				header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
+				sources=`grep "$${folder}" $(SRCSFILE) `;\
+				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
 			" \
 			-f ~/.cccmk/scripts/util.awk \
 			-f ~/.cccmk/scripts/template-functions.awk \
 			-f ~/.cccmk/scripts/template.awk \
-			"$(GENERIC_TEMPLATE)" > $${output} ; \
-	done
+			"$(GENERIC_TEMPLATE)" > $@ ; \
+	fi
 
 .PHONY:\
 clean-generic #! Deletes any generated C importable generic code files (uses `GENERIC_HEADERS`)
@@ -73,5 +76,5 @@ clean-generic:
 	@$(call print_message,"Deleting all generic import files...")
 	@for i in $(GENERIC_HEADERS) ; do \
 		output="`echo $${i} | sed 's|\.h$$|\.c|' `" ; \
-		rm -f $${output}
+		rm -f $${output} ; \
 	done

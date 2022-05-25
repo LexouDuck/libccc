@@ -328,6 +328,38 @@ void					List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item));
 
 /*
 ** ************************************************************************** *|
+**                         List: conversion operations                        *|
+** ************************************************************************** *|
+*/
+
+//!@doc Creates a new array, converted from the given memory buffer `ptr` and size `n`
+//!@{
+_GENERIC()
+s_list(T)*					List_From(T)(T* ptr, t_uint n);
+#define c_lstfrom(T)		List_From(T)
+//!@}
+
+//!@doc Creates a NULL-terminated pointer array, converted from the given `list`
+/*!
+**	Creates a new nested array (2D pointer array) from the given list `*a_lst`.
+**	The top-level pointer array is terminated by a NULL pointer.
+**	The underlying `lst.item` data is not copied, only the pointers are.
+**
+**	@returns
+**	The resulting pointer array converted from the given list,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+_MALLOC()
+_GENERIC()
+void**						List_ToPointerArray(T)(s_list(T) const* list);
+#define c_lsttoptrarr(T)	List_ToPointerArray(T)
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
 **                           List: editing operations                         *|
 ** ************************************************************************** *|
 */
