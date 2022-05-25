@@ -11,6 +11,7 @@ clean-build-lib \
 clean-tests-obj \
 clean-tests-dep \
 clean-tests-exe \
+clean-bin \
 
 
 

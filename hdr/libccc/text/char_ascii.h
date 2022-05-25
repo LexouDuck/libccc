@@ -423,7 +423,10 @@ t_ascii						CharASCII_ToLowercase(t_ascii c);
 **	@returns
 **	4: The number of byte written on `dest`, or that would have been written to `dest` if `dest` wasn't NULL
 */
-t_size CharASCII_ToEscaped_xFF(t_ascii *dest, t_ascii c);
+//!@{
+t_size					CharASCII_ToEscaped_xFF(t_ascii *dest, t_ascii c);
+#define c_ctoesc_xFF	CharASCII_ToEscaped_xFF
+//!@}
 
 #endif
 

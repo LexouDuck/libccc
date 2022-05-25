@@ -1,7 +1,6 @@
 ./hdr/libccc.h
 ./hdr/libccc/bool.h
 ./hdr/libccc/char.h
-./hdr/libccc/compatibility/msvc/unistd.h
 ./hdr/libccc/encode/common.h
 ./hdr/libccc/encode/json.h
 ./hdr/libccc/encode/toml.h

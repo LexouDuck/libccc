@@ -3,17 +3,22 @@
 
 
 #! The list of output files for 'debug-macros' - essentially just the list of sources, but in the ./obj folder
-SRCS_PREPROCESSED = $(SRCS:$(SRCDIR)%.c=$(OBJDIR)%.c)
+SRCS_PREPROCESSED = $(ARGS:%.c=$(OBJDIR)%.c)
 
 #! This rule runs the preprocessing step for each .c file, and outputs to obj
-$(OBJDIR)%.c: $(SRCDIR)%.c
+$(OBJDIR)%.c: %.c
+	@mkdir -p $(@D)
 	@printf "Preprocessing file: "$@" -> "
-	@$(CC) -o $@ $(CFLAGS) -E $<
+	@$(CC) -o $@ $(CFLAGS) -E $< $(INCLUDES)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 .PHONY:\
-debug-macros #! Preprocesses all source files and stores them in the obj folder
-debug-macros: all $(SRCS_PREPROCESSED)
+debug-macros #! Preprocesses all source files and stores them in the obj folder (uses ARGS, or SRCS if no ARGS given)
+debug-macros: all
+ifeq ($(ARGS),)
+	@$(eval ARGS := $(SRCS))
+endif
+	@$(MAKE) $(SRCS_PREPROCESSED)
 	@$(call print_success,"All source files have been preprocessed (in $(OBJDIR)).")
 
 

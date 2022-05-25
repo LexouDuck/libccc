@@ -34,14 +34,14 @@ s_array(T)*	Array_New(T)(t_uint n, T value)
 {
 	s_array(T)*	result;
 
-	result = (s_array(T)*)Memory_Allocate(sizeof(s_array(T)));
+	result = (s_array(T)*)Memory_New(sizeof(s_array(T)));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	result->length = n;
 	result->items = NULL;
 	if (n == 0)
 		return (result);
-	result->items = (T*)Memory_Allocate(sizeof(T) * n);
+	result->items = (T*)Memory_New(n * sizeof(T));
 	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
 	{
 		Memory_Delete((void**)&result);
