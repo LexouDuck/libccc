@@ -41,7 +41,9 @@
 #undef Array_Free_F
 #undef Array_Delete
 #undef Array_Delete_F
-#undef Array_From
+#undef Array_FromMemory
+#undef Array_ToMemory
+#undef Array_FromPointerArray
 #undef Array_ToPointerArray
 #undef Array_Add
 #undef Array_Insert
@@ -100,7 +102,9 @@
 #define Array_Free_F(X)	CONCAT(Array_Free_F_,	X##_NAME)
 #define Array_Delete(X)	CONCAT(Array_Delete_,	X##_NAME)
 #define Array_Delete_F(X)	CONCAT(Array_Delete_F_,	X##_NAME)
-#define Array_From(X)	CONCAT(Array_From_,	X##_NAME)
+#define Array_FromMemory(X)	CONCAT(Array_FromMemory_,	X##_NAME)
+#define Array_ToMemory(X)	CONCAT(Array_ToMemory_,	X##_NAME)
+#define Array_FromPointerArray(X)	CONCAT(Array_FromPointerArray_,	X##_NAME)
 #define Array_ToPointerArray(X)	CONCAT(Array_ToPointerArray_,	X##_NAME)
 #define Array_Add(X)	CONCAT(Array_Add_,	X##_NAME)
 #define Array_Insert(X)	CONCAT(Array_Insert_,	X##_NAME)
@@ -239,7 +243,9 @@
 #undef Array_Free_F
 #undef Array_Delete
 #undef Array_Delete_F
-#undef Array_From
+#undef Array_FromMemory
+#undef Array_ToMemory
+#undef Array_FromPointerArray
 #undef Array_ToPointerArray
 #undef Array_Add
 #undef Array_Insert
@@ -298,7 +304,9 @@
 #define Array_Free_F(T)	CONCAT(Array_Free_F_,	T)
 #define Array_Delete(T)	CONCAT(Array_Delete_,	T)
 #define Array_Delete_F(T)	CONCAT(Array_Delete_F_,	T)
-#define Array_From(T)	CONCAT(Array_From_,	T)
+#define Array_FromMemory(T)	CONCAT(Array_FromMemory_,	T)
+#define Array_ToMemory(T)	CONCAT(Array_ToMemory_,	T)
+#define Array_FromPointerArray(T)	CONCAT(Array_FromPointerArray_,	T)
 #define Array_ToPointerArray(T)	CONCAT(Array_ToPointerArray_,	T)
 #define Array_Add(T)	CONCAT(Array_Add_,	T)
 #define Array_Insert(T)	CONCAT(Array_Insert_,	T)

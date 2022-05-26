@@ -42,7 +42,9 @@
 #undef List_Free_F
 #undef List_Delete
 #undef List_Delete_F
-#undef List_From
+#undef List_FromMemory
+#undef List_ToMemory
+#undef List_FromPointerArray
 #undef List_ToPointerArray
 #undef List_Add
 #undef List_Insert
@@ -102,7 +104,9 @@
 #define List_Free_F(X)	CONCAT(List_Free_F_,	X##_NAME)
 #define List_Delete(X)	CONCAT(List_Delete_,	X##_NAME)
 #define List_Delete_F(X)	CONCAT(List_Delete_F_,	X##_NAME)
-#define List_From(X)	CONCAT(List_From_,	X##_NAME)
+#define List_FromMemory(X)	CONCAT(List_FromMemory_,	X##_NAME)
+#define List_ToMemory(X)	CONCAT(List_ToMemory_,	X##_NAME)
+#define List_FromPointerArray(X)	CONCAT(List_FromPointerArray_,	X##_NAME)
 #define List_ToPointerArray(X)	CONCAT(List_ToPointerArray_,	X##_NAME)
 #define List_Add(X)	CONCAT(List_Add_,	X##_NAME)
 #define List_Insert(X)	CONCAT(List_Insert_,	X##_NAME)
@@ -243,7 +247,9 @@
 #undef List_Free_F
 #undef List_Delete
 #undef List_Delete_F
-#undef List_From
+#undef List_FromMemory
+#undef List_ToMemory
+#undef List_FromPointerArray
 #undef List_ToPointerArray
 #undef List_Add
 #undef List_Insert
@@ -303,7 +309,9 @@
 #define List_Free_F(T)	CONCAT(List_Free_F_,	T)
 #define List_Delete(T)	CONCAT(List_Delete_,	T)
 #define List_Delete_F(T)	CONCAT(List_Delete_F_,	T)
-#define List_From(T)	CONCAT(List_From_,	T)
+#define List_FromMemory(T)	CONCAT(List_FromMemory_,	T)
+#define List_ToMemory(T)	CONCAT(List_ToMemory_,	T)
+#define List_FromPointerArray(T)	CONCAT(List_FromPointerArray_,	T)
 #define List_ToPointerArray(T)	CONCAT(List_ToPointerArray_,	T)
 #define List_Add(T)	CONCAT(List_Add_,	T)
 #define List_Insert(T)	CONCAT(List_Insert_,	T)
