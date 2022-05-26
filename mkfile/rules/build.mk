@@ -40,17 +40,13 @@ $(BINPATH)dynamic/$(NAME_dynamic) \
 
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
-build-debug: BUILDMODE = debug
-build-debug: \
-$(BINPATH)static/$(NAME_static) \
-$(BINPATH)dynamic/$(NAME_dynamic) \
+build-debug:
+	@$(MAKE) build BUILDMODE=debug
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
-build-release: BUILDMODE = release
-build-release: \
-$(BINPATH)static/$(NAME_static) \
-$(BINPATH)dynamic/$(NAME_dynamic) \
+build-release:
+	@$(MAKE) build BUILDMODE=release
 
 
 
