@@ -277,6 +277,8 @@ void					Array_Delete_F(T)(s_array(T)* *a_array, void (*del)(T* item));
 ** ************************************************************************** *|
 */
 
+#if 0
+
 //!@doc Creates a new generic array, converted from the given memory buffer `ptr` and size `n`
 //!@{
 _MALLOC()
@@ -311,7 +313,7 @@ void**						Array_ToPointerArray(T)(s_array(T) const* array);
 #define c_arrtoptrarr(T)	Array_ToPointerArray(T)
 //!@}
 
-
+#endif
 
 /*
 ** ************************************************************************** *|
