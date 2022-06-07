@@ -31,7 +31,7 @@ endif
 
 #! Shell command used to run a program as a background service
 ifeq ($(OS),Windows_NT)
-daemon = cygstart --hide "`which bash | cygpath`" -l -c cd "$(CURRENT_DIR)" && $(1)
+daemon = cygstart --hide $(1)
 else
-daemon = ./$(1)
+daemon = $(1) &
 endif
