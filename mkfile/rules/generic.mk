@@ -52,23 +52,17 @@ clean-generic \
 $(GENERIC_OUTPUTS)
 
 $(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
-	@if ! [ -d ~/.cccmk ]; then \
-		$(call print_error,"You must install cccmk to use this rule (https://github.com/LexouDuck/cccmk)") ; \
-	else \
-		folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
-		$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
-		awk \
-			-v variables="\
-				header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
-				header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
-				sources=`grep "$${folder}" $(SRCSFILE) `;\
-				symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
-			" \
-			-f ~/.cccmk/scripts/util.awk \
-			-f ~/.cccmk/scripts/template-functions.awk \
-			-f ~/.cccmk/scripts/template.awk \
-			"$(GENERIC_TEMPLATE)" > $@ ; \
-	fi
+	@$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
+	folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
+	awk \
+		-v variables="\
+			header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
+			header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
+			sources=`grep "$${folder}" $(SRCSFILE) `;\
+			symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
+		" \
+		-f $(MKFILES_DIR)rules/generic.template.awk \
+		"$(GENERIC_TEMPLATE)" > $@
 
 .PHONY:\
 clean-generic #! Deletes any generated C importable generic code files (uses `GENERIC_HEADERS`)
