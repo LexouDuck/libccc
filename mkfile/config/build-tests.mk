@@ -30,8 +30,7 @@ TEST_CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 TEST_CFLAGS_OS = $(TEST_CFLAGS_OS_$(OSMODE))
-TEST_CFLAGS_OS_win32 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
-TEST_CFLAGS_OS_win64 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+TEST_CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
 TEST_CFLAGS_OS_macos = -Wno-language-extension-token
 TEST_CFLAGS_OS_linux = -Wno-unused-result -fPIC
 TEST_CFLAGS_OS_other = 
@@ -66,8 +65,7 @@ TEST_LDFLAGS_BUILDMODE_release =
 
 #! C linker options which are platform-specific, according to $(OSMODE)
 TEST_LDFLAGS_OS = $(TEST_LDFLAGS_OS_$(OSMODE))
-TEST_LDFLAGS_OS_win32 =
-TEST_LDFLAGS_OS_win64 =
+TEST_LDFLAGS_OS_windows =
 TEST_LDFLAGS_OS_macos = 
 TEST_LDFLAGS_OS_linux = 
 TEST_LDFLAGS_OS_other = 
@@ -92,8 +90,7 @@ TEST_LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
-TEST_LDLIBS_OS_win32 = 
-TEST_LDLIBS_OS_win64 = 
+TEST_LDLIBS_OS_windows = 
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
@@ -123,8 +120,7 @@ TEST_INCLUDES_BUILDMODE_release =
 
 #! Header directories which are platform-specific, according to $(OSMODE)
 TEST_INCLUDES_OS = $(TEST_INCLUDES_OS_$(OSMODE))
-TEST_INCLUDES_OS_win32 = 
-TEST_INCLUDES_OS_win64 = 
+TEST_INCLUDES_OS_windows = 
 TEST_INCLUDES_OS_macos = 
 TEST_INCLUDES_OS_linux = 
 TEST_INCLUDES_OS_other = 

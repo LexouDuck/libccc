@@ -26,8 +26,7 @@ endif
 CC = $(CC_OS)
 #! C compiler platform-specific variable, according to $(OSMODE)
 CC_OS = $(CC_OS_$(OSMODE))
-CC_OS_win32 =   i686-w64-mingw32-gcc
-CC_OS_win64 = x86_64-w64-mingw32-gcc
+CC_OS_windows = $(if $(findstring 64,$(CPUMODE)),x86_64-w64-mingw32-gcc,i686-w64-mingw32-gcc)
 CC_OS_macos = clang
 CC_OS_linux = gcc
 CC_OS_other = cc
@@ -64,8 +63,7 @@ CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 CFLAGS_OS = $(CFLAGS_OS_$(OSMODE))
-CFLAGS_OS_win32 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
-CFLAGS_OS_win64 = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
 CFLAGS_OS_macos = -Wno-language-extension-token
 CFLAGS_OS_linux = -Wno-unused-result -fPIC
 CFLAGS_OS_other = 
@@ -111,8 +109,7 @@ LDFLAGS_BUILDMODE_release =
 
 #! C linker options which are platform-specific, according to $(OSMODE)
 LDFLAGS_OS = $(LDFLAGS_OS_$(OSMODE))
-LDFLAGS_OS_win32 = 
-LDFLAGS_OS_win64 = 
+LDFLAGS_OS_windows = 
 LDFLAGS_OS_macos = 
 LDFLAGS_OS_linux = 
 LDFLAGS_OS_other = 
@@ -144,8 +141,7 @@ LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 LDLIBS_OS = $(LDLIBS_OS_$(OSMODE))
-LDLIBS_OS_win32 = 
-LDLIBS_OS_win64 = 
+LDLIBS_OS_windows = 
 LDLIBS_OS_macos = 
 LDLIBS_OS_linux = 
 LDLIBS_OS_other = 
@@ -174,8 +170,7 @@ INCLUDES_BUILDMODE_release =
 
 #! Header directories which are platform-specific, according to $(OSMODE)
 INCLUDES_OS = $(INCLUDES_OS_$(OSMODE))
-INCLUDES_OS_win32 = 
-INCLUDES_OS_win64 = 
+INCLUDES_OS_windows = 
 INCLUDES_OS_macos = 
 INCLUDES_OS_linux = 
 INCLUDES_OS_other = 

@@ -2,14 +2,32 @@
 
 
 
+#! The shell command to check whether a certain version number is good enough for the given "target version"
+#	@param 1	The version number to be checked (left-hand-side)
+#	@param 2	The target version to compare to (right-hand-side) - can have special characters such as `^`
+check_version = \
+	[ "`$(MKFILES_DIR)utils/compare_version.sh $(1) $(2)`" = "lt" ]
+
+
+
 #! The shell command to check whether or not a prerequite program/library is installed
 #	@param 1	The name of the prerequisite to check (can be full name with spaces)
 #	@param 2	The shell command to check whether it exists (exit code 0 means it is ok)
 #	@param 3	The shell command to install the prerequisite (will only run if command $(2) fails)
+#	@param 4	(optional) The target version number for this prerequisite tool to install
 check_prereq = \
 	$(call print_message,"\n\n|=> Checking prerequisite: $(1)") ; \
 	echo "$$ $(2)\n" ; \
-	{ $(2) ; } || \
+	valid=false ; \
+	$(2) && valid=true ; \
+	if $$valid && ! [ -z "$(4)" ] ; \
+	then \
+		version="`$(2) 2>&1 | awk '{ if (match($$0, /[0-9]+(\.[0-9]+)+?/)) { print substr($$0, RSTART, RLENGTH); exit 0; } }' `" ; \
+		$(call check_version,$$version,$(4)) \
+		&& valid=false \
+		&& $(call print_warning,"You have installed version '$$version' but this project requires version '$(4)'") ; \
+	fi ; \
+	$$valid || \
 	{ \
 		$(call print_warning,"$(1) is not installed") ; \
 		$(call print_message,"Installing prereq...") ; \

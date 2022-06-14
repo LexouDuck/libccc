@@ -30,10 +30,8 @@ ifeq ($(OSMODE),other)
 	@$(call print_error,"Unsupported platform: requires manual configuration")
 else ifeq ($(OSMODE),emscripten)
 	@$(call print_error,"Unsupported platform: emscripten test-memory not implemented")
-else ifeq ($(OSMODE),win32)
-	@$(call print_error,"Windows 32-bit platform: requires manual configuration")
-else ifeq ($(OSMODE),win64)
-	@$(call print_error,"Windows 64-bit platform: requires manual configuration")
+else ifeq ($(OSMODE),windows)
+	@$(call print_error,"Windows platform: requires manual configuration")
 else ifeq ($(OSMODE),macos)
 	@$(call run,$(NAME_TEST)) $(ARGS) >> $(LOGDIR)libccc_test.log
 	@$(SUDO) ln -sf "`xcode-select -p`/usr/lib/libLeaksAtExit.dylib" "/usr/local/lib"
@@ -57,9 +55,7 @@ prereq-tests #! Checks prerequisite installs to run the various tests
 prereq-tests:
 ifeq ($(OSMODE),other)
 	@$(call print_warning,"'other' platform: memory leak checking tool must be configured manually")
-else ifeq ($(OSMODE),win32)
-	@-# TODO drmemory.exe ?
-else ifeq ($(OSMODE),win64)
+else ifeq ($(OSMODE),windows)
 	@-# TODO drmemory.exe ?
 else ifeq ($(OSMODE),macos)
 	@-$(call check_prereq,'(tests) Xcode leaks checker',\

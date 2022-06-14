@@ -82,7 +82,7 @@ $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 $(BINPATH)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
-ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+ifeq ($(OSMODE),windows)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
@@ -118,8 +118,10 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ; )
+	$(foreach libmode,$(LIBMODES),\
+	$(foreach i,$(BUILDMODES),\
+	$(foreach os,$(OSMODES),\
+	$(foreach cpu,$(CPUMODES),	@mkdir -p $(BINDIR)$(i)_$(os)_$(cpu)/$(libmode)$(C_NL)))))
 
 
 
