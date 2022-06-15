@@ -191,8 +191,7 @@ typedef s_logger const* const*	t_logptrarr;
 		s_logger const* logger = loggers[i];	\
 		if (SKIP)								\
 		{										\
-			FREE_STRINGS						\
-			return (result);					\
+			continue;							\
 		}										\
 		va_start(args, format_str);				\
 		result = Log_VA(logger,					\
