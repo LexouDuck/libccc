@@ -3,7 +3,7 @@
 
 
 # show warnings for undefined variables by default
-MAKEFLAGS += --warn-undefined-variables
+#MAKEFLAGS += --warn-undefined-variables
 
 # disable any builtin make rules (better to be explicit, fewer surprises)
 MAKEFLAGS += --no-builtin-rules
