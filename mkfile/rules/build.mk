@@ -91,7 +91,7 @@ ifeq ($(OSMODE),windows)
 	@cp -p $(NAME).lib $(BINPATH)dynamic/
 else ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-install_name '@loader_path/$@'
+		-install_name '@loader_path/$(NAME_dynamic)'
 else ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
