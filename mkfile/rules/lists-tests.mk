@@ -5,7 +5,7 @@
 #! Path of the file which stores the list of header code files
 TEST_HDRSFILE = $(LISTSDIR)hdrs-test.txt
 #! The shell command which outputs the list of header code files
-echo_TEST_HDRSFILE = find $(TESTDIR) -name "*.h" | sort | sed 's|//|/|g' | grep -v '/standalone/'
+echo_TEST_HDRSFILE = find $(TESTDIR) -name "*.h" | LC_ALL=C sort | sed 's|//|/|g' | grep -v '/standalone/'
 #! The shell command which generates the list of header code files
 make_TEST_HDRSFILE = $(call echo_TEST_HDRSFILE) > $(TEST_HDRSFILE)
 # if file doesn't exist, create it
@@ -23,7 +23,7 @@ TEST_HDRS := $(shell cat $(TEST_HDRSFILE))
 #! Path of the file which stores the list of source code files
 TEST_SRCSFILE = $(LISTSDIR)srcs-test.txt
 #! The shell command which outputs the list of source code files
-echo_TEST_SRCSFILE = find $(TESTDIR) -name "*.c" | sort | sed 's|//|/|g' | grep -v '/standalone/'
+echo_TEST_SRCSFILE = find $(TESTDIR) -name "*.c" | LC_ALL=C sort | sed 's|//|/|g' | grep -v '/standalone/'
 #! The shell command which generates the list of source code files
 make_TEST_SRCSFILE = $(call echo_TEST_SRCSFILE) > $(TEST_SRCSFILE)
 # if file doesn't exist, create it
