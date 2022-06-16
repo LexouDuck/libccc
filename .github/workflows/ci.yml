@@ -66,11 +66,14 @@ jobs:
 
 
 
+    - name: Create distributable package (for ${{matrix.os}})
+      run: make BUILDMODE=release dist
+
     - name: Upload build binary artifacts
       uses: actions/upload-artifact@v2
       with:
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
-        path: ./libccc.*
+        path: ./dist/*.zip
 
 #    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
 #      run: make clean ; make build-release CC=${{matrix.compiler}}
