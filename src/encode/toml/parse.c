@@ -245,7 +245,8 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 	number = String_Sub(p->content, p->offset, length);
 	if (number == NULL)
 		PARSINGERROR_TOML("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
-	if (String_HasOnly(number, "+-"CHARSET_DIGIT"xob_"))
+	if (String_Has(number, CHARSET_DIGIT) &&
+		String_Find_Charset(number, ".eEpP") == NULL)
 	{
 		t_s64	result = S64_FromString(number); // TODO variable-length integer
 		item->type = DYNAMICTYPE_INTEGER;

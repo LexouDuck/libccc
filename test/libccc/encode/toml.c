@@ -96,6 +96,18 @@ TOML_TEST(toml_floatpt_f64min_gt		, "-9007199254740993.0")
 TOML_TEST(toml_floatpt_f64max_lt		,  "9007199254740991.0")
 TOML_TEST(toml_floatpt_f64max_eq		,  "9007199254740992.0")
 TOML_TEST(toml_floatpt_f64max_gt		,  "9007199254740993.0")
+TOML_TEST(toml_floatpt_e64min_lt		, "-9007199254740991e0")
+TOML_TEST(toml_floatpt_e64min_eq		, "-9007199254740992e0")
+TOML_TEST(toml_floatpt_e64min_gt		, "-9007199254740993e0")
+TOML_TEST(toml_floatpt_e64max_lt		,  "9007199254740991e0")
+TOML_TEST(toml_floatpt_e64max_eq		,  "9007199254740992e0")
+TOML_TEST(toml_floatpt_e64max_gt		,  "9007199254740993e0")
+TOML_TEST(toml_floatpt_E64min_lt		, "-9007199254740991E0")
+TOML_TEST(toml_floatpt_E64min_eq		, "-9007199254740992E0")
+TOML_TEST(toml_floatpt_E64min_gt		, "-9007199254740993E0")
+TOML_TEST(toml_floatpt_E64max_lt		,  "9007199254740991E0")
+TOML_TEST(toml_floatpt_E64max_eq		,  "9007199254740992E0")
+TOML_TEST(toml_floatpt_E64max_gt		,  "9007199254740993E0")
 TOML_TEST(toml_floatpt_inf_u_lower_0	,  "inf")
 TOML_TEST(toml_floatpt_inf_p_lower_0	, "+inf")
 TOML_TEST(toml_floatpt_inf_n_lower_0	, "-inf")
@@ -603,6 +615,18 @@ void	test_toml_##STRICT##_##MINIFY(void)																																			\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_f64max_lt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_lt##_MIN,			toml_floatpt_f64max_lt);		\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_f64max_eq     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_f64max_eq);		\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_f64max_gt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_f64max_gt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64min_lt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_lt##_MIN,			toml_floatpt_e64min_lt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64min_eq     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_eq##_MIN,			toml_floatpt_e64min_eq);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64min_gt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_eq##_MIN,			toml_floatpt_e64min_gt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64max_lt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_lt##_MIN,			toml_floatpt_e64max_lt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64max_eq     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_e64max_eq);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_e64max_gt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_e64max_gt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64min_lt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_lt##_MIN,			toml_floatpt_E64min_lt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64min_eq     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_eq##_MIN,			toml_floatpt_E64min_eq);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64min_gt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64min_eq##_MIN,			toml_floatpt_E64min_gt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64max_lt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_lt##_MIN,			toml_floatpt_E64max_lt);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64max_eq     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_E64max_eq);		\
+	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_E64max_gt     ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_f64max_eq##_MIN,			toml_floatpt_E64max_gt);		\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_inf_u_lower_0 ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_inf_p_lower_0##_MIN,		toml_floatpt_inf_u_lower_0);	\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_inf_p_lower_0 ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_inf_p_lower_0##_MIN,		toml_floatpt_inf_p_lower_0);	\
 	print_test_toml_##STRICT##_##MINIFY("toml_floatpt_inf_n_lower_0 ("#STRICT" -> "#MINIFY")",FALSE,		toml_floatpt_inf_n_lower_0##_MIN,		toml_floatpt_inf_n_lower_0);	\

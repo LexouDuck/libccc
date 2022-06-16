@@ -156,7 +156,7 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 	if (number == NULL)
 		PARSINGERROR_JSON("Could not parse number: \"%.*s\"", (int)length, p->content + p->offset)
 	if (String_Has(number, CHARSET_DIGIT) &&
-		(!String_Has(number, ".") || (!p->strict && number[length - 1] == 'n'))) // common js bigint notation, with 'n' char at the end
+		(String_Find_Charset(number, ".eEpP") == NULL || (!p->strict && number[length - 1] == 'n'))) // common js bigint notation, with 'n' char at the end
 	{
 		t_s64	result = S64_FromString(number); // TODO variable-length integer
 		item->type = DYNAMICTYPE_INTEGER;
