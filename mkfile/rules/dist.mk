@@ -11,6 +11,14 @@ DIST_FILE = $(DIST_PATH)$(DIST_NAME)
 
 
 
+#! Shell command used to create a distributable archive file (by default, in .zip format)
+#!	@param	$(1)	Folder to put into a distributable archive file
+#!	@param	$(2)	Filename of the output archive file
+dist_archive = \
+	cd $(1) && zip -r ../$(2) ./
+
+
+
 .PHONY:\
 dist-all #! Prepares .zip archives in ./dist for each platform from the contents of the ./bin folder
 dist-all:
@@ -41,7 +49,7 @@ dist: mkdir-dist
 		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
 		cp -p $$i $(TEMPDIR)include/$$i ; \
 	done
-	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
+	@$(call dist_archive,$(TEMPDIR),$(DIST_FILE))
 	@rm -rf $(TEMPDIR)
 	@printf " -> "$(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
@@ -57,3 +65,15 @@ clean-dist #! Deletes the distributable builds folder
 clean-dist:
 	@$(call print_message,"Deleting distributable builds folder...")
 	@rm -rf $(DIST_PATH)
+
+
+
+.PHONY:\
+prereq-dist #! Checks prerequisite installs to distribute build archives of the program
+prereq-dist:
+	@-$(call check_prereq,'(dist) ZIP archive creator: zip',\
+		zip --version,\
+		$(call install_prereq,zip))
+	@-$(call check_prereq,'(dist) ZIP archive extractor: unzip',\
+		unzip --version,\
+		$(call install_prereq,unzip))
