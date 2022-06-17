@@ -25,14 +25,13 @@ dist: mkdir-dist
 	@if [ -f $(DIST_FILE) ]; then \
 		$(call print_error,"File already exists: $(DIST_FILE)") ; \
 	fi
-	@$(MAKE) clean
-	@$(call print_message,"Building release (for OSMODE/CPUMODE: '$(OSMODE)_$(CPUMODE)')...")
+	$(eval BUILDMODE = release)
+	@$(call print_message,"Building release (for target: '$(BUILDMODE)_$(OSMODE)_$(CPUMODE)')...")
 	@$(MAKE) build-release LIBMODE=static
 	@$(MAKE) build-release LIBMODE=dynamic
-ifeq ($(wildcard $(BINPATH)*),)
-	@$(call print_error,"Cannot produce distributable archive for target '$(OSMODE)_$(CPUMODE)':")
-	@$(call print_error,"The bin output folder is empty: '$(BINPATH)'.")
-else
+	@if [ -z "$(wildcard $(BINPATH)*)" ] ; \
+	then $(call print_error,"Cannot produce distributable archive for target '$(BUILDMODE)_$(OSMODE)_$(CPUMODE)':\n\t-> the bin output folder is empty: '$(BINPATH)'.") ; \
+	fi
 	@$(call print_message,"Preparing .zip archive: $(DIST_FILE)")
 	@rm -rf   $(TEMPDIR)
 	@mkdir -p $(TEMPDIR)
@@ -40,12 +39,11 @@ else
 	@mkdir -p $(TEMPDIR)include
 	@for i in $(HDRS) ; do \
 		mkdir -p `dirname $(TEMPDIR)include/$$i` ; \
-		cp -p $(HDRDIR)$$i $(TEMPDIR)include/$$i ; \
+		cp -p $$i $(TEMPDIR)include/$$i ; \
 	done
 	@cd $(TEMPDIR) && zip -r ../$(DIST_FILE) ./
 	@rm -rf $(TEMPDIR)
 	@printf " -> "$(IO_GREEN)"OK!"$(IO_RESET)"\n"
-endif
 
 
 
