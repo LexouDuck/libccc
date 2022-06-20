@@ -21,14 +21,37 @@ LDLIBS := $(LDLIBS) \
 INCLUDES := $(INCLUDES) \
 	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
-#! Shell command used to copy over libraries from ./lib into ./bin
-#! @param $(1)	file extension glob
-copylibs = $(foreach i,$(PACKAGES), \
+#! Shell command used to copy over dependency libraries from ./lib into ./bin
+bin_copylibs = \
+	$(foreach i,$(PACKAGES), \
 	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
-		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic) ; do \
+		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic)* ; do \
 			cp -p "$$i" $(BINPATH)dynamic/ ; \
 		done ; \
 	fi ; )
+
+#! Shell command used to create symbolic links for version-named library binary
+#! @param $(1)	path of the binary file (folder, relative to root-level Makefile)
+#! @param $(2)	name of the binary file (without version number, and without file extension)
+#! @param $(3)	file extension of the binary file
+bin_symlinks = \
+
+ifeq ($(OSMODE),macos)
+bin_symlinks = \
+	cd $(1) \
+	&& mv    $(2).$(3)            $(2).$(VERSION).$(3) \
+	&& ln -s $(2).$(VERSION).$(3) $(2).$(VERSION_MAJOR).$(3) \
+	&& ln -s $(2).$(VERSION).$(3) $(2).$(3) \
+
+endif
+ifeq ($(OSMODE),linux)
+bin_symlinks = \
+	cd $(1) \
+	&& mv    $(2).$(3)            $(2).$(3).$(VERSION) \
+	&& ln -s $(2).$(3).$(VERSION) $(2).$(3).$(VERSION_MAJOR) \
+	&& ln -s $(2).$(3).$(VERSION) $(2).$(3) \
+
+endif
 
 
 
@@ -74,7 +97,8 @@ $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call copylibs)
+	@$(call bin_copylibs)
+	@$(call bin_symlinks,$(BINPATH)static,$(NAME),$(LIBEXT_static))
 
 
 
@@ -105,7 +129,8 @@ else
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call copylibs)
+	@$(call bin_copylibs)
+	@$(call bin_symlinks,$(BINPATH)dynamic,$(NAME),$(LIBEXT_dynamic))
 
 
 
