@@ -13,7 +13,6 @@ ARFLAGS = \
 RANLIB = ranlib
 #! GNU conventional variable: archive symbol table tool options
 RANLIB_FLAGS = \
-	-D \
 
 ifdef __EMSCRIPTEN__
 AR = emar
