@@ -1,4 +1,4 @@
-#!/bin/awk
+#!/bin/gawk
 
 # This script creates a text file from a project template text file
 # Here is an example of how this script should be called:

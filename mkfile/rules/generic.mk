@@ -54,12 +54,12 @@ $(GENERIC_OUTPUTS)
 $(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
 	@$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
 	folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
-	awk \
+	gawk \
 		-v variables="\
 			header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
-			header_guard=`awk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
+			header_guard=`gawk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
 			sources=`grep "$${folder}" $(SRCSFILE) `;\
-			symbols=`awk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
+			symbols=`gawk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
 		" \
 		-f $(MKFILES_DIR)rules/generic.template.awk \
 		"$(GENERIC_TEMPLATE)" > $@
