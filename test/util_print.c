@@ -86,7 +86,7 @@ int	print_results(s_test_suite const* suites)
 	printf("|========================================\n");
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
-		percent = (total_tests == 0 ? 100. : ((total_tests - total_failed) * 100. / total_tests));
+		percent = (suites[i].totals.tests == 0 ? 100. : ((suites[i].totals.tests - suites[i].totals.failed) * 100. / suites[i].totals.tests));
 		printf(" - %-20s: (%s%8d"C_RESET" tests, %s%8d"C_RESET" failed, %s%8d"C_RESET" warnings)\t-> ",
 			suites[i].name,
 			(suites[i].totals.tests    == 0 ? C_YELLOW : ""),       suites[i].totals.tests,
