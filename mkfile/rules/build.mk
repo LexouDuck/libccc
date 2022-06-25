@@ -35,21 +35,20 @@ bin_copylibs = \
 #! @param $(2)	name of the binary file (without version number, and without file extension)
 #! @param $(3)	file extension of the binary file
 bin_symlinks = \
+	cd $(1) \
 
 ifeq ($(OSMODE),macos)
-bin_symlinks = \
-	cd $(1) \
-	&& mv    $(2).$(3)            $(2).$(VERSION).$(3) \
-	&& ln -s $(2).$(VERSION).$(3) $(2).$(VERSION_MAJOR).$(3) \
-	&& ln -s $(2).$(VERSION).$(3) $(2).$(3) \
+bin_symlinks += \
+	&& mv     $(2).$(3)            $(2).$(VERSION).$(3) \
+	&& ln -sf $(2).$(VERSION).$(3) $(2).$(VERSION_MAJOR).$(3) \
+	&& ln -sf $(2).$(VERSION).$(3) $(2).$(3) \
 
 endif
 ifeq ($(OSMODE),linux)
-bin_symlinks = \
-	cd $(1) \
-	&& mv    $(2).$(3)            $(2).$(3).$(VERSION) \
-	&& ln -s $(2).$(3).$(VERSION) $(2).$(3).$(VERSION_MAJOR) \
-	&& ln -s $(2).$(3).$(VERSION) $(2).$(3) \
+bin_symlinks += \
+	&& mv     $(2).$(3)            $(2).$(3).$(VERSION) \
+	&& ln -sf $(2).$(3).$(VERSION) $(2).$(3).$(VERSION_MAJOR) \
+	&& ln -sf $(2).$(3).$(VERSION) $(2).$(3) \
 
 endif
 
@@ -92,6 +91,7 @@ $(OBJPATH)%.o : $(SRCDIR)%.c
 
 #! Builds the static-link library '.a' binary file for the current target platform
 $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
+	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
@@ -104,6 +104,7 @@ $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 
 #! Builds the dynamic-link library file(s) for the current target platform
 $(BINPATH)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
+	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
 ifeq ($(OSMODE),windows)

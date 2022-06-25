@@ -16,6 +16,10 @@ DIST_FILE = $(DIST_PATH)$(DIST_NAME)
 #!	@param	$(2)	Filename of the output archive file
 dist_archive = \
 	cd $(1) && zip --symlinks -r ../$(2) ./
+ifeq ($(OSMODE),windows)
+dist_archive = \
+	cd $(1) && zip -r ../$(2) ./
+endif
 
 
 
@@ -23,7 +27,7 @@ dist_archive = \
 dist-all #! Prepares .zip archives in ./dist for each platform from the contents of the ./bin folder
 dist-all:
 	@mkdir -p $(DISTDIR)
-	$(foreach i,$(OSMODES),	@-$(MAKE) dist-version OSMODE=$(i)$(C_NL))
+	$(foreach i,$(OSMODES),	@-$(MAKE) dist-version OSMODE=$(i) $(C_NL))
 
 
 
