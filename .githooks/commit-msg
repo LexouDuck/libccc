@@ -65,7 +65,7 @@ COMMIT_MSG_TYPES="`echo "$COMMIT_MSG_TYPE_DESCRIPTIONS" | awk '{ print $1; }' `"
 COMMIT_MSG_TYPES_REGEX="`echo "$COMMIT_MSG_TYPES" | tr '\n' '|' `"
 COMMIT_MSG_TYPES_REGEX="`echo "$COMMIT_MSG_TYPES_REGEX" | sed 's/^\|//' | sed 's/\|$//' `"
 # The regular expression used to check if the commit message follows the right format
-REGEX="^([&|/,]?($COMMIT_MSG_TYPES_REGEX))+\(((.?)*)\): (.*)"
+REGEX="^(fixup! )?([&|/,]?($COMMIT_MSG_TYPES_REGEX))+\(((.?)*)\): (.*)"
 # The error message to display when the commit message does not properly follow the format
 ERROR_MSG="
 Commit message is invalid, should follow this format:
