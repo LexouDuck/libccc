@@ -35,6 +35,9 @@ do
 done
 OLD=`echo $LINE | cut -d ' ' -f 4`
 NEW=`echo $LINE | cut -d ' ' -f 2`
+if [ -z "$NEW" ]
+then print_error "Invalid commit revision hash, cannot do 'git push'."
+fi
 printf "old commit: $OLD\n"
 printf "new commit: $NEW\n"
 

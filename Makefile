@@ -8,6 +8,8 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
+#! The sub-directory in which makefile scripts are stored
+MKFILES_DIR := ./mkfile/
 
 # Custom variable to detect when Makefile is called through `emmake make`
 ifdef EMSCRIPTEN
@@ -37,9 +39,6 @@ endif
 #######################################
 #      Project folder structure       #
 #######################################
-
-#! The sub-directory in which makefile scripts are stored
-MKFILES_DIR := ./mkfile/
 
 # repository folders
 
