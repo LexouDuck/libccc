@@ -37,7 +37,7 @@ inline t_argb32	Color_ARGB32_Set_B(t_argb32 color, t_u8 b)	{ return ((color & ~C
 
 inline s_argb	Color_ARGB_Set(t_float a, t_float r, t_float g, t_float b)
 {
-	s_argb result;
+	s_argb result = COLOR_ARGB_NULL;
 	Color_ARGB_Set_A(&result, a);
 	Color_ARGB_Set_R(&result, r);
 	Color_ARGB_Set_G(&result, g);
@@ -53,7 +53,7 @@ inline void		Color_ARGB_Set_B(s_argb* color, t_float b)	{ if (b < 0.) color->b =
 
 inline s_ahsl	Color_AHSL_Set(t_float a, t_float h, t_float s, t_float l)
 {
-	s_ahsl result;
+	s_ahsl result = COLOR_AHSL_NULL;
 	Color_AHSL_Set_A(&result, a);
 	Color_AHSL_Set_H(&result, h);
 	Color_AHSL_Set_S(&result, s);

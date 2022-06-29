@@ -43,6 +43,7 @@ HEADER_CPP
 typedef u16		t_argb16;
 TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 //!@}
+#define COLOR_ARGB16_NULL	(t_argb16)(0)
 
 //!@doc Bitmask macros for the 16-bit ARGB color encoding type
 //!@{
@@ -66,6 +67,7 @@ TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 typedef u32		t_argb32;
 TYPEDEF_ALIAS(	t_argb32, COLOR_ARGB32, PRIMITIVE)
 //!@}
+#define COLOR_ARGB32_NULL	(t_argb32)(0)
 
 //!@doc Bitmask macros for the 32-bit color encoding type
 //!@{
