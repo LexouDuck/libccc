@@ -45,8 +45,8 @@ void	print_totals(int amount, int failed, int warnings, char const* suite_name)
 	printf("\n\n");
 	printf("|========================================\n");
 	if (suite_name == NULL)
-		 printf("|  Test suite: libccc/%s\n", suite_name);
-	else printf("|  In total:\n");
+		 printf("|  In total:\n");
+	else printf("|  Test suite: libccc/%s\n", suite_name);
 	printf("|========================================\n");
 	printf("- Amount of tests: %d\n", amount);
 
