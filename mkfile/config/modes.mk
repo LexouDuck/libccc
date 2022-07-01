@@ -87,8 +87,9 @@ ifeq ($(strip $(CPUMODE)),)
 	else
 		CPUMODE := $(subst _,-,$(UNAME_M))
 	endif
-	ifeq ($(OSMODE),other)
+	ifeq ($(strip $(CPUMODE)),)
 	_:=$(call print_warning,"Could not estimate the current target CPU architecture, defaulting to 'CPUMODE = other'...")
+	CPUMODE := other
 	endif
 endif
 
@@ -111,4 +112,16 @@ else ifeq ($(OSMODE),macos)
 	LIBEXT_dynamic := dylib
 else
 $(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+endif
+
+
+
+#! The list of possible ways to use the C standard library (static-link, dynamic-link, and no stdlib at all)
+STDLIBMODES = \
+	none	\
+	static	\
+	dynamic	\
+# if the STDLIBMODE variable has no value, give it a default value, which is to static-link
+ifeq ($(strip $(STDLIBMODE)),)
+	STDLIBMODE := static
 endif

@@ -394,7 +394,7 @@ t_sintmax				IO_Read_Lines(t_fd const fd, t_char** *a_strarr);
 **	- `-1` (`GNL_ERROR`)	if there's an error
 */
 //!@{
-int						IO_Read_NextLine(t_fd const fd, t_char* *a_line);
+t_sint					IO_Read_NextLine(t_fd const fd, t_char* *a_line);
 #define c_getline		IO_Read_NextLine
 #define c_getnextline	IO_Read_NextLine
 #define c_readnextline	IO_Read_NextLine

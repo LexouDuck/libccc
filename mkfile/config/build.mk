@@ -181,3 +181,11 @@ INCLUDES_OS_emscripten =
 
 #! This variable is intentionally empty, to specify additional header directories from the commandline
 INCLUDES_EXTRA ?= \
+
+
+
+# do not compile with stdlib if user called `make STDLIBMODE=none`
+ifeq ($(STDLIBMODE),none)
+CFLAGS += -D __NOSTD__=1
+TARGETDIR = $(BUILDMODE)_$(OSMODE)_$(CPUMODE)_nostdlib
+endif

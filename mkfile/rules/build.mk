@@ -23,6 +23,7 @@ INCLUDES := $(INCLUDES) \
 
 #! Shell command used to copy over dependency libraries from ./lib into ./bin
 bin_copylibs = \
+	mkdir -p $(BINPATH)dynamic/ ; \
 	$(foreach i,$(PACKAGES), \
 	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
 		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic)* ; do \

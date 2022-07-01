@@ -5,7 +5,7 @@
 #! The folder path which contains distributable archives
 DIST_PATH = $(DISTDIR)
 #! The name to give to the distributable archive file
-DIST_NAME = $(NAME)-$(VERSION)_$(OSMODE)_$(CPUMODE).zip
+DIST_NAME = $(NAME)-$(VERSION)-$(TARGETDIR).zip
 #! The filepath of the distributable zip archive to produce when calling 'make dist'
 DIST_FILE = $(DIST_PATH)$(DIST_NAME)
 
@@ -32,16 +32,16 @@ dist-all:
 
 
 .PHONY:\
-dist #! Creates a .zip distributable according to the current OSMODE, CPUMODE, and LIBMODE
+dist #! Creates a .zip distributable according to the current compilation target $(TARGETDIR)
 dist: mkdir-dist
 	@if [ -f $(DIST_FILE) ]; then \
 		$(call print_error,"File already exists: $(DIST_FILE)") ; \
 	fi
-	@$(call print_message,"Building release (for target: '$(BUILDMODE)_$(OSMODE)_$(CPUMODE)')...")
+	@$(call print_message,"Building release (for target: '$(TARGETDIR)')...")
 	@$(MAKE) build-release
 	$(eval BUILDMODE = release)
 	@if [ -z "`ls $(BINPATH)* `" ] ; \
-	then $(call print_error,"Cannot produce distributable archive for target '$(BUILDMODE)_$(OSMODE)_$(CPUMODE)':\n\t-> the bin output folder is empty: '$(BINPATH)'.") ; \
+	then $(call print_error,"Cannot produce distributable archive for target '$(TARGETDIR)':\n\t-> the bin output folder is empty: '$(BINPATH)'.") ; \
 	fi
 	@$(call print_message,"Preparing .zip archive: $(DIST_FILE)")
 	@rm -rf   $(TEMPDIR)
