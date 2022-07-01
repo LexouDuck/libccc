@@ -8,7 +8,7 @@
 t_argb32	Color_ARGB16_To_ARGB32(t_argb16 color)
 {
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL / (float)COLOR_ARGB16_CHANNEL;
-	t_argb32 result;
+	t_argb32 result = COLOR_ARGB32_NULL;
 
 	result = (color & COLOR_ARGB16_A) ? COLOR_ARGB32_A : 0;
 	result |= (t_argb32)(Color_ARGB16_Get_R(color) * factor);
@@ -20,7 +20,7 @@ t_argb32	Color_ARGB16_To_ARGB32(t_argb16 color)
 s_argb		Color_ARGB16_To_ARGB(t_argb16 color)
 {
 	static const t_float factor = 1. / (float)COLOR_ARGB16_CHANNEL;
-	s_argb result;
+	s_argb result = COLOR_ARGB_NULL;
 
 	result.a = (Color_ARGB16_Get_A(color) ? 1. : 0.);
 	result.r = (Color_ARGB16_Get_R(color) * factor);
@@ -33,7 +33,7 @@ s_argb		Color_ARGB16_To_ARGB(t_argb16 color)
 
 t_argb16	Color_ARGB32_To_ARGB16(t_argb32 color)
 {
-	t_argb16 result;
+	t_argb16 result = COLOR_ARGB16_NULL;
 
 	result = (color & COLOR_ARGB32_A) ? COLOR_ARGB16_A : 0;
 	result |= (Color_ARGB16_Get_R(color) >> 3) << COLOR_ARGB16_R_BITINDEX;
@@ -45,7 +45,7 @@ t_argb16	Color_ARGB32_To_ARGB16(t_argb32 color)
 s_argb		Color_ARGB32_To_ARGB(t_argb32 color)
 {
 	static const t_float factor = 1. / (float)COLOR_ARGB32_CHANNEL;
-	s_argb result;
+	s_argb result = COLOR_ARGB_NULL;
 
 	result.a = (Color_ARGB16_Get_A(color) * factor);
 	result.r = (Color_ARGB16_Get_R(color) * factor);
@@ -59,7 +59,7 @@ s_argb		Color_ARGB32_To_ARGB(t_argb32 color)
 t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 {
 	static const t_float factor = (float)COLOR_ARGB16_CHANNEL;
-	t_argb16 result;
+	t_argb16 result = COLOR_ARGB16_NULL;
 
 	if CCCERROR((color == NULL), ERROR_NULLPOINTER, "color struct given is NULL")
 		return (0);
@@ -73,7 +73,7 @@ t_argb16	Color_ARGB_To_ARGB16(s_argb const* color)
 t_argb32	Color_ARGB_To_ARGB32(s_argb const* color)
 {
 	static const t_float factor = (float)COLOR_ARGB32_CHANNEL;
-	t_argb32 result = 0;
+	t_argb32 result = COLOR_ARGB32_NULL;
 
 	if CCCERROR((color == NULL), ERROR_NULLPOINTER, "color struct given is NULL")
 		return (0);

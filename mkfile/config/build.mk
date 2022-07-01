@@ -93,6 +93,11 @@ CFLAGS_EXTRA += \
 	-Wno-return-type-c-linkage
 endif
 
+# this fix allows libccc to build on iOS platforms
+ifneq ($(findstring iPhone,$(UNAME_M)),)
+CFLAGS_EXTRA += -D__IOS__
+endif
+
 
 
 #! GNU conventional variable: C linker options

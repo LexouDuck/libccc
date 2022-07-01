@@ -10,7 +10,7 @@ s_ahsl		Color_ARGB_To_AHSL(s_argb const* color)
 {
 	static const t_float factor = TAU / 6.;
 	s_ahsl result = COLOR_AHSL_NULL;
-	s_argb c;
+	s_argb c = COLOR_ARGB_NULL;
 	t_float min = 1.;
 	t_float max = 0.;
 	t_float chroma;
@@ -52,7 +52,7 @@ s_argb		Color_AHSL_To_ARGB(s_ahsl const* color)
 	static const t_float third1 = 1. / 3.;
 	static const t_float third2 = 2. / 3.;
 	s_argb result = COLOR_ARGB_NULL;
-	s_ahsl c;
+	s_ahsl c = COLOR_AHSL_NULL;
 	t_float tmp1;
 	t_float tmp2;
 
