@@ -1,4 +1,4 @@
-#! This file holds rules to install/uninstall a C library in the appropriate location
+#! This file holds rules to install/uninstall a library in the appropriate location
 
 
 

@@ -22,14 +22,13 @@ INCLUDES := $(INCLUDES) \
 	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
 #! Shell command used to copy over dependency libraries from ./lib into ./bin
+#! @param	$(1)	The subdirectory within the ./bin target folder
 bin_copylibs = \
-	mkdir -p $(BINPATH)dynamic/ ; \
+	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
-	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
-		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic)* ; do \
-			cp -p "$$i" $(BINPATH)dynamic/ ; \
-		done ; \
-	fi ; )
+		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
+			cp -p "$$i" $(BINPATH)$(1) ; \
+		done ; )
 
 #! Shell command used to create symbolic links for version-named library binary
 #! @param $(1)	path of the binary file (folder, relative to root-level Makefile)
@@ -145,9 +144,9 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	$(foreach libmode,$(LIBMODES),\
 	$(foreach i,$(BUILDMODES),\
 	$(foreach os,$(OSMODES),\
+	$(foreach libmode,$(LIBMODES),\
 	$(foreach cpu,$(CPUMODES),	@mkdir -p $(BINDIR)$(i)_$(os)_$(cpu)/$(libmode)$(C_NL)))))
 
 
@@ -157,8 +156,8 @@ clean-build #! Deletes all intermediary build-related files
 clean-build: \
 clean-build-obj \
 clean-build-dep \
-clean-build-lib \
 clean-build-bin \
+clean-build-lib \
 
 .PHONY:\
 clean-build-obj #! Deletes all .o build object files
