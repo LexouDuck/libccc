@@ -41,6 +41,10 @@
 #undef Array_Free_F
 #undef Array_Delete
 #undef Array_Delete_F
+#undef Array_FromMemory
+#undef Array_ToMemory
+#undef Array_FromPointerArray
+#undef Array_ToPointerArray
 #undef Array_Add
 #undef Array_Insert
 #undef Array_Wedge
@@ -98,6 +102,10 @@
 #define Array_Free_F(X)	CONCAT(Array_Free_F_,	X##_NAME)
 #define Array_Delete(X)	CONCAT(Array_Delete_,	X##_NAME)
 #define Array_Delete_F(X)	CONCAT(Array_Delete_F_,	X##_NAME)
+#define Array_FromMemory(X)	CONCAT(Array_FromMemory_,	X##_NAME)
+#define Array_ToMemory(X)	CONCAT(Array_ToMemory_,	X##_NAME)
+#define Array_FromPointerArray(X)	CONCAT(Array_FromPointerArray_,	X##_NAME)
+#define Array_ToPointerArray(X)	CONCAT(Array_ToPointerArray_,	X##_NAME)
 #define Array_Add(X)	CONCAT(Array_Add_,	X##_NAME)
 #define Array_Insert(X)	CONCAT(Array_Insert_,	X##_NAME)
 #define Array_Wedge(X)	CONCAT(Array_Wedge_,	X##_NAME)
@@ -173,33 +181,33 @@
 
 //! Include all source files, to generate code for all generic functions
 //!@{
-#include "libccc/../../src/monad/array/add.c"
-#include "libccc/../../src/monad/array/compare.c"
-#include "libccc/../../src/monad/array/concat.c"
-#include "libccc/../../src/monad/array/contains.c"
-#include "libccc/../../src/monad/array/copy.c"
-#include "libccc/../../src/monad/array/count.c"
-#include "libccc/../../src/monad/array/create.c"
-#include "libccc/../../src/monad/array/delete.c"
-#include "libccc/../../src/monad/array/duplicate.c"
-#include "libccc/../../src/monad/array/equals.c"
-#include "libccc/../../src/monad/array/filter.c"
-#include "libccc/../../src/monad/array/find.c"
-#include "libccc/../../src/monad/array/get.c"
-#include "libccc/../../src/monad/array/has.c"
-#include "libccc/../../src/monad/array/insert.c"
-#include "libccc/../../src/monad/array/item.c"
-#include "libccc/../../src/monad/array/iterate.c"
-#include "libccc/../../src/monad/array/map.c"
-#include "libccc/../../src/monad/array/new.c"
-#include "libccc/../../src/monad/array/reduce.c"
-#include "libccc/../../src/monad/array/remove.c"
-#include "libccc/../../src/monad/array/removeat.c"
-#include "libccc/../../src/monad/array/replace.c"
-#include "libccc/../../src/monad/array/reverse.c"
-#include "libccc/../../src/monad/array/set.c"
-#include "libccc/../../src/monad/array/sub.c"
-#include "libccc/../../src/monad/array/wedge.c"
+#include "libccc/../.././src/monad/array/add.c"
+#include "libccc/../.././src/monad/array/compare.c"
+#include "libccc/../.././src/monad/array/concat.c"
+#include "libccc/../.././src/monad/array/contains.c"
+#include "libccc/../.././src/monad/array/copy.c"
+#include "libccc/../.././src/monad/array/count.c"
+#include "libccc/../.././src/monad/array/create.c"
+#include "libccc/../.././src/monad/array/delete.c"
+#include "libccc/../.././src/monad/array/duplicate.c"
+#include "libccc/../.././src/monad/array/equals.c"
+#include "libccc/../.././src/monad/array/filter.c"
+#include "libccc/../.././src/monad/array/find.c"
+#include "libccc/../.././src/monad/array/get.c"
+#include "libccc/../.././src/monad/array/has.c"
+#include "libccc/../.././src/monad/array/insert.c"
+#include "libccc/../.././src/monad/array/item.c"
+#include "libccc/../.././src/monad/array/iterate.c"
+#include "libccc/../.././src/monad/array/map.c"
+#include "libccc/../.././src/monad/array/new.c"
+#include "libccc/../.././src/monad/array/reduce.c"
+#include "libccc/../.././src/monad/array/remove.c"
+#include "libccc/../.././src/monad/array/removeat.c"
+#include "libccc/../.././src/monad/array/replace.c"
+#include "libccc/../.././src/monad/array/reverse.c"
+#include "libccc/../.././src/monad/array/set.c"
+#include "libccc/../.././src/monad/array/sub.c"
+#include "libccc/../.././src/monad/array/wedge.c"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -235,6 +243,10 @@
 #undef Array_Free_F
 #undef Array_Delete
 #undef Array_Delete_F
+#undef Array_FromMemory
+#undef Array_ToMemory
+#undef Array_FromPointerArray
+#undef Array_ToPointerArray
 #undef Array_Add
 #undef Array_Insert
 #undef Array_Wedge
@@ -292,6 +304,10 @@
 #define Array_Free_F(T)	CONCAT(Array_Free_F_,	T)
 #define Array_Delete(T)	CONCAT(Array_Delete_,	T)
 #define Array_Delete_F(T)	CONCAT(Array_Delete_F_,	T)
+#define Array_FromMemory(T)	CONCAT(Array_FromMemory_,	T)
+#define Array_ToMemory(T)	CONCAT(Array_ToMemory_,	T)
+#define Array_FromPointerArray(T)	CONCAT(Array_FromPointerArray_,	T)
+#define Array_ToPointerArray(T)	CONCAT(Array_ToPointerArray_,	T)
 #define Array_Add(T)	CONCAT(Array_Add_,	T)
 #define Array_Insert(T)	CONCAT(Array_Insert_,	T)
 #define Array_Wedge(T)	CONCAT(Array_Wedge_,	T)

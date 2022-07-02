@@ -69,7 +69,7 @@
 
 //! Include all source files, to generate code for all generic functions
 //!@{
-%%for (sources):#include "libccc/../../src/%%"
+%%for (sources):#include "libccc/../../%%"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again

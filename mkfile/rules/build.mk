@@ -21,14 +21,36 @@ LDLIBS := $(LDLIBS) \
 INCLUDES := $(INCLUDES) \
 	$(foreach i,$(PACKAGES), -I$(PACKAGE_$(i)_INCLUDE))
 
-#! Shell command used to copy over libraries from ./lib into ./bin
-#! @param $(1)	file extension glob
-copylibs = $(foreach i,$(PACKAGES), \
-	if [ "$(PACKAGE_$(i)_LIBMODE)" = "dynamic" ] ; then \
-		for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic) ; do \
-			cp -p "$$i" $(BINPATH)dynamic/ ; \
-		done ; \
-	fi ; )
+#! Shell command used to copy over dependency libraries from ./lib into ./bin
+#! @param	$(1)	The subdirectory within the ./bin target folder
+bin_copylibs = \
+	mkdir -p $(BINPATH)$(1) ; \
+	$(foreach i,$(PACKAGES), \
+		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
+			cp -p "$$i" $(BINPATH)$(1) ; \
+		done ; )
+
+#! Shell command used to create symbolic links for version-named library binary
+#! @param $(1)	path of the binary file (folder, relative to root-level Makefile)
+#! @param $(2)	name of the binary file (without version number, and without file extension)
+#! @param $(3)	file extension of the binary file
+bin_symlinks = \
+	cd $(1) \
+
+ifeq ($(OSMODE),macos)
+bin_symlinks += \
+	&& mv     $(2).$(3)            $(2).$(VERSION).$(3) \
+	&& ln -sf $(2).$(VERSION).$(3) $(2).$(VERSION_MAJOR).$(3) \
+	&& ln -sf $(2).$(VERSION).$(3) $(2).$(3) \
+
+endif
+ifeq ($(OSMODE),linux)
+bin_symlinks += \
+	&& mv     $(2).$(3)            $(2).$(3).$(VERSION) \
+	&& ln -sf $(2).$(3).$(VERSION) $(2).$(3).$(VERSION_MAJOR) \
+	&& ln -sf $(2).$(3).$(VERSION) $(2).$(3) \
+
+endif
 
 
 
@@ -40,17 +62,13 @@ $(BINPATH)dynamic/$(NAME_dynamic) \
 
 .PHONY:\
 build-debug #! Builds the library, in 'debug' mode (with debug flags and symbol-info)
-build-debug: BUILDMODE = debug
-build-debug: \
-$(BINPATH)static/$(NAME_static) \
-$(BINPATH)dynamic/$(NAME_dynamic) \
+build-debug:
+	@$(MAKE) build BUILDMODE=debug
 
 .PHONY:\
 build-release #! Builds the library, in 'release' mode (with optimization flags)
-build-release: BUILDMODE = release
-build-release: \
-$(BINPATH)static/$(NAME_static) \
-$(BINPATH)dynamic/$(NAME_dynamic) \
+build-release:
+	@$(MAKE) build BUILDMODE=release
 
 
 
@@ -73,20 +91,23 @@ $(OBJPATH)%.o : $(SRCDIR)%.c
 
 #! Builds the static-link library '.a' binary file for the current target platform
 $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
+	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call copylibs)
+	@$(call bin_copylibs,static)
+	@$(call bin_symlinks,$(BINPATH)static,$(NAME),$(LIBEXT_static))
 
 
 
 #! Builds the dynamic-link library file(s) for the current target platform
 $(BINPATH)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
+	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
-ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
+ifeq ($(OSMODE),windows)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
 		-Wl,--out-implib,$(NAME).lib \
@@ -95,7 +116,7 @@ ifeq ($(OSMODE),$(filter $(OSMODE), win32 win64))
 	@cp -p $(NAME).lib $(BINPATH)dynamic/
 else ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-install_name '@loader_path/$@'
+		-install_name '@loader_path/$(NAME_dynamic)'
 else ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
@@ -109,7 +130,8 @@ else
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call copylibs)
+	@$(call bin_copylibs,dynamic)
+	@$(call bin_symlinks,$(BINPATH)dynamic,$(NAME),$(LIBEXT_dynamic))
 
 
 
@@ -122,8 +144,10 @@ endif
 mkdir-build #! Creates all the build folders in the ./bin folder (according to `OSMODES`)
 mkdir-build:
 	@$(call print_message,"Creating build folders...")
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/static  ; )
-	@$(foreach i,$(OSMODES), mkdir -p $(BINDIR)$(i)/dynamic ; )
+	$(foreach i,$(BUILDMODES),\
+	$(foreach os,$(OSMODES),\
+	$(foreach libmode,$(LIBMODES),\
+	$(foreach cpu,$(CPUMODES),	@mkdir -p $(BINDIR)$(i)_$(os)_$(cpu)/$(libmode)$(C_NL)))))
 
 
 
@@ -132,8 +156,8 @@ clean-build #! Deletes all intermediary build-related files
 clean-build: \
 clean-build-obj \
 clean-build-dep \
-clean-build-lib \
 clean-build-bin \
+clean-build-lib \
 
 .PHONY:\
 clean-build-obj #! Deletes all .o build object files

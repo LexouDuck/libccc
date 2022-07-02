@@ -53,18 +53,15 @@ doxyrest_install = \
 ifeq ($(OSMODE),other)
 doxyrest_install = $(call print_warning,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
 
-else ifeq ($(OSMODE),win32)
-DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-windows-x86.7z
-doxyrest_extract = \
-	7z x $(DOXYREST_PACKAGE) -o$(DOXYREST_DIR) \
-
-else ifeq ($(OSMODE),win64)
-DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-windows-amd64.7z
+else ifeq ($(OSMODE),windows)
+DOXYREST_CPUMODE := $(if $(findstring 64,$(CPUMODE)),amd64,x86)
+DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-windows-$(DOXYREST_CPUMODE).7z
 doxyrest_extract = \
 	7z x $(DOXYREST_PACKAGE) -o$(DOXYREST_DIR) \
 
 else ifeq ($(OSMODE),macos)
-DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-mac.tar.xz
+DOXYREST_CPUMODE := 
+DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-mac.tar.xz
 doxyrest_extract = \
 	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) && \
 	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-mac/* $(DOXYREST_DIR) && \
@@ -74,11 +71,12 @@ doxyrest_extract = \
 	rmdir $(DOXYREST_DIR)share \
 
 else ifeq ($(OSMODE),linux)
-DOXYREST_PACKAGE = doxyrest-$(DOXYREST_VERSION)-linux-amd64.tar.xz
+DOXYREST_CPUMODE := $(if $(findstring 64,$(CPUMODE)),amd64,x86)
+DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-linux-$(DOXYREST_CPUMODE).tar.xz
 doxyrest_extract = \
 	tar -xf $(DOXYREST_PACKAGE) --directory=$(DOXYREST_DIR) && \
-	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64/* $(DOXYREST_DIR) && \
-	rmdir $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-amd64 && \
+	mv -f $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-$(DOXYREST_CPUMODE)/* $(DOXYREST_DIR) && \
+	rmdir $(DOXYREST_DIR)doxyrest-$(DOXYREST_VERSION)-linux-$(DOXYREST_CPUMODE) && \
 	mv -f $(DOXYREST_DIR)share/doxyrest/* $(DOXYREST_DIR) && \
 	rmdir $(DOXYREST_DIR)share/doxyrest && \
 	rmdir $(DOXYREST_DIR)share \

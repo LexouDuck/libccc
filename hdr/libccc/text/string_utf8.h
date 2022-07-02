@@ -153,9 +153,9 @@ typedef size_t (*f_char_encoder)(t_utf8 *dest, t_utf32 c);
 typedef t_bool (*f_force_encoding_for)(t_utf8 const* str);
 
 // TODO: These should take a utf32 instead. That would also allow to be used with ascii without cast
-t_bool ForceEncodingFor_NonPrintable(t_utf8 const* str);
-t_bool ForceEncodingFor_NonASCII(t_utf8 const* str);
-t_bool ForceEncodingFor_NonASCIIOrNonPrintable(t_utf8 const* str);
+t_bool		ForceEncodingFor_NonPrintable(t_utf8 const* str);
+t_bool		ForceEncodingFor_NonASCII(t_utf8 const* str);
+t_bool		ForceEncodingFor_NonASCIIOrNonPrintable(t_utf8 const* str);
 
 
 

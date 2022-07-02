@@ -33,6 +33,7 @@
 //! Define the list of info for all the common POSIX-1/C++11 errno macros
 static s_error_info	Error_STD[ENUMLENGTH_STDERROR] =
 {
+#ifndef __NOSTD__
 	{ E2BIG,            "E2BIG",            "Argument list too long" },
 	{ EACCES,           "EACCES",           "Permission denied" },
 	{ EADDRINUSE,       "EADDRINUSE",       "Address in use" },
@@ -111,6 +112,7 @@ static s_error_info	Error_STD[ENUMLENGTH_STDERROR] =
 	{ ETXTBSY,          "ETXTBSY",          "Text file busy" },
 	{ EWOULDBLOCK,      "EWOULDBLOCK",      "Operation would block" },
 	{ EXDEV,            "EXDEV",            "Cross-device link" },
+#endif
 	{ 0, NULL, NULL }
 };
 

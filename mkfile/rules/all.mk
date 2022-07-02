@@ -5,6 +5,7 @@
 .PHONY:\
 all #! Builds all targets (this is the default rule)
 all: \
+$(GENERIC_OUTPUTS) \
 build-$(BUILDMODE)
 
 

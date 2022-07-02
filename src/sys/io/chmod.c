@@ -29,9 +29,6 @@ t_io_mode	IO_GetMode(t_char const* filepath)
 		return (ERROR_NULLPOINTER);
 #if (defined(__NOSTD__))
 	filepath = NULL;
-	if CCCERROR((TRUE | mode), ERROR_UNSPECIFIED, // use the 'mode' argument to avoid warning
-		"the stat() function is not available for this platform.")
-		return (ERROR_UNSPECIFIED);
 	return (ERROR_UNSPECIFIED); // TODO
 #else
 	t_io_mode	result = 0;

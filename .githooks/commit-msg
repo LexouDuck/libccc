@@ -1,36 +1,39 @@
-#!/bin/sh
+#!/bin/sh -e
 
-#! utility variables for terminal colored output
-ansi_esc() { printf "\033[""$@""m" ; }
-IO_RESET="`   ansi_esc 0`"
-IO_RED="`     ansi_esc 31`"
-IO_GREEN="`   ansi_esc 32`"
-IO_YELLOW="`  ansi_esc 33`"
-IO_BLUE="`    ansi_esc 34`"
-IO_MAGENTA="` ansi_esc 35`"
-IO_CYAN="`    ansi_esc 36`"
+#! utility variables & functions for colored terminal output
 
-ERROR="$IO_RED""ERROR""$IO_RESET: "
-SUCCESS="$IO_GREEN""SUCCESS""$IO_RESET: "
-WARNING="$IO_YELLOW""WARNING""$IO_RESET: "
+ansi_esc()      { printf "\033[""$@""m" ; }
+ansi_color_fg() { printf "\033[38;5;""$@""m" ; }
+ansi_color_bg() { printf "\033[48;5;""$@""m" ; }
+# reset text style to default
+io_reset="`     ansi_esc 0`"
+# set text style
+io_bold="`      ansi_esc 1`"
+io_underline="` ansi_esc 4`"
+# set text color (foreground)
+io_red="`       ansi_esc 31`"
+io_green="`     ansi_esc 32`"
+io_yellow="`    ansi_esc 33`"
+io_blue="`      ansi_esc 34`"
+io_magenta="`   ansi_esc 35`"
+io_cyan="`      ansi_esc 36`"
+
+print_verbose() {
+if $verbose; then { printf "%s%s%s%s\n" "$io_blue"   "verbose" "$io_reset: " "$@" ; } >&2 ; fi ; }
+print_message() { { printf "%s%s%s%s\n" "$io_blue"   "message" "$io_reset: " "$@" ; } >&2 ; }
+print_warning() { { printf "%s%s%s%s\n" "$io_yellow" "warning" "$io_reset: " "$@" ; } >&2 ; }
+print_success() { { printf "%s%s%s%s\n" "$io_green"  "success" "$io_reset: " "$@" ; } >&2 ; }
+print_failure() { { printf "%s%s%s%s\n" "$io_red"    "failure" "$io_reset: " "$@" ; } >&2 ; }
+print_error()   { { printf "%s%s%s%s\n" "$io_red"    "error"   "$io_reset: " "$@" ; } >&2 ; exit 1 ; }
 
 
 
-# Get commit message contents
-MSG_FILE=$1
-FILE_CONTENT="$(cat $MSG_FILE)"
-
-export REGEX="^([&|/,]?(feature|fix|security|performance|improvement|breaking|deprecated|refactor|merge|style|test|cleanup|doc|docs|example|dependency|i18n|config|build|ci|release|update|revert|wip))+\(((.?)*)\): (.*)"
-export ERROR_MSG="
-Commit message is invalid, should follow this format:
-<types>(<scope>): <message>
-<body>
-
-Here are the explanations for each item:
-- <message>: [MANDATORY] a brief description of the changes made (can be any string)
-- <body>: [OPTIONAL] a more in-depth description of the changes made (can be any string)
-- <scope>: [MANDATORY] anything specifying place or category of the commit change. For example: 'tests', 'core', 'repo', a subfolder name, etc...
-- <types>: [MANDATORY] must be one or several of the following (for several <types>, each can be seprated by ',', '&', '|', or '/'):
+# The commit message filepath
+COMMITMSG_FILE=$1
+# The commit message content
+COMMITMSG="$(cat $COMMITMSG_FILE)"
+# The list of valid type-of-commit names for a commit message, with descriptions
+COMMIT_MSG_TYPE_DESCRIPTIONS='
 	feature      for new feature implementing commits
 	fix          for bug fix commits
 	security     for security issue fix commits
@@ -55,15 +58,36 @@ Here are the explanations for each item:
 	update       for update commits
 	revert       for history revert commits
 	wip          for work in progress commits
+'
+# The list of valid type-of-commit names (space-delimited)
+COMMIT_MSG_TYPES="`echo "$COMMIT_MSG_TYPE_DESCRIPTIONS" | awk '{ print $1; }' `"
+# The list of valid type-of-commit names (verticalbar-delimited)
+COMMIT_MSG_TYPES_REGEX="`echo "$COMMIT_MSG_TYPES" | tr '\n' '|' `"
+COMMIT_MSG_TYPES_REGEX="`echo "$COMMIT_MSG_TYPES_REGEX" | sed 's/^\|//' | sed 's/\|$//' `"
+# The regular expression used to check if the commit message follows the right format
+REGEX="^(fixup! )?([&|/,]?($COMMIT_MSG_TYPES_REGEX))+\(((.?)*)\): (.*)"
+# The error message to display when the commit message does not properly follow the format
+ERROR_MSG="
+Commit message is invalid, should follow this format:
+<types>(<scope>): <message>
+<body>
+
+Here are the explanations for each item:
+- <message>: [MANDATORY] a brief description of the changes made (can be any string)
+- <body>: [OPTIONAL] a more in-depth description of the changes made (can be any string)
+- <scope>: [MANDATORY] anything specifying place or category of the commit change. For example: 'tests', 'core', 'repo', a subfolder name, etc...
+- <types>: [MANDATORY] must be one or several of the following (for several <types>, each can be seprated by ',', '&', '|', or '/'):
+$COMMIT_MSG_TYPE_DESCRIPTIONS
 
 You can read the full contributing guidelines here:
-https://github.com/LexouDuck/libccc/blob/master/CONTRIBUTING.md
+https://github.com/LexouDuck/cccmk/blob/master/project/CONTRIBUTING.md
 "
+
 # Match the regular expression to the git commit message
-if echo "$FILE_CONTENT" | grep -Eq "$REGEX" ; then
-	printf "$SUCCESS Commit message follows the proper format.\n"
-else
-	printf "$ERROR Bad commit message:\n$FILE_CONTENT\n$ERROR_MSG\n"
+if echo "$COMMITMSG" | grep -Eq "$REGEX"
+then print_success "Commit message follows the proper format."
+else print_failure "Bad commit message:"
+	printf "$io_yellow""$COMMITMSG""$io_reset\n""$ERROR_MSG\n"
 	exit 1
 fi
 exit 0

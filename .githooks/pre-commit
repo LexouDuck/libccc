@@ -1,14 +1,30 @@
 #!/bin/sh -e
 
-#! utility variables for terminal colored output
-ansi_esc() { printf "\033[""$@""m" ; }
-IO_RESET="`   ansi_esc 0`"
-IO_RED="`     ansi_esc 31`"
-IO_GREEN="`   ansi_esc 32`"
-IO_YELLOW="`  ansi_esc 33`"
-IO_BLUE="`    ansi_esc 34`"
-IO_MAGENTA="` ansi_esc 35`"
-IO_CYAN="`    ansi_esc 36`"
+#! utility variables & functions for colored terminal output
+
+ansi_esc()      { printf "\033[""$@""m" ; }
+ansi_color_fg() { printf "\033[38;5;""$@""m" ; }
+ansi_color_bg() { printf "\033[48;5;""$@""m" ; }
+# reset text style to default
+io_reset="`     ansi_esc 0`"
+# set text style
+io_bold="`      ansi_esc 1`"
+io_underline="` ansi_esc 4`"
+# set text color (foreground)
+io_red="`       ansi_esc 31`"
+io_green="`     ansi_esc 32`"
+io_yellow="`    ansi_esc 33`"
+io_blue="`      ansi_esc 34`"
+io_magenta="`   ansi_esc 35`"
+io_cyan="`      ansi_esc 36`"
+
+print_verbose() {
+if $verbose; then { printf "%s%s%s%s\n" "$io_blue"   "verbose" "$io_reset: " "$@" ; } >&2 ; fi ; }
+print_message() { { printf "%s%s%s%s\n" "$io_blue"   "message" "$io_reset: " "$@" ; } >&2 ; }
+print_warning() { { printf "%s%s%s%s\n" "$io_yellow" "warning" "$io_reset: " "$@" ; } >&2 ; }
+print_success() { { printf "%s%s%s%s\n" "$io_green"  "success" "$io_reset: " "$@" ; } >&2 ; }
+print_failure() { { printf "%s%s%s%s\n" "$io_red"    "failure" "$io_reset: " "$@" ; } >&2 ; }
+print_error()   { { printf "%s%s%s%s\n" "$io_red"    "error"   "$io_reset: " "$@" ; } >&2 ; exit 1 ; }
 
 
 
@@ -16,13 +32,19 @@ IO_CYAN="`    ansi_esc 36`"
 VERSIONFILE=VERSION
 
 #! List of files with changes in this commit
-CHANGED="` git diff --cached --name-only `"
-printf "Files changed:$IO_CYAN\n$CHANGED\n$IO_RESET"
+CHANGED="` git diff --cached --name-only || echo '' `"
+print_message "Files changed:"
+printf "$io_cyan""$CHANGED""$io_reset""\n"
 
 #! List of important files (which, when changed, should update the version number)
-SOURCES=""
+SOURCES="./.githooks/pre-commit"
 SOURCES="$SOURCES ` make help-makefiles | cut -d' ' -f 1 `"
 SOURCES="$SOURCES ` make show-lists `"
+
+increment_version()
+{
+	make version-patch
+}
 
 
 
@@ -38,12 +60,12 @@ done
 
 if $match
 then
-	printf "Detected changes to important source files.\n"
-	if printf "$CHANGED" | grep -q "$VERSIONFILE"
+	print_message "Detected changes to project source files."
+	if printf "$CHANGED" | grep -q "^$VERSIONFILE$"
 	then
-		printf "Project version file '$VERSIONFILE' has already been updated.\n"
+		print_message "Project version file '$VERSIONFILE' has already been updated."
 	else
-		make version-patch
+		increment_version
 		git add $VERSIONFILE
 	fi
 fi

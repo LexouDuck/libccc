@@ -3,7 +3,7 @@
 
 
 # show warnings for undefined variables by default
-MAKEFLAGS += --warn-undefined-variables
+#MAKEFLAGS += --warn-undefined-variables
 
 # disable any builtin make rules (better to be explicit, fewer surprises)
 MAKEFLAGS += --no-builtin-rules
@@ -41,11 +41,13 @@ define C_NL
 
 endef
 
+C_EMPTY:=
+
 #! Makefile text character variable: tab `\t`
-C_TAB:=	#
+C_TAB:=$(C_EMPTY)	$(C_EMPTY)
 
 #! Makefile text character variable: space ` `
-C_SPACE:= #
+C_SPACE:=$(C_EMPTY) $(C_EMPTY)
 
 C_COMMA:=,#!< Makefile text character variable: comma `,`
 C_COLON:=:#!< Makefile text character variable: colon (double-dot) `:`

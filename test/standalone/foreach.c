@@ -26,10 +26,10 @@
 #define T_NULL	0
 #include <libccc/monad/array.c>
 
-#define T_TYPE	s_array_int
+#define T_TYPE	s_array_int*
 #define T_NAME	array_int
-#define T_NULL	(s_array_int){ .length = 0, .items = NULL }
-#define T_EQUALS(A, B)	(Array_Equals_int(&(A), &(B)))
+#define T_NULL	&(s_array_int){ .length = 0, .items = NULL }
+#define T_EQUALS(A, B)	(Array_Equals_int((A), (B)))
 #include <libccc/monad/array.c>
 
 #define T_TYPE	int
@@ -37,10 +37,10 @@
 #define T_NULL	0
 #include <libccc/monad/list.c>
 
-#define T_TYPE	s_list_int
+#define T_TYPE	s_list_int*
 #define T_NAME	list_int
-#define T_NULL	(s_list_int){ 0 }
-#define T_EQUALS(A, B)	(List_Equals_int(&(A), &(B)))
+#define T_NULL	&(s_list_int){ 0 }
+#define T_EQUALS(A, B)	(List_Equals_int((A), (B)))
 #include <libccc/monad/list.c>
 
 //#include <libccc/monad/dict.c>
@@ -110,19 +110,20 @@ int main(int argc, char** argv)
 			Array_Create(int)(3,	42, 69, 420),
 			Array_Create(int)(3,	42, 69, 420),
 			Array_Create(int)(6,	42, 69, 420, 0, 1, 10));
-		Array_RemoveAt(array_int)(tmp, 1);
+//		Array_RemoveAt(array_int)(tmp, 1);
 		i = 0;
-		foreach (s_array(int), int_array, s_array, tmp)
+		foreach (s_array(int)*, int_array, s_array, tmp)
 		{
-			//IO_Output_Format("i:%u,\titer:%u,\t""length: %u\n", i++, int_array_i, int_array.length);
 			j = 0;
-			foreach (int, integer, s_array, &int_array)
+			foreach (int, integer, s_array, int_array)
 			{
 				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%u,\t""int: %i\n",
-					i++, j++, integer_i, integer);
+					i, j, integer_i, integer);
+				++j;
 			}
+			++i;
 		}
-		Array_Delete_F(array_int)(&tmp, Array_Free(int));
+		Array_Delete_F(array_int)(&tmp, Array_Delete(int));
 	}
 #endif
 #if 1
@@ -133,18 +134,20 @@ int main(int argc, char** argv)
 			List_Create(int)(3, 	42, 69, 420),
 			List_Create(int)(3, 	42, 69, 420),
 			List_Create(int)(6, 	42, 69, 420, 0, 1, 10));
-		List_RemoveAt(list_int)(tmp, 1);
+//		List_RemoveAt(list_int)(tmp, 1);
 		i = 0;
-		foreach (s_list(int), int_list, s_list, tmp)
+		foreach (s_list(int)*, int_list, s_list, tmp)
 		{
 			j = 0;
-			foreach (int, integer, s_list, &int_list)
+			foreach (int, integer, s_list, int_list)
 			{
 				IO_Output_Format("\t""i:%u,\t""j:%u,\t""iter:%p,\t""int: %i\n",
-					i++, j++, (void*)integer_i, integer);
+					i, j, (void*)integer_i, integer);
+				++j;
 			}
+			++i;
 		}
-		List_Delete_F(list_int)(&tmp, List_Free(int));
+		List_Delete_F(list_int)(&tmp, List_Delete(int));
 	}
 #endif
 	return (OK);

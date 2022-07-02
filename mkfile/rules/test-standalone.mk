@@ -76,12 +76,12 @@ $(NAME_TEST_UNDEFINED): all $(SRCS_TEST_UNDEFINED)
 		$(TEST_LDLIBS)
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
-TEST_UNDEFINED_INCLUDES = $(HDRS:libccc/monad/%.h=libccc/monad/%.c)
+TEST_UNDEFINED_INCLUDES = $(HDRS:$(HDRDIR)libccc/monad/%.h=$(HDRDIR)libccc/monad/%.h)
 
 .PHONY:\
 $(SRCS_TEST_UNDEFINED) #! Generates a .c file which calls every function declared from every header in the project
 $(SRCS_TEST_UNDEFINED): HDRS := $(filter-out libccc/monad/convert.h,$(HDRS))
-$(SRCS_TEST_UNDEFINED): $(addprefix $(HDRDIR),$(TEST_UNDEFINED_INCLUDES))
+$(SRCS_TEST_UNDEFINED): $(TEST_UNDEFINED_INCLUDES)
 	@printf "Generating testing program: "$@" -> "
 	@$(MAKE) doc-help \
 		DOCHELP_AWK_DECL_SPACING="" \
@@ -92,15 +92,15 @@ $(SRCS_TEST_UNDEFINED): $(addprefix $(HDRDIR),$(TEST_UNDEFINED_INCLUDES))
 	BEGIN {\
 		print "// This is a generated source file: see $(MKFILES_DIR)rules/test-simple.mk for more info";\
 		print "";\
-		$(foreach i,$(TEST_UNDEFINED_INCLUDES),print "#include <$(i)>";)\
+		$(foreach i,$(TEST_UNDEFINED_INCLUDES:$(HDRDIR)lib%=lib%),print "#include <$(i)>";)\
 		print "#define T_TYPE	t_sint";\
 		print "#define T_NAME	int";\
 		print "#define T_NULL	0";\
-		print "#include <libccc/monad/array.c>";\
+		print "#include <libccc/monad/array.h>";\
 		print "#define T_TYPE	t_float";\
 		print "#define T_NAME	float";\
 		print "#define T_NULL	0.0";\
-		print "#include <libccc/monad/array.c>";\
+		print "#include <libccc/monad/array.h>";\
 		print "";\
 		print "int main()";\
 		print "{";\

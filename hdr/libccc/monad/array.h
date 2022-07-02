@@ -273,6 +273,50 @@ void					Array_Delete_F(T)(s_array(T)* *a_array, void (*del)(T* item));
 
 /*
 ** ************************************************************************** *|
+**                         Array: conversion operations                       *|
+** ************************************************************************** *|
+*/
+
+#if 0
+
+//!@doc Creates a new generic array, converted from the given memory buffer `ptr` and size `n`
+//!@{
+_MALLOC()
+_GENERIC()
+s_array(T)*					Array_FromMemory(T)(T* ptr, t_uint n);
+#define c_arrfrommem(T)		Array_FromMemory(T)
+//!@}
+
+//!@doc Creates a new memory buffer, converted from the given generic `array`
+//!@{
+_MALLOC()
+_GENERIC()
+T*							Array_ToMemory(T)(s_array(T) const* array);
+#define c_arrtomem(T)		Array_ToMemory(T)
+//!@}
+
+
+
+//!@doc Creates a new generic array, converted from the given NULL-terminated pointer array `ptrarr`
+//!@{
+_MALLOC()
+_GENERIC()
+s_array(T)*					Array_FromPointerArray(T)(T const* const* ptrarr);
+#define c_arrfromptrarr(T)	Array_FromPointerArray(T)
+//!@}
+
+//!@doc Creates a new NULL-terminated pointer array, converted from the given generic `array`
+//!@{
+_MALLOC()
+_GENERIC()
+void**						Array_ToPointerArray(T)(s_array(T) const* array);
+#define c_arrtoptrarr(T)	Array_ToPointerArray(T)
+//!@}
+
+#endif
+
+/*
+** ************************************************************************** *|
 **                          Array: editing operations                         *|
 ** ************************************************************************** *|
 */

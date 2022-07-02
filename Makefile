@@ -8,6 +8,8 @@
 MKFILE_PATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 #! The directory of the root-level makefile
 CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
+#! The sub-directory in which makefile scripts are stored
+MKFILES_DIR := ./mkfile/
 
 # Custom variable to detect when Makefile is called through `emmake make`
 ifdef EMSCRIPTEN
@@ -38,9 +40,6 @@ endif
 #      Project folder structure       #
 #######################################
 
-#! The sub-directory in which makefile scripts are stored
-MKFILES_DIR := ./mkfile/
-
 # repository folders
 
 #! The directory for header code files (stores `.h` files)
@@ -60,18 +59,21 @@ LISTSDIR = $(MKFILES_DIR)lists/
 
 # generated folders
 
+#! The name of the subfolder for the current compilation target
+TARGETDIR = $(BUILDMODE)_$(OSMODE)_$(CPUMODE)
+
 #! The directory for compiled object files (stores `.o` and `.d` files)
 OBJDIR = ./obj/
-OBJPATH = $(OBJDIR)$(BUILDMODE)_$(OSMODE)/
+OBJPATH = $(OBJDIR)$(TARGETDIR)/
 #! The directory for built binary files (stores programs/libraries built by this project)
 BINDIR = ./bin/
-BINPATH = $(BINDIR)$(BUILDMODE)_$(OSMODE)/
+BINPATH = $(BINDIR)$(TARGETDIR)/
 #! The directory for output logs (stores `.txt` outputs of the test suite program)
 LOGDIR = ./log/
-LOGPATH = $(LOGDIR)$(BUILDMODE)_$(OSMODE)/
+LOGPATH = $(LOGDIR)$(TARGETDIR)/
 #! The directory for test-suite code-coverage output reports
 COVDIR = $(LOGDIR)coverage/
-COVPATH = $(COVDIR)$(BUILDMODE)_$(OSMODE)/
+COVPATH = $(COVDIR)$(TARGETDIR)/
 #! The directory for distribution archives (stores `.zip` distributable builds)
 DISTDIR = ./dist/
 #! The directory for temporary (can be used for several things - should always be deleted after use)

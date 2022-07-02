@@ -51,6 +51,12 @@ jobs:
 
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
+    - name: Prerequisite tools install
+      run: |
+        make prereq-build
+        make prereq-tests
+        make prereq-dist
+
 
 
     - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
@@ -66,11 +72,14 @@ jobs:
 
 
 
+    - name: Create distributable package (for ${{matrix.os}})
+      run: make BUILDMODE=release dist
+
     - name: Upload build binary artifacts
       uses: actions/upload-artifact@v2
       with:
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
-        path: ./libccc.*
+        path: ./dist/*.zip
 
 #    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
 #      run: make clean ; make build-release CC=${{matrix.compiler}}

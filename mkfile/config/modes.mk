@@ -39,34 +39,35 @@ NAME_dynamic = $(NAME).$(LIBEXT_dynamic)
 
 
 
-#! Define all possible supported platforms
+UNAME_S := $(shell uname -s)
+UNAME_M := $(shell uname -m)
+UNAME_P := $(shell uname -p)
+
+
+
+#! Define all possible supported target platforms/operating systems
 OSMODES = \
-	win32	\
-	win64	\
+	emscripten	\
+	windows	\
 	macos	\
 	linux	\
-	emscripten	\
 	other	\
 # if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
-	OSMODE = other
+	OSMODE := other
 	ifdef __EMSCRIPTEN__
-		OSMODE=emscripten
-	else ifeq ($(OS),Windows_NT)
-		ifeq ($(PROCESSOR_ARCHITECTURE),x86)
-			OSMODE = win32
-		endif
-		ifeq ($(PROCESSOR_ARCHITECTURE),AMD64)
-			OSMODE = win64
-		endif
+		OSMODE := emscripten
 	else
-		UNAME_S := $(shell uname -s)
+	ifeq ($(OS),Windows_NT)
+		OSMODE := windows
+	else
 		ifeq ($(UNAME_S),Linux)
-			OSMODE = linux
+			OSMODE := linux
 		endif
 		ifeq ($(UNAME_S),Darwin)
-			OSMODE = macos
+			OSMODE := macos
 		endif
+	endif
 	endif
 	ifeq ($(OSMODE),other)
 	_:=$(call print_warning,"Could not estimate the current target platform, defaulting to 'OSMODE = other'...")
@@ -75,27 +76,52 @@ endif
 
 
 
+#! Since it is not viable to have/maintain make an exhaustive list of all possible target ASM/CPU architectures, instead we simply use the result of `uname -m`)
+CPUMODES = \
+	other	\
+# if the CPUMODE variable has no value, give it a default value based on the current CPU architecture
+ifeq ($(strip $(CPUMODE)),)
+	CPUMODE := other
+	ifdef __EMSCRIPTEN__
+		CPUMODE := wasm-$(if $(findstring 64, $(UNAME_M) $(UNAME_P)),64,32)
+	else
+		CPUMODE := $(subst _,-,$(UNAME_M))
+	endif
+	ifeq ($(strip $(CPUMODE)),)
+	_:=$(call print_warning,"Could not estimate the current target CPU architecture, defaulting to 'CPUMODE = other'...")
+	CPUMODE := other
+	endif
+endif
+
+
+
 #! The file extension used for static library files
-LIBEXT_static=a
+LIBEXT_static := a
 
 #! The file extension used for dynamic library files
-LIBEXT_dynamic=
+LIBEXT_dynamic := 
 ifeq ($(OSMODE),other)
-	LIBEXT_dynamic=
+	LIBEXT_dynamic := 
 else ifeq ($(OSMODE),emscripten)
-	LIBEXT_dynamic=# We don't support dynamic libraries with emscripten
-else ifeq ($(OSMODE),win32)
-	LIBEXT_dynamic=dll
-else ifeq ($(OSMODE),win64)
-	LIBEXT_dynamic=dll
+	LIBEXT_dynamic := js
+else ifeq ($(OSMODE),windows)
+	LIBEXT_dynamic := dll
 else ifeq ($(OSMODE),linux)
-	LIBEXT_dynamic=so
+	LIBEXT_dynamic := so
 else ifeq ($(OSMODE),macos)
-	LIBEXT_dynamic=dylib
+	LIBEXT_dynamic := dylib
 else
 $(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif
 
-ifdef __EMSCRIPTEN__
-NAME_dynamic := $(NAME).js
+
+
+#! The list of possible ways to use the C standard library (static-link, dynamic-link, and no stdlib at all)
+STDLIBMODES = \
+	none	\
+	static	\
+	dynamic	\
+# if the STDLIBMODE variable has no value, give it a default value, which is to static-link
+ifeq ($(strip $(STDLIBMODE)),)
+	STDLIBMODE := static
 endif

@@ -328,6 +328,59 @@ void					List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item));
 
 /*
 ** ************************************************************************** *|
+**                         List: conversion operations                        *|
+** ************************************************************************** *|
+*/
+
+#if 0
+
+//!@doc Creates a new generic list, converted from the given memory buffer `ptr` and size `n`
+//!@{
+_MALLOC()
+_GENERIC()
+s_list(T)*					List_FromMemory(T)(T* ptr, t_uint n);
+#define c_lstfrommem(T)		List_FromMemory(T)
+//!@}
+
+//!@doc Creates a new memory buffer, converted from the given generic `list`
+//!@{
+_MALLOC()
+_GENERIC()
+T*							List_ToMemory(T)(s_list(T) const* list);
+#define c_lsttomem(T)		List_ToMemory(T)
+//!@}
+
+
+
+//!@doc Creates a new generic list, converted from the given NULL-terminated pointer list `ptrarr`
+//!@{
+_MALLOC()
+_GENERIC()
+s_list(T)*					List_FromPointerArray(T)(T const* const* ptrarr);
+#define c_lstfromptrarr(T)	List_FromPointerArray(T)
+//!@}
+
+//!@doc Creates a new NULL-terminated pointer list, converted from the given generic `list`
+/*!
+**	Creates a new nested list (2D pointer list) from the given list `*a_lst`.
+**	The top-level pointer list is terminated by a NULL pointer.
+**	The underlying `lst.item` data is not copied, only the pointers are.
+**
+**	@returns
+**	The resulting pointer list converted from the given list,
+**	or `NULL` if an error occurred.
+*/
+//!@{
+_MALLOC()
+_GENERIC()
+void**						List_ToPointerArray(T)(s_list(T) const* list);
+#define c_lsttoptrarr(T)	List_ToPointerArray(T)
+//!@}
+
+#endif
+
+/*
+** ************************************************************************** *|
 **                           List: editing operations                         *|
 ** ************************************************************************** *|
 */

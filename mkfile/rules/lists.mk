@@ -5,7 +5,7 @@
 #! Path of the file which stores the list of header code files
 HDRSFILE = $(LISTSDIR)hdrs.txt
 #! The shell command which outputs the list of header code files
-echo_HDRSFILE = find $(HDRDIR) -name "*.h" | LC_ALL=C sort | sed 's|//|/|g' | grep -v '^libccc/compatibility/'
+echo_HDRSFILE = find $(HDRDIR) -name "*.h" | LC_ALL=C sort | sed 's|//|/|g' | grep -v '^$(HDRDIR)libccc/compatibility/'
 #! The shell command which generates the list of header code files
 make_HDRSFILE = $(call echo_HDRSFILE) > $(HDRSFILE)
 # if file doesn't exist, create it

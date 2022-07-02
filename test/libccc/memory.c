@@ -274,9 +274,11 @@ void	test_memccpy(void)
 {
 	char str1[] = "________________________________";
 	char str2[] = "________________________________";
-	uint64_t n1 = 0x00ABCDEF6969CAFE;	char* num1 = (char*)&n1;
-	uint64_t n2 = 0x00ABCDEF6969CAFE;	char* num2 = (char*)&n2;
-	uint64_t n  = 0x22446688AABBCCDD;	char* num  = (char*)&n;
+	uint64_t n = 0x0102030405060708;
+	uint32_t n32_1 = 0x00ABCDEF;
+	uint32_t n32_2 = 0x00ABCDEF;
+	uint64_t n64_1 = 0x00ABCDEF6969CAFE;
+	uint64_t n64_2 = 0x00ABCDEF6969CAFE;
 //	| TEST FUNCTION   | TEST NAME             | TESTFLAGS      | TEST ARGS
 	print_test_memccpy("memccpy (str)       ", FALSE,			str1, str2, test1, '\r', test1_len);
 	print_test_memccpy("memccpy (str)       ", FALSE,			str1, str2, test1, 'w',  test1_len);
@@ -294,7 +296,8 @@ void	test_memccpy(void)
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x80', 8);
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\x90', 8);
 	print_test_memccpy("memccpy (chars>0x80)", FALSE,			str1, str2, "\x78\x7F\x80\x81\x90\xA0\xB0", '\xB0', 8);
-	print_test_memccpy("memccpy (int*)      ", FALSE,			num1, num2, num,   0xAA, sizeof(n));
+	print_test_memccpy("memccpy (int32*)    ", FALSE,			(char*)&n32_1, (char*)&n32_2, (char*)&n,   0xAA, sizeof(uint32_t));
+	print_test_memccpy("memccpy (int64*)    ", FALSE,			(char*)&n64_1, (char*)&n64_2, (char*)&n,   0xAA, sizeof(uint64_t));
 //	print_test_memccpy("memccpy (c = '\\0')  ",FALSE,			str1, str2, test3, '\0', test3_len + 2); // TODO fix this test
 	print_test_memccpy("memccpy (null dest) ", ALLOW_SIGSEGV,	NULL, NULL, test3, 'e',  test3_len + 2);
 	print_test_memccpy("memccpy (null src)  ", ALLOW_SIGSEGV,	str1, str2, NULL,  'e',  5);
