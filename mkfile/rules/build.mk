@@ -97,7 +97,7 @@ $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 	@$(AR) $(ARFLAGS) $@ $(call objs)
 	@$(RANLIB) $(RANLIB_FLAGS) $@
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call bin_copylibs)
+	@$(call bin_copylibs,static)
 	@$(call bin_symlinks,$(BINPATH)static,$(NAME),$(LIBEXT_static))
 
 
@@ -130,7 +130,7 @@ else
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
-	@$(call bin_copylibs)
+	@$(call bin_copylibs,dynamic)
 	@$(call bin_symlinks,$(BINPATH)dynamic,$(NAME),$(LIBEXT_dynamic))
 
 
