@@ -50,13 +50,17 @@ debug-linking #! Outputs the list of linking paths to find dynamic libraries for
 debug-linking:
 ifeq ($(ARGS),)
 	@$(call print_error,"This rule expects one or more binary files given as arguments (ARGS=...)")
-else ifeq ($(OSMODE),windows)
+endif
+ifeq ($(OSMODE),windows)
 	@objdump -p $(ARGS)
-else ifeq ($(OSMODE),macos)
+endif
+ifeq ($(OSMODE),macos)
 	@otool -L $(ARGS)
-else ifeq ($(OSMODE),linux)
+endif
+ifeq ($(OSMODE),linux)
 	@ldd $(ARGS)
-else
+endif
+ifeq ($(OSMODE),other)
 	@$(call print_error,"Unknown platform, needs manual configuration")
 endif
 

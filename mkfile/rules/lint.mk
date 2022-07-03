@@ -23,12 +23,13 @@ lint #! Runs a linter on all source files, giving useful additional warnings
 lint: BUILDMODE = debug
 ifeq ($(CC),)
 $(warning C compiler '$$CC' environment variable has not been set, cannot estimate static analyzer linting options)
-else ifneq ($(findstring gcc,$(CC)),)
-lint: CFLAGS += -fanalyzer
-else ifneq ($(findstring clang,$(CC)),)
-lint: CFLAGS += -Wthread-safety --analyze --analyzer-output html
-else
 #$(error Unknown compiler "$(CC)", cannot estimate static analyzer linting options)
+endif
+ifneq ($(findstring gcc,$(CC)),)
+lint: CFLAGS += -fanalyzer
+endif
+ifneq ($(findstring clang,$(CC)),)
+lint: CFLAGS += -Wthread-safety --analyze --analyzer-output html
 endif
 lint: $(LINT)
 	@find $(LINTDIR) -size 0 -print -delete

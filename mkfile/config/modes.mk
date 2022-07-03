@@ -9,10 +9,10 @@ BUILDMODES = \
 # if the BUILDMODE variable has no value, give it a default value
 ifeq ($(strip $(BUILDMODE)),)
 	BUILDMODE=debug
-else ifeq ($(BUILDMODE),debug)
-else ifeq ($(BUILDMODE),release)
 else
-$(error Invalid value for BUILDMODE, should be `debug` or `release`)
+	ifeq ($(filter $(BUILDMODE), $(BUILDMODES)),)
+	$(error Invalid value for BUILDMODE, should be `debug` or `release`)
+	endif
 endif
 
 
@@ -24,10 +24,10 @@ LIBMODES = \
 # if the LIBMODE variable has no value, give it a default value
 ifeq ($(strip $(LIBMODE)),)
 	LIBMODE=static
-else ifeq ($(LIBMODE),static)
-else ifeq ($(LIBMODE),dynamic)
 else
-$(error Invalid value for LIBMODE, should be `static` or `dynamic`)
+	ifeq ($(filter $(LIBMODE), $(LIBMODES)),)
+	$(error Invalid value for LIBMODE, should be `static` or `dynamic`)
+	endif
 endif
 
 #! Define build target name for library, according to current $(LIBMODE)
@@ -85,7 +85,7 @@ ifeq ($(strip $(CPUMODE)),)
 	ifdef __EMSCRIPTEN__
 		CPUMODE := wasm-$(if $(findstring 64, $(UNAME_M) $(UNAME_P)),64,32)
 	else
-		CPUMODE := $(subst _,-,$(UNAME_M))
+		CPUMODE := $(subst _,-,$(subst $(C_SPACE),-,$(UNAME_M)))
 	endif
 	ifeq ($(strip $(CPUMODE)),)
 	_:=$(call print_warning,"Could not estimate the current target CPU architecture, defaulting to 'CPUMODE = other'...")
@@ -100,18 +100,20 @@ LIBEXT_static := a
 
 #! The file extension used for dynamic library files
 LIBEXT_dynamic := 
-ifeq ($(OSMODE),other)
-	LIBEXT_dynamic := 
-else ifeq ($(OSMODE),emscripten)
+ifeq ($(OSMODE),emscripten)
 	LIBEXT_dynamic := js
-else ifeq ($(OSMODE),windows)
+endif
+ifeq ($(OSMODE),windows)
 	LIBEXT_dynamic := dll
-else ifeq ($(OSMODE),linux)
+endif
+ifeq ($(OSMODE),linux)
 	LIBEXT_dynamic := so
-else ifeq ($(OSMODE),macos)
+endif
+ifeq ($(OSMODE),macos)
 	LIBEXT_dynamic := dylib
-else
-$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+endif
+ifeq ($(OSMODE),other)
+$(warning Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif
 
 
