@@ -11,7 +11,7 @@ init:
 	@mkdir -p $(TESTDIR)
 	@mkdir -p $(GITHOOKSDIR)
 	@mkdir -p $(LISTSDIR)
-	@git submodule update --init --recursive
-	@git config core.hooksPath $(GITHOOKSDIR)
+	@$(GIT) submodule update --init --recursive
+	@$(GIT) config core.hooksPath $(GITHOOKSDIR)
 
 # TODO 'configure' rule, for easier cross-platform setup ?

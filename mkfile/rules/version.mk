@@ -5,7 +5,7 @@
 #! Project metadata embedded in the version (by default, the date and commit, but it can be "alpha3", "beta", etc)
 VERSION_METADATA = $(VERSION_METADATA_DATE)_$(VERSION_METADATA_COMMIT)
 VERSION_METADATA_DATE   := $(shell date -u +%Y-%m-%d)
-VERSION_METADATA_COMMIT := $(shell git rev-parse HEAD)
+VERSION_METADATA_COMMIT := $(shell $(GIT) rev-parse HEAD)
 
 #! The filepath in which to store the version number
 VERSIONFILE = VERSION
@@ -29,9 +29,9 @@ REGEXP_VERSION  := [0-9]+(\.[0-9]+)+
 REGEXP_METADATA := (.*)$
 
 #! The project's name, as parsed from the VERSION file
-PARSED_NAME     := $(shell echo $(VERSIONINFO) | egrep -o '$(REGEXP_NAME)')
+PARSED_NAME     := $(shell echo $(VERSIONINFO) | awk '{ if (match($$0, /$(REGEXP_NAME)/))    { print substr($$0, RSTART, RLENGTH); } }')
 #! The project's version number, as parsed from the VERSION file
-PARSED_VERSION  := $(shell echo $(VERSIONINFO) | egrep -o '$(REGEXP_VERSION)' )
+PARSED_VERSION  := $(shell echo $(VERSIONINFO) | awk '{ if (match($$0, /$(REGEXP_VERSION)/)) { print substr($$0, RSTART, RLENGTH); } }')
 #! The project's commit revision hash code, as parsed from the VERSION file
 PARSED_METADATA := $(shell echo $(VERSIONINFO) | cut -d'-' -f 2-)
 

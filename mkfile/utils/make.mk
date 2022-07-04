@@ -14,8 +14,8 @@ MAKEFLAGS += --no-builtin-rules
 # (uncomment to activate) set every `make` rule to execute in a single shell, instead of the default behavior of using one shell per recipe line
 #.ONESHELL:
 
-# (uncomment to activate) set the default shell that `make` will use to be `bash` rather than the default `sh`
-#SHELL := bash
+# (uncomment to activate) set the default shell that `make` will use as interpreter program
+#SHELL := /bin/sh
 
 # set rigorous shell flags to fail properly when a command errors
 .SHELLFLAGS := -e -u -c
