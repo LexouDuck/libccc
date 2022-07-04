@@ -40,7 +40,7 @@ HEADER_CPP
 
 //!@doc This type represents an unsigned 16-bit number which stores an ARGB 1555 color
 //!@{
-typedef u16		t_argb16;
+typedef u16_t	t_argb16;
 TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 //!@}
 #define COLOR_ARGB16_NULL	(t_argb16)(0)
@@ -64,7 +64,7 @@ TYPEDEF_ALIAS(	t_argb16, COLOR_ARGB16, PRIMITIVE)
 
 //!@doc This type represents an unsigned 32-bit number which stores an ARGB 8888 color
 //!@{
-typedef u32		t_argb32;
+typedef u32_t	t_argb32;
 TYPEDEF_ALIAS(	t_argb32, COLOR_ARGB32, PRIMITIVE)
 //!@}
 #define COLOR_ARGB32_NULL	(t_argb32)(0)

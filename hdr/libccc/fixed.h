@@ -163,7 +163,7 @@ TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
 **	The largest possible value for this type is #Q16_MAX.
 */
 //!@{
-typedef s16		t_q16;
+typedef s16_t	t_q16;
 TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 //!@}
 
@@ -178,7 +178,7 @@ TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 **	The largest possible value for this type is #Q32_MAX.
 */
 //!@{
-typedef s32		t_q32;
+typedef s32_t	t_q32;
 TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 //!@}
 
@@ -193,7 +193,7 @@ TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 **	The largest possible value for this type is #Q64_MAX.
 */
 //!@{
-typedef	s64		t_q64;
+typedef	s64_t	t_q64;
 TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 //!@}
 
@@ -209,7 +209,7 @@ TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 **	The largest possible value for this type is #Q128_MAX.
 */
 //!@{
-typedef s128	t_q128;
+typedef s128_t	t_q128;
 TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
 //!@}
 

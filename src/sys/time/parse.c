@@ -525,8 +525,8 @@ recurse:
 					if (ep != NULL)
 					{
 						SET_TM(is_dst, (t_bool)number);
-						SET_TM(offset, -(timezone));
-						SET_TM_GMTOFF(-(timezone));
+						SET_TM(offset, -(long)timezone);
+						SET_TM_GMTOFF(-(long)timezone);
 						SET_TM_ZONE(tzname[number]);
 					}
 					buffer = ep;

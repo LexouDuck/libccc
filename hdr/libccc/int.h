@@ -73,19 +73,19 @@
 #else
 	#define STDINT(TYPE, BITS)	TYPE##LIBCONFIG_INTEGER_TYPES##BITS##_t
 #endif
-typedef STDINT(uint, 8)	u8;
-typedef STDINT(uint,16)	u16;
-typedef STDINT(uint,32)	u32;
-typedef	STDINT(uint,64)	u64;
+typedef STDINT(uint, 8)	u8_t;
+typedef STDINT(uint,16)	u16_t;
+typedef STDINT(uint,32)	u32_t;
+typedef	STDINT(uint,64)	u64_t;
 #if LIBCONFIG_USE_INT128
-typedef _UInt128	u128;
+typedef _UInt128	u128_t;
 #endif
-typedef STDINT(int,  8)	s8;
-typedef STDINT(int, 16)	s16;
-typedef STDINT(int, 32)	s32;
-typedef	STDINT(int, 64)	s64;
+typedef STDINT(int,  8)	s8_t;
+typedef STDINT(int, 16)	s16_t;
+typedef STDINT(int, 32)	s32_t;
+typedef	STDINT(int, 64)	s64_t;
 #if LIBCONFIG_USE_INT128
-typedef _SInt128	s128;
+typedef _SInt128	s128_t;
 #endif
 
 #include "libccc.h"
@@ -115,7 +115,7 @@ HEADER_CPP
 **	- U8_ToString_Base()
 */
 //!@{
-typedef u8		t_u8;
+typedef u8_t	t_u8;
 TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 //!@}
 
@@ -133,7 +133,7 @@ TYPEDEF_ALIAS(	t_u8,	UINT_8,  PRIMITIVE)
 **	- U16_ToString_Base()
 */
 //!@{
-typedef u16		t_u16;
+typedef u16_t	t_u16;
 TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 //!@}
 
@@ -151,7 +151,7 @@ TYPEDEF_ALIAS(	t_u16,	UINT_16, PRIMITIVE)
 **	- U32_ToString_Base()
 */
 //!@{
-typedef u32		t_u32;
+typedef u32_t	t_u32;
 TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 //!@}
 
@@ -169,7 +169,7 @@ TYPEDEF_ALIAS(	t_u32,	UINT_32, PRIMITIVE)
 **	- U64_ToString_Base()
 */
 //!@{
-typedef	u64		t_u64;
+typedef	u64_t	t_u64;
 TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 //!@}
 
@@ -189,7 +189,7 @@ TYPEDEF_ALIAS(	t_u64,	UINT_64, PRIMITIVE)
 **	- U128_ToString_Base()
 */
 //!@{
-typedef u128	t_u128;
+typedef u128_t	t_u128;
 TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 //!@}
 #elif (LIBCONFIG_UINT_BITS == 128)
@@ -212,7 +212,7 @@ TYPEDEF_ALIAS(	t_u128,	UINT_128,PRIMITIVE)
 **	- S8_ToString_Base()
 */
 //!@{
-typedef s8		t_s8;
+typedef s8_t	t_s8;
 TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 //!@}
 
@@ -230,7 +230,7 @@ TYPEDEF_ALIAS(	t_s8,	SINT_8,  PRIMITIVE)
 **	- S16_ToString_Base()
 */
 //!@{
-typedef s16		t_s16;
+typedef s16_t	t_s16;
 TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 //!@}
 
@@ -248,7 +248,7 @@ TYPEDEF_ALIAS(	t_s16,	SINT_16, PRIMITIVE)
 **	- S32_ToString_Base()
 */
 //!@{
-typedef s32		t_s32;
+typedef s32_t	t_s32;
 TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 //!@}
 
@@ -266,7 +266,7 @@ TYPEDEF_ALIAS(	t_s32,	SINT_32, PRIMITIVE)
 **	- S64_ToString_Base()
 */
 //!@{
-typedef	s64		t_s64;
+typedef	s64_t	t_s64;
 TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 //!@}
 
@@ -286,7 +286,7 @@ TYPEDEF_ALIAS(	t_s64,	SINT_64, PRIMITIVE)
 **	- S128_ToString_Base()
 */
 //!@{
-typedef s128	t_s128;
+typedef s128_t	t_s128;
 TYPEDEF_ALIAS(	t_s128,	SINT_128,PRIMITIVE)
 //!@}
 #elif (LIBCONFIG_SINT_BITS == 128)

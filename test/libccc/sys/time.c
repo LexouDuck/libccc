@@ -44,7 +44,7 @@
 
 
 char*	y99_str = "1999-01-01 00:00:00";
-s_date	y99_date = (s_date)
+s_date	y99_date =
 {
 	.year		= 1999,
 	.month		= MONTH_JANUARY,
@@ -59,7 +59,7 @@ s_date	y99_date = (s_date)
 };
 
 char*	y2k_str = "2000-01-01 00:00:00";
-s_date	y2k_date = (s_date)
+s_date	y2k_date =
 {
 	.year		= 2000,
 	.month		= MONTH_JANUARY,
@@ -74,7 +74,7 @@ s_date	y2k_date = (s_date)
 };
 
 char*	xmas_str = "1981-12-25 12:34:56";
-s_date	xmas_date = (s_date)
+s_date	xmas_date =
 {
 	.year		= 1981,
 	.month		= MONTH_DECEMBER,
@@ -89,7 +89,7 @@ s_date	xmas_date = (s_date)
 };
 
 char*	ween_str = "2007-10-31 01:23:45";
-s_date	ween_date = (s_date)
+s_date	ween_date =
 {
 	.year		= 2007,
 	.month		= MONTH_OCTOBER,
@@ -104,7 +104,7 @@ s_date	ween_date = (s_date)
 };
 
 char*	leap_year_str = "2008-02-29 12:30:05";
-s_date	leap_year_date = (s_date)
+s_date	leap_year_date =
 {
 	.year		= 2008,
 	.month		= MONTH_FEBRUARY,
@@ -120,7 +120,7 @@ s_date	leap_year_date = (s_date)
 
 char*	leap_second_str  = "2016-12-31 23:59:60";
 char*	leap_second_str_ = "2016-12-31 23:59:59";
-s_date	leap_second_date = (s_date)
+s_date	leap_second_date =
 {
 	.year		= 2016,
 	.month		= MONTH_DECEMBER,
@@ -135,7 +135,7 @@ s_date	leap_second_date = (s_date)
 };
 
 char*	bad_leap_year_str = "2007-02-29 12:30:05";
-s_date	bad_leap_year_date = (s_date)
+s_date	bad_leap_year_date =
 {
 	.year		= 2007,
 	.month		= MONTH_FEBRUARY,
@@ -150,7 +150,7 @@ s_date	bad_leap_year_date = (s_date)
 };
 
 char*	bad_leap_second_str = "2015-12-31 23:59:60";
-s_date	bad_leap_second_date = (s_date)
+s_date	bad_leap_second_date =
 {
 	.year		= 2015,
 	.month		= MONTH_DECEMBER,

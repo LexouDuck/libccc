@@ -66,7 +66,7 @@ s_date		Time_ToDate_LocalTime(t_time const value)
 #endif
 	result = Date_FromSTDC(&tm);
 	if (result.offset == 0)
-		result.offset = -timezone;
+		result.offset = -(long)timezone;
 	return (result);
 }
 

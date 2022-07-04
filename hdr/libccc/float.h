@@ -443,11 +443,11 @@ typedef union float_cast
 {
 	t_float	value_float;
 #if (LIBCONFIG_FLOAT_BITS == 32)
-	s32		value_int;
+	s32_t	value_int;
 #elif (LIBCONFIG_FLOAT_BITS == 64)
-	s64		value_int;
+	s64_t	value_int;
 #else
-	s64[2]	value_int;
+	s64_t[2]	value_int;
 #endif
 }	u_float_cast;
 
