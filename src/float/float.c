@@ -81,7 +81,8 @@ MATH_DECL_FUNCTION(t_sint, GetExp2, ilogb)
 #define DEFINEFUNC_FLOAT_GETEXP2(BITS) \
 t_sint	F##BITS##_GetExp2(t_f##BITS number)						\
 {																\
-	return ((((*((t_u##BITS*)&number)) & F##BITS##_EXPONENT) >>	\
+	u_f##BITS##_cast	n;										\
+	return (((n.value_uint & F##BITS##_EXPONENT) >>				\
 		F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS);	\
 }
 

@@ -439,17 +439,54 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	This union type is used in several math function implementations, to
 **	manipulate float bits directly, by using bitwise operators with int types.
 */
+//!@{
+typedef union f32_cast
+{
+	t_f32	value_float;
+	s32_t	value_sint;
+	u32_t	value_uint;
+}	u_f32_cast;
+
+typedef union f64_cast
+{
+	t_f64	value_float;
+	s64_t	value_sint;
+	u64_t	value_uint;
+}	u_f64_cast;
+
+#if LIBCONFIG_USE_FLOAT80
+typedef union f80_cast
+{
+	t_f80	value_float;
+	s128_t	value_sint;
+	u128_t	value_uint;
+}	u_f80_cast;
+#endif
+
+#if LIBCONFIG_USE_FLOAT128
+typedef union f128_cast
+{
+	t_f128	value_float;
+	s128_t	value_sint;
+	u128_t	value_uint;
+}	u_f128_cast;
+#endif
+
 typedef union float_cast
 {
 	t_float	value_float;
 #if (LIBCONFIG_FLOAT_BITS == 32)
-	s32_t	value_int;
+	s32_t	value_sint;
+	u32_t	value_uint;
 #elif (LIBCONFIG_FLOAT_BITS == 64)
-	s64_t	value_int;
+	s64_t	value_sint;
+	u64_t	value_uint;
 #else
-	s64_t[2]	value_int;
+	s128_t	value_sint;
+	u128_t	value_uint;
 #endif
 }	u_float_cast;
+//!@}
 
 
 
