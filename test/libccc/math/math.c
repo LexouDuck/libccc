@@ -6,7 +6,7 @@
 #include "libccc/math.h"
 #include "libccc/math/algebra.h"
 #include "libccc/math/stat.h"
-
+#define NOTYPEDEF // avoid typedef redefinitions
 #define T_TYPE	t_sint
 #define T_NAME	int
 #define T_NULL	0

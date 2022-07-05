@@ -50,11 +50,14 @@ HEADER_CPP
 **	of a single item in the array, and the total amount of items in this array.
 **	As such, a s_array can hold any number of items, but they must all share the same type.
 */
-typedef struct array(T)
+struct array(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the allocated contiguous array
-}	s_array(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct array(T)	s_array(T);
+#endif
 
 /* TODO find a way to avoid multiple definitions
 extern

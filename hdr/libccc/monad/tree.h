@@ -43,12 +43,15 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct tree(T)
+struct tree(T)
 {
 	t_size			node_count;	//!< The amount of sub-nodes of this tree node
 	struct tree(T)*	nodes;		//!< The array of sub-nodes of this tree node
 	T				value;		//!< The value stored in this tree node
-}	s_tree(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct tree(T)	s_tree(T);
+#endif
 
 
 

@@ -3,8 +3,9 @@
 
 #include "libccc/text/format.h"
 #include "libccc/sys/io.h"
-#include "libccc/math/stat.h"
 #include "libccc/random/random.h"
+#include "libccc/math/stat.h"
+#define NOTYPEDEF // avoid typedef redefinitions
 #define T_TYPE	t_sint
 #define T_NAME	int
 #define T_NULL	0

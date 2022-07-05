@@ -42,11 +42,14 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct queue(T)
+struct queue(T)
 {
 	t_uint	length;	//!< The amount of elements in the 'items' array
 	T*		items;	//!< The pointer to the array (items can be of any one type)
-}	s_queue(T);
+};
+typedef struct queue(T)	s_queue(T);
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+#endif
 
 
 

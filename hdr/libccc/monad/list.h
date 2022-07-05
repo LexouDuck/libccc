@@ -51,14 +51,17 @@ HEADER_CPP
 **	all chained together via their `next` pointer, and the last item would
 **	have this `next` pointer set to `NULL`.
 */
-typedef struct list(T)
+struct list(T)
 {
 #if LIBCONFIG_LIST_DOUBLYLINKED
 	struct list(T)*	prev;	//!< The pointer to the previous item in the list (or NULL if this is the first item)
 #endif
 	struct list(T)*	next;	//!< The pointer to the next item in the list (or NULL if this is the last item)
 	T				item;	//!< The content of this linked-list item
-}	s_list(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct list(T)	s_list(T);
+#endif
 
 /* TODO find a way to avoid multiple definitions
 extern

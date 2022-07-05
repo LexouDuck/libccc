@@ -17,8 +17,8 @@
 #include "libccc/char.h"
 #include "libccc/text/char_ascii.h"
 #include "libccc/text/char_unicode.h"
-#include "libccc/math/stat.h"
 #include "libccc/sys/time.h"
+#include "libccc/math/stat.h"
 
 typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
 typedef struct list_int 	s_list_int ;	//!< @see "libccc/monad/list.h"

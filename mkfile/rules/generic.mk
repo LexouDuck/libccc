@@ -26,6 +26,7 @@ BEGIN {\
 }\
 {\
 	if (/^typedef\>/) declaration = 1;\
+	if (/^struct\>/)  declaration = 1;\
 	if (/^\}/)        declaration = 1;\
 	if (declaration && match($$0, /\<(($(REGEXP_C_SYMBOL))\(($(REGEXP_C_GENERIC))\))[ \t]*(;|\(|$$)/, matched))\
 	{\
