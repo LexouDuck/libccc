@@ -67,7 +67,6 @@ static const t_f64 f64_powers_neg[] =
 	(t_f64)0x1.0p-128,
 	(t_f64)0x1.0p-256,
 	(t_f64)0x1.0p-512,
-	(t_f64)0x1.0p-1024,
 	0.
 };
 
@@ -155,45 +154,57 @@ static const t_f128 f128_powers_neg[] =
 
 
 
-#define DEFINEFUNC_FLOAT_ROOT2PN(BITS) \
-static t_f##BITS	F##BITS##_Root2_2pN(t_s32 n)				\
-{																\
-	if (n > 0 && (n >> 11))										\
-		return (INFINITY);										\
-	const t_f##BITS* powers = f##BITS##_powers_pos;				\
-	if (n == 0)													\
-		return (1.);											\
-	else if (n < 0)												\
-	{															\
-		n = -n;													\
-		powers = f##BITS##_powers_neg;							\
-	}															\
-	t_f##BITS result = 1.;										\
-	if (n & 0x0001) { result *= powers[0x0]; }					\
-	if (n & 0x0002) { result *= powers[0x1]; }					\
-	if (n & 0x0004) { result *= powers[0x2]; }					\
-	if (n & 0x0008) { result *= powers[0x3]; }					\
-	if (n & 0x0010) { result *= powers[0x4]; }					\
-	if (n & 0x0020) { result *= powers[0x5]; }					\
-	if (n & 0x0040) { result *= powers[0x6]; }					\
-	if (n & 0x0080) { result *= powers[0x7]; }					\
-	if (n & 0x0100) { result *= powers[0x8]; } /* >= 64-bit */	\
-	if (n & 0x0200) { result *= powers[0x9]; }					\
-	if (n & 0x0400) { result *= powers[0xA]; }					\
-	if (n & 0x0800) { result *= powers[0xB]; } /* >= 80-bit */	\
-	if (n & 0x1000) { result *= powers[0xC]; }					\
-	if (n & 0x2000) { result *= powers[0xD]; }					\
-	if (n & 0x4000) { result *= powers[0xE]; }					\
-	return (result);											\
+#define DEFINEFUNC_FLOAT_ROOT2PN(BITS, EXTRA) \
+static t_f##BITS	F##BITS##_Root2_2pN(t_s32 n)		\
+{														\
+	if (n > 0 && (n >> 11))								\
+		return (INFINITY);								\
+	const t_f##BITS* powers = f##BITS##_powers_pos;		\
+	if (n == 0)											\
+		return (1.);									\
+	else if (n < 0)										\
+	{													\
+		n = -n;											\
+		powers = f##BITS##_powers_neg;					\
+	}													\
+	t_f##BITS result = 1.;								\
+	if (n & 0x0001) { result *= powers[0x0]; }			\
+	if (n & 0x0002) { result *= powers[0x1]; }			\
+	if (n & 0x0004) { result *= powers[0x2]; }			\
+	if (n & 0x0008) { result *= powers[0x3]; }			\
+	if (n & 0x0010) { result *= powers[0x4]; }			\
+	if (n & 0x0020) { result *= powers[0x5]; }			\
+	if (n & 0x0040) { result *= powers[0x6]; }			\
+	if (n & 0x0080) { result *= powers[0x7]; }			\
+	if (n & 0x0100) { result *= powers[0x8]; }			\
+	if (n & 0x0200) { result *= powers[0x9]; }			\
+	EXTRA												\
+	return (result);									\
 }
 
-DEFINEFUNC_FLOAT_ROOT2PN(32)
-DEFINEFUNC_FLOAT_ROOT2PN(64)
+DEFINEFUNC_FLOAT_ROOT2PN(32,
+	if (n & 0x0400) { result *= powers[0xA]; }
+)
+DEFINEFUNC_FLOAT_ROOT2PN(64,
+	if (n & 0x0400) { result *= powers[0xA]; }
+)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_ROOT2PN(80)
+DEFINEFUNC_FLOAT_ROOT2PN(80,
+	if (n & 0x0400) { result *= powers[0xA]; }
+	if (n & 0x0800) { result *= powers[0xB]; }
+	if (n & 0x1000) { result *= powers[0xC]; }
+	if (n & 0x2000) { result *= powers[0xD]; }
+	if (n & 0x4000) { result *= powers[0xE]; }
+)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_ROOT2PN(128)
+DEFINEFUNC_FLOAT_ROOT2PN(128,
+	if (n & 0x0400) { result *= powers[0xA]; }
+	if (n & 0x0800) { result *= powers[0xB]; }
+	if (n & 0x1000) { result *= powers[0xC]; }
+	if (n & 0x2000) { result *= powers[0xD]; }
+	if (n & 0x4000) { result *= powers[0xE]; }
+)
 #endif
 
 
