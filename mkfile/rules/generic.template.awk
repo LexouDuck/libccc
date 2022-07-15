@@ -153,6 +153,10 @@ function template_variable(str)
 
 
 
+###
+### Main AWK script loop
+###
+
 # This script expects some variables to be predefined via the `variables`
 # `variables` should have keys/values separated with '=' symbols, and different assignements by ';'
 # example: awk -v variables='foo="bar";hello="world";'

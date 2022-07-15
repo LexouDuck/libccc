@@ -8,6 +8,9 @@ GENERIC_OUTPUTS = $(GENERIC_HEADERS:%.h=%.c)
 #! The file which holds the template of C code to make an importable generic-type code header
 GENERIC_TEMPLATE = $(MKFILES_DIR)rules/generic.template.c
 
+#! The AWK script which creates the final inlude-able header from the `GENERIC_TEMPLATE` file
+GENERIC_AWKSCRIPT = $(MKFILES_DIR)rules/generic.template.awk
+
 
 
 define AWKSCRIPT_GETHEADERGUARD
@@ -52,21 +55,23 @@ generic: \
 clean-generic \
 $(GENERIC_OUTPUTS)
 
-$(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
+$(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE) $(GENERIC_AWKSCRIPT)
 	@if [ -z "`command -v gawk`" ]; \
-	then $(call print_warning,"gawk command is not installed - cannot update generic header .c include-wrapper: $@") ; \
+	then \
+		$(call print_warning,"gawk command is not installed - cannot update generic header .c include-wrapper: $@") ; \
+	else \
+		$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
+		folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
+		gawk \
+			-v variables="\
+				header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
+				header_guard=`gawk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
+				sources=`grep "$${folder}" $(SRCSFILE) `;\
+				symbols=`gawk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
+			" \
+			-f $(GENERIC_AWKSCRIPT) \
+			"$(GENERIC_TEMPLATE)" > $@ ; \
 	fi
-	@$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
-	folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
-	gawk \
-		-v variables="\
-			header=`echo './$<' | sed 's|$(HDRDIR)||' `;\
-			header_guard=`gawk '$(AWKSCRIPT_GETHEADERGUARD)' '$<' `;\
-			sources=`grep "$${folder}" $(SRCSFILE) `;\
-			symbols=`gawk '$(AWKSCRIPT_GETSYMBOLS)' '$<' | uniq `;\
-		" \
-		-f $(MKFILES_DIR)rules/generic.template.awk \
-		"$(GENERIC_TEMPLATE)" > $@
 
 .PHONY:\
 clean-generic #! Deletes any generated C importable generic code files (uses `GENERIC_HEADERS`)
