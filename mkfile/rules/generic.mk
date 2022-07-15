@@ -52,7 +52,7 @@ generic: \
 clean-generic \
 $(GENERIC_OUTPUTS)
 
-$(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
+$(HDRDIR)%.c: $(GENERIC_TEMPLATE) # $(HDRDIR)%.h
 	@$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
 	folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
 	gawk \
