@@ -127,7 +127,7 @@ endif
 LDFLAGS_EXTRA ?= \
 
 ifdef __EMSCRIPTEN__
-LDFLAGS_MODE_debug += \
+LDFLAGS_BUILDMODE_debug += \
 	-s ASSERTIONS=2 \
 	-s SAFE_HEAP=1 \
 	-s STACK_OVERFLOW_CHECK=1 \

@@ -52,14 +52,16 @@ doxyrest_install = \
 
 ifeq ($(OSMODE),other)
 doxyrest_install = $(call print_warning,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
+endif
 
-else ifeq ($(OSMODE),windows)
+ifeq ($(OSMODE),windows)
 DOXYREST_CPUMODE := $(if $(findstring 64,$(CPUMODE)),amd64,x86)
 DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-windows-$(DOXYREST_CPUMODE).7z
 doxyrest_extract = \
 	7z x $(DOXYREST_PACKAGE) -o$(DOXYREST_DIR) \
 
-else ifeq ($(OSMODE),macos)
+endif
+ifeq ($(OSMODE),macos)
 DOXYREST_CPUMODE := 
 DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-mac.tar.xz
 doxyrest_extract = \
@@ -70,7 +72,8 @@ doxyrest_extract = \
 	rmdir $(DOXYREST_DIR)share/doxyrest && \
 	rmdir $(DOXYREST_DIR)share \
 
-else ifeq ($(OSMODE),linux)
+endif
+ifeq ($(OSMODE),linux)
 DOXYREST_CPUMODE := $(if $(findstring 64,$(CPUMODE)),amd64,x86)
 DOXYREST_PACKAGE := doxyrest-$(DOXYREST_VERSION)-linux-$(DOXYREST_CPUMODE).tar.xz
 doxyrest_extract = \
@@ -81,8 +84,6 @@ doxyrest_extract = \
 	rmdir $(DOXYREST_DIR)share/doxyrest && \
 	rmdir $(DOXYREST_DIR)share \
 
-else
-doxyrest_install = $(call print_failure,"Unknown platform: doxyrest must be manually installed from https://github.com/vovkos/doxyrest")
 endif
 
 #! Shell command: sphinx-build

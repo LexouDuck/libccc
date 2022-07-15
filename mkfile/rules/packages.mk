@@ -87,4 +87,6 @@ update-all: $(addprefix update-, $(PACKAGES))
 
 
 # include makefiles for each external package
+ifneq ($(strip $(PACKAGES)),)
 include $(foreach i,$(PACKAGES), $(PACKAGESDIR)$(i).mk)
+endif

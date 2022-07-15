@@ -45,21 +45,27 @@ typedef t_u32	t_hash;
 /*
 **	TODO document this
 */
-typedef struct hashitem(T)
+struct hashitem(T)
 {
 	t_hash	hash;	//!< hash code used to index/identify this item
 	T		value;	//!< value stored for this item
-}	s_hashitem(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct hashitem(T)	s_hashitem(T);
+#endif
 
 //! A dynamic hashmap struct, stores several hash-value pairs
 /*
 **	TODO document this
 */
-typedef struct hashmap(T)
+struct hashmap(T)
 {
 	t_uint			length;	//!< The pointer to the next item in the hashmap (or NULL if this is the last item)
 	s_hashitem(T)*	items;	//!< The fields (key-value pairs) contained within this hashmap
-}	s_hashmap(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct hashmap(T)	s_hashmap(T);
+#endif
 
 
 

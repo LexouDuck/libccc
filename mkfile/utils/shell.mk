@@ -39,3 +39,8 @@ daemon = cygstart --hide $(1)
 else
 daemon = $(1) &
 endif
+
+
+
+#! The overridable variable used to call git, the standard scm devtool
+GIT = git

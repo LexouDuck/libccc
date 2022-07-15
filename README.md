@@ -104,11 +104,33 @@ libccc should be able to build on most all common platforms, in both static and 
 The default `make` rule will simply build the library - there are many `make` commands which make up the build system (you can do `make test` to run the test suite, for example).
 To learn more about what make scripts are provided, do `make help`, which will give a list of all rules and a brief description for each.
 
-There a couple of important custom Makefile variables used, which you should keep in mind:
-- MODE: the kind of compiler flags used (can be `debug` or `release`)
-- OSMODE: the target operating system (can be `win32`, `win64`, `macos`, `linux`, or `other`)
-- LIBMODE: the type of library build (can be `static` or `dynamic`)
-Depending on your particular machine/environment/needs, you may need to set a custom value for one of these (eg: `make OSMODE=win32`)
+There a couple of important custom Makefile variables used, which you should keep in mind.
+Here are some common options which will change how the Makefile build is done:
+
+`make <target-name> [BUILDMODE=?] [OSMODE=?] [CPUMODE=?] [LIBMODE=?]`
+
+Here is an explantion of these optional makefile variables (in brackets) which can be specified:
+
+- `BUILDMODE`: can be `debug` or `release`
+	Use this to specify the type of build to perform, which will alter the `CFLAGS` accordingly
+	By default, for most rules, the value will be `debug`, unless you call `make release`.
+	Example usage: `$ make cli MODE=release` (to build the CLI executable without debug flags, with optimization etc)
+
+- `OSMODE`: can be `windows`, `macos`, `linux`, or `other`
+	Use this to specify the target platform/operating system, for cross-compiling.
+	By default, the Makefile will use the current platform (it will guess using `uname -s`).
+	Example usage: `$ make release OSMODE=macos` (to cross-compile for the MacOS platform)
+
+- `CPUMODE`: this string, by default, is the result of the `uname -m` shell command for your machine.
+	There is no complete list of possible return values for the standard `uname` shell command, but here is a spreadsheet which gives an idea of some common values: https://en.wikipedia.org/wiki/Uname#Examples
+	This variable is used to disambiguate builds of various CPU architectures, specifically in the `./bin` and `./obj` folders.
+
+- `LIBMODE`: can be `static` or `dynamic`
+	Use this to specify the type of library to build (to the output `./bin/` folder)
+	If `static`, only the statically-linked `libavesterra.a` library archive will be built.
+	If `dynamic`, the appropriate dynamically-linked library files will be built using `CC` (`.dll`/`.dylib`/`.so`)
+	By default, the value is `static` - but if you call `make release`, both static and dynamic libs will be built.
+	Example usage: `$ make LIBMODE=dynamic` (to only build dynamic libs, without creating static `.a` files)
 
 
 

@@ -42,21 +42,27 @@ HEADER_CPP
 /*
 **	TODO document this
 */
-typedef struct keyval(T)
+struct keyval(T)
 {
 	t_char*		key;	//!< The key string associated with the `value`
 	T			value;	//!< The pointer to the data for the `value`
-}	s_keyval(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct keyval(T)	s_keyval(T);
+#endif
 
 //! A simple dictionary struct, stores an array of key/value pairs.
 /*
 **	TODO document this
 */
-typedef struct dict(T)
+struct dict(T)
 {
 	t_uint			length;	//!< The amount of key/value pairs stored in this dictionary
 	s_keyval(T)*	items;	//!< The array of key/value pairs stored in this dictionary
-}	s_dict(T);
+};
+#ifndef NOTYPEDEF // used to avoid type redefinitions
+typedef struct dict(T)	s_dict(T);
+#endif
 
 
 

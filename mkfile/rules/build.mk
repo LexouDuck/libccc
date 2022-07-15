@@ -27,7 +27,7 @@ bin_copylibs = \
 	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
 		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
-			cp -p "$$i" $(BINPATH)$(1) ; \
+			cp -p "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
 		done ; )
 
 #! Shell command used to create symbolic links for version-named library binary
@@ -95,7 +95,7 @@ $(BINPATH)static/$(NAME_static): $(OBJSFILE) $(OBJS)
 	@mkdir -p $(@D)
 	@printf "Compiling static library: $@ -> "
 	@$(AR) $(ARFLAGS) $@ $(call objs)
-	@$(RANLIB) $(RANLIB_FLAGS) $@
+	@$(RANLIB) $(RANLIB_FLAGS) $@ || $(call print_warning,"call to 'ranlib' command failed: $(RANLIB) $(RANLIB_FLAGS) $@")
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call bin_copylibs,static)
 	@$(call bin_symlinks,$(BINPATH)static,$(NAME),$(LIBEXT_static))
@@ -107,6 +107,10 @@ $(BINPATH)dynamic/$(NAME_dynamic): $(OBJSFILE) $(OBJS)
 	@rm -f $@
 	@mkdir -p $(@D)
 	@printf "Compiling dynamic library: $@ -> "
+ifeq ($(OSMODE),other)
+	@$(call print_warning,"Unknown platform: needs manual configuration.")
+	@$(call print_warning,"You must manually configure the script to build a dynamic library")
+endif
 ifeq ($(OSMODE),windows)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(NAME).def \
@@ -114,20 +118,20 @@ ifeq ($(OSMODE),windows)
 		-Wl,--export-all-symbols
 	@cp -p $(NAME).def $(BINPATH)dynamic/
 	@cp -p $(NAME).lib $(BINPATH)dynamic/
-else ifeq ($(OSMODE),macos)
+endif
+ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$(NAME_dynamic)'
-else ifeq ($(OSMODE),linux)
+endif
+ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,-rpath='$$ORIGIN/'
-else ifeq ($(OSMODE),emscripten)
+endif
+ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-s MODULARIZE \
 		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
 		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]
-else
-	@$(call print_warning,"Unknown platform: needs manual configuration.")
-	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call bin_copylibs,dynamic)

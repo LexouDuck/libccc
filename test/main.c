@@ -82,7 +82,7 @@ static void	init(void)
 	{
 	#undef ENUM
 	#define ENUM(_name_, _func_, _enum_, ...) \
-		(s_test_suite){ FALSE, _name_, _func_, /*(s_test_totals)*/{ 0 } },
+		{ FALSE, _name_, _func_, /*(s_test_totals)*/{ 0 } },
 	#include "test_suites.enum"
 	#undef ENUM
 	};
@@ -90,16 +90,16 @@ static void	init(void)
 
 	static const s_test_arg args[TEST_ARGS_AMOUNT] =
 	{
-		(s_test_arg){ NULL,						'h', "help",			"If provided, output only the program usage help and exit." },
-		(s_test_arg){ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
-		(s_test_arg){ handle_arg_show_args,		'a', "show-args",		"If provided, output the arguments used for each test performed." },
-		(s_test_arg){ handle_arg_show_errors,	'e', "show-errors",		"If provided, output any errors that occurred during function execution, with the default libccc error handler." },
-		(s_test_arg){ handle_arg_show_result,	'r', "show-result",		"If provided, output the result for each test performed, even when passed." },
-		(s_test_arg){ handle_arg_show_escaped,	's', "show-escaped",	"If provided, output any non-printable characters as a backslash C escape sequence." },
-		(s_test_arg){ handle_arg_show_speed,	'p', "show-performance","If provided, output the execution speed for each test performed." },
-		(s_test_arg){ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
-		(s_test_arg){ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
-		(s_test_arg){ handle_arg_test_overflow,	'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." },
+		{ NULL,						'h', "help",			"If provided, output only the program usage help and exit." },
+		{ handle_arg_verbose,		'v', "verbose",			"If provided, output each test result (as either 'OK!' or 'ERROR: return was _')." },
+		{ handle_arg_show_args,		'a', "show-args",		"If provided, output the arguments used for each test performed." },
+		{ handle_arg_show_errors,	'e', "show-errors",		"If provided, output any errors that occurred during function execution, with the default libccc error handler." },
+		{ handle_arg_show_result,	'r', "show-result",		"If provided, output the result for each test performed, even when passed." },
+		{ handle_arg_show_escaped,	's', "show-escaped",	"If provided, output any non-printable characters as a backslash C escape sequence." },
+		{ handle_arg_show_speed,	'p', "show-performance","If provided, output the execution speed for each test performed." },
+		{ handle_arg_test_all,		't', "test-all",		"Sets all the 'test-something' arguments below (is equivalent to doing '-no')" },
+		{ handle_arg_test_nullptrs,	'n', "test-nullptrs",	"If provided, perform the NULL pointer tests for all functions." },
+		{ handle_arg_test_overflow,	'o', "test-overflow",	"If provided, perform the overflowing number tests for 'libccc_convert' functions." },
 	};
 	memcpy(g_test.args, args, sizeof(s_test_arg) * TEST_ARGS_AMOUNT);
 }

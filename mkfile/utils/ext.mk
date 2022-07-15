@@ -22,9 +22,11 @@ else
 	UNAME_S = $(shell uname -s)
 	ifeq ($(UNAME_S),Darwin)
 		EXT_LIB_DYNAMIC=.dylib
-	else ifeq ($(UNAME_S),Linux)
-		EXT_LIB_DYNAMIC=.so
 	else
-		$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+		ifeq ($(UNAME_S),Linux)
+			EXT_LIB_DYNAMIC=.so
+		else
+			$(error Unsupported platform: you must configure the dynamic library file extension your machine uses)
+		endif
 	endif
 endif

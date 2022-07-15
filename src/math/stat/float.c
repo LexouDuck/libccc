@@ -2,7 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math.h"
 #include "libccc/math/stat.h"
-
+#define NOTYPEDEF // avoid typedef redefinitions
 #define T_TYPE	t_float
 #define T_NAME	float
 #define T_NULL	0.

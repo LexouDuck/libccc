@@ -17,9 +17,9 @@ $(BINPATH)dynamic/$(NAME_dynamic)
 	@# install binary files
 	@$(SUDO) mkdir -p $(INSTALLDIR)/lib/
 ifeq ($(LIBMODE),)
-	@$(call print_warning,"No value was set for LIBMODE, nothing was installed.")
-
-else ifeq ($(LIBMODE),static)
+	@$(call print_error,"Invalid value for LIBMODE, should be 'static' or 'dynamic'.")
+endif
+ifeq ($(LIBMODE),static)
 ifeq ($(INSTALL_SYMLINK),)
 	@$(SUDO) $(INSTALL_DATA) $(BINPATH)static/$(NAME_static) \
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_static)
@@ -31,8 +31,8 @@ else
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_static)
 endif
 	@$(call print_success,"Installed $(NAME_static) to $(INSTALLDIR)/lib/")
-
-else ifeq ($(LIBMODE),dynamic)
+endif
+ifeq ($(LIBMODE),dynamic)
 ifeq ($(INSTALL_SYMLINK),)
 	@$(SUDO) $(INSTALL_PROGRAM) $(BINPATH)dynamic/$(NAME_dynamic) \
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_dynamic)
@@ -44,9 +44,6 @@ else
 		$(INSTALLDIR)/lib/$(NAME).$(LIBEXT_dynamic)
 endif
 	@$(call print_success,"Installed $(NAME_dynamic) to $(INSTALLDIR)/lib/ and .h headers in $(INSTALLDIR)/include/")
-
-else
-	@$(call print_error,"Invalid value for LIBMODE, should be 'static' or 'dynamic'.")
 endif
 
 
