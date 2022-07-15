@@ -52,7 +52,10 @@ generic: \
 clean-generic \
 $(GENERIC_OUTPUTS)
 
-$(HDRDIR)%.c: $(GENERIC_TEMPLATE) # $(HDRDIR)%.h
+$(HDRDIR)%.c: $(HDRDIR)%.h $(GENERIC_TEMPLATE)
+	@if [ -z "`command -v gawk`" ]; \
+	then $(call print_warning,"gawk command is not installed - cannot update generic header .c include-wrapper: $@") ; \
+	fi
 	@$(call print_message,"Generating generic import file:"$(IO_RESET)" $@") ; \
 	folder="`echo './$<' | sed 's|\.h$$|/|' | sed 's|^$(HDRDIR)$(NAME)/||' `" ; \
 	gawk \
