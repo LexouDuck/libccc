@@ -1,6 +1,7 @@
 #! This file holds scripts to generate importable .c code files from .h files which use libccc generic types
 
 
+
 #! If not explicitly specified, use full of list of all generic headers
 GENERIC_HEADERS ?= $(wildcard $(HDRDIR)libccc/monad/*.h)
 GENERIC_OUTPUTS = $(GENERIC_HEADERS:%.h=%.c)

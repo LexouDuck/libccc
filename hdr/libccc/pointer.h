@@ -36,8 +36,13 @@
 #ifndef __NOSTD__
 	#include <stddef.h>
 #else
+	#if defined(__BINDGEN__) && defined(__WINDOWS__)
+	typedef unsigned long long	size_t;
+	typedef   signed long long	ptrdiff_t;
+	#else
 	typedef unsigned long	size_t;
-	typedef signed long	ptrdiff_t;
+	typedef   signed long	ptrdiff_t;
+	#endif
 	#define SIZE_MAX	(size_t)-1
 	#define PTRDIFF_MIN	((ptrdiff_t)(SIZE_MAX >> 1))
 	#define PTRDIFF_MAX	((ptrdiff_t)((SIZE_MAX >> 1) + 1))
