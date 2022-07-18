@@ -36,7 +36,7 @@
 #ifndef __NOSTD__
 	#include <stddef.h>
 #else
-	#if defined(__BINDGEN__) && defined(__WINDOWS__)
+	#ifdef __WINDOWS__
 	typedef unsigned long long	size_t;
 	typedef   signed long long	ptrdiff_t;
 	#else
