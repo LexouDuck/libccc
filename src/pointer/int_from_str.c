@@ -9,7 +9,9 @@
 
 
 
-#ifdef __EMSCRIPTEN__ // TODO remove this when emscripten fixes their bad code
+// TODO remove this when emscripten fixes their bad code
+#ifndef __NOSTD__
+#ifdef __EMSCRIPTEN__
 #undef	PTRDIFF_MIN
 #define PTRDIFF_MIN  (t_ptrdiff)INT32_MIN
 #undef	PTRDIFF_MAX
@@ -18,6 +20,7 @@
 #define INTPTR_MIN  (t_sintptr)INT32_MIN
 #undef	INTPTR_MAX
 #define INTPTR_MAX  (t_sintptr)INT32_MAX
+#endif
 #endif
 
 
