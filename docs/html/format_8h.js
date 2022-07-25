@@ -225,8 +225,8 @@ var format_8h =
     [ "c_strnfmt_va", "format_8h.html#acad3650aa3c96b0300609c2365b6fab0", null ],
     [ "c_strnformat_va", "format_8h.html#aeeb1d520f3a7545291703c4c55fd75e8", null ],
     [ "String_Build_N_VA", "format_8h.html#a0b927e0f29d106ed722ce8d7fd61b7c9", null ],
-    [ "String_Format", "format_8h.html#a6edd2bc8d3370dd44add813a99c13ade", null ],
-    [ "String_Format_VA", "format_8h.html#a7f3453e9cae34ed342a4ebe457b378cb", null ],
+    [ "String_Format", "format_8h.html#a9ba6ad3bf2cfc927edd126e83f27bcc3", null ],
+    [ "String_Format_VA", "format_8h.html#a6b219d2479766f9726fb714f1b70f4e2", null ],
     [ "String_Format_N", "format_8h.html#a40bcaf6a3b1c791ad9474afefbe44890", null ],
     [ "String_Format_N_VA", "format_8h.html#af792fdbd3c5bb0f54eef99462c8b80c7", null ]
 ];
