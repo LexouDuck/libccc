@@ -27,7 +27,7 @@ bin_copylibs = \
 	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
 		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
-			cp -p "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
+			cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
 		done ; )
 
 #! Shell command used to create symbolic links for version-named library binary

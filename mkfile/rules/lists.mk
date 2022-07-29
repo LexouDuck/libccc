@@ -45,5 +45,5 @@ lists:
 .PHONY:\
 show-lists #! Display the list of source/header files
 show-lists:
-	@$(call echo_HDRSFILE) | awk '{ print "$(HDRDIR)" $$0; }'
-	@$(call echo_SRCSFILE) | awk '{ print "$(SRCDIR)" $$0; }'
+	@$(call echo_HDRSFILE)
+	@$(call echo_SRCSFILE)
