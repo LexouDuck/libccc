@@ -64,34 +64,42 @@ prefix_char   (u|U|L)
 prefix_string (u8|u|U|L)
 str_escape    (\\(['"\?\\abfnrtv]|[0-7]{1,3}|x[a-fA-F0-9]+))
 preprocessor  ^([ \t]*#[ \t]*)
-whitespace    [ \t\v\n\f]
+whitespace    [ \t\v\r\f]
 
 %s PREPROCESSOR
 
 %%
 
  /* comments */
-"/*"((.*)?)*"*/"     { ppp_comment_block(yytext); }
-"/*"((.*)?)*         { ppp_error("unterminated comment block"); }
-"//"((.*)?)*"\n"     { ppp_comment_line(yytext); }
-"//"((.*)?)*         { ppp_error("unterminated comment line: no newline at end of file"); }
+"/*"([^*]|\*+[^*/])*\*+"/" { ppp_comment_block(yytext); }
+"/*"                       { ppp_error("unterminated comment block"); }
+"//"((.*)?)*"\n"           { ppp_comment_line(yytext); }
+"//"((.*)?)*               { ppp_error("unterminated comment line: no newline at end of file"); }
 
  /* C preprocessor */
-{preprocessor}"if"		{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_IF); }
-{preprocessor}"elif"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_ELIF); }
-{preprocessor}"else"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_ELSE); }
-{preprocessor}"endif"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_ENDIF); }
-{preprocessor}"ifdef"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_IFDEF); }
-{preprocessor}"ifndef"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_IFNDEF); }
-{preprocessor}"line"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_LINE); }
-{preprocessor}"define"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_DEFINE); }
-{preprocessor}"include"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_INCLUDE); }
-{preprocessor}"error"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_ERROR); }
-{preprocessor}"warning"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_WARNING); }
-{preprocessor}"pragma"	{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP_PRAGMA); }
+{preprocessor}			{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP); }
+ /* TODO custom parsing logic to handle backslash multiline */
+<PREPROCESSOR>\\[\n]	{ ppp_whitespace(yytext);	return PP_NEWLINE; }
+<PREPROCESSOR>[\n]		{ BEGIN(INITIAL);	ppp_whitespace(yytext);	return '\n'; }
 
-<PREPROCESSOR>([ \t]+[^ \t\v\n\f]+$)	{ yylval.v_str = yytext;	return (PP); }	/* TODO custom parsing logic to handle backslash multiline */
-<PREPROCESSOR>"\n"		{ BEGIN(INITIAL); ppp_whitespace(yytext);	return '\n'; }	/* TODO custom parsing logic to handle backslash multiline */
+<PREPROCESSOR>"if"		{ return ppp_verbatim(yytext, PP_IF); }
+<PREPROCESSOR>"elif"	{ return ppp_verbatim(yytext, PP_ELIF); }
+<PREPROCESSOR>"else"	{ return ppp_verbatim(yytext, PP_ELSE); }
+<PREPROCESSOR>"endif"	{ return ppp_verbatim(yytext, PP_ENDIF); }
+<PREPROCESSOR>"ifdef"	{ return ppp_verbatim(yytext, PP_IFDEF); }
+<PREPROCESSOR>"ifndef"	{ return ppp_verbatim(yytext, PP_IFNDEF); }
+<PREPROCESSOR>"line"	{ return ppp_verbatim(yytext, PP_LINE); }
+<PREPROCESSOR>"undef"	{ return ppp_verbatim(yytext, PP_UNDEF); }
+<PREPROCESSOR>"define"	{ return ppp_verbatim(yytext, PP_DEFINE); }
+<PREPROCESSOR>"include"	{ return ppp_verbatim(yytext, PP_INCLUDE); }
+<PREPROCESSOR>"error"	{ return ppp_verbatim(yytext, PP_ERROR); }
+<PREPROCESSOR>"warning"	{ return ppp_verbatim(yytext, PP_WARNING); }
+<PREPROCESSOR>"pragma"	{ return ppp_verbatim(yytext, PP_PRAGMA); }
+
+<PREPROCESSOR>([ \t]+[^\n]+$)				{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_CONTENT); }
+<PREPROCESSOR>(\"[^\"\n]+\")				{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_STRING); }
+<PREPROCESSOR>(<([^>\\\n]|{str_escape})*>)	{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_STRING); }
+<PREPROCESSOR>[ \t]+	{ ppp_whitespace(yytext);	return PP_SPACE; }
 
  /* C keywords */
 "if"					{ return ppp_verbatim(yytext, IF); }
@@ -162,8 +170,6 @@ whitespace    [ \t\v\n\f]
 
 ({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ yylval.v_str = yytext; return ppp_verbatim(yytext, LITERAL_STRING); }
 
-<PREPROCESSOR>(<([^>\\\n]|{str_escape})*>)						{ yylval.v_str = yytext; return ppp_verbatim(yytext, PP_STRING); }
-
 "..."				{ return ppp_verbatim(yytext, ELLIPSIS); }
 
 ">>="				{ return ppp_verbatim(yytext, OP_ASSIGN_BITRIGHT); }
@@ -212,7 +218,8 @@ whitespace    [ \t\v\n\f]
 "|"					{ return ppp_verbatim(yytext, '|'); }
 "?"					{ return ppp_verbatim(yytext, '?'); }
 
-{whitespace}		{ ppp_whitespace(yytext); }
+ /* "\n"				{ ppp_whitespace(yytext); return '\n'; } */
+{whitespace}|\n		{ ppp_whitespace(yytext); }
 .					{ ppp_error("syntax error, unexpected character: '%s'", yytext); }
 
 %%

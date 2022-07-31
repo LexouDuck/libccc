@@ -19,7 +19,7 @@
 extern int yylex();
 //! define lex/yacc function to parse one file
 extern int yyparse();
-//! define lex/yacc function callback for lex/yacc parsing errors 
+//! define lex/yacc function callback for lex/yacc parsing syntax errors 
 extern void yyerror(char const * s);
 //! define lex/yacc input file handle
 extern FILE *yyin;
@@ -61,6 +61,8 @@ void	ppp_removesymbol_##KIND(char const* name);			\
 //! this struct stores all internal state for ppp
 typedef struct ppp
 {
+	t_char const*	current_file; //!< name of the file being parsed
+
 	t_uint	errors;		//!< total amount of errors so far
 	t_uint	warnings;	//!< total amount of warnings so far
 
@@ -83,6 +85,7 @@ int		ppp_init(void);
 int		ppp_exit(void);
 
 _FORMAT(printf, 1, 2)	void	ppp_error  (char const* message, ...);
+_FORMAT(printf, 1, 2)	void	ppp_failure(char const* message, ...);
 _FORMAT(printf, 1, 2)	void	ppp_warning(char const* message, ...);
 _FORMAT(printf, 1, 2)	void	ppp_message(char const* message, ...);
 

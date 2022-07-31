@@ -28,5 +28,6 @@ RegReplace:				set up regex replace rules to automatically refactor code with a 
 		"dict",	// MacOS config dictionary files
 		"i",	// SWIG template file
 		"enum",
+		"cpp",
 	],
 }

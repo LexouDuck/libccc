@@ -3,51 +3,51 @@
 #define SYMBOLKIND(KIND, SYMBOLINFO)
 #endif
 
-SYMBOLKIND(macro,  
-	char*	name;	//!< preprocessor define
-	char*	text;	//!< contents
-	char**	args;	//!< contents
+SYMBOLKIND(macro,
+	t_char*	name;	//!< preprocessor define
+	t_char*	text;	//!< contents
+	t_char**args;	//!< contents
 )
 
-SYMBOLKIND(type,   
-	char*	name;	//!< typedef name
-	char*	type;	//!< underlying type
+SYMBOLKIND(type,
+	t_char*	name;	//!< typedef name
+	t_char*	type;	//!< underlying type
 )
 
-SYMBOLKIND(struct,   
-	char*	name;	//!< struct type name
+SYMBOLKIND(struct,
+	t_char*	name;	//!< struct type name
 	t_uint	size;	//!< amount of fields
-	char*	types;	//!< struct field types
-	char*	fields;	//!< struct field names
+	t_char*	types;	//!< struct field types
+	t_char*	fields;	//!< struct field names
 )
 
-SYMBOLKIND(union,   
-	char*	name;	//!< union type name
+SYMBOLKIND(union,
+	t_char*	name;	//!< union type name
 	t_uint	size;	//!< amount of fields
-	char*	types;	//!< union field types
-	char*	fields;	//!< union field names
+	t_char*	types;	//!< union field types
+	t_char*	fields;	//!< union field names
 )
 
-SYMBOLKIND(enum,   
-	char*	name;	//!< enum type name
+SYMBOLKIND(enum,
+	t_char*	name;	//!< enum type name
 	t_uint	size;	//!< amount of fields
-	char*	values;	//!< enum item values
-	char*	fields;	//!< enum item names
+	t_char*	values;	//!< enum item values
+	t_char*	fields;	//!< enum item names
 )
 
-SYMBOLKIND(func,   
-	char*	name;		//!< function name
-	char*	type;		//!< return type
-	char*	arg_types;	//!< argument types
-	char*	arg_names;	//!< argument names
+SYMBOLKIND(func,
+	t_char*	name;		//!< function name
+	t_char*	type;		//!< return type
+	t_char*	arg_types;	//!< argument types
+	t_char*	arg_names;	//!< argument names
 )
 
-SYMBOLKIND(global, 
-	char*	name;	//!< variable name
-	char*	type;	//!< associated type
+SYMBOLKIND(global,
+	t_char*	name;	//!< variable name
+	t_char*	type;	//!< associated type
 )
 
-SYMBOLKIND(local,  
-	char*	name;	//!< variable name
-	char*	type;	//!< associated type
+SYMBOLKIND(local,
+	t_char*	name;	//!< variable name
+	t_char*	type;	//!< associated type
 )

@@ -1,4 +1,6 @@
 
+include ../../mkfile/config/modes.mk
+
 # directories
 BINDIR = bin
 OBJDIR = obj
@@ -15,10 +17,15 @@ HDRS = $(SRCDIR)/ppp.h            $(YACC_HDR)
 SRCS = $(SRCDIR)/ppp.c $(LEX_SRC) $(YACC_SRC)
 
 
+
 # c compiler
 CC = clang
-CFLAGS = -g
-LDLIBS = ../../libccc.a -ll
+CFLAGS = -g \
+	-Wall \
+	-Wextra \
+	-Winline \
+
+LDLIBS = ../../bin/$(BUILDMODE)_$(OSMODE)_$(CPUMODE)/static/libccc.a -ll
 INCLUDES = \
 	-I$(GENDIR) \
 	-I$(SRCDIR) \

@@ -31,7 +31,6 @@
 	where "_" has been used to flag the points of ambiguity.
 */
 
-
 %{
 
 #include "ppp.h"
@@ -44,7 +43,8 @@ int yydebug = 1;
 
 %locations
 
-%token	PP PP_STRING /* raw macro contents */
+%token	PP PP_SPACE PP_NEWLINE /* basic macro infrastructure */
+%token	PP_CONTENT PP_STRING /* raw macro contents */
 %token	PP_IF PP_ELIF PP_ELSE PP_ENDIF
 %token	PP_IFDEF PP_IFNDEF
 %token	PP_UNDEF PP_DEFINE
@@ -112,8 +112,13 @@ int yydebug = 1;
 	char**	v_strarr;
 };
 
-%type<v_str> PP
+%type<v_str> PP_SPACE
+%type<v_str> PP_NEWLINE
+%type<v_str> PP_CONTENT
 %type<v_str> PP_STRING
+%type<v_str> LITERAL_INT
+%type<v_str> LITERAL_FLOAT
+%type<v_str> LITERAL_CHAR
 %type<v_str> LITERAL_STRING
 %type<v_str> LITERAL_ENUM
 %type<v_str> IDENTIFIER
@@ -123,7 +128,11 @@ int yydebug = 1;
 %type<v_str> NAME_UNION
 %type<v_str> NAME_ENUM
 
+%type<v_str> preprocessor_content
 %nterm<v_strarr> preprocessor_define_args
+
+%type <v_str> declaration_specifiers
+%type <v_str> declarator_list
 
 
 
@@ -135,49 +144,62 @@ int yydebug = 1;
 
 /* C preprocessor */
 
+preprocessor_content
+	: PP_CONTENT
+	| LITERAL_INT
+	| LITERAL_FLOAT
+	| LITERAL_CHAR
+	| LITERAL_STRING
+	| LITERAL_ENUM
+	;
+
 preprocessor
-	: preprocessor_conditional
-	| preprocessor_undefine
-	| preprocessor_define
-	| preprocessor_include
-	| preprocessor_line
+	: PP preprocessor_conditional  '\n'
+	| PP preprocessor_undefine     '\n'
+	| PP preprocessor_define       '\n'
+	| PP preprocessor_include      '\n'
+	| PP preprocessor_line         '\n'
 	;
 
 preprocessor_conditional
-	: PP_IF   PP			'\n'
-	| PP_ELIF PP			'\n'
-	| PP_ELSE				'\n'
-	| PP_ENDIF				'\n'
-	| PP_IFDEF  IDENTIFIER	'\n'
-	| PP_IFNDEF IDENTIFIER	'\n'
+	: PP_IF   preprocessor_content  {}
+	| PP_ELIF preprocessor_content  {}
+	| PP_ELSE                       {}
+	| PP_ENDIF                      {}
+	| PP_IFDEF  PP_SPACE IDENTIFIER {}
+	| PP_IFNDEF PP_SPACE IDENTIFIER {}
 	;
 
 preprocessor_undefine
-	: PP_UNDEF IDENTIFIER	'\n' { ppp_removesymbol(macro, $2); }
+	: PP_UNDEF PP_SPACE IDENTIFIER  { ppp_removesymbol(macro, $3); }
 	;
 
 preprocessor_define
-	: PP_DEFINE IDENTIFIER										'\n' { ppp_addsymbol(macro,{ .name=c_strdup($2) }); }
-	| PP_DEFINE IDENTIFIER PP									'\n' { ppp_addsymbol(macro,{ .name=c_strdup($2), .text=c_strdup($3) }); }
-	| PP_DEFINE IDENTIFIER '(' preprocessor_define_args ')'		'\n' { ppp_addsymbol(macro,{ .name=c_strdup($2), .args=c_strarrdup((char const**)$4) }); }
-	| PP_DEFINE IDENTIFIER '(' preprocessor_define_args ')' PP	'\n' { ppp_addsymbol(macro,{ .name=c_strdup($2), .args=c_strarrdup((char const**)$4), .text=c_strdup($6) }); }
+	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { ppp_addsymbol(macro, { .name=c_strdup($3), });                                                         ppp_warning("DEBUG { .name=\"%s\", }",                            c_strdup($3)); }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { ppp_addsymbol(macro, { .name=c_strdup($3), });                                                         ppp_warning("DEBUG { .name=\"%s\", } SPACE",                      c_strdup($3)); }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { ppp_addsymbol(macro, { .name=c_strdup($3), .text=c_strdup($5) });                                      ppp_warning("DEBUG { .name=\"%s\", .text=\"%s\" }",               c_strdup($3), c_strdup($5)); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { ppp_addsymbol(macro, { .name=c_strdup($3), .args=c_strarrdup((char const**)$5) });                     ppp_warning("DEBUG { .name=\"%s\", .args=\"%s\" }",               c_strdup($3), c_strarrdup((char const**)$5)); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { ppp_addsymbol(macro, { .name=c_strdup($3), .args=c_strarrdup((char const**)$5), .text=c_strdup($7) }); ppp_warning("DEBUG { .name=\"%s\", .args=\"%s\", .text=\"%s\" }", c_strdup($3), c_strarrdup((char const**)$5), c_strdup($7)); }
 	;
 
 preprocessor_define_args
-	: IDENTIFIER								{ $$ = c_strarrcreate(1, c_strdup($1)); }
-	| preprocessor_define_args ',' IDENTIFIER	{ $$ = c_strarrappend(&($1), (char const*[2]){ ($3), NULL }); }
+	: IDENTIFIER                                { ppp_message("parameter list begin: %s", $1); $$ = c_strarrcreate(1, c_strdup($1)); }
+	| preprocessor_define_args ',' IDENTIFIER   { ppp_message("parameter list next:: %s", $3); $$ = c_strarrappend(&($1), (char const*[2]){ c_strdup($3), NULL }); }
 	;
 
 preprocessor_include
-	: PP_INCLUDE PP_STRING		'\n' { ppp_message("includes file: %s", ($2)); /* TODO */ }
-	| PP_INCLUDE LITERAL_STRING	'\n' { ppp_message("includes file: %s", ($2)); /* TODO */ }
+	: PP_INCLUDE PP_STRING                { ppp_message("includes file: %s", ($2)); /* TODO */ }
+	| PP_INCLUDE LITERAL_STRING           { ppp_message("includes file: %s", ($2)); /* TODO */ }
+	| PP_INCLUDE PP_SPACE PP_STRING       { ppp_message("includes file: %s", ($3)); /* TODO */ }
+	| PP_INCLUDE PP_SPACE LITERAL_STRING  { ppp_message("includes file: %s", ($3)); /* TODO */ }
 	;
 
 preprocessor_line
-	: PP_LINE 							'\n' 
-	| PP_LINE constant					'\n' 
-	| PP_LINE constant PP_STRING		'\n' 
-	| PP_LINE constant LITERAL_STRING	'\n' 
+	: PP_LINE                                           {}
+	| PP_LINE PP_SPACE                                  {}
+	| PP_LINE PP_SPACE constant                         {}
+	| PP_LINE PP_SPACE constant PP_SPACE PP_STRING      {}
+	| PP_LINE PP_SPACE constant PP_SPACE LITERAL_STRING {}
 	;
 
 
@@ -686,7 +708,7 @@ declaration_specifiers
 	;
 
 declaration
-	: TYPEDEF declaration_specifiers declarator_list ';'	/*{ ppp_addsymbol(type,{ .name=c_strdup($3), .type=c_strdup($2) }); }*/
+	: TYPEDEF declaration_specifiers declarator_list ';'	{ ppp_addsymbol(type,{ .name=c_strdup($3), .type=c_strdup($2) }); }
 	| declaration_specifiers ';'
 	| declaration_specifiers declarator_initializer_list ';'
 	| static_assert_declaration

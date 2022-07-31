@@ -13,6 +13,35 @@ s_ppp ppp;
 
 
 
+#define DEFINEFUNC_PPP_LOGGING(KIND, FORMAT, EXTRA) \
+void	ppp_##KIND(char const* format, ...)				\
+{														\
+	int		result = 0;									\
+	t_char* message = NULL;								\
+	va_list args;										\
+														\
+	EXTRA												\
+	if (format == NULL) return;							\
+	va_start(args, format);								\
+	message = String_Format_VA(format, args);			\
+	va_end(args);										\
+	if (message == NULL) return;						\
+	result = IO_Write_Format(STDERR, FORMAT,			\
+		ppp.current_file,								\
+		yylineno,										\
+		message);										\
+	String_Delete(&message);							\
+	if (result < 0) return;								\
+	return;												\
+}														\
+
+DEFINEFUNC_PPP_LOGGING(error  , "ppp: %s:%i: "IO_COLOR_FG_RED   "error"  C_RESET": %s\n", ppp.errors   += 1;)
+DEFINEFUNC_PPP_LOGGING(failure, "ppp: %s:%i: "IO_COLOR_FG_RED   "failure"C_RESET": %s\n", ppp.errors   += 1;)
+DEFINEFUNC_PPP_LOGGING(warning, "ppp: %s:%i: "IO_COLOR_FG_YELLOW"warning"C_RESET": %s\n", ppp.warnings += 1;)
+DEFINEFUNC_PPP_LOGGING(message, "ppp: %s:%i: "IO_COLOR_FG_BLUE  "message"C_RESET": %s\n", )
+
+
+
 #define DEFINEFUNC_PPP_SYMBOLTABLE_GET(KIND) \
 s_symbol_##KIND* ppp_getsymbol_##KIND(char const* name) \
 { \
@@ -55,7 +84,7 @@ void ppp_removesymbol_##KIND(char const* name) \
 	ppp.symbolcount_##KIND--; \
 	if (ppp.symboltable_##KIND == NULL) \
 	{ \
-		ppp_error("symbol table '"#KIND"' is empty, but attempted to remove symbol '%s'", name); \
+		ppp_failure("attempted to remove symbol '%s', but "#KIND" symbol table is empty.", name); \
 		return; \
 	} \
 	else \
@@ -63,7 +92,7 @@ void ppp_removesymbol_##KIND(char const* name) \
 		s_symbol_##KIND* symbol = ppp_getsymbol_##KIND(name); \
 		if (symbol == NULL) \
 		{ \
-			ppp_error("symbol table '"#KIND"', could not find symbol to remove '%s'", name); \
+			ppp_failure("could not find symbol '%s' to remove from "#KIND" symbol table.", name); \
 			return; \
 		} \
 		t_uint index = (symbol - ppp.symboltable_##KIND); \
@@ -84,33 +113,6 @@ void ppp_removesymbol_##KIND(char const* name) \
 
 #include "ppp_symbolkind.c"
 #undef	SYMBOLKIND
-
-
-
-#define DEFINEFUNC_PPP_LOGGING(KIND, FORMAT, EXTRA) \
-void	ppp_##KIND(char const* format, ...)				\
-{														\
-	int		result = 0;									\
-	t_char* message = NULL;								\
-	va_list args;										\
-														\
-	EXTRA												\
-	if (format == NULL) return;							\
-	va_start(args, format);								\
-	message = String_Format_VA(format, args);			\
-	va_end(args);										\
-	if (message == NULL) return;						\
-	result = IO_Write_Format(STDERR, FORMAT,			\
-		yylineno,										\
-		message);										\
-	String_Delete(&message);							\
-	if (result < 0) return;								\
-	return;												\
-}														\
-
-DEFINEFUNC_PPP_LOGGING(error  , "ppp: line %i: "IO_COLOR_FG_RED   "error"  C_RESET": %s\n", ppp.errors   += 1;)
-DEFINEFUNC_PPP_LOGGING(warning, "ppp: line %i: "IO_COLOR_FG_YELLOW"warning"C_RESET": %s\n", ppp.warnings += 1;)
-DEFINEFUNC_PPP_LOGGING(message, "ppp: line %i: "IO_COLOR_FG_BLUE  "message"C_RESET": %s\n", )
 
 
 
@@ -186,13 +188,13 @@ int		ppp_symbol(char const* lex_str)
 	ppp_verbatim(lex_str, 0);
 	if (ppp_getsymbol_macro  (lex_str))	return (NAME_MACRO);
 	if (ppp_getsymbol_type   (lex_str))	return (NAME_TYPEDEF);
-	if (ppp_getsymbol_struct (lex_str))	return (LITERAL_ENUM);
-	if (ppp_getsymbol_union  (lex_str))	return (LITERAL_ENUM);
-	if (ppp_getsymbol_enum   (lex_str))	return (LITERAL_ENUM);
+	if (ppp_getsymbol_struct (lex_str))	return (NAME_STRUCT);
+	if (ppp_getsymbol_union  (lex_str))	return (NAME_UNION);
+	if (ppp_getsymbol_enum   (lex_str))	return (NAME_ENUM);
 	if (ppp_getsymbol_func   (lex_str))	return (IDENTIFIER);
 	if (ppp_getsymbol_global (lex_str))	return (IDENTIFIER);
 	if (ppp_getsymbol_local  (lex_str))	return (IDENTIFIER);
-	ppp_warning("unknown symbol: '%s'", lex_str);
+	ppp_message("Parsed unknown symbol: '%s'", lex_str);
 	return (IDENTIFIER);
 }
 
@@ -238,7 +240,8 @@ int	main(int argc, char** argv)
 		else
 		{
 			ppp_init();
-			ppp_message("parsing file '%s'", argv[i]);
+			ppp.current_file = argv[i];
+			ppp_message("beginning to parse file: %s", ppp.current_file);
 			// Open a file handle to a particular file:
 			FILE *file = fopen(argv[i], "r");
 			// Make sure it is valid:
