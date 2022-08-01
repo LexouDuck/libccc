@@ -78,9 +78,6 @@ whitespace    [ \t\v\r\f]
 
  /* C preprocessor */
 {preprocessor}			{ BEGIN(PREPROCESSOR); return ppp_verbatim(yytext, PP); }
- /* TODO custom parsing logic to handle backslash multiline */
-<PREPROCESSOR>\\[\n]	{ ppp_whitespace(yytext);	return PP_NEWLINE; }
-<PREPROCESSOR>[\n]		{ BEGIN(INITIAL);	ppp_whitespace(yytext);	return '\n'; }
 
 <PREPROCESSOR>"if"		{ return ppp_verbatim(yytext, PP_IF); }
 <PREPROCESSOR>"elif"	{ return ppp_verbatim(yytext, PP_ELIF); }
@@ -96,10 +93,11 @@ whitespace    [ \t\v\r\f]
 <PREPROCESSOR>"warning"	{ return ppp_verbatim(yytext, PP_WARNING); }
 <PREPROCESSOR>"pragma"	{ return ppp_verbatim(yytext, PP_PRAGMA); }
 
-<PREPROCESSOR>([ \t]+[^\n]+$)				{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_CONTENT); }
-<PREPROCESSOR>(\"[^\"\n]+\")				{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_STRING); }
-<PREPROCESSOR>(<([^>\\\n]|{str_escape})*>)	{ yylval.v_str = yytext;	return ppp_verbatim(yytext, PP_STRING); }
-<PREPROCESSOR>[ \t]+	{ ppp_whitespace(yytext);	return PP_SPACE; }
+<PREPROCESSOR>(<([^>\\\n]|{str_escape})*>)		{ return ppp_verbatim(yytext, PP_STRING); }
+ /* TODO custom parsing logic to handle backslash multiline */
+<PREPROCESSOR>({whitespace}+(\\\n)?)+	{   ppp_whitespace(yytext);	return PP_SPACE; }
+<PREPROCESSOR>[\n]		{ BEGIN(INITIAL);	ppp_whitespace(yytext);	return '\n'; }
+<PREPROCESSOR>(.*(\\\n)?)+[\n]			{ return ppp_verbatim(yytext, PP_CONTENT); }
 
  /* C keywords */
 "if"					{ return ppp_verbatim(yytext, IF); }
@@ -153,7 +151,7 @@ whitespace    [ \t\v\r\f]
 "_Static_assert"        { return ppp_verbatim(yytext, STATIC_ASSERT); }
 "_Thread_local"         { return ppp_verbatim(yytext, THREAD_LOCAL); }
 
-{char_alpha}{char_token}*		{ yylval.v_str = yytext; return ppp_symbol(yytext); }
+{char_alpha}{char_token}*		{ return ppp_token(yytext); }
 
 {prefix_hex}{digit_hex}+{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
 {digit_nonzero}{digit}*{suffix_int}?									{ return ppp_verbatim(yytext, LITERAL_INT); }
@@ -168,7 +166,7 @@ whitespace    [ \t\v\r\f]
 {prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
 {prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
 
-({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ yylval.v_str = yytext; return ppp_verbatim(yytext, LITERAL_STRING); }
+({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ return ppp_verbatim(yytext, LITERAL_STRING); }
 
 "..."				{ return ppp_verbatim(yytext, ELLIPSIS); }
 

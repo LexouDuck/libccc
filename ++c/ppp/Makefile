@@ -13,8 +13,11 @@ NAME = $(BINDIR)/ppp
 OUTFILE = obj/test.c
 
 # generated c code
-HDRS = $(SRCDIR)/ppp.h            $(YACC_HDR)
-SRCS = $(SRCDIR)/ppp.c $(LEX_SRC) $(YACC_SRC)
+HDRS = $(YACC_HDR) $(SRCDIR)/ppp.h           
+SRCS = $(YACC_SRC) $(SRCDIR)/ppp.c \
+	$(SRCDIR)/ppp_log.c \
+	$(SRCDIR)/ppp_symbol.c \
+	$(LEX_SRC)
 
 
 
@@ -52,7 +55,7 @@ test: all
 ifeq ($(strip $(FILE)),)
 	@echo "ERROR: expected FILE argument for this make rule" ; exit 1
 endif
-	@./$(NAME) $(FILE) > "$(OUTFILE)"
+	@./$(NAME) --debug --verbose $(FILE) > "$(OUTFILE)"
 	@echo "=========="
 	@cat "$(OUTFILE)"
 

@@ -106,10 +106,12 @@ int yydebug = 1;
 */
 %union
 {
-	int		v_int;
-	float	v_float;
-	char*	v_str;
-	char**	v_strarr;
+	int              v_int;
+	float            v_float;
+	char*            v_str;
+	char**           v_strarr;
+	s_symbol         v_symbol;
+	s_symbol_field   v_symbol_field;
 };
 
 %type<v_str> PP_SPACE
@@ -128,11 +130,15 @@ int yydebug = 1;
 %type<v_str> NAME_UNION
 %type<v_str> NAME_ENUM
 
-%type<v_str> preprocessor_content
+%nterm<v_str>    preprocessor_content
+%nterm<v_symbol> preprocessor_define
 %nterm<v_strarr> preprocessor_define_args
 
-%type <v_str> declaration_specifiers
-%type <v_str> declarator_list
+//%nterm<v_symbol>       struct_declaration_list
+//%nterm<v_symbol_field> struct_declaration
+
+//%nterm <v_str>    declaration_specifiers
+//%nterm <v_strarr> declarator_list
 
 
 
@@ -145,20 +151,21 @@ int yydebug = 1;
 /* C preprocessor */
 
 preprocessor_content
-	: PP_CONTENT
-	| LITERAL_INT
+	: LITERAL_INT
 	| LITERAL_FLOAT
 	| LITERAL_CHAR
 	| LITERAL_STRING
 	| LITERAL_ENUM
+	| PP_STRING
+	| PP_CONTENT
 	;
 
 preprocessor
-	: PP preprocessor_conditional  '\n'
-	| PP preprocessor_undefine     '\n'
-	| PP preprocessor_define       '\n'
-	| PP preprocessor_include      '\n'
-	| PP preprocessor_line         '\n'
+	: PP preprocessor_conditional  '\n' {}
+	| PP preprocessor_undefine     '\n' {}
+	| PP preprocessor_define       '\n' { ppp_symboltable_create(&($2)); }
+	| PP preprocessor_include      '\n' {}
+	| PP preprocessor_line         '\n' {}
 	;
 
 preprocessor_conditional
@@ -171,20 +178,20 @@ preprocessor_conditional
 	;
 
 preprocessor_undefine
-	: PP_UNDEF PP_SPACE IDENTIFIER  { ppp_removesymbol(macro, $3); }
+	: PP_UNDEF PP_SPACE IDENTIFIER  { ppp_symboltable_delete(SYMBOLKIND_MACRO, $3); }
 	;
 
 preprocessor_define
-	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { ppp_addsymbol(macro, { .name=c_strdup($3), });                                                         ppp_warning("DEBUG { .name=\"%s\", }",                            c_strdup($3)); }
-	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { ppp_addsymbol(macro, { .name=c_strdup($3), });                                                         ppp_warning("DEBUG { .name=\"%s\", } SPACE",                      c_strdup($3)); }
-	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { ppp_addsymbol(macro, { .name=c_strdup($3), .text=c_strdup($5) });                                      ppp_warning("DEBUG { .name=\"%s\", .text=\"%s\" }",               c_strdup($3), c_strdup($5)); }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { ppp_addsymbol(macro, { .name=c_strdup($3), .args=c_strarrdup((char const**)$5) });                     ppp_warning("DEBUG { .name=\"%s\", .args=\"%s\" }",               c_strdup($3), c_strarrdup((char const**)$5)); }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { ppp_addsymbol(macro, { .name=c_strdup($3), .args=c_strarrdup((char const**)$5), .text=c_strdup($7) }); ppp_warning("DEBUG { .name=\"%s\", .args=\"%s\", .text=\"%s\" }", c_strdup($3), c_strarrdup((char const**)$5), c_strdup($7)); }
+	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { ppp_debug("{ .name=\"%s\", }",                            $3);         $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), };                                                             }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { ppp_debug("{ .name=\"%s\", } SPACE",                      $3);         $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), };                                                             }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { ppp_debug("{ .name=\"%s\", .text=\"%s\" }",               $3, $5);     $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .value=c_strdup($5) };                                         }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { ppp_debug("{ .name=\"%s\", .fields=[%p] }",               $3, $5);     $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .fields=ppp_symbolfieldsfromstrarr($5) };                      }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { ppp_debug("{ .name=\"%s\", .fields=[%p], .text=\"%s\" }", $3, $5, $7); $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .fields=ppp_symbolfieldsfromstrarr($5), .value=c_strdup($7) }; }
 	;
 
 preprocessor_define_args
-	: IDENTIFIER                                { ppp_message("parameter list begin: %s", $1); $$ = c_strarrcreate(1, c_strdup($1)); }
-	| preprocessor_define_args ',' IDENTIFIER   { ppp_message("parameter list next:: %s", $3); $$ = c_strarrappend(&($1), (char const*[2]){ c_strdup($3), NULL }); }
+	: IDENTIFIER                                { ppp_debug("paramter list begin: %s", $1); $$ = c_strarrcreate(1, c_strdup($1)); }
+	| preprocessor_define_args ',' IDENTIFIER   { ppp_debug("paramter list next:  %s", $3); $$ = c_strarrappend(&($1), (char const*[2]){ c_strdup($3), NULL }); }
 	;
 
 preprocessor_include
@@ -398,9 +405,9 @@ specifier_qualifier_list
 
 
 struct_specifier
-	: STRUCT '{' struct_declaration_list '}'			{ ppp_addsymbol(struct,{ .name=c_strdup("") }); }
-	| STRUCT IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol(struct,{ .name=c_strdup($2) }); }
-	| STRUCT IDENTIFIER									{ ppp_addsymbol(struct,{ .name=c_strdup($2) }); }
+	: STRUCT '{' struct_declaration_list '}'			{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_STRUCT, .name=c_strdup("") }); }
+	| STRUCT IDENTIFIER '{' struct_declaration_list '}'	{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_STRUCT, .name=c_strdup($2) }); }
+	| STRUCT IDENTIFIER									{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_STRUCT, .name=c_strdup($2) }); }
 	;
 
 struct_declaration_list
@@ -427,19 +434,19 @@ struct_declarator
 
 
 union_specifier
-	: UNION '{' struct_declaration_list '}'				{ ppp_addsymbol(union,{ .name=c_strdup("") }); }
-	| UNION IDENTIFIER '{' struct_declaration_list '}'	{ ppp_addsymbol(union,{ .name=c_strdup($2) }); }
-	| UNION IDENTIFIER									{ ppp_addsymbol(union,{ .name=c_strdup($2) }); }
+	: UNION '{' struct_declaration_list '}'				{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_UNION, .name=c_strdup("") }); }
+	| UNION IDENTIFIER '{' struct_declaration_list '}'	{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_UNION, .name=c_strdup($2) }); }
+	| UNION IDENTIFIER									{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_UNION, .name=c_strdup($2) }); }
 	;
 
 
 
 enum_specifier
-	: ENUM '{' enumerator_list '}'					{ ppp_addsymbol(enum,{ .name=c_strdup("") }); }
-	| ENUM '{' enumerator_list ',' '}'				{ ppp_addsymbol(enum,{ .name=c_strdup("") }); }
-	| ENUM IDENTIFIER '{' enumerator_list '}'		{ ppp_addsymbol(enum,{ .name=c_strdup($2) }); }
-	| ENUM IDENTIFIER '{' enumerator_list ',' '}'	{ ppp_addsymbol(enum,{ .name=c_strdup($2) }); }
-	| ENUM IDENTIFIER								{ ppp_addsymbol(enum,{ .name=c_strdup($2) }); }
+	: ENUM '{' enumerator_list '}'					{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_ENUM, .name=c_strdup("") }); }
+	| ENUM '{' enumerator_list ',' '}'				{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_ENUM, .name=c_strdup("") }); }
+	| ENUM IDENTIFIER '{' enumerator_list '}'		{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_ENUM, .name=c_strdup($2) }); }
+	| ENUM IDENTIFIER '{' enumerator_list ',' '}'	{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_ENUM, .name=c_strdup($2) }); }
+	| ENUM IDENTIFIER								{ ppp_symboltable_create(&(s_symbol){ .kind=SYMBOLKIND_ENUM, .name=c_strdup($2) }); }
 	;
 
 enumerator_list
@@ -708,9 +715,9 @@ declaration_specifiers
 	;
 
 declaration
-	: TYPEDEF declaration_specifiers declarator_list ';'	{ ppp_addsymbol(type,{ .name=c_strdup($3), .type=c_strdup($2) }); }
-	| declaration_specifiers ';'
-	| declaration_specifiers declarator_initializer_list ';'
+	: TYPEDEF declaration_specifiers declarator_list ';'		{  }
+	| declaration_specifiers ';'								{  }
+	| declaration_specifiers declarator_initializer_list ';'	{  }
 	| static_assert_declaration
 	;
 declaration_list
