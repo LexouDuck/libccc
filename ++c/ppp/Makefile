@@ -17,6 +17,7 @@ HDRS = $(YACC_HDR) $(SRCDIR)/ppp.h
 SRCS = $(YACC_SRC) $(SRCDIR)/ppp.c \
 	$(SRCDIR)/ppp_log.c \
 	$(SRCDIR)/ppp_symbol.c \
+	$(SRCDIR)/ppp_syntax.c \
 	$(LEX_SRC)
 
 

@@ -1,3 +1,13 @@
+/*============================================================================*/
+/*                                            ______________________________  */
+/*  ppp.h                                    |   _____    _____    _____    | */
+/*                                           |  |  , \ \ |  , \ \ |  , \ \  | */
+/*  https://github.com/LexouDuck/libccc.git  |  |  '_/_/ |  '_/_/ |  '_/_/  | */
+/*                                           |  |  | |   |  | |   |  | |    | */
+/* Comprehensive|Cross-platform|Customizable |  |__|_|   |__|_|   |__|_|    | */
+/* This source code follows the MIT License. |______________________________| */
+/*                                                                            */
+/*============================================================================*/
 
 #ifndef __PPP_H
 #define __PPP_H
@@ -12,38 +22,12 @@
 #include <libccc/stringarray.h>
 #include <libccc/pointerarray.h>
 
+#include "ppp_syntax.h"
 
 
-typedef enum symbolkind
-{
-	SYMBOLKIND_NONE = 0,
-	SYMBOLKIND_USER,
-	SYMBOLKIND_TYPE,
-	SYMBOLKIND_ENUM,
-	SYMBOLKIND_UNION,
-	SYMBOLKIND_STRUCT,
-	SYMBOLKIND_MACRO,
-	ENUMLENGTH_SYMBOLKIND
-}	e_symbolkind;
 
-//! One field/argument of a symbol
-typedef struct symbol_field
-{
-	t_char* name;
-	t_char* type;
-	t_char* value;
-}	s_symbol_field;
-
-//! Stores all info concerning one symbol in the symbol table
-typedef struct symbol
-{
-	e_symbolkind	kind;
-	t_char*			name;
-	t_char*			type;
-	t_char*			value;
-	t_uint			fields_amount;
-	s_symbol_field*	fields;
-}	s_symbol;
+//! Lexed token integer, as defined by lex/yacc (flex/bison)
+typedef int	t_lex;
 
 
 
@@ -51,6 +35,7 @@ typedef struct symbol
 typedef struct ppp
 {
 	t_char const*	current_file; //!< name of the file being parsed
+	t_char const*	display_file; //!< name of the file to display (taking in account any `#line` preproc statements)
 	t_uint	current_line;	//!< the current line number being parsed from the `current_file`
 	t_uint	display_line;	//!< the current line number to display (taking in account any `#line` preproc statements)
 
@@ -60,8 +45,9 @@ typedef struct ppp
 	t_uint	errors;		//!< total amount of errors so far
 	t_uint	warnings;	//!< total amount of warnings so far
 
-	t_uint    symbolcount; //!< total amount of symbols defined
-	s_symbol* symboltable; //!< the full symbol table
+	t_uint		symbolcount; //!< total amount of symbols defined
+	s_symbol*	symboltable; //!< the full symbol table
+	s_ast*		syntax_tree; //!< the full source code, in AST format
 }	s_ppp;
 
 //! This global var holds all internal state
@@ -94,21 +80,9 @@ int		ppp_token(char const* lex_str);
 
 // events
 
-int		ppp_c_line(char const* lex_str, int lex_token);
-int		ppp_c_define(char const* lex_str, int lex_token);
-int		ppp_c_include(char const* lex_str, int lex_token);
-
-// symbol table handling
-
-//! Converts a string array to a symbol_field array
-s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr);
-
-//! Get the string representation of a symbol-kind enum item
-char const*	ppp_symbolkind(e_symbolkind kind);
-
-void		ppp_symboltable_create(s_symbol const* symbol);
-void		ppp_symboltable_delete(e_symbolkind kind, char const* name);
-s_symbol*	ppp_symboltable_find  (e_symbolkind kind, char const* name);
+int			ppp_c_line(t_uint lineno, char const* filename);
+s_symbol	ppp_c_define(char const* name, char const** args, char const* content);
+void		ppp_c_include(char const* filename);
 
 
 

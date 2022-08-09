@@ -163,7 +163,7 @@ preprocessor_content
 preprocessor
 	: PP preprocessor_conditional  '\n' {}
 	| PP preprocessor_undefine     '\n' {}
-	| PP preprocessor_define       '\n' { ppp_symboltable_create(&($2)); }
+	| PP preprocessor_define       '\n' {}
 	| PP preprocessor_include      '\n' {}
 	| PP preprocessor_line         '\n' {}
 	;
@@ -182,31 +182,31 @@ preprocessor_undefine
 	;
 
 preprocessor_define
-	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { ppp_debug("{ .name=\"%s\", }",                            $3);         $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), };                                                             }
-	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { ppp_debug("{ .name=\"%s\", } SPACE",                      $3);         $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), };                                                             }
-	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { ppp_debug("{ .name=\"%s\", .text=\"%s\" }",               $3, $5);     $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .value=c_strdup($5) };                                         }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { ppp_debug("{ .name=\"%s\", .fields=[%p] }",               $3, $5);     $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .fields=ppp_symbolfieldsfromstrarr($5) };                      }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { ppp_debug("{ .name=\"%s\", .fields=[%p], .text=\"%s\" }", $3, $5, $7); $$ = (s_symbol){ .kind=SYMBOLKIND_MACRO, .name=c_strdup($3), .fields=ppp_symbolfieldsfromstrarr($5), .value=c_strdup($7) }; }
+	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { $$ = ppp_c_define($3, NULL, NULL); }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { $$ = ppp_c_define($3, NULL, NULL); }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { $$ = ppp_c_define($3,   $5, NULL); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { $$ = ppp_c_define($3,   $5, NULL); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { $$ = ppp_c_define($3,   $5,   $7); }
 	;
 
 preprocessor_define_args
-	: IDENTIFIER                                { ppp_debug("paramter list begin: %s", $1); $$ = c_strarrcreate(1, c_strdup($1)); }
-	| preprocessor_define_args ',' IDENTIFIER   { ppp_debug("paramter list next:  %s", $3); $$ = c_strarrappend(&($1), (char const*[2]){ c_strdup($3), NULL }); }
+	: IDENTIFIER                                { ppp_debug("parameter list begin: %s", $1); $$ = c_strarrcreate(1, c_strdup($1)); }
+	| preprocessor_define_args ',' IDENTIFIER   { ppp_debug("parameter list next:  %s", $3); $$ = c_strarrappend(&($1), (char const*[2]){ c_strdup($3), NULL }); }
 	;
 
 preprocessor_include
-	: PP_INCLUDE PP_STRING                { ppp_message("includes file: %s", ($2)); /* TODO */ }
-	| PP_INCLUDE LITERAL_STRING           { ppp_message("includes file: %s", ($2)); /* TODO */ }
-	| PP_INCLUDE PP_SPACE PP_STRING       { ppp_message("includes file: %s", ($3)); /* TODO */ }
-	| PP_INCLUDE PP_SPACE LITERAL_STRING  { ppp_message("includes file: %s", ($3)); /* TODO */ }
+	: PP_INCLUDE PP_STRING                { ppp_c_include($2); }
+	| PP_INCLUDE LITERAL_STRING           { ppp_c_include($2); }
+	| PP_INCLUDE PP_SPACE PP_STRING       { ppp_c_include($3); }
+	| PP_INCLUDE PP_SPACE LITERAL_STRING  { ppp_c_include($3); }
 	;
 
 preprocessor_line
-	: PP_LINE                                           {}
-	| PP_LINE PP_SPACE                                  {}
-	| PP_LINE PP_SPACE constant                         {}
-	| PP_LINE PP_SPACE constant PP_SPACE PP_STRING      {}
-	| PP_LINE PP_SPACE constant PP_SPACE LITERAL_STRING {}
+	: PP_LINE                                           { ppp_c_line(        NULL,         NULL); }
+	| PP_LINE PP_SPACE                                  { ppp_c_line(        NULL,         NULL); }
+	| PP_LINE PP_SPACE constant                         { ppp_c_line(c_strdup($3),         NULL); }
+	| PP_LINE PP_SPACE constant PP_SPACE PP_STRING      { ppp_c_line(c_strdup($3), c_strdup($5)); }
+	| PP_LINE PP_SPACE constant PP_SPACE LITERAL_STRING { ppp_c_line(c_strdup($3), c_strdup($5)); }
 	;
 
 

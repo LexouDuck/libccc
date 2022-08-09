@@ -9,6 +9,16 @@
 
 
 
+void	ppp_symbol_addfield(s_symbol* symbol, s_symbol_field* field)
+{
+	t_uint index = symbol->fields_amount;
+	symbol->fields_amount += 1;
+	symbol->fields = (s_symbol_field*)c_realloc(symbol->fields, symbol->fields_amount * sizeof(s_symbol_field));
+	symbol->fields[index] = *field;
+}
+
+
+
 s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr)
 {
 	t_uint	length = c_strarrlen((char const**)strarr);
@@ -17,7 +27,7 @@ s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr)
 	{
 		result[i] = (s_symbol_field)
 		{
-			.name = c_strdup(strarr[i]),
+			.name = strarr[i],
 			.type = NULL,
 			.value = NULL,
 		};
@@ -27,9 +37,18 @@ s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr)
 
 
 
+t_char*	ppp_symboltostr(s_symbol const* symbol)
+{
+	return NULL; // TODO ppp_symbolkind(symbol->kind) etc
+}
+
+
+
 void ppp_symboltable_create(s_symbol const* symbol)
 {
-	ppp_message("New %s symbol: '%s'", ppp_symbolkind(symbol->kind), symbol->name);
+	t_char* symbol_str = ppp_symboltostr(symbol);
+	ppp_message("Adding new symbol: %s", symbol_str);
+	c_strdel(&symbol_str);
 	t_size size = ppp.symbolcount * sizeof(s_symbol);
 	ppp.symbolcount++;
 	if (ppp.symboltable == NULL)

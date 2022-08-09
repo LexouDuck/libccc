@@ -29,5 +29,6 @@ RegReplace:				set up regex replace rules to automatically refactor code with a 
 		"i",	// SWIG template file
 		"enum",
 		"cpp",
+		"hpp",
 	],
 }

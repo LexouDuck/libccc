@@ -32,8 +32,39 @@ Here are the warnings which are added by default (any warning can be deactivated
 
 ### Accepted alternate notation:
 
+
+
+##### Type-to-the-right declarations
+
+- Variable declarations with type to the right:
+In ++C, you can write types to the right of the declaration, after the variable's name, if you prefer.
+This can be done by using the `:` definition special operator.
+```c
+int variable = 0; // pure C
+variable:int = 0; // ++C
+```
+
+- Function declarations with type to the right:
+You can also declare functions with "type-to-the-right" notation, again by using the `:` definition special operator.
+```c
+int	function(int x)	{ return x; } // pure C
+function(int x):int	{ return x; } // ++C
+```
+
+- Static-storage array types: the array type brackets can be written at the end of the type, rather than after the variable name:
+```c
+char*	strings[9]; // pure C
+char*[9] strings; // ++C - type-to-the-left
+strings:char*[9]; // ++C - type-to-the-right
+```
+This is to allow for greater readibility, always having the variable name on the right-most side of a declaration.
+
+
+
+##### Pointer operators
+
 - dereference: `*` can be written `$`:
-This is to avoid synonymy with the arithmetic multiplication operator.
+This is to avoid synonymy with the arithmetic multiplication operator (as well as pointer type declarations).
 ```c
 value = *pointer; // pure C
 value = $pointer; // ++C
@@ -46,7 +77,21 @@ address = &value; // pure C
 address = @value; // ++C
 ```
 
+- function pointer types: to avoid hard-to-read function pointer types using the historic C `type (*func)(args)` notation, you can instead use the `=>` arrow operator:
+```c
+int (*fpointer)(int x)	 = NULL; // pure C - historic function pointer decl syntax
+int (*)(int x)	fpointer = NULL; // pure C - type to the left
+(int x) => int	fpointer = NULL; // ++C - type to the left
+fpointer:(int x) => int	 = NULL; // ++C - type to the right
 
+// example nested function pointers (takes another function pointer as argument)
+void (*g)(int, char* (*)(char*)); // pure C
+(int, (char*)=>char*) => void  g; // ++C
+```
+
+
+
+##### Numeric literals
 
 - binary (base 2) number literals: instead of just being a GCC extension, any ++C code can have binary number literals, using the prefix `0b`:
 ```c
@@ -78,26 +123,6 @@ value = 0d123456789AB;	// ++C
 ```c
 value = 0x123456789ABCDEF;	// ++C
 // no special features added in ++C for hexadecimal
-```
-
-
-
-- static array types: brackets can be written after the type (before the associated token), rather than after the variable name:
-This is to allow for greater readibility, always having the variable name on the right-most side of a declaration.
-```c
-char*   strings[9]; // pure C
-char*[9]   strings; // ++C
-```
-
-- function pointer types: to avoid hard-to-read function pointer types using `(*func)` notation, you can instead use `=>` arrow notation
-This is to allow for greater readibility, always having the variable name on the right-most side of a declaration.
-```c
-void (*f)(int, char*); // pure C
-(int, char*)=>void  f; // ++C
-
-// example nested function pointers (takes another function pointer as argument)
-void (*g)(int, char* (*)(char*)); // pure C
-(int, (char*)=>char*) => void  g; // ++C
 ```
 
 
@@ -320,6 +345,7 @@ Most of the new additions in ++C take the form of new preprocessor directives - 
 
 Here is a list of the preprocessor directives which ++C provides:
 ```c
+
 //! define a custom operator (optionally with a certain specified `precedence` and `associativity`)
 #operator	$	(char* a, char* b) => int	= DoOperation(a, b)
 
@@ -331,14 +357,17 @@ Here is a list of the preprocessor directives which ++C provides:
 
 //! defines a category of types, which verify certain conditions
 #interface i_iterable<T>
-	#has #(sizeof(i_iterable<T>) == 1)
-	#has Iterate(i_iterable<T> self, (T)=>void f)
+	#has variable: int length
+	#has function: Iterate(i_iterable<T> self, (T)=>void f)
+	#has tt_check: #(sizeof(i_iterable<T>) == 1)
+	#has rt_check: (this.length < 255)
 
-//! defines a type with additional info: operators, 
+//! defines a type with additional info
 #type t_string = char*
 	#has nullof: NULL
+	#has stringof: this
 	#has formatof: "%s"
-	#has i_iterable: { Iterate: String_Iterate; }
+	#has interface: i_iterable { .length = 3, Iterate = String_Iterate, }
 
 //! type reflection - a special kind of macro, for types (inserts contents of a type into the code)
 #reflect(struct s)	printf("%s %s;\n", #type, #name)
@@ -971,7 +1000,7 @@ If no argument is supplied, `#header` will generate a header `#define` name base
 
 ### Function attributes:
 
-++C provides the `#is` instruction to associate traits to types/variables/functions.
+++C provides the `#is` instruction to associate special attributes to types/variables/functions.
 In particular, there are 9 pre-defined `#is` attributes:
 ```c
 #is inline              //!< cross-platform way to use `__attribute__((always_inline, ...))` and/or `inline`
@@ -989,10 +1018,10 @@ Users can also define their own `#is` attributes - this is a powerful tool to gi
 #attribute create         = __attribute__((malloc))
 #attribute delete(argpos) = __attribute__((delete(argpos)))
 #attribute format(function, t_uint argpos_format, t_uint argpos_valist) =
-	#if (!(typeof(function.arg_types[argpos_format]) is char*))
+	#if (!(typeof(function.fields[argpos_format].type) is char*))
 		#error f"Invalid 'format()' attribute: expected format string type argument at position #{argpos_format}"
-	#elif (!(typeof(function.arg_types[argpos_valist]) is ...))
-		#error f"Invalid 'format()' attribute: expected variadic ellipsis argumebt at position #{argpos_valist}"
+	#elif (!(typeof(function.fields[argpos_valist].name) is ...))
+		#error f"Invalid 'format()' attribute: expected variadic ellipsis argument at position #{argpos_valist}"
 	#else
 		
 	#endif
