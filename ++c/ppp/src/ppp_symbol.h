@@ -20,8 +20,6 @@
 
 #include <libccc.h>
 
-
-
 /*
 ** ************************************************************************** *|
 **                                  Definitions                               *|
@@ -32,39 +30,40 @@
 typedef enum symbolkind
 {
 	SYMBOLKIND_NONE = 0,
-	SYMBOLKIND_USER,
-	SYMBOLKIND_TYPE,
-	SYMBOLKIND_ENUM,
-	SYMBOLKIND_UNION,
-	SYMBOLKIND_STRUCT,
-	SYMBOLKIND_MACRO,
+	SYMBOLKIND_USER,	//!< variable or function
+	SYMBOLKIND_TYPE,	//!< typedef
+	SYMBOLKIND_ENUM,	//!< enum type
+	SYMBOLKIND_UNION,	//!< union type
+	SYMBOLKIND_STRUCT,	//!< struct type
+	SYMBOLKIND_MACRO,	//!< macro #define
 	ENUMLENGTH_SYMBOLKIND
 }	e_symbolkind;
 
-//! One field/argument of a symbol
+//! One field/subfield/argument of a symbol
 typedef struct symbol_field
 {
-	t_char*	name;
-	t_char*	type;
-	t_char*	value;
+	t_char*	name;	//!< The name of this symbol field
+	t_char*	type;	//!< The type associated with this symbol field
+	t_char*	value;	//!< The initially-assigned value for this symbol field
 }	s_symbol_field;
 
 //! Stores all info concerning one symbol in the symbol table
 typedef struct symbol
 {
-	e_symbolkind	kind;
-	t_char*			name;
-	t_char*			type;
-	t_char*			value;
-	t_uint			fields_amount;
-	s_symbol_field*	fields;
+	e_symbolkind	kind;	//!< The type of symbol
+	t_uint			scope;	//!< The scoping depth of this symbol (`0` means global)
+	t_char*			name;	//!< The name of this symbol
+	t_char*			type;	//!< The type associated with this symbol
+	t_char*			value;	//!< The initially-assigned value for this symbol
+	t_uint			fields_amount; //!< The amount of items in the `.fields` array
+	s_symbol_field*	fields;	//!< The subfields of this symbol (e.g. function arguments, struct members, etc)
 }	s_symbol;
 
 
 
 /*
 ** ************************************************************************** *|
-**                                   Includes                                 *|
+**                                  Functions                                 *|
 ** ************************************************************************** *|
 */
 

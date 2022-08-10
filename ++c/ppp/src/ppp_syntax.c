@@ -14,11 +14,14 @@ int	ppp_verbatim(char const* lex_str, int lex_token)
 {
 	t_char* verbatim = c_strdup(lex_str);
 	yylval.v_str = verbatim;
-	ppp_syntaxtree_addnode(&(s_ast)
+	ppp_syntaxlist_add(&(s_syntaxlist)
 	{
-		.token = lex_token,
-		.text = verbatim,
-		.block = NULL,
+		.lexed = lex_token,
+		.source_space = ppp.whitespace,
+		.source_space_length = c_strlen(ppp.whitespace),
+		.source_token = verbatim,
+		.source_token_length = c_strlen(verbatim),
+		.output = NULL,
 	});
 	IO_Output_String(verbatim); // TODO construct a buffer and write once at the end
 	return (lex_token);
@@ -70,54 +73,29 @@ void	ppp_whitespace(char const* lex_str)
 {
 	//if (ppp_flags.minified == FALSE)
 	ppp.current_line = yylineno;
-	ppp_verbatim(lex_str, 0);
+	ppp.whitespace = c_strdup(lex_str);
 }
 
 
 
-void	ppp_c_line(t_uint lineno, char const* filename)
+t_uint	ppp_syntaxlist_length(void)
 {
-	// TODO: if (ppp_flags.no_lines == FALSE)
-	ppp.display_file = filename;
-	ppp.display_line = lineno;
-}
-
-void	ppp_c_define(char const* name, char const** args, char const* content)
-{
-	s_symbol symbol = (s_symbol)
-	{
-		.kind = SYMBOLKIND_MACRO,
-		.name = c_strdup(name),
-		.fields = ppp_symbolfieldsfromstrarr(c_strarrdup(args)),
-		.value = c_strdup(content),
-	};
-	ppp_symboltable_create(&symbol);
-	// TODO custom input buffer switching logic ?
-}
-
-void	ppp_c_include(char const* filename)
-{
-	ppp_message("includes file: %s", filename);
-	// TODO custom input buffer switching logic
-}
-
-
-
-t_uint	ppp_syntaxtree_length(void)
-{
+	if (ppp.syntax_list == NULL)
+		return (0);
 	t_uint i = 0;
-	while (
-		ppp.syntax_tree[i].text != NULL ||
-		ppp.syntax_tree[i].token != '\0')
+	while (!(ppp.syntax_list[i].lexed == '\0' && ppp.syntax_list[i].source_token == NULL))
 	{
 		++i;
 	}
 	return (i);
 }
 
-void	ppp_syntaxtree_addnode(s_ast const* node)
+void	ppp_syntaxlist_add(s_syntaxlist const* item)
 {
-	t_uint	length = ppp_syntaxtree_length();
-	ppp.syntax_tree = c_realloc(ppp.syntax_tree, (length + 1) * sizeof(s_ast));
-	ppp.syntax_tree[length] = *node;
+	t_uint	length = ppp_syntaxlist_length();
+	ppp.syntax_list = (ppp.syntax_list == NULL) ?
+		c_memalloc((length + 1) * sizeof(s_syntaxlist)) :
+		c_memrealloc(ppp.syntax_list, (length + 1) * sizeof(s_syntaxlist));
+	ppp.syntax_list[length] = *item;
+	ppp.syntax_list[length + 1] = SYNTAXLIST_TERMINATOR;
 }

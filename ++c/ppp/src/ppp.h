@@ -12,48 +12,61 @@
 #ifndef __PPP_H
 #define __PPP_H
 
+/*
+** ************************************************************************** *|
+**                                   Includes                                 *|
+** ************************************************************************** *|
+*/
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
 
 #include <libccc.h>
+#include <libccc/int.h>
 #include <libccc/memory.h>
 #include <libccc/string.h>
 #include <libccc/stringarray.h>
 #include <libccc/pointerarray.h>
+#include <libccc/monad/list.h>
 
 #include "ppp_syntax.h"
 
-
-
-//! Lexed token integer, as defined by lex/yacc (flex/bison)
-typedef int	t_lex;
-
-
+/*
+** ************************************************************************** *|
+**                                  Definitions                               *|
+** ************************************************************************** *|
+*/
 
 //! This struct stores all internal state for ppp
 typedef struct ppp
 {
-	t_char const*	current_file; //!< name of the file being parsed
-	t_char const*	display_file; //!< name of the file to display (taking in account any `#line` preproc statements)
-	t_uint	current_line;	//!< the current line number being parsed from the `current_file`
-	t_uint	display_line;	//!< the current line number to display (taking in account any `#line` preproc statements)
+	t_char const*	current_file;	//!< name of the file being parsed
+	t_char const*	display_file;	//!< name of the file to display (taking in account any `#line` preproc statements)
+	t_uint			current_line;	//!< the current line number being parsed from the `current_file`
+	t_uint			display_line;	//!< the current line number to display (taking in account any `#line` preproc statements)
 
-	t_bool	debug;		//!< if TRUE, debug mode is active
-	t_bool	verbose;	//!< if TRUE, verbose mode is active
+	t_bool		debug;		//!< if TRUE, debug mode is active
+	t_bool		verbose;	//!< if TRUE, verbose mode is active
 
-	t_uint	errors;		//!< total amount of errors so far
-	t_uint	warnings;	//!< total amount of warnings so far
+	t_uint		errors;		//!< total amount of errors so far
+	t_uint		warnings;	//!< total amount of warnings so far
 
-	t_uint		symbolcount; //!< total amount of symbols defined
-	s_symbol*	symboltable; //!< the full symbol table
-	s_ast*		syntax_tree; //!< the full source code, in AST format
+	t_char*			whitespace;	//!< the latest parsed string of contiguous whitespace
+	s_syntaxlist*	syntax_list; //!< the full source code, in token-list format
+//	s_syntaxtree*	syntax_tree; //!< the full source code, in AST format
+	t_uint			symbolcount; //!< total amount of symbols defined
+	s_symbol*		symboltable; //!< the full symbol table
 }	s_ppp;
 
 //! This global var holds all internal state
 extern s_ppp ppp;
 
-
+/*
+** ************************************************************************** *|
+**                                  Functions                                 *|
+** ************************************************************************** *|
+*/
 
 // logging
 
@@ -78,13 +91,13 @@ int		ppp_verbatim(char const* lex_str, int lex_token);
 //! Get the lex/yacc token integer from a lexed string
 int		ppp_token(char const* lex_str);
 
-// events
-
-int			ppp_c_line(t_uint lineno, char const* filename);
-s_symbol	ppp_c_define(char const* name, char const** args, char const* content);
-void		ppp_c_include(char const* filename);
 
 
+/*
+** ************************************************************************** *|
+**                                 flex/bison                                 *|
+** ************************************************************************** *|
+*/
 
 #include "y.tab.h"
 

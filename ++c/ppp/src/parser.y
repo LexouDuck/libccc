@@ -134,6 +134,8 @@ int yydebug = 1;
 %nterm<v_symbol> preprocessor_define
 %nterm<v_strarr> preprocessor_define_args
 
+%nterm<v_str>    constant
+
 //%nterm<v_symbol>       struct_declaration_list
 //%nterm<v_symbol_field> struct_declaration
 
@@ -184,9 +186,9 @@ preprocessor_undefine
 preprocessor_define
 	: PP_DEFINE PP_SPACE IDENTIFIER                                                        { $$ = ppp_c_define($3, NULL, NULL); }
 	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE                                               { $$ = ppp_c_define($3, NULL, NULL); }
-	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { $$ = ppp_c_define($3,   $5, NULL); }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { $$ = ppp_c_define($3,   $5, NULL); }
-	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { $$ = ppp_c_define($3,   $5,   $7); }
+	| PP_DEFINE PP_SPACE IDENTIFIER PP_SPACE preprocessor_content                          { $$ = ppp_c_define($3, NULL,   $5); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')'                       { $$ = ppp_c_define($3, (char const**)$5, NULL); }
+	| PP_DEFINE PP_SPACE IDENTIFIER '(' preprocessor_define_args ')' preprocessor_content  { $$ = ppp_c_define($3, (char const**)$5,   $7); }
 	;
 
 preprocessor_define_args
@@ -202,11 +204,11 @@ preprocessor_include
 	;
 
 preprocessor_line
-	: PP_LINE                                           { ppp_c_line(        NULL,         NULL); }
-	| PP_LINE PP_SPACE                                  { ppp_c_line(        NULL,         NULL); }
-	| PP_LINE PP_SPACE constant                         { ppp_c_line(c_strdup($3),         NULL); }
-	| PP_LINE PP_SPACE constant PP_SPACE PP_STRING      { ppp_c_line(c_strdup($3), c_strdup($5)); }
-	| PP_LINE PP_SPACE constant PP_SPACE LITERAL_STRING { ppp_c_line(c_strdup($3), c_strdup($5)); }
+	: PP_LINE                                           { ppp_c_line(           0,         NULL); }
+	| PP_LINE PP_SPACE                                  { ppp_c_line(           0,         NULL); }
+	| PP_LINE PP_SPACE constant                         { ppp_c_line(c_strtou($3),         NULL); }
+	| PP_LINE PP_SPACE constant PP_SPACE PP_STRING      { ppp_c_line(c_strtou($3), c_strdup($5)); }
+	| PP_LINE PP_SPACE constant PP_SPACE LITERAL_STRING { ppp_c_line(c_strtou($3), c_strdup($5)); }
 	;
 
 

@@ -13,7 +13,7 @@ void	ppp_symbol_addfield(s_symbol* symbol, s_symbol_field* field)
 {
 	t_uint index = symbol->fields_amount;
 	symbol->fields_amount += 1;
-	symbol->fields = (s_symbol_field*)c_realloc(symbol->fields, symbol->fields_amount * sizeof(s_symbol_field));
+	symbol->fields = (s_symbol_field*)c_memrealloc(symbol->fields, symbol->fields_amount * sizeof(s_symbol_field));
 	symbol->fields[index] = *field;
 }
 
@@ -22,7 +22,7 @@ void	ppp_symbol_addfield(s_symbol* symbol, s_symbol_field* field)
 s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr)
 {
 	t_uint	length = c_strarrlen((char const**)strarr);
-	s_symbol_field* result = (s_symbol_field*)c_malloc(length * sizeof(s_symbol_field));
+	s_symbol_field* result = (s_symbol_field*)c_memnew(length * sizeof(s_symbol_field));
 	for (t_uint i = 0; i < length; ++i)
 	{
 		result[i] = (s_symbol_field)
@@ -46,22 +46,21 @@ t_char*	ppp_symboltostr(s_symbol const* symbol)
 
 void ppp_symboltable_create(s_symbol const* symbol)
 {
-	t_char* symbol_str = ppp_symboltostr(symbol);
-	ppp_message("Adding new symbol: %s", symbol_str);
-	c_strdel(&symbol_str);
+	// TODO t_char* symbol_str = ppp_symboltostr(symbol); c_strdel(&symbol_str);
+	ppp_message("Adding new symbol: '%s' of type '%s'", symbol->name, symbol->type);
 	t_size size = ppp.symbolcount * sizeof(s_symbol);
 	ppp.symbolcount++;
 	if (ppp.symboltable == NULL)
 	{
-		ppp.symboltable = Memory_New(size + sizeof(s_symbol));
+		ppp.symboltable = c_memnew(size + sizeof(s_symbol));
 		ppp.symboltable[0] = *symbol;
 	}
 	else
 	{
 		s_symbol* old = ppp.symboltable;
-		s_symbol* new = Memory_New(size + sizeof(s_symbol));
-		Memory_Copy(new, old, size);
-		Memory_Delete((void**)&old);
+		s_symbol* new = c_memnew(size + sizeof(s_symbol));
+		c_memcpy(new, old, size);
+		c_memdel((void**)&old);
 		ppp.symboltable = new;
 	}
 }
@@ -86,10 +85,10 @@ void ppp_symboltable_delete(e_symbolkind kind, char const* name)
 		}
 		t_uint index = (symbol - ppp.symboltable);
 		s_symbol* old = ppp.symboltable;
-		s_symbol* new = Memory_New(size + sizeof(s_symbol));
-		Memory_Copy(new, old, index);
-		Memory_Copy(new, old + index + 1, size - index - 1);
-		Memory_Delete((void**)&old);
+		s_symbol* new = c_memnew(size + sizeof(s_symbol));
+		c_memcpy(new, old, index);
+		c_memcpy(new, old + index + 1, size - index - 1);
+		c_memdel((void**)&old);
 		ppp.symboltable = new;
 	}
 }
@@ -101,7 +100,7 @@ s_symbol* ppp_symboltable_find(e_symbolkind kind, char const* name)
 		if (kind == SYMBOLKIND_NONE ||
 			kind == ppp.symboltable[i].kind)
 		{
-			if (String_Equals(name, ppp.symboltable[i].name))
+			if (c_strequ(name, ppp.symboltable[i].name))
 				return (&ppp.symboltable[i]);
 		}
 	}
