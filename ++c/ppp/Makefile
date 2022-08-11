@@ -25,12 +25,16 @@ SRCS = $(YACC_SRC) $(SRCDIR)/ppp.c \
 
 # c compiler
 CC = clang
-CFLAGS = -g \
+CFLAGS = \
+	-g -ggdb \
+	-fsanitize=address \
 	-Wall \
 	-Wextra \
 	-Winline \
 
-LDLIBS = ../../bin/$(BUILDMODE)_$(OSMODE)_$(CPUMODE)/static/libccc.a -ll
+LDLIBS = -ll \
+	-L../../bin/$(BUILDMODE)_$(OSMODE)_$(CPUMODE)/static/ -lccc
+
 INCLUDES = \
 	-I$(GENDIR) \
 	-I$(SRCDIR) \
@@ -40,14 +44,21 @@ INCLUDES = \
 LEX_SRC = $(GENDIR)/lex.yy.c
 LEX_INPUT = $(SRCDIR)/parser.l
 LEX = flex
-LFLAGS = 
+LFLAGS = # -d
 
 # yacc
 YACC_HDR = $(GENDIR)/y.tab.h
 YACC_SRC = $(GENDIR)/y.tab.c
 YACC_INPUT = $(SRCDIR)/parser.y
 YACC = bison
-YFLAGS = 
+YFLAGS = # -t
+
+# debugger
+ifneq ($(findstring $(CC),clang),)
+DBG = lldb
+else
+DBG = gdb
+endif
 
 
 
@@ -61,13 +72,11 @@ endif
 	@echo "=========="
 	@cat "$(OUTFILE)"
 
-debug: LFLAGS += -d
-debug: YFLAGS += -t
 debug: all
 ifeq ($(strip $(FILE)),)
 	@echo "ERROR: expected FILE argument for this make rule" ; exit 1
 endif
-	@./$(NAME) $(FILE) > "$(OUTFILE)"
+	@echo 'r --debug --verbose $(FILE)' | $(DBG) ./$(NAME)
 	@echo "=========="
 	@cat "$(OUTFILE)"
 

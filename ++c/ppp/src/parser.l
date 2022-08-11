@@ -95,9 +95,13 @@ whitespace    [ \t\v\r\f]
 
 <PREPROCESSOR>(<([^>\\\n]|{str_escape})*>)		{ return ppp_verbatim(yytext, PP_STRING); }
  /* TODO custom parsing logic to handle backslash multiline */
-<PREPROCESSOR>({whitespace}+(\\\n)?)+	{   ppp_whitespace(yytext);	return PP_SPACE; }
-<PREPROCESSOR>[\n]		{ BEGIN(INITIAL);	ppp_whitespace(yytext);	return '\n'; }
-<PREPROCESSOR>(.*(\\\n)?)+[\n]			{ return ppp_verbatim(yytext, PP_CONTENT); }
+<PREPROCESSOR>((\\\n)?{whitespace}+(\\\n)?)+	{   ppp_whitespace(yytext);	return PP_SPACE; }
+<PREPROCESSOR>[\n]			{ BEGIN(INITIAL);		ppp_whitespace(yytext);	return '\n'; }
+
+ /* <PREPROCESSOR_DEFINE>{char_alpha}{char_token}*	{ return ppp_token(yytext); } */
+ /* <PREPROCESSOR_DEFINE>(.*(\\\n)?)+/\n			{ return ppp_verbatim(yytext, PP_CONTENT); } */
+ /* <PREPROCESSOR_DEFINE>({whitespace}+(\\\n)?)+	{	ppp_whitespace(yytext);	return PP_SPACE; } */
+ /* <PREPROCESSOR_DEFINE>[\n]	{ BEGIN(INITIAL);		ppp_whitespace(yytext);	return '\n'; } */
 
  /* C keywords */
 "if"					{ return ppp_verbatim(yytext, IF); }
@@ -166,7 +170,7 @@ whitespace    [ \t\v\r\f]
 {prefix_hex}{digit_hex}*"."{digit_hex}+{floatexp_hex}{suffix_float}?	{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
 {prefix_hex}{digit_hex}+"."{floatexp_hex}{suffix_float}?				{ return ppp_verbatim(yytext, LITERAL_FLOAT); }
 
-({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+	{ return ppp_verbatim(yytext, LITERAL_STRING); }
+({prefix_string}?\"([^"\\\n]|{str_escape})*\"{whitespace}*)+			{ return ppp_verbatim(yytext, LITERAL_STRING); }
 
 "..."				{ return ppp_verbatim(yytext, ELLIPSIS); }
 

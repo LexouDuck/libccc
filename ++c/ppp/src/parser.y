@@ -118,6 +118,7 @@ int yydebug = 1;
 %type<v_str> PP_NEWLINE
 %type<v_str> PP_CONTENT
 %type<v_str> PP_STRING
+
 %type<v_str> LITERAL_INT
 %type<v_str> LITERAL_FLOAT
 %type<v_str> LITERAL_CHAR
@@ -158,16 +159,25 @@ preprocessor_content
 	| LITERAL_CHAR
 	| LITERAL_STRING
 	| LITERAL_ENUM
-	| PP_STRING
+	| preprocessor_string
 	| PP_CONTENT
 	;
 
+preprocessor_string
+	: LITERAL_STRING
+	| preprocessor_string LITERAL_STRING
+	| preprocessor_string PP_SPACE LITERAL_STRING
+	| PP_STRING
+	| preprocessor_string PP_STRING
+	| preprocessor_string PP_SPACE PP_STRING
+	;
+
 preprocessor
-	: PP preprocessor_conditional  '\n' {}
+	: PP preprocessor_line         '\n' {}
+	| PP preprocessor_include      '\n' {}
+	| PP preprocessor_conditional  '\n' {}
 	| PP preprocessor_undefine     '\n' {}
 	| PP preprocessor_define       '\n' {}
-	| PP preprocessor_include      '\n' {}
-	| PP preprocessor_line         '\n' {}
 	;
 
 preprocessor_conditional
@@ -224,6 +234,7 @@ constant
 
 string
 	: LITERAL_STRING
+	| string LITERAL_STRING
 	;
 
 expression_primary

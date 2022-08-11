@@ -52,6 +52,28 @@ int ppp_exit(void)
 
 
 
+int	ppp_write(void)
+{
+	t_uint i = 0;
+	if (ppp.syntax_list == NULL)
+		return (0);
+	while (!(ppp.syntax_list[i].lexed == 0 || ppp.syntax_list[i].source_token == NULL))
+	{
+		if (ppp.syntax_list[i].source_space != NULL)
+			IO_Output_String(ppp.syntax_list[i].source_space);
+
+		if (ppp.syntax_list[i].output != NULL)
+			IO_Output_String(ppp.syntax_list[i].output);
+		else if (ppp.syntax_list[i].source_token != NULL)
+			IO_Output_String(ppp.syntax_list[i].source_token);
+
+		++i;
+	}
+	return (i);
+}
+
+
+
 int	main(int argc, char** argv)
 {
 	if (argc <= 1)
@@ -95,5 +117,6 @@ int	main(int argc, char** argv)
 			}
 		}
 	}
+	ppp_write();
 	ppp_exit();
 }

@@ -30,9 +30,9 @@ s_symbol	ppp_c_define(char const* name, char const** args, char const* content)
 	s_symbol symbol = (s_symbol)
 	{
 		.kind = SYMBOLKIND_MACRO,
-		.name = c_strdup(name),
-		.fields = ppp_symbolfieldsfromstrarr(c_strarrdup(args)),
-		.value = c_strdup(content),
+		.name   = (name == NULL) ? NULL : c_strdup(name),
+		.fields = (args == NULL) ? NULL : ppp_symbolfieldsfromstrarr(c_strarrdup(args)),
+		.value  = (content == NULL) ? NULL : c_strdup(content),
 	};
 	ppp_symboltable_create(&symbol);
 	// TODO custom input buffer switching logic ?

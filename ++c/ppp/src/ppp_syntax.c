@@ -18,12 +18,13 @@ int	ppp_verbatim(char const* lex_str, int lex_token)
 	{
 		.lexed = lex_token,
 		.source_space = ppp.whitespace,
-		.source_space_length = c_strlen(ppp.whitespace),
+		.source_space_length = (ppp.whitespace == NULL) ? 0 : c_strlen(ppp.whitespace),
 		.source_token = verbatim,
-		.source_token_length = c_strlen(verbatim),
+		.source_token_length =       (verbatim == NULL) ? 0 : c_strlen(verbatim),
 		.output = NULL,
 	});
-	IO_Output_String(verbatim); // TODO construct a buffer and write once at the end
+	ppp.whitespace = NULL;
+//	IO_Output_String(verbatim); // TODO construct a buffer and write once at the end
 	return (lex_token);
 }
 
@@ -94,8 +95,8 @@ void	ppp_syntaxlist_add(s_syntaxlist const* item)
 {
 	t_uint	length = ppp_syntaxlist_length();
 	ppp.syntax_list = (ppp.syntax_list == NULL) ?
-		c_memalloc((length + 1) * sizeof(s_syntaxlist)) :
-		c_memrealloc(ppp.syntax_list, (length + 1) * sizeof(s_syntaxlist));
+		c_memalloc(                   (length + 2) * sizeof(s_syntaxlist)) :
+		c_memrealloc(ppp.syntax_list, (length + 2) * sizeof(s_syntaxlist));
 	ppp.syntax_list[length] = *item;
 	ppp.syntax_list[length + 1] = SYNTAXLIST_TERMINATOR;
 }

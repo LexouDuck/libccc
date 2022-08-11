@@ -37,17 +37,69 @@ s_symbol_field*	ppp_symbolfieldsfromstrarr(char** strarr)
 
 
 
+t_char const* ppp_symbolkindtostr(e_symbolkind kind)
+{
+	switch (kind)
+	{
+		case SYMBOLKIND_NONE:	return ("NONE");
+		case SYMBOLKIND_USER:	return ("USER");
+		case SYMBOLKIND_TYPE:	return ("TYPE");
+		case SYMBOLKIND_ENUM:	return ("ENUM");
+		case SYMBOLKIND_UNION:	return ("UNION");
+		case SYMBOLKIND_STRUCT:	return ("STRUCT");
+		case SYMBOLKIND_MACRO:	return ("MACRO");
+		default: return (NULL);
+	}
+}
+
+t_char*	ppp_symbolfieldtostr(s_symbol_field const* symbolfield)
+{
+	if (symbolfield == NULL)
+		return (NULL);
+	return c_strfmt(
+		"\n""{"
+		"\n""\t"".name"          " = %s,"
+		"\n""\t"".type"          " = %s,"
+		"\n""\t"".value"         " = %s,"
+		"\n""}",
+		symbolfield->name,
+		symbolfield->type,
+		symbolfield->value);
+}
+
 t_char*	ppp_symboltostr(s_symbol const* symbol)
 {
-	return NULL; // TODO ppp_symbolkind(symbol->kind) etc
+	if (symbol == NULL)
+		return (NULL);
+	t_char* fields = ppp_symbolfieldtostr(symbol->fields);
+	t_char* result = c_strfmt(
+		"\n""{"
+		"\n""\t"".kind"          " = %s,"
+		"\n""\t"".scope"         " = %i,"
+		"\n""\t"".name"          " = %s,"
+		"\n""\t"".type"          " = %s,"
+		"\n""\t"".value"         " = %s,"
+		"\n""\t"".fields_amount" " = %u,"
+		"\n""\t"".fields"        " = %s,"
+		"\n""}",
+		ppp_symbolkindtostr(symbol->kind),
+		symbol->scope,
+		symbol->name,
+		symbol->type,
+		symbol->value,
+		symbol->fields_amount,
+		fields);
+	c_strdel(&fields);
+	return (result);
 }
 
 
 
 void ppp_symboltable_create(s_symbol const* symbol)
 {
-	// TODO t_char* symbol_str = ppp_symboltostr(symbol); c_strdel(&symbol_str);
-	ppp_message("Adding new symbol: '%s' of type '%s'", symbol->name, symbol->type);
+	t_char* symbol_str = ppp_symboltostr(symbol);
+	ppp_verbose("Adding new symbol:%s", symbol_str);
+	c_strdel(&symbol_str);
 	t_size size = ppp.symbolcount * sizeof(s_symbol);
 	ppp.symbolcount++;
 	if (ppp.symboltable == NULL)
@@ -67,12 +119,12 @@ void ppp_symboltable_create(s_symbol const* symbol)
 
 void ppp_symboltable_delete(e_symbolkind kind, char const* name)
 {
-	ppp_message("Removing %s symbol: '%s'", ppp_symbolkind(kind), name);
+	ppp_verbose("Removing %s symbol: '%s'", ppp_symbolkind(kind), name);
 	t_size size = ppp.symbolcount * sizeof(s_symbol);
 	ppp.symbolcount--;
 	if (ppp.symboltable == NULL)
 	{
-		ppp_failure("attempted to remove symbol '%s', but %s symbol table is empty.", name, ppp_symbolkind(kind));
+		ppp_warning("attempted to remove symbol '%s', but %s symbol table is empty.", name, ppp_symbolkind(kind));
 		return;
 	}
 	else
@@ -80,7 +132,7 @@ void ppp_symboltable_delete(e_symbolkind kind, char const* name)
 		s_symbol* symbol = ppp_symboltable_find(kind, name);
 		if (symbol == NULL)
 		{
-			ppp_failure("could not find symbol '%s' to remove from %s symbol table.", name, ppp_symbolkind(kind));
+			ppp_warning("could not find symbol '%s' to remove from %s symbol table.", name, ppp_symbolkind(kind));
 			return;
 		}
 		t_uint index = (symbol - ppp.symboltable);
