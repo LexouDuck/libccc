@@ -180,6 +180,111 @@ t_bool					Bool_FromString(t_char const* str);
 
 
 
+// Boolean operators
+
+
+
+//!@doc Boolean operator: ⋀	(and)
+//!@{
+t_bool				Bool_And   (t_bool a, t_bool b);
+#define c_and		Bool_And
+//!@}
+
+//!@doc Boolean operator: ⊼	(not and)
+//!@{
+t_bool				Bool_NAnd  (t_bool a, t_bool b);
+#define c_nand		Bool_NAnd
+//!@}
+
+//!@doc Boolean operator: ⋁	(or)
+//!@{
+t_bool				Bool_Or    (t_bool a, t_bool b);
+#define c_or		Bool_Or
+//!@}
+
+//!@doc Boolean operator: ⊽	(not or)
+//!@{
+t_bool				Bool_NOr   (t_bool a, t_bool b);
+#define c_nor		Bool_NOr
+//!@}
+
+//!@doc Boolean operator: ⊻	(exclusive or)
+//!@{
+t_bool				Bool_XOr   (t_bool a, t_bool b);
+#define c_xor		Bool_XOr
+//!@}
+
+//!@doc Boolean operator: ⇔	(equivalence)
+//!@{
+t_bool				Bool_Eq    (t_bool a, t_bool b);
+#define c_eq		Bool_Eq
+//!@}
+
+//!@doc Boolean operator: ⇒	(implication)
+//!@{
+t_bool				Bool_Impl  (t_bool a, t_bool b);
+#define c_impl		Bool_Impl
+//!@}
+
+//!@doc Boolean operator: ⇐	(necessity)
+//!@{
+t_bool				Bool_Need  (t_bool a, t_bool b);
+#define c_need		Bool_Need
+//!@}
+
+/*
+//!@doc Boolean operator: ⇏	(not implication)
+//!@{
+t_bool				Bool_NImpl (t_bool a, t_bool b);
+#define c_nimpl		Bool_NImpl
+//!@}
+
+//!@doc Boolean operator: ⇍	(not necessity)
+//!@{
+t_bool				Bool_NNeed (t_bool a, t_bool b);
+#define c_nneed		Bool_NNeed
+//!@}
+
+//!@doc Boolean operator: ⊤	(always true)
+//!@{
+t_bool				Bool_True  (t_bool a, t_bool b);
+#define c_true		Bool_True
+//!@}
+
+//!@doc Boolean operator: ⊥	(always false)
+//!@{
+t_bool				Bool_False (t_bool a, t_bool b);
+#define c_false		Bool_False
+//!@}
+
+//!@doc Boolean operator: ⊣	(left operand value)
+//!@{
+t_bool				Bool_Left  (t_bool a, t_bool b);
+#define c_left		Bool_Left
+//!@}
+
+//!@doc Boolean operator: ⫣	(right operand value)
+//!@{
+t_bool				Bool_Right (t_bool a, t_bool b);
+#define c_right		Bool_Right
+//!@}
+
+//!@doc Boolean operator: ⊢	(not left operand value)
+//!@{
+t_bool				Bool_NLeft (t_bool a, t_bool b);
+#define c_nleft		Bool_NLeft
+//!@}
+
+//!@doc Boolean operator: ⊩	(not right operand value)
+//!@{
+t_bool				Bool_NRight(t_bool a, t_bool b);
+#define c_nright	Bool_NRight
+//!@}
+
+*/
+
+
+
 #endif
 
 /*! @endgroup */

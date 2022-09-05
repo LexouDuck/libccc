@@ -1,5 +1,6 @@
 ./src/bool/bool_from_str.c
 ./src/bool/bool_to_str.c
+./src/bool/operators.c
 ./src/compress/huffman.c
 ./src/compress/lz77.c
 ./src/compress/lzma.c
