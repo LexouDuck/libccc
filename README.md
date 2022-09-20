@@ -30,6 +30,7 @@ The following categories/headers include the ISO standard library (types, functi
 | `libccc/sys/io.h`     | N/A                           | functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`) |
 
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
+
 | C header file            | Types                                  | Description
 |--------------------------|----------------------------------------|-----------------
 | `libccc/fixed.h`         | `t_fixed`, etc...                      | fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)
