@@ -16,6 +16,7 @@ The first step to accomplishing this is to avoid using the native int/long/short
 ('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply). Of course, many times a platform-dependent "fast int" is the best thing to use, and this is made easy using libccc.
 
 The following categories/headers include the ISO standard library (types, functions, macros):
+
 | C header file         | Types                         | Description
 |-----------------------|-------------------------------|----------
 | `libccc/bool.h`       | `t_bool`                      | primitive boolean type (usually `_Bool`), and strtobool, booltostr, etc |
@@ -29,7 +30,9 @@ The following categories/headers include the ISO standard library (types, functi
 | `libccc/sys/time.h`   | `t_time`, `s_date`, etc...    | functions for handling times/dates/timezones/timespecs (handling of timezones is different from the stdlib 'global variable' tzset call) |
 | `libccc/sys/io.h`     | N/A                           | functions for reading and writing (from/to terminal, or from/to file(s) - wrapper functions over `unistd.h` and `stdio.h`) |
 
+
 Furthermore, there are other functions here that are not found in the ISO standard, particularly in the following categories:
+
 | C header file            | Types                                  | Description
 |--------------------------|----------------------------------------|-----------------
 | `libccc/fixed.h`         | `t_fixed`, etc...                      | fixed-point arithmetic, with a configurable fixed-point number type (regarding what portion is dedicated to the fractional part)
