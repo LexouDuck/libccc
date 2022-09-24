@@ -102,7 +102,7 @@ TYPEDEF_ALIAS(	t_fd, FILEDESC, PRIMITIVE)
 **	It is also recommended to have this number be a power of 2, as it can be
 **	occasionally faster to manage arrays of such sizes on certain machines.
 */
-#define IO_BUFFER_SIZE	(2048)
+#define IO_BUFFER_SIZE	(1024 * 1024) // 1MB
 
 
 
