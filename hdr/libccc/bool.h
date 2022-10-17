@@ -263,13 +263,13 @@ t_bool				Bool_Left  (t_bool a, t_bool b);
 #define c_left		Bool_Left
 //!@}
 
-//!@doc Boolean operator: ⫣	(right operand value)
+//!@doc Boolean operator: ⫣	(not left operand value)
 //!@{
 t_bool				Bool_Right (t_bool a, t_bool b);
 #define c_right		Bool_Right
 //!@}
 
-//!@doc Boolean operator: ⊢	(not left operand value)
+//!@doc Boolean operator: ⊢	(right operand value)
 //!@{
 t_bool				Bool_NLeft (t_bool a, t_bool b);
 #define c_nleft		Bool_NLeft

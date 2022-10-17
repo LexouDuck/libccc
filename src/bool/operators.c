@@ -5,11 +5,11 @@
 
 
 
-inline t_bool	Bool_And   (t_bool a, t_bool b)	{ return  (a & b);	} // ⋀
-inline t_bool	Bool_NAnd  (t_bool a, t_bool b)	{ return !(a & b);	} // ⊼
-inline t_bool	Bool_Or    (t_bool a, t_bool b)	{ return  (a | b);	} // ⋁
-inline t_bool	Bool_NOr   (t_bool a, t_bool b)	{ return !(a | b);	} // ⊽
-inline t_bool	Bool_XOr   (t_bool a, t_bool b)	{ return (a ^ b);	} // ⊻
+inline t_bool	Bool_And   (t_bool a, t_bool b)	{ return  (a && b);	} // ⋀
+inline t_bool	Bool_NAnd  (t_bool a, t_bool b)	{ return !(a && b);	} // ⊼
+inline t_bool	Bool_Or    (t_bool a, t_bool b)	{ return  (a || b);	} // ⋁
+inline t_bool	Bool_NOr   (t_bool a, t_bool b)	{ return !(a || b);	} // ⊽
+inline t_bool	Bool_XOr   (t_bool a, t_bool b)	{ return  (a ^ b);	} // ⊻
 inline t_bool	Bool_Eq    (t_bool a, t_bool b)	{ return (a == b);	} // ⇔
 inline t_bool	Bool_Impl  (t_bool a, t_bool b)	{ return (a == b || b);	} // ⇒
 inline t_bool	Bool_Need  (t_bool a, t_bool b)	{ return (a == b || a);	} // ⇐
