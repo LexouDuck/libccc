@@ -46,7 +46,8 @@ COMMIT_MSG_TYPE_DESCRIPTIONS='
 	style        for coding style commits
 	test         for testing commits
 	cleanup      for commits which remove unused/deprecated files
-	doc, docs    for documentation commits
+	doc          for documentation commits
+	docs         for documentation commits
 	example      for example code commits
 	dependency   for dependencies upgrading or downgrading commits
 	i18n         for i18n (internationalization) commits
