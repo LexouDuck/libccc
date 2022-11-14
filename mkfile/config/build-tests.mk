@@ -65,7 +65,7 @@ TEST_LDFLAGS_BUILDMODE_release =
 
 #! C linker options which are platform-specific, according to $(OSMODE)
 TEST_LDFLAGS_OS = $(TEST_LDFLAGS_OS_$(OSMODE))
-TEST_LDFLAGS_OS_windows =
+TEST_LDFLAGS_OS_windows = 
 TEST_LDFLAGS_OS_macos = 
 TEST_LDFLAGS_OS_linux = 
 TEST_LDFLAGS_OS_other = 
@@ -90,7 +90,7 @@ TEST_LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
-TEST_LDLIBS_OS_windows = 
+TEST_LDLIBS_OS_windows = -lpthread
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
