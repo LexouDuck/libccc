@@ -124,6 +124,12 @@ t_s128				S128_Abs(t_s128 a);
 
 
 
+// TODO: implement IsPrime() function
+
+// TODO: implement PrimeFactors() function
+
+
+
 /*
 ** ************************************************************************** *|
 **                       Floating-point logic operators                       *|
