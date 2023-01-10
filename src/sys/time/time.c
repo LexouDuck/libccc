@@ -41,8 +41,12 @@ s_date		Time_ToDate_UTC(t_time const value)
 	Memory_Clear(&tm, sizeof(struct tm));
 #ifdef _WIN32
 	gmtime_s(&tm, &value);	// gmtime_s() is thread-safe, unlike gmtime()
-#else
+#elif _POSIX_C_SOURCE
 	gmtime_r(&value, &tm);	// gmtime_r() is thread-safe, unlike gmtime()
+#else
+	struct tm* tmp = gmtime(&value);
+	if (tmp != NULL)
+		tm = *tmp;
 #endif
 	result = Date_FromSTDC(&tm);
 	return (result);
@@ -61,8 +65,13 @@ s_date		Time_ToDate_LocalTime(t_time const value)
 		timezone = 0;
 	#endif
 	localtime_s(&tm, &value);	// localtime_s() is thread-safe, unlike localtime()
-#else
+#elif _POSIX_C_SOURCE
 	localtime_r(&value, &tm);	// localtime_r() is thread-safe, unlike localtime()
+#else
+	int timezone = 0;
+	struct tm* tmp = localtime(&value);
+	if (tmp != NULL)
+		tm = *tmp;
 #endif
 	result = Date_FromSTDC(&tm);
 	if (result.offset == 0)

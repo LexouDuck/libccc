@@ -134,8 +134,10 @@ typedef t_s16	t_bitmask_tm;
 #define ALT_O			0x02
 #define	LEGAL_ALT(x)	{ if (alt_format & ~(x)) return (0); }
 
+#if (_POSIX_C_SOURCE) // for the `%Z` flag
 static t_char gmt[] = { "GMT" };
 static t_char utc[] = { "UTC" };
+#endif
 /* RFC-822/RFC-2822 */
 static t_char const*  const nast[5] =
 {
@@ -506,6 +508,7 @@ recurse:
 
 
 
+#if (_POSIX_C_SOURCE)
 			case 'Z':
 			{
 				tzset();
@@ -533,7 +536,7 @@ recurse:
 				}
 				continue;
 			}
-
+#endif
 			case 'z':
 			{
 				/*

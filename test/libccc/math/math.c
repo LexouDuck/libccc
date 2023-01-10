@@ -484,7 +484,7 @@ int		testsuite_math(void)
 	test_math_realfunction_libc("sin", &_sin, &c_fsin, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Tangent");
-	test_math_realfunction_libc("tan", &_tan, &c_ftan, 0.0001, 1000, (s_interval){-HALF_PI, HALF_PI});
+	test_math_realfunction_libc("tan", &_tan, &c_ftan, 0.0001, 1000, (s_interval){-PI_HALF, PI_HALF});
 	test_math_realfunction_libc("tan", &_tan, &c_ftan, 0.0001, 1000, (s_interval){-1e9, 1e9});
 
 	print_math_title("Arc-Cosine");
