@@ -53,7 +53,7 @@ t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 			if CCCERROR((i == n || str[i] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
 				return (0);
-			if (String_Parse_GetEscape(str[i]) != ERROR)
+			if (String_Parse_GetEscape(str[i]) != (t_ascii)ERROR)
 				length += 1 * sizeof(t_ascii);
 			else switch (str[i])
 			{
@@ -118,7 +118,7 @@ t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_esca
 				"string ends with backslash, potential buffer overrun:\n%s", str)
 				return (0);
 			t_ascii	escapechar = String_Parse_GetEscape(str[index]);
-			if (escapechar != ERROR)
+			if (escapechar != (t_ascii)ERROR)
 				result[i++] = escapechar;
 			else switch (str[index])
 			{
