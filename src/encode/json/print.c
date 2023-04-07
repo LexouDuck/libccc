@@ -195,11 +195,11 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 	else
 	{
 		t_f64	d = item->value.number;
-		if (isnan(d))
+		if (IS_NAN(d))
 		{
 			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
 		}
-		else if (isinf(d))
+		else if (IS_INF(d))
 		{
 			if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
 			if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");
