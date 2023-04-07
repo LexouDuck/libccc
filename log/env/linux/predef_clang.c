@@ -1,6 +1,6 @@
 /*
 ** macro test: predefined
-**	OS: 
+**	OS: Linux-Pop_OS
 **	SH: Linux
 **	CC: /usr/bin/clang
 */
@@ -12,6 +12,8 @@
 #define __ATOMIC_RELEASE 3
 #define __ATOMIC_SEQ_CST 5
 #define __BIGGEST_ALIGNMENT__ 16
+#define __BITINT_MAXWIDTH__ 128
+#define __BOOL_WIDTH__ 8
 #define __BYTE_ORDER__ __ORDER_LITTLE_ENDIAN__
 #define __CHAR16_TYPE__ unsigned short
 #define __CHAR32_TYPE__ unsigned int
@@ -74,6 +76,7 @@
 #define __GCC_ATOMIC_SHORT_LOCK_FREE 2
 #define __GCC_ATOMIC_TEST_AND_SET_TRUEVAL 1
 #define __GCC_ATOMIC_WCHAR_T_LOCK_FREE 2
+#define __GCC_HAVE_DWARF2_CFI_ASM 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_1 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_2 1
 #define __GCC_HAVE_SYNC_COMPARE_AND_SWAP_4 1
@@ -118,35 +121,44 @@
 #define __INT_FAST16_FMTi__ "hi"
 #define __INT_FAST16_MAX__ 32767
 #define __INT_FAST16_TYPE__ short
+#define __INT_FAST16_WIDTH__ 16
 #define __INT_FAST32_FMTd__ "d"
 #define __INT_FAST32_FMTi__ "i"
 #define __INT_FAST32_MAX__ 2147483647
 #define __INT_FAST32_TYPE__ int
+#define __INT_FAST32_WIDTH__ 32
 #define __INT_FAST64_FMTd__ "ld"
 #define __INT_FAST64_FMTi__ "li"
 #define __INT_FAST64_MAX__ 9223372036854775807L
 #define __INT_FAST64_TYPE__ long int
+#define __INT_FAST64_WIDTH__ 64
 #define __INT_FAST8_FMTd__ "hhd"
 #define __INT_FAST8_FMTi__ "hhi"
 #define __INT_FAST8_MAX__ 127
 #define __INT_FAST8_TYPE__ signed char
+#define __INT_FAST8_WIDTH__ 8
 #define __INT_LEAST16_FMTd__ "hd"
 #define __INT_LEAST16_FMTi__ "hi"
 #define __INT_LEAST16_MAX__ 32767
 #define __INT_LEAST16_TYPE__ short
+#define __INT_LEAST16_WIDTH__ 16
 #define __INT_LEAST32_FMTd__ "d"
 #define __INT_LEAST32_FMTi__ "i"
 #define __INT_LEAST32_MAX__ 2147483647
 #define __INT_LEAST32_TYPE__ int
+#define __INT_LEAST32_WIDTH__ 32
 #define __INT_LEAST64_FMTd__ "ld"
 #define __INT_LEAST64_FMTi__ "li"
 #define __INT_LEAST64_MAX__ 9223372036854775807L
 #define __INT_LEAST64_TYPE__ long int
+#define __INT_LEAST64_WIDTH__ 64
 #define __INT_LEAST8_FMTd__ "hhd"
 #define __INT_LEAST8_FMTi__ "hhi"
 #define __INT_LEAST8_MAX__ 127
 #define __INT_LEAST8_TYPE__ signed char
+#define __INT_LEAST8_WIDTH__ 8
 #define __INT_MAX__ 2147483647
+#define __INT_WIDTH__ 32
 #define __LDBL_DECIMAL_DIG__ 21
 #define __LDBL_DENORM_MIN__ 3.64519953188247460253e-4951L
 #define __LDBL_DIG__ 18
@@ -162,8 +174,10 @@
 #define __LDBL_MIN_EXP__ (-16381)
 #define __LDBL_MIN__ 3.36210314311209350626e-4932L
 #define __LITTLE_ENDIAN__ 1
+#define __LLONG_WIDTH__ 64
 #define __LONG_LONG_MAX__ 9223372036854775807LL
 #define __LONG_MAX__ 9223372036854775807L
+#define __LONG_WIDTH__ 64
 #define __LP64__ 1
 #define __MMX__ 1
 #define __NO_INLINE__ 1
@@ -177,6 +191,8 @@
 #define __ORDER_BIG_ENDIAN__ 4321
 #define __ORDER_LITTLE_ENDIAN__ 1234
 #define __ORDER_PDP_ENDIAN__ 3412
+#define __PIC__ 2
+#define __PIE__ 2
 #define __POINTER_WIDTH__ 64
 #define __PRAGMA_REDEFINE_EXTNAME 1
 #define __PTRDIFF_FMTd__ "ld"
@@ -189,6 +205,7 @@
 #define __SEG_FS 1
 #define __SEG_GS 1
 #define __SHRT_MAX__ 32767
+#define __SHRT_WIDTH__ 16
 #define __SIG_ATOMIC_MAX__ 2147483647
 #define __SIG_ATOMIC_WIDTH__ 32
 #define __SIZEOF_DOUBLE__ 8
@@ -313,7 +330,7 @@
 #define __UINT_LEAST8_MAX__ 255
 #define __UINT_LEAST8_TYPE__ unsigned char
 #define __USER_LABEL_PREFIX__ 
-#define __VERSION__ "Ubuntu Clang 11.0.0"
+#define __VERSION__ "Ubuntu Clang 14.0.0"
 #define __WCHAR_MAX__ 2147483647
 #define __WCHAR_TYPE__ int
 #define __WCHAR_WIDTH__ 32
@@ -324,10 +341,12 @@
 #define __amd64 1
 #define __amd64__ 1
 #define __clang__ 1
-#define __clang_major__ 11
+#define __clang_literal_encoding__ "UTF-8"
+#define __clang_major__ 14
 #define __clang_minor__ 0
 #define __clang_patchlevel__ 0
-#define __clang_version__ "11.0.0 "
+#define __clang_version__ "14.0.0 "
+#define __clang_wide_literal_encoding__ "UTF-32"
 #define __code_model_small__ 1
 #define __gnu_linux__ 1
 #define __k8 1
@@ -335,6 +354,8 @@
 #define __linux 1
 #define __linux__ 1
 #define __llvm__ 1
+#define __pic__ 2
+#define __pie__ 2
 #define __seg_fs __attribute__((address_space(257)))
 #define __seg_gs __attribute__((address_space(256)))
 #define __tune_k8__ 1
