@@ -169,6 +169,21 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 			number[0] == '-' ||
 			number[0] == '+'))
 			PARSINGERROR_JSON("Could not parse number: \"%.2s\", invalid char found", p->content + p->offset)
+		t_size number_start = 0;
+		if (number[number_start] == '-' ||
+			number[number_start] == '+')
+		{
+			++number_start;
+		}
+		if (String_Equals_N_IgnoreCase(number + number_start, "INF", 3) ||
+			String_Equals_N_IgnoreCase(number + number_start, "NAN", 3) ||
+			(CharUTF32_FromUTF8((t_utf8*)number + number_start) == 0x221E))
+		{
+			if (!Char_IsSpace(number[number_start + 3]) &&
+				!Char_IsPunct(number[number_start + 3]) &&
+				(number[number_start + 3] != '\0'))
+				PARSINGERROR_JSON("Could not parse special number value: \"%.4s\", invalid char found", number + number_start)
+		}
 		t_f64	result = F64_FromString(number);
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
@@ -576,7 +591,7 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 		String_Equals_N(p->content + p->offset, "INF", 3)))
 	{	// number
 		if (p->strict)
-			PARSINGERROR_JSON("Any non-numeric value (here, infinity: \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
+			PARSINGERROR_JSON("Any non-numeric value (here, 'inf'/'infinity': \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
 		return (JSON_Parse_Number(item, p));
 	}
 	else if (CAN_PARSE(3) && (
@@ -585,7 +600,7 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 		String_Equals_N(p->content + p->offset, "NAN", 3)))
 	{	// number
 		if (p->strict)
-			PARSINGERROR_JSON("Any non-numeric value (here, 'not a number': \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
+			PARSINGERROR_JSON("Any non-numeric value (here, 'nan'/'not a number': \"%.3s\") is not allowed in strict JSON", p->content + p->offset)
 		return (JSON_Parse_Number(item, p));
 	}
 	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)

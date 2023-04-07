@@ -259,6 +259,21 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 			number[0] == '-' ||
 			number[0] == '+'))
 			PARSINGERROR_TOML("Could not parse number: \"%.2s\", invalid char found", p->content + p->offset)
+		t_size number_start = 0;
+		if (number[number_start] == '-' ||
+			number[number_start] == '+')
+		{
+			++number_start;
+		}
+		if (String_Equals_N_IgnoreCase(number + number_start, "INF", 3) ||
+			String_Equals_N_IgnoreCase(number + number_start, "NAN", 3) ||
+			(CharUTF32_FromUTF8((t_utf8*)number + number_start) == 0x221E))
+		{
+			if (!Char_IsSpace(number[number_start + 3]) &&
+				!Char_IsPunct(number[number_start + 3]) &&
+				(number[number_start + 3] != '\0'))
+				PARSINGERROR_TOML("Could not parse special number value: \"%.4s\", invalid char found", number + number_start)
+		}
 		t_f64	result = F64_FromString(number);
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;

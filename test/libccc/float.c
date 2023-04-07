@@ -684,87 +684,123 @@ void	test_strto##TYPE(void)																									\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-inf"                       );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "infinity"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+infinity"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-infinity"                  );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INF"                       );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INF"                       );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INF"                       );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INFINITY"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INFINITY"                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INFINITY"                  );	\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Inf"                       );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Inf"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INF"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INF"                       );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INF"                       );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-infinity"                  );	\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Infinity"                  );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Infinity"                  );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Infinity"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INFINITY"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INFINITY"                  );	\
 	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  "\u221E"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, "+\u221E"                    );	\
 	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, "-\u221E"                    );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  "infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, "+infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, "-infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INF "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INF "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INF "                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  "INFINITY "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, "+INFINITY "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, "-INFINITY "                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Inf "                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  "Infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, "+Infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, "-Infinity "                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  "\u221E "                   );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, "+\u221E "                   );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, "-\u221E "                   );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  " INF"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INF"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INF"                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,   "INFINITY"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INFINITY"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INFINITY"                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Inf"                      );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Infinity"                 );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  " \u221E"                   );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, " +\u221E"                   );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, " -\u221E"                   );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, lower) ",	FALSE,                    INFINITY,  " infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, lower) ",	FALSE,                   +INFINITY, " +infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, lower) ",	FALSE,                   -INFINITY, " -infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,  " INF "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INF "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INF "                     );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, upper) ",	FALSE,                    INFINITY,   "INFINITY "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, upper) ",	FALSE,                   +INFINITY, " +INFINITY "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, upper) ",	FALSE,                   -INFINITY, " -INFINITY "                );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Inf "                     );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed) ",	FALSE,                    INFINITY,  " Infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed) ",	FALSE,                   +INFINITY, " +Infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed) ",	FALSE,                   -INFINITY, " -Infinity "                );	\
-	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E)",	FALSE,                INFINITY,  " \u221E "                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E)",	FALSE,               +INFINITY, " +\u221E "                  );	\
-	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E)",	FALSE,               -INFINITY, " -\u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, space after) ",		FALSE,    INFINITY,  "inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, space after) ",		FALSE,   +INFINITY, "+inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, space after) ",		FALSE,   -INFINITY, "-inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, space after) ",		FALSE,    INFINITY,  "Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, space after) ",		FALSE,   +INFINITY, "+Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, space after) ",		FALSE,   -INFINITY, "-Inf "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, space after) ",		FALSE,    INFINITY,  "INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, space after) ",		FALSE,   +INFINITY, "+INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, space after) ",		FALSE,   -INFINITY, "-INF "                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, space after) ",		FALSE,    INFINITY,  "infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, space after) ",		FALSE,   +INFINITY, "+infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, space after) ",		FALSE,   -INFINITY, "-infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, space after) ",		FALSE,    INFINITY,  "Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, space after) ",		FALSE,   +INFINITY, "+Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, space after) ",		FALSE,   -INFINITY, "-Infinity "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, space after) ",		FALSE,    INFINITY,  "INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, space after) ",		FALSE,   +INFINITY, "+INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, space after) ",		FALSE,   -INFINITY, "-INFINITY "                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E, space after)",	FALSE,    INFINITY,  "\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E, space after)",	FALSE,   +INFINITY, "+\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E, space after)",	FALSE,   -INFINITY, "-\u221E "                   );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, space before) ",		FALSE,    INFINITY,  " inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, space before) ",		FALSE,   +INFINITY, " +inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, space before) ",		FALSE,   -INFINITY, " -inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, space before) ",		FALSE,    INFINITY,  " Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, space before) ",		FALSE,   +INFINITY, " +Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, space before) ",		FALSE,   -INFINITY, " -Inf"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, space before) ",		FALSE,    INFINITY,  " INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, space before) ",		FALSE,   +INFINITY, " +INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, space before) ",		FALSE,   -INFINITY, " -INF"                      );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, space before) ",		FALSE,    INFINITY,  " infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, space before) ",		FALSE,   +INFINITY, " +infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, space before) ",		FALSE,   -INFINITY, " -infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, space before) ",		FALSE,    INFINITY,  " Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, space before) ",		FALSE,   +INFINITY, " +Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, space before) ",		FALSE,   -INFINITY, " -Infinity"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, space before) ",		FALSE,    INFINITY,   "INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, space before) ",		FALSE,   +INFINITY, " +INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, space before) ",		FALSE,   -INFINITY, " -INFINITY"                 );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E, space before)",FALSE,    INFINITY,  " \u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E, space before)",FALSE,   +INFINITY, " +\u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E, space before)",FALSE,   -INFINITY, " -\u221E"                   );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, spaces around) ",	FALSE,    INFINITY,  " inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, spaces around) ",	FALSE,   +INFINITY, " +inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, spaces around) ",	FALSE,   -INFINITY, " -inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, spaces around) ",	FALSE,    INFINITY,  " Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, spaces around) ",	FALSE,   +INFINITY, " +Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, spaces around) ",	FALSE,   -INFINITY, " -Inf "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, spaces around) ",	FALSE,    INFINITY,  " INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, spaces around) ",	FALSE,   +INFINITY, " +INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, spaces around) ",	FALSE,   -INFINITY, " -INF "                     );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, spaces around) ",	FALSE,    INFINITY,  " infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, spaces around) ",	FALSE,   +INFINITY, " +infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, spaces around) ",	FALSE,   -INFINITY, " -infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, spaces around) ",	FALSE,    INFINITY,  " Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, spaces around) ",	FALSE,   +INFINITY, " +Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, spaces around) ",	FALSE,   -INFINITY, " -Infinity "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, spaces around) ",	FALSE,    INFINITY,   "INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, spaces around) ",	FALSE,   +INFINITY, " +INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, spaces around) ",	FALSE,   -INFINITY, " -INFINITY "                );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, utf8 \u221E, spaces around)",FALSE,   INFINITY,  " \u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, utf8 \u221E, spaces around)",FALSE,  +INFINITY, " +\u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, utf8 \u221E, spaces around)",FALSE,  -INFINITY, " -\u221E "                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, bad) ",	FALSE,                     NAN,  "inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, bad) ",	FALSE,                     NAN, "+inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, bad) ",	FALSE,                     NAN, "-inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, bad) ",	FALSE,                     NAN,  "Inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, bad) ",	FALSE,                     NAN, "+Inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, bad) ",	FALSE,                     NAN, "-Inferior"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, bad) ",	FALSE,                     NAN,  "INFERIOR"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, bad) ",	FALSE,                     NAN, "+INFERIOR"                  );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, bad) ",	FALSE,                     NAN, "-INFERIOR"                  );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, bad) ",	FALSE,                     NAN,  "infinitygauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, bad) ",	FALSE,                     NAN, "+infinitygauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, bad) ",	FALSE,                     NAN, "-infinitygauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, bad) ",	FALSE,                     NAN,  "InfinityGauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, bad) ",	FALSE,                     NAN, "+InfinityGauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, bad) ",	FALSE,                     NAN, "-InfinityGauntlet"          );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, bad) ",	FALSE,                     NAN,  "INFINITYGAUNTLET"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, bad) ",	FALSE,                     NAN, "+INFINITYGAUNTLET"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, bad) ",	FALSE,                     NAN, "-INFINITYGAUNTLET"          );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, evil) ",	FALSE,                     NAN,  "infinf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, evil) ",	FALSE,                     NAN, "+infinf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, evil) ",	FALSE,                     NAN, "-infinf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, evil) ",	FALSE,                     NAN,  "InfInf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, evil) ",	FALSE,                     NAN, "+InfInf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, evil) ",	FALSE,                     NAN, "-InfInf"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, evil) ",	FALSE,                     NAN,  "INFINF"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, evil) ",	FALSE,                     NAN, "+INFINF"                    );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, evil) ",	FALSE,                     NAN, "-INFINF"                    );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, lower, evil) ",	FALSE,                     NAN,  "infinityinfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, lower, evil) ",	FALSE,                     NAN, "+infinityinfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, lower, evil) ",	FALSE,                     NAN, "-infinityinfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, mixed, evil) ",	FALSE,                     NAN,  "InfinityInfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, mixed, evil) ",	FALSE,                     NAN, "+InfinityInfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, mixed, evil) ",	FALSE,                     NAN, "-InfinityInfinity"          );	\
+	print_test_strto##TYPE("strto"#TYPE"  (inf, upper, evil) ",	FALSE,                     NAN,  "INFINITYINFINITY"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (+inf, upper, evil) ",	FALSE,                     NAN, "+INFINITYINFINITY"          );	\
+	print_test_strto##TYPE("strto"#TYPE" (-inf, upper, evil) ",	FALSE,                     NAN, "-INFINITYINFINITY"          );	\
 	print_test_strto##TYPE("strto"#TYPE" (nan, lower)  ",	FALSE,                         NAN, "nan"                        );	\
 	print_test_strto##TYPE("strto"#TYPE"(+nan, lower)  ",	FALSE,                        +NAN,"+nan"                        );	\
 	print_test_strto##TYPE("strto"#TYPE"(-nan, lower)  ",	FALSE,                        -NAN,"-nan"                        );	\
