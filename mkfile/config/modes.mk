@@ -85,7 +85,9 @@ ifeq ($(strip $(CPUMODE)),)
 	ifdef __EMSCRIPTEN__
 		CPUMODE := wasm-$(if $(findstring 64, $(UNAME_M) $(UNAME_P)),64,32)
 	else
-		CPUMODE := $(subst _,-,$(subst $(C_SPACE),-,$(UNAME_M)))
+		CPUMODE := $(strip $(UNAME_M))
+		CPUMODE := $(subst _,-,$(CPUMODE))
+		#CPUMODE := $(subst $(C_SPACE),-,$(CPUMODE))
 	endif
 	ifeq ($(strip $(CPUMODE)),)
 	_:=$(call print_warning,"Could not estimate the current target CPU architecture, defaulting to 'CPUMODE = other'...")

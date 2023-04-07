@@ -32,6 +32,8 @@
 inline
 t_char*	Program_GetEnv(t_char const* name)
 {
+	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "environment variable name given is NULL")
+		return (NULL);
 	t_char* result = getenv(name);
 	if CCCERROR((result == NULL), ERROR_SYSTEM, 
 		"call to getenv() failed, with name=\"%s\"", name)
@@ -43,12 +45,16 @@ t_char*	Program_GetEnv(t_char const* name)
 
 e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwrite)
 {
+	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "environment variable name given is NULL")
+		return (ERROR_NULLPOINTER);
+	if CCCERROR((value == NULL), ERROR_NULLPOINTER, "environment variable value given is NULL")
+		return (ERROR_NULLPOINTER);
 #if __HASFUNC_SETENV
 	if CCCERROR(setenv(name, value, overwrite), ERROR_SYSTEM,
 		"call to setenv() failed, with name=\"%s\", value=\"%s\", overwrite="SF_BOOL,
 		name, value, overwrite)
 		return (ERROR_SYSTEM);
-#else
+#elif _POSIX_C_SOURCE > 0
 	if (!overwrite)
 	{
 		if (Program_GetEnv(name) != NULL)
@@ -59,6 +65,8 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 		"call to putenv() failed, with command: `%s`", command)
 		return (ERROR_SYSTEM);
 	String_Delete(&command);
+#else
+	return (ERROR_SYSTEM);
 #endif
-	return (ERROR_NONE);
+	return (overwrite ? ERROR_NONE : ERROR_NONE);
 }

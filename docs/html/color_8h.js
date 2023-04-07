@@ -1,18 +1,18 @@
 var color_8h =
 [
-    [ "argb", "color_8h.html#structargb", [
-      [ "a", "color_8h.html#ab6e656aa673e0332a39a71a69a41664f", null ],
-      [ "r", "color_8h.html#a4cc01ac1ef1a1797f23c6f494764dbb2", null ],
-      [ "g", "color_8h.html#a5f7f7f7826e0ff39c6800c520a5401f9", null ],
-      [ "b", "color_8h.html#aa496ce36f9c59c5d769763301d839a3b", null ]
+    [ "argb", "image_2color_8h.html#structargb", [
+      [ "a", "image_2color_8h.html#ab6e656aa673e0332a39a71a69a41664f", null ],
+      [ "r", "image_2color_8h.html#a4cc01ac1ef1a1797f23c6f494764dbb2", null ],
+      [ "g", "image_2color_8h.html#a5f7f7f7826e0ff39c6800c520a5401f9", null ],
+      [ "b", "image_2color_8h.html#aa496ce36f9c59c5d769763301d839a3b", null ]
     ] ],
-    [ "ahsl", "color_8h.html#structahsl", [
-      [ "a", "color_8h.html#ab6e656aa673e0332a39a71a69a41664f", null ],
-      [ "hue", "color_8h.html#ac4c45848f3761c29d5a53df96a78dc9f", null ],
-      [ "sat", "color_8h.html#ad9e7950151136dff48a0dd83f4ed03d3", null ],
-      [ "lum", "color_8h.html#ac8fc8a99de5f31d8884cb636db576e35", null ]
+    [ "ahsl", "image_2color_8h.html#structahsl", [
+      [ "a", "image_2color_8h.html#ab6e656aa673e0332a39a71a69a41664f", null ],
+      [ "hue", "image_2color_8h.html#ac4c45848f3761c29d5a53df96a78dc9f", null ],
+      [ "sat", "image_2color_8h.html#ad9e7950151136dff48a0dd83f4ed03d3", null ],
+      [ "lum", "image_2color_8h.html#ac8fc8a99de5f31d8884cb636db576e35", null ]
     ] ],
-    [ "__LIBCCC_IMAGE_COLOR_T", "color_8h.html#a1fdfaa154578548a112c667c2bf8cd6e", null ],
+    [ "__LIBCCC_COLOR_T", "color_8h.html#ae479a37691eeeec73e7825895dc48f35", null ],
     [ "COLOR_ARGB16_CHANNEL", "color_8h.html#a1244cd1f438f78e48f52f96394d09125", null ],
     [ "COLOR_ARGB16_R_BITINDEX", "color_8h.html#abc339153320653873a3a6ba96a74af37", null ],
     [ "COLOR_ARGB16_G_BITINDEX", "color_8h.html#a3d80c01d2f38894868262b10b052ca07", null ],
@@ -33,7 +33,7 @@ var color_8h =
     [ "COLOR_ARGB32_B", "color_8h.html#ac4783a8cb1ed7522e7c2577eeb9bd3d2", null ],
     [ "COLOR_ARGB_NULL", "color_8h.html#a2b5d52076131be41889bcc514d5acf5e", null ],
     [ "COLOR_AHSL_NULL", "color_8h.html#a447555af06d615aac9531a6f97f4cdf8", null ],
-    [ "__LIBCCC_IMAGE_COLOR_F", "color_8h.html#a271b074f1a613ac89ea6fd586bcafb83", null ],
+    [ "__LIBCCC_COLOR_F", "color_8h.html#a79bed4b7f7d7847c1c49cc3ac5441bbd", null ],
     [ "c_argb16geta", "color_8h.html#ac8604d998ec7ef036d2ebfd8a1070103", null ],
     [ "Color_ARGB16_Get_Alpha", "color_8h.html#a24fe508b9a04d0a1759cd66a00252c8d", null ],
     [ "c_argb16getr", "color_8h.html#ad77e9b44f3d65a5aa11185a659391bd5", null ],
@@ -116,7 +116,7 @@ var color_8h =
     [ "Color_ARGB16_To_ARGB32", "color_8h.html#a6d569e092e91018dfa68554a2c9215a2", null ],
     [ "Color_ARGB16_To_ARGB", "color_8h.html#ae7f85a5401a95c432a11268c635eb14b", null ],
     [ "Color_ARGB16_Difference", "color_8h.html#a1d50367eaf8f5fcc1ac6fa4eecc8405f", null ],
-    [ "Color_ARGB16_GetNearest", "color_8h.html#a80b36c0d5d04246b16b5b89c9644975c", null ],
+    [ "Color_ARGB16_GetNearest", "color_8h.html#a660822ef99fa9d6a46eb888cde105f09", null ],
     [ "Color_ARGB32_Get_A", "color_8h.html#a3e3258a2239cad8538c47e237c7acf71", null ],
     [ "Color_ARGB32_Get_R", "color_8h.html#a560ff42a09fd61a65cb9614bb6fc18e1", null ],
     [ "Color_ARGB32_Get_G", "color_8h.html#ab11a548ed1d7e28fbb5eb8ea3497d48f", null ],
@@ -129,7 +129,7 @@ var color_8h =
     [ "Color_ARGB32_To_ARGB16", "color_8h.html#a77c15aa66b48ac08d54b53d4eef69112", null ],
     [ "Color_ARGB32_To_ARGB", "color_8h.html#af9b8afe46953295cca1a4696a0bada76", null ],
     [ "Color_ARGB32_Difference", "color_8h.html#a38dca8573201e3361a63ae64954ab4d8", null ],
-    [ "Color_ARGB32_GetNearest", "color_8h.html#a2a7437a0c79fde40b91c08d97d4766f5", null ],
+    [ "Color_ARGB32_GetNearest", "color_8h.html#a31e67e6b0856e304e9d1723e3d31259a", null ],
     [ "Color_ARGB_Set", "color_8h.html#a3b62dab4a5263f9cedcc56b4a3ee8f57", null ],
     [ "Color_ARGB_Set_A", "color_8h.html#aada2d1dc436d21ea58de72fa2d13b6f9", null ],
     [ "Color_ARGB_Set_R", "color_8h.html#ac88872a49777a81dbb64e3c3914201a4", null ],
@@ -138,12 +138,12 @@ var color_8h =
     [ "Color_ARGB_To_ARGB16", "color_8h.html#acb35536aa6188fafe3accb60e2576a71", null ],
     [ "Color_ARGB_To_ARGB32", "color_8h.html#aea403e694ddc5402b57570fd29e014f0", null ],
     [ "Color_ARGB_To_AHSL", "color_8h.html#acdc502819c7ddf76dc58d3244d50f4c7", null ],
-    [ "Color_ARGB_GetNearest", "color_8h.html#a66868c3785104d7947b53fc0afc62169", null ],
+    [ "Color_ARGB_GetNearest", "color_8h.html#ad83c01e7f5dcb581762813f7221e5140", null ],
     [ "Color_AHSL_Set", "color_8h.html#aec863ed1e119f4a30fd3fad71c2e85e6", null ],
     [ "Color_AHSL_Set_A", "color_8h.html#a253a7298c2e069bce7a9ed64fdb6b279", null ],
     [ "Color_AHSL_Set_H", "color_8h.html#a93e8d7a13864b658d5202a5fbea5eba0", null ],
     [ "Color_AHSL_Set_S", "color_8h.html#acca2bc25cdb6548e1b7a2d0f6767fcb0", null ],
     [ "Color_AHSL_Set_L", "color_8h.html#a9a8db3c8e1900761e8d17d78850e7ada", null ],
     [ "Color_AHSL_To_ARGB", "color_8h.html#a2b1930a815ebed2dd70dfd9c516c6273", null ],
-    [ "Color_AHSL_GetNearest", "color_8h.html#a9269f2cc251feafc445ebaec0d0c9e64", null ]
+    [ "Color_AHSL_GetNearest", "color_8h.html#a3fb35d40a8ad6fd30ff7991ef8af3b1c", null ]
 ];

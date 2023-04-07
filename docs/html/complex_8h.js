@@ -30,7 +30,7 @@ var complex_8h =
     [ "s_complex", "complex_8h.html#a68a450946fad805abbfa88912745f8a0", null ],
     [ "s_quaternion", "complex_8h.html#a4fa03871db3f5f497fadc56cd722c3e3", null ],
     [ "Complex", "complex_8h.html#a3fb0610728feeec8ee6a2d0fdf2e4b86", null ],
-    [ "Complex_New", "complex_8h.html#a0121bf347fb4e1c7b1d05a6e8b9620ad", null ],
+    [ "Complex_New", "complex_8h.html#a9d64424bf742aa41b31dcd6bf3349d32", null ],
     [ "Complex_Equals", "complex_8h.html#a64aa8727d5f8c577393004fbd158d8f8", null ],
     [ "Complex_Abs", "complex_8h.html#aef2137203f80dff3867d224e214bb212", null ],
     [ "Complex_Conjugate", "complex_8h.html#a02c3f8e0fe099df17cef8c5d8239a41f", null ],

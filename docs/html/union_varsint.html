@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>union varsint &mdash; libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+  <title>union varsint &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="union varsint">
 	<meta property="og:description" content="union varsint">
-	<meta property="og:title" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation - union varsint">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="union_varsint.html">
-	<meta property="og:site_name" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation">
 
 
@@ -65,9 +65,10 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -170,26 +172,26 @@
 <span class="p">{</span>
     <span class="c1">// fields</span>
 
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad43b97769f85e74c144f4f4de85fc751"><span class="std std-ref">t_s8</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a448bc235fa3ed6a58fee1c06f0c0aa98"><span class="std std-ref">sc</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gafc899f1bf55ef29fff2fbdfbf671059f"><span class="std std-ref">t_s16</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a13629bfbfa27e4409d27c060e613d78c"><span class="std std-ref">ss</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga35f7d2148a614c00e64d05d48e445a3b"><span class="std std-ref">t_s32</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a059c701c898db958d49ac0e66999ed34"><span class="std std-ref">si</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1ad19a95ecb4172fc7d738374d826061bd"><span class="std std-ref">sl</span></a><span></span><span class="p">;</span>
-    <a class="reference internal" href="group_libccc_fixed.html#doxid-group-libccc-fixed-1gac6f190204ed3268a7dd69951dbe5c583"><span class="std std-ref">t_q128</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1aeab220f2c49dc723e87ceae3ed332266"><span class="std std-ref">sh</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga17c42de4018669160b88153e94a8b60e"><span class="std std-ref">t_s8</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a448bc235fa3ed6a58fee1c06f0c0aa98"><span class="std std-ref">sc</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa80a7981c438c7be4430b85662334d4d"><span class="std std-ref">t_s16</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a13629bfbfa27e4409d27c060e613d78c"><span class="std std-ref">ss</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga2fe4b8d1d524980f1e3c3c3603edae4f"><span class="std std-ref">t_s32</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1a059c701c898db958d49ac0e66999ed34"><span class="std std-ref">si</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga508725ea9aabaff7275610a0ed522707"><span class="std std-ref">t_s64</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1ad19a95ecb4172fc7d738374d826061bd"><span class="std std-ref">sl</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_fixed.html#doxid-group-libccc-fixed-1gac5d899787909e3d278737d07d2b5b4ea"><span class="std std-ref">t_q128</span></a><span></span> <a class="reference internal" href="#doxid-unionvarsint-1aeab220f2c49dc723e87ceae3ed332266"><span class="std std-ref">sh</span></a><span></span><span class="p">;</span>
 <span class="p">};</span></pre>
 </section>
 <section id="detailed-documentation">
 <span id="details-unionvarsint"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
 <section id="fields">
 <h3>Fields<a class="headerlink" href="#fields" title="Permalink to this headline"></a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a448bc235fa3ed6a58fee1c06f0c0aa98"><span id="index-1"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gad43b97769f85e74c144f4f4de85fc751"><span class="std std-ref">t_s8</span></a><span></span> <span class="n">sc</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a448bc235fa3ed6a58fee1c06f0c0aa98"><span id="index-1"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga17c42de4018669160b88153e94a8b60e"><span class="std std-ref">t_s8</span></a><span></span> <span class="n">sc</span></pre>
 <p>signed integer: 8-bit (char)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a13629bfbfa27e4409d27c060e613d78c"><span id="index-2"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gafc899f1bf55ef29fff2fbdfbf671059f"><span class="std std-ref">t_s16</span></a><span></span> <span class="n">ss</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a13629bfbfa27e4409d27c060e613d78c"><span id="index-2"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1gaa80a7981c438c7be4430b85662334d4d"><span class="std std-ref">t_s16</span></a><span></span> <span class="n">ss</span></pre>
 <p>signed integer: 16-bit (short)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a059c701c898db958d49ac0e66999ed34"><span id="index-3"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga35f7d2148a614c00e64d05d48e445a3b"><span class="std std-ref">t_s32</span></a><span></span> <span class="n">si</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1a059c701c898db958d49ac0e66999ed34"><span id="index-3"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga2fe4b8d1d524980f1e3c3c3603edae4f"><span class="std std-ref">t_s32</span></a><span></span> <span class="n">si</span></pre>
 <p>signed integer: 32-bit (int)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1ad19a95ecb4172fc7d738374d826061bd"><span id="index-4"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga239729fce900f13ba62c38808aa6a8b6"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">sl</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1ad19a95ecb4172fc7d738374d826061bd"><span id="index-4"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga508725ea9aabaff7275610a0ed522707"><span class="std std-ref">t_s64</span></a><span></span> <span class="n">sl</span></pre>
 <p>signed integer: 64-bit (long)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1aeab220f2c49dc723e87ceae3ed332266"><span id="index-5"></span><a class="reference internal" href="group_libccc_fixed.html#doxid-group-libccc-fixed-1gac6f190204ed3268a7dd69951dbe5c583"><span class="std std-ref">t_q128</span></a><span></span> <span class="n">sh</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-unionvarsint-1aeab220f2c49dc723e87ceae3ed332266"><span id="index-5"></span><a class="reference internal" href="group_libccc_fixed.html#doxid-group-libccc-fixed-1gac5d899787909e3d278737d07d2b5b4ea"><span class="std std-ref">t_q128</span></a><span></span> <span class="n">sh</span></pre>
 <p>signed integer: 128-bit (huge)</p>
 </section>
 </section>

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/monad/dict.h &mdash; libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+  <title>libccc/monad/dict.h &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -30,7 +30,7 @@
 	
 	<meta name="Description" content="libccc/monad/dict.h">
 	<meta property="og:description" content="libccc/monad/dict.h">
-	<meta property="og:title" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation - libccc/monad/dict.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +38,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_monad_dict.html">
-	<meta property="og:site_name" content="libccc libccc@0.10.10-2022-03-27_d25c3e5d3af82c3a591608589b75549f567ca571
+	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
  documentation">
 
 
@@ -65,9 +65,10 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -79,6 +80,7 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -159,10 +161,8 @@
 <p>This header defines a generic dictionary type and utility functions for it. <a class="reference internal" href="#details-group-libccc-monad-dict"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
 
-<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaa251e175985aaf62b2591f1ad4d1ed19"><span class="std std-ref">keyval</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
-<span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1ga5edaacd9305fb5e499ad36386896df30"><span></span><span class="kt">s_keyval</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
-<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span class="std std-ref">dict</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
-<span class="doxyrest-code-target target" id="doxid-group-libccc-monad-dict-1gafa0ecdef65392488bfcbfab7b5d1ab25"><span></span><span class="kt">s_dict</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1gaa251e175985aaf62b2591f1ad4d1ed19"><span class="std std-ref">keyval</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span class="std std-ref">dict</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
@@ -173,9 +173,9 @@
 <p>This header defines a generic dictionary type and utility functions for it.</p>
 <section id="global-functions">
 <h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaa251e175985aaf62b2591f1ad4d1ed19"><span id="index-1"></span><span></span><span class="kd">struct</span> <span class="n">keyval</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1gaa251e175985aaf62b2591f1ad4d1ed19"><span id="index-1"></span><span></span><span class="kd">struct</span> <span class="n">keyval</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
 <p>A simple key+value pair struct, used in the ‘s_dict’ dictionary struct.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span id="index-2"></span><span></span><span class="kd">struct</span> <span class="n">dict</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-monad-dict-1ga10d6a15a8da38a9aaa50d043dc000aaf"><span id="index-2"></span><span></span><span class="kd">struct</span> <span class="n">dict</span><span class="p">(</span><a class="reference internal" href="group_libccc_monad_list.html#doxid-group-libccc-monad-list-1ga8c0facb09202b83bd33cbdbf223bd3bd"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
 <p>A simple dictionary struct, stores an array of key/value pairs.</p>
 </section>
 <section id="macros">

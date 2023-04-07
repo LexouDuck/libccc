@@ -10,10 +10,12 @@ A comprehensive, cross-platform, customizable standard library for C
 
 The Project
 ---
-The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library, but with easier to use functions and types than what is offered by the ISO standards - mostly by consistently handling undefined behaviors, and handling edge cases in a consistent, coherent way, so as to have code that is as little machine-specific as possible.
+The objective is to have one simple, well-documented, efficient open-source implementation of the C standard library,
+but with easier to use functions and types than what is offered by the ISO standards -
+mostly by minimising occurence of undefined behaviors, and handling edge cases in a consistent, coherent way,
+so as to have code that is as little machine-specific as possible.
 
-The first step to accomplishing this is to avoid using the native int/long/short types, which can have different storage size depending on the platform
-('int' is defined as the fastest integer type for the given machine, typically this will be the CPU register size - so on a 64-bit machine, that'd be int64, on a 32-bit machine int32, and some old embedded systems you come across might have 16-bit ints as the machine's default storage size). So first of all, using the integer types defined in "stdint.h" ('int32_t', 'uint64_t', etc) is essential for any cross-platform C code, as it ensures consistent cross-platform overflow behaviors (Note that these aren't present on every platform though - sometimes we will have to settle for the 'uint_fastX_t' types, but macros have been provided to make this switch simply). Of course, many times a platform-dependent "fast int" is the best thing to use, and this is made easy using libccc.
+Here is a more in-depth description of what this standard library contains.
 
 The following categories/headers include the ISO standard library (types, functions, macros):
 
@@ -67,15 +69,36 @@ Here, the goal is to have a standard C library which is:
 - **customizable**: libccc being open source (MIT license), allows and encourages all developers to use, add and contribute to this standard library.
 - **comprehensive**: libccc offers much more than the minimalist set of utility functions that is the C ISO standard library, to hopefully alleviate having too many dependencies, or too many "util.c" files, which really should be part of the standard library.
 
+The first step to accomplishing fully cross-platform code, is to avoid using the native int/long/short types,
+which can have different storage size depending on the platform (the C native `int` type is defined as
+the fastest integer type for the given machine, typically this will be the CPU register size -
+so on a 64-bit machine, that'd be int64, on a 32-bit machine int32,
+and some old embedded systems you come across might have 16-bit ints as the machine's default storage size).
+So first of all, using the integer types defined in "stdint.h" (`int32_t`, `uint64_t`, etc) is essential
+to write cross-platform C code, as it ensures that integer overflow behaviors are consistent across platforms.
+Note however that these integer types aren't present on every platform though - sometimes, you will have to
+settle for the `uint_fastX_t` types, but libccc provides configuration macros to make this switch a simple affair).
+Of course, there are also many times where a platform-dependent "fast int" is the logical, correct, best thing to use,
+and this is also made easy using libccc.
+
 
 
 How to use this library
 ---
-The Makefile simply builds a `libccc.a` library to link to your project. (eg: you can link it with something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc`)
 
-Alternatively, you may add this git repo as a "git submodule" to your own. This allows you to be up to date to the latest version at all times, by simply `cd`-ing over to the submodule folder and doing a `git pull`.
+To speak in simple terms: the make simply builds a `libccc.a` library to link to your project.
+(eg: you can link it with something like `gcc main.c -I./libccc/hdr/ -L./libccc/ -lccc`)
 
-In general though, we recommend having the source code and compiling it yourself (as there are important customization flags in `./hdr/libccc_config.h` which change how the library is compiled). You are encouraged to take a look at this file ([libccc_config.h](https://github.com/LexouDuck/libccc/blob/master/hdr/libccc_config.h)), and decide on how you wish to configure the library when using it in your project. In particular:
+Alternatively, you may add this git repo as a "git submodule" to your own.
+This allows you to be up to date to the latest version at all times,
+by simply `cd`-ing over to the submodule folder and doing a `git pull`.
+
+In general though, we recommend having the source code and compiling it yourself, because
+there are important customization flags in `./hdr/libccc_config.h` which change how the library is compiled).
+You are encouraged to take a look at this file ([libccc_config.h](https://github.com/LexouDuck/libccc/blob/master/hdr/libccc_config.h)),
+and decide on how you wish to configure the library when using it in your project.
+
+In particular:
 - `LIBCONFIG_HANDLE_NULLPOINTERS`
 	If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments (this is useful for debug).
 	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libccc function when given a NULL pointer.
@@ -92,19 +115,26 @@ In general though, we recommend having the source code and compiling it yourself
 
 Documentation
 ---
-The documentation for libccc is available at the following address: https://lexouduck.github.io/libccc/doc/html/index.html
-This documentation website is generated from special comments written directly within the code, so, as usual in C, it is recommended that you take a look at the .h header files located in the `hdr` folder of this repo.
-Thank you to Doxygen, Doxyrest, Sphinx, and GitHub Pages to make this auto-generated documentation work.
+
+The documentation for libccc is available [here](https://lexouduck.github.io/libccc/doc/html/index.html).
+
+This documentation website is generated from special comments written directly within the code, so, as usual in C,
+it is recommended that you take a look at the .h header files located in the `hdr` folder of this repo.
+
+Thanks to [Doxygen](#), [Doxyrest](#), [Sphinx](#), and GitHub Pages to make this auto-generated documentation work.
 
 
 
 
 Build system
 ---
-This library is built using a cross-platform Makefile build system ().
+
+This project uses a cross-platform Makefile-based build system, via [cccmk](https://github.com/LexouDuck/cccmk.git).
 libccc should be able to build on most all common platforms, in both static and dynamic library form.
 
-The default `make` rule will simply build the library - there are many `make` commands which make up the build system (you can do `make test` to run the test suite, for example).
+The default `make` rule will simply build libccc (both static and dynamic libraries).
+There are many `make` commands which make up the build system (you can do `make test` to run the test suite, for example).
+Run `make help` in the project folder, to get a full list of all possible `make` rules.
 To learn more about what make scripts are provided, do `make help`, which will give a list of all rules and a brief description for each.
 
 There a couple of important custom Makefile variables used, which you should keep in mind.

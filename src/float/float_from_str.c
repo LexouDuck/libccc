@@ -35,19 +35,45 @@ t_float	Float_Parse_CheckSpecial(t_char const* str)
 	{
 		++str;
 	}
-	if (String_Equals_N_IgnoreCase(str, "NAN", 3))
+	if (CharUTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
 	{
-		if (sign == '-')	return (-NAN);
-		if (sign == '+')	return (+NAN);
-		return (NAN);
-	}
-	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8) ||
-		String_Equals_N_IgnoreCase(str, "INF", 3) ||
-		CharUTF32_FromUTF8((t_utf8*)str) == 0x221E) // infinity unicode char
-	{
+		if (!Char_IsSpace(str[3]) &&
+			!Char_IsPunct(str[3]) &&
+			str[3] != '\0')
+			return (0.);
 		if (sign == '-')	return (-INF);
 		if (sign == '+')	return (+INF);
 		return (INF);
+	}
+	if (String_Equals_N_IgnoreCase(str, "INFINITY", 8)) // lenient full-word
+	{
+		if (!Char_IsSpace(str[8]) &&
+			!Char_IsPunct(str[8]) &&
+			str[8] != '\0')
+			return (0.);
+		if (sign == '-')	return (-INF);
+		if (sign == '+')	return (+INF);
+		return (INF);
+	}
+	if (String_Equals_N_IgnoreCase(str, "INF", 3))
+	{
+		if (!Char_IsSpace(str[3]) &&
+			!Char_IsPunct(str[3]) &&
+			str[3] != '\0')
+			return (0.);
+		if (sign == '-')	return (-INF);
+		if (sign == '+')	return (+INF);
+		return (INF);
+	}
+	if (String_Equals_N_IgnoreCase(str, "NAN", 3))
+	{
+		if (!Char_IsSpace(str[3]) &&
+			!Char_IsPunct(str[3]) &&
+			str[3] != '\0')
+			return (0.);
+		if (sign == '-')	return (-NAN);
+		if (sign == '+')	return (+NAN);
+		return (NAN);
 	}
 	return (0.);
 }

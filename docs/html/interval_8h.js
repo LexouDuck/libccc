@@ -16,6 +16,7 @@ var interval_8h =
       [ "start", "interval_8h.html#aaf5af343df56773fb76b048ce6586f77", null ],
       [ "end", "interval_8h.html#a4c15454da10be5707b2ae446ac29992a", null ]
     ] ],
+    [ "c_distance_int", "interval_8h.html#a6b10b23477343f26562740dba9ba4b04", null ],
     [ "s_box1d", "interval_8h.html#a5be995c48d505ec9f73409da6449dddc", null ],
     [ "s_box2d", "interval_8h.html#a9875c126ed94ca81cf92a6cb49179923", null ],
     [ "s_box3d", "interval_8h.html#a4297ebebc3a2abcc90073f447059fa7f", null ],
@@ -38,7 +39,7 @@ var interval_8h =
     [ "c_distance_u16", "interval_8h.html#a26d3f6b9de3fe79bb79d588de6697978", null ],
     [ "c_distance_u32", "interval_8h.html#a4430f9167616ab94bce5cb15f2520222", null ],
     [ "c_distance_u64", "interval_8h.html#a3966deb12f376ee15a3082cafd784bbe", null ],
-    [ "c_distance_int", "interval_8h.html#a9c87bf7e1eeee701a8c0cb58cdf64874", null ],
+    [ "c_distance_sint", "interval_8h.html#aff3e776b433086cf8eda08da25cf89a1", null ],
     [ "c_distance_s8", "interval_8h.html#a6dfa16a4bda42255ca5920cf5d9f0bee", null ],
     [ "c_distance_s16", "interval_8h.html#ace24a9c452e0814f0c6a621a9097c960", null ],
     [ "c_distance_s32", "interval_8h.html#a1663941e5c86968e4c2f66aaa350cc55", null ],

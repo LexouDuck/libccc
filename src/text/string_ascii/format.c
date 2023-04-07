@@ -32,7 +32,7 @@
 #elif __MSVC__
 #define vscprintf _vscprintf
 // MacOSX implements this one and exposes it by default
-#elif __APPLE__
+#elif __APPLE__ || defined(__ANDROID__)
 #define vscprintf vscprintf
 #endif
 
@@ -50,7 +50,7 @@ static	int	vscprintf(t_ascii const* format, va_list args)
 
 #ifdef __NOSTD__
 // MacOSX implements this one and exposes it by default
-#elif __APPLE__
+#elif __APPLE__ || defined(__ANDROID__)
 #define vasprintf vasprintf
 #endif
 

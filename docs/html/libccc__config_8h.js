@@ -13,8 +13,6 @@ var libccc__config_8h =
     [ "LIBCONFIG_FLOAT_BITS", "libccc__config_8h.html#ac5bb8057f443ef1852cc529475d266f1", null ],
     [ "LIBCONFIG_FLOAT_ERROR", "libccc__config_8h.html#a6d096c6a0b5c2249efdc02b8bb54ccb3", null ],
     [ "LIBCONFIG_FLOAT_APPROX", "libccc__config_8h.html#af37b6635173f4ae68dbc9a04aba88802", null ],
-    [ "LIBCONFIG_CHAR_TYPE", "libccc__config_8h.html#a9bcf9a1f27ed0f7f2c3e3179d73c28f5", null ],
-    [ "LIBCONFIG_CHAR_NAME", "libccc__config_8h.html#a4521abc8a5fd562816f906e5e230ce69", null ],
     [ "LIBCONFIG_RANDOM_TYPE", "libccc__config_8h.html#a9edc466e73bedc86d3508d767885b250", null ],
     [ "LIBCONFIG_RANDOM_NAME", "libccc__config_8h.html#a81334ddd6ec8669a12bdd364ce816aa5", null ],
     [ "LIBCONFIG_LIST_DOUBLYLINKED", "libccc__config_8h.html#a2dbec267fbf6efd24e1efc6d21d1ff68", null ],

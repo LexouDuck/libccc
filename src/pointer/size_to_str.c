@@ -26,37 +26,13 @@ t_char*	Size_ToString_Hex(t_size number)
 
 t_char*	Size_ToString_Pretty(t_size number)
 {
-	static const t_char* units[6] = { "B\0", "KB", "MB", "GB", "TB", "PB" };
-	t_float len = (t_float)number;
-	t_u32 unit = 0;
-	while (len >= 1024 && unit < 5)
+	static t_char const* units[] = { "B\0", "KB", "MB", "GB", "TB", "PB", "EB" };
+	t_uint unit = 0;
+	t_float mantissa = (t_float)number;
+	while (mantissa >= 1024 && unit < 5)
 	{
 		unit++;
-		len /= 1024;
+		mantissa /= 1024;
 	}
-
-	t_char*	result;
-	t_u8	digits[sizeof(t_size) / 2 * 5];
-	t_u8	i;
-	t_size	n;
-
-	n = number;
-	i = 0;
-	while (n > 0)
-	{
-		digits[i++] = n % 10;
-		n /= 10;
-	}
-	if (i == 0)
-		digits[i++] = 0;
-	result = (t_char*)Memory_Allocate(i + 3);
-	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
-		return (NULL);
-	n = 0;
-	while (i--)
-		result[n++] = '0' + digits[i];
-	result[n++] = units[unit][0];
-	result[n++] = units[unit][1];
-	result[n] = '\0';
-	return (result);
+	return (String_Format("%.2f%s", mantissa, units[unit]));
 }

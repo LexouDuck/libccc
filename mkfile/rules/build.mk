@@ -27,7 +27,7 @@ bin_copylibs = \
 	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
 		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
-			cp -p "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
+			cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
 		done ; )
 
 #! Shell command used to create symbolic links for version-named library binary
@@ -80,11 +80,11 @@ $(OBJSFILE): $(SRCSFILE)
 
 
 
-#! Compiles object files from source files
+#! Compiles object files from C source files
 $(OBJPATH)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
-	@$(CC) -o $@ $(CFLAGS) -MMD $(INCLUDES) -c $<
+	@$(CC) -o $@ $(CFLAGS) $(CPPFLAGS) -MMD $(INCLUDES) -c $<
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -164,32 +164,32 @@ clean-build-bin \
 clean-build-lib \
 
 .PHONY:\
-clean-build-obj #! Deletes all .o build object files
+clean-build-obj #! Deletes all .o build object files, for the current TARGETDIR
 clean-build-obj:
-	@$(call print_message,"Deleting all build .o files...")
+	@$(call print_message,"Deleting all .o files for target $(TARGETDIR)...")
 	$(foreach i,$(OBJS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
-clean-build-dep #! Deletes all .d build dependency files
+clean-build-dep #! Deletes all .d build dependency files, for the current TARGETDIR
 clean-build-dep:
-	@$(call print_message,"Deleting all build .d files...")
+	@$(call print_message,"Deleting all .d files for target $(TARGETDIR)...")
 	$(foreach i,$(DEPS),	@rm -f "$(i)" $(C_NL))
 
 .PHONY:\
-clean-build-lib #! Deletes the built library(ies) in the root project folder
+clean-build-bin #! Deletes all build binaries, for the current TARGETDIR
+clean-build-bin:
+	@$(call print_message,"Deleting binaries in '$(BINPATH)static'...")
+	@rm -f $(BINPATH)static/*
+	@$(call print_message,"Deleting binaries in '$(BINPATH)dynamic'...")
+	@rm -f $(BINPATH)dynamic/*
+
+.PHONY:\
+clean-build-lib #! Deletes the built library(ies), for the current TARGETDIR
 clean-build-lib:
 	@$(call print_message,"Deleting static library: $(BINPATH)static/$(NAME_static)")
 	@rm -f $(BINPATH)static/$(NAME_static)
 	@$(call print_message,"Deleting dynamic library: $(BINPATH)dynamic/$(NAME_dynamic)")
 	@rm -f $(BINPATH)dynamic/$(NAME_dynamic)
-
-.PHONY:\
-clean-build-bin #! Deletes all build binaries in the ./bin folder
-clean-build-bin:
-	@$(call print_message,"Deleting builds in '$(BINPATH)static'...")
-	@rm -f $(BINPATH)static/*
-	@$(call print_message,"Deleting builds in '$(BINPATH)dynamic'...")
-	@rm -f $(BINPATH)dynamic/*
 
 
 

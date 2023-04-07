@@ -482,7 +482,7 @@ HEADER_CPP
 #ifndef __typeof__
 #ifdef __MSVC__
 	#define __typeof__(X)	decltype(X)
-#else
+#elif !defined(__GNUC__)
 	#define __typeof__(X)	typeof(X)
 #endif
 #endif

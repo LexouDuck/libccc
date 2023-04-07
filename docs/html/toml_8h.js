@@ -111,13 +111,13 @@ var toml_8h =
     [ "TOML_Replace_InObject_IgnoreCase", "toml_8h.html#a522e8a96e3e4f2e0bd6b172274030a67", null ],
     [ "TOML_Merge", "toml_8h.html#a95bca67e8517d98efbd4222d97552765", null ],
     [ "TOML_Parse_Lenient", "toml_8h.html#a67b73dc2f6f3fdc77f70c56beae0d0e7", null ],
-    [ "TOML_FromString_Lenient", "toml_8h.html#ad55e8b1bc7efa950cc9e998a1337b854", null ],
+    [ "TOML_FromString_Lenient", "toml_8h.html#a7d29005bae6eda95308d27244a33f089", null ],
     [ "TOML_Parse_Strict", "toml_8h.html#a1db69c5452340824d5d59e13379a0379", null ],
-    [ "TOML_FromString_Strict", "toml_8h.html#ab9cceb7957f4f46b2811165a0f89c2de", null ],
+    [ "TOML_FromString_Strict", "toml_8h.html#a0c431e0276e95674c902c6fbc0d8618d", null ],
     [ "TOML_Print_Pretty", "toml_8h.html#a4046d79440f544bfc6f7c80646db12bd", null ],
     [ "TOML_Print_Minify", "toml_8h.html#a78a54e02bfdb7a46ebc69b7dd6429f06", null ],
-    [ "TOML_ToString_Pretty", "toml_8h.html#a475e87d14990941bd281bcb85448ab5a", null ],
-    [ "TOML_ToString_Minify", "toml_8h.html#a57c06c711774fd7e6629c524dfe1e7f2", null ],
+    [ "TOML_ToString_Pretty", "toml_8h.html#a07350b9d309cdc4189320fde528c0a8f", null ],
+    [ "TOML_ToString_Minify", "toml_8h.html#a068de8d518331422e3f177195b5f69bb", null ],
     [ "TOML_Minify", "toml_8h.html#ac25ac27e710b9e144e5a6cd79aa7ce27", null ],
     [ "s_toml", "toml_8h.html#afe7d4ef9ea07ff568d9b45b323f6d239", null ]
 ];
