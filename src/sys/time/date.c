@@ -34,7 +34,7 @@ s_date		Date_Now(void)
 
 
 
-#ifdef _WIN32
+#if defined(_WIN32) || defined(__APPLE__) || defined(__ANDROID__)
 #elif (_DEFAULT_SOURCE || _BSD_SOURCE || _SVID_SOURCE)
 #else
 int days_from_epoch(int y, int m, int d);
