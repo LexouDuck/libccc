@@ -42,22 +42,22 @@ HEADER_CPP
 #define ANSI_CURSOR_SAVE()                "\x1B 7"                   //!< A special ANSI escape code to save the current position of the cursor (DEC).
 #define ANSI_CURSOR_LOAD()                "\x1B 8"                   //!< A special ANSI escape code to restore the cursor to its last saved position (DEC).
 #define ANSI_CURSOR_MOVE(LINE, COLUMN)    "\x1B["#LINE";"#COLUMN"H"  //!< A special ANSI escape code to move the cursor to the specified position.
-#define ANSI_CURSOR_MOVE_UP(LINES)        ANSI_ESC('A', LINES)       //!< A special ANSI escape code to move the cursor up # lines.
-#define ANSI_CURSOR_MOVE_DOWN(LINES)      ANSI_ESC('B', LINES)       //!< A special ANSI escape code to move the cursor down # lines.
-#define ANSI_CURSOR_MOVE_RIGHT(LINES)     ANSI_ESC('C', LINES)       //!< A special ANSI escape code to move the cursor right # columns.
-#define ANSI_CURSOR_MOVE_LEFT(LINES)      ANSI_ESC('D', LINES)       //!< A special ANSI escape code to move the cursor left # columns.
-#define ANSI_CURSOR_NEXTLINE(LINES)       ANSI_ESC('E', LINES)       //!< A special ANSI escape code to put the cursor at the beginning of the next line, # lines down.
-#define ANSI_CURSOR_PREVLINE(LINES)       ANSI_ESC('F', LINES)       //!< A special ANSI escape code to put the cursor at the beginning of the previous line, # lines up.
+#define ANSI_CURSOR_MOVE_UP(LINES)        ANSI_ESC("A", LINES)       //!< A special ANSI escape code to move the cursor up # lines.
+#define ANSI_CURSOR_MOVE_DOWN(LINES)      ANSI_ESC("B", LINES)       //!< A special ANSI escape code to move the cursor down # lines.
+#define ANSI_CURSOR_MOVE_RIGHT(LINES)     ANSI_ESC("C", LINES)       //!< A special ANSI escape code to move the cursor right # columns.
+#define ANSI_CURSOR_MOVE_LEFT(LINES)      ANSI_ESC("D", LINES)       //!< A special ANSI escape code to move the cursor left # columns.
+#define ANSI_CURSOR_NEXTLINE(LINES)       ANSI_ESC("E", LINES)       //!< A special ANSI escape code to put the cursor at the beginning of the next line, # lines down.
+#define ANSI_CURSOR_PREVLINE(LINES)       ANSI_ESC("F", LINES)       //!< A special ANSI escape code to put the cursor at the beginning of the previous line, # lines up.
 
 // ANSI erase functions
 
-#define ANSI_ERASE_SCREEN_AFTER           ANSI_ESC('J', 0)     //!< A special ANSI escape code to erase from cursor until end of screen.
-#define ANSI_ERASE_SCREEN_BEFORE          ANSI_ESC('J', 1)     //!< A special ANSI escape code to erase from cursor to beginning of screen.
-#define ANSI_ERASE_SCREEN                 ANSI_ESC('J', 2)     //!< A special ANSI escape code to erase the entire screen.
-#define ANSI_ERASE_SAVED                  ANSI_ESC('J', 3)     //!< A special ANSI escape code to erase all saved lines.
-#define ANSI_ERASE_LINE_AFTER             ANSI_ESC('K', 0)     //!< A special ANSI escape code to erase from cursor to end of line.
-#define ANSI_ERASE_LINE_BEFORE            ANSI_ESC('K', 1)     //!< A special ANSI escape code to erase start of line to the cursor.
-#define ANSI_ERASE_LINE                   ANSI_ESC('K', 2)     //!< A special ANSI escape code to erase the entire line.
+#define ANSI_ERASE_SCREEN_AFTER           ANSI_ESC("J", 0)     //!< A special ANSI escape code to erase from cursor until end of screen.
+#define ANSI_ERASE_SCREEN_BEFORE          ANSI_ESC("J", 1)     //!< A special ANSI escape code to erase from cursor to beginning of screen.
+#define ANSI_ERASE_SCREEN                 ANSI_ESC("J", 2)     //!< A special ANSI escape code to erase the entire screen.
+#define ANSI_ERASE_SAVED                  ANSI_ESC("J", 3)     //!< A special ANSI escape code to erase all saved lines.
+#define ANSI_ERASE_LINE_AFTER             ANSI_ESC("K", 0)     //!< A special ANSI escape code to erase from cursor to end of line.
+#define ANSI_ERASE_LINE_BEFORE            ANSI_ESC("K", 1)     //!< A special ANSI escape code to erase start of line to the cursor.
+#define ANSI_ERASE_LINE                   ANSI_ESC("K", 2)     //!< A special ANSI escape code to erase the entire line.
 
 // ANSI color & style functions
 
