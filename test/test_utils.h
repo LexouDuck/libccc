@@ -39,13 +39,13 @@ typedef struct list_int 	s_list_int ;	//!< @see "libccc/monad/list.h"
 */
 #ifndef __COLORS__
 #define __COLORS__
-#define C_RED		"\x1b[31m"
-#define C_GREEN		"\x1b[32m"
-#define C_YELLOW	"\x1b[33m"
-#define C_BLUE		"\x1b[34m"
-#define C_MAGENTA	"\x1b[35m"
-#define C_CYAN		"\x1b[36m"
-#define C_RESET		"\x1b[0m"
+#define ANSI_COLOR_FG_RED		"\x1b[31m"
+#define ANSI_COLOR_FG_GREEN		"\x1b[32m"
+#define ANSI_COLOR_FG_YELLOW	"\x1b[33m"
+#define ANSI_COLOR_FG_BLUE		"\x1b[34m"
+#define ANSI_COLOR_FG_MAGENTA	"\x1b[35m"
+#define ANSI_COLOR_FG_CYAN		"\x1b[36m"
+#define ANSI_RESET		"\x1b[0m"
 #endif
 
 

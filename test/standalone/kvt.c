@@ -32,15 +32,15 @@ int main()//(int argc, char** argv)
 //		#include "../"FILEPATH
 	;
 #endif
-	if (file == NULL) { IO_Output_Line(IO_COLOR_FG_RED"FILE ERROR"IO_RESET);	return (ERROR); }
+	if (file == NULL) { IO_Output_Line(ANSI_COLOR_FG_RED"FILE ERROR"ANSI_RESET);	return (ERROR); }
 	for (t_uint i = 0; i < AMOUNT; ++i)
 	{
 		s_kvt* kvt;
 		t_char* str;
 		kvt = JSON_FromString(file);
-		if (kvt == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PARSE ERROR"IO_RESET);	return (ERROR); }
+		if (kvt == NULL) { IO_Output_Line(ANSI_COLOR_FG_RED"PARSE ERROR"ANSI_RESET);	return (ERROR); }
 		str = JSON_ToString(kvt);
-		if (str == NULL) { IO_Output_Line(IO_COLOR_FG_RED"PRINT ERROR"IO_RESET);	return (ERROR); }
+		if (str == NULL) { IO_Output_Line(ANSI_COLOR_FG_RED"PRINT ERROR"ANSI_RESET);	return (ERROR); }
 		t_char* output = String_Format(SF_UINT":\t%.30s", i, str);
 		IO_Output_Line((AMOUNT == 1) ? str : output);
 		KVT_Delete(kvt);

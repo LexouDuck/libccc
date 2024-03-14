@@ -47,7 +47,7 @@ s_sorted_int	print_test_random(int samples)
 	for (int i = 0; i < result.length - 1; ++i)
 	{
 		if (result.items[i] > result.items[i + 1])
-			printf(C_RED"Sorting error at index %d\n"C_RESET, i);
+			printf(ANSI_COLOR_FG_RED"Sorting error at index %d\n"ANSI_RESET, i);
 	}
 	c_stat_free_ilst(&values);
 */
