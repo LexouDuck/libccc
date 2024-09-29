@@ -63,6 +63,7 @@ What started as a necessary exercise for the 42 school (called `libft`, as in "l
 Whereas the 42 libft project only requires students to code a certain set of important memory/string/io functions, we decided to take this idea much further.
 The `libft` project is originally meant as an educational exercise, in which a student learns a lot by "reinventing the wheel" many times over.
 Here, the goal is to have a standard C library which is:
+
 - **fully cross-platform**: libccc should be able to compile on as many compilers/machines as possible.
 - **uniformized**: libccc should allow the developer to not worry so much about "undefined behavior" or platform-specific edge cases when using standard functions.
 - **configurable**: libccc should be compield from source, and linked statically to your project, so that configuration variables can be set directly on the commandline, when compiling it (see `libccc_config.h`).
@@ -99,17 +100,18 @@ You are encouraged to take a look at this file ([libccc_config.h](https://github
 and decide on how you wish to configure the library when using it in your project.
 
 In particular:
+
 - `LIBCONFIG_HANDLE_NULLPOINTERS`
-	If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments (this is useful for debug).
-	If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libccc function when given a NULL pointer.
+	- If 0, then libccc functions will always try to dereference (and usually do a segmentation fault) when given NULL pointer arguments (this is useful for debug).
+	- If 1 (this is the default), then all NULL pointer accesses will be avoided, and an appropriate return value (eg:`NULL`, `0`, sometimes `-1`) will be returned by any libccc function when given a NULL pointer.
 - `LIBCONFIG_FAST_APPROX_MATH`
-	If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
-	If 1, the libccc fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
+	- If 0 (this is the default), the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+	- If 1, the libccc fast approximate math functions will be used (these can be quite unreliable, their purpose is to be faster in terms of execution time - the general precision error margin they are tested for is 0.0001)
 - `LIBCONFIG_INTTYPES_...` `EXACT`/`FAST`/`LEAST`:
-	If `LIBCONFIG_INTTYPES_EXACT` is true, default `int` types are set to with the standard `(u)intSIZE_t` type specifiers.
-	If `LIBCONFIG_INTTYPES_FAST ` is true, default `int` types are set to with the standard `(u)int_fastSIZE_t` type specifiers.
-	If `LIBCONFIG_INTTYPES_LEAST` is true, default `int` types are set to with the standard `(u)int_leastSIZE_t` type specifiers.
-	If multiple of these macros are simultaneously true, EXACT takes precedence over FAST, which itself takes precedence over LEAST. If none are true, resolves to EXACT.
+	- If `LIBCONFIG_INTTYPES_EXACT` is true, default `int` types are set to with the standard `(u)intSIZE_t` type specifiers.
+	- If `LIBCONFIG_INTTYPES_FAST ` is true, default `int` types are set to with the standard `(u)int_fastSIZE_t` type specifiers.
+	- If `LIBCONFIG_INTTYPES_LEAST` is true, default `int` types are set to with the standard `(u)int_leastSIZE_t` type specifiers.
+	- If multiple of these macros are simultaneously true, EXACT takes precedence over FAST, which itself takes precedence over LEAST. If none are true, resolves to EXACT.
 
 
 
