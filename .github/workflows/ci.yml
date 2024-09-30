@@ -76,7 +76,7 @@ jobs:
       run: make BUILDMODE=release dist
 
     - name: Upload build binary artifacts
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v4
       with:
         name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
         path: ./dist/*.zip
