@@ -46,7 +46,7 @@
 			{											\
 				errors++;								\
 				TEST_PERFORM_CHAR_##KIND(FUNCTION,		\
-					C_RED"Error"C_RESET": ")			\
+					ANSI_COLOR_FG_RED"Error"ANSI_RESET": ")			\
 				g_test.suites[TESTSUITE_TEXT_CHAR_ASCII].totals.failed += 1;\
 			}											\
 			else										\
@@ -54,7 +54,7 @@
 				warnings++;								\
 				if (g_test.config.verbose)				\
 					TEST_PERFORM_CHAR_##KIND(FUNCTION,	\
-						C_YELLOW"Warning"C_RESET": ")	\
+						ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": ")	\
 				g_test.suites[TESTSUITE_TEXT_CHAR_ASCII].totals.warnings += 1;\
 			}											\
 		}												\
@@ -63,8 +63,8 @@
 	if (errors || warnings)								\
 	{													\
 		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max);	\
-		printf("- %s%d"C_RESET" errors""\n", (errors   == 0 ? C_GREEN : C_RED),    errors  );	\
-		printf("- %s%d"C_RESET" warnings\n", (warnings == 0 ? C_GREEN : C_YELLOW), warnings);	\
+		printf("- %s%d"ANSI_RESET" errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  );	\
+		printf("- %s%d"ANSI_RESET" warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings);	\
 	}
 
 

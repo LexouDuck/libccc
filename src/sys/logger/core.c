@@ -157,7 +157,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	if (prefix && prefix[0] != '\0')
 	{
 		if (prefix_color && logger->format == LOGFORMAT_ANSI)
-			prefix_str = String_Format("%s%s"C_RESET": ", prefix_color, prefix);
+			prefix_str = String_Format("%s%s"ANSI_RESET": ", prefix_color, prefix);
 		else
 			prefix_str = String_Format("%s: ", prefix);
 	}

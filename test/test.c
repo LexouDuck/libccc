@@ -30,7 +30,7 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* funcname, t_char const
 	t_char const* errorname = Error_CCC_Name(error);
 	t_char const* error_msg = Error_CCC_Message(error);
 	t_char* errorlog = String_Format(
-		"libccc: "C_RED"error[CCC:%d:%s]"C_RESET": %s -> %s -> %s%s",
+		"libccc: "ANSI_COLOR_FG_RED"error[CCC:%d:%s]"ANSI_RESET": %s -> %s -> %s%s",
 		error, errorname, funcname, error_msg, message,
 		(message == NULL || message[0] == '\0' || message[String_Length(message) - 1] != '\n') ? "\n" : "");
 	if (g_test.last_test_error == NULL)
@@ -96,7 +96,7 @@ void	print_test(
 				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
 			if (flags & FLAG_SIGNALMASK)
-				printf("%s - "C_YELLOW"can signal"C_RESET, test_name);
+				printf("%s - "ANSI_COLOR_FG_YELLOW"can signal"ANSI_RESET, test_name);
 			else printf("%s", test_name);
 			printf(" | ");
 		}
@@ -126,11 +126,11 @@ void	print_test(
 		{
 			if (warning)
 			{
-				printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
+				printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": %s\n", warning);
 			}
 			else
 			{
-				printf(C_YELLOW"Warning"C_RESET": failed test: %s\n"
+				printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": failed test: %s\n"
 					"- received: (%s)\n"
 					"- expected: (%s)\n",
 					function,
@@ -142,8 +142,8 @@ void	print_test(
 		else
 		{
 			if (str_equals(expect, "(n/a)"))
-				printf(C_RED"TEST COULD NOT BE PERFORMED\n"C_RESET);
-			else printf(C_RED"TEST FAILED:\n");
+				printf(ANSI_COLOR_FG_RED"TEST COULD NOT BE PERFORMED\n"ANSI_RESET);
+			else printf(ANSI_COLOR_FG_RED"TEST FAILED:\n");
 			if (function[0] == '_')
 			{
 				static char const* expected = "Expected";
@@ -152,7 +152,7 @@ void	print_test(
 				length_expected = (length_expected > length_function) ? length_expected : length_function;
 				length_function = length_expected - length_function + 1;
 				printf(">%*.*s%s: (%s)\n"
-						">%*.*s: (%s)\n"C_RESET,
+						">%*.*s: (%s)\n"ANSI_RESET,
 					length_function,
 					length_function,
 					"c",
@@ -164,7 +164,7 @@ void	print_test(
 			else
 			{
 				printf( ">c_%s: (%s)\n"
-						">  %s: (%s)\n"C_RESET,
+						">  %s: (%s)\n"ANSI_RESET,
 					function, result,
 					function, expect);
 			}
@@ -173,13 +173,13 @@ void	print_test(
 	}
 	else if (warning)
 	{
-		printf(C_YELLOW"Warning"C_RESET": %s\n", warning);
+		printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": %s\n", warning);
 		if (flags & FLAG_WARNING)
 			g_test.suites[g_test.current_suite].totals.warnings += 1;
 	}
 	else if (g_test.config.verbose)
 	{
-		printf(C_GREEN"OK!"C_RESET"\n");
+		printf(ANSI_COLOR_FG_GREEN"OK!"ANSI_RESET"\n");
 	}
 	fflush(stdout);
 	fflush(stderr);
@@ -448,13 +448,13 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	}
 	if (error)
 	{
-		printf(C_RED"\nError"C_RESET": ");
+		printf(ANSI_COLOR_FG_RED"\nError"ANSI_RESET": ");
 		if (test->result == NULL)
 			printf("The call to c_%s(...) returned NULL.", test->function);
 		else printf("Every char should be '\\0', but '%c' was read at index %zu.", test->result[i], i);
 	}
 	else if (g_test.config.verbose)
-		printf(C_GREEN"OK!"C_RESET);
+		printf(ANSI_COLOR_FG_GREEN"OK!"ANSI_RESET);
 */
 }
 
@@ -536,7 +536,7 @@ void	print_test_list(s_test_list* test, char const* args)
 	if (test->name)
 	{
 		if (test->flags)
-			 printf("\n%s - "C_YELLOW"can segfault"C_RESET, test->name);
+			 printf("\n%s - "ANSI_COLOR_FG_YELLOW"can segfault"ANSI_RESET, test->name);
 		else printf("\n%s", test->name);
 		printf(" -> ");
 	}
@@ -559,7 +559,7 @@ void	print_test_list(s_test_list* test, char const* args)
 		error = TRUE;
 	if (error)
 	{
-		printf(C_RED"Error:\n");
+		printf(ANSI_COLOR_FG_RED"Error:\n");
 		lst = (s_list*)test->result;
 		printf(">c_%s: [", test->function);
 		char* tmp;
@@ -578,9 +578,9 @@ void	print_test_list(s_test_list* test, char const* args)
 			printf("%s{%s}", (i == 0 ? "" : ", "), test->expect[i]);
 			++i;
 		}
-		printf("]\n"C_RESET);
+		printf("]\n"ANSI_RESET);
 	}
-	else printf(C_GREEN"OK!"C_RESET);
+	else printf(ANSI_COLOR_FG_GREEN"OK!"ANSI_RESET);
 }
 
 */

@@ -1,4 +1,6 @@
 
+#include "hedley.h"
+
 #include "libccc/memory.h"
 #include "libccc/sys/time.h"
 
@@ -73,10 +75,13 @@ s_date		Time_ToDate_LocalTime(t_time const value)
 	if (tmp != NULL)
 		tm = *tmp;
 #endif
+HEDLEY_DIAGNOSTIC_PUSH
+HEDLEY_DIAGNOSTIC_DISABLE_DEPRECATED
 	result = Date_FromSTDC(&tm);
 	if (result.offset == 0)
 		result.offset = -(long)timezone;
 	return (result);
+HEDLEY_DIAGNOSTIC_POP
 }
 
 
