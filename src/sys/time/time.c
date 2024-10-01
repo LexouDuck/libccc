@@ -1,4 +1,6 @@
 
+#include "hedley.h"
+
 #include "libccc/memory.h"
 #include "libccc/sys/time.h"
 
@@ -6,7 +8,6 @@
 	#define __STDC_WANT_LIB_EXT1__	1
 	#include <time.h>
 #else
-	#include "hedley.h"
 	extern long	timezone;
 	time_t	time(time_t* t);
 
