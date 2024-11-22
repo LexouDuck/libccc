@@ -124,9 +124,7 @@ endif
 ifeq ($(OSMODE),windows)
 ifeq ($(CC),clang)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-Wl,-export-all-symbols \
-		-fvisibility=
-	@ls -al $(BINPATH)dynamic/
+		-fvisibility=default
 else
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
@@ -136,9 +134,9 @@ endif
 endif
 ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-s MODULARIZE \
 		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
-		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]
+		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8] \
+		-s MODULARIZE
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call bin_copylibs,dynamic)
