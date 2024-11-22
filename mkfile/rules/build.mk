@@ -26,9 +26,11 @@ INCLUDES := $(INCLUDES) \
 bin_copylibs = \
 	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
-		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
-			cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
-		done ; )
+		if [ $(PACKAGE_$(i)_LIBMODE) = "dynamic" ] ; then \
+			for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic)* ; do \
+				cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
+			done ; \
+		fi ; )
 
 #! Shell command used to create symbolic links for version-named library binary
 #! @param $(1)	path of the binary file (folder, relative to root-level Makefile)

@@ -47,27 +47,27 @@ UNAME_P := $(shell uname -p)
 
 #! Define all possible supported target platforms/operating systems
 OSMODES = \
-	emscripten	\
-	windows	\
-	macos	\
-	linux	\
 	other	\
+	linux	\
+	macos	\
+	windows	\
+	emscripten	\
 # if the OSMODE variable has no value, give it a default value based on the current platform
 ifeq ($(strip $(OSMODE)),)
 	OSMODE := other
 	ifdef __EMSCRIPTEN__
 		OSMODE := emscripten
 	else
-	ifeq ($(OS),Windows_NT)
-		OSMODE := windows
-	else
-		ifeq ($(UNAME_S),Linux)
-			OSMODE := linux
+		ifeq ($(OS),Windows_NT)
+			OSMODE := windows
+		else
+			ifeq ($(UNAME_S),Linux)
+				OSMODE := linux
+			endif
+			ifeq ($(UNAME_S),Darwin)
+				OSMODE := macos
+			endif
 		endif
-		ifeq ($(UNAME_S),Darwin)
-			OSMODE := macos
-		endif
-	endif
 	endif
 	ifeq ($(OSMODE),other)
 	_:=$(call print_warning,"Could not estimate the current target platform, defaulting to 'OSMODE = other'...")
@@ -101,19 +101,12 @@ endif
 LIBEXT_static := a
 
 #! The file extension used for dynamic library files
-LIBEXT_dynamic := 
-ifeq ($(OSMODE),emscripten)
-	LIBEXT_dynamic := js
-endif
-ifeq ($(OSMODE),windows)
-	LIBEXT_dynamic := dll
-endif
-ifeq ($(OSMODE),linux)
-	LIBEXT_dynamic := so
-endif
-ifeq ($(OSMODE),macos)
-	LIBEXT_dynamic := dylib
-endif
+LIBEXT_dynamic = $(LIBEXT_dynamic_$(OSMODE))
+LIBEXT_dynamic_other	:= 
+LIBEXT_dynamic_linux	:= so
+LIBEXT_dynamic_macos	:= dylib
+LIBEXT_dynamic_windows	:= dll
+LIBEXT_dynamic_emscripten	:= js
 ifeq ($(OSMODE),other)
 $(warning Unsupported platform: you must configure the dynamic library file extension your machine uses)
 endif

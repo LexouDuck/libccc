@@ -7,7 +7,7 @@
 #! The complete absolute path of the root-level makefile
 MKFILE_PATH := "$(abspath $(lastword $(MAKEFILE_LIST)))"
 #! The directory of the root-level makefile
-CURRENT_DIR := $(patsubst %/,%,$(dir $(MKFILE_PATH)))
+CURRENT_DIR := $(patsubst %/,%,$(dir $(abspath $(lastword $(MAKEFILE_LIST)))))
 #! The sub-directory in which makefile scripts are stored
 MKFILES_DIR := ./mkfile/
 
