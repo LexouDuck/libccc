@@ -42,7 +42,6 @@ jobs:
 #        for i in `find log -name "predef_*.c"` ; do cat $i ; done
 
     - name: Setup
-      if: ${{ (matrix.os != 'windows-latest') && (matrix.compiler != 'clang') }}
       run: |
         echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
 
