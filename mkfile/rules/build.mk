@@ -124,8 +124,7 @@ endif
 ifeq ($(OSMODE),windows)
 ifeq ($(CC),clang)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-fvisibility=default \
-		-mdllall
+		$(BINPATH)static/$(NAME_static) # -Wl,"/DEF:$(BINPATH)dynamic/$(NAME).def"
 else
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
