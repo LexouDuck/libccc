@@ -13,17 +13,12 @@ defaults:
 jobs:
   ci:
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 10
+    timeout-minutes: 5
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        compiler: [clang, gcc, mingw]
-        exclude:
-          - os: ubuntu-latest
-            compiler: mingw
-          - os: macOS-latest
-            compiler: mingw
+        cc: [clang, gcc]
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
@@ -31,7 +26,7 @@ jobs:
 
 
 
-#    - name: Check (with ${{matrix.compiler}}, for ${{matrix.os}})
+#    - name: Check (with ${{matrix.cc}}, for ${{matrix.os}})
 #      run: |
 #        printf "OS: $OS\n"
 #        printf "RUNNER_OS: $RUNNER_OS\n"
@@ -43,18 +38,14 @@ jobs:
 
     - name: Setup
       run: |
-        echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
-
-    - name: Setup (Windows, mingw 32-bit)
-      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
-      run: |
-        echo "CC=i686-w64-mingw32-gcc" >> $GITHUB_ENV
+        echo "CC=${{matrix.cc}}" >> $GITHUB_ENV
+        echo "LD=${{matrix.cc}}" >> $GITHUB_ENV
 
     - name: Setup (Windows, mingw 64-bit)
-      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'mingw') }}
+      if: ${{ (matrix.os == 'windows-latest') && (matrix.cc == 'gcc') }}
       run: |
         echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
-
+#        echo "CC=i686-w64-mingw32-gcc" >> $GITHUB_ENV
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
     - name: Install/check prerequisite tools
@@ -63,13 +54,13 @@ jobs:
         make prereq-tests
         make prereq-dist
 
-    - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build library (with ${{matrix.cc}}, for ${{matrix.os}})
       run: make BUILDMODE=release build CC=$CC
 
-    - name: Build test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Build test suite (with ${{matrix.cc}}, for ${{matrix.os}})
       run: make BUILDMODE=release build-tests CC=$CC
 
-    - name: Run test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
+    - name: Run test suite (with ${{matrix.cc}}, for ${{matrix.os}})
       run: make BUILDMODE=release test ARGS="-a"
 
     - name: Create distributable package (for ${{matrix.os}})
@@ -80,10 +71,10 @@ jobs:
     - name: Upload build binary artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: libccc-build_${{matrix.os}}_${{matrix.compiler}}
+        name: libccc-build_${{matrix.os}}_${{matrix.cc}}
         path: ./dist/*.zip
 
-#    - name: Release (with ${{matrix.compiler}}, for ${{matrix.os}})
-#      run: make clean ; make build-release CC=${{matrix.compiler}}
+#    - name: Release (with ${{matrix.cc}}, for ${{matrix.os}})
+#      run: make clean ; make build-release CC=${{matrix.cc}}
 
 # TODO: automate release tag for github ?
