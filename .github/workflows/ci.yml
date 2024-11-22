@@ -18,10 +18,12 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
-        compiler: [gcc, clang]
+        compiler: [clang, gcc, mingw]
         exclude:
-          - os: windows-latest
-            compiler: clang
+          - os: ubuntu-latest
+            compiler: mingw
+          - os: macOS-latest
+            compiler: mingw
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
@@ -40,24 +42,27 @@ jobs:
 #        for i in `find log -name "predef_*.c"` ; do cat $i ; done
 
     - name: Setup
-      if: ${{ (matrix.os != 'windows-latest') || (matrix.compiler != 'gcc') }}
+      if: ${{ (matrix.os != 'windows-latest') && (matrix.compiler != 'clang') }}
       run: |
         echo "CC=${{matrix.compiler}}" >> $GITHUB_ENV
 
-    - name: Setup (Windows, mingw)
+    - name: Setup (Windows, mingw 32-bit)
       if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'gcc') }}
+      run: |
+        echo "CC=i686-w64-mingw32-gcc" >> $GITHUB_ENV
+
+    - name: Setup (Windows, mingw 64-bit)
+      if: ${{ (matrix.os == 'windows-latest') && (matrix.compiler == 'mingw') }}
       run: |
         echo "CC=x86_64-w64-mingw32-gcc" >> $GITHUB_ENV
 
 #        echo "PATH=$PATH:C:\msys64\mingw64\bin" >> $GITHUB_ENV
 
-    - name: Prerequisite tools install
+    - name: Install/check prerequisite tools
       run: |
         make prereq-build
         make prereq-tests
         make prereq-dist
-
-
 
     - name: Build library (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make BUILDMODE=release build CC=$CC
@@ -65,15 +70,13 @@ jobs:
     - name: Build test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make BUILDMODE=release build-tests CC=$CC
 
-
-
     - name: Run test suite (with ${{matrix.compiler}}, for ${{matrix.os}})
       run: make BUILDMODE=release test ARGS="-a"
 
-
-
     - name: Create distributable package (for ${{matrix.os}})
       run: make BUILDMODE=release dist
+
+
 
     - name: Upload build binary artifacts
       uses: actions/upload-artifact@v4
