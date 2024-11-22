@@ -113,21 +113,26 @@ ifeq ($(OSMODE),other)
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
-ifeq ($(OSMODE),windows)
+ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-Wl,--output-def,$(NAME).def \
-		-Wl,--out-implib,$(NAME).lib \
-		-Wl,--export-all-symbols
-	@cp -p $(NAME).def $(BINPATH)dynamic/
-	@cp -p $(NAME).lib $(BINPATH)dynamic/
+		-Wl,-rpath='$$ORIGIN/'
 endif
 ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$(NAME_dynamic)'
 endif
-ifeq ($(OSMODE),linux)
+ifeq ($(OSMODE),windows)
+ifeq ($(CC),clang)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-Wl,-rpath='$$ORIGIN/'
+		-Wl,-export-all-symbols \
+		-fvisibility=
+	@ls -al $(BINPATH)dynamic/
+else
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
+		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
+		-Wl,--out-implib,$(BINPATH)dynamic/$(NAME).lib \
+		-Wl,--export-all-symbols
+endif
 endif
 ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
