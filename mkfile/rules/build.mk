@@ -86,7 +86,7 @@ $(OBJSFILE): $(SRCSFILE)
 $(OBJPATH)%.o : $(SRCDIR)%.c
 	@mkdir -p $(@D)
 	@printf "Compiling file: $@ -> "
-	@$(CC) -o $@ $(CFLAGS) $(CPPFLAGS) -MMD $(INCLUDES) -c $<
+	@$(CC) -o $@ $(CFLAGS) $(CPPFLAGS) -fvisibility=default -MMD $(INCLUDES) -c $<
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 
 
@@ -122,15 +122,10 @@ ifeq ($(OSMODE),macos)
 		-install_name '@loader_path/$(NAME_dynamic)'
 endif
 ifeq ($(OSMODE),windows)
-ifeq ($(CC),clang)
-	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-fvisibility=default
-else
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
 		-Wl,--out-implib,$(BINPATH)dynamic/$(NAME).lib \
 		-Wl,--export-all-symbols
-endif
 endif
 ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
