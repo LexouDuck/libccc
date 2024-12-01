@@ -144,6 +144,18 @@ void							Stat_Int_Quicksort_InPlace(s_array_int ilst);
 
 //!@doc TODO document this
 //!@{
+t_sint							Stat_Int_GetMin(s_array_int const values);
+#define c_stat_getmin_i			Stat_Int_GetMin
+//!@}
+
+//!@doc TODO document this
+//!@{
+t_sint							Stat_Int_GetMax(s_array_int const values);
+#define c_stat_getmax_i			Stat_Int_GetMax
+//!@}
+
+//!@doc TODO document this
+//!@{
 t_float							Stat_Int_Median(s_sorted_int const ilst);
 #define c_stat_median_i			Stat_Int_Median
 //!@}
@@ -206,6 +218,19 @@ s_array_float 					Stat_Float_Quicksort(s_array_float const flst);
 //!@{
 void							Stat_Float_Quicksort_InPlace(s_array_float flst);
 #define c_stat_quicksort_f		Stat_Float_Quicksort_InPlace
+//!@}
+//!@}
+
+//!@doc TODO document this
+//!@{
+t_float							Stat_Float_GetMin(s_array_float const values);
+#define c_stat_getmin_f			Stat_Float_GetMin
+//!@}
+
+//!@doc TODO document this
+//!@{
+t_float							Stat_Float_GetMax(s_array_float const values);
+#define c_stat_getmax_f			Stat_Float_GetMax
 //!@}
 
 //!@doc TODO document this

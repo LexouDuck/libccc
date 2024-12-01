@@ -176,6 +176,31 @@ void		c_stat_quicksort_i(s_array(int) ilst)
 
 
 extern inline
+t_sint		c_stat_getmin_i(s_array(int) const values)
+{
+	t_sint result = SINT_MAX;
+	for (t_uint i = 0; i < values.length; ++i)
+	{
+		if (result > values.items[i])
+			result = values.items[i];
+	}
+	return (result);
+}
+
+t_sint		c_stat_getmax_i(s_array(int) const values)
+{
+	t_sint result = SINT_MIN;
+	for (t_uint i = 0; i < values.length; ++i)
+	{
+		if (result < values.items[i])
+			result = values.items[i];
+	}
+	return (result);
+}
+
+
+
+extern inline
 t_float		c_stat_median_i(s_sorted_int const ilst)
 {
 	return ((ilst.length % 2) ?

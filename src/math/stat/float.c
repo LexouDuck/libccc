@@ -176,6 +176,35 @@ void		c_stat_quicksort_f(s_array(float) flst)
 
 
 extern inline
+t_float		c_stat_getmin_f(s_array(float) const values)
+{
+	t_float result = +INF;
+	for (t_uint i = 0; i < values.length; ++i)
+	{
+		if (IS_NAN(values.items[i]))
+			continue;
+		if (result > values.items[i])
+			result = values.items[i];
+	}
+	return (result);
+}
+
+t_float		c_stat_getmax_f(s_array(float) const values)
+{
+	t_float result = -INF;
+	for (t_uint i = 0; i < values.length; ++i)
+	{
+		if (IS_NAN(values.items[i]))
+			continue;
+		if (result < values.items[i])
+			result = values.items[i];
+	}
+	return (result);
+}
+
+
+
+extern inline
 t_float		c_stat_median_f(s_sorted_float const flst)
 {
 	return ((flst.length % 2) ?
@@ -203,10 +232,6 @@ t_float		c_stat_average_f(s_array(float) const flst)
 
 
 
-/*
-** Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more
-**	operations (n subtractions).
-*/
 t_float		c_stat_variance_f(s_array(float) const flst)
 {
 	TYPE	sum;
@@ -214,6 +239,7 @@ t_float		c_stat_variance_f(s_array(float) const flst)
 	TYPE	average;
 	TYPE	tmp;
 
+	// Using V(X) = E(X^2) - E(X)^2 rather than E( [X - E(X)]^2 ) which has more operations (n subtractions).
 	average = c_stat_average_f(flst);
 	sum = 0;
 	i = 0;
@@ -224,7 +250,6 @@ t_float		c_stat_variance_f(s_array(float) const flst)
 		++i;
 	}
 	return ((sum / i) - (average * average));
-
 }
 
 
