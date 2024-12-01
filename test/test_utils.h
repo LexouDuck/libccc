@@ -72,35 +72,60 @@ s_sorted_int	print_test_random(int samples);
 
 
 int		bool_equals(int a, int b);
-
 int		str_equals(char const* str1, char const* str2);
-
 int		ptrarr_equals(void const** ptr1, void const** ptr2);
-
 int		strarr_equals(char const** strarr1, char const** strarr2);
-
 int		str_equals_until(char const* str1, char const* str2, char c);
 
-
+char*	strtoescape(char const* str);
+char*	strsurround(char const* str, char begin, char end);
 char*	print_memory(void const* ptr, t_size length);
 
-char*	strtoescape(char const* str);
-
-char*	strsurround(char const* str, char begin, char end);
-
-char*	u8tostr(	t_u8	number);
-char*	s8tostr(	t_s8	number);
-char*	u16tostr(	t_u16	number);
-char*	s16tostr(	t_s16	number);
-char*	u32tostr(	t_u32	number);
-char*	s32tostr(	t_s32	number);
-char*	u64tostr(	t_u64	number);
-char*	s64tostr(	t_s64	number);
-#if LIBCONFIG_USE_INT128
-char*	u128tostr(	t_u128	number);
-char*	s128tostr(	t_s128	number);
-#endif
 char*	ptrtostr(void const* ptr);
+
+
+
+#define DECLARE_NUMBER_UTILITY_FUNCTIONS(TYPE) \
+char*	TYPE##tostr(t_##TYPE number); \
+t_##TYPE	stat_getmin_##TYPE(t_##TYPE * const values, unsigned int length); \
+t_##TYPE	stat_getmax_##TYPE(t_##TYPE * const values, unsigned int length); \
+double	stat_median_##TYPE(t_##TYPE * const values, unsigned int length); \
+double	stat_average_##TYPE(t_##TYPE * const values, unsigned int length); \
+double	stat_variance_##TYPE(t_##TYPE * const values, unsigned int length); \
+void	quicksort_##TYPE(t_##TYPE * array, unsigned int start, unsigned int end); \
+
+DECLARE_NUMBER_UTILITY_FUNCTIONS(uint)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(u8)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(u16)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(u32)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(u64)
+#if LIBCONFIG_USE_INT128
+DECLARE_NUMBER_UTILITY_FUNCTIONS(u128)
+#endif
+DECLARE_NUMBER_UTILITY_FUNCTIONS(sint)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(s8)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(s16)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(s32)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(s64)
+#if LIBCONFIG_USE_INT128
+DECLARE_NUMBER_UTILITY_FUNCTIONS(s128)
+#endif
+DECLARE_NUMBER_UTILITY_FUNCTIONS(fixed)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(q16)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(q32)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(q64)
+#if LIBCONFIG_USE_INT128
+DECLARE_NUMBER_UTILITY_FUNCTIONS(q128)
+#endif
+DECLARE_NUMBER_UTILITY_FUNCTIONS(float)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(f32)
+DECLARE_NUMBER_UTILITY_FUNCTIONS(f64)
+#if LIBCONFIG_USE_FLOAT80
+DECLARE_NUMBER_UTILITY_FUNCTIONS(f80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DECLARE_NUMBER_UTILITY_FUNCTIONS(f128)
+#endif
 
 
 

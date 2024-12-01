@@ -209,9 +209,9 @@ char*	strsurround(char const* str, char begin, char end)
 char*	s##BITS##tostr(t_s##BITS number)		\
 {												\
 	char*		result;							\
-	t_u8		digits[64] = { 0 };				\
-	t_u8		i;								\
-	t_u##BITS	n;								\
+	uint8_t	digits[64] = { 0 };					\
+	uint8_t	i;									\
+	uint##BITS##_t	n;							\
 												\
 	n = number;									\
 	if (number < 0)								\
@@ -248,9 +248,9 @@ DEFINEFUNC_SINTTOSTR(128)
 char*	u##BITS##tostr(t_u##BITS number)		\
 {												\
 	char*		result;							\
-	t_u8		digits[64] = { 0 };				\
-	t_u8		i;								\
-	t_u##BITS	n;								\
+	uint8_t	digits[64] = { 0 };					\
+	uint8_t	i;									\
+	uint##BITS##_t	n;							\
 												\
 	n = number;									\
 	i = 0;										\
@@ -285,8 +285,8 @@ DEFINEFUNC_UINTTOSTR(128)
 char*	ptrtostr(void const* ptr)
 {
 	char*	result;
-	t_u8	digits[sizeof(void const*) * 2];
-	t_u8	i;
+	uint8_t	digits[sizeof(void const*) * 2];
+	uint8_t	i;
 	t_uintmax	n;
 
 	n = (t_uintmax)ptr;
@@ -310,3 +310,171 @@ char*	ptrtostr(void const* ptr)
 	result[n] = '\0';
 	return (result);
 }
+
+
+
+static
+t_bool	memswap(void* ptr1, void* ptr2, t_size size)
+{
+	uint8_t*	p1;
+	uint8_t*	p2;
+	size_t	i;
+
+	if (ptr1 == NULL)	return (ERROR);
+	if (ptr2 == NULL)	return (ERROR);
+	if (ptr1 == ptr2 || size == 0)
+		return (OK);
+	if (ptr1 && ptr2)
+	{
+		p1 = (t_u8*)ptr1;
+		p2 = (t_u8*)ptr2;
+		i = 0;
+		while (i < size)
+		{
+			p1[i] = (p1[i] ^ p2[i]);
+			p2[i] = (p2[i] ^ p1[i]);
+			p1[i] = (p1[i] ^ p2[i]);
+			++i;
+		}
+		return (OK);
+	}
+	return (ERROR);
+}
+
+#include <stdio.h>
+
+#define DEFINEFUNCTIONS_STATS(NAME_UPPER, NAME, TYPE) \
+ \
+TYPE	stat_getmin_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	TYPE result = NAME_UPPER##_MAX; \
+	for (unsigned int i = 0; i < length; ++i) \
+	{ \
+		if (result > values[i]) \
+			result = values[i]; \
+	} \
+	return (result); \
+} \
+ \
+TYPE	stat_getmax_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	TYPE result = NAME_UPPER##_MIN; \
+	for (unsigned int i = 0; i < length; ++i) \
+	{ \
+		if (result < values[i]) \
+			result = values[i]; \
+	} \
+	return (result); \
+} \
+ \
+double	stat_median_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	return ((length % 2) ? \
+		values[length / 2] : \
+		(values[length / 2] + values[length / 2 + 1]) / 2); \
+} \
+ \
+double	stat_average_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	TYPE	sum; \
+	unsigned int	i; \
+	sum = 0.; \
+	i = 0; \
+	TYPE inv_len = (1. / length); \
+	while (i < length) \
+	{ \
+		sum += inv_len * values[i]; \
+		++i; \
+	} \
+	return (sum); \
+} \
+ \
+double	stat_variance_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	TYPE	sum; \
+	TYPE	average; \
+	TYPE	tmp; \
+	unsigned int	i; \
+	average = stat_average_##NAME(values, length); \
+	sum = 0; \
+	i = 0; \
+	while (i < length) \
+	{ \
+		tmp = values[i]; \
+		sum += tmp * tmp; \
+		++i; \
+	} \
+	return ((sum / i) - (average * average)); \
+} \
+ \
+void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
+{ \
+	TYPE pivot; \
+	unsigned int pivot_id; \
+	unsigned int rise_id; \
+	unsigned int fall_id; \
+	pivot = array[start]; \
+	if (start >= end || pivot != pivot) \
+		return; \
+	if (start == end - 1) \
+	{ \
+		if (pivot > array[end]) \
+			memswap(array + start, array + end, sizeof(TYPE)); \
+		return; \
+	} \
+	rise_id = start + 1; \
+	fall_id = end; \
+	while (rise_id < fall_id) \
+	{ \
+		while (rise_id <= end && array[rise_id] <= pivot) \
+		{ \
+			++rise_id; \
+		} \
+		while (fall_id > start && array[fall_id] > pivot) \
+		{ \
+			--fall_id; \
+		} \
+		if (rise_id < fall_id) \
+			memswap(array + rise_id, array + fall_id, sizeof(TYPE)); \
+	} \
+	pivot_id = fall_id; \
+	if (start != fall_id) \
+		memswap(array + start, array + fall_id, sizeof(TYPE)); \
+	if (pivot_id > start) \
+		quicksort_##NAME(array, start, pivot_id - 1); \
+	if (pivot_id < end) \
+		quicksort_##NAME(array, pivot_id + 1, end); \
+} \
+
+DEFINEFUNCTIONS_STATS(UINT , uint , t_uint)
+DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8)
+DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16)
+DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32)
+DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128)
+#endif
+DEFINEFUNCTIONS_STATS(SINT , sint , t_sint)
+DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8)
+DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16)
+DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32)
+DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128)
+#endif
+DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed)
+DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16)
+DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32)
+DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128)
+#endif
+DEFINEFUNCTIONS_STATS(FLOAT, float, t_float)
+DEFINEFUNCTIONS_STATS(F32  , f32  , t_f32)
+DEFINEFUNCTIONS_STATS(F64  , f64  , t_f64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNCTIONS_STATS(F80  , f80  , t_f80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNCTIONS_STATS(F128 , f128 , t_f128)
+#endif

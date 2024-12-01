@@ -32,7 +32,7 @@ typedef struct timer
 	s_time	expect_end;
 	s_time	expect_time;
 
-}			s_timer;
+}	s_timer;
 
 
 
