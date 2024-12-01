@@ -292,10 +292,10 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#endif
 
 	#define FIXED_ERROR		((t_fixed)0)
-	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
-	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
-	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
-	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAXINT	((t_sint)(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX) / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN) / FIXED_DENOMINATOR))
 
 #else
 
@@ -325,11 +325,11 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define Q128_MININT	((t_s128)(Q128_MIN / FIXED_DENOMINATOR))
 	#endif
 
-	#define FIXED_ERROR		((t_fixed)((~(t_fixed)0) >> 1) + 1))
-	#define FIXED_MAX		((t_fixed)FIXED_MAX) //!< The largest possible value that a configurable-size fixed-point can hold
-	#define FIXED_MIN		((t_fixed)FIXED_MIN) //!< The largest possible value that a configurable-size fixed-point can hold
-	#define FIXED_MAXINT	((t_sint)(FIXED_MAX / FIXED_DENOMINATOR))
-	#define FIXED_MININT	((t_sint)(FIXED_MIN / FIXED_DENOMINATOR))
+	#define FIXED_ERROR		((t_fixed)((t_fixed)1 << (LIBCONFIG_FIXED_BITS - 1)))
+	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAXINT	((t_sint)(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX) / FIXED_DENOMINATOR))
+	#define FIXED_MININT	((t_sint)(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN) / FIXED_DENOMINATOR))
 
 #endif
 
