@@ -508,6 +508,44 @@ typedef union float_cast
 ** ************************************************************************** *|
 */
 
+//!@doc Creates a float value from its individual component parts.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/ldexp}
+**
+**	@param	mantissa	The significant digits of this floating-point number
+**	@param	exponent	The (base 2) exponent of this floating-point number
+**
+**	@returns
+**	The floating-point number value resulting from putting together
+**	the given `mantissa` and `exponent` parts, essentiallylike so:
+**	`mantissa * pow(2, exponent)`
+*/
+//!@{
+#define					Float_From	CONCAT(FLOAT_TYPE,_From)
+#define c_tof			Float_From
+
+t_f32					F32_From(t_f32 mantissa, t_sint exponent);
+#define c_tof32			F32_From
+#define c_ldexpf		F32_From
+
+t_f64					F64_From(t_f64 mantissa, t_sint exponent);
+#define c_tof64			F64_From
+#define c_ldexp			F64_From
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_From(t_f80 mantissa, t_sint exponent);
+#define c_tof80			F80_From
+#define c_ldexpl		F80_From
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_From(t_f128 mantissa, t_sint exponent);
+#define c_tof128		F128_From
+#define c_ldexpl		F128_From
+#endif
+//!@}
+
+
+
 //!@doc A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Float(X, FUNCTYPE) \
@@ -614,39 +652,6 @@ t_f128	 				F128_FromFloat(t_float number);
 
 
 
-//!@doc Creates a float value from its individual component parts.
-/*!
-**	@nonstd
-**
-**	@param	integer		The significant digits of this floating-point number
-**	@param	exponent	The (base 2) exponent of this floating-point number,
-**						this is applied like so: `integer * pow(2, exponent)`
-**	@returns
-**	The floating-point number value resulting from putting together
-**	the given `integer` and `exponent` parts.
-*/
-//!@{
-#define					Float_From	CONCAT(FLOAT_TYPE,_From)
-#define c_tof			Float_From
-
-t_f32					F32_From(t_sint integer, t_sint exponent);
-#define c_tof32			F32_From
-
-t_f64					F64_From(t_sint integer, t_sint exponent);
-#define c_tof64			F64_From
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80					F80_From(t_sint integer, t_sint exponent);
-#define c_tof80			F80_From
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128					F128_From(t_sint integer, t_sint exponent);
-#define c_tof128		F128_From
-#endif
-//!@}
-
-
-
 // TODO t_float	Float_NaN(t_char const* str)
 /* 
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/nan}
@@ -656,6 +661,36 @@ t_f128					F128_From(t_sint integer, t_sint exponent);
 /* 
 **	@nonstd
 */
+
+
+
+//!@doc Copies the sign value from the given `source` to the given `target`, and returns it.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/copysign}
+*/
+//!@{
+#define					Float_CopySign	CONCAT(FLOAT_TYPE,_From)
+#define c_copysign		Float_CopySign
+
+t_f32					F32_CopySign(t_f32 target, t_f32 source);
+#define c_copysignf32	F32_CopySign
+#define c_copysignf		F32_CopySign
+
+t_f64					F64_CopySign(t_f64 target, t_f64 source);
+#define c_copysignf64	F64_CopySign
+#define c_copysignd		F64_CopySign
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_CopySign(t_f80 target, t_f80 source);
+#define c_copysignf80	F80_CopySign
+#define c_copysignl		F80_CopySign
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_CopySign(t_f128 target, t_f128 source);
+#define c_copysignf128	F128_CopySign
+#define c_copysignl		F128_CopySign
+#endif
+//!@}
 
 
 

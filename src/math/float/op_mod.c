@@ -11,9 +11,44 @@
 MATH_DECL_REALOPERATOR(Mod, fmod)
 #else
 #define DEFINEFUNC_FLOAT_MOD(BITS) \
-extern inline t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b)	\
-{															\
-	return (a - (F##BITS##_Round(a / b) * b));				\
+t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b) \
+{ \
+	t_f##BITS fa; \
+	t_f##BITS fb; \
+	t_f##BITS dividend; \
+	t_f##BITS divisor; \
+	t_s64 expo_a; \
+	t_s64 expo_b; \
+	if (IS_NAN(a) || IS_NAN(b)) \
+		return (a + b); \
+	else if (IS_INF(a) || (b == 0.0)) \
+		return (NAN); \
+	fa = F##BITS##_Abs(a); \
+	fb = F##BITS##_Abs(b); \
+	if (fa >= fb) \
+	{ \
+		dividend = fa; \
+		expo_a = F##BITS##_GetExp2(fa); \
+		expo_b = F##BITS##_GetExp2(fb); \
+		divisor = F##BITS##_From(fb, expo_a - expo_b); \
+		if (divisor <= dividend * 0.5) \
+		{ \
+			divisor += divisor; \
+		} \
+		while (divisor >= fb) \
+		{ \
+			if (dividend >= divisor) \
+			{ \
+				dividend -= divisor; \
+			} \
+			divisor *= 0.5; \
+		} \
+		return F##BITS##_CopySign(dividend, a); \
+	} \
+	else \
+	{ \
+		return (a); \
+	} \
 }
 
 DEFINEFUNC_FLOAT_MOD(32)
