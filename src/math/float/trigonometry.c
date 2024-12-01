@@ -57,9 +57,9 @@ t_f##BITS	F##BITS##_Cos(t_f##BITS x)					\
 		x = F##BITS##_Mod(x, TAU);						\
 	if (x > PI)											\
 		x = PI - (x - PI);								\
-	if (x > HALF_PI)									\
+	if (x > PI_HALF)									\
 	{													\
-		x = HALF_PI - (x - HALF_PI);					\
+		x = PI_HALF - (x - PI_HALF);					\
 		sign = -1;										\
 	}													\
 	x_pow2 = x * x;										\
@@ -121,8 +121,8 @@ t_f##BITS	F##BITS##_Sin(t_f##BITS x)					\
 		x = PI - (x - PI);								\
 		sign = !sign;									\
 	}													\
-	if (x > HALF_PI)									\
-		x = HALF_PI - (x - HALF_PI);					\
+	if (x > PI_HALF)									\
+		x = PI_HALF - (x - PI_HALF);					\
 	x_pow2  = x * x;									\
 	x_pow3  = x * x_pow2;								\
 	x_pow5  = x_pow2 * x_pow3;							\
@@ -175,27 +175,27 @@ t_f##BITS	F##BITS##_Tan(t_f##BITS x)						\
 	t_f##BITS	a;
 	t_s64		floor_a;
 
-	if (x < -HALF_PI)
+	if (x < -PI_HALF)
 	{
-		x = -x + HALF_PI;
+		x = -x + PI_HALF;
 		a = x / PI;
 		floor_a = a;
 		x = (a - floor_a) * PI;
 		x = PI - x;
-		x -= HALF_PI;
+		x -= PI_HALF;
 	}
-	else if (x > HALF_PI)
+	else if (x > PI_HALF)
 	{
-		x += HALF_PI;
+		x += PI_HALF;
 		a = x / PI;
 		floor_a = a;
 		x = (a - floor_a) * PI;
-		x -= HALF_PI;
+		x -= PI_HALF;
 	}
 	if (x < -0.997592567)
-		return (-1 / (x + HALF_PI) + 0.343 * x + 0.538);
+		return (-1 / (x + PI_HALF) + 0.343 * x + 0.538);
 	if (x > 0.997592567)
-		return (-(1 / (x - HALF_PI) - 0.343 * x + 0.538));
+		return (-(1 / (x - PI_HALF) - 0.343 * x + 0.538));
 
 	t_f##BITS result = x;
 	t_f##BITS power = x * x * x;
@@ -233,7 +233,7 @@ t_f##BITS		F##BITS##_ArcCos(t_f##BITS x)						\
 		return (NAN);												\
 	if (F##BITS##_Abs(x) == 1.)										\
 		return (INFINITY * SIGN(x));								\
-	t_f##BITS result = HALF_PI;										\
+	t_f##BITS result = PI_HALF;										\
 	t_f##BITS power = x;											\
 	result += power * -1.;			power *= (x * x);				\
 	result += power * -0.0584;		power *= (x * x);				\
@@ -245,7 +245,7 @@ t_f##BITS		F##BITS##_ArcCos(t_f##BITS x)						\
 // very fast cubic approximation
 // score: 11.53	for [-1,+1]-> 200 tests
 #if 0
-	return ((-0.8047926 * x * x - 0.766) * x + HALF_PI); // (-0.69813170079773212 * x * x - 0.87266462599716477)
+	return ((-0.8047926 * x * x - 0.766) * x + PI_HALF); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 #endif
 
 DEFINEFUNC_FLOAT_ARCCOS(32)
@@ -319,7 +319,7 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x)				\
 	t_f##BITS n = 1.54 - abs_x / (0.9 + abs_x);			\
 	if (n < 0.65)										\
 		n = 0.65;										\
-	return ((HALF_PI * x) / (n + abs_x));				\
+	return ((PI_HALF * x) / (n + abs_x));				\
 }
 // 3 different curves, some discontinuity
 // score: 38.20	for [-5,+5]-> 200 tests
@@ -344,7 +344,7 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x)				\
 		x *= 0.57;
 		add = (0.22 * x);
 	}
-	return ((HALF_PI * x) / (1. + abs_x) + add);
+	return ((PI_HALF * x) / (1. + abs_x) + add);
 #endif
 // crazy simple exp() approximation
 // score: 60.59	for [-5, 5]-> 200 tests
@@ -377,23 +377,23 @@ t_f##BITS	F##BITS##_ArcTan2(t_f##BITS y, t_f##BITS x)					\
 	if (y == 0.0)														\
 		return ((x < 0 ? PI : 0) * SIGN(x));							\
 	if (x == 0.0)														\
-		return (HALF_PI * SIGN(y));										\
+		return (PI_HALF * SIGN(y));										\
 	if (IS_INFINITY(x))													\
 	{																	\
 		if (IS_INFINITY(y))												\
-			return ((x < 0 ? 3 * QUARTER_PI : QUARTER_PI) * SIGN(y));	\
+			return ((x < 0 ? 3 * PI_QUARTER : PI_QUARTER) * SIGN(y));	\
 		else															\
 			return ((x < 0 ? PI : 0) * SIGN(y));						\
 	}																	\
 	if (IS_INFINITY(y))													\
-		return (HALF_PI * SIGN(y));										\
+		return (PI_HALF * SIGN(y));										\
 	if (x == 1.0)														\
 		return (F##BITS##_ArcTan(y));									\
 	t_s32 exp_x = F##BITS##_GetExp2(x);									\
 	t_s32 exp_y = F##BITS##_GetExp2(y);									\
 	t_f##BITS result = F##BITS##_Abs(y / x);							\
 	if ((exp_y - exp_x) > 60)		/* |y / x| > +2^60 */				\
-		result = HALF_PI + 0.5 * pi_lo;									\
+		result = PI_HALF + 0.5 * pi_lo;									\
 	else if ((exp_y - exp_x) < -60)	/* |y| / x < -2^60 */				\
 		result = 0.0;													\
 	else																\
