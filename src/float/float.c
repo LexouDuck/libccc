@@ -7,7 +7,7 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALOPERATOR(From, ldexp)
+MATH_DECL_OPERATOR_ROP(t_sint, From, ldexp)
 #else
 #define DEFINEFUNC_FLOAT_FROM(BITS) \
 t_f##BITS	F##BITS##_From(t_f##BITS mantissa, t_sint exponent) \
