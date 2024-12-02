@@ -142,10 +142,10 @@ static void	print_test_math(s_timer timer, t_float* errors, t_float precision, i
 	if (g_test.config.verbose)
 	{
 		quicksort_float(errors, 0, amount);
-		printf_colored("Largest error",			precision,      stat_getmax_float   (errors, amount));
-		printf_colored("Average error",			precision,      stat_average_float  (errors, amount));
-		printf_colored("Median error",			precision,      stat_median_float   (errors, amount));
-		printf_colored("Standard deviation",	precision, sqrt(stat_variance_float (errors, amount)));
+		printf_colored("Largest error", precision,      stat_getmax_float   (errors, amount));
+		printf_colored("Average error", precision,      stat_average_float  (errors, amount));
+		printf_colored("Median error",  precision,      stat_median_float   (errors, amount));
+		printf_colored("Standard dev.", precision, sqrt(stat_variance_float (errors, amount)));
 	}
 	if (g_test.config.show_speed)
 	{
@@ -359,7 +359,7 @@ int		test_math_realoperator_libc(
 */
 
 #ifndef TARGET_PRECISION
-#define TARGET_PRECISION	0.00001
+#define TARGET_PRECISION	0.0001
 #endif
 
 int		testsuite_math(void)
