@@ -13,7 +13,7 @@ MATH_DECL_OPERATOR_ROP(t_sint, From, ldexp)
 t_f##BITS	F##BITS##_From(t_f##BITS mantissa, t_sint exponent) \
 { \
 	t_s64 e; \
-	u_f##BITS##_cast cast; \
+	u_cast_f##BITS cast; \
 	cast.value_float = mantissa; \
 	e = (cast.value_uint >> F##BITS##_MANTISSA_BITS) & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
 	e += exponent; \
@@ -90,13 +90,12 @@ MATH_DECL_FUNCTION(t_sint, GetExp2, ilogb)
 #else
 
 #define DEFINEFUNC_FLOAT_GETEXP2(BITS) \
-t_sint	F##BITS##_GetExp2(t_f##BITS number)						\
-{																\
-	u_f##BITS##_cast	cast;									\
-	cast.value_float = number;									\
-	return (((cast.value_uint & F##BITS##_EXPONENT) >>			\
-		F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS);	\
-}
+t_sint	F##BITS##_GetExp2(t_f##BITS number) \
+{ \
+	u_cast_f##BITS	cast; \
+	cast.value_float = number; \
+	return (((cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS);	\
+} \
 
 DEFINEFUNC_FLOAT_GETEXP2(32)
 DEFINEFUNC_FLOAT_GETEXP2(64)
@@ -113,10 +112,10 @@ DEFINEFUNC_FLOAT_GETEXP2(128)
 
 
 #define DEFINEFUNC_FLOAT_GETEXP10(BITS) \
-t_sint	F##BITS##_GetExp10(t_f##BITS number)					\
-{																\
-	return (F##BITS##_Trunc(F##BITS##_Log10(number)));			\
-}
+t_sint	F##BITS##_GetExp10(t_f##BITS number) \
+{ \
+	return (F##BITS##_Trunc(F##BITS##_Log10(number))); \
+} \
 
 DEFINEFUNC_FLOAT_GETEXP10(32)
 DEFINEFUNC_FLOAT_GETEXP10(64)
@@ -135,8 +134,8 @@ MATH_DECL_REALOPERATOR(CopySign, copysign)
 #define DEFINEFUNC_FLOAT_COPYSIGN(BITS) \
 t_f##BITS F##BITS##_CopySign(t_f##BITS x, t_f##BITS y) \
 { \
-	u_f##BITS##_cast cast_x; \
-	u_f##BITS##_cast cast_y; \
+	u_cast_f##BITS cast_x; \
+	u_cast_f##BITS cast_y; \
 	cast_x.value_float = x; \
 	cast_y.value_float = y; \
 	cast_x.value_uint &= ~F##BITS##_SIGNED; \

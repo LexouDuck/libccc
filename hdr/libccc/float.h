@@ -310,6 +310,17 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #ifndef FLT_EVAL_METHOD
 #define FLT_EVAL_METHOD	1
 #endif
+/*
+#if FLT_EVAL_METHOD == 0
+#define EPS FLT_EPSILON
+#elif FLT_EVAL_METHOD == 1
+#define EPS DBL_EPSILON
+#elif FLT_EVAL_METHOD == 2
+#define EPS LDBL_EPSILON
+#else
+#error "FLT_EVAL_METHOD has invalid value: "FLT_EVAL_METHOD
+#endif
+*/
 
 
 
@@ -332,7 +343,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F32_NEXT(X, TOWARD)	(nextafterf(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F32_MIN_VAL			(FLT_MIN)				//!< A 32-bit floating-point's minimum representable positive normal value.
 #define F32_MAX_VAL			(FLT_MAX)				//!< A 32-bit floating-point's maximum finite representable value.
-#define F32_EPSILON			(FLT_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F32_EPSILON			(0x1.p-23)				//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F32_MIN				(-INF)					//!< A 32-bit floating-point's minimum value (-infinity)
 #define F32_MAX				(+INF)					//!< A 32-bit floating-point's maximum value (+infinity)
 //!@}
@@ -354,7 +365,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F64_NEXT(X, TOWARD)	(nextafterd(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F64_MIN_VAL			(DBL_MIN)				//!< A 64-bit floating-point's minimum representable positive normal value.
 #define F64_MAX_VAL			(DBL_MAX)				//!< A 64-bit floating-point's maximum finite representable value.
-#define F64_EPSILON			(DBL_EPSILON)			//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F64_EPSILON			(0x1.p-52)				//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F64_MIN				(-INF)					//!< A 64-bit floating-point's minimum value (-infinity)
 #define F64_MAX				(+INF)					//!< A 64-bit floating-point's maximum value (+infinity)
 //!@}
@@ -371,12 +382,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F80_EXPONENT_BITS	(15)						//!< A 80-bit floating-point number's amount of bits dedicated to the exponent
 #define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
 #define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
-#define F80_MANTISSA_BITS	(64)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
-#define F80_INIT_VALUE		(0x1.p-64)					//!< A 80-bit floating-point number's value if all bits are zero
+#define F80_MANTISSA_BITS	(63)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
+#define F80_INIT_VALUE		(0x1.p-63)					//!< A 80-bit floating-point number's value if all bits are zero
 #define F80_NEXT(X, TOWARD)	(nextafterld(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F80_MIN_VAL			(LDBL_MIN)					//!< A 80-bit floating-point's minimum representable positive normal value.
 #define F80_MAX_VAL			(LDBL_MAX)					//!< A 80-bit floating-point's maximum finite representable value.
-#define F80_EPSILON			(LDBL_EPSILON)				//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F80_EPSILON			(0x1.p-63)					//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F80_MIN				(-INF)						//!< A 80-bit floating-point's minimum value (-infinity)
 #define F80_MAX				(+INF)						//!< A 80-bit floating-point's maximum value (+infinity)
 //!@}
@@ -398,7 +409,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F128_NEXT(X, TOWARD)	(nextafterq(X, TOWARD))					//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F128_MIN_VAL			(LDBL_MIN)								//!< A 128-bit floating-point's minimum representable positive normal value.
 #define F128_MAX_VAL			(LDBL_MAX)								//!< A 128-bit floating-point's maximum finite representable value.
-#define F128_EPSILON			(LDBL_EPSILON)							//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F128_EPSILON			(0x1.p-112)								//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F128_MIN				(-INF)									//!< A 128-bit floating-point's minimum value (-infinity)
 #define F128_MAX				(+INF)									//!< A 128-bit floating-point's maximum value (+infinity)
 //!@}
@@ -442,45 +453,62 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
+//! Used to force evaluation of a certain operation, without letting the compielr optimize it away
+#define FORCE_EVAL(x) \
+	do { \
+		if (sizeof(x) == 0) {} \
+		else if (sizeof(x) == sizeof(t_f32))	{	volatile t_f32	__x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(t_f64))	{	volatile t_f64	__x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(t_f80))	{	volatile t_f80	__x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(t_f128))	{	volatile t_f128	__x;	__x = (x);	} \
+		else {} \
+	} while(0) \
+
+
+
 //! Union type to allow direct bitwise manipulation of floating-point values
 /*!
 **	This union type is used in several math function implementations, to
 **	manipulate float bits directly, by using bitwise operators with int types.
 */
 //!@{
-typedef union f32_cast
+typedef union cast_f32
 {
 	t_f32	value_float;
 	s32_t	value_sint;
 	u32_t	value_uint;
-}	u_f32_cast;
+	struct { u16_t hi; u16_t lo; }	split;
+}	u_cast_f32;
 
-typedef union f64_cast
+typedef union cast_f64
 {
 	t_f64	value_float;
 	s64_t	value_sint;
 	u64_t	value_uint;
-}	u_f64_cast;
+	struct { u32_t hi; u32_t lo; }	split;
+}	u_cast_f64;
 
 #if LIBCONFIG_USE_FLOAT80
-typedef union f80_cast
+typedef union cast_f80
 {
 	t_f80	value_float;
 	s128_t	value_sint;
 	u128_t	value_uint;
-}	u_f80_cast;
+	struct { u64_t hi; u64_t lo; }	split;
+}	u_cast_f80;
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-typedef union f128_cast
+typedef union cast_f128
 {
 	t_f128	value_float;
 	s128_t	value_sint;
 	u128_t	value_uint;
-}	u_f128_cast;
+	struct { u64_t hi; u64_t lo; }	split;
+}	u_cast_f128;
 #endif
 
-typedef union float_cast
+typedef union cast_float
 {
 	t_float	value_float;
 #if (LIBCONFIG_FLOAT_BITS == 32)
@@ -493,7 +521,7 @@ typedef union float_cast
 	s128_t	value_sint;
 	u128_t	value_uint;
 #endif
-}	u_float_cast;
+}	u_cast_float;
 //!@}
 
 

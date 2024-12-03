@@ -165,6 +165,8 @@ HEADER_CPP
 **	- Decimal: `6.283185307179586476925286766559005768394338798750211641949...`
 */
 #define TAU 			(0x1.921FB54442D18p+2L)
+//! Alias for #TAU
+#define PI_DOUBLE	TAU
 
 //! Mathematical constant: Inverse of pi `1/π` (`1 / PI`)
 /*!
