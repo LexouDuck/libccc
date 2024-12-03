@@ -12,19 +12,33 @@
 MATH_DECL_REALFUNCTION(Round, round)
 #else
 #define DEFINEFUNC_FLOAT_ROUND(BITS) \
-extern inline t_f##BITS	F##BITS##_Round(t_f##BITS x)	\
-{													\
-	t_f##BITS fraction = F##BITS##_Mod(x, 1.);		\
-	if (x == 0.)									\
-		return (0.);								\
-	if (x < 0.)										\
-		return (fraction < 0.5 ?					\
-			(x + fraction) :						\
-			(x - (1 - fraction)));					\
-	else											\
-		return (fraction < 0.5 ?					\
-			(x - fraction) :						\
-			(x + (1 - fraction)));					\
+extern inline t_f##BITS	F##BITS##_Round(t_f##BITS x) \
+{ \
+	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \
+	t_f##BITS y; \
+	t_sint e; \
+	u_cast_f##BITS cast; \
+	cast.value_float = x; \
+	e = (cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS; \
+	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
+		return x; \
+	if (cast.value_uint >> (BITS - 1)) \
+		x = -x; \
+	if (e < ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) - 1) \
+	{ \
+		/* FORCE_EVAL(x + toint); */ \
+		return (0 * cast.value_float); \
+	} \
+	y = x + toint - toint - x; \
+	if (y > 0.5) \
+		y = y + x - 1; \
+	else if (y <= -0.5) \
+		y = y + x + 1; \
+	else \
+		y = y + x; \
+	if (cast.value_uint >> (BITS - 1)) \
+		y = -y; \
+	return y; \
 }
 
 DEFINEFUNC_FLOAT_ROUND(32)

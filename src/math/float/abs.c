@@ -11,16 +11,13 @@
 MATH_DECL_REALFUNCTION(Abs, fabs)
 #else
 #define DEFINEFUNC_FLOAT_ABS(BITS) \
-extern inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
-{												\
-	u_f##BITS##_cast	result;					\
-	result.value_float = x;						\
-	if (result.value_uint & F##BITS##_SIGNED)	\
-	{											\
-		result.value_uint &= ~F##BITS##_SIGNED;	\
-	}											\
-	return (result.value_float);				\
-}
+extern inline t_f##BITS	F##BITS##_Abs(t_f##BITS x) \
+{ \
+	u_cast_f##BITS	result; \
+	result.value_float = x; \
+	result.value_uint &= ~F##BITS##_SIGNED; \
+	return (result.value_float); \
+} \
 
 DEFINEFUNC_FLOAT_ABS(32)
 DEFINEFUNC_FLOAT_ABS(64)
