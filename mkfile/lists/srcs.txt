@@ -89,9 +89,13 @@
 ./src/math/fixed/op_mul.c
 ./src/math/fixed/op_sub.c
 ./src/math/fixed/rounding.c
-./src/math/float/abs.c
 ./src/math/float/equals.c
 ./src/math/float/exp.c
+./src/math/float/fn_abs.c
+./src/math/float/fn_ceil.c
+./src/math/float/fn_floor.c
+./src/math/float/fn_round.c
+./src/math/float/fn_trunc.c
 ./src/math/float/log.c
 ./src/math/float/op_add.c
 ./src/math/float/op_div.c
@@ -100,7 +104,6 @@
 ./src/math/float/op_pow.c
 ./src/math/float/op_root.c
 ./src/math/float/op_sub.c
-./src/math/float/rounding.c
 ./src/math/float/trig_acos.c
 ./src/math/float/trig_acosh.c
 ./src/math/float/trig_asin.c
