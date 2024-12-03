@@ -373,33 +373,32 @@ int		testsuite_math(void)
 	// TODO test getexp()
 
 	print_math_title("Absolute Value");
-	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e1});
-	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
+	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
+	print_math_title("Round");
+	test_math_realfunction_libc("round", &_round, &c_fround, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("round", &_round, &c_fround, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
+	print_math_title("Truncate");
+	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
+	print_math_title("Floor");
+	test_math_realfunction_libc("floor", &_floor, &c_ffloor, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("floor", &_floor, &c_ffloor, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
+	print_math_title("Ceiling");
+	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
+
 
 	print_math_title("Modulo");
 	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
 	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
 	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
 	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
-
-
-
-//	TODO
-//	print_math_title("Round");
-//	test_math_realfunction_libc("round", &_round, &c_round, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e1});
-//	test_math_realfunction_libc("round", &_round, &c_round, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
-
-	print_math_title("Truncate");
-	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e1});
-	test_math_realfunction_libc("trunc", &_trunc, &c_ftrunc, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
-
-	print_math_title("Floor");
-	test_math_realfunction_libc("floor", &_floor, &c_ffloor, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e1});
-	test_math_realfunction_libc("floor", &_floor, &c_ffloor, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
-
-	print_math_title("Ceiling");
-	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e1});
-	test_math_realfunction_libc("ceil", &_ceil, &c_fceil, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
 
 
 
