@@ -779,6 +779,35 @@ t_f128					F128_NearbyInt(t_f128 number);
 #endif
 //!@}
 
+//!@doc Rounds the floating-point argument to an integer value in integer format, using the current rounding mode.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/lrint}
+*/
+//!@{
+#define					Float_ToInt	CONCAT(FLOAT_TYPE,_ToInt)
+#define c_rint			Float_ToInt
+#define c_ftoint		Float_ToInt
+
+t_sint					F32_ToInt(t_f32 number);
+#define c_f32toint		F32_ToInt
+#define c_rintf			F32_ToInt
+
+t_sint					F64_ToInt(t_f64 number);
+#define c_f64toint		F64_ToInt
+#define c_rintd			F64_ToInt
+
+#if LIBCONFIG_USE_FLOAT80
+t_sint					F80_ToInt(t_f80 number);
+#define c_f80toint		F80_ToInt
+#define c_rintl			F80_ToInt
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_sint					F128_ToInt(t_f128 number);
+#define c_f128toint		F128_ToInt
+#define c_rintl			F128_ToInt
+#endif
+//!@}
+
 
 
 

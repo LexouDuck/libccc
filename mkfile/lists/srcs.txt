@@ -36,7 +36,10 @@
 ./src/fixed/fixed_from_str.c
 ./src/fixed/fixed_to_str.c
 ./src/float/float.c
+./src/float/float_copy.c
+./src/float/float_exp.c
 ./src/float/float_from_str.c
+./src/float/float_int.c
 ./src/float/float_to_str.c
 ./src/image/color/argb_get.c
 ./src/image/color/argb_set.c
@@ -125,6 +128,8 @@
 ./src/math/int/fn_sgn.c
 ./src/math/int/op_add.c
 ./src/math/int/op_div.c
+./src/math/int/op_gcd.c
+./src/math/int/op_lcm.c
 ./src/math/int/op_mod.c
 ./src/math/int/op_mul.c
 ./src/math/int/op_pow.c

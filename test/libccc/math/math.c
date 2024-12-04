@@ -231,6 +231,9 @@ int		test_math_realoperator_libc(
 
 //	#define _f(x)	f(x)
 #if LIBCONFIG_FLOAT_BITS == 32
+	#define _nearbyint	nearbyintf
+	#define _nextafter	nextafterf
+	#define _copysign	copysignf
 	#define _getexp		ilogbf
 	#define _fabs		fabsf
 	#define _fmod		fmodf
@@ -263,6 +266,9 @@ int		test_math_realoperator_libc(
 #endif
 
 #if LIBCONFIG_FLOAT_BITS == 64
+	#define _nearbyint	nearbyint
+	#define _nextafter	nextafter
+	#define _copysign	copysign
 	#define _getexp		ilogb
 	#define _fabs		fabs
 	#define _fmod		fmod
@@ -295,6 +301,9 @@ int		test_math_realoperator_libc(
 #endif
 
 #if LIBCONFIG_FLOAT_BITS == 80 || LIBCONFIG_FLOAT_BITS == 128
+	#define _nearbyint	nearbyintl
+	#define _nextafter	nextafterl
+	#define _copysign	copysignl
 	#define _getexp		ilogbl
 	#define _fabs		fabsl
 	#define _fmod		fmodl
@@ -345,8 +354,20 @@ int		testsuite_math(void)
 	print_math_foreword();
 
 
+/*
+	print_math_title("Get Exponent (base-2)");
+	test_math_realfunction_libc("getexp", &_getexp, &c_fgetexp2, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+*/
+	print_math_title("Nearby Int");
+	test_math_realfunction_libc("nearbyint", &_nearbyint, &c_nearbyint, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9});
 
-	// TODO test getexp()
+	print_math_title("Next After");
+	test_math_realoperator_libc("nextafter", &_nextafter, &c_nextafter, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
+
+	print_math_title("Copy Sign");
+	test_math_realoperator_libc("copysign", &_copysign, &c_copysign, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
+
+
 
 	print_math_title("Absolute Value");
 	test_math_realfunction_libc("abs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
