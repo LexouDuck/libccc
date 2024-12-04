@@ -13,8 +13,8 @@ MATH_DECL_REALOPERATOR(Mod, fmod)
 #define DEFINEFUNC_FLOAT_MOD(BITS) \
 t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b) \
 { \
-	t_f##BITS fa; \
-	t_f##BITS fb; \
+	t_f##BITS abs_a; \
+	t_f##BITS abs_b; \
 	t_f##BITS dividend; \
 	t_f##BITS divisor; \
 	t_s64 expo_a; \
@@ -23,19 +23,19 @@ t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b) \
 		return (a + b); \
 	else if (IS_INF(a) || (b == 0.0)) \
 		return (NAN); \
-	fa = F##BITS##_Abs(a); \
-	fb = F##BITS##_Abs(b); \
-	if (fa >= fb) \
+	abs_a = F##BITS##_Abs(a); \
+	abs_b = F##BITS##_Abs(b); \
+	if (abs_a >= abs_b) \
 	{ \
-		dividend = fa; \
-		expo_a = F##BITS##_GetExp2(fa); \
-		expo_b = F##BITS##_GetExp2(fb); \
-		divisor = F##BITS##_From(fb, expo_a - expo_b); \
+		dividend = abs_a; \
+		expo_a = F##BITS##_GetExp2(abs_a); \
+		expo_b = F##BITS##_GetExp2(abs_b); \
+		divisor = F##BITS##_From(abs_b, expo_a - expo_b); \
 		if (divisor <= dividend * 0.5) \
 		{ \
 			divisor += divisor; \
 		} \
-		while (divisor >= fb) \
+		while (divisor >= abs_b) \
 		{ \
 			if (dividend >= divisor) \
 			{ \

@@ -102,6 +102,7 @@
 ./src/math/float/op_mod.c
 ./src/math/float/op_mul.c
 ./src/math/float/op_pow.c
+./src/math/float/op_rem.c
 ./src/math/float/op_root.c
 ./src/math/float/op_sub.c
 ./src/math/float/rel_equals.c
@@ -127,6 +128,7 @@
 ./src/math/int/op_mod.c
 ./src/math/int/op_mul.c
 ./src/math/int/op_pow.c
+./src/math/int/op_rem.c
 ./src/math/int/op_sub.c
 ./src/math/int/rel_equals.c
 ./src/math/int/rel_orders.c

@@ -294,6 +294,7 @@ t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
 #define c_fadd			Float_Add
+#define Float_Addition	Float_Add
 
 t_f32					F32_Add(t_f32 x, t_f32 y);
 #define c_f32add		F32_Add
@@ -318,6 +319,7 @@ t_f128					F128_Add(t_f128 x, t_f128 y);
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
 #define c_fsub			Float_Sub
 #define Float_Subtract	Float_Sub
+#define Float_Subtraction	Float_Sub
 
 t_f32					F32_Sub(t_f32 x, t_f32 y);
 #define c_f32sub		F32_Sub
@@ -342,6 +344,7 @@ t_f128					F128_Sub(t_f128 x, t_f128 y);
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
 #define c_fmul			Float_Mul
 #define Float_Multiply	Float_Mul
+#define Float_Multiplication	Float_Mul
 
 t_f32					F32_Mul(t_f32 x, t_f32 y);
 #define c_f32mul		F32_Mul
@@ -366,6 +369,7 @@ t_f128					F128_Mul(t_f128 x, t_f128 y);
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
 #define c_fdiv			Float_Div
 #define Float_Divide	Float_Div
+#define Float_Division	Float_Div
 
 t_f32					F32_Div(t_f32 x, t_f32 y);
 #define c_f32div		F32_Div
@@ -415,6 +419,69 @@ t_f80						F80_Mod(t_f80 x, t_f80 y);
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Mod(t_f128 x, t_f128 y);
 #define c_f128mod			F128_Mod
+#endif
+//!@}
+
+
+
+//!@doc Returns the remainder of euclidian division of `x` by `y`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/remainder}
+*/
+//!@{
+#define						Float_Rem	CONCAT(FLOAT_TYPE,_Rem)
+#define c_frem				Float_Rem
+#define c_fremainder		Float_Rem
+#define Float_Remainder		Float_Rem
+
+t_f32						F32_Rem(t_f32 x, t_f32 y);
+#define c_f32rem			F32_Rem
+#define c_f32remainder		F32_Rem
+#define F32_Remainder		F32_Rem
+
+t_f64						F64_Rem(t_f64 x, t_f64 y);
+#define c_f64rem			F64_Rem
+#define c_f64remainder		F64_Rem
+#define F64_Remainder		F64_Rem
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_Rem(t_f80 x, t_f80 y);
+#define c_f80rem			F80_Rem
+#define c_f80remainder		F80_Rem
+#define F80_Remainder		F80_Rem
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_Rem(t_f128 x, t_f128 y);
+#define c_f128rem			F128_Rem
+#define c_f128remainder		F128_Rem
+#define F128_Remainder		F128_Rem
+#endif
+//!@}
+
+
+
+//!@doc Returns the remainder and quotient of euclidian division of `x` by `y`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/remquo}
+*/
+//!@{
+#define							Float_RemQuo	CONCAT(FLOAT_TYPE,_RemQuo)
+#define c_fremquo				Float_RemQuo
+#define Float_RemainderQuotient	Float_RemQuo
+
+t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_s32* quotient);
+#define c_f32remquo			F32_RemQuo
+
+t_f64						F64_RemQuo(t_f64 x, t_f64 y, t_s64* quotient);
+#define c_f64remquo			F64_RemQuo
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_RemQuo(t_f80 x, t_f80 y, t_s80* quotient);
+#define c_f80remquo			F80_RemQuo
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_RemQuo(t_f128 x, t_f128 y, t_s128* quotient);
+#define c_f128remquo		F128_RemQuo
 #endif
 //!@}
 
@@ -594,6 +661,7 @@ t_f128							F128_Exp(t_f128 x);
 //!@{
 #define							Float_Ln	CONCAT(FLOAT_TYPE,_Ln)
 #define c_fln					Float_Ln
+#define Float_NaturalLog		Float_Ln
 #define Float_NaturalLogarithm	Float_Ln
 
 t_f32							F32_Ln(t_f32 x);
@@ -620,6 +688,7 @@ t_f128							F128_Ln(t_f128 x);
 #define							Float_Log2	CONCAT(FLOAT_TYPE,_Log2)
 #define c_flg					Float_Log2
 #define c_flog2					Float_Log2
+#define Float_Base2Log			Float_Log2
 #define Float_Logarithm_Base2	Float_Log2
 
 t_f32							F32_Log2(t_f32 x);
@@ -650,6 +719,7 @@ t_f128							F128_Log2(t_f128 x);
 #define							Float_Log10	CONCAT(FLOAT_TYPE,_Log10)
 #define c_flog					Float_Log10
 #define c_flog10				Float_Log10
+#define Float_Base10Log			Float_Log10
 #define Float_Logarithm_Base10	Float_Log10
 
 t_f32							F32_Log10(t_f32 x);
@@ -679,6 +749,7 @@ t_f128							F128_Log10(t_f128 x);
 //!@{
 #define							Float_LogN	CONCAT(FLOAT_TYPE,_LogN)
 #define c_flogn					Float_LogN
+#define Float_BaseNLog			Float_LogN
 #define Float_Logarithm_BaseN	Float_LogN
 
 t_f32							F32_LogN(t_f32 x, t_f32 n);
@@ -792,6 +863,7 @@ t_f128						F128_Tan(t_f128 x);
 #define							Float_ArcCos	CONCAT(FLOAT_TYPE,_ArcCos)
 #define c_facos					Float_ArcCos
 #define Float_Cos_1				Float_ArcCos
+#define Float_ArcCosine			Float_ArcCos
 #define Float_InvCosine			Float_ArcCos
 
 t_f32							F32_ArcCos(t_f32 x);
@@ -818,6 +890,7 @@ t_f128							F128_ArcCos(t_f128 x);
 #define							Float_ArcSin	CONCAT(FLOAT_TYPE,_ArcSin)
 #define c_fasin					Float_ArcSin
 #define Float_Sin_1				Float_ArcSin
+#define Float_ArcSine			Float_ArcSin
 #define Float_InvSine			Float_ArcSin
 
 t_f32							F32_ArcSin(t_f32 x);
@@ -844,6 +917,7 @@ t_f128							F128_ArcSin(t_f128 x);
 #define							Float_ArcTan	CONCAT(FLOAT_TYPE,_ArcTan)
 #define c_fatan					Float_ArcTan
 #define Float_Tan_1				Float_ArcTan
+#define Float_ArcTangent		Float_ArcTan
 #define Float_InvTangent		Float_ArcTan
 
 t_f32							F32_ArcTan(t_f32 x);
@@ -874,6 +948,9 @@ t_f128							F128_ArcTan(t_f128 x);
 #define Float_ArcTan_YoverX			Float_ArcTan2
 #define Float_ArcTangent2			Float_ArcTan2
 #define Float_ArcTangent_YoverX		Float_ArcTan2
+#define Float_InvTan_YoverX			Float_ArcTan2
+#define Float_InvTangent2			Float_ArcTan2
+#define Float_InvTangent_YoverX		Float_ArcTan2
 
 t_f32								F32_ArcTan2(t_f32 y, t_f32 x);
 #define c_f32atan2					F32_ArcTan2

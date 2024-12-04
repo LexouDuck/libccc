@@ -234,6 +234,8 @@ int		test_math_realoperator_libc(
 	#define _getexp		ilogbf
 	#define _fabs		fabsf
 	#define _fmod		fmodf
+	#define _rem		remainderf
+	#define _remquo		remquof
 	#define _round		roundf
 	#define _trunc		truncf
 	#define _floor		floorf
@@ -264,6 +266,8 @@ int		test_math_realoperator_libc(
 	#define _getexp		ilogb
 	#define _fabs		fabs
 	#define _fmod		fmod
+	#define _rem		remainder
+	#define _remquo		remquo
 	#define _round		round
 	#define _trunc		trunc
 	#define _floor		floor
@@ -290,10 +294,12 @@ int		test_math_realoperator_libc(
 	#define _atanh		atanh
 #endif
 
-#if LIBCONFIG_FLOAT_BITS == 80
+#if LIBCONFIG_FLOAT_BITS == 80 || LIBCONFIG_FLOAT_BITS == 128
 	#define _getexp		ilogbl
 	#define _fabs		fabsl
 	#define _fmod		fmodl
+	#define _rem		remainderl
+	#define _remquo		remquol
 	#define _round		roundl
 	#define _trunc		truncl
 	#define _floor		floorl
@@ -320,36 +326,6 @@ int		test_math_realoperator_libc(
 	#define _atanh		atanhl
 #endif
 
-#if LIBCONFIG_FLOAT_BITS == 128
-	#define _getexp		ilogbq
-	#define _fabs		fabsq
-	#define _fmod		fmodq
-	#define _round		roundq
-	#define _trunc		truncq
-	#define _floor		floorq
-	#define _ceil		ceilq
-	#define _pow		powq
-	#define _sqrt		sqrtq
-	#define _cbrt		cbrtq
-	#define _exp		expq
-	#define _ln			logq
-	#define _lg			log2q
-	#define _log		log10q
-	#define _cos		cosq
-	#define _sin		sinq
-	#define _tan		tanq
-	#define _acos		acosq
-	#define _asin		asinq
-	#define _atan		atanq
-	#define _atan2		atan2q
-	#define _cosh		coshq
-	#define _sinh		sinhq
-	#define _tanh		tanhq
-	#define _acosh		acoshq
-	#define _asinh		asinhq
-	#define _atanh		atanhq
-#endif
-
 
 
 /*
@@ -373,8 +349,8 @@ int		testsuite_math(void)
 	// TODO test getexp()
 
 	print_math_title("Absolute Value");
-	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
-	test_math_realfunction_libc("fabs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+	test_math_realfunction_libc("abs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
+	test_math_realfunction_libc("abs", &_fabs, &c_fabs, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
 
 	print_math_title("Round");
 	test_math_realfunction_libc("round", &_round, &c_fround, TARGET_PRECISION, 10000, (s_interval){-1e1,+1e1});
@@ -395,10 +371,16 @@ int		testsuite_math(void)
 
 
 	print_math_title("Modulo");
-	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
-	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
-	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
-	test_math_realoperator_libc("fmod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("mod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("mod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("mod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("mod", &_fmod, &c_fmod, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
+
+	print_math_title("Remainder");
+	test_math_realoperator_libc("rem", &_rem, &c_frem, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("rem", &_rem, &c_frem, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("rem", &_rem, &c_frem, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("rem", &_rem, &c_frem, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
 
 
 
