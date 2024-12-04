@@ -696,28 +696,89 @@ t_f128	 				F128_FromFloat(t_float number);
 **	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/copysign}
 */
 //!@{
-#define					Float_CopySign	CONCAT(FLOAT_TYPE,_From)
+#define					Float_CopySign	CONCAT(FLOAT_TYPE,_CopySign)
 #define c_copysign		Float_CopySign
 
 t_f32					F32_CopySign(t_f32 target, t_f32 source);
-#define c_copysignf32	F32_CopySign
+#define c_f32copysign	F32_CopySign
 #define c_copysignf		F32_CopySign
 
 t_f64					F64_CopySign(t_f64 target, t_f64 source);
-#define c_copysignf64	F64_CopySign
+#define c_f64copysign	F64_CopySign
 #define c_copysignd		F64_CopySign
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_CopySign(t_f80 target, t_f80 source);
-#define c_copysignf80	F80_CopySign
+#define c_f80copysign	F80_CopySign
 #define c_copysignl		F80_CopySign
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_CopySign(t_f128 target, t_f128 source);
-#define c_copysignf128	F128_CopySign
+#define c_f128copysign	F128_CopySign
 #define c_copysignl		F128_CopySign
 #endif
 //!@}
+
+
+
+//!@doc Returns the next representable value of `number` in the direction of `toward`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/nextafter}
+*/
+//!@{
+#define					Float_NextAfter	CONCAT(FLOAT_TYPE,_NextAfter)
+#define c_nextafter		Float_NextAfter
+
+t_f32					F32_NextAfter(t_f32 number, t_f32 toward);
+#define c_f32nextafter	F32_NextAfter
+#define c_nextafterf	F32_NextAfter
+
+t_f64					F64_NextAfter(t_f64 number, t_f64 toward);
+#define c_f64nextafter	F64_NextAfter
+#define c_nextafterd	F64_NextAfter
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_NextAfter(t_f80 number, t_f80 toward);
+#define c_f80nextafter	F80_NextAfter
+#define c_nextafterl	F80_NextAfter
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_NextAfter(t_f128 number, t_f128 toward);
+#define c_f128nextafter	F128_NextAfter
+#define c_nextafterl	F128_NextAfter
+#endif
+//!@}
+
+
+
+//!@doc Rounds the floating-point argument to an integer value in floating-point format, using the current rounding mode.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/nearbyint}
+*/
+//!@{
+#define					Float_NearbyInt	CONCAT(FLOAT_TYPE,_NearbyInt)
+#define c_nearbyint		Float_NearbyInt
+
+t_f32					F32_NearbyInt(t_f32 number);
+#define c_f32nearbyint	F32_NearbyInt
+#define c_nearbyintf	F32_NearbyInt
+
+t_f64					F64_NearbyInt(t_f64 number);
+#define c_f64nearbyint	F64_NearbyInt
+#define c_nearbyintd	F64_NearbyInt
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_NearbyInt(t_f80 number);
+#define c_f80nearbyint	F80_NearbyInt
+#define c_nearbyintl	F80_NearbyInt
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_NearbyInt(t_f128 number);
+#define c_f128nearbyint	F128_NearbyInt
+#define c_nearbyintl	F128_NearbyInt
+#endif
+//!@}
+
 
 
 
