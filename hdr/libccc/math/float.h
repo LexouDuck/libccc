@@ -617,7 +617,38 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 #endif
 //!@}
 
-// TODO hypot: {\sqrt{x^2+y^2}}
+
+
+//!@doc Computes the square root of the sum of the squares of `x` and `y`, without undue overflow or underflow at intermediate stages of the computation.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/hypot}
+**
+**	{\sqrt{x^2+y^2}}
+*/
+//!@{
+#define						Float_Hypotenuse	CONCAT(FLOAT_TYPE,_Hypotenuse)
+#define c_fhypot			Float_Hypotenuse
+#define Float_Hypot			Float_Hypotenuse
+
+t_f32						F32_Hypotenuse(t_f32 x, t_f32 y);
+#define c_f32hypot			F32_Hypotenuse
+#define c_hypotf			F32_Hypotenuse
+
+t_f64						F64_Hypotenuse(t_f64 x, t_f64 y);
+#define c_f64hypot			F64_Hypotenuse
+#define c_hypot				F64_Hypotenuse
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_Hypotenuse(t_f80 x, t_f80 y);
+#define c_f80hypot			F80_Hypotenuse
+#define c_hypotl			F80_Hypotenuse
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_Hypotenuse(t_f128 x, t_f128 y);
+#define c_f128hypot			F128_Hypotenuse
+#define c_hypotl			F128_Hypotenuse
+#endif
+//!@}
 
 
 

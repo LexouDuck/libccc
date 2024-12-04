@@ -246,6 +246,7 @@ int		test_math_realoperator_libc(
 	#define _pow		powf
 	#define _sqrt		sqrtf
 	#define _cbrt		cbrtf
+	#define _hypot		hypotf
 	#define _exp		expf
 	#define _ln			logf
 	#define _lg			log2f
@@ -281,6 +282,7 @@ int		test_math_realoperator_libc(
 	#define _pow		pow
 	#define _sqrt		sqrt
 	#define _cbrt		cbrt
+	#define _hypot		hypot
 	#define _exp		exp
 	#define _ln			log
 	#define _lg			log2
@@ -316,6 +318,7 @@ int		test_math_realoperator_libc(
 	#define _pow		powl
 	#define _sqrt		sqrtl
 	#define _cbrt		cbrtl
+	#define _hypot		hypotl
 	#define _exp		expl
 	#define _ln			logl
 	#define _lg			log2l
@@ -355,6 +358,9 @@ int		testsuite_math(void)
 
 
 /*
+	print_math_title("Split Float");
+	test_math_realfunction_libc("frexp", &_frexp, &c_frexp, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
+
 	print_math_title("Get Exponent (base-2)");
 	test_math_realfunction_libc("getexp", &_getexp, &c_fgetexp2, TARGET_PRECISION, 10000, (s_interval){-1e9,+1e9});
 */
@@ -418,8 +424,6 @@ int		testsuite_math(void)
 //	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, TARGET_PRECISION, 100, (s_interval){ 0e0,+4e0}, (s_interval){-1e6,+1e6});
 //	test_math_realoperator_libc("pow_n", NULL, &c_fintpow, TARGET_PRECISION, 100, (s_interval){-1e1,+1e9}, (s_interval){-1e6,+1e6});
 
-
-
 	print_math_title("Square root");
 	test_math_realfunction_libc("sqrt", &_sqrt, &c_fsqrt, TARGET_PRECISION, 1000, (s_interval){ 0e0,+5e0});
 	test_math_realfunction_libc("sqrt", &_sqrt, &c_fsqrt, TARGET_PRECISION, 1000, (s_interval){-1e1,+1e9});
@@ -434,6 +438,12 @@ int		testsuite_math(void)
 //	test_math_realoperator_libc("nrt", NULL, &c_nrt, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
 //	test_math_realoperator_libc("nrt", NULL, &c_nrt, TARGET_PRECISION, 100, (s_interval){ 0e0,+5e0}, (s_interval){-1e6,+1e6});
 //	test_math_realoperator_libc("nrt", NULL, &c_nrt, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e6,+1e6});
+
+	print_math_title("Hypotenuse");
+	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
 
 
 
@@ -463,10 +473,12 @@ int		testsuite_math(void)
 
 
 	print_math_title("Cosine");
+	test_math_realfunction_libc("cos", &_cos, &c_fcos, TARGET_PRECISION, 1000, (s_interval){-PI_HALF,+PI_HALF});
 	test_math_realfunction_libc("cos", &_cos, &c_fcos, TARGET_PRECISION, 1000, (s_interval){-TAU,+TAU*2});
 	test_math_realfunction_libc("cos", &_cos, &c_fcos, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
 
 	print_math_title("Sine");
+	test_math_realfunction_libc("sin", &_sin, &c_fsin, TARGET_PRECISION, 1000, (s_interval){ 0, +PI });
 	test_math_realfunction_libc("sin", &_sin, &c_fsin, TARGET_PRECISION, 1000, (s_interval){-TAU,+TAU*2});
 	test_math_realfunction_libc("sin", &_sin, &c_fsin, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
 

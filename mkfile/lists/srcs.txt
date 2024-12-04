@@ -102,6 +102,7 @@
 ./src/math/float/log.c
 ./src/math/float/op_add.c
 ./src/math/float/op_div.c
+./src/math/float/op_hypot.c
 ./src/math/float/op_mod.c
 ./src/math/float/op_mul.c
 ./src/math/float/op_pow.c

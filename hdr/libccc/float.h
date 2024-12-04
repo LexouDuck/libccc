@@ -691,6 +691,36 @@ t_f128	 				F128_FromFloat(t_float number);
 
 
 
+//!@doc Decomposes given floating-point value into a normalized fraction and an integral power of two.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/frexp}
+*/
+//!@{
+#define					Float_Split	CONCAT(FLOAT_TYPE,_Split)
+#define c_frexp		Float_Split
+
+t_f32					F32_Split(t_f32 number, t_sint* exponent);
+#define c_frexpf		F32_Split
+#define c_f32split		F32_Split
+
+t_f64					F64_Split(t_f64 number, t_sint* exponent);
+#define c_frexpd		F64_Split
+#define c_f64split		F64_Split
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_Split(t_f80 number, t_sint* exponent);
+#define c_frexpl		F80_Split
+#define c_f80split		F80_Split
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_Split(t_f128 number, t_sint* exponent);
+#define c_frexpl		F128_Split
+#define c_f128split		F128_Split
+#endif
+//!@}
+
+
+
 //!@doc Copies the sign value from the given `source` to the given `target`, and returns it.
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/copysign}
