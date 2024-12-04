@@ -1,0 +1,68 @@
+
+#include "libccc/int.h"
+#include "libccc/math/int.h"
+#include "libccc/math.h"
+
+#include LIBCONFIG_ERROR_INCLUDE
+
+
+
+#define DEFINEFUNC_FLOAT_GT(BITS) \
+inline t_bool	F##BITS##_GT(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a > b); \
+} \
+
+DEFINEFUNC_FLOAT_GT(32)
+DEFINEFUNC_FLOAT_GT(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_GT(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_GT(128)
+#endif
+
+#define DEFINEFUNC_FLOAT_LT(BITS) \
+inline t_bool	F##BITS##_LT(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a < b); \
+} \
+
+DEFINEFUNC_FLOAT_LT(32)
+DEFINEFUNC_FLOAT_LT(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_LT(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_LT(128)
+#endif
+
+#define DEFINEFUNC_FLOAT_GTE(BITS) \
+inline t_bool	F##BITS##_GTE(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a >= b); \
+} \
+
+DEFINEFUNC_FLOAT_GTE(32)
+DEFINEFUNC_FLOAT_GTE(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_GTE(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_GTE(128)
+#endif
+
+#define DEFINEFUNC_FLOAT_LTE(BITS) \
+inline t_bool	F##BITS##_LTE(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a <= b); \
+} \
+
+DEFINEFUNC_FLOAT_LTE(32)
+DEFINEFUNC_FLOAT_LTE(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_LTE(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_LTE(128)
+#endif

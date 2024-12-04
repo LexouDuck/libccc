@@ -17,6 +17,16 @@ extern inline t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b)	\
 	return (a + b);											\
 }
 
+DEFINEFUNC_UINT_ADD(8)
+DEFINEFUNC_UINT_ADD(16)
+DEFINEFUNC_UINT_ADD(32)
+DEFINEFUNC_UINT_ADD(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINT_ADD(128)
+#endif
+
+
+
 #define DEFINEFUNC_SINT_ADD(BITS) \
 extern inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 {															\
@@ -34,26 +44,17 @@ extern inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 	return (a + b);											\
 }
 
+DEFINEFUNC_SINT_ADD(8)
+DEFINEFUNC_SINT_ADD(16)
+DEFINEFUNC_SINT_ADD(32)
+DEFINEFUNC_SINT_ADD(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_ADD(128)
+#endif
+
 /*
 (+) + (+) = [0, +2N] => (a > MAX - b)
 (+) + (-) = [-N, +N]
 (-) + (+) = [-N, +N]
 (-) + (-) = [-2N, 0] => (a < MIN - b)
 */
-
-DEFINEFUNC_UINT_ADD(8)
-DEFINEFUNC_SINT_ADD(8)
-
-DEFINEFUNC_UINT_ADD(16)
-DEFINEFUNC_SINT_ADD(16)
-
-DEFINEFUNC_UINT_ADD(32)
-DEFINEFUNC_SINT_ADD(32)
-
-DEFINEFUNC_UINT_ADD(64)
-DEFINEFUNC_SINT_ADD(64)
-
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_ADD(128)
-DEFINEFUNC_SINT_ADD(128)
-#endif

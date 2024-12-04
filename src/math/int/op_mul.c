@@ -19,6 +19,16 @@ extern inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)				\
 	return (a * b);														\
 }
 
+DEFINEFUNC_UINT_MUL(8)
+DEFINEFUNC_UINT_MUL(16)
+DEFINEFUNC_UINT_MUL(32)
+DEFINEFUNC_UINT_MUL(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINT_MUL(128)
+#endif
+
+
+
 #define DEFINEFUNC_SINT_MUL(BITS) \
 extern inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
 {																		\
@@ -31,28 +41,17 @@ extern inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
 	return (a * b);														\
 }
 
+DEFINEFUNC_SINT_MUL(8)
+DEFINEFUNC_SINT_MUL(16)
+DEFINEFUNC_SINT_MUL(32)
+DEFINEFUNC_SINT_MUL(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_MUL(128)
+#endif
+
 /*
 (+) * (+) = [0, +N²] => ()
 (+) * (-) = [-N², 0] => ()
 (-) * (+) = [-N², 0] => ()
 (-) * (-) = [0, +N²] => ()
 */
-
-
-
-DEFINEFUNC_UINT_MUL(8)
-DEFINEFUNC_SINT_MUL(8)
-
-DEFINEFUNC_UINT_MUL(16)
-DEFINEFUNC_SINT_MUL(16)
-
-DEFINEFUNC_UINT_MUL(32)
-DEFINEFUNC_SINT_MUL(32)
-
-DEFINEFUNC_UINT_MUL(64)
-DEFINEFUNC_SINT_MUL(64)
-
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_MUL(128)
-DEFINEFUNC_SINT_MUL(128)
-#endif

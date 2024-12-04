@@ -16,6 +16,16 @@ extern inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
 	return (a % b);											\
 }
 
+DEFINEFUNC_UINT_MOD(8)
+DEFINEFUNC_UINT_MOD(16)
+DEFINEFUNC_UINT_MOD(32)
+DEFINEFUNC_UINT_MOD(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINT_MOD(128)
+#endif
+
+
+
 #define DEFINEFUNC_SINT_MOD(BITS) \
 extern inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
 {															\
@@ -24,28 +34,17 @@ extern inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
 	return (a % b);											\
 }
 
+DEFINEFUNC_SINT_MOD(8)
+DEFINEFUNC_SINT_MOD(16)
+DEFINEFUNC_SINT_MOD(32)
+DEFINEFUNC_SINT_MOD(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_MOD(128)
+#endif
+
 /*
 (+) % (+) = [0, +N]
 (+) % (-) = [-N, 0]
 (-) % (+) = [-N, 0]
 (-) % (-) = [0, +N]
 */
-
-
-
-DEFINEFUNC_UINT_MOD(8)
-DEFINEFUNC_SINT_MOD(8)
-
-DEFINEFUNC_UINT_MOD(16)
-DEFINEFUNC_SINT_MOD(16)
-
-DEFINEFUNC_UINT_MOD(32)
-DEFINEFUNC_SINT_MOD(32)
-
-DEFINEFUNC_UINT_MOD(64)
-DEFINEFUNC_SINT_MOD(64)
-
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_MOD(128)
-DEFINEFUNC_SINT_MOD(128)
-#endif

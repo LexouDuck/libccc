@@ -14,6 +14,16 @@ extern inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)	\
 	return (a / b);											\
 }
 
+DEFINEFUNC_UINT_DIV(8)
+DEFINEFUNC_UINT_DIV(16)
+DEFINEFUNC_UINT_DIV(32)
+DEFINEFUNC_UINT_DIV(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINT_DIV(128)
+#endif
+
+
+
 #define DEFINEFUNC_SINT_DIV(BITS) \
 extern inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
 {															\
@@ -22,28 +32,17 @@ extern inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
 	return (a / b);											\
 }
 
+DEFINEFUNC_SINT_DIV(8)
+DEFINEFUNC_SINT_DIV(16)
+DEFINEFUNC_SINT_DIV(32)
+DEFINEFUNC_SINT_DIV(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_DIV(128)
+#endif
+
 /*
 (+) / (+) = [0, +N]
 (+) / (-) = [-N, 0]
 (-) / (+) = [-N, 0]
 (-) / (-) = [0, +N]
 */
-
-
-
-DEFINEFUNC_UINT_DIV(8)
-DEFINEFUNC_SINT_DIV(8)
-
-DEFINEFUNC_UINT_DIV(16)
-DEFINEFUNC_SINT_DIV(16)
-
-DEFINEFUNC_UINT_DIV(32)
-DEFINEFUNC_SINT_DIV(32)
-
-DEFINEFUNC_UINT_DIV(64)
-DEFINEFUNC_SINT_DIV(64)
-
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_DIV(128)
-DEFINEFUNC_SINT_DIV(128)
-#endif
