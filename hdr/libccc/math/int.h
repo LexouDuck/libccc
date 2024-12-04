@@ -330,8 +330,6 @@ t_s128				S128_Add(t_s128 a, t_s128 b);
 
 
 
-
-
 //!@doc Performs an addition between the 2 given integer values (operator: `-`)
 //!@{
 #define					UInt_Sub	CONCAT(UINT_TYPE,_Sub)
@@ -379,8 +377,6 @@ t_s128				S128_Sub(t_s128 a, t_s128 b);
 #define c_s128sub	S128_Sub
 #endif
 //!@}
-
-
 
 
 
@@ -434,8 +430,6 @@ t_s128				S128_Mul(t_s128 a, t_s128 b);
 
 
 
-
-
 //!@doc Performs a division between the 2 given integer values (operator: `/`)
 //!@{
 #define				UInt_Div	CONCAT(UINT_TYPE,_Div)
@@ -483,8 +477,6 @@ t_s128				S128_Div(t_s128 a, t_s128 b);
 #define c_s128div	S128_Div
 #endif
 //!@}
-
-
 
 
 
@@ -544,11 +536,67 @@ t_s128					S128_Mod(t_s128 a, t_s128 b);
 
 
 
+//!@doc Returns the remainder of euclidian division of `a` by `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_Rem	CONCAT(UINT_TYPE,_Rem)
+#define c_urem			UInt_Rem
+#define c_uremainder	UInt_Rem
+#define UInt_Remainder	UInt_Rem
+
+t_u8					U8_Rem(t_u8 a, t_u8 b);
+#define c_u8rem			U8_Rem
+
+t_u16					U16_Rem(t_u16 a, t_u16 b);
+#define c_u16rem		U16_Rem
+
+t_u32					U32_Rem(t_u32 a, t_u32 b);
+#define c_u32rem		U32_Rem
+
+t_u64					U64_Rem(t_u64 a, t_u64 b);
+#define c_u64rem		U64_Rem
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_Rem(t_u128 a, t_u128 b);
+#define c_u128rem		U128_Rem
+#endif
+//!@}
+
+//!@doc Returns the remainder of euclidian division of `a` by `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					SInt_Rem	CONCAT(SINT_TYPE,_Rem)
+#define c_srem			SInt_Rem
+#define c_sremainder	SInt_Rem
+#define SInt_Remainder	SInt_Rem
+
+t_s8					S8_Rem(t_s8 a, t_s8 b);
+#define c_s8rem			S8_Rem
+
+t_s16					S16_Rem(t_s16 a, t_s16 b);
+#define c_s16rem		S16_Rem
+
+t_s32					S32_Rem(t_s32 a, t_s32 b);
+#define c_s32rem		S32_Rem
+
+t_s64					S64_Rem(t_s64 a, t_s64 b);
+#define c_s64rem		S64_Rem
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_Rem(t_s128 a, t_s128 b);
+#define c_s128rem		S128_Rem
+#endif
+//!@}
+
 
 
 /*
 ** ************************************************************************** *|
-**                          UInt-point math operators                        *|
+**                         Integer-based math operators                       *|
 ** ************************************************************************** *|
 */
 
@@ -665,6 +713,118 @@ t_s64						S64_Root2(t_s64 a);
 #if LIBCONFIG_USE_INT128
 t_s128						S128_Root2(t_s128 a);
 #define c_s128sqrt			S128_Root2
+#endif
+//!@}
+
+
+
+//!@doc Returns the greatest common divisor of `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_GCD	CONCAT(UINT_TYPE,_GCD)
+#define c_ugcd			UInt_GCD
+#define UInt_GreatestCommonDivisor	UInt_GCD
+
+t_u8					U8_GCD(t_u8 a, t_u8 b);
+#define c_u8gcd			U8_GCD
+
+t_u16					U16_GCD(t_u16 a, t_u16 b);
+#define c_u16gcd		U16_GCD
+
+t_u32					U32_GCD(t_u32 a, t_u32 b);
+#define c_u32gcd		U32_GCD
+
+t_u64					U64_GCD(t_u64 a, t_u64 b);
+#define c_u64gcd		U64_GCD
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_GCD(t_u128 a, t_u128 b);
+#define c_u128gcd		U128_GCD
+#endif
+//!@}
+
+//!@doc Returns the greatest common divisor of `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					SInt_GCD	CONCAT(SINT_TYPE,_GCD)
+#define c_sgcd			SInt_GCD
+#define SInt_GreatestCommonDivisor	SInt_GCD
+
+t_s8					S8_GCD(t_s8 a, t_s8 b);
+#define c_s8gcd			S8_GCD
+
+t_s16					S16_GCD(t_s16 a, t_s16 b);
+#define c_s16gcd		S16_GCD
+
+t_s32					S32_GCD(t_s32 a, t_s32 b);
+#define c_s32gcd		S32_GCD
+
+t_s64					S64_GCD(t_s64 a, t_s64 b);
+#define c_s64gcd		S64_GCD
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_GCD(t_s128 a, t_s128 b);
+#define c_s128gcd		S128_GCD
+#endif
+//!@}
+
+
+
+//!@doc Returns the least common multiple of `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_LCM	CONCAT(UINT_TYPE,_LCM)
+#define c_ulcm			UInt_LCM
+#define UInt_LeastCommonMultiple	UInt_LCM
+
+t_u8					U8_LCM(t_u8 a, t_u8 b);
+#define c_u8lcm			U8_LCM
+
+t_u16					U16_LCM(t_u16 a, t_u16 b);
+#define c_u16lcm		U16_LCM
+
+t_u32					U32_LCM(t_u32 a, t_u32 b);
+#define c_u32lcm		U32_LCM
+
+t_u64					U64_LCM(t_u64 a, t_u64 b);
+#define c_u64lcm		U64_LCM
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_LCM(t_u128 a, t_u128 b);
+#define c_u128lcm		U128_LCM
+#endif
+//!@}
+
+//!@doc Returns the least common multiple of `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					SInt_LCM	CONCAT(SINT_TYPE,_LCM)
+#define c_slcm			SInt_LCM
+#define SInt_LeastCommonMultiple	SInt_LCM
+
+t_s8					S8_LCM(t_s8 a, t_s8 b);
+#define c_s8lcm			S8_LCM
+
+t_s16					S16_LCM(t_s16 a, t_s16 b);
+#define c_s16lcm		S16_LCM
+
+t_s32					S32_LCM(t_s32 a, t_s32 b);
+#define c_s32lcm		S32_LCM
+
+t_s64					S64_LCM(t_s64 a, t_s64 b);
+#define c_s64lcm		S64_LCM
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_LCM(t_s128 a, t_s128 b);
+#define c_s128lcm		S128_LCM
 #endif
 //!@}
 
