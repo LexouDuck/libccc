@@ -36,10 +36,10 @@
 ./src/fixed/fixed_from_str.c
 ./src/fixed/fixed_to_str.c
 ./src/float/float.c
-./src/float/float_copy.c
 ./src/float/float_exp.c
+./src/float/float_from.c
 ./src/float/float_from_str.c
-./src/float/float_int.c
+./src/float/float_to.c
 ./src/float/float_to_str.c
 ./src/image/color/argb_get.c
 ./src/image/color/argb_set.c

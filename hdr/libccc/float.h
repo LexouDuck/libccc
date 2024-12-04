@@ -696,26 +696,58 @@ t_f128	 				F128_FromFloat(t_float number);
 **	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/frexp}
 */
 //!@{
-#define					Float_Split	CONCAT(FLOAT_TYPE,_Split)
-#define c_frexp		Float_Split
+#define					Float_SplitExp	CONCAT(FLOAT_TYPE,_SplitExp)
+#define c_frexp			Float_SplitExp
+#define c_fsplitext		Float_SplitExp
 
-t_f32					F32_Split(t_f32 number, t_sint* exponent);
-#define c_frexpf		F32_Split
-#define c_f32split		F32_Split
+t_f32					F32_SplitExp(t_f32 number, t_sint* exponent);
+#define c_frexpf		F32_SplitExp
+#define c_f32splitext	F32_SplitExp
 
-t_f64					F64_Split(t_f64 number, t_sint* exponent);
-#define c_frexpd		F64_Split
-#define c_f64split		F64_Split
+t_f64					F64_SplitExp(t_f64 number, t_sint* exponent);
+#define c_frexpd		F64_SplitExp
+#define c_f64splitext	F64_SplitExp
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80					F80_Split(t_f80 number, t_sint* exponent);
-#define c_frexpl		F80_Split
-#define c_f80split		F80_Split
+t_f80					F80_SplitExp(t_f80 number, t_sint* exponent);
+#define c_frexpl		F80_SplitExp
+#define c_f80splitext	F80_SplitExp
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128					F128_Split(t_f128 number, t_sint* exponent);
-#define c_frexpl		F128_Split
-#define c_f128split		F128_Split
+t_f128					F128_SplitExp(t_f128 number, t_sint* exponent);
+#define c_frexpl		F128_SplitExp
+#define c_f128splitext	F128_SplitExp
+#endif
+//!@}
+
+
+
+//!@doc Decomposes given floating-point value into fractional (returned) and integral (stored in the `integral` pointer) parts.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/cpp/numeric/math/modf}
+*/
+//!@{
+#define					Float_SplitInt	CONCAT(FLOAT_TYPE,_SplitInt)
+#define c_modf	 		Float_SplitInt
+#define c_splitint 		Float_SplitInt
+
+t_f32					F32_SplitInt(t_f32 number, t_f32* integral);
+#define c_modff 		F32_SplitInt
+#define c_f32splitint	F32_SplitInt
+
+t_f64					F64_SplitInt(t_f64 number, t_f64* integral);
+#define c_modfd 		F64_SplitInt
+#define c_f64splitint	F64_SplitInt
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_SplitInt(t_f80 number, t_f80* integral);
+#define c_modfl 		F80_SplitInt
+#define c_f80splitint	F80_SplitInt
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_SplitInt(t_f128 number, t_f128* integral);
+#define c_modfl 		F128_SplitInt
+#define c_f128splitint	F128_SplitInt
 #endif
 //!@}
 
