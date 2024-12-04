@@ -457,10 +457,9 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define FORCE_EVAL(x) \
 	do { \
 		if (sizeof(x) == 0) {} \
-		else if (sizeof(x) == sizeof(t_f32))	{	volatile t_f32	__x;	__x = (x);	} \
-		else if (sizeof(x) == sizeof(t_f64))	{	volatile t_f64	__x;	__x = (x);	} \
-		else if (sizeof(x) == sizeof(t_f80))	{	volatile t_f80	__x;	__x = (x);	} \
-		else if (sizeof(x) == sizeof(t_f128))	{	volatile t_f128	__x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(float))       {	volatile float       __x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(double))      {	volatile double      __x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(long double)) {	volatile long double __x;	__x = (x);	} \
 		else {} \
 	} while(0) \
 
