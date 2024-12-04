@@ -20,7 +20,7 @@ extern inline t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b)	\
 #define DEFINEFUNC_SINT_ADD(BITS) \
 extern inline t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b)	\
 {															\
-	if (a && b && SIGN(a) == SIGN(b))						\
+	if (a && b && SGN(a) == SGN(b))						\
 	{														\
 		if CCCERROR((a > S##BITS##_MAX - b), ERROR_RESULTRANGE, NULL)	\
 		{													\

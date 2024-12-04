@@ -8,26 +8,21 @@
 
 
 #define DEFINEFUNC_SINT_ABS(BITS) \
-extern inline t_s##BITS	S##BITS##_Abs(t_s##BITS a)			\
-{														\
-	return (ABS(a));									\
-}
+extern inline \
+t_s##BITS	S##BITS##_Abs(t_s##BITS a) \
+{ \
+	return (ABS(a)); \
+} \
+
+DEFINEFUNC_SINT_ABS(8)
+DEFINEFUNC_SINT_ABS(16)
+DEFINEFUNC_SINT_ABS(32)
+DEFINEFUNC_SINT_ABS(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_ABS(128)
+#endif
 
 /*
 abs(+) = [0, +N]
 abs(-) = [0, +N]
 */
-
-
-
-DEFINEFUNC_SINT_ABS(8)
-
-DEFINEFUNC_SINT_ABS(16)
-
-DEFINEFUNC_SINT_ABS(32)
-
-DEFINEFUNC_SINT_ABS(64)
-
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_SINT_ABS(128)
-#endif

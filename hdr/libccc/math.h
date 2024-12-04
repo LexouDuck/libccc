@@ -57,8 +57,8 @@ HEADER_CPP
 **
 **	- Math: @f$ {\frac{x}{|x|}} @f$
 */
-#ifndef SIGN
-#define SIGN(X)		((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
+#ifndef SGN
+#define SGN(X)		((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
 #endif
 
 //! Checks if a value is negative (works for unsigned types, without causing tautology warnings)

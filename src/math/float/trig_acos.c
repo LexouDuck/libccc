@@ -19,7 +19,7 @@ t_f##BITS		F##BITS##_ArcCos(t_f##BITS x)						\
 	if CCCERROR((F##BITS##_Abs(x) > 1.), ERROR_MATHDOMAIN, NULL)	\
 		return (NAN);												\
 	if (F##BITS##_Abs(x) == 1.)										\
-		return (INFINITY * SIGN(x));								\
+		return (INFINITY * SGN(x));									\
 	t_f##BITS result = PI_HALF;										\
 	t_f##BITS power = x;											\
 	result += power * -1.;			power *= (x * x);				\

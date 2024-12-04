@@ -25,7 +25,7 @@ extern inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
 	if CCCERROR((Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
 		ERROR_RESULTRANGE, NULL)										\
 	{																	\
-		LIBCONFIG_ERROR_HANDLEOVERFLOW(SIGN(a) == SIGN(b) ?				\
+		LIBCONFIG_ERROR_HANDLEOVERFLOW(SGN(a) == SGN(b) ?				\
 			S##BITS##_MAX : S##BITS##_MIN)								\
 	}																	\
 	return (a * b);														\

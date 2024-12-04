@@ -286,9 +286,9 @@ t_f##BITS	F##BITS##_Root3(t_f##BITS x)							\
 	if (x == 0)														\
 		return (0);													\
 	if (F##BITS##_Abs(x) == 1.)										\
-		return (SIGN(x));											\
+		return (SGN(x));											\
 	i = F##BITS##_GetExp2(x);										\
-	result = SIGN(x) * (i < 0 ? 0.75 : 1.25);						\
+	result = SGN(x) * (i < 0 ? 0.75 : 1.25);						\
 	result *= F##BITS##_Root2_2pN(i * 2 / 3);						\
 	previous = INFINITY;											\
 	i = 0;															\
@@ -335,9 +335,9 @@ t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n)					\
 	if (x == 0)														\
 		return (0);													\
 	if (F##BITS##_Abs(x) == 1.)										\
-		return (SIGN(x));											\
+		return (SGN(x));											\
 	i = F##BITS##_GetExp2(x);										\
-	result = SIGN(x) * (i < 0 ? 1 : 1.25);							\
+	result = SGN(x) * (i < 0 ? 1 : 1.25);							\
 	result *= F##BITS##_Root2_2pN(i * 2 / (t_s32)n);				\
 	previous = 0.;													\
 	i = 0;															\

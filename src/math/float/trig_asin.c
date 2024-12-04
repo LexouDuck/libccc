@@ -21,7 +21,7 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 		return (NAN); \
 	t_f##BITS abs_x = F##BITS##_Abs(x); \
 	if (abs_x == 1.) \
-		return (PI_HALF * SIGN(x)); \
+		return (PI_HALF * SGN(x)); \
 	t_f##BITS const correction = -0.0005; \
 	t_f##BITS result = 0; \
 	if (abs_x < 0.651609764) \
