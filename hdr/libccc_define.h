@@ -111,7 +111,7 @@ HEADER_CPP
 #define __STDC_VERSION_C99__	199901l
 #define __STDC_VERSION_C11__	201112l
 #define __STDC_VERSION_C17__	201710l
-#define __STDC_VERSION_C23__	(-1)	//!< TBD: this is set to `-1` for now, since its final value (C2x date) is not yet known
+#define __STDC_VERSION_C23__	202311L
 //!@}
 
 

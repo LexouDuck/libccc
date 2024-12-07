@@ -426,30 +426,6 @@ t_q128					Q128_Pow(t_q128 x, t_q128 y);
 #endif
 //!@}
 
-//!@doc Returns the value of `x` to the power of `n` (integer)
-/*!
-**	@nonstd
-*/
-//!@{
-#define					Fixed_IntPow	CONCAT(FIXED_TYPE,_IntPow)
-#define c_qintpow		Fixed_IntPow
-#define Fixed_IntPower	Fixed_IntPow
-
-t_q16					Q16_IntPow(t_q16 x, t_sint n);
-#define c_q16intpow		Q16_IntPow
-
-t_q32					Q32_IntPow(t_q32 x, t_sint n);
-#define c_q32intpow		Q32_IntPow
-
-t_q64					Q64_IntPow(t_q64 x, t_sint n);
-#define c_q64intpow		Q64_IntPow
-
-#if LIBCONFIG_USE_INT128
-t_q128					Q128_IntPow(t_q128 x, t_sint n);
-#define c_q128intpow	Q128_IntPow
-#endif
-//!@}
-
 
 
 //!@doc Returns the square root of `x` (inverse of power of 2)

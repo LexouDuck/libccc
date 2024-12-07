@@ -469,18 +469,18 @@ t_f128						F128_Rem(t_f128 x, t_f128 y);
 #define c_fremquo				Float_RemQuo
 #define Float_RemainderQuotient	Float_RemQuo
 
-t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_s32* quotient);
+t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_sint* quotient);
 #define c_f32remquo			F32_RemQuo
 
-t_f64						F64_RemQuo(t_f64 x, t_f64 y, t_s64* quotient);
+t_f64						F64_RemQuo(t_f64 x, t_f64 y, t_sint* quotient);
 #define c_f64remquo			F64_RemQuo
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80						F80_RemQuo(t_f80 x, t_f80 y, t_s80* quotient);
+t_f80						F80_RemQuo(t_f80 x, t_f80 y, t_sint* quotient);
 #define c_f80remquo			F80_RemQuo
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128						F128_RemQuo(t_f128 x, t_f128 y, t_s128* quotient);
+t_f128						F128_RemQuo(t_f128 x, t_f128 y, t_s1int* quotient);
 #define c_f128remquo		F128_RemQuo
 #endif
 //!@}
@@ -509,31 +509,6 @@ t_f80						F80_Pow(t_f80 x, t_f80 y);
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Pow(t_f128 x, t_f128 y);
 #define c_f128pow			F128_Pow
-#endif
-//!@}
-
-//!@doc Returns the value of `x` to the power of `n` (integer)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/pow}
-*/
-//!@{
-#define						Float_IntPow	CONCAT(FLOAT_TYPE,_IntPow)
-#define c_fintpow			Float_IntPow
-#define Float_IntPower		Float_IntPow
-
-t_f32						F32_IntPow(t_f32 x, t_sint n);
-#define c_f32intpow			F32_IntPow
-
-t_f64						F64_IntPow(t_f64 x, t_sint n);
-#define c_f64intpow			F64_IntPow
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80						F80_IntPow(t_f80 x, t_sint n);
-#define c_f80intpow			F80_IntPow
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128						F128_IntPow(t_f128 x, t_sint n);
-#define c_f128intpow		F128_IntPow
 #endif
 //!@}
 
@@ -623,7 +598,7 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/hypot}
 **
-**	{\sqrt{x^2+y^2}}
+**	- Math: @f$ {\sqrt{x^2+y^2}} @f$
 */
 //!@{
 #define						Float_Hypotenuse	CONCAT(FLOAT_TYPE,_Hypotenuse)
@@ -660,7 +635,7 @@ t_f128						F128_Hypotenuse(t_f128 x, t_f128 y);
 
 
 
-//!@doc Returns the exponential function's value for `x`
+//!@doc Returns the exponential function's value for `x`, i.e. `e^x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/exp}
 */
@@ -684,6 +659,68 @@ t_f128							F128_Exp(t_f128 x);
 #define c_f128exp				F128_Exp
 #endif
 //!@}
+
+//!@doc Returns the value of `2^x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/exp2}
+*/
+//!@{
+#define							Float_Exp2	CONCAT(FLOAT_TYPE,_Exp2)
+#define c_fexp2					Float_Exp2
+#define c_fpow2					Float_Exp2
+#define Float_Pow2				Float_Exp2
+
+t_f32							F32_Exp2(t_f32 x);
+#define c_f32exp2				F32_Exp2
+#define c_f32pow2				F32_Exp2
+
+t_f64							F64_Exp2(t_f64 x);
+#define c_f64exp2				F64_Exp2
+#define c_f64pow2				F32_Exp2
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_Exp2(t_f80 x);
+#define c_f80exp2				F80_Exp2
+#define c_f80pow2				F80_Exp2
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_Exp2(t_f128 x);
+#define c_f128exp2				F128_Exp2
+#define c_f128pow2				F128_Exp2
+#endif
+//!@}
+
+//!@doc Returns the value of `10^x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/exp10}
+*/
+//!@{
+#define							Float_Exp10	CONCAT(FLOAT_TYPE,_Exp10)
+#define c_fexp10				Float_Exp10
+#define c_fpow10				Float_Exp10
+#define Float_Pow10				Float_Exp10
+
+t_f32							F32_Exp10(t_f32 x);
+#define c_f32exp10				F32_Exp10
+#define c_f32pow10				F32_Exp10
+
+t_f64							F64_Exp10(t_f64 x);
+#define c_f64exp10				F64_Exp10
+#define c_f64pow10				F32_Exp10
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_Exp10(t_f80 x);
+#define c_f80exp10				F80_Exp10
+#define c_f80pow10				F80_Exp10
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_Exp10(t_f128 x);
+#define c_f128exp10				F128_Exp10
+#define c_f128pow10				F128_Exp10
+#endif
+//!@}
+
+
 
 //!@doc Returns the natural logarithm of `x`
 /*!
@@ -796,6 +833,138 @@ t_f80							F80_LogN(t_f80 x, t_f80 n);
 #if LIBCONFIG_USE_FLOAT128
 t_f128							F128_LogN(t_f128 x, t_f128 n);
 #define c_f128logn				F128_LogN
+#endif
+//!@}
+
+
+
+//!@doc Returns the error function value `erf(x)` for `x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/erf}
+**
+**	- Math: @f$ {erf(z) = \frac{2}{\sqrt{\pi}} \(\int_{0}^{z} e^{-t^2} \,dt\)} @f$
+*/
+//!@{
+#define							Float_Erf	CONCAT(FLOAT_TYPE,_Erf)
+#define c_ferf					Float_Erf
+#define Float_ErrorFunction		Float_Erf
+
+t_f32							F32_Erf(t_f32 x);
+#define c_f32erf				F32_Erf
+#define c_erff					F32_Erf
+
+t_f64							F64_Erf(t_f64 x);
+#define c_f64erf				F64_Erf
+#define c_erf					F64_Erf
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_Erf(t_f80 x);
+#define c_f80erf				F80_Erf
+#define c_erfl					F80_Erf
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_Erf(t_f128 x);
+#define c_f128erf				F128_Erf
+#define c_erfl					F128_Erf
+#endif
+//!@}
+
+//!@doc Returns the complementary error function value `erf(x)` for the given `x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/erfc}
+**
+**	- Math: @f$ {1 - erf(z) = 1 - ( \frac{2}{\sqrt{\pi}} \(\int_{0}^{z} e^{-t^2} \,dt\) )} @f$
+*/
+//!@{
+#define							Float_ErfC	CONCAT(FLOAT_TYPE,_ErfC)
+#define c_ferfc					Float_ErfC
+#define Float_ErrorFunctionCpml	Float_ErfC
+
+t_f32							F32_ErfC(t_f32 x);
+#define c_f32erfc				F32_ErfC
+#define c_erfcf					F32_ErfC
+
+t_f64							F64_ErfC(t_f64 x);
+#define c_f64erfc				F64_ErfC
+#define c_erfc					F64_ErfC
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_ErfC(t_f80 x);
+#define c_f80erfc				F80_ErfC
+#define c_erfcl					F80_ErfC
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_ErfC(t_f128 x);
+#define c_f128erfc				F128_ErfC
+#define c_erfcl					F128_ErfC
+#endif
+//!@}
+
+
+
+//!@doc Returns the gamma function value `Γ(x)` for the given `x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/tgamma}
+**
+**	- Math: @f$ {\Gamma(x) = \int_{0}^{\infty} t^{x-1}e^{-t} \,dt} @f$
+*/
+//!@{
+#define							Float_Gamma	CONCAT(FLOAT_TYPE,_Gamma)
+#define c_fgamma				Float_Gamma
+#define c_ftgamma				Float_Gamma
+
+t_f32							F32_Gamma(t_f32 x);
+#define c_f32gamma				F32_Gamma
+#define c_gammaf				F32_Gamma
+#define c_tgammaf				F32_Gamma
+
+t_f64							F64_Gamma(t_f64 x);
+#define c_f64gamma				F64_Gamma
+#define c_gamma					F64_Gamma
+#define c_tgamma				F64_Gamma
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_Gamma(t_f80 x);
+#define c_f80gamma				F80_Gamma
+#define c_gammal				F80_Gamma
+#define c_tgammal				F80_Gamma
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_Gamma(t_f128 x);
+#define c_f128gamma				F128_Gamma
+#define c_gammal				F128_Gamma
+#define c_tgammal				F128_Gamma
+#endif
+//!@}
+
+//!@doc Returns the natural logarithm of the absolute value of the gamma function value `ln(|Γ(x)|)` for the given `x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/lgamma}
+**
+**	- Math: @f$ {\log_{e} | \Gamma(x) | = \log_{e} | \int_{0}^{\infty} t^{x-1}e^{-t} \,dt |} @f$
+*/
+//!@{
+#define							Float_LnGamma	CONCAT(FLOAT_TYPE,_LnGamma)
+#define c_flngamma				Float_LnGamma
+#define c_flgamma				Float_LnGamma
+
+t_f32							F32_LnGamma(t_f32 x);
+#define c_f32lngamma			F32_LnGamma
+#define c_lgammaf				F32_LnGamma
+
+t_f64							F64_LnGamma(t_f64 x);
+#define c_f64lngamma			F64_LnGamma
+#define c_lgamma				F64_LnGamma
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_LnGamma(t_f80 x);
+#define c_f80lngamma			F80_LnGamma
+#define c_lgammal				F80_LnGamma
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_LnGamma(t_f128 x);
+#define c_f128lngamma			F128_LnGamma
+#define c_lgammal				F128_LnGamma
 #endif
 //!@}
 
@@ -1164,12 +1333,6 @@ t_f128								F128_InvTanH(t_f128 x);
 #define c_f128atanh					F128_InvTanH
 #endif
 //!@}
-
-
-
-// TODO hypot ?
-// TODO lgamma ?
-// TODO tgamma ?
 
 
 

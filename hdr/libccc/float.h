@@ -463,6 +463,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 		else {} \
 	} while(0) \
 
+#define AS_U32(f) ((union { t_f32 _f; t_u32 _i; }){f})._i
+#define AS_U64(f) ((union { t_f64 _f; t_u64 _i; }){f})._i
+#define AS_F32(i) ((union { t_u32 _i; t_f32 _f; }){i})._f
+#define AS_F64(i) ((union { t_u64 _i; t_f64 _f; }){i})._f
+
 
 
 //! Union type to allow direct bitwise manipulation of floating-point values
