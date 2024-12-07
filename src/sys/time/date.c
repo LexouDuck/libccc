@@ -48,8 +48,8 @@ int days_from_epoch(int y, int m, int d)
 	return era * 146097 + doe - 719468;
 }
 
-time_t timegm(struct tm const* t);
-time_t timegm(struct tm const* t)
+time_t timegm(struct tm* t);
+time_t timegm(struct tm* t)
 {	// It does not modify broken-down time
 	int year = t->tm_year + 1900;
 	int month = t->tm_mon; // 0-11

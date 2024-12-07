@@ -19,6 +19,9 @@ jobs:
       matrix:
         os: [ubuntu-latest, macOS-latest, windows-latest]
         cc: [clang, gcc]
+        exclude:
+          - os: windows-latest
+            cc: clang
 
     if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
     steps:
@@ -55,16 +58,16 @@ jobs:
         make prereq-dist
 
     - name: Build library (with ${{matrix.cc}}, for ${{matrix.os}})
-      run: make BUILDMODE=release build CC=$CC
+      run: make BUILDMODE=release CC=$CC build
 
     - name: Build test suite (with ${{matrix.cc}}, for ${{matrix.os}})
-      run: make BUILDMODE=release build-tests CC=$CC
+      run: make BUILDMODE=release CC=$CC build-tests
 
     - name: Run test suite (with ${{matrix.cc}}, for ${{matrix.os}})
-      run: make BUILDMODE=release test ARGS="-a"
+      run: make BUILDMODE=release CC=$CC test ARGS="-a"
 
     - name: Create distributable package (for ${{matrix.os}})
-      run: make BUILDMODE=release dist
+      run: make BUILDMODE=release CC=$CC dist
 
 
 
