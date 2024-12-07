@@ -8,7 +8,7 @@
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_REALFUNCTION(GT, isgreater)
+MATH_DECL_ENDORELATION(GT, isgreater)
 #else
 #define DEFINEFUNC_FLOAT_GT(BITS) \
 inline t_bool	F##BITS##_GT(t_f##BITS a, t_f##BITS b) \
@@ -30,7 +30,7 @@ DEFINEFUNC_FLOAT_GT(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_REALFUNCTION(GT, isgreaterequal)
+MATH_DECL_ENDORELATION(GTE, isgreaterequal)
 #else
 #define DEFINEFUNC_FLOAT_GTE(BITS) \
 inline t_bool	F##BITS##_GTE(t_f##BITS a, t_f##BITS b) \
@@ -52,7 +52,7 @@ DEFINEFUNC_FLOAT_GTE(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_REALFUNCTION(GT, isless)
+MATH_DECL_ENDORELATION(LT, isless)
 #else
 #define DEFINEFUNC_FLOAT_LT(BITS) \
 inline t_bool	F##BITS##_LT(t_f##BITS a, t_f##BITS b) \
@@ -74,7 +74,7 @@ DEFINEFUNC_FLOAT_LT(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_REALFUNCTION(GT, islessequal)
+MATH_DECL_ENDORELATION(LTE, islessequal)
 #else
 #define DEFINEFUNC_FLOAT_LTE(BITS) \
 inline t_bool	F##BITS##_LTE(t_f##BITS a, t_f##BITS b) \
