@@ -48,7 +48,10 @@ DEFINEFUNC_FLOAT_SPLITEXT(128, 0x3FFE, 112)
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_OPERATOR_ROP(t_f64*, SplitInt, modf)
+MATH_DEFINE_OPERATOR_ROP_F32 (t_f32  *, SplitInt, modf)
+MATH_DEFINE_OPERATOR_ROP_F64 (t_f64  *, SplitInt, modf)
+MATH_DEFINE_OPERATOR_ROP_F80 (t_f80  *, SplitInt, modf)
+MATH_DEFINE_OPERATOR_ROP_F128(t_f128 *, SplitInt, modf)
 #else
 #define DEFINEFUNC_FLOAT_SPLITINT(BITS) \
 t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \

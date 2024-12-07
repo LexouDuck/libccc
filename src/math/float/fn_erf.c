@@ -7,6 +7,7 @@
 
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Erf, erf)
+MATH_DECL_REALFUNCTION(ErfC, erfc)
 #else
 /*
 ** ====================================================
@@ -114,6 +115,7 @@ MATH_DECL_REALFUNCTION(Erf, erf)
 #include <math.h>
 #define DEFINEFUNC_FLOAT_ERF(BITS, TINY, ZMASK) \
 static t_f##BITS _erfc1_F##BITS(t_f##BITS abs_x) \
+ \
 { \
 	t_f##BITS s,P,Q; \
 	s = abs_x - 1; \
@@ -121,6 +123,7 @@ static t_f##BITS _erfc1_F##BITS(t_f##BITS abs_x) \
 	Q = qa_f##BITS[0]+s*(qa_f##BITS[1]+s*(qa_f##BITS[2]+s*(qa_f##BITS[3]+s*(qa_f##BITS[4]+s*(qa_f##BITS[5]+s*qa_f##BITS[6]))))); \
 	return (1 - erx_f##BITS - P/Q); \
 } \
+ \
 static t_f##BITS _erfc2_F##BITS(t_f##BITS abs_x) \
 { \
 	t_f##BITS s,R,S; \
@@ -142,6 +145,7 @@ static t_f##BITS _erfc2_F##BITS(t_f##BITS abs_x) \
 	z.value_uint &= (t_u##BITS)-1 << ZMASK; \
 	return (exp(-z.value_float*z.value_float-0.5625) * exp((z.value_float-abs_x)*(z.value_float+abs_x)+R/S)/abs_x); \
 } \
+ \
 t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 { \
 	t_f##BITS r,s,z,y; \
@@ -169,6 +173,7 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 		y = 1 - TINY; \
 	return (sign ? -y : y); \
 } \
+ \
 t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 { \
 	t_f##BITS r,s,z,y; \
