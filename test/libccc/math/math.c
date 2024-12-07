@@ -142,10 +142,10 @@ static void	print_test_math(s_timer timer, t_float* errors, t_float precision, i
 	if (g_test.config.verbose)
 	{
 		quicksort_float(errors, 0, amount);
-		printf_colored("Largest error", precision,      stat_getmax_float   (errors, amount));
-		printf_colored("Average error", precision,      stat_average_float  (errors, amount));
-		printf_colored("Median error",  precision,      stat_median_float   (errors, amount));
-		printf_colored("Standard dev.", precision, sqrt(stat_variance_float (errors, amount)));
+		printf_colored("Largest error", precision, stat_getmax_float   (errors, amount));
+		printf_colored("Average error", precision, stat_average_float  (errors, amount));
+		printf_colored("Median error",  precision, stat_median_float   (errors, amount));
+		printf_colored("Standard dev.", precision, stat_variance_float (errors, amount));
 	}
 	if (g_test.config.show_speed)
 	{
@@ -248,9 +248,15 @@ int		test_math_realoperator_libc(
 	#define _cbrt		cbrtf
 	#define _hypot		hypotf
 	#define _exp		expf
+	#define _exp2		exp2f
+	#define _exp10		exp10f
 	#define _ln			logf
 	#define _lg			log2f
 	#define _log		log10f
+	#define _erf		erf
+	#define _erfc		erfc
+	#define _gamma		tgammaf
+	#define _lngamma	lgammaf
 	#define _cos		cosf
 	#define _sin		sinf
 	#define _tan		tanf
@@ -284,9 +290,15 @@ int		test_math_realoperator_libc(
 	#define _cbrt		cbrt
 	#define _hypot		hypot
 	#define _exp		exp
+	#define _exp2		exp2
+	#define _exp10		exp10
 	#define _ln			log
 	#define _lg			log2
 	#define _log		log10
+	#define _erf		erf
+	#define _erfc		erfc
+	#define _gamma		tgamma
+	#define _lngamma	lgamma
 	#define _cos		cos
 	#define _sin		sin
 	#define _tan		tan
@@ -320,9 +332,15 @@ int		test_math_realoperator_libc(
 	#define _cbrt		cbrtl
 	#define _hypot		hypotl
 	#define _exp		expl
+	#define _exp2		exp2l
+	#define _exp10		exp10l
 	#define _ln			logl
 	#define _lg			log2l
 	#define _log		log10l
+	#define _erf		erf
+	#define _erfc		erfc
+	#define _gamma		tgammal
+	#define _lngamma	lgammal
 	#define _cos		cosl
 	#define _sin		sinl
 	#define _tan		tanl
@@ -440,28 +458,38 @@ int		testsuite_math(void)
 //	test_math_realoperator_libc("nrt", NULL, &c_nrt, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e6,+1e6});
 
 	print_math_title("Hypotenuse");
-	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
-	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
-	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
-	test_math_realoperator_libc("hypot", &_hypot, &c_hypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("hypot", &_hypot, &c_fhypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("hypot", &_hypot, &c_fhypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e1,+1e1});
+	test_math_realoperator_libc("hypot", &_hypot, &c_fhypot, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
+	test_math_realoperator_libc("hypot", &_hypot, &c_fhypot, TARGET_PRECISION, 100, (s_interval){-1e9,+1e9}, (s_interval){-1e9,+1e9});
 
 
 
-	print_math_title("Exponential");
+	print_math_title("Exponential, base e");
 	test_math_realfunction_libc("exp", &_exp, &c_fexp, TARGET_PRECISION, 1000, (s_interval){-1e3,+1e0});
 	test_math_realfunction_libc("exp", &_exp, &c_fexp, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
 
-	print_math_title("Natural Logarithm");
-	test_math_realfunction_libc("ln", &_ln, &c_fln, TARGET_PRECISION, 1000, (s_interval){0e0,+1e0});
-	test_math_realfunction_libc("ln", &_ln, &c_fln, TARGET_PRECISION, 1000, (s_interval){1e0,+1e9});
+	print_math_title("Exponential, base 2");
+	test_math_realfunction_libc("exp2", &_exp2, &c_fexp2, TARGET_PRECISION, 1000, (s_interval){-1e3,+1e0});
+	test_math_realfunction_libc("exp2", &_exp2, &c_fexp2, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
+
+#if (__STDC_VERSION__ == 202311L)
+	print_math_title("Exponential, base 10");
+	test_math_realfunction_libc("exp10", &_exp10, &c_fexp, TARGET_PRECISION, 1000, (s_interval){-1e3,+1e0});
+	test_math_realfunction_libc("exp10", &_exp10, &c_fexp, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
+#endif
+
+	print_math_title("Logarithm, base e");
+	test_math_realfunction_libc("log", &_ln, &c_fln, TARGET_PRECISION, 1000, (s_interval){ 0e0,+1e0});
+	test_math_realfunction_libc("log", &_ln, &c_fln, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
 
 	print_math_title("Logarithm, base 2");
-	test_math_realfunction_libc("lg", &_lg, &c_flog2, TARGET_PRECISION, 1000, (s_interval){0e0,+1e0});
-	test_math_realfunction_libc("lg", &_lg, &c_flog2, TARGET_PRECISION, 1000, (s_interval){1e0,+1e9});
+	test_math_realfunction_libc("log2", &_lg, &c_flog2, TARGET_PRECISION, 1000, (s_interval){ 0e0,+1e0});
+	test_math_realfunction_libc("log2", &_lg, &c_flog2, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
 
 	print_math_title("Logarithm, base 10");
-	test_math_realfunction_libc("log", &_log, &c_flog10, TARGET_PRECISION, 1000, (s_interval){0e0,+1e0});
-	test_math_realfunction_libc("log", &_log, &c_flog10, TARGET_PRECISION, 1000, (s_interval){1e0,+1e9});
+	test_math_realfunction_libc("log10", &_log, &c_flog10, TARGET_PRECISION, 1000, (s_interval){ 0e0,+1e0});
+	test_math_realfunction_libc("log10", &_log, &c_flog10, TARGET_PRECISION, 1000, (s_interval){+1e0,+1e9});
 
 //	TODO
 //	print_math_title("Logarithm, base N");
@@ -469,6 +497,22 @@ int		testsuite_math(void)
 //	test_math_realoperator_libc("log_n", NULL, &c_flogn, TARGET_PRECISION, 100, (s_interval){-1e2,+1e9}, (s_interval){-1e1,+1e1});
 //	test_math_realoperator_libc("log_n", NULL, &c_flogn, TARGET_PRECISION, 100, (s_interval){-1e1,+1e1}, (s_interval){-1e9,+1e9});
 //	test_math_realoperator_libc("log_n", NULL, &c_flogn, TARGET_PRECISION, 100, (s_interval){-1e2,+1e9}, (s_interval){-1e9,+1e9});
+
+	print_math_title("Error function");
+	test_math_realfunction_libc("erf", &_erf, &c_ferf, TARGET_PRECISION, 1000, (s_interval){-3e0,+3e0});
+	test_math_realfunction_libc("erf", &_erf, &c_ferf, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
+
+	print_math_title("Error function complementary");
+	test_math_realfunction_libc("erfc", &_erfc, &c_ferfc, TARGET_PRECISION, 1000, (s_interval){-3e0,+3e0});
+	test_math_realfunction_libc("erfc", &_erfc, &c_ferfc, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
+
+	// print_math_title("Gamma function");
+	// test_math_realfunction_libc("gamma", &_gamma, &c_fgamma, TARGET_PRECISION, 1000, (s_interval){-5e0,+5e0});
+	// test_math_realfunction_libc("gamma", &_gamma, &c_fgamma, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
+
+	// print_math_title("Log-Gamma function");
+	// test_math_realfunction_libc("lngamma", &_lngamma, &c_flngamma, TARGET_PRECISION, 1000, (s_interval){-5e0,+5e0});
+	// test_math_realfunction_libc("lngamma", &_lngamma, &c_flngamma, TARGET_PRECISION, 1000, (s_interval){-1e9,+1e9});
 
 
 

@@ -376,14 +376,18 @@ double	stat_median_##NAME(TYPE * const values, unsigned int length) \
  \
 double	stat_average_##NAME(TYPE * const values, unsigned int length) \
 { \
-	TYPE	sum; \
+	TYPE	value; \
+	double	sum; \
+	double	inv_len; \
 	unsigned int	i; \
 	sum = 0.; \
+	inv_len = (1. / length); \
 	i = 0; \
-	TYPE inv_len = (1. / length); \
 	while (i < length) \
 	{ \
-		sum += inv_len * values[i]; \
+		value = values[i]; \
+		if (isnormal((double)value)) \
+			sum += inv_len * value; \
 		++i; \
 	} \
 	return (sum); \
@@ -391,20 +395,25 @@ double	stat_average_##NAME(TYPE * const values, unsigned int length) \
  \
 double	stat_variance_##NAME(TYPE * const values, unsigned int length) \
 { \
-	TYPE	sum; \
-	TYPE	average; \
-	TYPE	tmp; \
+	TYPE	value; \
+	double	sum; \
+	double	average; \
 	unsigned int	i; \
 	average = stat_average_##NAME(values, length); \
-	sum = 0; \
+	sum = 0.; \
 	i = 0; \
 	while (i < length) \
 	{ \
-		tmp = values[i]; \
-		sum += tmp * tmp; \
+		value = values[i]; \
+		if (isnormal((double)value)) \
+			sum += value * value; \
 		++i; \
 	} \
 	return ((sum / i) - (average * average)); \
+} \
+inline double	stat_stddev_##NAME(TYPE * const values, unsigned int length) \
+{ \
+	return sqrt(stat_variance_##NAME(values, length)); \
 } \
  \
 void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
