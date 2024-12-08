@@ -23,7 +23,7 @@ e_signal	sig = SIGNAL_NULL;
 
 jmp_buf	restore;
 
-#ifndef __MINGW32__
+#if !(defined(_WIN32) || defined(__MINGW32__))
 struct sigaction signal_action;
 #endif
 
@@ -34,7 +34,7 @@ struct sigaction signal_action;
 ** ************************************************************************** *|
 */
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 void	signal_handler(int signaltype)
 #else
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
@@ -58,7 +58,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 
 void	init_signal_handler(void)
 {
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 //	signal(SIGTERM,	signal_handler);
 //	signal(SIGINT,	signal_handler);
 	signal(SIGABRT,	signal_handler);

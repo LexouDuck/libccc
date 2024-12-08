@@ -39,9 +39,10 @@
 **                                   Includes                                 *|
 ** ************************************************************************** *|
 */
-
-#include <string.h>
+#if (!defined(_WIN32) || defined(__MINGW32__))
 #include <strings.h>
+#endif
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 

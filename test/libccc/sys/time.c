@@ -1,6 +1,9 @@
 
-#include <time.h>
-#include <sys/time.h>
+#if (defined(_WIN32) && !defined(__MINGW32__))
+	#include <time.h>
+#else
+	#include <sys/time.h>
+#endif
 
 #include "libccc.h"
 #include "libccc/bool.h"

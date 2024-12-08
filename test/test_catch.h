@@ -95,7 +95,7 @@ extern jmp_buf	restore;
 
 void	init_signal_handler(void);
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 void	signal_handler(int signaltype);
 #else
 extern struct sigaction signal_action;
@@ -115,7 +115,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 #define _CATCH \
 	else
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 #define _END \
 	if ((sig & FLAG_SIGNALMASK) != 0)	\
 		signal(SIGSEGV, signal_handler);	\
