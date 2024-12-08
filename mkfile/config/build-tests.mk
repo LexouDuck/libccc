@@ -30,15 +30,19 @@ TEST_CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 TEST_CFLAGS_OS = $(TEST_CFLAGS_OS_$(OSMODE))
-TEST_CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+TEST_CFLAGS_OS_windows = -fvisibility=default # -fno-ms-compatibility
 TEST_CFLAGS_OS_macos = -Wno-language-extension-token
 TEST_CFLAGS_OS_linux = -Wno-unused-result -fPIC
 TEST_CFLAGS_OS_other = 
 TEST_CFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
+	TEST_CFLAGS_OS_windows = -fuse-ld=lld -Wl,-force -Wl,-wholearchive
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
+endif
+ifneq ($(findstring mingw,$(CC)),)
+	CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
@@ -90,13 +94,13 @@ TEST_LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
-TEST_LDLIBS_OS_windows = -lpthread
+TEST_LDLIBS_OS_windows = 
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
 TEST_LDLIBS_OS_emscripten = -lm
 ifneq ($(findstring mingw,$(CC)),)
-TEST_LDLIBS_OS += -L./ -static-libgcc
+TEST_LDLIBS_OS += -L./ -static-libgcc -lpthread
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline

@@ -122,10 +122,22 @@ ifeq ($(OSMODE),macos)
 		-install_name '@loader_path/$(NAME_dynamic)'
 endif
 ifeq ($(OSMODE),windows)
+ifneq ($(findstring clang,$(CC)),)
+	@#$(CC) -o $(BINPATH)dynamic/$(NAME).lib $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) -fuse-ld=llvm-lib
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
+		-fuse-ld=lld \
+		-Wl,-dll \
+		-Wl,-force \
+		-Wl,-lldmingw \
+		-Wl,-wholearchive \
+		$(BINPATH)static/$(NAME_static) \
+		#-Wl,"/DEF:$(BINPATH)dynamic/$(NAME).def"
+else
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
 		-Wl,--out-implib,$(BINPATH)dynamic/$(NAME).lib \
 		-Wl,--export-all-symbols
+endif
 endif
 ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \

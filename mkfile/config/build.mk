@@ -63,15 +63,19 @@ CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 CFLAGS_OS = $(CFLAGS_OS_$(OSMODE))
-CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 -fvisibility=default # -fno-ms-compatibility
+CFLAGS_OS_windows = -fvisibility=default # -fno-ms-compatibility
 CFLAGS_OS_macos = -Wno-language-extension-token
 CFLAGS_OS_linux = -Wno-unused-result -fPIC
 CFLAGS_OS_other = 
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
+	CFLAGS_OS_windows = -fuse-ld=lld
 else
 	CFLAGS_OS += -Wno-unused-value
+endif
+ifneq ($(findstring mingw,$(CC)),)
+	CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
