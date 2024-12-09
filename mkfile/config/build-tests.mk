@@ -37,12 +37,12 @@ TEST_CFLAGS_OS_other =
 TEST_CFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
-	TEST_CFLAGS_OS_windows = -fuse-ld=lld -Wl,-force -Wl,-wholearchive
+	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc -Dinline=
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
 endif
 ifneq ($(findstring mingw,$(CC)),)
-	CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+	TEST_CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
@@ -53,6 +53,23 @@ TEST_CFLAGS_EXTRA ?= \
 #	-fsanitize=thread \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
+
+# these fixes allow libccc to be compiled using a C++ compiler
+ifneq ($(findstring ++,$(CC)),)
+TEST_CFLAGS_EXTRA += \
+	-Wno-deprecated \
+	-Wno-variadic-macros \
+	-Wno-c99-extensions \
+	-Wno-c++11-extensions \
+	-Wno-c++17-extensions \
+	-Wno-return-type-c-linkage \
+
+endif
+
+# this fix allows libccc to build on iOS platforms
+ifneq ($(findstring iPhone,$(UNAME_M)),)
+TEST_CFLAGS_EXTRA += -D__IOS__
+endif
 
 
 
@@ -74,6 +91,9 @@ TEST_LDFLAGS_OS_macos =
 TEST_LDFLAGS_OS_linux = 
 TEST_LDFLAGS_OS_other = 
 TEST_LDFLAGS_OS_emscripten = 
+ifneq ($(findstring clang,$(CC)),)
+	TEST_LDFLAGS_OS_windows += -fuse-ld=lld
+endif
 
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
 TEST_LDFLAGS_EXTRA ?= \
@@ -94,13 +114,15 @@ TEST_LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
-TEST_LDLIBS_OS_windows = 
+TEST_LDLIBS_OS_windows = -L./
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
 TEST_LDLIBS_OS_emscripten = -lm
 ifneq ($(findstring mingw,$(CC)),)
-TEST_LDLIBS_OS += -L./ -static-libgcc -lpthread
+	TEST_LDLIBS_OS_windows += -static-libgcc -lpthread
+endif
+ifneq ($(findstring clang,$(CC)),)
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline

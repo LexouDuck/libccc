@@ -1,3 +1,4 @@
+./hdr/hedley.h
 ./hdr/libccc.h
 ./hdr/libccc/bool.h
 ./hdr/libccc/char.h

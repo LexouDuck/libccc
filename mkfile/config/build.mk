@@ -70,7 +70,7 @@ CFLAGS_OS_other =
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
-	CFLAGS_OS_windows = -fuse-ld=lld
+	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc -Dinline=
 else
 	CFLAGS_OS += -Wno-unused-value
 endif
@@ -125,6 +125,7 @@ LDFLAGS_OS_linux =
 LDFLAGS_OS_other = 
 LDFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
+	LDFLAGS_OS_windows += -fuse-ld=lld
 	LDFLAGS_OS_macos += -current_version       $(VERSION)
 	LDFLAGS_OS_macos += -compatibility_version $(VERSION)
 endif
@@ -155,13 +156,13 @@ LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 LDLIBS_OS = $(LDLIBS_OS_$(OSMODE))
-LDLIBS_OS_windows = 
+LDLIBS_OS_windows = -L./
 LDLIBS_OS_macos = 
 LDLIBS_OS_linux = 
 LDLIBS_OS_other = 
 LDLIBS_OS_emscripten = 
 ifneq ($(findstring mingw,$(CC)),)
-LDLIBS_OS += -L./ -static-libgcc
+	LDLIBS_OS_windows += -static-libgcc
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
