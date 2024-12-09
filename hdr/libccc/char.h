@@ -228,6 +228,7 @@ TYPEDEF_ALIAS(t_char, CHAR, PRIMITIVE)
 #define					Char_IsValid	CharASCII_IsValid
 #define c_isascii		Char_IsValid
 #define c_isvalid		Char_IsValid
+#define Char_IsASCII	Char_IsValid
 //!@}
 
 

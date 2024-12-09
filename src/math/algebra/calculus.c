@@ -39,14 +39,6 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 
 
 
-inline
-t_bool		c_float_in_interval(t_float x, t_float start, t_float end)
-{
-	return (start <= x && x <= end);
-}
-
-
-
 /*
 ** Distance functions.
 ** All classical distances (1, 2, inf) on the real line are equivalent.
@@ -72,25 +64,38 @@ inline t_float	c_distance_float(t_float x, t_float y)	{ return (ABS(x - y)); }
 
 //t_float		c_distance_2d()
 
+#if 0 // TODO: use these functions, or define them in the header ?
 
-/*
+static
+inline
+t_bool		c_float_in_interval(t_float x, t_float start, t_float end)
+{
+	return (start <= x && x <= end);
+}
+
+
+/*!
 ** Returns the value of val after [0,1] is scaled and translated
 ** (affine transform) to [start, end]. Val is not checked to be
 ** in the interval [0,1] here. start is not checked to be <= end.
 */
+static
 inline
 t_float	c_to_affine(t_float value_01, t_float start, t_float end)
 {
 	return (value_01 * c_distance_float(start, end)) + start;
 }
 
-/*
+/*!
 ** Returns the value of val after [start, end] is scaled and translated
 ** (affine transform) to [0,1]. Val is not checked to be in the interval
 ** [start, end] here. start is not checked to be <= end.
 */
+static
 inline
 t_float	c_from_affine(t_float value_affine, t_float start, t_float end)
 {
 	return (value_affine - start) / c_distance_float(start, end);
 }
+
+#endif

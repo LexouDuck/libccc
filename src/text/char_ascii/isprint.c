@@ -20,11 +20,11 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 inline
-t_bool	CharASCII_IsSpace(t_ascii c)
+t_bool	CharASCII_IsWhiteSpace(t_ascii c)
 { return (isspace(c)); }
 #else
 inline
-t_bool	CharASCII_IsSpace(t_ascii c)
+t_bool	CharASCII_IsWhiteSpace(t_ascii c)
 {
 	return ((c == ' ') || ('\t' <= c && c <= '\r'));
 }

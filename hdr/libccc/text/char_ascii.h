@@ -346,8 +346,8 @@ t_bool						CharASCII_IsPrintable(t_ascii c);
 */
 //!@{
 t_bool					CharASCII_IsValid(t_ascii c);
-#define c_iscascii		CharASCII_IsASCII
-#define c_cisascii		CharASCII_IsASCII
+#define c_iscascii		CharASCII_IsValid
+#define c_cisascii		CharASCII_IsValid
 #define c_isccvalid		CharASCII_IsValid
 //!@}
 

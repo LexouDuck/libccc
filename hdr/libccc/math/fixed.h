@@ -71,7 +71,7 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 
 /*
 ** ************************************************************************** *|
-**                            Arithmetic Operations                           *|
+**                            Fixed-point Functions                           *|
 ** ************************************************************************** *|
 */
 
@@ -197,7 +197,7 @@ t_q128					Q128_Ceil(t_q128 x);
 
 /*
 ** ************************************************************************** *|
-**                       Floating-point logic operators                       *|
+**                     Fixed-point relational comparisons                     *|
 ** ************************************************************************** *|
 */
 
@@ -212,7 +212,7 @@ t_q128					Q128_Ceil(t_q128 x);
 **	otherwise `FALSE`.
 */
 //!@{
-#define					Fixed_Equals	CONCAT(FLOAT_TYPE,_Equals)
+#define					Fixed_Equals	CONCAT(FIXED_TYPE,_Equals)
 #define c_qequ			Fixed_Equals
 
 t_bool					Q16_Equals(t_q16 x, t_q16 y);
@@ -240,10 +240,10 @@ t_bool					Q128_Equals(t_q128 x, t_q128 y);
 **	@param	y	The second value to check for (approximate) equality
 **	@returns
 **	`TRUE` if the 2 given fixed-point values are close enough to be considered equal
-**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+**	(using #FIXED_APPROX as a comparison margin), otherwise `FALSE`.
 */
 //!@{
-#define					Fixed_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+#define					Fixed_EqualsApprox	CONCAT(FIXED_TYPE,_EqualsApprox)
 #define c_qequa			Fixed_EqualsApprox
 
 t_bool					Q16_EqualsApprox(t_q16 x, t_q16 y);

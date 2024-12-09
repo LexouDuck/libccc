@@ -147,7 +147,39 @@ t_s128				S128_Abs(t_s128 a);
 **	otherwise `FALSE`.
 */
 //!@{
-#define					SInt_Equals	CONCAT(FLOAT_TYPE,_Equals)
+#define					UInt_Equals	CONCAT(UINT_TYPE,_Equals)
+#define c_uequ			UInt_Equals
+
+t_bool					U8_Equals(t_u8 a, t_u8 b);
+#define c_u8equ			U8_Equals
+
+t_bool					U16_Equals(t_u16 a, t_u16 b);
+#define c_u16equ		U16_Equals
+
+t_bool					U32_Equals(t_u32 a, t_u32 b);
+#define c_u32equ		U32_Equals
+
+t_bool					U64_Equals(t_u64 a, t_u64 b);
+#define c_u64equ		U64_Equals
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_Equals(t_u128 a, t_u128 b);
+#define c_u128equ		U128_Equals
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the 2 given integer values are exactly equal (operator: `==`)
+/*!
+**	@nonstd
+**
+**	@param	a	The first value to check for (exact) equality
+**	@param	b	The second value to check for (exact) equality
+**	@returns
+**	`TRUE` if the 2 given integer values are exactly equal,
+**	otherwise `FALSE`.
+*/
+//!@{
+#define					SInt_Equals	CONCAT(SINT_TYPE,_Equals)
 #define c_sequ			SInt_Equals
 
 t_bool					S8_Equals(t_s8 a, t_s8 b);
@@ -178,10 +210,42 @@ t_bool					S128_Equals(t_s128 a, t_s128 b);
 **	@param	b	The second value to check for (approximate) equality
 **	@returns
 **	`TRUE` if the 2 given integer values are close enough to be considered equal
-**	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
+**	(using #SINT_APPROX as a comparison margin), otherwise `FALSE`.
 */
 //!@{
-#define					SInt_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
+#define					UInt_EqualsApprox	CONCAT(UINT_TYPE,_EqualsApprox)
+#define c_uequa			UInt_EqualsApprox
+
+t_bool					U8_EqualsApprox(t_u8 a, t_u8 b);
+#define c_u8equa		U8_EqualsApprox
+
+t_bool					U16_EqualsApprox(t_u16 a, t_u16 b);
+#define c_u16equa		U16_EqualsApprox
+
+t_bool					U32_EqualsApprox(t_u32 a, t_u32 b);
+#define c_u32equa		U32_EqualsApprox
+
+t_bool					U64_EqualsApprox(t_u64 a, t_u64 b);
+#define c_u64equa		U64_EqualsApprox
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_EqualsApprox(t_u128 a, t_u128 b);
+#define c_u128equa		U128_EqualsApprox
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the 2 given integer values are close to equal (operator: `~=`)
+/*!
+**	@nonstd
+**
+**	@param	a	The first value to check for (approximate) equality
+**	@param	b	The second value to check for (approximate) equality
+**	@returns
+**	`TRUE` if the 2 given integer values are close enough to be considered equal
+**	(using #SINT_APPROX as a comparison margin), otherwise `FALSE`.
+*/
+//!@{
+#define					SInt_EqualsApprox	CONCAT(SINT_TYPE,_EqualsApprox)
 #define c_sequa			SInt_EqualsApprox
 
 t_bool					S8_EqualsApprox(t_s8 a, t_s8 b);

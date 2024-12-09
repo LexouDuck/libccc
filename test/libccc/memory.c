@@ -5,6 +5,13 @@
 
 
 
+#if (defined(_WIN32) && !defined(__MINGW32__))
+inline void bzero(void* b, size_t len)             { return (memset(b, '\0', len), (void)0); }
+inline void bcopy(void* b1, void* b2, size_t len)  { return (memmove(b2, b1, len), (void)0); }
+#endif
+
+
+
 #ifndef c_memalloc
 void test_memalloc(void)	{}
 #warning "memalloc() test suite function defined, but the function isn't defined."

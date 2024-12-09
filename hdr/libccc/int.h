@@ -552,9 +552,80 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 
 
-// TODO Int_FromInt()
-// TODO Int_FromFixed()
-// TODO Int_FromFloat()
+//!@doc Cast the given value to an integer of the specified size
+/*!
+**	TODO document
+*/
+//!@{
+#define					SInt_FromInt	CONCAT(SINT_TYPE,_FromInt)
+#define c_stos			SInt_FromInt
+
+t_s8					S8_FromInt(t_sint number);
+#define c_stos8			S8_FromInt
+
+t_s16					S16_FromInt(t_sint number);
+#define c_stos16		S16_FromInt
+
+t_s32					S32_FromInt(t_sint number);
+#define c_stos32		S32_FromInt
+
+t_s64					S64_FromInt(t_sint number);
+#define c_stos64		S64_FromInt
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromInt(t_sint number);
+#define c_stos128		S128_FromInt
+#endif
+//!@}
+
+//!@doc Cast the given value to an integer of the specified size
+/*!
+**	TODO document
+*/
+//!@{
+#define					SInt_FromFixed	CONCAT(SINT_TYPE,_FromFixed)
+#define c_qtos			SInt_FromFixed
+
+t_s8					S8_FromFixed(t_fixed number);
+#define c_qtos8			S8_FromFixed
+
+t_s16					S16_FromFixed(t_fixed number);
+#define c_qtos16		S16_FromFixed
+
+t_s32					S32_FromFixed(t_fixed number);
+#define c_qtos32		S32_FromFixed
+
+t_s64					S64_FromFixed(t_fixed number);
+#define c_qtos64		S64_FromFixed
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromFixed(t_fixed number);
+#define c_qtos128		S128_FromFixed
+#endif
+//!@}
+
+//!@doc Cast the given value to an integer of the specified size
+/*!
+**	TODO document
+*/
+//!@{
+#define					SInt_FromFloat	CONCAT(SINT_TYPE,_FromFloat)
+#define c_ftos			SInt_FromFloat
+
+t_s8					S8_FromFloat(t_float number);
+#define c_ftos8			S8_FromFloat
+
+t_s16					S16_FromFloat(t_float number);
+#define c_ftos16		S16_FromFloat
+
+t_s32					S32_FromFloat(t_float number);
+#define c_ftos32		S32_FromFloat
+
+t_s64					S64_FromFloat(t_float number);
+#define c_ftos64		S64_FromFloat
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromFloat(t_float number);
+#define c_ftos128		S128_FromFloat
+#endif
+//!@}
 
 
 
