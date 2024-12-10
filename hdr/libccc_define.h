@@ -427,22 +427,6 @@ HEADER_CPP
 #endif
 #endif
 
-//! Cross-platform keyword macro: `__inline__`
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
-*/
-#ifndef __inline__
-#ifdef __MSVC__
-	#define __inline__	__inline
-#elif !defined(__GNUC__)
-	#define __inline__	inline
-#endif
-#endif
-/* older versions of MSVC does not support C99 inline at all */
-#if (!defined(__cplusplus) && (_MSC_VER < 1900))
-	#define inline	
-#endif
-
 //! Cross-platform keyword macro: `__restrict__`
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/language/restrict}
@@ -455,7 +439,25 @@ HEADER_CPP
 #endif
 #endif
 
+//! Cross-platform keyword macro: `__inline__`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
+*/
+#ifndef __inline__
+#ifdef __MSVC__
+	#define __inline__	__inline
+#elif !defined(__GNUC__)
+	#define __inline__	inline
+#endif
+#endif
+
 //!@}
+
+#ifdef __MSVC__ /* older versions of MSVC does not support C99 inline at all */
+	#if (!defined(__cplusplus) && (_MSC_VER < 1900))
+		#define inline	
+	#endif
+#endif
 
 
 
