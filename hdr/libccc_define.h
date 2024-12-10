@@ -438,6 +438,10 @@ HEADER_CPP
 	#define __inline__	inline
 #endif
 #endif
+/* older versions of MSVC does not support C99 inline at all */
+#if (!defined(__cplusplus) && (_MSC_VER < 1900))
+	#define inline	
+#endif
 
 //! Cross-platform keyword macro: `__restrict__`
 /*!

@@ -37,7 +37,7 @@ TEST_CFLAGS_OS_other =
 TEST_CFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
-	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc -Dinline=
+	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
 endif

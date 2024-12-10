@@ -70,7 +70,7 @@ CFLAGS_OS_other =
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
-	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc -Dinline=
+	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc
 else
 	CFLAGS_OS += -Wno-unused-value
 endif
