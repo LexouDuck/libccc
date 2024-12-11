@@ -256,14 +256,14 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 //!@{
 typedef struct date
 {
+	t_s32		year;		//!< Amount of years since year 0 (https://en.wikipedia.org/wiki/Astronomical_year_numbering)	
+	e_month		month;		//!< [0,11] Amount of months since January
+	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
+	t_u8		day_month;	//!< [1,31] Day of the month
+	t_u32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
 	t_u8		hour;		//!< [0,23] Amount of hours since midnight
 	t_u8		min;		//!< [0,59] Amount of minutes after the hour
 	t_u8		sec;		//!< [0,59(60)] Amount of seconds after the minute (usually 0-59 - leap seconds are the exception)
-	t_s32		year;		//!< Amount of years since year 0 (https://en.wikipedia.org/wiki/Astronomical_year_numbering)	
-	e_month		month;		//!< [0,11] Amount of months since January
-	t_u8		day_month;	//!< [1,31] Day of the month
-	t_u32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
-	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
 	t_bool		is_dst;		//!< If `TRUE`, then Daylight Savings Time is on
 	t_timezone	offset;		//!< [UTC-12,UTC+12] The timezone offset of this date (adjusted for DST), expressed in seconds (ie: range is [3600*-12, 3600*+12]
 }				s_date;
@@ -273,14 +273,14 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 //! The default/null value for a #s_date struct (all fields set to zero)
 #define DATE_NULL \
 	((s_date){			\
+		.year      = 0,	\
+		.month     = (e_month)0,	\
+		.day_week  = (e_weekday)0,	\
+		.day_month = 0,	\
+		.day_year  = 0,	\
 		.hour      = 0,	\
 		.min       = 0,	\
 		.sec       = 0,	\
-		.year      = 0,	\
-		.month     = (e_month)0,	\
-		.day_month = 0,	\
-		.day_year  = 0,	\
-		.day_week  = (e_weekday)0,	\
 		.is_dst    = 0,	\
 		.offset    = 0,	\
 	})

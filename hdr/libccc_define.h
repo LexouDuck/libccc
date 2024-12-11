@@ -698,32 +698,27 @@ HEADER_CPP
 **	- `int const*	NAME##_size` : The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
 */
 #define INCBIN(NAME, FILEPATH) \
-/*extern t_u8 const	NAME[];        */	\
-/*extern t_u8 const	NAME##_end[];  */	\
-/*extern int const	NAME##_size[]; */	\
-__asm__									\
-(										\
-	"\n"INCBIN_SECTION					\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)			\
-	"\n"INCBIN_MANGLE(#NAME)":"			\
-	"\n\t.incbin \""FILEPATH"\""		\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)"_end"		\
-	"\n"INCBIN_MANGLE(#NAME)"_end"":"	\
-	"\n\t"INCBIN_BYTE" 0"				\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)"_size"		\
-	"\n"INCBIN_MANGLE(#NAME)"_size"":"	\
-	"\n\t"INCBIN_SIZE					\
-		" ( "INCBIN_MANGLE(#NAME)"_end"	\
-		" - "INCBIN_MANGLE(#NAME)" )"	\
-	"\n"								\
-	"\n"INCBIN_PREVIOUS					\
-	"\n"								\
+/*extern t_u8 const	NAME[];        */ \
+/*extern t_u8 const	NAME##_end[];  */ \
+/*extern int const	NAME##_size[]; */ \
+__asm__ \
+( \
+	"\n" INCBIN_SECTION \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME) \
+	"\n" INCBIN_MANGLE(#NAME)":" \
+	"\n\t.incbin \"" FILEPATH "\"" \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME)"_end" \
+	"\n" INCBIN_MANGLE(#NAME)"_end"":" \
+	"\n\t" INCBIN_BYTE " 0" \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME)"_size" \
+	"\n" INCBIN_MANGLE(#NAME)"_size"":" \
+	"\n\t" INCBIN_SIZE " ( " INCBIN_MANGLE(#NAME)"_end - " INCBIN_MANGLE(#NAME)" )"	\
+	"\n" \
+	"\n" INCBIN_PREVIOUS \
+	"\n" \
 );
 
 //!@doc Cross-platform ASM support macros for INCBIN()
@@ -744,7 +739,7 @@ __asm__									\
 	#define INCBIN_SECTION	".section __DATA,__const"
 	#define INCBIN_PREVIOUS	".previous"
 	#define INCBIN_GLOBAL	".globl"
-	#define INCBIN_MANGLE(NAME)	"_"NAME
+	#define INCBIN_MANGLE(NAME)	"_" NAME
 	#define INCBIN_BYTE	".byte"
 	#define INCBIN_SIZE	".long"
 
@@ -757,7 +752,7 @@ __asm__									\
 		#define INCBIN_PREVIOUS	""
 	#endif
 	#define INCBIN_GLOBAL	".global"
-	#define INCBIN_MANGLE(NAME)	""NAME
+	#define INCBIN_MANGLE(NAME)	"" NAME
 	#define INCBIN_BYTE	".byte"
 	#define INCBIN_SIZE	".int"
 
