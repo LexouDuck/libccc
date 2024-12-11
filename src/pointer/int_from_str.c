@@ -48,7 +48,7 @@ t_size	UINT_NAME##_Parse(UINT_TYPE* dest, t_char const* str)							\
 	{																					\
 		tmp = result * 10 + (str[i++] - '0');											\
 		if CCCERROR((tmp < result), ERROR_RESULTRANGE,									\
-			#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at "SF_##UINT_MACRO,	\
+			#UINT_MACRO"-bit unsigned integer overflow for \"%s\" at " SF_##UINT_MACRO,	\
 			str, (UINT_TYPE)UINT_MACRO##_MAX)											\
 		{																				\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(UINT_MACRO##_MAX)							\
@@ -101,13 +101,13 @@ t_size	SINT_NAME##_Parse(SINT_TYPE* dest, t_char const* str)							\
 	{																					\
 		tmp = result * 10 + (str[i++] - '0');											\
 		if CCCERROR((negative && tmp > (UINT_TYPE)SINT_MACRO##_MIN), ERROR_RESULTRANGE,	\
-			#SINT_MACRO"-bit signed integer underflow for \"%s\" at "SF_##SINT_MACRO,	\
+			#SINT_MACRO"-bit signed integer underflow for \"%s\" at " SF_##SINT_MACRO,	\
 			str, SINT_MACRO##_MIN)														\
 		{																				\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MIN)							\
 		}																				\
 		if CCCERROR((!negative && tmp > (UINT_TYPE)SINT_MACRO##_MAX), ERROR_RESULTRANGE,\
-			#SINT_MACRO"-bit signed integer overflow for \"%s\" at "SF_##SINT_MACRO,	\
+			#SINT_MACRO"-bit signed integer overflow for \"%s\" at " SF_##SINT_MACRO,	\
 			str, SINT_MACRO##_MAX)														\
 		{																				\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(SINT_MACRO##_MAX)							\

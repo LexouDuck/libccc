@@ -15,7 +15,7 @@ t_size		CharUTF32_ToUTF16(t_utf16* dest, t_utf32 c)
 	if (c >= UTF16_SURROGATE_HI)
 	{
 		if CCCERROR((c < UTF16_SURROGATE_END), ERROR_ILLEGALBYTES, 
-			"illegal unicode character, code point: "SF_U32, c)
+			"illegal unicode character, code point: " SF_U32, c)
 			return (ERROR);
 		c -= UTF16_BIAS;
 		dest[0] = (c >> 10) + UTF16_SURROGATE_HI;
@@ -43,7 +43,7 @@ t_utf32		CharUTF32_FromUTF16(t_utf16 const* str)
 		t_utf32 result = (c - UTF16_SURROGATE_HI) << 10;
 		c = str[1];
 		if CCCERROR((c < UTF16_SURROGATE_LO), ERROR_ILLEGALBYTES, 
-			"illegal unicode character, code point: "SF_U32, c)
+			"illegal unicode character, code point: " SF_U32, c)
 			return (ERROR);
 		result |= (c - UTF16_SURROGATE_LO);
 		result += UTF16_BIAS;

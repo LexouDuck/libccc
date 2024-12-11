@@ -14,7 +14,7 @@ t_ascii	String_Parse_GetEscape(t_ascii escapechar)
 {
 	static const struct { t_ascii esc; t_ascii chr; } lookuptable[] =
 	{
-		{ .esc =  '0',	.chr = '\x00',	}, // Null-terminator
+		{ .esc =  '0',	.chr = '\0',	}, // Null-terminator
 		{ .esc =  'a',	.chr = '\a',	}, // Alert (Beep, Bell) (added in C89)[1]
 		{ .esc =  'b',	.chr = '\b',	}, // Backspace
 		{ .esc =  't',	.chr = '\t',	}, // Horizontal Tab
@@ -27,7 +27,7 @@ t_ascii	String_Parse_GetEscape(t_ascii escapechar)
 		{ .esc = '\"',	.chr = '\"',	}, // Double quotation mark
 		{ .esc =  '/',	.chr =  '/',	}, // Forward slash
 		{ .esc = '\\',	.chr = '\\',	}, // Backslash
-		{ .esc = '\0' }
+		{ .esc = '\0',	.chr = '\0',	}, // Null-terminator
 	};
 	for (t_uint i = 0; lookuptable[i].esc != '\0'; ++i)
 	{

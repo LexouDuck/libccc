@@ -44,7 +44,7 @@ t_char*		Date_ToString(s_date const* date, t_char const* format)
 	}
 	while (wrote == 0 && size < MAX_BUFFER_SIZE);
 	if CCCERROR((size >= MAX_BUFFER_SIZE), ERROR_INVALIDARGS, 
-		"could not write date to string, size ("SF_SIZE") is too large, should be under "SF_SIZE,
+		"could not write date to string, size (" SF_SIZE ") is too large, should be under " SF_SIZE,
 		size, MAX_BUFFER_SIZE)
 		return (NULL);
 	result[wrote] = '\0';
@@ -85,7 +85,7 @@ t_size		Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char con
 extern inline
 t_char*		Date_ToString_Unix(s_date const* date)
 {
-	return (Date_ToString(date, SF_DATE_UNIX" "SF_TIME_UNIX));
+	return (Date_ToString(date, SF_DATE_UNIX " " SF_TIME_UNIX));
 }
 
 t_char*		DateNow_ToString_Unix(void)

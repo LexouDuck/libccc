@@ -485,7 +485,7 @@ t_bool	TOML_Parse_Array(s_toml* item, s_toml_parse* p)
 		// parse next value
 		TOML_Parse_SkipWhiteSpace(p);
 		if (TOML_Parse_Value(current_item, p))
-			PARSINGERROR_TOML("Inside array: failed to parse value within array, at index "SF_UINT, index)
+			PARSINGERROR_TOML("Inside array: failed to parse value within array, at index " SF_UINT, index)
 		TOML_Parse_SkipWhiteSpace(p);
 		index++;
 	}

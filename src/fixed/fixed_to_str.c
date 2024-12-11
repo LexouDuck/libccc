@@ -29,7 +29,7 @@ t_char*	Q##BITS##_ToString(t_q##BITS number)			\
 }
 /*
 	return (String_Format(								\
-		SF_S##BITS".("SF_S##BITS"/"SF_S##BITS")",		\
+		SF_S##BITS ".(" SF_S##BITS "/" SF_S##BITS ")",	\
 		(t_s##BITS)Q##BITS##_IntegerPart(number),		\
 		(t_s##BITS)Q##BITS##_FractionPart(number),		\
 		(t_s##BITS)(FIXED_DENOMINATOR))					\

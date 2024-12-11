@@ -85,7 +85,7 @@ void	Date_MakeValid(s_date* date)
 t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 {
 	if CCCERROR((month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), ERROR_INVALIDENUM, 
-		"month enum value is invalid: "SF_ENUM, month)
+		"month enum value is invalid: " SF_ENUM, month)
 		return (FALSE);
 	if (month == MONTH_FEBRUARY)
 		return (Date_IsLeapYear(year) ? 29 : 28);
@@ -130,7 +130,7 @@ t_bool	Date_IsLeapYear(t_s32 year)
 t_bool	Date_HasLeapSecond(e_month month, t_s32 year)
 {
 	if CCCERROR((month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), ERROR_INVALIDENUM, 
-		"month enum value is invalid: "SF_ENUM, month)
+		"month enum value is invalid: " SF_ENUM, month)
 		return (FALSE);
 	if (month != MONTH_JUNE &&
 		month != MONTH_DECEMBER)

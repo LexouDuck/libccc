@@ -77,7 +77,7 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-#define PARSINGERROR_DATE_MESSAGE	ANSI_COLOR_FG_RED"DATE PARSE ERROR"ANSI_RESET": "
+#define PARSINGERROR_DATE_MESSAGE	ANSI_COLOR_FG_RED "DATE PARSE ERROR" ANSI_RESET ": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
 	if CCCERROR(TRUE, ERROR_PARSE,	\
@@ -640,7 +640,7 @@ recurse:
 					{
 						number = offset % 100;
 						if (number >= 60)
-							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered ("SF_SINT"), should be 60 or less", number)
+							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered (" SF_SINT "), should be 60 or less", number)
 						/* Convert minutes into decimal */
 						offset = (offset / 100) * 100 + (number * 50) / 30;
 						break;

@@ -119,7 +119,7 @@ extern inline t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (
 t_float  PRNG_Float(t_prng* state)
 {
 	t_float	result = NAN;
-	while (isnan(result))
+	while (IS_NAN(result))
 	{
 		if (PRNG_Next(state, &result, sizeof(t_float)))
 			return (NAN);
@@ -130,14 +130,13 @@ t_float  PRNG_Float(t_prng* state)
 
 
 #define PRNG_RANGE_CHECK(_ACTION_, _SF_TYPE_) \
-	if (min == max)										\
-		return (min);									\
-	if CCCERROR((min > max), ERROR_INVALIDRANGE,		\
-		"invalid random range specified "				\
-		"(min="_SF_TYPE_" ; max="_SF_TYPE_")", min, max)\
-	{													\
-		_ACTION_										\
-	}													\
+	if (min == max) \
+		return (min); \
+	if CCCERROR((min > max), ERROR_INVALIDRANGE, \
+		"invalid random range specified (min=" _SF_TYPE_ " ; max=" _SF_TYPE_ ")", min, max) \
+	{ \
+		_ACTION_ \
+	} \
 
 t_uint  PRNG_UInt_Range     (t_prng* state, t_uint  min, t_uint  max)  { PRNG_RANGE_CHECK(return (0);, SF_UINT )	return (         (PRNG_UInt(state) % (max - min)) + min); }
 t_sint  PRNG_SInt_Range     (t_prng* state, t_sint  min, t_sint  max)  { PRNG_RANGE_CHECK(return (0);, SF_SINT )	return (         (PRNG_SInt(state) % (max - min)) + min); }

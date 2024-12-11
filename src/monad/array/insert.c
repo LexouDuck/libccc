@@ -16,7 +16,7 @@ s_array(T)*	Array_Insert(T)(s_array(T)* dest, T item, t_uint index)
 	if CCCERROR((dest->items == NULL), ERROR_INVALIDARGS, NULL)
 		return (dest);
 	if CCCERROR((index > dest->length), ERROR_INDEX2LARGE, 
-		"index given ("SF_UINT") is beyond the end of the destination dest (length: "SF_UINT")", index, dest->length)
+		"index given (" SF_UINT ") is beyond the end of the destination dest (length: " SF_UINT ")", index, dest->length)
 		return (dest);
 	result = (T*)Memory_Allocate(sizeof(T) * (dest->length + 1));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

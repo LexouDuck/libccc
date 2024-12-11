@@ -4,6 +4,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -146,18 +147,18 @@ t_size	IO_Write_Memory(t_fd fd, t_u8 const* ptr, t_size n, t_u8 columns)
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
 		result = write(fd, &nibble, 1);
 		if CCCERROR((result < 0), ERROR_SYSTEM, 
-			"call to write() failed on fd#%i, for half-byte hi char in byte at index "SF_SIZE, fd, i)
+			"call to write() failed on fd#%i, for half-byte hi char in byte at index " SF_SIZE, fd, i)
 			return (0);
 		nibble = (ptr[i] & 0x0F);
 		nibble += (nibble < 10 ? '0' : 'A' - 10);
 		result = write(fd, &nibble, 1);
 		if CCCERROR((result < 0), ERROR_SYSTEM, 
-			"call to write() failed on fd#%i, for half-byte lo char in byte at index "SF_SIZE, fd, i)
+			"call to write() failed on fd#%i, for half-byte lo char in byte at index " SF_SIZE, fd, i)
 			return (0);
 		++i;
 		result = write(fd, (i % columns == 0 ? "\n" : " "), 1);
 		if CCCERROR((result < 0), ERROR_SYSTEM, 
-			"call to write() failed on fd#%i, for memory column separator at index "SF_SIZE, fd, i)
+			"call to write() failed on fd#%i, for memory column separator at index " SF_SIZE, fd, i)
 			return (0);
 	}
 	return (result);

@@ -46,7 +46,7 @@ s_list(T)*	List_Wedge(T)(s_list(T)* dest, s_list(T) const* src, t_uint index)
 	for (t_uint i = 0; i < index; ++i)
 	{
 		if CCCERROR((elem == NULL), ERROR_INDEX2LARGE, 
-			"index given ("SF_UINT") is beyond the end of the destination list (length: "SF_UINT")",
+			"index given (" SF_UINT ") is beyond the end of the destination list (length: " SF_UINT ")",
 			index, List_Length(T)(dest))
 			return (NULL);
 		before = elem;

@@ -65,7 +65,7 @@ t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 	{
 		length = 10; // "\UXXXXXXXX"
 		if CCCERROR((n < length), ERROR_PARSE, 
-			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
+			PARSINGERROR_UTF16"input ends unexpectedly (should be at least " SF_SIZE " chars, but is only " SF_SIZE " chars long", length, n)
 			return (ERROR);
 		i += 1;
 		if CCCERROR((CharUTF32_Parse_Hex_32(&result, str + i)), ERROR_PARSE,
@@ -77,7 +77,7 @@ t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 	{
 		length = 6; // "\uXXXX"
 		if CCCERROR((n < length), ERROR_PARSE, 
-			PARSINGERROR_UTF16"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
+			PARSINGERROR_UTF16"input ends unexpectedly (should be at least " SF_SIZE " chars, but is only " SF_SIZE " chars long", length, n)
 			return (ERROR);
 		i += 1;
 		if CCCERROR((CharUTF32_Parse_Hex_16(&code1, str + i)), ERROR_PARSE,
@@ -85,14 +85,14 @@ t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 			return (ERROR); // get the first UTF-16 sequence
 		i += 4;
 		if CCCERROR((((code1 >= UTF16_SURROGATE_LO) && (code1 < UTF16_SURROGATE_END))), ERROR_PARSE,
-			PARSINGERROR_UTF16"invalid UTF-16 char code ("SF_U16_HEX")", code1)
+			PARSINGERROR_UTF16"invalid UTF-16 char code (" SF_U16_HEX ")", code1)
 			return (ERROR);
 		if ((code1 >= UTF16_SURROGATE_HI) && (code1 < UTF16_SURROGATE_LO))
 		{	// UTF16 surrogate pair
 			code2 = 0;
 			length = 12; // "\uXXXX\uXXXX"
 			if CCCERROR((n < length), ERROR_PARSE, 
-				PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly (should be at least "SF_SIZE" chars, but is only "SF_SIZE" chars long", length, n)
+				PARSINGERROR_UTF16_SURROGATE"input ends unexpectedly (should be at least " SF_SIZE " chars, but is only " SF_SIZE " chars long", length, n)
 				return (ERROR);
 			if CCCERROR((str[i] != '\\'), ERROR_PARSE, 
 				PARSINGERROR_UTF16_SURROGATE"not a valid escape sequence, expected '\\' char")
@@ -107,7 +107,7 @@ t_size		CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 				return (ERROR); // get the second UTF-16 sequence
 			i += 4;
 			if CCCERROR(((code2 < UTF16_SURROGATE_LO) || (code2 >= UTF16_SURROGATE_END)), ERROR_PARSE,
-				PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair ("SF_U16_HEX")", code2)
+				PARSINGERROR_UTF16_SURROGATE"invalid UTF-16 char code for second half of the surrogate pair (" SF_U16_HEX ")", code2)
 				return (ERROR);
 			// calculate the unicode codepoint from the surrogate pair
 			result = (t_utf32)(UTF16_BIAS + (((code1 & UTF16_SURROGATE_MASK) << 10) | (code2 & UTF16_SURROGATE_MASK)));

@@ -21,7 +21,7 @@ static const t_f32 f32_powers_pos[] =
 	(t_f32)0x1.0p+128,
 	(t_f32)0x1.0p+256,
 	(t_f32)0x1.0p+512,
-	INFINITY,
+	(t_f32)INFINITY
 };
 static const t_f32 f32_powers_neg[] =
 {
@@ -36,7 +36,7 @@ static const t_f32 f32_powers_neg[] =
 	(t_f32)0x1.0p-128,
 	(t_f32)0x1.0p-256,
 	(t_f32)0x1.0p-512,
-	0.
+	(t_f32)0.
 };
 
 static const t_f64 f64_powers_pos[] =
@@ -52,7 +52,7 @@ static const t_f64 f64_powers_pos[] =
 	(t_f64)0x1.0p+128,
 	(t_f64)0x1.0p+256,
 	(t_f64)0x1.0p+512,
-	INFINITY,
+	(t_f64)INFINITY
 };
 static const t_f64 f64_powers_neg[] =
 {
@@ -67,7 +67,7 @@ static const t_f64 f64_powers_neg[] =
 	(t_f64)0x1.0p-128,
 	(t_f64)0x1.0p-256,
 	(t_f64)0x1.0p-512,
-	0.
+	(t_f64)0.
 };
 
 #if LIBCONFIG_USE_FLOAT80
@@ -88,7 +88,7 @@ static const t_f80 f80_powers_pos[] =
 	(t_f80)0x1.0p+2048,
 	(t_f80)0x1.0p+4096,
 	(t_f80)0x1.0p+8192,
-	INFINITY,
+	(t_f80)INFINITY
 };
 static const t_f80 f80_powers_neg[] =
 {
@@ -107,7 +107,7 @@ static const t_f80 f80_powers_neg[] =
 	(t_f80)0x1.0p-2048,
 	(t_f80)0x1.0p-4096,
 	(t_f80)0x1.0p-8192,
-	0.
+	(t_f80)0.
 };
 #endif
 
@@ -129,7 +129,7 @@ static const t_f128 f128_powers_pos[] =
 	(t_f128)0x1.0p+2048,
 	(t_f128)0x1.0p+4096,
 	(t_f128)0x1.0p+8192,
-	INFINITY,
+	(t_f128)INFINITY
 };
 static const t_f128 f128_powers_neg[] =
 {
@@ -148,7 +148,7 @@ static const t_f128 f128_powers_neg[] =
 	(t_f128)0x1.0p-2048,
 	(t_f128)0x1.0p-4096,
 	(t_f128)0x1.0p-8192,
-	0.
+	(t_f128)0.
 };
 #endif
 

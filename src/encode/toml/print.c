@@ -28,7 +28,7 @@ typedef s_kvt_print	s_toml_print;
 
 
 //! The set of characters which are valid in a bare (unquoted) key
-#define TOML_CHARSET_BAREKEY	"-"CHARSET_ALPHABET"_"CHARSET_DECIMAL
+#define TOML_CHARSET_BAREKEY	"-" CHARSET_ALPHABET "_" CHARSET_DECIMAL
 
 //! The maximum amount of items an inline array/object can have before being spread across multiple lines
 #define TOML_INLINE_MULTILINE	8

@@ -157,7 +157,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	if (prefix && prefix[0] != '\0')
 	{
 		if (prefix_color && logger->format == LOGFORMAT_ANSI)
-			prefix_str = String_Format("%s%s"ANSI_RESET": ", prefix_color, prefix);
+			prefix_str = String_Format("%s%s" ANSI_RESET ": ", prefix_color, prefix);
 		else
 			prefix_str = String_Format("%s: ", prefix);
 	}
@@ -202,7 +202,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (logger->timestamp)
 		{
 			t_char* tmp = timestamp;
-			timestamp = String_Format("%s"LOG_TIMESTAMP_SEPARATOR, timestamp);
+			timestamp = String_Format("%s" LOG_TIMESTAMP_SEPARATOR, timestamp);
 			String_Delete(&tmp);
 		}
 		t_char* message_str = String_Duplicate(message);

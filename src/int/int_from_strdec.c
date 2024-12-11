@@ -34,7 +34,7 @@ t_size	U##BITS##_Parse_Dec(t_u##BITS* dest, t_char const* str, t_size n)			\
 	{																				\
 		tmp = result * 10 + (str[i++] - '0');										\
 		if CCCERROR((tmp < result), ERROR_RESULTRANGE,								\
-			#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS,			\
+			#BITS"-bit unsigned integer overflow for \"%s\" at " SF_U##BITS,			\
 			str, U##BITS##_MAX)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX);							\
@@ -97,13 +97,13 @@ t_size	S##BITS##_Parse_Dec(t_s##BITS* dest, t_char const* str, t_size n)			\
 	{																				\
 		tmp = result * 10 + (str[i++] - '0');										\
 		if CCCERROR((negative && tmp > (t_u##BITS)S##BITS##_MIN), ERROR_RESULTRANGE,\
-			#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS,			\
+			#BITS"-bit signed integer underflow for \"%s\" at " SF_S##BITS,			\
 			str, S##BITS##_MIN)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN);							\
 		}																			\
 		if CCCERROR((!negative && tmp > (t_u##BITS)S##BITS##_MAX), ERROR_RESULTRANGE,\
-			#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS,			\
+			#BITS"-bit signed integer overflow for \"%s\" at " SF_S##BITS,			\
 			str, S##BITS##_MAX)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX);							\

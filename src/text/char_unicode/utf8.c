@@ -120,7 +120,7 @@ t_size		CharUTF32_ToUTF8(t_utf8* dest, t_utf32 c)
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (0);
 	if CCCERROR(!CharUTF32_IsValid(c), ERROR_ILLEGALBYTES,
-		"invalid unicode character, code point: "SF_U32, c)
+		"invalid unicode character, code point: " SF_U32, c)
 		return (0);
 	if (c < UTF8_1BYTE)
 	{

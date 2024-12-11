@@ -13,7 +13,7 @@ void*	Memory_Map(void const* ptr, t_size n, t_u8 (*map)(t_u8 byte))
 		return (NULL);
 	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
-	result = Memory_New(n);
+	result = (t_u8*)Memory_New(n);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	for (t_uint i = 0; i < n; ++i)
@@ -32,7 +32,7 @@ void*	Memory_Map_I(void const* ptr, t_size n, t_u8 (*map)(t_u8 byte, t_uint inde
 		return (NULL);
 	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
 		return (NULL);
-	result = Memory_New(n);
+	result = (t_u8*)Memory_New(n);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	for (t_uint i = 0; i < n; ++i)

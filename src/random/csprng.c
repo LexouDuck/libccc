@@ -152,7 +152,7 @@ extern inline t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	ret
 t_float	CSPRNG_Float(t_csprng* state)
 {
 	t_float	result = NAN;
-	while (isnan(result))
+	while (IS_NAN(result))
 	{
 		if (CSPRNG_Next(state, &result, sizeof(t_float)))
 			return (NAN);
@@ -163,14 +163,13 @@ t_float	CSPRNG_Float(t_csprng* state)
 
 
 #define CSPRNG_RANGE_CHECK(_ACTION_, _SF_TYPE_) \
-	if (min == max)										\
-		return (min);									\
-	if CCCERROR((min > max), ERROR_INVALIDRANGE,		\
-		"invalid random range specified "				\
-		"(min="_SF_TYPE_" ; max="_SF_TYPE_")", min, max)\
-	{													\
-		_ACTION_										\
-	}													\
+	if (min == max) \
+		return (min); \
+	if CCCERROR((min > max), ERROR_INVALIDRANGE, \
+		"invalid random range specified (min=" _SF_TYPE_ " ; max=" _SF_TYPE_ ")", min, max) \
+	{ \
+		_ACTION_ \
+	} \
 
 t_uint  CSPRNG_UInt_Range     (t_csprng* state, t_uint  min, t_uint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_UINT)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
 t_sint  CSPRNG_SInt_Range     (t_csprng* state, t_sint  min, t_sint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_SINT)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }

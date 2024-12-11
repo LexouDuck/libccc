@@ -26,7 +26,7 @@ s_list(T)*	List_RemoveAt(T)(s_list(T)* list, t_uint index)
 		elem = elem->next;
 	}
 	if CCCERROR((elem == NULL || elem->next == NULL), ERROR_INDEX2LARGE, 
-		"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+		"index given (" SF_UINT ") is beyond end of list (length: " SF_UINT ")",
 		index, List_Length(T)(list))
 		return (list);
 	tmp = elem->next;
@@ -60,7 +60,7 @@ s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T))
 		elem = elem->next;
 	}
 	if CCCERROR((elem == NULL || elem->next == NULL), ERROR_INDEX2LARGE, 
-		"index given ("SF_UINT") is beyond end of list (length: "SF_UINT")",
+		"index given (" SF_UINT ") is beyond end of list (length: " SF_UINT ")",
 		index, List_Length(T)(list))
 		return (list);
 	del(elem->item);

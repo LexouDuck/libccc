@@ -18,10 +18,10 @@ t_ascii*	String_Sub(t_ascii const* str, t_size index, t_size n)
 	while (str[length])
 		++length;
 	if CCCERROR((index > length), ERROR_INDEX2LARGE, 
-		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index)
+		"should be " SF_SIZE " or less, but got " SF_SIZE, length, index)
 	return (NULL);
 	if CCCERROR((index + n > length), ERROR_LENGTH2LARGE, 
-		"should be "SF_SIZE" or less, but got "SF_SIZE, length, index + n)
+		"should be " SF_SIZE " or less, but got " SF_SIZE, length, index + n)
 	return (NULL);
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

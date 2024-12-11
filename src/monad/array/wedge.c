@@ -16,7 +16,7 @@ s_array(T)*	Array_Wedge(T)(s_array(T)* dest, s_array(T) const* src, t_uint index
 	if CCCERROR((dest->length > 0 && dest->items == NULL), ERROR_INVALIDARGS, "destination array given is invalid")
 		return (dest);
 	if CCCERROR((index > dest->length), ERROR_INDEX2LARGE, 
-		"index given ("SF_UINT") is beyond the end of the destination array (length: "SF_UINT")", index, dest->length)
+		"index given (" SF_UINT ") is beyond the end of the destination array (length: " SF_UINT ")", index, dest->length)
 		return (dest);
 	result = (T*)Memory_Allocate(sizeof(T) * (dest->length + src->length));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)

@@ -3,6 +3,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -52,7 +53,7 @@ e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 	t_bool	is_sh;
 	t_fd	fd = (logger ? logger->fd : STDOUT);
 	is_sh = IO_IsTerminal(fd);
-	prefix = (is_sh ? "libccc: "ANSI_COLOR_FG_RED"fatal"ANSI_RESET": " : "libccc: fatal: ");
+	prefix = (is_sh ? "libccc: " ANSI_COLOR_FG_RED "fatal" ANSI_RESET ": " : "libccc: fatal: ");
 	result = write(fd, prefix, String_Length(prefix));
 	if (str)
 	{
@@ -65,14 +66,14 @@ e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 	if (logger == NULL)
 	{
 		result = printf(
-			ANSI_COLOR_FG_RED"Fatal Error"ANSI_RESET": %s\n\t-> %s\n",
+			ANSI_COLOR_FG_RED "Fatal Error" ANSI_RESET ": %s\n\t-> %s\n",
 			(str ? str : ""), message);
 		return (ERROR_NULLPOINTER);
 	}
 	if (logger->path && IO_IsTerminal(logger->fd))
 	{
 		result = dprintf(logger->fd,
-			ANSI_COLOR_FG_RED"Fatal Error"ANSI_RESET": %s\n\t-> %s\n",
+			ANSI_COLOR_FG_RED "Fatal Error" ANSI_RESET ": %s\n\t-> %s\n",
 			(str ? str : ""), message);
 	}
 	else

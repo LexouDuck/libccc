@@ -49,7 +49,7 @@ t_size	U##BITS##_Parse_Hex(t_u##BITS* dest, t_char const* str, t_size n)			\
 	{																				\
 		tmp = result * 16 + Int_Parse_GetHexDigit(str[i++]);						\
 		if CCCERROR((tmp < result), ERROR_RESULTRANGE,								\
-			#BITS"-bit unsigned integer overflow for \"%s\" at "SF_U##BITS##_HEX,	\
+			#BITS"-bit unsigned integer overflow for \"%s\" at " SF_U##BITS##_HEX,	\
 			str, U##BITS##_MAX)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(U##BITS##_MAX)							\
@@ -114,13 +114,13 @@ t_size	S##BITS##_Parse_Hex(t_s##BITS* dest, t_char const* str, t_size n)			\
 	{																				\
 		tmp = result * 16 + Int_Parse_GetHexDigit(str[i++]);						\
 		if CCCERROR((negative && tmp > (t_u##BITS)S##BITS##_MIN), ERROR_RESULTRANGE,\
-			#BITS"-bit signed integer underflow for \"%s\" at "SF_S##BITS##_HEX,	\
+			#BITS"-bit signed integer underflow for \"%s\" at " SF_S##BITS##_HEX,	\
 			str, S##BITS##_MIN)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MIN)							\
 		}																			\
 		if CCCERROR((!negative && tmp > (t_u##BITS)S##BITS##_MAX), ERROR_RESULTRANGE,\
-			#BITS"-bit signed integer overflow for \"%s\" at "SF_S##BITS##_HEX,		\
+			#BITS"-bit signed integer overflow for \"%s\" at " SF_S##BITS##_HEX,		\
 			str, S##BITS##_MAX)														\
 		{																			\
 			LIBCONFIG_ERROR_PARSEROVERFLOW(S##BITS##_MAX)							\

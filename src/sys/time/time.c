@@ -92,7 +92,7 @@ struct timespec	NanoTime_ToSTDC(s_nanotime const* value)
 	return ((struct timespec)
 	{
 		.tv_sec = value->sec,
-		.tv_nsec = value->nanosec,
+		.tv_nsec = (long)value->nanosec,
 	});
 }
 
