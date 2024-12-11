@@ -40,7 +40,7 @@ void	print_test_u##BITS##(char const* test_name, t_testflags flags,		\
 {																			\
 	TEST_INIT(u##BITS)														\
 	TEST_PERFORM_LIBC(	u##BITS##, a, b)									\
-	TEST_PRINT(u##BITS,	u##BITS##, "a="SF_U##BITS", b="SF_U##BITS, a, b)	\
+	TEST_PRINT(u##BITS,	u##BITS##, "a=" SF_U##BITS ", b=" SF_U##BITS, a, b)	\
 }																			\
 void	test_u##BITS##(void)												\
 {																			\
@@ -93,7 +93,7 @@ void	print_test_u##BITS##FUNC(char const* test_name, t_testflags flags,	\
 {																			\
 	TEST_INIT(u##BITS)														\
 	TEST_PERFORM(		u##BITS##FUNC, a, b)								\
-	TEST_PRINT(u##BITS,	u##BITS##FUNC, "a="SF_U##BITS", b="SF_U##BITS, a, b)\
+	TEST_PRINT(u##BITS,	u##BITS##FUNC, "a=" SF_U##BITS ", b=" SF_U##BITS, a, b)\
 }																			\
 void	test_u##BITS##FUNC(void)											\
 {																			\
@@ -197,7 +197,7 @@ void	print_test_s##BITS##FUNC(char const* test_name, t_testflags flags,	\
 {																			\
 	TEST_INIT(s##BITS)														\
 	TEST_PERFORM(		s##BITS##FUNC, a, b)								\
-	TEST_PRINT(s##BITS,	s##BITS##FUNC, "a="SF_S##BITS", b="SF_S##BITS, a, b)\
+	TEST_PRINT(s##BITS,	s##BITS##FUNC, "a=" SF_S##BITS ", b=" SF_S##BITS, a, b)\
 }																			\
 void	test_s##BITS##FUNC(void)											\
 {																			\

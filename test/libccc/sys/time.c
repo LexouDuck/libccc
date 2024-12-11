@@ -19,7 +19,7 @@
 ** ************************************************************************** *|
 */
 
-#define SF_UTC	(SF_DATE_UNIX" "SF_TIME_UNIX)
+#define SF_UTC	(SF_DATE_UNIX " " SF_TIME_UNIX)
 
 /*
 	.year		; Amount of years since 1900	
@@ -188,7 +188,7 @@ void	print_test_datetostr(char const* test_name, t_testflags flags,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	datetostr, date, format)
-	TEST_PRINT(str,	datetostr, "format=\"%s\", date = {"DATE_STR_FORMAT"}",
+	TEST_PRINT(str,	datetostr, "format=\"%s\", date = {" DATE_STR_FORMAT "}",
 		format,
 		date->year,
 		date->month,

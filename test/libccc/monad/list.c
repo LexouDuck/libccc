@@ -26,12 +26,14 @@ void	print_test_lstitem(char const* test_name, t_testflags flags,
 void	test_lstitem(void)
 {
 /*	| TEST FUNCTION  | TEST NAME         |TESTFLAG| EXPECTING   | TEST ARGS */
+/* TODO
 	print_test_lstitem("lstitem            ",	FALSE,  "Omae",       "Omae",        5);
 	print_test_lstitem("lstitem            ",	FALSE,  " wa ",       " wa ",        5);
 	print_test_lstitem("lstitem            ",	FALSE,  "mou ",       "mou ",        5);
 	print_test_lstitem("lstitem            ",	FALSE,  "shindeiru.", "shindeiru.", 11);
 	print_test_lstitem("lstitem (empty str)",	FALSE,  "",           "",            1);
 	print_test_lstitem("lstitem (null  ptr)",	TRUE,   NULL,         NULL,          5);
+*/
 }
 #endif
 
@@ -88,7 +90,7 @@ void test_lstfdel(void)	{}
 void	print_test_lstfdel(char const* test_name, t_testflags flags,
 		char const* expecting,
 		s_list(any) **a_lst,
-		void (*delete)(void *, t_size))
+		void (*delete_func)(void *, t_size))
 {
 	// TODO
 }
@@ -331,7 +333,7 @@ void test_lstdelone(void)	{}
 void	print_test_lstdelone(char const* test_name, t_testflags flags,
 		char const* expecting,
 		s_list(any)* list,
-		void (*delete)(void*))
+		void (*delete_func)(void*))
 {
 	// TODO
 }

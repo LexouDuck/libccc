@@ -24,7 +24,7 @@ void	print_math_foreword(void)
 {
 	if (g_test.config.verbose)
 	{
-		printf("\n\n"ANSI_COLOR_FG_BLUE"Floating-point (%d-bit %s precision) math functions"ANSI_RESET"\n\n",
+		printf("\n\n" ANSI_COLOR_FG_BLUE "Floating-point (%d-bit %s precision) math functions" ANSI_RESET "\n\n",
 #if LIBCONFIG_FLOAT_BITS == 32
 			32, "IEEE single");
 #endif
@@ -44,7 +44,7 @@ void	print_math_title(char const * title)
 {
 	if (g_test.config.verbose)
 	{
-		printf("\n\n"ANSI_COLOR_FG_BLUE"%s"ANSI_RESET"\n", title);
+		printf("\n\n" ANSI_COLOR_FG_BLUE "%s" ANSI_RESET "\n", title);
 	}
 }
 
@@ -58,19 +58,19 @@ void printf_colored(const char* label, t_float precision, t_float value)
 	printf("%s", label);
 	if (precision == 0.)
 	{
-		if (value == 0. || IS_NAN(value))
-			printf(SF_FORMAT"\n", "", value);
+		if (value == 0. || isnan(value))
+			printf(SF_FORMAT "\n", "", value);
 		else if (value < 0)
-			printf(SF_FORMAT"\n"ANSI_RESET, ANSI_COLOR_FG_RED, value);
+			printf(SF_FORMAT "\n" ANSI_RESET, ANSI_COLOR_FG_RED, value);
 		else if (value > 0)
-			printf(SF_FORMAT"\n"ANSI_RESET, ANSI_COLOR_FG_GREEN, value);
+			printf(SF_FORMAT "\n" ANSI_RESET, ANSI_COLOR_FG_GREEN, value);
 	}
 	else
 	{
 		if (value < precision)
-			printf(SF_FORMAT"\n"ANSI_RESET, ANSI_COLOR_FG_GREEN, value);
+			printf(SF_FORMAT "\n" ANSI_RESET, ANSI_COLOR_FG_GREEN, value);
 		else
-			printf(SF_FORMAT"\n"ANSI_RESET, ANSI_COLOR_FG_RED, value);
+			printf(SF_FORMAT "\n" ANSI_RESET, ANSI_COLOR_FG_RED, value);
 	}
 }
 
@@ -84,7 +84,7 @@ t_float	c_get_largest_f(s_array_float values)
 	{
 		if (result < values.items[i])
 			result = values.items[i];
-		if (IS_NAN(values.items[i]))
+		if (isnan(values.items[i]))
 			result = NAN;
 	}
 	return (result);
@@ -157,7 +157,7 @@ t_float	c_get_largest_f(s_array_float values)
 			++failed_tests;																						\
 			if (g_test.config.verbose && g_test.config.show_args && precision < fabs(results[i] - expects[i]))	\
 			{																									\
-				printf("TEST N°%d: -> returned %g but libc returned %g (difference is "ANSI_COLOR_FG_RED"%g"ANSI_RESET")\n",	\
+				printf("TEST N°%d: -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n",	\
 					i, results[i], expects[i], errors.items[i]);												\
 			}																									\
 		}																										\

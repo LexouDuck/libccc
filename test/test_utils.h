@@ -9,8 +9,10 @@
 */
 
 #include <stdbool.h>
+#ifndef __cplusplus
 #ifndef bool
 #define bool	_Bool
+#endif
 #endif
 
 #include "libccc.h"
@@ -189,7 +191,7 @@ DEFINEFUNC_PRINT_TEST(list,		s_list_int const*)
 DEFINEFUNC_PRINT_TEST(date,		s_date)
 
 DEFINEFUNC_PRINT_TEST(sign,		t_sintmax)
-DEFINEFUNC_PRINT_TEST(alloc,	char const*)
+DEFINEFUNC_PRINT_TEST(alloc,	void*)
 
 
 /*

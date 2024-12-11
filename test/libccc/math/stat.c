@@ -38,23 +38,23 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	if (g_test.config.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :"SF_U64"\n", c_stat_median_i(values_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :"SF_U64"\n", c_stat_average_i(values_sorted), intmax / 2);
+		printf("\tMedian:   %12f | intmax   :" SF_U64 "\n", c_stat_median_i(values_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", c_stat_average_i(values_sorted), intmax / 2);
 		tmp = c_stat_variance_i(values_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
-			"\t\t 0: "SF_SINT"\n"
-			"\t\t 1: "SF_SINT"\n"
-			"\t\t 2: "SF_SINT"\n"
-			"\t\t 3: "SF_SINT"\n"
-			"\t\t 4: "SF_SINT"\n"
-			"\t\t 5: "SF_SINT"\n"
-			"\t\t 6: "SF_SINT"\n"
-			"\t\t 7: "SF_SINT"\n"
-			"\t\t 8: "SF_SINT"\n"
-			"\t\t 9: "SF_SINT"\n"
-			"\t\t10: "SF_SINT"\n\n",
+			"\t\t 0: " SF_SINT "\n"
+			"\t\t 1: " SF_SINT "\n"
+			"\t\t 2: " SF_SINT "\n"
+			"\t\t 3: " SF_SINT "\n"
+			"\t\t 4: " SF_SINT "\n"
+			"\t\t 5: " SF_SINT "\n"
+			"\t\t 6: " SF_SINT "\n"
+			"\t\t 7: " SF_SINT "\n"
+			"\t\t 8: " SF_SINT "\n"
+			"\t\t 9: " SF_SINT "\n"
+			"\t\t10: " SF_SINT "\n\n",
 			values_sorted.items[0],
 			values_sorted.items[(t_u32)(decile_inc)],
 			values_sorted.items[(t_u32)(decile_inc * 2)],

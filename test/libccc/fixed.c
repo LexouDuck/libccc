@@ -32,7 +32,7 @@ void	print_test_##TYPE##tostr(char const* test_name, t_testflags flags,		\
 		char const* expecting,													\
 		t_##TYPE number)														\
 {																				\
-	char* q = String_Format(SF_S64".("SF_S64"/"SF_S64")",						\
+	char* q = String_Format(SF_S64 ".(" SF_S64 "/" SF_S64 ")",					\
 		(t_s64)(number / FIXED_DENOMINATOR),									\
 		(t_s64)(number % FIXED_DENOMINATOR),									\
 		(t_s64)(FIXED_DENOMINATOR));											\

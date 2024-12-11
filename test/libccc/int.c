@@ -35,7 +35,7 @@ void	print_test_u##BITS##tostr(char const* test_name, t_testflags flags,		\
 {																				\
 	TEST_INIT(str)																\
 	TEST_PERFORM(	u##BITS##tostr, number)										\
-	TEST_PRINT(str, u##BITS##tostr, "n="SF_U##BITS, number)						\
+	TEST_PRINT(str, u##BITS##tostr, "n=" SF_U##BITS, number)					\
 	TEST_FREE()																	\
 }																				\
 void	test_u##BITS##tostr(void)																							\
@@ -145,7 +145,7 @@ void	print_test_s##BITS##tostr(char const* test_name, t_testflags flags,		\
 {																				\
 	TEST_INIT(str)																\
 	TEST_PERFORM(	s##BITS##tostr, number)										\
-	TEST_PRINT(str, s##BITS##tostr, "n="SF_S##BITS, number)						\
+	TEST_PRINT(str, s##BITS##tostr, "n=" SF_S##BITS, number)					\
 	TEST_FREE()																	\
 }																				\
 void	test_s##BITS##tostr(void)																							\
@@ -264,7 +264,7 @@ void	print_test_u##BITS##tostrhex(char const* test_name, t_testflags flags,		\
 {																					\
 	TEST_INIT(str)																	\
 	TEST_PERFORM(	u##BITS##tostrhex, number, FALSE)								\
-	TEST_PRINT(str, u##BITS##tostrhex, "prefix=%s, n="SF_U##BITS"", BOOL_TOSTRING(FALSE), number)	\
+	TEST_PRINT(str, u##BITS##tostrhex, "prefix=%s, n=" SF_U##BITS, BOOL_TOSTRING(FALSE), number)	\
 	TEST_FREE()																		\
 }																					\
 void	test_u##BITS##tostrhex(void)																								\
@@ -373,7 +373,7 @@ void	print_test_s##BITS##tostrbase(char const* test_name, t_testflags flags,		\
 {																					\
 	TEST_INIT(str)																	\
 	TEST_PERFORM(	s##BITS##tostrbase, number, base)								\
-	TEST_PRINT(str, s##BITS##tostrbase, "base=\"%s\", n="SF_S##BITS, base, number)	\
+	TEST_PRINT(str, s##BITS##tostrbase, "base=\"%s\", n=" SF_S##BITS, base, number)	\
 	TEST_FREE()																		\
 }																					\
 void	test_s##BITS##tostrbase(void)																													\
@@ -521,7 +521,7 @@ void	print_test_u##BITS##tostrbase(char const* test_name, t_testflags flags,		\
 {																					\
 	TEST_INIT(str)																	\
 	TEST_PERFORM(	u##BITS##tostrbase, number, base)								\
-	TEST_PRINT(str, u##BITS##tostrbase, "base=\"%s\", n="SF_U##BITS, base, number)	\
+	TEST_PRINT(str, u##BITS##tostrbase, "base=\"%s\", n=" SF_U##BITS, base, number)	\
 	TEST_FREE()																		\
 }																					\
 void	test_u##BITS##tostrbase(void)																												\

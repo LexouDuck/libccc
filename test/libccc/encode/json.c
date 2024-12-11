@@ -7,8 +7,8 @@
 
 // the minimal boilerplate needed to store a single vlue in TOML
 #define JSON_TEST(NAME, STR) \
-	t_utf8 const*	NAME		= STR"\n";	\
-	t_utf8 const*	NAME##_min	= STR"";	\
+	t_utf8 const*	NAME		= STR"\n"; \
+	t_utf8 const*	NAME##_min	= STR""; \
 
 
 
@@ -211,35 +211,35 @@ JSON_TEST(json_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 
-t_utf8*	json_array_empty_min	= "[]";
-t_utf8*	json_array_empty		= "[]\n";
-t_utf8*	json_array_min			= "[false,true,null]";
-t_utf8*	json_array				= "\
+t_utf8 const*	json_array_empty_min	= "[]";
+t_utf8 const*	json_array_empty		= "[]\n";
+t_utf8 const*	json_array_min			= "[false,true,null]";
+t_utf8 const*	json_array				= "\
 [\
 \n	false,\
 \n	true,\
 \n	null\
 \n]\
 \n";
-t_utf8*	json_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	json_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
+t_utf8 const*	json_array_nested_min	= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\":1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8 const*	json_array_nested		= "[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{\"swag\": 1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]\n";
 
 
 
-t_utf8*	json_object_empty_min	= "{}";
-t_utf8*	json_object_empty		= "{}\n";
-t_utf8*	json_object_min			= "{\"a\":false,\"b\":true,\"c\":null}";
-t_utf8*	json_object				= "\
+t_utf8 const*	json_object_empty_min	= "{}";
+t_utf8 const*	json_object_empty		= "{}\n";
+t_utf8 const*	json_object_min			= "{\"a\":false,\"b\":true,\"c\":null}";
+t_utf8 const*	json_object				= "\
 {\
 \n	\"a\": false,\
 \n	\"b\": true,\
 \n	\"c\": null\
 \n}\
 \n";
-t_utf8*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	json_object_nested		= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
+t_utf8 const*	json_object_nested_min	= "{\"a\":{\"b\":{\"c\":{\"d\":{\"e\":{\"f\":{\"g\":{\"h\":{\"i\":{\"j\":{\"k\":{\"l\":{\"m\":{\"n\":{\"o\":{\"p\":{\"q\":{\"r\":{\"s\":{\"t\":{\"u\":{\"v\":{\"w\":{\"x\":{\"y\":{\"z\":\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8 const*	json_object_nested		= "{\"a\": {\"b\": {\"c\": {\"d\": {\"e\": {\"f\": {\"g\": {\"h\": {\"i\": {\"j\": {\"k\": {\"l\": {\"m\": {\"n\": {\"o\": {\"p\": {\"q\": {\"r\": {\"s\": {\"t\": {\"u\": {\"v\": {\"w\": {\"x\": {\"y\": {\"z\": \"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}\n";
 
-t_utf8*	json_object_string_min =
+t_utf8 const*	json_object_string_min =
 "{"
 	"\"type\":11,"
 	"\"value\":"
@@ -254,7 +254,7 @@ t_utf8*	json_object_string_min =
 		"}"
 	"}\""
 "}";
-t_utf8*	json_object_string =
+t_utf8 const*	json_object_string =
 "{\
 \n	\"type\": 11,\
 \n	\"value\": \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
@@ -269,27 +269,27 @@ t_utf8*	json_object_string =
 
 
 
-t_utf8*	json_helloworld_min	= "{\"hello\":\"world\"}";
-t_utf8*	json_helloworld		= "{\"hello\": \"world\"}\n";
+t_utf8 const*	json_helloworld_min	= "{\"hello\":\"world\"}";
+t_utf8 const*	json_helloworld		= "{\"hello\": \"world\"}\n";
 
-t_utf8*	json_whitespace		= "  {  \"hello\"  :  \"world\"  }  ";
-t_utf8*	json_whitespace_tab	= "\t{\t\"hello\"\t:\t\"world\"\t}\t";
-t_utf8*	json_whitespace_nl	= "\n{\n\"hello\"\n:\n\"world\"\n}\t";
-t_utf8*	json_whitespace_cr	= "\r{\r\"hello\"\r:\r\"world\"\r}\r";
-t_utf8*	json_whitespace_ff	= "\f{\f\"hello\"\f:\f\"world\"\f}\f";
-t_utf8*	json_whitespace_vt	= "\v{\v\"hello\"\v:\v\"world\"\v}\v";
-t_utf8*	json_whitespace_all	= "\t\f\r\n{\t\f\r\n\"hello\":\t\f\r\n\"world\"\t\f\r\n}\t\f\r\n";
+t_utf8 const*	json_whitespace		= "  {  \"hello\"  :  \"world\"  }  ";
+t_utf8 const*	json_whitespace_tab	= "\t{\t\"hello\"\t:\t\"world\"\t}\t";
+t_utf8 const*	json_whitespace_nl	= "\n{\n\"hello\"\n:\n\"world\"\n}\t";
+t_utf8 const*	json_whitespace_cr	= "\r{\r\"hello\"\r:\r\"world\"\r}\r";
+t_utf8 const*	json_whitespace_ff	= "\f{\f\"hello\"\f:\f\"world\"\f}\f";
+t_utf8 const*	json_whitespace_vt	= "\v{\v\"hello\"\v:\v\"world\"\v}\v";
+t_utf8 const*	json_whitespace_all	= "\t\f\r\n{\t\f\r\n\"hello\":\t\f\r\n\"world\"\t\f\r\n}\t\f\r\n";
 
-t_utf8*	json_strange_sot	= "\1{\"hello\":\1\"world\"\1}\n";
-t_utf8*	json_strange_stx	= "\2{\"hello\":\2\"world\"\2}\n";
-t_utf8*	json_strange_etx	= "\3{\"hello\":\3\"world\"\3}\n";
-t_utf8*	json_strange_eot	= "\4{\"hello\":\4\"world\"\4}\n";
-t_utf8*	json_strange_esc	= "\x1B{\"hello\":\x1B\"world\"\x1B}\n";
-t_utf8*	json_strange_bs		= "\b{\"hello\":\b\"world\"\b}\n";
+t_utf8 const*	json_strange_sot	= "\1{\"hello\":\1\"world\"\1}\n";
+t_utf8 const*	json_strange_stx	= "\2{\"hello\":\2\"world\"\2}\n";
+t_utf8 const*	json_strange_etx	= "\3{\"hello\":\3\"world\"\3}\n";
+t_utf8 const*	json_strange_eot	= "\4{\"hello\":\4\"world\"\4}\n";
+t_utf8 const*	json_strange_esc	= "\x1B{\"hello\":\x1B\"world\"\x1B}\n";
+t_utf8 const*	json_strange_bs		= "\b{\"hello\":\b\"world\"\b}\n";
 
 
 
-t_utf8*	json_simple_min =
+t_utf8 const*	json_simple_min =
 "{"
 	"\"test_bool_0\":false,"
 	"\"test_bool_1\":true,"
@@ -306,7 +306,7 @@ t_utf8*	json_simple_min =
 		"\"nest_object\":null"
 	"}"
 "}";
-t_utf8*	json_simple = "\
+t_utf8 const*	json_simple = "\
 {\
 \n	\"test_bool_0\": false,\
 \n	\"test_bool_1\": true,\
@@ -337,7 +337,7 @@ t_utf8*	json_simple = "\
 
 
 
-t_utf8*	json_commas_min =
+t_utf8 const*	json_commas_min =
 "{"
 	"\"test_bool_0\":false,"
 	"\"test_bool_1\":true,"
@@ -354,7 +354,7 @@ t_utf8*	json_commas_min =
 		"\"nest_object\":null,"
 	"},"
 "}";
-t_utf8*	json_commas = "\
+t_utf8 const*	json_commas = "\
 {\
 \n	\"test_bool_0\": false,\
 \n	\"test_bool_1\": true,\
@@ -385,7 +385,7 @@ t_utf8*	json_commas = "\
 
 
 
-t_utf8*	json_newline = "\n\n\
+t_utf8 const*	json_newline = "\n\n\
 \n{\
 \n\n\"test_bool_0\":\nfalse,\
 \n\n\"test_bool_1\":\ntrue,\
@@ -416,7 +416,7 @@ t_utf8*	json_newline = "\n\n\
 
 
 
-t_utf8*	json_config_min =
+t_utf8 const*	json_config_min =
 "{"
 	"\"General Settings\":"
 	"{"
@@ -457,7 +457,7 @@ t_utf8*	json_config_min =
 		"\"joypad_B\":"     "{\"device_guid\":\"00000000000000000000000000000000\",\"device_id\":0,\"event\":\"jbutton\",\"value\":1}"
 	"}"
 "}";
-t_utf8*	json_config = "\
+t_utf8 const*	json_config = "\
 {\
 \n	\"General Settings\": \
 \n	{\
@@ -500,7 +500,7 @@ t_utf8*	json_config = "\
 \n}\
 \n";
 
-t_utf8*	json_complex_min =
+t_utf8 const*	json_complex_min =
 "{"
 	"\"Attributes\":"
 	"{"
@@ -532,7 +532,7 @@ t_utf8*	json_complex_min =
 	"\"Properties\":[[\"known for\",\"most popular role\",\"The Shining\"],[\"fan of\",\"famous fan\",\"Los Angeles Lakers\"],[\"fan of\",\"\",\"Bob Dylan\"],[\"also known for\",\"best performance\",\"Chinatown\"]],"
 	"\"Values\":[\"actor\",\"player\",\"filmmaker\"]"
 "}";
-t_utf8*	json_complex = "\
+t_utf8 const*	json_complex = "\
 {\
 \n	\"Attributes\": \
 \n	{\

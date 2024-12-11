@@ -30,7 +30,7 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* funcname, t_char const
 	t_char const* errorname = Error_CCC_Name(error);
 	t_char const* error_msg = Error_CCC_Message(error);
 	t_char* errorlog = String_Format(
-		"libccc: "ANSI_COLOR_FG_RED"error[CCC:%d:%s]"ANSI_RESET": %s -> %s -> %s%s",
+		"libccc: " ANSI_COLOR_FG_RED "error[CCC:%d:%s]" ANSI_RESET ": %s -> %s -> %s%s",
 		error, errorname, funcname, error_msg, message,
 		(message == NULL || message[0] == '\0' || message[String_Length(message) - 1] != '\n') ? "\n" : "");
 	if (g_test.last_test_error == NULL)
@@ -39,7 +39,7 @@ void	test_cccerrorhandler(e_cccerror error, t_char const* funcname, t_char const
 	{
 		size_t len_old = strlen(g_test.last_test_error);
 		size_t len_new = strlen(errorlog);
-		g_test.last_test_error = realloc(g_test.last_test_error, len_old + len_new + sizeof(""));
+		g_test.last_test_error = (char*)realloc(g_test.last_test_error, len_old + len_new + sizeof(""));
 		memcpy(g_test.last_test_error + len_old, errorlog, strlen(errorlog));
 		free(errorlog);
 		errorlog = NULL;
@@ -96,7 +96,7 @@ void	print_test(
 				(function[0] == '_' ? function + 1 : function), ' '))
 				printf("\n");
 			if (flags & FLAG_SIGNALMASK)
-				printf("%s - "ANSI_COLOR_FG_YELLOW"can signal"ANSI_RESET, test_name);
+				printf("%s - " ANSI_COLOR_FG_YELLOW "can signal" ANSI_RESET, test_name);
 			else printf("%s", test_name);
 			printf(" | ");
 		}
@@ -126,11 +126,11 @@ void	print_test(
 		{
 			if (warning)
 			{
-				printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": %s\n", warning);
+				printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": %s\n", warning);
 			}
 			else
 			{
-				printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": failed test: %s\n"
+				printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": failed test: %s\n"
 					"- received: (%s)\n"
 					"- expected: (%s)\n",
 					function,
@@ -142,8 +142,8 @@ void	print_test(
 		else
 		{
 			if (str_equals(expect, "(n/a)"))
-				printf(ANSI_COLOR_FG_RED"TEST COULD NOT BE PERFORMED\n"ANSI_RESET);
-			else printf(ANSI_COLOR_FG_RED"TEST FAILED:\n");
+				printf(ANSI_COLOR_FG_RED "TEST COULD NOT BE PERFORMED\n" ANSI_RESET);
+			else printf(ANSI_COLOR_FG_RED "TEST FAILED:\n");
 			if (function[0] == '_')
 			{
 				static char const* expected = "Expected";
@@ -152,7 +152,7 @@ void	print_test(
 				length_expected = (length_expected > length_function) ? length_expected : length_function;
 				length_function = length_expected - length_function + 1;
 				printf(">%*.*s%s: (%s)\n"
-						">%*.*s: (%s)\n"ANSI_RESET,
+						">%*.*s: (%s)\n" ANSI_RESET,
 					length_function,
 					length_function,
 					"c",
@@ -164,7 +164,7 @@ void	print_test(
 			else
 			{
 				printf( ">c_%s: (%s)\n"
-						">  %s: (%s)\n"ANSI_RESET,
+						">  %s: (%s)\n" ANSI_RESET,
 					function, result,
 					function, expect);
 			}
@@ -173,13 +173,13 @@ void	print_test(
 	}
 	else if (warning)
 	{
-		printf(ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": %s\n", warning);
+		printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET": %s\n", warning);
 		if (flags & FLAG_WARNING)
 			g_test.suites[g_test.current_suite].totals.warnings += 1;
 	}
 	else if (g_test.config.verbose)
 	{
-		printf(ANSI_COLOR_FG_GREEN"OK!"ANSI_RESET"\n");
+		printf(ANSI_COLOR_FG_GREEN "OK!" ANSI_RESET"\n");
 	}
 	fflush(stdout);
 	fflush(stderr);
@@ -195,7 +195,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	if (test->result_sig)																	\
 		error = !test->expect_sig;															\
 	else if (test->expect_sig)																\
-		error = !SHOULDHANDLE_ERROR_NULLPOINTER;													\
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER;											\
 	else error = (test->result != test->expect);											\
 	print_test(test->name, test->function, args,											\
 		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
@@ -255,7 +255,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	if (test->result_sig)																	\
 		error = !test->expect_sig;															\
 	else if (test->expect_sig)																\
-		error = !SHOULDHANDLE_ERROR_NULLPOINTER;													\
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER;											\
 	else error = (test->result != test->expect);											\
 	if (isnan(test->result) && isnan(test->expect))											\
 		error = FALSE;																		\
@@ -274,8 +274,8 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
 	{																						\
 		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;							\
 		size_t len = snprintf(tmp,	128, "Approximation error:\n"							\
-				"- received: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n"					\
-				"- expected: "CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT)"\n",					\
+				"- received: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n"				\
+				"- expected: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n",				\
 			test->result,																	\
 			test->expect);																	\
 		g_test.suites[g_test.current_suite].totals.warnings += 1;							\
@@ -313,18 +313,18 @@ void	print_test_sign(s_test_sign* test, char const* args)
 		error = !SHOULDHANDLE_ERROR_NULLPOINTER;
 	else
 	{
-		test->result_sig = 0; // reuse this variable to store sign (-1, 0, +1)
-		if (test->result < 0) test->result_sig = -1;
-		if (test->result > 0) test->result_sig = +1;
-		test->expect_sig = 0; // reuse this variable to store sign (-1, 0, +1)
-		if (test->expect < 0) test->expect_sig = -1;
-		if (test->expect > 0) test->expect_sig = +1;
+		test->result_sig = (e_signal)0; // reuse this variable to store sign (-1, 0, +1)
+		if (test->result < 0) test->result_sig = (e_signal)-1;
+		if (test->result > 0) test->result_sig = (e_signal)+1;
+		test->expect_sig = (e_signal)0; // reuse this variable to store sign (-1, 0, +1)
+		if (test->expect < 0) test->expect_sig = (e_signal)-1;
+		if (test->expect > 0) test->expect_sig = (e_signal)+1;
 		warning = (test->result != test->expect);
 		if (warning)
 			error = (test->result_sig != test->expect_sig);
 		// reset both to their previous state
-		test->result_sig = 0;
-		test->expect_sig = 0;
+		test->result_sig = (e_signal)0;
+		test->expect_sig = (e_signal)0;
 	}
 	if (warning)
 	{
@@ -427,7 +427,7 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	}
 	else for (i = 0; i < test->length; ++i)
 	{
-		if (test->result[i])
+		if (((t_u8*)test->result)[i])
 		{
 			error = TRUE;
 			break;
@@ -587,14 +587,14 @@ void	print_test_list(s_test_list* test, char const* args)
 
 #define DATE_STR_BUFFER		512
 #define DATE_STR_FORMAT	\
+	"\n\t.year      = %i," \
+	"\n\t.month     = %i," \
+	"\n\t.day_week  = %i," \
+	"\n\t.day_month = %u," \
+	"\n\t.day_year  = %i," \
 	"\n\t.hour      = %u," \
 	"\n\t.min       = %u," \
 	"\n\t.sec       = %u," \
-	"\n\t.year      = %i," \
-	"\n\t.month     = %i," \
-	"\n\t.day_month = %u," \
-	"\n\t.day_week  = %i," \
-	"\n\t.day_year  = %i," \
 	"\n\t.is_dst    = %s," \
 	"\n\t.offset    = %i," \
 	"\n"
@@ -608,18 +608,19 @@ void	print_test_date(s_test_date* test, char const* args)
 	if (test->result_sig || test->expect_sig)
 		error = (test->result_sig != test->expect_sig);
 	else
-		error = !( test->result.hour      == test->expect.hour
-				&& test->result.min       == test->expect.min
-				&& test->result.sec       == test->expect.sec
-				&& test->result.year      == test->expect.year
-				&& test->result.month     == test->expect.month
-				&& test->result.day_month == test->expect.day_month
-				&& test->result.day_week  == test->expect.day_week
-				&& test->result.day_year  == test->expect.day_year
-				&& test->result.is_dst    == test->expect.is_dst
-				&& test->result.offset    == test->expect.offset);
-	snprintf(str_result, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", test->result.hour, test->result.min, test->result.sec, test->result.year, test->result.month, test->result.day_month, test->result.day_week, test->result.day_year, (test->result.is_dst ? "TRUE" : "FALSE"), test->result.offset);
-	snprintf(str_expect, DATE_STR_BUFFER, "{"DATE_STR_FORMAT"}", test->expect.hour, test->expect.min, test->expect.sec, test->expect.year, test->expect.month, test->expect.day_month, test->expect.day_week, test->expect.day_year, (test->expect.is_dst ? "TRUE" : "FALSE"), test->expect.offset);
+		error = 
+			!( test->result.year      == test->expect.year
+			&& test->result.month     == test->expect.month
+			&& test->result.day_week  == test->expect.day_week
+			&& test->result.day_month == test->expect.day_month
+			&& test->result.day_year  == test->expect.day_year
+			&& test->result.hour      == test->expect.hour
+			&& test->result.min       == test->expect.min
+			&& test->result.sec       == test->expect.sec
+			&& test->result.is_dst    == test->expect.is_dst
+			&& test->result.offset    == test->expect.offset);
+	snprintf(str_result, DATE_STR_BUFFER, "{" DATE_STR_FORMAT "}", test->result.hour, test->result.min, test->result.sec, test->result.year, test->result.month, test->result.day_month, test->result.day_week, test->result.day_year, (test->result.is_dst ? "TRUE" : "FALSE"), test->result.offset);
+	snprintf(str_expect, DATE_STR_BUFFER, "{" DATE_STR_FORMAT "}", test->expect.hour, test->expect.min, test->expect.sec, test->expect.year, test->expect.month, test->expect.day_month, test->expect.day_week, test->expect.day_year, (test->expect.is_dst ? "TRUE" : "FALSE"), test->expect.offset);
 	print_test(test->name, test->function, args,
 		str_result,
 		str_expect,

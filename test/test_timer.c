@@ -165,9 +165,9 @@ void	print_timer_result(s_timer* t, t_s64 compare)
 		if (compare == 0)
 			printf("%s, libc:", result1);
 		else if (compare < 0)
-			printf(ANSI_COLOR_FG_GREEN"%s"ANSI_RESET", libc:", result1);
+			printf(ANSI_COLOR_FG_GREEN "%s" ANSI_RESET", libc:", result1);
 		else
-			printf(ANSI_COLOR_FG_RED"%s"ANSI_RESET", libc:", result1);
+			printf(ANSI_COLOR_FG_RED "%s" ANSI_RESET", libc:", result1);
 
 		printf("%s]", result2);
 	}

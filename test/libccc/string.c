@@ -8,10 +8,6 @@
 
 
 
-static char* test_ = "sweg ginay";
-
-
-
 /*
 ** ************************************************************************** *|
 **                          Basic String Operations                           *|
@@ -120,8 +116,8 @@ void	print_test_strdel(char const* test_name, t_testflags flags,
 }
 void	test_strdel(void)
 {
-	char* str1; if (!(str1 = malloc(32))) return ;
-	char* str2; if (!(str2 = malloc(32))) return ;
+	char* str1; if (!(str1 = (char*)malloc(32))) return;
+	char* str2; if (!(str2 = (char*)malloc(32))) return;
 //	| TEST FUNCTION  | TEST NAME          | TESTFLAGS      |EXPECT| TEST ARGS
 	print_test_strdel("strdel           ", FALSE,			NULL,	&str1, &str2);
 	print_test_strdel("strdel (null ptr)", ALLOW_SIGSEGV,	NULL,	NULL,  NULL);
@@ -255,12 +251,12 @@ void	print_test_strlcpy(char const* test_name, t_testflags flags,
 		.function = "strlcpy 'dest' arg",
 		.flags = flags,
 		.result = dest_libccc,
+		.result_sig = test.result_sig,
 #ifdef __APPLE__
 		.expect = dest_libc,
 #else
 		.expect = expecting_dest,
 #endif
-		.result_sig = test.result_sig,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
@@ -392,12 +388,12 @@ void	print_test_strlcat(char const* test_name, t_testflags flags,
 		.function = "strlcat 'dest' arg",
 		.flags = flags,
 		.result = dest_libccc,
+		.result_sig = test.result_sig,
 #ifdef __APPLE__
 		.expect = dest_libc,
 #else
 		.expect = expecting_dest,
 #endif
-		.result_sig = test.result_sig,
 		.expect_sig = test.expect_sig,
 		.timer = test.timer,
 	};
@@ -624,6 +620,7 @@ void	print_test_strhas(char const* test_name, t_testflags flags,
 }
 void	test_strhas(void)
 {
+	static char* test_ = "sweg ginay";
 //	| TEST FUNCTION  | TEST NAME              | TESTFLAGS      |EXPECT| TEST ARGS
 	print_test_strhas("strhas               ",	FALSE,			TRUE,   test1, "_0i");
 	print_test_strhas("strhas               ",	FALSE,			TRUE,   test2, "na");
@@ -660,7 +657,7 @@ void	print_test_strhasonly(char const* test_name, t_testflags flags,
 }
 void	test_strhasonly(void)
 {
-	char* test_ = "sweg ginay";
+	static char* test_ = "sweg ginay";
 //	| TEST FUNCTION      | TEST NAME                   | TESTFLAGS     |EXPECT| TEST ARGS
 	print_test_strhasonly("strhasonly                ",	FALSE,			FALSE,  test1, "m");
 	print_test_strhasonly("strhasonly                ",	FALSE,			FALSE,  test2, "na");
@@ -700,6 +697,7 @@ void	print_test_strcount_char(char const* test_name, t_testflags flags,
 }
 void	test_strcount_char(void)
 {
+	static char* test_ = "sweg ginay";
 //	| TEST FUNCTION         | TEST NAME                  | TESTFLAGS    |EXPECT| TEST ARGS
 	print_test_strcount_char("strcount_char            ",	FALSE,			2,    test1, 'm');
 	print_test_strcount_char("strcount_char            ",	FALSE,			3,    test2, '?');
@@ -735,6 +733,7 @@ void	print_test_strcount_str(char const* test_name, t_testflags flags,
 }
 void	test_strcount_str(void)
 {
+	static char* test_ = "sweg ginay";
 //	| TEST FUNCTION        | TEST NAME                   | TESTFLAGS     |EXPECT| TEST ARGS
 	print_test_strcount_str("strcount_str              ",	FALSE,			1,    test1, " m");
 	print_test_strcount_str("strcount_str              ",	FALSE,			2,    test2, "?");
@@ -1217,12 +1216,12 @@ void test_strrep_char(void)	{}
 void	print_test_strrep_char(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		char old,
-		char new)
+		char char_old,
+		char char_new)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strrep_char, str, old, new)
-	TEST_PRINT(str,	strrep_char, "str=\"%s\", old='%c'/0x%X, new='%c'/0x%X", str, old, old, new, new)
+	TEST_PERFORM(	strrep_char, str, char_old, char_new)
+	TEST_PRINT(str,	strrep_char, "str=\"%s\", old='%c'/0x%X, new='%c'/0x%X", str, char_old, char_old, char_new, char_new)
 	TEST_FREE()
 }
 void	test_strrep_char(void)
@@ -1241,12 +1240,12 @@ void test_strrep_cset(void)	{}
 void	print_test_strrep_cset(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		char const* old,
-		char const* new)
+		char const* cset_old,
+		char const* cset_new)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strrep_cset, str, old, new)
-	TEST_PRINT(str,	strrep_cset, "str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
+	TEST_PERFORM(	strrep_cset, str, cset_old, cset_new)
+	TEST_PRINT(str,	strrep_cset, "str=\"%s\", old=\"%s\", new=\"%s\"", str, cset_old, cset_new)
 	TEST_FREE()
 }
 void	test_strrep_cset(void)
@@ -1265,12 +1264,12 @@ void test_strrep_str(void)	{}
 void	print_test_strrep_str(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		char const* old,
-		char const* new)
+		char const* str_old,
+		char const* str_new)
 {
 	TEST_INIT(str)
-	TEST_PERFORM(	strrep_str, str, old, new)
-	TEST_PRINT(str,	strrep_str, "str=\"%s\", old=\"%s\", new=\"%s\"", str, old, new)
+	TEST_PERFORM(	strrep_str, str, str_old, str_new)
+	TEST_PRINT(str,	strrep_str, "str=\"%s\", old=\"%s\", new=\"%s\"", str, str_old, str_new)
 	TEST_FREE()
 }
 void	test_strrep_string(void)

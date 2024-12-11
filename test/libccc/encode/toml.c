@@ -7,8 +7,8 @@
 
 // the minimal boilerplate needed to store a single vlue in TOML
 #define TOML_TEST(NAME, STR) \
-	t_utf8 const*	NAME		= "\n\"\" = "STR"\n";	\
-	t_utf8 const*	NAME##_min	= "\"\"="STR"";			\
+	t_utf8 const*	NAME		= "\n\"\" = " STR "\n"; \
+	t_utf8 const*	NAME##_min	= "\"\"=" STR ""; \
 
 
 
@@ -214,40 +214,40 @@ TOML_TEST(toml_escape_utf8_ru_x	, "\"\\xD0\\xAF\\xD1\\x86\\xD0\\xBA \\xD0\\x9D\\
 
 
 
-t_utf8*	toml_array_empty_min			= "_=[]";
-t_utf8*	toml_array_empty				= "\n_ = []\n";
-t_utf8*	toml_array_min					= "_=[false,true,null]";
-t_utf8*	toml_array						= "\n_ = [ false, true, null ]\n";
-t_utf8*	toml_array_nested_min			= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_array_nested				= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
+t_utf8 const*	toml_array_empty_min			= "_=[]";
+t_utf8 const*	toml_array_empty				= "\n_ = []\n";
+t_utf8 const*	toml_array_min					= "_=[false,true,null]";
+t_utf8 const*	toml_array						= "\n_ = [ false, true, null ]\n";
+t_utf8 const*	toml_array_nested_min			= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8 const*	toml_array_nested				= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 /* TODO
-t_utf8*	toml_inline_array_empty_min		= "_=[]";
-t_utf8*	toml_inline_array_empty			= "\n_ = []\n";
-t_utf8*	toml_inline_array_min			= "_=[false,true,null]\n";
-t_utf8*	toml_inline_array				= "\n_ = [ false, true, null ]\n";
-t_utf8*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
-t_utf8*	toml_inline_array_nested		= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
+t_utf8 const*	toml_inline_array_empty_min		= "_=[]";
+t_utf8 const*	toml_inline_array_empty			= "\n_ = []\n";
+t_utf8 const*	toml_inline_array_min			= "_=[false,true,null]\n";
+t_utf8 const*	toml_inline_array				= "\n_ = [ false, true, null ]\n";
+t_utf8 const*	toml_inline_array_nested_min	= "_=[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[{swag=1}]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]";
+t_utf8 const*	toml_inline_array_nested		= "\n_ = [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ [ { swag = 1 } ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ] ]\n";
 */
 
 
-t_utf8*	toml_object_empty_min			= "_={}";
-t_utf8*	toml_object_empty				= "\n_ = {}\n";
-t_utf8*	toml_object_min					= "_={a=false,b=true,c=null}";
-t_utf8*	toml_object						= "\n_ = { a = false, b = true, c = null }\n";
-t_utf8*	toml_object_nested_min			= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_object_nested				= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
+t_utf8 const*	toml_object_empty_min			= "_={}";
+t_utf8 const*	toml_object_empty				= "\n_ = {}\n";
+t_utf8 const*	toml_object_min					= "_={a=false,b=true,c=null}";
+t_utf8 const*	toml_object						= "\n_ = { a = false, b = true, c = null }\n";
+t_utf8 const*	toml_object_nested_min			= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8 const*	toml_object_nested				= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 /* TODO
-t_utf8*	toml_inline_object_empty_min	= "_={}";
-t_utf8*	toml_inline_object_empty		= "\n_ = {}\n";
-t_utf8*	toml_inline_object_min			= "_={a=false,b=true,c=null}\n";
-t_utf8*	toml_inline_object				= "\n_ = { a = false, b = true, c = null }\n";
-t_utf8*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
-t_utf8*	toml_inline_object_nested		= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
+t_utf8 const*	toml_inline_object_empty_min	= "_={}";
+t_utf8 const*	toml_inline_object_empty		= "\n_ = {}\n";
+t_utf8 const*	toml_inline_object_min			= "_={a=false,b=true,c=null}\n";
+t_utf8 const*	toml_inline_object				= "\n_ = { a = false, b = true, c = null }\n";
+t_utf8 const*	toml_inline_object_nested_min	= "_={a={b={c={d={e={f={g={h={i={j={k={l={m={n={o={p={q={r={s={t={u={v={w={x={y={z=\"swag\"}}}}}}}}}}}}}}}}}}}}}}}}}}";
+t_utf8 const*	toml_inline_object_nested		= "\n_ = { a = { b = { c = { d = { e = { f = { g = { h = { i = { j = { k = { l = { m = { n = { o = { p = { q = { r = { s = { t = { u = { v = { w = { x = { y = { z = \"swag\" } } } } } } } } } } } } } } } } } } } } } } } } } }\n";
 */
 
 
 
-t_utf8*	toml_object_string_min =
+t_utf8 const*	toml_object_string_min =
 	"type=11"
 "\n""value="
 	"\"{"
@@ -261,7 +261,7 @@ t_utf8*	toml_object_string_min =
 		"}"
 	"}\""
 ;
-t_utf8*	toml_object_string = "\
+t_utf8 const*	toml_object_string = "\
 \ntype = 11\
 \nvalue = \"{\\\"Label\\\":\\\"NAME\\\",\\\"Attributes\\\":{\\\"PATTERN_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"ENTITY_PATTERN\\\"}]}],\\\"DESCRIPTION_ATTRIBUTE\\\":[{\\\"Values\\\":[{\\\"STRING\\\":\\\"DESC\\\"}]}],\\\"CHARACTERISTIC_ATTRIBUTE\\\":[],\\\"TEMPLATE_ATTRIBUTE\\\":[{}]}}\"\
 \n";
@@ -272,27 +272,27 @@ t_utf8*	toml_object_string = "\
 
 
 
-t_utf8*	toml_helloworld_min	= "hello=\"world\"";
-t_utf8*	toml_helloworld		= "\nhello = \"world\"\n";
+t_utf8 const*	toml_helloworld_min	= "hello=\"world\"";
+t_utf8 const*	toml_helloworld		= "\nhello = \"world\"\n";
 
-t_utf8*	toml_whitespace		= "  hello  =  \"world\"  \n";
-t_utf8*	toml_whitespace_tab	= "\thello\t=\t\"world\"\t\n";
-t_utf8*	toml_whitespace_nl	= "\nhello\n=\n\"world\"\t\n";
-t_utf8*	toml_whitespace_cr	= "\rhello\r=\r\"world\"\r\n";
-t_utf8*	toml_whitespace_ff	= "\fhello\f=\f\"world\"\f\n";
-t_utf8*	toml_whitespace_vt	= "\vhello\v=\v\"world\"\v\n";
-t_utf8*	toml_whitespace_all	= "\t\f\r\n\"hello\"\t\f\r\n=\t\f\r\n\"world\"\t\f\r\n";
+t_utf8 const*	toml_whitespace		= "  hello  =  \"world\"  \n";
+t_utf8 const*	toml_whitespace_tab	= "\thello\t=\t\"world\"\t\n";
+t_utf8 const*	toml_whitespace_nl	= "\nhello\n=\n\"world\"\t\n";
+t_utf8 const*	toml_whitespace_cr	= "\rhello\r=\r\"world\"\r\n";
+t_utf8 const*	toml_whitespace_ff	= "\fhello\f=\f\"world\"\f\n";
+t_utf8 const*	toml_whitespace_vt	= "\vhello\v=\v\"world\"\v\n";
+t_utf8 const*	toml_whitespace_all	= "\t\f\r\n\"hello\"\t\f\r\n=\t\f\r\n\"world\"\t\f\r\n";
 
-t_utf8*	toml_strange_sot	= "\1hello=\1\"world\"\1\n";
-t_utf8*	toml_strange_stx	= "\2hello=\2\"world\"\2\n";
-t_utf8*	toml_strange_etx	= "\3hello=\3\"world\"\3\n";
-t_utf8*	toml_strange_eot	= "\4hello=\4\"world\"\4\n";
-t_utf8*	toml_strange_esc	= "\x1Bhello=\x1B\"world\"\x1B\n";
-t_utf8*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
+t_utf8 const*	toml_strange_sot	= "\1hello=\1\"world\"\1\n";
+t_utf8 const*	toml_strange_stx	= "\2hello=\2\"world\"\2\n";
+t_utf8 const*	toml_strange_etx	= "\3hello=\3\"world\"\3\n";
+t_utf8 const*	toml_strange_eot	= "\4hello=\4\"world\"\4\n";
+t_utf8 const*	toml_strange_esc	= "\x1Bhello=\x1B\"world\"\x1B\n";
+t_utf8 const*	toml_strange_bs		= "\bhello=\b\"world\"\b\n";
 
 
 
-t_utf8*	toml_simple_min =
+t_utf8 const*	toml_simple_min =
 	"test_bool_0=false"
 "\n""test_bool_1=true"
 "\n""test_number=0"
@@ -306,7 +306,7 @@ t_utf8*	toml_simple_min =
 "\n"	"nest_arrays=[123456,\"hello\"]"
 "\n"	"nest_object=null"
 ;
-t_utf8*	toml_simple = "\
+t_utf8 const*	toml_simple = "\
 \ntest_bool_0 = false\
 \ntest_bool_1 = true\
 \ntest_number = 0\
@@ -325,7 +325,7 @@ t_utf8*	toml_simple = "\
 
 
 
-t_utf8*	toml_commas_min =
+t_utf8 const*	toml_commas_min =
 	"test_bool_0=false"
 "\n""test_bool_1=true"
 "\n""test_number=0"
@@ -339,7 +339,7 @@ t_utf8*	toml_commas_min =
 "\n"	"nest_arrays=[123456,\"hello\",]"
 "\n"	"nest_object=null"
 ;
-t_utf8*	toml_commas = "\
+t_utf8 const*	toml_commas = "\
 \ntest_bool_0 = false\
 \ntest_bool_1 = true\
 \ntest_number = 0\
@@ -368,7 +368,7 @@ t_utf8*	toml_commas = "\
 
 
 
-t_utf8*	toml_newline = "\n\n\
+t_utf8 const*	toml_newline = "\n\n\
 \n\ntest_bool_0\n=\nfalse\
 \n\ntest_bool_1\n=\ntrue\
 \n\ntest_number\n=\n0\
@@ -395,7 +395,7 @@ t_utf8*	toml_newline = "\n\n\
 
 
 
-t_utf8*	toml_config_min =
+t_utf8 const*	toml_config_min =
 	"[\"General Settings\"]"
 "\n""background_pause"  "=false"
 "\n""background_input"  "=true"
@@ -419,7 +419,7 @@ t_utf8*	toml_config_min =
 "\n""joypad_A"      "={device_guid=\"0003000000C82D000000600000000000\",device_id=0,event=\"jbutton\",value=0}"
 "\n""joypad_B"      "={device_guid=\"00000000000000000000000000000000\",device_id=0,event=\"jbutton\",value=1}"
 ;
-t_utf8*	toml_config = "\
+t_utf8 const*	toml_config = "\
 \n[\"General Settings\"]\
 \n\
 \n	background_pause = false\
@@ -453,7 +453,7 @@ t_utf8*	toml_config = "\
 
 
 
-t_utf8*	toml_complex_min =
+t_utf8 const*	toml_complex_min =
 	"[Attributes]"
 "\n"	"[[Attributes.SEX_ATTRIBUTE]]"
 "\n"	"[[Attributes.SEX_ATTRIBUTE.Values]]"			"\nCHARACTER=\"M\""
@@ -497,7 +497,7 @@ t_utf8*	toml_complex_min =
 "\n""[Values]"
 "\n"	"\"\"=[\"actor\",\"player\",\"filmmaker\"]"
 ;
-t_utf8*	toml_complex = "\
+t_utf8 const*	toml_complex = "\
 \n[Attributes]\
 \n\
 \n	[[Attributes.SEX_ATTRIBUTE]]\

@@ -109,7 +109,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 */
 //!@{
 #define _TRY \
-	sig = setjmp(restore);	\
+	sig = (e_signal)setjmp(restore);	\
 	if (sig == SIGNAL_NULL)	\
 
 #define _CATCH \

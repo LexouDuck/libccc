@@ -501,14 +501,14 @@ void test_memrep(void)	{}
 void	print_test_memrep(char const* test_name, t_testflags flags,
 		char const* expecting,
 		void* ptr,
-		t_u8 old,
-		t_u8 new,
+		t_u8 byte_old,
+		t_u8 byte_new,
 		t_size n)
 {
 	TEST_INIT(mem)
 	test.length = n;
-	TEST_PERFORM_VOID(ptr,	memrep, ptr, old, new, n)
-	TEST_PRINT(mem,			memrep, "ptr=\"%p\", old='%c'/0x%X, new='%c'/0x%X, n=%zu", ptr, old, old, new, new, n)
+	TEST_PERFORM_VOID(ptr,	memrep, ptr, byte_old, byte_new, n)
+	TEST_PRINT(mem,			memrep, "ptr=\"%p\", old='%c'/0x%X, new='%c'/0x%X, n=%zu", ptr, byte_old, byte_old, byte_new, byte_new, n)
 }
 void	test_memrep(void)
 {
