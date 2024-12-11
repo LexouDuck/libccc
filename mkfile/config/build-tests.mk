@@ -40,12 +40,9 @@ ifneq ($(findstring mingw,$(CC)),)
 endif
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
-	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc
+	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc # -Wl,-lldmingw -Wl,-dll -Wl,-export-all-symbols
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
-endif
-ifneq ($(findstring clang++,$(CC)),)
-	TEST_CFLAGS_OS += -Wno-missing-field-initializers
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
@@ -63,12 +60,21 @@ TEST_CFLAGS_EXTRA ?= \
 # these fixes allow libccc to be compiled using a C++ compiler
 ifneq ($(findstring ++,$(CC)),)
 TEST_CFLAGS_EXTRA += \
+	-std=c++20 \
+	-Wno-pedantic \
 	-Wno-deprecated \
 	-Wno-variadic-macros \
 	-Wno-c99-extensions \
 	-Wno-c++11-extensions \
 	-Wno-c++17-extensions \
 	-Wno-return-type-c-linkage \
+	-Wno-missing-field-initializers \
+
+else
+TEST_CFLAGS_EXTRA += \
+	-Wstrict-prototypes \
+	-Wmissing-prototypes \
+	-Wold-style-definition \
 
 endif
 

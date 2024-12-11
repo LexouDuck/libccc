@@ -40,9 +40,6 @@ CFLAGS = \
 	-Wextra \
 	-Winline \
 	-Wpedantic \
-	-Wstrict-prototypes \
-	-Wmissing-prototypes \
-	-Wold-style-definition \
 	-fstrict-aliasing \
 	$(CFLAGS_BUILDMODE) \
 	$(CFLAGS_OS) \
@@ -92,12 +89,21 @@ CFLAGS_EXTRA ?= \
 # these fixes allow libccc to be compiled using a C++ compiler
 ifneq ($(findstring ++,$(CC)),)
 CFLAGS_EXTRA += \
+	-std=c++20 \
+	-Wno-pedantic \
 	-Wno-deprecated \
 	-Wno-variadic-macros \
 	-Wno-c99-extensions \
 	-Wno-c++11-extensions \
 	-Wno-c++17-extensions \
 	-Wno-return-type-c-linkage \
+	-Wno-missing-field-initializers \
+
+else
+CFLAGS_EXTRA += \
+	-Wstrict-prototypes \
+	-Wmissing-prototypes \
+	-Wold-style-definition \
 
 endif
 
