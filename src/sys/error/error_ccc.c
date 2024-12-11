@@ -67,7 +67,7 @@ t_char const*	Error_CCC_Message(e_cccerror error)
 	}
 	return (NULL);
 }
-inline
+extern inline
 t_char*			Error_CCC_GetMessage(e_cccerror error)
 {
 	return (String_Duplicate(Error_CCC_Message(error)));
@@ -88,7 +88,7 @@ t_char const*	Error_CCC_Name(e_cccerror error)
 	}
 	return (NULL);
 }
-inline
+extern inline
 t_char*			Error_CCC_GetName(e_cccerror error)
 {
 	return (String_Duplicate(Error_CCC_Name(error)));
@@ -118,13 +118,13 @@ e_cccerror		LastError = ERROR_NONE; // TODO figure out a way to not use any glob
 
 //! TODO using `&errno`, a thread-safe pseudo-global (a list of globals)
 
-inline
+extern inline
 e_cccerror	Error_CCC_Get(void)
 {
 	return (LastError);
 }
 
-inline
+extern inline
 e_cccerror	Error_CCC_Set(e_cccerror error)
 {
 	LastError = error;

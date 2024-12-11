@@ -91,7 +91,7 @@ t_time		Date_ToTime_LocalTime(s_date const* value)
 
 
 
-inline
+extern inline
 struct tm	Date_ToSTDC(s_date const* value)
 {
 	return ((struct tm)
@@ -111,7 +111,7 @@ struct tm	Date_ToSTDC(s_date const* value)
 	});
 }
 
-inline
+extern inline
 s_date		Date_FromSTDC(struct tm const* value)
 {
 	return ((s_date)

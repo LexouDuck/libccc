@@ -7,7 +7,7 @@
 
 
 
-inline
+extern inline
 void	StringArray_Free(t_char** strarr)
 {
 	for (t_uint i = 0; strarr[i]; ++i)

@@ -101,7 +101,7 @@ void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value)
 
 
 
-inline
+extern inline
 t_uintmax	Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 length)
 {
 	t_uintmax	mask;

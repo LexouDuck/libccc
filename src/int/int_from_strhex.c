@@ -8,8 +8,7 @@
 
 
 
-static
-inline
+static inline
 t_u8	Int_Parse_GetHexDigit(t_char c)
 {
 	if ('0' <= c && c <= '9')
@@ -64,7 +63,7 @@ failure:																			\
 	if (dest)	*dest = U##BITS##_ERROR;											\
 	return (i);																		\
 }																					\
-inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
+extern inline t_u##BITS	U##BITS##_FromString_Hex(t_char const* str)						\
 {																					\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Hex(&result, str, 0);											\
@@ -135,7 +134,7 @@ failure:																			\
 	if (dest)	*dest = S##BITS##_ERROR;											\
 	return (i);																		\
 }																					\
-inline t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)						\
+extern inline t_s##BITS	S##BITS##_FromString_Hex(t_char const* str)						\
 {																					\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Hex(&result, str, 0);											\

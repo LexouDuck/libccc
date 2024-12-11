@@ -18,7 +18,7 @@
 
 
 
-inline
+extern inline
 e_cccerror	IO_Close(t_fd fd)
 {
 	if CCCERROR((close(fd) != 0), ERROR_SYSTEM,

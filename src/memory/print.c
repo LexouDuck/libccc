@@ -33,7 +33,7 @@ t_size	Memory_Print(t_char* *dest, void const* ptr, t_size n)
 
 
 
-inline
+extern inline
 t_char*	Memory_ToString(void const* ptr, t_size n)
 {
 	t_char*	result = NULL;

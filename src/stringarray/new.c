@@ -7,7 +7,7 @@
 
 
 
-inline
+extern inline
 t_char**	StringArray_New(t_uint length)
 {
 	t_char**	result;

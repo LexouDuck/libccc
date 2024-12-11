@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FIXED_EQUALS(BITS) \
-inline t_bool	Q##BITS##_Equals(t_q##BITS a, t_q##BITS b)		\
+extern inline t_bool	Q##BITS##_Equals(t_q##BITS a, t_q##BITS b)		\
 {																\
 	return (a == b);											\
 }																\

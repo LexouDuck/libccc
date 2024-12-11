@@ -9,7 +9,7 @@
 
 
 #define DEFINEFUNC_UINT_MOD(BITS) \
-inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
+extern inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
 {															\
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
 		return (U##BITS##_ERROR);							\
@@ -17,7 +17,7 @@ inline t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b)	\
 }
 
 #define DEFINEFUNC_SINT_MOD(BITS) \
-inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
+extern inline t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
 		return (S##BITS##_ERROR);							\

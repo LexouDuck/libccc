@@ -23,7 +23,7 @@
 
 
 
-inline
+extern inline
 t_char*	Program_GetCWD(void)
 {
 	t_char*	result = NULL;

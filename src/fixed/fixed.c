@@ -2,38 +2,39 @@
 #include "libccc/fixed.h"
 #include "libccc/string.h"
 #include "libccc/math.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 #define DEFINEFUNC_FIXED_FROMINT(BITS) \
-inline t_q##BITS	Q##BITS##_FromInt(t_sint number)						\
+extern inline t_q##BITS	Q##BITS##_FromInt(t_sint number)						\
 {																			\
 	return ((t_q##BITS)(number * FIXED_DENOMINATOR));						\
 }
 
 // TODO fix this to be multi-type
 #define DEFINEFUNC_FIXED_FROMFIXED(BITS) \
-inline t_q##BITS	Q##BITS##_FromFixed(t_fixed number)						\
+extern inline t_q##BITS	Q##BITS##_FromFixed(t_fixed number)						\
 {																			\
 	return ((t_q##BITS)(number));											\
 }
 
 #define DEFINEFUNC_FIXED_FROMFLOAT(BITS) \
-inline t_q##BITS	Q##BITS##_FromFloat(t_float number)						\
+extern inline t_q##BITS	Q##BITS##_FromFloat(t_float number)						\
 {																			\
 	if (number > Float_FromFixed((t_fixed)Q##BITS##_MAX))	return (Q##BITS##_MAX);	\
 	if (number < Float_FromFixed((t_fixed)Q##BITS##_MIN))	return (Q##BITS##_MIN);	\
 	return (																\
-		(t_q##BITS)(Float_Truncate(number) * FIXED_DENOMINATOR) +			\
+		(t_q##BITS)(Float_Trunc(number) * FIXED_DENOMINATOR) +			\
 		(t_q##BITS)(Float_Mod(number, 1)));									\
 }
 
 
 
 #define DEFINEFUNC_FIXED_FROM(BITS) \
-inline t_q##BITS	Q##BITS##_From(											\
+extern inline t_q##BITS	Q##BITS##_From(											\
 	t_s##BITS numerator,													\
 	t_s##BITS denominator)													\
 {																			\
@@ -48,13 +49,13 @@ inline t_q##BITS	Q##BITS##_From(											\
 
 
 #define DEFINEFUNC_FIXED_INTEGERPART(BITS) \
-inline t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number)					\
+extern inline t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number)					\
 {																			\
 	return (number / FIXED_DENOMINATOR);									\
 }
 
 #define DEFINEFUNC_FIXED_FRACTIONPART(BITS) \
-inline t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number)				\
+extern inline t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number)				\
 {																			\
 	return (number % FIXED_DENOMINATOR);									\
 }

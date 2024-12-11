@@ -91,7 +91,7 @@ DEFINEFUNC_FLOAT_LN(128)
 MATH_DECL_REALFUNCTION(Log2, log2)
 #else
 #define DEFINEFUNC_FLOAT_LOG2(BITS) \
-inline t_f##BITS	F##BITS##_Log2(t_f##BITS x)		\
+extern inline t_f##BITS	F##BITS##_Log2(t_f##BITS x)		\
 {													\
 	return (F##BITS##_Ln(x) / LN_2);				\
 }
@@ -113,7 +113,7 @@ DEFINEFUNC_FLOAT_LOG2(128)
 MATH_DECL_REALFUNCTION(Log10, log10)
 #else
 #define DEFINEFUNC_FLOAT_LOG10(BITS) \
-inline t_f##BITS	F##BITS##_Log10(t_f##BITS x)	\
+extern inline t_f##BITS	F##BITS##_Log10(t_f##BITS x)	\
 {													\
 	return (F##BITS##_Ln(x) / LN_10);				\
 }
@@ -132,7 +132,7 @@ DEFINEFUNC_FLOAT_LOG10(128)
 
 
 #define DEFINEFUNC_FLOAT_LOGN(BITS) \
-inline t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n)	\
+extern inline t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n)	\
 {																\
 	if (n == 2)													\
 		return (F##BITS##_Log2(x));								\

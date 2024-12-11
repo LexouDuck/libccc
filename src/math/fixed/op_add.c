@@ -7,7 +7,7 @@
 
 
 #define DEFINEFUNC_FIXED_ADD(BITS) \
-inline t_q##BITS	Q##BITS##_Add(t_q##BITS a, t_q##BITS b)	\
+extern inline t_q##BITS	Q##BITS##_Add(t_q##BITS a, t_q##BITS b)	\
 {															\
 	t_s##BITS i1 = (a / FIXED_DENOMINATOR);					\
 	t_s##BITS i2 = (b / FIXED_DENOMINATOR);					\

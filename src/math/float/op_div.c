@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FLOAT_DIV(BITS) \
-inline t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
+extern inline t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a / b);											\
 }

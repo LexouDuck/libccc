@@ -49,7 +49,7 @@ t_ascii*	String_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 	return (NULL);
 }
 
-inline
+extern inline
 t_sintmax	String_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 {
 	t_ascii* result = String_Find_N_Char(str, c, n);
@@ -83,7 +83,7 @@ t_ascii*	String_Find_N_Charset(t_ascii const* str, t_ascii const* charset, t_siz
 	return (NULL);
 }
 
-inline
+extern inline
 t_sintmax	String_IndexOf_N_Charset(t_ascii const* str, t_ascii const* charset, t_size n)
 {
 	t_ascii* result = String_Find_N_Charset(str, charset, n);
@@ -127,7 +127,7 @@ t_ascii*	String_Find_N_String(t_ascii const* str, t_ascii const* query, t_size n
 	return (NULL);
 }
 
-inline
+extern inline
 t_sintmax	String_IndexOf_N_String(t_ascii const* str, t_ascii const* query, t_size n)
 {
 	t_ascii* result = String_Find_N_String(str, query, n);

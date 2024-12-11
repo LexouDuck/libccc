@@ -1576,17 +1576,9 @@ t_ascii*				StringASCII_Filter_I(t_ascii const* str, t_bool (*filter)(t_ascii c,
 
 #ifdef __IOS__ // TODO smarter check here
 
-inline
-int		strcmp(char const* str1, char const* str2)
-{ return (StringASCII_Compare(str1, str2)); }
-
-inline
-int		strncmp(char const* str1, char const* str2, size_t n)
-{ return (StringASCII_Compare_N(str1, str2, n)); }
-
-inline
-char*	strchr(char const* str, int c)
-{ return (StringASCII_Find_Char(str, c)); }
+extern inline int   strcmp  (char const* str1, char const* str2)            { return (StringASCII_Compare(str1, str2)); }
+extern inline int   strncmp (char const* str1, char const* str2, size_t n)  { return (StringASCII_Compare_N(str1, str2, n)); }
+extern inline char* strchr  (char const* str, int c)                        { return (StringASCII_Find_Char(str, c)); }
 
 #endif
 

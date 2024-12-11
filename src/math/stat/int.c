@@ -175,7 +175,7 @@ void		c_stat_quicksort_i(s_array(int) ilst)
 
 
 
-inline
+extern inline
 t_float		c_stat_median_i(s_sorted_int const ilst)
 {
 	return ((ilst.length % 2) ?
@@ -227,7 +227,7 @@ t_float		c_stat_variance_i(s_array(int) const ilst)
 
 // TODO
 /*
-inline
+extern inline
 t_float		c_stat_stddev_i(s_array(int) const ilst)
 {
 

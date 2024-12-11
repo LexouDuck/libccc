@@ -11,7 +11,7 @@
 MATH_DECL_REALFUNCTION(Abs, fabs)
 #else
 #define DEFINEFUNC_FLOAT_ABS(BITS) \
-inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
+extern inline t_f##BITS	F##BITS##_Abs(t_f##BITS x)	\
 {												\
 	u_f##BITS##_cast	result;					\
 	result.value_float = x;						\

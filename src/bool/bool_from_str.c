@@ -70,7 +70,7 @@ failure:
 
 
 
-inline
+extern inline
 t_bool	Bool_FromString(t_char const* str)
 {
 	t_bool	result = FALSE;

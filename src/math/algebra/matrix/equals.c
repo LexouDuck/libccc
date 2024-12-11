@@ -5,7 +5,7 @@
 
 
 
-inline
+extern inline
 t_bool	Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2)
 {
 	return (
@@ -15,7 +15,7 @@ t_bool	Matrix2D_Equals(s_matrix2d const* m1, s_matrix2d const* m2)
 
 
 
-inline
+extern inline
 t_bool	Matrix3D_Equals(s_matrix3d const* m1, s_matrix3d const* m2)
 {
 	return (

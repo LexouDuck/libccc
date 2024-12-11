@@ -9,7 +9,7 @@
 
 
 #define DEFINEFUNC_UINT_MUL(BITS) \
-inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)				\
+extern inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)				\
 {																		\
 	if CCCERROR((Memory_GetMSB(a) + Memory_GetMSB(b) >= BITS),			\
 		ERROR_RESULTRANGE, NULL)										\
@@ -20,7 +20,7 @@ inline t_u##BITS	U##BITS##_Mul(t_u##BITS a, t_u##BITS b)				\
 }
 
 #define DEFINEFUNC_SINT_MUL(BITS) \
-inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
+extern inline t_s##BITS	S##BITS##_Mul(t_s##BITS a, t_s##BITS b)				\
 {																		\
 	if CCCERROR((Memory_GetMSB(ABS(a)) + Memory_GetMSB(ABS(b)) >= BITS),\
 		ERROR_RESULTRANGE, NULL)										\

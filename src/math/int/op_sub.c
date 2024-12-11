@@ -9,7 +9,7 @@
 
 
 #define DEFINEFUNC_UINT_SUB(BITS) \
-inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
+extern inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 {															\
 	if CCCERROR((a < b), ERROR_RESULTRANGE, NULL)			\
 	{														\
@@ -19,7 +19,7 @@ inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b)	\
 }
 
 #define DEFINEFUNC_SINT_SUB(BITS) \
-inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
+extern inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b)	\
 {															\
 	if (a && b && SIGN(a) != SIGN(b))						\
 	{														\

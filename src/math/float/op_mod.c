@@ -11,7 +11,7 @@
 MATH_DECL_REALOPERATOR(Mod, fmod)
 #else
 #define DEFINEFUNC_FLOAT_MOD(BITS) \
-inline t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b)	\
+extern inline t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a - (F##BITS##_Round(a / b) * b));				\
 }

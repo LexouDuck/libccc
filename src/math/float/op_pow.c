@@ -10,7 +10,7 @@
 MATH_DECL_REALOPERATOR(Pow, pow)
 #else
 #define DEFINEFUNC_MATH_FLOAT_POW(BITS) \
-inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
+extern inline t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y)	\
 {															\
 	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)			\
 		return (NAN);										\

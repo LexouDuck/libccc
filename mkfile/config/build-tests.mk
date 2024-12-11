@@ -47,6 +47,9 @@ endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
 TEST_CFLAGS_EXTRA ?= \
+#	-std=c99 \
+#	-std=c11 \
+#	-std=c23 \
 #	-flto \
 #	-fanalyzer \
 #	-fsanitize=address \
@@ -91,9 +94,6 @@ TEST_LDFLAGS_OS_macos =
 TEST_LDFLAGS_OS_linux = 
 TEST_LDFLAGS_OS_other = 
 TEST_LDFLAGS_OS_emscripten = 
-ifneq ($(findstring clang,$(CC)),)
-	TEST_LDFLAGS_OS_windows += -fuse-ld=lld
-endif
 
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
 TEST_LDFLAGS_EXTRA ?= \

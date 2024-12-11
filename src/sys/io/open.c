@@ -29,7 +29,7 @@
 
 
 
-inline
+extern inline
 t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 {
 	t_fd	result;

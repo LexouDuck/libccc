@@ -167,7 +167,7 @@ t_char const*	Error_STD_Message(t_errno error)
 	return (result);
 #endif
 }
-inline
+extern inline
 t_char*		Error_STD_GetMessage(t_errno error)
 {
 	return (String_Duplicate(Error_STD_Message(error)));
@@ -188,7 +188,7 @@ t_char const*	Error_STD_Name(t_errno error)
 	}
 	return (NULL);
 }
-inline
+extern inline
 t_char*		Error_STD_GetName(t_errno error)
 {
 	return (String_Duplicate(Error_STD_Name(error)));
@@ -214,13 +214,13 @@ t_errno		Error_STD_Code(t_char const* name)
 
 
 
-inline
+extern inline
 t_errno	Error_STD_Get(void)
 {
 	return (errno);
 }
 
-inline
+extern inline
 t_errno	Error_STD_Set(t_errno error)
 {
 	errno = error;

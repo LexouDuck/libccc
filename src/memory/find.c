@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+extern inline
 void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 { return (memchr(ptr, byte, n)); }
 #else

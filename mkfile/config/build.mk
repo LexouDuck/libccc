@@ -44,7 +44,6 @@ CFLAGS = \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
 	-fstrict-aliasing \
-	-std=c11 \
 	$(CFLAGS_BUILDMODE) \
 	$(CFLAGS_OS) \
 	$(CFLAGS_EXTRA)
@@ -80,6 +79,9 @@ endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
 CFLAGS_EXTRA ?= \
+#	-std=c99 \
+#	-std=c11 \
+#	-std=c23 \
 #	-flto \
 #	-fanalyzer \
 #	-fsanitize=address \
@@ -125,7 +127,6 @@ LDFLAGS_OS_linux =
 LDFLAGS_OS_other = 
 LDFLAGS_OS_emscripten = 
 ifneq ($(findstring clang,$(CC)),)
-	LDFLAGS_OS_windows += -fuse-ld=lld
 	LDFLAGS_OS_macos += -current_version       $(VERSION)
 	LDFLAGS_OS_macos += -compatibility_version $(VERSION)
 endif

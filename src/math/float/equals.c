@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FLOAT_EQUALS(BITS) \
-inline t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b)	\
+extern inline t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b)	\
 {															\
 	return (a == b);										\
 }

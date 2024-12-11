@@ -453,10 +453,14 @@ HEADER_CPP
 
 //!@}
 
-#ifdef __MSVC__ /* older versions of MSVC does not support C99 inline at all */
-	#if (!defined(__cplusplus) && (_MSC_VER < 1900))
+#ifdef __MSVC__
+#ifndef __cplusplus
+	#if (_MSC_VER < 1900) /* older versions of MSVC do not support C99 inline at all */
 		#define inline	
+	#else
+		#define inline	__inline
 	#endif
+#endif
 #endif
 
 

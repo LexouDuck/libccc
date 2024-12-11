@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FIXED_ROUND(BITS) \
-inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)			\
+extern inline t_q##BITS	Q##BITS##_Round(t_q##BITS number)			\
 {																\
 	t_q##BITS fraction = Q##BITS##_FractionPart(number);		\
 	if (fraction < FIXED_DENOMINATOR / 2)						\
@@ -26,7 +26,7 @@ DEFINEFUNC_FIXED_ROUND(128)
 
 
 #define DEFINEFUNC_FIXED_TRUNC(BITS) \
-inline t_q##BITS	Q##BITS##_Trunc(t_q##BITS number)			\
+extern inline t_q##BITS	Q##BITS##_Trunc(t_q##BITS number)			\
 {																\
 	return (number & ~Q##BITS##_FractionPart(number));			\
 }
@@ -41,7 +41,7 @@ DEFINEFUNC_FIXED_TRUNC(128)
 
 
 #define DEFINEFUNC_FIXED_FLOOR(BITS) \
-inline t_q##BITS	Q##BITS##_Floor(t_q##BITS number)			\
+extern inline t_q##BITS	Q##BITS##_Floor(t_q##BITS number)			\
 {																\
 	return ((number < 0) ?										\
 		(number + Q##BITS##_FractionPart(number)) :				\
@@ -58,7 +58,7 @@ DEFINEFUNC_FIXED_FLOOR(128)
 
 
 #define DEFINEFUNC_FIXED_CEIL(BITS) \
-inline t_q##BITS	Q##BITS##_Ceil(t_q##BITS number)						\
+extern inline t_q##BITS	Q##BITS##_Ceil(t_q##BITS number)						\
 {																			\
 	return ((number < 0) ?													\
 		(number - (FIXED_DENOMINATOR - Q##BITS##_FractionPart(number))) :	\

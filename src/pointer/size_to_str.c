@@ -8,7 +8,7 @@
 
 
 
-inline
+extern inline
 t_char*	Size_ToString(t_size number)
 {
 	return (U64_ToString(number));
@@ -16,7 +16,7 @@ t_char*	Size_ToString(t_size number)
 
 
 
-inline
+extern inline
 t_char*	Size_ToString_Hex(t_size number)
 {
 	return (U64_ToString_Hex(number, TRUE));

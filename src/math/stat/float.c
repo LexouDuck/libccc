@@ -175,7 +175,7 @@ void		c_stat_quicksort_f(s_array(float) flst)
 
 
 
-inline
+extern inline
 t_float		c_stat_median_f(s_sorted_float const flst)
 {
 	return ((flst.length % 2) ?
@@ -230,7 +230,7 @@ t_float		c_stat_variance_f(s_array(float) const flst)
 
 // TODO
 /*
-inline
+extern inline
 t_float		c_stat_stddev_f(s_array(float) const flst)
 {
 	

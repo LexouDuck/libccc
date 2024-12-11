@@ -82,7 +82,7 @@ t_size		Date_ToString_N(t_char* dest, t_size max, s_date const* date, t_char con
 
 
 
-inline
+extern inline
 t_char*		Date_ToString_Unix(s_date const* date)
 {
 	return (Date_ToString(date, SF_DATE_UNIX" "SF_TIME_UNIX));

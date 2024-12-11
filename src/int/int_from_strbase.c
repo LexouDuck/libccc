@@ -111,7 +111,7 @@ failure:																			\
 	if (dest)	*dest = U##BITS##_ERROR;											\
 	return (i);																		\
 }																					\
-inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)\
+extern inline t_u##BITS	U##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\
 	t_u##BITS	result = U##BITS##_ERROR;											\
 	U##BITS##_Parse_Base(&result, str, base, 0);									\
@@ -202,7 +202,7 @@ failure:																			\
 	if (dest)	*dest = S##BITS##_ERROR;											\
 	return (i);																		\
 }																					\
-inline t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)\
+extern inline t_s##BITS	S##BITS##_FromString_Base(t_char const* str, t_char const* base)\
 {																					\
 	t_s##BITS	result = S##BITS##_ERROR;											\
 	S##BITS##_Parse_Base(&result, str, base, 0);									\

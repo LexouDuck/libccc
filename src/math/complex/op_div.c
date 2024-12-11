@@ -5,7 +5,7 @@
 
 
 
-inline
+extern inline
 s_complex	Complex_Div(s_complex const* z1, s_complex const* z2)
 {
 	s_complex c;

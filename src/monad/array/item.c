@@ -7,7 +7,6 @@
 
 
 _GENERIC()
-inline
 s_array(T)	Array_Item(T)(T item)
 {
 	T* result = (T*)Memory_New(sizeof(T));

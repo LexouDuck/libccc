@@ -6,7 +6,7 @@
 
 
 
-inline
+extern inline
 void	String_Free(t_ascii* str)
 {
 	Memory_Free(str);
@@ -14,7 +14,7 @@ void	String_Free(t_ascii* str)
 
 
 
-inline
+extern inline
 void	String_Delete(t_ascii** a_str)
 {
 	if CCCERROR((a_str == NULL), ERROR_NULLPOINTER, "string address given is NULL")

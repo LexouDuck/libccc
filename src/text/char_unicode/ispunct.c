@@ -11,7 +11,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+extern inline
 t_bool	CharUTF32_IsPunctuation(t_utf32 c)
 { return (iswpunct(c)); }
 #else

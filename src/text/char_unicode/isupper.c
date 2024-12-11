@@ -11,11 +11,11 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+extern inline
 t_bool	CharUTF32_IsUppercase(t_utf32 c)
 { return (iswupper(c)); }
 #else
-inline
+extern inline
 t_bool	CharUTF32_IsUppercase(t_utf32 c)
 {
 	if ('A' <= c && c <= 'Z')						return (TRUE);
