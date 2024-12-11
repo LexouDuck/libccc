@@ -12,7 +12,7 @@
 
 #define TEST_PERFORM_CHAR_is(FUNCTION, ERRORPREFIX) \
 	printf(ERRORPREFIX \
-		"c_%s("SF_TEXTCHAR")" \
+		"c_%s(" SF_TEXTCHAR ")" \
 		"\t""returned 0x%X," \
 		"\t""but libc %s() returned 0x%X\n", \
 		#FUNCTION, \
@@ -23,9 +23,9 @@
 
 #define TEST_PERFORM_CHAR_to(FUNCTION, ERRORPREFIX) \
 	printf(ERRORPREFIX \
-		"c_%s("SF_TEXTCHAR")" \
-		"\t""returned "SF_TEXTCHAR"," \
-		"\t""but libc %s() returned "SF_TEXTCHAR"\n", \
+		"c_%s(" SF_TEXTCHAR ")" \
+		"\t""returned " SF_TEXTCHAR "," \
+		"\t""but libc %s() returned " SF_TEXTCHAR "\n", \
 		#FUNCTION, \
 		(wint_t)c, c, \
 		(wint_t)result, result, \
@@ -46,7 +46,7 @@
 			{											\
 				errors++;								\
 				TEST_PERFORM_CHAR_##KIND(FUNCTION,		\
-					ANSI_COLOR_FG_RED"Error"ANSI_RESET": ")			\
+					ANSI_COLOR_FG_RED "Error" ANSI_RESET ": ")			\
 				g_test.suites[TESTSUITE_TEXT_CHAR_UNICODE].totals.failed += 1;\
 			}											\
 			else										\
@@ -54,7 +54,7 @@
 				warnings++;								\
 				if (g_test.config.verbose)				\
 					TEST_PERFORM_CHAR_##KIND(FUNCTION,	\
-						ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": ")	\
+						ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": ")	\
 				g_test.suites[TESTSUITE_TEXT_CHAR_UNICODE].totals.warnings += 1;\
 			}											\
 		}												\
@@ -63,8 +63,8 @@
 	if (errors || warnings)								\
 	{													\
 		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max);	\
-		printf("- %s%d"ANSI_RESET" errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  );	\
-		printf("- %s%d"ANSI_RESET" warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings);	\
+		printf("- %s%d" ANSI_RESET " errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  );	\
+		printf("- %s%d" ANSI_RESET " warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings);	\
 	}
 
 

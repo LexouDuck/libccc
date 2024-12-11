@@ -33,7 +33,7 @@ void	print_percent(double percent)
 	else if (percent >= 90)	color = ANSI_COLOR_FG_YELLOW;
 	else if (percent >= 0)	color = ANSI_COLOR_FG_RED;
 	else					color = ANSI_RESET;
-	printf("%s%g%%"ANSI_RESET"\n", color, percent);
+	printf("%s%g%%" ANSI_RESET "\n", color, percent);
 }
 
 

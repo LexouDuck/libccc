@@ -124,11 +124,8 @@ endif
 ifeq ($(OSMODE),windows)
 ifneq ($(findstring clang,$(CC)),)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-fuse-ld=lld \
-		-Wl,/dll \
-		-Wl,/lldmingw \
-		-Wl,/output-def:$(BINPATH)dynamic/$(NAME).def \
-		-Wl,/export-all-symbols
+		-Wl,-output-def:$(BINPATH)dynamic/$(NAME).def \
+		-fuse-ld=lld
 else
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-Wl,--out-implib,$(BINPATH)dynamic/$(NAME).lib \

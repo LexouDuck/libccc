@@ -67,14 +67,14 @@ CFLAGS_OS_macos = -Wno-language-extension-token
 CFLAGS_OS_linux = -Wno-unused-result -fPIC
 CFLAGS_OS_other = 
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
-ifneq ($(findstring clang,$(CC)),)
-	CFLAGS_OS += -Wno-missing-braces
-	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc
-else
-	CFLAGS_OS += -Wno-unused-value
-endif
 ifneq ($(findstring mingw,$(CC)),)
 	CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+endif
+ifneq ($(findstring clang,$(CC)),)
+	CFLAGS_OS += -Wno-missing-braces
+	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc # -Wl,-lldmingw -Wl,-dll -Wl,-export-all-symbols
+else
+	CFLAGS_OS += -Wno-unused-value
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline

@@ -35,14 +35,17 @@ TEST_CFLAGS_OS_macos = -Wno-language-extension-token
 TEST_CFLAGS_OS_linux = -Wno-unused-result -fPIC
 TEST_CFLAGS_OS_other = 
 TEST_CFLAGS_OS_emscripten = 
+ifneq ($(findstring mingw,$(CC)),)
+	TEST_CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+endif
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
 	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
 endif
-ifneq ($(findstring mingw,$(CC)),)
-	TEST_CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+ifneq ($(findstring clang++,$(CC)),)
+	TEST_CFLAGS_OS += -Wno-missing-field-initializers
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
