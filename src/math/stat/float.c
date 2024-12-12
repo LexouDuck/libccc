@@ -333,12 +333,12 @@ t_float	Stat_Float_StandardDeviation(s_array(float) const flst)
 }
 
 
-
+/* TODO implement
 void	Stat_Float_Decile(s_array(float) const flst)
 {
-	return; // TODO implement
+	return;
 }
-
+*/
 
 
 t_bool	Stat_Float_ProbabilityIsValid(s_array(float) const prob_flst)

@@ -333,10 +333,10 @@ t_float	Stat_Int_StandardDeviation(s_array(int) const ilst)
 }
 
 
-/*
+/* TODO implement
 void	Stat_Int_Decile(s_array_int const ilst)
 {
-	return; // TODO implement
+	return;
 }
 */
 

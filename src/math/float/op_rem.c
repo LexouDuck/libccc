@@ -8,8 +8,8 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-extern inline t_f32	F32_RemQuo(t_f32 a, t_f32 b, t_s32* quotient)	{ return (__builtin_remquof(a, b, quotient)); }
-extern inline t_f64	F64_RemQuo(t_f64 a, t_f64 b, t_s64* quotient)	{ return (__builtin_remquo(a, b, quotient)); }
+extern inline t_f32	F32_RemQuo(t_f32 a, t_f32 b, t_sint* quotient)	{ return (__builtin_remquof(a, b, quotient)); }
+extern inline t_f64	F64_RemQuo(t_f64 a, t_f64 b, t_sint* quotient)	{ return (__builtin_remquo(a, b, quotient)); }
 #if LIBCONFIG_USE_FLOAT80
 extern inline t_f80	F80_RemQuo(t_f80 a, t_f80 b, t_sint* quotient)	{ return (__builtin_remquol(a, b, quotient)); }
 #endif
@@ -18,7 +18,7 @@ extern inline t_f128	F128_RemQuo(t_f128 a, t_f128 b, t_sint* quotient)	{ return 
 #endif
 #else
 #define DEFINEFUNC_FLOAT_REMQUO(BITS) \
-t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_s##BITS* quo) \
+t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_sint* quotient) \
 { \
 	u_cast_f##BITS ux = {x}; \
 	u_cast_f##BITS uy = {y}; \
@@ -29,7 +29,7 @@ t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_s##BITS* quo) \
 	t_u32 q; \
 	t_u##BITS i; \
 	t_u##BITS uxi = ux.value_uint; \
-	*quo = 0; \
+	*quotient = 0; \
 	if (uy.value_uint << 1 == 0 || IS_NAN(y) || ex == ((1 << F##BITS##_EXPONENT_BITS) - 1)) \
 		return (x*y)/(x*y); \
 	if (ux.value_uint << 1 == 0) \
@@ -105,7 +105,7 @@ end: \
 		q++; \
 	} \
 	q &= 0x7fffffff; \
-	*quo = sx^sy ? -(int)q : (int)q; \
+	*quotient = sx^sy ? -(t_sint)q : (t_sint)q; \
 	return sx ? -x : x; \
 } \
 

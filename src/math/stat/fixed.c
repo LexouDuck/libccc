@@ -333,12 +333,12 @@ t_float	Stat_Fixed_StandardDeviation(s_array(fixed) const qlst)
 }
 
 
-
+/* TODO implement
 void	Stat_Fixed_Decile(s_array(fixed) const qlst)
 {
-	return; // TODO implement
+	return;
 }
-
+*/
 
 
 t_bool	Stat_Fixed_ProbabilityIsValid(s_array(fixed) const prob_qlst)

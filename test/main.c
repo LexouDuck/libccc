@@ -117,7 +117,8 @@ static void	init(void)
 
 
 
-static int	handle_args_test_suites(char const* arg)
+static
+int	handle_args_test_suites(char const* arg)
 {
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
@@ -130,7 +131,8 @@ static int	handle_args_test_suites(char const* arg)
 	return (FALSE);
 }
 
-static int	handle_args_option_char(char arg)
+static
+int	handle_args_option_char(char arg)
 {
 	for (int i = 0; i < TEST_ARGS_AMOUNT; ++i)
 	{
@@ -145,7 +147,8 @@ static int	handle_args_option_char(char arg)
 	return (FALSE);
 }
 
-static int	handle_args_option_string(char const* arg)
+static
+int	handle_args_option_string(char const* arg)
 {
 	for (int i = 0; i < TEST_ARGS_AMOUNT; ++i)
 	{
