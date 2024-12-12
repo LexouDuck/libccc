@@ -13,6 +13,7 @@
 
 
 #define TYPE		t_float
+#define IS_ERROR(x)	(IS_NAN(x))
 
 
 
@@ -192,7 +193,7 @@ void	Stat_Float_Quicksort_Recurse(
 	t_uint	fall_id;
 
 	pivot = tmp_lst.items[start];
-	if (start >= end || pivot != pivot)
+	if (start >= end || IS_ERROR(pivot))
 		return;
 	if (start == end - 1)
 	{

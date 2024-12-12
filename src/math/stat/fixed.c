@@ -13,6 +13,7 @@
 
 
 #define TYPE		t_fixed
+#define IS_ERROR(x)	(LIBCONFIG_FIXED_ERROR && (x) == FIXED_ERROR)
 
 
 
@@ -192,7 +193,7 @@ void	Stat_Fixed_Quicksort_Recurse(
 	t_uint	fall_id;
 
 	pivot = tmp_lst.items[start];
-	if (start >= end || pivot != pivot)
+	if (start >= end || IS_ERROR(pivot))
 		return;
 	if (start == end - 1)
 	{
@@ -249,7 +250,7 @@ t_fixed	Stat_Fixed_GetMin(s_array(fixed) const values)
 	t_float result = +INF;
 	for (t_uint i = 0; i < values.length; ++i)
 	{
-		if (IS_NAN(values.items[i]))
+		if (IS_ERROR(values.items[i]))
 			continue;
 		if (result > values.items[i])
 			result = values.items[i];
@@ -262,7 +263,7 @@ t_fixed	Stat_Fixed_GetMax(s_array(fixed) const values)
 	t_float result = -INF;
 	for (t_uint i = 0; i < values.length; ++i)
 	{
-		if (IS_NAN(values.items[i]))
+		if (IS_ERROR(values.items[i]))
 			continue;
 		if (result < values.items[i])
 			result = values.items[i];

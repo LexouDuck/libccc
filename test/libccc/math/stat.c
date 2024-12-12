@@ -38,9 +38,9 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	if (g_test.config.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :" SF_U64 "\n", c_stat_median_i(values_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", c_stat_average_i(values_sorted), intmax / 2);
-		tmp = c_stat_variance_i(values_sorted);
+		printf("\tMedian:   %i"" | intmax   :" SF_U64 "\n", Stat_Int_Median(values_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", Stat_Int_Average(values_sorted), intmax / 2);
+		tmp = Stat_Int_Variance(values_sorted);
 		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
 
 		printf("\tDeciles int:\n"
@@ -120,7 +120,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 
 	s_prob_mass		pmf;
 
-	pmf = c_stat_ilst_to_pmf(values_sorted);
+	pmf = Stat_Int_ToPMF(values_sorted);
 
 	if (g_test.config.verbose && g_test.config.show_args) // TODO special program option for this ?
 	{
@@ -139,6 +139,6 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	{
 		printf("Sum of probs: %.12f\n", tmp);
 	}
-	c_stat_free_ilst(&values_sorted);
+	Stat_Int_Delete(&values_sorted);
 	return (OK);
 }

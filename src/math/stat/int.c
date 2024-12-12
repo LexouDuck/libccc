@@ -13,6 +13,7 @@
 
 
 #define TYPE		t_sint
+#define IS_ERROR(x)	(LIBCONFIG_SINT_ERROR && (x) == SINT_ERROR)
 
 
 
@@ -192,7 +193,7 @@ void	Stat_Int_Quicksort_Recurse(
 	t_uint	fall_id;
 
 	pivot = tmp_lst.items[start];
-	if (start >= end)
+	if (start >= end || IS_ERROR(pivot))
 		return;
 	if (start == end - 1)
 	{
@@ -249,7 +250,7 @@ t_sint	Stat_Int_GetMin(s_array(int) const values)
 	t_sint result = SINT_MAX;
 	for (t_uint i = 0; i < values.length; ++i)
 	{
-		if (LIBCONFIG_SINT_ERROR && values.items[i] == SINT_ERROR)
+		if (IS_ERROR(values.items[i]))
 			continue;
 		if (result > values.items[i])
 			result = values.items[i];
@@ -262,7 +263,7 @@ t_sint	Stat_Int_GetMax(s_array(int) const values)
 	t_sint result = SINT_MIN;
 	for (t_uint i = 0; i < values.length; ++i)
 	{
-		if (LIBCONFIG_SINT_ERROR && values.items[i] == SINT_ERROR)
+		if (IS_ERROR(values.items[i]))
 			continue;
 		if (result < values.items[i])
 			result = values.items[i];
