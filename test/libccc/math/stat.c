@@ -40,8 +40,9 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 		t_u64	intmax = (t_u32)-1;
 		printf("\tMedian:   %i"" | intmax   :" SF_U64 "\n", Stat_Int_Median(values_sorted), intmax);
 		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", Stat_Int_Average(values_sorted), intmax / 2);
-		tmp = Stat_Int_Variance(values_sorted);
-		printf("\tVariance: %12f | StdDev: %12f\n", tmp, sqrt(tmp));
+		printf("\tVariance: %12f | StdDev: %12f\n",
+			Stat_Int_Variance(values_sorted),
+			Stat_Int_StandardDeviation(values_sorted));
 
 		printf("\tDeciles int:\n"
 			"\t\t 0: " SF_SINT "\n"
@@ -67,58 +68,59 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 			values_sorted.items[(t_u32)(decile_inc * 9)],
 			values_sorted.items[samples - 1]);
 	}
-//	if (g_test.config.show_args) // TODO special program option for this ?
-//	{
-//		printf("\tDeciles uint:\n"
-//			"\t\t 0: %12lu\n"
-//			"\t\t 1: %12lu\n"
-//			"\t\t 2: %12lu\n"
-//			"\t\t 3: %12lu\n"
-//			"\t\t 4: %12lu\n"
-//			"\t\t 5: %12lu\n"
-//			"\t\t 6: %12lu\n"
-//			"\t\t 7: %12lu\n"
-//			"\t\t 8: %12lu\n"
-//			"\t\t 9: %12lu\n"
-//			"\t\t10: %12lu\n\n",
-//			values_sorted.items[0],
-//			values_sorted.items[(t_u32)decile_inc],
-//			values_sorted.items[(t_u32)(decile_inc * 2)],
-//			values_sorted.items[(t_u32)(decile_inc * 3)],
-//			values_sorted.items[(t_u32)(decile_inc * 4)],
-//			values_sorted.items[(t_u32)(decile_inc * 5)],
-//			values_sorted.items[(t_u32)(decile_inc * 6)],
-//			values_sorted.items[(t_u32)(decile_inc * 7)],
-//			values_sorted.items[(t_u32)(decile_inc * 8)],
-//			values_sorted.items[(t_u32)(decile_inc * 9)],
-//			values_sorted.items[samples - 1]);
-//
-//		printf("\tDeciles hex:\n"
-//			"\t\t 0: %#12lx\n"
-//			"\t\t 1: %#12lx\n"
-//			"\t\t 2: %#12lx\n"
-//			"\t\t 3: %#12lx\n"
-//			"\t\t 4: %#12lx\n"
-//			"\t\t 5: %#12lx\n"
-//			"\t\t 6: %#12lx\n"
-//			"\t\t 7: %#12lx\n"
-//			"\t\t 8: %#12lx\n"
-//			"\t\t 9: %#12lx\n"
-//			"\t\t10: %#12lx\n\n",
-//			values_sorted.items[0],
-//			values_sorted.items[(t_u32)decile_inc],
-//			values_sorted.items[(t_u32)(decile_inc * 2)],
-//			values_sorted.items[(t_u32)(decile_inc * 3)],
-//			values_sorted.items[(t_u32)(decile_inc * 4)],
-//			values_sorted.items[(t_u32)(decile_inc * 5)],
-//			values_sorted.items[(t_u32)(decile_inc * 6)],
-//			values_sorted.items[(t_u32)(decile_inc * 7)],
-//			values_sorted.items[(t_u32)(decile_inc * 8)],
-//			values_sorted.items[(t_u32)(decile_inc * 9)],
-//			values_sorted.items[samples - 1]);
-//	}
+/*
+	if (g_test.config.show_args) // TODO special program option for this ?
+	{
+		printf("\tDeciles uint:\n"
+			"\t\t 0: %12lu\n"
+			"\t\t 1: %12lu\n"
+			"\t\t 2: %12lu\n"
+			"\t\t 3: %12lu\n"
+			"\t\t 4: %12lu\n"
+			"\t\t 5: %12lu\n"
+			"\t\t 6: %12lu\n"
+			"\t\t 7: %12lu\n"
+			"\t\t 8: %12lu\n"
+			"\t\t 9: %12lu\n"
+			"\t\t10: %12lu\n\n",
+			values_sorted.items[0],
+			values_sorted.items[(t_u32)decile_inc],
+			values_sorted.items[(t_u32)(decile_inc * 2)],
+			values_sorted.items[(t_u32)(decile_inc * 3)],
+			values_sorted.items[(t_u32)(decile_inc * 4)],
+			values_sorted.items[(t_u32)(decile_inc * 5)],
+			values_sorted.items[(t_u32)(decile_inc * 6)],
+			values_sorted.items[(t_u32)(decile_inc * 7)],
+			values_sorted.items[(t_u32)(decile_inc * 8)],
+			values_sorted.items[(t_u32)(decile_inc * 9)],
+			values_sorted.items[samples - 1]);
 
-	s_prob_mass		pmf;
+		printf("\tDeciles hex:\n"
+			"\t\t 0: %#12lx\n"
+			"\t\t 1: %#12lx\n"
+			"\t\t 2: %#12lx\n"
+			"\t\t 3: %#12lx\n"
+			"\t\t 4: %#12lx\n"
+			"\t\t 5: %#12lx\n"
+			"\t\t 6: %#12lx\n"
+			"\t\t 7: %#12lx\n"
+			"\t\t 8: %#12lx\n"
+			"\t\t 9: %#12lx\n"
+			"\t\t10: %#12lx\n\n",
+			values_sorted.items[0],
+			values_sorted.items[(t_u32)decile_inc],
+			values_sorted.items[(t_u32)(decile_inc * 2)],
+			values_sorted.items[(t_u32)(decile_inc * 3)],
+			values_sorted.items[(t_u32)(decile_inc * 4)],
+			values_sorted.items[(t_u32)(decile_inc * 5)],
+			values_sorted.items[(t_u32)(decile_inc * 6)],
+			values_sorted.items[(t_u32)(decile_inc * 7)],
+			values_sorted.items[(t_u32)(decile_inc * 8)],
+			values_sorted.items[(t_u32)(decile_inc * 9)],
+			values_sorted.items[samples - 1]);
+	}
+*/
+	s_prob_mass	pmf;
 
 	pmf = Stat_Int_ToPMF(values_sorted);
 

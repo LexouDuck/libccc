@@ -72,9 +72,7 @@ TEST_CFLAGS_EXTRA += \
 
 else
 TEST_CFLAGS_EXTRA += \
-	-Wstrict-prototypes \
-	-Wmissing-prototypes \
-	-Wold-style-definition \
+	-Wno-unknown-pragmas \
 
 endif
 

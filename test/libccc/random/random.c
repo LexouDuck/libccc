@@ -13,8 +13,7 @@
 
 s_sorted_int	print_test_random(int samples)
 {
-	int*	values;
-	t_uint	length;
+	s_sorted_int	result;
 	t_rand*	rng;
 
 	rng = Random_New();
@@ -23,34 +22,34 @@ s_sorted_int	print_test_random(int samples)
 	{
 		printf("Statistic repartition test of RNG (sample size: %d)\n", samples);
 	}
-	values = (t_sint*)malloc(samples * sizeof(t_sint));
-	for (t_uint i = 0; i < length; ++i)
+	result = Stat_Int_New(samples);
+	for (t_uint i = 0; i < result.length; ++i)
 	{
-		values[i] = Random_SInt_Range(rng, -500, 501);
+		result.items[i] = Random_SInt_Range(rng, -500, 501);
 	}
 /*
 	static t_sint arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394};
-	for (int i = 0; i < values.length; ++i)
-		values.items[i] = arr[i];
-	for (int i = 0; i < values.length; ++i)
-		printf("%d, ", values.items[i]);
+	for (int i = 0; i < result.length; ++i)
+		result.items[i] = arr[i];
+	for (int i = 0; i < result.length; ++i)
+		printf("%d, ", result.items[i]);
 	printf("\n");
 */
 	if (g_test.config.verbose)
 		printf("Quicksorting...");
-	quicksort_sint(values, 0, length);
+	quicksort_sint(result.items, 0, result.length);
 	if (g_test.config.verbose)
 		printf("Done !\n");
 /*
-	for (int i = 0; i < values.length - 1; ++i)
+	for (int i = 0; i < result.length - 1; ++i)
 	{
-		if (values.items[i] > values.items[i + 1])
+		if (result.items[i] > result.items[i + 1])
 			printf(ANSI_COLOR_FG_RED"Sorting error at index %d\n"ANSI_RESET, i);
 	}
-	c_stat_free_ilst(&values);
+	c_stat_free_ilst(&result);
 */
 	Random_Delete(&rng);
-	return ((s_sorted_int){ values, length });
+	return (result);
 }
 
 
