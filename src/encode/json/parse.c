@@ -27,15 +27,15 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(...) \
-	{																							\
-		t_char* tmp_error;																		\
-		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error);						\
-		if (p != NULL)																			\
-		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
-		else String_Delete(&tmp_error);															\
-		goto failure;																			\
-	}																							\
+	{ \
+		t_char* tmp_error; \
+		tmp_error = String_Format(__VA_ARGS__); \
+		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error); \
+		if (p != NULL) \
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); } \
+		else String_Delete(&tmp_error); \
+		goto failure; \
+	} \
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \

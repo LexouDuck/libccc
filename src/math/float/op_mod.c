@@ -49,7 +49,7 @@ t_f##BITS	F##BITS##_Mod(t_f##BITS a, t_f##BITS b) \
 	{ \
 		return (a); \
 	} \
-}
+} \
 
 DEFINEFUNC_FLOAT_MOD(32)
 DEFINEFUNC_FLOAT_MOD(64)

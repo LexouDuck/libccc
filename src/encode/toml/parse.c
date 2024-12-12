@@ -31,15 +31,15 @@ static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_TOML(...) \
-	{																							\
-		t_char* tmp_error;																		\
-		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error);						\
-		if (p != NULL)																			\
-		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
-		else String_Delete(&tmp_error);															\
-		goto failure;																			\
-	}																							\
+	{ \
+		t_char* tmp_error; \
+		tmp_error = String_Format(__VA_ARGS__); \
+		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error); \
+		if (p != NULL) \
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); } \
+		else String_Delete(&tmp_error); \
+		goto failure; \
+	} \
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \

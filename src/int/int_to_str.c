@@ -7,10 +7,11 @@
 
 
 #define DEFINEFUNC_UINT_TOSTR(BITS) \
-extern inline t_char*	U##BITS##_ToString(t_u##BITS number)	\
-{														\
-	return (U##BITS##_ToString_Dec(number));			\
-}
+extern inline \
+t_char*	U##BITS##_ToString(t_u##BITS number) \
+{ \
+	return (U##BITS##_ToString_Dec(number)); \
+} \
 
 DEFINEFUNC_UINT_TOSTR(8)
 DEFINEFUNC_UINT_TOSTR(16)
@@ -23,10 +24,11 @@ DEFINEFUNC_UINT_TOSTR(128)
 
 
 #define DEFINEFUNC_SINT_TOSTR(BITS) \
-extern inline t_char*	S##BITS##_ToString(t_s##BITS number)	\
-{														\
-	return (S##BITS##_ToString_Dec(number));			\
-}
+extern inline \
+t_char*	S##BITS##_ToString(t_s##BITS number) \
+{ \
+	return (S##BITS##_ToString_Dec(number)); \
+} \
 
 DEFINEFUNC_SINT_TOSTR(8)
 DEFINEFUNC_SINT_TOSTR(16)

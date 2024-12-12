@@ -35,7 +35,7 @@ t_f##BITS	F##BITS##_Ceil(t_f##BITS x) \
 	if (y < 0) \
 		return x + y + 1; \
 	return x + y; \
-}
+} \
 
 DEFINEFUNC_FLOAT_CEIL(32)
 DEFINEFUNC_FLOAT_CEIL(64)

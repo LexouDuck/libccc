@@ -7,12 +7,13 @@
 
 
 #define DEFINEFUNC_UINT_DIV(BITS) \
-extern inline t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b)	\
-{															\
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
-		return (U##BITS##_ERROR);							\
-	return (a / b);											\
-}
+extern inline \
+t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b) \
+{ \
+	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+		return (U##BITS##_ERROR); \
+	return (a / b); \
+} \
 
 DEFINEFUNC_UINT_DIV(8)
 DEFINEFUNC_UINT_DIV(16)
@@ -25,12 +26,13 @@ DEFINEFUNC_UINT_DIV(128)
 
 
 #define DEFINEFUNC_SINT_DIV(BITS) \
-extern inline t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b)	\
-{															\
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL)			\
-		return (S##BITS##_ERROR);							\
-	return (a / b);											\
-}
+extern inline \
+t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b) \
+{ \
+	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	return (a / b); \
+} \
 
 DEFINEFUNC_SINT_DIV(8)
 DEFINEFUNC_SINT_DIV(16)

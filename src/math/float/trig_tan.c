@@ -9,18 +9,20 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Tan, tan)
 #else
+
 // trigonometric formula method
 #define DEFINEFUNC_FLOAT_TAN(BITS) \
-t_f##BITS	F##BITS##_Tan(t_f##BITS x)						\
-{															\
-	t_f##BITS	cosine;										\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)			\
-		return (NAN);										\
-	cosine = F##BITS##_Cos(x);								\
-	if CCCERROR((cosine == 0.), ERROR_MATHDOMAIN, NULL)		\
-		return (NAN);										\
-	return (F##BITS##_Sin(x) / cosine);						\
-}
+t_f##BITS	F##BITS##_Tan(t_f##BITS x) \
+{ \
+	t_f##BITS	cosine; \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	cosine = F##BITS##_Cos(x); \
+	if CCCERROR((cosine == 0.), ERROR_MATHDOMAIN, NULL) \
+		return (NAN); \
+	return (F##BITS##_Sin(x) / cosine); \
+} \
+
 // fast polynomial approximation for [-1,+1] and 1/x approximation for the rest
 // score: 0.23	for [-40,+40]=> 200 tests
 #if 0

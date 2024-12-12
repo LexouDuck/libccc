@@ -121,11 +121,11 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 
 
 #define CSPRNG_INIT_STATE() \
-	t_csprng*	state;									\
-	state = CSPRNG_New();								\
-	if CCCERROR((state == NULL), ERROR_ALLOCFAILURE,	\
-		"could not create crypto-secure PRNG state")	\
-		return (0);										\
+	t_csprng*	state; \
+	state = CSPRNG_New(); \
+	if CCCERROR((state == NULL), ERROR_ALLOCFAILURE, \
+		"could not create crypto-secure PRNG state") \
+		return (0); \
 
 void*	CSPRNG_Get(void* dest, t_size size)
 {
@@ -141,10 +141,10 @@ void*	CSPRNG_Get(void* dest, t_size size)
 
 
 #define DEFINE_CSPRNG(TYPE, ACTION_ERROR) \
-	TYPE	result = 0;			\
-	if (CSPRNG_Next(state,		\
-		&result, sizeof(TYPE)))	\
-		ACTION_ERROR			\
+	TYPE	result = 0; \
+	if (CSPRNG_Next(state, \
+		&result, sizeof(TYPE))) \
+		ACTION_ERROR \
 
 extern inline t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
 extern inline t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }

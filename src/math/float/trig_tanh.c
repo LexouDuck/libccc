@@ -9,24 +9,26 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(TanH, tanh)
 #else
+
 // fast sigmoid approximation
 // score: 0.84 for [-6,+6]-> 200 tests
 #define DEFINEFUNC_FLOAT_TANH(BITS) \
-t_f##BITS	F##BITS##_TanH(t_f##BITS x)							\
-{																\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)				\
-		return (NAN);											\
-	if (x == 0)													\
-		return (0);												\
-	t_f##BITS abs_x = F##BITS##_Abs(x);							\
-	t_f##BITS n = 1 - 0.37 * (abs_x / (1 + abs_x));				\
-	if (n < 0.7)												\
-		n = 0.7;												\
-	n -= abs_x / (1 + abs_x);									\
-	if (n < 0.)													\
-		n = 0.;													\
-	return (x / (n + abs_x));									\
-}
+t_f##BITS	F##BITS##_TanH(t_f##BITS x) \
+{ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if (x == 0) \
+		return (0); \
+	t_f##BITS abs_x = F##BITS##_Abs(x); \
+	t_f##BITS n = 1 - 0.37 * (abs_x / (1 + abs_x)); \
+	if (n < 0.7) \
+		n = 0.7; \
+	n -= abs_x / (1 + abs_x); \
+	if (n < 0.) \
+		n = 0.; \
+	return (x / (n + abs_x)); \
+} \
+
 // fast sigmoid approximation for [-1,+1], and exponential approximation for the rest
 // score: 1.95	for [-6,+6]-> 250 tests
 #if 0

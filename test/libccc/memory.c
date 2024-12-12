@@ -83,10 +83,10 @@ void	test_memfree(void)
 	t_size const length = 16;
 	void* test = (void*)malloc(length);
 	memset(test, 0, length);
-//	| TEST FUNCTION  | TEST NAME        | TESTFLAGS| TEST ARGS
+//	| TEST FUNCTION  | TEST NAME         |TESTFLAGS| TEST ARGS
 /* TODO figure out how to test this function
-	print_test_memfree("memfree",	          	FALSE,	test);
-	print_test_memfree("memfree (null ptr)",	FALSE,	NULL);
+	print_test_memfree("memfree",             FALSE, test);
+	print_test_memfree("memfree (null ptr)",  FALSE, NULL);
 */
 }
 #endif
@@ -111,14 +111,14 @@ void	test_memdel(void)
 	t_size const length = 16;
 	void* test_result;
 	void* test_expect;
-//	| TEST FUNCTION  | TEST NAME         | TESTFLAGS      | EXPECTING     | TEST ARGS
+//	| TEST FUNCTION  | TEST NAME          | TESTFLAGS    | EXPECTING     | TEST ARGS
 	test_result = (void*)malloc(length);
 	test_expect = (void*)malloc(length);
-	print_test_memdel("memdel",	          	FALSE,			&test_expect,	&test_result);
+	print_test_memdel("memdel",	           FALSE,           &test_expect,  &test_result);
 	test_result = (void*)malloc(length);
 	test_expect = (void*)malloc(length);
-	print_test_memdel("memdel (null arg)",	ALLOW_SIGSEGV,	&test_expect,	&test_result); // TODO figure out how to recover from this
-	print_test_memdel("memdel (null ptr)",	ALLOW_SIGSEGV,	NULL,			NULL); // TODO figure out how to recover from this
+	print_test_memdel("memdel (null arg)", ALLOW_SIGSEGV,  &test_expect,   &test_result); // TODO figure out how to recover from this
+	print_test_memdel("memdel (null ptr)", ALLOW_SIGSEGV,  NULL,           NULL); // TODO figure out how to recover from this
 }
 #endif
 
@@ -146,14 +146,14 @@ void	test_memset(void)
 	int n1 = 0x6969;
 	int n2 = 0x6969;
 //	| TEST FUNCTION  | TEST NAME        | TESTFLAGS        | TEST ARGS
-	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       'a',    7);
-	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       'b',    1);
-	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       '_',    16);
-	print_test_memset("memset (str)    ",    FALSE,			str1,       str2,       '@',    3);
-	print_test_memset("memset (c > 127)",    FALSE,			str1,       str2,       '\x88', 5);
-	print_test_memset("memset (int*)   ",    FALSE,			(char*)&n1, (char*)&n2, 0xBABA, 4);
-	print_test_memset("memset (n = 0)  ",    FALSE,			str1,       str2,       '\0',   0);
-	print_test_memset("memset (null ptr)", ALLOW_SIGSEGV, 	str1,       str2,       '_',    5);
+	print_test_memset("memset (str)    ",  FALSE,           str1,       str2,       'a',    7);
+	print_test_memset("memset (str)    ",  FALSE,           str1,       str2,       'b',    1);
+	print_test_memset("memset (str)    ",  FALSE,           str1,       str2,       '_',    16);
+	print_test_memset("memset (str)    ",  FALSE,           str1,       str2,       '@',    3);
+	print_test_memset("memset (c > 127)",  FALSE,           str1,       str2,       '\x88', 5);
+	print_test_memset("memset (int*)   ",  FALSE,           (char*)&n1, (char*)&n2, 0xBABA, 4);
+	print_test_memset("memset (n = 0)  ",  FALSE,           str1,       str2,       '\0',   0);
+	print_test_memset("memset (null ptr)", ALLOW_SIGSEGV,   str1,       str2,       '_',    5);
 }
 #endif
 

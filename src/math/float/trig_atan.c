@@ -12,18 +12,19 @@ MATH_DECL_REALFUNCTION(ArcTan, atan)
 // very fast sigmoid approximation
 // score: 0.77	for [-5,+5]-> 200 tests
 #define DEFINEFUNC_FLOAT_ARCTAN(BITS) \
-t_f##BITS	F##BITS##_ArcTan(t_f##BITS x)				\
-{														\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
-		return (NAN);									\
-	if (x == 0)											\
-		return (0);										\
-	t_f##BITS abs_x = F##BITS##_Abs(x);					\
-	t_f##BITS n = 1.54 - abs_x / (0.9 + abs_x);			\
-	if (n < 0.65)										\
-		n = 0.65;										\
-	return ((PI_HALF * x) / (n + abs_x));				\
-}
+t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
+{ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if (x == 0) \
+		return (0); \
+	t_f##BITS abs_x = F##BITS##_Abs(x); \
+	t_f##BITS n = 1.54 - abs_x / (0.9 + abs_x); \
+	if (n < 0.65) \
+		n = 0.65; \
+	return ((PI_HALF * x) / (n + abs_x)); \
+} \
+
 // 3 different curves, some discontinuity
 // score: 38.20	for [-5,+5]-> 200 tests
 #if 0
@@ -49,6 +50,7 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x)				\
 	}
 	return ((PI_HALF * x) / (1. + abs_x) + add);
 #endif
+
 // crazy simple exp() approximation
 // score: 60.59	for [-5, 5]-> 200 tests
 #if 0

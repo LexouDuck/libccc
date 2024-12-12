@@ -90,11 +90,11 @@ int clock_gettime(clockid_t type, struct timespec *tp)
 #endif
 
 /*!	There are a couple of different cross-platform clock possibilities:
-**	- CLOCK_REALTIME	System-wide real-time clock. This clock returns the number of seconds and nanoseconds since the Epoch.
-**						This clock can be set via clock_settime but doing so requires appropriate privileges, because it's linked to the system time.
-**	- CLOCK_MONOTONIC 			Represents monotonic time since some unspecified starting point. This clock cannot be set.
-**	- CLOCK_PROCESS_CPUTIME_ID 	High-resolution per-process timer from the CPU.
-**	- CLOCK_THREAD_CPUTIME_ID 	Thread-specific CPU-time clock. 
+**	- CLOCK_REALTIME            System-wide real-time clock. This clock returns the number of seconds and nanoseconds since the Epoch.
+**	                            This clock can be set via clock_settime but doing so requires appropriate privileges, because it's linked to the system time.
+**	- CLOCK_MONOTONIC           Represents monotonic time since some unspecified starting point. This clock cannot be set.
+**	- CLOCK_PROCESS_CPUTIME_ID  High-resolution per-process timer from the CPU.
+**	- CLOCK_THREAD_CPUTIME_ID   Thread-specific CPU-time clock. 
 */
 void	timer_clock(s_time* result)
 {

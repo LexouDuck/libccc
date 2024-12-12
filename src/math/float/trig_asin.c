@@ -56,7 +56,8 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 	else if (abs_x < 0.9997777777777778)	result = (34.7279053082986500 * abs_x + -33.17047391070498000 + correction); \
 	else if (abs_x < 1.0000000000000000)	result = (94.8700867138177800 * abs_x + -93.29929038702288000 + correction); \
 	return (x < 0 ? -result : +result); \
-}
+} \
+
 // fast polynomial approximation
 // score: 2.55	for [-1,+1]=> 200 tests
 #if 0
@@ -69,6 +70,7 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 	result += power * -0.9933563268;
 	return (-result);
 #endif
+
 // very fast cubic approximation
 // score: 11.53	for [-1,+1]-> 200 tests
 #if 0

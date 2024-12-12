@@ -106,10 +106,10 @@ int main(int argc, char** argv)
 	IO_Output_String("\n- s_array<s_array<int>>:\n");
 	{
 		s_array(array_int)* tmp = Array_Create(array_int)(4,
-			Array_Create(int)(3,	0, 1, 10),
-			Array_Create(int)(3,	42, 69, 420),
-			Array_Create(int)(3,	42, 69, 420),
-			Array_Create(int)(6,	42, 69, 420, 0, 1, 10));
+			Array_Create(int)(3, 0, 1, 10),
+			Array_Create(int)(3, 42, 69, 420),
+			Array_Create(int)(3, 42, 69, 420),
+			Array_Create(int)(6, 42, 69, 420, 0, 1, 10));
 //		Array_RemoveAt(array_int)(tmp, 1);
 		i = 0;
 		foreach (s_array(int)*, int_array, s_array, tmp)
@@ -130,10 +130,10 @@ int main(int argc, char** argv)
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
 		s_list(list_int)* tmp = List_Create(list_int)(4,
-			List_Create(int)(3, 	0, 1, 10),
-			List_Create(int)(3, 	42, 69, 420),
-			List_Create(int)(3, 	42, 69, 420),
-			List_Create(int)(6, 	42, 69, 420, 0, 1, 10));
+			List_Create(int)(3, 0, 1, 10),
+			List_Create(int)(3, 42, 69, 420),
+			List_Create(int)(3, 42, 69, 420),
+			List_Create(int)(6, 42, 69, 420, 0, 1, 10));
 //		List_RemoveAt(list_int)(tmp, 1);
 		i = 0;
 		foreach (s_list(int)*, int_list, s_list, tmp)

@@ -10,17 +10,17 @@
 
 #define DEFINEFUNC_FLOAT_LOGN(BITS) \
 extern inline \
-t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n)	\
-{																\
-	if (n == E)													\
-		return (F##BITS##_Ln(x));								\
-	else if (n == 2.)											\
-		return (F##BITS##_Log2(x));								\
-	else if (n == 10.)											\
-		return (F##BITS##_Log10(x));							\
-	else														\
-		return (F##BITS##_Ln(x) / F##BITS##_Ln(n));				\
-}
+t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n) \
+{ \
+	if (n == E) \
+		return (F##BITS##_Ln(x)); \
+	else if (n == 2.) \
+		return (F##BITS##_Log2(x)); \
+	else if (n == 10.) \
+		return (F##BITS##_Log10(x)); \
+	else \
+		return (F##BITS##_Ln(x) / F##BITS##_Ln(n)); \
+} \
 
 DEFINEFUNC_FLOAT_LOGN(32)
 DEFINEFUNC_FLOAT_LOGN(64)

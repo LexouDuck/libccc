@@ -24,29 +24,29 @@
 	"\n""could not parse KVT_Get() accessor path string: "
 
 #define PARSINGERROR_KVTPATH(CONDITION, ...) \
-	if CCCERROR(CONDITION, ERROR_PARSE,	\
-		PARSINGERROR_KVTPATH_MESSAGE	\
-		__VA_ARGS__)					\
-	{									\
-		goto failure;					\
-	}
+	if CCCERROR(CONDITION, ERROR_PARSE, \
+		PARSINGERROR_KVTPATH_MESSAGE \
+		__VA_ARGS__) \
+	{ \
+		goto failure; \
+	} \
 
 
 
 #define PARSE_KVTPATH_WHITESPACE() \
-	while (str[i] && Char_IsSpace(str[i]))	{ ++i; }				\
+	while (str[i] && Char_IsSpace(str[i]))	{ ++i; } \
 
 #define PARSE_KVTPATH_MATCH_CHAR(CHAR, ERRORMESSAGE) \
-	PARSINGERROR_KVTPATH((str[i] != CHAR),							\
-	else ++i;														\
+	PARSINGERROR_KVTPATH((str[i] != CHAR), \
+	else ++i; \
 
 #define PARSE_KVTPATH_MATCH_STRING(STRING, ERRORMESSAGE) \
-	PARSINGERROR_KVTPATH(											\
-		String_Compare_N(str + i, STRING, String_Length(STRING)),	\
-		"Expected \"%s\" " ERRORMESSAGE ", "						\
-		"but instead found: '%.16s'\n",								\
-		STRING, str)												\
-	else ++i;														\
+	PARSINGERROR_KVTPATH( \
+		String_Compare_N(str + i, STRING, String_Length(STRING)), \
+		"Expected \"%s\" " ERRORMESSAGE ", " \
+		"but instead found: '%.16s'\n", \
+		STRING, str) \
+	else ++i; \
 
 
 

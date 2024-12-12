@@ -63,10 +63,10 @@
 //! This type stores info about a program argument (ie: `argc`/`argv`)
 typedef struct test_arg
 {
-	void	(*handle_arg)();	//!< The function to execute for this program argument
-	char		arg;			//!< The "character version" of this argument (ie: `-a`)
-	char const*	name;			//!< The "string version" of this argument (ie: `--arg`)
-	char const* description;	//!< The description for this argument (displayed when doing `--help`)
+	void	(*handle_arg)();  //!< The function to execute for this program argument
+	char		arg;          //!< The "character version" of this argument (ie: `-a`)
+	char const*	name;         //!< The "string version" of this argument (ie: `--arg`)
+	char const* description;  //!< The description for this argument (displayed when doing `--help`)
 }	s_test_arg;
 //! The amount of different arguments accepted by the test suite
 #define TEST_ARGS_AMOUNT	10
@@ -74,14 +74,14 @@ typedef struct test_arg
 //! This struct stores the program argument boolean flags
 typedef struct test_flags
 {
-	bool	verbose;		//!< if `TRUE`, display all logger output for each test
-	bool	show_args;		//!< if `TRUE`, display arguments given to each test
-	bool	show_speed;		//!< if `TRUE`, display performance (execution speed) for each test
-	bool	show_result;	//!< if `TRUE`, display result, even when test passed
-	bool	show_errors;	//!< if `TRUE`, display any errors output by libccc during function execution
-	bool	show_escaped;	//!< if `TRUE`, display strings with non-printable characters as escape sequences
-	bool	test_nullptrs;	//!< if `TRUE`, perform all NULL pointer tests
-	bool	test_overflow;	//!< if `TRUE`, perform all the libccc_convert overflowing number tests
+	bool	verbose;        //!< if `TRUE`, display all logger output for each test
+	bool	show_args;      //!< if `TRUE`, display arguments given to each test
+	bool	show_speed;     //!< if `TRUE`, display performance (execution speed) for each test
+	bool	show_result;    //!< if `TRUE`, display result, even when test passed
+	bool	show_errors;    //!< if `TRUE`, display any errors output by libccc during function execution
+	bool	show_escaped;   //!< if `TRUE`, display strings with non-printable characters as escape sequences
+	bool	test_nullptrs;  //!< if `TRUE`, perform all NULL pointer tests
+	bool	test_overflow;  //!< if `TRUE`, perform all the libccc_convert overflowing number tests
 }	s_test_config;
 
 
@@ -89,9 +89,9 @@ typedef struct test_flags
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
 {
-	int	tests;		//!< The total amount of tests ran.
-	int	failed; 	//!< The total amount of tests which had an ERROR result.
-	int	warnings;	//!< The total amount of warnings issued by the test suite.
+	int	tests;     //!< The total amount of tests ran.
+	int	failed;    //!< The total amount of tests which had an ERROR result.
+	int	warnings;  //!< The total amount of warnings issued by the test suite.
 }	s_test_totals;
 
 //! This struct stores one test suite (typically, one header file)

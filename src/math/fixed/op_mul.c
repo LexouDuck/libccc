@@ -7,19 +7,16 @@
 
 
 #define DEFINEFUNC_FIXED_MUL(BITS) \
-extern inline t_q##BITS	Q##BITS##_Mul(t_q##BITS a, t_q##BITS b)	\
-{															\
-	return ((a * b) / FIXED_DENOMINATOR);					\
-} // TODO fix this and test
-
-
+extern inline \
+t_q##BITS	Q##BITS##_Mul(t_q##BITS a, t_q##BITS b) \
+{ \
+	return ((a * b) / FIXED_DENOMINATOR); \
+} \
+// TODO fix this and test
 
 DEFINEFUNC_FIXED_MUL(16)
-
 DEFINEFUNC_FIXED_MUL(32)
-
 DEFINEFUNC_FIXED_MUL(64)
-
 #if LIBCONFIG_USE_INT128
 DEFINEFUNC_FIXED_MUL(128)
 #endif

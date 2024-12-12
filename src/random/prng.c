@@ -86,13 +86,13 @@ e_cccerror  PRNG_Next(t_prng* state, void* dest, t_size n)
 
 
 #define PRNG_INIT_STATE() \
-	t_prng* state;                    			\
-	state = PRNG_New();               			\
-	if CCCERROR((state == NULL),				\
-		ERROR_ALLOCFAILURE,						\
-		"could not create pseudo-RNG state")	\
-		return (0);								\
-	PRNG_NewSeed(state); 						\
+	t_prng* state; \
+	state = PRNG_New(); \
+	if CCCERROR((state == NULL), \
+		ERROR_ALLOCFAILURE, \
+		"could not create pseudo-RNG state") \
+		return (0); \
+	PRNG_NewSeed(state);  \
 
 
 void*	PRNG_Get(void* dest, t_size size)
@@ -108,10 +108,10 @@ void*	PRNG_Get(void* dest, t_size size)
 }
 
 #define DEFINE_PRNG(TYPE, ACTION_ERROR) \
-	TYPE	result = 0;			\
-	if (PRNG_Next(state,		\
-		&result, sizeof(TYPE)))	\
-		ACTION_ERROR			\
+	TYPE	result = 0; \
+	if (PRNG_Next(state, \
+		&result, sizeof(TYPE))) \
+		ACTION_ERROR \
 
 extern inline t_uint   PRNG_UInt (t_prng* state)	{ DEFINE_PRNG(t_uint,	return (0);)	return (result); }
 extern inline t_sint   PRNG_SInt (t_prng* state)	{ DEFINE_PRNG(t_sint,	return (0);)	return (result); }

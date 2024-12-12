@@ -15,7 +15,7 @@ t_sint	F##BITS##_GetExp2(t_f##BITS number) \
 { \
 	u_cast_f##BITS	cast; \
 	cast.value_float = number; \
-	return (((cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS);	\
+	return (((cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS); \
 } \
 
 DEFINEFUNC_FLOAT_GETEXP2(32)

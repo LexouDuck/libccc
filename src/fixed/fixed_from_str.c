@@ -11,93 +11,94 @@
 
 
 #define DEFINEFUNC_FIXED_FROMSTR(BASE, BITS) \
-t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str, t_size n)				\
-{																						\
-	t_s##BITS	result = 0;																\
-	t_s##BITS	numerator = 0;															\
-	t_s##BITS	denominator = 1;														\
-	t_q##BITS	fraction = 0;															\
-	t_size	i = 0;																		\
-																						\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL")		\
-		goto failure;																	\
-	if (n == 0)																			\
-		n = SIZE_MAX;																	\
-	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
-	if (str[i] == '(')																	\
-	{																					\
-		++i;																			\
-		goto fraction;																	\
-	}																					\
-/*integer:*/																			\
-	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE,	\
-		"expected a number (with spaces/sign), but instead got \"%s\"", str)			\
-		goto failure;																	\
-	i += S##BITS##_Parse##BASE(&result, str, n - i);									\
-	if (str[i] == '+' || str[i] == '-')	++i;											\
-	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; }							\
-/*separator:*/																			\
-	if (str[i] == '.')	++i;															\
-	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
-	if (str[i] == '\0')	goto success;													\
-	if CCCERROR(!(str[i] == '+' || str[i] == '('), ERROR_PARSE,							\
-		"expected a fractional part separator char, but instead got \"%s\"", str)		\
-		goto failure;																	\
-fraction:																				\
-	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
-	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE,	\
-		"expected a fraction numerator, but instead got \"%s\"", str)					\
-		goto failure;																	\
-	i += S##BITS##_Parse##BASE(&numerator, str, n - i);									\
-	if (str[i] == '+' || str[i] == '-')	++i;											\
-	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; }							\
-	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
-	if CCCERROR(!(str[i] == '/'), ERROR_PARSE,											\
-		"expected a fraction '/' separator char, but instead got \"%s\"", str)			\
-		goto failure;																	\
-	++i;																				\
-	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; }							\
-	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE,	\
-		"expected a fraction denominator, but instead got \"%s\"", str)					\
-		goto failure;																	\
-	i += S##BITS##_Parse##BASE(&denominator, str, n - i);								\
-	if CCCERROR(!(denominator == 0), ERROR_MATHDOMAIN,									\
-		"fraction denominator cannot be zero \"%s\"", str)								\
-		goto failure;																	\
-	fraction = Q##BITS##_From(numerator, denominator);									\
-success:																				\
-	if CCCERROR((result < Q##BITS##_MININT), ERROR_RESULTRANGE,							\
-		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MININT)		\
-	{																					\
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN)									\
-	}																					\
-	if CCCERROR((result > Q##BITS##_MAXINT), ERROR_RESULTRANGE,							\
-		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAXINT)		\
-	{																					\
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX)									\
-	}																					\
-	if CCCERROR((result + Q##BITS##_Round(fraction) < Q##BITS##_MININT), ERROR_RESULTRANGE,\
-		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MININT)		\
-	{																					\
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN)									\
-	}																					\
-	if CCCERROR((result + Q##BITS##_Round(fraction) > Q##BITS##_MAXINT), ERROR_RESULTRANGE,\
-		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAXINT)		\
-	{																					\
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX)									\
-	}																					\
-	if (dest)	*dest = (result * FIXED_DENOMINATOR + fraction);						\
-	return (i);																			\
-failure:																				\
-	if (dest)	*dest = Q##BITS##_ERROR;												\
-	return (i);																			\
-}																						\
-extern inline t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str)						\
-{																						\
-	t_q##BITS	result = Q##BITS##_ERROR;												\
-	Q##BITS##_Parse##BASE(&result, str, 0);												\
-	return (result);																	\
-}																						\
+t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_s##BITS	result = 0; \
+	t_s##BITS	numerator = 0; \
+	t_s##BITS	denominator = 1; \
+	t_q##BITS	fraction = 0; \
+	t_size	i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; } \
+	if (str[i] == '(') \
+	{ \
+		++i; \
+		goto fraction; \
+	} \
+/*integer:*/ \
+	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE, \
+		"expected a number (with spaces/sign), but instead got \"%s\"", str) \
+		goto failure; \
+	i += S##BITS##_Parse##BASE(&result, str, n - i); \
+	if (str[i] == '+' || str[i] == '-')	++i; \
+	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; } \
+/*separator:*/ \
+	if (str[i] == '.')	++i; \
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; } \
+	if (str[i] == '\0')	goto success; \
+	if CCCERROR(!(str[i] == '+' || str[i] == '('), ERROR_PARSE, \
+		"expected a fractional part separator char, but instead got \"%s\"", str) \
+		goto failure; \
+fraction: \
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; } \
+	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE, \
+		"expected a fraction numerator, but instead got \"%s\"", str) \
+		goto failure; \
+	i += S##BITS##_Parse##BASE(&numerator, str, n - i); \
+	if (str[i] == '+' || str[i] == '-')	++i; \
+	while (i < n && str[i] && Char_IsDigit(str[i]))	{ ++i; } \
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; } \
+	if CCCERROR(!(str[i] == '/'), ERROR_PARSE, \
+		"expected a fraction '/' separator char, but instead got \"%s\"", str) \
+		goto failure; \
+	++i; \
+	while (i < n && str[i] && Char_IsSpace(str[i]))	{ ++i; } \
+	if CCCERROR(!(str[i] == '+' || str[i] == '-' || Char_IsDigit(str[i])), ERROR_PARSE, \
+		"expected a fraction denominator, but instead got \"%s\"", str) \
+		goto failure; \
+	i += S##BITS##_Parse##BASE(&denominator, str, n - i); \
+	if CCCERROR(!(denominator == 0), ERROR_MATHDOMAIN, \
+		"fraction denominator cannot be zero \"%s\"", str) \
+		goto failure; \
+	fraction = Q##BITS##_From(numerator, denominator); \
+success: \
+	if CCCERROR((result < Q##BITS##_MININT), ERROR_RESULTRANGE, \
+		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MININT) \
+	{ \
+		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) \
+	} \
+	if CCCERROR((result > Q##BITS##_MAXINT), ERROR_RESULTRANGE, \
+		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAXINT) \
+	{ \
+		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) \
+	} \
+	if CCCERROR((result + Q##BITS##_Round(fraction) < Q##BITS##_MININT), ERROR_RESULTRANGE, \
+		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MININT) \
+	{ \
+		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) \
+	} \
+	if CCCERROR((result + Q##BITS##_Round(fraction) > Q##BITS##_MAXINT), ERROR_RESULTRANGE, \
+		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAXINT) \
+	{ \
+		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) \
+	} \
+	if (dest)	*dest = (result * FIXED_DENOMINATOR + fraction); \
+	return (i); \
+failure: \
+	if (dest)	*dest = Q##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str) \
+{ \
+	t_q##BITS	result = Q##BITS##_ERROR; \
+	Q##BITS##_Parse##BASE(&result, str, 0); \
+	return (result); \
+} \
 
 DEFINEFUNC_FIXED_FROMSTR(,		16)
 DEFINEFUNC_FIXED_FROMSTR(_Dec,	16)

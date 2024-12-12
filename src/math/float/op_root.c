@@ -155,31 +155,31 @@ static const t_f128 f128_powers_neg[] =
 
 
 #define DEFINEFUNC_FLOAT_ROOT2PN(BITS, EXTRA) \
-static t_f##BITS	F##BITS##_Root2_2pN(t_s32 n)		\
-{														\
-	if (n > 0 && (n >> 11))								\
-		return (INFINITY);								\
-	const t_f##BITS* powers = f##BITS##_powers_pos;		\
-	if (n == 0)											\
-		return (1.);									\
-	else if (n < 0)										\
-	{													\
-		n = -n;											\
-		powers = f##BITS##_powers_neg;					\
-	}													\
-	t_f##BITS result = 1.;								\
-	if (n & 0x0001) { result *= powers[0x0]; }			\
-	if (n & 0x0002) { result *= powers[0x1]; }			\
-	if (n & 0x0004) { result *= powers[0x2]; }			\
-	if (n & 0x0008) { result *= powers[0x3]; }			\
-	if (n & 0x0010) { result *= powers[0x4]; }			\
-	if (n & 0x0020) { result *= powers[0x5]; }			\
-	if (n & 0x0040) { result *= powers[0x6]; }			\
-	if (n & 0x0080) { result *= powers[0x7]; }			\
-	if (n & 0x0100) { result *= powers[0x8]; }			\
-	if (n & 0x0200) { result *= powers[0x9]; }			\
-	EXTRA												\
-	return (result);									\
+static t_f##BITS	F##BITS##_Root2_2pN(t_s32 n) \
+{ \
+	if (n > 0 && (n >> 11)) \
+		return (INFINITY); \
+	const t_f##BITS* powers = f##BITS##_powers_pos; \
+	if (n == 0) \
+		return (1.); \
+	else if (n < 0) \
+	{ \
+		n = -n; \
+		powers = f##BITS##_powers_neg; \
+	} \
+	t_f##BITS result = 1.; \
+	if (n & 0x0001) { result *= powers[0x0]; } \
+	if (n & 0x0002) { result *= powers[0x1]; } \
+	if (n & 0x0004) { result *= powers[0x2]; } \
+	if (n & 0x0008) { result *= powers[0x3]; } \
+	if (n & 0x0010) { result *= powers[0x4]; } \
+	if (n & 0x0020) { result *= powers[0x5]; } \
+	if (n & 0x0040) { result *= powers[0x6]; } \
+	if (n & 0x0080) { result *= powers[0x7]; } \
+	if (n & 0x0100) { result *= powers[0x8]; } \
+	if (n & 0x0200) { result *= powers[0x9]; } \
+	EXTRA \
+	return (result); \
 }
 
 DEFINEFUNC_FLOAT_ROOT2PN(32,
@@ -227,35 +227,37 @@ DEFINEFUNC_FLOAT_ROOT2PN(128,
 MATH_DECL_REALFUNCTION(Root2, sqrt)
 #else
 #define DEFINEFUNC_FLOAT_ROOT2(BITS) \
-t_f##BITS	F##BITS##_Root2(t_f##BITS x)							\
-{																	\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)	return (NAN);	\
-	if CCCERROR((x < 0.), ERROR_MATHDOMAIN, NULL)	return (NAN);	\
-	/* Newton derivative approximation by iteration */				\
-	static const t_s32	max_i = 4;									\
-	t_s32	i;														\
-	t_f##BITS	result;												\
-	t_f##BITS	previous;											\
-	if (IS_NAN(x) || x < 0.)										\
-		return (NAN);												\
-	if (x == 0.)													\
-		return (0.);												\
-	if (x == 1.)													\
-		return (1.);												\
-	i = F##BITS##_GetExp2(x);										\
-	result = (i < 0 ? 0.75 : 1.25);									\
-	result *= F##BITS##_Root2_2pN(i);								\
-	previous = INFINITY;											\
-	i = 0;															\
-	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX)			\
-	{																\
-		previous = result;											\
-		result -= (result * result - x) / (2 * result);				\
-		if (++i == max_i)											\
-			break;													\
-	}																\
-	return (result);												\
-}
+t_f##BITS	F##BITS##_Root2(t_f##BITS x) \
+{ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if CCCERROR((x < 0.), ERROR_MATHDOMAIN, NULL) \
+		return (NAN); \
+	/* Newton derivative approximation by iteration */ \
+	static const t_s32	max_i = 4; \
+	t_s32	i; \
+	t_f##BITS	result; \
+	t_f##BITS	previous; \
+	if (IS_NAN(x) || x < 0.) \
+		return (NAN); \
+	if (x == 0.) \
+		return (0.); \
+	if (x == 1.) \
+		return (1.); \
+	i = F##BITS##_GetExp2(x); \
+	result = (i < 0 ? 0.75 : 1.25); \
+	result *= F##BITS##_Root2_2pN(i); \
+	previous = INFINITY; \
+	i = 0; \
+	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX) \
+	{ \
+		previous = result; \
+		result -= (result * result - x) / (2 * result); \
+		if (++i == max_i) \
+			break; \
+	} \
+	return (result); \
+} \
 
 DEFINEFUNC_FLOAT_ROOT2(32)
 DEFINEFUNC_FLOAT_ROOT2(64)
@@ -274,34 +276,35 @@ DEFINEFUNC_FLOAT_ROOT2(128)
 MATH_DECL_REALFUNCTION(Root3, cbrt)
 #else
 #define DEFINEFUNC_FLOAT_ROOT3(BITS) \
-t_f##BITS	F##BITS##_Root3(t_f##BITS x)							\
-{																	\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);	\
-	/* Newton derivative approximation by iteration */				\
-	static const t_s32	max_i = 4;									\
-	t_s32	i;														\
-	t_f##BITS	square;												\
-	t_f##BITS	result;												\
-	t_f##BITS	previous;											\
-	if (x == 0)														\
-		return (0);													\
-	if (F##BITS##_Abs(x) == 1.)										\
-		return (SGN(x));											\
-	i = F##BITS##_GetExp2(x);										\
-	result = SGN(x) * (i < 0 ? 0.75 : 1.25);						\
-	result *= F##BITS##_Root2_2pN(i * 2 / 3);						\
-	previous = INFINITY;											\
-	i = 0;															\
-	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX)			\
-	{																\
-		previous = result;											\
-		square = result * result;									\
-		result -= (result * square - x) / (3 * square);				\
-		if (++i == max_i)											\
-			break;													\
-	}																\
-	return (result);												\
-}
+t_f##BITS	F##BITS##_Root3(t_f##BITS x) \
+{ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	/* Newton derivative approximation by iteration */ \
+	static const t_s32	max_i = 4; \
+	t_s32	i; \
+	t_f##BITS	square; \
+	t_f##BITS	result; \
+	t_f##BITS	previous; \
+	if (x == 0) \
+		return (0); \
+	if (F##BITS##_Abs(x) == 1.) \
+		return (SGN(x)); \
+	i = F##BITS##_GetExp2(x); \
+	result = SGN(x) * (i < 0 ? 0.75 : 1.25); \
+	result *= F##BITS##_Root2_2pN(i * 2 / 3); \
+	previous = INFINITY; \
+	i = 0; \
+	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX) \
+	{ \
+		previous = result; \
+		square = result * result; \
+		result -= (result * square - x) / (3 * square); \
+		if (++i == max_i) \
+			break; \
+	} \
+	return (result); \
+} \
 
 DEFINEFUNC_FLOAT_ROOT3(32)
 DEFINEFUNC_FLOAT_ROOT3(64)
@@ -317,45 +320,46 @@ DEFINEFUNC_FLOAT_ROOT3(128)
 
 
 #define DEFINEFUNC_FLOAT_ROOTN(BITS) \
-t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n)					\
-{																	\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) return (NAN);	\
-	if CCCERROR((n % 2 == 0 && x < 0), ERROR_MATHDOMAIN, NULL)		\
-		return (NAN);												\
-	/* Newton derivative approximation by iteration */				\
-	static const t_s32	max_i = 4;									\
-	t_s32	i;														\
-	t_f##BITS	result;												\
-	t_f##BITS	previous;											\
-	t_f##BITS	power;												\
-	if (n == 0)														\
-		return (NAN);												\
-	if (n == 1)														\
-		return (x);													\
-	if (x == 0)														\
-		return (0);													\
-	if (F##BITS##_Abs(x) == 1.)										\
-		return (SGN(x));											\
-	i = F##BITS##_GetExp2(x);										\
-	result = SGN(x) * (i < 0 ? 1 : 1.25);							\
-	result *= F##BITS##_Root2_2pN(i * 2 / (t_s32)n);				\
-	previous = 0.;													\
-	i = 0;															\
-	n -= 1;															\
-	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX)			\
-	{																\
-		previous = result;											\
-		power = result;												\
-		for (t_u32 j = 1; j < n; ++j)								\
-		{															\
-			power *= result;										\
-		}															\
-		result -= (power * result - x) / ((n + 1) * power);			\
-		if (++i == max_i)											\
-			break;													\
-	}																\
-	return (result);												\
-}
+t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n) \
+{ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if CCCERROR((n % 2 == 0 && x < 0), ERROR_MATHDOMAIN, NULL) \
+		return (NAN); \
+	/* Newton derivative approximation by iteration */ \
+	static const t_s32	max_i = 4; \
+	t_s32	i; \
+	t_f##BITS	result; \
+	t_f##BITS	previous; \
+	t_f##BITS	power; \
+	if (n == 0) \
+		return (NAN); \
+	if (n == 1) \
+		return (x); \
+	if (x == 0) \
+		return (0); \
+	if (F##BITS##_Abs(x) == 1.) \
+		return (SGN(x)); \
+	i = F##BITS##_GetExp2(x); \
+	result = SGN(x) * (i < 0 ? 1 : 1.25); \
+	result *= F##BITS##_Root2_2pN(i * 2 / (t_s32)n); \
+	previous = 0.; \
+	i = 0; \
+	n -= 1; \
+	while (F##BITS##_Abs(result - previous) > FLOAT_APPROX) \
+	{ \
+		previous = result; \
+		power = result; \
+		for (t_u32 j = 1; j < n; ++j) \
+		{ \
+			power *= result; \
+		} \
+		result -= (power * result - x) / ((n + 1) * power); \
+		if (++i == max_i) \
+			break; \
+	} \
+	return (result); \
+} \
 
 DEFINEFUNC_FLOAT_ROOTN(32)
 DEFINEFUNC_FLOAT_ROOTN(64)

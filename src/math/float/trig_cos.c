@@ -35,42 +35,42 @@ static t_float	inv_factorial(t_uint n)
 }
 // taylor series approximation
 #define DEFINEFUNC_FLOAT_COS(BITS) \
-t_f##BITS	F##BITS##_Cos(t_f##BITS x)					\
-{														\
-	t_f##BITS	result;									\
-	t_bool		sign; /* `TRUE` for negative */			\
-	t_f##BITS	x_pow2;									\
-	t_f##BITS	x_pow4;									\
-	t_f##BITS	x_pow6;									\
-	t_f##BITS	x_pow8;									\
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)		\
-		return (NAN);									\
-	sign = 0;											\
-	if (x < 0.)											\
-		x = -x;											\
-	if (x > TAU)										\
-		x = F##BITS##_Mod(x, TAU);						\
-	if (x > PI)											\
-		x = PI - (x - PI);								\
-	if (x > PI_HALF)									\
-	{													\
-		x = PI_HALF - (x - PI_HALF);					\
-		sign = -1;										\
-	}													\
-	x_pow2 = x * x;										\
-	x_pow4 = x_pow2 * x_pow2;							\
-	x_pow6 = x_pow2 * x_pow4;							\
-	x_pow8 = x_pow4 * x_pow4;							\
-	result = 1.;										\
-	result -= x_pow2 * inv_factorial(2);				\
-	result += x_pow4 * inv_factorial(4);				\
-	result -= x_pow6 * inv_factorial(6);				\
-	result += x_pow8 * inv_factorial(8);				\
-	result -= x_pow8 * x_pow2 * inv_factorial(10);		\
-	result += x_pow8 * x_pow4 * inv_factorial(12);		\
-	result -= x_pow8 * x_pow6 * inv_factorial(14);		\
-	return (sign ? -result : result);					\
-}
+t_f##BITS	F##BITS##_Cos(t_f##BITS x) \
+{ \
+	t_f##BITS	result; \
+	t_bool		sign; /* `TRUE` for negative */ \
+	t_f##BITS	x_pow2; \
+	t_f##BITS	x_pow4; \
+	t_f##BITS	x_pow6; \
+	t_f##BITS	x_pow8; \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	sign = 0; \
+	if (x < 0.) \
+		x = -x; \
+	if (x > TAU) \
+		x = F##BITS##_Mod(x, TAU); \
+	if (x > PI) \
+		x = PI - (x - PI); \
+	if (x > PI_HALF) \
+	{ \
+		x = PI_HALF - (x - PI_HALF); \
+		sign = -1; \
+	} \
+	x_pow2 = x * x; \
+	x_pow4 = x_pow2 * x_pow2; \
+	x_pow6 = x_pow2 * x_pow4; \
+	x_pow8 = x_pow4 * x_pow4; \
+	result = 1.; \
+	result -= x_pow2 * inv_factorial(2); \
+	result += x_pow4 * inv_factorial(4); \
+	result -= x_pow6 * inv_factorial(6); \
+	result += x_pow8 * inv_factorial(8); \
+	result -= x_pow8 * x_pow2 * inv_factorial(10); \
+	result += x_pow8 * x_pow4 * inv_factorial(12); \
+	result -= x_pow8 * x_pow6 * inv_factorial(14); \
+	return (sign ? -result : result); \
+} \
 
 DEFINEFUNC_FLOAT_COS(32)
 DEFINEFUNC_FLOAT_COS(64)

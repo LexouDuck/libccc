@@ -115,14 +115,14 @@ t_bool	Float_Parse_CheckInvalid(t_char const* str)
 /*
 
 #define ASSEMBLE_FLOAT_SIMPLE(BITS) \
-	mantissa &= F##BITS##_MANTISSA_SIGNED;									\
-	mantissa |= F##BITS##_EXPONENT & ((t_uintmax)							\
-		(exponent + F##BITS##_EXPONENT_BIAS) << F##BITS##_MANTISSA_BITS);	\
-	Memory_Copy(&result, &mantissa, sizeof(result));						\
+	mantissa &= F##BITS##_MANTISSA_SIGNED; \
+	mantissa |= F##BITS##_EXPONENT & ((t_uintmax) \
+		(exponent + F##BITS##_EXPONENT_BIAS) << F##BITS##_MANTISSA_BITS); \
+	Memory_Copy(&result, &mantissa, sizeof(result)); \
 
 #define ASSEMBLE_FLOAT_EXTEND(BITS) \
-	Memory_Copy(&result, &mantissa, sizeof(result));						\
-	exponent += F##BITS##_EXPONENT_BIAS;									\
+	Memory_Copy(&result, &mantissa, sizeof(result)); \
+	exponent += F##BITS##_EXPONENT_BIAS; \
 	Memory_Copy(&result + F##BITS##_MANTISSA_BITS / 8, &exponent, sizeof(result));
 // TODO fix this ^
 
@@ -141,289 +141,292 @@ t_bool	Float_Parse_CheckInvalid(t_char const* str)
 */
 
 #define DEFINEFUNC_FLOAT_FROMSTR(BITS) \
-t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str, t_size n)		\
-{																			\
-	t_char const* s = NULL;													\
-	t_size	i = 0;															\
-																			\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		goto failure;														\
-	if (n == 0)																\
-		n = SIZE_MAX;														\
-	for (i = 0; (i < n && str[i]); ++i)										\
-	{																		\
-		if (str[i] == '0')													\
-			s = str + i;													\
-	}																		\
-	if (s && s[0] && s[0] == '0')											\
-	{																		\
-		switch (s[1])														\
-		{																	\
-			case 'x': return (F##BITS##_Parse_Hex(dest, str, n - i));		\
-			case 'o': return (F##BITS##_Parse_Oct(dest, str, n - i));		\
-			case 'b': return (F##BITS##_Parse_Bin(dest, str, n - i));		\
-		}																	\
-	}																		\
-	return (F##BITS##_Parse_Dec(dest, str, n - i));							\
-failure:																	\
-	if (dest)	*dest = F##BITS##_ERROR;									\
-	return (i);																\
-}																			\
-extern inline t_f##BITS	F##BITS##_FromString(t_char const* str)					\
-{																			\
-	t_f##BITS	result = F##BITS##_ERROR;									\
-	F##BITS##_Parse(&result, str, 0);										\
-	return (result);														\
-}																			\
+t_size	F##BITS##_Parse(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_char const* s = NULL; \
+	t_size	i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	for (i = 0; (i < n && str[i]); ++i) \
+	{ \
+		if (str[i] == '0') \
+			s = str + i; \
+	} \
+	if (s && s[0] && s[0] == '0') \
+	{ \
+		switch (s[1]) \
+		{ \
+			case 'x': return (F##BITS##_Parse_Hex(dest, str, n - i)); \
+			case 'o': return (F##BITS##_Parse_Oct(dest, str, n - i)); \
+			case 'b': return (F##BITS##_Parse_Bin(dest, str, n - i)); \
+		} \
+	} \
+	return (F##BITS##_Parse_Dec(dest, str, n - i)); \
+failure: \
+	if (dest)	*dest = F##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_f##BITS	F##BITS##_FromString(t_char const* str) \
+{ \
+	t_f##BITS	result = F##BITS##_ERROR; \
+	F##BITS##_Parse(&result, str, 0); \
+	return (result); \
+} \
 
 
 
 #define DEFINEFUNC_FLOAT_FROMSTRDEC(BITS) \
-t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n)	\
-{																			\
-	t_f##BITS	result;														\
-	t_char const* str_mantissa;												\
-	t_char const* str_exponent;												\
-	t_size		frac_digits;												\
-	t_bool		negative;													\
-	t_s16		exponent;													\
-	t_char*		tmp;														\
-	t_size	i = 0;															\
-																			\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		goto failure;														\
-	if (n == 0)																\
-		n = SIZE_MAX;														\
-	while (i < n && str[i] && Char_IsSpace(str[i]))							\
-	{																		\
-		++i;																\
-	}																		\
-	result = Float_Parse_CheckSpecial(str + i);								\
-	if (result != 0.)														\
-		goto success;														\
-	if (Float_Parse_CheckInvalid(str + i))									\
-		goto failure;														\
-	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit(str[i])))	\
-		goto failure;														\
+t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_f##BITS	result; \
+	t_char const* str_mantissa; \
+	t_char const* str_exponent; \
+	t_size		frac_digits; \
+	t_bool		negative; \
+	t_s16		exponent; \
+	t_char*		tmp; \
+	t_size	i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	while (i < n && str[i] && Char_IsSpace(str[i])) \
+	{ \
+		++i; \
+	} \
+	result = Float_Parse_CheckSpecial(str + i); \
+	if (result != 0.) \
+		goto success; \
+	if (Float_Parse_CheckInvalid(str + i)) \
+		goto failure; \
+	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit(str[i]))) \
+		goto failure; \
 if (!LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && !LIBCONFIG_USE_STD_MATH) {} /* stdlib wrappers */\
-else if (BITS == 32) { result = strtof(str + i, &tmp);	i += (tmp - str);	goto success; }	\
-else if (BITS == 64) { result = strtod(str + i, &tmp);	i += (tmp - str);	goto success; }	\
-else				 { result = strtold(str + i, &tmp);	i += (tmp - str);	goto success; }	\
-	negative = FALSE;														\
-	if (str[i] == '-')														\
-	{																		\
-		negative = TRUE;													\
-		++i;																\
-	}																		\
-	else if (str[i] == '+')													\
-		++i;																\
-	str_mantissa = str + i;													\
-	result = 0.;															\
-	while (i < n && str[i] && Char_IsDigit(str[i]))							\
-	{																		\
-		result = result * 10 + (str[i++] - '0');							\
-	}																		\
-	exponent = 0;															\
-	str_exponent = String_Find_Charset(str + i, "eE");						\
-	if (str_exponent)														\
-	{																		\
-		++str_exponent;														\
-		i = S16_Parse_Dec(&exponent, str_exponent, n);						\
-		i = ((i + str_exponent) - str);										\
-		if (exponent > F##BITS##_EXPONENT_BIAS)								\
-		{																	\
-			result = (negative ? -INFINITY : INFINITY);						\
-			goto success;													\
-		}																	\
-		else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)					\
-		{																	\
-			result = (0.);													\
-			goto success;													\
-		}																	\
-	}																		\
-	tmp = String_Find_Char(str_mantissa, '.');								\
-	if (tmp && (frac_digits = String_Length(++tmp)) > 0)					\
-		exponent -= frac_digits;											\
-	if (String_Length(str_mantissa) > MAXLEN_MANTISSA)						\
-		exponent += String_Length(str_mantissa) - MAXLEN_MANTISSA;			\
-	result *= F##BITS##_Pow(10., exponent) * (negative ? -1 : 1);			\
-success:																	\
-	if (dest)	*dest = result;												\
-	return (i);																\
-failure:																	\
-	if (dest)	*dest = F##BITS##_ERROR;									\
-	return (i);																\
-}																			\
-extern inline t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)				\
-{																			\
-	t_f##BITS	result = F##BITS##_ERROR;									\
-	F##BITS##_Parse_Dec(&result, str, 0);									\
-	return (result);														\
-}																			\
+else if (BITS == 32) { result = strtof(str + i, &tmp);	i += (tmp - str);	goto success; } \
+else if (BITS == 64) { result = strtod(str + i, &tmp);	i += (tmp - str);	goto success; } \
+else				 { result = strtold(str + i, &tmp);	i += (tmp - str);	goto success; } \
+	negative = FALSE; \
+	if (str[i] == '-') \
+	{ \
+		negative = TRUE; \
+		++i; \
+	} \
+	else if (str[i] == '+') \
+		++i; \
+	str_mantissa = str + i; \
+	result = 0.; \
+	while (i < n && str[i] && Char_IsDigit(str[i])) \
+	{ \
+		result = result * 10 + (str[i++] - '0'); \
+	} \
+	exponent = 0; \
+	str_exponent = String_Find_Charset(str + i, "eE"); \
+	if (str_exponent) \
+	{ \
+		++str_exponent; \
+		i = S16_Parse_Dec(&exponent, str_exponent, n); \
+		i = ((i + str_exponent) - str); \
+		if (exponent > F##BITS##_EXPONENT_BIAS) \
+		{ \
+			result = (negative ? -INFINITY : INFINITY); \
+			goto success; \
+		} \
+		else if (exponent < 1 - F##BITS##_EXPONENT_BIAS) \
+		{ \
+			result = (0.); \
+			goto success; \
+		} \
+	} \
+	tmp = String_Find_Char(str_mantissa, '.'); \
+	if (tmp && (frac_digits = String_Length(++tmp)) > 0) \
+		exponent -= frac_digits; \
+	if (String_Length(str_mantissa) > MAXLEN_MANTISSA) \
+		exponent += String_Length(str_mantissa) - MAXLEN_MANTISSA; \
+	result *= F##BITS##_Pow(10., exponent) * (negative ? -1 : 1); \
+success: \
+	if (dest)	*dest = result; \
+	return (i); \
+failure: \
+	if (dest)	*dest = F##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_f##BITS	F##BITS##_FromString_Dec(t_char const* str) \
+{ \
+	t_f##BITS	result = F##BITS##_ERROR; \
+	F##BITS##_Parse_Dec(&result, str, 0); \
+	return (result); \
+} \
 
 
 
 #define DEFINEFUNC_FLOAT_FROMSTRHEX(BITS) \
-t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	\
-{																			\
-	t_f##BITS	result;														\
-	t_char const* str_mantissa;												\
-	t_char const* str_exponent;												\
-	t_bool		negative;													\
-	t_u64		mantissa;													\
-	t_s16		exponent;													\
-	t_char*		tmp;														\
-	t_size		i = 0;														\
-																			\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		goto failure;														\
-	if (n == 0)																\
-		n = SIZE_MAX;														\
-	while (i < n && str[i] && Char_IsSpace(str[i]))							\
-	{																		\
-		++i;																\
-	}																		\
-	result = Float_Parse_CheckSpecial(str + i);								\
-	if (result != 0.)														\
-		goto success;														\
-	if (Float_Parse_CheckInvalid(str + i))									\
-		goto failure;														\
-	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Hex(str[i])))	\
-		goto failure;														\
-	negative = (str[i] == '-');												\
-	str_mantissa = (negative || str[i] == '+') ?							\
-		(str + i + 1) : (str + i);											\
-	result = (negative ? -1. : +1.);										\
-	tmp = String_Remove(str_mantissa, ".");									\
-	if (String_HasOnly(tmp, "0"))											\
-	{																		\
-		Memory_Free(tmp);													\
-		result *= 0.;														\
-		goto success;														\
-	}																		\
-	i += U64_Parse_Hex(&mantissa, tmp, n - i);								\
-	result *= (mantissa * F##BITS##_INIT_VALUE) *							\
-		Float_Pow(2., (String_Length(tmp) - 1) * 4);						\
-	str_exponent = String_Find_Charset(str + i, "pP");						\
-	if (str_exponent)														\
-	{																		\
-		++str_exponent;														\
-		i += S16_Parse_Hex(&exponent, str_exponent, n);						\
-	}																		\
-	else exponent = 0;														\
-	if (exponent > F##BITS##_EXPONENT_BIAS)									\
-	{																		\
-		result = ((negative ? -1. : 1.) / 0.);								\
-		goto success;														\
-	}																		\
-	else if (exponent < 1 - F##BITS##_EXPONENT_BIAS)						\
-	{																		\
-		result = (0.);														\
-		goto success;														\
-	}																		\
-	Memory_Copy(&mantissa, &result,											\
-		MIN(sizeof(t_uintmax), sizeof(result)));							\
-	/*ASSEMBLE_FLOAT(BITS)*/												\
-	mantissa = Memory_GetBits(&result, 0, F##BITS##_MANTISSA_BITS);			\
-/*	Memory_Clear(&result, sizeof(result));	*/								\
-	Memory_SetBits(&result,													\
-		F##BITS##_EXPONENT_BITS + 1,										\
-		F##BITS##_MANTISSA_BITS, mantissa);									\
-	Memory_SetBits(&result, 1,												\
-		F##BITS##_EXPONENT_BITS, exponent);									\
-	/*ASSEMBLE_FLOAT(BITS)*/												\
-	Memory_Free(tmp);														\
-success:																	\
-	if (dest)	*dest = result;												\
-	return (i);																\
-failure:																	\
-	if (dest)	*dest = F##BITS##_ERROR;									\
-	return (i);																\
-}																			\
-extern inline t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)				\
-{																			\
-	t_f##BITS	result = F##BITS##_ERROR;									\
-	F##BITS##_Parse_Hex(&result, str, 0);									\
-	return (result);														\
-}																			\
+t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_f##BITS	result; \
+	t_char const* str_mantissa; \
+	t_char const* str_exponent; \
+	t_bool		negative; \
+	t_u64		mantissa; \
+	t_s16		exponent; \
+	t_char*		tmp; \
+	t_size		i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	while (i < n && str[i] && Char_IsSpace(str[i])) \
+	{ \
+		++i; \
+	} \
+	result = Float_Parse_CheckSpecial(str + i); \
+	if (result != 0.) \
+		goto success; \
+	if (Float_Parse_CheckInvalid(str + i)) \
+		goto failure; \
+	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Hex(str[i]))) \
+		goto failure; \
+	negative = (str[i] == '-'); \
+	str_mantissa = (negative || str[i] == '+') ? \
+		(str + i + 1) : (str + i); \
+	result = (negative ? -1. : +1.); \
+	tmp = String_Remove(str_mantissa, "."); \
+	if (String_HasOnly(tmp, "0")) \
+	{ \
+		Memory_Free(tmp); \
+		result *= 0.; \
+		goto success; \
+	} \
+	i += U64_Parse_Hex(&mantissa, tmp, n - i); \
+	result *= (mantissa * F##BITS##_INIT_VALUE) * \
+		Float_Pow(2., (String_Length(tmp) - 1) * 4); \
+	str_exponent = String_Find_Charset(str + i, "pP"); \
+	if (str_exponent) \
+	{ \
+		++str_exponent; \
+		i += S16_Parse_Hex(&exponent, str_exponent, n); \
+	} \
+	else exponent = 0; \
+	if (exponent > F##BITS##_EXPONENT_BIAS) \
+	{ \
+		result = ((negative ? -1. : 1.) / 0.); \
+		goto success; \
+	} \
+	else if (exponent < 1 - F##BITS##_EXPONENT_BIAS) \
+	{ \
+		result = (0.); \
+		goto success; \
+	} \
+	Memory_Copy(&mantissa, &result, \
+		MIN(sizeof(t_uintmax), sizeof(result))); \
+	/*ASSEMBLE_FLOAT(BITS)*/ \
+	mantissa = Memory_GetBits(&result, 0, F##BITS##_MANTISSA_BITS); \
+/*	Memory_Clear(&result, sizeof(result));	*/ \
+	Memory_SetBits(&result, \
+		F##BITS##_EXPONENT_BITS + 1, \
+		F##BITS##_MANTISSA_BITS, mantissa); \
+	Memory_SetBits(&result, 1, \
+		F##BITS##_EXPONENT_BITS, exponent); \
+	/*ASSEMBLE_FLOAT(BITS)*/ \
+	Memory_Free(tmp); \
+success: \
+	if (dest)	*dest = result; \
+	return (i); \
+failure: \
+	if (dest)	*dest = F##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_f##BITS	F##BITS##_FromString_Hex(t_char const* str) \
+{ \
+	t_f##BITS	result = F##BITS##_ERROR; \
+	F##BITS##_Parse_Hex(&result, str, 0); \
+	return (result); \
+} \
 
 
 
-// TODO Float_ToString_Oct()
 #define DEFINEFUNC_FLOAT_FROMSTROCT(BITS) \
-t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n)	\
-{																			\
-	t_f##BITS	result;														\
-	t_size		i = 0;														\
-																			\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		goto failure;														\
-	if (n == 0)																\
-		n = SIZE_MAX;														\
-	while (i < n && str[i] && Char_IsSpace(str[i]))							\
-	{																		\
-		++i;																\
-	}																		\
-	result = Float_Parse_CheckSpecial(str + i);								\
-	if (result != 0.)														\
-		goto success;														\
-	if (Float_Parse_CheckInvalid(str + i))									\
-		goto failure;														\
-	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Oct(str[i])))	\
-		goto failure;														\
-/* TODO */	\
-success:																	\
-	if (dest)	*dest = result;												\
-	return (0);																\
-failure:																	\
-	if (dest)	*dest = F##BITS##_ERROR;									\
-	return (i);																\
-}																			\
-extern inline t_f##BITS	F##BITS##_FromString_Oct(t_char const* str)				\
-{																			\
-	t_f##BITS	result = F##BITS##_ERROR;									\
-	F##BITS##_Parse_Oct(&result, str, 0);									\
-	return (result);														\
-}																			\
+t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_f##BITS	result; \
+	t_size		i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	while (i < n && str[i] && Char_IsSpace(str[i])) \
+	{ \
+		++i; \
+	} \
+	result = Float_Parse_CheckSpecial(str + i); \
+	if (result != 0.) \
+		goto success; \
+	if (Float_Parse_CheckInvalid(str + i)) \
+		goto failure; \
+	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Oct(str[i]))) \
+		goto failure; \
+/* TODO */ \
+success: \
+	if (dest)	*dest = result; \
+	return (0); \
+failure: \
+	if (dest)	*dest = F##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_f##BITS	F##BITS##_FromString_Oct(t_char const* str) \
+{ \
+	t_f##BITS	result = F##BITS##_ERROR; \
+	F##BITS##_Parse_Oct(&result, str, 0); \
+	return (result); \
+} \
 
 
 
-// TODO Float_ToString_Bin()
 #define DEFINEFUNC_FLOAT_FROMSTRBIN(BITS) \
-t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n)	\
-{																			\
-	t_f##BITS	result;														\
-	t_size		i = 0;														\
-																			\
-	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")	\
-		goto failure;														\
-	if (n == 0)																\
-		n = SIZE_MAX;														\
-	while (i < n && str[i] && Char_IsSpace(str[i]))							\
-	{																		\
-		++i;																\
-	}																		\
-	result = Float_Parse_CheckSpecial(str + i);								\
-	if (result != 0.)														\
-		goto success;														\
-	if (Float_Parse_CheckInvalid(str + i))									\
-		goto failure;														\
-	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Bin(str[i])))	\
-		goto failure;														\
-/* TODO */	\
-success:																	\
-	if (dest)	*dest = NAN;												\
-	return (0);																\
-failure:																	\
-	if (dest)	*dest = F##BITS##_ERROR;									\
-	return (i);																\
-}																			\
-extern inline t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)				\
-{																			\
-	t_f##BITS	result = F##BITS##_ERROR;									\
-	F##BITS##_Parse_Bin(&result, str, 0);									\
-	return (result);														\
-}																			\
+t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_f##BITS	result; \
+	t_size		i = 0; \
+ \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = SIZE_MAX; \
+	while (i < n && str[i] && Char_IsSpace(str[i])) \
+	{ \
+		++i; \
+	} \
+	result = Float_Parse_CheckSpecial(str + i); \
+	if (result != 0.) \
+		goto success; \
+	if (Float_Parse_CheckInvalid(str + i)) \
+		goto failure; \
+	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Bin(str[i]))) \
+		goto failure; \
+/* TODO */ \
+success: \
+	if (dest)	*dest = NAN; \
+	return (0); \
+failure: \
+	if (dest)	*dest = F##BITS##_ERROR; \
+	return (i); \
+} \
+extern inline \
+t_f##BITS	F##BITS##_FromString_Bin(t_char const* str) \
+{ \
+	t_f##BITS	result = F##BITS##_ERROR; \
+	F##BITS##_Parse_Bin(&result, str, 0); \
+	return (result); \
+} \
 
 
 

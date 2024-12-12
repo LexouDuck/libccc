@@ -11,10 +11,11 @@
 MATH_DECL_REALFUNCTION(Mul, fmul)
 #else
 #define DEFINEFUNC_FLOAT_MUL(BITS) \
-extern inline t_f##BITS	F##BITS##_Mul(t_f##BITS a, t_f##BITS b)	\
-{															\
-	return (a * b);											\
-}
+extern inline \
+t_f##BITS	F##BITS##_Mul(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a * b); \
+} \
 
 DEFINEFUNC_FLOAT_MUL(32)
 DEFINEFUNC_FLOAT_MUL(64)

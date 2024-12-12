@@ -11,7 +11,8 @@
 MATH_DECL_REALOPERATOR(Hypotenuse, hypot)
 #else
 #define DEFINEFUNC_FLOAT_HYPOT(BITS, N_HUGE, N_TINY, N_ADD, N_SUB, SPLIT) \
-static void	__sq##BITS(t_f##BITS* hi, t_f##BITS* lo, t_f##BITS x) \
+static \
+void	__sq##BITS(t_f##BITS* hi, t_f##BITS* lo, t_f##BITS x) \
 { \
 	t_f##BITS xh; \
 	t_f##BITS xl; \

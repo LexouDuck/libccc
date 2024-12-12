@@ -11,7 +11,7 @@
 MATH_DECL_REALFUNCTION(Exp2, exp2)
 #elif 1//LIBCONFIG_USE_CCC_MATH
 #define DEFINEFUNC_FLOAT_EXP2(BITS) \
-t_f##BITS		F##BITS##_Exp2(t_f##BITS x) \
+t_f##BITS	F##BITS##_Exp2(t_f##BITS x) \
 { \
 	return (F##BITS##_Pow(2, x)); \
 } \
