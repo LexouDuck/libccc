@@ -6,7 +6,9 @@
 
 
 
-#if !LIBCONFIG_USE_STD_MATH
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALFUNCTION(Sin, sin)
+#elif 1 // LIBCONFIG_USE_CCC_MATH
 static t_float	inv_factorial(t_uint n)
 {
 	static const t_float	result[16] =
@@ -31,13 +33,6 @@ static t_float	inv_factorial(t_uint n)
 	return (result[n]); //static so it shouldn't be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
 }
-#endif
-
-
-
-#if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALFUNCTION(Sin, sin)
-#else
 // taylor series approximation
 #define DEFINEFUNC_FLOAT_SIN(BITS) \
 t_f##BITS	F##BITS##_Sin(t_f##BITS x)					\

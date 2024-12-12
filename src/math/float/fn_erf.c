@@ -112,7 +112,6 @@ MATH_DECL_REALFUNCTION(ErfC, erfc)
 **              erfc(0) = 1, erfc(inf) = 0, erfc(-inf) = 2,
 **              erfc/erf(NaN) is NaN
 */
-#include <math.h>
 #define DEFINEFUNC_FLOAT_ERF(BITS, TINY, ZMASK) \
 static t_f##BITS _erfc1_F##BITS(t_f##BITS abs_x) \
  \
@@ -143,7 +142,7 @@ static t_f##BITS _erfc2_F##BITS(t_f##BITS abs_x) \
 	} \
 	z.value_float = abs_x; \
 	z.value_uint &= (t_u##BITS)-1 << ZMASK; \
-	return (exp(-z.value_float*z.value_float-0.5625) * exp((z.value_float-abs_x)*(z.value_float+abs_x)+R/S)/abs_x); \
+	return (F##BITS##_Exp(-z.value_float*z.value_float-0.5625) * F##BITS##_Exp((z.value_float-abs_x)*(z.value_float+abs_x)+R/S)/abs_x); \
 } \
  \
 t_f##BITS F##BITS##_Erf(t_f##BITS x) \

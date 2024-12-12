@@ -469,10 +469,10 @@ t_f128						F128_Rem(t_f128 x, t_f128 y);
 #define c_fremquo				Float_RemQuo
 #define Float_RemainderQuotient	Float_RemQuo
 
-t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_sint* quotient);
+t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_s32* quotient);
 #define c_f32remquo			F32_RemQuo
 
-t_f64						F64_RemQuo(t_f64 x, t_f64 y, t_sint* quotient);
+t_f64						F64_RemQuo(t_f64 x, t_f64 y, t_s64* quotient);
 #define c_f64remquo			F64_RemQuo
 
 #if LIBCONFIG_USE_FLOAT80
