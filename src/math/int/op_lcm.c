@@ -9,7 +9,8 @@
 
 
 #define DEFINEFUNC_UINT_LCM(BITS) \
-inline t_u##BITS	U##BITS##_LCM(t_u##BITS a, t_u##BITS b) \
+extern inline \
+t_u##BITS	U##BITS##_LCM(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a / U##BITS##_GCD(a, b) * b); \
 } \
@@ -25,7 +26,8 @@ DEFINEFUNC_UINT_LCM(128)
 
 
 #define DEFINEFUNC_SINT_LCM(BITS) \
-inline t_s##BITS	S##BITS##_LCM(t_s##BITS a, t_s##BITS b) \
+extern inline \
+t_s##BITS	S##BITS##_LCM(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a / S##BITS##_GCD(a, b) * b); \
 } \

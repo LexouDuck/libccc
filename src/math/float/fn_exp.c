@@ -832,8 +832,7 @@ static inline t_u32 top12_f64(t_f32 x)
 **	(int32_t)KI is the k used in the argument reduction and exponent adjustment of scale,
 **	positive k here means the result may overflow and negative k means the result may underflow.
 */
-static
-inline
+static inline
 t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 {
 	t_f64 scale, y;

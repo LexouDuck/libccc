@@ -786,8 +786,7 @@ overflown into the sign bit so that needs to be adjusted before using it as a do
 (int32_t)KI is the k used in the argument reduction and exponent adjustment of scale,
 positive k here means the result may overflow and negative k means the result may underflow.
 */
-static
-inline
+static inline
 t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 {
 	t_f64 scale, y;
@@ -829,15 +828,13 @@ t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 
 
 /*! Top 12 bits of a float (sign and exponent bits). */
-static
-inline
+static inline
 t_u32	top12_f32(t_f32 x)
 {
 	return AS_U32(x) >> 20;
 }
 /*! Top 12 bits of a double (sign and exponent bits). */
-static
-inline
+static inline
 t_u32	top12_f64(t_f64 x)
 {
 	return AS_U64(x) >> 52;

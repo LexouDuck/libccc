@@ -8,7 +8,8 @@
 
 
 #define DEFINEFUNC_FLOAT_SGN(BITS) \
-inline t_f##BITS	F##BITS##_Sgn(t_f##BITS x) \
+extern inline \
+t_f##BITS	F##BITS##_Sgn(t_f##BITS x) \
 { \
 	return (SGN(x)); \
 } \

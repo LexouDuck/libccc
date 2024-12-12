@@ -8,13 +8,13 @@
 
 
 #if LIBCONFIG_USE_STD_MATH
-inline t_f32	F32_RemQuo(t_f32 a, t_f32 b, t_s32* quotient)	{ return (__builtin_remquof(a, b, quotient)); }
-inline t_f64	F64_RemQuo(t_f64 a, t_f64 b, t_s64* quotient)	{ return (__builtin_remquo(a, b, quotient)); }
+extern inline t_f32	F32_RemQuo(t_f32 a, t_f32 b, t_s32* quotient)	{ return (__builtin_remquof(a, b, quotient)); }
+extern inline t_f64	F64_RemQuo(t_f64 a, t_f64 b, t_s64* quotient)	{ return (__builtin_remquo(a, b, quotient)); }
 #if LIBCONFIG_USE_FLOAT80
-inline t_f80	F80_RemQuo(t_f80 a, t_f80 b, t_sint* quotient)	{ return (__builtin_remquol(a, b, quotient)); }
+extern inline t_f80	F80_RemQuo(t_f80 a, t_f80 b, t_sint* quotient)	{ return (__builtin_remquol(a, b, quotient)); }
 #endif
 #if LIBCONFIG_USE_FLOAT128
-inline t_f128	F128_RemQuo(t_f128 a, t_f128 b, t_sint* quotient)	{ return (__builtin_remquol(a, b, quotient)); }
+extern inline t_f128	F128_RemQuo(t_f128 a, t_f128 b, t_sint* quotient)	{ return (__builtin_remquol(a, b, quotient)); }
 #endif
 #else
 #define DEFINEFUNC_FLOAT_REMQUO(BITS) \
@@ -126,6 +126,7 @@ DEFINEFUNC_FLOAT_REMQUO(128)
 MATH_DECL_REALOPERATOR(Rem, drem)
 #else
 #define DEFINEFUNC_FLOAT_REM(BITS) \
+extern inline \
 t_f##BITS F##BITS##_Rem(t_f##BITS x, t_f##BITS y) \
 { \
 	t_s##BITS q; \

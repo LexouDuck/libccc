@@ -9,7 +9,8 @@
 
 
 #define DEFINEFUNC_UINT_GCD(BITS) \
-inline t_u##BITS	U##BITS##_GCD(t_u##BITS a, t_u##BITS b) \
+extern inline \
+t_u##BITS	U##BITS##_GCD(t_u##BITS a, t_u##BITS b) \
 { \
 	if (a && b) \
 		while ((a %= b) && (b %= a)); \
@@ -27,7 +28,8 @@ DEFINEFUNC_UINT_GCD(128)
 
 
 #define DEFINEFUNC_SINT_GCD(BITS) \
-inline t_s##BITS	S##BITS##_GCD(t_s##BITS a, t_s##BITS b) \
+extern inline \
+t_s##BITS	S##BITS##_GCD(t_s##BITS a, t_s##BITS b) \
 { \
 	if (a && b) \
 		while ((a %= b) && (b %= a)); \

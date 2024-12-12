@@ -35,7 +35,8 @@ DEFINEFUNC_FLOAT_FROM(128)
 
 
 #define DEFINEFUNC_FLOAT_FROMINT(BITS) \
-inline t_f##BITS	F##BITS##_FromInt(t_sint number) \
+extern inline \
+t_f##BITS	F##BITS##_FromInt(t_sint number) \
 { \
 	return ((t_f##BITS)number); \
 } \
@@ -52,7 +53,8 @@ DEFINEFUNC_FLOAT_FROMINT(128)
 
 
 #define DEFINEFUNC_FLOAT_FROMFIXED(BITS) \
-inline t_f##BITS	F##BITS##_FromFixed(t_fixed number) \
+extern inline \
+t_f##BITS	F##BITS##_FromFixed(t_fixed number) \
 { \
 	return ((t_f##BITS)number / (t_f##BITS)FIXED_DENOMINATOR); \
 } \
@@ -69,7 +71,8 @@ DEFINEFUNC_FLOAT_FROMFIXED(128)
 
 
 #define DEFINEFUNC_FLOAT_FROMFLOAT(BITS) \
-inline t_f##BITS	F##BITS##_FromFloat(t_float number) \
+extern inline \
+t_f##BITS	F##BITS##_FromFloat(t_float number) \
 { \
 	return ((t_f##BITS)number); \
 } \
