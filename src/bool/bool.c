@@ -5,12 +5,12 @@
 
 
 
-extern inline t_bool	Bool_True        (t_bool a, t_bool b)	{ return (TRUE); }	 // ⊤
-extern inline t_bool	Bool_False       (t_bool a, t_bool b)	{ return (FALSE); }	 // ⊥
-extern inline t_bool	Bool_Left        (t_bool a, t_bool b)	{ return  (a); }	 // ⊣
-extern inline t_bool	Bool_NotLeft     (t_bool a, t_bool b)	{ return !(a); }	 // ⊢
-extern inline t_bool	Bool_Right       (t_bool a, t_bool b)	{ return  (b); }	 // ⫣
-extern inline t_bool	Bool_NotRight    (t_bool a, t_bool b)	{ return !(b); }	 // ⊩
+extern inline t_bool	Bool_True        (t_bool a, t_bool b)	{ (void)a;	(void)b;	return (TRUE); }	 // ⊤
+extern inline t_bool	Bool_False       (t_bool a, t_bool b)	{ (void)a;	(void)b;	return (FALSE); }	 // ⊥
+extern inline t_bool	Bool_Left        (t_bool a, t_bool b)	{ (void)b;	return  (a); }	 // ⊣
+extern inline t_bool	Bool_NotLeft     (t_bool a, t_bool b)	{ (void)b;	return !(a); }	 // ⊢
+extern inline t_bool	Bool_Right       (t_bool a, t_bool b)	{ (void)a;	return  (b); }	 // ⫣
+extern inline t_bool	Bool_NotRight    (t_bool a, t_bool b)	{ (void)a;	return !(b); }	 // ⊩
 extern inline t_bool	Bool_And         (t_bool a, t_bool b)	{ return  (a && b); }	// ⋀
 extern inline t_bool	Bool_NotAnd      (t_bool a, t_bool b)	{ return !(a && b); }	// ⊼
 extern inline t_bool	Bool_Or          (t_bool a, t_bool b)	{ return  (a || b); }	// ⋁
