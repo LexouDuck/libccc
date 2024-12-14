@@ -118,12 +118,12 @@ HEADER_CPP
 
 //!@doc Convienence macros, use these to check for different POSIX standards in preprocessor `#if` statements.
 //!@{
-#define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
-#define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
-#define __POSIX_VERSION_1993__ 199309l	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
-#define __POSIX_VERSION_1995__ 199506l	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
-#define __POSIX_VERSION_2001__ 200112l	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
-#define __POSIX_VERSION_2008__ 200809l	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
+#define __POSIX_VERSION_1990__	1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
+#define __POSIX_VERSION_1992__	2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
+#define __POSIX_VERSION_1993__	199309l	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
+#define __POSIX_VERSION_1995__	199506l	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
+#define __POSIX_VERSION_2001__	200112l	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
+#define __POSIX_VERSION_2008__	200809l	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
 //!@}
 
 
@@ -228,17 +228,19 @@ HEADER_CPP
 #if defined(__SIZEOF_INT128__) \
 	|| defined(__int128)
 
-#if (__SIZEOF_INT128__ != 16)
-#warning "Bad predefined macro: `__SIZEOF_INT128__` should have a value of `16`, or not be defined at all."
-#endif
+	#if (__SIZEOF_INT128__ != 16)
+	#warning "Bad predefined macro: `__SIZEOF_INT128__` should have a value of `16`, or not be defined at all."
+	#endif
+
 	#ifndef __int128
 	#define __int128 \
 			__int128
 	#endif
+
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpedantic"
 	typedef unsigned __int128	_UInt128; //!< Harmonized type for 128-bit unsigned integers
-	typedef signed   __int128	_SInt128; //!< Harmonized type for 128-bit signed integers
+	typedef   signed __int128	_SInt128; //!< Harmonized type for 128-bit signed integers
 	#pragma GCC diagnostic pop
 #endif
 

@@ -169,9 +169,9 @@ int		test_math_realfunction_libc(
 	int					tests,
 	s_interval			interval)
 {
-	t_float* expects = malloc(tests * sizeof(t_float));
-	t_float* results = malloc(tests * sizeof(t_float));
-	t_float* errors  = malloc(tests * sizeof(t_float));
+	t_float* expects = (t_float*)malloc(tests * sizeof(t_float));
+	t_float* results = (t_float*)malloc(tests * sizeof(t_float));
+	t_float* errors  = (t_float*)malloc(tests * sizeof(t_float));
 	unsigned int failed_tests = 0;
 	s_timer timer = {0};
 	t_float	x;
@@ -201,9 +201,9 @@ int		test_math_realoperator_libc(
 {
 	int tests_interval = tests;
 	tests *= tests;
-	t_float* expects = malloc(tests * sizeof(t_float));
-	t_float* results = malloc(tests * sizeof(t_float));
-	t_float* errors  = malloc(tests * sizeof(t_float));
+	t_float* expects = (t_float*)malloc(tests * sizeof(t_float));
+	t_float* results = (t_float*)malloc(tests * sizeof(t_float));
+	t_float* errors  = (t_float*)malloc(tests * sizeof(t_float));
 	unsigned int failed_tests = 0;
 	s_timer timer = {0};
 	t_float	x;
