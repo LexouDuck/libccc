@@ -2,7 +2,7 @@
 ** macro test: errno
 **	OS: Linux-Pop_OS
 **	SH: Linux
-**	CC: /usr/bin/gcc
+**	CC: /usr/bin/clang++
 */
 #define EDEADLOCK EDEADLK
 #define ENOTSUP EOPNOTSUPP

@@ -2,7 +2,7 @@
 ** macro test: predefined
 **	OS: Linux-Pop_OS
 **	SH: Linux
-**	CC: /usr/bin/gcc
+**	CC: /usr/bin/g++
 */
 #define _LP64 1
 #define _STDC_PREDEF_H 1
