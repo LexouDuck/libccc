@@ -7,7 +7,7 @@
 
 
 
-#if LIBCONFIG_USE_STD_MATH
+#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
 _INLINE() t_f32	F32_RemQuo(t_f32 a, t_f32 b, t_sint* quotient)	{ return (__builtin_remquof(a, b, quotient)); }
 _INLINE() t_f64	F64_RemQuo(t_f64 a, t_f64 b, t_sint* quotient)	{ return (__builtin_remquo(a, b, quotient)); }
 #if LIBCONFIG_USE_FLOAT80
@@ -122,9 +122,6 @@ DEFINEFUNC_FLOAT_REMQUO(128)
 
 
 
-#if LIBCONFIG_USE_STD_MATH
-MATH_DECL_REALOPERATOR(Rem, drem)
-#else
 #define DEFINEFUNC_FLOAT_REM(BITS) \
 _INLINE() \
 t_f##BITS F##BITS##_Rem(t_f##BITS x, t_f##BITS y) \
@@ -140,6 +137,4 @@ DEFINEFUNC_FLOAT_REM(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_REM(128)
-#endif
-
 #endif
