@@ -11,7 +11,7 @@
 MATH_DECL_REALFUNCTION(Sub, fsub)
 #else
 #define DEFINEFUNC_FLOAT_SUB(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Sub(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a - b); \

@@ -10,7 +10,7 @@
 MATH_DECL_REALFUNCTION(Add, fadd)
 #else
 #define DEFINEFUNC_FLOAT_ADD(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Add(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a + b); \

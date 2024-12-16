@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Ceil, ceil)
 #else
 #define DEFINEFUNC_FLOAT_CEIL(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Ceil(t_f##BITS x) \
 { \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \

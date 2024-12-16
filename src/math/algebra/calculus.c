@@ -45,22 +45,22 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 ** Multiple type handling.
 */
 
-extern inline t_f32	c_distance_f32(t_f32 x, t_f32 y)	{ return (ABS(x - y)); }
-extern inline t_f64	c_distance_f64(t_f64 x, t_f64 y)	{ return (ABS(x - y)); }
+_INLINE() t_f32	c_distance_f32(t_f32 x, t_f32 y)	{ return (ABS(x - y)); }
+_INLINE() t_f64	c_distance_f64(t_f64 x, t_f64 y)	{ return (ABS(x - y)); }
 
-extern inline t_u8		c_distance_u8(t_u8 x, t_u8 y)		{ return (x - y); }
-extern inline t_u16	c_distance_u16(t_u16 x, t_u16 y)	{ return (x - y); }
-extern inline t_u32	c_distance_u32(t_u32 x, t_u32 y)	{ return (x - y); }
-extern inline t_u64	c_distance_u64(t_u64 x, t_u64 y)	{ return (x - y); }
+_INLINE() t_u8	c_distance_u8(t_u8 x, t_u8 y)		{ return (x - y); }
+_INLINE() t_u16	c_distance_u16(t_u16 x, t_u16 y)	{ return (x - y); }
+_INLINE() t_u32	c_distance_u32(t_u32 x, t_u32 y)	{ return (x - y); }
+_INLINE() t_u64	c_distance_u64(t_u64 x, t_u64 y)	{ return (x - y); }
 
-extern inline t_s8		c_distance_s8(t_s8 x, t_s8 y)		{ return (ABS(x - y)); }
-extern inline t_s16	c_distance_s16(t_s16 x, t_s16 y)	{ return (ABS(x - y)); }
-extern inline t_s32	c_distance_s32(t_s32 x, t_s32 y)	{ return (ABS(x - y)); }
-extern inline t_s64	c_distance_s64(t_s64 x, t_s64 y)	{ return (ABS(x - y)); }
+_INLINE() t_s8	c_distance_s8(t_s8 x, t_s8 y)		{ return (ABS(x - y)); }
+_INLINE() t_s16	c_distance_s16(t_s16 x, t_s16 y)	{ return (ABS(x - y)); }
+_INLINE() t_s32	c_distance_s32(t_s32 x, t_s32 y)	{ return (ABS(x - y)); }
+_INLINE() t_s64	c_distance_s64(t_s64 x, t_s64 y)	{ return (ABS(x - y)); }
 
-extern inline t_uint	c_distance_uint(t_uint x, t_uint y)		{ return (x - y); }
-extern inline t_sint	c_distance_sint(t_sint x, t_sint y)		{ return (ABS(x - y)); }
-extern inline t_float	c_distance_float(t_float x, t_float y)	{ return (ABS(x - y)); }
+_INLINE() t_uint	c_distance_uint(t_uint x, t_uint y)		{ return (x - y); }
+_INLINE() t_sint	c_distance_sint(t_sint x, t_sint y)		{ return (ABS(x - y)); }
+_INLINE() t_float	c_distance_float(t_float x, t_float y)	{ return (ABS(x - y)); }
 
 //t_float		c_distance_2d()
 

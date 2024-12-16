@@ -11,7 +11,7 @@
 MATH_DECL_ENDORELATION(GT, isgreater)
 #else
 #define DEFINEFUNC_FLOAT_GT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_GT(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a > b); \
@@ -34,7 +34,7 @@ DEFINEFUNC_FLOAT_GT(128)
 MATH_DECL_ENDORELATION(GTE, isgreaterequal)
 #else
 #define DEFINEFUNC_FLOAT_GTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_GTE(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a >= b); \
@@ -57,7 +57,7 @@ DEFINEFUNC_FLOAT_GTE(128)
 MATH_DECL_ENDORELATION(LT, isless)
 #else
 #define DEFINEFUNC_FLOAT_LT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_LT(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a < b); \
@@ -80,7 +80,7 @@ DEFINEFUNC_FLOAT_LT(128)
 MATH_DECL_ENDORELATION(LTE, islessequal)
 #else
 #define DEFINEFUNC_FLOAT_LTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_LTE(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a <= b); \

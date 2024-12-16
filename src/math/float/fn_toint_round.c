@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Round, round)
 #else
 #define DEFINEFUNC_FLOAT_ROUND(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Round(t_f##BITS x) \
 { \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \

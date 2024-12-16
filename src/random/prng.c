@@ -14,27 +14,27 @@ t_u32   PRNG_U32(t_prng* state);
 
 
 
-extern inline
+_INLINE()
 t_u32   PRNG_Shuffle(t_u32 n)
 {
 	n = (n << 12) ^ (n >> 20);
 	return (36969 * (n & 0xFFFF) + (n >> 16));
 }
 
-extern inline
+_INLINE()
 t_u32   PRNG_U32(t_prng* state)
 {
 	*state = ((PRNG_CEIL_SQRT_MOD * PRNG_Shuffle(*state) + PRNG_OFFSET) & PRNG_MODULUS);
 	return (*state);
 }
 
-extern inline
+_INLINE()
 void    PRNG_SetSeed(t_prng* state, t_u32 seed)
 {
 	*state = seed;
 }
 
-extern inline
+_INLINE()
 void    PRNG_NewSeed(t_prng* state)
 {
 	*state = PRNG_Shuffle(Time_Now());
@@ -113,9 +113,9 @@ void*	PRNG_Get(void* dest, t_size size)
 		&result, sizeof(TYPE))) \
 		ACTION_ERROR \
 
-extern inline t_uint   PRNG_UInt (t_prng* state)	{ DEFINE_PRNG(t_uint,	return (0);)	return (result); }
-extern inline t_sint   PRNG_SInt (t_prng* state)	{ DEFINE_PRNG(t_sint,	return (0);)	return (result); }
-extern inline t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (0);)	return (result); }
+_INLINE() t_uint   PRNG_UInt (t_prng* state)	{ DEFINE_PRNG(t_uint,	return (0);)	return (result); }
+_INLINE() t_sint   PRNG_SInt (t_prng* state)	{ DEFINE_PRNG(t_sint,	return (0);)	return (result); }
+_INLINE() t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (0);)	return (result); }
 t_float  PRNG_Float(t_prng* state)
 {
 	t_float	result = NAN;

@@ -146,9 +146,9 @@ void*	CSPRNG_Get(void* dest, t_size size)
 		&result, sizeof(TYPE))) \
 		ACTION_ERROR \
 
-extern inline t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
-extern inline t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }
-extern inline t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return (0);)	return (result); }
+_INLINE() t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
+_INLINE() t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }
+_INLINE() t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return (0);)	return (result); }
 t_float	CSPRNG_Float(t_csprng* state)
 {
 	t_float	result = NAN;

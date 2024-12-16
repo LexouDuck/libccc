@@ -124,13 +124,13 @@ HEADER_CPP
 
 
 
-#define MATH_DEFINE_FUNCTION(     RETURN,   BITS, NAME, CNAME, TYPE)	extern inline    RETURN   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
-#define MATH_DEFINE_REALFUNCTION(           BITS, NAME, CNAME, TYPE)	extern inline t_f##BITS   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
-#define MATH_DEFINE_OPERATOR_LOP( LOPERAND, BITS, NAME, CNAME, TYPE)	extern inline t_f##BITS   F##BITS##_##NAME( LOPERAND a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
-#define MATH_DEFINE_OPERATOR_ROP( ROPERAND, BITS, NAME, CNAME, TYPE)	extern inline t_f##BITS   F##BITS##_##NAME(t_f##BITS a,  ROPERAND b)   { return (__builtin_##CNAME##TYPE(a, b)); }
-#define MATH_DEFINE_OPERATOR_RET( RETURN,   BITS, NAME, CNAME, TYPE)	extern inline    RETURN   F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
-#define MATH_DEFINE_REALOPERATOR(           BITS, NAME, CNAME, TYPE)	extern inline t_f##BITS   F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
-#define MATH_DEFINE_ENDORELATION(           BITS, NAME, CNAME, TYPE)	extern inline t_bool      F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
+#define MATH_DEFINE_FUNCTION(     RETURN,   BITS, NAME, CNAME, TYPE)	_INLINE()    RETURN   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
+#define MATH_DEFINE_REALFUNCTION(           BITS, NAME, CNAME, TYPE)	_INLINE() t_f##BITS   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
+#define MATH_DEFINE_OPERATOR_LOP( LOPERAND, BITS, NAME, CNAME, TYPE)	_INLINE() t_f##BITS   F##BITS##_##NAME( LOPERAND a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
+#define MATH_DEFINE_OPERATOR_ROP( ROPERAND, BITS, NAME, CNAME, TYPE)	_INLINE() t_f##BITS   F##BITS##_##NAME(t_f##BITS a,  ROPERAND b)   { return (__builtin_##CNAME##TYPE(a, b)); }
+#define MATH_DEFINE_OPERATOR_RET( RETURN,   BITS, NAME, CNAME, TYPE)	_INLINE()    RETURN   F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
+#define MATH_DEFINE_REALOPERATOR(           BITS, NAME, CNAME, TYPE)	_INLINE() t_f##BITS   F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
+#define MATH_DEFINE_ENDORELATION(           BITS, NAME, CNAME, TYPE)	_INLINE() t_bool      F##BITS##_##NAME(t_f##BITS a, t_f##BITS b)   { return (__builtin_##CNAME##TYPE(a, b)); }
 
 
 

@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-extern inline
+_INLINE()
 t_utf32	CharUTF32_ToLowercase(t_utf32 c)
 { return (towlower(c)); }
 #else

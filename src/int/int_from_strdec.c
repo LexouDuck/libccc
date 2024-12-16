@@ -48,7 +48,7 @@ failure: \
 	if (dest)	*dest = U##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_u##BITS	U##BITS##_FromString_Dec(t_char const* str) \
 { \
 	t_u##BITS	result = U##BITS##_ERROR; \
@@ -118,7 +118,7 @@ failure: \
 	if (dest)	*dest = S##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_s##BITS	S##BITS##_FromString_Dec(t_char const* str) \
 { \
 	t_s##BITS	result = S##BITS##_ERROR; \

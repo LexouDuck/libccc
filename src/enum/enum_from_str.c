@@ -32,7 +32,7 @@ t_size	Enum_Parse(t_enum *dest, t_size n, t_char const* str, s_enum_type const* 
 
 
 
-extern inline
+_INLINE()
 t_enum	Enum_FromString(t_char const* str, s_enum_type const* enum_type)
 {
 	t_size	length = String_Length(str);

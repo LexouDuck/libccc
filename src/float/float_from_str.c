@@ -169,7 +169,7 @@ failure: \
 	if (dest)	*dest = F##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_FromString(t_char const* str) \
 { \
 	t_f##BITS	result = F##BITS##_ERROR; \
@@ -255,7 +255,7 @@ failure: \
 	if (dest)	*dest = F##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_FromString_Dec(t_char const* str) \
 { \
 	t_f##BITS	result = F##BITS##_ERROR; \
@@ -342,7 +342,7 @@ failure: \
 	if (dest)	*dest = F##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_FromString_Hex(t_char const* str) \
 { \
 	t_f##BITS	result = F##BITS##_ERROR; \
@@ -381,7 +381,7 @@ failure: \
 	if (dest)	*dest = F##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_FromString_Oct(t_char const* str) \
 { \
 	t_f##BITS	result = F##BITS##_ERROR; \
@@ -420,7 +420,7 @@ failure: \
 	if (dest)	*dest = F##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_FromString_Bin(t_char const* str) \
 { \
 	t_f##BITS	result = F##BITS##_ERROR; \

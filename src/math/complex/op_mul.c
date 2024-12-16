@@ -5,7 +5,7 @@
 
 
 
-extern inline
+_INLINE()
 s_complex	Complex_Mul(s_complex const* z1, s_complex const* z2)
 {
 	s_complex result;

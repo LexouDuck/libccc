@@ -19,7 +19,7 @@
 
 
 
-extern inline
+_INLINE()
 e_cccerror	Program_Run(t_char const* command)
 {
 	// check if command processor exists

@@ -6,7 +6,7 @@
 
 
 
-extern inline
+_INLINE()
 s_complex	Complex(t_float re, t_float im)
 {
 	return ((s_complex)

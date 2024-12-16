@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FLOAT_EQUALS(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a == b); \
@@ -26,7 +26,7 @@ DEFINEFUNC_FLOAT_EQUALS(128)
 
 
 #define DEFINEFUNC_FLOAT_APPROX(BITS) \
-extern inline \
+_INLINE() \
 t_bool	F##BITS##_EqualsApprox(t_f##BITS a, t_f##BITS b) \
 { \
 	t_f##BITS abs_a = ABS(a); \

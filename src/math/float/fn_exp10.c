@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Exp10, exp10)
 #else
 #define DEFINEFUNC_FLOAT_EXP10(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Exp10(t_f##BITS x) \
 { \
 	static const double p10[] = { \

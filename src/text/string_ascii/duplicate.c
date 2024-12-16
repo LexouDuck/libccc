@@ -12,7 +12,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2001__)
-extern inline
+_INLINE()
 t_ascii*	String_Duplicate(t_ascii const* str)
 {
 	return (strdup(str));
@@ -48,7 +48,7 @@ t_ascii*	String_Duplicate(t_ascii const* str)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS && (defined(_POSIX_C_SOURCE) && _POSIX_C_SOURCE >= __POSIX_VERSION_2008__)
-extern inline
+_INLINE()
 t_ascii*	String_Duplicate_N(t_ascii const* str, t_size n)
 {
 	return (strndup(str, n));

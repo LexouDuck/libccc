@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Floor, floor)
 #else
 #define DEFINEFUNC_FLOAT_FLOOR(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Floor(t_f##BITS x) \
 { \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \

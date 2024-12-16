@@ -164,7 +164,7 @@ failure:
 
 
 
-extern inline
+_INLINE()
 t_utf8*	String_FromEscape(t_ascii const* str, t_bool any_escape)
 {
 	t_ascii*	result = NULL;

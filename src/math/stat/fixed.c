@@ -273,7 +273,7 @@ t_fixed	Stat_Fixed_GetMax(s_array(fixed) const values)
 
 
 
-extern inline
+_INLINE()
 t_fixed	Stat_Fixed_Median(s_sorted_fixed const qlst)
 {
 	return ((qlst.length % 2) ?
@@ -326,7 +326,7 @@ t_float	Stat_Fixed_Variance(s_array(fixed) const qlst)
 
 
 
-extern inline
+_INLINE()
 t_float	Stat_Fixed_StandardDeviation(s_array(fixed) const qlst)
 {
 	return Float_Root2(Stat_Fixed_Variance(qlst));

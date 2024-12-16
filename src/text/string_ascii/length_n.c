@@ -8,7 +8,7 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-extern inline
+_INLINE()
 t_size	String_Length_N(t_ascii const* str, t_size n)
 {
 	t_size	i;

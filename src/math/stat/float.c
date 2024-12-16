@@ -273,7 +273,7 @@ t_float	Stat_Float_GetMax(s_array(float) const values)
 
 
 
-extern inline
+_INLINE()
 t_float	Stat_Float_Median(s_sorted_float const flst)
 {
 	return ((flst.length % 2) ?
@@ -326,7 +326,7 @@ t_float	Stat_Float_Variance(s_array(float) const flst)
 
 
 
-extern inline
+_INLINE()
 t_float	Stat_Float_StandardDeviation(s_array(float) const flst)
 {
 	return Float_Root2(Stat_Float_Variance(flst));

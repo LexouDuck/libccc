@@ -92,7 +92,7 @@ failure: \
 	if (dest)	*dest = Q##BITS##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_FromString##BASE(t_char const* str) \
 { \
 	t_q##BITS	result = Q##BITS##_ERROR; \

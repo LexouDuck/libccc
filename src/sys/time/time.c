@@ -86,7 +86,7 @@ HEDLEY_DIAGNOSTIC_POP
 
 
 
-extern inline
+_INLINE()
 struct timespec	NanoTime_ToSTDC(s_nanotime const* value)
 {
 	return ((struct timespec)
@@ -96,7 +96,7 @@ struct timespec	NanoTime_ToSTDC(s_nanotime const* value)
 	});
 }
 
-extern inline
+_INLINE()
 s_nanotime	NanoTime_FromSTDC(struct timespec const* value)
 {
 	return ((s_nanotime)

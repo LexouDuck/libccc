@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_FIXED_EQUALS(BITS) \
-extern inline \
+_INLINE() \
 t_bool	Q##BITS##_Equals(t_q##BITS a, t_q##BITS b) \
 { \
 	return (a == b); \
@@ -24,7 +24,7 @@ DEFINEFUNC_FIXED_EQUALS(128)
 
 
 #define DEFINEFUNC_FIXED_APPROX(BITS) \
-extern inline \
+_INLINE() \
 t_bool	Q##BITS##_EqualsApprox(t_q##BITS a, t_q##BITS b) \
 { \
 	t_q##BITS abs_a = ABS(a); \

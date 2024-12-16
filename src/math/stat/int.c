@@ -273,7 +273,7 @@ t_sint	Stat_Int_GetMax(s_array(int) const values)
 
 
 
-extern inline
+_INLINE()
 t_sint	Stat_Int_Median(s_sorted_int const ilst)
 {
 	return ((ilst.length % 2) ?
@@ -326,7 +326,7 @@ t_float	Stat_Int_Variance(s_array(int) const ilst)
 
 
 
-extern inline
+_INLINE()
 t_float	Stat_Int_StandardDeviation(s_array(int) const ilst)
 {
 	return Float_Root2(Stat_Int_Variance(ilst));

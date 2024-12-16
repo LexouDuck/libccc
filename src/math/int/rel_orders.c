@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_UINT_GT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_GT(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a > b); \
@@ -23,7 +23,7 @@ DEFINEFUNC_UINT_GT(128)
 #endif
 
 #define DEFINEFUNC_UINT_LT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_LT(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a < b); \
@@ -38,7 +38,7 @@ DEFINEFUNC_UINT_LT(128)
 #endif
 
 #define DEFINEFUNC_UINT_GTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_GTE(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a >= b); \
@@ -53,7 +53,7 @@ DEFINEFUNC_UINT_GTE(128)
 #endif
 
 #define DEFINEFUNC_UINT_LTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_LTE(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a <= b); \
@@ -71,7 +71,7 @@ DEFINEFUNC_UINT_LTE(128)
 
 
 #define DEFINEFUNC_SINT_GT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_GT(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a > b); \
@@ -86,7 +86,7 @@ DEFINEFUNC_SINT_GT(128)
 #endif
 
 #define DEFINEFUNC_SINT_LT(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_LT(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a < b); \
@@ -101,7 +101,7 @@ DEFINEFUNC_SINT_LT(128)
 #endif
 
 #define DEFINEFUNC_SINT_GTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_GTE(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a >= b); \
@@ -116,7 +116,7 @@ DEFINEFUNC_SINT_GTE(128)
 #endif
 
 #define DEFINEFUNC_SINT_LTE(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_LTE(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a <= b); \

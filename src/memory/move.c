@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-extern inline
+_INLINE()
 void*	Memory_Move(void* dest, void const* src, t_size n)
 { return (memmove(dest, src, n)); }
 #else

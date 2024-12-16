@@ -9,7 +9,7 @@
 
 
 #define DEFINEFUNC_FIXED_FROMINT(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_FromInt(t_sint number) \
 { \
 	return ((t_q##BITS)(number * FIXED_DENOMINATOR)); \
@@ -24,7 +24,7 @@ DEFINEFUNC_FIXED_FROMINT(128)
 
 // TODO fix this to be multi-type
 #define DEFINEFUNC_FIXED_FROMFIXED(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_FromFixed(t_fixed number) \
 { \
 	return ((t_q##BITS)(number)); \
@@ -38,7 +38,7 @@ DEFINEFUNC_FIXED_FROMFIXED(128)
 #endif
 
 #define DEFINEFUNC_FIXED_FROMFLOAT(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_FromFloat(t_float number) \
 { \
 	if (number > Float_FromFixed((t_fixed)Q##BITS##_MAX))	return (Q##BITS##_MAX); \
@@ -58,7 +58,7 @@ DEFINEFUNC_FIXED_FROMFLOAT(128)
 
 
 #define DEFINEFUNC_FIXED_FROM(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_From( \
 	t_s##BITS numerator, \
 	t_s##BITS denominator) \
@@ -81,7 +81,7 @@ DEFINEFUNC_FIXED_FROM(128)
 
 
 #define DEFINEFUNC_FIXED_INTEGERPART(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number) \
 { \
 	return (number / FIXED_DENOMINATOR); \
@@ -95,7 +95,7 @@ DEFINEFUNC_FIXED_INTEGERPART(128)
 #endif
 
 #define DEFINEFUNC_FIXED_FRACTIONPART(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number) \
 { \
 	return (number % FIXED_DENOMINATOR); \

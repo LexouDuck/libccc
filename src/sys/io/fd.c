@@ -18,7 +18,7 @@
 
 
 
-extern inline
+_INLINE()
 t_bool	IO_IsTerminal(t_fd fd)
 {
 	return (fd == STDIN ||

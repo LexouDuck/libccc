@@ -36,7 +36,7 @@ t_size	Enum_Print(t_char* dest, t_enum value, s_enum_type const* enum_type)
 	return (length);
 }
 
-extern inline
+_INLINE()
 t_char*	Enum_ToString(t_enum value, s_enum_type const* enum_type)
 {
 	return (String_Duplicate(Enum_String(value, enum_type)));

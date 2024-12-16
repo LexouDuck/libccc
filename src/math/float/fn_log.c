@@ -9,7 +9,7 @@
 
 
 #define DEFINEFUNC_FLOAT_LOGN(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n) \
 { \
 	if (n == E) \

@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_SINT_ABS(BITS) \
-extern inline \
+_INLINE() \
 t_s##BITS	S##BITS##_Abs(t_s##BITS a) \
 { \
 	return (ABS(a)); \

@@ -13,7 +13,7 @@
 
 
 
-extern inline
+_INLINE()
 void	Program_Abort(void)
 {
 	abort();
@@ -21,7 +21,7 @@ void	Program_Abort(void)
 
 
 
-extern inline
+_INLINE()
 void	Program_Exit(int exit_code)
 {
 	exit(exit_code);
@@ -29,7 +29,7 @@ void	Program_Exit(int exit_code)
 
 
 
-extern inline
+_INLINE()
 e_cccerror	Program_OnExit(void (*f)(void))
 {
 	if CCCERROR(atexit(f), ERROR_SYSTEM,

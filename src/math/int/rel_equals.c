@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_UINT_EQUALS(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_Equals(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a == b); \
@@ -23,7 +23,7 @@ DEFINEFUNC_UINT_EQUALS(128)
 #endif
 
 #define DEFINEFUNC_UINT_APPROX(BITS) \
-extern inline \
+_INLINE() \
 t_bool	U##BITS##_EqualsApprox(t_u##BITS a, t_u##BITS b) \
 { \
 	return ((a < b ? b - a : a - b) <= MAX(a, b) * UINT_APPROX); \
@@ -40,7 +40,7 @@ DEFINEFUNC_UINT_APPROX(128)
 
 
 #define DEFINEFUNC_SINT_EQUALS(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_Equals(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a == b); \
@@ -55,7 +55,7 @@ DEFINEFUNC_SINT_EQUALS(128)
 #endif
 
 #define DEFINEFUNC_SINT_APPROX(BITS) \
-extern inline \
+_INLINE() \
 t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b) \
 { \
 	t_s##BITS abs_a = ABS(a); \

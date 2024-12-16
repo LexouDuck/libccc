@@ -7,7 +7,7 @@
 
 
 #define DEFINEFUNC_FIXED_SUB(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_Sub(t_q##BITS a, t_q##BITS b) \
 { \
 	t_s##BITS i1 = (a / FIXED_DENOMINATOR); \

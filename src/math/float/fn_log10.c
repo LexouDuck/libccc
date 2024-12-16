@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Log10, log10)
 #else
 #define DEFINEFUNC_FLOAT_LOG10(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Log10(t_f##BITS x) \
 { \
 	return (F##BITS##_Ln(x) / LN_10); \

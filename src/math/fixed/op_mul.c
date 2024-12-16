@@ -7,7 +7,7 @@
 
 
 #define DEFINEFUNC_FIXED_MUL(BITS) \
-extern inline \
+_INLINE() \
 t_q##BITS	Q##BITS##_Mul(t_q##BITS a, t_q##BITS b) \
 { \
 	return ((a * b) / FIXED_DENOMINATOR); \

@@ -672,12 +672,12 @@ t_s8					Memory_GetLeastSignificantBit(t_uintmax value);
 
 #ifdef __IOS__ // TODO smarter check here
 
-extern inline void* memset  (void* ptr, int c, size_t n)                    { Memory_Set(ptr, c, n); return (ptr); }
-extern inline int   memcmp  (void const* ptr1, void const* ptr2, size_t n)  { return (Memory_Compare(ptr1, ptr2, n)); }
-extern inline void* memchr  (void const* ptr, int c, size_t n)              { return (Memory_Find(ptr, c, n)); }
-extern inline void* memcpy  (void* dest, void const* src, size_t n)         { return (Memory_Copy(dest, src, n)); }
-extern inline void* memccpy (void* dest, void const* src, int c, size_t n)  { return (Memory_Copy_C(dest, src, c, n)); }
-extern inline void* memmove (void* dest, void const* src, t_size n)         { return (Memory_Move(dest, src, n)); }
+_INLINE() void* memset  (void* ptr, int c, size_t n)                    { Memory_Set(ptr, c, n); return (ptr); }
+_INLINE() int   memcmp  (void const* ptr1, void const* ptr2, size_t n)  { return (Memory_Compare(ptr1, ptr2, n)); }
+_INLINE() void* memchr  (void const* ptr, int c, size_t n)              { return (Memory_Find(ptr, c, n)); }
+_INLINE() void* memcpy  (void* dest, void const* src, size_t n)         { return (Memory_Copy(dest, src, n)); }
+_INLINE() void* memccpy (void* dest, void const* src, int c, size_t n)  { return (Memory_Copy_C(dest, src, c, n)); }
+_INLINE() void* memmove (void* dest, void const* src, t_size n)         { return (Memory_Move(dest, src, n)); }
 
 #endif
 

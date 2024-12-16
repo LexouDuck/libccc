@@ -618,6 +618,7 @@ HEADER_CPP
 #undef _MALLOC
 #undef _UNUSED
 #undef _INLINE
+#undef _FORCEINLINE
 #undef _NOINLINE
 #undef _NORETURN
 #undef _PACKED
@@ -630,8 +631,9 @@ HEADER_CPP
 	#define _PURE()          //!< Before a function def: indicates that the function has no side-effects
 	#define _MALLOC()        //!< Before a function def: indicates that it returns newly allocated ptr
 	#define _UNUSED()        //!< Before a function def: suppresses warnings for empty/incomplete function
-	#define _INLINE()        //!< Before a function def: makes the function be always inlined regardless of compiler config
-	#define _NOINLINE()      //!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _INLINE()        //!< Before a function def: suggests to the compiler that this function ought to be inlined
+	#define _FORCEINLINE()   //!< Before a function def: makes the function always be inlined regardless of compiler config
+	#define _NOINLINE()      //!< Before a function def: makes the function never be inlined regardless of compiler config
 	#define _NORETURN()      //!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
 	#define _PACKED()        //!< Before a struct/union def: do not perform byte-padding on this struct/union type
 //	#define _EXPORT()        //!< Before a function def: always export the symbol (regardless of static/dynamic linking)
@@ -647,7 +649,8 @@ HEADER_CPP
 	#define _PURE()				__attribute__((pure))
 	#define _MALLOC()			__attribute__((malloc))
 	#define _UNUSED()			__attribute__((unused))
-	#define _INLINE()			__attribute__((always_inline))
+	#define _INLINE()			extern __inline__
+	#define _FORCEINLINE()		extern __attribute__((always_inline))
 	#define _NOINLINE()			__attribute__((noinline))
 	#define _NORETURN()			__attribute__((noreturn))
 	#define _PACKED()			__attribute__((packed))
@@ -659,7 +662,8 @@ HEADER_CPP
 	#define _PURE()				__declspec(noalias)
 	#define _MALLOC()			__declspec(allocator)
 	#define _UNUSED()			__declspec(deprecated)
-	#define _INLINE()			inline
+	#define _INLINE()			extern __inline
+	#define _FORCEINLINE()		extern __forceinline
 	#define _NOINLINE()			__declspec(noinline)
 	#define _NORETURN()			__declspec(noreturn)
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop)) // TODO find a way to make this work in pure C ?
@@ -672,10 +676,16 @@ HEADER_CPP
 	#define _MALLOC()			
 	#define _UNUSED()			
 	#define _INLINE()			
+	#define _FORCEINLINE()			
 	#define _NOINLINE()			
 	#define _NORETURN()			
 	#define _PACKED()			
 
+#endif
+
+#ifdef __cplusplus
+#undef  _INLINE
+#define _INLINE()	
 #endif
 
 //!@}

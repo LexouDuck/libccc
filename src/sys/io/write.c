@@ -29,7 +29,7 @@
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Write_Char(t_fd fd, t_char c)
 {
 	if CCCERROR((fd < 0), ERROR_INVALIDARGS, 
@@ -45,7 +45,7 @@ t_size	IO_Write_Char(t_fd fd, t_char c)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Write_String(t_fd fd, t_char const* str)
 {
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
@@ -63,7 +63,7 @@ t_size	IO_Write_String(t_fd fd, t_char const* str)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Write_Data(t_fd fd, t_u8 const* data, t_size n)
 {
 	if CCCERROR((data == NULL), ERROR_NULLPOINTER, "data buffer given is NULL")
@@ -81,7 +81,7 @@ t_size	IO_Write_Data(t_fd fd, t_u8 const* data, t_size n)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Write_Line(t_fd fd, t_char const* str)
 {
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")

@@ -7,7 +7,7 @@
 
 
 
-extern inline
+_INLINE()
 t_bool	KVT_IsInvalid(s_kvt const* item)
 {
 	if (item == NULL)
@@ -16,7 +16,7 @@ t_bool	KVT_IsInvalid(s_kvt const* item)
 	// TODO check for conflicting type flags
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsNull(s_kvt const* item)
 {
 	if (item == NULL)
@@ -24,7 +24,7 @@ t_bool	KVT_IsNull(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_NULL);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsBoolean(s_kvt const* item)
 {
 	if (item == NULL)
@@ -32,7 +32,7 @@ t_bool	KVT_IsBoolean(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_BOOLEAN) != 0);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsInteger(s_kvt const* item)
 {
 	if (item == NULL)
@@ -40,7 +40,7 @@ t_bool	KVT_IsInteger(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_INTEGER);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsFloat(s_kvt const* item)
 {
 	if (item == NULL)
@@ -48,7 +48,7 @@ t_bool	KVT_IsFloat(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_FLOAT);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsString(s_kvt const* item)
 {
 	if (item == NULL)
@@ -56,7 +56,7 @@ t_bool	KVT_IsString(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_STRING);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsArray(s_kvt const* item)
 {
 	if (item == NULL)
@@ -64,7 +64,7 @@ t_bool	KVT_IsArray(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_ARRAY);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsObject(s_kvt const* item)
 {
 	if (item == NULL)
@@ -72,7 +72,7 @@ t_bool	KVT_IsObject(s_kvt const* item)
 	return ((item->type & DYNAMICTYPE_MASK) == DYNAMICTYPE_OBJECT);
 }
 
-extern inline
+_INLINE()
 t_bool	KVT_IsRaw(s_kvt const* item)
 {
 	if (item == NULL)

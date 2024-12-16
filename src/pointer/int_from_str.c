@@ -62,7 +62,7 @@ failure: \
 	if (dest)	*dest = UINT_MACRO##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 UINT_TYPE	UINT_NAME##_FromString(t_char const* str) \
 { \
 	UINT_TYPE	result = UINT_MACRO##_ERROR; \
@@ -126,7 +126,7 @@ failure: \
 	if (dest)	*dest = SINT_MACRO##_ERROR; \
 	return (i); \
 } \
-extern inline \
+_INLINE() \
 SINT_TYPE	SINT_NAME##_FromString(t_char const* str) \
 { \
 	SINT_TYPE	result = SINT_MACRO##_ERROR; \

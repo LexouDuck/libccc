@@ -61,7 +61,7 @@ static t_f64	__math_uflow  (t_f64 x)	{ return (x); }
 #define EXP2F_TABLE_BITS	5
 #define EXP2F_POLY_ORDER	3
 #define N_F32	(1 << EXP2F_TABLE_BITS)
-extern const struct exp2f_data
+const struct exp2f_data
 {
 	t_f64	shift;
 	t_f64	shift_scaled;
@@ -134,7 +134,7 @@ const struct exp2f_data __exp2f_data =
 #define EXP_USE_TOINT_NARROW	0
 #define EXP2_POLY_ORDER	5
 #define N_F64	(1 << EXP_TABLE_BITS)
-extern const struct exp2_data
+const struct exp2_data
 {
 	t_f64	shift;
 	t_f64	invln2N;
@@ -320,7 +320,7 @@ const struct exp2_data __exp2_data =
 #if LIBCONFIG_USE_FLOAT80
 #define EXP_TABLE_BITS	7
 #define N_F80	(1 << EXP_TABLE_BITS)
-extern const struct exp2l_data
+const struct exp2l_data
 {
 	t_f64	redux;
 	t_f64	poly[7];
@@ -476,7 +476,7 @@ static const struct exp2l_data __exp2l_data =
 #if LIBCONFIG_USE_FLOAT128
 #define EXP_TABLE_BITS	7
 #define N_F128	(1 << EXP_TABLE_BITS)
-extern const struct exp2l_data
+const struct exp2l_data
 {
 	t_f64	redux;
 	t_f128	poly[11];

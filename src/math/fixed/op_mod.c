@@ -7,7 +7,8 @@
 
 
 #define DEFINEFUNC_FIXED_MOD(BITS) \
-extern inline t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b) \
+_INLINE() \
+t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \

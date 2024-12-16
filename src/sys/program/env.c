@@ -30,7 +30,7 @@
 
 
 
-extern inline
+_INLINE()
 t_char*	Program_GetEnv(t_char const* name)
 {
 	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "environment variable name given is NULL")

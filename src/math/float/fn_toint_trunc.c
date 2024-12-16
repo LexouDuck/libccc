@@ -12,7 +12,7 @@
 MATH_DECL_REALFUNCTION(Trunc, trunc)
 #else
 #define DEFINEFUNC_FLOAT_TRUNC(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Trunc(t_f##BITS x) \
 { \
 	t_u##BITS mantissa; \

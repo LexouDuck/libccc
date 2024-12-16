@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_UINT_ADD(BITS) \
-extern inline \
+_INLINE() \
 t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b) \
 { \
 	if CCCERROR((a > U##BITS##_MAX - b), ERROR_RESULTRANGE, NULL) \
@@ -29,7 +29,7 @@ DEFINEFUNC_UINT_ADD(128)
 
 
 #define DEFINEFUNC_SINT_ADD(BITS) \
-extern inline \
+_INLINE() \
 t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b) \
 { \
 	if (a && b && SGN(a) == SGN(b)) \

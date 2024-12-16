@@ -11,7 +11,7 @@
 MATH_DECL_REALFUNCTION(Div, fdiv)
 #else
 #define DEFINEFUNC_FLOAT_DIV(BITS) \
-extern inline \
+_INLINE() \
 t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a / b); \

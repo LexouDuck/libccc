@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-extern inline
+_INLINE()
 void	Memory_Set(void* ptr, t_u8 byte, t_size n)
 { memset(ptr, byte, n); }
 #else
@@ -35,7 +35,7 @@ void	Memory_Set(void* ptr, t_u8 byte, t_size n)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-extern inline
+_INLINE()
 void	Memory_Clear(void* ptr, t_size n)
 { memset(ptr, 0, n); }
 #else

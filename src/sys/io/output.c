@@ -29,7 +29,7 @@
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Output_Char(t_char c)
 {
 	return (IO_Write_Char(STDOUT, c));
@@ -37,7 +37,7 @@ t_size	IO_Output_Char(t_char c)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Output_String(t_char const* str)
 {
 	return (IO_Write_String(STDOUT, str));
@@ -45,7 +45,7 @@ t_size	IO_Output_String(t_char const* str)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Output_Line(t_char const* str)
 {
 	return (IO_Write_Line(STDOUT, str));
@@ -53,7 +53,7 @@ t_size	IO_Output_Line(t_char const* str)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Output_Lines(t_char const** strarr)
 {
 	return (IO_Write_Lines(STDOUT, strarr));
@@ -61,7 +61,7 @@ t_size	IO_Output_Lines(t_char const** strarr)
 
 
 
-extern inline
+_INLINE()
 t_size	IO_Output_Memory(t_u8 const* ptr, t_size n, t_u8 cols)
 {
 	return (IO_Write_Memory(STDOUT, ptr, n, cols));

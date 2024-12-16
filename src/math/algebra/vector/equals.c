@@ -5,7 +5,8 @@
 
 
 
-extern inline t_bool	Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2)
+_INLINE()
+t_bool	Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2)
 {
 	return (
 		(v1->x == v2->x) &&
@@ -14,7 +15,8 @@ extern inline t_bool	Vector2D_Equals(s_vector2d const* v1, s_vector2d const* v2)
 
 
 
-extern inline t_bool	Vector3D_Equals(s_vector3d const* v1, s_vector3d const* v2)
+_INLINE()
+t_bool	Vector3D_Equals(s_vector3d const* v1, s_vector3d const* v2)
 {
 	return (
 		(v1->x == v2->x) &&

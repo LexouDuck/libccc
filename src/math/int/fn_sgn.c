@@ -8,7 +8,7 @@
 
 
 #define DEFINEFUNC_SINT_SGN(BITS) \
-extern inline \
+_INLINE() \
 t_s##BITS	S##BITS##_Sgn(t_s##BITS a) \
 { \
 	return (SGN(a)); \

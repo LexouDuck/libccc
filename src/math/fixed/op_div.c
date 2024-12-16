@@ -7,7 +7,8 @@
 
 
 #define DEFINEFUNC_FIXED_DIV(BITS) \
-extern inline t_q##BITS	Q##BITS##_Div(t_q##BITS a, t_q##BITS b) \
+_INLINE() \
+t_q##BITS	Q##BITS##_Div(t_q##BITS a, t_q##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \

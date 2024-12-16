@@ -9,7 +9,8 @@
 
 
 #define DEFINEFUNC_UINT_SUB(BITS) \
-extern inline t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b) \
+_INLINE() \
+t_u##BITS	U##BITS##_Sub(t_u##BITS a, t_u##BITS b) \
 { \
 	if CCCERROR((a < b), ERROR_RESULTRANGE, NULL) \
 	{ \
@@ -29,7 +30,8 @@ DEFINEFUNC_UINT_SUB(128)
 
 
 #define DEFINEFUNC_SINT_SUB(BITS) \
-extern inline t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b) \
+_INLINE() \
+t_s##BITS	S##BITS##_Sub(t_s##BITS a, t_s##BITS b) \
 { \
 	if (a && b && SGN(a) != SGN(b)) \
 	{ \

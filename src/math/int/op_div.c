@@ -7,7 +7,7 @@
 
 
 #define DEFINEFUNC_UINT_DIV(BITS) \
-extern inline \
+_INLINE() \
 t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
@@ -26,7 +26,7 @@ DEFINEFUNC_UINT_DIV(128)
 
 
 #define DEFINEFUNC_SINT_DIV(BITS) \
-extern inline \
+_INLINE() \
 t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
