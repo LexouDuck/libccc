@@ -12,7 +12,7 @@
 _INLINE() \
 t_f##BITS	F##BITS##_LogN(t_f##BITS x, t_f##BITS n) \
 { \
-	if (n == E) \
+	if (n == (t_f##BITS)E) \
 		return (F##BITS##_Ln(x)); \
 	else if (n == 2.) \
 		return (F##BITS##_Log2(x)); \
