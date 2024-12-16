@@ -126,7 +126,7 @@ DEFINEFUNC_FLOAT_REMQUO(128)
 _INLINE() \
 t_f##BITS F##BITS##_Rem(t_f##BITS x, t_f##BITS y) \
 { \
-	t_s##BITS q; \
+	t_sint q; \
 	return F##BITS##_RemQuo(x, y, &q); \
 } \
 
