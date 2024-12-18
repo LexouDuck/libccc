@@ -279,7 +279,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_INT128
-#define LIBCONFIG_USE_INT128	0 // _HAS_INT128
+#define LIBCONFIG_USE_INT128	_HAS_INT128
 #endif
 #if !defined(__int128) && LIBCONFIG_USE_INT128
 #error "Current platform does not support native 128-bit integer type: please set LIBCONFIG_USE_INT128 to 0"
@@ -298,14 +298,14 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_FLOAT80
-#define LIBCONFIG_USE_FLOAT80	0 // _HAS_FLOAT80
+#define LIBCONFIG_USE_FLOAT80	0 //_HAS_FLOAT80
 #endif
 #if !defined(__float80) && LIBCONFIG_USE_FLOAT80
 #error "Current platform does not support native 80-bit float type: please set LIBCONFIG_USE_FLOAT80 to 0"
 #endif
 
 #ifndef LIBCONFIG_USE_FLOAT128
-#define LIBCONFIG_USE_FLOAT128	0 // _HAS_FLOAT128
+#define LIBCONFIG_USE_FLOAT128	0 //_HAS_FLOAT128
 #endif
 #if !defined(__float128) && LIBCONFIG_USE_FLOAT128
 #error "Current platform does not support native 128-bit float type: please set LIBCONFIG_USE_FLOAT128 to 0"

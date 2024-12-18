@@ -1,4 +1,5 @@
 
+#include "libccc.h"
 #include "libccc/random/random.h"
 #include "libccc/math/stat.h"
 #define NOTYPEDEF // avoid typedef redefinitions

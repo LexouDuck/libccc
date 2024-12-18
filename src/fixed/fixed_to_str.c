@@ -1,6 +1,6 @@
 
+#include "libccc.h"
 #include "libccc/fixed.h"
-#include "libccc/int.h"
 #include "libccc/string.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

@@ -205,6 +205,12 @@ char*	strsurround(char const* str, char begin, char end)
 
 
 
+#if LIBCONFIG_USE_INT128
+typedef _UInt128	uint128_t;
+#endif
+
+
+
 #define DEFINEFUNC_SINTTOSTR(BITS) \
 char*	s##BITS##tostr(t_s##BITS number)		\
 {												\

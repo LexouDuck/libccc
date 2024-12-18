@@ -65,6 +65,7 @@
 */
 
 #include "libccc.h"
+#include "libccc/int.h"
 
 HEADER_CPP
 

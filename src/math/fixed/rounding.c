@@ -1,4 +1,5 @@
 
+#include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math.h"
