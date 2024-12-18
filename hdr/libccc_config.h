@@ -64,7 +64,14 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_UINT_BITS
-#define LIBCONFIG_UINT_BITS		32
+#define LIBCONFIG_UINT_BITS	32
+#endif
+#if (LIBCONFIG_UINT_BITS != 8) && \
+	(LIBCONFIG_UINT_BITS != 16) && \
+	(LIBCONFIG_UINT_BITS != 32) && \
+	(LIBCONFIG_UINT_BITS != 64) && \
+	(LIBCONFIG_UINT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_UINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
 //!@doc The unsigned integer value which is used for error returns
@@ -80,6 +87,9 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_UINT_ERROR
 #define LIBCONFIG_UINT_ERROR	0
+#endif
+#if (LIBCONFIG_UINT_ERROR != 0) && (LIBCONFIG_UINT_ERROR != 1)
+#error "Invalid value selected for LIBCONFIG_UINT_ERROR, must be either 0 or 1"
 #endif
 //!@}
 
@@ -97,7 +107,14 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_SINT_BITS
-#define LIBCONFIG_SINT_BITS		32
+#define LIBCONFIG_SINT_BITS	32
+#endif
+#if (LIBCONFIG_SINT_BITS != 8) && \
+	(LIBCONFIG_SINT_BITS != 16) && \
+	(LIBCONFIG_SINT_BITS != 32) && \
+	(LIBCONFIG_SINT_BITS != 64) && \
+	(LIBCONFIG_SINT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_SINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
 //!@doc The signed integer value which is used for error returns
@@ -113,6 +130,9 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_SINT_ERROR
 #define LIBCONFIG_SINT_ERROR	0
+#endif
+#if (LIBCONFIG_SINT_ERROR != 0) && (LIBCONFIG_SINT_ERROR != 1)
+#error "Invalid value selected for LIBCONFIG_SINT_ERROR, must be either 0 or 1"
 #endif
 //!@}
 
@@ -153,6 +173,12 @@ HEADER_CPP
 #ifndef LIBCONFIG_FIXED_BITS
 #define LIBCONFIG_FIXED_BITS	64
 #endif
+#if (LIBCONFIG_FIXED_BITS != 16) && \
+	(LIBCONFIG_FIXED_BITS != 32) && \
+	(LIBCONFIG_FIXED_BITS != 64) && \
+	(LIBCONFIG_FIXED_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_FIXED_BITS, must be one of: 16, 32, 64, 128"
+#endif
 //!@}
 //!@doc The fixed-point value which is used for error returns
 /*!
@@ -168,6 +194,9 @@ HEADER_CPP
 #ifndef LIBCONFIG_FIXED_ERROR
 #define LIBCONFIG_FIXED_ERROR	1
 #endif
+#if (LIBCONFIG_FIXED_ERROR != 0) && (LIBCONFIG_FIXED_ERROR != 1)
+#error "Invalid value selected for LIBCONFIG_FIXED_ERROR, must be either 0 or 1"
+#endif
 //!@}
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
 //!@{
@@ -179,7 +208,7 @@ HEADER_CPP
 //!@doc The amount of subdivisions dedicated to the fraction part of the fixed-point types
 /*!
 **	This can be any signed integer value which is representable.
-**	TODO make this more configurable, ie: set each bitsize type individually ?
+**	TODO make this more configurable, i.e. set each bitsize type individually ?
 */
 //!@{
 #ifndef LIBCONFIG_FIXED_DENOMINATOR
@@ -202,6 +231,12 @@ HEADER_CPP
 #ifndef LIBCONFIG_FLOAT_BITS
 #define LIBCONFIG_FLOAT_BITS	64
 #endif
+#if (LIBCONFIG_FLOAT_BITS != 32) && \
+	(LIBCONFIG_FLOAT_BITS != 64) && \
+	(LIBCONFIG_FLOAT_BITS != 80) && \
+	(LIBCONFIG_FLOAT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_FLOAT_BITS, must be one of: 32, 64, 80, 128"
+#endif
 //!@}
 //!@doc The floating-point value which is used for error returns
 /*!
@@ -214,6 +249,9 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_FLOAT_ERROR
 #define LIBCONFIG_FLOAT_ERROR	1
+#endif
+#if (LIBCONFIG_FLOAT_ERROR != 0) && (LIBCONFIG_FLOAT_ERROR != 1)
+#error "Invalid value selected for LIBCONFIG_FLOAT_ERROR, must be either 0 or 1"
 #endif
 //!@}
 //!@doc @see #FLOAT_APPROX and Float_EqualsApprox()
@@ -234,10 +272,10 @@ HEADER_CPP
 **
 **	There are 2 possible accepted values for these:
 **
-**	|`TYPE_RANDOM`|`NAME_RANDOM`| Value pair description                       |
-**	|-------------|-------------|----------------------------------------------|
-**	| `t_prng`    | `PRNG`      | for simple pseudo-random number algorithm    |
-**	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native) |
+**	| `LIBCONFIG_RANDOM_TYPE` | Config description                           |
+**	|-------------------------|----------------------------------------------|
+**	| `t_prng`                | for simple pseudo-random number algorithm    |
+**	| `t_csprng`              | for cryptographically-secure RNG (OS native) |
 */
 //!@{
 #ifndef LIBCONFIG_RANDOM_TYPE
@@ -245,6 +283,19 @@ HEADER_CPP
 #endif
 #ifndef LIBCONFIG_RANDOM_NAME
 #define LIBCONFIG_RANDOM_NAME	PRNG
+#endif
+#if 0
+#if !defined(LIBCONFIG_RANDOM_TYPE) || !defined(LIBCONFIG_RANDOM_NAME)
+#error "The configuration macros LIBCONFIG_RANDOM_TYPE LIBCONFIG_RANDOM_NAME have not been defined properly"
+#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_prng", 6)
+	#undef  LIBCONFIG_RANDOM_NAME
+	#define LIBCONFIG_RANDOM_NAME	PRNG
+#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_csprng", 8)
+	#undef  LIBCONFIG_RANDOM_NAME
+	#define LIBCONFIG_RANDOM_NAME	CSPRNG
+#else
+#error "Invalid value(s) selected for LIBCONFIG_RANDOM_TYPE and/or LIBCONFIG_RANDOM_NAME"
+#endif
 #endif
 //!@}
 
@@ -259,7 +310,10 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_LIST_DOUBLYLINKED
-#define LIBCONFIG_LIST_DOUBLYLINKED		0
+#define LIBCONFIG_LIST_DOUBLYLINKED	0
+#endif
+#if (LIBCONFIG_LIST_DOUBLYLINKED != 0) && (LIBCONFIG_LIST_DOUBLYLINKED != 1)
+#error "Invalid value selected for LIBCONFIG_LIST_DOUBLYLINKED, must be either 0 or 1"
 #endif
 //!@}
 // TODO make it so doubly-linked lists have the first item's `->prev` point to the last element
@@ -328,7 +382,10 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS		0
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#endif
+#if (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 0) && (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS, must be either 0 or 1"
 #endif
 //!@}
 
@@ -344,7 +401,10 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH			1
+#define LIBCONFIG_USE_STD_MATH	1
+#endif
+#if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"
 #endif
 //!@}
 
@@ -356,7 +416,10 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_COMPLEX
-#define LIBCONFIG_USE_STD_COMPLEX		0
+#define LIBCONFIG_USE_STD_COMPLEX	0
+#endif
+#if (LIBCONFIG_USE_STD_COMPLEX != 0) && (LIBCONFIG_USE_STD_COMPLEX != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_COMPLEX, must be either 0 or 1"
 #endif
 //!@}
 
@@ -375,6 +438,9 @@ HEADER_CPP
 #ifndef LIBCONFIG_USE_STD_FIXEDPOINT
 #define LIBCONFIG_USE_STD_FIXEDPOINT	0
 #endif
+#if (LIBCONFIG_USE_STD_FIXEDPOINT != 0) && (LIBCONFIG_USE_STD_FIXEDPOINT != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_FIXEDPOINT, must be either 0 or 1"
+#endif
 //!@}
 
 
@@ -385,12 +451,12 @@ HEADER_CPP
 
 #undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 #define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
-/*
+
 #undef	LIBCONFIG_USE_STD_MATH
-#define	LIBCONFIG_USE_STD_MATH			0
-*/
+#define	LIBCONFIG_USE_STD_MATH	0
+
 #undef	LIBCONFIG_USE_STD_COMPLEX
-#define	LIBCONFIG_USE_STD_COMPLEX		0
+#define	LIBCONFIG_USE_STD_COMPLEX	0
 
 #undef	LIBCONFIG_USE_STD_FIXEDPOINT
 #define	LIBCONFIG_USE_STD_FIXEDPOINT	0
