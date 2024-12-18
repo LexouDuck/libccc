@@ -531,22 +531,22 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 //!@doc A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Int(X, FUNCTYPE) \
-	_Generic((X),	\
-		t_s16:	 FUNCTYPE##_FromInt,	\
-		t_s32:	 FUNCTYPE##_FromInt,	\
-		t_s64:	 FUNCTYPE##_FromInt,	\
-		t_s128:	 FUNCTYPE##_FromInt,	\
-		t_sint:  FUNCTYPE##_FromInt,	\
-		t_q16:	 FUNCTYPE##_FromFixed,	\
-		t_q32:	 FUNCTYPE##_FromFixed,	\
-		t_q64:	 FUNCTYPE##_FromFixed,	\
-		t_q128:	 FUNCTYPE##_FromFixed,	\
-		t_fixed: FUNCTYPE##_FromFixed,	\
-		t_f32:	 FUNCTYPE##_FromFloat,	\
-		t_f64:	 FUNCTYPE##_FromFloat,	\
-		t_f80:	 FUNCTYPE##_FromFloat,	\
-		t_f128:	 FUNCTYPE##_FromFloat,	\
-		t_float: FUNCTYPE##_FromFloat,	\
+	_Generic((X), \
+		t_s16:	 FUNCTYPE##_FromInt, \
+		t_s32:	 FUNCTYPE##_FromInt, \
+		t_s64:	 FUNCTYPE##_FromInt, \
+		t_s128:	 FUNCTYPE##_FromInt, \
+		t_sint:  FUNCTYPE##_FromInt, \
+		t_q16:	 FUNCTYPE##_FromFixed, \
+		t_q32:	 FUNCTYPE##_FromFixed, \
+		t_q64:	 FUNCTYPE##_FromFixed, \
+		t_q128:	 FUNCTYPE##_FromFixed, \
+		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f32:	 FUNCTYPE##_FromFloat, \
+		t_f64:	 FUNCTYPE##_FromFloat, \
+		t_f80:	 FUNCTYPE##_FromFloat, \
+		t_f128:	 FUNCTYPE##_FromFloat, \
+		t_float: FUNCTYPE##_FromFloat, \
 	)(X)
 
 #define Int(X)		DEFINEFUNC_Int(X, Int)

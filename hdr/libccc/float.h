@@ -457,9 +457,9 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define FORCE_EVAL(x) \
 	do { \
 		if (sizeof(x) == 0) {} \
-		else if (sizeof(x) == sizeof(float))       {	volatile float       __x;	__x = (x);	} \
-		else if (sizeof(x) == sizeof(double))      {	volatile double      __x;	__x = (x);	} \
-		else if (sizeof(x) == sizeof(long double)) {	volatile long double __x;	__x = (x);	} \
+		else if (sizeof(x) == sizeof(float))       { volatile float       __x;	__x = (x); } \
+		else if (sizeof(x) == sizeof(double))      { volatile double      __x;	__x = (x); } \
+		else if (sizeof(x) == sizeof(long double)) { volatile long double __x;	__x = (x); } \
 		else {} \
 	} while(0) \
 
@@ -479,26 +479,26 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 typedef union cast_f32
 {
 	t_f32	value_float;
-	s32_t	value_sint;
-	u32_t	value_uint;
-	struct { u16_t hi; u16_t lo; }	split;
+	t_s32	value_sint;
+	t_u32	value_uint;
+	struct { t_u16 hi; t_u16 lo; }	split;
 }	u_cast_f32;
 
 typedef union cast_f64
 {
 	t_f64	value_float;
-	s64_t	value_sint;
-	u64_t	value_uint;
-	struct { u32_t hi; u32_t lo; }	split;
+	t_s64	value_sint;
+	t_u64	value_uint;
+	struct { t_u32 hi; t_u32 lo; }	split;
 }	u_cast_f64;
 
 #if LIBCONFIG_USE_FLOAT80
 typedef union cast_f80
 {
 	t_f80	value_float;
-	s128_t	value_sint;
-	u128_t	value_uint;
-	struct { u64_t hi; u64_t lo; }	split;
+	t_s128	value_sint;
+	t_u128	value_uint;
+	struct { t_u64 hi; t_u64 lo; }	split;
 }	u_cast_f80;
 #endif
 
@@ -506,9 +506,9 @@ typedef union cast_f80
 typedef union cast_f128
 {
 	t_f128	value_float;
-	s128_t	value_sint;
-	u128_t	value_uint;
-	struct { u64_t hi; u64_t lo; }	split;
+	t_s128	value_sint;
+	t_u128	value_uint;
+	struct { t_u64 hi; t_u64 lo; }	split;
 }	u_cast_f128;
 #endif
 
@@ -516,14 +516,14 @@ typedef union cast_float
 {
 	t_float	value_float;
 #if (LIBCONFIG_FLOAT_BITS == 32)
-	s32_t	value_sint;
-	u32_t	value_uint;
+	t_s32	value_sint;
+	t_u32	value_uint;
 #elif (LIBCONFIG_FLOAT_BITS == 64)
-	s64_t	value_sint;
-	u64_t	value_uint;
+	t_s64	value_sint;
+	t_u64	value_uint;
 #else
-	s128_t	value_sint;
-	u128_t	value_uint;
+	t_s128	value_sint;
+	t_u128	value_uint;
 #endif
 }	u_cast_float;
 //!@}
@@ -581,22 +581,22 @@ t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 //!@doc A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
 //!@{
 #define DEFINEFUNC_Float(X, FUNCTYPE) \
-	_Generic((X),	\
-		t_s16:	 FUNCTYPE##_FromInt,	\
-		t_s32:	 FUNCTYPE##_FromInt,	\
-		t_s64:	 FUNCTYPE##_FromInt,	\
-		t_s128:	 FUNCTYPE##_FromInt,	\
-		t_sint:  FUNCTYPE##_FromInt,	\
-		t_q16:	 FUNCTYPE##_FromFixed,	\
-		t_q32:	 FUNCTYPE##_FromFixed,	\
-		t_q64:	 FUNCTYPE##_FromFixed,	\
-		t_q128:	 FUNCTYPE##_FromFixed,	\
-		t_fixed: FUNCTYPE##_FromFixed,	\
-		t_f32:	 FUNCTYPE##_FromFloat,	\
-		t_f64:	 FUNCTYPE##_FromFloat,	\
-		t_f80:	 FUNCTYPE##_FromFloat,	\
-		t_f128:	 FUNCTYPE##_FromFloat,	\
-		t_float: FUNCTYPE##_FromFloat,	\
+	_Generic((X), \
+		t_s16:	 FUNCTYPE##_FromInt, \
+		t_s32:	 FUNCTYPE##_FromInt, \
+		t_s64:	 FUNCTYPE##_FromInt, \
+		t_s128:	 FUNCTYPE##_FromInt, \
+		t_sint:  FUNCTYPE##_FromInt, \
+		t_q16:	 FUNCTYPE##_FromFixed, \
+		t_q32:	 FUNCTYPE##_FromFixed, \
+		t_q64:	 FUNCTYPE##_FromFixed, \
+		t_q128:	 FUNCTYPE##_FromFixed, \
+		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f32:	 FUNCTYPE##_FromFloat, \
+		t_f64:	 FUNCTYPE##_FromFloat, \
+		t_f80:	 FUNCTYPE##_FromFloat, \
+		t_f128:	 FUNCTYPE##_FromFloat, \
+		t_float: FUNCTYPE##_FromFloat, \
 	)(X)
 
 #define Float(X)	DEFINEFUNC_Float(X, Fixed)

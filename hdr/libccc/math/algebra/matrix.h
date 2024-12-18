@@ -59,17 +59,17 @@ TYPEDEF_ALIAS(	u_matrix2d, MATRIX_2D, UNION)
 
 //! A 2-dimensional matrix in which every number is zero
 #define MATRIX2D_NULL \
-{					\
-	.u={ 0, 0 },	\
-	.v={ 0, 0 },	\
-}
+{ \
+	.u={ 0, 0 }, \
+	.v={ 0, 0 }, \
+} \
 
 //! A 2-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX2D_IDENTITY \
-{					\
-	.u={ 1, 0 },	\
-	.v={ 0, 1 },	\
-}
+{ \
+	.u={ 1, 0 }, \
+	.v={ 0, 1 }, \
+} \
 
 
 
@@ -96,19 +96,19 @@ TYPEDEF_ALIAS(	u_matrix3d, MATRIX_3D, UNION)
 
 //! A 3-dimensional matrix in which every number is zero
 #define MATRIX3D_NULL \
-{					\
-	.u={ 0, 0, 0 },	\
-	.v={ 0, 0, 0 },	\
-	.w={ 0, 0, 0 },	\
-}
+{ \
+	.u={ 0, 0, 0 }, \
+	.v={ 0, 0, 0 }, \
+	.w={ 0, 0, 0 }, \
+} \
 
 //! A 3-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX3D_IDENTITY \
-{					\
-	.u={ 1, 0, 0 },	\
-	.v={ 0, 1, 0 },	\
-	.w={ 0, 0, 1 },	\
-}
+{ \
+	.u={ 1, 0, 0 }, \
+	.v={ 0, 1, 0 }, \
+	.w={ 0, 0, 1 }, \
+} \
 
 
 
@@ -136,21 +136,21 @@ TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
 
 //! A 4-dimensional matrix in which every number is zero
 #define MATRIX4D_NULL \
-{						\
-	.u={ 0, 0, 0, 0 }	\
-	.v={ 0, 0, 0, 0 }	\
-	.w={ 0, 0, 0, 0 }	\
-	.t={ 0, 0, 0, 0 }	\
-}						\
+{ \
+	.u={ 0, 0, 0, 0 }, \
+	.v={ 0, 0, 0, 0 }, \
+	.w={ 0, 0, 0, 0 }, \
+	.t={ 0, 0, 0, 0 }, \
+} \
 
 //! A 4-dimensional matrix which is neutral (does nothing) when applied/multiplied
 #define MATRIX4D_IDENTITY \
-{						\
-	.u={ 1, 0, 0, 0 }	\
-	.v={ 0, 1, 0, 0 }	\
-	.w={ 0, 0, 1, 0 }	\
-	.t={ 0, 0, 0, 1 }	\
-}						\
+{ \
+	.u={ 1, 0, 0, 0 }, \
+	.v={ 0, 1, 0, 0 }, \
+	.w={ 0, 0, 1, 0 }, \
+	.t={ 0, 0, 0, 1 }, \
+} \
 
 
 
@@ -162,10 +162,10 @@ TYPEDEF_ALIAS(	u_matrix4d, MATRIX_4D, UNION)
 
 //! A 2-dimensional matrix which, when applied, rotates a vector by the given 'ANGLE'
 #define MATRIX2D_ROTATE(ANGLE) \
-{										\
-	.u={ c_cos(ANGLE), -c_sin(ANGLE) },	\
-	.v={ c_sin(ANGLE),  c_cos(ANGLE) },	\
-}
+{ \
+	.u={ c_cos(ANGLE), -c_sin(ANGLE) }, \
+	.v={ c_sin(ANGLE),  c_cos(ANGLE) }, \
+} \
 
 
 
@@ -228,25 +228,27 @@ s_matrix2d				Matrix2D_Multiply(s_matrix2d const* m1, s_matrix2d const* m2);
 
 //! A 3-dimensional matrix which, when applied, rotates a vector about the X axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_X(ANGLE) \
-{											\
-	.u={ 1, 0,             0            },	\
-	.v={ 0, c_cos(ANGLE), -c_sin(ANGLE) },	\
-	.w={ 0, c_sin(ANGLE),  c_cos(ANGLE) },	\
-}
+{ \
+	.u={ 1, 0,             0            }, \
+	.v={ 0, c_cos(ANGLE), -c_sin(ANGLE) }, \
+	.w={ 0, c_sin(ANGLE),  c_cos(ANGLE) }, \
+} \
+
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Y axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Y(ANGLE) \
-{											\
-	.u={  c_cos(ANGLE), 0, c_sin(ANGLE) },	\
-	.v={  0,            1, 0            },	\
-	.w={ -c_sin(ANGLE), 0, c_cos(ANGLE) },	\
-}
+{ \
+	.u={  c_cos(ANGLE), 0, c_sin(ANGLE) }, \
+	.v={  0,            1, 0            }, \
+	.w={ -c_sin(ANGLE), 0, c_cos(ANGLE) }, \
+} \
+
 //! A 3-dimensional matrix which, when applied, rotates a vector about the Z axis by the given 'ANGLE'
 #define MATRIX3D_ROTATE_Z(ANGLE) \
-{											\
-	.u={ c_cos(ANGLE), -c_sin(ANGLE), 0 },	\
-	.v={ c_sin(ANGLE),  c_cos(ANGLE), 0 },	\
-	.w={ 0,             0,            1 },	\
-}
+{ \
+	.u={ c_cos(ANGLE), -c_sin(ANGLE), 0 }, \
+	.v={ c_sin(ANGLE),  c_cos(ANGLE), 0 }, \
+	.w={ 0,             0,            1 }, \
+} \
 
 
 

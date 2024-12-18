@@ -272,17 +272,18 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 //!@}
 //! The default/null value for a #s_date struct (all fields set to zero)
 #define DATE_NULL \
-	((s_date){			\
-		.year      = 0,	\
-		.month     = (e_month)0,	\
-		.day_week  = (e_weekday)0,	\
-		.day_month = 0,	\
-		.day_year  = 0,	\
-		.hour      = 0,	\
-		.min       = 0,	\
-		.sec       = 0,	\
-		.is_dst    = 0,	\
-		.offset    = 0,	\
+	((s_date) \
+	{ \
+		.year      = 0, \
+		.month     = (e_month)0, \
+		.day_week  = (e_weekday)0, \
+		.day_month = 0, \
+		.day_year  = 0, \
+		.hour      = 0, \
+		.min       = 0, \
+		.sec       = 0, \
+		.is_dst    = 0, \
+		.offset    = 0, \
 	})
 
 

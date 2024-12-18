@@ -259,8 +259,8 @@ HEADER_CPP
 //!@{
 
 #if defined(__LDBL_MANT_DIG__) \
-	|| defined(__float80)	\
-	|| defined(__float128)	\
+	|| defined(__float80) \
+	|| defined(__float128) \
 
 #if (__LDBL_MANT_DIG__ == 0)
 #warning "Bad predefined macro: `__LDBL_MANT_DIG__` should not be defined with value of `0`"
@@ -574,12 +574,12 @@ HEADER_CPP
 **	- for `s_dict<t_char*>`:	`foreach (t_char*, my_str, s_dict,  my_dict)  { ... }`
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
-	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE),	\
-		foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE))	\
+	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE) \
+	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE) \
+	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE); \
+		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE); \
+		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE), \
+		foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE)) \
 
 
 
@@ -727,7 +727,7 @@ __asm__ \
 	"\n" \
 	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME)"_size" \
 	"\n" INCBIN_MANGLE(#NAME)"_size"":" \
-	"\n\t" INCBIN_SIZE " ( " INCBIN_MANGLE(#NAME)"_end - " INCBIN_MANGLE(#NAME)" )"	\
+	"\n\t" INCBIN_SIZE " ( " INCBIN_MANGLE(#NAME)"_end - " INCBIN_MANGLE(#NAME)" )" \
 	"\n" \
 	"\n" INCBIN_PREVIOUS \
 	"\n" \

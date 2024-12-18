@@ -96,19 +96,21 @@ s_list(T) const		NULL_LIST,T_NAME) = (s_l_##s
 	//! if the `typeof()` operator doesn't exist, an inline anonymous struct is used (very unsafe !)
 	#if LIBCONFIG_LIST_DOUBLYLINKED
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
-		struct _##_VAR_				\
-		{							\
-			struct _##_VAR_*prev;	\
-			struct _##_VAR_*next;	\
-			_TYPE_			item;	\
-		}
+		struct _##_VAR_ \
+		{ \
+			struct _##_VAR_*prev; \
+			struct _##_VAR_*next; \
+			_TYPE_			item; \
+		} \
+
 	#else
 	#define foreach_s_list_T(_TYPE_, _VAR_, _LIST_) \
-		struct _##_VAR_				\
-		{							\
-			struct _##_VAR_*next;	\
-			_TYPE_			item;	\
-		}
+		struct _##_VAR_ \
+		{ \
+			struct _##_VAR_*next; \
+			_TYPE_			item; \
+		} \
+
 	#endif
 #endif
 //!@}
