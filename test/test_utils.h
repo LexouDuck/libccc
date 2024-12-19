@@ -23,7 +23,7 @@
 #include "libccc/math/stat.h"
 
 typedef struct array_int	s_array_int;	//!< @see "libccc/monad/array.h"
-typedef struct  list_int	s_list_int ;	//!< @see "libccc/monad/list.h"
+typedef struct  list_int	s_list_int;	//!< @see "libccc/monad/list.h"
 
 #include "test_catch.h"
 #include "test_timer.h"
@@ -136,8 +136,8 @@ DECLARE_NUMBER_UTILITY_FUNCTIONS(f128)
 */
 
 #define DEFINEFUNC_PRINT_TEST(NAME, TYPE) \
-typedef struct test_##NAME	\
-{							\
+typedef struct test_##NAME \
+{ \
 	char const*	name;		/*!< the name of this unit test */\
 	char const*	function;	/*!< the name of the function tested */\
 	t_testflags	flags;		/*!< the various test bitflags, see #t_testflags */\
@@ -147,7 +147,7 @@ typedef struct test_##NAME	\
 	e_signal	expect_sig;	/*!< the signal emitted by the expect function, if any */\
 	size_t		length;		/*!< used by certain types, notably 'mem'(`void*`) and 'list'(`s_list*`) */\
 	s_timer		timer;		/*!< the execution performance timer for this test */\
-}			s_test_##NAME;	\
+}			s_test_##NAME; \
 void	print_test_##NAME(s_test_##NAME* test, char const* args);
 
 
@@ -233,16 +233,16 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 **	Initialization logic for any test
 */
 #define TEST_INIT(TYPENAME) \
-	char*	args = NULL;							\
-	int		len = 0;								\
-	s_test_##TYPENAME test = (s_test_##TYPENAME)	\
-	{												\
-		.name = test_name,							\
-		.flags = flags,								\
-	};												\
-	if (!g_test.config.test_nullptrs &&				\
-		(flags & FLAG_SIGSEGV))						\
-		return;										\
+	char*	args = NULL; \
+	int		len = 0; \
+	s_test_##TYPENAME test = (s_test_##TYPENAME) \
+	{ \
+		.name = test_name, \
+		.flags = flags, \
+	}; \
+	if (!g_test.config.test_nullptrs && \
+		(flags & FLAG_SIGSEGV)) \
+		return; \
 
 
 
@@ -255,38 +255,38 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 **	@param	...			Variadic arguments are passed to FUNCTION
 */
 #define TEST_PERFORM_VOID_(KIND, RESULT, FUNCTION, ...) \
-	_TRY										\
-	{											\
-		timer_clock(&test.timer.KIND##_start);	\
-		FUNCTION(__VA_ARGS__);					\
-		test.KIND = RESULT;						\
-		timer_clock(&test.timer.KIND##_end);	\
-	}											\
-	_CATCH										\
-	{											\
-		test.KIND##_sig = sig;					\
-	}											\
-	_END										\
+	_TRY \
+	{ \
+		timer_clock(&test.timer.KIND##_start); \
+		FUNCTION(__VA_ARGS__); \
+		test.KIND = RESULT; \
+		timer_clock(&test.timer.KIND##_end); \
+	} \
+	_CATCH \
+	{ \
+		test.KIND##_sig = sig; \
+	} \
+	_END \
 
 //! Use this for void-return functions
 #define TEST_PERFORM_VOID(RESULT, FUNCTION, ...) \
-	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__)	\
-	test.expect = expecting;										\
+	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
+	test.expect = expecting; \
 
 //! Use this for void-return functions that exist in libc
 #define TEST_PERFORM_VOID_LIBC(RESULT, FUNCTION, ...) \
-	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__)	\
-	TEST_PERFORM_VOID_(expect, RESULT,     FUNCTION, ##__VA_ARGS__)	\
+	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
+	TEST_PERFORM_VOID_(expect, RESULT,     FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for void-return functions, which use a 'dest' argument
 #define TEST_PERFORM_VOID_DEST(FUNCTION, ...) \
-	TEST_PERFORM_VOID_(result, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
-	test.expect = expecting;															\
+	TEST_PERFORM_VOID_(result, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
+	test.expect = expecting; \
 
 //! Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_VOID_LIBC_DEST(FUNCTION, ...) \
-	TEST_PERFORM_VOID_(result, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
-	TEST_PERFORM_VOID_(expect, dest_libc,       FUNCTION, dest_libc,   ##__VA_ARGS__)	\
+	TEST_PERFORM_VOID_(result, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
+	TEST_PERFORM_VOID_(expect, dest_libc,       FUNCTION, dest_libc,   ##__VA_ARGS__) \
 
 
 
@@ -299,82 +299,82 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 **	@param	...			Variadic arguments are passed to FUNCTION
 */
 #define TEST_PERFORM_(KIND, FUNCTION, ...) \
-	_TRY										\
-	{											\
-		timer_clock(&test.timer.KIND##_start);	\
-		test.KIND = FUNCTION(__VA_ARGS__);		\
-		timer_clock(&test.timer.KIND##_end);	\
-	}											\
-	_CATCH										\
-	{											\
-		test.KIND##_sig = sig;					\
-	}											\
-	_END										\
+	_TRY \
+	{ \
+		timer_clock(&test.timer.KIND##_start); \
+		test.KIND = FUNCTION(__VA_ARGS__); \
+		timer_clock(&test.timer.KIND##_end); \
+	} \
+	_CATCH \
+	{ \
+		test.KIND##_sig = sig; \
+	} \
+	_END \
 
 //! Use this for (any_type)-return functions
 #define TEST_PERFORM(FUNCTION, ...) \
-	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__)	\
-	test.expect = expecting;							\
+	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__) \
+	test.expect = expecting; \
 
 //! Use this for (any_type)-return functions that exist in libc
 #define TEST_PERFORM_LIBC(FUNCTION, ...) \
-	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__)	\
-	TEST_PERFORM_(expect,     FUNCTION, ##__VA_ARGS__)	\
+	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__) \
+	TEST_PERFORM_(expect,     FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for (any_type)-return functions, which use a 'dest' argument
 #define TEST_PERFORM_DEST(FUNCTION, ...) \
-	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
-	test.expect = expecting;										\
+	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
+	test.expect = expecting; \
 
 //! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
-	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__)	\
-	TEST_PERFORM_(expect,     FUNCTION, dest_libc,   ##__VA_ARGS__)	\
+	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
+	TEST_PERFORM_(expect,     FUNCTION, dest_libc,   ##__VA_ARGS__) \
 
 
 
 /*
 //! Prints the given argument variable as a string with non-printable chars as escape sequences
 #define TEST_PRINT_ARGS_ESCAPED(ARG) \
-	char* tmp = strtoescape(ARG);	\
-	TEST_PRINT_ARGS("\"%s\"", tmp);	\
-	if (tmp)						\
-	{								\
-		free(tmp);					\
-		tmp = NULL;					\
-	}								\
+	char* tmp = strtoescape(ARG); \
+	TEST_PRINT_ARGS("\"%s\"", tmp); \
+	if (tmp) \
+	{ \
+		free(tmp); \
+		tmp = NULL; \
+	} \
 */
 
 /*!
 **	This macro will prepare the test result struct, so as to print the test result output
 */
 #define TEST_PRINT_(FORMAT, ...) \
-	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__);		\
-	if (len < 0)		return;								\
-	args = (char*)malloc((size_t)len + sizeof(""));			\
-	if (args == NULL)	return;								\
-	len = snprintf((args), len + 1, FORMAT, ##__VA_ARGS__);	\
-	if (len < 0)		return;								\
+	len = snprintf(NULL, (0), FORMAT, ##__VA_ARGS__); \
+	if (len < 0)		return; \
+	args = (char*)malloc((size_t)len + sizeof("")); \
+	if (args == NULL)	return; \
+	len = snprintf((args), len + 1, FORMAT, ##__VA_ARGS__); \
+	if (len < 0)		return; \
 
 
 
 //! Prints the test result for a "expect test" (one which does not have an equivalent function in the C standard library)
 #define TEST_PRINT(TYPENAME, FUNCTION, FORMAT, ...) \
-	print_timer_result(&test.timer, FALSE);	\
-	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
-	test.function = "_"#FUNCTION;			\
-	print_test_##TYPENAME(&test, args);		\
-	if (args)	free(args);					\
-	args = NULL;							\
+	print_timer_result(&test.timer, FALSE); \
+	TEST_PRINT_(FORMAT, ##__VA_ARGS__) \
+	test.function = "_"#FUNCTION; \
+	print_test_##TYPENAME(&test, args); \
+	if (args)	free(args); \
+	args = NULL; \
 
 //! Prints the test result for a "compare test" (one which has an equivalent function in the C standard library)
 #define TEST_PRINT_LIBC(TYPENAME, FUNCTION, FORMAT, ...) \
-	print_timer_result(&test.timer, TRUE);	\
-	TEST_PRINT_(FORMAT, ##__VA_ARGS__)		\
-	test.function = #FUNCTION;				\
-	print_test_##TYPENAME(&test, args);		\
-	if (args)	free(args);					\
-	args = NULL;							\
+	print_timer_result(&test.timer, TRUE); \
+	TEST_PRINT_(FORMAT, ##__VA_ARGS__) \
+	test.function = #FUNCTION; \
+	print_test_##TYPENAME(&test, args); \
+	if (args)	free(args); \
+	args = NULL; \
 
 
 
@@ -386,30 +386,30 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 **	@param	KIND	The name of the result variable to freed
 */
 #define TEST_FREE_(KIND) \
-	if (test.KIND &&					\
-		test.KIND##_sig == SIGNAL_NULL)	\
-	{									\
-		free((void*)test.KIND);			\
-		test.KIND = NULL;				\
-	}									\
+	if (test.KIND && \
+		test.KIND##_sig == SIGNAL_NULL) \
+	{ \
+		free((void*)test.KIND); \
+		test.KIND = NULL; \
+	} \
 
 //! Frees the 'result_libccc' variable, if appropriate
 #define TEST_FREE() \
-	TEST_FREE_(result)	\
+	TEST_FREE_(result) \
 
 //! Frees the 'result_libccc' and 'result_libc' variables, if appropriate
 #define TEST_FREE_LIBC() \
-	TEST_FREE_(result)	\
-	TEST_FREE_(expect)	\
+	TEST_FREE_(result) \
+	TEST_FREE_(expect) \
 
 //! Frees the 'result_libccc', if appropriate, with a user-supplied function
 #define TEST_FREE_RESULT(DELETE_FUNCTION) \
-	if (test.result &&							\
-		test.result##_sig == SIGNAL_NULL)		\
-	{											\
-		DELETE_FUNCTION(test.result);			\
-		test.result = NULL;						\
-	}											\
+	if (test.result && \
+		test.result##_sig == SIGNAL_NULL) \
+	{ \
+		DELETE_FUNCTION(test.result); \
+		test.result = NULL; \
+	} \
 
 
 

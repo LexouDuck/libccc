@@ -49,13 +49,13 @@ typedef int	t_testflags;
 #define FLAG_SIGILL     (1 << 5) //!< Signal bitflag: illegal assembly instruction, or invalid program image
 #define FLAG_SIGFPE     (1 << 6) //!< Signal bitflag: floating point exception - e.g. `2.0 / 0` or `sqrt(NAN)`
 //! Signal bitmask: to isolate the "signal flags" part of a `t_testflags` integer
-#define FLAG_SIGNALMASK	\
-	( FLAG_SIGTERM	\
-	| FLAG_SIGINT	\
-	| FLAG_SIGABRT	\
-	| FLAG_SIGSEGV	\
-	| FLAG_SIGILL	\
-	| FLAG_SIGFPE	\
+#define FLAG_SIGNALMASK \
+	( FLAG_SIGTERM \
+	| FLAG_SIGINT \
+	| FLAG_SIGABRT \
+	| FLAG_SIGSEGV \
+	| FLAG_SIGILL \
+	| FLAG_SIGFPE \
 	)
 
 #define ALLOW_SIGTERM    (FLAG_WARNING | FLAG_SIGTERM)
@@ -109,16 +109,16 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 */
 //!@{
 #define _TRY \
-	sig = (e_signal)setjmp(restore);	\
-	if (sig == SIGNAL_NULL)	\
+	sig = (e_signal)setjmp(restore); \
+	if (sig == SIGNAL_NULL) \
 
 #define _CATCH \
 	else
 
 #if (defined(_WIN32) || defined(__MINGW32__))
 #define _END \
-	if ((sig & FLAG_SIGNALMASK) != 0)	\
-		signal(SIGSEGV, signal_handler);	\
+	if ((sig & FLAG_SIGNALMASK) != 0) \
+		signal(SIGSEGV, signal_handler); \
 
 #else
 #define _END	;

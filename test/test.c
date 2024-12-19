@@ -189,20 +189,20 @@ void	print_test(
 
 
 #define DEFINE_TESTFUNCTION_INT(NAME, SIGNED, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
-{																							\
-	int error;																				\
-	if (test->result_sig)																	\
-		error = !test->expect_sig;															\
-	else if (test->expect_sig)																\
-		error = !SHOULDHANDLE_ERROR_NULLPOINTER;											\
-	else error = (test->result != test->expect);											\
-	print_test(test->name, test->function, args,											\
-		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)),	\
-		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)),	\
-		test->flags,																		\
-		error, NULL);																		\
-}																							\
+void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+{ \
+	int error; \
+	if (test->result_sig) \
+		error = !test->expect_sig; \
+	else if (test->expect_sig) \
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER; \
+	else error = (test->result != test->expect); \
+	print_test(test->name, test->function, args, \
+		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)), \
+		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)), \
+		test->flags, \
+		error, NULL); \
+} \
 
 DEFINE_TESTFUNCTION_INT(bool,    u,64)
 
@@ -245,50 +245,50 @@ DEFINE_TESTFUNCTION_INT(uintmax, u,64)
 #define FLOAT_PRECISION_FORMAT	
 
 #define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
-void	print_test_##NAME(s_test_##NAME* test, char const* args)							\
-{																							\
-	char* tmp = NULL;																		\
-	int warning = FALSE;																	\
-	int error = FALSE;																		\
-	char str_result[BITS];																	\
-	char str_expect[BITS];																	\
-	if (test->result_sig)																	\
-		error = !test->expect_sig;															\
-	else if (test->expect_sig)																\
-		error = !SHOULDHANDLE_ERROR_NULLPOINTER;											\
-	else error = (test->result != test->expect);											\
-	if (isnan(test->result) && isnan(test->expect))											\
-		error = FALSE;																		\
-	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result);		\
-	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect);		\
-	if (error && !isnan(test->result) && !isnan(test->expect))								\
-	{																						\
-		if (ABS(test->result - test->expect) <=												\
-			FLOAT_APPROX * MAX(ABS(test->result), ABS(test->expect)))						\
-		{																					\
-			error = FALSE;																	\
-			warning = TRUE;																	\
-		}																					\
-	}																						\
-	if (warning)																			\
-	{																						\
-		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return;							\
-		size_t len = snprintf(tmp,	128, "Approximation error:\n"							\
-				"- received: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n"				\
-				"- expected: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n",				\
-			test->result,																	\
-			test->expect);																	\
-		g_test.suites[g_test.current_suite].totals.warnings += 1;							\
-		if (len == 0)																		\
-			return;																			\
-	}																						\
-	print_test(test->name, test->function, args,											\
-		(test->result_sig ? signals[test->result_sig] : str_result),						\
-		(test->expect_sig ? signals[test->expect_sig] : str_expect),						\
-		test->flags,																		\
-		error, (warning ? tmp : NULL));														\
-	if (tmp)	{ free(tmp); }																\
-}																							\
+void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+{ \
+	char* tmp = NULL; \
+	int warning = FALSE; \
+	int error = FALSE; \
+	char str_result[BITS]; \
+	char str_expect[BITS]; \
+	if (test->result_sig) \
+		error = !test->expect_sig; \
+	else if (test->expect_sig) \
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER; \
+	else error = (test->result != test->expect); \
+	if (isnan(test->result) && isnan(test->expect)) \
+		error = FALSE; \
+	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result); \
+	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect); \
+	if (error && !isnan(test->result) && !isnan(test->expect)) \
+	{ \
+		if (ABS(test->result - test->expect) <= \
+			FLOAT_APPROX * MAX(ABS(test->result), ABS(test->expect))) \
+		{ \
+			error = FALSE; \
+			warning = TRUE; \
+		} \
+	} \
+	if (warning) \
+	{ \
+		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return; \
+		size_t len = snprintf(tmp,	128, "Approximation error:\n" \
+				"- received: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n" \
+				"- expected: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n", \
+			test->result, \
+			test->expect); \
+		g_test.suites[g_test.current_suite].totals.warnings += 1; \
+		if (len == 0) \
+			return; \
+	} \
+	print_test(test->name, test->function, args, \
+		(test->result_sig ? signals[test->result_sig] : str_result), \
+		(test->expect_sig ? signals[test->expect_sig] : str_expect), \
+		test->flags, \
+		error, (warning ? tmp : NULL)); \
+	if (tmp)	{ free(tmp); } \
+} \
 
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
 DEFINE_TESTFUNCTION_FLOAT(f64, 64)
@@ -461,24 +461,24 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 
 
 #define PRINT_TEST_STRARR(WHICH) \
-	length = 0;															\
-	for (i = 0; test->expect[i]; ++i)									\
-	{																	\
-		length += strlen(test->expect[i]);								\
-	}																	\
-	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))	\
-		goto failure;													\
-	length = 0;															\
-	for (i = 0; test->expect[i]; ++i)									\
-	{																	\
-		if (i != 0)														\
-		{																\
-			str_expect[length++] = ',';									\
-			str_expect[length++] = ' ';									\
-		}																\
-		strcpy(str_expect + length, test->expect[i]);					\
-		length += strlen(test->expect[i]);								\
-	}																	\
+	length = 0; \
+	for (i = 0; test->expect[i]; ++i) \
+	{ \
+		length += strlen(test->expect[i]); \
+	} \
+	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0)))) \
+		goto failure; \
+	length = 0; \
+	for (i = 0; test->expect[i]; ++i) \
+	{ \
+		if (i != 0) \
+		{ \
+			str_expect[length++] = ','; \
+			str_expect[length++] = ' '; \
+		} \
+		strcpy(str_expect + length, test->expect[i]); \
+		length += strlen(test->expect[i]); \
+	} \
 
 void	print_test_strarr(s_test_strarr* test, char const* args)
 {
@@ -511,24 +511,24 @@ failure:
 /*
 
 #define PRINT_TEST_LIST(WHICH) \
-	length = 0;															\
-	for (i = 0; test->expect[i]; ++i)									\
-	{																	\
-		length += strlen(test->expect[i]);								\
-	}																	\
-	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0))))	\
-		return;															\
-	length = 0;															\
-	for (i = 0; test->expect[i]; ++i)									\
-	{																	\
-		if (i != 0)														\
-		{																\
-			str_expect[length++] = ',';									\
-			str_expect[length++] = ' ';									\
-		}																\
-		strcpy(str_expect + length, test->expect[i]);					\
-		length += strlen(test->expect[i]);								\
-	}																	\
+	length = 0; \
+	for (i = 0; test->expect[i]; ++i) \
+	{ \
+		length += strlen(test->expect[i]); \
+	} \
+	if (!(str_expect = (char*)malloc(length + (i ? (i - 1) * 2 : 0)))) \
+		return; \
+	length = 0; \
+	for (i = 0; test->expect[i]; ++i) \
+	{ \
+		if (i != 0) \
+		{ \
+			str_expect[length++] = ','; \
+			str_expect[length++] = ' '; \
+		} \
+		strcpy(str_expect + length, test->expect[i]); \
+		length += strlen(test->expect[i]); \
+	} \
 
 void	print_test_list(s_test_list* test, char const* args)
 {
@@ -586,7 +586,7 @@ void	print_test_list(s_test_list* test, char const* args)
 */
 
 #define DATE_STR_BUFFER		512
-#define DATE_STR_FORMAT	\
+#define DATE_STR_FORMAT \
 	"\n\t.year      = %i," \
 	"\n\t.month     = %i," \
 	"\n\t.day_week  = %i," \

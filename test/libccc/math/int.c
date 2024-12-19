@@ -34,18 +34,18 @@
 #if 0 // test template
 
 #define DEFINETEST_UINT_(BITS) \
-void	print_test_u##BITS##(char const* test_name, t_testflags flags,		\
-		t_u##BITS	a,														\
-		t_u##BITS	b)														\
-{																			\
-	TEST_INIT(u##BITS)														\
-	TEST_PERFORM_LIBC(	u##BITS##, a, b)									\
-	TEST_PRINT(u##BITS,	u##BITS##, "a=" SF_U##BITS ", b=" SF_U##BITS, a, b)	\
-}																			\
-void	test_u##BITS##(void)												\
-{																			\
-/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */	\
-/*	print_test_u##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/	\
+void	print_test_u##BITS##(char const* test_name, t_testflags flags, \
+		t_u##BITS	a, \
+		t_u##BITS	b) \
+{ \
+	TEST_INIT(u##BITS) \
+	TEST_PERFORM_LIBC(	u##BITS##, a, b) \
+	TEST_PRINT(u##BITS,	u##BITS##, "a=" SF_U##BITS ", b=" SF_U##BITS, a, b) \
+} \
+void	test_u##BITS##(void) \
+{ \
+/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */ \
+/*	print_test_u##BITS##("u"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	*/ \
 }
 
 #ifndef c_u8
@@ -86,32 +86,32 @@ DEFINETEST_UINT_(128)
 #endif
 
 #define DEFINETEST_UINT_OPERATOR(OP, FUNC, BITS) \
-void	print_test_u##BITS##FUNC(char const* test_name, t_testflags flags,	\
-		t_u##BITS	expecting,												\
-		t_u##BITS	a,														\
-		t_u##BITS	b)														\
-{																			\
-	TEST_INIT(u##BITS)														\
-	TEST_PERFORM(		u##BITS##FUNC, a, b)								\
+void	print_test_u##BITS##FUNC(char const* test_name, t_testflags flags, \
+		t_u##BITS	expecting, \
+		t_u##BITS	a, \
+		t_u##BITS	b) \
+{ \
+	TEST_INIT(u##BITS) \
+	TEST_PERFORM(		u##BITS##FUNC, a, b) \
 	TEST_PRINT(u##BITS,	u##BITS##FUNC, "a=" SF_U##BITS ", b=" SF_U##BITS, a, b)\
-}																			\
-void	test_u##BITS##FUNC(void)											\
-{																			\
-/*	| TEST FUNCTION        | TEST NAME              |TESTFLAG| TEST		*/	\
-/*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 0) );*/	\
-/*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 0) );*/	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 1) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 1) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 1) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	2,  OP, 1) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 2) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	2,  OP, 2) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	3,  OP, 5) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	10, OP, 5) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n=max)",	FALSE, TEST(	 1, OP, U##BITS##_MAX - 1) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n=max)",	FALSE, TEST(	 0, OP, U##BITS##_MAX    ) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(1, OP, U##BITS##_MAX    , U##BITS##_MAX) );	\
-	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(2, OP, U##BITS##_MAX    , U##BITS##_MAX) );	\
+} \
+void	test_u##BITS##FUNC(void) \
+{ \
+/*	| TEST FUNCTION        | TEST NAME              |TESTFLAG| TEST		*/ \
+/*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 0) );*/ \
+/*	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 0) );*/ \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	0,  OP, 1) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 1) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 1) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	2,  OP, 1) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	1,  OP, 2) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	2,  OP, 2) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	3,  OP, 5) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC"        ",	FALSE, TEST(	10, OP, 5) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n=max)",	FALSE, TEST(	 1, OP, U##BITS##_MAX - 1) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n=max)",	FALSE, TEST(	 0, OP, U##BITS##_MAX    ) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(1, OP, U##BITS##_MAX    , U##BITS##_MAX) ); \
+	print_test_u##BITS##FUNC("u"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(2, OP, U##BITS##_MAX    , U##BITS##_MAX) ); \
 }
 
 #ifndef c_uadd
@@ -190,36 +190,36 @@ void test_u128mod(void)	{}
 
 
 #define DEFINETEST_SINT_OPERATOR(OP, FUNC, BITS) \
-void	print_test_s##BITS##FUNC(char const* test_name, t_testflags flags,	\
-		t_s##BITS	expecting,												\
-		t_s##BITS	a,														\
-		t_s##BITS	b)														\
-{																			\
-	TEST_INIT(s##BITS)														\
-	TEST_PERFORM(		s##BITS##FUNC, a, b)								\
+void	print_test_s##BITS##FUNC(char const* test_name, t_testflags flags, \
+		t_s##BITS	expecting, \
+		t_s##BITS	a, \
+		t_s##BITS	b) \
+{ \
+	TEST_INIT(s##BITS) \
+	TEST_PERFORM(		s##BITS##FUNC, a, b) \
 	TEST_PRINT(s##BITS,	s##BITS##FUNC, "a=" SF_S##BITS ", b=" SF_S##BITS, a, b)\
-}																			\
-void	test_s##BITS##FUNC(void)											\
-{																			\
-/*	| TEST FUNCTION         | TEST NAME             |TESTFLAG| TEST		*/	\
-/*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 0) );*/	\
-/*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 0) );*/	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		2,  OP, 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 2) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		2,  OP, 2) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		3,  OP, 5) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		10, OP, 5) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=max)",	FALSE, TEST(		+1, OP, S##BITS##_MAX - 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=max)",	FALSE, TEST(		+0, OP, S##BITS##_MAX    ) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(	+1, OP, S##BITS##_MAX    , S##BITS##_MAX) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(	+2, OP, S##BITS##_MAX    , S##BITS##_MAX) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=min)",	FALSE, TEST(		-1, OP, S##BITS##_MIN + 1) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=min)",	FALSE, TEST(		-0, OP, S##BITS##_MIN    ) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n<min)",	FALSE, TEST_FLOW(	-1, OP, S##BITS##_MIN    , S##BITS##_MIN) );	\
-	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n<min)",	FALSE, TEST_FLOW(	-2, OP, S##BITS##_MIN    , S##BITS##_MIN) );	\
+} \
+void	test_s##BITS##FUNC(void) \
+{ \
+/*	| TEST FUNCTION         | TEST NAME             |TESTFLAG| TEST		*/ \
+/*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 0) );*/ \
+/*	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 0) );*/ \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		0,  OP, 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		2,  OP, 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		1,  OP, 2) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		2,  OP, 2) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		3,  OP, 5) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC"        ",	FALSE, TEST(		10, OP, 5) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=max)",	FALSE, TEST(		+1, OP, S##BITS##_MAX - 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=max)",	FALSE, TEST(		+0, OP, S##BITS##_MAX    ) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(	+1, OP, S##BITS##_MAX    , S##BITS##_MAX) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n>max)",	FALSE, TEST_FLOW(	+2, OP, S##BITS##_MAX    , S##BITS##_MAX) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=min)",	FALSE, TEST(		-1, OP, S##BITS##_MIN + 1) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n=min)",	FALSE, TEST(		-0, OP, S##BITS##_MIN    ) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n<min)",	FALSE, TEST_FLOW(	-1, OP, S##BITS##_MIN    , S##BITS##_MIN) ); \
+	print_test_s##BITS##FUNC("s"#BITS#FUNC" (n<min)",	FALSE, TEST_FLOW(	-2, OP, S##BITS##_MIN    , S##BITS##_MIN) ); \
 }
 
 #ifndef c_sadd

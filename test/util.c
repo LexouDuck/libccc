@@ -212,33 +212,33 @@ typedef _UInt128	uint128_t;
 
 
 #define DEFINEFUNC_SINTTOSTR(BITS) \
-char*	s##BITS##tostr(t_s##BITS number)		\
-{												\
-	char*		result;							\
-	uint8_t	digits[64] = { 0 };					\
-	uint8_t	i;									\
-	uint##BITS##_t	n;							\
-												\
-	n = number;									\
-	if (number < 0)								\
-		n = -n;									\
-	i = 0;										\
-	while (n > 0)								\
-	{											\
-		digits[i++] = n % 10;					\
-		n /= 10;								\
-	}											\
-	if (!(result = (char*)malloc(i + 2)))		\
-		return (NULL);							\
-	result[0] = (number == 0) ? '0' : '-';		\
-	n = 1;										\
-	while (i--)									\
-	{											\
-		result[n++] = '0' + digits[i];			\
-	}											\
-	result[n] = '\0';							\
-	return (number <= 0 ? result : result + 1);	\
-}												\
+char*	s##BITS##tostr(t_s##BITS number) \
+{ \
+	char*		result; \
+	uint8_t	digits[64] = { 0 }; \
+	uint8_t	i; \
+	uint##BITS##_t	n; \
+ \
+	n = number; \
+	if (number < 0) \
+		n = -n; \
+	i = 0; \
+	while (n > 0) \
+	{ \
+		digits[i++] = n % 10; \
+		n /= 10; \
+	} \
+	if (!(result = (char*)malloc(i + 2))) \
+		return (NULL); \
+	result[0] = (number == 0) ? '0' : '-'; \
+	n = 1; \
+	while (i--) \
+	{ \
+		result[n++] = '0' + digits[i]; \
+	} \
+	result[n] = '\0'; \
+	return (number <= 0 ? result : result + 1); \
+} \
 
 DEFINEFUNC_SINTTOSTR(8)
 DEFINEFUNC_SINTTOSTR(16)
@@ -251,32 +251,32 @@ DEFINEFUNC_SINTTOSTR(128)
 
 
 #define DEFINEFUNC_UINTTOSTR(BITS) \
-char*	u##BITS##tostr(t_u##BITS number)		\
-{												\
-	char*		result;							\
-	uint8_t	digits[64] = { 0 };					\
-	uint8_t	i;									\
-	uint##BITS##_t	n;							\
-												\
-	n = number;									\
-	i = 0;										\
-	while (n > 0)								\
-	{											\
-		digits[i++] = n % 10;					\
-		n /= 10;								\
-	}											\
-	if (i == 0)									\
-		digits[i++] = 0;						\
-	if (!(result = (char*)malloc(i + 1)))		\
-		return (NULL);							\
-	n = 0;										\
-	while (i--)									\
-	{											\
-		result[n++] = '0' + digits[i];			\
-	}											\
-	result[n] = '\0';							\
-	return (result);							\
-}												\
+char*	u##BITS##tostr(t_u##BITS number) \
+{ \
+	char*		result; \
+	uint8_t	digits[64] = { 0 }; \
+	uint8_t	i; \
+	uint##BITS##_t	n; \
+ \
+	n = number; \
+	i = 0; \
+	while (n > 0) \
+	{ \
+		digits[i++] = n % 10; \
+		n /= 10; \
+	} \
+	if (i == 0) \
+		digits[i++] = 0; \
+	if (!(result = (char*)malloc(i + 1))) \
+		return (NULL); \
+	n = 0; \
+	while (i--) \
+	{ \
+		result[n++] = '0' + digits[i]; \
+	} \
+	result[n] = '\0'; \
+	return (result); \
+} \
 
 DEFINEFUNC_UINTTOSTR(8)
 DEFINEFUNC_UINTTOSTR(16)

@@ -8,19 +8,19 @@
 #if 0 // test template
 
 #define DEFINETEST_FIXED_(BITS) \
-void	print_test_q##BITS##(char const* test_name, t_testflags flags,		\
-		t_q##BITS	expecting,												\
-		t_q##BITS	a,														\
-		t_q##BITS	b)														\
-{																			\
-	TEST_INIT(q##BITS)														\
-	TEST_PERFORM_LIBC(	q##BITS##, a, b)									\
-	TEST_PRINT(q##BITS,	q##BITS##, "a="SF_Q##BITS", b="SF_Q##BITS, a, b)	\
-}																			\
-void	test_q##BITS##(void)												\
-{																			\
-/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */	\
-	print_test_q##BITS##("q"#BITS"     ",	FALSE,               (0 + 0), 0, 0      );	\
+void	print_test_q##BITS##(char const* test_name, t_testflags flags, \
+		t_q##BITS	expecting, \
+		t_q##BITS	a, \
+		t_q##BITS	b) \
+{ \
+	TEST_INIT(q##BITS) \
+	TEST_PERFORM_LIBC(	q##BITS##, a, b) \
+	TEST_PRINT(q##BITS,	q##BITS##, "a="SF_Q##BITS", b="SF_Q##BITS, a, b) \
+} \
+void	test_q##BITS##(void) \
+{ \
+/*	| TEST FUNCTION        | TEST NAME        |TESTFLAG| EXPECTING           | TEST ARGS */ \
+	print_test_q##BITS##("q"#BITS"     ",	FALSE,               (0 + 0), 0, 0      ); \
 }
 
 #ifndef c_q16

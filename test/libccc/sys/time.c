@@ -34,7 +34,7 @@
 */
 
 #define DATE_STR_BUFFER		512
-#define DATE_STR_FORMAT	\
+#define DATE_STR_FORMAT \
 	" .year"      "=%4i," \
 	" .month"     "=%2i," \
 	" .day_month" "=%2u," \
