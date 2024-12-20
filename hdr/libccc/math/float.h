@@ -77,7 +77,7 @@ typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
 
 /*
 ** ************************************************************************** *|
-**                            Arithmetic Operations                           *|
+**                           Basic Arithmetic Operations                      *|
 ** ************************************************************************** *|
 */
 
@@ -105,6 +105,38 @@ t_f128						F128_Abs(t_f128 x);
 #define c_f128abs			F128_Abs
 #endif
 //!@}
+
+//!@doc Returns the sign value value of `x` (either `-1`, `0`, or `+1`)
+/*!
+**	@isostd{C11,https://en.cppreference.com/w/c/numeric/math/signbit}
+*/
+//!@{
+#define						Float_Sgn	CONCAT(FLOAT_TYPE,_Sgn)
+#define c_fsgn				Float_Sgn
+#define Float_Sign			Float_Sgn
+#define Float_SignOf		Float_Sgn
+
+t_f32						F32_Sgn(t_f32 x);
+#define c_f32sgn			F32_Sgn
+
+t_f64						F64_Sgn(t_f64 x);
+#define c_f64sgn			F64_Sgn
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_Sgn(t_f80 x);
+#define c_f80sgn			F80_Sgn
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_Sgn(t_f128 x);
+#define c_f128sgn			F128_Sgn
+#endif
+//!@}
+
+/*
+** ************************************************************************** *|
+**                          Integer Rounding Operations                       *|
+** ************************************************************************** *|
+*/
 
 //!@doc Returns the value of `x`, rounded to the nearest integer
 /*!
@@ -208,7 +240,7 @@ t_f128						F128_Ceil(t_f128 x);
 
 /*
 ** ************************************************************************** *|
-**                       Floating-point logic operators                       *|
+**                            Comparison operators                            *|
 ** ************************************************************************** *|
 */
 
@@ -242,8 +274,6 @@ t_bool					F128_Equals(t_f128 x, t_f128 y);
 #endif
 //!@}
 
-
-
 //!@doc Returns `TRUE` if the 2 given floating-point values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
@@ -276,21 +306,104 @@ t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
 
 
 
-// TODO Float_LessThan
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value (operator: `<`)
+//!@{
+#define					Float_LessThan	CONCAT(FLOAT_TYPE,_LessThan)
+#define c_flt			Float_LessThan
 
-// TODO Float_GreaterThan
+t_bool					F32_LessThan(t_f32 x, t_f32 y);
+#define c_f32lt			F32_LessThan
+
+t_bool					F64_LessThan(t_f64 x, t_f64 y);
+#define c_f64lt			F64_LessThan
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool					F80_LessThan(t_f80 x, t_f80 y);
+#define c_f80lt			F80_LessThan
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool					F128_LessThan(t_f128 x, t_f128 y);
+#define c_f128lt		F128_LessThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
+//!@{
+#define					Float_LessThanOrEqual	CONCAT(FLOAT_TYPE,_LessThanOrEqual)
+#define c_flte			Float_LessThanOrEqual
+
+t_bool					F32_LessThanOrEqual(t_f32 x, t_f32 y);
+#define c_f32lte		F32_LessThanOrEqual
+
+t_bool					F64_LessThanOrEqual(t_f64 x, t_f64 y);
+#define c_f64lte		F64_LessThanOrEqual
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool					F80_LessThanOrEqual(t_f80 x, t_f80 y);
+#define c_f80lte		F80_LessThanOrEqual
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool					F128_LessThanOrEqual(t_f128 x, t_f128 y);
+#define c_f128lte		F128_LessThanOrEqual
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
+//!@{
+#define					Float_GreaterThan	CONCAT(FLOAT_TYPE,_GreaterThan)
+#define c_fgt			Float_GreaterThan
+
+t_bool					F32_GreaterThan(t_f32 x, t_f32 y);
+#define c_f32gt			F32_GreaterThan
+
+t_bool					F64_GreaterThan(t_f64 x, t_f64 y);
+#define c_f64gt			F64_GreaterThan
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool					F80_GreaterThan(t_f80 x, t_f80 y);
+#define c_f80gt			F80_GreaterThan
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool					F128_GreaterThan(t_f128 x, t_f128 y);
+#define c_f128gt		F128_GreaterThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
+//!@{
+#define					Float_GreaterThanOrEqual	CONCAT(FLOAT_TYPE,_GreaterThanOrEqual)
+#define c_fgte			Float_GreaterThanOrEqual
+
+t_bool					F32_GreaterThanOrEqual(t_f32 x, t_f32 y);
+#define c_f32gte		F32_GreaterThanOrEqual
+
+t_bool					F64_GreaterThanOrEqual(t_f64 x, t_f64 y);
+#define c_f64gte		F64_GreaterThanOrEqual
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool					F80_GreaterThanOrEqual(t_f80 x, t_f80 y);
+#define c_f80gte		F80_GreaterThanOrEqual
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool					F128_GreaterThanOrEqual(t_f128 x, t_f128 y);
+#define c_f128gte		F128_GreaterThanOrEqual
+#endif
+//!@}
 
 
 
 /*
 ** ************************************************************************** *|
-**                       Floating-point basic operators                       *|
+**                            Arithmetic operators                            *|
 ** ************************************************************************** *|
 */
 
 
 
 //!@doc Performs an addition with the 2 given floating-point values (operator: `+`)
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fadd}
+*/
 //!@{
 #define					Float_Add	CONCAT(FLOAT_TYPE,_Add)
 #define c_fadd			Float_Add
@@ -315,6 +428,9 @@ t_f128					F128_Add(t_f128 x, t_f128 y);
 
 
 //!@doc Performs a subtraction with the 2 given floating-point values (operator: `-`)
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fsub}
+*/
 //!@{
 #define					Float_Sub	CONCAT(FLOAT_TYPE,_Sub)
 #define c_fsub			Float_Sub
@@ -340,6 +456,9 @@ t_f128					F128_Sub(t_f128 x, t_f128 y);
 
 
 //!@doc Performs a multiplication with the 2 given floating-point values (operator: `*`)
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fmul}
+*/
 //!@{
 #define					Float_Mul	CONCAT(FLOAT_TYPE,_Mul)
 #define c_fmul			Float_Mul
@@ -365,6 +484,9 @@ t_f128					F128_Mul(t_f128 x, t_f128 y);
 
 
 //!@doc Performs a division with the 2 given floating-point values (operator: `/`)
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fdiv}
+*/
 //!@{
 #define					Float_Div	CONCAT(FLOAT_TYPE,_Div)
 #define c_fdiv			Float_Div
@@ -386,14 +508,6 @@ t_f128					F128_Div(t_f128 x, t_f128 y);
 #define c_f128div		F128_Div
 #endif
 //!@}
-
-
-
-/*
-** ************************************************************************** *|
-**                        Floating-point math operators                       *|
-** ************************************************************************** *|
-*/
 
 
 
@@ -484,6 +598,14 @@ t_f128						F128_RemQuo(t_f128 x, t_f128 y, t_sint* quotient);
 #define c_f128remquo		F128_RemQuo
 #endif
 //!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                        Floating-point math operators                       *|
+** ************************************************************************** *|
+*/
 
 
 
@@ -607,21 +729,17 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 
 t_f32						F32_Hypotenuse(t_f32 x, t_f32 y);
 #define c_f32hypot			F32_Hypotenuse
-#define c_hypotf			F32_Hypotenuse
 
 t_f64						F64_Hypotenuse(t_f64 x, t_f64 y);
 #define c_f64hypot			F64_Hypotenuse
-#define c_hypot				F64_Hypotenuse
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_Hypotenuse(t_f80 x, t_f80 y);
 #define c_f80hypot			F80_Hypotenuse
-#define c_hypotl			F80_Hypotenuse
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Hypotenuse(t_f128 x, t_f128 y);
 #define c_f128hypot			F128_Hypotenuse
-#define c_hypotl			F128_Hypotenuse
 #endif
 //!@}
 
@@ -855,7 +973,7 @@ t_f32							F32_Erf(t_f32 x);
 
 t_f64							F64_Erf(t_f64 x);
 #define c_f64erf				F64_Erf
-#define c_erf					F64_Erf
+#define c_erfd					F64_Erf
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_Erf(t_f80 x);
@@ -878,7 +996,7 @@ t_f128							F128_Erf(t_f128 x);
 //!@{
 #define							Float_ErfC	CONCAT(FLOAT_TYPE,_ErfC)
 #define c_ferfc					Float_ErfC
-#define Float_ErrorFunctionCpml	Float_ErfC
+#define Float_ErrorFunctionComplement	Float_ErfC
 
 t_f32							F32_ErfC(t_f32 x);
 #define c_f32erfc				F32_ErfC
@@ -886,7 +1004,7 @@ t_f32							F32_ErfC(t_f32 x);
 
 t_f64							F64_ErfC(t_f64 x);
 #define c_f64erfc				F64_ErfC
-#define c_erfc					F64_ErfC
+#define c_erfcd					F64_ErfC
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_ErfC(t_f80 x);
@@ -920,7 +1038,7 @@ t_f32							F32_Gamma(t_f32 x);
 
 t_f64							F64_Gamma(t_f64 x);
 #define c_f64gamma				F64_Gamma
-#define c_gamma					F64_Gamma
+#define c_gammad				F64_Gamma
 #define c_tgamma				F64_Gamma
 
 #if LIBCONFIG_USE_FLOAT80
@@ -954,7 +1072,7 @@ t_f32							F32_LnGamma(t_f32 x);
 
 t_f64							F64_LnGamma(t_f64 x);
 #define c_f64lngamma			F64_LnGamma
-#define c_lgamma				F64_LnGamma
+#define c_lgammad				F64_LnGamma
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_LnGamma(t_f80 x);
@@ -978,31 +1096,6 @@ t_f128							F128_LnGamma(t_f128 x);
 
 
 
-//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cos}
-*/
-//!@{
-#define						Float_Cos	CONCAT(FLOAT_TYPE,_Cos)
-#define c_fcos				Float_Cos
-#define Float_Cosine		Float_Cos
-
-t_f32						F32_Cos(t_f32 x);
-#define c_f32cos			F32_Cos
-
-t_f64						F64_Cos(t_f64 x);
-#define c_f64cos			F64_Cos
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80						F80_Cos(t_f80 x);
-#define c_f80cos			F80_Cos
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128						F128_Cos(t_f128 x);
-#define c_f128cos			F128_Cos
-#endif
-//!@}
-
 //!@doc Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sin}
@@ -1014,17 +1107,50 @@ t_f128						F128_Cos(t_f128 x);
 
 t_f32						F32_Sin(t_f32 x);
 #define c_f32sin			F32_Sin
+#define c_sinf				F32_Sin
 
 t_f64						F64_Sin(t_f64 x);
 #define c_f64sin			F64_Sin
+#define c_sind				F64_Sin
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_Sin(t_f80 x);
 #define c_f80sin			F80_Sin
+#define c_sinl				F80_Sin
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Sin(t_f128 x);
 #define c_f128sin			F128_Sin
+#define c_sinl				F128_Sin
+#endif
+//!@}
+
+//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cos}
+*/
+//!@{
+#define						Float_Cos	CONCAT(FLOAT_TYPE,_Cos)
+#define c_fcos				Float_Cos
+#define Float_Cosine		Float_Cos
+
+t_f32						F32_Cos(t_f32 x);
+#define c_f32cos			F32_Cos
+#define c_cosf				F32_Cos
+
+t_f64						F64_Cos(t_f64 x);
+#define c_f64cos			F64_Cos
+#define c_cosd				F64_Cos
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_Cos(t_f80 x);
+#define c_f80cos			F80_Cos
+#define c_cosl				F80_Cos
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_Cos(t_f128 x);
+#define c_f128cos			F128_Cos
+#define c_cosl				F128_Cos
 #endif
 //!@}
 
@@ -1039,73 +1165,85 @@ t_f128						F128_Sin(t_f128 x);
 
 t_f32						F32_Tan(t_f32 x);
 #define c_f32tan			F32_Tan
+#define c_tanf				F32_Tan
 
 t_f64						F64_Tan(t_f64 x);
 #define c_f64tan			F64_Tan
+#define c_tand				F64_Tan
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_Tan(t_f80 x);
 #define c_f80tan			F80_Tan
+#define c_tanl				F80_Tan
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Tan(t_f128 x);
 #define c_f128tan			F128_Tan
+#define c_tanl				F128_Tan
 #endif
 //!@}
 
 
-
-//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acos}
-*/
-//!@{
-#define							Float_ArcCos	CONCAT(FLOAT_TYPE,_ArcCos)
-#define c_facos					Float_ArcCos
-#define Float_Cos_1				Float_ArcCos
-#define Float_ArcCosine			Float_ArcCos
-#define Float_InvCosine			Float_ArcCos
-
-t_f32							F32_ArcCos(t_f32 x);
-#define c_f32acos				F32_ArcCos
-
-t_f64							F64_ArcCos(t_f64 x);
-#define c_f64acos				F64_ArcCos
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80							F80_ArcCos(t_f80 x);
-#define c_f80acos				F80_ArcCos
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128							F128_ArcCos(t_f128 x);
-#define c_f128acos				F128_ArcCos
-#endif
-//!@}
 
 //!@doc Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/asin}
 */
 //!@{
-#define							Float_ArcSin	CONCAT(FLOAT_TYPE,_ArcSin)
-#define c_fasin					Float_ArcSin
-#define Float_Sin_1				Float_ArcSin
-#define Float_ArcSine			Float_ArcSin
-#define Float_InvSine			Float_ArcSin
+#define						Float_ArcSin	CONCAT(FLOAT_TYPE,_ArcSin)
+#define c_fasin				Float_ArcSin
+#define Float_Sin_1			Float_ArcSin
+#define Float_ArcSine		Float_ArcSin
+#define Float_InvSine		Float_ArcSin
 
-t_f32							F32_ArcSin(t_f32 x);
-#define c_f32asin				F32_ArcSin
+t_f32						F32_ArcSin(t_f32 x);
+#define c_f32asin			F32_ArcSin
+#define c_asinf				F32_ArcSin
 
-t_f64							F64_ArcSin(t_f64 x);
-#define c_f64asin				F64_ArcSin
+t_f64						F64_ArcSin(t_f64 x);
+#define c_f64asin			F64_ArcSin
+#define c_asind				F64_ArcSin
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80							F80_ArcSin(t_f80 x);
-#define c_f80asin				F80_ArcSin
+t_f80						F80_ArcSin(t_f80 x);
+#define c_f80asin			F80_ArcSin
+#define c_asinl				F80_ArcSin
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128							F128_ArcSin(t_f128 x);
-#define c_f128asin				F128_ArcSin
+t_f128						F128_ArcSin(t_f128 x);
+#define c_f128asin			F128_ArcSin
+#define c_asinl				F128_ArcSin
+#endif
+//!@}
+
+//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acos}
+*/
+//!@{
+#define						Float_ArcCos	CONCAT(FLOAT_TYPE,_ArcCos)
+#define c_facos				Float_ArcCos
+#define Float_Cos_1			Float_ArcCos
+#define Float_ArcCosine		Float_ArcCos
+#define Float_InvCosine		Float_ArcCos
+
+t_f32						F32_ArcCos(t_f32 x);
+#define c_f32acos			F32_ArcCos
+#define c_acosf				F32_ArcCos
+
+t_f64						F64_ArcCos(t_f64 x);
+#define c_f64acos			F64_ArcCos
+#define c_acosd				F64_ArcCos
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80						F80_ArcCos(t_f80 x);
+#define c_f80acos			F80_ArcCos
+#define c_acosl				F80_ArcCos
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128						F128_ArcCos(t_f128 x);
+#define c_f128acos			F128_ArcCos
+#define c_acosl				F128_ArcCos
 #endif
 //!@}
 
@@ -1114,25 +1252,29 @@ t_f128							F128_ArcSin(t_f128 x);
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan}
 */
 //!@{
-#define							Float_ArcTan	CONCAT(FLOAT_TYPE,_ArcTan)
-#define c_fatan					Float_ArcTan
-#define Float_Tan_1				Float_ArcTan
-#define Float_ArcTangent		Float_ArcTan
-#define Float_InvTangent		Float_ArcTan
+#define						Float_ArcTan	CONCAT(FLOAT_TYPE,_ArcTan)
+#define c_fatan				Float_ArcTan
+#define Float_Tan_1			Float_ArcTan
+#define Float_ArcTangent	Float_ArcTan
+#define Float_InvTangent	Float_ArcTan
 
-t_f32							F32_ArcTan(t_f32 x);
-#define c_f32atan				F32_ArcTan
+t_f32						F32_ArcTan(t_f32 x);
+#define c_f32atan			F32_ArcTan
+#define c_atanf				F32_ArcTan
 
-t_f64							F64_ArcTan(t_f64 x);
-#define c_f64atan				F64_ArcTan
+t_f64						F64_ArcTan(t_f64 x);
+#define c_f64atan			F64_ArcTan
+#define c_atand				F64_ArcTan
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80							F80_ArcTan(t_f80 x);
-#define c_f80atan				F80_ArcTan
+t_f80						F80_ArcTan(t_f80 x);
+#define c_f80atan			F80_ArcTan
+#define c_atanl				F80_ArcTan
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128							F128_ArcTan(t_f128 x);
-#define c_f128atan				F128_ArcTan
+t_f128						F128_ArcTan(t_f128 x);
+#define c_f128atan			F128_ArcTan
+#define c_atanl				F128_ArcTan
 #endif
 //!@}
 
@@ -1143,28 +1285,32 @@ t_f128							F128_ArcTan(t_f128 x);
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/atan2}
 */
 //!@{
-#define								Float_ArcTan2	CONCAT(FLOAT_TYPE,_ArcTan2)
-#define c_fatan2					Float_ArcTan2
-#define Float_ArcTan_YoverX			Float_ArcTan2
-#define Float_ArcTangent2			Float_ArcTan2
-#define Float_ArcTangent_YoverX		Float_ArcTan2
-#define Float_InvTan_YoverX			Float_ArcTan2
-#define Float_InvTangent2			Float_ArcTan2
-#define Float_InvTangent_YoverX		Float_ArcTan2
+#define							Float_ArcTan2	CONCAT(FLOAT_TYPE,_ArcTan2)
+#define c_fatan2				Float_ArcTan2
+#define Float_ArcTan_YoverX		Float_ArcTan2
+#define Float_ArcTangent2		Float_ArcTan2
+#define Float_ArcTangent_YoverX	Float_ArcTan2
+#define Float_InvTan_YoverX		Float_ArcTan2
+#define Float_InvTangent2		Float_ArcTan2
+#define Float_InvTangent_YoverX	Float_ArcTan2
 
-t_f32								F32_ArcTan2(t_f32 y, t_f32 x);
-#define c_f32atan2					F32_ArcTan2
+t_f32							F32_ArcTan2(t_f32 y, t_f32 x);
+#define c_f32atan2				F32_ArcTan2
+#define c_atan2f				F32_ArcTan2
 
-t_f64								F64_ArcTan2(t_f64 y, t_f64 x);
-#define c_f64atan2					F64_ArcTan2
+t_f64							F64_ArcTan2(t_f64 y, t_f64 x);
+#define c_f64atan2				F64_ArcTan2
+#define c_atan2d				F64_ArcTan2
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80								F80_ArcTan2(t_f80 y, t_f80 x);
-#define c_f80atan2					F80_ArcTan2
+t_f80							F80_ArcTan2(t_f80 y, t_f80 x);
+#define c_f80atan2				F80_ArcTan2
+#define c_atan2l				F80_ArcTan2
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128								F128_ArcTan2(t_f128 y, t_f128 x);
-#define c_f128atan2					F128_ArcTan2
+t_f128							F128_ArcTan2(t_f128 y, t_f128 x);
+#define c_f128atan2				F128_ArcTan2
+#define c_atan2l				F128_ArcTan2
 #endif
 //!@}
 
@@ -1176,55 +1322,63 @@ t_f128								F128_ArcTan2(t_f128 y, t_f128 x);
 ** ************************************************************************** *|
 */
 
-//!@doc Returns the hyperbolic cosine of `x`
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cosh}
-*/
-//!@{
-#define								Float_CosH	CONCAT(FLOAT_TYPE,_CosH)
-#define c_fcosh						Float_CosH
-#define Float_Cos_H					Float_CosH
-#define Float_Cosine_Hyperbolic		Float_CosH
-
-t_f32								F32_CosH(t_f32 x);
-#define c_f32cosh					F32_CosH
-
-t_f64								F64_CosH(t_f64 x);
-#define c_f64cosh					F64_CosH
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80								F80_CosH(t_f80 x);
-#define c_f80cosh					F80_CosH
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128								F128_CosH(t_f128 x);
-#define c_f128cosh					F128_CosH
-#endif
-//!@}
-
 //!@doc Returns the hyperbolic sine of `x`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/sinh}
 */
 //!@{
-#define								Float_SinH	CONCAT(FLOAT_TYPE,_SinH)
-#define c_fsinh						Float_SinH
-#define Float_Sin_H					Float_SinH
-#define Float_Sine_Hyperbolic		Float_SinH
+#define							Float_SinH	CONCAT(FLOAT_TYPE,_SinH)
+#define c_fsinh					Float_SinH
+#define Float_Sin_H				Float_SinH
+#define Float_Sine_Hyperbolic	Float_SinH
 
-t_f32								F32_SinH(t_f32 x);
-#define c_f32sinh					F32_SinH
+t_f32							F32_SinH(t_f32 x);
+#define c_f32sinh				F32_SinH
+#define c_sinhf					F32_SinH
 
-t_f64								F64_SinH(t_f64 x);
-#define c_f64sinh					F64_SinH
+t_f64							F64_SinH(t_f64 x);
+#define c_f64sinh				F64_SinH
+#define c_sinhd					F64_SinH
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80								F80_SinH(t_f80 x);
-#define c_f80sinh					F80_SinH
+t_f80							F80_SinH(t_f80 x);
+#define c_f80sinh				F80_SinH
+#define c_sinhl					F80_SinH
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128								F128_SinH(t_f128 x);
-#define c_f128sinh					F128_SinH
+t_f128							F128_SinH(t_f128 x);
+#define c_f128sinh				F128_SinH
+#define c_sinhl					F128_SinH
+#endif
+//!@}
+
+//!@doc Returns the hyperbolic cosine of `x`
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/cosh}
+*/
+//!@{
+#define							Float_CosH	CONCAT(FLOAT_TYPE,_CosH)
+#define c_fcosh					Float_CosH
+#define Float_Cos_H				Float_CosH
+#define Float_Cosine_Hyperbolic	Float_CosH
+
+t_f32							F32_CosH(t_f32 x);
+#define c_f32cosh				F32_CosH
+#define c_coshf					F32_CosH
+
+t_f64							F64_CosH(t_f64 x);
+#define c_f64cosh				F64_CosH
+#define c_coshd					F64_CosH
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80							F80_CosH(t_f80 x);
+#define c_f80cosh				F80_CosH
+#define c_coshl					F80_CosH
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128							F128_CosH(t_f128 x);
+#define c_f128cosh				F128_CosH
+#define c_coshl					F128_CosH
 #endif
 //!@}
 
@@ -1238,49 +1392,27 @@ t_f128								F128_SinH(t_f128 x);
 #define Float_Tan_H					Float_TanH
 #define Float_Tangent_Hyperbolic	Float_TanH
 
-t_f32								F32_TanH(t_f32 x);
-#define c_f32tanh					F32_TanH
+t_f32							F32_TanH(t_f32 x);
+#define c_f32tanh				F32_TanH
+#define c_tanhf					F32_TanH
 
-t_f64								F64_TanH(t_f64 x);
-#define c_f64tanh					F64_TanH
+t_f64							F64_TanH(t_f64 x);
+#define c_f64tanh				F64_TanH
+#define c_tanhd					F64_TanH
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80								F80_TanH(t_f80 x);
-#define c_f80tanh					F80_TanH
+t_f80							F80_TanH(t_f80 x);
+#define c_f80tanh				F80_TanH
+#define c_tanhl					F80_TanH
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128								F128_TanH(t_f128 x);
-#define c_f128tanh					F128_TanH
+t_f128							F128_TanH(t_f128 x);
+#define c_f128tanh				F128_TanH
+#define c_tanhl					F128_TanH
 #endif
 //!@}
 
 
-
-//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acosh}
-*/
-//!@{
-#define								Float_InvCosH	CONCAT(FLOAT_TYPE,_InvCosH)
-#define c_facosh					Float_InvCosH
-#define Float_Cos_1_H				Float_InvCosH
-#define Float_InvCosine_Hyperbolic	Float_InvCosH
-
-t_f32								F32_InvCosH(t_f32 x);
-#define c_f32acosh					F32_InvCosH
-
-t_f64								F64_InvCosH(t_f64 x);
-#define c_f64acosh					F64_InvCosH
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80								F80_InvCosH(t_f80 x);
-#define c_f80acosh					F80_InvCosH
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128								F128_InvCosH(t_f128 x);
-#define c_f128acosh					F128_InvCosH
-#endif
-//!@}
 
 //!@doc Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
@@ -1294,17 +1426,51 @@ t_f128								F128_InvCosH(t_f128 x);
 
 t_f32								F32_InvSinH(t_f32 x);
 #define c_f32asinh					F32_InvSinH
+#define c_asinhf					F32_InvSinH
 
 t_f64								F64_InvSinH(t_f64 x);
 #define c_f64asinh					F64_InvSinH
+#define c_asinhd					F64_InvSinH
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80								F80_InvSinH(t_f80 x);
 #define c_f80asinh					F80_InvSinH
+#define c_asinhl					F80_InvSinH
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128								F128_InvSinH(t_f128 x);
 #define c_f128asinh					F128_InvSinH
+#define c_asinhl					F128_InvSinH
+#endif
+//!@}
+
+//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/acosh}
+*/
+//!@{
+#define								Float_InvCosH	CONCAT(FLOAT_TYPE,_InvCosH)
+#define c_facosh					Float_InvCosH
+#define Float_Cos_1_H				Float_InvCosH
+#define Float_InvCosine_Hyperbolic	Float_InvCosH
+
+t_f32								F32_InvCosH(t_f32 x);
+#define c_f32acosh					F32_InvCosH
+#define c_acoshf					F32_InvCosH
+
+t_f64								F64_InvCosH(t_f64 x);
+#define c_f64acosh					F64_InvCosH
+#define c_acoshd					F64_InvCosH
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80								F80_InvCosH(t_f80 x);
+#define c_f80acosh					F80_InvCosH
+#define c_acoshl					F80_InvCosH
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128								F128_InvCosH(t_f128 x);
+#define c_f128acosh					F128_InvCosH
+#define c_acoshl					F128_InvCosH
 #endif
 //!@}
 
@@ -1320,17 +1486,21 @@ t_f128								F128_InvSinH(t_f128 x);
 
 t_f32								F32_InvTanH(t_f32 x);
 #define c_f32atanh					F32_InvTanH
+#define c_atanhf					F32_InvTanH
 
 t_f64								F64_InvTanH(t_f64 x);
 #define c_f64atanh					F64_InvTanH
+#define c_atanhd					F64_InvTanH
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80								F80_InvTanH(t_f80 x);
 #define c_f80atanh					F80_InvTanH
+#define c_atanhl					F80_InvTanH
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128								F128_InvTanH(t_f128 x);
 #define c_f128atanh					F128_InvTanH
+#define c_atanhl					F128_InvTanH
 #endif
 //!@}
 

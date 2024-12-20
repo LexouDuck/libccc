@@ -8,24 +8,9 @@
 
 
 
-#define DEFINEFUNC_UINT_GT(BITS) \
-_INLINE() \
-t_bool	U##BITS##_GT(t_u##BITS a, t_u##BITS b) \
-{ \
-	return (a > b); \
-} \
-
-DEFINEFUNC_UINT_GT(8)
-DEFINEFUNC_UINT_GT(16)
-DEFINEFUNC_UINT_GT(32)
-DEFINEFUNC_UINT_GT(64)
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_GT(128)
-#endif
-
 #define DEFINEFUNC_UINT_LT(BITS) \
 _INLINE() \
-t_bool	U##BITS##_LT(t_u##BITS a, t_u##BITS b) \
+t_bool	U##BITS##_LessThan(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a < b); \
 } \
@@ -38,24 +23,9 @@ DEFINEFUNC_UINT_LT(64)
 DEFINEFUNC_UINT_LT(128)
 #endif
 
-#define DEFINEFUNC_UINT_GTE(BITS) \
-_INLINE() \
-t_bool	U##BITS##_GTE(t_u##BITS a, t_u##BITS b) \
-{ \
-	return (a >= b); \
-} \
-
-DEFINEFUNC_UINT_GTE(8)
-DEFINEFUNC_UINT_GTE(16)
-DEFINEFUNC_UINT_GTE(32)
-DEFINEFUNC_UINT_GTE(64)
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINT_GTE(128)
-#endif
-
 #define DEFINEFUNC_UINT_LTE(BITS) \
 _INLINE() \
-t_bool	U##BITS##_LTE(t_u##BITS a, t_u##BITS b) \
+t_bool	U##BITS##_LessThanOrEqual(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a <= b); \
 } \
@@ -68,27 +38,41 @@ DEFINEFUNC_UINT_LTE(64)
 DEFINEFUNC_UINT_LTE(128)
 #endif
 
-
-
-
-#define DEFINEFUNC_SINT_GT(BITS) \
+#define DEFINEFUNC_UINT_GT(BITS) \
 _INLINE() \
-t_bool	S##BITS##_GT(t_s##BITS a, t_s##BITS b) \
+t_bool	U##BITS##_GreaterThan(t_u##BITS a, t_u##BITS b) \
 { \
 	return (a > b); \
 } \
 
-DEFINEFUNC_SINT_GT(8)
-DEFINEFUNC_SINT_GT(16)
-DEFINEFUNC_SINT_GT(32)
-DEFINEFUNC_SINT_GT(64)
+DEFINEFUNC_UINT_GT(8)
+DEFINEFUNC_UINT_GT(16)
+DEFINEFUNC_UINT_GT(32)
+DEFINEFUNC_UINT_GT(64)
 #if LIBCONFIG_USE_INT128
-DEFINEFUNC_SINT_GT(128)
+DEFINEFUNC_UINT_GT(128)
 #endif
+
+#define DEFINEFUNC_UINT_GTE(BITS) \
+_INLINE() \
+t_bool	U##BITS##_GreaterThanOrEqual(t_u##BITS a, t_u##BITS b) \
+{ \
+	return (a >= b); \
+} \
+
+DEFINEFUNC_UINT_GTE(8)
+DEFINEFUNC_UINT_GTE(16)
+DEFINEFUNC_UINT_GTE(32)
+DEFINEFUNC_UINT_GTE(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINT_GTE(128)
+#endif
+
+
 
 #define DEFINEFUNC_SINT_LT(BITS) \
 _INLINE() \
-t_bool	S##BITS##_LT(t_s##BITS a, t_s##BITS b) \
+t_bool	S##BITS##_LessThan(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a < b); \
 } \
@@ -101,24 +85,9 @@ DEFINEFUNC_SINT_LT(64)
 DEFINEFUNC_SINT_LT(128)
 #endif
 
-#define DEFINEFUNC_SINT_GTE(BITS) \
-_INLINE() \
-t_bool	S##BITS##_GTE(t_s##BITS a, t_s##BITS b) \
-{ \
-	return (a >= b); \
-} \
-
-DEFINEFUNC_SINT_GTE(8)
-DEFINEFUNC_SINT_GTE(16)
-DEFINEFUNC_SINT_GTE(32)
-DEFINEFUNC_SINT_GTE(64)
-#if LIBCONFIG_USE_INT128
-DEFINEFUNC_SINT_GTE(128)
-#endif
-
 #define DEFINEFUNC_SINT_LTE(BITS) \
 _INLINE() \
-t_bool	S##BITS##_LTE(t_s##BITS a, t_s##BITS b) \
+t_bool	S##BITS##_LessThanOrEqual(t_s##BITS a, t_s##BITS b) \
 { \
 	return (a <= b); \
 } \
@@ -129,4 +98,34 @@ DEFINEFUNC_SINT_LTE(32)
 DEFINEFUNC_SINT_LTE(64)
 #if LIBCONFIG_USE_INT128
 DEFINEFUNC_SINT_LTE(128)
+#endif
+
+#define DEFINEFUNC_SINT_GT(BITS) \
+_INLINE() \
+t_bool	S##BITS##_GreaterThan(t_s##BITS a, t_s##BITS b) \
+{ \
+	return (a > b); \
+} \
+
+DEFINEFUNC_SINT_GT(8)
+DEFINEFUNC_SINT_GT(16)
+DEFINEFUNC_SINT_GT(32)
+DEFINEFUNC_SINT_GT(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_GT(128)
+#endif
+
+#define DEFINEFUNC_SINT_GTE(BITS) \
+_INLINE() \
+t_bool	S##BITS##_GreaterThanOrEqual(t_s##BITS a, t_s##BITS b) \
+{ \
+	return (a >= b); \
+} \
+
+DEFINEFUNC_SINT_GTE(8)
+DEFINEFUNC_SINT_GTE(16)
+DEFINEFUNC_SINT_GTE(32)
+DEFINEFUNC_SINT_GTE(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_SINT_GTE(128)
 #endif

@@ -408,17 +408,19 @@ int		testsuite_math(void)
 
 
 
-	#if TRUE
-	TESTSUITE_MATH(f, 32, "IEEE single", 0.001)
-	#endif
-	#if TRUE
-	TESTSUITE_MATH( , 64, "IEEE double", 0.0001)
-	#endif
-	#if LIBCONFIG_USE_FLOAT80
-	TESTSUITE_MATH(l, 80, "x86 extended", 0.00001)
-	#endif
-	#if LIBCONFIG_USE_FLOAT128
-	TESTSUITE_MATH(l, 128, "IEEE quadruple", 0.000001)
+	#if !LIBCONFIG_USE_STD_MATH
+		#if TRUE
+		TESTSUITE_MATH(f, 32, "IEEE single", 0.001)
+		#endif
+		#if TRUE
+		TESTSUITE_MATH( , 64, "IEEE double", 0.0001)
+		#endif
+		#if LIBCONFIG_USE_FLOAT80
+		TESTSUITE_MATH(l, 80, "x86 extended", 0.00001)
+		#endif
+		#if LIBCONFIG_USE_FLOAT128
+		TESTSUITE_MATH(l, 128, "IEEE quadruple", 0.000001)
+		#endif
 	#endif
 
 	return (OK);

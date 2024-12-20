@@ -9,57 +9,11 @@
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(GT, isgreater)
-#else
-#define DEFINEFUNC_FLOAT_GT(BITS) \
-_INLINE() \
-t_bool	F##BITS##_GT(t_f##BITS a, t_f##BITS b) \
-{ \
-	return (a > b); \
-} \
-
-DEFINEFUNC_FLOAT_GT(32)
-DEFINEFUNC_FLOAT_GT(64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_GT(80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_GT(128)
-#endif
-
-#endif
-
-
-
-#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(GTE, isgreaterequal)
-#else
-#define DEFINEFUNC_FLOAT_GTE(BITS) \
-_INLINE() \
-t_bool	F##BITS##_GTE(t_f##BITS a, t_f##BITS b) \
-{ \
-	return (a >= b); \
-} \
-
-DEFINEFUNC_FLOAT_GTE(32)
-DEFINEFUNC_FLOAT_GTE(64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_GTE(80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_GTE(128)
-#endif
-
-#endif
-
-
-
-#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
 MATH_DECL_ENDORELATION(LT, isless)
 #else
 #define DEFINEFUNC_FLOAT_LT(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LT(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_LessThan(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a < b); \
 } \
@@ -82,7 +36,7 @@ MATH_DECL_ENDORELATION(LTE, islessequal)
 #else
 #define DEFINEFUNC_FLOAT_LTE(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LTE(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_LessThanOrEqual(t_f##BITS a, t_f##BITS b) \
 { \
 	return (a <= b); \
 } \
@@ -94,6 +48,52 @@ DEFINEFUNC_FLOAT_LTE(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_LTE(128)
+#endif
+
+#endif
+
+
+
+#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
+MATH_DECL_ENDORELATION(GT, isgreater)
+#else
+#define DEFINEFUNC_FLOAT_GT(BITS) \
+_INLINE() \
+t_bool	F##BITS##_GreaterThan(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a > b); \
+} \
+
+DEFINEFUNC_FLOAT_GT(32)
+DEFINEFUNC_FLOAT_GT(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_GT(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_GT(128)
+#endif
+
+#endif
+
+
+
+#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
+MATH_DECL_ENDORELATION(GTE, isgreaterequal)
+#else
+#define DEFINEFUNC_FLOAT_GTE(BITS) \
+_INLINE() \
+t_bool	F##BITS##_GreaterThanOrEqual(t_f##BITS a, t_f##BITS b) \
+{ \
+	return (a >= b); \
+} \
+
+DEFINEFUNC_FLOAT_GTE(32)
+DEFINEFUNC_FLOAT_GTE(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_GTE(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_GTE(128)
 #endif
 
 #endif
