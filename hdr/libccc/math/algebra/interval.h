@@ -111,29 +111,49 @@ typedef t_float	(*f_scalar_func4)(u_vector4d const v);
 // TODO document these functions
 
 //t_float	lin_integrate(sf, domain);
-t_float		c_integrate(f_float_function const f, s_interval const domain, t_float step);
-t_float		c_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
-t_float		c_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
-t_float		c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
-t_float		c_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
+t_float	c_integrate(f_float_function const f, s_interval const domain, t_float step);
+t_float	c_mc_integrate_1d(f_scalar_func1 const sf, s_box1d const domain);
+t_float	c_mc_integrate_2d(f_scalar_func2 const sf, s_box2d const domain);
+t_float	c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain);
+t_float	c_mc_integrate_4d(f_scalar_func4 const sf, s_box4d const domain);
 
 
 
-t_float		c_distance_float(t_float x, t_float y);
-t_f32		c_distance_f32  (t_f32   x, t_f32   y);
-t_f64		c_distance_f64  (t_f64   x, t_f64   y);
+t_uint	c_distance_uint	(t_uint  x, t_uint  y);
+t_u8	c_distance_u8	(t_u8    x, t_u8    y);
+t_u16	c_distance_u16	(t_u16   x, t_u16   y);
+t_u32	c_distance_u32	(t_u32   x, t_u32   y);
+t_u64	c_distance_u64	(t_u64   x, t_u64   y);
+#if LIBCONFIG_USE_INT128
+t_u128	c_distance_u128	(t_u128  x, t_u128  y);
+#endif
 
-t_uint		c_distance_uint(t_uint x, t_uint y);
-t_u8		c_distance_u8  (t_u8   x, t_u8   y);
-t_u16		c_distance_u16 (t_u16  x, t_u16  y);
-t_u32		c_distance_u32 (t_u32  x, t_u32  y);
-t_u64		c_distance_u64 (t_u64  x, t_u64  y);
+t_sint	c_distance_sint	(t_sint  x, t_sint  y);
+t_s8	c_distance_s8	(t_s8    x, t_s8    y);
+t_s16	c_distance_s16	(t_s16   x, t_s16   y);
+t_s32	c_distance_s32	(t_s32   x, t_s32   y);
+t_s64	c_distance_s64	(t_s64   x, t_s64   y);
+#if LIBCONFIG_USE_INT128
+t_s128	c_distance_s128	(t_s128  x, t_s128  y);
+#endif
 
-t_sint		c_distance_sint(t_sint x, t_sint y);
-t_s8		c_distance_s8  (t_s8  x, t_s8  y);
-t_s16		c_distance_s16 (t_s16 x, t_s16 y);
-t_s32		c_distance_s32 (t_s32 x, t_s32 y);
-t_s64		c_distance_s64 (t_s64 x, t_s64 y);
+t_fixed	c_distance_fixed(t_fixed x, t_fixed y);
+t_q16	c_distance_q16	(t_q16   x, t_q16   y);
+t_q32	c_distance_q32	(t_q32   x, t_q32   y);
+t_q64	c_distance_q64	(t_q64   x, t_q64   y);
+#if LIBCONFIG_USE_INT128
+t_q128	c_distance_q128	(t_q128  x, t_q128  y);
+#endif
+
+t_float	c_distance_float(t_float x, t_float y);
+t_f32	c_distance_f32	(t_f32   x, t_f32   y);
+t_f64	c_distance_f64	(t_f64   x, t_f64   y);
+#if LIBCONFIG_USE_FLOAT80
+t_f80	c_distance_f80	(t_f80   x, t_f80   y);
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128	c_distance_f128	(t_f128  x, t_f128  y);
+#endif
 
 #define c_distance_int \
 		c_distance_sint
