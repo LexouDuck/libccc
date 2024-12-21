@@ -64,7 +64,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_UINT_BITS
-#define LIBCONFIG_UINT_BITS	32
+#define LIBCONFIG_UINT_BITS	64
 #endif
 #if (LIBCONFIG_UINT_BITS != 8) && \
 	(LIBCONFIG_UINT_BITS != 16) && \
@@ -107,7 +107,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_SINT_BITS
-#define LIBCONFIG_SINT_BITS	32
+#define LIBCONFIG_SINT_BITS	64
 #endif
 #if (LIBCONFIG_SINT_BITS != 8) && \
 	(LIBCONFIG_SINT_BITS != 16) && \
@@ -401,7 +401,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH	1
+#define LIBCONFIG_USE_STD_MATH	0
 #endif
 #if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
 #error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"

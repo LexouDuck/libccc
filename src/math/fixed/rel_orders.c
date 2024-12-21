@@ -13,7 +13,7 @@ MATH_DECL_ENDORELATION(LT, isless)
 #else
 #define DEFINEFUNC_FIXED_LT(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LessThan(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_LessThan(t_q##BITS a, t_q##BITS b) \
 { \
 	return (a < b); \
 } \
@@ -34,7 +34,7 @@ MATH_DECL_ENDORELATION(LTE, islessequal)
 #else
 #define DEFINEFUNC_FIXED_LTE(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LessThanOrEqual(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_LessThanOrEqual(t_q##BITS a, t_q##BITS b) \
 { \
 	return (a <= b); \
 } \
@@ -55,7 +55,7 @@ MATH_DECL_ENDORELATION(GT, isgreater)
 #else
 #define DEFINEFUNC_FIXED_GT(BITS) \
 _INLINE() \
-t_bool	F##BITS##_GreaterThan(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_GreaterThan(t_q##BITS a, t_q##BITS b) \
 { \
 	return (a > b); \
 } \
@@ -76,7 +76,7 @@ MATH_DECL_ENDORELATION(GTE, isgreaterequal)
 #else
 #define DEFINEFUNC_FIXED_GTE(BITS) \
 _INLINE() \
-t_bool	F##BITS##_GreaterThanOrEqual(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_GreaterThanOrEqual(t_q##BITS a, t_q##BITS b) \
 { \
 	return (a >= b); \
 } \

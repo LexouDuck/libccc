@@ -71,7 +71,7 @@ typedef		t_q128	(*f_q128_operator)	(t_q128 x,	t_q128 y);
 
 /*
 ** ************************************************************************** *|
-**                            Fixed-point Functions                           *|
+**                           Basic Arithmetic Operations                      *|
 ** ************************************************************************** *|
 */
 
@@ -98,6 +98,39 @@ t_q128						Q128_Abs(t_q128 x);
 #define c_q128abs			Q128_Abs
 #endif
 //!@}
+
+//!@doc Returns the sign value value of `x` (either `-1`, `0`, or `+1`)
+/*!
+**	@isostd{C11,https://en.cppreference.com/w/c/numeric/math/signbit}
+*/
+//!@{
+#define						Fixed_Sgn	CONCAT(FIXED_TYPE,_Sgn)
+#define c_qsgn				Fixed_Sgn
+#define Fixed_Sign			Fixed_Sgn
+#define Fixed_SignOf		Fixed_Sgn
+
+t_q16						Q16_Sgn(t_q16 x);
+#define c_q16sgn			Q16_Sgn
+
+t_q32						Q32_Sgn(t_q32 x);
+#define c_q32sgn			Q32_Sgn
+
+t_q64						Q64_Sgn(t_q64 x);
+#define c_q64sgn			Q64_Sgn
+
+#if LIBCONFIG_USE_INT128
+t_q128						Q128_Sgn(t_q128 x);
+#define c_q128sgn			Q128_Sgn
+#endif
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                            Fixed-point Functions                           *|
+** ************************************************************************** *|
+*/
 
 //!@doc Returns the value of `x`, rounded to the nearest integer
 /*!
@@ -197,7 +230,7 @@ t_q128					Q128_Ceil(t_q128 x);
 
 /*
 ** ************************************************************************** *|
-**                     Fixed-point relational comparisons                     *|
+**                            Comparison operators                            *|
 ** ************************************************************************** *|
 */
 
@@ -230,8 +263,6 @@ t_bool					Q128_Equals(t_q128 x, t_q128 y);
 #endif
 //!@}
 
-
-
 //!@doc Returns `TRUE` if the 2 given fixed-point values are close to equal (operator: `~=`)
 /*!
 **	@nonstd
@@ -263,9 +294,85 @@ t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
 
 
 
-// TODO Fixed_LessThan
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value (operator: `<`)
+//!@{
+#define					Fixed_LessThan	CONCAT(FIXED_TYPE,_LessThan)
+#define c_qlt			Fixed_LessThan
 
-// TODO Fixed_GreaterThan
+t_bool					Q16_LessThan(t_q16 x, t_q16 y);
+#define c_q16lt			Q16_LessThan
+
+t_bool					Q32_LessThan(t_q32 x, t_q32 y);
+#define c_q32lt			Q32_LessThan
+
+t_bool					Q64_LessThan(t_q64 x, t_q64 y);
+#define c_q64lt			Q64_LessThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					Q128_LessThan(t_q128 x, t_q128 y);
+#define c_q128lt		Q128_LessThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
+//!@{
+#define					Fixed_LessThanOrEqual	CONCAT(FIXED_TYPE,_LessThanOrEqual)
+#define c_qlte			Fixed_LessThanOrEqual
+
+t_bool					Q16_LessThanOrEqual(t_q16 x, t_q16 y);
+#define c_q16lte		Q16_LessThanOrEqual
+
+t_bool					Q32_LessThanOrEqual(t_q32 x, t_q32 y);
+#define c_q32lte		Q32_LessThanOrEqual
+
+t_bool					Q64_LessThanOrEqual(t_q64 x, t_q64 y);
+#define c_q64lte		Q64_LessThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					Q128_LessThanOrEqual(t_q128 x, t_q128 y);
+#define c_q128lte		Q128_LessThanOrEqual
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
+//!@{
+#define					Fixed_GreaterThan	CONCAT(FIXED_TYPE,_GreaterThan)
+#define c_qgt			Fixed_GreaterThan
+
+t_bool					Q16_GreaterThan(t_q16 x, t_q16 y);
+#define c_q16gt			Q16_GreaterThan
+
+t_bool					Q32_GreaterThan(t_q32 x, t_q32 y);
+#define c_q32gt			Q32_GreaterThan
+
+t_bool					Q64_GreaterThan(t_q64 x, t_q64 y);
+#define c_q64gt			Q64_GreaterThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					Q128_GreaterThan(t_q128 x, t_q128 y);
+#define c_q128gt		Q128_GreaterThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
+//!@{
+#define					Fixed_GreaterThanOrEqual	CONCAT(FIXED_TYPE,_GreaterThanOrEqual)
+#define c_qgte			Fixed_GreaterThanOrEqual
+
+t_bool					Q16_GreaterThanOrEqual(t_q16 x, t_q16 y);
+#define c_q16gte		Q16_GreaterThanOrEqual
+
+t_bool					Q32_GreaterThanOrEqual(t_q32 x, t_q32 y);
+#define c_q32gte		Q32_GreaterThanOrEqual
+
+t_bool					Q64_GreaterThanOrEqual(t_q64 x, t_q64 y);
+#define c_q64gte		Q64_GreaterThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					Q128_GreaterThanOrEqual(t_q128 x, t_q128 y);
+#define c_q128gte		Q128_GreaterThanOrEqual
+#endif
+//!@}
 
 
 
@@ -394,6 +501,32 @@ t_q128					Q128_Mod(t_q128 x, t_q128 y);
 
 
 
+//!@doc Returns the remainder of euclidian division of `x` by `y`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					Fixed_Rem	CONCAT(FIXED_TYPE,_Rem)
+#define c_qrem			Fixed_Rem
+#define Fixed_Remainder	Fixed_Rem
+
+t_q16					Q16_Rem(t_q16 x, t_q16 y);
+#define c_q16rem		Q16_Rem
+
+t_q32					Q32_Rem(t_q32 x, t_q32 y);
+#define c_q32rem		Q32_Rem
+
+t_q64					Q64_Rem(t_q64 x, t_q64 y);
+#define c_q64rem		Q64_Rem
+
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_Rem(t_q128 x, t_q128 y);
+#define c_q128rem		Q128_Rem
+#endif
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
 **                          Fixed-point math operators                        *|
@@ -503,7 +636,33 @@ t_q128						Q128_RootN(t_q128 x, t_u8 n);
 #endif
 //!@}
 
-// TODO hypot: {\sqrt{x^2+y^2}}
+
+
+//!@doc Computes the square root of the sum of the squares of `x` and `y`, without undue overflow or underflow at intermediate stages of the computation.
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/hypot}
+**
+**	- Math: @f$ {\sqrt{x^2+y^2}} @f$
+*/
+//!@{
+#define						Fixed_Hypotenuse	CONCAT(FIXED_TYPE,_Hypotenuse)
+#define c_qhypot			Fixed_Hypotenuse
+#define Fixed_Hypot			Fixed_Hypotenuse
+
+t_q16						Q16_Hypotenuse(t_q16 x, t_q16 y);
+#define c_q16hypot			Q16_Hypotenuse
+
+t_q32						Q32_Hypotenuse(t_q32 x, t_q32 y);
+#define c_q32hypot			Q32_Hypotenuse
+
+t_q64						Q64_Hypotenuse(t_q64 x, t_q64 y);
+#define c_q64hypot			Q64_Hypotenuse
+
+#if LIBCONFIG_USE_FLOAT128
+t_q128						Q128_Hypotenuse(t_q128 x, t_q128 y);
+#define c_q128hypot			Q128_Hypotenuse
+#endif
+//!@}
 
 
 
@@ -536,6 +695,64 @@ t_q64							Q64_Exp(t_q64 x);
 #if LIBCONFIG_USE_INT128
 t_q128							Q128_Exp(t_q128 x);
 #define c_q128exp				Q128_Exp
+#endif
+//!@}
+
+//!@doc Returns the exponential function's value for `x`
+/*!
+**	@nonstd
+*/
+//!@{
+#define							Fixed_Exp2	CONCAT(FIXED_TYPE,_Exp2)
+#define c_qexp2					Fixed_Exp2
+#define c_qpow2					Fixed_Exp2
+#define Fixed_Pow2				Fixed_Exp2
+
+t_q16							Q16_Exp2(t_q16 x);
+#define c_q16exp2				Q16_Exp2
+#define c_q16pow2				Q16_Exp2
+
+t_q32							Q32_Exp2(t_q32 x);
+#define c_q32exp2				Q32_Exp2
+#define c_q32pow2				Q32_Exp2
+
+t_q64							Q64_Exp2(t_q64 x);
+#define c_q64exp2				Q64_Exp2
+#define c_q64pow2				Q64_Exp2
+
+#if LIBCONFIG_USE_INT128
+t_q128							Q128_Exp2(t_q128 x);
+#define c_q128exp2				Q128_Exp2
+#define c_q128pow2				Q128_Exp2
+#endif
+//!@}
+
+//!@doc Returns the ex ponential function's value for `x`
+/*!
+**	@nonstd
+*/
+//!@{
+#define							Fixed_Exp10	CONCAT(FIXED_TYPE,_Exp10)
+#define c_qexp10				Fixed_Exp10
+#define c_qpow10				Fixed_Exp10
+#define Fixed_Pow10				Fixed_Exp10
+
+t_q16							Q16_Exp10(t_q16 x);
+#define c_q16exp10				Q16_Exp10
+#define c_q16pow10				Q16_Exp10
+
+t_q32							Q32_Exp10(t_q32 x);
+#define c_q32exp10				Q32_Exp10
+#define c_q32pow10				Q32_Exp10
+
+t_q64							Q64_Exp10(t_q64 x);
+#define c_q64exp10				Q64_Exp10
+#define c_q64pow10				Q64_Exp10
+
+#if LIBCONFIG_USE_INT128
+t_q128							Q128_Exp10(t_q128 x);
+#define c_q128exp10				Q128_Exp10
+#define c_q128pow10				Q128_Exp10
 #endif
 //!@}
 
@@ -658,30 +875,6 @@ t_q128							Q128_LogN(t_q128 x, t_q128 y);
 
 
 
-//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
-/*!
-**	@nonstd
-*/
-//!@{
-#define							Fixed_Cos	CONCAT(FIXED_TYPE,_Cos)
-#define c_qcos					Fixed_Cos
-#define Fixed_Cosine			Fixed_Cos
-
-t_q16							Q16_Cos(t_q16 x);
-#define c_q16cos				Q16_Cos
-
-t_q32							Q32_Cos(t_q32 x);
-#define c_q32cos				Q32_Cos
-
-t_q64							Q64_Cos(t_q64 x);
-#define c_q64cos				Q64_Cos
-
-#if LIBCONFIG_USE_INT128
-t_q128							Q128_Cos(t_q128 x);
-#define c_q128cos				Q128_Cos
-#endif
-//!@}
-
 //!@doc Returns the sine of `x` (vertical trigonometry coordinate)
 /*!
 **	@nonstd
@@ -703,6 +896,30 @@ t_q64							Q64_Sin(t_q64 x);
 #if LIBCONFIG_USE_INT128
 t_q128							Q128_Sin(t_q128 x);
 #define c_q128sin				Q128_Sin
+#endif
+//!@}
+
+//!@doc Returns the cosine of `x` (horizontal trigonometry coordinate)
+/*!
+**	@nonstd
+*/
+//!@{
+#define							Fixed_Cos	CONCAT(FIXED_TYPE,_Cos)
+#define c_qcos					Fixed_Cos
+#define Fixed_Cosine			Fixed_Cos
+
+t_q16							Q16_Cos(t_q16 x);
+#define c_q16cos				Q16_Cos
+
+t_q32							Q32_Cos(t_q32 x);
+#define c_q32cos				Q32_Cos
+
+t_q64							Q64_Cos(t_q64 x);
+#define c_q64cos				Q64_Cos
+
+#if LIBCONFIG_USE_INT128
+t_q128							Q128_Cos(t_q128 x);
+#define c_q128cos				Q128_Cos
 #endif
 //!@}
 
@@ -732,31 +949,6 @@ t_q128							Q128_Tan(t_q128 x);
 
 
 
-//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
-/*!
-**	@nonstd
-*/
-//!@{
-#define							Fixed_ArcCos	CONCAT(FIXED_TYPE,_ArcCos)
-#define c_qacos					Fixed_ArcCos
-#define Fixed_Cos_1				Fixed_ArcCos
-#define Fixed_InvCosine			Fixed_ArcCos
-
-t_q16							Q16_ArcCos(t_q16 x);
-#define c_q16acos				Q16_ArcCos
-
-t_q32							Q32_ArcCos(t_q32 x);
-#define c_q32acos				Q32_ArcCos
-
-t_q64							Q64_ArcCos(t_q64 x);
-#define c_q64acos				Q64_ArcCos
-
-#if LIBCONFIG_USE_INT128
-t_q128							Q128_ArcCos(t_q128 x);
-#define c_q128acos				Q128_ArcCos
-#endif
-//!@}
-
 //!@doc Returns the arc-sine of `x` (inverse of the sin function)
 /*!
 **	@nonstd
@@ -779,6 +971,31 @@ t_q64							Q64_ArcSin(t_q64 x);
 #if LIBCONFIG_USE_INT128
 t_q128							Q128_ArcSin(t_q128 x);
 #define c_q128asin				Q128_ArcSin
+#endif
+//!@}
+
+//!@doc Returns the arc-cosine of `x` (inverse of the cos function)
+/*!
+**	@nonstd
+*/
+//!@{
+#define							Fixed_ArcCos	CONCAT(FIXED_TYPE,_ArcCos)
+#define c_qacos					Fixed_ArcCos
+#define Fixed_Cos_1				Fixed_ArcCos
+#define Fixed_InvCosine			Fixed_ArcCos
+
+t_q16							Q16_ArcCos(t_q16 x);
+#define c_q16acos				Q16_ArcCos
+
+t_q32							Q32_ArcCos(t_q32 x);
+#define c_q32acos				Q32_ArcCos
+
+t_q64							Q64_ArcCos(t_q64 x);
+#define c_q64acos				Q64_ArcCos
+
+#if LIBCONFIG_USE_INT128
+t_q128							Q128_ArcCos(t_q128 x);
+#define c_q128acos				Q128_ArcCos
 #endif
 //!@}
 
@@ -820,47 +1037,22 @@ t_q128							Q128_ArcTan(t_q128 x);
 #define Fixed_ArcTangent2			Fixed_ArcTan2
 #define Fixed_ArcTangent_YoverX		Fixed_ArcTan2
 
-t_q16								Q16_(t_q16 x, t_q16 y);
+t_q16								Q16_ArcTan2(t_q16 x, t_q16 y);
 #define c_q16atan2					Q16_ArcTan2
 
-t_q32								Q32_(t_q32 x, t_q32 y);
+t_q32								Q32_ArcTan2(t_q32 x, t_q32 y);
 #define c_q32atan2					Q32_ArcTan2
 
-t_q64								Q64_(t_q64 x, t_q64 y);
+t_q64								Q64_ArcTan2(t_q64 x, t_q64 y);
 #define c_q64atan2					Q64_ArcTan2
 
 #if LIBCONFIG_USE_INT128
-t_q128								Q128_(t_q128 x, t_q128 y);
+t_q128								Q128_ArcTan2(t_q128 x, t_q128 y);
 #define c_q128atan2					Q128_ArcTan2
 #endif
 //!@}
 
 
-
-//!@doc Returns the hyperbolic cosine of `x`
-/*!
-**	@nonstd
-*/
-//!@{
-#define								Fixed_CosH	CONCAT(FIXED_TYPE,_CosH)
-#define c_qcosh						Fixed_CosH
-#define Fixed_Cos_H					Fixed_CosH
-#define Fixed_Cosine_Hyperbolic		Fixed_CosH
-
-t_q16								Q16_CosH(t_q16 x);
-#define c_q16cosh					Q16_CosH
-
-t_q32								Q32_CosH(t_q32 x);
-#define c_q32cosh					Q32_CosH
-
-t_q64								Q64_CosH(t_q64 x);
-#define c_q64cosh					Q64_CosH
-
-#if LIBCONFIG_USE_INT128
-t_q128								Q128_CosH(t_q128 x);
-#define c_q128cosh					Q128_CosH
-#endif
-//!@}
 
 //!@doc Returns the hyperbolic sine of `x`
 /*!
@@ -884,6 +1076,31 @@ t_q64								Q64_SinH(t_q64 x);
 #if LIBCONFIG_USE_INT128
 t_q128								Q128_SinH(t_q128 x);
 #define c_q128sinh					Q128_SinH
+#endif
+//!@}
+
+//!@doc Returns the hyperbolic cosine of `x`
+/*!
+**	@nonstd
+*/
+//!@{
+#define								Fixed_CosH	CONCAT(FIXED_TYPE,_CosH)
+#define c_qcosh						Fixed_CosH
+#define Fixed_Cos_H					Fixed_CosH
+#define Fixed_Cosine_Hyperbolic		Fixed_CosH
+
+t_q16								Q16_CosH(t_q16 x);
+#define c_q16cosh					Q16_CosH
+
+t_q32								Q32_CosH(t_q32 x);
+#define c_q32cosh					Q32_CosH
+
+t_q64								Q64_CosH(t_q64 x);
+#define c_q64cosh					Q64_CosH
+
+#if LIBCONFIG_USE_INT128
+t_q128								Q128_CosH(t_q128 x);
+#define c_q128cosh					Q128_CosH
 #endif
 //!@}
 
@@ -914,31 +1131,6 @@ t_q128								Q128_TanH(t_q128 x);
 
 
 
-//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
-/*!
-**	@nonstd
-*/
-//!@{
-#define								Fixed_InvCosH	CONCAT(FIXED_TYPE,_InvCosH)
-#define c_qacosh					Fixed_InvCosH
-#define Fixed_Cos_1_H				Fixed_InvCosH
-#define Fixed_InvCosine_Hyperbolic	Fixed_InvCosH
-
-t_q16								Q16_InvCosH(t_q16 x);
-#define c_q16acosh					Q16_InvCosH
-
-t_q32								Q32_InvCosH(t_q32 x);
-#define c_q32acosh					Q32_InvCosH
-
-t_q64								Q64_InvCosH(t_q64 x);
-#define c_q64acosh					Q64_InvCosH
-
-#if LIBCONFIG_USE_INT128
-t_q128								Q128_InvCosH(t_q128 x);
-#define c_q128acosh					Q128_InvCosH
-#endif
-//!@}
-
 //!@doc Returns the hyperbolic arc-sine of `x` (inverse of the sinh function)
 /*!
 **	@nonstd
@@ -961,6 +1153,31 @@ t_q64								Q64_InvSinH(t_q64 x);
 #if LIBCONFIG_USE_INT128
 t_q128								Q128_InvSinH(t_q128 x);
 #define c_q128asinh					Q128_InvSinH
+#endif
+//!@}
+
+//!@doc Returns the hyperbolic arc-cosine of `x` (inverse of the cosh function)
+/*!
+**	@nonstd
+*/
+//!@{
+#define								Fixed_InvCosH	CONCAT(FIXED_TYPE,_InvCosH)
+#define c_qacosh					Fixed_InvCosH
+#define Fixed_Cos_1_H				Fixed_InvCosH
+#define Fixed_InvCosine_Hyperbolic	Fixed_InvCosH
+
+t_q16								Q16_InvCosH(t_q16 x);
+#define c_q16acosh					Q16_InvCosH
+
+t_q32								Q32_InvCosH(t_q32 x);
+#define c_q32acosh					Q32_InvCosH
+
+t_q64								Q64_InvCosH(t_q64 x);
+#define c_q64acosh					Q64_InvCosH
+
+#if LIBCONFIG_USE_INT128
+t_q128								Q128_InvCosH(t_q128 x);
+#define c_q128acosh					Q128_InvCosH
 #endif
 //!@}
 
@@ -988,12 +1205,6 @@ t_q128								Q128_InvTanH(t_q128 x);
 #define c_q128atanh					Q128_InvTanH
 #endif
 //!@}
-
-
-
-// TODO hypot ?
-// TODO lgamma ?
-// TODO tgamma ?
 
 
 

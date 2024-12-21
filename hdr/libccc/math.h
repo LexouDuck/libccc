@@ -892,12 +892,6 @@ HEADER_CPP
 
 
 
-// TODO hypot ?
-// TODO lgamma ?
-// TODO tgamma ?
-
-
-
 /*! @endgroup */
 HEADER_END
 #endif

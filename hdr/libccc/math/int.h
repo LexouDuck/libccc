@@ -91,7 +91,7 @@ typedef		t_s128	(*f_s128_operator)	(t_s128 a,	t_s128 b);
 
 /*
 ** ************************************************************************** *|
-**                            Arithmetic Operations                           *|
+**                           Basic Arithmetic Operations                      *|
 ** ************************************************************************** *|
 */
 
@@ -104,21 +104,49 @@ typedef		t_s128	(*f_s128_operator)	(t_s128 a,	t_s128 b);
 #define c_sabs				SInt_Abs
 #define SInt_AbsoluteValue	SInt_Abs
 
-t_s8				S8_Abs(t_s8 a);
-#define c_s8abs		S8_Abs
+t_s8						S8_Abs(t_s8 a);
+#define c_s8abs				S8_Abs
 
-t_s16				S16_Abs(t_s16 a);
-#define c_s16abs	S16_Abs
+t_s16						S16_Abs(t_s16 a);
+#define c_s16abs			S16_Abs
 
-t_s32				S32_Abs(t_s32 a);
-#define c_s32abs	S32_Abs
+t_s32						S32_Abs(t_s32 a);
+#define c_s32abs			S32_Abs
 
-t_s64				S64_Abs(t_s64 a);
-#define c_s64abs	S64_Abs
+t_s64						S64_Abs(t_s64 a);
+#define c_s64abs			S64_Abs
 
 #if LIBCONFIG_USE_INT128
-t_s128				S128_Abs(t_s128 a);
-#define c_s128abs	S128_Abs
+t_s128						S128_Abs(t_s128 a);
+#define c_s128abs			S128_Abs
+#endif
+//!@}
+
+//!@doc Returns the sign value value of `x` (either `-1`, `0`, or `+1`)
+/*!
+**	@nonstd
+*/
+//!@{
+#define						SInt_Sgn	CONCAT(SINT_TYPE,_Sgn)
+#define c_ssgn				SInt_Sgn
+#define SInt_Sign			SInt_Sgn
+#define SInt_SignOf			SInt_Sgn
+
+t_s8						S8_Sgn(t_s8 x);
+#define c_s8sgn				S8_Sgn
+
+t_s16						S16_Sgn(t_s16 x);
+#define c_s16sgn			S16_Sgn
+
+t_s32						S32_Sgn(t_s32 x);
+#define c_s32sgn			S32_Sgn
+
+t_s64						S64_Sgn(t_s64 x);
+#define c_s64sgn			S64_Sgn
+
+#if LIBCONFIG_USE_INT128
+t_s128						S128_Sgn(t_s128 x);
+#define c_s128sgn			S128_Sgn
 #endif
 //!@}
 
@@ -132,7 +160,7 @@ t_s128				S128_Abs(t_s128 a);
 
 /*
 ** ************************************************************************** *|
-**                       Floating-point logic operators                       *|
+**                            Comparison operators                            *|
 ** ************************************************************************** *|
 */
 
@@ -268,9 +296,189 @@ t_bool					S128_EqualsApprox(t_s128 a, t_s128 b);
 
 
 
-// TODO SInt_LessThan
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value (operator: `<`)
+//!@{
+#define					UInt_LessThan	CONCAT(UINT_TYPE,_LessThan)
+#define c_ult			UInt_LessThan
 
-// TODO SInt_GreaterThan
+t_bool					U8_LessThan(t_u8 x, t_u8 y);
+#define c_u8lt			U8_LessThan
+
+t_bool					U16_LessThan(t_u16 x, t_u16 y);
+#define c_u16lt			U16_LessThan
+
+t_bool					U32_LessThan(t_u32 x, t_u32 y);
+#define c_u32lt			U32_LessThan
+
+t_bool					U64_LessThan(t_u64 x, t_u64 y);
+#define c_u64lt			U64_LessThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_LessThan(t_u128 x, t_u128 y);
+#define c_u128lt		U128_LessThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value (operator: `<`)
+//!@{
+#define					SInt_LessThan	CONCAT(SINT_TYPE,_LessThan)
+#define c_slt			SInt_LessThan
+
+t_bool					S8_LessThan(t_s8 x, t_s8 y);
+#define c_s8lt			S8_LessThan
+
+t_bool					S16_LessThan(t_s16 x, t_s16 y);
+#define c_s16lt			S16_LessThan
+
+t_bool					S32_LessThan(t_s32 x, t_s32 y);
+#define c_s32lt			S32_LessThan
+
+t_bool					S64_LessThan(t_s64 x, t_s64 y);
+#define c_s64lt			S64_LessThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					S128_LessThan(t_s128 x, t_s128 y);
+#define c_s128lt		S128_LessThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
+//!@{
+#define					UInt_LessThanOrEqual	CONCAT(UINT_TYPE,_LessThanOrEqual)
+#define c_ulte			UInt_LessThanOrEqual
+
+t_bool					U8_LessThanOrEqual(t_u8 x, t_u8 y);
+#define c_u8lte			U8_LessThanOrEqual
+
+t_bool					U16_LessThanOrEqual(t_u16 x, t_u16 y);
+#define c_u16lte		U16_LessThanOrEqual
+
+t_bool					U32_LessThanOrEqual(t_u32 x, t_u32 y);
+#define c_u32lte		U32_LessThanOrEqual
+
+t_bool					U64_LessThanOrEqual(t_u64 x, t_u64 y);
+#define c_u64lte		U64_LessThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_LessThanOrEqual(t_u128 x, t_u128 y);
+#define c_u128lte		U128_LessThanOrEqual
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
+//!@{
+#define					SInt_LessThanOrEqual	CONCAT(SINT_TYPE,_LessThanOrEqual)
+#define c_slte			SInt_LessThanOrEqual
+
+t_bool					S8_LessThanOrEqual(t_s8 x, t_s8 y);
+#define c_s8lte			S8_LessThanOrEqual
+
+t_bool					S16_LessThanOrEqual(t_s16 x, t_s16 y);
+#define c_s16lte		S16_LessThanOrEqual
+
+t_bool					S32_LessThanOrEqual(t_s32 x, t_s32 y);
+#define c_s32lte		S32_LessThanOrEqual
+
+t_bool					S64_LessThanOrEqual(t_s64 x, t_s64 y);
+#define c_s64lte		S64_LessThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					S128_LessThanOrEqual(t_s128 x, t_s128 y);
+#define c_s128lte		S128_LessThanOrEqual
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
+//!@{
+#define					UInt_GreaterThan	CONCAT(UINT_TYPE,_GreaterThan)
+#define c_ugt			UInt_GreaterThan
+
+t_bool					U8_GreaterThan(t_u8 x, t_u8 y);
+#define c_u8gt			U8_GreaterThan
+
+t_bool					U16_GreaterThan(t_u16 x, t_u16 y);
+#define c_u16gt			U16_GreaterThan
+
+t_bool					U32_GreaterThan(t_u32 x, t_u32 y);
+#define c_u32gt			U32_GreaterThan
+
+t_bool					U64_GreaterThan(t_u64 x, t_u64 y);
+#define c_u64gt			U64_GreaterThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_GreaterThan(t_u128 x, t_u128 y);
+#define c_u128gt		U128_GreaterThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
+//!@{
+#define					SInt_GreaterThan	CONCAT(SINT_TYPE,_GreaterThan)
+#define c_sgt			SInt_GreaterThan
+
+t_bool					S8_GreaterThan(t_s8 x, t_s8 y);
+#define c_s8gt			S8_GreaterThan
+
+t_bool					S16_GreaterThan(t_s16 x, t_s16 y);
+#define c_s16gt			S16_GreaterThan
+
+t_bool					S32_GreaterThan(t_s32 x, t_s32 y);
+#define c_s32gt			S32_GreaterThan
+
+t_bool					S64_GreaterThan(t_s64 x, t_s64 y);
+#define c_s64gt			S64_GreaterThan
+
+#if LIBCONFIG_USE_INT128
+t_bool					S128_GreaterThan(t_s128 x, t_s128 y);
+#define c_s128gt		S128_GreaterThan
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
+//!@{
+#define					UInt_GreaterThanOrEqual	CONCAT(UINT_TYPE,_GreaterThanOrEqual)
+#define c_ugte			UInt_GreaterThanOrEqual
+
+t_bool					U8_GreaterThanOrEqual(t_u8 x, t_u8 y);
+#define c_u8gte			U8_GreaterThanOrEqual
+
+t_bool					U16_GreaterThanOrEqual(t_u16 x, t_u16 y);
+#define c_u16gte		U16_GreaterThanOrEqual
+
+t_bool					U32_GreaterThanOrEqual(t_u32 x, t_u32 y);
+#define c_u32gte		U32_GreaterThanOrEqual
+
+t_bool					U64_GreaterThanOrEqual(t_u64 x, t_u64 y);
+#define c_u64gte		U64_GreaterThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					U128_GreaterThanOrEqual(t_u128 x, t_u128 y);
+#define c_u128gte		U128_GreaterThanOrEqual
+#endif
+//!@}
+
+//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
+//!@{
+#define					SInt_GreaterThanOrEqual	CONCAT(SINT_TYPE,_GreaterThanOrEqual)
+#define c_sgte			SInt_GreaterThanOrEqual
+
+t_bool					S8_GreaterThanOrEqual(t_s8 x, t_s8 y);
+#define c_s8gte			S8_GreaterThanOrEqual
+
+t_bool					S16_GreaterThanOrEqual(t_s16 x, t_s16 y);
+#define c_s16gte		S16_GreaterThanOrEqual
+
+t_bool					S32_GreaterThanOrEqual(t_s32 x, t_s32 y);
+#define c_s32gte		S32_GreaterThanOrEqual
+
+t_bool					S64_GreaterThanOrEqual(t_s64 x, t_s64 y);
+#define c_s64gte		S64_GreaterThanOrEqual
+
+#if LIBCONFIG_USE_INT128
+t_bool					S128_GreaterThanOrEqual(t_s128 x, t_s128 y);
+#define c_s128gte		S128_GreaterThanOrEqual
+#endif
+//!@}
 
 
 

@@ -132,6 +132,8 @@ t_f128						F128_Sgn(t_f128 x);
 #endif
 //!@}
 
+
+
 /*
 ** ************************************************************************** *|
 **                          Integer Rounding Operations                       *|
@@ -940,17 +942,21 @@ t_f128							F128_Log10(t_f128 x);
 
 t_f32							F32_LogN(t_f32 x, t_f32 n);
 #define c_f32logn				F32_LogN
+#define c_flognf				F32_LogN
 
 t_f64							F64_LogN(t_f64 x, t_f64 n);
 #define c_f64logn				F64_LogN
+#define c_flognd				F64_LogN
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_LogN(t_f80 x, t_f80 n);
 #define c_f80logn				F80_LogN
+#define c_flognl				F80_LogN
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128							F128_LogN(t_f128 x, t_f128 n);
 #define c_f128logn				F128_LogN
+#define c_flognl				F128_LogN
 #endif
 //!@}
 
@@ -1039,7 +1045,7 @@ t_f32							F32_Gamma(t_f32 x);
 t_f64							F64_Gamma(t_f64 x);
 #define c_f64gamma				F64_Gamma
 #define c_gammad				F64_Gamma
-#define c_tgamma				F64_Gamma
+#define c_tgammad				F64_Gamma
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_Gamma(t_f80 x);
