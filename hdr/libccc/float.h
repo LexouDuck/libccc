@@ -191,6 +191,13 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
+#define AS_U32(f) ((union { t_f32 _f; t_u32 _i; }){f})._i
+#define AS_U64(f) ((union { t_f64 _f; t_u64 _i; }){f})._i
+#define AS_F32(i) ((union { t_u32 _i; t_f32 _f; }){i})._f
+#define AS_F64(i) ((union { t_u64 _i; t_f64 _f; }){i})._f
+
+
+
 //!@doc The floating-point "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
@@ -203,26 +210,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define NOTANUMBER	NAN
 #endif
 //!@}
-
-//!@doc Checks if the given 'x' has a "not a number" value.
-/*!
-**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isnan}
-**
-**	Also, define isnan() for ANSI C compatibility, if needed.
-*/
-//!@{
-#ifndef isnan
-#define isnan(X)	(X != X)
-#endif
-#ifndef IS_NAN
-#define IS_NAN(X)		isnan(X)
-#endif
-#ifndef IS_NOTANUMBER
-#define IS_NOTANUMBER(X)	isnan(X)
-#endif
-//!@}
-
-
 
 //!@doc The floating-point infinity value (use `-INF` for negative)
 /*!
@@ -237,9 +224,27 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 //!@}
 
+//!@doc Checks if the given 'x' has a "not a number" value.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnan}
+**
+**	Also, define isnan() for ANSI C compatibility, if needed.
+*/
+//!@{
+#ifndef isnan
+#define isnan(X)	(X != X)
+#endif
+#ifndef IS_NAN
+#define IS_NAN(X)	isnan(X)
+#endif
+#ifndef IS_NOTANUMBER
+#define IS_NOTANUMBER(X)	isnan(X)
+#endif
+//!@}
+
 //!@doc Checks if the given 'x' is either +INFINITY or -INFINITY
 /*!
-**	@isostd{C,https://en.cppreference.com/w/c/numeric/math/isinf}
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isinf}
 **
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
@@ -248,19 +253,70 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define isinf(X)	(isnan((X) - (X)) && !isnan(X))
 #endif
 #ifndef IS_INF
-#define IS_INF(X)		isinf(X)
+#define IS_INF(X)	isinf(X)
 #endif
 #ifndef IS_INFINITY
 #define IS_INFINITY(X)	isinf(X)
 #endif
 //!@}
 
+//!@doc Checks if the given floating-point number has finite value, i.e. it is normal, subnormal or zero, but not infinite or NaN.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isfinite}
+*/
+//!@{
+#ifndef isfinite
+#define isfinite(X)	(!isnan(X) && !isinf(X))
+#endif
+#ifndef IS_FINITE
+#define IS_FINITE(X)	isfinite(X)
+#endif
+//!@}
 
+//!@doc Checks if the given floating-point number arg is normal, i.e. is neither zero, subnormal, infinite, nor NaN.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnormal}
+*/
+//!@{
+#ifndef isnormal
+#define isnormal(X)	( \
+	sizeof(X) == sizeof(float)  ? ((AS_U32(X)+0x00800000) & 0x7fffffff) >= 0x01000000 : \
+	sizeof(X) == sizeof(double) ? ((AS_U64(X)+(1ULL<<52)) & -1ULL>>1) >= 1ULL<<53 : \
+	fpclassifyl(X) == FP_NORMAL)
+#endif
+#ifndef IS_NORMAL
+#define IS_NORMAL(X)	isnormal(X)
+#endif
+//!@}
 
-// TODO add wrapper for isfinite(x)
-// TODO add wrapper for isnormal(x)
-// TODO add wrapper for isunordered(x, y)
-// TODO add wrapper for fpclassify()
+//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isunordered}
+*/
+//!@{
+#ifndef isunordered
+#define isunordered(X,Y) (isnan((X)) ? ((void)(Y),1) : isnan((Y)))
+#endif
+#ifndef IS_UNORDERED
+#define IS_UNORDERED(X)	isunordered(X)
+#endif
+//!@}
+
+//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
+*/
+//!@{
+#ifndef signbit
+#define signbit(x) ( \
+	sizeof(x) == sizeof(float)  ? (int)(AS_U32(x)>>31) : \
+	sizeof(x) == sizeof(double) ? (int)(AS_U64(x)>>63) : \
+	signbitl(x) )
+#endif
+#ifndef SIGN_BIT
+#define SIGN_BIT(X)	signbit(X)
+#endif
+//!@}
 
 
 
@@ -463,11 +519,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 		else {} \
 	} while(0) \
 
-#define AS_U32(f) ((union { t_f32 _f; t_u32 _i; }){f})._i
-#define AS_U64(f) ((union { t_f64 _f; t_u64 _i; }){f})._i
-#define AS_F32(i) ((union { t_u32 _i; t_f32 _f; }){i})._f
-#define AS_F64(i) ((union { t_u64 _i; t_f64 _f; }){i})._f
-
 
 
 //! Union type to allow direct bitwise manipulation of floating-point values
@@ -555,24 +606,30 @@ typedef union cast_float
 //!@{
 #define					Float_From	CONCAT(FLOAT_TYPE,_From)
 #define c_tof			Float_From
+#define c_ldexp			Float_From
+#define c_scalbn		Float_From
 
 t_f32					F32_From(t_f32 mantissa, t_sint exponent);
 #define c_tof32			F32_From
 #define c_ldexpf		F32_From
+#define c_scalbnf		F32_From
 
 t_f64					F64_From(t_f64 mantissa, t_sint exponent);
 #define c_tof64			F64_From
-#define c_ldexp			F64_From
+#define c_ldexpd		F64_From
+#define c_scalbnd		F64_From
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_From(t_f80 mantissa, t_sint exponent);
 #define c_tof80			F80_From
 #define c_ldexpl		F80_From
+#define c_scalbnl		F80_From
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 #define c_tof128		F128_From
 #define c_ldexpl		F128_From
+#define c_scalbnl		F128_From
 #endif
 //!@}
 

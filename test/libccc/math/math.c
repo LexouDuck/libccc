@@ -267,13 +267,13 @@ int		testsuite_math(void)
 	print_math_title("Round (f"#BITS")"); \
 	test_math_realfunction_f##BITS("round", &round##STD_SUFFIX, &c_f##BITS##round, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
 	test_math_realfunction_f##BITS("round", &round##STD_SUFFIX, &c_f##BITS##round, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Truncate (f"#BITS")"); \
+	print_math_title("Trunc (f"#BITS")"); \
 	test_math_realfunction_f##BITS("trunc", &trunc##STD_SUFFIX, &c_f##BITS##trunc, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
 	test_math_realfunction_f##BITS("trunc", &trunc##STD_SUFFIX, &c_f##BITS##trunc, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
 	print_math_title("Floor (f"#BITS")"); \
 	test_math_realfunction_f##BITS("floor", &floor##STD_SUFFIX, &c_f##BITS##floor, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
 	test_math_realfunction_f##BITS("floor", &floor##STD_SUFFIX, &c_f##BITS##floor, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Ceiling (f"#BITS")"); \
+	print_math_title("Ceil (f"#BITS")"); \
 	test_math_realfunction_f##BITS("ceil", &ceil##STD_SUFFIX, &c_f##BITS##ceil, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
 	test_math_realfunction_f##BITS("ceil", &ceil##STD_SUFFIX, &c_f##BITS##ceil, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
  \
@@ -352,14 +352,14 @@ int		testsuite_math(void)
 	print_math_title("Error function complementary (f"#BITS")"); \
 	test_math_realfunction_f##BITS("erfc", &erfc##STD_SUFFIX, &c_f##BITS##erfc, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-3e0,+3e0}); \
 	test_math_realfunction_f##BITS("erfc", &erfc##STD_SUFFIX, &c_f##BITS##erfc, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-/* \
+ \
 	print_math_title("Gamma function (f"#BITS")"); \
 	test_math_realfunction_f##BITS("gamma", &tgamma##STD_SUFFIX, &c_f##BITS##gamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-5e0,+5e0}); \
 	test_math_realfunction_f##BITS("gamma", &tgamma##STD_SUFFIX, &c_f##BITS##gamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
 	print_math_title("Log-Gamma function (f"#BITS")"); \
 	test_math_realfunction_f##BITS("lngamma", &lgamma##STD_SUFFIX, &c_f##BITS##lngamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-5e0,+5e0}); \
 	test_math_realfunction_f##BITS("lngamma", &lgamma##STD_SUFFIX, &c_f##BITS##lngamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-*/ \
+ \
 	print_math_title("Sine (f"#BITS")"); \
 	test_math_realfunction_f##BITS("sin", &sin##STD_SUFFIX, &c_f##BITS##sin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0, +PI }); \
 	test_math_realfunction_f##BITS("sin", &sin##STD_SUFFIX, &c_f##BITS##sin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU*2}); \

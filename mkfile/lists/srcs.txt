@@ -136,6 +136,9 @@
 ./src/math/float/trig_sinh.c
 ./src/math/float/trig_tan.c
 ./src/math/float/trig_tanh.c
+./src/math/float/utils.c
+./src/math/float/utils_exp.c
+./src/math/float/utils_trig.c
 ./src/math/int/fn_2root.c
 ./src/math/int/fn_abs.c
 ./src/math/int/fn_sgn.c

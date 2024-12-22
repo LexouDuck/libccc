@@ -1512,6 +1512,136 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
+/*
+** ************************************************************************** *|
+**                           Other private utilities                          *|
+** ************************************************************************** *|
+*/
+
+#if !LIBCONFIG_USE_STD_MATH
+
+#ifdef __GNUC__
+#define predict_true(x) __builtin_expect(!!(x), 1)
+#define predict_false(x) __builtin_expect(x, 0)
+#else
+#define predict_true(x) (x)
+#define predict_false(x) (x)
+#endif
+/* Support non-nearest rounding mode.  */
+#define WANT_ROUNDING	1
+/* Support signaling NaNs.  */
+#define WANT_SNAN	0
+/* apply SNaN config */
+#if WANT_SNAN
+#error "SNaN is unsupported"
+#else
+#define issignalingf_inline(x) 0
+#define issignaling_inline(x) 0
+#endif
+
+
+
+float	__math_oflowf	(float x);
+double	__math_oflow	(double x);
+
+float	__math_uflowf	(float x);
+double	__math_uflow	(double x);
+
+float	__math_xflowf	(uint32_t sign, float y);
+double	__math_xflow	(uint32_t sign, double y);
+
+float	__math_divzerof (uint32_t sign);
+double	__math_divzero  (uint32_t sign);
+
+float		__math_invalidf	(float x);
+double		__math_invalid	(double x);
+long double	__math_invalidl	(long double x);
+
+
+
+#define EXP2F_TABLE_BITS	5
+#define N_F32	(1 << EXP2F_TABLE_BITS)
+struct data_exp_f32
+{
+	t_f64	shift;
+	t_f64	shift_scaled;
+	t_f64	invln2_scaled;
+	t_f64	poly[3];
+	t_f64	poly_scaled[3];
+	t_u64	table[N_F32];
+};
+extern const	struct data_exp_f32	__data_exp_f32;
+t_f32	__sin_f32(t_f64  x);
+t_f32	__cos_f32(t_f64  x, t_f64   y);
+int	__rem_pi2_f32(t_f32  x, t_f64*  y);
+
+#define EXP_TABLE_BITS	7
+#define N_F64	(1 << EXP_TABLE_BITS)
+struct data_exp_f64
+{
+	t_f64	shift;
+	t_f64	invln2N;
+	t_f64	negln2hiN;
+	t_f64	negln2loN;
+	t_f64	poly[4]; /* Last four coefficients. */
+	t_f64	exp_shift;
+	t_f64	exp_poly[5];
+	t_u64	table[2*N_F64];
+};
+extern const	struct data_exp_f64	__data_exp_f64;
+t_f64	__sin_f64(t_f64  x, t_f64   y, int iy);
+t_f64	__cos_f64(t_f64  x, t_f64   y);
+int	__rem_pi2_f64(t_f64  x, t_f64*  y);
+
+#if LIBCONFIG_USE_FLOAT80
+#define EXP_TABLE_BITS	7
+#define N_F80	(1 << EXP_TABLE_BITS)
+struct data_exp_f80
+{
+	t_f80	ln2hi;
+	t_f80	ln2lo;
+	t_f80	log2e;
+	t_f80	exp_poly_p[3];
+	t_f80	exp_poly_q[4];
+	t_f64	redux;
+	t_f64	poly[7];
+	t_f64	table[2*N_F80];
+};
+extern const	struct data_exp_f80	__data_exp_f80;
+t_f80	__sin_f80(t_f80  x, t_f80   y, int iy);
+t_f80	__cos_f80(t_f80  x, t_f80   y);
+int	__rem_pi2_f80(t_f80  x, t_f80*  y);
+#endif
+
+#if LIBCONFIG_USE_FLOAT128
+#define EXP_TABLE_BITS	7
+#define N_F128	(1 << EXP_TABLE_BITS)
+struct data_exp_f128
+{
+	t_f128	ln2hi;
+	t_f128	ln2lo;
+	t_f128	log2e;
+	t_f128	exp_poly_p[3];
+	t_f128	exp_poly_q[4];
+	t_f64	redux;
+	t_f128	poly[11];
+	t_f128	table[N_F128];
+	t_f32	eps[N_F128];
+};
+extern const	struct data_exp_f128	__data_exp_f128;
+t_f128	__sin_f128(t_f128 x, t_f128  y, int iy);
+t_f128	__cos_f128(t_f128 x, t_f128  y);
+int	__rem_pi2_f128(t_f128 x, t_f128* y);
+#endif
+
+int	__rem_pi2_large(double *x, double *y, int e0, int nx, int prec);
+
+#define EXP_USE_TOINT_NARROW	0
+
+#endif
+
+
+
 /*! @endgroup */
 HEADER_END
 #endif

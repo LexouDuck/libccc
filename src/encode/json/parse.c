@@ -4,6 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
+#include "libccc/text/format.h"
 #include "libccc/encode/json.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -245,8 +246,8 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 				if ((t_size)(input_end + i - p->content) >= p->length ||
 					!Char_IsDigit_Hex(input_end[i]))
 					PARSINGERROR_JSON("Could not parse string: Unicode escape sequence char '%c' "
-						"must be followed by %i hexadecimal digit chars, instead found \"%.*s\"",
-						c, sequence_chars, sequence_chars + 2, input_end - 1)
+						"must be followed by " SF_SINT " hexadecimal digit chars, instead found \"%.*s\"",
+						c, sequence_chars, (int)(sequence_chars + 2), input_end - 1)
 			}
 			input_end += sequence_chars;
 		}

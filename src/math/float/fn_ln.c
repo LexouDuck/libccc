@@ -50,8 +50,10 @@ t_f##BITS	F##BITS##_Ln(t_f##BITS x) \
 	t_u64	norm = 0;	/* the float x in x*2^n in raw memory */ \
 	t_s32	exp_b2; \
 	/* Taylor series approximation method */ \
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)	return (NAN); \
-	if CCCERROR((x < 0.), ERROR_MATHDOMAIN, NULL)	return (NAN); \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if CCCERROR((x < 0.), ERROR_MATHDOMAIN, NULL) \
+		return (NAN); \
 	if (x == 0.) \
 		return (-INFINITY); \
 	if (x == 1.) \

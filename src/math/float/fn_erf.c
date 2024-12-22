@@ -8,6 +8,7 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Erf, erf)
 MATH_DECL_REALFUNCTION(ErfC, erfc)
+
 #else
 /*
 ** ====================================================
@@ -120,41 +121,41 @@ const struct data_erf_f##BITS \
 { \
 	t_f##BITS	erx; \
 	t_f##BITS	efx8; \
-	t_f##BITS*	pp; \
-	t_f##BITS*	qq; \
-	t_f##BITS*	pa; \
-	t_f##BITS*	qa; \
-	t_f##BITS*	ra; \
-	t_f##BITS*	sa; \
-	t_f##BITS*	rb; \
-	t_f##BITS*	sb; \
-	t_f##BITS*	rc; \
-	t_f##BITS*	sc; \
+	t_f##BITS	pp[5]; \
+	t_f##BITS	qq[6]; \
+	t_f##BITS	pa[7]; \
+	t_f##BITS	qa[7]; \
+	t_f##BITS	ra[8]; \
+	t_f##BITS	sa[9]; \
+	t_f##BITS	rb[7]; \
+	t_f##BITS	sb[8]; \
+	t_f##BITS	rc[6]; \
+	t_f##BITS	sc[6]; \
 }	_data_erf_f##BITS; \
 
-DEFINEFUNC_FLOAT_ERF(32, 0x1p-120f, 13)
-DEFINEFUNC_FLOAT_ERF(64, 0x1p-1022, 32)
+DEFINEDATA_FLOAT_ERF(32)
+DEFINEDATA_FLOAT_ERF(64)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_ERF(80, 0x1p-16382L, 40)
+DEFINEDATA_FLOAT_ERF(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_ERF(128, 0x1p-16382L, 64)
+DEFINEDATA_FLOAT_ERF(128)
 #endif
 
-_data_erf_f32 = (struct data_erf_f32)
+const struct data_erf_f32 cf32 =
 {
-	.erx  = +8.4506291151e-01, /* 0x3F58560B */
+	.erx  = +8.4506291151e-01f, /* 0x3F58560B */
 	/* Coefficients for approximation to  erf on [0,0.84375] */
-	.efx8 = +1.0270333290e+00, /* 0x3F8375D4 */
-	.pp[] =
+	.efx8 = +1.0270333290e+00f, /* 0x3F8375D4 */
+	.pp =
 	{
-	+1.2837916613e-01, /* 0x3E0375D4 */
-	-3.2504209876e-01, /* 0xBEA66BEB */
-	-2.8481749818e-02, /* 0xBCE9528F */
-	-5.7702702470e-03, /* 0xBBBD1489 */
-	-2.3763017452e-05, /* 0xB7C756B1 */
+	+1.2837916613e-01f, /* 0x3E0375D4 */
+	-3.2504209876e-01f, /* 0xBEA66BEB */
+	-2.8481749818e-02f, /* 0xBCE9528F */
+	-5.7702702470e-03f, /* 0xBBBD1489 */
+	-2.3763017452e-05f, /* 0xB7C756B1 */
 	},
-	.qq[] =
+	.qq =
 	{
 	+1.0000000000e+00,
 	+3.9791721106e-01, /* 0x3ECBBBCE */
@@ -164,7 +165,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	-3.9602282413e-06, /* 0xB684E21A */
 	},
 	/* Coefficients for approximation to  erf  in [0.84375,1.25] */
-	.pa[] =
+	.pa =
 	{
 	-2.3621185683e-03, /* 0xBB1ACDC6 */
 	+4.1485610604e-01, /* 0x3ED46805 */
@@ -174,7 +175,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	+3.5478305072e-02, /* 0x3D1151B3 */
 	-2.1663755178e-03, /* 0xBB0DF9C0 */
 	},
-	.qa[] =
+	.qa =
 	{
 	+1.0000000000e+00,
 	+1.0642088205e-01, /* 0x3DD9F331 */
@@ -185,7 +186,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	+1.1984500103e-02, /* 0x3C445AA3 */
 	},
 	/* Coefficients for approximation to  erfc in [1.25,1/0.35] */
-	.ra[] =
+	.ra =
 	{
 	-9.8649440333e-03, /* 0xBC21A093 */
 	-6.9385856390e-01, /* 0xBF31A0B7 */
@@ -196,7 +197,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	-8.1287437439e+01, /* 0xC2A2932B */
 	-9.8143291473e+00, /* 0xC11D077E */
 	},
-	.sa[] =
+	.sa =
 	{
 	+1.0000000000e+00,
 	+1.9651271820e+01, /* 0x419D35CE */
@@ -209,7 +210,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	-6.0424413532e-02, /* 0xBD777F97 */
 	},
 	/* Coefficients for approximation to  erfc in [1/.35,28] */
-	.rb[] =
+	.rb =
 	{
 	-9.8649431020e-03, /* 0xBC21A092 */
 	-7.9928326607e-01, /* 0xBF4C9DD4 */
@@ -219,7 +220,7 @@ _data_erf_f32 = (struct data_erf_f32)
 	-1.0250950928e+03, /* 0xC480230B */
 	-4.8351919556e+02, /* 0xC3F1C275 */
 	},
-	.sb[] =
+	.sb =
 	{
 	+1.0000000000e+00,
 	+3.0338060379e+01, /* 0x41F2B459 */
@@ -232,12 +233,12 @@ _data_erf_f32 = (struct data_erf_f32)
 	},
 };
 
-_data_erf_f64 = (struct data_erf_f64)
+const struct data_erf_f64 cf64 =
 {
 	.erx  = 8.45062911510467529297e-01, /* 0x3FEB0AC1, 0x60000000 */
 /* Coefficients for approximation to  erf on [0,0.84375] */
 	.efx8 = +1.02703333676410069053e+00, /* 0x3FF06EBA, 0x8214DB69 */
-	.pp[] =
+	.pp =
 	{
 	+1.28379167095512558561e-01, /* 0x3FC06EBA, 0x8214DB68 */
 	-3.25042107247001499370e-01, /* 0xBFD4CD7D, 0x691CB913 */
@@ -245,7 +246,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	-5.77027029648944159157e-03, /* 0xBF77A291, 0x236668E4 */
 	-2.37630166566501626084e-05, /* 0xBEF8EAD6, 0x120016AC */
 	},
-	.qq[] =
+	.qq =
 	{
 	+1.00000000000000000000e+00,
 	+3.97917223959155352819e-01, /* 0x3FD97779, 0xCDDADC09 */
@@ -255,7 +256,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	-3.96022827877536812320e-06, /* 0xBED09C43, 0x42A26120 */
 /* Coefficients for approximation to  erf  in [0.84375,1.25] */
 	},
-	.pa[] =
+	.pa =
 	{
 	-2.36211856075265944077e-03, /* 0xBF6359B8, 0xBEF77538 */
 	+4.14856118683748331666e-01, /* 0x3FDA8D00, 0xAD92B34D */
@@ -265,7 +266,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	+3.54783043256182359371e-02, /* 0x3FA22A36, 0x599795EB */
 	-2.16637559486879084300e-03, /* 0xBF61BF38, 0x0A96073F */
 	},
-	.qa[] =
+	.qa =
 	{
 	+1.00000000000000000000e+00,
 	+1.06420880400844228286e-01, /* 0x3FBB3E66, 0x18EEE323 */
@@ -276,7 +277,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	+1.19844998467991074170e-02, /* 0x3F888B54, 0x5735151D */
 /* Coefficients for approximation to  erfc in [1.25,1/0.35] */
 	},
-	.ra[] =
+	.ra =
 	{
 	-9.86494403484714822705e-03, /* 0xBF843412, 0x600D6435 */
 	-6.93858572707181764372e-01, /* 0xBFE63416, 0xE4BA7360 */
@@ -287,7 +288,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	-8.12874355063065934246e+01, /* 0xC0545265, 0x57E4D2F2 */
 	-9.81432934416914548592e+00, /* 0xC023A0EF, 0xC69AC25C */
 	},
-	.sa[] =
+	.sa =
 	{
 	+1.00000000000000000000e+00,
 	+1.96512716674392571292e+01, /* 0x4033A6B9, 0xBD707687 */
@@ -300,7 +301,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	-6.04244152148580987438e-02, /* 0xBFAEEFF2, 0xEE749A62 */
 /* Coefficients for approximation to  erfc in [1/.35,28] */
 	},
-	.rb[] =
+	.rb =
 	{
 	-9.86494292470009928597e-03, /* 0xBF843412, 0x39E86F4A */
 	-7.99283237680523006574e-01, /* 0xBFE993BA, 0x70C285DE */
@@ -310,7 +311,7 @@ _data_erf_f64 = (struct data_erf_f64)
 	-1.02509513161107724954e+03, /* 0xC0900461, 0x6A2E5992 */
 	-4.83519191608651397019e+02, /* 0xC07E384E, 0x9BDC383F */
 	},
-	.sb[] =
+	.sb =
 	{
 	+1.00000000000000000000e+00,
 	+3.03380607434824582924e+01, /* 0x403E568B, 0x261D5190 */
@@ -323,13 +324,14 @@ _data_erf_f64 = (struct data_erf_f64)
 	},
 };
 
-_data_erf_f80 = (struct data_erf_f80)
+#if LIBCONFIG_USE_FLOAT80
+const struct data_erf_f80 cf80 =
 {
 	.erx = 0.845062911510467529296875L,
 /* Coefficients for approximation to  erf on [0,0.84375] */
 /* 8 * (2/sqrt(pi) - 1) */
 	.efx8 = 1.0270333367641005911692712249723613735048e+00L,
-	.pp[] =
+	.pp =
 	{
 	+1.122751350964552113068262337278335028553e+06L,
 	-2.808533301997696164408397079650699163276e+06L,
@@ -338,7 +340,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	-2.657817695110739185591505062971929859314e+03L,
 	-1.655310302737837556654146291646499062882e+02L,
 	},
-	.qq[] =
+	.qq =
 	{
 	+8.745588372054466262548908189000448124232e+06L,
 	+3.746038264792471129367533128637019611485e+06L,
@@ -350,7 +352,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	},
 /* Coefficients for approximation to  erf  in [0.84375,1.25] */
 // erf(x+1) = 0.845062911510467529296875 + pa(x)/qa(x) | -0.15625 <= x <= +.25 | Peak relative error 8.5e-22
-	.pa[] =
+	.pa =
 	{
 	-1.076952146179812072156734957705102256059e+00L,
 	+1.884814957770385593365179835059971587220e+02L,
@@ -361,7 +363,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	+1.852230047861891953244413872297940938041e+00L,
 	+9.394994446747752308256773044667843200719e-02L,
 	},
-	.qa[] =
+	.qa =
 	{
 	+4.559263722294508998149925774781887811255e+02L,
 	+3.289248982200800575749795055149780689738e+02L,
@@ -374,7 +376,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	},
 /* Coefficients for approximation to  erfc in [1.25,1/0.35] */
 // erfc(1/x) = x exp (-1/x^2 - 0.5625 + ra(x^2)/sa(x^2)) | 1/2.85711669921875 < 1/x < 1/1.25 | Peak relative error 3.1e-21
-	.ra[] =
+	.ra =
 	{
 	+1.363566591833846324191000679620738857234e-01L,
 	+1.018203167219873573808450274314658434507e+01L,
@@ -386,7 +388,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	+2.387492459664548651671894725748959751119e+03L,
 	+2.220916652813908085449221282808458466556e+02L,
 	},
-	.sa[] =
+	.sa =
 	{
 	-1.382234625202480685182526402169222331847e+01L,
 	-3.315638835627950255832519203687435946482e+02L,
@@ -401,7 +403,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	},
 /* Coefficients for approximation to  erfc in [1/.35,107] */
 // erfc(1/x) = x exp (-1/x^2 - 0.5625 + rb(x^2)/sb(x^2)) | 1/6.6666259765625 < 1/x < 1/2.85711669921875 | Peak relative error 4.2e-22
-	.rb[] =
+	.rb =
 	{
 	-4.869587348270494309550558460786501252369e-05L,
 	-4.030199390527997378549161722412466959403e-03L,
@@ -412,7 +414,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	-7.069215249419887403187988144752613025255e+00L,
 	-1.401228723639514787920274427443330704764e+00L,
 	},
-	.sb[] =
+	.sb =
 	{
 	+4.936254964107175160157544545879293019085e-03L,
 	+1.583457624037795744377163924895349412015e-01L,
@@ -424,7 +426,7 @@ _data_erf_f80 = (struct data_erf_f80)
 /*	+1.000000000000000000000000000000000000000e+00L */
 	},
 // erfc(1/x) = x exp (-1/x^2 - 0.5625 + rc(x^2)/sc(x^2)) | 1/107 <= 1/x <= 1/6.6666259765625 | Peak relative error 1.1e-21
-	.rc[] =
+	.rc =
 	{
 	-8.299617545269701963973537248996670806850e-05L,
 	-6.243845685115818513578933902532056244108e-03L,
@@ -433,7 +435,7 @@ _data_erf_f80 = (struct data_erf_f80)
 	-1.765321928311155824664963633786967602934e+00L,
 	-1.029403473103215800456761180695263439188e+00L,
 	},
-	.sc[] =
+	.sc =
 	{
 	+8.413244363014929493035952542677768808601e-03L,
 	+2.065114333816877479753334599639158060979e-01L,
@@ -443,27 +445,29 @@ _data_erf_f80 = (struct data_erf_f80)
 /*	+1.000000000000000000000000000000000000000e+00L */
 	},
 };
-
-_data_erf_f128 = (struct data_erf_f128)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+const struct data_erf_f128 cf128 =
 {
 	.erx  = cf80.erx,
 	.efx8 = cf80.efx8,
-	.pp[] = cf80.pp,
-	.qq[] = cf80.qq,
-	.pa[] = cf80.pa,
-	.qa[] = cf80.qa,
-	.ra[] = cf80.ra,
-	.sa[] = cf80.sa,
-	.rb[] = cf80.rb,
-	.sb[] = cf80.sb,
-	.rc[] = cf80.rc,
-	.sc[] = cf80.sc,
+	.pp = cf80.pp,
+	.qq = cf80.qq,
+	.pa = cf80.pa,
+	.qa = cf80.qa,
+	.ra = cf80.ra,
+	.sa = cf80.sa,
+	.rb = cf80.rb,
+	.sb = cf80.sb,
+	.rc = cf80.rc,
+	.sc = cf80.sc,
 };
+#endif
 
 
 
 #define DEFINEFUNC_FLOAT_ERF(BITS, TINY, ZMASK) \
-static t_f##BITS _erfc1_F##BITS(t_f##BITS abs_x) \
+static t_f##BITS F##BITS##_ErfC1(t_f##BITS abs_x) \
  \
 { \
 	t_f##BITS s,P,Q; \
@@ -473,12 +477,12 @@ static t_f##BITS _erfc1_F##BITS(t_f##BITS abs_x) \
 	return (1 - cf##BITS.erx - P/Q); \
 } \
  \
-static t_f##BITS _erfc2_F##BITS(t_f##BITS abs_x) \
+static t_f##BITS F##BITS##_ErfC2(t_f##BITS abs_x) \
 { \
 	t_f##BITS s,R,S; \
 	u_cast_f##BITS z; \
 	if (abs_x < 1.25) \
-		return (_erfc1_F##BITS(abs_x)); \
+		return (F##BITS##_ErfC1(abs_x)); \
 	s = 1 / (abs_x * abs_x); \
 	if (abs_x < (1./0.35)) \
 	{ \
@@ -517,7 +521,7 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 		return (x + x*y); \
 	} \
 	if (abs_x < 6.) \
-		y = 1 - _erfc2_F##BITS(abs_x); \
+		y = 1 - F##BITS##_ErfC2(abs_x); \
 	else \
 		y = 1 - TINY; \
 	return (sign ? -y : y); \
@@ -550,7 +554,7 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 	} \
 	if (abs_x < 28.) \
 	{ \
-		return (sign ? 2 - _erfc2_F##BITS(abs_x) : _erfc2_F##BITS(abs_x)); \
+		return (sign ? 2 - F##BITS##_ErfC2(abs_x) : F##BITS##_ErfC2(abs_x)); \
 	} \
 	return (sign ? 2 - TINY : TINY*TINY); \
 } \

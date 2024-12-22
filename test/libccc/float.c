@@ -1452,19 +1452,27 @@ int		testsuite_float(void)
 
 	print_nonstd();
 
+	//TODO: test_nextafter()
+	//TODO: test_copysign()
+	//TODO: test_rint()
+	//TODO: test_lrint()
+	//TODO: test_ilogb()
+	//TODO: test_frexp()
+	//TODO: test_ldexp()
+	//TODO: test_scalbn()
+	//TODO: test_modf()
+
+//	test_ftostr();
 	test_f32tostr();
 	test_f64tostr();
 	test_f80tostr();
 	test_f128tostr();
-//	test_ftostr();
 
-
-
+//	test_strtof();
 	test_strtof32();
 	test_strtof64();
 	test_strtof80();
 	test_strtof128();
-//	test_strtof();
 
 	return (OK);
 }
