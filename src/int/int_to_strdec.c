@@ -11,7 +11,7 @@
 #define MAXDIGITS_16BIT	 ( 5)	//!< The amount of digits needed to represent a 16-bit integer in decimal (max: 65535)
 #define MAXDIGITS_32BIT	 (10)	//!< The amount of digits needed to represent a 32-bit integer in decimal (max: 4294967295)
 #define MAXDIGITS_64BIT	 (20)	//!< The amount of digits needed to represent a 64-bit integer in decimal (max: 18446744073709551615)
-#define MAXDIGITS_128BIT (41)	//!< The amount of digits needed to represent a 128-bit integer in decimal (max: 340282366920938463463374607431768211455)
+#define MAXDIGITS_128BIT (41)	//!< The amount of digits needed to represent  128-bit integer in decimal (max: 340282366920938463463374607431768211455)
 
 
 
