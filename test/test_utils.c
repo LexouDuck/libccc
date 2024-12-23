@@ -348,7 +348,7 @@ t_bool	memswap(void* ptr1, void* ptr2, t_size size)
 
 #include <stdio.h>
 
-#define DEFINEFUNCTIONS_STATS(NAME_UPPER, NAME, TYPE) \
+#define DEFINEFUNCTIONS_STATS(NAME_UPPER, NAME, TYPE, CHECK) \
  \
 TYPE	stat_getmin_##NAME(TYPE * const values, unsigned int length) \
 { \
@@ -391,7 +391,7 @@ double	stat_average_##NAME(TYPE * const values, unsigned int length) \
 	while (i < length) \
 	{ \
 		value = values[i]; \
-		if (isnormal((double)value)) \
+		if (CHECK) \
 			sum += inv_len * value; \
 		++i; \
 	} \
@@ -410,7 +410,7 @@ double	stat_variance_##NAME(TYPE * const values, unsigned int length) \
 	while (i < length) \
 	{ \
 		value = values[i]; \
-		if (isnormal((double)value)) \
+		if (CHECK) \
 			sum += value * value; \
 		++i; \
 	} \
@@ -460,35 +460,35 @@ void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
 		quicksort_##NAME(array, pivot_id + 1, end); \
 } \
 
-DEFINEFUNCTIONS_STATS(UINT , uint , t_uint)
-DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8)
-DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16)
-DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32)
-DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64)
+DEFINEFUNCTIONS_STATS(UINT , uint , t_uint,  (LIBCONFIG_UINT_ERROR  ? (value != UINT_ERROR ) : TRUE))
+DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8,    (LIBCONFIG_UINT_ERROR  ? (value != U8_ERROR   ) : TRUE))
+DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16,   (LIBCONFIG_UINT_ERROR  ? (value != U16_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32,   (LIBCONFIG_UINT_ERROR  ? (value != U32_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64,   (LIBCONFIG_UINT_ERROR  ? (value != U64_ERROR  ) : TRUE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128)
+DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128,  (LIBCONFIG_UINT_ERROR  ? (value != U128_ERROR ) : TRUE))
 #endif
-DEFINEFUNCTIONS_STATS(SINT , sint , t_sint)
-DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8)
-DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16)
-DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32)
-DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64)
+DEFINEFUNCTIONS_STATS(SINT , sint , t_sint,  (LIBCONFIG_SINT_ERROR  ? (value != SINT_ERROR ) : TRUE))
+DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8,    (LIBCONFIG_SINT_ERROR  ? (value != S8_ERROR   ) : TRUE))
+DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16,   (LIBCONFIG_SINT_ERROR  ? (value != S16_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32,   (LIBCONFIG_SINT_ERROR  ? (value != S32_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64,   (LIBCONFIG_SINT_ERROR  ? (value != S64_ERROR  ) : TRUE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128)
+DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128,  (LIBCONFIG_SINT_ERROR  ? (value != S128_ERROR ) : TRUE))
 #endif
-DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed)
-DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16)
-DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32)
-DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64)
+DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed, (LIBCONFIG_FIXED_ERROR ? (value != FIXED_ERROR) : TRUE))
+DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16,   (LIBCONFIG_FIXED_ERROR ? (value != Q16_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32,   (LIBCONFIG_FIXED_ERROR ? (value != Q32_ERROR  ) : TRUE))
+DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64,   (LIBCONFIG_FIXED_ERROR ? (value != Q64_ERROR  ) : TRUE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128)
+DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128,  (LIBCONFIG_FIXED_ERROR ? (value != Q128_ERROR ) : TRUE))
 #endif
-DEFINEFUNCTIONS_STATS(FLOAT, float, t_float)
-DEFINEFUNCTIONS_STATS(F32  , f32  , t_f32)
-DEFINEFUNCTIONS_STATS(F64  , f64  , t_f64)
+DEFINEFUNCTIONS_STATS(FLOAT, float, t_float, isnormal(value))
+DEFINEFUNCTIONS_STATS(F32  , f32  , t_f32,   isnormal(value))
+DEFINEFUNCTIONS_STATS(F64  , f64  , t_f64,   isnormal(value))
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNCTIONS_STATS(F80  , f80  , t_f80)
+DEFINEFUNCTIONS_STATS(F80  , f80  , t_f80,   isnormal(value))
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNCTIONS_STATS(F128 , f128 , t_f128)
+DEFINEFUNCTIONS_STATS(F128 , f128 , t_f128,  isnormal(value))
 #endif
