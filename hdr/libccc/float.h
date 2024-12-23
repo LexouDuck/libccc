@@ -233,8 +233,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	Also, define isnan() for ANSI C compatibility, if needed.
 */
 //!@{
+#ifndef __cplusplus
 #ifndef isnan
 #define isnan(X)	(X != X)
+#endif
 #endif
 #ifndef IS_NAN
 #define IS_NAN(X)	isnan(X)
@@ -251,8 +253,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	Also, define isinf() for ANSI C compatibility, if needed.
 */
 //!@{
+#ifndef __cplusplus
 #ifndef isinf
 #define isinf(X)	(isnan((X) - (X)) && !isnan(X))
+#endif
 #endif
 #ifndef IS_INF
 #define IS_INF(X)	isinf(X)
@@ -267,8 +271,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isfinite}
 */
 //!@{
+#ifndef __cplusplus
 #ifndef isfinite
 #define isfinite(X)	(!isnan(X) && !isinf(X))
+#endif
 #endif
 #ifndef IS_FINITE
 #define IS_FINITE(X)	isfinite(X)
@@ -280,6 +286,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnormal}
 */
 //!@{
+#ifndef __cplusplus
 #ifndef isnormal
 #define isnormal(X)	( \
 	sizeof(X) == sizeof(float)       ? ((AS_U32(X) + ((t_u32)1 << F32_MANTISSA_BITS)) & (t_u32)-1 >> 1) >= (t_u32)1 << (F32_MANTISSA_BITS + 1) : \
@@ -289,6 +296,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 		(LDBL_MANT_DIG ==  63) ? ((AS_U128(X) + ((t_u128)1 <<  F80_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << ( F80_MANTISSA_BITS + 1) : \
 		(LDBL_MANT_DIG == 112) ? ((AS_U128(X) + ((t_u128)1 << F128_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << (F128_MANTISSA_BITS + 1) : \
 	0) : 0)
+#endif
 #endif
 #ifndef IS_NORMAL
 #define IS_NORMAL(X)	isnormal(X)
@@ -300,6 +308,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
 */
 //!@{
+#ifndef __cplusplus
 #ifndef signbit
 #define signbit(X) ( \
 	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGNED) : \
@@ -309,6 +318,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGNED) : \
 		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGNED) : \
 	0) : 0)
+#endif
 #endif
 #ifndef SIGN_BIT
 #define SIGN_BIT(X)	signbit(X)
@@ -320,8 +330,10 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isunordered}
 */
 //!@{
+#ifndef __cplusplus
 #ifndef isunordered
 #define isunordered(X,Y) (isnan((X)) ? ((void)(Y),1) : isnan((Y)))
+#endif
 #endif
 #ifndef IS_UNORDERED
 #define IS_UNORDERED(X)	isunordered(X)

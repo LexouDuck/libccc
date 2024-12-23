@@ -8,14 +8,6 @@
 
 
 
-#undef isnan
-#undef isinf
-#undef isfinite
-#undef isnormal
-#undef signbit
-
-
-
 int	bool_equals(int a, int b)
 {
 	return (a == 0) ? (b == 0) : (b != 0);
