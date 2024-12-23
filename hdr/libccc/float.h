@@ -297,6 +297,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 //!@}
 
+#if 0
 //!@doc Checks if the given floating-point number arg is normal, i.e. is neither zero, subnormal, infinite, nor NaN.
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnormal}
@@ -316,7 +317,9 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define IS_NORMAL(X)	isnormal(X)
 #endif
 //!@}
+#endif
 
+#if 0
 //!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
@@ -336,6 +339,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define SIGN_BIT(X)	signbit(X)
 #endif
 //!@}
+#endif
 
 //!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
 /*!
