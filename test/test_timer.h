@@ -10,8 +10,6 @@
 
 #include <time.h>
 
-#include "libccc.h"
-
 
 
 /*
@@ -46,9 +44,9 @@ void	timer_clock(s_time* t);
 
 s_time	timer_getdiff(s_time start, s_time end);
 
-t_s64	timer_compare(s_time a, s_time b);
+int		timer_compare(s_time a, s_time b);
 
-void	print_timer_result(s_timer* timer, t_s64 compare);
+void	print_timer_result(s_timer* timer, int compare);
 
 
 

@@ -70,11 +70,12 @@ TEST_CFLAGS_EXTRA += \
 	-Wno-return-type-c-linkage \
 	-Wno-missing-field-initializers \
 
-else
+endif
 TEST_CFLAGS_EXTRA += \
+	-Wno-format \
+	-Wno-write-strings \
 	-Wno-unknown-pragmas \
 
-endif
 
 # this fix allows libccc to build on iOS platforms
 ifneq ($(findstring iPhone,$(UNAME_M)),)

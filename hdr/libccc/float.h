@@ -191,10 +191,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-#define AS_U32(f) ((union { t_f32 _f; t_u32 _i; }){f})._i
-#define AS_U64(f) ((union { t_f64 _f; t_u64 _i; }){f})._i
-#define AS_F32(i) ((union { t_u32 _i; t_f32 _f; }){i})._f
-#define AS_F64(i) ((union { t_u64 _i; t_f64 _f; }){i})._f
+#define AS_U32(f)	((union { t_f32  _f; t_u32  _i; }){f})._i
+#define AS_U64(f)	((union { t_f64  _f; t_u64  _i; }){f})._i
+#define AS_U128(f)	((union { t_f128 _f; t_u128 _i; }){f})._i
+#define AS_F32(i)	((union { t_u32  _i; t_f32  _f; }){i})._f
+#define AS_F64(i)	((union { t_u64  _i; t_f64  _f; }){i})._f
+#define AS_F128(i)	((union { t_u128 _i; t_f128 _f; }){i})._f
 
 
 
@@ -280,12 +282,36 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //!@{
 #ifndef isnormal
 #define isnormal(X)	( \
-	sizeof(X) == sizeof(float)  ? ((AS_U32(X)+0x00800000) & 0x7fffffff) >= 0x01000000 : \
-	sizeof(X) == sizeof(double) ? ((AS_U64(X)+(1ULL<<52)) & -1ULL>>1) >= 1ULL<<53 : \
-	fpclassifyl(X) == FP_NORMAL)
+	sizeof(X) == sizeof(float)       ? ((AS_U32(X) + ((t_u32)1 << F32_MANTISSA_BITS)) & (t_u32)-1 >> 1) >= (t_u32)1 << (F32_MANTISSA_BITS + 1) : \
+	sizeof(X) == sizeof(double)      ? ((AS_U64(X) + ((t_u64)1 << F64_MANTISSA_BITS)) & (t_u64)-1 >> 1) >= (t_u64)1 << (F64_MANTISSA_BITS + 1) : \
+	sizeof(X) == sizeof(long double) ? ( \
+		(LDBL_MANT_DIG ==  52) ? ((AS_U64( X) + ((t_u64 )1 <<  F64_MANTISSA_BITS)) & (t_u64 )-1 >> 1) >= (t_u64 )1 << ( F64_MANTISSA_BITS + 1) : \
+		(LDBL_MANT_DIG ==  63) ? ((AS_U128(X) + ((t_u128)1 <<  F80_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << ( F80_MANTISSA_BITS + 1) : \
+		(LDBL_MANT_DIG == 112) ? ((AS_U128(X) + ((t_u128)1 << F128_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << (F128_MANTISSA_BITS + 1) : \
+	0) : 0)
 #endif
 #ifndef IS_NORMAL
 #define IS_NORMAL(X)	isnormal(X)
+#endif
+//!@}
+
+//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
+*/
+//!@{
+#ifndef signbit
+#define signbit(X) ( \
+	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGNED) : \
+	sizeof(X) == sizeof(double) ? (int)(bool)(AS_U64(X) & F64_SIGNED) : \
+	sizeof(X) == sizeof(long double) ? ( \
+		(LDBL_MANT_DIG ==  52) ? (int)(bool)(AS_U64( X) & F64_SIGNED) : \
+		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGNED) : \
+		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGNED) : \
+	0) : 0)
+#endif
+#ifndef SIGN_BIT
+#define SIGN_BIT(X)	signbit(X)
 #endif
 //!@}
 
@@ -299,22 +325,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 #ifndef IS_UNORDERED
 #define IS_UNORDERED(X)	isunordered(X)
-#endif
-//!@}
-
-//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
-*/
-//!@{
-#ifndef signbit
-#define signbit(x) ( \
-	sizeof(x) == sizeof(float)  ? (int)(AS_U32(x)>>31) : \
-	sizeof(x) == sizeof(double) ? (int)(AS_U64(x)>>63) : \
-	signbitl(x) )
-#endif
-#ifndef SIGN_BIT
-#define SIGN_BIT(X)	signbit(X)
 #endif
 //!@}
 

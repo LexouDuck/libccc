@@ -27,6 +27,7 @@ typedef struct  list_int	s_list_int;	//!< @see "libccc/monad/list.h"
 
 #include "test_catch.h"
 #include "test_timer.h"
+#include "test_print.h"
 
 
 
@@ -36,20 +37,6 @@ typedef struct  list_int	s_list_int;	//!< @see "libccc/monad/list.h"
 ** ************************************************************************** *|
 */
 
-/*
-**	Output color string codes for tty terminal/shell.
-*/
-#ifndef __COLORS__
-#define __COLORS__
-#define ANSI_COLOR_FG_RED		"\x1b[31m"
-#define ANSI_COLOR_FG_GREEN		"\x1b[32m"
-#define ANSI_COLOR_FG_YELLOW	"\x1b[33m"
-#define ANSI_COLOR_FG_BLUE		"\x1b[34m"
-#define ANSI_COLOR_FG_MAGENTA	"\x1b[35m"
-#define ANSI_COLOR_FG_CYAN		"\x1b[36m"
-#define ANSI_RESET		"\x1b[0m"
-#endif
-
 
 
 /*
@@ -57,19 +44,6 @@ typedef struct  list_int	s_list_int;	//!< @see "libccc/monad/list.h"
 **                              Utility Functions                             *|
 ** ************************************************************************** *|
 */
-
-void	print_error(char const* format_error, ...);
-void	print_percent(double percent);
-void	print_totals(int amount, int failed, int warnings, char const* category);
-void	print_usage(char const* program_name);
-void	print_suite_title(char const* suite_name);
-void	print_title(void);
-void	print_endian_warning(void);
-void	print_nonstd(void);
-
-s_sorted_int	print_test_random(int samples);
-
-
 
 int		bool_equals(int a, int b);
 int		str_equals(char const* str1, char const* str2);
@@ -82,6 +56,8 @@ char*	strsurround(char const* str, char begin, char end);
 char*	print_memory(void const* ptr, t_size length);
 
 char*	ptrtostr(void const* ptr);
+
+s_sorted_int	print_test_random(int samples);
 
 
 
@@ -149,8 +125,6 @@ typedef struct test_##NAME \
 	s_timer		timer;		/*!< the execution performance timer for this test */\
 }			s_test_##NAME; \
 void	print_test_##NAME(s_test_##NAME* test, char const* args);
-
-
 
 DEFINEFUNC_PRINT_TEST(enum,		int)
 

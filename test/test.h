@@ -45,13 +45,12 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include <limits.h>
-
-#include "libccc.h"
 
 #include "test_catch.h"
 #include "test_timer.h"
-#include "test_utils.h"
+#include "test_print.h"
 
 
 
@@ -157,9 +156,9 @@ int	_func_(void);
 /*
 **	Global variables used in tests
 */
-extern char const* test1; extern t_size const test1_len;
-extern char const* test2; extern t_size const test2_len;
-extern char const* test3; extern t_size const test3_len;
+extern char const* test1;	extern size_t const test1_len;
+extern char const* test2;	extern size_t const test2_len;
+extern char const* test3;	extern size_t const test3_len;
 
 extern char const* teststr_cc_c0;
 extern char const* teststr_cc_c1;
@@ -169,7 +168,9 @@ extern char const* teststr_utf8_jp;
 extern char const* teststr_utf8_ho;
 extern char const* teststr_utf8_one_symbol_two_seq ;
 extern char const* teststr_utf8_one_symbol_three_seq ;
-extern char const* teststr_utf8_hardcore; extern t_size const teststr_utf8_hardcore_len; extern t_size const teststr_utf8_hardcore_bytelen;
+extern char const* teststr_utf8_hardcore;
+extern size_t const teststr_utf8_hardcore_len;
+extern size_t const teststr_utf8_hardcore_bytelen;
 
 
 

@@ -4,6 +4,7 @@
 #include "libccc/math/int.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

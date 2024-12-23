@@ -5,6 +5,7 @@
 #include "libccc/text/char_ascii.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

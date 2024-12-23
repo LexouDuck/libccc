@@ -16,6 +16,7 @@
 #include "libccc/monad/array.c"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

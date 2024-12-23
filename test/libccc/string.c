@@ -5,6 +5,7 @@
 #include "libccc/string.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

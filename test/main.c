@@ -1,13 +1,16 @@
 
-#include <stddef.h>
 #include <stdio.h>
-#include <ctype.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 #include <setjmp.h>
 #include <signal.h>
 #include <locale.h>
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
@@ -19,9 +22,9 @@ static char const* program_name = NULL;
 ** ************************************************************************** *|
 */
 
-char const* test1 = "Omae wa mou shindeiru.";		t_size const test1_len = 23;
-char const* test2 = "Nani???";						t_size const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.";	t_size const test3_len = 27;
+char const* test1 = "Omae wa mou shindeiru.";		size_t const test1_len = 23;
+char const* test2 = "Nani???";						size_t const test2_len = 8;
+char const* test3 = "Un ange mange de la fange.";	size_t const test3_len = 27;
 
 char const* teststr_cc_c0	= "␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟";
 char const* teststr_cc_c1	= "";
@@ -38,8 +41,8 @@ char const* teststr_utf8_hardcore	=
 #include "utf8_hardcore.inc"
 ;
 
-t_size const teststr_utf8_hardcore_len = 5101; // Number of graphemes
-t_size const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
+size_t const teststr_utf8_hardcore_len = 5101; // Number of graphemes
+size_t const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
 
 
 

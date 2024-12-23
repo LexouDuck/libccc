@@ -4,6 +4,7 @@
 #include "libccc/char.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

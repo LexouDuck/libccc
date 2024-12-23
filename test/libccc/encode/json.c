@@ -2,6 +2,7 @@
 #include "libccc/encode/json.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

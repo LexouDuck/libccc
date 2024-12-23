@@ -2,6 +2,7 @@
 #include "libccc/monad/array.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

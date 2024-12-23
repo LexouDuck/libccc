@@ -3,6 +3,7 @@
 #include "libccc/text/regex.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 #if 0 // test template
 

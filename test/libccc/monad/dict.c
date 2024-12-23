@@ -2,6 +2,7 @@
 #include "libccc/monad/dict.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

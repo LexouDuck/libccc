@@ -1,11 +1,18 @@
 
 #include <ctype.h>
+#include <float.h>
 #include <math.h>
 
-#include "libccc/math.h"
-#include "libccc/sys/time.h"
-
 #include "test.h"
+#include "test_utils.h"
+
+
+
+#undef isnan
+#undef isinf
+#undef isfinite
+#undef isnormal
+#undef signbit
 
 
 

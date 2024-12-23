@@ -22,11 +22,11 @@
 ./test/libccc/monad/hashmap.c
 ./test/libccc/monad/list.c
 ./test/libccc/monad/tree.c
-./test/libccc/pointerarray.c
 ./test/libccc/pointer.c
+./test/libccc/pointerarray.c
 ./test/libccc/random/random.c
-./test/libccc/stringarray.c
 ./test/libccc/string.c
+./test/libccc/stringarray.c
 ./test/libccc/sys/io.c
 ./test/libccc/sys/time.c
 ./test/libccc/text/char_ascii.c
@@ -36,6 +36,6 @@
 ./test/main.c
 ./test/test.c
 ./test/test_catch.c
+./test/test_print.c
 ./test/test_timer.c
-./test/util.c
-./test/util_print.c
+./test/test_utils.c

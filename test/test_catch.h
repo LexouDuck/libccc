@@ -11,8 +11,6 @@
 #include <setjmp.h>
 #include <signal.h>
 
-#include "libccc.h"
-
 
 
 /*

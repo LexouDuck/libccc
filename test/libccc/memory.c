@@ -2,6 +2,7 @@
 #include "libccc/memory.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

@@ -2,6 +2,7 @@
 #include "libccc/pointerarray.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

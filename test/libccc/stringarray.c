@@ -2,6 +2,7 @@
 #include "libccc/stringarray.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 

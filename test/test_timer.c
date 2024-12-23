@@ -125,7 +125,7 @@ s_time	timer_getdiff(s_time start, s_time end)
 
 /* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
 inline
-t_s64	timer_compare(s_time a, s_time b)
+int	timer_compare(s_time a, s_time b)
 {
 	if (a.tv_sec == b.tv_sec)
 		return (a.tv_nsec - b.tv_nsec);
@@ -136,7 +136,7 @@ t_s64	timer_compare(s_time a, s_time b)
 
 
 /* prints the result of a timer (and potentially a comparison with the secondary timer) */
-void	print_timer_result(s_timer* t, t_s64 compare)
+void	print_timer_result(s_timer* t, int compare)
 {
 	char result1[64] = { 0 };
 	char result2[64] = { 0 };
