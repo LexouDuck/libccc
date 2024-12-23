@@ -41,6 +41,10 @@ typedef unsigned __int64  uint64_t;
 
 #undef isnan
 #undef isinf
+#undef isfinite
+#undef isnormal
+#undef isunordered
+#undef signbit
 
 
 

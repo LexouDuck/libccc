@@ -135,7 +135,7 @@ LDFLAGS_OS_emscripten =
 ifneq ($(findstring clang,$(CC)),)
 	LDFLAGS_OS_macos += -current_version       $(VERSION)
 	LDFLAGS_OS_macos += -compatibility_version $(VERSION)
-	LDFLAGS_OS_windows += -defaultlib:clang_rt.builtins.x86_64.lib
+	LDFLAGS_OS_windows += -lclang_rt.builtins.x86_64
 endif
 
 #! This variable is intentionally empty, to specify additional C linker options from the commandline
