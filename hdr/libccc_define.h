@@ -232,6 +232,11 @@ HEADER_CPP
 	#warning "Bad predefined macro: `__SIZEOF_INT128__` should have a value of `16`, or not be defined at all."
 	#endif
 
+	/* fix for windows+clang+msvc which doesnt fully support 128-bit integer division */
+	#if defined(__clang__) && defined(__MSVC__)
+	#undef __int128
+	#endif
+
 	#ifndef __int128
 	#define __int128 \
 			__int128
