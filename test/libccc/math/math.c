@@ -40,6 +40,7 @@ void	print_math_title(char const * title)
 	for (unsigned int i = 0; i < tests; ++i) \
 	{ \
 		x += step; \
+		args[i] = x; \
 		RESULTS[i] = FUNCTION(x); \
 	} \
 	timer_clock(&timer.CALL##_end); \
@@ -53,7 +54,10 @@ void	print_math_title(char const * title)
 		for (unsigned int j = 0; j < tests_interval; ++j) \
 		{ \
 			x += step_x; \
-			RESULTS[i * tests_interval + j] = FUNCTION(x, y); \
+			int index = i * tests_interval + j; \
+			args_x[index] = x; \
+			args_y[index] = y; \
+			RESULTS[index] = FUNCTION(x, y); \
 		} \
 		y += step_y; \
 	} \
@@ -61,7 +65,7 @@ void	print_math_title(char const * title)
 
 
 
-#define TEST_GET_RESULTS() \
+#define TEST_GET_RESULTS(...) \
 	for (unsigned int i = 0; i < tests; ++i) \
 	{ \
 		if (expects[i] == results[i] || (isnan(expects[i]) && isnan(results[i]))) \
@@ -75,8 +79,7 @@ void	print_math_title(char const * title)
 			++failed_tests; \
 			if (g_test.config.verbose && g_test.config.show_args && precision < fabs(results[i] - expects[i])) \
 			{ \
-				printf("TEST N°%d: -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n", \
-					i, results[i], expects[i], errors[i]); \
+				__VA_ARGS__ \
 			} \
 		} \
 	} \
@@ -160,6 +163,7 @@ int	test_math_realfunction_f##BITS( \
 	t_f##BITS* expects = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	t_f##BITS* results = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	t_f##BITS* errors  = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
+	t_f##BITS* args    = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	unsigned int failed_tests = 0; \
 	s_timer timer = {0}; \
 	t_f##BITS	x; \
@@ -169,7 +173,9 @@ int	test_math_realfunction_f##BITS( \
 	{ \
 		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc) \
 	} \
-	TEST_GET_RESULTS() \
+	TEST_GET_RESULTS( \
+		printf("TEST N°%d: %s(%g) -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n", \
+			i, func_name, args[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
 	print_test_math_f##BITS(timer, errors, precision, tests); \
 	free(expects); \
@@ -192,6 +198,8 @@ int	test_math_realoperator_f##BITS( \
 	t_f##BITS* expects = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	t_f##BITS* results = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	t_f##BITS* errors  = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
+	t_f##BITS* args_x  = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
+	t_f##BITS* args_y  = (t_f##BITS*)malloc(tests * sizeof(t_f##BITS)); \
 	unsigned int failed_tests = 0; \
 	s_timer timer = {0}; \
 	t_f##BITS	x; \
@@ -203,7 +211,9 @@ int	test_math_realoperator_f##BITS( \
 	{ \
 		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc) \
 	} \
-	TEST_GET_RESULTS() \
+	TEST_GET_RESULTS( \
+		printf("TEST N°%d: %s(%g, %g) -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n", \
+			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests with:\n" \
 		"arg1: interval [%g,%g], with increment=%g\n" \
 		"arg2: interval [%g,%g], with increment=%g\n", \
