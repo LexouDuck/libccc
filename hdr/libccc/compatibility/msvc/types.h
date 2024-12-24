@@ -29,6 +29,11 @@ typedef unsigned __int32  uint32_t;
 typedef unsigned __int64  uint64_t;
 #endif
 
+/* fix for windows+clang+msvc which doesnt fully support 128-bit integer division */
+#if defined(__clang__) && defined(__MSVC__)
+#undef __int128
+#endif
+
 
 
 #ifdef _WIN64
