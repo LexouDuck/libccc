@@ -237,6 +237,11 @@ HEADER_CPP
 			__int128
 	#endif
 
+	/* fix for windows+clang+msvc which doesnt fully support 128-bit integer division */
+	#if defined(__clang__) && defined(__MSVC__)
+	#undef __int128
+	#endif
+
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpedantic"
 	typedef unsigned __int128	_UInt128; //!< Harmonized type for 128-bit unsigned integers
