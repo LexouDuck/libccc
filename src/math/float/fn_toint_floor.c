@@ -1,8 +1,7 @@
 
 #include "libccc/float.h"
-#include "libccc/math/float.h"
 #include "libccc/math.h"
-#include "libccc/memory.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

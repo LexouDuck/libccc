@@ -78,7 +78,7 @@ DEFINEFUNC_FLOAT_EXP(128)
 
 
 
-/* Top 12 bits of a double (sign and exponent bits). */
+/* Top 12 bits of a t_f64 (sign and exponent bits). */
 static inline
 t_u32	top12bits_f32(t_f64 x)
 {
@@ -94,8 +94,8 @@ t_u32	top12bits_f64(t_f32 x)
 /*!
 **	Handle cases that may overflow or underflow when computing the result that is scale*(1+TMP) without intermediate rounding.
 **	The bit representation of scale is in SBITS, however it has a computed exponent
-**	that may have overflown into the sign bit so that needs to be adjusted before using it as a double.
-**	(int32_t)KI is the k used in the argument reduction and exponent adjustment of scale,
+**	that may have overflown into the sign bit so that needs to be adjusted before using it as a t_f64.
+**	(t_s32)KI is the k used in the argument reduction and exponent adjustment of scale,
 **	positive k here means the result may overflow and negative k means the result may underflow.
 */
 static inline
@@ -118,7 +118,7 @@ t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 	{
 		/*
 		Round y to the right precision before scaling it into the subnormal
-		range to avoid double rounding that can cause 0.5+E/2 ulp error where
+		range to avoid t_f64 rounding that can cause 0.5+E/2 ulp error where
 		E is the worst-case ulp error outside the subnormal range.
 		So this is only useful if the goal is better than 1 ulp worst-case error.
 		*/
@@ -176,8 +176,8 @@ t_f32	F32_Exp(t_f32 x)
 #endif
 	r = z - kd;
 	/* exp(x) = 2^(k/N) * 2^(r/N) ~= s * (C0*r^3 + C1*r^2 + C2*r + 1) */
-	t = __data_exp_f32.table[ki % N_F32];
-	t += ki << (52 - EXP2F_TABLE_BITS);
+	t = __data_exp_f32.table[ki % N_EXP_F32];
+	t += ki << (F64_MANTISSA_BITS - TABLEBITS_EXP_F32);
 	s = AS_F64(t);
 	z = __data_exp_f32.poly[0] * r + __data_exp_f32.poly[1];
 	r2 = r * r;
@@ -233,8 +233,8 @@ t_f64	F64_Exp(t_f64 x)
 #endif
 	r = x + kd * __data_exp_f64.negln2hiN + kd * __data_exp_f64.negln2loN;
 	/* 2^(k/N) ~= scale * (1 + tail). */
-	idx = 2 * (ki % N_F64);
-	top = ki << (52 - EXP_TABLE_BITS);
+	idx = 2 * (ki % N_EXP_F64);
+	top = ki << (F64_MANTISSA_BITS - TABLEBITS_EXP_F64);
 	tail = AS_F64(__data_exp_f64.table[idx]);
 	/* This is only a valid scale when -1023*N < k < 1024*N. */
 	sbits = __data_exp_f64.table[idx + 1] + top;
@@ -252,70 +252,37 @@ t_f64	F64_Exp(t_f64 x)
 	return (t_f64)(scale + scale * tmp);
 }
 
-#if LIBCONFIG_USE_FLOAT80
-t_f80	F80_Exp(t_f80 x)
-{
-	t_f80 px, x2;
-	int k;
+#define DEFINEFUNC_FLOAT_EXP(BITS) \
+t_f##BITS	F##BITS##_Exp(t_f##BITS x) \
+{ \
+	t_f##BITS px, x2; \
+	int k; \
+ \
+	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if (x > 11356.5234062941439488L) /* x > ln(2^16384 - 0.5) */ \
+		return x * 0x1p16383L; \
+	if (x < -11399.4985314888605581L) /* x < ln(2^-16446) */ \
+		return -0x1p-16445L / x; \
+	/* Express e**x = e**f 2**k = e**(f + k ln(2)) */ \
+	px = F##BITS##_Floor(__data_exp_f##BITS.log2e * x + 0.5); \
+	k = px; \
+	x -= px * __data_exp_f##BITS.ln2hi; \
+	x -= px * __data_exp_f##BITS.ln2lo; \
+	/* rational approximation of the fractional part: e**x =  1 + 2x P(x**2)/(Q(x**2) - x P(x**2)) */ \
+	x2 = x * x; \
+	px = x * (__polynomial(x2, __data_exp_f##BITS.exp_poly_p, 2)); \
+	x = px / (__polynomial(x2, __data_exp_f##BITS.exp_poly_q, 3) - px); \
+	x = 1.0 + 2.0 * x; \
+	return F##BITS##_From(x, k); \
+} \
 
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)
-		return (NAN);
-	if (x > 11356.5234062941439488L) /* x > ln(2^16384 - 0.5) */
-		return x * 0x1p16383L;
-	if (x < -11399.4985314888605581L) /* x < ln(2^-16446) */
-		return -0x1p-16445L / x;
-	/* Express e**x = e**f 2**k = e**(f + k ln(2)) */
-	px = F80_Floor(__data_exp_f80.log2e * x + 0.5);
-	k = px;
-	x -= px * __data_exp_f80.ln2hi;
-	x -= px * __data_exp_f80.ln2lo;
-	/* rational approximation of the fractional part: e**x =  1 + 2x P(x**2)/(Q(x**2) - x P(x**2)) */
-	x2 = x * x;
-	px = x * (
-		__data_exp_f80.exp_poly_p[0] * x2 +
-		__data_exp_f80.exp_poly_p[1] * x2 +
-		__data_exp_f80.exp_poly_p[2]);
-	x = px / ((
-		__data_exp_f80.exp_poly_q[0] * x2 +
-		__data_exp_f80.exp_poly_q[1] * x2 +
-		__data_exp_f80.exp_poly_q[2] * x2 +
-		__data_exp_f80.exp_poly_q[3]) - px);
-	x = 1.0 + 2.0 * x;
-	return F80_From(x, k);
-}
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_EXP(80)
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-t_f128	F128_Exp(t_f128 x)
-{
-	t_f128 px, xx;
-	int k;
-
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)
-		return (NAN);
-	if (x > +11356.5234062941439488L) /* x > ln(2^16384 - 0.5) */
-		return x * 0x1p16383L;
-	if (x < -11399.4985314888605581L) /* x < ln(2^-16446) */
-		return -0x1p-16445L / x;
-	/* Express e**x = e**f 2**k = e**(f + k ln(2)) */
-	px = F128_Floor(__data_exp_f128.log2e * x + 0.5);
-	k = px;
-	x -= px * __data_exp_f128.ln2hi;
-	x -= px * __data_exp_f128.ln2lo;
-	/* rational approximation of the fractional part: e**x =  1 + 2x P(x**2)/(Q(x**2) - x P(x**2)) */
-	xx = x * x;
-	px = x * (
-		__data_exp_f128.exp_poly_p[0] * x2 +
-		__data_exp_f128.exp_poly_p[1] * x2 +
-		__data_exp_f128.exp_poly_p[2]);
-	x = px / ((
-		__data_exp_f128.exp_poly_q[0] * x2 +
-		__data_exp_f128.exp_poly_q[1] * x2 +
-		__data_exp_f128.exp_poly_q[2] * x2 +
-		__data_exp_f128.exp_poly_q[3]) - px);
-	x = 1.0 + 2.0 * x;
-	return F128_From(x, k);
-}
+DEFINEFUNC_FLOAT_EXP(128)
 #endif
 
 

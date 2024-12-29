@@ -1,6 +1,6 @@
 
 #include "libccc/math.h"
-#include "libccc/memory.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -8,7 +8,7 @@
 
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(InvCosH, acosh)
-#else
+#elif LIBCONFIG_USE_CCC_MATH
 // fast sqrt approximation for [+1,+20] and natural log for the rest
 // score: 5.00	for [+1,+50]-> 250 tests
 #define DEFINEFUNC_FLOAT_INVCOSH(BITS) \
@@ -21,7 +21,7 @@ t_f##BITS	F##BITS##_InvCosH(t_f##BITS x) \
 	if (x < 20) \
 		return (1.37 * F##BITS##_Root2(x - 1) - 0.122 * (x - 1)); \
 	else \
-		return (F##BITS##_Ln(x - 1) + INV_SQRT_2); \
+		return (F##BITS##_Log(x - 1) + INV_SQRT_2); \
 } \
 
 DEFINEFUNC_FLOAT_INVCOSH(32)
@@ -32,5 +32,103 @@ DEFINEFUNC_FLOAT_INVCOSH(80)
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_INVCOSH(128)
 #endif
+
+
+
+#else
+
+
+
+#if FLT_EVAL_METHOD==2
+#undef sqrtf
+#define sqrtf sqrtl
+#elif FLT_EVAL_METHOD==1
+#undef sqrtf
+#define sqrtf sqrt
+#endif
+
+/* acosh(x) = log(x + sqrt(x*x-1)) */
+/* acosh(x) = log(x + sqrt(x*x-1)) */
+/* acosh(x) = log(x + sqrt(x*x-1)) */
+
+	/* x < 1 domain error is handled in the called functions */
+
+t_f32	F32_InvCosH(t_f32 x)
+{
+	union {t_f32 f; t_u32 i;} u = {x};
+	t_u32 a = u.i & 0x7fffffff;
+
+	if (a < 0x3f800000+(1<<23))
+		/* |x| < 2, invalid if x < 1 */
+		/* up to 2ulp error in [1,1.125] */
+		return F32_Log(1 + (x-1 + F32_Root2((x-1)*(x-1)+2*(x-1))));
+	if (u.i < 0x3f800000+(12<<23))
+		/* 2 <= x < 0x1p12 */
+		return F32_Log(2*x - 1/(x+F32_Root2(x*x-1)));
+	/* x >= 0x1p12 or x <= -2 or nan */
+	return F32_Log(x) + 0.693147180559945309417232121458176568f;
+}
+
+#if FLT_EVAL_METHOD==2
+#undef sqrt
+#define sqrt sqrtl
+#endif
+
+t_f64	F64_InvCosH(t_f64 x)
+{
+	union {t_f64 f; t_u64 i;} u = {.f = x};
+	unsigned e = u.i >> 52 & 0x7ff;
+
+	if (e < 0x3ff + 1)
+		/* |x| < 2, up to 2ulp error in [1,1.125] */
+		return F64_Log(1 + (x-1 + F64_Root2((x-1)*(x-1)+2*(x-1))));
+	if (e < 0x3ff + 26)
+		/* |x| < 0x1p26 */
+		return F64_Log(2*x - 1/(x+F64_Root2(x*x-1)));
+	/* |x| >= 0x1p26 or nan */
+	return F64_Log(x) + 0.693147180559945309417232121458176568;
+}
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80	F80_InvCosH(t_f80 x)
+{
+	union ldshape u = {x};
+	int e = u.i.se;
+
+	if (e < 0x3fff + 1)
+		/* 0 <= x < 2, invalid if x < 1 */
+		return F80_Log(1 + (x-1 + F80_Root2((x-1)*(x-1)+2*(x-1))));
+	if (e < 0x3fff + 32)
+		/* 2 <= x < 0x1p32 */
+		return F80_Log(2*x - 1/(x+F80_Root2(x*x-1)));
+	if (e & 0x8000)
+		/* x < 0 or x = -0, invalid */
+		return (x - x) / (x - x);
+	/* 0x1p32 <= x or nan */
+	return F80_Log(x) + 0.693147180559945309417232121458176568L;
+}
+#endif
+
+#if LIBCONFIG_USE_FLOAT128
+t_f128	F128_InvCosH(t_f128 x)
+{
+	union ldshape u = {x};
+	int e = u.i.se;
+
+	if (e < 0x3fff + 1)
+		/* 0 <= x < 2, invalid if x < 1 */
+		return F128_Log(1 + (x-1 + F128_Root2((x-1)*(x-1)+2*(x-1))));
+	if (e < 0x3fff + 32)
+		/* 2 <= x < 0x1p32 */
+		return F128_Log(2*x - 1/(x+F128_Root2(x*x-1)));
+	if (e & 0x8000)
+		/* x < 0 or x = -0, invalid */
+		return (x - x) / (x - x);
+	/* 0x1p32 <= x or nan */
+	return F128_Log(x) + 0.693147180559945309417232121458176568L;
+}
+#endif
+
+
 
 #endif

@@ -1,8 +1,7 @@
 
 #include "libccc/float.h"
-#include "libccc/math/float.h"
 #include "libccc/math.h"
-#include "libccc/memory.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -114,36 +113,6 @@ data_gamma_f64 =
 	},
 };
 
-static
-t_f64	__cos(t_f64 x)
-{
-	static const t_f64 C1 = +4.16666666666666019037e-02; /* 0x3FA55555, 0x5555554C */
-	static const t_f64 C2 = -1.38888888888741095749e-03; /* 0xBF56C16C, 0x16C15177 */
-	static const t_f64 C3 = +2.48015872894767294178e-05; /* 0x3EFA01A0, 0x19CB1590 */
-	static const t_f64 C4 = -2.75573143513906633035e-07; /* 0xBE927E4F, 0x809C52AD */
-	static const t_f64 C5 = +2.08757232129817482790e-09; /* 0x3E21EE9E, 0xBDB4B1C4 */
-	static const t_f64 C6 = -1.13596475577881948265e-11; /* 0xBDA8FAE9, 0xBE8838D4 */
-	t_f64 x2 = x * x;
-	t_f64 polynomial = (x2*(C1+x2*(C2+x2*(C3+x2*(C4+x2*(C5+x2*C6))))));
-	t_f64 hx2 = 0.5 * x2;
-	t_f64 mhx2 = 1.0 - hx2;
-	return (mhx2 + (((1.0 - mhx2) - hx2) + (x2 * polynomial)));
-}
-static
-t_f64	__sin(t_f64 x)
-{
-	static const t_f64 S1 = -1.66666666666666324348e-01; /* 0xBFC55555, 0x55555549 */
-	static const t_f64 S2 = +8.33333333332248946124e-03; /* 0x3F811111, 0x1110F8A6 */
-	static const t_f64 S3 = -1.98412698298579493134e-04; /* 0xBF2A01A0, 0x19C161D5 */
-	static const t_f64 S4 = +2.75573137070700676789e-06; /* 0x3EC71DE3, 0x57B1FE7D */
-	static const t_f64 S5 = -2.50507602534068634195e-08; /* 0xBE5AE5E6, 0x8A2B9CEB */
-	static const t_f64 S6 = +1.58969099521155010221e-10; /* 0x3DE5D93A, 0x5ACFD57C */
-	t_f64 x2 = x * x;
-	t_f64 x4 = x2 * x2;
-	t_f64 polynomial = S2 + x2*(S3 + x2*S4) + x2*x4*(S5 + x2*S6);
-	t_f64 x3 = x2 * x;
-	return (x + x3 * (S1 + x2 * polynomial));
-}
 /*!
 **	sin(pi x) with x > 0x1p-100, if sin(pi*x)==0 the sign is arbitrary
 */
@@ -163,10 +132,10 @@ t_f64	sinpi(t_f64 x)
 	switch (n)
 	{
 		default: /* case 4 */
-		case 0:	return +__sin(+x);
-		case 1:	return +__cos(+x);
-		case 2:	return +__sin(-x);
-		case 3:	return -__cos(+x);
+		case 0:	return +__sin_f64(+x, 0, 0);
+		case 1:	return +__cos_f64(+x, 0);
+		case 2:	return +__sin_f64(-x, 0, 0);
+		case 3:	return -__cos_f64(+x, 0);
 	}
 }
 
@@ -196,7 +165,7 @@ t_f64	S(t_f64 x)
 
 t_f32	F32_Gamma(t_f32 x)
 {
-	return F64_Gamma(x);
+	return (t_f32)F64_Gamma((t_f64)x);
 }
 
 t_f64	F64_Gamma(t_f64 x)
@@ -226,7 +195,7 @@ t_f64	F64_Gamma(t_f64 x)
 	{ /* |x| >= 184 */
 		if (sign)
 		{
-			/* FORCE_EVAL((float)(0x1p-126/x)); */
+			/* FORCE_EVAL((t_f32)(0x1p-126/x)); */
 			if (F64_Floor(x) * 0.5 == F64_Floor(x * 0.5))
 				return 0;
 			return -0.0;
@@ -285,7 +254,7 @@ t_f64	F64_Gamma(t_f64 x)
 **
 ** SYNOPSIS:
 **
-** long double x, y, tgammal();
+** t_f80 x, y, tgammal();
 **
 ** y = tgammal( x );
 **
@@ -331,7 +300,8 @@ struct data_gamma_f##BITS \
 	t_f##BITS s[9]; \
 	t_f##BITS sn[9]; \
 	t_f##BITS pil; \
-}	data_gamma_f##BITS = (struct data_gamma_f##BITS) \
+} \
+__data_gamma_f##BITS = \
 { \
 	.p = \
 	{ \
@@ -466,7 +436,7 @@ t_f##BITS	F##BITS##_Gamma_StirlingFormula(t_f##BITS x) \
 			+ 8.33333333333333333333E-2L) * w \
 			+ 1.0; \
 	else \
-		w = 1.0 + w * __polevll(w, data_gamma_f80.stir, 8); \
+		w = 1.0 + w * __polynomial_f80(w, data_gamma_f80.stir, 8); \
 	y = F##BITS##_Exp(x); \
 	if (x > data_gamma_f80.maxstir) /* Avoid overflow in pow() */ \
 	{ \
@@ -545,25 +515,8 @@ t_f##BITS	F##BITS##_Gamma(t_f##BITS x) \
 	if (x == 2.0) \
 		return z; \
 	x -= 2.0; \
-	p = ( \
-		_data_gamma_f80.p[0] * x + \
-		_data_gamma_f80.p[1] * x + \
-		_data_gamma_f80.p[2] * x + \
-		_data_gamma_f80.p[3] * x + \
-		_data_gamma_f80.p[4] * x + \
-		_data_gamma_f80.p[5] * x + \
-		_data_gamma_f80.p[6] * x + \
-		_data_gamma_f80.p[7]); \
-	q = ( \
-		_data_gamma_f80.q[0] * x + \
-		_data_gamma_f80.q[1] * x + \
-		_data_gamma_f80.q[2] * x + \
-		_data_gamma_f80.q[3] * x + \
-		_data_gamma_f80.q[4] * x + \
-		_data_gamma_f80.q[5] * x + \
-		_data_gamma_f80.q[6] * x + \
-		_data_gamma_f80.q[7] * x + \
-		_data_gamma_f80.q[8]); \
+	p = __polynomial_f##BITS(x, __data_gamma_f80.p, 7); \
+	q = __polynomial_f##BITS(x, __data_gamma_f80.q, 8); \
 	z = z * p / q; \
 	return z; \
 small: \
@@ -573,29 +526,11 @@ small: \
 	if (x < 0.0) \
 	{ \
 		x = -x; \
-		q = z / (x * ( \
-		_data_gamma_f80.sn[0] * x + \
-		_data_gamma_f80.sn[1] * x + \
-		_data_gamma_f80.sn[2] * x + \
-		_data_gamma_f80.sn[3] * x + \
-		_data_gamma_f80.sn[4] * x + \
-		_data_gamma_f80.sn[5] * x + \
-		_data_gamma_f80.sn[6] * x + \
-		_data_gamma_f80.sn[7] * x + \
-		_data_gamma_f80.sn[8])); \
+		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f80.sn, 8)); \
 	} \
 	else \
 	{ \
-		q = z / (x * ( \
-		_data_gamma_f80.s[0] * x + \
-		_data_gamma_f80.s[1] * x + \
-		_data_gamma_f80.s[2] * x + \
-		_data_gamma_f80.s[3] * x + \
-		_data_gamma_f80.s[4] * x + \
-		_data_gamma_f80.s[5] * x + \
-		_data_gamma_f80.s[6] * x + \
-		_data_gamma_f80.s[7] * x + \
-		_data_gamma_f80.s[8])); \
+		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f80.s, 8)); \
 	} \
 	return q; \
 } \

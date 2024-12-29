@@ -103,10 +103,10 @@
 ./src/math/float/fn_exp2.c
 ./src/math/float/fn_gamma.c
 ./src/math/float/fn_lgamma.c
-./src/math/float/fn_ln.c
 ./src/math/float/fn_log.c
 ./src/math/float/fn_log10.c
 ./src/math/float/fn_log2.c
+./src/math/float/fn_logn.c
 ./src/math/float/fn_sgn.c
 ./src/math/float/fn_toint_ceil.c
 ./src/math/float/fn_toint_floor.c
@@ -120,6 +120,8 @@
 ./src/math/float/op_pow.c
 ./src/math/float/op_rem.c
 ./src/math/float/op_root.c
+./src/math/float/op_root2.c
+./src/math/float/op_root3.c
 ./src/math/float/op_sub.c
 ./src/math/float/rel_equals.c
 ./src/math/float/rel_orders.c
@@ -138,6 +140,8 @@
 ./src/math/float/trig_tanh.c
 ./src/math/float/utils.c
 ./src/math/float/utils_exp.c
+./src/math/float/utils_log.c
+./src/math/float/utils_root.c
 ./src/math/float/utils_trig.c
 ./src/math/int/fn_2root.c
 ./src/math/int/fn_abs.c

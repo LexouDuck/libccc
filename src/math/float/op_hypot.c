@@ -9,7 +9,27 @@
 
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALOPERATOR(Hypotenuse, hypot)
+#elif LIBCONFIG_USE_CCC_MATH
+#define DEFINEFUNC_FLOAT_HYPOT(BITS) \
+_INLINE() \
+t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
+{ \
+	return (F##BITS##_Root2(x * x + y * y)); \
+} \
+
+DEFINEFUNC_FLOAT_HYPOT(32)
+DEFINEFUNC_FLOAT_HYPOT(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_HYPOT(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_HYPOT(128)
+#endif
+
+
+
 #else
+
 #define DEFINEFUNC_FLOAT_HYPOT(BITS, N_HUGE, N_TINY, N_ADD, N_SUB, SPLIT) \
 static \
 void	__sq##BITS(t_f##BITS* hi, t_f##BITS* lo, t_f##BITS x) \
@@ -55,7 +75,7 @@ t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
 	if (ex == (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS) || uy.value_uint == 0) \
 		return x; \
 	/* note: hypot(x,y) ~= x + y*y/x/2 with inexact for small y/x */ \
-	/* 64 difference is enough for ld80 double_t */ \
+	/* 64 difference is enough for ld80 t_f64 */ \
 	if (ex - ey > BITS) \
 		return x + y; \
 	/* precise sqrt argument in nearest rounding mode without overflow */ \

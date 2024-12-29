@@ -20,8 +20,8 @@ MATH_DECL_REALFUNCTION(ErfC, erfc)
 ** is preserved.
 ** ====================================================
 */
-/* double erf(double x)
-** double erfc(double x)
+/* t_f64 erf(t_f64 x)
+** t_f64 erfc(t_f64 x)
 **                           x
 **                    2      |\
 **     erf(x)  =  ---------  | exp(-t*t)dt
@@ -117,7 +117,7 @@ MATH_DECL_REALFUNCTION(ErfC, erfc)
 
 
 #define DEFINEDATA_FLOAT_ERF(BITS) \
-const struct data_erf_f##BITS \
+struct data_erf_f##BITS \
 { \
 	t_f##BITS	erx; \
 	t_f##BITS	efx8; \
@@ -131,7 +131,7 @@ const struct data_erf_f##BITS \
 	t_f##BITS	sb[8]; \
 	t_f##BITS	rc[6]; \
 	t_f##BITS	sc[6]; \
-}	_data_erf_f##BITS; \
+}; \
 
 DEFINEDATA_FLOAT_ERF(32)
 DEFINEDATA_FLOAT_ERF(64)
@@ -142,7 +142,7 @@ DEFINEDATA_FLOAT_ERF(80)
 DEFINEDATA_FLOAT_ERF(128)
 #endif
 
-const struct data_erf_f32 cf32 =
+const struct data_erf_f32 __data_erf_f32 =
 {
 	.erx  = +8.4506291151e-01f, /* 0x3F58560B */
 	/* Coefficients for approximation to  erf on [0,0.84375] */
@@ -233,7 +233,7 @@ const struct data_erf_f32 cf32 =
 	},
 };
 
-const struct data_erf_f64 cf64 =
+const struct data_erf_f64 __data_erf_f64 =
 {
 	.erx  = 8.45062911510467529297e-01, /* 0x3FEB0AC1, 0x60000000 */
 /* Coefficients for approximation to  erf on [0,0.84375] */
@@ -325,7 +325,7 @@ const struct data_erf_f64 cf64 =
 };
 
 #if LIBCONFIG_USE_FLOAT80
-const struct data_erf_f80 cf80 =
+const struct data_erf_f80 __data_erf_f80 =
 {
 	.erx = 0.845062911510467529296875L,
 /* Coefficients for approximation to  erf on [0,0.84375] */
@@ -447,7 +447,7 @@ const struct data_erf_f80 cf80 =
 };
 #endif
 #if LIBCONFIG_USE_FLOAT128
-const struct data_erf_f128 cf128 =
+const struct data_erf_f128 __data_erf_f128 =
 {
 	.erx  = cf80.erx,
 	.efx8 = cf80.efx8,
@@ -472,9 +472,21 @@ static t_f##BITS F##BITS##_ErfC1(t_f##BITS abs_x) \
 { \
 	t_f##BITS s,P,Q; \
 	s = abs_x - 1; \
-	P = cf##BITS.pa[0]+s*(cf##BITS.pa[1]+s*(cf##BITS.pa[2]+s*(cf##BITS.pa[3]+s*(cf##BITS.pa[4]+s*(cf##BITS.pa[5]+s*cf##BITS.pa[6]))))); \
-	Q = cf##BITS.qa[0]+s*(cf##BITS.qa[1]+s*(cf##BITS.qa[2]+s*(cf##BITS.qa[3]+s*(cf##BITS.qa[4]+s*(cf##BITS.qa[5]+s*cf##BITS.qa[6]))))); \
-	return (1 - cf##BITS.erx - P/Q); \
+	P = (__data_erf_f##BITS.pa[0] + s * \
+		(__data_erf_f##BITS.pa[1] + s * \
+		(__data_erf_f##BITS.pa[2] + s * \
+		(__data_erf_f##BITS.pa[3] + s * \
+		(__data_erf_f##BITS.pa[4] + s * \
+		(__data_erf_f##BITS.pa[5] + s * \
+		(__data_erf_f##BITS.pa[6]))))))); \
+	Q = (__data_erf_f##BITS.qa[0] + s * \
+		(__data_erf_f##BITS.qa[1] + s * \
+		(__data_erf_f##BITS.qa[2] + s * \
+		(__data_erf_f##BITS.qa[3] + s * \
+		(__data_erf_f##BITS.qa[4] + s * \
+		(__data_erf_f##BITS.qa[5] + s * \
+		(__data_erf_f##BITS.qa[6]))))))); \
+	return (1 - __data_erf_f##BITS.erx - P/Q); \
 } \
  \
 static t_f##BITS F##BITS##_ErfC2(t_f##BITS abs_x) \
@@ -486,13 +498,41 @@ static t_f##BITS F##BITS##_ErfC2(t_f##BITS abs_x) \
 	s = 1 / (abs_x * abs_x); \
 	if (abs_x < (1./0.35)) \
 	{ \
-		R = cf##BITS.ra[0]+s*(cf##BITS.ra[1]+s*(cf##BITS.ra[2]+s*(cf##BITS.ra[3]+s*(cf##BITS.ra[4]+s*(cf##BITS.ra[5]+s*(cf##BITS.ra[6]+s*cf##BITS.ra[7])))))); \
-		S = cf##BITS.sa[0]+s*(cf##BITS.sa[1]+s*(cf##BITS.sa[2]+s*(cf##BITS.sa[3]+s*(cf##BITS.sa[4]+s*(cf##BITS.sa[5]+s*(cf##BITS.sa[6]+s*(cf##BITS.sa[7]+s*cf##BITS.sa[8]))))))); \
+		R = (__data_erf_f##BITS.ra[0] + s * \
+			(__data_erf_f##BITS.ra[1] + s * \
+			(__data_erf_f##BITS.ra[2] + s * \
+			(__data_erf_f##BITS.ra[3] + s * \
+			(__data_erf_f##BITS.ra[4] + s * \
+			(__data_erf_f##BITS.ra[5] + s * \
+			(__data_erf_f##BITS.ra[6] + s * \
+			(__data_erf_f##BITS.ra[7])))))))); \
+		S = (__data_erf_f##BITS.sa[0] + s * \
+			(__data_erf_f##BITS.sa[1] + s * \
+			(__data_erf_f##BITS.sa[2] + s * \
+			(__data_erf_f##BITS.sa[3] + s * \
+			(__data_erf_f##BITS.sa[4] + s * \
+			(__data_erf_f##BITS.sa[5] + s * \
+			(__data_erf_f##BITS.sa[6] + s * \
+			(__data_erf_f##BITS.sa[7] + s * \
+			(__data_erf_f##BITS.sa[8]))))))))); \
 	} \
 	else /* |x| > 1/.35 */ \
 	{ \
-		R = cf##BITS.rb[0]+s*(cf##BITS.rb[1]+s*(cf##BITS.rb[2]+s*(cf##BITS.rb[3]+s*(cf##BITS.rb[4]+s*(cf##BITS.rb[5]+s*cf##BITS.rb[6]))))); \
-		S = cf##BITS.sb[0]+s*(cf##BITS.sb[1]+s*(cf##BITS.sb[2]+s*(cf##BITS.sb[3]+s*(cf##BITS.sb[4]+s*(cf##BITS.sb[5]+s*(cf##BITS.sb[6]+s*cf##BITS.sb[7])))))); \
+		R = (__data_erf_f##BITS.rb[0] + s * \
+			(__data_erf_f##BITS.rb[1] + s * \
+			(__data_erf_f##BITS.rb[2] + s * \
+			(__data_erf_f##BITS.rb[3] + s * \
+			(__data_erf_f##BITS.rb[4] + s * \
+			(__data_erf_f##BITS.rb[5] + s * \
+			(__data_erf_f##BITS.rb[6]))))))); \
+		S = (__data_erf_f##BITS.sb[0] + s * \
+			(__data_erf_f##BITS.sb[1] + s * \
+			(__data_erf_f##BITS.sb[2] + s * \
+			(__data_erf_f##BITS.sb[3] + s * \
+			(__data_erf_f##BITS.sb[4] + s * \
+			(__data_erf_f##BITS.sb[5] + s * \
+			(__data_erf_f##BITS.sb[6] + s * \
+			(__data_erf_f##BITS.sb[7])))))))); \
 	} \
 	z.value_float = abs_x; \
 	z.value_uint &= (t_u##BITS)-1 << ZMASK; \
@@ -512,11 +552,20 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 	{ \
 		if (abs_x < 0x1p-56) \
 		{ \
-			return (0.125 * (8 * x + cf##BITS.efx8 * x));	/* avoid underflow */ \
+			return (0.125 * (8 * x + __data_erf_f##BITS.efx8 * x));	/* avoid underflow */ \
 		} \
 		z = x*x; \
-		r = cf##BITS.pp[0]+z*(cf##BITS.pp[1]+z*(cf##BITS.pp[2]+z*(cf##BITS.pp[3]+z*cf##BITS.pp[4]))); \
-		s = cf##BITS.qq[0]+z*(cf##BITS.qq[1]+z*(cf##BITS.qq[2]+z*(cf##BITS.qq[3]+z*(cf##BITS.qq[4]+z*cf##BITS.qq[5])))); \
+		r = (__data_erf_f##BITS.pp[0] + z * \
+			(__data_erf_f##BITS.pp[1] + z * \
+			(__data_erf_f##BITS.pp[2] + z * \
+			(__data_erf_f##BITS.pp[3] + z * \
+			(__data_erf_f##BITS.pp[4]))))); \
+		s = (__data_erf_f##BITS.qq[0] + z * \
+			(__data_erf_f##BITS.qq[1] + z * \
+			(__data_erf_f##BITS.qq[2] + z * \
+			(__data_erf_f##BITS.qq[3] + z * \
+			(__data_erf_f##BITS.qq[4] + z * \
+			(__data_erf_f##BITS.qq[5])))))); \
 		y = r/s; \
 		return (x + x*y); \
 	} \
@@ -543,8 +592,17 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 			return (1.0 - x); \
 		} \
 		z = x*x; \
-		r = cf##BITS.pp[0]+z*(cf##BITS.pp[1]+z*(cf##BITS.pp[2]+z*(cf##BITS.pp[3]+z*cf##BITS.pp[4]))); \
-		s = cf##BITS.qq[0]+z*(cf##BITS.qq[1]+z*(cf##BITS.qq[2]+z*(cf##BITS.qq[3]+z*(cf##BITS.qq[4]+z*cf##BITS.qq[5])))); \
+		r = (__data_erf_f##BITS.pp[0] + z * \
+			(__data_erf_f##BITS.pp[1] + z * \
+			(__data_erf_f##BITS.pp[2] + z * \
+			(__data_erf_f##BITS.pp[3] + z * \
+			(__data_erf_f##BITS.pp[4]))))); \
+		s = (__data_erf_f##BITS.qq[0] + z * \
+			(__data_erf_f##BITS.qq[1] + z * \
+			(__data_erf_f##BITS.qq[2] + z * \
+			(__data_erf_f##BITS.qq[3] + z * \
+			(__data_erf_f##BITS.qq[4] + z * \
+			(__data_erf_f##BITS.qq[5])))))); \
 		y = r/s; \
 		if (x < 0.25) \
 		{ \

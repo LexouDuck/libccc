@@ -15,6 +15,9 @@ MATH_DECL_ENDORELATION(LT, isless)
 _INLINE() \
 t_bool	F##BITS##_LessThan(t_f##BITS a, t_f##BITS b) \
 { \
+	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
+		"cannot compare (%g < %g)", a, b) \
+		return FALSE; \
 	return (a < b); \
 } \
 
@@ -38,6 +41,9 @@ MATH_DECL_ENDORELATION(LTE, islessequal)
 _INLINE() \
 t_bool	F##BITS##_LessThanOrEqual(t_f##BITS a, t_f##BITS b) \
 { \
+	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
+		"cannot compare (%g <= %g)", a, b) \
+		return FALSE; \
 	return (a <= b); \
 } \
 
@@ -61,6 +67,9 @@ MATH_DECL_ENDORELATION(GT, isgreater)
 _INLINE() \
 t_bool	F##BITS##_GreaterThan(t_f##BITS a, t_f##BITS b) \
 { \
+	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
+		"cannot compare (%g > %g)", a, b) \
+		return FALSE; \
 	return (a > b); \
 } \
 
@@ -84,6 +93,9 @@ MATH_DECL_ENDORELATION(GTE, isgreaterequal)
 _INLINE() \
 t_bool	F##BITS##_GreaterThanOrEqual(t_f##BITS a, t_f##BITS b) \
 { \
+	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
+		"cannot compare (%g >= %g)", a, b) \
+		return FALSE; \
 	return (a >= b); \
 } \
 

@@ -847,24 +847,34 @@ t_f128							F128_Exp10(t_f128 x);
 **	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/log}
 */
 //!@{
-#define							Float_Ln	CONCAT(FLOAT_TYPE,_Ln)
-#define c_fln					Float_Ln
-#define Float_NaturalLog		Float_Ln
-#define Float_NaturalLogarithm	Float_Ln
+#define							Float_Log	CONCAT(FLOAT_TYPE,_Ln)
+#define c_flog					Float_Log
+#define c_fln					Float_Log
+#define Float_Ln				Float_Log
+#define Float_NaturalLog		Float_Log
+#define Float_NaturalLogarithm	Float_Log
 
-t_f32							F32_Ln(t_f32 x);
-#define c_f32ln					F32_Ln
+t_f32							F32_Log(t_f32 x);
+#define c_f32log				F32_Log
+#define c_f32ln					F32_Log
+#define F32_Ln					F32_Log
 
-t_f64							F64_Ln(t_f64 x);
-#define c_f64ln					F64_Ln
+t_f64							F64_Log(t_f64 x);
+#define c_f64log				F64_Log
+#define c_f64ln					F64_Log
+#define F64_Ln					F64_Log
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80							F80_Ln(t_f80 x);
-#define c_f80ln					F80_Ln
+t_f80							F80_Log(t_f80 x);
+#define c_f80log				F80_Log
+#define c_f80ln					F80_Log
+#define F80_Ln					F80_Log
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128							F128_Ln(t_f128 x);
-#define c_f128ln				F128_Ln
+t_f128							F128_Log(t_f128 x);
+#define c_f128log				F128_Log
+#define c_f128ln				F128_Log
+#define F128_Ln					F128_Log
 #endif
 //!@}
 
@@ -905,27 +915,22 @@ t_f128							F128_Log2(t_f128 x);
 */
 //!@{
 #define							Float_Log10	CONCAT(FLOAT_TYPE,_Log10)
-#define c_flog					Float_Log10
 #define c_flog10				Float_Log10
 #define Float_Base10Log			Float_Log10
 #define Float_Logarithm_Base10	Float_Log10
 
 t_f32							F32_Log10(t_f32 x);
-#define c_f32log				F32_Log10
 #define c_f32log10				F32_Log10
 
 t_f64							F64_Log10(t_f64 x);
-#define c_f64log				F64_Log10
 #define c_f64log10				F64_Log10
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80							F80_Log10(t_f80 x);
-#define c_f80log				F80_Log10
 #define c_f80log10				F80_Log10
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128							F128_Log10(t_f128 x);
-#define c_f128log				F128_Log10
 #define c_f128log10				F128_Log10
 #endif
 //!@}
@@ -1541,6 +1546,19 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
+#define EXTRACT_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (uint32_t)__u.i; } while (0)
+#define GET_FLOAT_WORD(w,d)		do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (w) = __u.i;         } while (0)
+#define GET_HIGH_WORD(hi,d)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d); (hi) = __u.i >> 32;   } while (0)
+#define GET_LOW_WORD(lo,d)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d); (lo) = (t_u32)__u.i;  } while (0)
+
+/* Set a double from two 32 bit ints.  */
+#define INSERT_WORDS(d,hi,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.i = ((t_u64)(hi)<<32) | (t_u32)(lo);  (d) = __u.f; } while (0)
+#define SET_FLOAT_WORD(d,w)		do { union { t_f32 f; t_u32 i; } __u;  __u.i = (w);                                                                (d) = __u.f; } while (0)
+#define SET_HIGH_WORD(d,hi)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
+#define SET_LOW_WORD(d,lo)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
+
+
+
 float	__math_oflowf	(float x);
 double	__math_oflow	(double x);
 
@@ -1559,8 +1577,31 @@ long double	__math_invalidl	(long double x);
 
 
 
-#define EXP2F_TABLE_BITS	5
-#define N_F32	(1 << EXP2F_TABLE_BITS)
+union ldshape
+{
+	long double	f;
+	struct { t_u64 lo; t_u32 mid; t_u16 top; t_u16 se; }	i;
+	struct { t_u64 lo; t_u64 hi; }	i2;
+};
+
+
+/*
+if x in [1,2): i = (int)(64*x);
+if x in [2,4): i = (int)(32*x-64);
+	__rsqrt_tab[i]*2^-16 is estimating 1/sqrt(x) with small relative error:
+	|__rsqrt_tab[i]*0x1p-16*sqrt(x) - 1| < -0x1.fdp-9 < 2^-8
+*/
+extern const uint16_t __rsqrt_tab[128];
+
+#define EXP_USE_TOINT_NARROW	0
+
+t_sint	__rem_pi2_large(t_f64 *x, t_f64 *y, t_sint e0, t_sint nx, t_sint prec);
+t_f32	__expo2_f32(t_f32 x, t_f32 sign);
+t_f64	__expo2_f64(t_f64 x, t_f64 sign);
+
+
+#define TABLEBITS_EXP_F32	5
+#define N_EXP_F32	(1 << TABLEBITS_EXP_F32)
 struct data_exp_f32
 {
 	t_f64	shift;
@@ -1568,15 +1609,33 @@ struct data_exp_f32
 	t_f64	invln2_scaled;
 	t_f64	poly[3];
 	t_f64	poly_scaled[3];
-	t_u64	table[N_F32];
+	t_u64	table[N_EXP_F32];
 };
 extern const	struct data_exp_f32	__data_exp_f32;
-t_f32	__sin_f32(t_f64  x);
-t_f32	__cos_f32(t_f64  x, t_f64   y);
-int	__rem_pi2_f32(t_f32  x, t_f64*  y);
 
-#define EXP_TABLE_BITS	7
-#define N_F64	(1 << EXP_TABLE_BITS)
+#define TABLEBITS_LOG_F32	4
+#define N_LOG_F32	(1 << TABLEBITS_LOG_F32)
+struct data_log_f32
+{
+	t_f64	ln2;
+	t_f64	poly[3]; /* First order coefficient is 1.  */
+	struct { t_f64 invc; t_f64 logc; }	table[N_LOG_F32];
+};
+extern const	struct data_log_f32 __data_log_f32;
+
+t_f32	__sin_f32(t_f64 x);
+t_f32	__cos_f32(t_f64 x, t_f64 y);
+t_f32	__tan_f32(t_f64 x, t_bool odd);
+t_sint	__rem_pi2_f32(t_f32 x, t_f64*  y);
+t_f32	__polynomial_f32(t_f32 x, t_f32 const* coefficients, int n);
+t_f32	__root2pN_f32(t_sint n);
+t_f32	__inv_factorial_f32(t_uint n);
+t_f32	__invtrig_polynomial_f32(t_f32 z);
+
+
+
+#define TABLEBITS_EXP_F64	7
+#define N_EXP_F64	(1 << TABLEBITS_EXP_F64)
 struct data_exp_f64
 {
 	t_f64	shift;
@@ -1586,16 +1645,39 @@ struct data_exp_f64
 	t_f64	poly[4]; /* Last four coefficients. */
 	t_f64	exp_shift;
 	t_f64	exp_poly[5];
-	t_u64	table[2*N_F64];
+	t_u64	table[2*N_EXP_F64];
 };
 extern const	struct data_exp_f64	__data_exp_f64;
-t_f64	__sin_f64(t_f64  x, t_f64   y, int iy);
-t_f64	__cos_f64(t_f64  x, t_f64   y);
-int	__rem_pi2_f64(t_f64  x, t_f64*  y);
+
+#define TABLEBITS_LOG_F64	7
+#define N_LOG_F64	(1 << TABLEBITS_LOG_F64)
+struct data_log_f64
+{
+	t_f64	ln2hi;
+	t_f64	ln2lo;
+	t_f64	poly[6 - 1]; /* First coefficient is 1.  */
+	t_f64	poly1[12 - 1];
+	struct { t_f64 invc; t_f64 logc; } table[N_LOG_F64];
+#if !__FP_FAST_FMA
+	struct { t_f64 chi; t_f64 clo; } table2[N_LOG_F64];
+#endif
+};
+extern const struct data_log_f64 __data_log_f64;
+
+t_f64	__sin_f64(t_f64 x, t_f64 y, int iy);
+t_f64	__cos_f64(t_f64 x, t_f64 y);
+t_f64	__tan_f64(t_f64 x, t_f64 y, t_bool odd);
+t_sint	__rem_pi2_f64(t_f64 x, t_f64*  y);
+t_f64	__polynomial_f64(t_f64 x, t_f64 const* coefficients, int n);
+t_f64	__root2pN_f64(t_sint n);
+t_f64	__inv_factorial_f64(t_uint n);
+t_f64	__invtrig_polynomial_f64(t_f64 z);
+
+
 
 #if LIBCONFIG_USE_FLOAT80
-#define EXP_TABLE_BITS	7
-#define N_F80	(1 << EXP_TABLE_BITS)
+#define TABLEBITS_EXP_F80	7
+#define N_EXP_F80	(1 << TABLEBITS_EXP_F80)
 struct data_exp_f80
 {
 	t_f80	ln2hi;
@@ -1605,17 +1687,37 @@ struct data_exp_f80
 	t_f80	exp_poly_q[4];
 	t_f64	redux;
 	t_f64	poly[7];
-	t_f64	table[2*N_F80];
+	t_f64	table[2*N_EXP_F80];
 };
 extern const	struct data_exp_f80	__data_exp_f80;
-t_f80	__sin_f80(t_f80  x, t_f80   y, int iy);
-t_f80	__cos_f80(t_f80  x, t_f80   y);
-int	__rem_pi2_f80(t_f80  x, t_f80*  y);
+
+struct data_log_f80
+{
+	t_f80	P[7];
+	t_f80	Q[6];
+	t_f80	R[4];
+	t_f80	S[4];
+	t_f80	C1;
+	t_f80	C2;
+	t_f80	SQRTH;
+};
+extern const	struct data_log_f80	__data_log_f80;
+
+t_f80	__sin_f80(t_f80 x, t_f80 y, int iy);
+t_f80	__cos_f80(t_f80 x, t_f80 y);
+t_f80	__tan_f80(t_f80 x, t_f80 y, t_bool odd);
+t_sint	__rem_pi2_f80(t_f80 x, t_f80*  y);
+t_f80	__polynomial_f80(t_f80 x, t_f80 const* coefficients, int n);
+t_f80	__root2pN_f80(t_sint n);
+t_f80	__inv_factorial_f80(t_uint n);
+t_f80	__invtrig_polynomial_f80(t_f80 z);
 #endif
 
+
+
 #if LIBCONFIG_USE_FLOAT128
-#define EXP_TABLE_BITS	7
-#define N_F128	(1 << EXP_TABLE_BITS)
+#define TABLEBITS_EXP_F128	7
+#define N_EXP_F128	(1 << TABLEBITS_EXP_F128)
 struct data_exp_f128
 {
 	t_f128	ln2hi;
@@ -1625,18 +1727,34 @@ struct data_exp_f128
 	t_f128	exp_poly_q[4];
 	t_f64	redux;
 	t_f128	poly[11];
-	t_f128	table[N_F128];
-	t_f32	eps[N_F128];
+	t_f128	table[N_EXP_F128];
+	t_f32	eps[N_EXP_F128];
 };
 extern const	struct data_exp_f128	__data_exp_f128;
-t_f128	__sin_f128(t_f128 x, t_f128  y, int iy);
-t_f128	__cos_f128(t_f128 x, t_f128  y);
-int	__rem_pi2_f128(t_f128 x, t_f128* y);
+
+struct data_log_f128
+{
+	t_f128	P[7];
+	t_f128	Q[6];
+	t_f128	R[4];
+	t_f128	S[4];
+	t_f128	C1;
+	t_f128	C2;
+	t_f128	SQRTH;
+};
+extern const	struct data_log_f128	__data_log_f128;
+
+t_f128	__sin_f128(t_f128 x, t_f128 y, int iy);
+t_f128	__cos_f128(t_f128 x, t_f128 y);
+t_f128	__tan_f128(t_f128 x, t_f128 y, t_bool odd);
+t_sint	__rem_pi2_f128(t_f128 x, t_f128* y);
+t_f128	__polynomial_f128(t_f128 x, t_f128 const* coefficients, int n);
+t_f128	__root2pN_f128(t_sint n);
+t_f128	__inv_factorial_f128(t_uint n);
+t_f128	__invtrig_polynomial_f128(t_f128 z);
 #endif
 
-int	__rem_pi2_large(double *x, double *y, int e0, int nx, int prec);
 
-#define EXP_USE_TOINT_NARROW	0
 
 #endif
 

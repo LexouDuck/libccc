@@ -1,6 +1,6 @@
 
 #include "libccc/math.h"
-#include "libccc/memory.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -9,31 +9,6 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Sin, sin)
 #elif LIBCONFIG_USE_CCC_MATH
-static t_float	inv_factorial(t_uint n)
-{
-	static const t_float	result[16] =
-	{
-		1.0,
-		1.0,
-		1.0 / 2,
-		1.0 / 6,
-		1.0 / 24,
-		1.0 / 120,
-		1.0 / 720,
-		1.0 / 5040,
-		1.0 / 40320,
-		1.0 / 362880,
-		1.0 / 3628800,
-		1.0 / 39916800,
-		1.0 / 479001600,
-		1.0 / 6227020800,
-		1.0 / 87178291200,
-		1.0 / 1307674368000,
-	};
-	return (result[n]); //static so it shouldn't be called with any weird values
-//	return (n >= 16) ? 0. : result[n];
-}
-// taylor series approximation
 #define DEFINEFUNC_FLOAT_SIN(BITS) \
 t_f##BITS	F##BITS##_Sin(t_f##BITS x) \
 { \
@@ -71,13 +46,13 @@ t_f##BITS	F##BITS##_Sin(t_f##BITS x) \
 	x_pow11 = x_pow2 * x_pow9; \
 	x_pow13 = x_pow2 * x_pow11; \
 	result = x; \
-	result -= x_pow3  * inv_factorial(3); \
-	result += x_pow5  * inv_factorial(5); \
-	result -= x_pow7  * inv_factorial(7); \
-	result += x_pow9  * inv_factorial(9); \
-	result -= x_pow11 * inv_factorial(11); \
-	result += x_pow13 * inv_factorial(13); \
-	result -= x_pow13 * x_pow2 * inv_factorial(15); \
+	result -= x_pow3  * __inv_factorial(3); \
+	result += x_pow5  * __inv_factorial(5); \
+	result -= x_pow7  * __inv_factorial(7); \
+	result += x_pow9  * __inv_factorial(9); \
+	result -= x_pow11 * __inv_factorial(11); \
+	result += x_pow13 * __inv_factorial(13); \
+	result -= x_pow13 * x_pow2 * __inv_factorial(15); \
 	return (sign ? -result : result); \
 } \
 
@@ -127,7 +102,7 @@ DEFINEFUNC_FLOAT_SIN(128)
 
 t_f32	F32_Sin(t_f32 x)
 {
-	/* Small multiples of pi/2 rounded to double precision. */
+	/* Small multiples of pi/2 rounded to t_f64 precision. */
 	static const t_f64 s1pio2 = 1*PI_HALF; /* 0x3FF921FB, 0x54442D18 */
 	static const t_f64 s2pio2 = 2*PI_HALF; /* 0x400921FB, 0x54442D18 */
 	static const t_f64 s3pio2 = 3*PI_HALF; /* 0x4012D97C, 0x7F3321D2 */
@@ -226,14 +201,9 @@ t_f64	F64_Sin(t_f64 x)
 #define DEFINEFUNC_FLOAT_SIN(BITS) \
 t_f##BITS	F##BITS##_Sin(t_f##BITS x) \
 { \
-	union ldshape \
-	{ \
-		long double	f; \
-		struct { t_u64 lo; t_u32 mid; t_u16 top; t_u16 se; }	i; \
-		struct { t_u64 lo; t_u64 hi; }	i2; \
-	}	u = {x}; \
+	union ldshape	u = {x}; \
 	unsigned n; \
-	long double y[2], hi, lo; \
+	t_f80 y[2], hi, lo; \
  \
 	u.i.se &= 0x7fff; \
 	if (u.i.se == 0x7fff) \

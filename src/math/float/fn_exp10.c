@@ -1,5 +1,4 @@
 
-#include "libccc/memory.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
 #include "libccc/math.h"
@@ -10,6 +9,24 @@
 
 #if (__STDC_VERSION__ >= __STDC_VERSION_C23__)
 MATH_DECL_REALFUNCTION(Exp10, exp10)
+#elif LIBCONFIG_USE_CCC_MATH
+#define DEFINEFUNC_FLOAT_EXP10(BITS) \
+t_f##BITS	F##BITS##_Exp10(t_f##BITS x) \
+{ \
+	return (F##BITS##_Pow(10, x)); \
+} \
+
+DEFINEFUNC_FLOAT_EXP10(32)
+DEFINEFUNC_FLOAT_EXP10(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_EXP10(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_EXP10(128)
+#endif
+
+
+
 #else
 #define DEFINEFUNC_FLOAT_EXP10(BITS) \
 _INLINE() \
@@ -51,7 +68,7 @@ t_f##BITS	F##BITS##_Exp10(t_f##BITS x) \
 	}; \
 	t_f##BITS n, y = F##BITS##_SplitInt(x, &n); \
 	u_cast_f##BITS u = {n}; \
-	/* fabs(n) < 16 without raising invalid on NaN */ \
+	/* abs(n) < 16 without raising invalid on NaN */ \
 	if (((u.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS) < ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + 4) \
 	{ \
 		if (!y) \

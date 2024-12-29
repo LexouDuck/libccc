@@ -368,40 +368,27 @@ HEADER_CPP
 
 
 
-//!@doc Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
-/*!
-**	This macro determines if the compiler should prefer function implementations
-**	from the platform's standard library, or the implementation from libccc.
-**	- If `0`, use libccc function implementations everywhere
-**	- If `1`, call stdlib implementations rather than libccc wherever possible
-**
-**	NOTE: Setting this to 1 can make your code run faster, but it may introduce
-**		undefined behaviors depending on the platform (for edge-case arguments).
-**		Also, it invalidates the error-handling settings (`DEFAULT_HANDLER`, etc):
-**		Argument handling is implementation-dependent for STD C functions.
-*/
+//!@doc Whether or not libccc should use the very approximate fast math function implementations (beware, the error margin is quite large).
 //!@{
-#ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#ifndef LIBCONFIG_USE_CCC_MATH
+#define LIBCONFIG_USE_CCC_MATH	0
 #endif
-#if (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 0) && (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 1)
-#error "Invalid value selected for LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS, must be either 0 or 1"
+#if (LIBCONFIG_USE_CCC_MATH != 0) && (LIBCONFIG_USE_CCC_MATH != 1)
+#error "Invalid value selected for LIBCONFIG_USE_CCC_MATH, must be either 0 or 1"
 #endif
 //!@}
 
-
-
-//!@doc Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.
+//!@doc Whether or not libccc should use the builtin math calls or its own math functions (most of which are from OpenBSD).
 /*!
 **	This macro determines which math function implementations should be used.
-**	- If `0`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
+**	- If `0`, the libccc implementations functions will be used (usually slightly slower than the builtins)
 **	- If `1`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
 **		This is the recommended option, and is on by default (since the standard math functions
 **		are typically well-implemented for the given platform: they're both precise, and fast)
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH	1
+#define LIBCONFIG_USE_STD_MATH	0
 #endif
 #if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
 #error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"
@@ -445,12 +432,35 @@ HEADER_CPP
 
 
 
+//!@doc Whether or not libccc will define its functions as simple inline wrappers for STD C calls, wherever possible.
+/*!
+**	This macro determines if the compiler should prefer function implementations
+**	from the platform's standard library, or the implementation from libccc.
+**	- If `0`, use libccc function implementations everywhere
+**	- If `1`, call stdlib implementations rather than libccc wherever possible
+**
+**	NOTE: Setting this to 1 can make your code run faster, but it may introduce
+**		undefined behaviors depending on the platform (for edge-case arguments).
+**		Also, it invalidates the error-handling settings (`DEFAULT_HANDLER`, etc):
+**		Argument handling is implementation-dependent for STD C functions.
+*/
+//!@{
+#ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#endif
+#if (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 0) && (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS, must be either 0 or 1"
+#endif
+//!@}
+
+
+
 //!@doc if `__NOSTD__` flag is active, force-disable all the `LIBCONFIG_USE_STD_*` macros
 //!@{
 #ifdef	__NOSTD__
 
-#undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
+#undef	LIBCONFIG_USE_CCC_MATH
+#define	LIBCONFIG_USE_CCC_MATH	0
 
 #undef	LIBCONFIG_USE_STD_MATH
 #define	LIBCONFIG_USE_STD_MATH	0
@@ -460,6 +470,9 @@ HEADER_CPP
 
 #undef	LIBCONFIG_USE_STD_FIXEDPOINT
 #define	LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+#undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
 
 #endif
 //!@}

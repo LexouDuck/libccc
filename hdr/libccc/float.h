@@ -432,7 +432,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F32_MANTISSA_SIGNED	(0x807FFFFF)			//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F32_MANTISSA_BITS	(23)					//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
 #define F32_INIT_VALUE		(0x1.p-23)				//!< A 32-bit floating-point number's value if all bits are zero
-#define F32_NEXT(X, TOWARD)	(nextafterf(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F32_MIN_VAL			(FLT_MIN)				//!< A 32-bit floating-point's minimum representable positive normal value.
 #define F32_MAX_VAL			(FLT_MAX)				//!< A 32-bit floating-point's maximum finite representable value.
 #define F32_EPSILON			(0x1.p-23)				//!< Difference between 1 and the least value greater than 1 that is representable.
@@ -454,7 +453,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
-#define F64_NEXT(X, TOWARD)	(nextafterd(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F64_MIN_VAL			(DBL_MIN)				//!< A 64-bit floating-point's minimum representable positive normal value.
 #define F64_MAX_VAL			(DBL_MAX)				//!< A 64-bit floating-point's maximum finite representable value.
 #define F64_EPSILON			(0x1.p-52)				//!< Difference between 1 and the least value greater than 1 that is representable.
@@ -476,7 +474,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F80_MANTISSA_BITS	(63)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
 #define F80_INIT_VALUE		(0x1.p-63)					//!< A 80-bit floating-point number's value if all bits are zero
-#define F80_NEXT(X, TOWARD)	(nextafterld(X, TOWARD))	//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F80_MIN_VAL			(LDBL_MIN)					//!< A 80-bit floating-point's minimum representable positive normal value.
 #define F80_MAX_VAL			(LDBL_MAX)					//!< A 80-bit floating-point's maximum finite representable value.
 #define F80_EPSILON			(0x1.p-63)					//!< Difference between 1 and the least value greater than 1 that is representable.
@@ -498,7 +495,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
 #define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
-#define F128_NEXT(X, TOWARD)	(nextafterq(X, TOWARD))					//!< Returns the nearest float value greater than the one given as `X`, going in the direction of `TOWARD`
 #define F128_MIN_VAL			(LDBL_MIN)								//!< A 128-bit floating-point's minimum representable positive normal value.
 #define F128_MAX_VAL			(LDBL_MAX)								//!< A 128-bit floating-point's maximum finite representable value.
 #define F128_EPSILON			(0x1.p-112)								//!< Difference between 1 and the least value greater than 1 that is representable.

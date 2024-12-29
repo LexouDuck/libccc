@@ -1,6 +1,6 @@
 
 #include "libccc/math.h"
-#include "libccc/memory.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -9,31 +9,6 @@
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(Cos, cos)
 #elif LIBCONFIG_USE_CCC_MATH
-static t_float	inv_factorial(t_uint n)
-{
-	static const t_float	result[16] =
-	{
-		1.0,
-		1.0,
-		1.0 / 2,
-		1.0 / 6,
-		1.0 / 24,
-		1.0 / 120,
-		1.0 / 720,
-		1.0 / 5040,
-		1.0 / 40320,
-		1.0 / 362880,
-		1.0 / 3628800,
-		1.0 / 39916800,
-		1.0 / 479001600,
-		1.0 / 6227020800,
-		1.0 / 87178291200,
-		1.0 / 1307674368000,
-	};
-	return (result[n]); //static so it shouldn't be called with any weird values
-//	return (n >= 16) ? 0. : result[n];
-}
-// taylor series approximation
 #define DEFINEFUNC_FLOAT_COS(BITS) \
 t_f##BITS	F##BITS##_Cos(t_f##BITS x) \
 { \
@@ -68,13 +43,13 @@ t_f##BITS	F##BITS##_Cos(t_f##BITS x) \
 	x_pow12 = x_pow8 * x_pow4; \
 	x_pow14 = x_pow8 * x_pow6; \
 	result = 1.; \
-	result -= x_pow2  * inv_factorial(2); \
-	result += x_pow4  * inv_factorial(4); \
-	result -= x_pow6  * inv_factorial(6); \
-	result += x_pow8  * inv_factorial(8); \
-	result -= x_pow10 * inv_factorial(10); \
-	result += x_pow12 * inv_factorial(12); \
-	result -= x_pow14 * inv_factorial(14); \
+	result -= x_pow2  * __inv_factorial(2); \
+	result += x_pow4  * __inv_factorial(4); \
+	result -= x_pow6  * __inv_factorial(6); \
+	result += x_pow8  * __inv_factorial(8); \
+	result -= x_pow10 * __inv_factorial(10); \
+	result += x_pow12 * __inv_factorial(12); \
+	result -= x_pow14 * __inv_factorial(14); \
 	return (sign ? -result : result); \
 } \
 
@@ -124,7 +99,7 @@ DEFINEFUNC_FLOAT_COS(128)
 
 t_f32	F32_Cos(t_f32 x)
 {
-	/* Small multiples of pi/2 rounded to double precision. */
+	/* Small multiples of pi/2 rounded to t_f64 precision. */
 	static const t_f64 c1pio2 = 1*PI_HALF; /* 0x3FF921FB, 0x54442D18 */
 	static const t_f64 c2pio2 = 2*PI_HALF; /* 0x400921FB, 0x54442D18 */
 	static const t_f64 c3pio2 = 3*PI_HALF; /* 0x4012D97C, 0x7F3321D2 */
@@ -223,14 +198,9 @@ t_f64	F64_Cos(t_f64 x)
 #define DEFINEFUNC_FLOAT_COS(BITS) \
 t_f##BITS	F##BITS##_Cos(t_f##BITS x) \
 { \
-	union ldshape \
-	{ \
-		long double	f; \
-		struct { t_u64 lo; t_u32 mid; t_u16 top; t_u16 se; }	i; \
-		struct { t_u64 lo; t_u64 hi; }	i2; \
-	}	u = {x}; \
+	union ldshape	u = {x}; \
 	unsigned n; \
-	long double y[2], hi, lo; \
+	t_f80 y[2], hi, lo; \
  \
 	u.i.se &= 0x7FFF; \
 	if (u.i.se == 0x7FFF) \

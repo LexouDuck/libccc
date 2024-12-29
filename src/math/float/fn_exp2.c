@@ -45,8 +45,8 @@ Non-nearest ULP error: 1 (rounded ULP error)
 Handle cases that may overflow or underflow when computing the result that
 is scale*(1+TMP) without intermediate rounding.
 The bit representation of scale is in SBITS, however it has a computed exponent that may have
-overflown into the sign bit so that needs to be adjusted before using it as a double.
-(int32_t)KI is the k used in the argument reduction and exponent adjustment of scale,
+overflown into the sign bit so that needs to be adjusted before using it as a t_f64.
+(t_s32)KI is the k used in the argument reduction and exponent adjustment of scale,
 positive k here means the result may overflow and negative k means the result may underflow.
 */
 static inline
@@ -70,7 +70,7 @@ t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 	{
 		/*
 		Round y to the right precision before scaling it into the subnormal
-		range to avoid double rounding that can cause 0.5+E/2 ulp error where
+		range to avoid t_f64 rounding that can cause 0.5+E/2 ulp error where
 		E is the worst-case ulp error outside the subnormal range.  So this
 		is only useful if the goal is better than 1 ulp worst-case error.
 		*/
@@ -90,13 +90,13 @@ t_f64	specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 }
 
 
-/*! Top 12 bits of a float (sign and exponent bits). */
+/*! Top 12 bits of a t_f32 (sign and exponent bits). */
 static inline
 t_u32	top12_f32(t_f32 x)
 {
 	return AS_U32(x) >> 20;
 }
-/*! Top 12 bits of a double (sign and exponent bits). */
+/*! Top 12 bits of a t_f64 (sign and exponent bits). */
 static inline
 t_u32	top12_f64(t_f64 x)
 {
@@ -128,8 +128,8 @@ t_f32	F32_Exp2(t_f32 x)
 	kd -= __data_exp_f32.shift_scaled; /* k/N for int k. */
 	r = xd - kd;
 	/* exp2(x) = 2^(k/N) * 2^r ~= s * (C0*r^3 + C1*r^2 + C2*r + 1) */
-	t = __data_exp_f32.table[ki % N_F32];
-	t += ki << (52 - EXP2F_TABLE_BITS);
+	t = __data_exp_f32.table[ki % N_EXP_F32];
+	t += ki << (F64_MANTISSA_BITS - TABLEBITS_EXP_F32);
 	s = AS_F64(t);
 	z = __data_exp_f32.poly[0] * r + __data_exp_f32.poly[1];
 	r2 = r * r;
@@ -171,8 +171,8 @@ t_f64	F64_Exp2(t_f64 x)
 	kd -= __data_exp_f64.exp_shift; /* k/N for int k. */
 	r = x - kd;
 	/* 2^(k/N) ~= scale * (1 + tail). */
-	idx = 2 * (ki % N_F64);
-	top = ki << (52 - EXP_TABLE_BITS);
+	idx = 2 * (ki % N_EXP_F64);
+	top = ki << (F64_MANTISSA_BITS - TABLEBITS_EXP_F64);
 	tail = AS_F64(__data_exp_f64.table[idx]);
 	/* This is only a valid scale when -1023*N < k < 1024*N. */
 	sbits = __data_exp_f64.table[idx + 1] + top;
@@ -212,7 +212,7 @@ t_f64	F64_Exp2(t_f64 x)
 **	We compute exp2(i/N) via table lookup and exp2(z) via a
 **	degree-6 minimax polynomial with maximum error under 2**-69.
 **	The table entries each have 104 bits of accuracy, encoded as
-**	a pair of double precision values.
+**	a pair of t_f64 precision values.
 */
 t_f80	F80_Exp2(t_f80 x)
 {
@@ -220,7 +220,7 @@ t_f80	F80_Exp2(t_f80 x)
 	t_sint e = u.i.se & 0x7fff;
 	t_f80 r, z;
 	t_u32 i0;
-	union {uint32_t u; int32_t i;} k;
+	union {t_u32 u; t_s32 i;} k;
 	/* Filter out exceptional cases. */
 	if (e >= 0x3fff + 13) /* |x| >= 8192 or x is NaN */
 	{
@@ -252,10 +252,10 @@ t_f80	F80_Exp2(t_f80 x)
 	** index into the table), then we compute z = 0x0.003456p0.
 	*/
 	u.f = x + __data_exp_f80.redux;
-	i0 = u.i.m + N_F80 / 2;
-	k.u = i0 / N_F80 * N_F80;
-	k.i /= N_F80;
-	i0 %= N_F80;
+	i0 = u.i.m + N_EXP_F80 / 2;
+	k.u = i0 / N_EXP_F80 * N_EXP_F80;
+	k.i /= N_EXP_F80;
+	i0 %= N_EXP_F80;
 	u.f -= __data_exp_f80.redux;
 	z = x - u.f;
 	/* Compute r = exp2l(y) = exp2lt[i0] * p(z). */
@@ -311,7 +311,7 @@ t_f128	F128_Exp2(t_f128 x)
 	t_sint e = u.i.se & 0x7fff;
 	t_f128 r, z, t;
 	t_u32 i0;
-	union {uint32_t u; int32_t i;} k;
+	union {t_u32 u; t_s32 i;} k;
 	/* Filter out exceptional cases. */
 	if (e >= 0x3fff + 14) /* |x| >= 16384 or x is NaN */
 	{
@@ -343,10 +343,10 @@ t_f128	F128_Exp2(t_f128 x)
 	** index into the table), then we compute z = 0x0.003456p0.
 	*/
 	u.f = x + __data_exp_f128.redux;
-	i0 = u.i2.lo + N_F128 / 2;
-	k.u = i0 / N_F128 * N_F128;
-	k.i /= N_F128;
-	i0 %= N_F128;
+	i0 = u.i2.lo + N_EXP_F128 / 2;
+	k.u = i0 / N_EXP_F128 * N_EXP_F128;
+	k.i /= N_EXP_F128;
+	i0 %= N_EXP_F128;
 	u.f -= __data_exp_f128.redux;
 	z = x - u.f;
 	/* Compute r = exp2(y) = exp2t[i0] * p(z - eps[i]). */
