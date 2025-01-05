@@ -31,6 +31,7 @@ void	print_math_title(char const * title)
 
 
 #define SF_FORMAT	":\t%s%g"
+#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "%+.8e" ANSI_RESET
 
 
 
@@ -68,16 +69,25 @@ void	print_math_title(char const * title)
 #define TEST_GET_RESULTS(...) \
 	for (unsigned int i = 0; i < tests; ++i) \
 	{ \
-		if (expects[i] == results[i] || (isnan(expects[i]) && isnan(results[i]))) \
+		if (expects[i] == results[i]) \
+			errors[i] = 0; \
+		else if (isnan(expects[i]) && isnan(results[i])) \
 			errors[i] = 0; \
 		else if (isnan(expects[i]) || isnan(results[i])) \
-			errors[i] = NAN; \
+			errors[i] = INF; \
+		else if (isinf(expects[i]) && isinf(results[i])) \
+			errors[i] = INF; \
+		else if (isinf(expects[i]) || isinf(results[i])) \
+			errors[i] = INF; \
 		else \
-			errors[i] = ABS(expects[i] - results[i]); \
-		if (isnan(errors[i]) || errors[i] > fabs(precision * expects[i])) \
+		{ \
+			errors[i] = fabs(expects[i] - results[i]); \
+		/*	errors[i] /= MAX(fabs(expects[i]), fabs(results[i])); / * uncomment this line for relative error */ \
+		} \
+		if (isinf(errors[i]) || errors[i] > fabs(precision * expects[i])) \
 		{ \
 			++failed_tests; \
-			if (g_test.config.verbose && g_test.config.show_args && precision < fabs(results[i] - expects[i])) \
+			if (g_test.config.verbose && g_test.config.show_args) \
 			{ \
 				__VA_ARGS__ \
 			} \
@@ -136,8 +146,8 @@ void	print_test_math_f##BITS(s_timer timer, t_f##BITS* errors, t_f##BITS precisi
 	{ \
 		quicksort_f##BITS(errors, 0, amount); \
 		printf_colored_f##BITS("Largest error", precision, stat_getmax_f##BITS   (errors, amount)); \
-		printf_colored_f##BITS("Average error", precision, stat_average_f##BITS  (errors, amount)); \
 		printf_colored_f##BITS("Median error",  precision, stat_median_f##BITS   (errors, amount)); \
+		printf_colored_f##BITS("Average error", precision, stat_average_f##BITS  (errors, amount)); \
 		printf_colored_f##BITS("Standard dev.", precision, stat_variance_f##BITS (errors, amount)); \
 	} \
 	if (g_test.config.show_speed) \
@@ -174,7 +184,7 @@ int	test_math_realfunction_f##BITS( \
 		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST N°%d: %s(%g) -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n", \
+		printf("TEST N°%d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
 			i, func_name, args[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
 	print_test_math_f##BITS(timer, errors, precision, tests); \
@@ -212,7 +222,7 @@ int	test_math_realoperator_f##BITS( \
 		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST N°%d: %s(%g, %g) -> returned %g but libc returned %g (difference is " ANSI_COLOR_FG_RED "%g" ANSI_RESET ")\n", \
+		printf("TEST N°%d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
 			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests with:\n" \
 		"arg1: interval [%g,%g], with increment=%g\n" \
@@ -232,15 +242,60 @@ int	test_math_realoperator_f##BITS( \
 #if TRUE
 DEFINETEST_MATH_FLOAT(32)
 #endif
+
 #if TRUE
 DEFINETEST_MATH_FLOAT(64)
 #endif
+
 #if LIBCONFIG_USE_FLOAT80
 DEFINETEST_MATH_FLOAT(80)
 #endif
+
 #if LIBCONFIG_USE_FLOAT128
 DEFINETEST_MATH_FLOAT(128)
 #endif
+
+
+
+#if LIBCONFIG_USE_FLOAT80 && LIBCONFIG_USE_FLOAT128
+#error "impossible to have both 80-bit and 128-bit floating point types simultaneously"
+
+#elif LIBCONFIG_USE_FLOAT80
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f80  ("(f80) "#NAME, &CNAME##l, &c_f80 ##NAME, 0.00001,  AMOUNT, (s_f80_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f80  ("(f80) "#NAME, &CNAME##l, &c_f80 ##NAME, 0.00001,  AMOUNT, (s_f80_interval)ARG1_MIN,ARG1_MAX, (s_f80_interval)ARG2_MIN,ARG2_MAX); \
+
+#elif LIBCONFIG_USE_FLOAT128
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f128 ("(f128)"#NAME, &CNAME##l, &c_f128##NAME, 0.000001, AMOUNT, (s_f128_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f128 ("(f128)"#NAME, &CNAME##l, &c_f128##NAME, 0.000001, AMOUNT, (s_f128_interval)ARG1_MIN,ARG1_MAX, (s_f128_interval)ARG2_MIN,ARG2_MAX); \
+
+#else
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+
+#endif
+
 
 
 
@@ -253,172 +308,7 @@ DEFINETEST_MATH_FLOAT(128)
 int		testsuite_math(void)
 {
 	print_suite_title("libccc/math");
-
-#define TESTSUITE_MATH(STD_SUFFIX, BITS, NAME, TARGET_PRECISION) \
-	if (g_test.config.verbose) \
-	{ \
-		printf("\n\n" ANSI_COLOR_FG_BLUE "Floating-point (%d-bit %s precision) math functions" ANSI_RESET "\n\n", BITS, NAME); \
-	} \
-/* \
-	print_math_title("Split Float (f"#BITS")"); \
-	test_math_realfunction_f##BITS("frexp", &frexp##STD_SUFFIX, &c_f##BITS##frexp, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Get Exponent (base-2) (f"#BITS")"); \
-	test_math_realfunction_f##BITS("getexp", &ilogb##STD_SUFFIX, &c_f##BITS##getexp2, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-*/ \
-	print_math_title("Nearby Int (f"#BITS")"); \
-	test_math_realfunction_f##BITS("nearbyint", &nearbyint##STD_SUFFIX, &c_f##BITS##nearbyint, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Next After (f"#BITS")"); \
-	test_math_realoperator_f##BITS("nextafter", &nextafter##STD_SUFFIX, &c_f##BITS##nextafter, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Copy Sign (f"#BITS")"); \
-	test_math_realoperator_f##BITS("copysign", &copysign##STD_SUFFIX, &c_f##BITS##copysign, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Absolute Value (f"#BITS")"); \
-	test_math_realfunction_f##BITS("abs", &fabs##STD_SUFFIX, &c_f##BITS##abs, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realfunction_f##BITS("abs", &fabs##STD_SUFFIX, &c_f##BITS##abs, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Round (f"#BITS")"); \
-	test_math_realfunction_f##BITS("round", &round##STD_SUFFIX, &c_f##BITS##round, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realfunction_f##BITS("round", &round##STD_SUFFIX, &c_f##BITS##round, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Trunc (f"#BITS")"); \
-	test_math_realfunction_f##BITS("trunc", &trunc##STD_SUFFIX, &c_f##BITS##trunc, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realfunction_f##BITS("trunc", &trunc##STD_SUFFIX, &c_f##BITS##trunc, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Floor (f"#BITS")"); \
-	test_math_realfunction_f##BITS("floor", &floor##STD_SUFFIX, &c_f##BITS##floor, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realfunction_f##BITS("floor", &floor##STD_SUFFIX, &c_f##BITS##floor, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Ceil (f"#BITS")"); \
-	test_math_realfunction_f##BITS("ceil", &ceil##STD_SUFFIX, &c_f##BITS##ceil, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realfunction_f##BITS("ceil", &ceil##STD_SUFFIX, &c_f##BITS##ceil, TARGET_PRECISION, 10000, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Modulo (f"#BITS")"); \
-	test_math_realoperator_f##BITS("mod", &fmod##STD_SUFFIX, &c_f##BITS##mod, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("mod", &fmod##STD_SUFFIX, &c_f##BITS##mod, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("mod", &fmod##STD_SUFFIX, &c_f##BITS##mod, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	test_math_realoperator_f##BITS("mod", &fmod##STD_SUFFIX, &c_f##BITS##mod, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Remainder (f"#BITS")"); \
-	test_math_realoperator_f##BITS("rem", &remainder##STD_SUFFIX, &c_f##BITS##rem, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("rem", &remainder##STD_SUFFIX, &c_f##BITS##rem, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("rem", &remainder##STD_SUFFIX, &c_f##BITS##rem, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	test_math_realoperator_f##BITS("rem", &remainder##STD_SUFFIX, &c_f##BITS##rem, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Power (f"#BITS")"); \
-	test_math_realoperator_f##BITS("pow", &pow##STD_SUFFIX, &c_f##BITS##pow, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+4e0}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("pow", &pow##STD_SUFFIX, &c_f##BITS##pow, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("pow", &pow##STD_SUFFIX, &c_f##BITS##pow, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+4e0}, (s_f##BITS##_interval){-1e6,+1e6}); \
-	test_math_realoperator_f##BITS("pow", &pow##STD_SUFFIX, &c_f##BITS##pow, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e9}, (s_f##BITS##_interval){-1e6,+1e6}); \
-/* \
-	print_math_title("N-Power (f"#BITS")"); \
-	test_math_realoperator_f##BITS("pow_n", NULL##STD_SUFFIX, &c_f##BITS##intpow, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+4e0}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("pow_n", NULL##STD_SUFFIX, &c_f##BITS##intpow, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("pow_n", NULL##STD_SUFFIX, &c_f##BITS##intpow, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+4e0}, (s_f##BITS##_interval){-1e6,+1e6}); \
-	test_math_realoperator_f##BITS("pow_n", NULL##STD_SUFFIX, &c_f##BITS##intpow, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e9}, (s_f##BITS##_interval){-1e6,+1e6}); \
-*/ \
-	print_math_title("Square root (f"#BITS")"); \
-	test_math_realfunction_f##BITS("sqrt", &sqrt##STD_SUFFIX, &c_f##BITS##sqrt, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0e0,+5e0}); \
-	test_math_realfunction_f##BITS("sqrt", &sqrt##STD_SUFFIX, &c_f##BITS##sqrt, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e1,+1e9}); \
-	print_math_title("Cubic root (f"#BITS")"); \
-	test_math_realfunction_f##BITS("cbrt", &cbrt##STD_SUFFIX, &c_f##BITS##cbrt, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0e0,+5e0}); \
-	test_math_realfunction_f##BITS("cbrt", &cbrt##STD_SUFFIX, &c_f##BITS##cbrt, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-/* \
-	print_math_title("N-Power root (f"#BITS")"); \
-	test_math_realoperator_f##BITS("nrt", NULL##STD_SUFFIX, &c_f##BITS##nrt, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+5e0}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("nrt", NULL##STD_SUFFIX, &c_f##BITS##nrt, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("nrt", NULL##STD_SUFFIX, &c_f##BITS##nrt, TARGET_PRECISION, 100, (s_f##BITS##_interval){ 0e0,+5e0}, (s_f##BITS##_interval){-1e6,+1e6}); \
-	test_math_realoperator_f##BITS("nrt", NULL##STD_SUFFIX, &c_f##BITS##nrt, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e6,+1e6}); \
-*/ \
-	print_math_title("Hypotenuse (f"#BITS")"); \
-	test_math_realoperator_f##BITS("hypot", &hypot##STD_SUFFIX, &c_f##BITS##hypot, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("hypot", &hypot##STD_SUFFIX, &c_f##BITS##hypot, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("hypot", &hypot##STD_SUFFIX, &c_f##BITS##hypot, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	test_math_realoperator_f##BITS("hypot", &hypot##STD_SUFFIX, &c_f##BITS##hypot, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Exponential, base e (f"#BITS")"); \
-	test_math_realfunction_f##BITS("exp", &exp##STD_SUFFIX, &c_f##BITS##exp, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e3,+1e0}); \
-	test_math_realfunction_f##BITS("exp", &exp##STD_SUFFIX, &c_f##BITS##exp, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-	print_math_title("Exponential, base 2 (f"#BITS")"); \
-	test_math_realfunction_f##BITS("exp2", &exp2##STD_SUFFIX, &c_f##BITS##exp2, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e3,+1e0}); \
-	test_math_realfunction_f##BITS("exp2", &exp2##STD_SUFFIX, &c_f##BITS##exp2, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-/* \
-	print_math_title("Exponential, base 10 (f"#BITS")"); \
-	test_math_realfunction_f##BITS("exp10", &exp10##STD_SUFFIX, &c_f##BITS##exp10, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e3,+1e0}); \
-	test_math_realfunction_f##BITS("exp10", &exp10##STD_SUFFIX, &c_f##BITS##exp10, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-*/ \
-	print_math_title("Logarithm, base e (f"#BITS")"); \
-	test_math_realfunction_f##BITS("log", &log##STD_SUFFIX, &c_f##BITS##ln, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0e0,+1e0}); \
-	test_math_realfunction_f##BITS("log", &log##STD_SUFFIX, &c_f##BITS##ln, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-	print_math_title("Logarithm, base 2 (f"#BITS")"); \
-	test_math_realfunction_f##BITS("log2", &log2##STD_SUFFIX, &c_f##BITS##log2, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0e0,+1e0}); \
-	test_math_realfunction_f##BITS("log2", &log2##STD_SUFFIX, &c_f##BITS##log2, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-	print_math_title("Logarithm, base 10 (f"#BITS")"); \
-	test_math_realfunction_f##BITS("log10", &log10##STD_SUFFIX, &c_f##BITS##log10, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0e0,+1e0}); \
-	test_math_realfunction_f##BITS("log10", &log10##STD_SUFFIX, &c_f##BITS##log10, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+1e9}); \
-/* \
-	print_math_title("Logarithm, base N (f"#BITS")"); \
-	test_math_realoperator_f##BITS("log_n", &logn##STD_SUFFIX, &c_f##BITS##logn, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("log_n", &logn##STD_SUFFIX, &c_f##BITS##logn, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e2,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("log_n", &logn##STD_SUFFIX, &c_f##BITS##logn, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	test_math_realoperator_f##BITS("log_n", &logn##STD_SUFFIX, &c_f##BITS##logn, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e2,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
-*/ \
-	print_math_title("Error function (f"#BITS")"); \
-	test_math_realfunction_f##BITS("erf", &erf##STD_SUFFIX, &c_f##BITS##erf, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-3e0,+3e0}); \
-	test_math_realfunction_f##BITS("erf", &erf##STD_SUFFIX, &c_f##BITS##erf, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Error function complementary (f"#BITS")"); \
-	test_math_realfunction_f##BITS("erfc", &erfc##STD_SUFFIX, &c_f##BITS##erfc, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-3e0,+3e0}); \
-	test_math_realfunction_f##BITS("erfc", &erfc##STD_SUFFIX, &c_f##BITS##erfc, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Gamma function (f"#BITS")"); \
-	test_math_realfunction_f##BITS("gamma", &tgamma##STD_SUFFIX, &c_f##BITS##gamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-5e0,+5e0}); \
-	test_math_realfunction_f##BITS("gamma", &tgamma##STD_SUFFIX, &c_f##BITS##gamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Log-Gamma function (f"#BITS")"); \
-	test_math_realfunction_f##BITS("lngamma", &lgamma##STD_SUFFIX, &c_f##BITS##lngamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-5e0,+5e0}); \
-	test_math_realfunction_f##BITS("lngamma", &lgamma##STD_SUFFIX, &c_f##BITS##lngamma, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Sine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("sin", &sin##STD_SUFFIX, &c_f##BITS##sin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){ 0, +PI }); \
-	test_math_realfunction_f##BITS("sin", &sin##STD_SUFFIX, &c_f##BITS##sin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU*2}); \
-	test_math_realfunction_f##BITS("sin", &sin##STD_SUFFIX, &c_f##BITS##sin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Cosine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("cos", &cos##STD_SUFFIX, &c_f##BITS##cos, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-PI_HALF,+PI_HALF}); \
-	test_math_realfunction_f##BITS("cos", &cos##STD_SUFFIX, &c_f##BITS##cos, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU*2}); \
-	test_math_realfunction_f##BITS("cos", &cos##STD_SUFFIX, &c_f##BITS##cos, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Tangent (f"#BITS")"); \
-	test_math_realfunction_f##BITS("tan", &tan##STD_SUFFIX, &c_f##BITS##tan, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-PI_HALF,+PI_HALF}); \
-	test_math_realfunction_f##BITS("tan", &tan##STD_SUFFIX, &c_f##BITS##tan, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Arc-Sine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("asin", &asin##STD_SUFFIX, &c_f##BITS##asin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e0,+1e0}); \
-	test_math_realfunction_f##BITS("asin", &asin##STD_SUFFIX, &c_f##BITS##asin, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Arc-Cosine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("acos", &acos##STD_SUFFIX, &c_f##BITS##acos, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e0,+1e0}); \
-	test_math_realfunction_f##BITS("acos", &acos##STD_SUFFIX, &c_f##BITS##acos, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Arc-Tangent (f"#BITS")"); \
-	test_math_realfunction_f##BITS("atan", &atan##STD_SUFFIX, &c_f##BITS##atan, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU}); \
-	test_math_realfunction_f##BITS("atan", &atan##STD_SUFFIX, &c_f##BITS##atan, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Arc-Tangent of (Y / X) (f"#BITS")"); \
-	test_math_realoperator_f##BITS("atan2", &atan2##STD_SUFFIX, &c_f##BITS##atan2, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("atan2", &atan2##STD_SUFFIX, &c_f##BITS##atan2, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e1,+1e1}); \
-	test_math_realoperator_f##BITS("atan2", &atan2##STD_SUFFIX, &c_f##BITS##atan2, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e1,+1e1}, (s_f##BITS##_interval){-1e9,+1e9}); \
-	test_math_realoperator_f##BITS("atan2", &atan2##STD_SUFFIX, &c_f##BITS##atan2, TARGET_PRECISION, 100, (s_f##BITS##_interval){-1e9,+1e9}, (s_f##BITS##_interval){-1e9,+1e9}); \
- \
-	print_math_title("Hyperbolic Sine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("sinh", &sinh##STD_SUFFIX, &c_f##BITS##sinh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU}); \
-	test_math_realfunction_f##BITS("sinh", &sinh##STD_SUFFIX, &c_f##BITS##sinh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Hyperbolic Cosine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("cosh", &cosh##STD_SUFFIX, &c_f##BITS##cosh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU}); \
-	test_math_realfunction_f##BITS("cosh", &cosh##STD_SUFFIX, &c_f##BITS##cosh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Hyperbolic Tangent (f"#BITS")"); \
-	test_math_realfunction_f##BITS("tanh", &tanh##STD_SUFFIX, &c_f##BITS##tanh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-TAU,+TAU}); \
-	test_math_realfunction_f##BITS("tanh", &tanh##STD_SUFFIX, &c_f##BITS##tanh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Hyperbolic Arc-Sine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("asinh", &asinh##STD_SUFFIX, &c_f##BITS##asinh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-5e1,+5e1}); \
-	test_math_realfunction_f##BITS("asinh", &asinh##STD_SUFFIX, &c_f##BITS##asinh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Hyperbolic Arc-Cosine (f"#BITS")"); \
-	test_math_realfunction_f##BITS("acosh", &acosh##STD_SUFFIX, &c_f##BITS##acosh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){+1e0,+5e1}); \
-	test_math_realfunction_f##BITS("acosh", &acosh##STD_SUFFIX, &c_f##BITS##acosh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-	print_math_title("Hyperbolic Arc-Tangent (f"#BITS")"); \
-	test_math_realfunction_f##BITS("atanh", &atanh##STD_SUFFIX, &c_f##BITS##atanh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e0,+1e0}); \
-	test_math_realfunction_f##BITS("atanh", &atanh##STD_SUFFIX, &c_f##BITS##atanh, TARGET_PRECISION, 1000, (s_f##BITS##_interval){-1e9,+1e9}); \
-
-
-
+#if 0
 	#if !LIBCONFIG_USE_STD_MATH
 		#if TRUE
 		TESTSUITE_MATH(f, 32, "IEEE single", 0.001)
@@ -433,6 +323,174 @@ int		testsuite_math(void)
 		TESTSUITE_MATH(l, 128, "IEEE quadruple", 0.000001)
 		#endif
 	#endif
+	if (g_test.config.verbose)
+	{
+		printf("\n\n" ANSI_COLOR_FG_BLUE "Floating-point (%d-bit %s precision) math functions" ANSI_RESET "\n\n", BITS, NAME);
+	}
+#endif
+/*
+	print_math_title("Split Float");
+	RUNTESTS_MATH_FUNCTION(frexp, frexp, 10000, {-1e9,+1e9});
+	print_math_title("Get Exponent (base-2)");
+	RUNTESTS_MATH_FUNCTION(getexp, ilogb, 10000, {-1e9,+1e9});
+*/
+	print_math_title("Nearby Int");
+	RUNTESTS_MATH_FUNCTION(nearbyint, nearbyint, 100, {-1e9,+1e9});
+	print_math_title("Next After");
+	RUNTESTS_MATH_OPERATOR(nextafter, nextafter, 100, {-1e9,+1e9}, {-1e9,+1e9});
+	print_math_title("Copy Sign");
+	RUNTESTS_MATH_OPERATOR(copysign, copysign, 100, {-1e9,+1e9}, {-1e9,+1e9});
+
+	print_math_title("Absolute Value");
+	RUNTESTS_MATH_FUNCTION(abs, fabs, 10000, {-1e1,+1e1});
+	RUNTESTS_MATH_FUNCTION(abs, fabs, 10000, {-1e9,+1e9});
+	print_math_title("Round");
+	RUNTESTS_MATH_FUNCTION(round, round, 10000, {-1e1,+1e1});
+	RUNTESTS_MATH_FUNCTION(round, round, 10000, {-1e9,+1e9});
+	print_math_title("Trunc");
+	RUNTESTS_MATH_FUNCTION(trunc, trunc, 10000, {-1e1,+1e1});
+	RUNTESTS_MATH_FUNCTION(trunc, trunc, 10000, {-1e9,+1e9});
+	print_math_title("Floor");
+	RUNTESTS_MATH_FUNCTION(floor, floor, 10000, {-1e1,+1e1});
+	RUNTESTS_MATH_FUNCTION(floor, floor, 10000, {-1e9,+1e9});
+	print_math_title("Ceil");
+	RUNTESTS_MATH_FUNCTION(ceil, ceil, 10000, {-1e1,+1e1});
+	RUNTESTS_MATH_FUNCTION(ceil, ceil, 10000, {-1e9,+1e9});
+
+	print_math_title("Modulo");
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e1,+1e1}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e9,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e1,+1e1}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e9,+1e9}, {-1e9,+1e9});
+	print_math_title("Remainder");
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e1,+1e1}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e9,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e1,+1e1}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e9,+1e9}, {-1e9,+1e9});
+
+	print_math_title("Power");
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, { 0e0,+4e0}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, {-1e1,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, { 0e0,+4e0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, {-1e1,+1e9}, {-1e6,+1e6});
+/*
+	print_math_title("N-Power");
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, { 0e0,+4e0}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, {-1e1,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, { 0e0,+4e0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, {-1e1,+1e9}, {-1e6,+1e6});
+*/
+	print_math_title("Square root");
+	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 1000, { 0e0,+5e0});
+	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 1000, {-1e1,+1e9});
+	print_math_title("Cubic root");
+	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 1000, { 0e0,+5e0});
+	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 1000, {-1e9,+1e9});
+/*
+	print_math_title("N-Power root");
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, { 0e0,+5e0}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, {-1e9,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, { 0e0,+5e0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, {-1e9,+1e9}, {-1e6,+1e6});
+*/
+	print_math_title("Hypotenuse");
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e1,+1e1}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e9,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e1,+1e1}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e9,+1e9}, {-1e9,+1e9});
+
+	print_math_title("Exponential, base e");
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {-1e3,+1e0});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {+1e0,+1e9});
+	print_math_title("Exponential, base 2");
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {-1e3,+1e0});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {+1e0,+1e9});
+/*
+	print_math_title("Exponential, base 10");
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {-1e3,+1e0});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {+1e0,+1e9});
+*/
+	print_math_title("Logarithm, base e");
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, { 0e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, {+1e0,+1e9});
+	print_math_title("Logarithm, base 2");
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, { 0e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, {+1e0,+1e9});
+	print_math_title("Logarithm, base 10");
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, { 0e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, {+1e0,+1e3});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, {+1e0,+1e9});
+/*
+	print_math_title("Logarithm, base N");
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e1,+1e1}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e1,+1e1}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e9}, {-1e9,+1e9});
+*/
+	print_math_title("Error function");
+	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-3e0,+3e0});
+	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-1e9,+1e9});
+	print_math_title("Error function complementary");
+	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-3e0,+3e0});
+	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e9,+1e9});
+
+	print_math_title("Gamma function");
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-5e0,+5e0});
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e9,+1e9});
+	print_math_title("Log-Gamma function");
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-5e0,+5e0});
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e9,+1e9});
+
+	print_math_title("Sine");
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, { 0, +PI });
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-TAU,+TAU*2});
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-1e9,+1e9});
+	print_math_title("Cosine");
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-PI_HALF,+PI_HALF});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-TAU,+TAU*2});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-1e9,+1e9});
+	print_math_title("Tangent");
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-PI_HALF,+PI_HALF});
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-1e9,+1e9});
+	print_math_title("Arc-Sine");
+	RUNTESTS_MATH_FUNCTION(asin, asin, 1000, {-1e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(asin, asin, 1000, {-1e9,+1e9});
+	print_math_title("Arc-Cosine");
+	RUNTESTS_MATH_FUNCTION(acos, acos, 1000, {-1e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(acos, acos, 1000, {-1e9,+1e9});
+	print_math_title("Arc-Tangent");
+	RUNTESTS_MATH_FUNCTION(atan, atan, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(atan, atan, 1000, {-1e9,+1e9});
+
+	print_math_title("Arc-Tangent of (Y / X)");
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e1,+1e1}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e9,+1e9}, {-1e1,+1e1});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e1,+1e1}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e9,+1e9}, {-1e9,+1e9});
+
+	print_math_title("Hyperbolic Sine");
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-1e9,+1e9});
+	print_math_title("Hyperbolic Cosine");
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-1e9,+1e9});
+	print_math_title("Hyperbolic Tangent");
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-1e9,+1e9});
+	print_math_title("Hyperbolic Arc-Sine");
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-5e1,+5e1});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-1e9,+1e9});
+	print_math_title("Hyperbolic Arc-Cosine");
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {+1e0,+5e1});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {-1e9,+1e9});
+	print_math_title("Hyperbolic Arc-Tangent");
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e9,+1e9});
 
 	return (OK);
 }

@@ -1,6 +1,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 #include "test.h"
 #include "test_timer.h"
@@ -124,7 +125,6 @@ s_time	timer_getdiff(s_time start, s_time end)
 
 
 /* Returns negative if 'a' is lower than 'b', positive if 'b' > 'a' and 0 if equal. */
-inline
 int	timer_compare(s_time a, s_time b)
 {
 	if (a.tv_sec == b.tv_sec)
@@ -145,7 +145,7 @@ void	print_timer_result(s_timer* t, int compare)
 		return;
 
 	t->result_time = timer_getdiff(t->result_start, t->result_end);
-	if (t->result_time.tv_nsec < 0 || t->result_time.tv_nsec < 0)
+	if (t->result_time.tv_sec < 0 || t->result_time.tv_nsec < 0)
 		sprintf((char*)&result1, "SIGNAL EMITTED");
 	else sprintf((char*)&result1, TIMER_FORMATSTRING, (long long)t->result_time.tv_sec, t->result_time.tv_nsec);
 
@@ -153,7 +153,7 @@ void	print_timer_result(s_timer* t, int compare)
 	if (compare)
 	{
 		t->expect_time = timer_getdiff(t->expect_start, t->expect_end);
-		if (t->expect_time.tv_nsec < 0 || t->expect_time.tv_nsec < 0)
+		if (t->expect_time.tv_sec < 0 || t->expect_time.tv_nsec < 0)
 			sprintf((char*)&result2, "SIGNAL EMITTED");
 		else sprintf((char*)&result2, TIMER_FORMATSTRING, (long long)t->expect_time.tv_sec, t->expect_time.tv_nsec);
 
@@ -162,14 +162,26 @@ void	print_timer_result(s_timer* t, int compare)
 			compare = timer_compare(t->result_time, t->expect_time);
 		else compare = 0;
 
+		double percent;
+		const char* which;
 		if (compare == 0)
-			printf("%s, libc:", result1);
+		{
+			printf("%s, stdlib:", result1);
+			which = "same";
+		}
 		else if (compare < 0)
-			printf(ANSI_COLOR_FG_GREEN "%s" ANSI_RESET", libc:", result1);
+		{
+			printf(ANSI_COLOR_FG_GREEN "%s" ANSI_RESET", stdlib:", result1);
+			percent = (double)t->expect_time.tv_nsec / (double)t->result_time.tv_nsec;
+			which = ANSI_COLOR_FG_GREEN "faster" ANSI_RESET;
+		}
 		else
-			printf(ANSI_COLOR_FG_RED "%s" ANSI_RESET", libc:", result1);
-
-		printf("%s]", result2);
+		{
+			printf(ANSI_COLOR_FG_RED "%s" ANSI_RESET", stdlib:", result1);
+			percent = (double)t->result_time.tv_nsec / (double)t->expect_time.tv_nsec;
+			which = ANSI_COLOR_FG_RED "slower" ANSI_RESET;
+		}
+		printf("%s] = %.2fx %s", result2, percent, which);
 	}
 	else printf("%s]", result1);
 }

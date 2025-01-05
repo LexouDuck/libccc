@@ -346,7 +346,7 @@ t_bool	memswap(void* ptr1, void* ptr2, t_size size)
 	return (ERROR);
 }
 
-#include <stdio.h>
+
 
 #define DEFINEFUNCTIONS_STATS(NAME_UPPER, NAME, TYPE, CHECK) \
  \
@@ -416,7 +416,9 @@ double	stat_variance_##NAME(TYPE * const values, unsigned int length) \
 	} \
 	return ((sum / i) - (average * average)); \
 } \
-inline double	stat_stddev_##NAME(TYPE * const values, unsigned int length) \
+ \
+inline \
+double	stat_stddev_##NAME(TYPE * const values, unsigned int length) \
 { \
 	return sqrt(stat_variance_##NAME(values, length)); \
 } \
