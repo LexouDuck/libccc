@@ -186,8 +186,8 @@ t_f64	F64_ArcTan2(t_f64 y, t_f64 x)
 
 	if (IS_NAN(x) || IS_NAN(y))
 		return x+y;
-	EXTRACT_WORDS(ix, lx, x);
-	EXTRACT_WORDS(iy, ly, y);
+	GET_WORDS(ix, lx, x);
+	GET_WORDS(iy, ly, y);
 	if (((ix - 0x3ff00000) | lx) == 0)  /* x = 1.0 */
 		return F64_ArcTan(y);
 	m = ((iy>>31)&1) | ((ix>>30)&2);  /* 2*sign(x)+sign(y) */

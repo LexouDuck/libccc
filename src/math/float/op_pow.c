@@ -126,9 +126,7 @@ t_f64 F32_log2_inline(t_u32 ix)
 	t_u32 iz, top, tmp;
 	int k, i;
 
-	/* x = 2^k z; where z is in range [OFF,2*OFF] and exact.
-	   The range is split into N subintervals.
-	   The ith subinterval contains z and c is near its center. */
+	/* x = 2^k z; where z is in range [OFF,2*OFF] and exact. The range is split into N subintervals. The ith subinterval contains z and c is near its center. */
 	tmp = ix - OFF;
 	i = (tmp >> (23 - TABLEBITS_LOG2_POW_F32)) % N;
 	top = tmp & 0xff800000;
@@ -207,7 +205,7 @@ int F32_checkint(t_u32 iy)
 static inline
 int F32_zeroinfnan(t_u32 ix)
 {
-	return 2 * ix - 1 >= 2u * 0x7F800000 - 1;
+	return 2 * ix - 1 >= 2u * F32_EXPONENT - 1;
 }
 
 t_f32	F32_Pow(t_f32 x, t_f32 y)
@@ -217,35 +215,33 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 
 	ix = AS_U32(x);
 	iy = AS_U32(y);
-	if (predict_false(ix - 0x00800000 >= 0x7F800000 - 0x00800000 || F32_zeroinfnan(iy)))
+	if (predict_false(ix - 0x00800000 >= F32_EXPONENT - 0x00800000 || F32_zeroinfnan(iy)))
 	{
 		/* Either (x < 0x1p-126 or inf or nan) or (y is 0 or inf or nan). */
 		if (predict_false(F32_zeroinfnan(iy)))
 		{
 			if (2 * iy == 0)
 				return issignalingf_inline(x) ? x + y : 1.0f;
-			if (ix == 0x3F800000)
+			if (ix == F32_EXPONENT_ZERO)
 				return issignalingf_inline(y) ? x + y : 1.0f;
-			if (2 * ix > 2u * 0x7F800000 ||
-			    2 * iy > 2u * 0x7F800000)
+			if (2 * ix > 2u * F32_EXPONENT || 2 * iy > 2u * F32_EXPONENT)
 				return x + y;
-			if (2 * ix == 2 * 0x3F800000)
+			if (2 * ix == 2 * F32_EXPONENT_ZERO)
 				return 1.0f;
-			if ((2 * ix < 2 * 0x3F800000) == !(iy & 0x80000000))
+			if ((2 * ix < 2 * F32_EXPONENT_ZERO) == !(iy & F32_SIGNED))
 				return 0.0f; /* |x|<1 && y==inf or |x|>1 && y==-inf. */
 			return y * y;
 		}
 		if (predict_false(F32_zeroinfnan(ix)))
 		{
 			t_f32 x2 = x * x;
-			if (ix & 0x80000000 && F32_checkint(iy) == 1)
+			if (ix & F32_SIGNED && F32_checkint(iy) == 1)
 				x2 = -x2;
-			/* Without the barrier some versions of clang hoist the 1/x2 and
-			   thus division by zero exception can be signaled spuriously. */
-			return iy & 0x80000000 ? /*fp_barrierf*/(1 / x2) : x2;
+			/* Without the barrier some versions of clang hoist the 1/x2 and thus division by zero exception can be signaled spuriously. */
+			return iy & F32_SIGNED ? /*fp_barrierf*/(1 / x2) : x2;
 		}
 		/* x and y are non-zero finite. */
-		if (ix & 0x80000000)
+		if (ix & F32_SIGNED)
 		{
 			/* Finite x < 0. */
 			int yint = F32_checkint(iy);
@@ -253,25 +249,25 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 				return __math_invalidf(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
-			ix &= 0x7FFFFFFF;
+			ix &= ~F32_SIGNED;
 		}
 		if (ix < 0x00800000)
 		{
 			/* Normalize subnormal x so exponent becomes negative. */
 			ix = AS_U32(x * 0x1p23f);
-			ix &= 0x7FFFFFFF;
+			ix &= ~F32_SIGNED;
 			ix -= 23 << 23;
 		}
 	}
 	t_f64 logx = F32_log2_inline(ix);
 	t_f64 ylogx = y * logx; /* cannot overflow, y is single prec. */
-	if (predict_false((AS_U64(ylogx) >> 47 & 0xffff) >= AS_U64(126.0 * SCALE_POW_F32) >> 47))
+	if (predict_false((AS_U64(ylogx) >> 47 & 0xFFFF) >= AS_U64(126.0 * SCALE_POW_F32) >> 47))
 	{
 		/* |y*log(x)| >= 126. */
-		if (ylogx > 0x1.fffffffd1d571p+6 * SCALE_POW_F32)
-			return __math_oflowf(sign_bias);
+		if (ylogx > 0x1.FFFFFFFD1D571p+6 * SCALE_POW_F32)
+			return __math_oflowf(sign_bias ? -1.f : +1.f);
 		if (ylogx <= -150.0 * SCALE_POW_F32)
-			return __math_uflowf(sign_bias);
+			return __math_uflowf(sign_bias ? -1.f : +1.f);
 	}
 	return F32_exp2_inline(ylogx, sign_bias);
 }
@@ -288,8 +284,8 @@ struct data_pow_f64
 {
 	t_f64 ln2hi;
 	t_f64 ln2lo;
-	t_f64 poly[POW_LOG_POLY_ORDER - 1]; /* First coefficient is 1.  */
-	/* Note: the pad field is unused, but allows slightly faster indexing.  */
+	t_f64 poly[POW_LOG_POLY_ORDER - 1]; /* First coefficient is 1. */
+	/* Note: the pad field is unused, but allows slightly faster indexing. */
 	struct { t_f64 invc, pad, logc, logctail; } table[N];
 }
 __data_pow_f64 =
@@ -599,7 +595,7 @@ t_f64 F64_Pow_specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 		y = (t_f64)(hi + lo) - one;
 		/* Fix the sign of 0. */
 		if (y == 0.0)
-			y = AS_F64(sbits & 0x8000000000000000);
+			y = AS_F64(sbits & F64_SIGNED);
 		/* The underflow exception needs to be signaled explicitly. */
 		/*FORCE_EVAL(fp_barrier(0x1p-1022) * 0x1p-1022);*/
 	}
@@ -623,8 +619,7 @@ t_f64	F64_Pow_exp_inline(t_f64 x, t_f64 xtail, t_u32 sign_bias)
 	t_f64 kd, z, r, r2, scale, tail, tmp;
 
 	abstop = F64_Pow_top12(x) & 0x7FF;
-	if (predict_false(abstop - F64_Pow_top12(0x1p-54) >=
-			  F64_Pow_top12(512.0) - F64_Pow_top12(0x1p-54)))
+	if (predict_false(abstop - F64_Pow_top12(0x1p-54) >= F64_Pow_top12(512.0) - F64_Pow_top12(0x1p-54)))
 	{
 		if (abstop - F64_Pow_top12(0x1p-54) >= 0x80000000)
 		{
@@ -637,9 +632,9 @@ t_f64	F64_Pow_exp_inline(t_f64 x, t_f64 xtail, t_u32 sign_bias)
 		{
 			/* Note: inf and nan are already handled. */
 			if (AS_U64(x) >> 63)
-				return __math_uflow(sign_bias);
+				return __math_uflow(sign_bias ? -1. : +1.);
 			else
-				return __math_oflow(sign_bias);
+				return __math_oflow(sign_bias ? -1. : +1.);
 		}
 		/* Large x is special cased below. */
 		abstop = 0;
@@ -685,8 +680,7 @@ t_f64	F64_Pow_exp_inline(t_f64 x, t_f64 xtail, t_u32 sign_bias)
 	if (predict_false(abstop == 0))
 		return F64_Pow_specialcase(tmp, sbits, ki);
 	scale = AS_F64(sbits);
-	/* Note: tmp == 0 or |tmp| > 2^-200 and scale > 2^-739, so there
-	   is no spurious underflow here even without fma. */
+	/* Note: tmp == 0 or |tmp| > 2^-200 and scale > 2^-739, so there is no spurious underflow here even without fma. */
 	return (t_f64)(scale + scale * tmp);
 }
 
@@ -728,21 +722,17 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 	iy = AS_U64(y);
 	topx = F64_Pow_top12(x);
 	topy = F64_Pow_top12(y);
-	if (predict_false(topx - 0x001 >= 0x7FF - 0x001 ||
-			  (topy & 0x7FF) - 0x3BE >= 0x43E - 0x3BE))
+	if (predict_false(topx - 0x001 >= 0x7FF - 0x001 || (topy & 0x7FF) - 0x3BE >= 0x43E - 0x3BE))
 	{
-		/* Note: if |y| > 1075 * ln2 * 2^53 ~= 0x1.749p62 then pow(x,y) = inf/0
-		   and if |y| < 2^-54 / 1075 ~= 0x1.e7b6p-65 then pow(x,y) = +-1. */
-		/* Special cases: (x < 0x1p-126 or inf or nan) or
-		   (|y| < 0x1p-65 or |y| >= 0x1p63 or nan). */
+		/* Note: if |y| > 1075 * ln2 * 2^53 ~= 0x1.749p62 then pow(x,y) = inf/0 and if |y| < 2^-54 / 1075 ~= 0x1.e7b6p-65 then pow(x,y) = +-1. */
+		/* Special cases: (x < 0x1p-126 or inf or nan) or (|y| < 0x1p-65 or |y| >= 0x1p63 or nan). */
 		if (predict_false(F64_Pow_zeroinfnan(iy)))
 		{
 			if (2 * iy == 0)
 				return issignaling_inline(x) ? x + y : 1.0;
 			if (ix == AS_U64(1.0))
 				return issignaling_inline(y) ? x + y : 1.0;
-			if (2 * ix > 2 * AS_U64(INFINITY) ||
-			    2 * iy > 2 * AS_U64(INFINITY))
+			if (2 * ix > 2 * AS_U64(INFINITY) || 2 * iy > 2 * AS_U64(INFINITY))
 				return x + y;
 			if (2 * ix == 2 * AS_U64(1.0))
 				return 1.0;
@@ -755,8 +745,7 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 			t_f64 x2 = x * x;
 			if (ix >> 63 && F64_Pow_checkint(iy) == 1)
 				x2 = -x2;
-			/* Without the barrier some versions of clang hoist the 1/x2 and
-			   thus division by zero exception can be signaled spuriously. */
+			/* Without the barrier some versions of clang hoist the 1/x2 and thus division by zero exception can be signaled spuriously. */
 			return iy >> 63 ? /*fp_barrier*/(1 / x2) : x2;
 		}
 		/* Here x and y are non-zero finite. */
@@ -768,7 +757,7 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 				return __math_invalid(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
-			ix &= 0x7FFFFFFFFFFFFFFF;
+			ix &= ~F64_SIGNED;
 			topx &= 0x7FF;
 		}
 		if ((topy & 0x7FF) - 0x3BE >= 0x43E - 0x3BE)
@@ -780,20 +769,19 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 			{
 				/* |y| < 2^-65, x^y ~= 1 + y*log(x). */
 				if (WANT_ROUNDING)
-					return ix > AS_U64(1.0) ? 1.0 + y :
-								    1.0 - y;
+					return ix > AS_U64(1.0) ? 1.0 + y : 1.0 - y;
 				else
 					return 1.0;
 			}
 			return (ix > AS_U64(1.0)) == (topy < 0x800) ?
-				       __math_oflow(0) :
-				       __math_uflow(0);
+				__math_oflow(sign_bias ? -1. : +1.) :
+				__math_uflow(sign_bias ? -1. : +1.);
 		}
 		if (topx == 0)
 		{
 			/* Normalize subnormal x so exponent becomes negative. */
 			ix = AS_U64(x * 0x1p52);
-			ix &= 0x7FFFFFFFFFFFFFFF;
+			ix &= ~F64_SIGNED;
 			ix -= 52ULL << 52;
 		}
 	}
@@ -831,7 +819,8 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 **	ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 **	OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-/*                                                      powl.c
+
+/*! powl()
 **
 **      Power function, t_f80 precision
 **
@@ -890,9 +879,9 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 #define Hb Wb
 
 
-/*!
-**	Positive real raised to integer power, t_f80 precision
+/*! powil()
 **
+**	Positive real raised to integer power, t_f80 precision
 **
 ** SYNOPSIS:
 **
@@ -924,7 +913,7 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 
 #define DEFINEFUNC_FLOAT_POW(BITS) \
 static const \
-struct data_pow_f80 \
+struct data_pow_f##BITS \
 { \
 	t_f##BITS	P[4]; \
 	t_f##BITS	Q[3]; \
@@ -1038,7 +1027,7 @@ __data_pow_f##BITS = \
 }; \
  \
 /* XXX Prevent gcc from erroneously constant folding this. */ \
-static const volatile t_f80 twom10000 = 0x1p-10000L; \
+static const volatile t_f##BITS twom10000 = 0x1p-10000L; \
  \
 static \
 t_f##BITS	powil(t_f##BITS x, int nn) \
@@ -1072,17 +1061,17 @@ t_f##BITS	powil(t_f##BITS x, int nn) \
 	} \
 	else \
 	{ \
-		s = __data_pow_f80.LOGE2L * e; \
+		s = __data_pow_f##BITS.LOGE2L * e; \
 	} \
-	if (s > __data_pow_f80.MAXLOGL) \
-		return __data_pow_f80.huge * __data_pow_f80.huge;  /* overflow */ \
-	if (s < __data_pow_f80.MINLOGL) \
-		return twom10000 * twom10000;  /* underflow */ \
+	if (s > __data_pow_f##BITS.MAXLOGL) \
+		return __data_pow_f##BITS.huge * __data_pow_f##BITS.huge; /* overflow */ \
+	if (s < __data_pow_f##BITS.MINLOGL) \
+		return twom10000 * twom10000; /* underflow */ \
 	/* Handle tiny denormal answer, but with less accuracy \
 	**	since roundoff error in 1.0/x will be amplified. \
 	**	The precise demarcation should be the gradual underflow threshold. \
 	*/ \
-	if (s < -__data_pow_f80.MAXLOGL + 2.0) \
+	if (s < -__data_pow_f##BITS.MAXLOGL + 2.0) \
 	{ \
 		x = 1.0/x; \
 		sign = -sign; \
@@ -1096,8 +1085,8 @@ t_f##BITS	powil(t_f##BITS x, int nn) \
 	n >>= 1; \
 	while (n) \
 	{ \
-		ww = ww * ww;   /* arg to the 2-to-the-kth power */ \
-		if (n & 1)     /* if that bit is set, then include in product */ \
+		ww = ww * ww;  /* arg to the 2-to-the-kth power */ \
+		if (n & 1) /* if that bit is set, then include in product */ \
 			y *= ww; \
 		n >>= 1; \
 	} \
@@ -1168,7 +1157,7 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 			return INFINITY; \
 		} \
 		if ((x > 1.0 || x < -1.0) == (y > 0)) \
-			return __data_pow_f80.huge * __data_pow_f80.huge; \
+			return __data_pow_f##BITS.huge * __data_pow_f##BITS.huge; \
 		return twom10000 * twom10000; \
 	} \
 	if (x == INFINITY) \
@@ -1242,20 +1231,20 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 	e = i; \
 	/* find significand in antilog table */ \
 	i = 1; \
-	if (x <= __data_pow_f80.antilog[17]  )	i = 17; \
-	if (x <= __data_pow_f80.antilog[i+8] )	i += 8; \
-	if (x <= __data_pow_f80.antilog[i+4] )	i += 4; \
-	if (x <= __data_pow_f80.antilog[i+2] )	i += 2; \
-	if (x >= __data_pow_f80.antilog[1]   )	i = -1; \
+	if (x <= __data_pow_f##BITS.antilog[17]  )	i = 17; \
+	if (x <= __data_pow_f##BITS.antilog[i+8] )	i += 8; \
+	if (x <= __data_pow_f##BITS.antilog[i+4] )	i += 4; \
+	if (x <= __data_pow_f##BITS.antilog[i+2] )	i += 2; \
+	if (x >= __data_pow_f##BITS.antilog[1]   )	i = -1; \
 	i += 1; \
 	/* \
 	Find (x - antilog[i])/antilog[i] in order to compute log(x/antilog[i]): \
 	log(x) = log( a x/a ) = log(a) + log(x/a) \
 	log(x/a) = log(1+v),  v = x/a - 1 = (x-a)/a \
 	*/ \
-	x -= __data_pow_f80.antilog[i]; \
-	x -= __data_pow_f80.B[i/2]; \
-	x /= __data_pow_f80.antilog[i]; \
+	x -= __data_pow_f##BITS.antilog[i]; \
+	x -= __data_pow_f##BITS.B[i/2]; \
+	x /= __data_pow_f##BITS.antilog[i]; \
 	/* \
 	rational approximation for log(1+v): \
 	log(1+v)  =  v  -  v**2/2  +  v**3 P(v) / Q(v) \
@@ -1263,10 +1252,10 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 	z = x*x; \
 	w = x * (z * __polynomial_f##BITS(x, P, 3) / __polynomial_f##BITS(x, Q, 3)); \
 	w = w - 0.5*z; \
-	/* Convert to base 2 logarithm: multiply by log2(e) = 1 + __data_pow_f80.LOG2EA */ \
-	z = __data_pow_f80.LOG2EA * w; \
+	/* Convert to base 2 logarithm: multiply by log2(e) = 1 + __data_pow_f##BITS.LOG2EA */ \
+	z = __data_pow_f##BITS.LOG2EA * w; \
 	z += w; \
-	z += __data_pow_f80.LOG2EA * x; \
+	z += __data_pow_f##BITS.LOG2EA * x; \
 	z += x; \
 	/* Compute exponent term of the base 2 logarithm. */ \
 	w = -i; \
@@ -1290,10 +1279,10 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 	Ha = reducl(H); \
 	w = (Ga + Ha) * NXT; \
 	/* Test the power of 2 for overflow */ \
-	if (w > __data_pow_f80.MEXP) \
-		return __data_pow_f80.huge * __data_pow_f80.huge;  /* overflow */ \
-	if (w < __data_pow_f80.MNEXP) \
-		return twom10000 * twom10000;  /* underflow */ \
+	if (w > __data_pow_f##BITS.MEXP) \
+		return __data_pow_f##BITS.huge * __data_pow_f##BITS.huge; /* overflow */ \
+	if (w < __data_pow_f##BITS.MNEXP) \
+		return twom10000 * twom10000; /* underflow */ \
 	e = w; \
 	Hb = H - Ha; \
 	if (Hb > 0.0) \
@@ -1302,10 +1291,10 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 		Hb -= 1.0/NXT;  /*0.0625L;*/ \
 	} \
 	/* \
-	Now the product y * log2(x)  =  Hb + e/NXT. \
+	Now the product y * log2(x) = Hb + e/NXT. \
 	Compute base 2 exponential of Hb, where -0.0625 <= Hb <= 0. \
 	*/ \
-	z = Hb * __polynomial_f##BITS(Hb, __data_pow_f80.R, 6);  /*  z = 2**Hb - 1 */ \
+	z = Hb * __polynomial_f##BITS(Hb, __data_pow_f##BITS.R, 6); /* z = 2**Hb - 1 */ \
 	/* \
 	Express e/NXT as an integer plus a negative number of (1/NXT)ths. \
 	Find lookup table entry for the fractional power of 2. \
@@ -1316,10 +1305,10 @@ t_f##BITS	F##BITS##_Pow(t_f##BITS x, t_f##BITS y) \
 		i = 1; \
 	i = e/NXT + i; \
 	e = NXT*i - e; \
-	w = __data_pow_f80.antilog[e]; \
-	z = w * z;  /*  2**-e * ( 1 + (2**Hb-1) ) */ \
+	w = __data_pow_f##BITS.antilog[e]; \
+	z = w * z; /* 2**-e * ( 1 + (2**Hb-1) ) */ \
 	z = z + w; \
-	z = F##BITS##_From(z, i);  /* multiply by integer power of 2 */ \
+	z = F##BITS##_From(z, i); /* multiply by integer power of 2 */ \
 	if (nflg) \
 		z = -z; \
 	return z; \

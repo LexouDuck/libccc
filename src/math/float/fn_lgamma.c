@@ -9,7 +9,27 @@
 
 #if LIBCONFIG_USE_STD_MATH
 MATH_DECL_REALFUNCTION(LnGamma, lgamma)
+#elif LIBCONFIG_USE_CCC_MATH
+#define DEFINEFUNC_FLOAT_LNGAMMA(BITS) \
+_INLINE() \
+t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x) \
+{ \
+	return F##BITS##_Log(F##BITS##_Abs(F##BITS##_Gamma(x))); \
+} \
+
+DEFINEFUNC_FLOAT_LNGAMMA(32)
+DEFINEFUNC_FLOAT_LNGAMMA(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_LNGAMMA(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_LNGAMMA(128)
+#endif
+
+
+
 #else
+
 
 /*
 ** ====================================================
@@ -130,9 +150,9 @@ t_f32 F32_sin_pi(t_f32 x)
 	switch (n)
 	{
 		case 0:	return +__sin_f32(+y);
-		case 1:	return +__cos_f32(+y, 0);
+		case 1:	return +__cos_f32(+y);
 		case 2:	return +__sin_f32(-y);
-		case 3:	return -__cos_f32(+y, 0);
+		case 3:	return -__cos_f32(+y);
 		default:
 			return NAN;
 	}
@@ -159,10 +179,10 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 	static const
 	struct data_lgamma_f32 __data_lgamma_f32 =
 	{
-		.pi  = +3.1415927410e+00, /* 0x40490fdb */
-		.tc  = +1.4616321325e+00, /* 0x3fbb16c3 */
-		.tf  = -1.2148628384e-01, /* 0xbdf8cdcd */
-		.tt  = +6.6971006518e-09, /* 0x31e61c52 */ /* tt = -(tail of tf) */
+		.pi = +3.1415927410e+00, /* 0x40490fdb */
+		.tc = +1.4616321325e+00, /* 0x3fbb16c3 */
+		.tf = -1.2148628384e-01, /* 0xbdf8cdcd */
+		.tt = +6.6971006518e-09, /* 0x31e61c52 */ /* tt = -(tail of tf) */
 		.a =
 		{
 			+7.7215664089e-02, /* 0x3d9e233f */
@@ -253,8 +273,8 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 	/* purge off +-inf, NaN, +-0, tiny and negative arguments */
 	*signgamp = 1;
 	sign = u.i>>31;
-	ix = u.i & 0x7fffffff;
-	if (ix >= 0x7f800000)
+	ix = u.i & ~F32_SIGNED;
+	if (ix >= F32_EXPONENT)
 		return x*x;
 	if (ix < 0x35000000) /* |x| < 2**-21, return -log(|x|) */
 	{
@@ -270,28 +290,27 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 		x = -x;
 		t = F32_sin_pi(x);
 		if (t == 0.0f) /* -integer */
-			return 1.0f/(x-x);
+			return 1.0f / (x - x);
 		if (t > 0.0f)
 			*signgamp = -1;
 		else
 			t = -t;
-		nadj = F32_Log(__data_lgamma_f32.pi/(t*x));
+		nadj = F32_Log(__data_lgamma_f32.pi / (t * x));
 	}
 	/* purge off 1 and 2 */
-	if (ix == 0x3f800000 || ix == 0x40000000)
+	if (ix == 0x3F800000 || ix == 0x40000000)
 		r = 0;
-	/* for x < 2.0 */
-	else if (ix < 0x40000000)
+	else if (ix < 0x40000000) /* for x < 2.0 */
 	{
-		if (ix <= 0x3f666666)
+		if (ix <= 0x3F666666)
 		{	/* lgamma(x) = lgamma(x+1)-log(x) */
 			r = -F32_Log(x);
-			if (ix >= 0x3f3b4a20)
+			if (ix >= 0x3F3B4A20)
 			{
 				y = 1.0f - x;
 				i = 0;
 			}
-			else if (ix >= 0x3e6d3308)
+			else if (ix >= 0x3E6D3308)
 			{
 				y = x - (__data_lgamma_f32.tc-1.0f);
 				i = 1;
@@ -305,12 +324,12 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 		else
 		{
 			r = 0.0f;
-			if (ix >= 0x3fdda618)
+			if (ix >= 0x3FDDA618)
 			{	/* [1.7316,2] */
 				y = 2.0f - x;
 				i = 0;
 			}
-			else if (ix >= 0x3F9da620)
+			else if (ix >= 0x3F9DA620)
 			{	/* [1.23,1.73] */
 				y = x - __data_lgamma_f32.tc;
 				i = 1;
@@ -429,7 +448,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 		r = (x-0.5f)*(t-1.0f)+w;
 	}
 	else /* 2**58 <= x <= inf */
-		r =  x*(F32_Log(x)-1.0f);
+		r =  x * (F32_Log(x) - 1.0f);
 	if (sign)
 		r = nadj - r;
 	return r;
@@ -463,8 +482,8 @@ t_f32	F32_LnGamma(t_f32 x)
 **              lgamma(1+s) = log(s) + lgamma(s)
 **      for example,
 **              lgamma(7.3) = log(6.3) + lgamma(6.3)
-**                          = log(6.3*5.3) + lgamma(5.3)
-**                          = log(6.3*5.3*4.3*3.3*2.3) + lgamma(2.3)
+**                         = log(6.3*5.3) + lgamma(5.3)
+**                         = log(6.3*5.3*4.3*3.3*2.3) + lgamma(2.3)
 **   2. Polynomial approximation of lgamma around its
 **      minimun ymin=1.461632144968362245 to maintain monotonicity.
 **      On [ymin-0.23, ymin+0.27] (i.e., [1.23164,1.73163]), use
@@ -506,7 +525,7 @@ t_f32	F32_LnGamma(t_f32 x)
 **      since G(-x) is positive, sign(G(x)) = sign(sin(pi*x)) for x<0
 **      Hence, for x<0, signgam = sign(sin(pi*x)) and
 **              lgamma(x) = log(|Gamma(x)|)
-**                        = log(pi/(|x*sin(pi*x)|)) - lgamma(-x);
+**                       = log(pi/(|x*sin(pi*x)|)) - lgamma(-x);
 **      Note: one should avoid compute pi*(-x) directly in the
 **            computation of sin(pi*(-x)).
 **
@@ -567,10 +586,10 @@ t_f64 F64_lgamma_r(t_f64 x, int *signgamp)
 	static const
 	struct data_lgamma_f64 __data_lgamma_f64 =
 	{
-		.pi  = +3.14159265358979311600e+00, /* 0x400921FB, 0x54442D18 */
-		.tc  = +1.46163214496836224576e+00, /* 0x3FF762D8, 0x6356BE3F */
-		.tf  = -1.21486290535849611461e-01, /* 0xBFBF19B9, 0xBCC38A42 */
-		.tt  = -3.63867699703950536541e-18, /* 0xBC50C7CA, 0xA48A971F */ /* tt = -(tail of tf) */
+		.pi = +3.14159265358979311600e+00, /* 0x400921FB, 0x54442D18 */
+		.tc = +1.46163214496836224576e+00, /* 0x3FF762D8, 0x6356BE3F */
+		.tf = -1.21486290535849611461e-01, /* 0xBFBF19B9, 0xBCC38A42 */
+		.tt = -3.63867699703950536541e-18, /* 0xBC50C7CA, 0xA48A971F */ /* tt = -(tail of tf) */
 		.a =
 		{
 			+7.72156649015328655494e-02, /* 0x3FB3C467, 0xE37DB0C8 */
@@ -885,8 +904,8 @@ t_f64	F64_LnGamma(t_f64 x)
 **              lgamma(1+s) = log(s) + lgamma(s)
 **      for example,
 **              lgamma(7.3) = log(6.3) + lgamma(6.3)
-**                          = log(6.3*5.3) + lgamma(5.3)
-**                          = log(6.3*5.3*4.3*3.3*2.3) + lgamma(2.3)
+**                         = log(6.3*5.3) + lgamma(5.3)
+**                         = log(6.3*5.3*4.3*3.3*2.3) + lgamma(2.3)
 **   2. Polynomial approximation of lgamma around its
 **      minimun ymin=1.461632144968362245 to maintain monotonicity.
 **      On [ymin-0.23, ymin+0.27] (i.e., [1.23164,1.73163]), use
@@ -922,7 +941,7 @@ t_f64	F64_LnGamma(t_f64 x)
 **      since G(-x) is positive, sign(G(x)) = sign(sin(pi*x)) for x<0
 **      Hence, for x<0, signgam = sign(sin(pi*x)) and
 **              lgamma(x) = log(|Gamma(x)|)
-**                        = log(pi/(|x*sin(pi*x)|)) - lgamma(-x);
+**                       = log(pi/(|x*sin(pi*x)|)) - lgamma(-x);
 **      Note: one should avoid compute pi*(-x) directly in the
 **            computation of sin(pi*(-x)).
 **
@@ -1136,7 +1155,8 @@ t_f80 F80_lgammal_r(t_f80 x, int *sg)
 				y = x - (tc - 1.0);
 				i = 1;
 			}
-			else { /* x < 0.23 */
+			else /* x < 0.23 */
+			{
 				y = x;
 				i = 2;
 			}
@@ -1145,20 +1165,17 @@ t_f80 F80_lgammal_r(t_f80 x, int *sg)
 		{
 			r = 0.0;
 			if (ix >= 0x3fffdda6)
-			{	/* 1.73162841796875 */
-				/* [1.7316,2] */
+			{	/* 1.73162841796875 | [1.7316,2] */
 				y = x - 2.0;
 				i = 0;
 			}
 			else if (ix >= 0x3fff9da6)
-			{	/* 1.23162841796875 */
-				/* [1.23,1.73] */
+			{	/* 1.23162841796875 | [1.23,1.73] */
 				y = x - tc;
 				i = 1;
 			}
-			else
+			else /* [0.9, 1.23] */
 			{
-				/* [0.9, 1.23] */
 				y = x - 1.0;
 				i = 2;
 			}

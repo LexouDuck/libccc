@@ -14,22 +14,22 @@ t_float	__inv_factorial(t_uint n)
 {
 	static const t_float	result[16] =
 	{
-		1.0,
-		1.0,
-		1.0 / 2,
-		1.0 / 6,
-		1.0 / 24,
-		1.0 / 120,
-		1.0 / 720,
-		1.0 / 5040,
-		1.0 / 40320,
-		1.0 / 362880,
-		1.0 / 3628800,
-		1.0 / 39916800,
-		1.0 / 479001600,
-		1.0 / 6227020800,
-		1.0 / 87178291200,
-		1.0 / 1307674368000,
+		1.,
+		1.,
+		1. / 2,
+		1. / 6,
+		1. / 24,
+		1. / 120,
+		1. / 720,
+		1. / 5040,
+		1. / 40320,
+		1. / 362880,
+		1. / 3628800,
+		1. / 39916800,
+		1. / 479001600,
+		1. / 6227020800,
+		1. / 87178291200,
+		1. / 1307674368000,
 	};
 	return (result[n]); //static so it shouldn't be called with any weird values
 //	return (n >= 16) ? 0. : result[n];
@@ -119,7 +119,7 @@ t_f64	__sin_f64(t_f64 x, t_f64 y, int iy)
 */
 t_f80	__sin_f80(t_f80 x, t_f80 y, int iy)
 {
-	static const t_f80 S1 = -0.166666666666666666671L;   /* -0xaaaaaaaaaaaaaaab.0p-66 */
+	static const t_f80 S1 = -0.166666666666666666671L;  /* -0xaaaaaaaaaaaaaaab.0p-66 */
 	static const t_f64 S2 = +0.83333333333333332e-2; /*  0x11111111111111.0p-59 */
 	static const t_f64 S3 = -0.19841269841269427e-3; /* -0x1a01a01a019f81.0p-65 */
 	static const t_f64 S4 = +0.27557319223597490e-5; /*  0x171de3a55560f7.0p-71 */
@@ -201,17 +201,16 @@ t_f128	__sin_f128(t_f128 x, t_f128 y, int iy)
 
 /* |cos(x) - c(x)| < 2**-34.1 (~[-5.37e-11, 5.295e-11]). */
 
-t_f32	__cos_f32(t_f64 x, t_f64 y)
+t_f32	__cos_f32(t_f64 x)
 {
 	static const t_f64 C1 = -0x1FFFFFFD0C5E81.0p-54; /* -0.499999997251031003120 */
 	static const t_f64 C2 = +0x155553E1053A42.0p-57; /* +0.0416666233237390631894 */
 	static const t_f64 C3 = -0x16C087E80F1E27.0p-62; /* -0.00138867637746099294692 */
 	static const t_f64 C4 = +0x199342E0EE5069.0p-68; /* +0.0000243904487962774090654 */
 	t_f64 x2 = x * x;
-	t_f64 polynomial = (x2*(C1+x2*(C2+x2*(C3+x2*C4))));
-	t_f64 hx2 = 0.5 * x2;
-	t_f64 mhx2 = 1.0 - hx2;
-	return (mhx2 + (((1.0 - mhx2) - hx2) + (x2 * polynomial - x * y)));
+	t_f64 x4 = x2 * x2;
+	t_f64 polynomial = C3 + x2 * C4;
+	return (((1. + x2 * C1) + x4 * C2) + (x4 * x2) * polynomial);
 }
 
 t_f64	__cos_f64(t_f64 x, t_f64 y)
@@ -225,8 +224,8 @@ t_f64	__cos_f64(t_f64 x, t_f64 y)
 	t_f64 x2 = x * x;
 	t_f64 polynomial = (x2*(C1+x2*(C2+x2*(C3+x2*(C4+x2*(C5+x2*C6))))));
 	t_f64 hx2 = 0.5 * x2;
-	t_f64 mhx2 = 1.0 - hx2;
-	return (mhx2 + (((1.0 - mhx2) - hx2) + (x2 * polynomial - x * y)));
+	t_f64 mhx2 = 1. - hx2;
+	return (mhx2 + (((1. - mhx2) - hx2) + (x2 * polynomial - x * y)));
 }
 
 #if LIBCONFIG_USE_FLOAT80
@@ -267,8 +266,8 @@ t_f80	__cos_f80(t_f80 x, t_f80 y)
 	t_f80 x2 = x * x;
 	t_f80 polynomial = (x2*(C1+x2*(C2+x2*(C3+x2*(C4+x2*(C5+x2*(C6+x2*C7)))))));
 	t_f80 hx2 = 0.5 * x2;
-	t_f80 mhx2 = 1.0 - hx2;
-	return mhx2 + (((1.0 - mhx2) - hx2) + (x2 * polynomial - x * y));
+	t_f80 mhx2 = 1. - hx2;
+	return mhx2 + (((1. - mhx2) - hx2) + (x2 * polynomial - x * y));
 }
 #endif
 
@@ -300,8 +299,8 @@ t_f128	__cos_f128(t_f128 x, t_f128 y)
 	t_f128 x2 = x * x;
 	t_f128 polynomial = (x2*(C1+x2*(C2+x2*(C3+x2*(C4+x2*(C5+x2*(C6+x2*(C7+x2*(C8+x2*(C9+x2*(C10+x2*C11)))))))))));
 	t_f128 hx2 = 0.5 * x2;
-	t_f128 mhx2 = 1.0 - hx2;
-	return mhx2 + (((1.0 - mhx2) - hx2) + (x2 * polynomial - x * y));
+	t_f128 mhx2 = 1. - hx2;
+	return mhx2 + (((1. - mhx2) - hx2) + (x2 * polynomial - x * y));
 }
 #endif
 
@@ -358,12 +357,12 @@ t_f32	__tan_f32(t_f64 x, t_bool odd)
 	/* |tan(x)/x - t(x)| < 2**-25.5 (~[-2e-08, 2e-08]). */
 	static const t_f64 polynomial[] =
 	{
-		+0x15554d3418c99f.0p-54, /* 0.333331395030791399758 */
-		+0x1112fd38999f72.0p-55, /* 0.133392002712976742718 */
-		+0x1b54c91d865afe.0p-57, /* 0.0533812378445670393523 */
-		+0x191df3908c33ce.0p-58, /* 0.0245283181166547278873 */
-		+0x185dadfcecf44e.0p-61, /* 0.00297435743359967304927 */
-		+0x1362b9bf971bcd.0p-59, /* 0.00946564784943673166728 */
+		+0x15554D3418C99F.0p-54, /* 0.333331395030791399758 */
+		+0x1112FD38999F72.0p-55, /* 0.133392002712976742718 */
+		+0x1B54C91D865AFE.0p-57, /* 0.0533812378445670393523 */
+		+0x191DF3908C33CE.0p-58, /* 0.0245283181166547278873 */
+		+0x185DADFCECF44E.0p-61, /* 0.00297435743359967304927 */
+		+0x1362B9BF971BCD.0p-59, /* 0.00946564784943673166728 */
 	};
 	t_f64 z,r,w,s,t,u;
 	/*
@@ -447,10 +446,10 @@ t_f64	__tan_f64(t_f64 x, t_f64 y, t_bool odd)
 	/* -1.0/(x+r) has up to 2ulp error, so compute it accurately */
 	w0 = w;
 	SET_LOW_WORD(w0, 0);
-	v = r - (w0 - x);       /* w0+v = r+x */
-	a0 = a = -1.0 / w;
+	v = r - (w0 - x);      /* w0+v = r+x */
+	a0 = a = -1. / w;
 	SET_LOW_WORD(a0, 0);
-	return a0 + a*(1.0 + a0*w0 + a0*v);
+	return a0 + a*(1. + a0*w0 + a0*v);
 }
 
 #define DEFINEFUNC_FLOAT_TAN(BITS) \
@@ -486,15 +485,15 @@ t_f##BITS	__tan_f##BITS(t_f##BITS x, t_f##BITS y, t_bool odd) \
 		return w; \
 	/* \
 	 * if allow error up to 2 ulp, simply return \
-	 * -1.0 / (x+r) here \
+	 * -1. / (x+r) here \
 	 */ \
-	/* compute -1.0 / (x+r) accurately */ \
+	/* compute -1. / (x+r) accurately */ \
 	z = w; \
 	z = z + 0x1p32 - 0x1p32; \
-	v = r - (z - x);        /* z+v = r+x */ \
-	t = a = -1.0 / w;       /* a = -1.0/w */ \
+	v = r - (z - x);       /* z+v = r+x */ \
+	t = a = -1. / w;      /* a = -1.0/w */ \
 	t = t + 0x1p32 - 0x1p32; \
-	s = 1.0 + t * z; \
+	s = 1. + t * z; \
 	return t + a * (s + t * v); \
 } \
 
@@ -506,29 +505,27 @@ t_f##BITS	__tan_f##BITS(t_f##BITS x, t_f##BITS y, t_bool odd) \
  * See __cosl.c for more details about the polynomial.
  */
 static const long double
-pio4   =  0.785398163397448309628L,     /*  0xc90fdaa22168c235.0p-64 */
-pio4lo = -1.25413940316708300586e-20L;  /* -0xece675d1fc8f8cbb.0p-130 */
-T3  =  0.333333333333333333180L,        /*  0xaaaaaaaaaaaaaaa5.0p-65 */
-T5  =  0.133333333333333372290L,        /*  0x88888888888893c3.0p-66 */
-T7  =  0.0539682539682504975744L,       /*  0xdd0dd0dd0dc13ba2.0p-68 */
+pio4   =  0.785398163397448309628L,    /*  0xc90fdaa22168c235.0p-64 */
+pio4lo = -1.25413940316708300586e-20L; /* -0xece675d1fc8f8cbb.0p-130 */
+T3  =  0.333333333333333333180L,       /*  0xaaaaaaaaaaaaaaa5.0p-65 */
+T5  =  0.133333333333333372290L,       /*  0x88888888888893c3.0p-66 */
+T7  =  0.0539682539682504975744L,      /*  0xdd0dd0dd0dc13ba2.0p-68 */
 static const double
-T9  =  0.021869488536312216,            /*  0x1664f4882cc1c2.0p-58 */
-T11 =  0.0088632355256619590,           /*  0x1226e355c17612.0p-59 */
-T13 =  0.0035921281113786528,           /*  0x1d6d3d185d7ff8.0p-61 */
-T15 =  0.0014558334756312418,           /*  0x17da354aa3f96b.0p-62 */
-T17 =  0.00059003538700862256,          /*  0x13559358685b83.0p-63 */
-T19 =  0.00023907843576635544,          /*  0x1f56242026b5be.0p-65 */
-T21 =  0.000097154625656538905,         /*  0x1977efc26806f4.0p-66 */
-T23 =  0.000038440165747303162,         /*  0x14275a09b3ceac.0p-67 */
-T25 =  0.000018082171885432524,         /*  0x12f5e563e5487e.0p-68 */
-T27 =  0.0000024196006108814377,        /*  0x144c0d80cc6896.0p-71 */
-T29 =  0.0000078293456938132840,        /*  0x106b59141a6cb3.0p-69 */
-T31 = -0.0000032609076735050182,        /* -0x1b5abef3ba4b59.0p-71 */
-T33 =  0.0000023261313142559411;        /*  0x13835436c0c87f.0p-71 */
-#define RPOLY(w) (T5 + w * (T9 + w * (T13 + w * (T17 + w * (T21 + \
-	w * (T25 + w * (T29 + w * T33)))))))
-#define VPOLY(w) (T7 + w * (T11 + w * (T15 + w * (T19 + w * (T23 + \
-	w * (T27 + w * T31))))))
+T9  =  0.021869488536312216,           /*  0x1664f4882cc1c2.0p-58 */
+T11 =  0.0088632355256619590,          /*  0x1226e355c17612.0p-59 */
+T13 =  0.0035921281113786528,          /*  0x1d6d3d185d7ff8.0p-61 */
+T15 =  0.0014558334756312418,          /*  0x17da354aa3f96b.0p-62 */
+T17 =  0.00059003538700862256,         /*  0x13559358685b83.0p-63 */
+T19 =  0.00023907843576635544,         /*  0x1f56242026b5be.0p-65 */
+T21 =  0.000097154625656538905,        /*  0x1977efc26806f4.0p-66 */
+T23 =  0.000038440165747303162,        /*  0x14275a09b3ceac.0p-67 */
+T25 =  0.000018082171885432524,        /*  0x12f5e563e5487e.0p-68 */
+T27 =  0.0000024196006108814377,       /*  0x144c0d80cc6896.0p-71 */
+T29 =  0.0000078293456938132840,       /*  0x106b59141a6cb3.0p-69 */
+T31 = -0.0000032609076735050182,       /* -0x1b5abef3ba4b59.0p-71 */
+T33 =  0.0000023261313142559411;       /*  0x13835436c0c87f.0p-71 */
+#define RPOLY(w) (T5 + w * (T9 + w * (T13 + w * (T17 + w * (T21 + w * (T25 + w * (T29 + w * T33)))))))
+#define VPOLY(w) (T7 + w * (T11 + w * (T15 + w * (T19 + w * (T23 + w * (T27 + w * T31))))))
 
 DEFINEFUNC_FLOAT_TAN(80)
 #endif
@@ -572,12 +569,8 @@ T51 = -0.0000000022006995706097711,	/* -0x12e763b8845268.0p-81 */
 T53 =  0.0000000015468200913196612,	/*  0x1a92fc98c29554.0p-82 */
 T55 = -0.00000000061311613386849674,	/* -0x151106cbc779a9.0p-83 */
 T57 =  1.4912469681508012e-10;		/*  0x147edbdba6f43a.0p-85 */
-#define RPOLY(w) (T5 + w * (T9 + w * (T13 + w * (T17 + w * (T21 + \
-	w * (T25 + w * (T29 + w * (T33 + w * (T37 + w * (T41 + \
-	w * (T45 + w * (T49 + w * (T53 + w * T57)))))))))))))
-#define VPOLY(w) (T7 + w * (T11 + w * (T15 + w * (T19 + w * (T23 + \
-	w * (T27 + w * (T31 + w * (T35 + w * (T39 + w * (T43 + \
-	w * (T47 + w * (T51 + w * T55))))))))))))
+#define RPOLY(w) (T5 + w * (T9 + w * (T13 + w * (T17 + w * (T21 + w * (T25 + w * (T29 + w * (T33 + w * (T37 + w * (T41 + w * (T45 + w * (T49 + w * (T53 + w * T57)))))))))))))
+#define VPOLY(w) (T7 + w * (T11 + w * (T15 + w * (T19 + w * (T23 + w * (T27 + w * (T31 + w * (T35 + w * (T39 + w * (T43 + w * (T47 + w * (T51 + w * T55))))))))))))
 
 DEFINEFUNC_FLOAT_TAN(128)
 #endif
@@ -631,7 +624,7 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 	ix = u.i & 0x7fffffff;
 	/* 25+53 bit pi is good enough for medium size */
 	if (ix < 0x4dc90fdb)
-	{  /* |x| ~< 2^28*(pi/2), medium size */
+	{ /* |x| ~< 2^28*(pi/2), medium size */
 		/* Use a specialized rint() to get fn. */
 		fn = (t_f64)x*invpio2 + toint - toint;
 		n  = (t_s32)fn;
@@ -651,15 +644,15 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 		}
 		return n;
 	}
-	if(ix>=0x7f800000)
-	{  /* x is inf or NaN */
+	if (ix>=0x7f800000)
+	{ /* x is inf or NaN */
 		*y = x-x;
 		return 0;
 	}
 	/* scale x into [2^23, 2^24-1] */
 	sign = u.i>>31;
-	e0 = (ix>>23) - (0x7f+23);  /* e0 = ilogb(|x|)-23, positive */
-	u.i = ix - (e0<<23);
+	e0 = (ix >> F32_MANTISSA_BITS) - (0x7F + F32_MANTISSA_BITS); /* e0 = ilogb(|x|)-23, positive */
+	u.i = ix - (e0 << F32_MANTISSA_BITS);
 	tx[0] = u.f;
 	n  =  __rem_pi2_large(tx,ty,e0,1,0);
 	if (sign)
@@ -719,14 +712,14 @@ t_sint __rem_pi2_f64(t_f64 x, t_f64 *y)
 	sign = u.i>>63;
 	ix = u.i>>32 & 0x7fffffff;
 	if (ix <= 0x400f6a7a)
-	{  /* |x| ~<= 5pi/4 */
-		if ((ix & 0xfffff) == 0x921fb)  /* |x| ~= pi/2 or 2pi/2 */
-			goto medium;  /* cancellation -- use medium case */
+	{ /* |x| ~<= 5pi/4 */
+		if ((ix & 0xfffff) == 0x921fb) /* |x| ~= pi/2 or 2pi/2 */
+			goto medium; /* cancellation -- use medium case */
 		if (ix <= 0x4002d97c)
-		{  /* |x| ~<= 3pi/4 */
+		{ /* |x| ~<= 3pi/4 */
 			if (!sign)
 			{
-				z = x - pio2_1;  /* one round good to 85 bits */
+				z = x - pio2_1; /* one round good to 85 bits */
 				y[0] = z - pio2_1t;
 				y[1] = (z-y[0]) - pio2_1t;
 				return 1;
@@ -758,10 +751,10 @@ t_sint __rem_pi2_f64(t_f64 x, t_f64 *y)
 		}
 	}
 	if (ix <= 0x401c463b)
-	{  /* |x| ~<= 9pi/4 */
+	{ /* |x| ~<= 9pi/4 */
 		if (ix <= 0x4015fdbc)
-		{  /* |x| ~<= 7pi/4 */
-			if (ix == 0x4012d97c)  /* |x| ~= 3pi/2 */
+		{ /* |x| ~<= 7pi/4 */
+			if (ix == 0x4012d97c) /* |x| ~= 3pi/2 */
 				goto medium;
 			if (!sign)
 			{
@@ -780,7 +773,7 @@ t_sint __rem_pi2_f64(t_f64 x, t_f64 *y)
 		}
 		else
 		{
-			if (ix == 0x401921fb)  /* |x| ~= 4pi/2 */
+			if (ix == 0x401921fb) /* |x| ~= 4pi/2 */
 				goto medium;
 			if (!sign)
 			{
@@ -799,13 +792,13 @@ t_sint __rem_pi2_f64(t_f64 x, t_f64 *y)
 		}
 	}
 	if (ix < 0x413921fb)
-	{  /* |x| ~< 2^20*(pi/2), medium size */
+	{ /* |x| ~< 2^20*(pi/2), medium size */
 medium:
 		/* rint(x/(pi/2)) */
 		fn = (t_f64)x*invpio2 + toint - toint;
 		n = (t_s32)fn;
 		r = x - fn*pio2_1;
-		w = fn*pio2_1t;  /* 1st round, good to 85 bits */
+		w = fn*pio2_1t; /* 1st round, good to 85 bits */
 		/* Matters with directed rounding. */
 		if (predict_false(r - w < -pio4))
 		{
@@ -826,7 +819,7 @@ medium:
 		ey = u.i>>52 & 0x7ff;
 		ex = ix>>20;
 		if (ex - ey > 16)
-		{ /* 2nd round, good to 118 bits */
+		{	/* 2nd round, good to 118 bits */
 			t = r;
 			w = fn*pio2_2;
 			r = t - w;
@@ -835,7 +828,7 @@ medium:
 			u.f = y[0];
 			ey = u.i>>52 & 0x7ff;
 			if (ex - ey > 49)
-			{  /* 3rd round, good to 151 bits, covers all cases */
+			{	/* 3rd round, good to 151 bits, covers all cases */
 				t = r;
 				w = fn*pio2_3;
 				r = t - w;
@@ -850,7 +843,7 @@ medium:
 	**	all other (large) arguments
 	*/
 	if (ix >= 0x7ff00000)
-	{  /* x is inf or NaN */
+	{ /* x is inf or NaN */
 		y[0] = y[1] = x - x;
 		return 0;
 	}
@@ -938,7 +931,7 @@ int __rem_pi2_f80(t_f80 x, t_f80 *y)
 		fn = x*invpio2 + toint - toint;
 		n = QUOBITS(fn);
 		r = x-fn*pio2_1;
-		w = fn*pio2_1t;  /* 1st round good to 102/180 bits (ld80/ld128) */
+		w = fn*pio2_1t; /* 1st round good to 102/180 bits (ld80/ld128) */
 		/* Matters with directed rounding. */
 		if (predict_false(r - w < -pio4))
 		{
@@ -958,7 +951,7 @@ int __rem_pi2_f80(t_f80 x, t_f80 *y)
 		u.f = y[0];
 		ey = u.i.se & 0x7fff;
 		if (ex - ey > ROUND1)
-		{  /* 2nd iteration needed, good to 141/248 (ld80/ld128) */
+		{ /* 2nd iteration needed, good to 141/248 (ld80/ld128) */
 			t = r;
 			w = fn*pio2_2;
 			r = t-w;
@@ -967,7 +960,7 @@ int __rem_pi2_f80(t_f80 x, t_f80 *y)
 			u.f = y[0];
 			ey = u.i.se & 0x7fff;
 			if (ex - ey > ROUND2)
-			{  /* 3rd iteration, good to 180/316 bits */
+			{ /* 3rd iteration, good to 180/316 bits */
 				t = r; /* will cover all possible cases (not verified for ld128) */
 				w = fn*pio2_3;
 				r = t-w;
@@ -982,7 +975,7 @@ int __rem_pi2_f80(t_f80 x, t_f80 *y)
 	**	all other (large) arguments
 	*/
 	if (ex == 0x7fff)
-	{                /* x is inf or NaN */
+	{               /* x is inf or NaN */
 		y[0] = y[1] = x - x;
 		return 0;
 	}
@@ -1053,7 +1046,7 @@ int __rem_pi2_f128(t_f80 x, t_f80 *y)
 		fn = x*invpio2 + toint - toint;
 		n = QUOBITS(fn);
 		r = x-fn*pio2_1;
-		w = fn*pio2_1t;  /* 1st round good to 102/180 bits (ld80/ld128) */
+		w = fn*pio2_1t; /* 1st round good to 102/180 bits (ld80/ld128) */
 		/* Matters with directed rounding. */
 		if (predict_false(r - w < -pio4))
 		{
@@ -1073,7 +1066,7 @@ int __rem_pi2_f128(t_f80 x, t_f80 *y)
 		u.f = y[0];
 		ey = u.i.se & 0x7fff;
 		if (ex - ey > ROUND1)
-		{  /* 2nd iteration needed, good to 141/248 (ld80/ld128) */
+		{ /* 2nd iteration needed, good to 141/248 (ld80/ld128) */
 			t = r;
 			w = fn*pio2_2;
 			r = t-w;
@@ -1082,7 +1075,7 @@ int __rem_pi2_f128(t_f80 x, t_f80 *y)
 			u.f = y[0];
 			ey = u.i.se & 0x7fff;
 			if (ex - ey > ROUND2)
-			{  /* 3rd iteration, good to 180/316 bits */
+			{ /* 3rd iteration, good to 180/316 bits */
 				t = r; /* will cover all possible cases (not verified for ld128) */
 				w = fn*pio2_3;
 				r = t-w;
@@ -1097,7 +1090,7 @@ int __rem_pi2_f128(t_f80 x, t_f80 *y)
 	**	all other (large) arguments
 	*/
 	if (ex == 0x7fff)
-	{                /* x is inf or NaN */
+	{               /* x is inf or NaN */
 		y[0] = y[1] = x - x;
 		return 0;
 	}
@@ -1416,7 +1409,7 @@ t_sint __rem_pi2_large(t_f64 *x, t_f64 *y, t_sint e0, t_sint nx, t_sint prec)
 
 	/* determine jx,jv,q0, note that 3>q0 */
 	jx = nx-1;
-	jv = (e0-3)/24;  if(jv<0) jv=0;
+	jv = (e0-3)/24;  if (jv<0) jv=0;
 	q0 = e0-24*(jv+1);
 
 	/* set up f[0] to f[jx+jk] where f[jx+jk] = ipio2[jv+jk] */
@@ -1443,13 +1436,13 @@ recompute:
 	}
 
 	/* compute n */
-	z  = F64_From(z,q0);       /* actual value of z */
+	z  = F64_From(z,q0);      /* actual value of z */
 	z -= 8.0 * F64_Floor(z*0.125); /* trim off integer >= 8 */
 	n  = (t_s32)z;
 	z -= (t_f64)n;
 	ih = 0;
 	if (q0 > 0)
-	{  /* need iq[jz-1] to determine n */
+	{ /* need iq[jz-1] to determine n */
 		i  = iq[jz-1]>>(24-q0); n += i;
 		iq[jz-1] -= i<<(24-q0);
 		ih = iq[jz-1]>>(23-q0);
@@ -1458,10 +1451,10 @@ recompute:
 	else if (z >= 0.5) ih = 2;
 
 	if (ih > 0)
-	{  /* q > 0.5 */
+	{ /* q > 0.5 */
 		n += 1; carry = 0;
 		for (i=0; i<jz; i++)
-		{  /* compute 1-q */
+		{ /* compute 1-q */
 			j = iq[i];
 			if (carry == 0)
 			{
@@ -1475,7 +1468,7 @@ recompute:
 				iq[i] = 0xffffff - j;
 		}
 		if (q0 > 0)
-		{  /* rare case: chance is 1 in 12 */
+		{ /* rare case: chance is 1 in 12 */
 			switch(q0)
 			{
 			case 1:
@@ -1486,7 +1479,7 @@ recompute:
 		}
 		if (ih == 2)
 		{
-			z = 1.0 - z;
+			z = 1. - z;
 			if (carry != 0)
 				z -= F64_From(1.0,q0);
 		}
@@ -1498,11 +1491,11 @@ recompute:
 		j = 0;
 		for (i=jz-1; i>=jk; i--) j |= iq[i];
 		if (j == 0)
-		{  /* need recomputation */
-			for (k=1; iq[jk-k]==0; k++);  /* k = no. of terms needed */
+		{ /* need recomputation */
+			for (k=1; iq[jk-k]==0; k++); /* k = no. of terms needed */
 
 			for (i=jz+1; i<=jz+k; i++)
-			{  /* add q[jz+1] to q[jz+k] */
+			{ /* add q[jz+1] to q[jz+k] */
 				f[jx+i] = (t_f64)ipio2[jv+i];
 				for (j=0,fw=0.0; j<=jx; j++)
 					fw += x[j]*f[jx+i-j];
@@ -1524,8 +1517,8 @@ recompute:
 			q0 -= 24;
 		}
 	}
-	else
-	{ /* break z into 24-bit if necessary */
+	else /* break z into 24-bit if necessary */
+	{
 		z = F64_From(z,-q0);
 		if (z >= 0x1p24)
 		{
@@ -1575,7 +1568,7 @@ recompute:
 			fw += fq[i];
 		y[1] = ih==0 ? fw : -fw;
 		break;
-	case 3:  /* painful */
+	case 3: /* painful */
 		for (i=jz; i>0; i--)
 		{
 			fw      = fq[i-1]+fq[i];
@@ -1716,7 +1709,7 @@ t_f64	__expo2_f64(t_f64 x, t_f64 sign)
 	t_f64 scale;
 
 	/* note that k is odd and scale*scale overflows */
-	INSERT_WORDS(scale, (t_u32)(0x3ff + k/2) << 20, 0);
+	SET_WORDS(scale, (t_u32)(0x3ff + k/2) << 20, 0);
 	/* exp(x - k ln2) * 2**(k-1) */
 	/* in directed rounding correct sign before rounding or overflow is important */
 	return F64_Exp(x - kln2) * (sign * scale) * scale;

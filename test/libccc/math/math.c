@@ -31,7 +31,7 @@ void	print_math_title(char const * title)
 
 
 #define SF_FORMAT	":\t%s%g"
-#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "%+.8e" ANSI_RESET
+#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "% -+9.6g" ANSI_RESET
 
 
 
@@ -184,7 +184,7 @@ int	test_math_realfunction_f##BITS( \
 		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST N°%d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
+		printf("TEST #%03d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
 			i, func_name, args[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
 	print_test_math_f##BITS(timer, errors, precision, tests); \
@@ -222,7 +222,7 @@ int	test_math_realoperator_f##BITS( \
 		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST N°%d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
+		printf("TEST #%03d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
 			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests with:\n" \
 		"arg1: interval [%g,%g], with increment=%g\n" \

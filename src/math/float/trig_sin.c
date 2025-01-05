@@ -109,12 +109,13 @@ t_f32	F32_Sin(t_f32 x)
 	static const t_f64 s4pio2 = 4*PI_HALF; /* 0x401921FB, 0x54442D18 */
 	t_f64 y;
 	t_u32 ix;
-	t_sint n, sign;
+	t_sint n;
+	t_bool sign;
 
 	ix = AS_U32(x);
-	sign = ix >> 31;
-	ix &= 0x7fffffff;
-	if (ix <= 0x3f490fda) /* |x| ~<= pi/4 */
+	sign = (ix >> 31);
+	ix &= 0x7FFFFFFF;
+	if (ix <= 0x3F490FDA) /* |x| ~<= pi/4 */
 	{
 		if (ix < 0x39800000) /* |x| < 2**-12 */
 		{
@@ -124,26 +125,26 @@ t_f32	F32_Sin(t_f32 x)
 		}
 		return +__sin_f32(x);
 	}
-	if (ix <= 0x407b53d1) /* |x| ~<= 5*pi/4 */
+	if (ix <= 0x407B53D1) /* |x| ~<= 5*pi/4 */
 	{
-		if (ix <= 0x4016cbe3) /* |x| ~<= 3pi/4 */
+		if (ix <= 0x4016CBE3) /* |x| ~<= 3pi/4 */
 		{
 			if (sign)
-				return -__cos_f32(x + s1pio2, 0);
+				return -__cos_f32(x + s1pio2);
 			else
-				return +__cos_f32(x - s1pio2, 0);
+				return +__cos_f32(x - s1pio2);
 		}
 		else
 			return +__sin_f32(sign ? -(x + s2pio2) : -(x - s2pio2));
 	}
-	if (ix <= 0x40e231d5) /* |x| ~<= 9*pi/4 */
+	if (ix <= 0x40E231D5) /* |x| ~<= 9*pi/4 */
 	{
-		if (ix <= 0x40afeddf) /* |x| ~<= 7*pi/4 */
+		if (ix <= 0x40AFEDDF) /* |x| ~<= 7*pi/4 */
 		{
 			if (sign)
-				return +__cos_f32(x + s3pio2, 0);
+				return +__cos_f32(x + s3pio2);
 			else
-				return -__cos_f32(x - s3pio2, 0);
+				return -__cos_f32(x - s3pio2);
 		}
 		else
 			return +__sin_f32(sign ? x + s4pio2 : x - s4pio2);
@@ -153,12 +154,12 @@ t_f32	F32_Sin(t_f32 x)
 		return x - x;
 	/* general argument reduction needed */
 	n = __rem_pi2_f32(x, &y);
-	switch (n&3)
+	switch (n & 3)
 	{
 		case 0:	return +__sin_f32(+y);
-		case 1:	return +__cos_f32(+y, 0);
+		case 1:	return +__cos_f32(+y);
 		case 2:	return +__sin_f32(-y);
-		case 3:	return -__cos_f32(+y, 0);
+		case 3:	return -__cos_f32(+y);
 		default:
 			return NAN;
 	}
@@ -171,10 +172,10 @@ t_f64	F64_Sin(t_f64 x)
 	unsigned n;
 	/* High word of x. */
 	ix = AS_U64(x) >> 32;
-	ix &= 0x7fffffff;
-	if (ix <= 0x3fe921fb) /* |x| ~< pi/4 */
+	ix &= 0x7FFFFFFF;
+	if (ix <= 0x3FE921FB) /* |x| ~< pi/4 */
 	{
-		if (ix < 0x3e500000) /* |x| < 2**-26 */
+		if (ix < 0x3E500000) /* |x| < 2**-26 */
 		{
 			/* raise inexact if x != 0 and underflow if subnormal*/
 			/*FORCE_EVAL(ix < 0x00100000 ? x/0x1p120f : x+0x1p120f);*/
@@ -183,11 +184,11 @@ t_f64	F64_Sin(t_f64 x)
 		return __sin_f64(x, 0.0, 0);
 	}
 	/* sin(Inf or NaN) is NaN */
-	if (ix >= 0x7ff00000)
+	if (ix >= 0x7FF00000)
 		return x - x;
 	/* argument reduction needed */
 	n = __rem_pi2_f64(x, y);
-	switch (n&3)
+	switch (n & 3)
 	{
 		case 0:	return +__sin_f64(y[0], y[1], 1);
 		case 1:	return +__cos_f64(y[0], y[1]);
@@ -205,12 +206,12 @@ t_f##BITS	F##BITS##_Sin(t_f##BITS x) \
 	unsigned n; \
 	t_f80 y[2], hi, lo; \
  \
-	u.i.se &= 0x7fff; \
-	if (u.i.se == 0x7fff) \
+	u.i.se &= 0x7FFF; \
+	if (u.i.se == 0x7FFF) \
 		return x - x; \
 	if (u.f < PI_QUARTER) \
 	{ \
-		if (u.i.se < 0x3fff - F##BITS##_MANTISSA_BITS / 2) \
+		if (u.i.se < 0x3FFF - F##BITS##_MANTISSA_BITS / 2) \
 		{ \
 			/* raise inexact if x!=0 and underflow if subnormal */ \
 			/*FORCE_EVAL(u.i.se == 0 ? x*0x1p-120f : x+0x1p120f);*/ \

@@ -15,17 +15,17 @@
 
 
 
-t_f32	__math_oflowf	(t_f32 x)	{ return (x); }
-t_f64	__math_oflow	(t_f64 x)	{ return (x); }
+t_f32	__math_oflowf	(t_f32 x)	{ return (INFINITY * x); }
+t_f64	__math_oflow	(t_f64 x)	{ return (INFINITY * x); }
 
-t_f32	__math_uflowf	(t_f32 x)	{ return (x); }
-t_f64	__math_uflow	(t_f64 x)	{ return (x); }
+t_f32	__math_uflowf	(t_f32 x)	{ return (0 * x); }
+t_f64	__math_uflow	(t_f64 x)	{ return (0 * x); }
 
 t_f32	__math_xflowf	(t_u32 sign, t_f32 y)	{ return (t_f32)(/*fp_barrierf*/(sign ? -y : y) * y); }
-t_f64	__math_xflow	(t_u32 sign, t_f64 y)	{ return (t_f64)(/*fp_barrier*/(sign ? -y : y) * y); }
+t_f64	__math_xflow	(t_u32 sign, t_f64 y)	{ return (t_f64)(/*fp_barrier */(sign ? -y : y) * y); }
 
 t_f32	__math_divzerof (t_u32 sign)	{ return /*fp_barrierf*/(sign ? -1.0f : 1.0f) / 0.0f; }
-t_f64	__math_divzero  (t_u32 sign)	{ return /*fp_barrier*/(sign ? -1.0 : 1.0) / 0.0; }
+t_f64	__math_divzero  (t_u32 sign)	{ return /*fp_barrier */(sign ? -1.0 : 1.0) / 0.0; }
 
 t_f32	__math_invalidf	(t_f32 x)	{ return (x - x) / (x - x); }
 t_f64	__math_invalid	(t_f64 x)	{ return (x - x) / (x - x); }

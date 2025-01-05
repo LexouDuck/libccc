@@ -136,7 +136,8 @@ t_f64	F64_Root3(t_f64 x)
 	**	subtraction virtually to keep e >= 0 so that ordinary integer
 	**	division rounds towards minus infinity; this is also efficient.
 	*/
-	if (hx < 0x00100000) { /* zero or subnormal? */
+	if (hx < 0x00100000)
+	{	/* zero or subnormal? */
 		u.f = x*0x1p54;
 		hx = u.i>>32 & 0X7FFFFFFF;
 		if (hx == 0)

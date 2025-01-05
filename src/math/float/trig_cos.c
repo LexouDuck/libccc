@@ -119,12 +119,12 @@ t_f32	F32_Cos(t_f32 x)
 			/*FORCE_EVAL(x + 0x1p120f);*/
 			return 1.0f;
 		}
-		return +__cos_f32(x, 0);
+		return +__cos_f32(x);
 	}
 	if (ix <= 0x407B53D1) /* |x| ~<= 5*pi/4 */
 	{
 		if (ix > 0x4016CBE3) /* |x|  ~> 3*pi/4 */
-			return -__cos_f32(sign ? x+c2pio2 : x-c2pio2, 0);
+			return -__cos_f32(sign ? x+c2pio2 : x-c2pio2);
 		else
 		{
 			if (sign)
@@ -136,7 +136,7 @@ t_f32	F32_Cos(t_f32 x)
 	if (ix <= 0x40E231D5) /* |x| ~<= 9*pi/4 */
 	{
 		if (ix > 0x40AFEDDF) /* |x| ~> 7*pi/4 */
-			return +__cos_f32(sign ? x+c4pio2 : x-c4pio2, 0);
+			return +__cos_f32(sign ? x+c4pio2 : x-c4pio2);
 		else
 		{
 			if (sign)
@@ -152,9 +152,9 @@ t_f32	F32_Cos(t_f32 x)
 	n = __rem_pi2_f32(x, &y);
 	switch (n&3)
 	{
-		case 0: return +__cos_f32(+y, 0);
+		case 0: return +__cos_f32(+y);
 		case 1: return +__sin_f32(-y);
-		case 2: return -__cos_f32(+y, 0);
+		case 2: return -__cos_f32(+y);
 		case 3:	return +__sin_f32(+y);
 		default:
 			return NAN;

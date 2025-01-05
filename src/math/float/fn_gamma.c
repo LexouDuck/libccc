@@ -51,8 +51,8 @@ struct data_gamma_f64
 data_gamma_f64 =
 {
 	.pi = 3.141592653589793238462643383279502884,
-	.gmhalf = 5.524680040776729583740234375,
 	.g = 6.024680040776729583740234375,
+	.gmhalf = 5.524680040776729583740234375,
 	.Snum =
 	{
 		23531376880.410759688572007674451636754734846804940,
@@ -160,7 +160,7 @@ t_f64	S(t_f64 x)
 			num = num / x + data_gamma_f64.Snum[i];
 			den = den / x + data_gamma_f64.Sden[i];
 		}
-	return num/den;
+	return (num / den);
 }
 
 t_f32	F32_Gamma(t_f32 x)
@@ -173,12 +173,12 @@ t_f64	F64_Gamma(t_f64 x)
 	u_cast_f64 u = {x};
 	t_f64 abs_x, y;
 	t_f64 dy, z, r;
-	t_u32 ix = u.value_uint >> 32 & 0x7fffffff;
+	t_u32 ix = u.value_uint >> 32 & 0x7FFFFFFF;
 	t_sint sign = u.value_uint >> 63;
 	/* special cases */
-	if (ix >= 0x7ff00000) /* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */
+	if (ix >= 0x7FF00000) /* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */
 		return x + INFINITY;
-	if (ix < (0x3ff-54)<<20) /* |x| < 2^-54: tgamma(x) ~ 1/x, +-0 raises div-by-zero */
+	if (ix < (0x3FF-54)<<20) /* |x| < 2^-54: tgamma(x) ~ 1/x, +-0 raises div-by-zero */
 		return 1/x;
 	/* integer arguments */
 	/* raise inexact when non-integer */
@@ -189,10 +189,10 @@ t_f64	F64_Gamma(t_f64 x)
 		if (x <= sizeof(data_gamma_f64.fact) / sizeof(*data_gamma_f64.fact))
 			return data_gamma_f64.fact[(int)x - 1];
 	}
-	/* x >= 172: tgamma(x)=inf with overflow */
+	/* x >= +172: tgamma(x)=inf with overflow */
 	/* x =< -184: tgamma(x)=+-0 with underflow */
-	if (ix >= 0x40670000)
-	{ /* |x| >= 184 */
+	if (ix >= 0x40670000) /* |x| >= 184 */
+	{
 		if (sign)
 		{
 			/* FORCE_EVAL((t_f32)(0x1p-126/x)); */
@@ -233,7 +233,6 @@ t_f64	F64_Gamma(t_f64 x)
 }
 
 
-
 /*
 ** Copyright (c) 2008 Stephen L. Moshier <steve@moshier.net>
 **
@@ -249,12 +248,12 @@ t_f64	F64_Gamma(t_f64 x)
 ** ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ** OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 */
-/*!
-**      Gamma function
+
+/*! Γ(x) Gamma function
 **
 ** SYNOPSIS:
 **
-** t_f80 x, y, tgammal();
+** t_f##BITS x, y, tgammal();
 **
 ** y = tgammal( x );
 **
@@ -312,7 +311,7 @@ __data_gamma_f##BITS = \
 		+1.113062816019361559013e-1L, \
 		+3.629515436640239168939e-1L, \
 		+8.378004301573126728826e-1L, \
-		+1.000000000000000000009e0L, \
+		+1.000000000000000000009e+0L, \
 	}, \
 	.q = \
 	{ \
@@ -329,26 +328,26 @@ __data_gamma_f##BITS = \
 /* \
 	.p = \
 	{ \
-		-3.01525602666895735709e0L, \
-		-3.25157411956062339893e1L, \
-		-2.92929976820724030353e2L, \
-		-1.70730828800510297666e3L, \
-		-7.96667499622741999770e3L, \
-		-2.59780216007146401957e4L, \
-		-5.99650230220855581642e4L, \
-		-7.15743521530849602425e4L, \
+		-3.01525602666895735709e+0L, \
+		-3.25157411956062339893e+1L, \
+		-2.92929976820724030353e+2L, \
+		-1.70730828800510297666e+3L, \
+		-7.96667499622741999770e+3L, \
+		-2.59780216007146401957e+4L, \
+		-5.99650230220855581642e+4L, \
+		-7.15743521530849602425e+4L, \
 	}; \
 	.q = \
 	{ \
-		+1.00000000000000000000e0L, \
-		-1.67955233807178858919e1L, \
-		+8.85946791747759881659e1L, \
-		+5.69440799097468430177e1L, \
-		-1.98526250512761318471e3L, \
-		+3.31667508019495079814e3L, \
-		+1.60577839621734713377e4L, \
-		-2.97045081369399940529e4L, \
-		-7.15743521530849602412e4L, \
+		+1.00000000000000000000e+0L, \
+		-1.67955233807178858919e+1L, \
+		+8.85946791747759881659e+1L, \
+		+5.69440799097468430177e+1L, \
+		-1.98526250512761318471e+3L, \
+		+3.31667508019495079814e+3L, \
+		+1.60577839621734713377e+4L, \
+		-2.97045081369399940529e+4L, \
+		-7.15743521530849602412e+4L, \
 	}; \
 */ \
 	.maxgaml = 1755.455L, \
@@ -365,18 +364,18 @@ Relative error spread =  8.8e-4 \
 */ \
 	.stir = \
 	{ \
-		+7.147391378143610789273E-4L, \
-		-2.363848809501759061727E-5L, \
-		-5.950237554056330156018E-4L, \
-		+6.989332260623193171870E-5L, \
-		+7.840334842744753003862E-4L, \
-		-2.294719747873185405699E-4L, \
-		-2.681327161876304418288E-3L, \
-		+3.472222222230075327854E-3L, \
-		+8.333333333333331800504E-2L, \
+		+7.147391378143610789273e-4L, \
+		-2.363848809501759061727e-5L, \
+		-5.950237554056330156018e-4L, \
+		+6.989332260623193171870e-5L, \
+		+7.840334842744753003862e-4L, \
+		-2.294719747873185405699e-4L, \
+		-2.681327161876304418288e-3L, \
+		+3.472222222230075327854e-3L, \
+		+8.333333333333331800504e-2L, \
 	}, \
 	.maxstir = 1024.0L, \
-	.sqtpi = 2.50662827463100050242E0L, \
+	.sqtpi = 2.50662827463100050242e+0L, \
 	/* \
 	1/tgamma(x) = z P(z) \
 	z(x) = 1/x \
@@ -385,15 +384,15 @@ Relative error spread =  8.8e-4 \
 	*/ \
 	.s = \
 	{ \
-		-1.193945051381510095614E-3L, \
-		+7.220599478036909672331E-3L, \
-		-9.622023360406271645744E-3L, \
-		-4.219773360705915470089E-2L, \
-		+1.665386113720805206758E-1L, \
-		-4.200263503403344054473E-2L, \
-		-6.558780715202540684668E-1L, \
-		+5.772156649015328608253E-1L, \
-		+1.000000000000000000000E0L, \
+		-1.193945051381510095614e-3L, \
+		+7.220599478036909672331e-3L, \
+		-9.622023360406271645744e-3L, \
+		-4.219773360705915470089e-2L, \
+		+1.665386113720805206758e-1L, \
+		-4.200263503403344054473e-2L, \
+		-6.558780715202540684668e-1L, \
+		+5.772156649015328608253e-1L, \
+		+1.000000000000000000000e+0L, \
 	}, \
 	/* \
 	1/tgamma(-x) = z P(z) \
@@ -404,15 +403,15 @@ Relative error spread =  8.8e-4 \
 	*/ \
 	.sn = \
 	{ \
-		+1.133374167243894382010E-3L, \
-		+7.220837261893170325704E-3L, \
-		+9.621911155035976733706E-3L, \
-		-4.219773343731191721664E-2L, \
-		-1.665386113944413519335E-1L, \
-		-4.200263503402112910504E-2L, \
-		+6.558780715202536547116E-1L, \
-		+5.772156649015328608727E-1L, \
-		-1.000000000000000000000E0L, \
+		+1.133374167243894382010e-3L, \
+		+7.220837261893170325704e-3L, \
+		+9.621911155035976733706e-3L, \
+		-4.219773343731191721664e-2L, \
+		-1.665386113944413519335e-1L, \
+		-4.200263503402112910504e-2L, \
+		+6.558780715202536547116e-1L, \
+		+5.772156649015328608727e-1L, \
+		-1.000000000000000000000e+0L, \
 	}, \
 	.pil = 3.1415926535897932384626L, \
 }; \
@@ -428,17 +427,17 @@ t_f##BITS	F##BITS##_Gamma_StirlingFormula(t_f##BITS x) \
 	w = 1.0/x; \
 	/* For large x, use rational coefficients from the analytical expansion.  */ \
 	if (x > 1024.0) \
-		w = (((((6.97281375836585777429E-5L * w \
-			+ 7.84039221720066627474E-4L) * w \
-			- 2.29472093621399176955E-4L) * w \
-			- 2.68132716049382716049E-3L) * w \
-			+ 3.47222222222222222222E-3L) * w \
-			+ 8.33333333333333333333E-2L) * w \
+		w = (((((6.97281375836585777429e-5L * w \
+			+ 7.84039221720066627474e-4L) * w \
+			- 2.29472093621399176955e-4L) * w \
+			- 2.68132716049382716049e-3L) * w \
+			+ 3.47222222222222222222e-3L) * w \
+			+ 8.33333333333333333333e-2L) * w \
 			+ 1.0; \
 	else \
-		w = 1.0 + w * __polynomial_f80(w, data_gamma_f80.stir, 8); \
+		w = 1.0 + w * __polynomial_f##BITS(w, data_gamma_f##BITS.stir, 8); \
 	y = F##BITS##_Exp(x); \
-	if (x > data_gamma_f80.maxstir) /* Avoid overflow in pow() */ \
+	if (x > data_gamma_f##BITS.maxstir) /* Avoid overflow in pow() */ \
 	{ \
 		v = F##BITS##_Pow(x, 0.5L * x - 0.25L); \
 		y = v * (v / y); \
@@ -447,7 +446,7 @@ t_f##BITS	F##BITS##_Gamma_StirlingFormula(t_f##BITS x) \
 	{ \
 		y = F##BITS##_Pow(x, x - 0.5L) / y; \
 	} \
-	y = data_gamma_f80.sqtpi * y * w; \
+	y = data_gamma_f##BITS.sqtpi * y * w; \
 	return y; \
 } \
  \
@@ -466,7 +465,7 @@ t_f##BITS	F##BITS##_Gamma(t_f##BITS x) \
 			z = abs_x - p; \
 			if (z == 0) \
 				return 0 / z; \
-			if (abs_x > data_gamma_f80.maxgaml) \
+			if (abs_x > data_gamma_f##BITS.maxgaml) \
 			{ \
 				z = 0; \
 			} \
@@ -477,14 +476,14 @@ t_f##BITS	F##BITS##_Gamma(t_f##BITS x) \
 					p += 1.0; \
 					z = abs_x - p; \
 				} \
-				z = abs_x * F##BITS##_Sin(data_gamma_f80.pil * z); \
+				z = abs_x * F##BITS##_Sin(data_gamma_f##BITS.pil * z); \
 				z = F##BITS##_Abs(z) * F##BITS##_Gamma_StirlingFormula(abs_x); \
-				z = data_gamma_f80.pil / z; \
+				z = data_gamma_f##BITS.pil / z; \
 			} \
 			if (0.5 * p == F##BITS##_Floor(abs_x * 0.5)) \
 				z = -z; \
 		} \
-		else if (x > data_gamma_f80.maxgaml) \
+		else if (x > data_gamma_f##BITS.maxgaml) \
 		{ \
 			z = x * 0x1p16383L; \
 		} \
@@ -515,8 +514,8 @@ t_f##BITS	F##BITS##_Gamma(t_f##BITS x) \
 	if (x == 2.0) \
 		return z; \
 	x -= 2.0; \
-	p = __polynomial_f##BITS(x, __data_gamma_f80.p, 7); \
-	q = __polynomial_f##BITS(x, __data_gamma_f80.q, 8); \
+	p = __polynomial_f##BITS(x, __data_gamma_f##BITS.p, 7); \
+	q = __polynomial_f##BITS(x, __data_gamma_f##BITS.q, 8); \
 	z = z * p / q; \
 	return z; \
 small: \
@@ -526,11 +525,11 @@ small: \
 	if (x < 0.0) \
 	{ \
 		x = -x; \
-		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f80.sn, 8)); \
+		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f##BITS.sn, 8)); \
 	} \
 	else \
 	{ \
-		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f80.s, 8)); \
+		q = z / (x * __polynomial_f##BITS(x, __data_gamma_f##BITS.s, 8)); \
 	} \
 	return q; \
 } \

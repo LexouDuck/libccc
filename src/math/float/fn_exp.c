@@ -155,13 +155,13 @@ t_f32	F32_Exp(t_f32 x)
 			return 0.0f;
 		if (abstop >= top12bits_f32(INFINITY))
 			return x + x;
-		if (x > 0x1.62e42ep6f) /* x > log(0x1p128) ~= 88.72 */
-			return __math_oflowf(0);
-		if (x < -0x1.9fe368p6f) /* x < log(0x1p-150) ~= -103.97 */
-			return __math_uflowf(0);
+		if (x > +0x1.62E42Ep6f) /* x > log(0x1p128) ~= 88.72 */
+			return __math_oflowf(x);
+		if (x < -0x1.9FE368p6f) /* x < log(0x1p-150) ~= -103.97 */
+			return __math_uflowf(x);
 	}
 	/* x*N/Ln2 = k + r with r in [-1/2, 1/2] and int k. */
-	z = __data_exp_f64.invln2N * xd;
+	z = __data_exp_f32.invln2_scaled * xd;
 	/*
 	Round and convert z to int, the result is in [-150*N, 128*N] and ideally ties-to-even rule is used,
 	otherwise the magnitude of r can be bigger which gives larger approximation error.
@@ -179,9 +179,9 @@ t_f32	F32_Exp(t_f32 x)
 	t = __data_exp_f32.table[ki % N_EXP_F32];
 	t += ki << (F64_MANTISSA_BITS - TABLEBITS_EXP_F32);
 	s = AS_F64(t);
-	z = __data_exp_f32.poly[0] * r + __data_exp_f32.poly[1];
+	z = __data_exp_f32.poly_scaled[0] * r + __data_exp_f32.poly_scaled[1];
 	r2 = r * r;
-	y = __data_exp_f32.poly[2] * r + 1;
+	y = __data_exp_f32.poly_scaled[2] * r + 1;
 	y = z * r2 + y;
 	y = y * s;
 	return (t_f32)(y);
@@ -207,9 +207,9 @@ t_f64	F64_Exp(t_f64 x)
 			if (abstop >= top12bits_f64(INFINITY))
 				return 1.0 + x;
 			if (AS_U64(x) >> 63)
-				return __math_uflow(0);
+				return __math_uflow(x);
 			else
-				return __math_oflow(0);
+				return __math_oflow(x);
 		}
 		/* Large x is special cased below. */
 		abstop = 0;
@@ -222,14 +222,14 @@ t_f64	F64_Exp(t_f64 x)
 	ki = converttoint(z);
 #elif EXP_USE_TOINT_NARROW
 	/* z - kd is in [-0.5-2^-16, 0.5] in all rounding modes. */
-	kd = (z + __data_exp_f64.exp_shift);
+	kd = (z + __data_exp_f64.shift);
 	ki = AS_U64(kd) >> 16;
 	kd = (t_f64)(t_s32)ki;
 #else
 	/* z - kd is in [-1, 1] in non-nearest rounding modes. */
-	kd = (z + __data_exp_f64.exp_shift);
+	kd = (z + __data_exp_f64.shift);
 	ki = AS_U64(kd);
-	kd -= __data_exp_f64.exp_shift;
+	kd -= __data_exp_f64.shift;
 #endif
 	r = x + kd * __data_exp_f64.negln2hiN + kd * __data_exp_f64.negln2loN;
 	/* 2^(k/N) ~= scale * (1 + tail). */
@@ -243,7 +243,11 @@ t_f64	F64_Exp(t_f64 x)
 	r2 = r * r;
 	/* Without fma the worst case error is 0.25/N ulp larger. */
 	/* Worst case error is less than 0.5+1.11/N+(abs poly error * 2^53) ulp. */
-	tmp = tail + r + r2 * (__data_exp_f64.exp_poly[1] + r * __data_exp_f64.exp_poly[2]) + r2 * r2 * (__data_exp_f64.exp_poly[3] + r * __data_exp_f64.exp_poly[4]);
+	tmp = tail + r + r2 * (
+		__data_exp_f64.poly[0] + r * 
+		__data_exp_f64.poly[1]) + r2 * r2 * (
+		__data_exp_f64.poly[2] + r * 
+		__data_exp_f64.poly[3]);
 	if (predict_false(abstop == 0))
 		return specialcase(tmp, sbits, ki);
 	scale = AS_F64(sbits);

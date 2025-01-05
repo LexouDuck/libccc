@@ -1546,16 +1546,15 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
-#define EXTRACT_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (uint32_t)__u.i; } while (0)
-#define GET_FLOAT_WORD(w,d)		do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (w) = __u.i;         } while (0)
-#define GET_HIGH_WORD(hi,d)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d); (hi) = __u.i >> 32;   } while (0)
-#define GET_LOW_WORD(lo,d)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d); (lo) = (t_u32)__u.i;  } while (0)
+#define GET_FLOAT_WORD(w,d)	do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (w) = __u.i;                             } while (0)
+#define GET_HIGH_WORD(hi,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32;                      } while (0)
+#define GET_LOW_WORD(lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);                      (lo) = (t_u32)__u.i; } while (0)
+#define GET_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (t_u32)__u.i; } while (0)
 
-/* Set a double from two 32 bit ints.  */
-#define INSERT_WORDS(d,hi,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.i = ((t_u64)(hi)<<32) | (t_u32)(lo);  (d) = __u.f; } while (0)
-#define SET_FLOAT_WORD(d,w)		do { union { t_f32 f; t_u32 i; } __u;  __u.i = (w);                                                                (d) = __u.f; } while (0)
-#define SET_HIGH_WORD(d,hi)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
-#define SET_LOW_WORD(d,lo)		do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
+#define SET_FLOAT_WORD(d,w)	do { union { t_f32 f; t_u32 i; } __u;  __u.i = (w);                                                                (d) = __u.f; } while (0)
+#define SET_HIGH_WORD(d,hi)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
+#define SET_LOW_WORD(d,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
+#define SET_WORDS(d,hi,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.i = ((t_u64)(hi)<<32) | (t_u32)(lo);                                    (d) = __u.f; } while (0)
 
 
 
@@ -1577,12 +1576,20 @@ long double	__math_invalidl	(long double x);
 
 
 
+#if LIBCONFIG_USE_FLOAT80
 union ldshape
 {
 	long double	f;
-	struct { t_u64 lo; t_u32 mid; t_u16 top; t_u16 se; }	i;
+	struct { t_u64 mant; t_u16 se; }	i;
+};
+#elif LIBCONFIG_USE_FLOAT128
+union ldshape
+{
+	long double	f;
+	struct { t_u64 low; t_u32 mid; t_u16 top; t_u16 se; }	i;
 	struct { t_u64 lo; t_u64 hi; }	i2;
 };
+#endif
 
 
 /*
@@ -1624,7 +1631,7 @@ struct data_log_f32
 extern const	struct data_log_f32 __data_log_f32;
 
 t_f32	__sin_f32(t_f64 x);
-t_f32	__cos_f32(t_f64 x, t_f64 y);
+t_f32	__cos_f32(t_f64 x);
 t_f32	__tan_f32(t_f64 x, t_bool odd);
 t_sint	__rem_pi2_f32(t_f32 x, t_f64*  y);
 t_f32	__polynomial_f32(t_f32 x, t_f32 const* coefficients, int n);
