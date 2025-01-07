@@ -1546,15 +1546,15 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
-#define GET_FLOAT_WORD(w,d)	do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (w) = __u.i;                             } while (0)
-#define GET_HIGH_WORD(hi,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32;                      } while (0)
-#define GET_LOW_WORD(lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);                      (lo) = (t_u32)__u.i; } while (0)
-#define GET_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (t_u32)__u.i; } while (0)
+#define GET_F32_WORD(word,d)	do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (word) = __u.i;                          } while (0)
+#define GET_F64_WORD_HI(hi,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32;                      } while (0)
+#define GET_F64_WORD_LO(lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);                      (lo) = (t_u32)__u.i; } while (0)
+#define GET_F64_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (t_u32)__u.i; } while (0)
 
-#define SET_FLOAT_WORD(d,w)	do { union { t_f32 f; t_u32 i; } __u;  __u.i = (w);                                                                (d) = __u.f; } while (0)
-#define SET_HIGH_WORD(d,hi)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
-#define SET_LOW_WORD(d,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
-#define SET_WORDS(d,hi,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.i = ((t_u64)(hi)<<32) | (t_u32)(lo);                                    (d) = __u.f; } while (0)
+#define SET_F32_WORD(d,word)	do { union { t_f32 f; t_u32 i; } __u;  __u.i = (word);                                                             (d) = __u.f; } while (0)
+#define SET_F64_WORD_HI(d,hi)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
+#define SET_F64_WORD_LO(d,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
+#define SET_F64_WORDS(d,hi,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.i = ((t_u64)(hi)<<32) | (t_u32)(lo);                                    (d) = __u.f; } while (0)
 
 
 

@@ -102,7 +102,7 @@
 ./src/math/float/fn_exp10.c
 ./src/math/float/fn_exp2.c
 ./src/math/float/fn_gamma.c
-./src/math/float/fn_lgamma.c
+./src/math/float/fn_lngamma.c
 ./src/math/float/fn_log.c
 ./src/math/float/fn_log10.c
 ./src/math/float/fn_log2.c

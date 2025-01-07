@@ -93,7 +93,7 @@ t_f32	F32_ArcCos(t_f32 x)
 	t_f32 z,w,s,c,df;
 	t_u32 hx,ix;
 
-	GET_FLOAT_WORD(hx, x);
+	GET_F32_WORD(hx, x);
 	ix = hx & 0x7fffffff;
 	/* |x| >= 1 or nan */
 	if (ix >= 0x3f800000)
@@ -124,8 +124,8 @@ t_f32	F32_ArcCos(t_f32 x)
 	/* x > 0.5 */
 	z = (1-x)*0.5f;
 	s = F32_Root2(z);
-	GET_FLOAT_WORD(hx,s);
-	SET_FLOAT_WORD(df,hx&0xfffff000);
+	GET_F32_WORD(hx,s);
+	SET_F32_WORD(df,hx&0xfffff000);
 	c = (z-df*df)/(s+df);
 	w = __invtrig_polynomial_f32(z)*s+c;
 	return 2*(df+w);
@@ -138,14 +138,14 @@ t_f64	F64_ArcCos(t_f64 x)
 	t_f64 z,w,s,c,df;
 	t_u32 hx,ix;
 
-	GET_HIGH_WORD(hx, x);
+	GET_F64_WORD_HI(hx, x);
 	ix = hx & 0x7fffffff;
 	/* |x| >= 1 or nan */
 	if (ix >= 0x3ff00000)
 	{
 		t_u32 lx;
 
-		GET_LOW_WORD(lx,x);
+		GET_F64_WORD_LO(lx,x);
 		if (((ix - 0x3ff00000) | lx) == 0)
 		{
 			/* acos(1)=0, acos(-1)=pi */
@@ -174,7 +174,7 @@ t_f64	F64_ArcCos(t_f64 x)
 	z = (1.0-x)*0.5;
 	s = F64_Root2(z);
 	df = s;
-	SET_LOW_WORD(df,0);
+	SET_F64_WORD_LO(df,0);
 	c = (z-df*df)/(s+df);
 	w = __invtrig_polynomial_f64(z)*s+c;
 	return 2*(df+w);

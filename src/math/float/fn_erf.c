@@ -656,8 +656,8 @@ float erfc2(uint32_t ix, float x)
 			__data_erf_f32.sb[6]+s*
 			__data_erf_f32.sb[7]))))));
 	}
-	GET_FLOAT_WORD(ix, x);
-	SET_FLOAT_WORD(z, ix&0xffffe000);
+	GET_F32_WORD(ix, x);
+	SET_F32_WORD(z, ix&0xffffe000);
 	return expf(-z*z - 0.5625f) * expf((z-x)*(z+x) + R/S)/x;
 }
 float F32_Erf(float x)
@@ -666,7 +666,7 @@ float F32_Erf(float x)
 	uint32_t ix;
 	int sign;
 
-	GET_FLOAT_WORD(ix, x);
+	GET_F32_WORD(ix, x);
 	sign = ix>>31;
 	ix &= 0x7fffffff;
 	if (ix >= 0x7f800000) {
@@ -707,7 +707,7 @@ float F32_ErfC(float x)
 	uint32_t ix;
 	int sign;
 
-	GET_FLOAT_WORD(ix, x);
+	GET_F32_WORD(ix, x);
 	sign = ix>>31;
 	ix &= 0x7fffffff;
 	if (ix >= 0x7f800000) {

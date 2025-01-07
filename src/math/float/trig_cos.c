@@ -104,12 +104,13 @@ t_f32	F32_Cos(t_f32 x)
 	static const t_f64 c2pio2 = 2*PI_HALF; /* 0x400921FB, 0x54442D18 */
 	static const t_f64 c3pio2 = 3*PI_HALF; /* 0x4012D97C, 0x7F3321D2 */
 	static const t_f64 c4pio2 = 4*PI_HALF; /* 0x401921FB, 0x54442D18 */
-	t_f64 y;
-	t_u32 ix;
-	t_uint n, sign;
+	t_f64	y;
+	t_u32	ix;
+	t_uint	n;
+	t_bool	sign;
 
 	ix = AS_U32(x);
-	sign = ix >> 31;
+	sign = (ix >> 31);
 	ix &= 0x7FFFFFFF;
 	if (ix <= 0x3F490FDA) /* |x| ~<= pi/4 */
 	{
@@ -124,7 +125,7 @@ t_f32	F32_Cos(t_f32 x)
 	if (ix <= 0x407B53D1) /* |x| ~<= 5*pi/4 */
 	{
 		if (ix > 0x4016CBE3) /* |x|  ~> 3*pi/4 */
-			return -__cos_f32(sign ? x+c2pio2 : x-c2pio2);
+			return -__cos_f32(sign ? (x + c2pio2) : (x - c2pio2));
 		else
 		{
 			if (sign)
@@ -136,7 +137,7 @@ t_f32	F32_Cos(t_f32 x)
 	if (ix <= 0x40E231D5) /* |x| ~<= 9*pi/4 */
 	{
 		if (ix > 0x40AFEDDF) /* |x| ~> 7*pi/4 */
-			return +__cos_f32(sign ? x+c4pio2 : x-c4pio2);
+			return +__cos_f32(sign ? (x + c4pio2) : (x - c4pio2));
 		else
 		{
 			if (sign)

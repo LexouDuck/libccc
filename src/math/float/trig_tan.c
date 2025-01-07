@@ -123,46 +123,44 @@ t_f32	F32_Tan(t_f32 x)
 	static const t_f64 t2pio2 = 2*PI_HALF; /* 0x400921FB, 0x54442D18 */
 	static const t_f64 t3pio2 = 3*PI_HALF; /* 0x4012D97C, 0x7F3321D2 */
 	static const t_f64 t4pio2 = 4*PI_HALF; /* 0x401921FB, 0x54442D18 */
-	t_f64 y;
-	t_u32 ix;
-	unsigned n, sign;
+	t_f64	y;
+	t_u32	ix;
+	t_uint	n;
+	t_bool	sign;
 
-	GET_FLOAT_WORD(ix, x);
+	GET_F32_WORD(ix, x);
 	sign = ix >> 31;
-	ix &= 0x7fffffff;
-
-	if (ix <= 0x3f490fda)
-	{  /* |x| ~<= pi/4 */
-		if (ix < 0x39800000)
-		{  /* |x| < 2**-12 */
+	ix &= 0x7FFFFFFF;
+	if (ix <= 0x3F490FDA)  /* |x| ~<= pi/4 */
+	{
+		if (ix < 0x39800000)  /* |x| < 2**-12 */
+		{
 			/* raise inexact if x!=0 and underflow if subnormal */
 			/*FORCE_EVAL(ix < 0x00800000 ? x/0x1p120f : x+0x1p120f);*/
 			return x;
 		}
 		return __tan_f32(x, 0);
 	}
-	if (ix <= 0x407b53d1)
-	{  /* |x| ~<= 5*pi/4 */
-		if (ix <= 0x4016cbe3)  /* |x| ~<= 3pi/4 */
-			return __tan_f32((sign ? x+t1pio2 : x-t1pio2), 1);
+	if (ix <= 0x407B53D1)  /* |x| ~<= 5*pi/4 */
+	{
+		if (ix <= 0x4016CBE3)  /* |x| ~<= 3pi/4 */
+			return __tan_f32((sign ? (x + t1pio2) : (x - t1pio2)), 1);
 		else
-			return __tan_f32((sign ? x+t2pio2 : x-t2pio2), 0);
+			return __tan_f32((sign ? (x + t2pio2) : (x - t2pio2)), 0);
 	}
-	if (ix <= 0x40e231d5)
-	{  /* |x| ~<= 9*pi/4 */
-		if (ix <= 0x40afeddf)  /* |x| ~<= 7*pi/4 */
-			return __tan_f32((sign ? x+t3pio2 : x-t3pio2), 1);
+	if (ix <= 0x40E231D5)  /* |x| ~<= 9*pi/4 */
+	{
+		if (ix <= 0x40AFEDDF)  /* |x| ~<= 7*pi/4 */
+			return __tan_f32((sign ? (x + t3pio2) : (x - t3pio2)), 1);
 		else
-			return __tan_f32((sign ? x+t4pio2 : x-t4pio2), 0);
+			return __tan_f32((sign ? (x + t4pio2) : (x - t4pio2)), 0);
 	}
-
 	/* tan(Inf or NaN) is NaN */
-	if (ix >= 0x7f800000)
+	if (ix >= 0x7F800000)
 		return x - x;
-
 	/* argument reduction */
 	n = __rem_pi2_f32(x, &y);
-	return __tan_f32(y, n&1);
+	return __tan_f32(y, (n & 1));
 }
 
 t_f64	F64_Tan(t_f64 x)
@@ -171,13 +169,13 @@ t_f64	F64_Tan(t_f64 x)
 	t_u32 ix;
 	unsigned n;
 
-	GET_HIGH_WORD(ix, x);
-	ix &= 0x7fffffff;
+	GET_F64_WORD_HI(ix, x);
+	ix &= 0x7FFFFFFF;
 
 	/* |x| ~< pi/4 */
-	if (ix <= 0x3fe921fb)
+	if (ix <= 0x3FE921FB)
 	{
-		if (ix < 0x3e400000) /* |x| < 2**-27 */
+		if (ix < 0x3E400000) /* |x| < 2**-27 */
 		{
 			/* raise inexact if x!=0 and underflow if subnormal */
 			/*FORCE_EVAL(ix < 0x00100000 ? x/0x1p120f : x+0x1p120f);*/
@@ -187,7 +185,7 @@ t_f64	F64_Tan(t_f64 x)
 	}
 
 	/* tan(Inf or NaN) is NaN */
-	if (ix >= 0x7ff00000)
+	if (ix >= 0x7FF00000)
 		return x - x;
 
 	/* argument reduction */
@@ -202,12 +200,12 @@ t_f##BITS	F##BITS##_Tan(t_f##BITS x) \
 	t_f##BITS y[2]; \
 	unsigned n; \
  \
-	u.i.se &= 0x7fff; \
-	if (u.i.se == 0x7fff) \
+	u.i.se &= 0x7FFF; \
+	if (u.i.se == 0x7FFF) \
 		return x - x; \
 	if (u.f < M_PI_4) \
 	{ \
-		if (u.i.se < 0x3fff - LDBL_MANT_DIG/2) \
+		if (u.i.se < 0x3FFF - LDBL_MANT_DIG/2) \
 		{ \
 			/* raise inexact if x!=0 and underflow if subnormal */ \
 			/*FORCE_EVAL(u.i.se == 0 ? x*0x1p-120f : x+0x1p120f);*/ \

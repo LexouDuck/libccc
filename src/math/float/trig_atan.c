@@ -131,7 +131,7 @@ t_f32	F32_ArcTan(t_f32 x)
 	t_u32 ix,sign;
 	int id;
 
-	GET_FLOAT_WORD(ix, x);
+	GET_F32_WORD(ix, x);
 	sign = ix>>31;
 	ix &= 0x7fffffff;
 	if (ix >= 0x4c800000)
@@ -230,7 +230,7 @@ t_f64	F64_ArcTan(t_f64 x)
 	t_u32 ix,sign;
 	int id;
 
-	GET_HIGH_WORD(ix, x);
+	GET_F64_WORD_HI(ix, x);
 	sign = ix >> 31;
 	ix &= 0x7fffffff;
 	if (ix >= 0x44100000)

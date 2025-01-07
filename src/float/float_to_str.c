@@ -19,7 +19,7 @@ t_char*	Float_ToString_CheckSpecial(t_float number)
 	{
 		return (String_Duplicate("NAN"));
 	}
-	else if (IS_INFINITY(number))
+	else if (IS_INF(number))
 	{
 		return (number < 0 ?
 			String_Duplicate("-INFINITY") :
@@ -187,14 +187,14 @@ t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision) \
 // TODO Float_ToString_Hex()
 #define DEFINEFUNC_FLOAT_TOSTRHEX(BITS) \
 t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision) \
-{ return (IS_NAN(number) ? "NaN" : (precision == 0 ? "" : NULL)); }
+{ return (IS_NAN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
 
 
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_FLOAT_TOSTRBIN(BITS) \
 t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision) \
-{ return (IS_NAN(number) ? "NaN" : (precision == 0 ? "" : NULL)); }
+{ return (IS_NAN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
 
 
 

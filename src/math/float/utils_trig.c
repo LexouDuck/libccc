@@ -413,7 +413,7 @@ t_f64	__tan_f64(t_f64 x, t_f64 y, t_bool odd)
 	t_u32 hx;
 	int big, sign;
 
-	GET_HIGH_WORD(hx,x);
+	GET_F64_WORD_HI(hx,x);
 	big = (hx&0x7fffffff) >= 0x3FE59428; /* |x| >= 0.6744 */
 	if (big) {
 		sign = hx>>31;
@@ -445,10 +445,10 @@ t_f64	__tan_f64(t_f64 x, t_f64 y, t_bool odd)
 		return w;
 	/* -1.0/(x+r) has up to 2ulp error, so compute it accurately */
 	w0 = w;
-	SET_LOW_WORD(w0, 0);
+	SET_F64_WORD_LO(w0, 0);
 	v = r - (w0 - x);      /* w0+v = r+x */
 	a0 = a = -1. / w;
-	SET_LOW_WORD(a0, 0);
+	SET_F64_WORD_LO(a0, 0);
 	return a0 + a*(1. + a0*w0 + a0*v);
 }
 
@@ -608,23 +608,23 @@ DEFINEFUNC_FLOAT_TAN(128)
 
 t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 {
-	static const t_f64
-	toint   = 1.5 / F32_EPSILON,
-	pio4    = 0x1.921fb6p-1,
-	invpio2 = 6.36619772367581382433e-01, /* 0x3FE45F30, 0x6DC9C883 */	/* 53 bits of 2/pi */
-	pio2_1  = 1.57079631090164184570e+00, /* 0x3FF921FB, 0x50000000 */	/* first 25 bits of pi/2 */
-	pio2_1t = 1.58932547735281966916e-08; /* 0x3E5110b4, 0x611A6263 */	/* pi/2 - pio2_1 */
-
+	static const t_f64	toint   = 1.5 / F64_EPSILON;
+	static const t_f64	pio4    = 0x1.921fb6p-1;
+	static const t_f64	invpio2 = 6.36619772367581382433e-01; /* 0x3FE45F30, 0x6DC9C883 */	/* 53 bits of 2/pi */
+	static const t_f64	pio2_1  = 1.57079631090164184570e+00; /* 0x3FF921FB, 0x50000000 */	/* first 25 bits of pi/2 */
+	static const t_f64	pio2_1t = 1.58932547735281966916e-08; /* 0x3E5110b4, 0x611A6263 */	/* pi/2 - pio2_1 */
 	union {t_f32 f; t_u32 i;} u = {x};
-	t_f64 tx[1],ty[1];
-	t_f64 fn;
-	t_u32 ix;
-	int n, sign, e0;
+	t_f64	tx[1],ty[1];
+	t_f64	fn;
+	t_u32	ix;
+	t_sint	n;
+	t_sint	e0;
+	t_bool	sign;
 
-	ix = u.i & 0x7fffffff;
+	ix = u.i & 0x7FFFFFFF;
 	/* 25+53 bit pi is good enough for medium size */
-	if (ix < 0x4dc90fdb)
-	{ /* |x| ~< 2^28*(pi/2), medium size */
+	if (ix < 0x4DC90FDB) /* |x| ~< 2^28*(pi/2), medium size */
+	{
 		/* Use a specialized rint() to get fn. */
 		fn = (t_f64)x*invpio2 + toint - toint;
 		n  = (t_s32)fn;
@@ -644,8 +644,8 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 		}
 		return n;
 	}
-	if (ix>=0x7f800000)
-	{ /* x is inf or NaN */
+	if (ix>=0x7f800000) /* x is inf or NaN */
+	{
 		*y = x-x;
 		return 0;
 	}
@@ -1694,7 +1694,7 @@ t_f32	__expo2_f32(t_f32 x, t_f32 sign)
 	t_f32 scale;
 
 	/* note that k is odd and scale*scale overflows */
-	SET_FLOAT_WORD(scale, (t_u32)(0x7f + k/2) << 23);
+	SET_F32_WORD(scale, (t_u32)(0x7f + k/2) << 23);
 	/* exp(x - k ln2) * 2**(k-1) */
 	/* in directed rounding correct sign before rounding or overflow is important */
 	return F32_Exp(x - kln2) * (sign * scale) * scale;
@@ -1709,7 +1709,7 @@ t_f64	__expo2_f64(t_f64 x, t_f64 sign)
 	t_f64 scale;
 
 	/* note that k is odd and scale*scale overflows */
-	SET_WORDS(scale, (t_u32)(0x3ff + k/2) << 20, 0);
+	SET_F64_WORDS(scale, (t_u32)(0x3ff + k/2) << 20, 0);
 	/* exp(x - k ln2) * 2**(k-1) */
 	/* in directed rounding correct sign before rounding or overflow is important */
 	return F64_Exp(x - kln2) * (sign * scale) * scale;

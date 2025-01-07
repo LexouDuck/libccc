@@ -139,7 +139,7 @@ t_f32	F32_ArcSin(t_f32 x)
 	t_f32 z;
 	t_u32 hx,ix;
 
-	GET_FLOAT_WORD(hx, x);
+	GET_F32_WORD(hx, x);
 	ix = hx & 0x7fffffff;
 	if (ix >= 0x3f800000)
 	{  /* |x| >= 1 */
@@ -170,13 +170,13 @@ t_f64	F64_ArcSin(t_f64 x)
 	t_f64 z,r,s;
 	t_u32 hx,ix;
 
-	GET_HIGH_WORD(hx, x);
+	GET_F64_WORD_HI(hx, x);
 	ix = hx & 0x7fffffff;
 	/* |x| >= 1 or nan */
 	if (ix >= 0x3ff00000)
 	{
 		t_u32 lx;
-		GET_LOW_WORD(lx, x);
+		GET_F64_WORD_LO(lx, x);
 		if (((ix - 0x3ff00000) | lx) == 0)
 			/* asin(1) = +-pi/2 with inexact */
 			return x*pio2_hi + 0x1p-120f;
@@ -203,7 +203,7 @@ t_f64	F64_ArcSin(t_f64 x)
 		t_f64 f,c;
 		/* f+c = sqrt(z) */
 		f = s;
-		SET_LOW_WORD(f,0);
+		SET_F64_WORD_LO(f,0);
 		c = (z-f*f)/(s+f);
 		x = 0.5*pio2_hi - (2*s*r - (pio2_lo-2*c) - (0.5*pio2_hi-2*f));
 	}

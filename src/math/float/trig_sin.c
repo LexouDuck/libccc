@@ -107,10 +107,10 @@ t_f32	F32_Sin(t_f32 x)
 	static const t_f64 s2pio2 = 2*PI_HALF; /* 0x400921FB, 0x54442D18 */
 	static const t_f64 s3pio2 = 3*PI_HALF; /* 0x4012D97C, 0x7F3321D2 */
 	static const t_f64 s4pio2 = 4*PI_HALF; /* 0x401921FB, 0x54442D18 */
-	t_f64 y;
-	t_u32 ix;
-	t_sint n;
-	t_bool sign;
+	t_f64	y;
+	t_u32	ix;
+	t_sint	n;
+	t_bool	sign;
 
 	ix = AS_U32(x);
 	sign = (ix >> 31);
@@ -147,7 +147,7 @@ t_f32	F32_Sin(t_f32 x)
 				return -__cos_f32(x - s3pio2);
 		}
 		else
-			return +__sin_f32(sign ? x + s4pio2 : x - s4pio2);
+			return +__sin_f32(sign ? (x + s4pio2) : (x - s4pio2));
 	}
 	/* sin(Inf or NaN) is NaN */
 	if (ix >= F32_EXPONENT)

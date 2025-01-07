@@ -110,8 +110,8 @@ t_f32	F32_ArcTan2(t_f32 y, t_f32 x)
 
 	if (IS_NAN(x) || IS_NAN(y))
 		return x+y;
-	GET_FLOAT_WORD(ix, x);
-	GET_FLOAT_WORD(iy, y);
+	GET_F32_WORD(ix, x);
+	GET_F32_WORD(iy, y);
 	if (ix == 0x3f800000)  /* x=1.0 */
 		return F32_ArcTan(y);
 	m = ((iy>>31)&1) | ((ix>>30)&2);  /* 2*sign(x)+sign(y) */
@@ -186,8 +186,8 @@ t_f64	F64_ArcTan2(t_f64 y, t_f64 x)
 
 	if (IS_NAN(x) || IS_NAN(y))
 		return x+y;
-	GET_WORDS(ix, lx, x);
-	GET_WORDS(iy, ly, y);
+	GET_F64_WORDS(ix, lx, x);
+	GET_F64_WORDS(iy, ly, y);
 	if (((ix - 0x3ff00000) | lx) == 0)  /* x = 1.0 */
 		return F64_ArcTan(y);
 	m = ((iy>>31)&1) | ((ix>>30)&2);  /* 2*sign(x)+sign(y) */

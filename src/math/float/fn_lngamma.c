@@ -141,11 +141,11 @@ t_f32 F32_sin_pi(t_f32 x)
 	t_f64 y;
 	int n;
 	/* spurious inexact if odd int */
-	x = 2*(x*0.5f - F32_Floor(x*0.5f)); /* x mod 2.0 */
+	x = 2 * (x * 0.5f - F32_Floor(x * 0.5f)); /* x mod 2.0 */
 
-	n = (int)(x*4);
-	n = (n+1)/2;
-	y = x - n*0.5f;
+	n = (int)(x * 4);
+	n = (n + 1) / 2;
+	y = x - n * 0.5f;
 	y *= PI;
 	switch (n)
 	{
@@ -340,7 +340,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 				i = 2;
 			}
 		}
-		switch(i)
+		switch (i)
 		{
 			case 0:
 				z = y*y;
@@ -357,12 +357,12 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 					(__data_lgamma_f32.a[7] + z *
 					(__data_lgamma_f32.a[9] + z *
 					(__data_lgamma_f32.a[11]))))));
-				p = y*p1+p2;
+				p = y * p1 + p2;
 				r += p - 0.5f*y;
 				break;
 			case 1:
-				z = y*y;
-				w = z*y;
+				z = y * y;
+				w = z * y;
 				p1 = __data_lgamma_f32.t[0] + w *
 					(__data_lgamma_f32.t[3] + w *
 					(__data_lgamma_f32.t[6] + w *
@@ -378,10 +378,8 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 					(__data_lgamma_f32.t[8] + w *
 					(__data_lgamma_f32.t[11]+ w *
 					(__data_lgamma_f32.t[14]))));
-				p = z*p1-
-				(__data_lgamma_f32.tt-w*(p2+y*p3));
-				r += 
-				(__data_lgamma_f32.tf + p);
+				p = z * p1 - (__data_lgamma_f32.tt - w * (p2 + y * p3));
+				r += (__data_lgamma_f32.tf + p);
 				break;
 			case 2:
 				p1 = y *
@@ -397,7 +395,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 					(__data_lgamma_f32.v[3] + y *
 					(__data_lgamma_f32.v[4] + y *
 					(__data_lgamma_f32.v[5])))));
-				r += -0.5f*y + p1/p2;
+				r += -0.5f * y + p1 / p2;
 				break;
 		}
 	}
@@ -420,7 +418,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 			(__data_lgamma_f32.r[4] + y *
 			(__data_lgamma_f32.r[5] + y *
 			(__data_lgamma_f32.r[6]))))));
-		r = 0.5f*y+p/q;
+		r = 0.5f * y + p / q;
 		z = 1.0f;    /* lgamma(1+s) = log(s) + lgamma(s) */
 		switch (i)
 		{
@@ -436,7 +434,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 	else if (ix < 0x5c800000) /* 8.0 <= x < 2**58 */
 	{
 		t = F32_Log(x);
-		z = 1.0f/x;
+		z = 1.0f / x;
 		y = z*z;
 		w = (__data_lgamma_f32.w[0] + z *
 			(__data_lgamma_f32.w[1] + y *
@@ -445,7 +443,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 			(__data_lgamma_f32.w[4] + y *
 			(__data_lgamma_f32.w[5] + y *
 			(__data_lgamma_f32.w[6])))))));
-		r = (x-0.5f)*(t-1.0f)+w;
+		r = (x - 0.5f) * (t - 1.0f) + w;
 	}
 	else /* 2**58 <= x <= inf */
 		r =  x * (F32_Log(x) - 1.0f);
