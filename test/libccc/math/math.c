@@ -140,15 +140,22 @@ void printf_colored_f##BITS(char const* label, t_f##BITS precision, t_f##BITS va
 } \
  \
 static \
-void	print_test_math_f##BITS(s_timer timer, t_f##BITS* errors, t_f##BITS precision, int amount) \
+void	print_test_math_f##BITS( \
+	s_timer timer, \
+	t_f##BITS const* results, \
+	t_f##BITS const* expects, \
+	t_f##BITS* errors, \
+	t_f##BITS precision, \
+	int amount) \
 { \
 	if (g_test.config.verbose) \
 	{ \
 		quicksort_f##BITS(errors, 0, amount); \
-		printf_colored_f##BITS("Largest error", precision, stat_getmax_f##BITS   (errors, amount)); \
-		printf_colored_f##BITS("Median error",  precision, stat_median_f##BITS   (errors, amount)); \
-		printf_colored_f##BITS("Average error", precision, stat_average_f##BITS  (errors, amount)); \
-		printf_colored_f##BITS("Standard dev.", precision, stat_variance_f##BITS (errors, amount)); \
+		printf_colored_f##BITS("largest error", precision, stat_getmax_f##BITS          (errors, amount)); \
+		printf_colored_f##BITS("median error",  precision, stat_median_f##BITS          (errors, amount)); \
+		printf_colored_f##BITS("mean error",    precision, stat_mean_arithmetic_f##BITS (errors, amount)); \
+		printf_colored_f##BITS("standard dev",  precision, stat_variance_f##BITS        (errors, amount)); \
+		printf_colored_f##BITS("sqrt mean dev", precision, stat_rmsd_f##BITS            (results, expects, amount)); \
 	} \
 	if (g_test.config.show_speed) \
 	{ \
@@ -187,7 +194,7 @@ int	test_math_realfunction_f##BITS( \
 		printf("TEST #%03d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
 			i, func_name, args[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
-	print_test_math_f##BITS(timer, errors, precision, tests); \
+	print_test_math_f##BITS(timer, results, expects, errors, precision, tests); \
 	free(expects); \
 	free(results); \
 	free(errors); \
@@ -230,7 +237,7 @@ int	test_math_realoperator_f##BITS( \
 		tests, \
 		interval_x.start, interval_x.end, step_x, \
 		interval_y.start, interval_y.end, step_y) \
-	print_test_math_f##BITS(timer, errors, precision, tests); \
+	print_test_math_f##BITS(timer, results, expects, errors, precision, tests); \
 	free(expects); \
 	free(results); \
 	free(errors); \
