@@ -280,15 +280,15 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
 	test.expect = expecting; \
 
-//! Use this for void-return functions that exist in libc
-#define TEST_PERFORM_VOID_LIBC(RESULT, FUNCTION, ...) \
-	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
-	TEST_PERFORM_VOID_(expect, RESULT,     FUNCTION, ##__VA_ARGS__) \
-
 //! Use this for void-return functions, which use a 'dest' argument
 #define TEST_PERFORM_VOID_DEST(FUNCTION, ...) \
 	TEST_PERFORM_VOID_(result, dest_libccc, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	test.expect = expecting; \
+
+//! Use this for void-return functions that exist in libc
+#define TEST_PERFORM_VOID_LIBC(RESULT, FUNCTION, ...) \
+	TEST_PERFORM_VOID_(result, RESULT, c_##FUNCTION, ##__VA_ARGS__) \
+	TEST_PERFORM_VOID_(expect, RESULT,     FUNCTION, ##__VA_ARGS__) \
 
 //! Use this for void-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_VOID_LIBC_DEST(FUNCTION, ...) \
@@ -323,20 +323,25 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__) \
 	test.expect = expecting; \
 
-//! Use this for (any_type)-return functions that exist in libc
-#define TEST_PERFORM_LIBC(FUNCTION, ...) \
-	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__) \
-	TEST_PERFORM_(expect,     FUNCTION, ##__VA_ARGS__) \
-
 //! Use this for (any_type)-return functions, which use a 'dest' argument
 #define TEST_PERFORM_DEST(FUNCTION, ...) \
 	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	test.expect = expecting; \
 
+//! Use this for (any_type)-return functions that exist in libc
+#define TEST_PERFORM_LIBC(FUNCTION, ...) \
+	TEST_PERFORM_(result, c_##FUNCTION, ##__VA_ARGS__) \
+	TEST_PERFORM_(expect,     FUNCTION, ##__VA_ARGS__) \
+
 //! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
 #define TEST_PERFORM_LIBC_DEST(FUNCTION, ...) \
 	TEST_PERFORM_(result, c_##FUNCTION, dest_libccc, ##__VA_ARGS__) \
 	TEST_PERFORM_(expect,     FUNCTION, dest_libc,   ##__VA_ARGS__) \
+
+//! Use this for (any_type)-return functions, which are math library functions
+#define TEST_PERFORM_LIBC_MATH(TYPENAME, FUNCTION, SUFFIX, ...) \
+	TEST_PERFORM_(result, c_##TYPENAME##FUNCTION,         ##__VA_ARGS__) \
+	TEST_PERFORM_(expect,               FUNCTION##SUFFIX, ##__VA_ARGS__) \
 
 
 

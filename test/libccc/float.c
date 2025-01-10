@@ -1,4 +1,8 @@
 
+#include <math.h>
+#include <fenv.h>
+#include <float.h>
+
 #include "libccc.h"
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
@@ -25,9 +29,1045 @@
 
 /*
 ** ************************************************************************** *|
+**                     Basic Floating-point manipulation                      *|
+** ************************************************************************** *|
+*/
+
+
+
+#define DEFINETEST_NEXTAFTER(TYPE, SUFFIX) \
+void	print_test_##TYPE##nextafter(char const* test_name, t_testflags flags, \
+		t_##TYPE number, t_##TYPE toward) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, nextafter, SUFFIX, number, toward) \
+	TEST_PRINT(TYPE,        TYPE##nextafter, "%g, toward=%g", number, toward) \
+} \
+void	test_##TYPE##nextafter(void) \
+{ \
+/*	| TEST FUNCTION             | TEST NAME                  |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -0.0)",	FALSE,  -0.0, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +0.0)",	FALSE,  -0.0, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -0.0)",	FALSE,  +0.0, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +0.0)",	FALSE,  +0.0, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -0.1)",	FALSE,  -0.0, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +0.1)",	FALSE,  -0.0, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -0.1)",	FALSE,  +0.0, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +0.1)",	FALSE,  +0.0, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -1.0)",	FALSE,  -0.0, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +1.0)",	FALSE,  -0.0, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -1.0)",	FALSE,  +0.0, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +1.0)",	FALSE,  +0.0, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -1e9)",	FALSE,  -0.0, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +1e9)",	FALSE,  -0.0, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -1e9)",	FALSE,  +0.0, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +1e9)",	FALSE,  +0.0, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -inf)",	FALSE,  -0.0, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +inf)",	FALSE,  -0.0, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -inf)",	FALSE,  +0.0, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +inf)",	FALSE,  +0.0, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, -nan)",	FALSE,  -0.0, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.0, +nan)",	FALSE,  -0.0, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, -nan)",	FALSE,  +0.0, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.0, +nan)",	FALSE,  +0.0, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -0.0)",	FALSE,  -0.1, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +0.0)",	FALSE,  -0.1, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -0.0)",	FALSE,  +0.1, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +0.0)",	FALSE,  +0.1, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -0.1)",	FALSE,  -0.1, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +0.1)",	FALSE,  -0.1, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -0.1)",	FALSE,  +0.1, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +0.1)",	FALSE,  +0.1, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -1.0)",	FALSE,  -0.1, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +1.0)",	FALSE,  -0.1, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -1.0)",	FALSE,  +0.1, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +1.0)",	FALSE,  +0.1, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -1e9)",	FALSE,  -0.1, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +1e9)",	FALSE,  -0.1, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -1e9)",	FALSE,  +0.1, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +1e9)",	FALSE,  +0.1, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -inf)",	FALSE,  -0.1, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +inf)",	FALSE,  -0.1, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -inf)",	FALSE,  +0.1, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +inf)",	FALSE,  +0.1, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, -nan)",	FALSE,  -0.1, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-0.1, +nan)",	FALSE,  -0.1, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, -nan)",	FALSE,  +0.1, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+0.1, +nan)",	FALSE,  +0.1, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -0.0)",	FALSE,  -1.0, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +0.0)",	FALSE,  -1.0, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -0.0)",	FALSE,  +1.0, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +0.0)",	FALSE,  +1.0, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -0.1)",	FALSE,  -1.0, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +0.1)",	FALSE,  -1.0, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -0.1)",	FALSE,  +1.0, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +0.1)",	FALSE,  +1.0, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -1.0)",	FALSE,  -1.0, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +1.0)",	FALSE,  -1.0, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -1.0)",	FALSE,  +1.0, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +1.0)",	FALSE,  +1.0, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -1e9)",	FALSE,  -1.0, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +1e9)",	FALSE,  -1.0, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -1e9)",	FALSE,  +1.0, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +1e9)",	FALSE,  +1.0, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -inf)",	FALSE,  -1.0, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +inf)",	FALSE,  -1.0, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -inf)",	FALSE,  +1.0, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +inf)",	FALSE,  +1.0, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, -nan)",	FALSE,  -1.0, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1.0, +nan)",	FALSE,  -1.0, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, -nan)",	FALSE,  +1.0, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1.0, +nan)",	FALSE,  +1.0, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -0.0)",	FALSE,  -1e9, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +0.0)",	FALSE,  -1e9, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -0.0)",	FALSE,  +1e9, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +0.0)",	FALSE,  +1e9, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -0.1)",	FALSE,  -1e9, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +0.1)",	FALSE,  -1e9, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -0.1)",	FALSE,  +1e9, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +0.1)",	FALSE,  +1e9, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -1.0)",	FALSE,  -1e9, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +1.0)",	FALSE,  -1e9, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -1.0)",	FALSE,  +1e9, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +1.0)",	FALSE,  +1e9, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -1e9)",	FALSE,  -1e9, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +1e9)",	FALSE,  -1e9, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -1e9)",	FALSE,  +1e9, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +1e9)",	FALSE,  +1e9, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -inf)",	FALSE,  -1e9, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +inf)",	FALSE,  -1e9, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -inf)",	FALSE,  +1e9, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +inf)",	FALSE,  +1e9, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, -nan)",	FALSE,  -1e9, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-1e9, +nan)",	FALSE,  -1e9, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, -nan)",	FALSE,  +1e9, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+1e9, +nan)",	FALSE,  +1e9, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -0.0)",	FALSE,  -INF, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +0.0)",	FALSE,  -INF, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -0.0)",	FALSE,  +INF, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +0.0)",	FALSE,  +INF, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -0.1)",	FALSE,  -INF, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +0.1)",	FALSE,  -INF, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -0.1)",	FALSE,  +INF, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +0.1)",	FALSE,  +INF, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -1.0)",	FALSE,  -INF, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +1.0)",	FALSE,  -INF, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -1.0)",	FALSE,  +INF, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +1.0)",	FALSE,  +INF, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -1e9)",	FALSE,  -INF, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +1e9)",	FALSE,  -INF, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -1e9)",	FALSE,  +INF, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +1e9)",	FALSE,  +INF, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -inf)",	FALSE,  -INF, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +inf)",	FALSE,  -INF, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -inf)",	FALSE,  +INF, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +inf)",	FALSE,  +INF, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, -nan)",	FALSE,  -INF, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-inf, +nan)",	FALSE,  -INF, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, -nan)",	FALSE,  +INF, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+inf, +nan)",	FALSE,  +INF, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -0.0)",	FALSE,  -NAN, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +0.0)",	FALSE,  -NAN, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -0.0)",	FALSE,  +NAN, -0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +0.0)",	FALSE,  +NAN, +0.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -0.1)",	FALSE,  -NAN, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +0.1)",	FALSE,  -NAN, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -0.1)",	FALSE,  +NAN, -0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +0.1)",	FALSE,  +NAN, +0.1); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -1.0)",	FALSE,  -NAN, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +1.0)",	FALSE,  -NAN, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -1.0)",	FALSE,  +NAN, -1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +1.0)",	FALSE,  +NAN, +1.0); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -1e9)",	FALSE,  -NAN, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +1e9)",	FALSE,  -NAN, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -1e9)",	FALSE,  +NAN, -1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +1e9)",	FALSE,  +NAN, +1e9); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -inf)",	FALSE,  -NAN, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +inf)",	FALSE,  -NAN, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -inf)",	FALSE,  +NAN, -INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +inf)",	FALSE,  +NAN, +INF); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, -nan)",	FALSE,  -NAN, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (-nan, +nan)",	FALSE,  -NAN, +NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, -nan)",	FALSE,  +NAN, -NAN); \
+	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +nan)",	FALSE,  +NAN, +NAN); \
+} \
+
+#ifndef c_f32nextafter
+void test_f32nextafter(void)	{}
+#warning "f32nextafter() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_NEXTAFTER(f32,f)
+#endif
+
+#ifndef c_f64nextafter
+void test_f64nextafter(void)	{}
+#warning "f64nextafter() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_NEXTAFTER(f64,)
+#endif
+
+#if !defined(c_f80nextafter) || !defined(__float80)
+void test_f80nextafter(void)	{}
+#warning "f80nextafter() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_NEXTAFTER(f80,l)
+#endif
+
+#if !defined(c_f128nextafter) || !defined(__float128)
+void test_f128nextafter(void)	{}
+#warning "f128nextafter() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_NEXTAFTER(f128,l)
+#endif
+
+
+
+#define DEFINETEST_COPYSIGN(TYPE, SUFFIX) \
+void	print_test_##TYPE##copysign(char const* test_name, t_testflags flags, \
+		t_##TYPE target, t_##TYPE source) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, copysign, SUFFIX, target, source) \
+	TEST_PRINT(TYPE,        TYPE##copysign, "target=%g, source=%g", target, source) \
+} \
+void	test_##TYPE##copysign(void) \
+{ \
+/*	| TEST FUNCTION            | TEST NAME                  |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -0.0)",	FALSE,  -0.0, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +0.0)",	FALSE,  -0.0, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -0.0)",	FALSE,  +0.0, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +0.0)",	FALSE,  +0.0, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -0.1)",	FALSE,  -0.0, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +0.1)",	FALSE,  -0.0, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -0.1)",	FALSE,  +0.0, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +0.1)",	FALSE,  +0.0, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -1.0)",	FALSE,  -0.0, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +1.0)",	FALSE,  -0.0, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -1.0)",	FALSE,  +0.0, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +1.0)",	FALSE,  +0.0, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -1e9)",	FALSE,  -0.0, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +1e9)",	FALSE,  -0.0, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -1e9)",	FALSE,  +0.0, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +1e9)",	FALSE,  +0.0, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -inf)",	FALSE,  -0.0, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +inf)",	FALSE,  -0.0, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -inf)",	FALSE,  +0.0, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +inf)",	FALSE,  +0.0, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, -nan)",	FALSE,  -0.0, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.0, +nan)",	FALSE,  -0.0, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, -nan)",	FALSE,  +0.0, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.0, +nan)",	FALSE,  +0.0, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -0.0)",	FALSE,  -0.1, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +0.0)",	FALSE,  -0.1, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -0.0)",	FALSE,  +0.1, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +0.0)",	FALSE,  +0.1, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -0.1)",	FALSE,  -0.1, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +0.1)",	FALSE,  -0.1, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -0.1)",	FALSE,  +0.1, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +0.1)",	FALSE,  +0.1, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -1.0)",	FALSE,  -0.1, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +1.0)",	FALSE,  -0.1, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -1.0)",	FALSE,  +0.1, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +1.0)",	FALSE,  +0.1, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -1e9)",	FALSE,  -0.1, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +1e9)",	FALSE,  -0.1, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -1e9)",	FALSE,  +0.1, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +1e9)",	FALSE,  +0.1, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -inf)",	FALSE,  -0.1, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +inf)",	FALSE,  -0.1, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -inf)",	FALSE,  +0.1, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +inf)",	FALSE,  +0.1, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, -nan)",	FALSE,  -0.1, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-0.1, +nan)",	FALSE,  -0.1, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, -nan)",	FALSE,  +0.1, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+0.1, +nan)",	FALSE,  +0.1, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -0.0)",	FALSE,  -1.0, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +0.0)",	FALSE,  -1.0, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -0.0)",	FALSE,  +1.0, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +0.0)",	FALSE,  +1.0, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -0.1)",	FALSE,  -1.0, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +0.1)",	FALSE,  -1.0, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -0.1)",	FALSE,  +1.0, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +0.1)",	FALSE,  +1.0, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -1.0)",	FALSE,  -1.0, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +1.0)",	FALSE,  -1.0, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -1.0)",	FALSE,  +1.0, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +1.0)",	FALSE,  +1.0, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -1e9)",	FALSE,  -1.0, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +1e9)",	FALSE,  -1.0, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -1e9)",	FALSE,  +1.0, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +1e9)",	FALSE,  +1.0, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -inf)",	FALSE,  -1.0, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +inf)",	FALSE,  -1.0, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -inf)",	FALSE,  +1.0, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +inf)",	FALSE,  +1.0, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, -nan)",	FALSE,  -1.0, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1.0, +nan)",	FALSE,  -1.0, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, -nan)",	FALSE,  +1.0, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1.0, +nan)",	FALSE,  +1.0, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -0.0)",	FALSE,  -1e9, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +0.0)",	FALSE,  -1e9, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -0.0)",	FALSE,  +1e9, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +0.0)",	FALSE,  +1e9, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -0.1)",	FALSE,  -1e9, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +0.1)",	FALSE,  -1e9, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -0.1)",	FALSE,  +1e9, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +0.1)",	FALSE,  +1e9, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -1.0)",	FALSE,  -1e9, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +1.0)",	FALSE,  -1e9, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -1.0)",	FALSE,  +1e9, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +1.0)",	FALSE,  +1e9, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -1e9)",	FALSE,  -1e9, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +1e9)",	FALSE,  -1e9, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -1e9)",	FALSE,  +1e9, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +1e9)",	FALSE,  +1e9, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -inf)",	FALSE,  -1e9, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +inf)",	FALSE,  -1e9, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -inf)",	FALSE,  +1e9, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +inf)",	FALSE,  +1e9, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, -nan)",	FALSE,  -1e9, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-1e9, +nan)",	FALSE,  -1e9, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, -nan)",	FALSE,  +1e9, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+1e9, +nan)",	FALSE,  +1e9, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -0.0)",	FALSE,  -INF, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +0.0)",	FALSE,  -INF, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -0.0)",	FALSE,  +INF, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +0.0)",	FALSE,  +INF, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -0.1)",	FALSE,  -INF, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +0.1)",	FALSE,  -INF, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -0.1)",	FALSE,  +INF, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +0.1)",	FALSE,  +INF, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -1.0)",	FALSE,  -INF, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +1.0)",	FALSE,  -INF, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -1.0)",	FALSE,  +INF, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +1.0)",	FALSE,  +INF, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -1e9)",	FALSE,  -INF, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +1e9)",	FALSE,  -INF, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -1e9)",	FALSE,  +INF, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +1e9)",	FALSE,  +INF, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -inf)",	FALSE,  -INF, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +inf)",	FALSE,  -INF, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -inf)",	FALSE,  +INF, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +inf)",	FALSE,  +INF, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, -nan)",	FALSE,  -INF, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-inf, +nan)",	FALSE,  -INF, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, -nan)",	FALSE,  +INF, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+inf, +nan)",	FALSE,  +INF, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -0.0)",	FALSE,  -NAN, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +0.0)",	FALSE,  -NAN, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -0.0)",	FALSE,  +NAN, -0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +0.0)",	FALSE,  +NAN, +0.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -0.1)",	FALSE,  -NAN, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +0.1)",	FALSE,  -NAN, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -0.1)",	FALSE,  +NAN, -0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +0.1)",	FALSE,  +NAN, +0.1); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -1.0)",	FALSE,  -NAN, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +1.0)",	FALSE,  -NAN, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -1.0)",	FALSE,  +NAN, -1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +1.0)",	FALSE,  +NAN, +1.0); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -1e9)",	FALSE,  -NAN, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +1e9)",	FALSE,  -NAN, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -1e9)",	FALSE,  +NAN, -1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +1e9)",	FALSE,  +NAN, +1e9); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -inf)",	FALSE,  -NAN, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +inf)",	FALSE,  -NAN, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -inf)",	FALSE,  +NAN, -INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +inf)",	FALSE,  +NAN, +INF); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, -nan)",	FALSE,  -NAN, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (-nan, +nan)",	FALSE,  -NAN, +NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, -nan)",	FALSE,  +NAN, -NAN); \
+	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +nan)",	FALSE,  +NAN, +NAN); \
+} \
+
+#ifndef c_f32copysign
+void test_f32copysign(void)	{}
+#warning "f32copysign() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_COPYSIGN(f32,f)
+#endif
+
+#ifndef c_f64copysign
+void test_f64copysign(void)	{}
+#warning "f64copysign() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_COPYSIGN(f64,)
+#endif
+
+#if !defined(c_f80copysign) || !defined(__float80)
+void test_f80copysign(void)	{}
+#warning "f80copysign() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_COPYSIGN(f80,l)
+#endif
+
+#if !defined(c_f128copysign) || !defined(__float128)
+void test_f128copysign(void)	{}
+#warning "f128copysign() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_COPYSIGN(f128,l)
+#endif
+
+
+
+#define DEFINETEST_RINT(TYPE, SUFFIX) \
+void	print_test_##TYPE##rint(char const* test_name, t_testflags flags, \
+		t_##TYPE number) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, rint, SUFFIX, number) \
+	TEST_PRINT(TYPE,        TYPE##rint, "%g", number) \
+} \
+void	test_##TYPE##rint(void) \
+{ \
+/*	| TEST FUNCTION        | TEST NAME           |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##rint(#TYPE"rint (-0.0)    ",	FALSE,  -0.0); \
+	print_test_##TYPE##rint(#TYPE"rint (+0.0)    ",	FALSE,  +0.0); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.1)    ",	FALSE,  -1.1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.1)    ",	FALSE,  +1.1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.5)    ",	FALSE,  -1.5); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.5)    ",	FALSE,  +1.5); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.9)    ",	FALSE,  -1.9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.9)    ",	FALSE,  +1.9); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e+1)   ",	FALSE,  -1e+1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e+1)   ",	FALSE,  +1e+1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e+2)   ",	FALSE,  -1e+2); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e+2)   ",	FALSE,  +1e+2); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e+9)   ",	FALSE,  -1e+9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e+9)   ",	FALSE,  +1e+9); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e-1)   ",	FALSE,  -1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.1e-1) ",	FALSE,  -1.1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.5e-1) ",	FALSE,  -1.5e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.9e-1) ",	FALSE,  -1.1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e-1)   ",	FALSE,  +1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.1e-1) ",	FALSE,  +1.1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.5e-1) ",	FALSE,  +1.5e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.9e-1) ",	FALSE,  +1.1e-1); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e-2)   ",	FALSE,  -1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.1e-2) ",	FALSE,  -1.1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.5e-2) ",	FALSE,  -1.5e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.9e-2) ",	FALSE,  -1.1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e-2)   ",	FALSE,  +1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.1e-2) ",	FALSE,  +1.1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.5e-2) ",	FALSE,  +1.5e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.9e-2) ",	FALSE,  +1.1e-2); \
+	print_test_##TYPE##rint(#TYPE"rint (-1e-9)   ",	FALSE,  -1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.1e-9) ",	FALSE,  -1.1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.5e-9) ",	FALSE,  -1.5e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (-1.9e-9) ",	FALSE,  -1.1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1e-9)   ",	FALSE,  +1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.1e-9) ",	FALSE,  +1.1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.5e-9) ",	FALSE,  +1.5e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (+1.9e-9) ",	FALSE,  +1.1e-9); \
+	print_test_##TYPE##rint(#TYPE"rint (-inf)    ",	FALSE,  -INF); \
+	print_test_##TYPE##rint(#TYPE"rint (+inf)    ",	FALSE,  +INF); \
+	print_test_##TYPE##rint(#TYPE"rint (-nan)    ",	FALSE,  -NAN); \
+	print_test_##TYPE##rint(#TYPE"rint (+nan)    ",	FALSE,  +NAN); \
+} \
+
+#ifndef c_f32rint
+void test_f32rint(void)	{}
+#warning "f32rint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_RINT(f32,f)
+#endif
+
+#ifndef c_f64rint
+void test_f64rint(void)	{}
+#warning "f64rint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_RINT(f64,)
+#endif
+
+#if !defined(c_f80rint) || !defined(__float80)
+void test_f80rint(void)	{}
+#warning "f80rint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_RINT(f80,l)
+#endif
+
+#if !defined(c_f128rint) || !defined(__float128)
+void test_f128rint(void)	{}
+#warning "f128rint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_RINT(f128,l)
+#endif
+
+
+
+#define DEFINETEST_LRINT(TYPE, SUFFIX) \
+void	print_test_##TYPE##lrint(char const* test_name, t_testflags flags, \
+		t_##TYPE number) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, lrint, SUFFIX, number) \
+	TEST_PRINT(TYPE,        TYPE##lrint, "%g", number) \
+} \
+void	test_##TYPE##lrint(void) \
+{ \
+/*	| TEST FUNCTION         | TEST NAME          |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##lrint(#TYPE"lrint (-0.0)  ",	FALSE,  -0.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+0.0)  ",	FALSE,  +0.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-0.1)  ",	FALSE,  -0.1); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+0.1)  ",	FALSE,  +0.1); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e-2) ",	FALSE,  -1e-2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e-2) ",	FALSE,  +1e-2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e-9) ",	FALSE,  -1e-9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e-9) ",	FALSE,  +1e-9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1.0)  ",	FALSE,  -1.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1.0)  ",	FALSE,  +1.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e+2) ",	FALSE,  -1e+2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e+2) ",	FALSE,  +1e+2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e+9) ",	FALSE,  -1e+9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e+9) ",	FALSE,  +1e+9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-inf)  ",	FALSE,  -INF); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+inf)  ",	FALSE,  +INF); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FALSE,  -NAN); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+nan)  ",	FALSE,  +NAN); \
+} \
+
+#ifndef c_f32lrint
+void test_f32lrint(void)	{}
+#warning "f32lrint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LRINT(f32,f)
+#endif
+
+#ifndef c_f64lrint
+void test_f64lrint(void)	{}
+#warning "f64lrint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LRINT(f64,)
+#endif
+
+#if !defined(c_f80lrint) || !defined(__float80)
+void test_f80lrint(void)	{}
+#warning "f80lrint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LRINT(f80,l)
+#endif
+
+#if !defined(c_f128lrint) || !defined(__float128)
+void test_f128lrint(void)	{}
+#warning "f128lrint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LRINT(f128,l)
+#endif
+
+
+
+#define DEFINETEST_FREXP(TYPE, SUFFIX) \
+void	print_test_##TYPE##frexp(char const* test_name, t_testflags flags, \
+		t_##TYPE number, t_sint* exponent) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, frexp, SUFFIX, number, exponent) \
+	TEST_PRINT(TYPE,        TYPE##frexp, "%g", number) \
+} \
+void	test_##TYPE##frexp(void) \
+{ \
+	t_sint exponent; \
+/*	| TEST FUNCTION         | TEST NAME              |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##frexp(#TYPE"frexp (-0.0)      ",	FALSE,  -0.0,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+0.0)      ",	FALSE,  +0.0,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0)      ",	FALSE,  -1.0,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0)      ",	FALSE,  +1.0,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+1)   ",	FALSE,  -1.0e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+1)   ",	FALSE,  -1.1e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+1)   ",	FALSE,  -1.5e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+1)   ",	FALSE,  -1.9e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+1)   ",	FALSE,  +1.0e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+1)   ",	FALSE,  +1.1e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+1)   ",	FALSE,  +1.5e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+1)   ",	FALSE,  +1.9e+1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+2)   ",	FALSE,  -1.0e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+2)   ",	FALSE,  -1.1e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+2)   ",	FALSE,  -1.5e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+2)   ",	FALSE,  -1.9e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+2)   ",	FALSE,  +1.0e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+2)   ",	FALSE,  +1.1e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+2)   ",	FALSE,  +1.5e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+2)   ",	FALSE,  +1.9e+2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+9)   ",	FALSE,  -1.0e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+9)   ",	FALSE,  -1.1e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+9)   ",	FALSE,  -1.5e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+9)   ",	FALSE,  -1.9e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+9)   ",	FALSE,  +1.0e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+9)   ",	FALSE,  +1.1e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+9)   ",	FALSE,  +1.5e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+9)   ",	FALSE,  +1.9e+9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-1)   ",	FALSE,  -1.0e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-1)   ",	FALSE,  -1.1e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-1)   ",	FALSE,  -1.5e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-1)   ",	FALSE,  -1.9e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-1)   ",	FALSE,  +1.0e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-1)   ",	FALSE,  +1.1e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-1)   ",	FALSE,  +1.5e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-1)   ",	FALSE,  +1.9e-1, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-2)   ",	FALSE,  -1.0e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-2)   ",	FALSE,  -1.1e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-2)   ",	FALSE,  -1.5e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-2)   ",	FALSE,  -1.9e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-2)   ",	FALSE,  +1.0e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-2)   ",	FALSE,  +1.1e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-2)   ",	FALSE,  +1.5e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-2)   ",	FALSE,  +1.9e-2, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-9)   ",	FALSE,  -1.0e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-9)   ",	FALSE,  -1.1e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-9)   ",	FALSE,  -1.5e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-9)   ",	FALSE,  -1.9e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-9)   ",	FALSE,  +1.0e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-9)   ",	FALSE,  +1.1e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-9)   ",	FALSE,  +1.5e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-9)   ",	FALSE,  +1.9e-9, &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-inf)      ",	FALSE,  -INF,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+inf)      ",	FALSE,  +INF,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-nan)      ",	FALSE,  -NAN,    &exponent); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+nan)      ",	FALSE,  +NAN,    &exponent); \
+} \
+
+#ifndef c_f32frexp
+void test_f32frexp(void)	{}
+#warning "f32frexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FREXP(f32,f)
+#endif
+
+#ifndef c_f64frexp
+void test_f64frexp(void)	{}
+#warning "f64frexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FREXP(f64,)
+#endif
+
+#if !defined(c_f80frexp) || !defined(__float80)
+void test_f80frexp(void)	{}
+#warning "f80frexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FREXP(f80,l)
+#endif
+
+#if !defined(c_f128frexp) || !defined(__float128)
+void test_f128frexp(void)	{}
+#warning "f128frexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FREXP(f128,l)
+#endif
+
+
+
+#define DEFINETEST_LDEXP(NAME, TYPE, SUFFIX) \
+void	print_test_##TYPE##NAME(char const* test_name, t_testflags flags, \
+		t_##TYPE mantissa, t_sint exponent) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, NAME, SUFFIX, mantissa, exponent) \
+	TEST_PRINT(TYPE,        TYPE##NAME, "mantissa=%g, exponent=%li", mantissa, exponent) \
+} \
+void	test_##TYPE##NAME(void) \
+{ \
+/*	| TEST FUNCTION         | TEST NAME              |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.0, 0)    ",	FALSE,  -0.0,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.0, 0)    ",	FALSE,  +0.0,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.1, 0)    ",	FALSE,  -0.1,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.1, 0)    ",	FALSE,  +0.1,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-2, 0)   ",	FALSE,  -1e-2,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-2, 0)   ",	FALSE,  +1e-2,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-9, 0)   ",	FALSE,  -1e-9,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-9, 0)   ",	FALSE,  +1e-9,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1.0, 0)    ",	FALSE,  -1.0,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1.0, 0)    ",	FALSE,  +1.0,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+2, 0)   ",	FALSE,  -1e+2,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+2, 0)   ",	FALSE,  +1e+2,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+9, 0)   ",	FALSE,  -1e+9,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+9, 0)   ",	FALSE,  +1e+9,  0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-inf, 0)    ",	FALSE,  -INF,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+inf, 0)    ",	FALSE,  +INF,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-nan, 0)    ",	FALSE,  -NAN,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, 0)    ",	FALSE,  +NAN,   0); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.0, +1)   ",	FALSE,  -0.0,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.0, +1)   ",	FALSE,  +0.0,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.1, +1)   ",	FALSE,  -0.1,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.1, +1)   ",	FALSE,  +0.1,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-2, +1)  ",	FALSE,  -1e-2, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-2, +1)  ",	FALSE,  +1e-2, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-9, +1)  ",	FALSE,  -1e-9, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-9, +1)  ",	FALSE,  +1e-9, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1.0, +1)   ",	FALSE,  -1.0,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1.0, +1)   ",	FALSE,  +1.0,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+2, +1)  ",	FALSE,  -1e+2, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+2, +1)  ",	FALSE,  +1e+2, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+9, +1)  ",	FALSE,  -1e+9, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+9, +1)  ",	FALSE,  +1e+9, +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-inf, +1)   ",	FALSE,  -INF,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+inf, +1)   ",	FALSE,  +INF,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-nan, +1)   ",	FALSE,  -NAN,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, +1)   ",	FALSE,  +NAN,  +1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.0, +2)   ",	FALSE,  -0.0,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.0, +2)   ",	FALSE,  +0.0,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.1, +2)   ",	FALSE,  -0.1,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.1, +2)   ",	FALSE,  +0.1,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-2, +2)  ",	FALSE,  -1e-2, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-2, +2)  ",	FALSE,  +1e-2, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-9, +2)  ",	FALSE,  -1e-9, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-9, +2)  ",	FALSE,  +1e-9, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1.0, +2)   ",	FALSE,  -1.0,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1.0, +2)   ",	FALSE,  +1.0,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+2, +2)  ",	FALSE,  -1e+2, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+2, +2)  ",	FALSE,  +1e+2, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+9, +2)  ",	FALSE,  -1e+9, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+9, +2)  ",	FALSE,  +1e+9, +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-inf, +2)   ",	FALSE,  -INF,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+inf, +2)   ",	FALSE,  +INF,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-nan, +2)   ",	FALSE,  -NAN,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, +2)   ",	FALSE,  +NAN,  +2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.0, -1)   ",	FALSE,  -0.0,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.0, -1)   ",	FALSE,  +0.0,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.1, -1)   ",	FALSE,  -0.1,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.1, -1)   ",	FALSE,  +0.1,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-2, -1)  ",	FALSE,  -1e-2, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-2, -1)  ",	FALSE,  +1e-2, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-9, -1)  ",	FALSE,  -1e-9, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-9, -1)  ",	FALSE,  +1e-9, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1.0, -1)   ",	FALSE,  -1.0,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1.0, -1)   ",	FALSE,  +1.0,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+2, -1)  ",	FALSE,  -1e+2, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+2, -1)  ",	FALSE,  +1e+2, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+9, -1)  ",	FALSE,  -1e+9, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+9, -1)  ",	FALSE,  +1e+9, -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-inf, -1)   ",	FALSE,  -INF,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+inf, -1)   ",	FALSE,  +INF,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-nan, -1)   ",	FALSE,  -NAN,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, -1)   ",	FALSE,  +NAN,  -1); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.0, -2)   ",	FALSE,  -0.0,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.0, -2)   ",	FALSE,  +0.0,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-0.1, -2)   ",	FALSE,  -0.1,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+0.1, -2)   ",	FALSE,  +0.1,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-2, -2)  ",	FALSE,  -1e-2, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-2, -2)  ",	FALSE,  +1e-2, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e-9, -2)  ",	FALSE,  -1e-9, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e-9, -2)  ",	FALSE,  +1e-9, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1.0, -2)   ",	FALSE,  -1.0,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1.0, -2)   ",	FALSE,  +1.0,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+2, -2)  ",	FALSE,  -1e+2, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+2, -2)  ",	FALSE,  +1e+2, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-1e+9, -2)  ",	FALSE,  -1e+9, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+1e+9, -2)  ",	FALSE,  +1e+9, -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-inf, -2)   ",	FALSE,  -INF,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+inf, -2)   ",	FALSE,  +INF,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (-nan, -2)   ",	FALSE,  -NAN,  -2); \
+	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, -2)   ",	FALSE,  +NAN,  -2); \
+} \
+
+#ifndef c_f32ldexp
+void test_f32ldexp(void)	{}
+#warning "f32ldexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(ldexp,f32,f)
+#endif
+
+#ifndef c_f64ldexp
+void test_f64ldexp(void)	{}
+#warning "f64ldexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(ldexp,f64,)
+#endif
+
+#if !defined(c_f80ldexp) || !defined(__float80)
+void test_f80ldexp(void)	{}
+#warning "f80ldexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(ldexp,f80,l)
+#endif
+
+#if !defined(c_f128ldexp) || !defined(__float128)
+void test_f128ldexp(void)	{}
+#warning "f128ldexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(ldexp,f128,l)
+#endif
+
+#ifndef c_f32scalbn
+void test_f32scalbn(void)	{}
+#warning "f32scalbn() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(scalbn,f32,f)
+#endif
+
+#ifndef c_f64scalbn
+void test_f64scalbn(void)	{}
+#warning "f64scalbn() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(scalbn,f64,)
+#endif
+
+#if !defined(c_f80scalbn) || !defined(__float80)
+void test_f80scalbn(void)	{}
+#warning "f80scalbn() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(scalbn,f80,l)
+#endif
+
+#if !defined(c_f128scalbn) || !defined(__float128)
+void test_f128scalbn(void)	{}
+#warning "f128scalbn() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(scalbn,f128,l)
+#endif
+
+
+
+#define DEFINETEST_MODF(TYPE, SUFFIX) \
+void	print_test_##TYPE##modf(char const* test_name, t_testflags flags, \
+		t_##TYPE number, t_##TYPE* integral) \
+{ \
+	TEST_INIT(TYPE) \
+	TEST_PERFORM_LIBC_MATH( TYPE, modf, SUFFIX, number, integral) \
+	TEST_PRINT(TYPE,        TYPE##modf, "%g", number) \
+} \
+void	test_##TYPE##modf(void) \
+{ \
+	t_##TYPE integral; \
+/*	| TEST FUNCTION        | TEST NAME           |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##modf(#TYPE"modf (-0.0)    ",	FALSE,  -0.0,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+0.0)    ",	FALSE,  +0.0,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-0.1)    ",	FALSE,  -0.1,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+0.1)    ",	FALSE,  +0.1,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-1e-2)   ",	FALSE,  -1e-2, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+1e-2)   ",	FALSE,  +1e-2, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-1e-9)   ",	FALSE,  -1e-9, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+1e-9)   ",	FALSE,  +1e-9, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-1.0)    ",	FALSE,  -1.0,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+1.0)    ",	FALSE,  +1.0,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-1e+2)   ",	FALSE,  -1e+2, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+1e+2)   ",	FALSE,  +1e+2, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-1e+9)   ",	FALSE,  -1e+9, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+1e+9)   ",	FALSE,  +1e+9, &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-inf)    ",	FALSE,  -INF,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+inf)    ",	FALSE,  +INF,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (-nan)    ",	FALSE,  -NAN,  &integral); \
+	print_test_##TYPE##modf(#TYPE"modf (+nan)    ",	FALSE,  +NAN,  &integral); \
+} \
+
+#ifndef c_f32modf
+void test_f32modf(void)	{}
+#warning "f32modf() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_MODF(f32,f)
+#endif
+
+#ifndef c_f64modf
+void test_f64modf(void)	{}
+#warning "f64modf() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_MODF(f64,)
+#endif
+
+#if !defined(c_f80modf) || !defined(__float80)
+void test_f80modf(void)	{}
+#warning "f80modf() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_MODF(f80,l)
+#endif
+
+#if !defined(c_f128modf) || !defined(__float128)
+void test_f128modf(void)	{}
+#warning "f128modf() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_MODF(f128,l)
+#endif
+
+
+
+#define DEFINETEST_ILOGB(TYPE, SUFFIX) \
+void	print_test_##TYPE##ilogb(char const* test_name, t_testflags flags, \
+		t_##TYPE number) \
+{ \
+	TEST_INIT(sint) \
+	TEST_PERFORM_LIBC_MATH( TYPE, ilogb, SUFFIX, number) \
+	TEST_PRINT(sint,        TYPE##ilogb, "%g", number) \
+} \
+void	test_##TYPE##ilogb(void) \
+{ \
+/*	| TEST FUNCTION         | TEST NAME          |TESTFLAG| TEST ARGS */ \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0.0)  ",	FALSE,  -0.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0.0)  ",	FALSE,  +0.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1.0)  ",	FALSE,  -1.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2.0)  ",	FALSE,  -2.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9.0)  ",	FALSE,  -9.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1.0)  ",	FALSE,  +1.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2.0)  ",	FALSE,  +2.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9.0)  ",	FALSE,  +9.0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+1) ",	FALSE,  -1e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+1) ",	FALSE,  -2e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+1) ",	FALSE,  -9e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+1) ",	FALSE,  +1e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+1) ",	FALSE,  +2e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+1) ",	FALSE,  +9e+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+2) ",	FALSE,  -1e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+2) ",	FALSE,  -2e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+2) ",	FALSE,  -9e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+2) ",	FALSE,  +1e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+2) ",	FALSE,  +2e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+2) ",	FALSE,  +9e+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+9) ",	FALSE,  -1e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+9) ",	FALSE,  -2e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+9) ",	FALSE,  -9e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+9) ",	FALSE,  +1e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+9) ",	FALSE,  +2e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+9) ",	FALSE,  +9e+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-1) ",	FALSE,  -1e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-1) ",	FALSE,  -2e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-1) ",	FALSE,  -9e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-1) ",	FALSE,  +1e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-1) ",	FALSE,  +2e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-1) ",	FALSE,  +9e-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-2) ",	FALSE,  -1e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-2) ",	FALSE,  -2e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-2) ",	FALSE,  -9e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-2) ",	FALSE,  +1e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-2) ",	FALSE,  +2e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-2) ",	FALSE,  +9e-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-9) ",	FALSE,  -1e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-9) ",	FALSE,  -2e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-9) ",	FALSE,  -9e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-9) ",	FALSE,  +1e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-9) ",	FALSE,  +2e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-9) ",	FALSE,  +9e-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-inf)  ",	FALSE,  -INF); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+inf)  ",	FALSE,  +INF); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-nan)  ",	FALSE,  -NAN); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+nan)  ",	FALSE,  +NAN); \
+} \
+
+#ifndef c_f32ilogb
+void test_f32ilogb(void)	{}
+#warning "f32ilogb() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGB(f32,f)
+#endif
+
+#ifndef c_f64ilogb
+void test_f64ilogb(void)	{}
+#warning "f64ilogb() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGB(f64,)
+#endif
+
+#if !defined(c_f80ilogb) || !defined(__float80)
+void test_f80ilogb(void)	{}
+#warning "f80ilogb() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGB(f80,l)
+#endif
+
+#if !defined(c_f128ilogb) || !defined(__float128)
+void test_f128ilogb(void)	{}
+#warning "f128ilogb() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGB(f128,l)
+#endif
+
+
+
+#define DEFINETEST_ILOGD(TYPE, SUFFIX) \
+void	print_test_##TYPE##ilogd(char const* test_name, t_testflags flags, \
+		t_sint expecting, \
+		t_##TYPE number) \
+{ \
+	TEST_INIT(sint) \
+	TEST_PERFORM(     TYPE##ilogd, number) \
+	TEST_PRINT(sint,  TYPE##ilogd, "%g", number) \
+} \
+void	test_##TYPE##ilogd(void) \
+{ \
+/*	| TEST FUNCTION        | TEST NAME               |TESTFLAG|EXPECT| TEST ARGS */ \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0.0)    ",	FALSE,   0,     -0.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0.0)    ",	FALSE,   0,     +0.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1.0)    ",	FALSE,   0,     -1.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2.0)    ",	FALSE,   0,     -2.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9.0)    ",	FALSE,   0,     -9.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1.0)    ",	FALSE,   0,     +1.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2.0)    ",	FALSE,   0,     +2.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9.0)    ",	FALSE,   0,     +9.0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+1)   ",	FALSE,  +1,     -1e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+1)   ",	FALSE,  +1,     -2e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+1)   ",	FALSE,  +1,     -9e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+1)   ",	FALSE,  +1,     +1e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+1)   ",	FALSE,  +1,     +2e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+1)   ",	FALSE,  +1,     +9e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+2)   ",	FALSE,  +2,     -1e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+2)   ",	FALSE,  +2,     -2e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+2)   ",	FALSE,  +2,     -9e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+2)   ",	FALSE,  +2,     +1e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+2)   ",	FALSE,  +2,     +2e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+2)   ",	FALSE,  +2,     +9e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+9)   ",	FALSE,  +9,     -1e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+9)   ",	FALSE,  +9,     -2e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+9)   ",	FALSE,  +9,     -9e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+9)   ",	FALSE,  +9,     +1e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+9)   ",	FALSE,  +9,     +2e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+9)   ",	FALSE,  +9,     +9e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-1)   ",	FALSE,  -1,     -1e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-1)   ",	FALSE,  -1,     -2e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-1)   ",	FALSE,  -1,     -9e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-1)   ",	FALSE,  -1,     +1e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-1)   ",	FALSE,  -1,     +2e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-1)   ",	FALSE,  -1,     +9e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-2)   ",	FALSE,  -2,     -1e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-2)   ",	FALSE,  -2,     -2e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-2)   ",	FALSE,  -2,     -9e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-2)   ",	FALSE,  -2,     +1e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-2)   ",	FALSE,  -2,     +2e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-2)   ",	FALSE,  -2,     +9e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-9)   ",	FALSE,  -9,     -1e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-9)   ",	FALSE,  -9,     -2e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-9)   ",	FALSE,  -9,     -9e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-9)   ",	FALSE,  -9,     +1e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-9)   ",	FALSE,  -9,     +2e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-9)   ",	FALSE,  -9,     +9e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-inf)    ",	FALSE, S32_MAX, -INF); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+inf)    ",	FALSE, S32_MAX, +INF); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-nan)    ",	FALSE, S32_MIN, -NAN); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+nan)    ",	FALSE, S32_MIN, +NAN); \
+} \
+
+#ifndef c_f32ilogd
+void test_f32ilogd(void)	{}
+#warning "f32ilogd() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGD(f32,f)
+#endif
+
+#ifndef c_f64ilogd
+void test_f64ilogd(void)	{}
+#warning "f64ilogd() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGD(f64,)
+#endif
+
+#if !defined(c_f80ilogd) || !defined(__float80)
+void test_f80ilogd(void)	{}
+#warning "f80ilogd() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGD(f80,l)
+#endif
+
+#if !defined(c_f128ilogd) || !defined(__float128)
+void test_f128ilogd(void)	{}
+#warning "f128ilogd() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGD(f128,l)
+#endif
+
+
+
+/*
+** ************************************************************************** *|
 **                     Convert Floating-point to Strings                      *|
 ** ************************************************************************** *|
 */
+
+
 
 #define f32_SF	"%+#.*g"
 #define f64_SF	"%+#.*lg"
@@ -1453,15 +2493,66 @@ int		testsuite_float(void)
 
 	print_nonstd();
 
-	//TODO: test_nextafter()
-	//TODO: test_copysign()
-	//TODO: test_rint()
-	//TODO: test_lrint()
-	//TODO: test_ilogb()
-	//TODO: test_frexp()
-	//TODO: test_ldexp()
-	//TODO: test_scalbn()
-	//TODO: test_modf()
+//	test_fnextafter();
+	test_f32nextafter();
+	test_f64nextafter();
+	test_f80nextafter();
+	test_f128nextafter();
+
+//	test_fcopysign();
+	test_f32copysign();
+	test_f64copysign();
+	test_f80copysign();
+	test_f128copysign();
+
+//	test_frint();
+	test_f32rint();
+	test_f64rint();
+	test_f80rint();
+	test_f128rint();
+
+//	test_flrint();
+	test_f32lrint();
+	test_f64lrint();
+	test_f80lrint();
+	test_f128lrint();
+
+//	test_ffrexp();
+	test_f32frexp();
+	test_f64frexp();
+	test_f80frexp();
+	test_f128frexp();
+
+//	test_fldexp();
+	test_f32ldexp();
+	test_f64ldexp();
+	test_f80ldexp();
+	test_f128ldexp();
+
+//	test_fscalbn();
+	test_f32scalbn();
+	test_f64scalbn();
+	test_f80scalbn();
+	test_f128scalbn();
+
+//	test_fmodf();
+	test_f32modf();
+	test_f64modf();
+	test_f80modf();
+	test_f128modf();
+
+//	test_filogb();
+	test_f32ilogb();
+	test_f64ilogb();
+	test_f80ilogb();
+	test_f128ilogb();
+
+//	test_filog();
+	test_f32ilogd();
+	test_f64ilogd();
+	test_f80ilogd();
+	test_f128ilogd();
+
 
 //	test_ftostr();
 	test_f32tostr();

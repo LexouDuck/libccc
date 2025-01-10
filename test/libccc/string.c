@@ -437,8 +437,8 @@ void	print_test_strlen(char const* test_name, t_testflags flags,
 		char const* str)
 {
 	TEST_INIT(size)
-	TEST_PERFORM_LIBC(	strlen, str)
-	TEST_PRINT(size,strlen, "str=\"%s\"", str)
+	TEST_PERFORM_LIBC( strlen, str)
+	TEST_PRINT(size,   strlen, "str=\"%s\"", str)
 }
 void	test_strlen(void)
 {
