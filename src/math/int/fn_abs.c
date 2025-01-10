@@ -12,7 +12,9 @@
 _INLINE() \
 t_s##BITS	S##BITS##_Abs(t_s##BITS a) \
 { \
-	return (ABS(a)); \
+	if CCCERROR((a == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	return (a < 0 ? -a : +a); \
 } \
 
 DEFINEFUNC_SINT_ABS(8)

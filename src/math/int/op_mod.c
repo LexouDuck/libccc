@@ -34,7 +34,7 @@ t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
 		return (S##BITS##_ERROR); \
-	return (ABS(a) % ABS(b)) * SGN(b); \
+	return (S##BITS##_Abs(a) % S##BITS##_Abs(b)) * S##BITS##_Sgn(b); \
 } \
 
 DEFINEFUNC_SINT_MOD(8)

@@ -327,12 +327,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 //!@{
 #ifndef signbit
 #define signbit(X) ( \
-	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGNED) : \
-	sizeof(X) == sizeof(double) ? (int)(bool)(AS_U64(X) & F64_SIGNED) : \
+	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGN_BIT_MASK) : \
+	sizeof(X) == sizeof(double) ? (int)(bool)(AS_U64(X) & F64_SIGN_BIT_MASK) : \
 	sizeof(X) == sizeof(long double) ? ( \
-		(LDBL_MANT_DIG ==  52) ? (int)(bool)(AS_U64( X) & F64_SIGNED) : \
-		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGNED) : \
-		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGNED) : \
+		(LDBL_MANT_DIG ==  52) ? (int)(bool)(AS_U64( X) & F64_SIGN_BIT_MASK) : \
+		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGN_BIT_MASK) : \
+		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGN_BIT_MASK) : \
 	0) : 0)
 #endif
 #ifndef SIGN_BIT
@@ -423,12 +423,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	IEEE 754 32-bit floating point "single" precision bitwise macros
 */
 //!@{
-#define F32_SIGNED			(0x80000000)			//!< A 32-bit floating-point number's sign bit (bitmask)
+#define F32_SIGN_BIT_MASK	(0x80000000)			//!< A 32-bit floating-point number's sign bit (bitmask)
 #define F32_EXPONENT_BIAS	(127)					//!< A 32-bit floating-point number's exponent bias offset
-#define F32_EXPONENT		(0x7F800000)			//!< A 32-bit floating-point number's exponent bit region (bitmask)
+#define F32_EXPONENT_MASK	(0x7F800000)			//!< A 32-bit floating-point number's exponent bit region (bitmask)
 #define F32_EXPONENT_ZERO	(0x3F800000)			//!< A 32-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F32_EXPONENT_BITS	(8)						//!< A 32-bit floating-point number's amount of bits dedicated to the exponent
-#define F32_MANTISSA		(0x007FFFFF)			//!< A 32-bit floating-point number's mantissa bit region (bitmask)
+#define F32_MANTISSA_MASK	(0x007FFFFF)			//!< A 32-bit floating-point number's mantissa bit region (bitmask)
 #define F32_MANTISSA_SIGNED	(0x807FFFFF)			//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F32_MANTISSA_BITS	(23)					//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
 #define F32_INIT_VALUE		(0x1.p-23)				//!< A 32-bit floating-point number's value if all bits are zero
@@ -444,12 +444,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	IEEE 754 64-bit floating point double-precision bitwise macros
 */
 //!@{
-#define F64_SIGNED			(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
+#define F64_SIGN_BIT_MASK	(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
 #define F64_EXPONENT_BIAS	(1023)					//!< A 64-bit floating-point number's exponent bias offset
-#define F64_EXPONENT		(0x7FF0000000000000)	//!< A 64-bit floating-point number's exponent bit region (bitmask)
+#define F64_EXPONENT_MASK	(0x7FF0000000000000)	//!< A 64-bit floating-point number's exponent bit region (bitmask)
 #define F64_EXPONENT_ZERO	(0x3FF0000000000000)	//!< A 64-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F64_EXPONENT_BITS	(11)					//!< A 64-bit floating-point number's amount of bits dedicated to the exponent
-#define F64_MANTISSA		(0x000FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa bit region (bitmask)
+#define F64_MANTISSA_MASK	(0x000FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa bit region (bitmask)
 #define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
@@ -465,12 +465,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	x86 80-bit floating point extended precision bitwise macros
 */
 //!@{
-#define F80_SIGNED			(0x80000000000000000000l)	//!< A 80-bit floating-point number's sign bit (bitmask)
+#define F80_SIGN_BIT_MASK	(0x80000000000000000000l)	//!< A 80-bit floating-point number's sign bit (bitmask)
 #define F80_EXPONENT_BIAS	(16383)						//!< A 80-bit floating-point number's exponent bias offset
-#define F80_EXPONENT		(0x7FFF0000000000000000l)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
+#define F80_EXPONENT_MASK	(0x7FFF0000000000000000l)	//!< A 80-bit floating-point number's exponent bit region (bitmask)
 #define F80_EXPONENT_ZERO	(0x3FFF0000000000000000l)	//!< A 80-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F80_EXPONENT_BITS	(15)						//!< A 80-bit floating-point number's amount of bits dedicated to the exponent
-#define F80_MANTISSA		(0x0000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
+#define F80_MANTISSA_MASK	(0x0000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa bit region (bitmask)
 #define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F80_MANTISSA_BITS	(63)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
 #define F80_INIT_VALUE		(0x1.p-63)					//!< A 80-bit floating-point number's value if all bits are zero
@@ -486,12 +486,12 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	IEEE 754 128-bit floating point quadruple-precision bitwise macros
 */
 //!@{
-#define F128_SIGNED				(0x80000000000000000000000000000000l)	//!< A 128-bit floating-point number's sign bit (bitmask)
+#define F128_SIGN_BIT_MASK		(0x80000000000000000000000000000000l)	//!< A 128-bit floating-point number's sign bit (bitmask)
 #define F128_EXPONENT_BIAS		(16383)									//!< A 128-bit floating-point number's exponent bias offset
-#define F128_EXPONENT			(0x7FFF0000000000000000000000000000l)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
+#define F128_EXPONENT_MASK		(0x7FFF0000000000000000000000000000l)	//!< A 128-bit floating-point number's exponent bit region (bitmask)
 #define F128_EXPONENT_ZERO		(0x3FFF0000000000000000000000000000l)	//!< A 128-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
 #define F128_EXPONENT_BITS		(15)									//!< A 128-bit floating-point number's amount of bits dedicated to the exponent
-#define F128_MANTISSA			(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
+#define F128_MANTISSA_MASK		(0x0000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa bit region (bitmask)
 #define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
 #define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero

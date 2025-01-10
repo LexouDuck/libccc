@@ -147,7 +147,7 @@ t_f32	F32_Cos(t_f32 x)
 		}
 	}
 	/* cos(Inf or NaN) is NaN */
-	if (ix >= F32_EXPONENT)
+	if (ix >= F32_EXPONENT_MASK)
 		return x - x;
 	/* general argument reduction needed */
 	n = __rem_pi2_f32(x, &y);

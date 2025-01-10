@@ -19,7 +19,7 @@ t_f##BITS	F##BITS##_Round(t_f##BITS x) \
 	t_sint e; \
 	u_cast_f##BITS cast; \
 	cast.value_float = x; \
-	e = (cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS; \
+	e = (cast.value_uint & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
 	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
 		return x; \
 	if (cast.value_uint >> (BITS - 1)) \

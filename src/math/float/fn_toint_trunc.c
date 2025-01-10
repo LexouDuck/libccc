@@ -16,7 +16,7 @@ t_f##BITS	F##BITS##_Trunc(t_f##BITS x) \
 { \
 	t_u##BITS mantissa; \
 	u_cast_f##BITS cast = {x}; \
-	t_s##BITS e = (t_s##BITS)(cast.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS)) - \
+	t_s##BITS e = (t_s##BITS)(cast.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
 			(F##BITS##_EXPONENT_ZERO >> F##BITS##_MANTISSA_BITS) + (F##BITS##_EXPONENT_BITS + 1); \
 	if (e >= F##BITS##_MANTISSA_BITS + (F##BITS##_EXPONENT_BITS + 1)) \
 		return x; \

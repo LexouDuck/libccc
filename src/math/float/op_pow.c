@@ -205,7 +205,7 @@ int F32_checkint(t_u32 iy)
 static inline
 int F32_zeroinfnan(t_u32 ix)
 {
-	return 2 * ix - 1 >= 2u * F32_EXPONENT - 1;
+	return 2 * ix - 1 >= 2u * F32_EXPONENT_MASK - 1;
 }
 
 t_f32	F32_Pow(t_f32 x, t_f32 y)
@@ -215,7 +215,7 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 
 	ix = AS_U32(x);
 	iy = AS_U32(y);
-	if (predict_false(ix - 0x00800000 >= F32_EXPONENT - 0x00800000 || F32_zeroinfnan(iy)))
+	if (predict_false(ix - 0x00800000 >= F32_EXPONENT_MASK - 0x00800000 || F32_zeroinfnan(iy)))
 	{
 		/* Either (x < 0x1p-126 or inf or nan) or (y is 0 or inf or nan). */
 		if (predict_false(F32_zeroinfnan(iy)))
@@ -224,24 +224,24 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 				return issignalingf_inline(x) ? x + y : 1.0f;
 			if (ix == F32_EXPONENT_ZERO)
 				return issignalingf_inline(y) ? x + y : 1.0f;
-			if (2 * ix > 2u * F32_EXPONENT || 2 * iy > 2u * F32_EXPONENT)
+			if (2 * ix > 2u * F32_EXPONENT_MASK || 2 * iy > 2u * F32_EXPONENT_MASK)
 				return x + y;
 			if (2 * ix == 2 * F32_EXPONENT_ZERO)
 				return 1.0f;
-			if ((2 * ix < 2 * F32_EXPONENT_ZERO) == !(iy & F32_SIGNED))
+			if ((2 * ix < 2 * F32_EXPONENT_ZERO) == !(iy & F32_SIGN_BIT_MASK))
 				return 0.0f; /* |x|<1 && y==inf or |x|>1 && y==-inf. */
 			return y * y;
 		}
 		if (predict_false(F32_zeroinfnan(ix)))
 		{
 			t_f32 x2 = x * x;
-			if (ix & F32_SIGNED && F32_checkint(iy) == 1)
+			if (ix & F32_SIGN_BIT_MASK && F32_checkint(iy) == 1)
 				x2 = -x2;
 			/* Without the barrier some versions of clang hoist the 1/x2 and thus division by zero exception can be signaled spuriously. */
-			return iy & F32_SIGNED ? /*fp_barrierf*/(1 / x2) : x2;
+			return iy & F32_SIGN_BIT_MASK ? /*fp_barrierf*/(1 / x2) : x2;
 		}
 		/* x and y are non-zero finite. */
-		if (ix & F32_SIGNED)
+		if (ix & F32_SIGN_BIT_MASK)
 		{
 			/* Finite x < 0. */
 			int yint = F32_checkint(iy);
@@ -249,13 +249,13 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 				return __math_invalidf(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
-			ix &= ~F32_SIGNED;
+			ix &= ~F32_SIGN_BIT_MASK;
 		}
 		if (ix < 0x00800000)
 		{
 			/* Normalize subnormal x so exponent becomes negative. */
 			ix = AS_U32(x * 0x1p23f);
-			ix &= ~F32_SIGNED;
+			ix &= ~F32_SIGN_BIT_MASK;
 			ix -= 23 << 23;
 		}
 	}
@@ -595,7 +595,7 @@ t_f64 F64_Pow_specialcase(t_f64 tmp, t_u64 sbits, t_u64 ki)
 		y = (t_f64)(hi + lo) - one;
 		/* Fix the sign of 0. */
 		if (y == 0.0)
-			y = AS_F64(sbits & F64_SIGNED);
+			y = AS_F64(sbits & F64_SIGN_BIT_MASK);
 		/* The underflow exception needs to be signaled explicitly. */
 		/*FORCE_EVAL(fp_barrier(0x1p-1022) * 0x1p-1022);*/
 	}
@@ -757,7 +757,7 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 				return __math_invalid(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
-			ix &= ~F64_SIGNED;
+			ix &= ~F64_SIGN_BIT_MASK;
 			topx &= 0x7FF;
 		}
 		if ((topy & 0x7FF) - 0x3BE >= 0x43E - 0x3BE)
@@ -781,7 +781,7 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 		{
 			/* Normalize subnormal x so exponent becomes negative. */
 			ix = AS_U64(x * 0x1p52);
-			ix &= ~F64_SIGNED;
+			ix &= ~F64_SIGN_BIT_MASK;
 			ix -= 52ULL << 52;
 		}
 	}

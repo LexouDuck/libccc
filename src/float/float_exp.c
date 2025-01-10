@@ -14,7 +14,7 @@ t_sint	F##BITS##_GetExp2(t_f##BITS number) \
 { \
 	u_cast_f##BITS	cast; \
 	cast.value_float = number; \
-	return (((cast.value_uint & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS); \
+	return (((cast.value_uint & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS); \
 } \
 
 #else
@@ -27,7 +27,7 @@ t_sint	F##BITS##_GetExp2(t_f##BITS x) \
 { \
 	union {t_f##BITS f; t_u##BITS i;} u = {x}; \
 	t_u##BITS i = u.i; \
-	int e = (i & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS; \
+	int e = (i & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
  \
 	if (IS_NAN(x))	return (S32_MIN); \
 	if (IS_INF(x))	return (S32_MAX); \

@@ -48,7 +48,7 @@ DEFINEFUNC_FLOAT_INVCOSH(128)
 t_f32	F32_InvCosH(t_f32 x)
 {
 	union {t_f32 f; t_u32 i;} u = {x};
-	int e = (u.i & F32_EXPONENT) >> F32_MANTISSA_BITS;
+	int e = (u.i & F32_EXPONENT_MASK) >> F32_MANTISSA_BITS;
 
 	if (e & (1 << F32_EXPONENT_BITS))
 		/* x < 0 or x = -0, invalid */
@@ -66,7 +66,7 @@ t_f32	F32_InvCosH(t_f32 x)
 t_f64	F64_InvCosH(t_f64 x)
 {
 	union {t_f64 f; t_u64 i;} u = {x};
-	int e = (u.i & F64_EXPONENT) >> F64_MANTISSA_BITS;
+	int e = (u.i & F64_EXPONENT_MASK) >> F64_MANTISSA_BITS;
 
 	if (x < 0) // if (e & (1 << F64_EXPONENT_BITS))
 		/* x < 0 or x = -0, invalid */

@@ -17,7 +17,7 @@ t_f##BITS	F##BITS##_Ceil(t_f##BITS x) \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \
 	t_f##BITS y; \
 	u_cast_f##BITS cast = {x}; \
-	int e = cast.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS); \
+	int e = cast.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS); \
 	if (e >= (F##BITS##_EXPONENT_ZERO >> F##BITS##_MANTISSA_BITS) + F##BITS##_MANTISSA_BITS || x == 0) \
 		return x; \
 	/* y = int(x) - x, where int(x) is an integer neighbor of x */ \

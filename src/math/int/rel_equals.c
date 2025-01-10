@@ -59,8 +59,8 @@ DEFINEFUNC_SINT_EQUALS(128)
 _INLINE() \
 t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b) \
 { \
-	t_s##BITS abs_a = ABS(a); \
-	t_s##BITS abs_b = ABS(b); \
+	t_s##BITS abs_a = S##BITS##_Abs(a); \
+	t_s##BITS abs_b = S##BITS##_Abs(b); \
 	return (ABS(a - b) <= MAX(abs_a, abs_b) * SINT_APPROX); \
 } \
 

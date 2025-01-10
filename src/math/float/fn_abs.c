@@ -16,7 +16,7 @@ t_f##BITS	F##BITS##_Abs(t_f##BITS x) \
 { \
 	u_cast_f##BITS	result; \
 	result.value_float = x; \
-	result.value_uint &= ~F##BITS##_SIGNED; \
+	result.value_uint &= ~F##BITS##_SIGN_BIT_MASK; \
 	return (result.value_float); \
 } \
 

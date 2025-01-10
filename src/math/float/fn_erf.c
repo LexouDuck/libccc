@@ -495,7 +495,7 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 { \
 	t_f##BITS r,s,x2,y; \
 	t_f##BITS abs_x = F##BITS##_Abs(x); \
-	t_bool sign = (x < 0); /* F##BITS##_SIGNED >> (BITS - 1); */ \
+	t_bool sign = (x < 0); /* F##BITS##_SIGN_BIT_MASK >> (BITS - 1); */ \
 	if (IS_NAN(x) || IS_INF(x)) \
 	{	/* erf(nan)=nan, erf(+-inf)=+-1 */ \
 		return (1 - 2 * SGN(x) + 1 / x); \
@@ -530,7 +530,7 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 { \
 	t_f##BITS r,s,x2,y; \
 	t_f##BITS abs_x = F##BITS##_Abs(x); \
-	t_bool sign = (x < 0); /* F##BITS##_SIGNED >> (BITS - 1); */ \
+	t_bool sign = (x < 0); /* F##BITS##_SIGN_BIT_MASK >> (BITS - 1); */ \
 	if (IS_NAN(x) || IS_INF(x)) \
 	{ \
 		return (2 * SGN(x) + 1 / x); \

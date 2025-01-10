@@ -150,7 +150,7 @@ t_f32	F32_Sin(t_f32 x)
 			return +__sin_f32(sign ? (x + s4pio2) : (x - s4pio2));
 	}
 	/* sin(Inf or NaN) is NaN */
-	if (ix >= F32_EXPONENT)
+	if (ix >= F32_EXPONENT_MASK)
 		return x - x;
 	/* general argument reduction needed */
 	n = __rem_pi2_f32(x, &y);

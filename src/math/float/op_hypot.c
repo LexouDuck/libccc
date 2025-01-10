@@ -70,9 +70,9 @@ t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
 	x = ux.value_float; \
 	y = uy.value_float; \
 	/* note: hypot(inf,nan) == inf */ \
-	if (ey == (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS)) \
+	if (ey == (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) \
 		return y; \
-	if (ex == (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS) || uy.value_uint == 0) \
+	if (ex == (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS) || uy.value_uint == 0) \
 		return x; \
 	/* note: hypot(x,y) ~= x + y*y/x/2 with inexact for small y/x */ \
 	/* 64 difference is enough for ld80 t_f64 */ \

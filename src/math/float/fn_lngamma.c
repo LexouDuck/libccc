@@ -273,8 +273,8 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 	/* purge off +-inf, NaN, +-0, tiny and negative arguments */
 	*signgamp = 1;
 	sign = (u.i >> 31);
-	ix = u.i & ~F32_SIGNED;
-	if (ix >= F32_EXPONENT)
+	ix = u.i & ~F32_SIGN_BIT_MASK;
+	if (ix >= F32_EXPONENT_MASK)
 		return x*x;
 	if (ix < 0x35000000) /* |x| < 2**-21, return -log(|x|) */
 	{

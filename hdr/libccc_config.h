@@ -185,7 +185,7 @@ HEADER_CPP
 **	This macro sets what value is returned when a function which returns a fixed-point number has an error
 **	NOTE: The value for the macro #FIXED_ERROR depends on this setting
 **	There are 2 possible values for this setting:
-**	- `0`	Will return `0`: this mimics how the C standard library works (even though there is no std fixed-point type in stdlib)
+**	- `0`	Will return `0`: this mimics how the C standard library works (even though there is no fixed-point type in stdlib)
 **	- `1`	Will use the smallest representable fixed-point value for the bitsize in question
 **		NB: When using this option, the #FIXED_MIN macros will be different !
 **			For example, `Q16_MIN` will become `-0x7FFF`, rather than the usual `-0x8000`

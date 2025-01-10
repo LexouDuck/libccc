@@ -33,9 +33,9 @@ t_f##BITS	F##BITS##_NextAfter(t_f##BITS x, t_f##BITS y) \
 	else \
 		ux.value_uint++; \
 	/* t_s##BITS e; */ \
-	/* e = ux.value_uint & F##BITS##_EXPONENT; */ \
+	/* e = ux.value_uint & F##BITS##_EXPONENT_MASK; */ \
 	/* // raise overflow if ux.value_float is infinite and x is finite */ \
-	/* if (e == F##BITS##_EXPONENT)	FORCE_EVAL(x + x); */ \
+	/* if (e == F##BITS##_EXPONENT_MASK)	FORCE_EVAL(x + x); */ \
 	/* // raise underflow if ux.value_float is subnormal or zero */ \
 	/* if (e == 0)	FORCE_EVAL(x * x + ux.value_float * ux.value_float); */ \
 	return (ux.value_float); \

@@ -34,7 +34,7 @@ t_s##BITS	S##BITS##_Rem(t_s##BITS a, t_s##BITS b) \
 { \
 	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
 		return (S##BITS##_ERROR); \
-	return (ABS(a) % ABS(b)) * SGN(a); \
+	return (S##BITS##_Abs(a) % S##BITS##_Abs(b)) * S##BITS##_Sgn(a); \
 } \
 
 DEFINEFUNC_SINT_REM(8)

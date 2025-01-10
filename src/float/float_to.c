@@ -67,7 +67,7 @@ t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \
 { \
 	t_u##BITS mask; \
 	u_cast_f##BITS u = {x}; \
-	t_sint e = (t_sint)(u.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT >> F##BITS##_MANTISSA_BITS)) - \
+	t_sint e = (t_sint)(u.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
 		(F##BITS##_EXPONENT_ZERO >> F##BITS##_MANTISSA_BITS); \
 	/* no fractional part */ \
 	if (e >= F##BITS##_MANTISSA_BITS) \
@@ -120,8 +120,8 @@ t_f##BITS F##BITS##_CopySign(t_f##BITS x, t_f##BITS y) \
 	u_cast_f##BITS cast_y; \
 	cast_x.value_float = x; \
 	cast_y.value_float = y; \
-	cast_x.value_uint &= ~F##BITS##_SIGNED; \
-	cast_x.value_uint |= cast_y.value_uint & F##BITS##_SIGNED; \
+	cast_x.value_uint &= ~F##BITS##_SIGN_BIT_MASK; \
+	cast_x.value_uint |= cast_y.value_uint & F##BITS##_SIGN_BIT_MASK; \
 	return (cast_x.value_float); \
 }
 

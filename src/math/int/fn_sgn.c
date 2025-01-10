@@ -12,7 +12,9 @@
 _INLINE() \
 t_s##BITS	S##BITS##_Sgn(t_s##BITS a) \
 { \
-	return (SGN(a)); \
+	if CCCERROR((a == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	return (a == 0 ? 0 : (a < 0 ? -1 : +1)); \
 } \
 
 DEFINEFUNC_SINT_SGN(8)

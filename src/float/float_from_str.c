@@ -116,7 +116,7 @@ t_bool	Float_Parse_CheckInvalid(t_char const* str)
 
 #define ASSEMBLE_FLOAT_SIMPLE(BITS) \
 	mantissa &= F##BITS##_MANTISSA_SIGNED; \
-	mantissa |= F##BITS##_EXPONENT & ((t_uintmax) \
+	mantissa |= F##BITS##_EXPONENT_MASK & ((t_uintmax) \
 		(exponent + F##BITS##_EXPONENT_BIAS) << F##BITS##_MANTISSA_BITS); \
 	Memory_Copy(&result, &mantissa, sizeof(result)); \
 
