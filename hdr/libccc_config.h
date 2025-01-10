@@ -368,16 +368,6 @@ HEADER_CPP
 
 
 
-//!@doc Whether or not libccc should use the very approximate fast math function implementations (beware, the error margin is quite large).
-//!@{
-#ifndef LIBCONFIG_USE_CCC_MATH
-#define LIBCONFIG_USE_CCC_MATH	0
-#endif
-#if (LIBCONFIG_USE_CCC_MATH != 0) && (LIBCONFIG_USE_CCC_MATH != 1)
-#error "Invalid value selected for LIBCONFIG_USE_CCC_MATH, must be either 0 or 1"
-#endif
-//!@}
-
 //!@doc Whether or not libccc should use the builtin math calls or its own math functions (most of which are from OpenBSD).
 /*!
 **	This macro determines which math function implementations should be used.
@@ -388,10 +378,20 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH	0
+#define LIBCONFIG_USE_STD_MATH	1
 #endif
 #if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
 #error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Whether or not libccc should use the very approximate fast math function implementations (this is not recommended, because the functions havent been tested enough, and their error margin is quite large).
+//!@{
+#ifndef LIBCONFIG_USE_CCC_MATH
+#define LIBCONFIG_USE_CCC_MATH	0
+#endif
+#if (LIBCONFIG_USE_CCC_MATH != 0) && (LIBCONFIG_USE_CCC_MATH != 1)
+#error "Invalid value selected for LIBCONFIG_USE_CCC_MATH, must be either 0 or 1"
 #endif
 //!@}
 

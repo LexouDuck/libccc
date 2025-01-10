@@ -5,7 +5,6 @@
 #include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -171,6 +170,8 @@ t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision) \
 			if (n == 0 && number != 0) \
 				digits[i++] = '0'; \
 	} \
+	if (n % 10 >= 5) \
+		digits[i - 1] += 1; \
 	result = (t_char*)Memory_Allocate(i + 2); \
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) \
 		return (NULL); \

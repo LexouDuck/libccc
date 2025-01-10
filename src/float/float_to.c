@@ -18,11 +18,11 @@ _INLINE() t_f128  F128_SplitExp (t_f128 a, t_sint* b)   { int tmp;	t_f128 result
 #endif
 
 #else
-#define DEFINEFUNC_FLOAT_SPLITEXT(BITS, MASK, LSHIFT) \
+#define DEFINEFUNC_FLOAT_SPLITEXT(BITS) \
 t_f##BITS	F##BITS##_SplitExp(t_f##BITS x, t_sint* exponent) \
 { \
 	u_cast_f##BITS y = {x}; \
-	t_sint ee = y.value_uint >> F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	t_sint ee = (y.value_uint >> F##BITS##_MANTISSA_BITS) & (((t_sint)1 << F##BITS##_EXPONENT_BITS) - 1); \
 	if (!ee) \
 	{ \
 		if (x) \
@@ -37,19 +37,19 @@ t_f##BITS	F##BITS##_SplitExp(t_f##BITS x, t_sint* exponent) \
 	{ \
 		return (x); \
 	} \
-	*exponent = ee - MASK; \
+	*exponent = ee - (((t_sint)1 << (F##BITS##_EXPONENT_BITS - 1)) - 1); \
 	y.value_uint &= (t_u##BITS)F##BITS##_MANTISSA_SIGNED; \
-	y.value_uint |= (t_u##BITS)MASK << LSHIFT; \
+	y.value_uint |= (t_u##BITS)F##BITS##_EXPONENT_ZERO - ((t_u##BITS)1 << F##BITS##_MANTISSA_BITS); \
 	return (y.value_float); \
 } \
 
-DEFINEFUNC_FLOAT_SPLITEXT(32, 0x7E, 24)
-DEFINEFUNC_FLOAT_SPLITEXT(64, 0x3FE, 52)
+DEFINEFUNC_FLOAT_SPLITEXT(32)
+DEFINEFUNC_FLOAT_SPLITEXT(64)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_SPLITEXT(80, 0x3FFE, 64)
+DEFINEFUNC_FLOAT_SPLITEXT(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_SPLITEXT(128, 0x3FFE, 112)
+DEFINEFUNC_FLOAT_SPLITEXT(128)
 #endif
 
 #endif

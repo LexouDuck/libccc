@@ -59,48 +59,47 @@ __data_log10_f32 =
 t_f32	F32_Log10(t_f32 x)
 {
 	union {t_f32 f; t_u32 i;} u = {x};
-	t_f32 hfsq,f,s,z,R,w,t1,t2,dk,hi,lo;
+	t_f32 hfsq,f,s,s2,s4,R,t1,t2,dk,hi,lo;
 	t_u32 ix;
 	int k;
 
 	ix = u.i;
 	k = 0;
-	if (ix < 0x00800000 || ix>>31) /* x < 2**-126  */
+	if (ix < 0x00800000 || ix >> 31) /* x < 2**-126  */
 	{
-		if (ix<<1 == 0)
-			return -1/(x*x); /* log(+-0)=-inf */
-		if (ix>>31)
-			return (x-x)/0.0f; /* log(-#) = NaN */
+		if (ix << 1 == 0)
+			return -1 / (x * x); /* log(+-0)=-inf */
+		if (ix >> 31)
+			return (x - x) / 0.0f; /* log(-#) = NaN */
 		/* subnormal number, scale up x */
 		k -= 25;
 		x *= 0x1p25f;
 		u.f = x;
 		ix = u.i;
 	}
-	else if (ix >= 0x7f800000)
+	else if (ix >= 0x7F800000)
 		return x;
-	else if (ix == 0x3f800000)
+	else if (ix == 0x3F800000)
 		return 0;
-
 	/* reduce x into [sqrt(2)/2, sqrt(2)] */
-	ix += 0x3f800000 - 0x3f3504f3;
-	k += (int)(ix>>23) - 0x7f;
-	ix = (ix&0x007fffff) + 0x3f3504f3;
+	ix += 0x3F800000 - 0x3F3504F3;
+	k += (int)(ix >> 23) - 0x7F;
+	ix = (ix & 0x007FFFFF) + 0x3F3504F3;
 	u.i = ix;
 	x = u.f;
 
 	f = x - 1.0f;
 	s = f / (2.0f + f);
-	z = s * s;
-	w = z * z;
-	t1= w * (__data_log10_f32.lg[2] + w * __data_log10_f32.lg[4]);
-	t2= z * (__data_log10_f32.lg[1] + w * __data_log10_f32.lg[3]);
+	s2 = s * s;
+	s4 = s2 * s2;
+	t1= s4 * (__data_log10_f32.lg[2] + s4 * __data_log10_f32.lg[4]);
+	t2= s2 * (__data_log10_f32.lg[1] + s4 * __data_log10_f32.lg[3]);
 	R = t2 + t1;
-	hfsq = 0.5f * f*f;
+	hfsq = 0.5f * f * f;
 
 	hi = f - hfsq;
 	u.f = hi;
-	u.i &= 0xfffff000;
+	u.i &= 0xFFFFF000;
 	hi = u.f;
 	lo = f - hi - hfsq + s * (hfsq + R);
 	dk = k;
@@ -152,43 +151,43 @@ __data_log10_f64 =
 t_f64	F64_Log10(t_f64 x)
 {
 	union {t_f64 f; t_u64 i;} u = {x};
-	t_f64 hfsq,f,s,z,R,w,t1,t2,dk,y,hi,lo,val_hi,val_lo;
+	t_f64 hfsq,f,s,s2,s4,w,R,t1,t2,dk,y,hi,lo,val_hi,val_lo;
 	t_u32 hx;
 	int k;
 
 	hx = u.i>>32;
 	k = 0;
-	if (hx < 0x00100000 || hx>>31)
+	if (hx < 0x00100000 || hx >> 31)
 	{
-		if (u.i<<1 == 0)
-			return -1/(x*x); /* log(+-0)=-inf */
-		if (hx>>31)
-			return (x-x)/0.0; /* log(-#) = NaN */
+		if (u.i << 1 == 0)
+			return -1 / (x * x); /* log(+-0)=-inf */
+		if (hx >> 31)
+			return (x - x) / 0.0; /* log(-#) = NaN */
 		/* subnormal number, scale x up */
 		k -= 54;
 		x *= 0x1p54;
 		u.f = x;
 		hx = u.i>>32;
 	}
-	else if (hx >= 0x7ff00000)
+	else if (hx >= 0x7FF00000)
 		return x;
-	else if (hx == 0x3ff00000 && u.i<<32 == 0)
+	else if (hx == 0x3FF00000 && u.i << 32 == 0)
 		return 0;
 
 	/* reduce x into [sqrt(2)/2, sqrt(2)] */
-	hx += 0x3ff00000 - 0x3fe6a09e;
-	k += (int)(hx>>20) - 0x3ff;
-	hx = (hx&0x000fffff) + 0x3fe6a09e;
-	u.i = (t_u64)hx<<32 | (u.i&0xffffffff);
+	hx += 0x3FF00000 - 0x3FE6A09E;
+	k += (int)(hx >> 20) - 0x3FF;
+	hx = (hx & 0x000FFFFF) + 0x3FE6A09E;
+	u.i = (t_u64)hx << 32 | (u.i & 0xFFFFFFFF);
 	x = u.f;
 
 	f = x - 1.0;
-	hfsq = 0.5*f*f;
-	s = f/(2.0+f);
-	z = s*s;
-	w = z*z;
-	t1 = w*(__data_log10_f64.lg[2]+w*(__data_log10_f64.lg[4]+w*__data_log10_f64.lg[6]));
-	t2 = z*(__data_log10_f64.lg[1]+w*(__data_log10_f64.lg[3]+w*(__data_log10_f64.lg[5]+w*__data_log10_f64.lg[7])));
+	hfsq = 0.5 * f * f;
+	s = f / (2.0 + f);
+	s2 = s * s;
+	s4 = s2 * s2;
+	t1 = s4 * (__data_log10_f64.lg[2] + s4 * (__data_log10_f64.lg[4] + s4 * __data_log10_f64.lg[6]));
+	t2 = s2 * (__data_log10_f64.lg[1] + s4 * (__data_log10_f64.lg[3] + s4 * (__data_log10_f64.lg[5] + s4 * __data_log10_f64.lg[7])));
 	R = t2 + t1;
 
 	/* See log2.c for details. */

@@ -637,31 +637,41 @@ typedef union cast_float
 */
 //!@{
 #define					Float_From	CONCAT(FLOAT_TYPE,_From)
-#define c_tof			Float_From
 #define c_ldexp			Float_From
 #define c_scalbn		Float_From
+#define c_fldexp		Float_From
+#define c_fscalbn		Float_From
+#define c_tof			Float_From
 
 t_f32					F32_From(t_f32 mantissa, t_sint exponent);
-#define c_tof32			F32_From
 #define c_ldexpf		F32_From
 #define c_scalbnf		F32_From
+#define c_f32ldexp		F32_From
+#define c_f32scalbn		F32_From
+#define c_tof32			F32_From
 
 t_f64					F64_From(t_f64 mantissa, t_sint exponent);
-#define c_tof64			F64_From
 #define c_ldexpd		F64_From
 #define c_scalbnd		F64_From
+#define c_f64ldexp		F64_From
+#define c_f64scalbn		F64_From
+#define c_tof64			F64_From
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_From(t_f80 mantissa, t_sint exponent);
-#define c_tof80			F80_From
 #define c_ldexpl		F80_From
 #define c_scalbnl		F80_From
+#define c_f80ldexp		F80_From
+#define c_f80scalbn		F80_From
+#define c_tof80			F80_From
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_From(t_f128 mantissa, t_sint exponent);
-#define c_tof128		F128_From
 #define c_ldexpl		F128_From
 #define c_scalbnl		F128_From
+#define c_f128ldexp		F128_From
+#define c_f128scalbn	F128_From
+#define c_tof128		F128_From
 #endif
 //!@}
 
@@ -792,25 +802,30 @@ t_f128	 				F128_FromFloat(t_float number);
 //!@{
 #define					Float_SplitExp	CONCAT(FLOAT_TYPE,_SplitExp)
 #define c_frexp			Float_SplitExp
-#define c_fsplitext		Float_SplitExp
+#define c_ffrexp		Float_SplitExp
+#define c_fsplitexp		Float_SplitExp
 
 t_f32					F32_SplitExp(t_f32 number, t_sint* exponent);
 #define c_frexpf		F32_SplitExp
-#define c_f32splitext	F32_SplitExp
+#define c_f32frexp		F32_SplitExp
+#define c_f32splitexp	F32_SplitExp
 
 t_f64					F64_SplitExp(t_f64 number, t_sint* exponent);
 #define c_frexpd		F64_SplitExp
-#define c_f64splitext	F64_SplitExp
+#define c_f64frexp		F64_SplitExp
+#define c_f64splitexp	F64_SplitExp
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_SplitExp(t_f80 number, t_sint* exponent);
 #define c_frexpl		F80_SplitExp
-#define c_f80splitext	F80_SplitExp
+#define c_f80frexp		F80_SplitExp
+#define c_f80splitexp	F80_SplitExp
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_SplitExp(t_f128 number, t_sint* exponent);
 #define c_frexpl		F128_SplitExp
-#define c_f128splitext	F128_SplitExp
+#define c_f128frexp		F128_SplitExp
+#define c_f128splitexp	F128_SplitExp
 #endif
 //!@}
 
@@ -823,24 +838,29 @@ t_f128					F128_SplitExp(t_f128 number, t_sint* exponent);
 //!@{
 #define					Float_SplitInt	CONCAT(FLOAT_TYPE,_SplitInt)
 #define c_modf	 		Float_SplitInt
-#define c_splitint 		Float_SplitInt
+#define c_fmodf	 		Float_SplitInt
+#define c_fsplitint		Float_SplitInt
 
 t_f32					F32_SplitInt(t_f32 number, t_f32* integral);
 #define c_modff 		F32_SplitInt
+#define c_f32modf 		F32_SplitInt
 #define c_f32splitint	F32_SplitInt
 
 t_f64					F64_SplitInt(t_f64 number, t_f64* integral);
 #define c_modfd 		F64_SplitInt
+#define c_f64modf 		F64_SplitInt
 #define c_f64splitint	F64_SplitInt
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_SplitInt(t_f80 number, t_f80* integral);
 #define c_modfl 		F80_SplitInt
+#define c_f80modf 		F80_SplitInt
 #define c_f80splitint	F80_SplitInt
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_SplitInt(t_f128 number, t_f128* integral);
 #define c_modfl 		F128_SplitInt
+#define c_f128modf 		F128_SplitInt
 #define c_f128splitint	F128_SplitInt
 #endif
 //!@}
@@ -854,24 +874,25 @@ t_f128					F128_SplitInt(t_f128 number, t_f128* integral);
 //!@{
 #define					Float_CopySign	CONCAT(FLOAT_TYPE,_CopySign)
 #define c_copysign		Float_CopySign
+#define c_fcopysign		Float_CopySign
 
 t_f32					F32_CopySign(t_f32 target, t_f32 source);
-#define c_f32copysign	F32_CopySign
 #define c_copysignf		F32_CopySign
+#define c_f32copysign	F32_CopySign
 
 t_f64					F64_CopySign(t_f64 target, t_f64 source);
-#define c_f64copysign	F64_CopySign
 #define c_copysignd		F64_CopySign
+#define c_f64copysign	F64_CopySign
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_CopySign(t_f80 target, t_f80 source);
-#define c_f80copysign	F80_CopySign
 #define c_copysignl		F80_CopySign
+#define c_f80copysign	F80_CopySign
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_CopySign(t_f128 target, t_f128 source);
-#define c_f128copysign	F128_CopySign
 #define c_copysignl		F128_CopySign
+#define c_f128copysign	F128_CopySign
 #endif
 //!@}
 
@@ -884,24 +905,25 @@ t_f128					F128_CopySign(t_f128 target, t_f128 source);
 //!@{
 #define					Float_NextAfter	CONCAT(FLOAT_TYPE,_NextAfter)
 #define c_nextafter		Float_NextAfter
+#define c_fnextafter	Float_NextAfter
 
 t_f32					F32_NextAfter(t_f32 number, t_f32 toward);
-#define c_f32nextafter	F32_NextAfter
 #define c_nextafterf	F32_NextAfter
+#define c_f32nextafter	F32_NextAfter
 
 t_f64					F64_NextAfter(t_f64 number, t_f64 toward);
-#define c_f64nextafter	F64_NextAfter
 #define c_nextafterd	F64_NextAfter
+#define c_f64nextafter	F64_NextAfter
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_NextAfter(t_f80 number, t_f80 toward);
-#define c_f80nextafter	F80_NextAfter
 #define c_nextafterl	F80_NextAfter
+#define c_f80nextafter	F80_NextAfter
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_NextAfter(t_f128 number, t_f128 toward);
-#define c_f128nextafter	F128_NextAfter
 #define c_nextafterl	F128_NextAfter
+#define c_f128nextafter	F128_NextAfter
 #endif
 //!@}
 
@@ -913,25 +935,36 @@ t_f128					F128_NextAfter(t_f128 number, t_f128 toward);
 */
 //!@{
 #define					Float_NearbyInt	CONCAT(FLOAT_TYPE,_NearbyInt)
+#define c_rint			Float_NearbyInt
 #define c_nearbyint		Float_NearbyInt
+#define c_frint			Float_NearbyInt
+#define c_fnearbyint	Float_NearbyInt
 
 t_f32					F32_NearbyInt(t_f32 number);
-#define c_f32nearbyint	F32_NearbyInt
+#define c_rintf			F32_NearbyInt
 #define c_nearbyintf	F32_NearbyInt
+#define c_f32rint		F32_NearbyInt
+#define c_f32nearbyint	F32_NearbyInt
 
 t_f64					F64_NearbyInt(t_f64 number);
-#define c_f64nearbyint	F64_NearbyInt
+#define c_rintd			F64_NearbyInt
 #define c_nearbyintd	F64_NearbyInt
+#define c_f64rint		F64_NearbyInt
+#define c_f64nearbyint	F64_NearbyInt
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80					F80_NearbyInt(t_f80 number);
-#define c_f80nearbyint	F80_NearbyInt
+#define c_rintl			F80_NearbyInt
 #define c_nearbyintl	F80_NearbyInt
+#define c_f80rint		F80_NearbyInt
+#define c_f80nearbyint	F80_NearbyInt
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128					F128_NearbyInt(t_f128 number);
-#define c_f128nearbyint	F128_NearbyInt
+#define c_rintl			F128_NearbyInt
 #define c_nearbyintl	F128_NearbyInt
+#define c_f128rint		F128_NearbyInt
+#define c_f128nearbyint	F128_NearbyInt
 #endif
 //!@}
 
@@ -941,26 +974,31 @@ t_f128					F128_NearbyInt(t_f128 number);
 */
 //!@{
 #define					Float_ToInt	CONCAT(FLOAT_TYPE,_ToInt)
-#define c_rint			Float_ToInt
+#define c_lrint			Float_ToInt
+#define c_flrint		Float_ToInt
 #define c_ftoint		Float_ToInt
 
 t_sint					F32_ToInt(t_f32 number);
+#define c_lrintf		F32_ToInt
+#define c_f32lrint		F32_ToInt
 #define c_f32toint		F32_ToInt
-#define c_rintf			F32_ToInt
 
 t_sint					F64_ToInt(t_f64 number);
+#define c_lrintd		F64_ToInt
+#define c_f64lrint		F64_ToInt
 #define c_f64toint		F64_ToInt
-#define c_rintd			F64_ToInt
 
 #if LIBCONFIG_USE_FLOAT80
 t_sint					F80_ToInt(t_f80 number);
+#define c_lrintl		F80_ToInt
+#define c_f80lrint		F80_ToInt
 #define c_f80toint		F80_ToInt
-#define c_rintl			F80_ToInt
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_sint					F128_ToInt(t_f128 number);
+#define c_lrintl		F128_ToInt
+#define c_f128lrint		F128_ToInt
 #define c_f128toint		F128_ToInt
-#define c_rintl			F128_ToInt
 #endif
 //!@}
 
@@ -973,24 +1011,41 @@ t_sint					F128_ToInt(t_f128 number);
 */
 //!@{
 #define						Float_GetExp2	CONCAT(FLOAT_TYPE,_GetExp2)
-#define c_fgetexp2			Float_GetExp2
+#define c_ilogb				Float_GetExp2
 #define c_filogb			Float_GetExp2
 #define c_filog2			Float_GetExp2
+#define c_fgetexp2			Float_GetExp2
 #define Float_GetExponent2	Float_GetExp2
 
 t_sint						F32_GetExp2(t_f32 number);
+#define c_ilogbf			F32_GetExp2
+#define c_f32ilogb			F32_GetExp2
+#define c_f32ilog2			F32_GetExp2
 #define c_f32getexp2		F32_GetExp2
+#define F32_GetExponent2	F32_GetExp2
 
 t_sint						F64_GetExp2(t_f64 number);
+#define c_ilogbd			F64_GetExp2
+#define c_f64ilogb			F64_GetExp2
+#define c_f64ilog2			F64_GetExp2
 #define c_f64getexp2		F64_GetExp2
+#define F64_GetExponent2	F64_GetExp2
 
 #if LIBCONFIG_USE_FLOAT80
 t_sint						F80_GetExp2(t_f80 number);
+#define c_ilogbl			F80_GetExp2
+#define c_f80ilogb			F80_GetExp2
+#define c_f80ilog2			F80_GetExp2
 #define c_f80getexp2		F80_GetExp2
+#define F80_GetExponent2	F80_GetExp2
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_sint						F128_GetExp2(t_f128 number);
+#define c_ilogbl			F128_GetExp2
+#define c_f128ilogb			F128_GetExp2
+#define c_f128ilog2			F128_GetExp2
 #define c_f128getexp2		F128_GetExp2
+#define F128_GetExponent2	F128_GetExp2
 #endif
 //!@}
 
@@ -1000,24 +1055,46 @@ t_sint						F128_GetExp2(t_f128 number);
 */
 //!@{
 #define						Float_GetExp10	CONCAT(FLOAT_TYPE,_GetExp10)
-#define c_fgetexp10			Float_GetExp10
+#define c_ilog				Float_GetExp10
+#define c_filog				Float_GetExp10
 #define c_filogd			Float_GetExp10
 #define c_filog10			Float_GetExp10
+#define c_fgetexp10			Float_GetExp10
 #define Float_GetExponent10	Float_GetExp10
 
 t_sint						F32_GetExp10(t_f32 number);
+#define c_ilogf				F32_GetExp10
+#define c_f32ilog			F32_GetExp10
+#define c_f32ilogd			F32_GetExp10
+#define c_f32ilog10			F32_GetExp10
 #define c_f32getexp10		F32_GetExp10
+#define F32_GetExponent10	F32_GetExp10
 
 t_sint						F64_GetExp10(t_f64 number);
+#define c_ilogd				F64_GetExp10
+#define c_f64ilog			F64_GetExp10
+#define c_f64ilogd			F64_GetExp10
+#define c_f64ilog10			F64_GetExp10
 #define c_f64getexp10		F64_GetExp10
+#define F64_GetExponent10	F64_GetExp10
 
 #if LIBCONFIG_USE_FLOAT80
 t_sint						F80_GetExp10(t_f80 number);
+#define c_ilogl				F80_GetExp10
+#define c_f80ilog			F80_GetExp10
+#define c_f80ilogd			F80_GetExp10
+#define c_f80ilog10			F80_GetExp10
 #define c_f80getexp10		F80_GetExp10
+#define F80_GetExponent10	F80_GetExp10
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_sint						F128_GetExp10(t_f128 number);
+#define c_ilogl				F128_GetExp10
+#define c_f128ilog			F128_GetExp10
+#define c_f128ilogd			F128_GetExp10
+#define c_f128ilog10		F128_GetExp10
 #define c_f128getexp10		F128_GetExp10
+#define F128_GetExponent10	F128_GetExp10
 #endif
 //!@}
 

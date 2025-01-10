@@ -62,8 +62,8 @@ t_f##BITS F##BITS##_NearbyInt(t_f##BITS x) \
 { \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \
 	u_cast_f##BITS u = {x}; \
-	t_u##BITS e = u.value_uint >> (F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1)); \
-	t_u##BITS s = u.value_uint >> (BITS - 1); \
+	t_u##BITS e = (u.value_uint >> F##BITS##_MANTISSA_BITS) & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	t_u##BITS s = (u.value_uint >> (BITS - 1)); \
 	t_f##BITS y; \
 	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
 		return (x); \
@@ -72,7 +72,7 @@ t_f##BITS F##BITS##_NearbyInt(t_f##BITS x) \
 	else \
 		y = x + toint - toint; \
 	if (y == 0) \
-		return (s ? -0. : 0.); \
+		return (s ? (t_f##BITS)-0. : (t_f##BITS)+0.); \
 	return (y); \
 } \
 
@@ -96,11 +96,11 @@ MATH_DECL_FUNCTION(t_sint, ToInt, lrint)
 t_sint	F##BITS##_ToInt(t_f##BITS x) \
 { \
 	u_cast_f64 u = {(t_f64)x}; \
-	t_u32 abstop = u.value_uint >> 32 & 0x7fffffff; \
+	t_u32 abstop = u.value_uint >> 32 & 0x7FFFFFFF; \
 	t_u64 sign = u.value_uint & ((t_u64)1 << 63); \
-	if (abstop < 0x41dfffff) \
+	if (abstop < 0x41DFFFFF) \
 	{ \
-		/* |x| < 0x7ffffc00, no overflow */ \
+		/* |x| < 0x7FFFFC00, no overflow */ \
 		u.value_float = 1. / F64_EPSILON; \
 		u.value_uint |= sign; \
 		t_f64 toint = u.value_float; \

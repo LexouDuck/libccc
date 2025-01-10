@@ -138,12 +138,11 @@ DEFINEFUNC_FLOAT_LNGAMMA(128)
 static
 t_f32 F32_sin_pi(t_f32 x)
 {
-	t_f64 y;
-	int n;
+	t_f64	y;
+	t_sint	n;
 	/* spurious inexact if odd int */
 	x = 2 * (x * 0.5f - F32_Floor(x * 0.5f)); /* x mod 2.0 */
-
-	n = (int)(x * 4);
+	n = (t_sint)(x * 4);
 	n = (n + 1) / 2;
 	y = x - n * 0.5f;
 	y *= PI;
@@ -153,8 +152,7 @@ t_f32 F32_sin_pi(t_f32 x)
 		case 1:	return +__cos_f32(+y);
 		case 2:	return +__sin_f32(-y);
 		case 3:	return -__cos_f32(+y);
-		default:
-			return NAN;
+		default:return +__sin_f32(+y);
 	}
 }
 
@@ -266,13 +264,15 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 		},
 	};
 	union {t_f32 f; t_u32 i;} u = {x};
-	t_f32 t,y,z,nadj,p,p1,p2,p3,q,r,w;
-	t_u32 ix;
-	int i,sign;
+	t_f32	t,y,z,p,p1,p2,p3,q,r,w;
+	t_f32	nadj = NAN;
+	t_u32	ix;
+	t_sint	i;
+	t_bool	sign;
 
 	/* purge off +-inf, NaN, +-0, tiny and negative arguments */
 	*signgamp = 1;
-	sign = u.i>>31;
+	sign = (u.i >> 31);
 	ix = u.i & ~F32_SIGNED;
 	if (ix >= F32_EXPONENT)
 		return x*x;

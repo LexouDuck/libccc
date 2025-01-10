@@ -19,7 +19,7 @@ t_sint	F##BITS##_GetExp2(t_f##BITS number) \
 
 #else
 
-#define FP_ILOGBNAN	(-1-0x7fffffff)
+#define FP_ILOGBNAN	(-1 - 0x7FFFFFFF)
 #define FP_ILOGB0	FP_ILOGBNAN
 
 #define DEFINEFUNC_FLOAT_GETEXP2(BITS) \
@@ -29,6 +29,8 @@ t_sint	F##BITS##_GetExp2(t_f##BITS x) \
 	t_u##BITS i = u.i; \
 	int e = (i & F##BITS##_EXPONENT) >> F##BITS##_MANTISSA_BITS; \
  \
+	if (IS_NAN(x))	return (S32_MIN); \
+	if (IS_INF(x))	return (S32_MAX); \
 	if (!e) \
 	{ \
 		i <<= (F##BITS##_EXPONENT_BITS + 1); \
@@ -45,66 +47,67 @@ t_sint	F##BITS##_GetExp2(t_f##BITS x) \
 		/*FORCE_EVAL(0/0.0f);*/ \
 		return (i << F##BITS##_EXPONENT_BITS) ? FP_ILOGBNAN : SINT_MAX; \
 	} \
-	return e - (1<<(F##BITS##_EXPONENT_BITS-1)); \
+	return e - (1<<(F##BITS##_EXPONENT_BITS - 1)) + 1; \
 } \
 
 DEFINEFUNC_FLOAT_GETEXP2(32)
 DEFINEFUNC_FLOAT_GETEXP2(64)
 
 #if LIBCONFIG_USE_FLOAT80
-t_sint	F80_GetExp2(t_f80 x)
-{
-	union ldshape u = {x};
-	int e = u.i.se & 0x7fff;
-	t_u64 m = u.i.m;
-	if (!e)
-	{
-		if (m == 0)
-		{
-			/*FORCE_EVAL(0/0.0f);*/
-			return FP_ILOGB0;
-		}
-		HANDLE_SUBNORMAL
-	}
-	if (e == 0x7fff)
-	{
-		/*FORCE_EVAL(0/0.0f);*/
-		return m<<1 ? FP_ILOGBNAN : SINT_MAX;
-	}
-	return e - 0x3fff;
-}
-#endif
+#define DEFINEFUNC_FLOAT_GETEXP2(BITS, HANDLE_SUBNORMAL) \
+t_sint	F80_GetExp2(t_f80 x) \
+{ \
+	union ldshape u = {x}; \
+	int e = u.i.se & 0x7FFF; \
+	t_u64 m = u.i.m; \
+	if (!e) \
+	{ \
+		if (m == 0) \
+		{ \
+			/*FORCE_EVAL(0/0.0f);*/ \
+			return FP_ILOGB0; \
+		} \
+		HANDLE_SUBNORMAL \
+	} \
+	if (e == 0x7FFF) \
+	{ \
+		/*FORCE_EVAL(0/0.0f);*/ \
+		return (m << 1) ? FP_ILOGBNAN : SINT_MAX; \
+	} \
+	return e - 0x3FFF; \
+} \
 
-#if LIBCONFIG_USE_FLOAT128
-t_sint	F128_GetExp2(t_f128 x)
-{
-	union ldshape u = {x};
-	int e = u.i.se & 0x7fff;
-
-	if (!e)
-	{
-		if (x == 0)
-		{
-			/*FORCE_EVAL(0/0.0f);*/
-			return FP_ILOGB0;
-		}
-		HANDLE_SUBNORMAL
-	}
-	if (e == 0x7fff)
-	{
-		/*FORCE_EVAL(0/0.0f);*/
-		u.i.se = 0;
-		return u.f ? FP_ILOGBNAN : SINT_MAX;
-	}
-	return e - 0x3fff;
-}
-#endif
-
-#if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_GETEXP2(80, for (e = -0x3FFF+1; m>>63 == 0; e--, m<<=1);	return e;)
+
 #endif
+
 #if LIBCONFIG_USE_FLOAT128
+#define DEFINEFUNC_FLOAT_GETEXP2(BITS, HANDLE_SUBNORMAL) \
+t_sint	F128_GetExp2(t_f128 x) \
+{ \
+	union ldshape u = {x}; \
+	int e = u.i.se & 0x7FFF; \
+ \
+	if (!e) \
+	{ \
+		if (x == 0) \
+		{ \
+			/*FORCE_EVAL(0/0.0f);*/ \
+			return FP_ILOGB0; \
+		} \
+		HANDLE_SUBNORMAL \
+	} \
+	if (e == 0x7FFF) \
+	{ \
+		/*FORCE_EVAL(0/0.0f);*/ \
+		u.i.se = 0; \
+		return u.f ? FP_ILOGBNAN : SINT_MAX; \
+	} \
+	return e - 0x3FFF; \
+} \
+
 DEFINEFUNC_FLOAT_GETEXP2(128, x *= 0x1p120;	return F128_GetExp2(x) - 120;)
+
 #endif
 
 #endif
@@ -112,9 +115,12 @@ DEFINEFUNC_FLOAT_GETEXP2(128, x *= 0x1p120;	return F128_GetExp2(x) - 120;)
 
 
 #define DEFINEFUNC_FLOAT_GETEXP10(BITS) \
-t_sint	F##BITS##_GetExp10(t_f##BITS number) \
+t_sint	F##BITS##_GetExp10(t_f##BITS x) \
 { \
-	return (F##BITS##_Trunc(F##BITS##_Log10(number))); \
+	if (IS_NAN(x))	return (S32_MIN); \
+	if (IS_INF(x))	return (S32_MAX); \
+	if (x == 0.0)	return (0); \
+	return (F##BITS##_Floor(F##BITS##_Log10(F##BITS##_Abs(x)))); \
 } \
 
 DEFINEFUNC_FLOAT_GETEXP10(32)
