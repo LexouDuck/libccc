@@ -445,7 +445,7 @@ double	stat_mode_##NAME(const TYPE * values, unsigned int length) \
 { \
 	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
 	TYPE	value; \
-	TYPE	result = NAME_UPPER##_ERROR; \
+	TYPE	result = NAME_UPPER##_NAN; \
 	TYPE	previous = 0; \
 	unsigned int	consecutive_record = 0; \
 	unsigned int	consecutive_current = 0; \
@@ -662,17 +662,17 @@ double	stat_mean_power_##NAME(const TYPE * values, unsigned int length, double p
 /*! https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average */ \
 double	stat_moving_average_simple_##NAME(const TYPE * values, unsigned int length) \
 { \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
+	return (values && length) ? NAME_UPPER##_NAN : NAME_UPPER##_NAN; \
 } \
 /*! https://en.wikipedia.org/wiki/Moving_average#Cumulative_moving_average */ \
 double	stat_moving_average_cumulative_##NAME(const TYPE * values, unsigned int length) \
 { \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
+	return (values && length) ? NAME_UPPER##_NAN : NAME_UPPER##_NAN; \
 } \
 /*! https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average */ \
 double	stat_moving_average_weighted_##NAME(const TYPE * values, unsigned int length) \
 { \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
+	return (values && length) ? NAME_UPPER##_NAN : NAME_UPPER##_NAN; \
 } \
 /*! https://en.wikipedia.org/wiki/Variance */ \
 double	stat_variance_##NAME(const TYPE * values, unsigned int length) \
@@ -896,28 +896,28 @@ double	stat_rss_##NAME(const TYPE * values, const TYPE * expect, unsigned int le
 /*! https://en.wikipedia.org/wiki/Squared_deviations_from_the_mean */ \
 /*TODO*/
 
-DEFINEFUNCTIONS_STATS(UINT , uint , t_uint,  (LIBCONFIG_UINT_ERROR  ? (value == UINT_ERROR ) : FALSE))
-DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8,    (LIBCONFIG_UINT_ERROR  ? (value == U8_ERROR   ) : FALSE))
-DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16,   (LIBCONFIG_UINT_ERROR  ? (value == U16_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32,   (LIBCONFIG_UINT_ERROR  ? (value == U32_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64,   (LIBCONFIG_UINT_ERROR  ? (value == U64_ERROR  ) : FALSE))
+DEFINEFUNCTIONS_STATS(UINT , uint , t_uint,  (LIBCONFIG_UINT_NAN  ? (value == UINT_NAN ) : FALSE))
+DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8,    (LIBCONFIG_UINT_NAN  ? (value == U8_NAN   ) : FALSE))
+DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16,   (LIBCONFIG_UINT_NAN  ? (value == U16_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32,   (LIBCONFIG_UINT_NAN  ? (value == U32_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64,   (LIBCONFIG_UINT_NAN  ? (value == U64_NAN  ) : FALSE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128,  (LIBCONFIG_UINT_ERROR  ? (value == U128_ERROR ) : FALSE))
+DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128,  (LIBCONFIG_UINT_NAN  ? (value == U128_NAN ) : FALSE))
 #endif
-DEFINEFUNCTIONS_STATS(SINT , sint , t_sint,  (LIBCONFIG_SINT_ERROR  ? (value == SINT_ERROR ) : FALSE))
-DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8,    (LIBCONFIG_SINT_ERROR  ? (value == S8_ERROR   ) : FALSE))
-DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16,   (LIBCONFIG_SINT_ERROR  ? (value == S16_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32,   (LIBCONFIG_SINT_ERROR  ? (value == S32_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64,   (LIBCONFIG_SINT_ERROR  ? (value == S64_ERROR  ) : FALSE))
+DEFINEFUNCTIONS_STATS(SINT , sint , t_sint,  (LIBCONFIG_SINT_NAN  ? (value == SINT_NAN ) : FALSE))
+DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8,    (LIBCONFIG_SINT_NAN  ? (value == S8_NAN   ) : FALSE))
+DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16,   (LIBCONFIG_SINT_NAN  ? (value == S16_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32,   (LIBCONFIG_SINT_NAN  ? (value == S32_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64,   (LIBCONFIG_SINT_NAN  ? (value == S64_NAN  ) : FALSE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128,  (LIBCONFIG_SINT_ERROR  ? (value == S128_ERROR ) : FALSE))
+DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128,  (LIBCONFIG_SINT_NAN  ? (value == S128_NAN ) : FALSE))
 #endif
-DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed, (LIBCONFIG_FIXED_ERROR ? (value == FIXED_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16,   (LIBCONFIG_FIXED_ERROR ? (value == Q16_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32,   (LIBCONFIG_FIXED_ERROR ? (value == Q32_ERROR  ) : FALSE))
-DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64,   (LIBCONFIG_FIXED_ERROR ? (value == Q64_ERROR  ) : FALSE))
+DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed, (LIBCONFIG_FIXED_NAN ? (value == FIXED_NAN) : FALSE))
+DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16,   (LIBCONFIG_FIXED_NAN ? (value == Q16_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32,   (LIBCONFIG_FIXED_NAN ? (value == Q32_NAN  ) : FALSE))
+DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64,   (LIBCONFIG_FIXED_NAN ? (value == Q64_NAN  ) : FALSE))
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128,  (LIBCONFIG_FIXED_ERROR ? (value == Q128_ERROR ) : FALSE))
+DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128,  (LIBCONFIG_FIXED_NAN ? (value == Q128_NAN ) : FALSE))
 #endif
 DEFINEFUNCTIONS_STATS(FLOAT, float, t_float, !isnormal(value))
 DEFINEFUNCTIONS_STATS(F32  , f32  , t_f32,   !isnormal(value))

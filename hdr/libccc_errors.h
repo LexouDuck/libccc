@@ -66,15 +66,23 @@ HEADER_CPP
 
 
 
-//!@doc The action to take when there is an integer overflow (by default, let it continue)
+//!@doc The action to take when there is an integer overflow
 //!@{
 #ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
-{}	//	return (VALUE);
+#if LIBCONFIG_UINT_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
+	return VALUE
+#elif LIBCONFIG_UINT_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
+	return TYPE##_NAN
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
+	{}	//	return (VALUE);
 #endif
+
 #ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
 #define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
-{}	//	if (dest)	*dest = VALUE;	return (i);
+	{}	//	if (dest)	*dest = VALUE;	return (i);
 #endif
 
 // TODO implement configurable return values in cases of number overflow with this macro

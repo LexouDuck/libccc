@@ -171,7 +171,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 #undef FLOAT_ERROR
 
-#if (LIBCONFIG_FIXED_ERROR == 0)
+#if (LIBCONFIG_FIXED_NAN == 0)
 
 	#define F32_ERROR	((t_f32)  (0.))
 	#define F64_ERROR	((t_f64)  (0.))
@@ -320,7 +320,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 
 #if 0
-//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
+//!@doc Returns the value of the given floating-point number's sign bit
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
 */
@@ -382,21 +382,21 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define FLT_ROUNDS	1
 #endif
 
-//! This macro sets the floating-point expression evaluation method (ie: how floats are operated upon).
+//! This macro sets the floating-point expression evaluation method (i.e. how floats are operated upon).
 /*!
 **	The floating-point evaluation method. Possible values are:
 **	`-1`	indeterminate
-**	 `0`	evaluate all operations and constants, whose semantic type has at most the range and precision of float, to the range and precision of float;
+**	 `0`	evaluate all operations and constants, whose semantic type has at most the range and precision of `float`, to the range and precision of `float`;
 **	    	evaluate all other operations and constants to the range and precision of the semantic type.
-**	 `1`	evaluate all operations and constants, whose semantic type has at most the range and precision of double, to the range and precision of double;
+**	 `1`	evaluate all operations and constants, whose semantic type has at most the range and precision of `double`, to the range and precision of `double`;
 **	    	evaluate all other operations and constants to the range and precision of the semantic type.
-**	 `2`	evaluate all operations and constants, whose semantic type has at most the range and precision of long double, to the range and precision of long double;
+**	 `2`	evaluate all operations and constants, whose semantic type has at most the range and precision of `long double`, to the range and precision of `long double`;
 **	    	evaluate all other operations and constants to the range and precision of the semantic type.
 **	 `N`	where `_FloatN`  is a supported interchange floating type:
-**	    	evaluate all operations and constants, whose semantic type has at most the range and precision of the _FloatN type, to the range and precision of the _FloatN type;
+**	    	evaluate all operations and constants, whose semantic type has at most the range and precision of the `_FloatN` type, to the range and precision of the `_FloatN` type;
 **	    	evaluate all other operations and constants to the range and precision of the semantic type.
 **	 `N + 1`, where `_FloatNx` is a supported extended floating type:
-**	    	evaluate operations and constants, whose semantic type has at most the range and precision of the _FloatNx type, to the range and precision of the _FloatNx type;
+**	    	evaluate operations and constants, whose semantic type has at most the range and precision of the `_FloatNx` type, to the range and precision of the `_FloatNx` type;
 **	    	evaluate all other operations and constants to the range and precision of the semantic type.
 */
 #ifndef FLT_EVAL_METHOD
@@ -432,9 +432,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F32_MANTISSA_SIGNED	(0x807FFFFF)			//!< A 32-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F32_MANTISSA_BITS	(23)					//!< A 32-bit floating-point number's amount of bits dedicated to the mantissa
 #define F32_INIT_VALUE		(0x1.p-23)				//!< A 32-bit floating-point number's value if all bits are zero
+#define F32_EPSILON			(0x1.p-23)				//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F32_MIN_INT			(0x2.p-24)				//!< A 32-bit floating-point's minimum representable integer value.
+#define F32_MAX_INT			(0x2.p+24)				//!< A 32-bit floating-point's maximum representable integer value.
 #define F32_MIN_VAL			(FLT_MIN)				//!< A 32-bit floating-point's minimum representable positive normal value.
 #define F32_MAX_VAL			(FLT_MAX)				//!< A 32-bit floating-point's maximum finite representable value.
-#define F32_EPSILON			(0x1.p-23)				//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F32_MIN				(-INF)					//!< A 32-bit floating-point's minimum value (-infinity)
 #define F32_MAX				(+INF)					//!< A 32-bit floating-point's maximum value (+infinity)
 //!@}
@@ -453,9 +455,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F64_MANTISSA_SIGNED	(0x800FFFFFFFFFFFFF)	//!< A 64-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F64_MANTISSA_BITS	(52)					//!< A 64-bit floating-point number's amount of bits dedicated to the mantissa
 #define F64_INIT_VALUE		(0x1.p-52)				//!< A 64-bit floating-point number's value if all bits are zero
+#define F64_EPSILON			(0x1.p-52)				//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F64_MIN_INT			(0x2.p-53)				//!< A 64-bit floating-point's minimum representable integer value.
+#define F64_MAX_INT			(0x2.p+53)				//!< A 64-bit floating-point's maximum representable integer value.
 #define F64_MIN_VAL			(DBL_MIN)				//!< A 64-bit floating-point's minimum representable positive normal value.
 #define F64_MAX_VAL			(DBL_MAX)				//!< A 64-bit floating-point's maximum finite representable value.
-#define F64_EPSILON			(0x1.p-52)				//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F64_MIN				(-INF)					//!< A 64-bit floating-point's minimum value (-infinity)
 #define F64_MAX				(+INF)					//!< A 64-bit floating-point's maximum value (+infinity)
 //!@}
@@ -474,9 +478,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F80_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFl)	//!< A 80-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F80_MANTISSA_BITS	(63)						//!< A 80-bit floating-point number's amount of bits dedicated to the mantissa
 #define F80_INIT_VALUE		(0x1.p-63)					//!< A 80-bit floating-point number's value if all bits are zero
+#define F80_EPSILON			(0x1.p-63)					//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F80_MIN_INT			(0x2.p-64)					//!< A 80-bit floating-point's minimum representable integer value.
+#define F80_MAX_INT			(0x2.p+64)					//!< A 80-bit floating-point's maximum representable integer value.
 #define F80_MIN_VAL			(LDBL_MIN)					//!< A 80-bit floating-point's minimum representable positive normal value.
 #define F80_MAX_VAL			(LDBL_MAX)					//!< A 80-bit floating-point's maximum finite representable value.
-#define F80_EPSILON			(0x1.p-63)					//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F80_MIN				(-INF)						//!< A 80-bit floating-point's minimum value (-infinity)
 #define F80_MAX				(+INF)						//!< A 80-bit floating-point's maximum value (+infinity)
 //!@}
@@ -495,9 +501,11 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F128_MANTISSA_SIGNED	(0x8000FFFFFFFFFFFFFFFFFFFFFFFFFFFFl)	//!< A 128-bit floating-point number's mantissa and sign bit regions (bitmask)
 #define F128_MANTISSA_BITS		(112)									//!< A 128-bit floating-point number's amount of bits dedicated to the mantissa
 #define F128_INIT_VALUE			(0x1.p-112)								//!< A 128-bit floating-point number's value if all bits are zero
+#define F128_EPSILON			(0x1.p-112)								//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F128_MIN_INT			(0x2.p-113)								//!< A 128-bit floating-point's minimum representable integer value.
+#define F128_MAX_INT			(0x2.p+113)								//!< A 128-bit floating-point's maximum representable integer value.
 #define F128_MIN_VAL			(LDBL_MIN)								//!< A 128-bit floating-point's minimum representable positive normal value.
 #define F128_MAX_VAL			(LDBL_MAX)								//!< A 128-bit floating-point's maximum finite representable value.
-#define F128_EPSILON			(0x1.p-112)								//!< Difference between 1 and the least value greater than 1 that is representable.
 #define F128_MIN				(-INF)									//!< A 128-bit floating-point's minimum value (-infinity)
 #define F128_MAX				(+INF)									//!< A 128-bit floating-point's maximum value (+infinity)
 //!@}
@@ -522,10 +530,13 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define FLOAT_MANTISSA_SIGNED	CONCAT(FLOAT_TYPE,_MANTISSA_SIGNED)
 #define FLOAT_MANTISSA_BITS		CONCAT(FLOAT_TYPE,_MANTISSA_BITS)
 #define FLOAT_INIT_VALUE		CONCAT(FLOAT_TYPE,_INIT_VALUE)
-#define FLOAT_NEXT				CONCAT(FLOAT_TYPE,_NEXT)
+#define FLOAT_EPSILON			CONCAT(FLOAT_TYPE,_EPSILON)
+#define FLOAT_MIN_INT			CONCAT(FLOAT_TYPE,_MIN_INT)
+#define FLOAT_MAX_INT			CONCAT(FLOAT_TYPE,_MAX_INT)
+#define FLOAT_MIN_VAL			CONCAT(FLOAT_TYPE,_MIN_VAL)
+#define FLOAT_MAX_VAL			CONCAT(FLOAT_TYPE,_MAX_VAL)
 #define FLOAT_MIN				CONCAT(FLOAT_TYPE,_MIN)
 #define FLOAT_MAX				CONCAT(FLOAT_TYPE,_MAX)
-#define FLOAT_EPSILON			CONCAT(FLOAT_TYPE,_EPSILON)
 //!@}
 
 

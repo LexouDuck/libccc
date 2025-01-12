@@ -66,26 +66,18 @@ fraction: \
 		goto failure; \
 	fraction = Q##BITS##_From(numerator, denominator); \
 success: \
-	if CCCERROR((result < Q##BITS##_MININT), ERROR_RESULTRANGE, \
-		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MININT) \
-	{ \
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) \
-	} \
-	if CCCERROR((result > Q##BITS##_MAXINT), ERROR_RESULTRANGE, \
-		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAXINT) \
-	{ \
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) \
-	} \
-	if CCCERROR((result + Q##BITS##_Round(fraction) < Q##BITS##_MININT), ERROR_RESULTRANGE, \
-		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MININT) \
-	{ \
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) \
-	} \
-	if CCCERROR((result + Q##BITS##_Round(fraction) > Q##BITS##_MAXINT), ERROR_RESULTRANGE, \
-		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAXINT) \
-	{ \
-		LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) \
-	} \
+	if CCCERROR((result < Q##BITS##_MIN_INT), ERROR_RESULTRANGE, \
+		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MIN_INT) \
+	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) } \
+	if CCCERROR((result > Q##BITS##_MAX_INT), ERROR_RESULTRANGE, \
+		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAX_INT) \
+	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) } \
+	if CCCERROR((result + Q##BITS##_Round(fraction) < Q##BITS##_MIN_INT), ERROR_RESULTRANGE, \
+		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MIN_INT) \
+	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) } \
+	if CCCERROR((result + Q##BITS##_Round(fraction) > Q##BITS##_MAX_INT), ERROR_RESULTRANGE, \
+		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAX_INT) \
+	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) } \
 	if (dest)	*dest = (result * FIXED_DENOMINATOR + fraction); \
 	return (i); \
 failure: \

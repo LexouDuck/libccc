@@ -61,7 +61,7 @@ t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b) \
 { \
 	t_s##BITS abs_a = S##BITS##_Abs(a); \
 	t_s##BITS abs_b = S##BITS##_Abs(b); \
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * SINT_APPROX); \
+	return (S##BITS##_Abs(a - b) <= MAX(abs_a, abs_b) * SINT_APPROX); \
 } \
 
 DEFINEFUNC_SINT_APPROX(8)

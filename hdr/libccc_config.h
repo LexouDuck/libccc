@@ -74,7 +74,8 @@ HEADER_CPP
 #error "Invalid value selected for LIBCONFIG_UINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
-//!@doc The unsigned integer value which is used for error returns
+
+//!@doc Sets which unsigned integer value ought to be used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
 **	NOTE: The value for the macro #UINT_ERROR depends on this setting
@@ -85,11 +86,30 @@ HEADER_CPP
 **			For example, `U8_MAX` will become `254`, rather than the usual `255`
 */
 //!@{
-#ifndef LIBCONFIG_UINT_ERROR
-#define LIBCONFIG_UINT_ERROR	0
+#ifndef LIBCONFIG_UINT_NAN
+#define LIBCONFIG_UINT_NAN	0
 #endif
-#if (LIBCONFIG_UINT_ERROR != 0) && (LIBCONFIG_UINT_ERROR != 1)
-#error "Invalid value selected for LIBCONFIG_UINT_ERROR, must be either 0 or 1"
+#if (LIBCONFIG_UINT_NAN != 0) && (LIBCONFIG_UINT_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_UINT_NAN, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Sets whether unsigned integer types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #UINT_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable unsigned integer value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #UINT_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
+//!@{
+#ifndef LIBCONFIG_UINT_INF
+#define LIBCONFIG_UINT_INF	0
+#endif
+#if (LIBCONFIG_UINT_INF != 0) && (LIBCONFIG_UINT_INF != 1)
+#error "Invalid value selected for LIBCONFIG_UINT_INF, must be either 0 or 1"
 #endif
 //!@}
 
@@ -117,6 +137,7 @@ HEADER_CPP
 #error "Invalid value selected for LIBCONFIG_SINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
+
 //!@doc The signed integer value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
@@ -128,11 +149,30 @@ HEADER_CPP
 **			For example, `S8_MIN` will become `-127`, rather than the usual `-128`
 */
 //!@{
-#ifndef LIBCONFIG_SINT_ERROR
-#define LIBCONFIG_SINT_ERROR	0
+#ifndef LIBCONFIG_SINT_NAN
+#define LIBCONFIG_SINT_NAN	0
 #endif
-#if (LIBCONFIG_SINT_ERROR != 0) && (LIBCONFIG_SINT_ERROR != 1)
-#error "Invalid value selected for LIBCONFIG_SINT_ERROR, must be either 0 or 1"
+#if (LIBCONFIG_SINT_NAN != 0) && (LIBCONFIG_SINT_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_SINT_NAN, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Sets whether signed integer types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #SINT_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable signed integer value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #SINT_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
+//!@{
+#ifndef LIBCONFIG_SINT_INF
+#define LIBCONFIG_SINT_INF	0
+#endif
+#if (LIBCONFIG_SINT_INF != 0) && (LIBCONFIG_SINT_INF != 1)
+#error "Invalid value selected for LIBCONFIG_SINT_INF, must be either 0 or 1"
 #endif
 //!@}
 
@@ -191,13 +231,33 @@ HEADER_CPP
 **			For example, `Q16_MIN` will become `-0x7FFF`, rather than the usual `-0x8000`
 */
 //!@{
-#ifndef LIBCONFIG_FIXED_ERROR
-#define LIBCONFIG_FIXED_ERROR	1
+#ifndef LIBCONFIG_FIXED_NAN
+#define LIBCONFIG_FIXED_NAN	1
 #endif
-#if (LIBCONFIG_FIXED_ERROR != 0) && (LIBCONFIG_FIXED_ERROR != 1)
-#error "Invalid value selected for LIBCONFIG_FIXED_ERROR, must be either 0 or 1"
+#if (LIBCONFIG_FIXED_NAN != 0) && (LIBCONFIG_FIXED_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_FIXED_NAN, must be either 0 or 1"
 #endif
 //!@}
+
+//!@doc Sets whether fixed-point types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #FIXED_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable fixed-point value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #FIXED_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
+//!@{
+#ifndef LIBCONFIG_FIXED_INF
+#define LIBCONFIG_FIXED_INF	0
+#endif
+#if (LIBCONFIG_FIXED_INF != 0) && (LIBCONFIG_FIXED_INF != 1)
+#error "Invalid value selected for LIBCONFIG_FIXED_INF, must be either 0 or 1"
+#endif
+//!@}
+
 //! @see #FIXED_APPROX and Fixed_EqualsApprox()
 //!@{
 #ifndef LIBCONFIG_FIXED_APPROX
