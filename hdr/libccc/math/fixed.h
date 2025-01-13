@@ -128,6 +128,89 @@ t_q128						Q128_Sgn(t_q128 x);
 
 /*
 ** ************************************************************************** *|
+**                           Basic kind-check functions                       *|
+** ************************************************************************** *|
+*/
+
+
+
+//!@doc Returns `TRUE` if the given number is NAN (not a number) (only useful when #LIBCONFIG_FIXED_NAN is active).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Fixed_IsNaN	CONCAT(FIXED_TYPE,_IsNaN)
+#define c_qisnan			Fixed_IsNaN
+
+t_bool						Q16_IsNaN(t_q16 a);
+#define c_q16isnan			Q16_IsNaN
+
+t_bool						Q32_IsNaN(t_q32 a);
+#define c_q32isnan			Q32_IsNaN
+
+t_bool						Q64_IsNaN(t_q64 a);
+#define c_q64isnan			Q64_IsNaN
+
+#if LIBCONFIG_USE_INT128
+t_bool						Q128_IsNaN(t_q128 a);
+#define c_q128isnan			Q128_IsNaN
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is infinite (only useful when #LIBCONFIG_FIXED_INF is active).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Fixed_IsInf	CONCAT(FIXED_TYPE,_IsInf)
+#define c_qisinf			Fixed_IsInf
+
+t_bool						Q16_IsInf(t_q16 a);
+#define c_q16isinf			Q16_IsInf
+
+t_bool						Q32_IsInf(t_q32 a);
+#define c_q32isinf			Q32_IsInf
+
+t_bool						Q64_IsInf(t_q64 a);
+#define c_q64isinf			Q64_IsInf
+
+#if LIBCONFIG_USE_INT128
+t_bool						Q128_IsInf(t_q128 a);
+#define c_q128isinf			Q128_IsInf
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is a prime number.
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Fixed_IsPrime	CONCAT(FIXED_TYPE,_IsPrime)
+#define c_qisprime			Fixed_IsPrime
+
+t_bool						Q16_IsPrime(t_q16 a);
+#define c_q16isprime		Q16_IsPrime
+
+t_bool						Q32_IsPrime(t_q32 a);
+#define c_q32isprime		Q32_IsPrime
+
+t_bool						Q64_IsPrime(t_q64 a);
+#define c_q64isprime		Q64_IsPrime
+
+#if LIBCONFIG_USE_INT128
+t_bool						Q128_IsPrime(t_q128 a);
+#define c_q128isprime		Q128_IsPrime
+#endif
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
 **                            Fixed-point Functions                           *|
 ** ************************************************************************** *|
 */
@@ -376,9 +459,59 @@ t_bool					Q128_GreaterThanOrEqual(t_q128 x, t_q128 y);
 
 
 
+//!@doc Returns the smaller of the two given numbers `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					Fixed_Min	CONCAT(QINT_TYPE,_Min)
+#define c_qmin			Fixed_Min
+#define Fixed_Minimum	Fixed_Min
+
+t_q16					Q16_Min(t_q16 a, t_q16 b);
+#define c_q16min		Q16_Min
+
+t_q32					Q32_Min(t_q32 a, t_q32 b);
+#define c_q32min		Q32_Min
+
+t_q64					Q64_Min(t_q64 a, t_q64 b);
+#define c_q64min		Q64_Min
+
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_Min(t_q128 a, t_q128 b);
+#define c_q128min		Q128_Min
+#endif
+//!@}
+
+//!@doc Returns the larger of the two given numbers `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					Fixed_Max	CONCAT(QINT_TYPE,_Max)
+#define c_qmax			Fixed_Max
+#define Fixed_Maximum	Fixed_Max
+
+t_q16					Q16_Max(t_q16 a, t_q16 b);
+#define c_q16max		Q16_Max
+
+t_q32					Q32_Max(t_q32 a, t_q32 b);
+#define c_q32max		Q32_Max
+
+t_q64					Q64_Max(t_q64 a, t_q64 b);
+#define c_q64max		Q64_Max
+
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_Max(t_q128 a, t_q128 b);
+#define c_q128max		Q128_Max
+#endif
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
-**                         Fixed-point basic operators                        *|
+**                          Fixed-point math operators                        *|
 ** ************************************************************************** *|
 */
 
@@ -524,14 +657,6 @@ t_q128					Q128_Rem(t_q128 x, t_q128 y);
 #define c_q128rem		Q128_Rem
 #endif
 //!@}
-
-
-
-/*
-** ************************************************************************** *|
-**                          Fixed-point math operators                        *|
-** ************************************************************************** *|
-*/
 
 
 

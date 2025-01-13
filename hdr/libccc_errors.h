@@ -68,27 +68,46 @@ HEADER_CPP
 
 //!@doc The action to take when there is an integer overflow
 //!@{
-#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT
 #if LIBCONFIG_UINT_INF
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
-	return VALUE
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	return (VALUE);
 #elif LIBCONFIG_UINT_NAN
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
-	return TYPE##_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	return (TYPE##_NAN);
 #else // default action: let it continue
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(TYPE, VALUE) \
-	{}	//	return (VALUE);
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	{}	//	return (VALUE);
 #endif
+#endif
+
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT
+#if LIBCONFIG_SINT_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	return (VALUE);
+#elif LIBCONFIG_SINT_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	return (TYPE##_NAN);
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	{}	//	return (VALUE);
+#endif
+#endif
+
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED
+#if LIBCONFIG_FIXED_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	return (VALUE);
+#elif LIBCONFIG_FIXED_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	return (TYPE##_NAN);
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	{}	//	return (VALUE);
+#endif
+#endif
+
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_FLOAT
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FLOAT(TYPE, VALUE)	return (VALUE);
+#endif
+
+
 
 #ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
 #define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
 	{}	//	if (dest)	*dest = VALUE;	return (i);
 #endif
-
-// TODO implement configurable return values in cases of number overflow with this macro
-#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
-	CONCAT(TYPE,_ERROR)	//!< configurable error value
-//	(VALUE)				//!< saturated type
 //!@}
 
 

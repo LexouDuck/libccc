@@ -40,56 +40,78 @@ HEADER_CPP
 ** ************************************************************************** *|
 */
 
-//! Computes to the absolute value of `X` (ie: gives the positive equivalent of `X`)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/abs}
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
-**
-**	- Math: @f$ {|x|} @f$
-*/
-#ifndef ABS
-#define ABS(X)		((X) < 0 ? -(X) : (X))
-#endif
-
-//! Computes to `+1`, `-1` (or `0` if `(X) == 0`) according to the sign of `X`
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/signbit} (differs)
-**
-**	- Math: @f$ {\frac{x}{|x|}} @f$
-*/
-#ifndef SGN
-#define SGN(X)		((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
-#endif
-
-//! Checks if a value is negative (works for unsigned types, without causing tautology warnings)
-/*!
-**	This macro is useful to check if a value is negative, but its type (signed or unsigned) is not known.
-**	In particular, the `char` and `enum` native C types are of unknown/undefined signage,
-**	so this macro is useful to check that a value is positive, no matter the platform/environment.
-**
-**	- Math: @f$ {x < 0} @f$
-*/
-#ifndef ISNEG
-#define ISNEG(X)	(!((X) > 0) && ((X) != 0))
-#endif
 
 
+#define DEFINE_GENERIC_MATH_F(FUNCTION) \
+	_Generic((X), \
+		t_f32   : F32_  ##FUNCTION, \
+		t_f64   : F64_  ##FUNCTION, \
+		t_f80   : F80_  ##FUNCTION, \
+		t_f128  : F128_ ##FUNCTION, \
+		t_float : Float_##FUNCTION, \
+	)
 
-//!	Expands to the minimum value between `X` and `Y` (the smaller of the two)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmin}
-*/
-#ifndef MIN
-#define MIN(X, Y)	((X) < (Y) ? (X) : (Y))
-#endif
+#define DEFINE_GENERIC_MATH_QF(FUNCTION) \
+	_Generic((X), \
+		t_q16   : Q16_  ##FUNCTION, \
+		t_q32   : Q32_  ##FUNCTION, \
+		t_q64   : Q64_  ##FUNCTION, \
+		t_q128  : Q128_ ##FUNCTION, \
+		t_fixed : Fixed_##FUNCTION, \
+		t_f32   : F32_  ##FUNCTION, \
+		t_f64   : F64_  ##FUNCTION, \
+		t_f80   : F80_  ##FUNCTION, \
+		t_f128  : F128_ ##FUNCTION, \
+		t_float : Float_##FUNCTION, \
+	)
 
-//! Expands to the maximum value between `X` and `Y` (the larger of the two)
-/*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmax}
-*/
-#ifndef MAX
-#define MAX(X, Y)	((X) < (Y) ? (Y) : (X))
-#endif
+#define DEFINE_GENERIC_MATH_SQF(FUNCTION) \
+	_Generic((X), \
+		t_s8    : S8_   ##FUNCTION, \
+		t_s16   : S16_  ##FUNCTION, \
+		t_s32   : S32_  ##FUNCTION, \
+		t_s64   : S64_  ##FUNCTION, \
+		t_s128  : S128_ ##FUNCTION, \
+		t_sint  : SInt_ ##FUNCTION, \
+		t_q16   : Q16_  ##FUNCTION, \
+		t_q32   : Q32_  ##FUNCTION, \
+		t_q64   : Q64_  ##FUNCTION, \
+		t_q128  : Q128_ ##FUNCTION, \
+		t_fixed : Fixed_##FUNCTION, \
+		t_f32   : F32_  ##FUNCTION, \
+		t_f64   : F64_  ##FUNCTION, \
+		t_f80   : F80_  ##FUNCTION, \
+		t_f128  : F128_ ##FUNCTION, \
+		t_float : Float_##FUNCTION, \
+	)
+
+#define DEFINE_GENERIC_MATH_USQF(FUNCTION) \
+	_Generic((X), \
+		t_u8    : U8_   ##FUNCTION, \
+		t_u16   : U16_  ##FUNCTION, \
+		t_u32   : U32_  ##FUNCTION, \
+		t_u64   : U64_  ##FUNCTION, \
+		t_u128  : U128_ ##FUNCTION, \
+		t_uint  : UInt_ ##FUNCTION, \
+		t_s8    : S8_   ##FUNCTION, \
+		t_s16   : S16_  ##FUNCTION, \
+		t_s32   : S32_  ##FUNCTION, \
+		t_s64   : S64_  ##FUNCTION, \
+		t_s128  : S128_ ##FUNCTION, \
+		t_sint  : SInt_ ##FUNCTION, \
+		t_q16   : Q16_  ##FUNCTION, \
+		t_q32   : Q32_  ##FUNCTION, \
+		t_q64   : Q64_  ##FUNCTION, \
+		t_q128  : Q128_ ##FUNCTION, \
+		t_fixed : Fixed_##FUNCTION, \
+		t_f32   : F32_  ##FUNCTION, \
+		t_f64   : F64_  ##FUNCTION, \
+		t_f80   : F80_  ##FUNCTION, \
+		t_f128  : F128_ ##FUNCTION, \
+		t_float : Float_##FUNCTION, \
+	)
+
+
 
 //! Expands to a sequence of `Y` repetitive multiplications of `X` (ie: a compile-time `pow()` function)
 /*!
@@ -123,6 +145,12 @@ HEADER_CPP
 //!@}
 
 
+
+/*
+** ************************************************************************** *|
+**                   Math function wrapper definitions macros                 *|
+** ************************************************************************** *|
+*/
 
 #define MATH_DEFINE_FUNCTION(     RETURN,   BITS, NAME, CNAME, TYPE)	_INLINE()    RETURN   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
 #define MATH_DEFINE_REALFUNCTION(           BITS, NAME, CNAME, TYPE)	_INLINE() t_f##BITS   F##BITS##_##NAME(t_f##BITS a)                { return (__builtin_##CNAME##TYPE(a)); }
@@ -232,77 +260,6 @@ HEADER_CPP
 
 
 
-#define DEFINE_GENERIC_MATH_F(FUNCTION) \
-	_Generic((X), \
-		t_f32   : F32_  ##FUNCTION, \
-		t_f64   : F64_  ##FUNCTION, \
-		t_f80   : F80_  ##FUNCTION, \
-		t_f128  : F128_ ##FUNCTION, \
-		t_float : Float_##FUNCTION, \
-	)
-
-#define DEFINE_GENERIC_MATH_QF(FUNCTION) \
-	_Generic((X), \
-		t_q16   : Q16_  ##FUNCTION, \
-		t_q32   : Q32_  ##FUNCTION, \
-		t_q64   : Q64_  ##FUNCTION, \
-		t_q128  : Q128_ ##FUNCTION, \
-		t_fixed : Fixed_##FUNCTION, \
-		t_f32   : F32_  ##FUNCTION, \
-		t_f64   : F64_  ##FUNCTION, \
-		t_f80   : F80_  ##FUNCTION, \
-		t_f128  : F128_ ##FUNCTION, \
-		t_float : Float_##FUNCTION, \
-	)
-
-#define DEFINE_GENERIC_MATH_SQF(FUNCTION) \
-	_Generic((X), \
-		t_s8    : S8_   ##FUNCTION, \
-		t_s16   : S16_  ##FUNCTION, \
-		t_s32   : S32_  ##FUNCTION, \
-		t_s64   : S64_  ##FUNCTION, \
-		t_s128  : S128_ ##FUNCTION, \
-		t_sint  : SInt_ ##FUNCTION, \
-		t_q16   : Q16_  ##FUNCTION, \
-		t_q32   : Q32_  ##FUNCTION, \
-		t_q64   : Q64_  ##FUNCTION, \
-		t_q128  : Q128_ ##FUNCTION, \
-		t_fixed : Fixed_##FUNCTION, \
-		t_f32   : F32_  ##FUNCTION, \
-		t_f64   : F64_  ##FUNCTION, \
-		t_f80   : F80_  ##FUNCTION, \
-		t_f128  : F128_ ##FUNCTION, \
-		t_float : Float_##FUNCTION, \
-	)
-
-#define DEFINE_GENERIC_MATH_USQF(FUNCTION) \
-	_Generic((X), \
-		t_u8    : U8_   ##FUNCTION, \
-		t_u16   : U16_  ##FUNCTION, \
-		t_u32   : U32_  ##FUNCTION, \
-		t_u64   : U64_  ##FUNCTION, \
-		t_u128  : U128_ ##FUNCTION, \
-		t_uint  : UInt_ ##FUNCTION, \
-		t_s8    : S8_   ##FUNCTION, \
-		t_s16   : S16_  ##FUNCTION, \
-		t_s32   : S32_  ##FUNCTION, \
-		t_s64   : S64_  ##FUNCTION, \
-		t_s128  : S128_ ##FUNCTION, \
-		t_sint  : SInt_ ##FUNCTION, \
-		t_q16   : Q16_  ##FUNCTION, \
-		t_q32   : Q32_  ##FUNCTION, \
-		t_q64   : Q64_  ##FUNCTION, \
-		t_q128  : Q128_ ##FUNCTION, \
-		t_fixed : Fixed_##FUNCTION, \
-		t_f32   : F32_  ##FUNCTION, \
-		t_f64   : F64_  ##FUNCTION, \
-		t_f80   : F80_  ##FUNCTION, \
-		t_f128  : F128_ ##FUNCTION, \
-		t_float : Float_##FUNCTION, \
-	)
-
-
-
 /*
 ** ************************************************************************** *|
 **                           Basic Arithmetic Operations                      *|
@@ -311,7 +268,7 @@ HEADER_CPP
 
 //!@doc Returns the absolute value of `x` (makes `x` positive)
 /*!
-**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fabs}
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/abs}
 **
 **	- Math: @f$ {|x|} @f$
 */
@@ -319,19 +276,193 @@ HEADER_CPP
 #define						Math_Abs(X)	DEFINE_GENERIC_MATH_SQF(Abs)(X)
 #define c_abs				Math_Abs
 #define Math_AbsoluteValue	Math_Abs
+/* TODO: figure out which platforms this fails on
+#ifndef abs
+#define abs(X)	((X) < 0 ? -(X) : (X))
+#endif
+*/
+#ifndef ABS
+#define ABS(X)	abs(X)
+#endif
 //!@}
 
 //!@doc Returns the sign value of `x` (either `-1`, `0`, or `+1`)
 /*!
 **	@isostd{C11,https://en.cppreference.com/w/c/numeric/math/signbit}
 **
-**	- Math: @f$ {sgn(x)} @f$
+**	- Math: @f$ {sgn(x) = \frac{x}{|x|}} @f$
 */
 //!@{
 #define						Math_Sgn(X)	DEFINE_GENERIC_MATH_SQF(Sgn)(X)
 #define c_sgn				Math_Sgn
 #define Math_Sign			Math_Sgn
 #define Math_SignOf			Math_Sgn
+
+#ifndef sgn
+#define sgn(X)	((X) == 0 ? 0 : ((X) < 0 ? -1 : +1))
+#endif
+#ifndef SGN
+#define SGN(X)	sgn(X)
+#endif
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
+**                           Basic kind-check Operations                      *|
+** ************************************************************************** *|
+*/
+
+//!@doc Checks if the given 'x' has a "not a number" value.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnan}
+**
+**	Also, define isnan() for ANSI C compatibility, if needed.
+*/
+//!@{
+#define						Math_IsNaN(X)	DEFINE_GENERIC_MATH_USQF(IsNaN)(X)
+#define c_isnan				Math_IsNaN
+#define Math_IsNotaNumber	Math_IsNaN
+
+#ifndef isnan
+#define isnan(X)	((X) != (X))
+#endif
+#ifndef IS_NAN
+#define IS_NAN(X)	isnan(X)
+#endif
+#ifndef IS_NOTANUMBER
+#define IS_NOTANUMBER(X)	IS_NAN(X)
+#endif
+//!@}
+
+
+
+//!@doc Checks if the given number is either `+INFINITY` or `-INFINITY`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isinf}
+**
+**	Also, define isinf() for ANSI C compatibility, if needed.
+*/
+//!@{
+#define						Math_IsInf(X)	DEFINE_GENERIC_MATH_USQF(IsInf)(X)
+#define c_isinf				Math_IsInf
+#define Math_IsInfinite		Math_IsInf
+#define Math_IsInfinity		Math_IsInf
+
+#ifndef isinf
+#define isinf(X)	(isnan((X) - (X)) && !isnan(X))
+#endif
+#ifndef IS_INF
+#define IS_INF(X)	isinf(X)
+#endif
+#ifndef IS_INFINITE
+#define IS_INFINITE(X)	IS_INF(X)
+#endif
+#ifndef IS_INFINITY
+#define IS_INFINITY(X)	IS_INF(X)
+#endif
+//!@}
+
+
+
+//!@doc Checks if the given number has finite value, i.e. it is normal, subnormal or zero, but not infinite or NaN.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isfinite}
+*/
+//!@{
+#define						Math_IsFinite(X)	DEFINE_GENERIC_MATH_USQF(IsFinite)(X)
+#define c_isfinite			Math_IsFinite
+
+#ifndef isfinite
+#define isfinite(X)	(!isnan(X) && !isinf(X))
+#endif
+#ifndef IS_FINITE
+#define IS_FINITE(X)	isfinite(X)
+#endif
+//!@}
+
+
+
+//! Checks if a value is negative (works for unsigned types, without causing tautology warnings)
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
+**
+**	This macro is useful to check if a value is negative, but its type (signed or unsigned) is not known.
+**	In particular, the `char` and `enum` native C types are of unknown/undefined signage,
+**	so this macro is useful to check that a value is positive, no matter the platform/environment.
+*/
+//!@{
+#define						Math_IsNeg(X)	DEFINE_GENERIC_MATH_USQF(IsNeg)(X)
+#define c_isneg				Math_IsNeg
+#define Math_IsNegative		Math_IsNeg
+
+#ifndef isneg
+#define isneg(X)	(!((X) > 0) && ((X) != 0))
+#endif
+#ifndef IS_NEG
+#define IS_NEG(X)	isneg(X)
+#endif
+#ifndef IS_NEGATIVE
+#define IS_NEGATIVE(X)	isneg(X)
+#endif
+
+#ifndef signbit
+#define signbit(X) ( \
+	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGN_BIT_MASK) : \
+	sizeof(X) == sizeof(double) ? (int)(bool)(AS_U64(X) & F64_SIGN_BIT_MASK) : \
+	sizeof(X) == sizeof(long double) ? ( \
+		(LDBL_MANT_DIG ==  52) ? (int)(bool)(AS_U64( X) & F64_SIGN_BIT_MASK) : \
+		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGN_BIT_MASK) : \
+		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGN_BIT_MASK) : \
+	0) : 0)
+#endif
+#ifndef SIGN_BIT
+#define SIGN_BIT(X)	signbit(X)
+#endif
+//!@}
+
+
+
+//!@doc Checks if the given floating-point number arg is normal, i.e. is neither zero, subnormal, infinite, nor NaN.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnormal}
+*/
+//!@{
+#define						Math_IsNormal(X)	DEFINE_GENERIC_MATH_USQF(IsNormal)(X)
+#define c_isnormal			Math_IsNormal
+
+#ifndef isnormal
+#define isnormal(X)	( \
+	sizeof(X) == sizeof(float)  ? ((AS_U32((t_f32)X) + ((t_u32)1 << F32_MANTISSA_BITS)) & (t_u32)-1 >> 1) >= (t_u32)1 << (F32_MANTISSA_BITS + 1) : \
+	sizeof(X) == sizeof(double) ? ((AS_U64((t_f64)X) + ((t_u64)1 << F64_MANTISSA_BITS)) & (t_u64)-1 >> 1) >= (t_u64)1 << (F64_MANTISSA_BITS + 1) : \
+	sizeof(X) == sizeof(long double) ? ( \
+		(LDBL_MANT_DIG ==  52) ? ((AS_U64( (t_f64) X) + ((t_u64 )1 <<  F64_MANTISSA_BITS)) & (t_u64 )-1 >> 1) >= (t_u64 )1 << ( F64_MANTISSA_BITS + 1) : \
+		(LDBL_MANT_DIG ==  63) ? ((AS_U80( (t_f80) X) + ((t_u128)1 <<  F80_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << ( F80_MANTISSA_BITS + 1) : \
+		(LDBL_MANT_DIG == 112) ? ((AS_U128((t_f128)X) + ((t_u128)1 << F128_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << (F128_MANTISSA_BITS + 1) : \
+	0) : 0)
+#endif
+#ifndef IS_NORMAL
+#define IS_NORMAL(X)	isnormal(X)
+#endif
+//!@}
+
+
+
+//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isunordered}
+*/
+//!@{
+#define						Math_IsUnordered(X,Y)	DEFINE_GENERIC_MATH_USQF(IsUnordered)(X,Y)
+#define c_isunordered		Math_IsUnordered
+
+#ifndef isunordered
+#define isunordered(X,Y) (isnan((X)) ? ((void)(Y),1) : isnan((Y)))
+#endif
+#ifndef IS_UNORDERED
+#define IS_UNORDERED(X)	isunordered(X)
+#endif
 //!@}
 
 
@@ -405,6 +536,7 @@ HEADER_CPP
 //!@{
 #define			Math_Equals(X, Y)	DEFINE_GENERIC_MATH_USQF(Equals)(X, Y)
 #define c_equ	Math_Equals
+//!@}
 
 //!@doc Returns `TRUE` if the 2 given values are close to equal (operator: `~=`)
 /*!
@@ -415,6 +547,7 @@ HEADER_CPP
 //!@{
 #define			Math_EqualsApprox(X, Y)	DEFINE_GENERIC_MATH_USQF(EqualsApprox)(X, Y)
 #define c_equa	Math_EqualsApprox
+//!@}
 
 
 
@@ -428,6 +561,7 @@ HEADER_CPP
 #define				Math_LessThan(X, Y)	DEFINE_GENERIC_MATH_USQF(LessThan)(X, Y)
 #define c_lt		Math_LessThan
 #define Math_LT		Math_LessThan
+//!@}
 
 //!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
 /*!
@@ -439,6 +573,7 @@ HEADER_CPP
 #define				Math_LessThanOrEqual(X, Y)	DEFINE_GENERIC_MATH_USQF(LessThanOrEqual)(X, Y)
 #define c_lte		Math_LessThanOrEqual
 #define Math_LTE	Math_LessThanOrEqual
+//!@}
 
 //!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
 /*!
@@ -450,6 +585,7 @@ HEADER_CPP
 #define				Math_GreaterThan(X, Y)	DEFINE_GENERIC_MATH_USQF(GreaterThan)(X, Y)
 #define c_gt		Math_GreaterThan
 #define Math_GT		Math_GreaterThan
+//!@}
 
 //!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
 /*!
@@ -461,6 +597,43 @@ HEADER_CPP
 #define				Math_GreaterThanOrEqual(X, Y)	DEFINE_GENERIC_MATH_USQF(GreaterThanOrEqual)(X, Y)
 #define c_gte		Math_GreaterThanOrEqual
 #define Math_GTE	Math_GreaterThanOrEqual
+//!@}
+
+
+
+//!	Computes the minimum value between `X` and `Y` (the smaller of the two)
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmin}
+*/
+//!@{
+#define					Math_Min(X, Y)	DEFINE_GENERIC_MATH_USQF(Min)(X, Y)
+#define c_min			Math_Min
+#define Math_Minimum	Math_Min
+
+#ifndef min
+#define min(X, Y)	((X) < (Y) ? (X) : (Y))
+#endif
+#ifndef MIN
+#define MIN(X, Y)	min(X, Y)
+#endif
+//!@}
+
+//! Computes the maximum value between `X` and `Y` (the larger of the two)
+/*!
+**	@isostd{C89,https://en.cppreference.com/w/c/numeric/math/fmax}
+*/
+//!@{
+#define					Math_Max(X, Y)	DEFINE_GENERIC_MATH_USQF(Max)(X, Y)
+#define c_max			Math_Max
+#define Math_Maximum	Math_Max
+
+#ifndef max
+#define max(X, Y)	((X) < (Y) ? (Y) : (X))
+#endif
+#ifndef MAX
+#define MAX(X, Y)	max(X, Y)
+#endif
+//!@}
 
 
 

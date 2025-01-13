@@ -61,7 +61,7 @@ DEFINEFUNC_FLOAT_EXP(128)
 	acc_x = 1.;
 	acc_i = 1.;
 	result_prev = 0.;
-	while (ABS(result - result_prev) > FLOAT_APPROX)
+	while (F##BITS##_Abs(result - result_prev) > FLOAT_APPROX)
 	{
 		result_prev = result;
 		acc_x *= x;

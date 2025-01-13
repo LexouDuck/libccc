@@ -727,7 +727,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 /*
 ** ************************************************************************** *|
-**                           Integer number functions                         *|
+**                         Integer conversion functions                       *|
 ** ************************************************************************** *|
 */
 
@@ -792,7 +792,7 @@ t_s128					S128_FromInt(t_sint number);
 #endif
 //!@}
 
-//!@doc Cast the given value to an integer of the specified size
+//!@doc Converts the given fixed-point value to the nearest representable integer
 /*!
 **	TODO document
 */
@@ -817,7 +817,7 @@ t_s128					S128_FromFixed(t_fixed number);
 #endif
 //!@}
 
-//!@doc Cast the given value to an integer of the specified size
+//!@doc Converts the given floating-point value to the nearest representable integer
 /*!
 **	TODO document
 */

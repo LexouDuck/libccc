@@ -113,8 +113,8 @@ HEADER_CPP
 **	The largest possible value for this type is #Q16_MAX.
 */
 //!@{
-typedef _Sat short _Accum		t_q16;
-TYPEDEF_ALIAS(					t_q16,	FIXED_16,	PRIMITIVE)
+typedef _Sat short _Accum	t_q16;
+TYPEDEF_ALIAS(t_q16,	FIXED_16,	PRIMITIVE)
 //!@}
 
 //!@doc Primitive type: 32-bit signed fixed-point rational numbers (s4.15)
@@ -127,8 +127,8 @@ TYPEDEF_ALIAS(					t_q16,	FIXED_16,	PRIMITIVE)
 **	The largest possible value for this type is #Q32_MAX.
 */
 //!@{
-typedef _Sat _Accum				t_q32;
-TYPEDEF_ALIAS(					t_q32,	FIXED_32,	PRIMITIVE)
+typedef _Sat _Accum	t_q32;
+TYPEDEF_ALIAS(t_q32,	FIXED_32,	PRIMITIVE)
 //!@}
 
 //!@doc Primitive type: 64-bit signed fixed-point rational numbers (s4.24)
@@ -141,8 +141,8 @@ TYPEDEF_ALIAS(					t_q32,	FIXED_32,	PRIMITIVE)
 **	The largest possible value for this type is #Q64_MAX.
 */
 //!@{
-typedef	_Sat long _Accum		t_q64;
-TYPEDEF_ALIAS(					t_q64,	FIXED_64,	PRIMITIVE)
+typedef	_Sat long _Accum	t_q64;
+TYPEDEF_ALIAS(t_q64,	FIXED_64,	PRIMITIVE)
 //!@}
 
 #if (LIBCONFIG_FIXED_BITS == 128)
@@ -452,7 +452,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#if LIBCONFIG_USE_INT128
 	#define Q128_ERROR	Q128_NAN
 	#endif
-	#define QINT_ERROR	QINT_NAN
+	#define FIXED_ERROR	FIXED_NAN
 #else
 	#define Q8_ERROR	((t_q8)0)
 	#define Q16_ERROR	((t_q16)0)
@@ -461,7 +461,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#if LIBCONFIG_USE_INT128
 	#define Q128_ERROR	((t_q128)0)
 	#endif
-	#define QINT_ERROR	((t_qint)0)
+	#define FIXED_ERROR	((t_fixed)0)
 #endif
 //!@}
 

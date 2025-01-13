@@ -13,7 +13,7 @@
 
 
 #define TYPE		t_sint
-#define IS_ERROR(x)	(LIBCONFIG_SINT_ERROR && (x) == SINT_ERROR)
+#define IS_ERROR(x)	(LIBCONFIG_SINT_NAN && (x) == SINT_ERROR)
 
 
 

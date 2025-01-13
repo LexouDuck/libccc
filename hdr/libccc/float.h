@@ -248,112 +248,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #endif
 //!@}
 
-//!@doc Checks if the given 'x' has a "not a number" value.
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnan}
-**
-**	Also, define isnan() for ANSI C compatibility, if needed.
-*/
-//!@{
-#ifndef isnan
-#define isnan(X)	(X != X)
-#endif
-#ifndef IS_NAN
-#define IS_NAN(X)	isnan(X)
-#endif
-#ifndef IS_NOTANUMBER
-#define IS_NOTANUMBER(X)	isnan(X)
-#endif
-//!@}
-
-//!@doc Checks if the given 'x' is either +INFINITY or -INFINITY
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isinf}
-**
-**	Also, define isinf() for ANSI C compatibility, if needed.
-*/
-//!@{
-#ifndef isinf
-#define isinf(X)	(isnan((X) - (X)) && !isnan(X))
-#endif
-#ifndef IS_INF
-#define IS_INF(X)	isinf(X)
-#endif
-#ifndef IS_INFINITY
-#define IS_INFINITY(X)	isinf(X)
-#endif
-//!@}
-
-//!@doc Checks if the given floating-point number has finite value, i.e. it is normal, subnormal or zero, but not infinite or NaN.
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isfinite}
-*/
-//!@{
-#ifndef isfinite
-#define isfinite(X)	(!isnan(X) && !isinf(X))
-#endif
-#ifndef IS_FINITE
-#define IS_FINITE(X)	isfinite(X)
-#endif
-//!@}
-
-#if 0
-//!@doc Checks if the given floating-point number arg is normal, i.e. is neither zero, subnormal, infinite, nor NaN.
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isnormal}
-*/
-//!@{
-#ifndef isnormal
-#define isnormal(X)	( \
-	sizeof(X) == sizeof(float)  ? ((AS_U32((t_f32)X) + ((t_u32)1 << F32_MANTISSA_BITS)) & (t_u32)-1 >> 1) >= (t_u32)1 << (F32_MANTISSA_BITS + 1) : \
-	sizeof(X) == sizeof(double) ? ((AS_U64((t_f64)X) + ((t_u64)1 << F64_MANTISSA_BITS)) & (t_u64)-1 >> 1) >= (t_u64)1 << (F64_MANTISSA_BITS + 1) : \
-	sizeof(X) == sizeof(long double) ? ( \
-		(LDBL_MANT_DIG ==  52) ? ((AS_U64( (t_f64) X) + ((t_u64 )1 <<  F64_MANTISSA_BITS)) & (t_u64 )-1 >> 1) >= (t_u64 )1 << ( F64_MANTISSA_BITS + 1) : \
-		(LDBL_MANT_DIG ==  63) ? ((AS_U80( (t_f80) X) + ((t_u128)1 <<  F80_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << ( F80_MANTISSA_BITS + 1) : \
-		(LDBL_MANT_DIG == 112) ? ((AS_U128((t_f128)X) + ((t_u128)1 << F128_MANTISSA_BITS)) & (t_u128)-1 >> 1) >= (t_u128)1 << (F128_MANTISSA_BITS + 1) : \
-	0) : 0)
-#endif
-#ifndef IS_NORMAL
-#define IS_NORMAL(X)	isnormal(X)
-#endif
-//!@}
-#endif
-
-#if 0
-//!@doc Returns the value of the given floating-point number's sign bit
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/signbit}
-*/
-//!@{
-#ifndef signbit
-#define signbit(X) ( \
-	sizeof(X) == sizeof(float)  ? (int)(bool)(AS_U32(X) & F32_SIGN_BIT_MASK) : \
-	sizeof(X) == sizeof(double) ? (int)(bool)(AS_U64(X) & F64_SIGN_BIT_MASK) : \
-	sizeof(X) == sizeof(long double) ? ( \
-		(LDBL_MANT_DIG ==  52) ? (int)(bool)(AS_U64( X) & F64_SIGN_BIT_MASK) : \
-		(LDBL_MANT_DIG ==  63) ? (int)(bool)(AS_U128(X) & F80_SIGN_BIT_MASK) : \
-		(LDBL_MANT_DIG == 112) ? (int)(bool)(AS_U128(X) & F128_SIGN_BIT_MASK) : \
-	0) : 0)
-#endif
-#ifndef SIGN_BIT
-#define SIGN_BIT(X)	signbit(X)
-#endif
-//!@}
-#endif
-
-//!@doc Checks if the floating point numbers `x` and `y` are unordered, that is, one or both are `NaN` and thus cannot be meaningfully compared with each other.
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/numeric/math/isunordered}
-*/
-//!@{
-#ifndef isunordered
-#define isunordered(X,Y) (isnan((X)) ? ((void)(Y),1) : isnan((Y)))
-#endif
-#ifndef IS_UNORDERED
-#define IS_UNORDERED(X)	isunordered(X)
-#endif
-//!@}
-
 
 
 //! TODO add HUGE and TINY min/max value macros
@@ -541,9 +435,9 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//! If `(ABS(value) >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation rather than decimal notation
+//! If `(abs(value) >= FLOAT_THRESHOLD_HUGE)`, Float_ToString() functions will write in scientific notation rather than decimal notation
 #define FLOAT_THRESHOLD_HUGE	(1e+9)
-//! If `(ABS(value) <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
+//! If `(abs(value) <= FLOAT_THRESHOLD_TINY)`, Float_ToString() functions will write in scientific notation rather than decimal notation
 #define FLOAT_THRESHOLD_TINY	(1e-9)
 
 

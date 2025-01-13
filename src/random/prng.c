@@ -119,7 +119,7 @@ _INLINE() t_fixed  PRNG_Fixed(t_prng* state)	{ DEFINE_PRNG(t_fixed,	return (0);)
 t_float  PRNG_Float(t_prng* state)
 {
 	t_float	result = NAN;
-	while (IS_NAN(result))
+	while (Float_IsNaN(result))
 	{
 		if (PRNG_Next(state, &result, sizeof(t_float)))
 			return (NAN);

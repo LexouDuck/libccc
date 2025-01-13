@@ -2,6 +2,7 @@
 #include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
+#include "libccc/memory.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -11,6 +12,8 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Mul(t_q##BITS a, t_q##BITS b) \
 { \
+	if CCCERROR((Memory_GetMSB(Q##BITS##_Abs(a)) + Memory_GetMSB(Q##BITS##_Abs(b)) >= BITS), ERROR_RESULTRANGE, NULL) \
+	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, (Q##BITS##_Sgn(a) == Q##BITS##_Sgn(b)) ? Q##BITS##_MAX : Q##BITS##_MIN) } \
 	return ((a * b) / FIXED_DENOMINATOR); \
 } \
 // TODO fix this and test

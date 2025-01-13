@@ -30,9 +30,9 @@ DEFINEFUNC_FLOAT_EQUALS(128)
 _INLINE() \
 t_bool	F##BITS##_EqualsApprox(t_f##BITS a, t_f##BITS b) \
 { \
-	t_f##BITS abs_a = ABS(a); \
-	t_f##BITS abs_b = ABS(b); \
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * FLOAT_APPROX); \
+	t_f##BITS abs_a = F##BITS##_Abs(a); \
+	t_f##BITS abs_b = F##BITS##_Abs(b); \
+	return (F##BITS##_Abs(a - b) <= F##BITS##_Max(abs_a, abs_b) * FLOAT_APPROX); \
 } \
 
 DEFINEFUNC_FLOAT_APPROX(32)

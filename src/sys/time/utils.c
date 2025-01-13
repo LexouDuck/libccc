@@ -28,12 +28,12 @@ t_bool	Date_IsValid(s_date const* date)
 
 	if (date->day_week >= ENUMLENGTH_WEEKDAY)
 		return (FALSE);
-	if (ISNEG(date->day_week))
+	if (isneg(date->day_week))
 		return (FALSE);
 
 	if (date->month >= ENUMLENGTH_MONTH)
 		return (FALSE);
-	if (ISNEG(date->month))
+	if (isneg(date->month))
 		return (FALSE);
 	return (TRUE);
 }
@@ -70,13 +70,13 @@ void	Date_MakeValid(s_date* date)
 	tmp = ENUMLENGTH_WEEKDAY;
 	if (date->day_week >= tmp)
 		date->day_week = (e_weekday)(tmp - 1);
-	if (ISNEG(date->day_week))
+	if (isneg(date->day_week))
 		date->day_week = (e_weekday)0;
 
 	tmp = ENUMLENGTH_MONTH;
 	if (date->month >= tmp)
 		date->month = (e_month)(tmp - 1);
-	if (ISNEG(date->month))
+	if (isneg(date->month))
 		date->month = (e_month)0;
 }
 

@@ -29,7 +29,7 @@ t_f##BITS	F##BITS##_Ln_TaylorSeries(t_f##BITS x) \
 	power = x; \
 	result = x; \
 	result_previous = NAN; \
-	while (ABS(power) > FLOAT_APPROX) \
+	while (F##BITS##_Abs(power) > FLOAT_APPROX) \
 	{ \
 		power *= x; \
 		result += (((((t_sint)i % 2)) * 2.) - 1.) * (power / i); \

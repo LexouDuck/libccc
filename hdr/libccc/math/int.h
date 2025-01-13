@@ -91,9 +91,58 @@ typedef		t_s128	(*f_s128_operator)	(t_s128 a,	t_s128 b);
 
 /*
 ** ************************************************************************** *|
-**                           Basic Arithmetic Operations                      *|
+**                          Basic Fundamental Operations                      *|
 ** ************************************************************************** *|
 */
+
+//!@doc Returns `a` as-is (only useful when dealing with function pointers).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						UInt_Id	CONCAT(UINT_TYPE,_Id)
+#define c_uid				UInt_Id
+#define UInt_Identity		UInt_Id
+
+t_s8						U8_Id(t_s8 a);
+#define c_u8id				U8_Id
+
+t_s16						U16_Id(t_s16 a);
+#define c_u16id				U16_Id
+
+t_s32						U32_Id(t_s32 a);
+#define c_u32id				U32_Id
+
+t_s64						U64_Id(t_s64 a);
+#define c_u64id				U64_Id
+
+#if LIBCONFIG_USE_INT128
+t_s128						U128_Id(t_s128 a);
+#define c_u128id			U128_Id
+#endif
+
+#define						SInt_Id	CONCAT(SINT_TYPE,_Id)
+#define c_sid				SInt_Id
+
+t_s8						S8_Id(t_s8 a);
+#define c_s8id				S8_Id
+
+t_s16						S16_Id(t_s16 a);
+#define c_s16id				S16_Id
+
+t_s32						S32_Id(t_s32 a);
+#define c_s32id				S32_Id
+
+t_s64						S64_Id(t_s64 a);
+#define c_s64id				S64_Id
+
+#if LIBCONFIG_USE_INT128
+t_s128						S128_Id(t_s128 a);
+#define c_s128id			S128_Id
+#endif
+//!@}
+
+
 
 //!@doc Returns the absolute value of `a` (makes `a` positive)
 /*!
@@ -121,6 +170,8 @@ t_s128						S128_Abs(t_s128 a);
 #define c_s128abs			S128_Abs
 #endif
 //!@}
+
+
 
 //!@doc Returns the sign value value of `x` (either `-1`, `0`, or `+1`)
 /*!
@@ -152,7 +203,157 @@ t_s128						S128_Sgn(t_s128 x);
 
 
 
-// TODO: implement IsPrime() function
+/*
+** ************************************************************************** *|
+**                           Basic kind-check functions                       *|
+** ************************************************************************** *|
+*/
+
+
+
+//!@doc Returns `TRUE` if the given number is NAN (not a number) (only useful when #LIBCONFIG_UINT_NAN is active).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						UInt_IsNaN	CONCAT(UINT_TYPE,_IsNaN)
+#define c_uisnan			UInt_IsNaN
+
+t_bool						U8_IsNaN(t_u8 a);
+#define c_u8isnan			U8_IsNaN
+
+t_bool						U16_IsNaN(t_u16 a);
+#define c_u16isnan			U16_IsNaN
+
+t_bool						U32_IsNaN(t_u32 a);
+#define c_u32isnan			U32_IsNaN
+
+t_bool						U64_IsNaN(t_u64 a);
+#define c_u64isnan			U64_IsNaN
+
+#if LIBCONFIG_USE_INT128
+t_bool						U128_IsNaN(t_u128 a);
+#define c_u128isnan			U128_IsNaN
+#endif
+
+#define						SInt_IsNaN	CONCAT(SINT_TYPE,_IsNaN)
+#define c_sisnan			SInt_IsNaN
+
+t_bool						S8_IsNaN(t_s8 a);
+#define c_s8isnan			S8_IsNaN
+
+t_bool						S16_IsNaN(t_s16 a);
+#define c_s16isnan			S16_IsNaN
+
+t_bool						S32_IsNaN(t_s32 a);
+#define c_s32isnan			S32_IsNaN
+
+t_bool						S64_IsNaN(t_s64 a);
+#define c_s64isnan			S64_IsNaN
+
+#if LIBCONFIG_USE_INT128
+t_bool						S128_IsNaN(t_s128 a);
+#define c_s128isnan			S128_IsNaN
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is infinite (only useful when #LIBCONFIG_UINT_INF is active).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						UInt_IsInf	CONCAT(UINT_TYPE,_IsInf)
+#define c_uisinf			UInt_IsInf
+
+t_bool						U8_IsInf(t_u8 a);
+#define c_u8isinf			U8_IsInf
+
+t_bool						U16_IsInf(t_u16 a);
+#define c_u16isinf			U16_IsInf
+
+t_bool						U32_IsInf(t_u32 a);
+#define c_u32isinf			U32_IsInf
+
+t_bool						U64_IsInf(t_u64 a);
+#define c_u64isinf			U64_IsInf
+
+#if LIBCONFIG_USE_INT128
+t_bool						U128_IsInf(t_u128 a);
+#define c_u128isinf			U128_IsInf
+#endif
+
+#define						SInt_IsInf	CONCAT(SINT_TYPE,_IsInf)
+#define c_sisinf			SInt_IsInf
+
+t_bool						S8_IsInf(t_s8 a);
+#define c_s8isinf			S8_IsInf
+
+t_bool						S16_IsInf(t_s16 a);
+#define c_s16isinf			S16_IsInf
+
+t_bool						S32_IsInf(t_s32 a);
+#define c_s32isinf			S32_IsInf
+
+t_bool						S64_IsInf(t_s64 a);
+#define c_s64isinf			S64_IsInf
+
+#if LIBCONFIG_USE_INT128
+t_bool						S128_IsInf(t_s128 a);
+#define c_s128isinf			S128_IsInf
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is a prime number.
+/*!
+**	@nonstd
+*/
+//!@{
+#define						UInt_IsPrime	CONCAT(UINT_TYPE,_IsPrime)
+#define c_uisprime			UInt_IsPrime
+
+t_bool						U8_IsPrime(t_u8 a);
+#define c_u8isprime			U8_IsPrime
+
+t_bool						U16_IsPrime(t_u16 a);
+#define c_u16isprime		U16_IsPrime
+
+t_bool						U32_IsPrime(t_u32 a);
+#define c_u32isprime		U32_IsPrime
+
+t_bool						U64_IsPrime(t_u64 a);
+#define c_u64isprime		U64_IsPrime
+
+#if LIBCONFIG_USE_INT128
+t_bool						U128_IsPrime(t_u128 a);
+#define c_u128isprime		U128_IsPrime
+#endif
+
+#define						SInt_IsPrime	CONCAT(SINT_TYPE,_IsPrime)
+#define c_sisprime			SInt_IsPrime
+
+t_bool						S8_IsPrime(t_s8 a);
+#define c_s8isprime			S8_IsPrime
+
+t_bool						S16_IsPrime(t_s16 a);
+#define c_s16isprime		S16_IsPrime
+
+t_bool						S32_IsPrime(t_s32 a);
+#define c_s32isprime		S32_IsPrime
+
+t_bool						S64_IsPrime(t_s64 a);
+#define c_s64isprime		S64_IsPrime
+
+#if LIBCONFIG_USE_INT128
+t_bool						S128_IsPrime(t_s128 a);
+#define c_s128isprime		S128_IsPrime
+#endif
+//!@}
+
+
 
 // TODO: implement PrimeFactors() function
 
@@ -317,10 +518,8 @@ t_bool					U64_LessThan(t_u64 x, t_u64 y);
 t_bool					U128_LessThan(t_u128 x, t_u128 y);
 #define c_u128lt		U128_LessThan
 #endif
-//!@}
 
-//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value (operator: `<`)
-//!@{
+
 #define					SInt_LessThan	CONCAT(SINT_TYPE,_LessThan)
 #define c_slt			SInt_LessThan
 
@@ -341,6 +540,8 @@ t_bool					S128_LessThan(t_s128 x, t_s128 y);
 #define c_s128lt		S128_LessThan
 #endif
 //!@}
+
+
 
 //!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
 //!@{
@@ -363,10 +564,7 @@ t_bool					U64_LessThanOrEqual(t_u64 x, t_u64 y);
 t_bool					U128_LessThanOrEqual(t_u128 x, t_u128 y);
 #define c_u128lte		U128_LessThanOrEqual
 #endif
-//!@}
 
-//!@doc Returns `TRUE` if the left-hand value is lesser than the right-hand value or equal to it (operator: `<=`)
-//!@{
 #define					SInt_LessThanOrEqual	CONCAT(SINT_TYPE,_LessThanOrEqual)
 #define c_slte			SInt_LessThanOrEqual
 
@@ -387,6 +585,8 @@ t_bool					S128_LessThanOrEqual(t_s128 x, t_s128 y);
 #define c_s128lte		S128_LessThanOrEqual
 #endif
 //!@}
+
+
 
 //!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
 //!@{
@@ -409,10 +609,7 @@ t_bool					U64_GreaterThan(t_u64 x, t_u64 y);
 t_bool					U128_GreaterThan(t_u128 x, t_u128 y);
 #define c_u128gt		U128_GreaterThan
 #endif
-//!@}
 
-//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value (operator: `>`)
-//!@{
 #define					SInt_GreaterThan	CONCAT(SINT_TYPE,_GreaterThan)
 #define c_sgt			SInt_GreaterThan
 
@@ -455,10 +652,7 @@ t_bool					U64_GreaterThanOrEqual(t_u64 x, t_u64 y);
 t_bool					U128_GreaterThanOrEqual(t_u128 x, t_u128 y);
 #define c_u128gte		U128_GreaterThanOrEqual
 #endif
-//!@}
 
-//!@doc Returns `TRUE` if the left-hand value is greater than the right-hand value or equal to it (operator: `>=`)
-//!@{
 #define					SInt_GreaterThanOrEqual	CONCAT(SINT_TYPE,_GreaterThanOrEqual)
 #define c_sgte			SInt_GreaterThanOrEqual
 
@@ -482,9 +676,109 @@ t_bool					S128_GreaterThanOrEqual(t_s128 x, t_s128 y);
 
 
 
+//!@doc Returns the smaller of the two given numbers `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_Min	CONCAT(UINT_TYPE,_Min)
+#define c_umin			UInt_Min
+#define UInt_Minimum	UInt_Min
+
+t_u8					U8_Min(t_u8 a, t_u8 b);
+#define c_u8min			U8_Min
+
+t_u16					U16_Min(t_u16 a, t_u16 b);
+#define c_u16min		U16_Min
+
+t_u32					U32_Min(t_u32 a, t_u32 b);
+#define c_u32min		U32_Min
+
+t_u64					U64_Min(t_u64 a, t_u64 b);
+#define c_u64min		U64_Min
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_Min(t_u128 a, t_u128 b);
+#define c_u128min		U128_Min
+#endif
+
+#define					SInt_Min	CONCAT(SINT_TYPE,_Min)
+#define c_smin			SInt_Min
+#define SInt_Minimum	SInt_Min
+
+t_s8					S8_Min(t_s8 a, t_s8 b);
+#define c_s8min			S8_Min
+
+t_s16					S16_Min(t_s16 a, t_s16 b);
+#define c_s16min		S16_Min
+
+t_s32					S32_Min(t_s32 a, t_s32 b);
+#define c_s32min		S32_Min
+
+t_s64					S64_Min(t_s64 a, t_s64 b);
+#define c_s64min		S64_Min
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_Min(t_s128 a, t_s128 b);
+#define c_s128min		S128_Min
+#endif
+//!@}
+
+
+
+//!@doc Returns the larger of the two given numbers `a` and `b`
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_Max	CONCAT(UINT_TYPE,_Max)
+#define c_umax			UInt_Max
+#define UInt_Maximum	UInt_Max
+
+t_u8					U8_Max(t_u8 a, t_u8 b);
+#define c_u8max			U8_Max
+
+t_u16					U16_Max(t_u16 a, t_u16 b);
+#define c_u16max		U16_Max
+
+t_u32					U32_Max(t_u32 a, t_u32 b);
+#define c_u32max		U32_Max
+
+t_u64					U64_Max(t_u64 a, t_u64 b);
+#define c_u64max		U64_Max
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_Max(t_u128 a, t_u128 b);
+#define c_u128max		U128_Max
+#endif
+
+#define					SInt_Max	CONCAT(SINT_TYPE,_Max)
+#define c_smax			SInt_Max
+#define SInt_Maximum	SInt_Max
+
+t_s8					S8_Max(t_s8 a, t_s8 b);
+#define c_s8max			S8_Max
+
+t_s16					S16_Max(t_s16 a, t_s16 b);
+#define c_s16max		S16_Max
+
+t_s32					S32_Max(t_s32 a, t_s32 b);
+#define c_s32max		S32_Max
+
+t_s64					S64_Max(t_s64 a, t_s64 b);
+#define c_s64max		S64_Max
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_Max(t_s128 a, t_s128 b);
+#define c_s128max		S128_Max
+#endif
+//!@}
+
+
+
 /*
 ** ************************************************************************** *|
-**                         UInt-point basic operators                        *|
+**                         Integer-based math operators                       *|
 ** ************************************************************************** *|
 */
 
@@ -511,10 +805,7 @@ t_u64				U64_Add(t_u64 a, t_u64 b);
 t_u128				U128_Add(t_u128 a, t_u128 b);
 #define c_u128add	U128_Add
 #endif
-//!@}
 
-//!@doc Performs an addition between the 2 given integer values (operator: `+`)
-//!@{
 #define				SInt_Add	CONCAT(SINT_TYPE,_Add)
 #define c_sadd		SInt_Add
 
@@ -560,10 +851,7 @@ t_u64				U64_Sub(t_u64 a, t_u64 b);
 t_u128				U128_Sub(t_u128 a, t_u128 b);
 #define c_u128sub	U128_Sub
 #endif
-//!@}
 
-//!@doc Performs an addition between the 2 given integer values (operator: `-`)
-//!@{
 #define					SInt_Sub	CONCAT(SINT_TYPE,_Sub)
 #define c_ssub			SInt_Sub
 #define SInt_Subtract	SInt_Sub
@@ -610,10 +898,7 @@ t_u64				U64_Mul(t_u64 a, t_u64 b);
 t_u128				U128_Mul(t_u128 a, t_u128 b);
 #define c_u128mul	U128_Mul
 #endif
-//!@}
 
-//!@doc Performs an addition between the 2 given integer values (operator: `*`)
-//!@{
 #define					SInt_Mul	CONCAT(SINT_TYPE,_Mul)
 #define c_smul			SInt_Mul
 #define SInt_Multiply	SInt_Mul
@@ -660,10 +945,7 @@ t_u64				U64_Div(t_u64 a, t_u64 b);
 t_u128				U128_Div(t_u128 a, t_u128 b);
 #define c_u128div	U128_Div
 #endif
-//!@}
 
-//!@doc Performs a division between the 2 given integer values (operator: `/`)
-//!@{
 #define				SInt_Div	CONCAT(SINT_TYPE,_Div)
 #define c_sdiv		SInt_Div
 #define SInt_Divide	SInt_Div
@@ -713,13 +995,7 @@ t_u64					U64_Mod(t_u64 a, t_u64 b);
 t_u128					U128_Mod(t_u128 a, t_u128 b);
 #define c_u128mod		U128_Mod
 #endif
-//!@}
 
-//!@doc Returns the remainder of euclidian division of `a` by `b`
-/*!
-**	@nonstd
-*/
-//!@{
 #define					SInt_Mod	CONCAT(SINT_TYPE,_Mod)
 #define c_smod			SInt_Mod
 #define SInt_Modulo		SInt_Mod
@@ -770,13 +1046,7 @@ t_u64					U64_Rem(t_u64 a, t_u64 b);
 t_u128					U128_Rem(t_u128 a, t_u128 b);
 #define c_u128rem		U128_Rem
 #endif
-//!@}
 
-//!@doc Returns the remainder of euclidian division of `a` by `b`
-/*!
-**	@nonstd
-*/
-//!@{
 #define					SInt_Rem	CONCAT(SINT_TYPE,_Rem)
 #define c_srem			SInt_Rem
 #define c_sremainder	SInt_Rem
@@ -799,14 +1069,6 @@ t_s128					S128_Rem(t_s128 a, t_s128 b);
 #define c_s128rem		S128_Rem
 #endif
 //!@}
-
-
-
-/*
-** ************************************************************************** *|
-**                         Integer-based math operators                       *|
-** ************************************************************************** *|
-*/
 
 
 
@@ -835,13 +1097,7 @@ t_u64					U64_Pow(t_u64 a, t_u64 b);
 t_u128					U128_Pow(t_u128 a, t_u128 b);
 #define c_u128pow		U128_Pow
 #endif
-//!@}
 
-//!@doc Returns the value of `a` to the power of `b` (int)
-/*!
-**	@nonstd
-*/
-//!@{
 #define					SInt_Pow	CONCAT(SINT_TYPE,_Pow)
 #define c_spow			SInt_Pow
 #define SInt_Power		SInt_Pow
@@ -894,13 +1150,7 @@ t_u64						U64_Root2(t_u64 a);
 t_u128						U128_Root2(t_u128 a);
 #define c_u128sqrt			U128_Root2
 #endif
-//!@}
 
-//!@doc Returns the square root of `a` (inverse of power of 2)
-/*!
-**	@nonstd
-*/
-//!@{
 #define						SInt_Root2	CONCAT(SINT_TYPE,_Root2)
 #define c_ssqrt				SInt_Root2
 #define SInt_SqRt			SInt_Root2
@@ -951,13 +1201,7 @@ t_u64					U64_GCD(t_u64 a, t_u64 b);
 t_u128					U128_GCD(t_u128 a, t_u128 b);
 #define c_u128gcd		U128_GCD
 #endif
-//!@}
 
-//!@doc Returns the greatest common divisor of `a` and `b`
-/*!
-**	@nonstd
-*/
-//!@{
 #define					SInt_GCD	CONCAT(SINT_TYPE,_GCD)
 #define c_sgcd			SInt_GCD
 #define SInt_GreatestCommonDivisor	SInt_GCD
@@ -1007,13 +1251,7 @@ t_u64					U64_LCM(t_u64 a, t_u64 b);
 t_u128					U128_LCM(t_u128 a, t_u128 b);
 #define c_u128lcm		U128_LCM
 #endif
-//!@}
 
-//!@doc Returns the least common multiple of `a` and `b`
-/*!
-**	@nonstd
-*/
-//!@{
 #define					SInt_LCM	CONCAT(SINT_TYPE,_LCM)
 #define c_slcm			SInt_LCM
 #define SInt_LeastCommonMultiple	SInt_LCM

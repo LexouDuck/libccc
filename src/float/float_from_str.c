@@ -14,7 +14,8 @@
 #include "libccc/pointer.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/math.h"
+#include "libccc/math/int.h"
+#include "libccc/math/float.h"
 #include "libccc/text/char_unicode.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -324,7 +325,7 @@ t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n) \
 		goto success; \
 	} \
 	Memory_Copy(&mantissa, &result, \
-		MIN(sizeof(t_uintmax), sizeof(result))); \
+		SInt_Min(sizeof(t_uintmax), sizeof(result))); \
 	/*ASSEMBLE_FLOAT(BITS)*/ \
 	mantissa = Memory_GetBits(&result, 0, F##BITS##_MANTISSA_BITS); \
 /*	Memory_Clear(&result, sizeof(result));	*/ \

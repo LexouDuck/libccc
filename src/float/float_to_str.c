@@ -5,6 +5,7 @@
 #include "libccc/float.h"
 #include "libccc/memory.h"
 #include "libccc/string.h"
+#include "libccc/math/float.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -14,11 +15,11 @@
 static
 t_char*	Float_ToString_CheckSpecial(t_float number)
 {
-	if (IS_NAN(number))
+	if (Float_IsNaN(number))
 	{
 		return (String_Duplicate("NAN"));
 	}
-	else if (IS_INF(number))
+	else if (Float_IsInf(number))
 	{
 		return (number < 0 ?
 			String_Duplicate("-INFINITY") :

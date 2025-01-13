@@ -28,9 +28,9 @@ DEFINEFUNC_FIXED_EQUALS(128)
 _INLINE() \
 t_bool	Q##BITS##_EqualsApprox(t_q##BITS a, t_q##BITS b) \
 { \
-	t_q##BITS abs_a = ABS(a); \
-	t_q##BITS abs_b = ABS(b); \
-	return (ABS(a - b) <= MAX(abs_a, abs_b) * FIXED_APPROX); \
+	t_q##BITS abs_a = Q##BITS##_Abs(a); \
+	t_q##BITS abs_b = Q##BITS##_Abs(b); \
+	return (Q##BITS##_Abs(a - b) <= Q##BITS##_Max(abs_a, abs_b) * FIXED_APPROX); \
 } \
 
 DEFINEFUNC_FIXED_APPROX(16)

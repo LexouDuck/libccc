@@ -152,7 +152,7 @@ _INLINE() t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return 
 t_float	CSPRNG_Float(t_csprng* state)
 {
 	t_float	result = NAN;
-	while (IS_NAN(result))
+	while (Float_IsNaN(result))
 	{
 		if (CSPRNG_Next(state, &result, sizeof(t_float)))
 			return (NAN);

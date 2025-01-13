@@ -13,7 +13,7 @@
 
 
 #define TYPE		t_fixed
-#define IS_ERROR(x)	(LIBCONFIG_FIXED_ERROR && (x) == FIXED_ERROR)
+#define IS_ERROR(x)	(LIBCONFIG_FIXED_NAN && (x) == FIXED_ERROR)
 
 
 

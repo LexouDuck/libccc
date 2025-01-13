@@ -136,6 +136,92 @@ t_f128						F128_Sgn(t_f128 x);
 
 /*
 ** ************************************************************************** *|
+**                           Basic kind-check functions                       *|
+** ************************************************************************** *|
+*/
+
+
+
+//!@doc Returns `TRUE` if the given number is NAN (not a number).
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Float_IsNaN	CONCAT(FLOAT_TYPE,_IsNaN)
+#define c_fisnan			Float_IsNaN
+
+t_bool						F32_IsNaN(t_f32 a);
+#define c_f32isnan			F32_IsNaN
+
+t_bool						F64_IsNaN(t_f64 a);
+#define c_f64isnan			F64_IsNaN
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool						F80_IsNaN(t_f80 a);
+#define c_f80isnan			F80_IsNaN
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool						F128_IsNaN(t_f128 a);
+#define c_f128isnan			F128_IsNaN
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is infinite.
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Float_IsInf	CONCAT(FLOAT_TYPE,_IsInf)
+#define c_fisinf			Float_IsInf
+
+t_bool						F32_IsInf(t_f32 a);
+#define c_f32isinf			F32_IsInf
+
+t_bool						F64_IsInf(t_f64 a);
+#define c_f64isinf			F64_IsInf
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool						F80_IsInf(t_f80 a);
+#define c_f80isinf			F80_IsInf
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool						F128_IsInf(t_f128 a);
+#define c_f128isinf			F128_IsInf
+#endif
+//!@}
+
+
+
+//!@doc Returns `TRUE` if the given number is a prime number.
+/*!
+**	@nonstd
+*/
+//!@{
+#define						Float_IsPrime	CONCAT(FLOAT_TYPE,_IsPrime)
+#define c_fisprime			Float_IsPrime
+
+t_bool						F32_IsPrime(t_f32 a);
+#define c_f32isprime		F32_IsPrime
+
+t_bool						F64_IsPrime(t_f64 a);
+#define c_f64isprime		F64_IsPrime
+
+#if LIBCONFIG_USE_FLOAT80
+t_bool						F80_IsPrime(t_f80 a);
+#define c_f80isprime		F80_IsPrime
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_bool						F128_IsPrime(t_f128 a);
+#define c_f128isprime		F128_IsPrime
+#endif
+//!@}
+
+
+
+/*
+** ************************************************************************** *|
 **                          Integer Rounding Operations                       *|
 ** ************************************************************************** *|
 */
@@ -389,6 +475,58 @@ t_bool					F80_GreaterThanOrEqual(t_f80 x, t_f80 y);
 #if LIBCONFIG_USE_FLOAT128
 t_bool					F128_GreaterThanOrEqual(t_f128 x, t_f128 y);
 #define c_f128gte		F128_GreaterThanOrEqual
+#endif
+//!@}
+
+
+
+//!@doc Returns the smaller of the two given numbers `x` and `y`
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fmin}
+*/
+//!@{
+#define					Float_Min	CONCAT(FLOAT_TYPE,_Min)
+#define c_fmin			Float_Min
+#define Float_Minimum	Float_Min
+
+t_f32					F32_Min(t_f32 x, t_f32 y);
+#define c_f32min		F32_Min
+
+t_f64					F64_Min(t_f64 x, t_f64 y);
+#define c_f64min		F64_Min
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_Min(t_f80 x, t_f80 y);
+#define c_f80min		F80_Min
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_Min(t_f128 x, t_f128 y);
+#define c_f128min		F128_Min
+#endif
+//!@}
+
+//!@doc Returns the larger of the two given numbers `x` and `y`
+/*!
+**	@isostd{C23,https://en.cppreference.com/w/c/numeric/math/fmax}
+*/
+//!@{
+#define					Float_Max	CONCAT(FLOAT_TYPE,_Max)
+#define c_fmax			Float_Max
+#define Float_Maximum	Float_Max
+
+t_f32					F32_Max(t_f32 x, t_f32 y);
+#define c_f32max		F32_Max
+
+t_f64					F64_Max(t_f64 x, t_f64 y);
+#define c_f64max		F64_Max
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_Max(t_f80 x, t_f80 y);
+#define c_f80max		F80_Max
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_Max(t_f128 x, t_f128 y);
+#define c_f128max		F128_Max
 #endif
 //!@}
 
