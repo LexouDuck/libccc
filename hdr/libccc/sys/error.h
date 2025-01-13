@@ -75,9 +75,9 @@ typedef struct ccchandler
 //!@doc The root-most error handling-function: used in `if ()` statements, to check and handle errors
 //!@{
 t_bool Error_If(e_cccerror errorcode,
-    t_bool shouldhandle,
-    char const* funcname,
-    char const* format, ...);
+	t_bool shouldhandle,
+	char const* funcname,
+	char const* format, ...);
 #define c_error		Error_If
 //!@}
 

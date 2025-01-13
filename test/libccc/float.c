@@ -555,7 +555,7 @@ DEFINETEST_LRINT(f128,l)
 
 #define DEFINETEST_FREXP(TYPE, SUFFIX) \
 void	print_test_##TYPE##frexp(char const* test_name, t_testflags flags, \
-		t_##TYPE number, t_sint* exponent) \
+		t_##TYPE number, int* exponent) \
 { \
 	TEST_INIT(TYPE) \
 	TEST_PERFORM_LIBC_MATH( TYPE, frexp, SUFFIX, number, exponent) \
@@ -563,7 +563,7 @@ void	print_test_##TYPE##frexp(char const* test_name, t_testflags flags, \
 } \
 void	test_##TYPE##frexp(void) \
 { \
-	t_sint exponent; \
+	int exponent; \
 /*	| TEST FUNCTION         | TEST NAME              |TESTFLAG| TEST ARGS */ \
 	print_test_##TYPE##frexp(#TYPE"frexp (-0.0)      ",	FALSE,  -0.0,    &exponent); \
 	print_test_##TYPE##frexp(#TYPE"frexp (+0.0)      ",	FALSE,  +0.0,    &exponent); \

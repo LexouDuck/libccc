@@ -247,7 +247,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_FIXED_INF
-#define LIBCONFIG_FIXED_INF	0
+#define LIBCONFIG_FIXED_INF	1
 #endif
 #if (LIBCONFIG_FIXED_INF != 0) && (LIBCONFIG_FIXED_INF != 1)
 #error "Invalid value selected for LIBCONFIG_FIXED_INF, must be either 0 or 1"

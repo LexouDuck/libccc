@@ -100,13 +100,13 @@ t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 e_weekday	Date_DayOfTheWeek(s_date* date)
 {
 // algorithm courtesy of Tomohiko Sakamoto
-    static t_char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
-    t_s32 y = date->year;
-    if (date->month < MONTH_MARCH)
-    {
-        y -= 1;
-    }
-    return ((e_weekday)((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY));
+	static t_char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+	t_s32 y = date->year;
+	if (date->month < MONTH_MARCH)
+	{
+		y -= 1;
+	}
+	return ((e_weekday)((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY));
 /*
 // simple epoch-based algorithm
 	t_time t = Date_ToTime(date);

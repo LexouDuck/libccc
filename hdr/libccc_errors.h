@@ -203,11 +203,11 @@ HEADER_CPP
 **	@param _ERRORTYPE_	The type of error to emit (an #e_cccerror value)
 */
 #define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
-    ((_CONDITION_) && Error_If( \
-        _ERRORTYPE_, \
-        SHOULDHANDLE_##_ERRORTYPE_, \
-        (const char*)__func__, \
-        __VA_ARGS__)) \
+	((_CONDITION_) && Error_If( \
+		_ERRORTYPE_, \
+		SHOULDHANDLE_##_ERRORTYPE_, \
+		(const char*)__func__, \
+		__VA_ARGS__)) \
 
 //!@}
 

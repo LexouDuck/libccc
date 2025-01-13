@@ -58,7 +58,7 @@ e_cccerror	KVT_SetValue_String(s_kvt* object, t_char* value)
 		String_Copy(object->value.string, value);
 		return (ERROR_NONE);
 	}
-    copy = (t_char*)String_Duplicate((t_char const*)value);
+	copy = (t_char*)String_Duplicate((t_char const*)value);
 	if CCCERROR((copy == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (ERROR_ALLOCFAILURE);
 	if (object->value.string != NULL)
