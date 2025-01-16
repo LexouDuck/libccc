@@ -34,7 +34,19 @@ HEADER_CPP
 ||                                 Definitions                                ||
 \*============================================================================*/
 
-#define DEFINEFUNC_H_QUICKSORT(TYPE, NAME, COMPARE, EXCLUDE) \
+#define TYPE	void
+
+void	QuickSort(TYPE* ptr, t_size count, t_size size,
+	t_sint (*compare)(TYPE const*, TYPE const*));
+
+TYPE*	QuickSort_New(TYPE const* ptr, t_size count, t_size size,
+	t_sint (*compare)(TYPE const*, TYPE const*));
+
+#define c_qsort	QuickSort
+
+
+
+#define DEFINEFUNC_H_QUICKSORT(TYPE, NAME) \
 void	QuickSort_Rec_##NAME(TYPE* array, t_uint start, t_uint end, \
 	t_sint (*compare)(TYPE, TYPE), \
 	t_bool (*exclude)(TYPE)); \

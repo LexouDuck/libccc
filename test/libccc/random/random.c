@@ -41,7 +41,7 @@ s_sorted_sint	print_test_random(t_uint sample_size)
 		printf("Quicksorting...");
 	quicksort_sint(result.items, 0, result.length);
 	if (g_test.config.verbose)
-		printf("Done !\n");
+		printf("QuickSort done!\n");
 /*
 	for (int i = 0; i < result.length - 1; ++i)
 	{

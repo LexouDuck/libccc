@@ -170,6 +170,7 @@
 ./src/math/int/op_sub.c
 ./src/math/int/rel_equals.c
 ./src/math/int/rel_orders.c
+./src/math/sort.c
 ./src/math/stat/stat.c
 ./src/memory/allocate.c
 ./src/memory/bits.c

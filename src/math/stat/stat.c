@@ -187,26 +187,26 @@ s_set_##TYPE_LOWER	Stat_##TYPE_MIXED##_ToSet(s_array(TYPE_LOWER) const sample) \
 	Memory_Free(set.items); \
 	return (result); \
 } \
+ \
 static \
-t_sint	Stat_##TYPE_MIXED##_Compare(TYPE x, TYPE y) \
+t_sint	Stat_##TYPE_MIXED##_Compare(void const* a, void const* b) \
 { \
+	TYPE	x = (*(TYPE const*)a); \
+	TYPE	y = (*(TYPE const*)b); \
+	if (TYPE_MIXED##_IsNaN(x))	return -1; \
 	return (Float_Sgn((t_float)x - (t_float)y)); \
 } \
-static \
-t_bool	Stat_##TYPE_MIXED##_Exclude(TYPE x) \
-{ \
-	return (TYPE_MIXED##_IsNaN(x)); \
-} \
- \
-DEFINEFUNC_C_QUICKSORT(TYPE, TYPE_MIXED, Stat_##TYPE_MIXED##_Compare, Stat_##TYPE_MIXED##_Exclude) \
- \
 s_array(TYPE_LOWER)	Stat_##TYPE_MIXED##_Sort(s_array(TYPE_LOWER) const sample) \
 { \
-	return s_array(TYPE_LOWER){ .length = sample.length, .items = QuickSort_New_##TYPE_MIXED(sample.items, sample.length) }; \
+	return (s_array(TYPE_LOWER)) \
+		{ \
+			.length = sample.length, \
+			.items = QuickSort_New(sample.items, sample.length, sizeof(TYPE), Stat_##TYPE_MIXED##_Compare), \
+		}; \
 } \
 void	Stat_##TYPE_MIXED##_Sort_InPlace(s_array(TYPE_LOWER) sample) \
 { \
-	QuickSort_##TYPE_MIXED(sample.items, sample.length); \
+	QuickSort(sample.items, sample.length, sizeof(TYPE), Stat_##TYPE_MIXED##_Compare); \
 } \
 /*! https://en.wikipedia.org/wiki/ */ \
 s_prob_mass	Stat_##TYPE_MIXED##_ProbabilityMassFunction(s_array(TYPE_LOWER) const sample) \
