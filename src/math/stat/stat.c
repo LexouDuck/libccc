@@ -385,7 +385,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Geometric(s_array(TYPE_LOWER) const sample) \
 		product *= value; \
 		n++; \
 	} \
-	return pow(product, 1. / n); \
+	return Float_Pow(product, 1. / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Harmonic_mean */ \
 t_float	Stat_##TYPE_MIXED##_Mean_Harmonic(s_array(TYPE_LOWER) const sample) \
@@ -427,8 +427,8 @@ t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum1 += pow(value, power - 1); \
-		sum2 += pow(value, power); \
+		sum1 += Float_Pow(value, power - 1); \
+		sum2 += Float_Pow(value, power); \
 	} \
 	return (sum2 / sum1); \
 } \
@@ -491,10 +491,10 @@ t_float	Stat_##TYPE_MIXED##_Mean_Power(s_array(TYPE_LOWER) const sample, t_float
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += pow(value, p); \
+		sum += Float_Pow(value, p); \
 		n++; \
 	} \
-	return (pow(sum / n, 1 / p)); \
+	return (Float_Pow(sum / n, 1 / p)); \
 } \
 /*! https://en.wikipedia.org/wiki/Variance */ \
 t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
