@@ -201,7 +201,7 @@ s_array(TYPE_LOWER)	Stat_##TYPE_MIXED##_Sort(s_array(TYPE_LOWER) const sample) \
 	return (s_array(TYPE_LOWER)) \
 		{ \
 			.length = sample.length, \
-			.items = QuickSort_New(sample.items, sample.length, sizeof(TYPE), Stat_##TYPE_MIXED##_Compare), \
+			.items = (TYPE*)QuickSort_New(sample.items, sample.length, sizeof(TYPE), Stat_##TYPE_MIXED##_Compare), \
 		}; \
 } \
 void	Stat_##TYPE_MIXED##_Sort_InPlace(s_array(TYPE_LOWER) sample) \

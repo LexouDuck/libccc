@@ -4,6 +4,9 @@
 #include "libccc/text/format.h"
 
 #ifndef __NOSTD__
+	#define _GNU_SOURCE	// define we want GNU extensions
+	#define _BSD_SOURCE	// define we want BSD extensions
+	#define __STDC_WANT_LIB_EXT2__	1	// define we want TR 24731-2:2010 extensions
 	#include <stdio.h>
 #else
 	int	vsnprintf(char* dest, size_t n, char const* format, va_list args);
@@ -27,6 +30,8 @@
 	!defined(__GNUC__) || \
 	(defined(__GNUC__) && !defined(_GNU_SOURCE) && !defined(_BSD_SOURCE)))
 
+// compatibility: vscprintf
+
 #ifdef __NOSTD__
 // MSVC implements this as `_vscprintf`, thus we just 'symlink' it here
 #elif __MSVC__
@@ -36,8 +41,9 @@
 #define vscprintf vscprintf
 #endif
 
-#ifndef 	vscprintf
-static	int	vscprintf(t_ascii const* format, va_list args)
+#ifndef vscprintf
+static
+int	vscprintf(t_ascii const* format, va_list args)
 {
 	va_list args_copy;
 
@@ -48,14 +54,17 @@ static	int	vscprintf(t_ascii const* format, va_list args)
 }
 #endif
 
+// compatibility: vscprintf
+
 #ifdef __NOSTD__
 // MacOSX implements this one and exposes it by default
 #elif __APPLE__ || defined(__ANDROID__)
 #define vasprintf vasprintf
 #endif
 
-#ifndef 	vasprintf
-static	int	vasprintf(t_ascii** a_str, t_ascii const* format, va_list args)
+#ifndef vasprintf
+static
+int	vasprintf(t_ascii** a_str, t_ascii const* format, va_list args)
 {
 	int length = vscprintf(format, args);
 	if (length == -1)
