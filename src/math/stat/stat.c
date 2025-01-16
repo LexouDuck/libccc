@@ -292,7 +292,6 @@ t_float	Stat_##TYPE_MIXED##_Mode(s_array(TYPE_LOWER) const sample) \
 	TYPE	previous = 0; \
 	t_uint	consecutive_record = 0; \
 	t_uint	consecutive_current = 0; \
-	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length; ++i) \
 	{ \
 		value = sample.items[i]; \
@@ -305,7 +304,6 @@ t_float	Stat_##TYPE_MIXED##_Mode(s_array(TYPE_LOWER) const sample) \
 			result = value; \
 		} \
 		previous = value; \
-		n++; \
 	} \
 	return result; \
 } \
