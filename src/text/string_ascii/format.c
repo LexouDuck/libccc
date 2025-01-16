@@ -4,8 +4,12 @@
 #include "libccc/text/format.h"
 
 #ifndef __NOSTD__
+	#ifndef _GNU_SOURCE
 	#define _GNU_SOURCE	// define we want GNU extensions
+	#endif
+	#ifndef _BSD_SOURCE
 	#define _BSD_SOURCE	// define we want BSD extensions
+	#endif
 	#define __STDC_WANT_LIB_EXT2__	1	// define we want TR 24731-2:2010 extensions
 	#include <stdio.h>
 #else
