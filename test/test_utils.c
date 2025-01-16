@@ -664,21 +664,6 @@ double	stat_mean_power_##NAME(const TYPE * values, unsigned int length, double p
 	} \
 	return (pow(sum / n, 1 / p)); \
 } \
-/*! https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average */ \
-double	stat_moving_average_simple_##NAME(const TYPE * values, unsigned int length) \
-{ \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
-} \
-/*! https://en.wikipedia.org/wiki/Moving_average#Cumulative_moving_average */ \
-double	stat_moving_average_cumulative_##NAME(const TYPE * values, unsigned int length) \
-{ \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
-} \
-/*! https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average */ \
-double	stat_moving_average_weighted_##NAME(const TYPE * values, unsigned int length) \
-{ \
-	return (values && length) ? NAME_UPPER##_ERROR : NAME_UPPER##_ERROR; \
-} \
 /*! https://en.wikipedia.org/wiki/Variance */ \
 double	stat_variance_##NAME(const TYPE * values, unsigned int length) \
 { \
@@ -900,6 +885,26 @@ double	stat_rss_##NAME(const TYPE * values, const TYPE * expect, unsigned int le
 } \
 /*! https://en.wikipedia.org/wiki/Squared_deviations_from_the_mean */ \
 /*TODO*/
+
+#if 0
+
+/*! https://en.wikipedia.org/wiki/Moving_average#Simple_moving_average */ \
+double	stat_moving_average_simple_##NAME(const TYPE * values, unsigned int length) \
+{ \
+	return ?; \
+} \
+/*! https://en.wikipedia.org/wiki/Moving_average#Cumulative_moving_average */ \
+double	stat_moving_average_cumulative_##NAME(const TYPE * values, unsigned int length) \
+{ \
+	return ?; \
+} \
+/*! https://en.wikipedia.org/wiki/Moving_average#Weighted_moving_average */ \
+double	stat_moving_average_weighted_##NAME(const TYPE * values, unsigned int length) \
+{ \
+	return ?; \
+} \
+
+#endif
 
 DEFINEFUNCTIONS_STATS(UINT , uint , t_uint,  (LIBCONFIG_UINT_NAN  ? (value ==  UINT_ERROR) : FALSE))
 DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8,    (LIBCONFIG_UINT_NAN  ? (value ==    U8_ERROR) : FALSE))

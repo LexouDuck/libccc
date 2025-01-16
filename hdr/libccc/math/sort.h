@@ -35,20 +35,24 @@ HEADER_CPP
 \*============================================================================*/
 
 #define DEFINEFUNC_H_QUICKSORT(TYPE, COMPARE) \
-void	QuickSort_Rec_##COMPARE(TYPE* array, t_sint (*compare)(TYPE, TYPE), t_size start, t_size end); \
+void	QuickSort_Rec_##COMPARE(TYPE* array, t_size start, t_size end, \
+	t_sint (*compare)(TYPE, TYPE), \
+	t_bool (*exclude)(TYPE)); \
 TYPE*	QuickSort_New_##COMPARE(TYPE const* array, t_size items); \
 void	QuickSort_##COMPARE(TYPE* array, t_size items); \
 
 
 
 #define DEFINEFUNC_C_QUICKSORT(TYPE, COMPARE) \
-void	QuickSort_Rec_##COMPARE(TYPE* array, t_sint (*compare)(TYPE, TYPE), t_size start, t_size end) \
+void	QuickSort_Rec_##COMPARE(TYPE* array, t_size start, t_size end, \
+	t_sint (*compare)(TYPE, TYPE, \
+	t_bool (*exclude)(TYPE)); \
 { \
 	t_size	pivot_id; \
 	t_size	rise_id; \
 	t_size	fall_id; \
 	TYPE	pivot = array[start]; \
-	if (start >= end) \
+	if (start >= end || (exclude != NULL && exclude(pivot))) \
 		return; \
 	if (start == end - 1) \
 	{ \
@@ -61,9 +65,13 @@ void	QuickSort_Rec_##COMPARE(TYPE* array, t_sint (*compare)(TYPE, TYPE), t_size 
 	while (rise_id < fall_id) \
 	{ \
 		while (rise_id <= end && compare(pivot, array[rise_id]) <= 0) \
+		{ \
 			++rise_id; \
+		} \
 		while (fall_id > start && compare(pivot, array[fall_id]) > 0) \
+		{ \
 			--fall_id; \
+		} \
 		if (rise_id < fall_id) \
 			Memory_Swap(array + rise_id, array + fall_id, sizeof(TYPE)); \
 	} \

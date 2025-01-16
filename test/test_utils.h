@@ -51,7 +51,7 @@ char*	print_memory(void const* ptr, t_size length);
 
 char*	ptrtostr(void const* ptr);
 
-s_sorted_int	print_test_random(int samples);
+s_sorted_sint	print_test_random(int samples);
 
 
 
@@ -76,9 +76,6 @@ double	stat_mean_interquartile_         ##NAME(const TYPE * values, unsigned int
 double	stat_mean_quadratic_             ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_cubic_                 ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_power_                 ##NAME(const TYPE * values, unsigned int length, double power); \
-double	stat_moving_average_simple_      ##NAME(const TYPE * values, unsigned int length); \
-double	stat_moving_average_cumulative_  ##NAME(const TYPE * values, unsigned int length); \
-double	stat_moving_average_weighted_    ##NAME(const TYPE * values, unsigned int length); \
 double	stat_variance_                   ##NAME(const TYPE * values, unsigned int length); \
 double	stat_stddev_                     ##NAME(const TYPE * values, unsigned int length); \
 double	stat_cv_                         ##NAME(const TYPE * values, unsigned int length); \
@@ -96,6 +93,11 @@ double	stat_mpe_                        ##NAME(const TYPE * values, const TYPE *
 double	stat_mape_                       ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
 double	stat_mspe_                       ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
 double	stat_rss_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+/*
+double	stat_moving_average_simple_      ##NAME(const TYPE * values, unsigned int length); \
+double	stat_moving_average_cumulative_  ##NAME(const TYPE * values, unsigned int length); \
+double	stat_moving_average_weighted_    ##NAME(const TYPE * values, unsigned int length); \
+*/
 
 DECLARE_NUMBER_UTILITY_FUNCTIONS(t_uint  , uint)
 DECLARE_NUMBER_UTILITY_FUNCTIONS(t_u8    , u8)
