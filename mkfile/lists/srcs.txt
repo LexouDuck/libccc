@@ -85,6 +85,9 @@
 ./src/math/complex/op_div.c
 ./src/math/complex/op_mul.c
 ./src/math/complex/op_sub.c
+./src/math/fixed/fn_abs.c
+./src/math/fixed/fn_root2.c
+./src/math/fixed/fn_sgn.c
 ./src/math/fixed/fn_toint_ceil.c
 ./src/math/fixed/fn_toint_floor.c
 ./src/math/fixed/fn_toint_round.c
@@ -97,6 +100,7 @@
 ./src/math/fixed/op_min.c
 ./src/math/fixed/op_mod.c
 ./src/math/fixed/op_mul.c
+./src/math/fixed/op_pow.c
 ./src/math/fixed/op_rem.c
 ./src/math/fixed/op_sub.c
 ./src/math/fixed/rel_equals.c
@@ -152,8 +156,8 @@
 ./src/math/float/utils_log.c
 ./src/math/float/utils_root.c
 ./src/math/float/utils_trig.c
-./src/math/int/fn_2root.c
 ./src/math/int/fn_abs.c
+./src/math/int/fn_root2.c
 ./src/math/int/fn_sgn.c
 ./src/math/int/is_inf.c
 ./src/math/int/is_nan.c
