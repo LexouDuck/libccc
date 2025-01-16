@@ -385,7 +385,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Geometric(s_array(TYPE_LOWER) const sample) \
 		product *= value; \
 		n++; \
 	} \
-	return pow(product, 1. / sample.length); \
+	return pow(product, 1. / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Harmonic_mean */ \
 t_float	Stat_##TYPE_MIXED##_Mean_Harmonic(s_array(TYPE_LOWER) const sample) \
@@ -408,14 +408,12 @@ t_float	Stat_##TYPE_MIXED##_Mean_Contraharmonic(s_array(TYPE_LOWER) const sample
 	TYPE	value; \
 	t_float	sum1 = 0.; \
 	t_float	sum2 = 0.; \
-	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		sum1 += value; \
 		sum2 += value * value; \
-		n++; \
 	} \
 	return (sum2 / sum1); \
 } \
@@ -425,14 +423,12 @@ t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint
 	TYPE	value; \
 	t_float	sum1 = 0.; \
 	t_float	sum2 = 0.; \
-	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		sum1 += pow(value, power - 1); \
 		sum2 += pow(value, power); \
-		n++; \
 	} \
 	return (sum2 / sum1); \
 } \
