@@ -733,11 +733,16 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 //!@{
 #define DEFINEFUNC_Int(X, FUNCTYPE) \
 	_Generic((X), \
-		t_s16:	 FUNCTYPE##_FromInt, \
-		t_s32:	 FUNCTYPE##_FromInt, \
-		t_s64:	 FUNCTYPE##_FromInt, \
-		t_s128:	 FUNCTYPE##_FromInt, \
-		t_sint:  FUNCTYPE##_FromInt, \
+		t_u16:	 FUNCTYPE##_FromUInt, \
+		t_u32:	 FUNCTYPE##_FromUInt, \
+		t_u64:	 FUNCTYPE##_FromUInt, \
+		t_u128:	 FUNCTYPE##_FromUInt, \
+		t_uint:  FUNCTYPE##_FromUInt, \
+		t_s16:	 FUNCTYPE##_FromSInt, \
+		t_s32:	 FUNCTYPE##_FromSInt, \
+		t_s64:	 FUNCTYPE##_FromSInt, \
+		t_s128:	 FUNCTYPE##_FromSInt, \
+		t_sint:  FUNCTYPE##_FromSInt, \
 		t_q16:	 FUNCTYPE##_FromFixed, \
 		t_q32:	 FUNCTYPE##_FromFixed, \
 		t_q64:	 FUNCTYPE##_FromFixed, \
@@ -750,13 +755,25 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 		t_float: FUNCTYPE##_FromFloat, \
 	)(X)
 
-#define Int(X)		DEFINEFUNC_Int(X, Int)
+#define UInt(X)		DEFINEFUNC_Int(X, UInt)
+#define U16(X)		DEFINEFUNC_Int(X, U16)
+#define U32(X)		DEFINEFUNC_Int(X, U32)
+#define U64(X)		DEFINEFUNC_Int(X, U64)
+#define U128(X)		DEFINEFUNC_Int(X, U128)
+
+#define c_uint(X)	UInt(X)
+#define c_u16(X)	U16(X)
+#define c_u32(X)	U32(X)
+#define c_u64(X)	U64(X)
+#define c_u128(X)	U128(X)
+
+#define SInt(X)		DEFINEFUNC_Int(X, SInt)
 #define S16(X)		DEFINEFUNC_Int(X, S16)
 #define S32(X)		DEFINEFUNC_Int(X, S32)
 #define S64(X)		DEFINEFUNC_Int(X, S64)
 #define S128(X)		DEFINEFUNC_Int(X, S128)
 
-#define c_int(X)	Int(X)
+#define c_sint(X)	SInt(X)
 #define c_s16(X)	S16(X)
 #define c_s32(X)	S32(X)
 #define c_s64(X)	S64(X)
@@ -765,28 +782,53 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 
 
 
-//!@doc Cast the given value to an integer of the specified size
+//!@doc Converts the given unsigned integer to the nearest representable integer
 /*!
 **	TODO document
 */
 //!@{
-#define					SInt_FromInt	CONCAT(SINT_TYPE,_FromInt)
-#define c_stos			SInt_FromInt
+#define					SInt_FromUInt	CONCAT(SINT_TYPE,_FromUInt)
+#define c_utos			SInt_FromUInt
 
-t_s8					S8_FromInt(t_sint number);
-#define c_stos8			S8_FromInt
+t_s8					S8_FromUInt(t_uint number);
+#define c_utos8			S8_FromUInt
 
-t_s16					S16_FromInt(t_sint number);
-#define c_stos16		S16_FromInt
+t_s16					S16_FromUInt(t_uint number);
+#define c_utos16		S16_FromUInt
 
-t_s32					S32_FromInt(t_sint number);
-#define c_stos32		S32_FromInt
+t_s32					S32_FromUInt(t_uint number);
+#define c_utos32		S32_FromUInt
 
-t_s64					S64_FromInt(t_sint number);
-#define c_stos64		S64_FromInt
+t_s64					S64_FromUInt(t_uint number);
+#define c_utos64		S64_FromUInt
 #if LIBCONFIG_USE_INT128
-t_s128					S128_FromInt(t_sint number);
-#define c_stos128		S128_FromInt
+t_s128					S128_FromUInt(t_uint number);
+#define c_utos128		S128_FromUInt
+#endif
+//!@}
+
+//!@doc Converts the given signed integer value to the nearest representable integer
+/*!
+**	TODO document
+*/
+//!@{
+#define					SInt_FromSInt	CONCAT(SINT_TYPE,_FromSInt)
+#define c_stos			SInt_FromSInt
+
+t_s8					S8_FromSInt(t_sint number);
+#define c_stos8			S8_FromSInt
+
+t_s16					S16_FromSInt(t_sint number);
+#define c_stos16		S16_FromSInt
+
+t_s32					S32_FromSInt(t_sint number);
+#define c_stos32		S32_FromSInt
+
+t_s64					S64_FromSInt(t_sint number);
+#define c_stos64		S64_FromSInt
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromSInt(t_sint number);
+#define c_stos128		S128_FromSInt
 #endif
 //!@}
 

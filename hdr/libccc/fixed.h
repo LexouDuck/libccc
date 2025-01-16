@@ -475,11 +475,16 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 //!@{
 #define DEFINEFUNC_Fixed(X, FUNCTYPE) \
 	_Generic((X), \
-		t_s16:	 FUNCTYPE##_FromInt, \
-		t_s32:	 FUNCTYPE##_FromInt, \
-		t_s64:	 FUNCTYPE##_FromInt, \
-		t_s128:	 FUNCTYPE##_FromInt, \
-		t_sint:  FUNCTYPE##_FromInt, \
+		t_u16:	 FUNCTYPE##_FromUInt, \
+		t_u32:	 FUNCTYPE##_FromUInt, \
+		t_u64:	 FUNCTYPE##_FromUInt, \
+		t_u128:	 FUNCTYPE##_FromUInt, \
+		t_uint:  FUNCTYPE##_FromUInt, \
+		t_s16:	 FUNCTYPE##_FromSInt, \
+		t_s32:	 FUNCTYPE##_FromSInt, \
+		t_s64:	 FUNCTYPE##_FromSInt, \
+		t_s128:	 FUNCTYPE##_FromSInt, \
+		t_sint:  FUNCTYPE##_FromSInt, \
 		t_q16:	 FUNCTYPE##_FromFixed, \
 		t_q32:	 FUNCTYPE##_FromFixed, \
 		t_q64:	 FUNCTYPE##_FromFixed, \
@@ -498,25 +503,47 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define Q128(X)		DEFINEFUNC_Fixed(X, Q128)
 //!@}
 
-//!@doc Returns the nearest fixed-point value to the given integer `number`
+//!@doc Returns the nearest fixed-point value to the given unsigned integer `number`
 /*!
 **	TODO document this
 */
 //!@{
-#define					Fixed_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-#define c_itoq			Fixed_FromInt
+#define					Fixed_FromUInt	CONCAT(FIXED_TYPE,_FromUInt)
+#define c_utoq			Fixed_FromUInt
 
-t_q16					Q16_FromInt(t_sint number);
-#define c_itoq16		Q16_FromInt
+t_q16					Q16_FromUInt(t_uint number);
+#define c_utoq16		Q16_FromUInt
 
-t_q32					Q32_FromInt(t_sint number);
-#define c_itoq32		Q32_FromInt
+t_q32					Q32_FromUInt(t_uint number);
+#define c_utoq32		Q32_FromUInt
 
-t_q64					Q64_FromInt(t_sint number);
-#define c_itoq64		Q64_FromInt
+t_q64					Q64_FromUInt(t_uint number);
+#define c_utoq64		Q64_FromUInt
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_FromInt(t_sint number);
-#define c_itoq128		Q128_FromInt
+t_q128					Q128_FromUInt(t_uint number);
+#define c_utoq128		Q128_FromUInt
+#endif
+//!@}
+
+//!@doc Returns the nearest fixed-point value to the given signed integer `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define					Fixed_FromSInt	CONCAT(FIXED_TYPE,_FromSInt)
+#define c_stoq			Fixed_FromSInt
+
+t_q16					Q16_FromSInt(t_sint number);
+#define c_stoq16		Q16_FromSInt
+
+t_q32					Q32_FromSInt(t_sint number);
+#define c_stoq32		Q32_FromSInt
+
+t_q64					Q64_FromSInt(t_sint number);
+#define c_stoq64		Q64_FromSInt
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_FromSInt(t_sint number);
+#define c_stoq128		Q128_FromSInt
 #endif
 //!@}
 

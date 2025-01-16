@@ -580,11 +580,16 @@ t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 //!@{
 #define DEFINEFUNC_Float(X, FUNCTYPE) \
 	_Generic((X), \
-		t_s16:	 FUNCTYPE##_FromInt, \
-		t_s32:	 FUNCTYPE##_FromInt, \
-		t_s64:	 FUNCTYPE##_FromInt, \
-		t_s128:	 FUNCTYPE##_FromInt, \
-		t_sint:  FUNCTYPE##_FromInt, \
+		t_u16:	 FUNCTYPE##_FromUInt, \
+		t_u32:	 FUNCTYPE##_FromUInt, \
+		t_u64:	 FUNCTYPE##_FromUInt, \
+		t_u128:	 FUNCTYPE##_FromUInt, \
+		t_uint:  FUNCTYPE##_FromUInt, \
+		t_s16:	 FUNCTYPE##_FromSInt, \
+		t_s32:	 FUNCTYPE##_FromSInt, \
+		t_s64:	 FUNCTYPE##_FromSInt, \
+		t_s128:	 FUNCTYPE##_FromSInt, \
+		t_sint:  FUNCTYPE##_FromSInt, \
 		t_q16:	 FUNCTYPE##_FromFixed, \
 		t_q32:	 FUNCTYPE##_FromFixed, \
 		t_q64:	 FUNCTYPE##_FromFixed, \
@@ -608,27 +613,51 @@ t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 #endif
 //!@}
 
-//!@doc Returns the nearest floating-point value to the given integer `number`
+//!@doc Returns the nearest floating-point value to the given unsigned integer `number`
 /*!
 **	TODO document this
 */
 //!@{
-#define					Float_FromInt	CONCAT(FIXED_TYPE,_FromInt)
-#define c_itof			Float_FromInt
+#define					Float_FromUInt	CONCAT(FIXED_TYPE,_FromUInt)
+#define c_utof			Float_FromUInt
 
-t_f32					F32_FromInt(t_sint number);
-#define c_itof32		F32_FromInt
+t_f32					F32_FromUInt(t_uint number);
+#define c_utof32		F32_FromUInt
 
-t_f64					F64_FromInt(t_sint number);
-#define c_itof64		F64_FromInt
+t_f64					F64_FromUInt(t_uint number);
+#define c_utof64		F64_FromUInt
 
 #if LIBCONFIG_USE_FLOAT80
-t_f80					F80_FromInt(t_sint number);
-#define c_itof80		F80_FromInt
+t_f80					F80_FromUInt(t_uint number);
+#define c_utof80		F80_FromUInt
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_f128					F128_FromInt(t_sint number);
-#define c_itof128		F128_FromInt
+t_f128					F128_FromUInt(t_uint number);
+#define c_utof128		F128_FromUInt
+#endif
+//!@}
+
+//!@doc Returns the nearest floating-point value to the given signed integer `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define					Float_FromSInt	CONCAT(FIXED_TYPE,_FromSInt)
+#define c_stof			Float_FromSInt
+
+t_f32					F32_FromSInt(t_sint number);
+#define c_stof32		F32_FromSInt
+
+t_f64					F64_FromSInt(t_sint number);
+#define c_stof64		F64_FromSInt
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_FromSInt(t_sint number);
+#define c_stof80		F80_FromSInt
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_FromSInt(t_sint number);
+#define c_stof128		F128_FromSInt
 #endif
 //!@}
 

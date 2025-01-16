@@ -30,9 +30,8 @@ DEFINEFUNC_FLOAT_FROM(80)
 DEFINEFUNC_FLOAT_FROM(128)
 #endif
 
-
-
 #else
+
 #define DEFINEFUNC_FLOAT_FROM(BITS, EXP_MAX, EXP_MIN, BIG_EPSILON, APPLY) \
 t_f##BITS	F##BITS##_From(t_f##BITS x, t_sint n) \
 { \
@@ -82,8 +81,8 @@ DEFINEFUNC_FLOAT_FROM(128, 0x1p16383L , 0x1p-16382L , 0x1p113L , u.value_float =
 _INLINE() \
 t_f##BITS	F##BITS##_FromUInt(t_uint number) \
 { \
+	if (UInt_IsNaN(number))	return (NAN); \
 	if (LIBCONFIG_UINT_INF && UInt_IsInf(number))	return (INF); \
-	if (LIBCONFIG_UINT_NAN && UInt_IsNaN(number))	return (NAN); \
 	return ((t_f##BITS)number); \
 } \
 
@@ -102,8 +101,8 @@ DEFINEFUNC_FLOAT_FROMUINT(128)
 _INLINE() \
 t_f##BITS	F##BITS##_FromSInt(t_sint number) \
 { \
+	if (SInt_IsNaN(number))	return (NAN); \
 	if (LIBCONFIG_SINT_INF && SInt_IsInf(number))	return (INF * SGN(number)); \
-	if (LIBCONFIG_SINT_NAN && SInt_IsNaN(number))	return (NAN); \
 	return ((t_f##BITS)number); \
 } \
 
@@ -122,8 +121,8 @@ DEFINEFUNC_FLOAT_FROMSINT(128)
 _INLINE() \
 t_f##BITS	F##BITS##_FromFixed(t_fixed number) \
 { \
+	if (Fixed_IsNaN(number))	return (NAN); \
 	if (LIBCONFIG_FIXED_INF && Fixed_IsInf(number))	return (INF * SGN(number)); \
-	if (LIBCONFIG_FIXED_NAN && Fixed_IsNaN(number))	return (NAN); \
 	return ((t_f##BITS)number / (t_f##BITS)FIXED_DENOMINATOR); \
 } \
 

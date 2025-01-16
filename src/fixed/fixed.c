@@ -9,18 +9,36 @@
 
 
 
-#define DEFINEFUNC_FIXED_FROMINT(BITS) \
+#define DEFINEFUNC_FIXED_FROMUINT(BITS) \
 _INLINE() \
-t_q##BITS	Q##BITS##_FromInt(t_sint number) \
+t_q##BITS	Q##BITS##_FromUInt(t_uint number) \
 { \
+	if (UInt_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
 	return ((t_q##BITS)(number * FIXED_DENOMINATOR)); \
 } \
 
-DEFINEFUNC_FIXED_FROMINT(16)
-DEFINEFUNC_FIXED_FROMINT(32)
-DEFINEFUNC_FIXED_FROMINT(64)
+DEFINEFUNC_FIXED_FROMUINT(16)
+DEFINEFUNC_FIXED_FROMUINT(32)
+DEFINEFUNC_FIXED_FROMUINT(64)
 #if LIBCONFIG_USE_INT128
-DEFINEFUNC_FIXED_FROMINT(128)
+DEFINEFUNC_FIXED_FROMUINT(128)
+#endif
+
+#define DEFINEFUNC_FIXED_FROMSINT(BITS) \
+_INLINE() \
+t_q##BITS	Q##BITS##_FromSInt(t_sint number) \
+{ \
+	if (SInt_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
+	return ((t_q##BITS)(number * FIXED_DENOMINATOR)); \
+} \
+
+DEFINEFUNC_FIXED_FROMSINT(16)
+DEFINEFUNC_FIXED_FROMSINT(32)
+DEFINEFUNC_FIXED_FROMSINT(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_FIXED_FROMSINT(128)
 #endif
 
 // TODO fix this to be multi-type
@@ -28,6 +46,8 @@ DEFINEFUNC_FIXED_FROMINT(128)
 _INLINE() \
 t_q##BITS	Q##BITS##_FromFixed(t_fixed number) \
 { \
+	if (Fixed_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
 	return ((t_q##BITS)(number)); \
 } \
 
@@ -42,6 +62,8 @@ DEFINEFUNC_FIXED_FROMFIXED(128)
 _INLINE() \
 t_q##BITS	Q##BITS##_FromFloat(t_float number) \
 { \
+	if (Float_IsNaN(number)) \
+		return (Q##BITS##_ERROR); \
 	if (number > Float_FromFixed((t_fixed)Q##BITS##_MAX))	return (Q##BITS##_MAX); \
 	if (number < Float_FromFixed((t_fixed)Q##BITS##_MIN))	return (Q##BITS##_MIN); \
 	return ( \
