@@ -51,48 +51,48 @@ char*	print_memory(void const* ptr, t_size length);
 
 char*	ptrtostr(void const* ptr);
 
-s_sorted_sint	print_test_random(int samples);
+s_sorted_sint	print_test_random(t_uint sample_size);
 
 
 
 #define DECLARE_NUMBER_UTILITY_FUNCTIONS(TYPE, NAME) \
 char*	NAME##tostr(TYPE number); \
-void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end); \
-TYPE	stat_getmin_                     ##NAME(const TYPE * values, unsigned int length); \
-TYPE	stat_getmax_                     ##NAME(const TYPE * values, unsigned int length); \
-double*	stat_quantiles_                  ##NAME(const TYPE * values, unsigned int length, unsigned int n); \
-double	stat_median_                     ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mode_                       ##NAME(const TYPE * values, unsigned int length); \
-double	stat_range_                      ##NAME(const TYPE * values, unsigned int length); \
-double	stat_midrange_                   ##NAME(const TYPE * values, unsigned int length); \
-double	stat_midhinge_                   ##NAME(const TYPE * values, unsigned int length); \
-double	stat_trimean_                    ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_arithmetic_            ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_geometric_             ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_harmonic_              ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_contraharmonic_        ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_lehmer_                ##NAME(const TYPE * values, unsigned int length, int power); \
-double	stat_mean_interquartile_         ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_quadratic_             ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_cubic_                 ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_power_                 ##NAME(const TYPE * values, unsigned int length, double power); \
-double	stat_variance_                   ##NAME(const TYPE * values, unsigned int length); \
-double	stat_stddev_                     ##NAME(const TYPE * values, unsigned int length); \
-double	stat_cv_                         ##NAME(const TYPE * values, unsigned int length); \
-double	stat_iqr_                        ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mad_                        ##NAME(const TYPE * values, unsigned int length); \
-double	stat_aad_                        ##NAME(const TYPE * values, unsigned int length, TYPE center); \
-double	stat_agm_                        ##NAME(TYPE x, TYPE y); \
-double	stat_msd_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_mse_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_mae_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_md_                         ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_rmd_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_rmsd_                       ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_mpe_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_mape_                       ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_mspe_                       ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
-double	stat_rss_                        ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+void	quicksort_                 ##NAME(TYPE * array, unsigned int start, unsigned int end); \
+TYPE	stat_getmin_               ##NAME(const TYPE * values, unsigned int length); \
+TYPE	stat_getmax_               ##NAME(const TYPE * values, unsigned int length); \
+double*	stat_quantiles_            ##NAME(const TYPE * values, unsigned int length, unsigned int n); \
+double	stat_median_               ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mode_                 ##NAME(const TYPE * values, unsigned int length); \
+double	stat_range_                ##NAME(const TYPE * values, unsigned int length); \
+double	stat_midrange_             ##NAME(const TYPE * values, unsigned int length); \
+double	stat_midhinge_             ##NAME(const TYPE * values, unsigned int length); \
+double	stat_trimean_              ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_arithmetic_      ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_geometric_       ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_harmonic_        ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_contraharmonic_  ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_lehmer_          ##NAME(const TYPE * values, unsigned int length, int power); \
+double	stat_mean_interquartile_   ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_quadratic_       ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_cubic_           ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mean_power_           ##NAME(const TYPE * values, unsigned int length, double power); \
+double	stat_variance_             ##NAME(const TYPE * values, unsigned int length); \
+double	stat_stddev_               ##NAME(const TYPE * values, unsigned int length); \
+double	stat_cv_                   ##NAME(const TYPE * values, unsigned int length); \
+double	stat_iqr_                  ##NAME(const TYPE * values, unsigned int length); \
+double	stat_mad_                  ##NAME(const TYPE * values, unsigned int length); \
+double	stat_aad_                  ##NAME(const TYPE * values, unsigned int length, TYPE center); \
+double	stat_agm_                  ##NAME(TYPE x, TYPE y); \
+double	stat_msd_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_mse_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_mae_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_md_                   ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_rmd_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_rmsd_                 ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_mpe_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_mape_                 ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_mspe_                 ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
+double	stat_rss_                  ##NAME(const TYPE * values, const TYPE * expect, unsigned int length); \
 /*
 double	stat_moving_average_simple_      ##NAME(const TYPE * values, unsigned int length); \
 double	stat_moving_average_cumulative_  ##NAME(const TYPE * values, unsigned int length); \
@@ -334,6 +334,11 @@ DEFINEFUNC_PRINT_TEST(alloc,	void*)
 #define TEST_PERFORM_LIBC_MATH(TYPENAME, FUNCTION, SUFFIX, ...) \
 	TEST_PERFORM_(result, c_##TYPENAME##FUNCTION,         ##__VA_ARGS__) \
 	TEST_PERFORM_(expect,               FUNCTION##SUFFIX, ##__VA_ARGS__) \
+
+//! Use this for (any_type)-return functions that exist in libc, which use a 'dest' argument
+#define TEST_PERFORM_LIBC_MATH_DEST(TYPENAME, FUNCTION, SUFFIX, ...) \
+	TEST_PERFORM_(result, c_##TYPENAME##FUNCTION,         ##__VA_ARGS__, dest_libccc ) \
+	TEST_PERFORM_(expect,               FUNCTION##SUFFIX, ##__VA_ARGS__, dest_libc   ) \
 
 
 

@@ -7,7 +7,7 @@
 #include "libccc/math/stat.h"
 #define NOTYPEDEF // avoid typedef redefinitions
 #define T_TYPE	t_sint
-#define T_NAME	int
+#define T_NAME	sint
 #define T_NULL	0
 #include "libccc/monad/array.c"
 
@@ -25,7 +25,7 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	print_suite_title("libccc/math/stat");
 
 	static const int	samples = 20000;
-	s_sorted_int	values_sorted = print_test_random(samples);
+	s_sorted_sint	values_sorted = print_test_random(samples);
 /*
 	for (int i = 0; i < i_lst.length; ++i)
 		printf("%d, ", i_lst.items[i]);
@@ -37,11 +37,11 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	if (g_test.config.verbose)
 	{
 		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %i"" | intmax   :" SF_U64 "\n", Stat_Int_Median(values_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", Stat_Int_Average(values_sorted), intmax / 2);
+		printf("\tMedian:   %12f | intmax   :" SF_U64 "\n", Stat_SInt_Median(values_sorted), intmax);
+		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", Stat_SInt_Mean_Arithmetic(values_sorted), intmax / 2);
 		printf("\tVariance: %12f | StdDev: %12f\n",
-			Stat_Int_Variance(values_sorted),
-			Stat_Int_StandardDeviation(values_sorted));
+			Stat_SInt_Variance(values_sorted),
+			Stat_SInt_StandardDeviation(values_sorted));
 
 		printf("\tDeciles int:\n"
 			"\t\t 0: " SF_SINT "\n"
@@ -121,14 +121,14 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 */
 	s_prob_mass	pmf;
 
-	pmf = Stat_Int_ToPMF(values_sorted);
+	pmf = Stat_SInt_ProbabilityMassFunction(values_sorted);
 
 	if (g_test.config.verbose && g_test.config.show_args) // TODO special program option for this ?
 	{
 		printf("Probability mass function for the RNG\n");
 		for (t_uint i = 0; i < pmf.length; ++i)
 		{
-			printf("\t%5d: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]);
+			printf("\t%5lu: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]);
 		}
 	}
 	tmp = 0.;
@@ -140,6 +140,6 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 	{
 		printf("Sum of probs: %.12f\n", tmp);
 	}
-	Stat_Int_Delete(&values_sorted);
+	Stat_SInt_Delete(&values_sorted);
 	return (OK);
 }

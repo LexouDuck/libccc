@@ -4,7 +4,7 @@
 #include "libccc/math/stat.h"
 #define NOTYPEDEF // avoid typedef redefinitions
 #define T_TYPE	t_sint
-#define T_NAME	int
+#define T_NAME	sint
 #define T_NULL	0
 #include "libccc/monad/array.c"
 
@@ -13,18 +13,18 @@
 
 
 
-s_sorted_int	print_test_random(int samples)
+s_sorted_sint	print_test_random(t_uint sample_size)
 {
-	s_sorted_int	result;
+	s_sorted_sint	result;
 	t_rand*	rng;
 
 	rng = Random_New();
 
 	if (g_test.config.verbose)
 	{
-		printf("Statistic repartition test of RNG (sample size: %d)\n", samples);
+		printf("Statistic repartition test of RNG (sample size: %lu)\n", sample_size);
 	}
-	result = Stat_Int_New(samples);
+	result = Stat_SInt_New(sample_size);
 	for (t_uint i = 0; i < result.length; ++i)
 	{
 		result.items[i] = Random_SInt_Range(rng, -500, 501);
@@ -60,15 +60,15 @@ s_sorted_int	print_test_random(int samples)
 ||                            Test Suite Function                             ||
 \*============================================================================*/
 
-int		testsuite_math_random(void)
+int	testsuite_math_random(void)
 {
 	static const int	samples = 20000;
-	s_sorted_int	values_sorted;
+	s_sorted_sint	values_sorted;
 
 	print_suite_title("libccc/math/random");
 
 	values_sorted = print_test_random(samples);
-	Stat_Int_Delete(&values_sorted);
+	Stat_SInt_Delete(&values_sorted);
 
 	return (OK);
 }

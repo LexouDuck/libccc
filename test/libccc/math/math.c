@@ -5,15 +5,6 @@
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
 #include "libccc/math/stat.h"
-#define NOTYPEDEF // avoid typedef redefinitions
-#define T_TYPE	t_sint
-#define T_NAME	int
-#define T_NULL	0
-#include "libccc/monad/array.c"
-#define T_TYPE	t_float
-#define T_NAME	float
-#define T_NULL	0
-#include "libccc/monad/array.c"
 
 #include "test.h"
 #include "test_utils.h"

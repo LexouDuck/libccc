@@ -425,7 +425,7 @@ TYPE	stat_getmax_##NAME(const TYPE * values, unsigned int length) \
 double*	stat_quantiles_##NAME(const TYPE * values, unsigned int length, unsigned int n) \
 { \
 	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
-	double*	result = malloc((n + 1) * sizeof(double)); \
+	double*	result = (double*)malloc((n + 1) * sizeof(double)); \
 	unsigned int	position; \
 	for (unsigned int i = 0; i < n; ++i) \
 	{ \
@@ -594,8 +594,8 @@ double	stat_mean_lehmer_##NAME(const TYPE * values, unsigned int length, int pow
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum1 += pow(value, power - 1); \
-		sum2 += pow(value, power); \
+		sum1 += pow((double)value, power - 1); \
+		sum2 += pow((double)value, power); \
 		n++; \
 	} \
 	return (sum2 / sum1); \

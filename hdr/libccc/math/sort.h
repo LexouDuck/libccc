@@ -34,23 +34,23 @@ HEADER_CPP
 ||                                 Definitions                                ||
 \*============================================================================*/
 
-#define DEFINEFUNC_H_QUICKSORT(TYPE, COMPARE) \
-void	QuickSort_Rec_##COMPARE(TYPE* array, t_size start, t_size end, \
+#define DEFINEFUNC_H_QUICKSORT(TYPE, NAME, COMPARE, EXCLUDE) \
+void	QuickSort_Rec_##NAME(TYPE* array, t_uint start, t_uint end, \
 	t_sint (*compare)(TYPE, TYPE), \
 	t_bool (*exclude)(TYPE)); \
-TYPE*	QuickSort_New_##COMPARE(TYPE const* array, t_size items); \
-void	QuickSort_##COMPARE(TYPE* array, t_size items); \
+TYPE*	QuickSort_New_##NAME(TYPE const* array, t_uint items); \
+void	QuickSort_##NAME(TYPE* array, t_uint items); \
 
 
 
-#define DEFINEFUNC_C_QUICKSORT(TYPE, COMPARE) \
-void	QuickSort_Rec_##COMPARE(TYPE* array, t_size start, t_size end, \
-	t_sint (*compare)(TYPE, TYPE, \
-	t_bool (*exclude)(TYPE)); \
+#define DEFINEFUNC_C_QUICKSORT(TYPE, NAME, COMPARE, EXCLUDE) \
+void	QuickSort_Rec_##NAME(TYPE* array, t_uint start, t_uint end, \
+	t_sint (*compare)(TYPE, TYPE), \
+	t_bool (*exclude)(TYPE)) \
 { \
-	t_size	pivot_id; \
-	t_size	rise_id; \
-	t_size	fall_id; \
+	t_uint	pivot_id; \
+	t_uint	rise_id; \
+	t_uint	fall_id; \
 	TYPE	pivot = array[start]; \
 	if (start >= end || (exclude != NULL && exclude(pivot))) \
 		return; \
@@ -78,22 +78,24 @@ void	QuickSort_Rec_##COMPARE(TYPE* array, t_size start, t_size end, \
 	pivot_id = fall_id; \
 	if (start != fall_id) \
 		Memory_Swap(array + start, array + fall_id, sizeof(TYPE)); \
-	if (pivot_id > start)	QuickSort_Rec_##COMPARE(array, compare, start, pivot_id - 1); \
-	if (pivot_id < end)		QuickSort_Rec_##COMPARE(array, compare, pivot_id + 1, end); \
+	if (pivot_id > start) \
+		QuickSort_Rec_##NAME(array, start, pivot_id - 1, compare, exclude); \
+	if (pivot_id < end) \
+		QuickSort_Rec_##NAME(array, pivot_id + 1, end, compare, exclude); \
 } \
  \
-TYPE*	QuickSort_New_##COMPARE(TYPE const* array, t_size items) \
+TYPE*	QuickSort_New_##NAME(TYPE const* array, t_uint items) \
 { \
-	TYPE*	result = Memory_Duplicate(array, items * sizeof(TYPE)); \
+	TYPE*	result = (TYPE*)Memory_Duplicate(array, items * sizeof(TYPE)); \
 	if (items <= 1) \
 		return (result); \
-	QuickSort_Rec_##COMPARE(result, COMPARE, 0, items - 1); \
+	QuickSort_Rec_##NAME(result, 0, items - 1, COMPARE, EXCLUDE); \
 	return (result); \
 } \
  \
-void	QuickSort_##COMPARE(TYPE* array, t_size items) \
+void	QuickSort_##NAME(TYPE* array, t_uint items) \
 { \
-	QuickSort_Rec_##COMPARE(array, COMPARE, 0, items - 1); \
+	QuickSort_Rec_##NAME(array, 0, items - 1, COMPARE, EXCLUDE); \
 } \
 
 

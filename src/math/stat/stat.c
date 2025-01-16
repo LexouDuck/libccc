@@ -2,6 +2,7 @@
 #include "libccc/memory.h"
 #include "libccc/math.h"
 #include "libccc/math/stat.h"
+#include "libccc/math/sort.h"
 
 #define NOTYPEDEF // avoid typedef redefinitions
 
@@ -29,7 +30,7 @@
 
 
 
-s_prob_mass	Stat_ProbMassFunc_New(t_uint length)
+s_prob_mass	Stat_ProbabilityMassFunction_New(t_uint length)
 {
 	s_prob_mass	result;
 
@@ -49,7 +50,7 @@ s_prob_mass	Stat_ProbMassFunc_New(t_uint length)
 
 
 
-void	Stat_ProbMassFunc_Delete(s_prob_mass *drv)
+void	Stat_ProbabilityMassFunction_Delete(s_prob_mass *drv)
 {
 	if CCCERROR((drv == NULL), ERROR_NULLPOINTER, NULL)
 		return;
@@ -186,6 +187,27 @@ s_set_##TYPE_LOWER	Stat_##TYPE_MIXED##_ToSet(s_array(TYPE_LOWER) const sample) \
 	Memory_Free(set.items); \
 	return (result); \
 } \
+static \
+t_sint	Stat_##TYPE_MIXED##_Compare(TYPE x, TYPE y) \
+{ \
+	return (Float_Sgn((t_float)x - (t_float)y)); \
+} \
+static \
+t_bool	Stat_##TYPE_MIXED##_Exclude(TYPE x) \
+{ \
+	return (TYPE_MIXED##_IsNaN(x)); \
+} \
+ \
+DEFINEFUNC_C_QUICKSORT(TYPE, TYPE_MIXED, Stat_##TYPE_MIXED##_Compare, Stat_##TYPE_MIXED##_Exclude) \
+ \
+s_array(TYPE_LOWER)	Stat_##TYPE_MIXED##_Sort(s_array(TYPE_LOWER) const sample) \
+{ \
+	return s_array(TYPE_LOWER){ .length = sample.length, .items = QuickSort_New_##TYPE_MIXED(sample.items, sample.length) }; \
+} \
+void	Stat_##TYPE_MIXED##_Sort_InPlace(s_array(TYPE_LOWER) sample) \
+{ \
+	QuickSort_##TYPE_MIXED(sample.items, sample.length); \
+} \
 /*! https://en.wikipedia.org/wiki/ */ \
 s_prob_mass	Stat_##TYPE_MIXED##_ProbabilityMassFunction(s_array(TYPE_LOWER) const sample) \
 { \
@@ -208,44 +230,6 @@ s_prob_mass	Stat_##TYPE_MIXED##_ProbabilityMassFunction(s_array(TYPE_LOWER) cons
 	} \
 	Stat_##TYPE_MIXED##_Delete(&set); \
 	return (result); \
-} \
-/*! https://en.wikipedia.org/wiki/Quicksort */ \
-void	quicksort_##TYPE_LOWER(TYPE* array, t_uint start, t_uint end) \
-{ \
-	t_uint	pivot_id; \
-	t_uint	rise_id; \
-	t_uint	fall_id; \
-	TYPE	pivot = array[start]; \
-	if (start >= end || pivot != pivot) \
-		return; \
-	if (start == end - 1) \
-	{ \
-		if (pivot > array[end]) \
-			Memory_Swap(array + start, array + end, sizeof(TYPE)); \
-		return; \
-	} \
-	rise_id = start + 1; \
-	fall_id = end; \
-	while (rise_id < fall_id) \
-	{ \
-		while (rise_id <= end && array[rise_id] <= pivot) \
-		{ \
-			++rise_id; \
-		} \
-		while (fall_id > start && array[fall_id] > pivot) \
-		{ \
-			--fall_id; \
-		} \
-		if (rise_id < fall_id) \
-			Memory_Swap(array + rise_id, array + fall_id, sizeof(TYPE)); \
-	} \
-	pivot_id = fall_id; \
-	if (start != fall_id) \
-		Memory_Swap(array + start, array + fall_id, sizeof(TYPE)); \
-	if (pivot_id > start) \
-		quicksort_##TYPE_LOWER(array, start, pivot_id - 1); \
-	if (pivot_id < end) \
-		quicksort_##TYPE_LOWER(array, pivot_id + 1, end); \
 } \
 /*! https://en.wikipedia.org/wiki/Sample_maximum_and_minimum */ \
 TYPE	Stat_##TYPE_MIXED##_GetMin(s_array(TYPE_LOWER) const sample) \

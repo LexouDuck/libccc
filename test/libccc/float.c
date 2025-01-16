@@ -555,72 +555,75 @@ DEFINETEST_LRINT(f128,l)
 
 #define DEFINETEST_FREXP(TYPE, SUFFIX) \
 void	print_test_##TYPE##frexp(char const* test_name, t_testflags flags, \
-		t_##TYPE number, int* exponent) \
+		t_##TYPE number, \
+		int* dest_libc, \
+		t_sint* dest_libccc) \
 { \
 	TEST_INIT(TYPE) \
-	TEST_PERFORM_LIBC_MATH( TYPE, frexp, SUFFIX, number, exponent) \
+	TEST_PERFORM_LIBC_MATH_DEST( TYPE, frexp, SUFFIX, number) \
 	TEST_PRINT(TYPE,        TYPE##frexp, "%g", number) \
 } \
 void	test_##TYPE##frexp(void) \
 { \
-	int exponent; \
-/*	| TEST FUNCTION         | TEST NAME              |TESTFLAG| TEST ARGS */ \
-	print_test_##TYPE##frexp(#TYPE"frexp (-0.0)      ",	FALSE,  -0.0,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+0.0)      ",	FALSE,  +0.0,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0)      ",	FALSE,  -1.0,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0)      ",	FALSE,  +1.0,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+1)   ",	FALSE,  -1.0e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+1)   ",	FALSE,  -1.1e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+1)   ",	FALSE,  -1.5e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+1)   ",	FALSE,  -1.9e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+1)   ",	FALSE,  +1.0e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+1)   ",	FALSE,  +1.1e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+1)   ",	FALSE,  +1.5e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+1)   ",	FALSE,  +1.9e+1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+2)   ",	FALSE,  -1.0e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+2)   ",	FALSE,  -1.1e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+2)   ",	FALSE,  -1.5e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+2)   ",	FALSE,  -1.9e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+2)   ",	FALSE,  +1.0e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+2)   ",	FALSE,  +1.1e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+2)   ",	FALSE,  +1.5e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+2)   ",	FALSE,  +1.9e+2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+9)   ",	FALSE,  -1.0e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+9)   ",	FALSE,  -1.1e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+9)   ",	FALSE,  -1.5e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+9)   ",	FALSE,  -1.9e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+9)   ",	FALSE,  +1.0e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+9)   ",	FALSE,  +1.1e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+9)   ",	FALSE,  +1.5e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+9)   ",	FALSE,  +1.9e+9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-1)   ",	FALSE,  -1.0e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-1)   ",	FALSE,  -1.1e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-1)   ",	FALSE,  -1.5e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-1)   ",	FALSE,  -1.9e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-1)   ",	FALSE,  +1.0e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-1)   ",	FALSE,  +1.1e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-1)   ",	FALSE,  +1.5e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-1)   ",	FALSE,  +1.9e-1, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-2)   ",	FALSE,  -1.0e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-2)   ",	FALSE,  -1.1e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-2)   ",	FALSE,  -1.5e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-2)   ",	FALSE,  -1.9e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-2)   ",	FALSE,  +1.0e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-2)   ",	FALSE,  +1.1e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-2)   ",	FALSE,  +1.5e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-2)   ",	FALSE,  +1.9e-2, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-9)   ",	FALSE,  -1.0e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-9)   ",	FALSE,  -1.1e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-9)   ",	FALSE,  -1.5e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-9)   ",	FALSE,  -1.9e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-9)   ",	FALSE,  +1.0e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-9)   ",	FALSE,  +1.1e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-9)   ",	FALSE,  +1.5e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-9)   ",	FALSE,  +1.9e-9, &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-inf)      ",	FALSE,  -INF,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+inf)      ",	FALSE,  +INF,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (-nan)      ",	FALSE,  -NAN,    &exponent); \
-	print_test_##TYPE##frexp(#TYPE"frexp (+nan)      ",	FALSE,  +NAN,    &exponent); \
+	int    exponent_libc; \
+	t_sint exponent_libccc; \
+/*	| TEST FUNCTION         | TEST NAME              |TESTFLAG| TEST ARGS | DEST ARGS */ \
+	print_test_##TYPE##frexp(#TYPE"frexp (-0.0)      ",	FALSE,  -0.0      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+0.0)      ",	FALSE,  +0.0      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0)      ",	FALSE,  -1.0      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0)      ",	FALSE,  +1.0      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+1)   ",	FALSE,  -1.0e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+1)   ",	FALSE,  -1.1e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+1)   ",	FALSE,  -1.5e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+1)   ",	FALSE,  -1.9e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+1)   ",	FALSE,  +1.0e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+1)   ",	FALSE,  +1.1e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+1)   ",	FALSE,  +1.5e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+1)   ",	FALSE,  +1.9e+1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+2)   ",	FALSE,  -1.0e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+2)   ",	FALSE,  -1.1e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+2)   ",	FALSE,  -1.5e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+2)   ",	FALSE,  -1.9e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+2)   ",	FALSE,  +1.0e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+2)   ",	FALSE,  +1.1e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+2)   ",	FALSE,  +1.5e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+2)   ",	FALSE,  +1.9e+2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e+9)   ",	FALSE,  -1.0e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e+9)   ",	FALSE,  -1.1e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e+9)   ",	FALSE,  -1.5e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e+9)   ",	FALSE,  -1.9e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e+9)   ",	FALSE,  +1.0e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e+9)   ",	FALSE,  +1.1e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e+9)   ",	FALSE,  +1.5e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e+9)   ",	FALSE,  +1.9e+9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-1)   ",	FALSE,  -1.0e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-1)   ",	FALSE,  -1.1e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-1)   ",	FALSE,  -1.5e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-1)   ",	FALSE,  -1.9e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-1)   ",	FALSE,  +1.0e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-1)   ",	FALSE,  +1.1e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-1)   ",	FALSE,  +1.5e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-1)   ",	FALSE,  +1.9e-1   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-2)   ",	FALSE,  -1.0e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-2)   ",	FALSE,  -1.1e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-2)   ",	FALSE,  -1.5e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-2)   ",	FALSE,  -1.9e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-2)   ",	FALSE,  +1.0e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-2)   ",	FALSE,  +1.1e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-2)   ",	FALSE,  +1.5e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-2)   ",	FALSE,  +1.9e-2   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.0e-9)   ",	FALSE,  -1.0e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.1e-9)   ",	FALSE,  -1.1e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.5e-9)   ",	FALSE,  -1.5e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-1.9e-9)   ",	FALSE,  -1.9e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.0e-9)   ",	FALSE,  +1.0e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.1e-9)   ",	FALSE,  +1.1e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.5e-9)   ",	FALSE,  +1.5e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+1.9e-9)   ",	FALSE,  +1.9e-9   , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-inf)      ",	FALSE,  -INF      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+inf)      ",	FALSE,  +INF      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (-nan)      ",	FALSE,  -NAN      , &exponent_libc, &exponent_libccc); \
+	print_test_##TYPE##frexp(#TYPE"frexp (+nan)      ",	FALSE,  +NAN      , &exponent_libc, &exponent_libccc); \
 } \
 
 #ifndef c_f32frexp
