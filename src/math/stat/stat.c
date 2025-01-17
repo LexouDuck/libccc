@@ -464,7 +464,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Quadratic(s_array(TYPE_LOWER) const sample) \
 		sum += (value * value); \
 		n++; \
 	} \
-	return sqrt(sum / n); \
+	return (Float_Root2(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Cubic_mean */ \
 t_float	Stat_##TYPE_MIXED##_Mean_Cubic(s_array(TYPE_LOWER) const sample) \
@@ -479,7 +479,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Cubic(s_array(TYPE_LOWER) const sample) \
 		sum += (value * value * value); \
 		n++; \
 	} \
-	return cbrt(sum / n); \
+	return (Float_Root3(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Power_mean */ \
 t_float	Stat_##TYPE_MIXED##_Mean_Power(s_array(TYPE_LOWER) const sample, t_float p) \
@@ -515,7 +515,7 @@ t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
 /*! https://en.wikipedia.org/wiki/Standard_deviation */ \
 t_float	Stat_##TYPE_MIXED##_StandardDeviation(s_array(TYPE_LOWER) const sample) \
 { \
-	return sqrt(Stat_##TYPE_MIXED##_Variance(sample)); \
+	return Float_Root2(Stat_##TYPE_MIXED##_Variance(sample)); \
 } \
 /*! https://en.wikipedia.org/wiki/Coefficient_of_variation */ \
 t_float	Stat_##TYPE_MIXED##_CoefficientOfVariation(s_array(TYPE_LOWER) const sample) \
@@ -567,7 +567,7 @@ t_float	Stat_##TYPE_MIXED##_ArithmeticGeometricMean(TYPE x, TYPE y) \
 	while (a != g) \
 	{ \
 		a_n = (a + g) * 0.5; \
-		g_n = sqrt(a * g); \
+		g_n = Float_Root2(a * g); \
 		a = a_n; \
 		g = g_n; \
 	} \
@@ -651,7 +651,7 @@ t_float	Stat_##TYPE_MIXED##_RelativeMeanAbsoluteDifference(s_array(TYPE_LOWER) c
 /*! https://en.wikipedia.org/wiki/Root_mean_square_deviation */ \
 t_float	Stat_##TYPE_MIXED##_RootMeanSquareDeviation(s_array(TYPE_LOWER) const sample, TYPE const* expect) \
 { \
-	return sqrt(Stat_##TYPE_MIXED##_MeanSquaredError(sample, expect)); \
+	return Float_Root2(Stat_##TYPE_MIXED##_MeanSquaredError(sample, expect)); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_percentage_error */ \
 t_float	Stat_##TYPE_MIXED##_MeanPercentageError(s_array(TYPE_LOWER) const sample, TYPE const* expect) \
