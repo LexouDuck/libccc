@@ -5,14 +5,134 @@
 #include "libccc/sys/io.h"
 #include "libccc/random/random.h"
 #include "libccc/math/stat.h"
+
 #define NOTYPEDEF // avoid typedef redefinitions
+
+#define T_TYPE	t_uint
+#define T_NAME	uint
+#define T_NULL	0
+#include "libccc/monad/array.c"
 #define T_TYPE	t_sint
 #define T_NAME	sint
+#define T_NULL	0
+#include "libccc/monad/array.c"
+#define T_TYPE	t_fixed
+#define T_NAME	fixed
+#define T_NULL	0
+#include "libccc/monad/array.c"
+#define T_TYPE	t_float
+#define T_NAME	float
 #define T_NULL	0
 #include "libccc/monad/array.c"
 
 #include "test.h"
 #include "test_utils.h"
+
+
+
+#define DEFINETEST_STAT(TYPE, TYPE_MIXED, TYPE_UPPER) \
+t_bool	print_test_stat_##TYPE(t_uint sample_size) \
+{ \
+	s_sorted_##TYPE	values_sorted = print_test_random_##TYPE(sample_size); \
+/* \
+	for (int i = 0; i < i_lst.length; ++i) \
+		printf("%d, ", i_lst.items[i]); \
+	printf("\n"); \
+*/ \
+	t_float* quartiles   = Stat_##TYPE_MIXED##_Quantiles(values_sorted,    4); \
+	t_float* quintiles   = Stat_##TYPE_MIXED##_Quantiles(values_sorted,    5); \
+	t_float* deciles     = Stat_##TYPE_MIXED##_Quantiles(values_sorted,   10); \
+	t_float* percentiles = Stat_##TYPE_MIXED##_Quantiles(values_sorted,  100); \
+	t_float* permilliles = Stat_##TYPE_MIXED##_Quantiles(values_sorted, 1000); \
+ \
+	if (g_test.config.verbose) \
+	{ \
+		printf("\t""Count (0):                       " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, 0)); \
+		printf("\t""Count (0 | nan):                 " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_ERROR)); \
+		printf("\t""Count (min | -inf):              " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_MIN)); \
+		printf("\t""Count (max | +inf):              " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_MAX)); \
+		printf("\t""Quantiles (quartiles):           [%f,%f,%f,%f,%f]\n",                     quartiles[0],   quartiles[  1],   quartiles[  2],   quartiles[  3],   quartiles[  4]); \
+		printf("\t""Quantiles (quintiles):           [%f,%f,%f,%f,%f,%f]\n",                  quintiles[0],   quintiles[  1],   quintiles[  2],   quintiles[  3],   quintiles[  4],   quintiles[  5]); \
+		printf("\t""Quantiles (deciles):             [%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f]\n",     deciles[0],     deciles[  1],     deciles[  2],     deciles[  3],     deciles[  4],     deciles[  5],     deciles[  6],     deciles[  7],     deciles[  8],     deciles[  9],     deciles[  10]); \
+		printf("\t""Quantiles (percentiles):         [%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f]\n", percentiles[0], percentiles[ 10], percentiles[ 20], percentiles[ 30], percentiles[ 40], percentiles[ 50], percentiles[ 60], percentiles[ 70], percentiles[ 80], percentiles[ 90], percentiles[ 100]); \
+		printf("\t""Quantiles (permilliles):         [%f,%f,%f,%f,%f,%f,%f,%f,%f,%f,%f]\n", permilliles[0], permilliles[100], permilliles[200], permilliles[300], permilliles[400], permilliles[500], permilliles[600], permilliles[700], permilliles[800], permilliles[900], permilliles[1000]); \
+		printf("\t""GetMin:                          " SF_##TYPE_UPPER "\n", Stat_##TYPE_MIXED##_GetMin                         (values_sorted)); \
+		printf("\t""GetMax:                          " SF_##TYPE_UPPER "\n", Stat_##TYPE_MIXED##_GetMax                         (values_sorted)); \
+		printf("\t""Median:                          " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Median                         (values_sorted)); \
+		printf("\t""Mode:                            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mode                           (values_sorted)); \
+		printf("\t""Range:                           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Range                          (values_sorted)); \
+		printf("\t""Midrange:                        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Midrange                       (values_sorted)); \
+		printf("\t""Midhinge:                        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Midhinge                       (values_sorted)); \
+		printf("\t""Variance:                        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Variance                       (values_sorted)); \
+		printf("\t""StandardDeviation:               " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_StandardDeviation              (values_sorted)); \
+		printf("\t""CoefficientOfVariation:          " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_CoefficientOfVariation         (values_sorted)); \
+		printf("\t""InterquartileRange:              " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_InterquartileRange             (values_sorted)); \
+		printf("\t""Trimean:                         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Trimean                        (values_sorted)); \
+		printf("\t""Mean_Arithmetic:                 " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Arithmetic                (values_sorted)); \
+		printf("\t""Mean_Geometric:                  " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Geometric                 (values_sorted)); \
+		printf("\t""Mean_Harmonic:                   " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Harmonic                  (values_sorted)); \
+		printf("\t""Mean_Contraharmonic:             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Contraharmonic            (values_sorted)); \
+		printf("\t""Mean_Lehmer (pow -1):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, -1)); \
+		printf("\t""Mean_Lehmer (pow 0):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 0)); \
+		printf("\t""Mean_Lehmer (pow 1):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 1)); \
+		printf("\t""Mean_Lehmer (pow 2):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 2)); \
+		printf("\t""Mean_Lehmer (pow 3):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 3)); \
+		printf("\t""Mean_Lehmer (pow 2):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 4)); \
+		printf("\t""Mean_Interquartile:              " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Interquartile             (values_sorted)); \
+		printf("\t""Mean_Quadratic:                  " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Quadratic                 (values_sorted)); \
+		printf("\t""Mean_Cubic:                      " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Cubic                     (values_sorted)); \
+		printf("\t""Mean_Power (pow -1.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, -1.0)); \
+		printf("\t""Mean_Power (pow 0.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 0.0)); \
+		printf("\t""Mean_Power (pow 0.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 0.5)); \
+		printf("\t""Mean_Power (pow 1.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 1.5)); \
+		printf("\t""Mean_Power (pow 2.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 2.0)); \
+		printf("\t""Mean_Power (pow 2.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 2.5)); \
+		printf("\t""Mean_Power (pow 3.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 3.0)); \
+		printf("\t""Mean_Power (pow 4.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 4.0)); \
+		printf("\t""MedianAbsoluteDeviation:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MedianAbsoluteDeviation        (values_sorted)); \
+		printf("\t""AverageAbsoluteDeviation:        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_AverageAbsoluteDeviation       (values_sorted, Stat_##TYPE_MIXED##_Mean_Arithmetic(values_sorted))); \
+/*		printf("\t""ArithmeticGeometricMean:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_ArithmeticGeometricMean        (values_sorted y)); */ \
+/*		printf("\t""MeanSignedDeviation:             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanSignedDeviation            (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanSquaredError:                " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanSquaredError               (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanAbsoluteError:               " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanAbsoluteError              (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanAbsoluteDifference:          " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanAbsoluteDifference         (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""RelativeMeanAbsoluteDifference:  " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_RelativeMeanAbsoluteDifference (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""RootMeanSquareDeviation:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_RootMeanSquareDeviation        (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanPercentageError:             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanPercentageError            (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanAbsolutePercentageError:     " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanAbsolutePercentageError    (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""MeanSquaredPredictionError:      " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanSquaredPredictionError     (values_sorted, t_uint const* expect)); */ \
+/*		printf("\t""ResidualSumOfSquares:            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_ResidualSumOfSquares           (values_sorted, t_uint const* expect)); */ \
+	} \
+	printf("\n"); \
+/* \
+	t_float	tmp; \
+	s_prob_mass	pmf = Stat_##TYPE_MIXED##_ProbabilityMassFunction(values_sorted); \
+	if (g_test.config.verbose && g_test.config.show_args) \
+	{ \
+		printf("Probability mass function for the RNG\n"); \
+		for (t_uint i = 0; i < pmf.length; ++i) \
+		{ \
+			printf("\t%5lu: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]); \
+		} \
+	} \
+	tmp = 0.; \
+	for (t_uint i = 0; i < pmf.length; ++i) \
+	{ \
+		tmp += pmf.prob[i]; \
+	} \
+	if (g_test.config.verbose) \
+	{ \
+		printf("Sum of probs: %.12f\n", tmp); \
+	} \
+	Stat_##TYPE_MIXED##_Delete(&values_sorted); \
+	return (OK); \
+*/ \
+} \
+
+DEFINETEST_STAT(uint,  UInt,  UINT )
+DEFINETEST_STAT(sint,  SInt,  SINT )
+DEFINETEST_STAT(fixed, Fixed, FIXED)
+DEFINETEST_STAT(float, Float, FLOAT)
 
 
 
@@ -22,124 +142,12 @@
 
 int		testsuite_math_stat(void) // TODO increment total tests counter for these tests
 {
+	static const int	sample_size = 20000;
+
 	print_suite_title("libccc/math/stat");
 
-	static const int	samples = 20000;
-	s_sorted_sint	values_sorted = print_test_random(samples);
-/*
-	for (int i = 0; i < i_lst.length; ++i)
-		printf("%d, ", i_lst.items[i]);
-	printf("\n");
-*/
-	t_float	tmp;
-	t_float	decile_inc = samples / 10.;
-
-	if (g_test.config.verbose)
-	{
-		t_u64	intmax = (t_u32)-1;
-		printf("\tMedian:   %12f | intmax   :" SF_U64 "\n", Stat_SInt_Median(values_sorted), intmax);
-		printf("\tAverage:  %12f | intmax/2 :" SF_U64 "\n", Stat_SInt_Mean_Arithmetic(values_sorted), intmax / 2);
-		printf("\tVariance: %12f | StdDev: %12f\n",
-			Stat_SInt_Variance(values_sorted),
-			Stat_SInt_StandardDeviation(values_sorted));
-
-		printf("\tDeciles int:\n"
-			"\t\t 0: " SF_SINT "\n"
-			"\t\t 1: " SF_SINT "\n"
-			"\t\t 2: " SF_SINT "\n"
-			"\t\t 3: " SF_SINT "\n"
-			"\t\t 4: " SF_SINT "\n"
-			"\t\t 5: " SF_SINT "\n"
-			"\t\t 6: " SF_SINT "\n"
-			"\t\t 7: " SF_SINT "\n"
-			"\t\t 8: " SF_SINT "\n"
-			"\t\t 9: " SF_SINT "\n"
-			"\t\t10: " SF_SINT "\n\n",
-			values_sorted.items[0],
-			values_sorted.items[(t_u32)(decile_inc)],
-			values_sorted.items[(t_u32)(decile_inc * 2)],
-			values_sorted.items[(t_u32)(decile_inc * 3)],
-			values_sorted.items[(t_u32)(decile_inc * 4)],
-			values_sorted.items[(t_u32)(decile_inc * 5)],
-			values_sorted.items[(t_u32)(decile_inc * 6)],
-			values_sorted.items[(t_u32)(decile_inc * 7)],
-			values_sorted.items[(t_u32)(decile_inc * 8)],
-			values_sorted.items[(t_u32)(decile_inc * 9)],
-			values_sorted.items[samples - 1]);
-	}
-/*
-	if (g_test.config.show_args) // TODO special program option for this ?
-	{
-		printf("\tDeciles uint:\n"
-			"\t\t 0: %12lu\n"
-			"\t\t 1: %12lu\n"
-			"\t\t 2: %12lu\n"
-			"\t\t 3: %12lu\n"
-			"\t\t 4: %12lu\n"
-			"\t\t 5: %12lu\n"
-			"\t\t 6: %12lu\n"
-			"\t\t 7: %12lu\n"
-			"\t\t 8: %12lu\n"
-			"\t\t 9: %12lu\n"
-			"\t\t10: %12lu\n\n",
-			values_sorted.items[0],
-			values_sorted.items[(t_u32)decile_inc],
-			values_sorted.items[(t_u32)(decile_inc * 2)],
-			values_sorted.items[(t_u32)(decile_inc * 3)],
-			values_sorted.items[(t_u32)(decile_inc * 4)],
-			values_sorted.items[(t_u32)(decile_inc * 5)],
-			values_sorted.items[(t_u32)(decile_inc * 6)],
-			values_sorted.items[(t_u32)(decile_inc * 7)],
-			values_sorted.items[(t_u32)(decile_inc * 8)],
-			values_sorted.items[(t_u32)(decile_inc * 9)],
-			values_sorted.items[samples - 1]);
-
-		printf("\tDeciles hex:\n"
-			"\t\t 0: %#12lx\n"
-			"\t\t 1: %#12lx\n"
-			"\t\t 2: %#12lx\n"
-			"\t\t 3: %#12lx\n"
-			"\t\t 4: %#12lx\n"
-			"\t\t 5: %#12lx\n"
-			"\t\t 6: %#12lx\n"
-			"\t\t 7: %#12lx\n"
-			"\t\t 8: %#12lx\n"
-			"\t\t 9: %#12lx\n"
-			"\t\t10: %#12lx\n\n",
-			values_sorted.items[0],
-			values_sorted.items[(t_u32)decile_inc],
-			values_sorted.items[(t_u32)(decile_inc * 2)],
-			values_sorted.items[(t_u32)(decile_inc * 3)],
-			values_sorted.items[(t_u32)(decile_inc * 4)],
-			values_sorted.items[(t_u32)(decile_inc * 5)],
-			values_sorted.items[(t_u32)(decile_inc * 6)],
-			values_sorted.items[(t_u32)(decile_inc * 7)],
-			values_sorted.items[(t_u32)(decile_inc * 8)],
-			values_sorted.items[(t_u32)(decile_inc * 9)],
-			values_sorted.items[samples - 1]);
-	}
-*/
-	s_prob_mass	pmf;
-
-	pmf = Stat_SInt_ProbabilityMassFunction(values_sorted);
-
-	if (g_test.config.verbose && g_test.config.show_args) // TODO special program option for this ?
-	{
-		printf("Probability mass function for the RNG\n");
-		for (t_uint i = 0; i < pmf.length; ++i)
-		{
-			printf("\t%5lu: val %12f; prob %.4f\n", i, pmf.value[i], pmf.prob[i]);
-		}
-	}
-	tmp = 0.;
-	for (t_uint i = 0; i < pmf.length; ++i)
-	{
-		tmp += pmf.prob[i];
-	}
-	if (g_test.config.verbose)
-	{
-		printf("Sum of probs: %.12f\n", tmp);
-	}
-	Stat_SInt_Delete(&values_sorted);
-	return (OK);
+	print_test_stat_uint	(sample_size);
+	print_test_stat_sint	(sample_size);
+	print_test_stat_fixed	(sample_size);
+	print_test_stat_float	(sample_size);
 }

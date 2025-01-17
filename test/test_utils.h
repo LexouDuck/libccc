@@ -51,7 +51,12 @@ char*	print_memory(void const* ptr, t_size length);
 
 char*	ptrtostr(void const* ptr);
 
-s_sorted_sint	print_test_random(t_uint sample_size);
+
+
+s_sorted_uint	print_test_random_uint	(t_uint sample_size);
+s_sorted_sint	print_test_random_sint	(t_uint sample_size);
+s_sorted_fixed	print_test_random_fixed	(t_uint sample_size);
+s_sorted_float	print_test_random_float	(t_uint sample_size);
 
 
 
