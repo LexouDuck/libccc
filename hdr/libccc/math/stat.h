@@ -424,18 +424,6 @@ t_float                              Stat_Float_Mean_Contraharmonic(s_array_floa
 #define c_fstat_mean_contraharmonic  Stat_Float_Mean_Contraharmonic
 //!@}
 
-//!@doc TODO document this : https://en.wikipedia.org/wiki/Lehmer_mean
-//!@{
-t_float                              Stat_UInt_Mean_Lehmer(s_array_uint const sample, t_sint power);
-#define c_ustat_mean_lehmer          Stat_UInt_Mean_Lehmer
-t_float                              Stat_SInt_Mean_Lehmer(s_array_sint const sample, t_sint power);
-#define c_sstat_mean_lehmer          Stat_SInt_Mean_Lehmer
-t_float                              Stat_Fixed_Mean_Lehmer(s_array_fixed const sample, t_sint power);
-#define c_qstat_mean_lehmer          Stat_Fixed_Mean_Lehmer
-t_float                              Stat_Float_Mean_Lehmer(s_array_float const sample, t_sint power);
-#define c_fstat_mean_lehmer          Stat_Float_Mean_Lehmer
-//!@}
-
 //!@doc TODO document this : https://en.wikipedia.org/wiki/Interquartile_mean
 //!@{
 t_float                              Stat_UInt_Mean_Interquartile(s_array_uint const sample);
@@ -482,6 +470,18 @@ t_float                              Stat_Fixed_Mean_Power(s_array_fixed const s
 #define c_qstat_mean_power           Stat_Fixed_Mean_Power
 t_float                              Stat_Float_Mean_Power(s_array_float const sample, t_float power);
 #define c_fstat_mean_power           Stat_Float_Mean_Power
+//!@}
+
+//!@doc TODO document this : https://en.wikipedia.org/wiki/Lehmer_mean
+//!@{
+t_float                              Stat_UInt_Mean_Lehmer(s_array_uint const sample, t_sint power);
+#define c_ustat_mean_lehmer          Stat_UInt_Mean_Lehmer
+t_float                              Stat_SInt_Mean_Lehmer(s_array_sint const sample, t_sint power);
+#define c_sstat_mean_lehmer          Stat_SInt_Mean_Lehmer
+t_float                              Stat_Fixed_Mean_Lehmer(s_array_fixed const sample, t_sint power);
+#define c_qstat_mean_lehmer          Stat_Fixed_Mean_Lehmer
+t_float                              Stat_Float_Mean_Lehmer(s_array_float const sample, t_sint power);
+#define c_fstat_mean_lehmer          Stat_Float_Mean_Lehmer
 //!@}
 
 

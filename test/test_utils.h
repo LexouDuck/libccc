@@ -53,10 +53,10 @@ char*	ptrtostr(void const* ptr);
 
 
 
-s_sorted_uint	print_test_random_uint	(t_uint sample_size);
-s_sorted_sint	print_test_random_sint	(t_uint sample_size);
-s_sorted_fixed	print_test_random_fixed	(t_uint sample_size);
-s_sorted_float	print_test_random_float	(t_uint sample_size);
+s_sorted_uint	print_test_random_uint	(t_uint sample_size, t_uint  range_min, t_uint  range_max);
+s_sorted_sint	print_test_random_sint	(t_uint sample_size, t_sint  range_min, t_sint  range_max);
+s_sorted_fixed	print_test_random_fixed	(t_uint sample_size, t_fixed range_min, t_fixed range_max);
+s_sorted_float	print_test_random_float	(t_uint sample_size, t_float range_min, t_float range_max);
 
 
 
@@ -76,11 +76,11 @@ double	stat_mean_arithmetic_      ##NAME(const TYPE * values, unsigned int lengt
 double	stat_mean_geometric_       ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_harmonic_        ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_contraharmonic_  ##NAME(const TYPE * values, unsigned int length); \
-double	stat_mean_lehmer_          ##NAME(const TYPE * values, unsigned int length, int power); \
 double	stat_mean_interquartile_   ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_quadratic_       ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_cubic_           ##NAME(const TYPE * values, unsigned int length); \
 double	stat_mean_power_           ##NAME(const TYPE * values, unsigned int length, double power); \
+double	stat_mean_lehmer_          ##NAME(const TYPE * values, unsigned int length, int power); \
 double	stat_variance_             ##NAME(const TYPE * values, unsigned int length); \
 double	stat_stddev_               ##NAME(const TYPE * values, unsigned int length); \
 double	stat_cv_                   ##NAME(const TYPE * values, unsigned int length); \

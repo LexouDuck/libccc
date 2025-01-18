@@ -243,7 +243,7 @@ TYPE	Stat_##TYPE_MIXED##_GetMin(s_array(TYPE_LOWER) const sample) \
 		if (result > value) \
 			result = value; \
 	} \
-	if CCCERROR((result == TYPE_UPPER##_MAX), ERROR_INVALIDARGS, "invalid sample given") \
+	if CCCERROR((result == TYPE_UPPER##_MAX), ERROR_INVALIDARGS, "no minimum value was found") \
 		return (TYPE_UPPER##_ERROR); \
 	return (result); \
 } \
@@ -259,7 +259,7 @@ TYPE	Stat_##TYPE_MIXED##_GetMax(s_array(TYPE_LOWER) const sample) \
 		if (result < value) \
 			result = value; \
 	} \
-	if CCCERROR((result == TYPE_UPPER##_MIN), ERROR_INVALIDARGS, "invalid sample given") \
+	if CCCERROR((result == TYPE_UPPER##_MIN), ERROR_INVALIDARGS, "no maximum value was found") \
 		return (TYPE_UPPER##_ERROR); \
 	return (result); \
 } \
@@ -316,8 +316,8 @@ t_float	Stat_##TYPE_MIXED##_Range(s_array(TYPE_LOWER) const sample) \
 { \
 	/* if (sort)	quicksort_##TYPE_LOWER(sample.items, 0, sample.length); */ \
 	TYPE	value; \
-	TYPE	minval = TYPE_UPPER##_MIN; \
-	TYPE	maxval = TYPE_UPPER##_MAX; \
+	TYPE	minval = TYPE_UPPER##_MAX; \
+	TYPE	maxval = TYPE_UPPER##_MIN; \
 	for (t_uint i = 0; i < sample.length; ++i) \
 	{ \
 		value = sample.items[i]; \
@@ -327,6 +327,10 @@ t_float	Stat_##TYPE_MIXED##_Range(s_array(TYPE_LOWER) const sample) \
 		if (maxval < sample.items[i]) \
 			maxval = sample.items[i]; \
 	} \
+	if CCCERROR((minval == TYPE_UPPER##_MAX), ERROR_INVALIDARGS, "no minimum value was found") \
+		return (NAN); \
+	if CCCERROR((maxval == TYPE_UPPER##_MIN), ERROR_INVALIDARGS, "no maximum value was found") \
+		return (NAN); \
 	return (maxval - minval); \
 } \
 /*! https://en.wikipedia.org/wiki/Midrange */ \
@@ -334,8 +338,8 @@ t_float	Stat_##TYPE_MIXED##_Midrange(s_array(TYPE_LOWER) const sample) \
 { \
 	/* if (sort)	quicksort_##TYPE_LOWER(sample.items, 0, sample.length); */ \
 	TYPE	value; \
-	TYPE	minval = TYPE_UPPER##_MIN; \
-	TYPE	maxval = TYPE_UPPER##_MAX; \
+	TYPE	minval = TYPE_UPPER##_MAX; \
+	TYPE	maxval = TYPE_UPPER##_MIN; \
 	for (t_uint i = 0; i < sample.length; ++i) \
 	{ \
 		value = sample.items[i]; \
@@ -345,6 +349,10 @@ t_float	Stat_##TYPE_MIXED##_Midrange(s_array(TYPE_LOWER) const sample) \
 		if (maxval < sample.items[i]) \
 			maxval = sample.items[i]; \
 	} \
+	if CCCERROR((minval == TYPE_UPPER##_MAX), ERROR_INVALIDARGS, "no minimum value was found") \
+		return (NAN); \
+	if CCCERROR((maxval == TYPE_UPPER##_MIN), ERROR_INVALIDARGS, "no maximum value was found") \
+		return (NAN); \
 	return (minval + maxval) / 2; \
 } \
 /*! https://en.wikipedia.org/wiki/Midhinge */ \
@@ -375,7 +383,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Arithmetic(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Geometric_mean */ \
@@ -392,7 +400,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Geometric(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return Float_Pow(product, 1. / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Harmonic_mean */ \
@@ -409,7 +417,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Harmonic(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0 || invsum == 0.), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (n / invsum); \
 } \
 /*! https://en.wikipedia.org/wiki/Contraharmonic_mean */ \
@@ -426,24 +434,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Contraharmonic(s_array(TYPE_LOWER) const sample
 		sum2 += value * value; \
 	} \
 	if CCCERROR((sum1 == 0. && sum2 == 0.), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
-	return (sum2 / sum1); \
-} \
-/*! https://en.wikipedia.org/wiki/Lehmer_mean */ \
-t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint power) \
-{ \
-	TYPE	value; \
-	t_float	sum1 = 0.; \
-	t_float	sum2 = 0.; \
-	for (t_uint i = 0; i < sample.length ; ++i) \
-	{ \
-		value = sample.items[i]; \
-		if (CHECK_INVALID)	continue; \
-		sum1 += Float_Pow(value, power - 1); \
-		sum2 += Float_Pow(value, power); \
-	} \
-	if CCCERROR((sum1 == 0. && sum2 == 0.), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum2 / sum1); \
 } \
 /*! https://en.wikipedia.org/wiki/Interquartile_mean */ \
@@ -464,7 +455,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Interquartile(s_array(TYPE_LOWER) const sample)
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Quadratic_mean */ \
@@ -481,7 +472,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Quadratic(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (Float_Root2(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Cubic_mean */ \
@@ -498,7 +489,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Cubic(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (Float_Root3(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Power_mean */ \
@@ -515,8 +506,25 @@ t_float	Stat_##TYPE_MIXED##_Mean_Power(s_array(TYPE_LOWER) const sample, t_float
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (Float_Pow(sum / n, 1 / p)); \
+} \
+/*! https://en.wikipedia.org/wiki/Lehmer_mean */ \
+t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint power) \
+{ \
+	TYPE	value; \
+	t_float	sum1 = 0.; \
+	t_float	sum2 = 0.; \
+	for (t_uint i = 0; i < sample.length ; ++i) \
+	{ \
+		value = sample.items[i]; \
+		if (CHECK_INVALID)	continue; \
+		sum1 += Float_Pow(value, power - 1); \
+		sum2 += Float_Pow(value, power); \
+	} \
+	if CCCERROR((sum1 == 0. && sum2 == 0.), ERROR_INVALIDARGS, "invalid sample given") \
+		return (NAN); \
+	return (sum2 / sum1); \
 } \
 /*! https://en.wikipedia.org/wiki/Variance */ \
 t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
@@ -533,7 +541,7 @@ t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return ((sum / n) - (average * average)); \
 } \
 /*! https://en.wikipedia.org/wiki/Standard_deviation */ \
@@ -546,7 +554,7 @@ t_float	Stat_##TYPE_MIXED##_CoefficientOfVariation(s_array(TYPE_LOWER) const sam
 { \
 	t_float average = Stat_##TYPE_MIXED##_Mean_Arithmetic(sample); \
 	if CCCERROR((average == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (Stat_##TYPE_MIXED##_StandardDeviation(sample) / average); \
 } \
 /*! https://en.wikipedia.org/wiki/Interquartile_range */ \
@@ -583,7 +591,7 @@ t_float	Stat_##TYPE_MIXED##_AverageAbsoluteDeviation(s_array(TYPE_LOWER) const s
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Arithmetic%E2%80%93geometric_mean */ \
@@ -618,7 +626,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSignedDeviation(s_array(TYPE_LOWER) const sample
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_squared_error */ \
@@ -637,7 +645,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSquaredError(s_array(TYPE_LOWER) const sample, T
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_error */ \
@@ -656,7 +664,7 @@ t_float	Stat_##TYPE_MIXED##_MeanAbsoluteError(s_array(TYPE_LOWER) const sample, 
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_difference */ \
@@ -675,7 +683,7 @@ t_float	Stat_##TYPE_MIXED##_MeanAbsoluteDifference(s_array(TYPE_LOWER) const sam
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	t_float	result = Stat_Float_Mean_Arithmetic((s_array(float)){ .length = n, .items = pairs }); \
 	Memory_Free(pairs); \
 	return result; \
@@ -704,7 +712,7 @@ t_float	Stat_##TYPE_MIXED##_MeanPercentageError(s_array(TYPE_LOWER) const sample
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n) * 100.; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_percentage_error */ \
@@ -721,7 +729,7 @@ t_float	Stat_##TYPE_MIXED##_MeanAbsolutePercentageError(s_array(TYPE_LOWER) cons
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n) * 100.; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_squared_prediction_error */ \
@@ -740,7 +748,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSquaredPredictionError(s_array(TYPE_LOWER) const
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
-		return (TYPE_UPPER##_ERROR); \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Residual_sum_of_squares */ \
@@ -761,7 +769,7 @@ t_float	Stat_##TYPE_MIXED##_ResidualSumOfSquares(s_array(TYPE_LOWER) const sampl
 /*! https://en.wikipedia.org/wiki/Squared_deviations_from_the_mean */ \
 /*TODO*/
 
-DEFINEFUNCTIONS_STATS(t_uint,  uint,  UInt,  UINT,  !( UInt_IsNaN(value) ||  UInt_IsInf(value)))
-DEFINEFUNCTIONS_STATS(t_sint,  sint,  SInt,  SINT,  !( SInt_IsNaN(value) ||  SInt_IsInf(value)))
-DEFINEFUNCTIONS_STATS(t_fixed, fixed, Fixed, FIXED, !(Fixed_IsNaN(value) || Fixed_IsInf(value)))
-DEFINEFUNCTIONS_STATS(t_float, float, Float, FLOAT, !(Float_IsNaN(value) || Float_IsInf(value)))
+DEFINEFUNCTIONS_STATS(t_uint,  uint,  UInt,  UINT,  ( UInt_IsNaN(value) ||  UInt_IsInf(value)))
+DEFINEFUNCTIONS_STATS(t_sint,  sint,  SInt,  SINT,  ( SInt_IsNaN(value) ||  SInt_IsInf(value)))
+DEFINEFUNCTIONS_STATS(t_fixed, fixed, Fixed, FIXED, (Fixed_IsNaN(value) || Fixed_IsInf(value)))
+DEFINEFUNCTIONS_STATS(t_float, float, Float, FLOAT, (Float_IsNaN(value) || Float_IsInf(value)))
