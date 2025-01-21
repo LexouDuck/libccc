@@ -51,8 +51,8 @@ HEADER_CPP
 **	- 23 fraction bits
 */
 //!@{
-typedef float		t_f32;
-TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
+typedef float	t_f32;
+TYPEDEF_ALIAS(	t_f32,	FLOAT_32,	PRIMITIVE)
 //!@}
 
 //!@doc Primitive type: 64-bit 'double precision' IEEE-754 floating-point numbers
@@ -67,8 +67,8 @@ TYPEDEF_ALIAS(		t_f32,	FLOAT_32,	PRIMITIVE)
 **	- 52 fraction bits
 */
 //!@{
-typedef double		t_f64;
-TYPEDEF_ALIAS(		t_f64,	FLOAT_64,	PRIMITIVE)
+typedef double	t_f64;
+TYPEDEF_ALIAS(	t_f64,	FLOAT_64,	PRIMITIVE)
 //!@}
 
 #if LIBCONFIG_USE_FLOAT80
@@ -519,6 +519,355 @@ typedef union cast_float
 #define __LIBCCC_FLOAT_F
 
 /*============================================================================*\
+||                      Floating-point conversion functions                   ||
+\*============================================================================*/
+
+//!@doc A smart constructor: calls the appropriate conversion function from the given argument type
+//!@{
+#define DEFINEFUNC_Float(X, FUNCTYPE) \
+	_Generic((X), \
+		t_u8:	 FUNCTYPE##_FromU8, \
+		t_u16:	 FUNCTYPE##_FromU16, \
+		t_u32:	 FUNCTYPE##_FromU32, \
+		t_u64:	 FUNCTYPE##_FromU64, \
+		t_u128:	 FUNCTYPE##_FromU128, \
+		t_uint:  FUNCTYPE##_FromUInt, \
+		t_s8:	 FUNCTYPE##_FromS8, \
+		t_s16:	 FUNCTYPE##_FromS16, \
+		t_s32:	 FUNCTYPE##_FromS32, \
+		t_s64:	 FUNCTYPE##_FromS64, \
+		t_s128:	 FUNCTYPE##_FromS128, \
+		t_sint:  FUNCTYPE##_FromSInt, \
+		t_q16:	 FUNCTYPE##_FromQ16, \
+		t_q32:	 FUNCTYPE##_FromQ32, \
+		t_q64:	 FUNCTYPE##_FromQ64, \
+		t_q128:	 FUNCTYPE##_FromQ128, \
+		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f32:	 FUNCTYPE##_FromF32, \
+		t_f64:	 FUNCTYPE##_FromF64, \
+		t_f80:	 FUNCTYPE##_FromF80, \
+		t_f128:	 FUNCTYPE##_FromF128, \
+		t_float: FUNCTYPE##_FromFloat, \
+	)(X)
+
+#define Float(X)	DEFINEFUNC_Float(X, Float)
+#define F32(X)		DEFINEFUNC_Float(X, F32)
+#define F64(X)		DEFINEFUNC_Float(X, F64)
+#if LIBCONFIG_USE_FLOAT80
+#define F80(X)		DEFINEFUNC_Float(X, F80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+#define F128(X)		DEFINEFUNC_Float(X, F128)
+#endif
+
+#define c_float(X)	Float(X)
+#define c_f32(X)	F32(X)
+#define c_f64(X)	F64(X)
+#if LIBCONFIG_USE_FLOAT80
+#define c_f80(X)	F80(X)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+#define c_f128(X)	F128(X)
+#endif
+//!@}
+
+
+
+//!@doc Returns the nearest floating-point value from the given unsigned integer `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define					Float_FromUInt	CONCAT(FLOAT_TYPE,CONCAT(_From,UINT_TYPE))
+#define c_utof			Float_FromUInt
+#define					Float_FromU8	CONCAT(FLOAT_TYPE,_FromU8)
+#define c_u8tof			Float_FromU8
+#define					Float_FromU16	CONCAT(FLOAT_TYPE,_FromU16)
+#define c_u16tof		Float_FromU16
+#define					Float_FromU32	CONCAT(FLOAT_TYPE,_FromU32)
+#define c_u32tof		Float_FromU32
+#define					Float_FromU64	CONCAT(FLOAT_TYPE,_FromU64)
+#define c_u64tof		Float_FromU64
+#if LIBCONFIG_USE_INT128
+#define					Float_FromU128	CONCAT(FLOAT_TYPE,_FromU128)
+#define c_u128tof		Float_FromU128
+#endif
+
+t_f32					F32_FromU8(t_u8 number);
+#define c_u8tof32		F32_FromU8
+t_f32					F32_FromU16(t_u16 number);
+#define c_u16tof32		F32_FromU16
+t_f32					F32_FromU32(t_u32 number);
+#define c_u32tof32		F32_FromU32
+t_f32					F32_FromU64(t_u64 number);
+#define c_u64tof32		F32_FromU64
+#if LIBCONFIG_USE_INT128
+t_f32					F32_FromU128(t_u128 number);
+#define c_u128tof32		F32_FromU128
+#endif
+
+t_f64					F64_FromU8(t_u8 number);
+#define c_u8tof64		F64_FromU8
+t_f64					F64_FromU16(t_u16 number);
+#define c_u16tof64		F64_FromU16
+t_f64					F64_FromU32(t_u32 number);
+#define c_u32tof64		F64_FromU32
+t_f64					F64_FromU64(t_u64 number);
+#define c_u64tof64		F64_FromU64
+#if LIBCONFIG_USE_INT128
+t_f64					F64_FromU128(t_u128 number);
+#define c_u128tof64		F64_FromU128
+#endif
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_FromU8(t_u8 number);
+#define c_u8tof80		F80_FromU8
+t_f80					F80_FromU16(t_u16 number);
+#define c_u16tof80		F80_FromU16
+t_f80					F80_FromU32(t_u32 number);
+#define c_u32tof80		F80_FromU32
+t_f80					F80_FromU64(t_u64 number);
+#define c_u64tof80		F80_FromU64
+#if LIBCONFIG_USE_INT128
+t_f80					F80_FromU128(t_u128 number);
+#define c_u128tof80		F80_FromU128
+#endif
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_FromU8(t_u8 number);
+#define c_u8tof128		F128_FromU8
+t_f128					F128_FromU16(t_u16 number);
+#define c_u16tof128		F128_FromU16
+t_f128					F128_FromU32(t_u32 number);
+#define c_u32tof128		F128_FromU32
+t_f128					F128_FromU64(t_u64 number);
+#define c_u64tof128		F128_FromU64
+#if LIBCONFIG_USE_INT128
+t_f128					F128_FromU128(t_u128 number);
+#define c_u128tof128	F128_FromU128
+#endif
+#endif
+//!@}
+
+//!@doc Returns the nearest floating-point value from the given signed integer `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define					Float_FromSInt	CONCAT(FLOAT_TYPE,CONCAT(_From,SINT_TYPE))
+#define c_stof			Float_FromSInt
+#define					Float_FromS8	CONCAT(FLOAT_TYPE,_FromS8)
+#define c_s8tof			Float_FromS8
+#define					Float_FromS16	CONCAT(FLOAT_TYPE,_FromS16)
+#define c_s16tof		Float_FromS16
+#define					Float_FromS32	CONCAT(FLOAT_TYPE,_FromS32)
+#define c_s32tof		Float_FromS32
+#define					Float_FromS64	CONCAT(FLOAT_TYPE,_FromS64)
+#define c_s64tof		Float_FromS64
+#if LIBCONFIG_USE_INT128
+#define					Float_FromS128	CONCAT(FLOAT_TYPE,_FromS128)
+#define c_s128tof		Float_FromS128
+#endif
+
+t_f32					F32_FromS8(t_s8 number);
+#define c_s8tof32		F32_FromS8
+t_f32					F32_FromS16(t_s16 number);
+#define c_s16tof32		F32_FromS16
+t_f32					F32_FromS32(t_s32 number);
+#define c_s32tof32		F32_FromS32
+t_f32					F32_FromS64(t_s64 number);
+#define c_s64tof32		F32_FromS64
+#if LIBCONFIG_USE_INT128
+t_f32					F32_FromS128(t_s128 number);
+#define c_s128tof32		F32_FromS128
+#endif
+
+t_f64					F64_FromS8(t_s8 number);
+#define c_s8tof64		F64_FromS8
+t_f64					F64_FromS16(t_s16 number);
+#define c_s16tof64		F64_FromS16
+t_f64					F64_FromS32(t_s32 number);
+#define c_s32tof64		F64_FromS32
+t_f64					F64_FromS64(t_s64 number);
+#define c_s64tof64		F64_FromS64
+#if LIBCONFIG_USE_INT128
+t_f64					F64_FromS128(t_s128 number);
+#define c_s128tof64		F64_FromS128
+#endif
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_FromS8(t_s8 number);
+#define c_s8tof80		F80_FromS8
+t_f80					F80_FromS16(t_s16 number);
+#define c_s16tof80		F80_FromS16
+t_f80					F80_FromS32(t_s32 number);
+#define c_s32tof80		F80_FromS32
+t_f80					F80_FromS64(t_s64 number);
+#define c_s64tof80		F80_FromS64
+#if LIBCONFIG_USE_INT128
+t_f80					F80_FromS128(t_s128 number);
+#define c_s128tof80		F80_FromS128
+#endif
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_FromS8(t_s8 number);
+#define c_s8tof128		F128_FromS8
+t_f128					F128_FromS16(t_s16 number);
+#define c_s16tof128		F128_FromS16
+t_f128					F128_FromS32(t_s32 number);
+#define c_s32tof128		F128_FromS32
+t_f128					F128_FromS64(t_s64 number);
+#define c_s64tof128		F128_FromS64
+#if LIBCONFIG_USE_INT128
+t_f128					F128_FromS128(t_s128 number);
+#define c_s128tof128	F128_FromS128
+#endif
+#endif
+//!@}
+
+//!@doc Returns the nearest floating-point value from the given fixed-point `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define					Float_FromFixed	CONCAT(FLOAT_TYPE,CONCAT(_From,FIXED_TYPE))
+#define c_qtof			Float_FromFixed
+#define					Float_FromQ16	CONCAT(FLOAT_TYPE,_FromQ16)
+#define c_q16tof		Float_FromQ16
+#define					Float_FromQ32	CONCAT(FLOAT_TYPE,_FromQ32)
+#define c_q32tof		Float_FromQ32
+#define					Float_FromQ64	CONCAT(FLOAT_TYPE,_FromQ64)
+#define c_q64tof		Float_FromQ64
+#if LIBCONFIG_USE_INT128
+#define					Float_FromQ128	CONCAT(FLOAT_TYPE,_FromQ128)
+#define c_q128tof		Float_FromQ128
+#endif
+
+t_f32					F32_FromQ16(t_q16 number);
+#define c_q16tof32		F32_FromQ16
+t_f32					F32_FromQ32(t_q32 number);
+#define c_q32tof32		F32_FromQ32
+t_f32					F32_FromQ64(t_q64 number);
+#define c_q64tof32		F32_FromQ64
+#if LIBCONFIG_USE_INT128
+t_f32					F32_FromQ128(t_q128 number);
+#define c_q128tof32		F32_FromQ128
+#endif
+
+t_f64					F64_FromQ16(t_q16 number);
+#define c_q16tof64		F64_FromQ16
+t_f64					F64_FromQ32(t_q32 number);
+#define c_q32tof64		F64_FromQ32
+t_f64					F64_FromQ64(t_q64 number);
+#define c_q64tof64		F64_FromQ64
+#if LIBCONFIG_USE_INT128
+t_f64					F64_FromQ128(t_q128 number);
+#define c_q128tof64		F64_FromQ128
+#endif
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80					F80_FromQ16(t_q16 number);
+#define c_q16tof80		F80_FromQ16
+t_f80					F80_FromQ32(t_q32 number);
+#define c_q32tof80		F80_FromQ32
+t_f80					F80_FromQ64(t_q64 number);
+#define c_q64tof80		F80_FromQ64
+#if LIBCONFIG_USE_INT128
+t_f80					F80_FromQ128(t_q128 number);
+#define c_q128tof80		F80_FromQ128
+#endif
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128					F128_FromQ16(t_q16 number);
+#define c_q16tof128		F128_FromQ16
+t_f128					F128_FromQ32(t_q32 number);
+#define c_q32tof128		F128_FromQ32
+t_f128					F128_FromQ64(t_q64 number);
+#define c_q64tof128		F128_FromQ64
+#if LIBCONFIG_USE_INT128
+t_f128					F128_FromQ128(t_q128 number);
+#define c_q128tof128	F128_FromQ128
+#endif
+#endif
+//!@}
+
+//!@doc Returns the nearest floating-point value from the given floating-point `number`
+/*!
+**	TODO document this
+*/
+//!@{
+#define	 				Float_FromFloat	CONCAT(FLOAT_TYPE,CONCAT(_From,FLOAT_TYPE))
+#define c_ftof			Float_FromFloat
+#define	 				Float_FromF32	CONCAT(FLOAT_TYPE,_FromF32)
+#define c_f32tof		Float_FromF32
+#define	 				Float_FromF64	CONCAT(FLOAT_TYPE,_FromF64)
+#define c_f64tof		Float_FromF64
+#if LIBCONFIG_USE_FLOAT80
+#define	 				Float_FromF80	CONCAT(FLOAT_TYPE,_FromF80)
+#define c_f80tof		Float_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+#define	 				Float_FromF128	CONCAT(FLOAT_TYPE,_FromF128)
+#define c_f128tof		Float_FromF128
+#endif
+
+t_f32	 				F32_FromF32(t_f32 number);
+#define c_f32tof32		F32_FromF32
+t_f32	 				F32_FromF64(t_f64 number);
+#define c_f64tof32		F32_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_f32	 				F32_FromF80(t_f80 number);
+#define c_f80tof32		F32_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f32	 				F32_FromF128(t_f128 number);
+#define c_f128tof32		F32_FromF128
+#endif
+
+t_f64	 				F64_FromF32(t_f32 number);
+#define c_f32tof64		F64_FromF32
+t_f64	 				F64_FromF64(t_f64 number);
+#define c_f64tof64		F64_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_f64	 				F64_FromF80(t_f80 number);
+#define c_f80tof64		F64_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f64	 				F64_FromF128(t_f128 number);
+#define c_f128tof64		F64_FromF128
+#endif
+
+#if LIBCONFIG_USE_FLOAT80
+t_f80	 				F80_FromF32(t_f32 number);
+#define c_f32tof80		F80_FromF32
+t_f80	 				F80_FromF64(t_f64 number);
+#define c_f64tof80		F80_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_f80	 				F80_FromF80(t_f80 number);
+#define c_f80tof80		F80_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f80	 				F80_FromF128(t_f128 number);
+#define c_f128tof80		F80_FromF128
+#endif
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128	 				F128_FromF32(t_f32 number);
+#define c_f32tof128		F128_FromF32
+t_f128	 				F128_FromF64(t_f64 number);
+#define c_f64tof128		F128_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_f128	 				F128_FromF80(t_f80 number);
+#define c_f80tof128		F128_FromF80
+#endif
+t_f128	 				F128_FromF128(t_f128 number);
+#define c_f128tof128	F128_FromF128
+#endif
+//!@}
+
+
+
+/*============================================================================*\
 ||                        Floating-point number functions                     ||
 \*============================================================================*/
 
@@ -571,141 +920,6 @@ t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 #define c_f128ldexp		F128_From
 #define c_f128scalbn	F128_From
 #define c_tof128		F128_From
-#endif
-//!@}
-
-
-
-//!@doc A smart constructor: calls the appropriate `Float_From*()` function from the given argument type
-//!@{
-#define DEFINEFUNC_Float(X, FUNCTYPE) \
-	_Generic((X), \
-		t_u16:	 FUNCTYPE##_FromUInt, \
-		t_u32:	 FUNCTYPE##_FromUInt, \
-		t_u64:	 FUNCTYPE##_FromUInt, \
-		t_u128:	 FUNCTYPE##_FromUInt, \
-		t_uint:  FUNCTYPE##_FromUInt, \
-		t_s16:	 FUNCTYPE##_FromSInt, \
-		t_s32:	 FUNCTYPE##_FromSInt, \
-		t_s64:	 FUNCTYPE##_FromSInt, \
-		t_s128:	 FUNCTYPE##_FromSInt, \
-		t_sint:  FUNCTYPE##_FromSInt, \
-		t_q16:	 FUNCTYPE##_FromFixed, \
-		t_q32:	 FUNCTYPE##_FromFixed, \
-		t_q64:	 FUNCTYPE##_FromFixed, \
-		t_q128:	 FUNCTYPE##_FromFixed, \
-		t_fixed: FUNCTYPE##_FromFixed, \
-		t_f32:	 FUNCTYPE##_FromFloat, \
-		t_f64:	 FUNCTYPE##_FromFloat, \
-		t_f80:	 FUNCTYPE##_FromFloat, \
-		t_f128:	 FUNCTYPE##_FromFloat, \
-		t_float: FUNCTYPE##_FromFloat, \
-	)(X)
-
-#define Float(X)	DEFINEFUNC_Float(X, Fixed)
-#define F32(X)		DEFINEFUNC_Float(X, F32)
-#define F64(X)		DEFINEFUNC_Float(X, F64)
-#if LIBCONFIG_USE_FLOAT80
-#define F80(X)		DEFINEFUNC_Float(X, F80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-#define F128(X)		DEFINEFUNC_Float(X, F128)
-#endif
-//!@}
-
-//!@doc Returns the nearest floating-point value to the given unsigned integer `number`
-/*!
-**	TODO document this
-*/
-//!@{
-#define					Float_FromUInt	CONCAT(FIXED_TYPE,_FromUInt)
-#define c_utof			Float_FromUInt
-
-t_f32					F32_FromUInt(t_uint number);
-#define c_utof32		F32_FromUInt
-
-t_f64					F64_FromUInt(t_uint number);
-#define c_utof64		F64_FromUInt
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80					F80_FromUInt(t_uint number);
-#define c_utof80		F80_FromUInt
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128					F128_FromUInt(t_uint number);
-#define c_utof128		F128_FromUInt
-#endif
-//!@}
-
-//!@doc Returns the nearest floating-point value to the given signed integer `number`
-/*!
-**	TODO document this
-*/
-//!@{
-#define					Float_FromSInt	CONCAT(FIXED_TYPE,_FromSInt)
-#define c_stof			Float_FromSInt
-
-t_f32					F32_FromSInt(t_sint number);
-#define c_stof32		F32_FromSInt
-
-t_f64					F64_FromSInt(t_sint number);
-#define c_stof64		F64_FromSInt
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80					F80_FromSInt(t_sint number);
-#define c_stof80		F80_FromSInt
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128					F128_FromSInt(t_sint number);
-#define c_stof128		F128_FromSInt
-#endif
-//!@}
-
-//!@doc Returns the nearest floating-point value to the given fixed-point `number`
-/*!
-**	TODO document this
-*/
-//!@{
-#define					Float_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
-#define c_qtof			Float_FromFixed
-
-t_f32					F32_FromFixed(t_fixed number);
-#define c_qtof32		F32_FromFixed
-
-t_f64					F64_FromFixed(t_fixed number);
-#define c_qtof64		F64_FromFixed
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80					F80_FromFixed(t_fixed number);
-#define c_qtof80		F80_FromFixed
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128					F128_FromFixed(t_fixed number);
-#define c_qtof128		F128_FromFixed
-#endif
-//!@}
-
-//!@doc Returns the nearest floating-point value to the given floating-point `number`
-/*!
-**	TODO document this
-*/
-//!@{
-#define	 				Float_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
-#define c_ftof			Float_FromFloat
-
-t_f32	 				F32_FromFloat(t_float number);
-#define c_ftof32		F32_FromFloat
-
-t_f64	 				F64_FromFloat(t_float number);
-#define c_ftof64		F64_FromFloat
-
-#if LIBCONFIG_USE_FLOAT80
-t_f80	 				F80_FromFloat(t_float number);
-#define c_ftof80		F80_FromFloat
-#endif
-#if LIBCONFIG_USE_FLOAT128
-t_f128	 				F128_FromFloat(t_float number);
-#define c_ftof128		F128_FromFloat
 #endif
 //!@}
 

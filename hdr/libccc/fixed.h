@@ -252,6 +252,8 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 #if (FIXED_DENOMINATOR == 0)
 	#error "LIBCONFIG_FIXED_DENOMINATOR must never be 0 (cannot divide by zero)"
+#elif (FIXED_DENOMINATOR < 0)
+	#error "LIBCONFIG_FIXED_DENOMINATOR cannot be a negative number, must be a natural positive integer"
 #endif
 
 
@@ -468,60 +470,123 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define __LIBCCC_FIXED_F
 
 /*============================================================================*\
-||                         Fixed-point number functions                       ||
+||                       Fixed-point conversion functions                     ||
 \*============================================================================*/
 
-//!@doc A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//!@doc A smart constructor: calls the appropriate conversion function from the given argument type
 //!@{
 #define DEFINEFUNC_Fixed(X, FUNCTYPE) \
 	_Generic((X), \
-		t_u16:	 FUNCTYPE##_FromUInt, \
-		t_u32:	 FUNCTYPE##_FromUInt, \
-		t_u64:	 FUNCTYPE##_FromUInt, \
-		t_u128:	 FUNCTYPE##_FromUInt, \
+		t_u8:	 FUNCTYPE##_FromU8, \
+		t_u16:	 FUNCTYPE##_FromU16, \
+		t_u32:	 FUNCTYPE##_FromU32, \
+		t_u64:	 FUNCTYPE##_FromU64, \
+		t_u128:	 FUNCTYPE##_FromU128, \
 		t_uint:  FUNCTYPE##_FromUInt, \
-		t_s16:	 FUNCTYPE##_FromSInt, \
-		t_s32:	 FUNCTYPE##_FromSInt, \
-		t_s64:	 FUNCTYPE##_FromSInt, \
-		t_s128:	 FUNCTYPE##_FromSInt, \
+		t_s8:	 FUNCTYPE##_FromS8, \
+		t_s16:	 FUNCTYPE##_FromS16, \
+		t_s32:	 FUNCTYPE##_FromS32, \
+		t_s64:	 FUNCTYPE##_FromS64, \
+		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
-		t_q16:	 FUNCTYPE##_FromFixed, \
-		t_q32:	 FUNCTYPE##_FromFixed, \
-		t_q64:	 FUNCTYPE##_FromFixed, \
-		t_q128:	 FUNCTYPE##_FromFixed, \
+		t_q16:	 FUNCTYPE##_FromQ16, \
+		t_q32:	 FUNCTYPE##_FromQ32, \
+		t_q64:	 FUNCTYPE##_FromQ64, \
+		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
-		t_f32:	 FUNCTYPE##_FromFloat, \
-		t_f64:	 FUNCTYPE##_FromFloat, \
-		t_f80:	 FUNCTYPE##_FromFloat, \
-		t_f128:	 FUNCTYPE##_FromFloat, \
+		t_f32:	 FUNCTYPE##_FromF32, \
+		t_f64:	 FUNCTYPE##_FromF64, \
+		t_f80:	 FUNCTYPE##_FromF80, \
+		t_f128:	 FUNCTYPE##_FromF128, \
 		t_float: FUNCTYPE##_FromFloat, \
 	)(X)
+
 #define Fixed(X)	DEFINEFUNC_Fixed(X, Fixed)
 #define Q16(X)		DEFINEFUNC_Fixed(X, Q16)
 #define Q32(X)		DEFINEFUNC_Fixed(X, Q32)
 #define Q64(X)		DEFINEFUNC_Fixed(X, Q64)
+#if LIBCONFIG_USE_INT128
 #define Q128(X)		DEFINEFUNC_Fixed(X, Q128)
+#endif
+
+#define c_fixed(X)	Fixed(X)
+#define c_q16(X)	Q16(X)
+#define c_q32(X)	Q32(X)
+#define c_q64(X)	Q64(X)
+#if LIBCONFIG_USE_INT128
+#define c_q128(X)	Q128(X)
+#endif
 //!@}
+
+
 
 //!@doc Returns the nearest fixed-point value to the given unsigned integer `number`
 /*!
 **	TODO document this
 */
 //!@{
-#define					Fixed_FromUInt	CONCAT(FIXED_TYPE,_FromUInt)
+#define					Fixed_FromUInt	CONCAT(FIXED_TYPE,CONCAT(_From,UINT_TYPE))
 #define c_utoq			Fixed_FromUInt
+#define					Fixed_FromU8	CONCAT(FIXED_TYPE,_FromU8)
+#define c_u8toq			Fixed_FromU8
+#define					Fixed_FromU16	CONCAT(FIXED_TYPE,_FromU16)
+#define c_u16toq		Fixed_FromU16
+#define					Fixed_FromU32	CONCAT(FIXED_TYPE,_FromU32)
+#define c_u32toq		Fixed_FromU32
+#define					Fixed_FromU64	CONCAT(FIXED_TYPE,_FromU64)
+#define c_u64toq		Fixed_FromU64
+#define					Fixed_FromU128	CONCAT(FIXED_TYPE,_FromU128)
+#define c_u128toq		Fixed_FromU128
 
-t_q16					Q16_FromUInt(t_uint number);
-#define c_utoq16		Q16_FromUInt
-
-t_q32					Q32_FromUInt(t_uint number);
-#define c_utoq32		Q32_FromUInt
-
-t_q64					Q64_FromUInt(t_uint number);
-#define c_utoq64		Q64_FromUInt
+t_q16					Q16_FromU8(t_u8 number);
+#define c_u8toq16		Q16_FromU8
+t_q16					Q16_FromU16(t_u16 number);
+#define c_u16toq16		Q16_FromU16
+t_q16					Q16_FromU32(t_u32 number);
+#define c_u32toq16		Q16_FromU32
+t_q16					Q16_FromU64(t_u64 number);
+#define c_u64toq16		Q16_FromU64
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_FromUInt(t_uint number);
-#define c_utoq128		Q128_FromUInt
+t_q16					Q16_FromU128(t_u128 number);
+#define c_u128toq16		Q16_FromU128
+#endif
+
+t_q32					Q32_FromU8(t_u8 number);
+#define c_u8toq32		Q32_FromU8
+t_q32					Q32_FromU16(t_u16 number);
+#define c_u16toq32		Q32_FromU16
+t_q32					Q32_FromU32(t_u32 number);
+#define c_u32toq32		Q32_FromU32
+t_q32					Q32_FromU64(t_u64 number);
+#define c_u64toq32		Q32_FromU64
+#if LIBCONFIG_USE_INT128
+t_q32					Q32_FromU128(t_u128 number);
+#define c_u128toq32		Q32_FromU128
+#endif
+
+t_q64					Q64_FromU8(t_u8 number);
+#define c_u8toq64		Q64_FromU8
+t_q64					Q64_FromU16(t_u16 number);
+#define c_u16toq64		Q64_FromU16
+t_q64					Q64_FromU32(t_u32 number);
+#define c_u32toq64		Q64_FromU32
+t_q64					Q64_FromU64(t_u64 number);
+#define c_u64toq64		Q64_FromU64
+#if LIBCONFIG_USE_INT128
+t_q64					Q64_FromU128(t_u128 number);
+#define c_u128toq64		Q64_FromU128
+#endif
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_FromU8(t_u8 number);
+#define c_u8toq128		Q128_FromU8
+t_q128					Q128_FromU16(t_u16 number);
+#define c_u16toq128		Q128_FromU16
+t_q128					Q128_FromU32(t_u32 number);
+#define c_u32toq128		Q128_FromU32
+t_q128					Q128_FromU64(t_u64 number);
+#define c_u64toq128		Q128_FromU64
+t_q128					Q128_FromU128(t_u128 number);
+#define c_u128toq128	Q128_FromU128
 #endif
 //!@}
 
@@ -530,20 +595,68 @@ t_q128					Q128_FromUInt(t_uint number);
 **	TODO document this
 */
 //!@{
-#define					Fixed_FromSInt	CONCAT(FIXED_TYPE,_FromSInt)
+#define					Fixed_FromSInt	CONCAT(FIXED_TYPE,CONCAT(_From,SINT_TYPE))
 #define c_stoq			Fixed_FromSInt
+#define					Fixed_FromS8	CONCAT(FIXED_TYPE,_FromS8)
+#define c_s8toq			Fixed_FromS8
+#define					Fixed_FromS16	CONCAT(FIXED_TYPE,_FromS16)
+#define c_s16toq		Fixed_FromS16
+#define					Fixed_FromS32	CONCAT(FIXED_TYPE,_FromS32)
+#define c_s32toq		Fixed_FromS32
+#define					Fixed_FromS64	CONCAT(FIXED_TYPE,_FromS64)
+#define c_s64toq		Fixed_FromS64
+#define					Fixed_FromS128	CONCAT(FIXED_TYPE,_FromS128)
+#define c_s128toq		Fixed_FromS128
 
-t_q16					Q16_FromSInt(t_sint number);
-#define c_stoq16		Q16_FromSInt
-
-t_q32					Q32_FromSInt(t_sint number);
-#define c_stoq32		Q32_FromSInt
-
-t_q64					Q64_FromSInt(t_sint number);
-#define c_stoq64		Q64_FromSInt
+t_q16					Q16_FromS8(t_s8 number);
+#define c_s8toq16		Q16_FromS8
+t_q16					Q16_FromS16(t_s16 number);
+#define c_s16toq16		Q16_FromS16
+t_q16					Q16_FromS32(t_s32 number);
+#define c_s32toq16		Q16_FromS32
+t_q16					Q16_FromS64(t_s64 number);
+#define c_s64toq16		Q16_FromS64
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_FromSInt(t_sint number);
-#define c_stoq128		Q128_FromSInt
+t_q16					Q16_FromS128(t_s128 number);
+#define c_s128toq16		Q16_FromS128
+#endif
+
+t_q32					Q32_FromS8(t_s8 number);
+#define c_s8toq32		Q32_FromS8
+t_q32					Q32_FromS16(t_s16 number);
+#define c_s16toq32		Q32_FromS16
+t_q32					Q32_FromS32(t_s32 number);
+#define c_s32toq32		Q32_FromS32
+t_q32					Q32_FromS64(t_s64 number);
+#define c_s64toq32		Q32_FromS64
+#if LIBCONFIG_USE_INT128
+t_q32					Q32_FromS128(t_s128 number);
+#define c_s128toq32		Q32_FromS128
+#endif
+
+t_q64					Q64_FromS8(t_s8 number);
+#define c_s8toq64		Q64_FromS8
+t_q64					Q64_FromS16(t_s16 number);
+#define c_s16toq64		Q64_FromS16
+t_q64					Q64_FromS32(t_s32 number);
+#define c_s32toq64		Q64_FromS32
+t_q64					Q64_FromS64(t_s64 number);
+#define c_s64toq64		Q64_FromS64
+#if LIBCONFIG_USE_INT128
+t_q64					Q64_FromS128(t_s128 number);
+#define c_s128toq64		Q64_FromS128
+#endif
+#if LIBCONFIG_USE_INT128
+t_q128					Q128_FromS8(t_s8 number);
+#define c_s8toq128		Q128_FromS8
+t_q128					Q128_FromS16(t_s16 number);
+#define c_s16toq128		Q128_FromS16
+t_q128					Q128_FromS32(t_s32 number);
+#define c_s32toq128		Q128_FromS32
+t_q128					Q128_FromS64(t_s64 number);
+#define c_s64toq128		Q128_FromS64
+t_q128					Q128_FromS128(t_s128 number);
+#define c_s128toq128	Q128_FromS128
 #endif
 //!@}
 
@@ -552,20 +665,52 @@ t_q128					Q128_FromSInt(t_sint number);
 **	TODO document this
 */
 //!@{
-#define					Fixed_FromFixed	CONCAT(FIXED_TYPE,_FromFixed)
+#define					Fixed_FromFixed	CONCAT(FIXED_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtoq			Fixed_FromFixed
+#define					Fixed_FromQ16	CONCAT(FIXED_TYPE,_FromQ16)
+#define c_q16toq		Fixed_FromQ16
+#define					Fixed_FromQ32	CONCAT(FIXED_TYPE,_FromQ32)
+#define c_q32toq		Fixed_FromQ32
+#define					Fixed_FromQ64	CONCAT(FIXED_TYPE,_FromQ64)
+#define c_q64toq		Fixed_FromQ64
+#define					Fixed_FromQ128	CONCAT(FIXED_TYPE,_FromQ128)
+#define c_q128toq		Fixed_FromQ128
 
-t_q16					Q16_FromFixed(t_fixed number);
-#define c_qtoq16		Q16_FromFixed
+t_q16					Q16_FromQ16(t_q16 number);
+#define c_q16toq16		Q16_FromQ16
+t_q16					Q16_FromQ32(t_q32 number);
+#define c_q32toq16		Q16_FromQ32
+t_q16					Q16_FromQ64(t_q64 number);
+#define c_q64toq16		Q16_FromQ64
+t_q16					Q16_FromQ128(t_q128 number);
+#define c_q128toq16		Q16_FromQ128
 
-t_q32					Q32_FromFixed(t_fixed number);
-#define c_qtoq32		Q32_FromFixed
+t_q32					Q32_FromQ16(t_q16 number);
+#define c_q16toq32		Q32_FromQ16
+t_q32					Q32_FromQ32(t_q32 number);
+#define c_q32toq32		Q32_FromQ32
+t_q32					Q32_FromQ64(t_q64 number);
+#define c_q64toq32		Q32_FromQ64
+t_q32					Q32_FromQ128(t_q128 number);
+#define c_q128toq32		Q32_FromQ128
 
-t_q64					Q64_FromFixed(t_fixed number);
-#define c_qtoq64		Q64_FromFixed
+t_q64					Q64_FromQ16(t_q16 number);
+#define c_q16toq64		Q64_FromQ16
+t_q64					Q64_FromQ32(t_q32 number);
+#define c_q32toq64		Q64_FromQ32
+t_q64					Q64_FromQ64(t_q64 number);
+#define c_q64toq64		Q64_FromQ64
+t_q64					Q64_FromQ128(t_q128 number);
+#define c_q128toq64		Q64_FromQ128
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_FromFixed(t_fixed number);
-#define c_qtoq128		Q128_FromFixed
+t_q128					Q128_FromQ16(t_q16 number);
+#define c_q16toq128		Q128_FromQ16
+t_q128					Q128_FromQ32(t_q32 number);
+#define c_q32toq128		Q128_FromQ32
+t_q128					Q128_FromQ64(t_q64 number);
+#define c_q64toq128		Q128_FromQ64
+t_q128					Q128_FromQ128(t_q128 number);
+#define c_q128toq128	Q128_FromQ128
 #endif
 //!@}
 
@@ -574,24 +719,76 @@ t_q128					Q128_FromFixed(t_fixed number);
 **	TODO document this
 */
 //!@{
-#define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,_FromFloat)
+#define	 				Fixed_FromFloat	CONCAT(FIXED_TYPE,CONCAT(_From,FLOAT_TYPE))
 #define c_ftoq			Fixed_FromFloat
+#define	 				Fixed_FromF32	CONCAT(FIXED_TYPE,_FromF32)
+#define c_f32toq		Fixed_FromF32
+#define	 				Fixed_FromF64	CONCAT(FIXED_TYPE,_FromF64)
+#define c_f64toq		Fixed_FromF64
+#define	 				Fixed_FromF80	CONCAT(FIXED_TYPE,_FromF80)
+#define c_f80toq		Fixed_FromF80
+#define	 				Fixed_FromF128	CONCAT(FIXED_TYPE,_FromF128)
+#define c_f128toq		Fixed_FromF128
 
-t_q16	 				Q16_FromFloat(t_float number);
-#define c_ftoq16		Q16_FromFloat
+t_q16	 				Q16_FromF32(t_f32 number);
+#define c_f32toq16		Q16_FromF32
+t_q16	 				Q16_FromF64(t_f64 number);
+#define c_f64toq16		Q16_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_q16	 				Q16_FromF80(t_f80 number);
+#define c_f80toq16		Q16_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_q16	 				Q16_FromF128(t_f128 number);
+#define c_f128toq16		Q16_FromF128
+#endif
 
-t_q32	 				Q32_FromFloat(t_float number);
-#define c_ftoq32		Q32_FromFloat
+t_q32	 				Q32_FromF32(t_f32 number);
+#define c_f32toq32		Q32_FromF32
+t_q32	 				Q32_FromF64(t_f64 number);
+#define c_f64toq32		Q32_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_q32	 				Q32_FromF80(t_f80 number);
+#define c_f80toq32		Q32_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_q32	 				Q32_FromF128(t_f128 number);
+#define c_f128toq32		Q32_FromF128
+#endif
 
-t_q64	 				Q64_FromFloat(t_float number);
-#define c_ftoq64		Q64_FromFloat
+t_q64	 				Q64_FromF32(t_f32 number);
+#define c_f32toq64		Q64_FromF32
+t_q64	 				Q64_FromF64(t_f64 number);
+#define c_f64toq64		Q64_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_q64	 				Q64_FromF80(t_f80 number);
+#define c_f80toq64		Q64_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_q64	 				Q64_FromF128(t_f128 number);
+#define c_f128toq64		Q64_FromF128
+#endif
 #if LIBCONFIG_USE_INT128
-t_q128	 				Q128_FromFloat(t_float number);
-#define c_ftoq128		Q128_FromFloat
+t_q128	 				Q128_FromF32(t_f32 number);
+#define c_f32toq128		Q128_FromF32
+t_q128	 				Q128_FromF64(t_f64 number);
+#define c_f64toq128		Q128_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_q128	 				Q128_FromF80(t_f80 number);
+#define c_f80toq128		Q128_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_q128	 				Q128_FromF128(t_f128 number);
+#define c_f128toq128	Q128_FromF128
+#endif
 #endif
 //!@}
 
 
+
+/*============================================================================*\
+||                         Fixed-point number functions                       ||
+\*============================================================================*/
 
 //!@doc Get the nearest fixed-point value from the given fraction/rational number
 /*!

@@ -32,8 +32,7 @@ t_char*	U##BITS##_ToString_Dec(t_u##BITS number) \
 	if (i == 0) \
 		digits[i++] = 0; \
 	result = (t_char*)Memory_Allocate(i + 1); \
-	if CCCERROR((result == NULL), \
-		ERROR_ALLOCFAILURE, NULL) \
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) \
 		return (NULL); \
 	n = 0; \
 	while (i--) \
@@ -71,8 +70,7 @@ t_char*	S##BITS##_ToString_Dec(t_s##BITS number) \
 		n /= 10; \
 	} \
 	result = (t_char*)Memory_Allocate(i + 2); \
-	if CCCERROR((result == NULL), \
-		ERROR_ALLOCFAILURE, NULL) \
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) \
 		return (NULL); \
 	result[0] = (number == 0) ? '0' : '-'; \
 	n = (number <= 0) ? 1 : 0; \

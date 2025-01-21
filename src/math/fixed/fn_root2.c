@@ -1,5 +1,6 @@
 
 #include "libccc.h"
+#include "libccc/float.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math.h"
@@ -13,7 +14,7 @@
 t_q##BITS	Q##BITS##_Root2(t_q##BITS x) \
 { \
 	/* TODO: implement */ \
-	return (Q##BITS##_FromFloat(Float_Root2(Float_FromFixed(x)))); \
+	return (Q##BITS##_FromF64(F64_Root2(F64_FromQ##BITS(x)))); \
 } \
 
 DEFINEFUNC_FIXED_ROOT2(16)

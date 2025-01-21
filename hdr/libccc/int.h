@@ -725,160 +725,772 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 ||                         Integer conversion functions                       ||
 \*============================================================================*/
 
-/*============================================================================*\
-||                         Integer conversion functions                       ||
-\*============================================================================*/
-
-//!@doc A smart constructor: calls the appropriate `Fixed_From*()` function from the given argument type
+//!@doc A smart constructor: calls the appropriate conversion function from the given argument type
 //!@{
-#define DEFINEFUNC_Int(X, FUNCTYPE) \
+#define DEFINEFUNC_UInt(X, FUNCTYPE) \
 	_Generic((X), \
-		t_u16:	 FUNCTYPE##_FromUInt, \
-		t_u32:	 FUNCTYPE##_FromUInt, \
-		t_u64:	 FUNCTYPE##_FromUInt, \
-		t_u128:	 FUNCTYPE##_FromUInt, \
+		t_u8:	 FUNCTYPE##_FromU8, \
+		t_u16:	 FUNCTYPE##_FromU16, \
+		t_u32:	 FUNCTYPE##_FromU32, \
+		t_u64:	 FUNCTYPE##_FromU64, \
+		t_u128:	 FUNCTYPE##_FromU128, \
 		t_uint:  FUNCTYPE##_FromUInt, \
-		t_s16:	 FUNCTYPE##_FromSInt, \
-		t_s32:	 FUNCTYPE##_FromSInt, \
-		t_s64:	 FUNCTYPE##_FromSInt, \
-		t_s128:	 FUNCTYPE##_FromSInt, \
+		t_s8:	 FUNCTYPE##_FromS8, \
+		t_s16:	 FUNCTYPE##_FromS16, \
+		t_s32:	 FUNCTYPE##_FromS32, \
+		t_s64:	 FUNCTYPE##_FromS64, \
+		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
-		t_q16:	 FUNCTYPE##_FromFixed, \
-		t_q32:	 FUNCTYPE##_FromFixed, \
-		t_q64:	 FUNCTYPE##_FromFixed, \
-		t_q128:	 FUNCTYPE##_FromFixed, \
+		t_q16:	 FUNCTYPE##_FromF16, \
+		t_q32:	 FUNCTYPE##_FromF32, \
+		t_q64:	 FUNCTYPE##_FromF64, \
+		t_q128:	 FUNCTYPE##_FromF128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
-		t_f32:	 FUNCTYPE##_FromFloat, \
-		t_f64:	 FUNCTYPE##_FromFloat, \
-		t_f80:	 FUNCTYPE##_FromFloat, \
-		t_f128:	 FUNCTYPE##_FromFloat, \
+		t_f32:	 FUNCTYPE##_FromF32, \
+		t_f64:	 FUNCTYPE##_FromF64, \
+		t_f80:	 FUNCTYPE##_FromF80, \
+		t_f128:	 FUNCTYPE##_FromF128, \
 		t_float: FUNCTYPE##_FromFloat, \
 	)(X)
 
-#define UInt(X)		DEFINEFUNC_Int(X, UInt)
-#define U16(X)		DEFINEFUNC_Int(X, U16)
-#define U32(X)		DEFINEFUNC_Int(X, U32)
-#define U64(X)		DEFINEFUNC_Int(X, U64)
-#define U128(X)		DEFINEFUNC_Int(X, U128)
+#define UInt(X)		DEFINEFUNC_UInt(X, UInt)
+#define U16(X)		DEFINEFUNC_UInt(X, U16)
+#define U32(X)		DEFINEFUNC_UInt(X, U32)
+#define U64(X)		DEFINEFUNC_UInt(X, U64)
+#if LIBCONFIG_USE_INT128
+#define U128(X)		DEFINEFUNC_UInt(X, U128)
+#endif
 
 #define c_uint(X)	UInt(X)
 #define c_u16(X)	U16(X)
 #define c_u32(X)	U32(X)
 #define c_u64(X)	U64(X)
+#if LIBCONFIG_USE_INT128
 #define c_u128(X)	U128(X)
+#endif
+//!@}
 
-#define SInt(X)		DEFINEFUNC_Int(X, SInt)
-#define S16(X)		DEFINEFUNC_Int(X, S16)
-#define S32(X)		DEFINEFUNC_Int(X, S32)
-#define S64(X)		DEFINEFUNC_Int(X, S64)
-#define S128(X)		DEFINEFUNC_Int(X, S128)
+
+
+//!@doc Converts the given unsigned integer to the nearest representable signed integer
+/*!
+**	TODO document
+*/
+//!@{
+#define					UInt_FromUInt	CONCAT(UINT_TYPE,CONCAT(_From,UINT_TYPE))
+#define c_utou			UInt_FromUInt
+#define					UInt_FromU8		CONCAT(UINT_TYPE,_FromU8)
+#define c_u8tou			UInt_FromU8
+#define					UInt_FromU16	CONCAT(UINT_TYPE,_FromU16)
+#define c_u16tou		UInt_FromU16
+#define					UInt_FromU32	CONCAT(UINT_TYPE,_FromU32)
+#define c_u32tou		UInt_FromU32
+#define					UInt_FromU64	CONCAT(UINT_TYPE,_FromU64)
+#define c_u64tou		UInt_FromU64
+#if LIBCONFIG_USE_INT128
+#define					UInt_FromU128	CONCAT(UINT_TYPE,_FromU128)
+#define c_u128tou		UInt_FromU128
+#endif
+
+t_u8					U8_FromU8(t_u8 number);
+#define c_u8tou8		U8_FromU8
+t_u8					U8_FromU16(t_u16 number);
+#define c_u16tou8		U8_FromU16
+t_u8					U8_FromU32(t_u32 number);
+#define c_u32tou8		U8_FromU32
+t_u8					U8_FromU64(t_u64 number);
+#define c_u64tou8		U8_FromU64
+#if LIBCONFIG_USE_INT128
+t_u8					U8_FromU128(t_u128 number);
+#define c_u128tou8		U8_FromU128
+#endif
+
+t_u16					U16_FromU8(t_u8 number);
+#define c_u8tou16		U16_FromU8
+t_u16					U16_FromU16(t_u16 number);
+#define c_u16tou16		U16_FromU16
+t_u16					U16_FromU32(t_u32 number);
+#define c_u32tou16		U16_FromU32
+t_u16					U16_FromU64(t_u64 number);
+#define c_u64tou16		U16_FromU64
+#if LIBCONFIG_USE_INT128
+t_u16					U16_FromU128(t_u128 number);
+#define c_u128tou16		U16_FromU128
+#endif
+
+t_u32					U32_FromU8(t_u8 number);
+#define c_u8tou32		U32_FromU8
+t_u32					U32_FromU16(t_u16 number);
+#define c_u16tou32		U32_FromU16
+t_u32					U32_FromU32(t_u32 number);
+#define c_u32tou32		U32_FromU32
+t_u32					U32_FromU64(t_u64 number);
+#define c_u64tou32		U32_FromU64
+#if LIBCONFIG_USE_INT128
+t_u32					U32_FromU128(t_u128 number);
+#define c_u128tou32		U32_FromU128
+#endif
+
+t_u64					U64_FromU8(t_u8 number);
+#define c_u8tou64		U64_FromU8
+t_u64					U64_FromU16(t_u16 number);
+#define c_u16tou64		U64_FromU16
+t_u64					U64_FromU32(t_u32 number);
+#define c_u32tou64		U64_FromU32
+t_u64					U64_FromU64(t_u64 number);
+#define c_u64tou64		U64_FromU64
+#if LIBCONFIG_USE_INT128
+t_u64					U64_FromU128(t_u128 number);
+#define c_u128tou64		U64_FromU128
+#endif
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromU8(t_u8 number);
+#define c_u8tou128		U128_FromU8
+t_u128					U128_FromU16(t_u16 number);
+#define c_u16tou128		U128_FromU16
+t_u128					U128_FromU32(t_u32 number);
+#define c_u32tou128		U128_FromU32
+t_u128					U128_FromU64(t_u64 number);
+#define c_u64tou128		U128_FromU64
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromU128(t_u128 number);
+#define c_u128tou128	U128_FromU128
+#endif
+#endif
+//!@}
+
+//!@doc Converts the given signed integer value to the nearest representable signed integer
+/*!
+**	TODO document
+*/
+//!@{
+#define					UInt_FromSInt	CONCAT(UINT_TYPE,CONCAT(_From,SINT_TYPE))
+#define c_stou			UInt_FromSInt
+#define					UInt_FromS8		CONCAT(UINT_TYPE,_FromS8)
+#define c_s8tou			UInt_FromS8
+#define					UInt_FromS16	CONCAT(UINT_TYPE,_FromS16)
+#define c_s16tou		UInt_FromS16
+#define					UInt_FromS32	CONCAT(UINT_TYPE,_FromS32)
+#define c_s32tou		UInt_FromS32
+#define					UInt_FromS64	CONCAT(UINT_TYPE,_FromS64)
+#define c_s64tou		UInt_FromS64
+#if LIBCONFIG_USE_INT128
+#define					UInt_FromS128	CONCAT(UINT_TYPE,_FromS128)
+#define c_s128tou		UInt_FromS128
+#endif
+
+t_u8					U8_FromS8(t_s8 number);
+#define c_s8tou8		U8_FromS8
+t_u8					U8_FromS16(t_s16 number);
+#define c_s16tou8		U8_FromS16
+t_u8					U8_FromS32(t_s32 number);
+#define c_s32tou8		U8_FromS32
+t_u8					U8_FromS64(t_s64 number);
+#define c_s64tou8		U8_FromS64
+#if LIBCONFIG_USE_INT128
+t_u8					U8_FromS128(t_s128 number);
+#define c_s128tou8		U8_FromS128
+#endif
+
+t_u16					U16_FromS8(t_s8 number);
+#define c_s8tou16		U16_FromS8
+t_u16					U16_FromS16(t_s16 number);
+#define c_s16tou16		U16_FromS16
+t_u16					U16_FromS32(t_s32 number);
+#define c_s32tou16		U16_FromS32
+t_u16					U16_FromS64(t_s64 number);
+#define c_s64tou16		U16_FromS64
+#if LIBCONFIG_USE_INT128
+t_u16					U16_FromS128(t_s128 number);
+#define c_s128tou16		U16_FromS128
+#endif
+
+t_u32					U32_FromS8(t_s8 number);
+#define c_s8tou32		U32_FromS8
+t_u32					U32_FromS16(t_s16 number);
+#define c_s16tou32		U32_FromS16
+t_u32					U32_FromS32(t_s32 number);
+#define c_s32tou32		U32_FromS32
+t_u32					U32_FromS64(t_s64 number);
+#define c_s64tou32		U32_FromS64
+#if LIBCONFIG_USE_INT128
+t_u32					U32_FromS128(t_s128 number);
+#define c_s128tou32		U32_FromS128
+#endif
+
+t_u64					U64_FromS8(t_s8 number);
+#define c_s8tou64		U64_FromS8
+t_u64					U64_FromS16(t_s16 number);
+#define c_s16tou64		U64_FromS16
+t_u64					U64_FromS32(t_s32 number);
+#define c_s32tou64		U64_FromS32
+t_u64					U64_FromS64(t_s64 number);
+#define c_s64tou64		U64_FromS64
+#if LIBCONFIG_USE_INT128
+t_u64					U64_FromS128(t_s128 number);
+#define c_s128tou64		U64_FromS128
+#endif
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromS8(t_s8 number);
+#define c_s8tou128		U128_FromS8
+t_u128					U128_FromS16(t_s16 number);
+#define c_s16tou128		U128_FromS16
+t_u128					U128_FromS32(t_s32 number);
+#define c_s32tou128		U128_FromS32
+t_u128					U128_FromS64(t_s64 number);
+#define c_s64tou128		U128_FromS64
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromS128(t_s128 number);
+#define c_s128tou128	U128_FromS128
+#endif
+#endif
+//!@}
+
+//!@doc Converts the given fixed-point value to the nearest representable signed integer
+/*!
+**	TODO document
+*/
+//!@{
+#define					UInt_FromFixed	CONCAT(UINT_TYPE,CONCAT(_From,FIXED_TYPE))
+#define c_qtou			UInt_FromFixed
+#define					UInt_FromQ16	CONCAT(UINT_TYPE,_FromQ16)
+#define c_q16tou		UInt_FromQ16
+#define					UInt_FromQ32	CONCAT(UINT_TYPE,_FromQ32)
+#define c_q32tou		UInt_FromQ32
+#define					UInt_FromQ64	CONCAT(UINT_TYPE,_FromQ64)
+#define c_q64tou		UInt_FromQ64
+#if LIBCONFIG_USE_INT128
+#define					UInt_FromQ128	CONCAT(UINT_TYPE,_FromQ128)
+#define c_q128tou		UInt_FromQ128
+#endif
+
+t_u8					U8_FromQ16(t_q16 number);
+#define c_q16tou8		U8_FromQ16
+t_u8					U8_FromQ32(t_q32 number);
+#define c_q32tou8		U8_FromQ32
+t_u8					U8_FromQ64(t_q64 number);
+#define c_q64tou8		U8_FromQ64
+#if LIBCONFIG_USE_INT128
+t_u8					U8_FromQ128(t_q128 number);
+#define c_q128tou8		U8_FromQ128
+#endif
+
+t_u16					U16_FromQ16(t_q16 number);
+#define c_q16tou16		U16_FromQ16
+t_u16					U16_FromQ32(t_q32 number);
+#define c_q32tou16		U16_FromQ32
+t_u16					U16_FromQ64(t_q64 number);
+#define c_q64tou16		U16_FromQ64
+#if LIBCONFIG_USE_INT128
+t_u16					U16_FromQ128(t_q128 number);
+#define c_q128tou16		U16_FromQ128
+#endif
+
+t_u32					U32_FromQ16(t_q16 number);
+#define c_q16tou32		U32_FromQ16
+t_u32					U32_FromQ32(t_q32 number);
+#define c_q32tou32		U32_FromQ32
+t_u32					U32_FromQ64(t_q64 number);
+#define c_q64tou32		U32_FromQ64
+#if LIBCONFIG_USE_INT128
+t_u32					U32_FromQ128(t_q128 number);
+#define c_q128tou32		U32_FromQ128
+#endif
+
+t_u64					U64_FromQ16(t_q16 number);
+#define c_q16tou64		U64_FromQ16
+t_u64					U64_FromQ32(t_q32 number);
+#define c_q32tou64		U64_FromQ32
+t_u64					U64_FromQ64(t_q64 number);
+#define c_q64tou64		U64_FromQ64
+#if LIBCONFIG_USE_INT128
+t_u64					U64_FromQ128(t_q128 number);
+#define c_q128tou64		U64_FromQ128
+#endif
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromQ16(t_q16 number);
+#define c_q16tou128		U128_FromQ16
+t_u128					U128_FromQ32(t_q32 number);
+#define c_q32tou128		U128_FromQ32
+t_u128					U128_FromQ64(t_q64 number);
+#define c_q64tou128		U128_FromQ64
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromQ128(t_q128 number);
+#define c_q128tou128	U128_FromQ128
+#endif
+#endif
+//!@}
+
+//!@doc Converts the given floating-point value to the nearest representable signed integer
+/*!
+**	TODO document
+*/
+//!@{
+#define					UInt_FromFloat	CONCAT(UINT_TYPE,CONCAT(_From,FLOAT_TYPE))
+#define c_ftou			UInt_FromFloat
+#define					UInt_FromF32	CONCAT(UINT_TYPE,_FromF32)
+#define c_f32tou		UInt_FromF32
+#define					UInt_FromF64	CONCAT(UINT_TYPE,_FromF64)
+#define c_f64tou		UInt_FromF64
+#if LIBCONFIG_USE_FLOAT80
+#define					UInt_FromF80	CONCAT(UINT_TYPE,_FromF80)
+#define c_f80tou		UInt_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+#define					UInt_FromF128	CONCAT(UINT_TYPE,_FromF128)
+#define c_f128tou		UInt_FromF128
+#endif
+
+t_u8					U8_FromF32(t_f32 number);
+#define c_f32tou8		U8_FromF32
+t_u8					U8_FromF64(t_f64 number);
+#define c_f64tou8		U8_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_u8					U8_FromF80(t_f80 number);
+#define c_f80tou8		U8_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_u8					U8_FromF128(t_f128 number);
+#define c_f128tou8		U8_FromF128
+#endif
+
+t_u16					U16_FromF32(t_f32 number);
+#define c_f32tou16		U16_FromF32
+t_u16					U16_FromF64(t_f64 number);
+#define c_f64tou16		U16_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_u16					U16_FromF80(t_f80 number);
+#define c_f80tou16		U16_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_u16					U16_FromF128(t_f128 number);
+#define c_f128tou16		U16_FromF128
+#endif
+
+t_u32					U32_FromF32(t_f32 number);
+#define c_f32tou32		U32_FromF32
+t_u32					U32_FromF64(t_f64 number);
+#define c_f64tou32		U32_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_u32					U32_FromF80(t_f80 number);
+#define c_f80tou32		U32_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_u32					U32_FromF128(t_f128 number);
+#define c_f128tou32		U32_FromF128
+#endif
+
+t_u64					U64_FromF32(t_f32 number);
+#define c_f32tou64		U64_FromF32
+t_u64					U64_FromF64(t_f64 number);
+#define c_f64tou64		U64_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_u64					U64_FromF80(t_f80 number);
+#define c_f80tou64		U64_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_u64					U64_FromF128(t_f128 number);
+#define c_f128tou64		U64_FromF128
+#endif
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_FromF32(t_f32 number);
+#define c_f32tou128		U128_FromF32
+t_u128					U128_FromF64(t_f64 number);
+#define c_f64tou128		U128_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_u128					U128_FromF80(t_f80 number);
+#define c_f80tou128		U128_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_u128					U128_FromF128(t_f128 number);
+#define c_f128tou128	U128_FromF128
+#endif
+#endif
+//!@}
+
+
+
+//!@doc A smart constructor: calls the appropriate conversion function from the given argument type
+//!@{
+#define DEFINEFUNC_SInt(X, FUNCTYPE) \
+	_Generic((X), \
+		t_u8:	 FUNCTYPE##_FromU8, \
+		t_u16:	 FUNCTYPE##_FromU16, \
+		t_u32:	 FUNCTYPE##_FromU32, \
+		t_u64:	 FUNCTYPE##_FromU64, \
+		t_u128:	 FUNCTYPE##_FromU128, \
+		t_uint:  FUNCTYPE##_FromUInt, \
+		t_s8:	 FUNCTYPE##_FromS8, \
+		t_s16:	 FUNCTYPE##_FromS16, \
+		t_s32:	 FUNCTYPE##_FromS32, \
+		t_s64:	 FUNCTYPE##_FromS64, \
+		t_s128:	 FUNCTYPE##_FromS128, \
+		t_sint:  FUNCTYPE##_FromSInt, \
+		t_q16:	 FUNCTYPE##_FromF16, \
+		t_q32:	 FUNCTYPE##_FromF32, \
+		t_q64:	 FUNCTYPE##_FromF64, \
+		t_q128:	 FUNCTYPE##_FromF128, \
+		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f32:	 FUNCTYPE##_FromF32, \
+		t_f64:	 FUNCTYPE##_FromF64, \
+		t_f80:	 FUNCTYPE##_FromF80, \
+		t_f128:	 FUNCTYPE##_FromF128, \
+		t_float: FUNCTYPE##_FromFloat, \
+	)(X)
+
+#define SInt(X)		DEFINEFUNC_SInt(X, SInt)
+#define S16(X)		DEFINEFUNC_SInt(X, S16)
+#define S32(X)		DEFINEFUNC_SInt(X, S32)
+#define S64(X)		DEFINEFUNC_SInt(X, S64)
+#if LIBCONFIG_USE_INT128
+#define S128(X)		DEFINEFUNC_SInt(X, S128)
+#endif
 
 #define c_sint(X)	SInt(X)
 #define c_s16(X)	S16(X)
 #define c_s32(X)	S32(X)
 #define c_s64(X)	S64(X)
+#if LIBCONFIG_USE_INT128
 #define c_s128(X)	S128(X)
+#endif
 //!@}
 
 
 
-//!@doc Converts the given unsigned integer to the nearest representable integer
+//!@doc Converts the given unsigned integer to the nearest representable signed integer
 /*!
 **	TODO document
 */
 //!@{
-#define					SInt_FromUInt	CONCAT(SINT_TYPE,_FromUInt)
+#define					SInt_FromUInt	CONCAT(SINT_TYPE,CONCAT(_From,UINT_TYPE))
 #define c_utos			SInt_FromUInt
-
-t_s8					S8_FromUInt(t_uint number);
-#define c_utos8			S8_FromUInt
-
-t_s16					S16_FromUInt(t_uint number);
-#define c_utos16		S16_FromUInt
-
-t_s32					S32_FromUInt(t_uint number);
-#define c_utos32		S32_FromUInt
-
-t_s64					S64_FromUInt(t_uint number);
-#define c_utos64		S64_FromUInt
+#define					SInt_FromU8		CONCAT(SINT_TYPE,_FromU8)
+#define c_u8tos			SInt_FromU8
+#define					SInt_FromU16	CONCAT(SINT_TYPE,_FromU16)
+#define c_u16tos		SInt_FromU16
+#define					SInt_FromU32	CONCAT(SINT_TYPE,_FromU32)
+#define c_u32tos		SInt_FromU32
+#define					SInt_FromU64	CONCAT(SINT_TYPE,_FromU64)
+#define c_u64tos		SInt_FromU64
 #if LIBCONFIG_USE_INT128
-t_s128					S128_FromUInt(t_uint number);
-#define c_utos128		S128_FromUInt
+#define					SInt_FromU128	CONCAT(SINT_TYPE,_FromU128)
+#define c_u128tos		SInt_FromU128
+#endif
+
+t_s8					S8_FromU8(t_u8 number);
+#define c_u8tos8		S8_FromU8
+t_s8					S8_FromU16(t_u16 number);
+#define c_u16tos8		S8_FromU16
+t_s8					S8_FromU32(t_u32 number);
+#define c_u32tos8		S8_FromU32
+t_s8					S8_FromU64(t_u64 number);
+#define c_u64tos8		S8_FromU64
+#if LIBCONFIG_USE_INT128
+t_s8					S8_FromU128(t_u128 number);
+#define c_u128tos8		S8_FromU128
+#endif
+
+t_s16					S16_FromU8(t_u8 number);
+#define c_u8tos16		S16_FromU8
+t_s16					S16_FromU16(t_u16 number);
+#define c_u16tos16		S16_FromU16
+t_s16					S16_FromU32(t_u32 number);
+#define c_u32tos16		S16_FromU32
+t_s16					S16_FromU64(t_u64 number);
+#define c_u64tos16		S16_FromU64
+#if LIBCONFIG_USE_INT128
+t_s16					S16_FromU128(t_u128 number);
+#define c_u128tos16		S16_FromU128
+#endif
+
+t_s32					S32_FromU8(t_u8 number);
+#define c_u8tos32		S32_FromU8
+t_s32					S32_FromU16(t_u16 number);
+#define c_u16tos32		S32_FromU16
+t_s32					S32_FromU32(t_u32 number);
+#define c_u32tos32		S32_FromU32
+t_s32					S32_FromU64(t_u64 number);
+#define c_u64tos32		S32_FromU64
+#if LIBCONFIG_USE_INT128
+t_s32					S32_FromU128(t_u128 number);
+#define c_u128tos32		S32_FromU128
+#endif
+
+t_s64					S64_FromU8(t_u8 number);
+#define c_u8tos64		S64_FromU8
+t_s64					S64_FromU16(t_u16 number);
+#define c_u16tos64		S64_FromU16
+t_s64					S64_FromU32(t_u32 number);
+#define c_u32tos64		S64_FromU32
+t_s64					S64_FromU64(t_u64 number);
+#define c_u64tos64		S64_FromU64
+#if LIBCONFIG_USE_INT128
+t_s64					S64_FromU128(t_u128 number);
+#define c_u128tos64		S64_FromU128
+#endif
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromU8(t_u8 number);
+#define c_u8tos128		S128_FromU8
+t_s128					S128_FromU16(t_u16 number);
+#define c_u16tos128		S128_FromU16
+t_s128					S128_FromU32(t_u32 number);
+#define c_u32tos128		S128_FromU32
+t_s128					S128_FromU64(t_u64 number);
+#define c_u64tos128		S128_FromU64
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromU128(t_u128 number);
+#define c_u128tos128	S128_FromU128
+#endif
 #endif
 //!@}
 
-//!@doc Converts the given signed integer value to the nearest representable integer
+//!@doc Converts the given signed integer value to the nearest representable signed integer
 /*!
 **	TODO document
 */
 //!@{
-#define					SInt_FromSInt	CONCAT(SINT_TYPE,_FromSInt)
+#define					SInt_FromSInt	CONCAT(SINT_TYPE,CONCAT(_From,SINT_TYPE))
 #define c_stos			SInt_FromSInt
-
-t_s8					S8_FromSInt(t_sint number);
-#define c_stos8			S8_FromSInt
-
-t_s16					S16_FromSInt(t_sint number);
-#define c_stos16		S16_FromSInt
-
-t_s32					S32_FromSInt(t_sint number);
-#define c_stos32		S32_FromSInt
-
-t_s64					S64_FromSInt(t_sint number);
-#define c_stos64		S64_FromSInt
+#define					SInt_FromS8		CONCAT(SINT_TYPE,_FromS8)
+#define c_s8tos			SInt_FromS8
+#define					SInt_FromS16	CONCAT(SINT_TYPE,_FromS16)
+#define c_s16tos		SInt_FromS16
+#define					SInt_FromS32	CONCAT(SINT_TYPE,_FromS32)
+#define c_s32tos		SInt_FromS32
+#define					SInt_FromS64	CONCAT(SINT_TYPE,_FromS64)
+#define c_s64tos		SInt_FromS64
 #if LIBCONFIG_USE_INT128
-t_s128					S128_FromSInt(t_sint number);
-#define c_stos128		S128_FromSInt
+#define					SInt_FromS128	CONCAT(SINT_TYPE,_FromS128)
+#define c_s128tos		SInt_FromS128
+#endif
+
+t_s8					S8_FromS8(t_s8 number);
+#define c_s8tos8		S8_FromS8
+t_s8					S8_FromS16(t_s16 number);
+#define c_s16tos8		S8_FromS16
+t_s8					S8_FromS32(t_s32 number);
+#define c_s32tos8		S8_FromS32
+t_s8					S8_FromS64(t_s64 number);
+#define c_s64tos8		S8_FromS64
+#if LIBCONFIG_USE_INT128
+t_s8					S8_FromS128(t_s128 number);
+#define c_s128tos8		S8_FromS128
+#endif
+
+t_s16					S16_FromS8(t_s8 number);
+#define c_s8tos16		S16_FromS8
+t_s16					S16_FromS16(t_s16 number);
+#define c_s16tos16		S16_FromS16
+t_s16					S16_FromS32(t_s32 number);
+#define c_s32tos16		S16_FromS32
+t_s16					S16_FromS64(t_s64 number);
+#define c_s64tos16		S16_FromS64
+#if LIBCONFIG_USE_INT128
+t_s16					S16_FromS128(t_s128 number);
+#define c_s128tos16		S16_FromS128
+#endif
+
+t_s32					S32_FromS8(t_s8 number);
+#define c_s8tos32		S32_FromS8
+t_s32					S32_FromS16(t_s16 number);
+#define c_s16tos32		S32_FromS16
+t_s32					S32_FromS32(t_s32 number);
+#define c_s32tos32		S32_FromS32
+t_s32					S32_FromS64(t_s64 number);
+#define c_s64tos32		S32_FromS64
+#if LIBCONFIG_USE_INT128
+t_s32					S32_FromS128(t_s128 number);
+#define c_s128tos32		S32_FromS128
+#endif
+
+t_s64					S64_FromS8(t_s8 number);
+#define c_s8tos64		S64_FromS8
+t_s64					S64_FromS16(t_s16 number);
+#define c_s16tos64		S64_FromS16
+t_s64					S64_FromS32(t_s32 number);
+#define c_s32tos64		S64_FromS32
+t_s64					S64_FromS64(t_s64 number);
+#define c_s64tos64		S64_FromS64
+#if LIBCONFIG_USE_INT128
+t_s64					S64_FromS128(t_s128 number);
+#define c_s128tos64		S64_FromS128
+#endif
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromS8(t_s8 number);
+#define c_s8tos128		S128_FromS8
+t_s128					S128_FromS16(t_s16 number);
+#define c_s16tos128		S128_FromS16
+t_s128					S128_FromS32(t_s32 number);
+#define c_s32tos128		S128_FromS32
+t_s128					S128_FromS64(t_s64 number);
+#define c_s64tos128		S128_FromS64
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromS128(t_s128 number);
+#define c_s128tos128	S128_FromS128
+#endif
 #endif
 //!@}
 
-//!@doc Converts the given fixed-point value to the nearest representable integer
+//!@doc Converts the given fixed-point value to the nearest representable signed integer
 /*!
 **	TODO document
 */
 //!@{
-#define					SInt_FromFixed	CONCAT(SINT_TYPE,_FromFixed)
+#define					SInt_FromFixed	CONCAT(SINT_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtos			SInt_FromFixed
-
-t_s8					S8_FromFixed(t_fixed number);
-#define c_qtos8			S8_FromFixed
-
-t_s16					S16_FromFixed(t_fixed number);
-#define c_qtos16		S16_FromFixed
-
-t_s32					S32_FromFixed(t_fixed number);
-#define c_qtos32		S32_FromFixed
-
-t_s64					S64_FromFixed(t_fixed number);
-#define c_qtos64		S64_FromFixed
+#define					SInt_FromQ16	CONCAT(SINT_TYPE,_FromQ16)
+#define c_q16tos		SInt_FromQ16
+#define					SInt_FromQ32	CONCAT(SINT_TYPE,_FromQ32)
+#define c_q32tos		SInt_FromQ32
+#define					SInt_FromQ64	CONCAT(SINT_TYPE,_FromQ64)
+#define c_q64tos		SInt_FromQ64
 #if LIBCONFIG_USE_INT128
-t_s128					S128_FromFixed(t_fixed number);
-#define c_qtos128		S128_FromFixed
+#define					SInt_FromQ128	CONCAT(SINT_TYPE,_FromQ128)
+#define c_q128tos		SInt_FromQ128
+#endif
+
+t_s8					S8_FromQ16(t_q16 number);
+#define c_q16tos8		S8_FromQ16
+t_s8					S8_FromQ32(t_q32 number);
+#define c_q32tos8		S8_FromQ32
+t_s8					S8_FromQ64(t_q64 number);
+#define c_q64tos8		S8_FromQ64
+#if LIBCONFIG_USE_INT128
+t_s8					S8_FromQ128(t_q128 number);
+#define c_q128tos8		S8_FromQ128
+#endif
+
+t_s16					S16_FromQ16(t_q16 number);
+#define c_q16tos16		S16_FromQ16
+t_s16					S16_FromQ32(t_q32 number);
+#define c_q32tos16		S16_FromQ32
+t_s16					S16_FromQ64(t_q64 number);
+#define c_q64tos16		S16_FromQ64
+#if LIBCONFIG_USE_INT128
+t_s16					S16_FromQ128(t_q128 number);
+#define c_q128tos16		S16_FromQ128
+#endif
+
+t_s32					S32_FromQ16(t_q16 number);
+#define c_q16tos32		S32_FromQ16
+t_s32					S32_FromQ32(t_q32 number);
+#define c_q32tos32		S32_FromQ32
+t_s32					S32_FromQ64(t_q64 number);
+#define c_q64tos32		S32_FromQ64
+#if LIBCONFIG_USE_INT128
+t_s32					S32_FromQ128(t_q128 number);
+#define c_q128tos32		S32_FromQ128
+#endif
+
+t_s64					S64_FromQ16(t_q16 number);
+#define c_q16tos64		S64_FromQ16
+t_s64					S64_FromQ32(t_q32 number);
+#define c_q32tos64		S64_FromQ32
+t_s64					S64_FromQ64(t_q64 number);
+#define c_q64tos64		S64_FromQ64
+#if LIBCONFIG_USE_INT128
+t_s64					S64_FromQ128(t_q128 number);
+#define c_q128tos64		S64_FromQ128
+#endif
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromQ16(t_q16 number);
+#define c_q16tos128		S128_FromQ16
+t_s128					S128_FromQ32(t_q32 number);
+#define c_q32tos128		S128_FromQ32
+t_s128					S128_FromQ64(t_q64 number);
+#define c_q64tos128		S128_FromQ64
+#if LIBCONFIG_USE_INT128
+t_s128					S128_FromQ128(t_q128 number);
+#define c_q128tos128	S128_FromQ128
+#endif
 #endif
 //!@}
 
-//!@doc Converts the given floating-point value to the nearest representable integer
+//!@doc Converts the given floating-point value to the nearest representable signed integer
 /*!
 **	TODO document
 */
 //!@{
-#define					SInt_FromFloat	CONCAT(SINT_TYPE,_FromFloat)
+#define					SInt_FromFloat	CONCAT(SINT_TYPE,CONCAT(_From,FLOAT_TYPE))
 #define c_ftos			SInt_FromFloat
+#define					SInt_FromF32	CONCAT(SINT_TYPE,_FromF32)
+#define c_f32tos		SInt_FromF32
+#define					SInt_FromF64	CONCAT(SINT_TYPE,_FromF64)
+#define c_f64tos		SInt_FromF64
+#if LIBCONFIG_USE_FLOAT80
+#define					SInt_FromF80	CONCAT(SINT_TYPE,_FromF80)
+#define c_f80tos		SInt_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+#define					SInt_FromF128	CONCAT(SINT_TYPE,_FromF128)
+#define c_f128tos		SInt_FromF128
+#endif
 
-t_s8					S8_FromFloat(t_float number);
-#define c_ftos8			S8_FromFloat
+t_s8					S8_FromF32(t_f32 number);
+#define c_f32tos8		S8_FromF32
+t_s8					S8_FromF64(t_f64 number);
+#define c_f64tos8		S8_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_s8					S8_FromF80(t_f80 number);
+#define c_f80tos8		S8_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_s8					S8_FromF128(t_f128 number);
+#define c_f128tos8		S8_FromF128
+#endif
 
-t_s16					S16_FromFloat(t_float number);
-#define c_ftos16		S16_FromFloat
+t_s16					S16_FromF32(t_f32 number);
+#define c_f32tos16		S16_FromF32
+t_s16					S16_FromF64(t_f64 number);
+#define c_f64tos16		S16_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_s16					S16_FromF80(t_f80 number);
+#define c_f80tos16		S16_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_s16					S16_FromF128(t_f128 number);
+#define c_f128tos16		S16_FromF128
+#endif
 
-t_s32					S32_FromFloat(t_float number);
-#define c_ftos32		S32_FromFloat
+t_s32					S32_FromF32(t_f32 number);
+#define c_f32tos32		S32_FromF32
+t_s32					S32_FromF64(t_f64 number);
+#define c_f64tos32		S32_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_s32					S32_FromF80(t_f80 number);
+#define c_f80tos32		S32_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_s32					S32_FromF128(t_f128 number);
+#define c_f128tos32		S32_FromF128
+#endif
 
-t_s64					S64_FromFloat(t_float number);
-#define c_ftos64		S64_FromFloat
+t_s64					S64_FromF32(t_f32 number);
+#define c_f32tos64		S64_FromF32
+t_s64					S64_FromF64(t_f64 number);
+#define c_f64tos64		S64_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_s64					S64_FromF80(t_f80 number);
+#define c_f80tos64		S64_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_s64					S64_FromF128(t_f128 number);
+#define c_f128tos64		S64_FromF128
+#endif
 #if LIBCONFIG_USE_INT128
-t_s128					S128_FromFloat(t_float number);
-#define c_ftos128		S128_FromFloat
+t_s128					S128_FromF32(t_f32 number);
+#define c_f32tos128		S128_FromF32
+t_s128					S128_FromF64(t_f64 number);
+#define c_f64tos128		S128_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_s128					S128_FromF80(t_f80 number);
+#define c_f80tos128		S128_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_s128					S128_FromF128(t_f128 number);
+#define c_f128tos128	S128_FromF128
+#endif
 #endif
 //!@}
 

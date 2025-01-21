@@ -13,7 +13,7 @@
 t_q##BITS	Q##BITS##_Pow(t_q##BITS x, t_q##BITS y) \
 { \
 	/* TODO: implement */ \
-	return (Q##BITS##_FromFloat(Float_Pow(Float_FromFixed(x), Float_FromFixed(y)))); \
+	return (Q##BITS##_FromF64(F64_Pow(F64_FromQ##BITS(x), F64_FromQ##BITS(y)))); \
 } \
 
 DEFINEFUNC_FIXED_POW(16)
