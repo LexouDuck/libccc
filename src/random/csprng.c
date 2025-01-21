@@ -1,6 +1,4 @@
 
-#include "libccc/pointer.h"
-
 #ifndef __NOSTD__
 #ifdef _WIN32
 	#include <windows.h>
@@ -19,6 +17,10 @@
 	size_t	fread(void* ptr, size_t size, size_t n, FILE* file);
 #endif
 
+#include "libccc/memory.h"
+#include "libccc/pointer.h"
+#include "libccc/sys/time.h"
+#include "libccc/math/int.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"
 #include "libccc/random/csprng.h"
@@ -35,7 +37,7 @@ typedef union csprng
 #else
 	FILE*       urandom;
 #endif
-}		u_csprng;
+}	u_csprng;
 
 
 
@@ -118,70 +120,3 @@ e_cccerror	CSPRNG_Next(t_csprng* state, void* dest, t_size size)
 #endif
 	return (ERROR_NONE);
 }
-
-
-#define CSPRNG_INIT_STATE() \
-	t_csprng*	state; \
-	state = CSPRNG_New(); \
-	if CCCERROR((state == NULL), ERROR_ALLOCFAILURE, \
-		"could not create crypto-secure PRNG state") \
-		return (0); \
-
-void*	CSPRNG_Get(void* dest, t_size size)
-{
-	if CCCERROR((dest == NULL), ERROR_NULLPOINTER,
-		"destination pointer is NULL")
-		return (0);
-	CSPRNG_INIT_STATE() 
-	if (CSPRNG_Next(state, dest, size)) return (0);
-	CSPRNG_Delete(&state);
-	return (dest);
-}
-
-
-
-#define DEFINE_CSPRNG(TYPE, ACTION_ERROR) \
-	TYPE	result = 0; \
-	if (CSPRNG_Next(state, \
-		&result, sizeof(TYPE))) \
-		ACTION_ERROR \
-
-_INLINE() t_uint	CSPRNG_UInt (t_csprng* state)	{ DEFINE_CSPRNG(t_uint ,	return (0);)	return (result); }
-_INLINE() t_sint	CSPRNG_SInt (t_csprng* state)	{ DEFINE_CSPRNG(t_sint ,	return (0);)	return (result); }
-_INLINE() t_fixed	CSPRNG_Fixed(t_csprng* state)	{ DEFINE_CSPRNG(t_fixed,	return (0);)	return (result); }
-t_float	CSPRNG_Float(t_csprng* state)
-{
-	t_float	result = NAN;
-	while (Float_IsNaN(result))
-	{
-		if (CSPRNG_Next(state, &result, sizeof(t_float)))
-			return (NAN);
-	}
-	return (result);
-}
-
-
-
-#define CSPRNG_RANGE_CHECK(_ACTION_, _SF_TYPE_) \
-	if (min == max) \
-		return (min); \
-	if CCCERROR((min > max), ERROR_INVALIDRANGE, \
-		"invalid random range specified (min=" _SF_TYPE_ " ; max=" _SF_TYPE_ ")", min, max) \
-	{ \
-		_ACTION_ \
-	} \
-
-t_uint  CSPRNG_UInt_Range     (t_csprng* state, t_uint  min, t_uint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_UINT)	return (         (CSPRNG_UInt(state) % (max - min)) + min); }
-t_sint  CSPRNG_SInt_Range     (t_csprng* state, t_sint  min, t_sint  max) { CSPRNG_RANGE_CHECK(return (0);, SF_SINT)	return (         (CSPRNG_SInt(state) % (max - min)) + min); }
-t_fixed CSPRNG_Fixed_Range    (t_csprng* state, t_fixed min, t_fixed max) { CSPRNG_RANGE_CHECK(return (0);, SF_FIXED)	return (Fixed_Mod(CSPRNG_Fixed(state), (max - min)) + min); }
-t_float CSPRNG_Float_Range    (t_csprng* state, t_float min, t_float max) { CSPRNG_RANGE_CHECK(return (0);, SF_FLOAT)	return (Float_Mod(CSPRNG_Float(state), (max - min)) + min); }
-
-t_uint  CSPRNG_UInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt       (state);            CSPRNG_Delete(&state);  return (result); }
-t_sint  CSPRNG_SInt_Get       (void)                      { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt       (state);            CSPRNG_Delete(&state);  return (result); }
-t_fixed CSPRNG_Fixed_Get      (void)                      { CSPRNG_INIT_STATE()  t_fixed result = CSPRNG_Fixed      (state);            CSPRNG_Delete(&state);  return (result); }
-t_float CSPRNG_Float_Get      (void)                      { CSPRNG_INIT_STATE()  t_float result = CSPRNG_Float      (state);            CSPRNG_Delete(&state);  return (result); }
-
-t_uint  CSPRNG_UInt_Get_Range (t_uint  min, t_uint  max)  { CSPRNG_INIT_STATE()  t_uint  result = CSPRNG_UInt_Range (state, min, max);  CSPRNG_Delete(&state);  return (result); }
-t_sint  CSPRNG_SInt_Get_Range (t_sint  min, t_sint  max)  { CSPRNG_INIT_STATE()  t_sint  result = CSPRNG_SInt_Range (state, min, max);  CSPRNG_Delete(&state);  return (result); }
-t_fixed CSPRNG_Fixed_Get_Range(t_fixed min, t_fixed max)  { CSPRNG_INIT_STATE()  t_fixed result = CSPRNG_Fixed_Range(state, min, max);  CSPRNG_Delete(&state);  return (result); }
-t_float CSPRNG_Float_Get_Range(t_float min, t_float max)  { CSPRNG_INIT_STATE()  t_float result = CSPRNG_Float_Range(state, min, max);  CSPRNG_Delete(&state);  return (result); }

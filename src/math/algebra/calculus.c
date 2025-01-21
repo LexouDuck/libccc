@@ -22,9 +22,9 @@ t_float			c_mc_integrate_3d(f_scalar_func3 const sf, s_box3d const domain)
 		return (NAN);
 	while (i < SAMPLE_NB)
 	{
-		rand_input.vector.x = Random_Float_Range(rng, domain.start.vector.x, domain.end.vector.x);
-		rand_input.vector.y = Random_Float_Range(rng, domain.start.vector.y, domain.end.vector.y);
-		rand_input.vector.z = Random_Float_Range(rng, domain.start.vector.z, domain.end.vector.z);
+		rand_input.vector.x = Random_GetInRange_Float(rng, domain.start.vector.x, domain.end.vector.x);
+		rand_input.vector.y = Random_GetInRange_Float(rng, domain.start.vector.y, domain.end.vector.y);
+		rand_input.vector.z = Random_GetInRange_Float(rng, domain.start.vector.z, domain.end.vector.z);
 		result += sf(rand_input);
 		++i;
 	}

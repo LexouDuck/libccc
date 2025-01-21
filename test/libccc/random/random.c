@@ -31,19 +31,14 @@
 s_sorted_##TYPE	print_test_random_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE range_max) \
 { \
 	s_sorted_##TYPE	result; \
-	t_rand*	rng; \
- \
-	rng = Random_New(); \
  \
 	if (g_test.config.verbose) \
 	{ \
-		printf("Statistic repartition test of RNG for "#TYPE" values (sample size: %lu)\n", sample_size); \
+		printf("Statistic repartition test of RNG for `t_"#TYPE"` values (sample size: %lu)\n", sample_size); \
 	} \
 	result = Stat_##TYPENAME##_New(sample_size); \
-	for (t_uint i = 0; i < result.length; ++i) \
-	{ \
-		result.items[i] = Random_##TYPENAME##_Range(rng, range_min, range_max + 1); \
-	} \
+	Memory_Delete((void**)&result.items); \
+	result.items = Random_SampleInRange_##TYPENAME(sample_size, range_min, range_max + 1); \
 /* \
 	static t_##TYPE arr[5] = {-339, 214, 394, -162, -50};//{-339, -162, -50, 214, 394}; \
 	for (int i = 0; i < result.length; ++i) \
@@ -65,7 +60,6 @@ s_sorted_##TYPE	print_test_random_##TYPE(t_uint sample_size, t_##TYPE range_min,
 	} \
 	c_stat_free_ilst(&result); \
 */ \
-	Random_Delete(&rng); \
 	return (result); \
 } \
 
@@ -86,10 +80,10 @@ int	testsuite_math_random(void)
 
 	print_suite_title("libccc/math/random");
 
-	s_sorted_uint	values_sorted_uint	= print_test_random_uint	(sample_size,    0, 1000);	Stat_UInt_Delete	(&values_sorted_uint	);
-	s_sorted_sint	values_sorted_sint	= print_test_random_sint	(sample_size, -500, +500);	Stat_SInt_Delete	(&values_sorted_sint	);
-	s_sorted_fixed	values_sorted_fixed	= print_test_random_fixed	(sample_size, -500, +500);	Stat_Fixed_Delete	(&values_sorted_fixed	);
-	s_sorted_float	values_sorted_float	= print_test_random_float	(sample_size, -500, +500);	Stat_Float_Delete	(&values_sorted_float	);
+	s_sorted_uint	values_sorted_uint	= print_test_random_uint	(sample_size,    0, 1000);	Stat_UInt_Delete(&values_sorted_uint);
+	s_sorted_sint	values_sorted_sint	= print_test_random_sint	(sample_size, -500, +500);	Stat_SInt_Delete(&values_sorted_sint);
+	s_sorted_fixed	values_sorted_fixed	= print_test_random_fixed	(sample_size, -500, +500);	Stat_Fixed_Delete(&values_sorted_fixed);
+	s_sorted_float	values_sorted_float	= print_test_random_float	(sample_size, -500.0, +500.0);	Stat_Float_Delete(&values_sorted_float);
 
 	return (OK);
 }
