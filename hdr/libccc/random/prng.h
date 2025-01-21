@@ -62,7 +62,7 @@ HEADER_CPP
 
 
 //! This type stores the current state of the random number generator
-typedef t_u32   t_prng;
+typedef struct prng_state { t_u32 seed; }	t_prng;
 
 
 
