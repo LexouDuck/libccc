@@ -194,7 +194,7 @@ t_sint	Stat_##TYPE_MIXED##_Compare(void const* a, void const* b) \
 	TYPE	x = (*(TYPE const*)a); \
 	TYPE	y = (*(TYPE const*)b); \
 	if (TYPE_MIXED##_IsNaN(x))	return -1; \
-	return (Float_Sgn((t_float)x - (t_float)y)); \
+	return (Float_Sgn(Float_From##TYPE_MIXED(x) - Float_From##TYPE_MIXED(y))); \
 } \
 s_array(TYPE_LOWER)	Stat_##TYPE_MIXED##_Sort(s_array(TYPE_LOWER) const sample) \
 { \
@@ -223,7 +223,7 @@ s_prob_mass	Stat_##TYPE_MIXED##_ProbabilityMassFunction(s_array(TYPE_LOWER) cons
 	inv_sample_size = 1.0 / sample.length; \
 	while (i < result.length) \
 	{ \
-		result.value[i] = (t_float)set.items[i]; \
+		result.value[i] = Float_From##TYPE_MIXED(set.items[i]); \
 		result.prob[i] = (t_float)Stat_##TYPE_MIXED##_Count(sample, set.items[i]); \
 		result.prob[i] *= inv_sample_size; \
 		++i; \
@@ -268,15 +268,17 @@ t_float*	Stat_##TYPE_MIXED##_Quantiles(s_array(TYPE_LOWER) const sample, t_uint 
 { \
 	/* if (sort)	quicksort_##TYPE_LOWER(sample.items, 0, sample.length); */ \
 	t_float*	result = (t_float*)Memory_Allocate((n + 1) * sizeof(t_float)); \
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) \
+		return (NULL); \
 	t_uint	position; \
 	for (t_uint i = 0; i < n; ++i) \
 	{ \
 		position = i * sample.length / n; \
 		result[i] = ((sample.length - (n - 1)) % n == 0) ? \
-			((t_float)sample.items[position]) : \
-			((t_float)sample.items[position] + sample.items[position + 1]) / 2; \
+			(Float_From##TYPE_MIXED(sample.items[position])) : \
+			((Float_From##TYPE_MIXED(sample.items[position]) + Float_From##TYPE_MIXED(sample.items[position + 1])) / 2); \
 	} \
-	result[n] = sample.items[sample.length - 1]; \
+	result[n] = Float_From##TYPE_MIXED(sample.items[sample.length - 1]); \
 	return result; \
 } \
 /*! https://en.wikipedia.org/wiki/Median */ \
@@ -284,8 +286,8 @@ t_float	Stat_##TYPE_MIXED##_Median(s_array(TYPE_LOWER) const sample) \
 { \
 	/* if (sort)	quicksort_##TYPE_LOWER(sample.items, 0, sample.length); */ \
 	return ((sample.length % 2) ? \
-		sample.items[sample.length / 2] : \
-		(sample.items[sample.length / 2] + sample.items[sample.length / 2 + 1]) / 2); \
+		(Float_From##TYPE_MIXED(sample.items[sample.length / 2])) : \
+		((Float_From##TYPE_MIXED(sample.items[sample.length / 2]) + Float_From##TYPE_MIXED(sample.items[sample.length / 2 + 1])) / 2)); \
 } \
 /*! https://en.wikipedia.org/wiki/Mode_(statistics) */ \
 t_float	Stat_##TYPE_MIXED##_Mode(s_array(TYPE_LOWER) const sample) \
@@ -424,14 +426,16 @@ t_float	Stat_##TYPE_MIXED##_Mean_Harmonic(s_array(TYPE_LOWER) const sample) \
 t_float	Stat_##TYPE_MIXED##_Mean_Contraharmonic(s_array(TYPE_LOWER) const sample) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum1 = 0.; \
 	t_float	sum2 = 0.; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum1 += value; \
-		sum2 += value * value; \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum1 += value_float; \
+		sum2 += value_float * value_float; \
 	} \
 	if CCCERROR((sum1 == 0. && sum2 == 0.), ERROR_INVALIDARGS, "invalid sample given") \
 		return (NAN); \
@@ -462,13 +466,15 @@ t_float	Stat_##TYPE_MIXED##_Mean_Interquartile(s_array(TYPE_LOWER) const sample)
 t_float	Stat_##TYPE_MIXED##_Mean_Quadratic(s_array(TYPE_LOWER) const sample) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += (value * value); \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += value_float * value_float; \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -479,13 +485,15 @@ t_float	Stat_##TYPE_MIXED##_Mean_Quadratic(s_array(TYPE_LOWER) const sample) \
 t_float	Stat_##TYPE_MIXED##_Mean_Cubic(s_array(TYPE_LOWER) const sample) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += (value * value * value); \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += value_float * value_float * value_float; \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -496,13 +504,15 @@ t_float	Stat_##TYPE_MIXED##_Mean_Cubic(s_array(TYPE_LOWER) const sample) \
 t_float	Stat_##TYPE_MIXED##_Mean_Power(s_array(TYPE_LOWER) const sample, t_float p) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += Float_Pow(value, p); \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += Float_Pow(value_float, p); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -513,14 +523,16 @@ t_float	Stat_##TYPE_MIXED##_Mean_Power(s_array(TYPE_LOWER) const sample, t_float
 t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint power) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum1 = 0.; \
 	t_float	sum2 = 0.; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum1 += Float_Pow(value, power - 1); \
-		sum2 += Float_Pow(value, power); \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum1 += Float_Pow(value_float, power - 1); \
+		sum2 += Float_Pow(value_float, power); \
 	} \
 	if CCCERROR((sum1 == 0. && sum2 == 0.), ERROR_INVALIDARGS, "invalid sample given") \
 		return (NAN); \
@@ -530,6 +542,7 @@ t_float	Stat_##TYPE_MIXED##_Mean_Lehmer(s_array(TYPE_LOWER) const sample, t_sint
 t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_float	average = Stat_##TYPE_MIXED##_Mean_Arithmetic(sample); \
 	t_uint	n = 0; \
@@ -537,7 +550,8 @@ t_float	Stat_##TYPE_MIXED##_Variance(s_array(TYPE_LOWER) const sample) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += value * value; \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += value_float * value_float; \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -568,10 +582,12 @@ t_float	Stat_##TYPE_MIXED##_InterquartileRange(s_array(TYPE_LOWER) const sample)
 t_float	Stat_##TYPE_MIXED##_MedianAbsoluteDeviation(s_array(TYPE_LOWER) const sample) \
 { \
 	t_float*	pairs = (t_float*)Memory_Allocate(sample.length * sizeof(t_float)); \
+	if CCCERROR((pairs == NULL), ERROR_ALLOCFAILURE, NULL) \
+		return (NAN); \
 	t_float	median = Stat_##TYPE_MIXED##_Median(sample); \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
-		pairs[i] = Float_Abs((t_float)sample.items[i] - median); \
+		pairs[i] = Float_Abs(Float_From##TYPE_MIXED(sample.items[i]) - median); \
 	} \
 	t_float	result = Stat_Float_Median((s_array(float)){ .length = sample.length, .items = pairs }); \
 	Memory_Free(pairs); \
@@ -599,8 +615,8 @@ t_float	Stat_##TYPE_MIXED##_ArithmeticGeometricMean(TYPE x, TYPE y) \
 { \
 	t_float a, a_n; \
 	t_float g, g_n; \
-	if (x > y)	{	a = x;	g = y;	} \
-	else		{	a = y;	g = x;	} \
+	if (x > y)	{	a = Float_From##TYPE_MIXED(x);	g = Float_From##TYPE_MIXED(y);	} \
+	else		{	a = Float_From##TYPE_MIXED(y);	g = Float_From##TYPE_MIXED(x);	} \
 	while (a != g) \
 	{ \
 		a_n = (a + g) * 0.5; \
@@ -622,7 +638,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSignedDeviation(s_array(TYPE_LOWER) const sample
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (expect[i] - value); \
-		sum += (t_float)error; \
+		sum += Float_From##TYPE_MIXED(error); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -634,6 +650,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSquaredError(s_array(TYPE_LOWER) const sample, T
 { \
 	TYPE	value; \
 	TYPE	error; \
+	t_float	error_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
@@ -641,7 +658,8 @@ t_float	Stat_##TYPE_MIXED##_MeanSquaredError(s_array(TYPE_LOWER) const sample, T
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (value - expect[i]); \
-		sum += (t_float)error * (t_float)error; \
+		error_float = Float_From##TYPE_MIXED(error); \
+		sum += error_float * error_float; \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -660,7 +678,7 @@ t_float	Stat_##TYPE_MIXED##_MeanAbsoluteError(s_array(TYPE_LOWER) const sample, 
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (expect[i] - value); \
-		sum += Float_Abs((t_float)error); \
+		sum += Float_Abs(Float_From##TYPE_MIXED(error)); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -673,13 +691,15 @@ t_float	Stat_##TYPE_MIXED##_MeanAbsoluteDifference(s_array(TYPE_LOWER) const sam
 	TYPE	value; \
 	TYPE	error; \
 	t_float*	pairs = (t_float*)Memory_Allocate(sample.length * sizeof(t_float)); \
+	if CCCERROR((pairs == NULL), ERROR_ALLOCFAILURE, NULL) \
+		return (NAN); \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (expect[i] - value); \
-		pairs[n] = Float_Abs((t_float)error); \
+		pairs[n] = Float_Abs(Float_From##TYPE_MIXED(error)); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -702,13 +722,16 @@ t_float	Stat_##TYPE_MIXED##_RootMeanSquareDeviation(s_array(TYPE_LOWER) const sa
 t_float	Stat_##TYPE_MIXED##_MeanPercentageError(s_array(TYPE_LOWER) const sample, TYPE const* expect) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += ((t_float)value - expect[i]) / value; \
+		if (value == 0)	continue; \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += (value_float - Float_From##TYPE_MIXED(expect[i])) / value_float; \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -719,13 +742,16 @@ t_float	Stat_##TYPE_MIXED##_MeanPercentageError(s_array(TYPE_LOWER) const sample
 t_float	Stat_##TYPE_MIXED##_MeanAbsolutePercentageError(s_array(TYPE_LOWER) const sample, TYPE const* expect) \
 { \
 	TYPE	value; \
+	t_float value_float; \
 	t_float	sum = 0.; \
 	t_uint	n = 0; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += Float_Abs(((t_float)value - expect[i]) / value); \
+		if (value == 0)	continue; \
+		value_float = Float_From##TYPE_MIXED(value); \
+		sum += Float_Abs((value_float - Float_From##TYPE_MIXED(expect[i])) / value_float); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -744,7 +770,7 @@ t_float	Stat_##TYPE_MIXED##_MeanSquaredPredictionError(s_array(TYPE_LOWER) const
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (value - expect[i]); \
-		sum += (t_float)error; \
+		sum += Float_From##TYPE_MIXED(error); \
 		n++; \
 	} \
 	if CCCERROR((n == 0), ERROR_INVALIDARGS, "invalid sample given") \
@@ -756,13 +782,15 @@ t_float	Stat_##TYPE_MIXED##_ResidualSumOfSquares(s_array(TYPE_LOWER) const sampl
 { \
 	TYPE	value; \
 	TYPE	error; \
+	t_float	error_float; \
 	t_float	sum = 0.; \
 	for (t_uint i = 0; i < sample.length ; ++i) \
 	{ \
 		value = sample.items[i]; \
 		if (CHECK_INVALID)	continue; \
 		error = (value - expect[i]); \
-		sum += (t_float)error * (t_float)error; \
+		error_float = Float_From##TYPE_MIXED(error); \
+		sum += error_float * error_float; \
 	} \
 	return (sum); \
 } \

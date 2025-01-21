@@ -3,8 +3,11 @@
 
 #include "libccc/text/format.h"
 #include "libccc/sys/io.h"
-#include "libccc/random/random.h"
+#include "libccc/math/int.h"
+#include "libccc/math/fixed.h"
+#include "libccc/math/float.h"
 #include "libccc/math/stat.h"
+#include "libccc/random/random.h"
 
 #define NOTYPEDEF // avoid typedef redefinitions
 
@@ -35,7 +38,7 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
 { \
 	s_sorted_##TYPE	values_sorted = print_test_random_##TYPE(sample_size, range_min, range_max); \
 	s_sorted_##TYPE	expected_values = Stat_##TYPE_MIXED##_New(sample_size); \
-	t_##TYPE step = abs(range_max - range_min) / sample_size; \
+	t_##TYPE step = TYPE_MIXED##_Abs(range_max - range_min) / sample_size; \
 	for (t_uint i = 0; i < sample_size; ++i) \
 	{ \
 		expected_values.items[i] = range_min + (i * step); \
@@ -81,21 +84,25 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
 		printf("\t""Mean_Interquartile:              " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Interquartile             (values_sorted)); \
 		printf("\t""Mean_Quadratic:                  " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Quadratic                 (values_sorted)); \
 		printf("\t""Mean_Cubic:                      " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Cubic                     (values_sorted)); \
+		printf("\t""Mean_Power (pow  0.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted,  0.0)); \
+		printf("\t""Mean_Power (pow +0.5):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +0.5)); \
+		printf("\t""Mean_Power (pow +1.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +1.0)); \
+		printf("\t""Mean_Power (pow +1.5):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +1.5)); \
+		printf("\t""Mean_Power (pow +2.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +2.0)); \
+		printf("\t""Mean_Power (pow +2.5):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +2.5)); \
+		printf("\t""Mean_Power (pow +3.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +3.0)); \
+		printf("\t""Mean_Power (pow +4.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, +4.0)); \
+		printf("\t""Mean_Power (pow -0.5):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, -0.5)); \
 		printf("\t""Mean_Power (pow -1.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, -1.0)); \
-		printf("\t""Mean_Power (pow 0.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 0.0)); \
-		printf("\t""Mean_Power (pow 0.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 0.5)); \
-		printf("\t""Mean_Power (pow 1.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 1.0)); \
-		printf("\t""Mean_Power (pow 1.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 1.5)); \
-		printf("\t""Mean_Power (pow 2.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 2.0)); \
-		printf("\t""Mean_Power (pow 2.5):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 2.5)); \
-		printf("\t""Mean_Power (pow 3.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 3.0)); \
-		printf("\t""Mean_Power (pow 4.0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, 4.0)); \
+		printf("\t""Mean_Power (pow -1.5):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, -1.5)); \
+		printf("\t""Mean_Power (pow -2.0):           " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Power                     (values_sorted, -2.0)); \
+		printf("\t""Mean_Lehmer (pow  0):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted,  0)); \
+		printf("\t""Mean_Lehmer (pow +1):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, +1)); \
+		printf("\t""Mean_Lehmer (pow +2):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, +2)); \
+		printf("\t""Mean_Lehmer (pow +3):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, +3)); \
+		printf("\t""Mean_Lehmer (pow +4):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, +4)); \
 		printf("\t""Mean_Lehmer (pow -1):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, -1)); \
-		printf("\t""Mean_Lehmer (pow 0):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 0)); \
-		printf("\t""Mean_Lehmer (pow 1):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 1)); \
-		printf("\t""Mean_Lehmer (pow 2):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 2)); \
-		printf("\t""Mean_Lehmer (pow 3):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 3)); \
-		printf("\t""Mean_Lehmer (pow 4):             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, 4)); \
+		printf("\t""Mean_Lehmer (pow -2):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, -2)); \
 		printf("\t""MedianAbsoluteDeviation:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MedianAbsoluteDeviation        (values_sorted)); \
 		printf("\t""AverageAbsoluteDeviation:        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_AverageAbsoluteDeviation       (values_sorted, Stat_##TYPE_MIXED##_Mean_Arithmetic(values_sorted))); \
 /*		printf("\t""ArithmeticGeometricMean:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_ArithmeticGeometricMean        (values_sorted y)); */ \
@@ -132,8 +139,8 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
 		printf("Sum of probs: %.12f\n", tmp); \
 	} \
 	Stat_##TYPE_MIXED##_Delete(&values_sorted); \
-	return (OK); \
 */ \
+	return (OK); \
 } \
 
 DEFINETEST_STAT(uint,  UInt,  UINT )

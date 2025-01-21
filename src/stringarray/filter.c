@@ -23,7 +23,8 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 	if (length == 0 || strarr == NULL)
 		return ((t_char**)String_New(sizeof(void*)));
 	tmp = (t_bool*)Memory_Allocate(sizeof(t_bool) * length);
-	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL) return (NULL);
+	if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
 	result_length = 0;
 	for (i = 0; i < length; ++i)
 	{
@@ -32,7 +33,8 @@ t_char**	StringArray_Filter(t_char const* const* strarr, t_bool (*filter)(t_char
 			++result_length;
 	}
 	result = StringArray_New(result_length);
-	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return (result);
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (result);
 	if (result_length == 0)
 		return (result);
 	t_uint	index = 0;
