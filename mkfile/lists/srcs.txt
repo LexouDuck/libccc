@@ -33,6 +33,7 @@
 ./src/enum/enum_from_str.c
 ./src/enum/enum_to_str.c
 ./src/fixed/fixed.c
+./src/fixed/fixed_from.c
 ./src/fixed/fixed_from_str.c
 ./src/fixed/fixed_to_str.c
 ./src/float/float.c
@@ -47,7 +48,7 @@
 ./src/image/color/convert.c
 ./src/image/color/diff.c
 ./src/image/color/nearest.c
-./src/int/int.c
+./src/int/int_from.c
 ./src/int/int_from_str.c
 ./src/int/int_from_strbase.c
 ./src/int/int_from_strbin.c
@@ -281,6 +282,7 @@
 ./src/pointerarray/wedge.c
 ./src/random/csprng.c
 ./src/random/prng.c
+./src/random/random.c
 ./src/stringarray/add.c
 ./src/stringarray/compare.c
 ./src/stringarray/concat.c

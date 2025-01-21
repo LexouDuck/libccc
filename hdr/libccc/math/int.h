@@ -143,6 +143,27 @@ t_s128						S128_Id(t_s128 a);
 **	@nonstd
 */
 //!@{
+#define						UInt_Abs	CONCAT(UINT_TYPE,_Abs)
+#define c_uabs				UInt_Abs
+#define UInt_AbsoluteValue	UInt_Abs
+
+t_u8						U8_Abs(t_u8 a);
+#define c_u8abs				U8_Abs
+
+t_u16						U16_Abs(t_u16 a);
+#define c_u16abs			U16_Abs
+
+t_u32						U32_Abs(t_u32 a);
+#define c_u32abs			U32_Abs
+
+t_u64						U64_Abs(t_u64 a);
+#define c_u64abs			U64_Abs
+
+#if LIBCONFIG_USE_INT128
+t_u128						U128_Abs(t_u128 a);
+#define c_u128abs			U128_Abs
+#endif
+
 #define						SInt_Abs	CONCAT(SINT_TYPE,_Abs)
 #define c_sabs				SInt_Abs
 #define SInt_AbsoluteValue	SInt_Abs
@@ -172,6 +193,28 @@ t_s128						S128_Abs(t_s128 a);
 **	@nonstd
 */
 //!@{
+#define						UInt_Sgn	CONCAT(UINT_TYPE,_Sgn)
+#define c_usgn				UInt_Sgn
+#define UInt_Sign			UInt_Sgn
+#define UInt_SignOf			UInt_Sgn
+
+t_u8						U8_Sgn(t_u8 x);
+#define c_u8sgn				U8_Sgn
+
+t_u16						U16_Sgn(t_u16 x);
+#define c_u16sgn			U16_Sgn
+
+t_u32						U32_Sgn(t_u32 x);
+#define c_u32sgn			U32_Sgn
+
+t_u64						U64_Sgn(t_u64 x);
+#define c_u64sgn			U64_Sgn
+
+#if LIBCONFIG_USE_INT128
+t_u128						U128_Sgn(t_u128 x);
+#define c_u128sgn			U128_Sgn
+#endif
+
 #define						SInt_Sgn	CONCAT(SINT_TYPE,_Sgn)
 #define c_ssgn				SInt_Sgn
 #define SInt_Sign			SInt_Sgn
