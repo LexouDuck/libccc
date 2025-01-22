@@ -32,15 +32,6 @@ HEADER_CPP
 
 
 
-/*!
-**	This very small float is typically used to compare two fixed-point values.
-**	Since fixed-point types have a configurable fractional portion, it can be useful
-**	to have the Fixed_EqualsApprox() functions for approximate equality checks.
-*/
-#define FIXED_APPROX	LIBCONFIG_FIXED_APPROX
-
-
-
 //!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
@@ -340,6 +331,7 @@ t_bool					Q128_Equals(t_q128 x, t_q128 y);
 **
 **	@param	x	The first value to check for (approximate) equality
 **	@param	y	The second value to check for (approximate) equality
+**	@param	approx	The tolerance margin for the approximate equality check
 **	@returns
 **	`TRUE` if the 2 given fixed-point values are close enough to be considered equal
 **	(using #FIXED_APPROX as a comparison margin), otherwise `FALSE`.
@@ -348,17 +340,17 @@ t_bool					Q128_Equals(t_q128 x, t_q128 y);
 #define					Fixed_EqualsApprox	CONCAT(FIXED_TYPE,_EqualsApprox)
 #define c_qequa			Fixed_EqualsApprox
 
-t_bool					Q16_EqualsApprox(t_q16 x, t_q16 y);
+t_bool					Q16_EqualsApprox(t_q16 x, t_q16 y, t_q16 approx);
 #define c_q16equa		Q16_EqualsApprox
 
-t_bool					Q32_EqualsApprox(t_q32 x, t_q32 y);
+t_bool					Q32_EqualsApprox(t_q32 x, t_q32 y, t_q32 approx);
 #define c_q32equa		Q32_EqualsApprox
 
-t_bool					Q64_EqualsApprox(t_q64 x, t_q64 y);
+t_bool					Q64_EqualsApprox(t_q64 x, t_q64 y, t_q64 approx);
 #define c_q64equa		Q64_EqualsApprox
 
 #if LIBCONFIG_USE_INT128
-t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y);
+t_bool					Q128_EqualsApprox(t_q128 x, t_q128 y, t_q128 approx);
 #define c_q128equa		Q128_EqualsApprox
 #endif
 //!@}
@@ -447,7 +439,7 @@ t_bool					Q128_GreaterThanOrEqual(t_q128 x, t_q128 y);
 
 
 
-//!@doc Returns the smaller of the two given numbers `a` and `b`
+//!@doc Returns the smaller of the two given numbers `x` and `y`
 /*!
 **	@nonstd
 */
@@ -456,22 +448,22 @@ t_bool					Q128_GreaterThanOrEqual(t_q128 x, t_q128 y);
 #define c_qmin			Fixed_Min
 #define Fixed_Minimum	Fixed_Min
 
-t_q16					Q16_Min(t_q16 a, t_q16 b);
+t_q16					Q16_Min(t_q16 x, t_q16 y);
 #define c_q16min		Q16_Min
 
-t_q32					Q32_Min(t_q32 a, t_q32 b);
+t_q32					Q32_Min(t_q32 x, t_q32 y);
 #define c_q32min		Q32_Min
 
-t_q64					Q64_Min(t_q64 a, t_q64 b);
+t_q64					Q64_Min(t_q64 x, t_q64 y);
 #define c_q64min		Q64_Min
 
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_Min(t_q128 a, t_q128 b);
+t_q128					Q128_Min(t_q128 x, t_q128 y);
 #define c_q128min		Q128_Min
 #endif
 //!@}
 
-//!@doc Returns the larger of the two given numbers `a` and `b`
+//!@doc Returns the larger of the two given numbers `x` and `y`
 /*!
 **	@nonstd
 */
@@ -480,17 +472,17 @@ t_q128					Q128_Min(t_q128 a, t_q128 b);
 #define c_qmax			Fixed_Max
 #define Fixed_Maximum	Fixed_Max
 
-t_q16					Q16_Max(t_q16 a, t_q16 b);
+t_q16					Q16_Max(t_q16 x, t_q16 y);
 #define c_q16max		Q16_Max
 
-t_q32					Q32_Max(t_q32 a, t_q32 b);
+t_q32					Q32_Max(t_q32 x, t_q32 y);
 #define c_q32max		Q32_Max
 
-t_q64					Q64_Max(t_q64 a, t_q64 b);
+t_q64					Q64_Max(t_q64 x, t_q64 y);
 #define c_q64max		Q64_Max
 
 #if LIBCONFIG_USE_INT128
-t_q128					Q128_Max(t_q128 a, t_q128 b);
+t_q128					Q128_Max(t_q128 x, t_q128 y);
 #define c_q128max		Q128_Max
 #endif
 //!@}

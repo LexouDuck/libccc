@@ -37,13 +37,13 @@ t_bool	operator == (t_q128	x, t_q128	y)	{ return Q128_Equals(x, y); }
 
 #define DEFINEFUNC_FIXED_APPROX(BITS) \
 _INLINE() \
-t_bool	Q##BITS##_EqualsApprox(t_q##BITS x, t_q##BITS y) \
+t_bool	Q##BITS##_EqualsApprox(t_q##BITS x, t_q##BITS y, t_q##BITS approx) \
 { \
 	if (Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)) \
 		return (FALSE); \
 	t_q##BITS abs_a = Q##BITS##_Abs(x); \
 	t_q##BITS abs_b = Q##BITS##_Abs(y); \
-	return (Q##BITS##_Abs(Q##BITS##_Sub(x, y))._ <= Q##BITS##_Max(abs_a, abs_b)._ * FIXED_APPROX); \
+	return (Q##BITS##_Abs(Q##BITS##_Sub(x, y))._ <= Q##BITS##_Max(abs_a, abs_b)._ * approx); \
 } \
 
 DEFINEFUNC_FIXED_APPROX(16)

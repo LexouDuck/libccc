@@ -531,7 +531,7 @@ HEADER_CPP
 **	- Math: @f$ {x ≈ y} @f$
 */
 //!@{
-#define			Math_EqualsApprox(X, Y)	DEFINE_GENERIC_MATH_USQF(EqualsApprox)(X, Y)
+#define			Math_EqualsApprox(X, Y, Z)	DEFINE_GENERIC_MATH_USQF(EqualsApprox)(X, Y, Z)
 #define c_equa	Math_EqualsApprox
 //!@}
 

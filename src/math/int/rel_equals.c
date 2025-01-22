@@ -27,11 +27,11 @@ DEFINEFUNC_UINT_EQUALS(128)
 
 #define DEFINEFUNC_UINT_APPROX(BITS) \
 _INLINE() \
-t_bool	U##BITS##_EqualsApprox(t_u##BITS a, t_u##BITS b) \
+t_bool	U##BITS##_EqualsApprox(t_u##BITS a, t_u##BITS b, t_u##BITS approx) \
 { \
 	if (U##BITS##_IsNaN(a) || U##BITS##_IsNaN(b)) \
 		return (FALSE); \
-	return ((a < b ? b - a : a - b) <= MAX(a, b) * UINT_APPROX); \
+	return ((a < b ? b - a : a - b) <= MAX(a, b) * approx); \
 } \
 
 DEFINEFUNC_UINT_APPROX(8)
@@ -63,13 +63,13 @@ DEFINEFUNC_SINT_EQUALS(128)
 
 #define DEFINEFUNC_SINT_APPROX(BITS) \
 _INLINE() \
-t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b) \
+t_bool	S##BITS##_EqualsApprox(t_s##BITS a, t_s##BITS b, t_s##BITS approx) \
 { \
 	if (S##BITS##_IsNaN(a) || S##BITS##_IsNaN(b)) \
 		return (FALSE); \
 	t_s##BITS abs_a = S##BITS##_Abs(a); \
 	t_s##BITS abs_b = S##BITS##_Abs(b); \
-	return (S##BITS##_Abs(a - b) <= MAX(abs_a, abs_b) * SINT_APPROX); \
+	return (S##BITS##_Abs(a - b) <= MAX(abs_a, abs_b) * approx); \
 } \
 
 DEFINEFUNC_SINT_APPROX(8)

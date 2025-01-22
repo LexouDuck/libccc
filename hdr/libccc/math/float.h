@@ -356,6 +356,7 @@ t_bool					F128_Equals(t_f128 x, t_f128 y);
 **
 **	@param	x	The first value to check for (approximate) equality
 **	@param	y	The second value to check for (approximate) equality
+**	@param	approx	The tolerance margin for the approximate equality check
 **	@returns
 **	`TRUE` if the 2 given floating-point values are close enough to be considered equal
 **	(using #FLOAT_APPROX as a comparison margin), otherwise `FALSE`.
@@ -364,18 +365,18 @@ t_bool					F128_Equals(t_f128 x, t_f128 y);
 #define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
 #define c_fequa			Float_EqualsApprox
 
-t_bool					F32_EqualsApprox(t_f32 x, t_f32 y);
+t_bool					F32_EqualsApprox(t_f32 x, t_f32 y, t_f32 approx);
 #define c_f32equa		F32_EqualsApprox
 
-t_bool					F64_EqualsApprox(t_f64 x, t_f64 y);
+t_bool					F64_EqualsApprox(t_f64 x, t_f64 y, t_f64 approx);
 #define c_f64equa		F64_EqualsApprox
 
 #if LIBCONFIG_USE_FLOAT80
-t_bool					F80_EqualsApprox(t_f80 x, t_f80 y);
+t_bool					F80_EqualsApprox(t_f80 x, t_f80 y, t_f80 approx);
 #define c_f80equa		F80_EqualsApprox
 #endif
 #if LIBCONFIG_USE_FLOAT128
-t_bool					F128_EqualsApprox(t_f128 x, t_f128 y);
+t_bool					F128_EqualsApprox(t_f128 x, t_f128 y, t_f128 approx);
 #define c_f128equa		F128_EqualsApprox
 #endif
 //!@}
