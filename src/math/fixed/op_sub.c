@@ -11,11 +11,11 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Sub(t_q##BITS a, t_q##BITS b) \
 { \
-	t_s##BITS i1 = (a._ / FIXED_DENOMINATOR); \
-	t_s##BITS i2 = (b._ / FIXED_DENOMINATOR); \
-	if CCCERROR((i2 < 0) && (i1 > (Q##BITS##_MAX._ / FIXED_DENOMINATOR) + i2), ERROR_RESULTRANGE, NULL) \
+	t_s##BITS i1 = (a._ / Q##BITS##_DENOM); \
+	t_s##BITS i2 = (b._ / Q##BITS##_DENOM); \
+	if CCCERROR((i2 < 0) && (i1 > (Q##BITS##_MAX._ / Q##BITS##_DENOM) + i2), ERROR_RESULTRANGE, NULL) \
 	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MAX); } \
-	if CCCERROR((i2 > 0) && (i1 < (Q##BITS##_MIN._ / FIXED_DENOMINATOR) + i2), ERROR_RESULTRANGE, NULL) \
+	if CCCERROR((i2 > 0) && (i1 < (Q##BITS##_MIN._ / Q##BITS##_DENOM) + i2), ERROR_RESULTRANGE, NULL) \
 	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MIN); } \
 	return (t_q##BITS){ (t_s##BITS)(a._ - b._) }; \
 } \

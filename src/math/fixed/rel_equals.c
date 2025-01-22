@@ -43,7 +43,7 @@ t_bool	Q##BITS##_EqualsApprox(t_q##BITS x, t_q##BITS y, t_q##BITS approx) \
 		return (FALSE); \
 	t_q##BITS abs_a = Q##BITS##_Abs(x); \
 	t_q##BITS abs_b = Q##BITS##_Abs(y); \
-	return (Q##BITS##_Abs(Q##BITS##_Sub(x, y))._ <= Q##BITS##_Max(abs_a, abs_b)._ * approx); \
+	return (Q##BITS##_Abs(Q##BITS##_Sub(x, y))._ <= Q##BITS##_Max(abs_a, abs_b)._ * approx._); \
 } \
 
 DEFINEFUNC_FIXED_APPROX(16)

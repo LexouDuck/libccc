@@ -18,9 +18,9 @@ t_q##BITS	Q##BITS##_From( \
 	if CCCERROR((denominator == 0), ERROR_MATHDOMAIN, \
 		"fraction denominator should never be zero") \
 		return (Q##BITS##_ERROR); \
-	if (denominator == FIXED_DENOMINATOR) \
+	if (denominator == Q##BITS##_DENOM) \
 		return (t_q##BITS){ numerator }; \
-	return (t_q##BITS){ (t_s##BITS)((numerator * FIXED_DENOMINATOR) / denominator) }; \
+	return (t_q##BITS){ (t_s##BITS)((numerator * Q##BITS##_DENOM) / denominator) }; \
 } \
 
 DEFINEFUNC_FIXED_FROM(16)
@@ -38,7 +38,7 @@ t_q##BITS	Q##BITS##_FromU##FROM(t_u##FROM number) \
 { \
 	if (U##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
 	if (U##FROM##_IsInf(number))	return (Q##BITS##_MAX); \
-	t_u##BITS result = (number * FIXED_DENOMINATOR); \
+	t_u##BITS result = (number * Q##BITS##_DENOM); \
 	return (U##BITS##_Abs(result) > U##FROM##_Abs(number) ? (t_q##BITS){ (t_s##BITS)(result) } : Q##BITS##_MAX); \
 } \
 
@@ -71,7 +71,7 @@ t_q##BITS	Q##BITS##_FromS##FROM(t_s##FROM number) \
 { \
 	if (S##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
 	if (S##FROM##_IsInf(number))	return ((number < 0) ? Q##BITS##_MIN : Q##BITS##_MAX); \
-	t_s##BITS result = (number * FIXED_DENOMINATOR); \
+	t_s##BITS result = (number * Q##BITS##_DENOM); \
 	return (S##BITS##_Abs(result) > S##FROM##_Abs(number) ? (t_q##BITS){ (t_s##BITS)result } : ((number < 0) ? Q##BITS##_MIN : Q##BITS##_MAX)); \
 } \
 
@@ -135,7 +135,7 @@ t_q##BITS	Q##BITS##_FromF##FROM(t_f##FROM number) \
 	if (F##FROM##_IsInf(number))	return ((number < 0) ? Q##BITS##_MIN : Q##BITS##_MAX); \
 	if (number > F##FROM##_FromQ##BITS(Q##BITS##_MAX_VAL))	return (Q##BITS##_MAX); \
 	if (number < F##FROM##_FromQ##BITS(Q##BITS##_MIN_VAL))	return (Q##BITS##_MIN); \
-	return ((t_q##BITS){ (t_s##BITS)((t_s##BITS)(F##FROM##_Trunc(number) * FIXED_DENOMINATOR) + (t_s##BITS)(F##FROM##_Mod(number, 1))) }); \
+	return ((t_q##BITS){ (t_s##BITS)((t_s##BITS)(F##FROM##_Trunc(number) * Q##BITS##_DENOM) + (t_s##BITS)(F##FROM##_Mod(number, 1))) }); \
 } \
 
 DEFINEFUNC_FIXED_FROMFLOAT(16, 32)

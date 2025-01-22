@@ -16,7 +16,7 @@ t_q##BITS	Q##BITS##_Mul(t_q##BITS x, t_q##BITS y) \
 	{ \
 		LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, (Q##BITS##_Sgn(x) == Q##BITS##_Sgn(y)) ? Q##BITS##_MAX : Q##BITS##_MIN) \
 	} \
-	return (t_q##BITS){ (t_s##BITS)((x._ * y._) / FIXED_DENOMINATOR) }; \
+	return (t_q##BITS){ (t_s##BITS)((x._ * y._) / Q##BITS##_DENOM) }; \
 } \
 // TODO fix this and test
 

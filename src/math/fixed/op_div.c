@@ -13,7 +13,7 @@ t_q##BITS	Q##BITS##_Div(t_q##BITS x, t_q##BITS y) \
 { \
 	if CCCERROR((y._ == 0), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (t_q##BITS){ (t_s##BITS)(x._ * FIXED_DENOMINATOR / y._) }; \
+	return (t_q##BITS){ (t_s##BITS)(x._ * Q##BITS##_DENOM / y._) }; \
 } \
 // TODO fix this and test
 

@@ -163,7 +163,7 @@ t_f##BITS	F##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (NAN); \
 	if (Q##FROM##_IsInf(number))	return (INF * (t_f##BITS)S##FROM##_Sgn(number._)); \
-	return ((t_f##BITS)number._ / (t_f##BITS)FIXED_DENOMINATOR); \
+	return ((t_f##BITS)number._ / (t_f##BITS)Q##BITS##_DENOM); \
 } \
 
 DEFINEFUNC_FLOAT_FROMFIXED(32, 16)

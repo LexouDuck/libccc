@@ -21,7 +21,7 @@ t_char*	Q##BITS##_ToString(t_q##BITS number) \
 	tmp = S##BITS##_ToString(n); \
 	result = String_Merge(&result, &tmp); \
 	result = String_Append(&result, "/"); \
-	n = FIXED_DENOMINATOR; \
+	n = Q##BITS##_DENOM; \
 	tmp = S##BITS##_ToString(n); \
 	result = String_Merge(&result, &tmp); \
 	result = String_Append(&result, ")"); \
@@ -32,7 +32,7 @@ t_char*	Q##BITS##_ToString(t_q##BITS number) \
 		SF_S##BITS ".(" SF_S##BITS "/" SF_S##BITS ")", \
 		(t_s##BITS)Q##BITS##_IntegerPart(number), \
 		(t_s##BITS)Q##BITS##_FractionPart(number), \
-		(t_s##BITS)(FIXED_DENOMINATOR)) \
+		(t_s##BITS)(Q##BITS##_DENOM)) \
 	); \
 */
 

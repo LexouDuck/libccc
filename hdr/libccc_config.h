@@ -254,21 +254,26 @@ HEADER_CPP
 #endif
 //!@}
 
-//! @see #FIXED_APPROX and Fixed_EqualsApprox()
-//!@{
-#ifndef LIBCONFIG_FIXED_APPROX
-#define LIBCONFIG_FIXED_APPROX	(LIBCONFIG_FIXED_DENOMINATOR / 2)
-#endif
-//!@}
-
 //!@doc The amount of subdivisions dedicated to the fraction part of the fixed-point types
 /*!
 **	This can be any signed integer value which is representable.
 **	TODO make this more configurable, i.e. set each bitsize type individually ?
 */
 //!@{
-#ifndef LIBCONFIG_FIXED_DENOMINATOR
-#define LIBCONFIG_FIXED_DENOMINATOR	(256)
+#ifndef LIBCONFIG_Q8_DENOMINATOR
+#define LIBCONFIG_Q8_DENOMINATOR	(4)
+#endif
+#ifndef LIBCONFIG_Q16_DENOMINATOR
+#define LIBCONFIG_Q16_DENOMINATOR	(16)
+#endif
+#ifndef LIBCONFIG_Q32_DENOMINATOR
+#define LIBCONFIG_Q32_DENOMINATOR	(256)
+#endif
+#ifndef LIBCONFIG_Q64_DENOMINATOR
+#define LIBCONFIG_Q64_DENOMINATOR	(65536)
+#endif
+#ifndef LIBCONFIG_Q128_DENOMINATOR
+#define LIBCONFIG_Q128_DENOMINATOR	(4294967296)
 #endif
 //!@}
 
@@ -310,13 +315,6 @@ HEADER_CPP
 #error "Invalid value selected for LIBCONFIG_FLOAT_ERROR, must be either 0 or 1"
 #endif
 //!@}
-//!@doc @see #FLOAT_APPROX and Float_EqualsApprox()
-//!@{
-#ifndef LIBCONFIG_FLOAT_APPROX
-#define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
-#endif
-//!@}
-
 
 
 

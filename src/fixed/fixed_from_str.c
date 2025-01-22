@@ -78,7 +78,7 @@ success: \
 	if CCCERROR((result + Q##BITS##_Round(fraction)._ > Q##BITS##_MAX_INT._), ERROR_RESULTRANGE, \
 		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAX_INT._) \
 	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) } \
-	if (dest)	*dest = (t_q##BITS){ (t_s##BITS)(result * FIXED_DENOMINATOR + fraction._) }; \
+	if (dest)	*dest = (t_q##BITS){ (t_s##BITS)(result * Q##BITS##_DENOM + fraction._) }; \
 	return (i); \
 failure: \
 	if (dest)	*dest = Q##BITS##_ERROR; \

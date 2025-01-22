@@ -13,7 +13,7 @@ t_q##BITS	Q##BITS##_Rem(t_q##BITS a, t_q##BITS b) \
 { \
 	if CCCERROR((b._ == 0), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (t_q##BITS){ (t_s##BITS)((a._ * FIXED_DENOMINATOR) % b._) }; \
+	return (t_q##BITS){ (t_s##BITS)((a._ * Q##BITS##_DENOM) % b._) }; \
 } \
 // TODO fix this and test
 

@@ -262,7 +262,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect); \
 	if (error && !isnan(test->result) && !isnan(test->expect)) \
 	{ \
-		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_APPROX) \
+		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_EPSILON) \
 		{ \
 			error = FALSE; \
 			warning = TRUE; \

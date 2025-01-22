@@ -13,7 +13,7 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_IntegerPart(t_q##BITS number) \
 { \
-	return (t_q##BITS){ (t_s##BITS)(number._ / FIXED_DENOMINATOR) }; \
+	return (t_q##BITS){ (t_s##BITS)(number._ / Q##BITS##_DENOM) }; \
 } \
 
 DEFINEFUNC_FIXED_INTEGERPART(16)
@@ -27,7 +27,7 @@ DEFINEFUNC_FIXED_INTEGERPART(128)
 _INLINE() \
 t_q##BITS	Q##BITS##_FractionPart(t_q##BITS number) \
 { \
-	return (t_q##BITS){ (t_s##BITS)(number._ % FIXED_DENOMINATOR) }; \
+	return (t_q##BITS){ (t_s##BITS)(number._ % Q##BITS##_DENOM) }; \
 } \
 
 DEFINEFUNC_FIXED_FRACTIONPART(16)

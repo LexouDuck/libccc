@@ -13,8 +13,8 @@ _INLINE() \
 t_q##BITS	Q##BITS##_Ceil(t_q##BITS number) \
 { \
 	return ((number._ < 0) ? \
-		(t_q##BITS){ (t_s##BITS)(number._ - (FIXED_DENOMINATOR - Q##BITS##_FractionPart(number)._)) } : \
-		(t_q##BITS){ (t_s##BITS)(number._ + (FIXED_DENOMINATOR - Q##BITS##_FractionPart(number)._)) }); \
+		(t_q##BITS){ (t_s##BITS)(number._ - (Q##BITS##_DENOM - Q##BITS##_FractionPart(number)._)) } : \
+		(t_q##BITS){ (t_s##BITS)(number._ + (Q##BITS##_DENOM - Q##BITS##_FractionPart(number)._)) }); \
 } \
 
 DEFINEFUNC_FIXED_CEIL(16)
