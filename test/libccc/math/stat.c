@@ -1,8 +1,7 @@
 
 #include <math.h>
 
-#include "libccc/text/format.h"
-#include "libccc/sys/io.h"
+#include "libccc.h"
 #include "libccc/math/int.h"
 #include "libccc/math/fixed.h"
 #include "libccc/math/float.h"
@@ -14,18 +13,22 @@
 #define T_TYPE	t_uint
 #define T_NAME	uint
 #define T_NULL	0
+#define T_EQUALS(X,Y)	UInt_Equals((X),(Y))
 #include "libccc/monad/array.c"
 #define T_TYPE	t_sint
 #define T_NAME	sint
 #define T_NULL	0
+#define T_EQUALS(X,Y)	SInt_Equals((X),(Y))
 #include "libccc/monad/array.c"
 #define T_TYPE	t_fixed
 #define T_NAME	fixed
-#define T_NULL	0
+#define T_NULL	(t_fixed){ 0 }
+#define T_EQUALS(X,Y)	Fixed_Equals((X),(Y))
 #include "libccc/monad/array.c"
 #define T_TYPE	t_float
 #define T_NAME	float
 #define T_NULL	0
+#define T_EQUALS(X,Y)	Float_Equals((X),(Y))
 #include "libccc/monad/array.c"
 
 #include "test.h"
@@ -38,10 +41,10 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
 { \
 	s_sorted_##TYPE	values_sorted = print_test_random_##TYPE(sample_size, range_min, range_max); \
 	s_sorted_##TYPE	expected_values = Stat_##TYPE_MIXED##_New(sample_size); \
-	t_##TYPE step = TYPE_MIXED##_Abs(range_max - range_min) / sample_size; \
+	t_##TYPE step = TYPE_MIXED##_Div(TYPE_MIXED##_Abs(TYPE_MIXED##_Sub(range_max, range_min)), TYPE_MIXED##_FromUInt(sample_size)); \
 	for (t_uint i = 0; i < sample_size; ++i) \
 	{ \
-		expected_values.items[i] = range_min + (i * step); \
+		expected_values.items[i] = TYPE_MIXED##_Add(range_min, TYPE_MIXED##_Mul(step, TYPE_MIXED##_FromUInt(i))); \
 	} \
 /* \
 	for (int i = 0; i < i_lst.length; ++i) \
@@ -56,7 +59,7 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
  \
 	if (g_test.config.verbose) \
 	{ \
-		printf("\t""Count (0):                       " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, 0)); \
+		printf("\t""Count (0):                       " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_MIXED##_FromSInt(0))); \
 		printf("\t""Count (0 | nan):                 " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_ERROR)); \
 		printf("\t""Count (min | -inf):              " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_MIN)); \
 		printf("\t""Count (max | +inf):              " SF_UINT "\n", Stat_##TYPE_MIXED##_Count(values_sorted, TYPE_UPPER##_MAX)); \
@@ -104,7 +107,7 @@ t_bool	print_test_stat_##TYPE(t_uint sample_size, t_##TYPE range_min, t_##TYPE r
 		printf("\t""Mean_Lehmer (pow -1):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, -1)); \
 		printf("\t""Mean_Lehmer (pow -2):            " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_Mean_Lehmer                    (values_sorted, -2)); \
 		printf("\t""MedianAbsoluteDeviation:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MedianAbsoluteDeviation        (values_sorted)); \
-		printf("\t""AverageAbsoluteDeviation:        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_AverageAbsoluteDeviation       (values_sorted, Stat_##TYPE_MIXED##_Mean_Arithmetic(values_sorted))); \
+		printf("\t""AverageAbsoluteDeviation:        " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_AverageAbsoluteDeviation       (values_sorted, TYPE_MIXED##_FromFloat(Stat_##TYPE_MIXED##_Mean_Arithmetic(values_sorted)))); \
 /*		printf("\t""ArithmeticGeometricMean:         " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_ArithmeticGeometricMean        (values_sorted y)); */ \
 		printf("\t""MeanSignedDeviation:             " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanSignedDeviation            (values_sorted, expected_values.items)); \
 		printf("\t""MeanSquaredError:                " SF_FLOAT        "\n", Stat_##TYPE_MIXED##_MeanSquaredError               (values_sorted, expected_values.items)); \
@@ -160,8 +163,9 @@ int		testsuite_math_stat(void) // TODO increment total tests counter for these t
 
 	print_suite_title("libccc/math/stat");
 
-	print_test_stat_uint	(sample_size,    0, 1000);
-	print_test_stat_sint	(sample_size, -500, +500);
-	print_test_stat_fixed	(sample_size, -500, +500);
-	print_test_stat_float	(sample_size, -500, +500);
+	print_test_stat_uint	(sample_size,  UInt_FromSInt(   0),  UInt_FromSInt(1000));
+	print_test_stat_sint	(sample_size,  SInt_FromSInt(-500),  SInt_FromSInt(+500));
+	print_test_stat_fixed	(sample_size, Fixed_FromSInt(-500), Fixed_FromSInt(+500));
+	print_test_stat_float	(sample_size, Float_FromSInt(-500), Float_FromSInt(+500));
+	return (OK);
 }

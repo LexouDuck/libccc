@@ -8,13 +8,13 @@
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-_INLINE() t_f32   F32_RemQuo  (t_f32  a, t_f32  b, t_sint* quotient)	{ int tmp;	t_f32  result = __builtin_remquof (a, b, &tmp);	*quotient = (t_sint)tmp;	return (result); }
-_INLINE() t_f64   F64_RemQuo  (t_f64  a, t_f64  b, t_sint* quotient)	{ int tmp;	t_f64  result = __builtin_remquo  (a, b, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+_INLINE() t_f32   F32_RemQuo  (t_f32  x, t_f32  y, t_sint* quotient)	{ int tmp;	t_f32  result = __builtin_remquof (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+_INLINE() t_f64   F64_RemQuo  (t_f64  x, t_f64  y, t_sint* quotient)	{ int tmp;	t_f64  result = __builtin_remquo  (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
 #if LIBCONFIG_USE_FLOAT80
-_INLINE() t_f80   F80_RemQuo  (t_f80  a, t_f80  b, t_sint* quotient)	{ int tmp;	t_f80  result = __builtin_remquol (a, b, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+_INLINE() t_f80   F80_RemQuo  (t_f80  x, t_f80  y, t_sint* quotient)	{ int tmp;	t_f80  result = __builtin_remquol (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
 #endif
 #if LIBCONFIG_USE_FLOAT128
-_INLINE() t_f128  F128_RemQuo (t_f128 a, t_f128 b, t_sint* quotient)	{ int tmp;	t_f128 result = __builtin_remquol (a, b, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+_INLINE() t_f128  F128_RemQuo (t_f128 x, t_f128 y, t_sint* quotient)	{ int tmp;	t_f128 result = __builtin_remquol (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
 #endif
 #else
 #define DEFINEFUNC_FLOAT_REMQUO(BITS) \

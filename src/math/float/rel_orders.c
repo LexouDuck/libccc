@@ -9,16 +9,16 @@
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(LT, isless)
+MATH_DECL_ENDORELATION(LessThan, isless)
 #else
 #define DEFINEFUNC_FLOAT_LT(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LessThan(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_LessThan(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
-		"cannot compare (%g < %g)", a, b) \
+	if CCCERROR(isunordered(x, y), ERROR_NANARGUMENT, \
+		"cannot compare (%g < %g)", x, y) \
 		return FALSE; \
-	return (a < b); \
+	return (x < y); \
 } \
 
 DEFINEFUNC_FLOAT_LT(32)
@@ -35,16 +35,16 @@ DEFINEFUNC_FLOAT_LT(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(LTE, islessequal)
+MATH_DECL_ENDORELATION(LessThanOrEqual, islessequal)
 #else
 #define DEFINEFUNC_FLOAT_LTE(BITS) \
 _INLINE() \
-t_bool	F##BITS##_LessThanOrEqual(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_LessThanOrEqual(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
-		"cannot compare (%g <= %g)", a, b) \
+	if CCCERROR(isunordered(x, y), ERROR_NANARGUMENT, \
+		"cannot compare (%g <= %g)", x, y) \
 		return FALSE; \
-	return (a <= b); \
+	return (x <= y); \
 } \
 
 DEFINEFUNC_FLOAT_LTE(32)
@@ -61,16 +61,16 @@ DEFINEFUNC_FLOAT_LTE(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(GT, isgreater)
+MATH_DECL_ENDORELATION(GreaterThan, isgreater)
 #else
 #define DEFINEFUNC_FLOAT_GT(BITS) \
 _INLINE() \
-t_bool	F##BITS##_GreaterThan(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_GreaterThan(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
-		"cannot compare (%g > %g)", a, b) \
+	if CCCERROR(isunordered(x, y), ERROR_NANARGUMENT, \
+		"cannot compare (%g > %g)", x, y) \
 		return FALSE; \
-	return (a > b); \
+	return (x > y); \
 } \
 
 DEFINEFUNC_FLOAT_GT(32)
@@ -87,16 +87,16 @@ DEFINEFUNC_FLOAT_GT(128)
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
-MATH_DECL_ENDORELATION(GTE, isgreaterequal)
+MATH_DECL_ENDORELATION(GreaterThanOrEqual, isgreaterequal)
 #else
 #define DEFINEFUNC_FLOAT_GTE(BITS) \
 _INLINE() \
-t_bool	F##BITS##_GreaterThanOrEqual(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_GreaterThanOrEqual(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR(isunordered(a, b), ERROR_NANARGUMENT, \
-		"cannot compare (%g >= %g)", a, b) \
+	if CCCERROR(isunordered(x, y), ERROR_NANARGUMENT, \
+		"cannot compare (%g >= %g)", x, y) \
 		return FALSE; \
-	return (a >= b); \
+	return (x >= y); \
 } \
 
 DEFINEFUNC_FLOAT_GTE(32)

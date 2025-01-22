@@ -39,7 +39,7 @@ DEFINEFUNC_RANDOM_GET(CSPRNG, t_csprng)
 _INLINE() \
 TYPE	RNG_NAME##_Get_##TYPE_MIXED(RNG_TYPE* state) \
 { \
-	TYPE	result = 0; \
+	TYPE	result = TYPE_UPPER##_ERROR; \
 	do \
 	{ \
 		if (RNG_NAME##_Next(state, &result, sizeof(TYPE))) \
@@ -51,13 +51,13 @@ TYPE	RNG_NAME##_Get_##TYPE_MIXED(RNG_TYPE* state) \
  \
 TYPE	RNG_NAME##_GetInRange_##TYPE_MIXED(RNG_TYPE* state, TYPE min, TYPE max) \
 { \
-	TYPE	result = 0; \
-	if CCCERROR((min > max), ERROR_INVALIDRANGE, \
+	TYPE	result = TYPE_UPPER##_ERROR; \
+	if CCCERROR(TYPE_MIXED##_GreaterThan(min,/*>*/ max), ERROR_INVALIDRANGE, \
 		"invalid random range specified (min=" SF_##TYPE_UPPER " ; max=" SF_##TYPE_UPPER ")", min, max) \
 	{ \
 		return (TYPE_UPPER##_ERROR); \
 	} \
-	if (min == max) \
+	if (TYPE_MIXED##_Equals(min, max)) \
 		return (min); \
 	result = RNG_NAME##_Get_##TYPE_MIXED(state); \
 	result = TYPE_MIXED##_Add(TYPE_MIXED##_Mod(result, TYPE_MIXED##_Abs(TYPE_MIXED##_Sub(max, min))), min); \

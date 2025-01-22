@@ -9,11 +9,11 @@
 
 #define DEFINEFUNC_FIXED_MOD(BITS) \
 _INLINE() \
-t_q##BITS	Q##BITS##_Mod(t_q##BITS a, t_q##BITS b) \
+t_q##BITS	Q##BITS##_Mod(t_q##BITS x, t_q##BITS y) \
 { \
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((y._ == 0), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
-	return ((a * FIXED_DENOMINATOR) % b); \
+	return (t_q##BITS){ (t_s##BITS)(x._ * FIXED_DENOMINATOR % y._) }; \
 } \
 // TODO fix this and test
 
@@ -22,4 +22,13 @@ DEFINEFUNC_FIXED_MOD(32)
 DEFINEFUNC_FIXED_MOD(64)
 #if LIBCONFIG_USE_INT128
 DEFINEFUNC_FIXED_MOD(128)
+#endif
+
+#ifdef __cplusplus
+t_q16	operator % (t_q16	x, t_q16	y)	{ return Q16_Mod(x, y); }
+t_q32	operator % (t_q32	x, t_q32	y)	{ return Q32_Mod(x, y); }
+t_q64	operator % (t_q64	x, t_q64	y)	{ return Q64_Mod(x, y); }
+#if LIBCONFIG_USE_INT128
+t_q128	operator % (t_q128	x, t_q128	y)	{ return Q128_Mod(x, y); }
+#endif
 #endif

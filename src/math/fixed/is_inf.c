@@ -13,7 +13,7 @@
 _INLINE() \
 t_bool	Q##BITS##_IsInf(t_q##BITS x) \
 { \
-	return (x == +Q##BITS##_INF || x == -Q##BITS##_INF); \
+	return (x._ == +Q##BITS##_INF._ || x._ == -Q##BITS##_INF._); \
 } \
 
 #else
@@ -21,7 +21,7 @@ t_bool	Q##BITS##_IsInf(t_q##BITS x) \
 _INLINE() \
 t_bool	Q##BITS##_IsInf(t_q##BITS x) \
 { \
-	return (x ? FALSE : FALSE); \
+	return (x._ ? FALSE : FALSE); \
 } \
 
 #endif

@@ -160,7 +160,7 @@ TYPEDEF_ALIAS(t_q64,	FIXED_64,	PRIMITIVE)
 **	The largest possible value for this type is #Q16_MAX.
 */
 //!@{
-typedef s16_t	t_q16;
+typedef struct q16 { s16_t _; }	t_q16;
 TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 //!@}
 
@@ -175,7 +175,7 @@ TYPEDEF_ALIAS(	t_q16,	FIXED_16,	PRIMITIVE)
 **	The largest possible value for this type is #Q32_MAX.
 */
 //!@{
-typedef s32_t	t_q32;
+typedef struct q32 { s32_t _; }	t_q32;
 TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 //!@}
 
@@ -190,7 +190,7 @@ TYPEDEF_ALIAS(	t_q32,	FIXED_32,	PRIMITIVE)
 **	The largest possible value for this type is #Q64_MAX.
 */
 //!@{
-typedef	s64_t	t_q64;
+typedef	struct q64 { s64_t _; }	t_q64;
 TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 //!@}
 
@@ -206,7 +206,7 @@ TYPEDEF_ALIAS(	t_q64,	FIXED_64,	PRIMITIVE)
 **	The largest possible value for this type is #Q128_MAX.
 */
 //!@{
-typedef s128_t	t_q128;
+typedef struct q128 { s128_t _; }	t_q128;
 TYPEDEF_ALIAS(	t_q128,	FIXED_128,	PRIMITIVE)
 //!@}
 
@@ -264,179 +264,179 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 #if (LIBCONFIG_FIXED_NAN == 0) && (LIBCONFIG_FIXED_INF == 0)
 
-	#define Q16_MIN_INT	((t_q16)(Q16_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q16_MAX_INT	((t_q16)(Q16_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q16_MIN_VAL	Q16_MIN
 	#define Q16_MAX_VAL	Q16_MAX
-	#define Q16_MIN		((t_q16)0x8000) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_MAX		((t_q16)0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MIN		((t_q16){ (t_s16)0x8000 }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAX		((t_q16){ (t_s16)0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
 
-	#define Q32_MIN_INT	((t_q32)(Q32_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q32_MAX_INT	((t_q32)(Q32_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q32_MIN_VAL	Q32_MIN
 	#define Q32_MAX_VAL	Q32_MAX
-	#define Q32_MIN		((t_q32)0x80000000) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_MAX		((t_q32)0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MIN		((t_q32){ (t_s32)0x80000000 }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAX		((t_q32){ (t_s32)0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
 
-	#define Q64_MIN_INT	((t_q64)(Q64_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q64_MAX_INT	((t_q64)(Q64_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q64_MIN_VAL	Q64_MIN
 	#define Q64_MAX_VAL	Q64_MAX
-	#define Q64_MIN		((t_q64)0x8000000000000000) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_MAX		((t_q64)0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MIN		((t_q64){ (t_s64)0x8000000000000000 }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAX		((t_q64){ (t_s64)0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
 
 	#if LIBCONFIG_USE_INT128
-	#define Q128_MIN_INT	((t_q128)(Q128_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q128_MAX_INT	((t_q128)(Q128_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q128_MIN_VAL	Q128_MIN
 	#define Q128_MAX_VAL	Q128_MAX
-	#define Q128_MIN		((t_q128)(((t_q128)0x8000000000000000 << 64) | 0x0000000000000000)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_MAX		((t_q128)(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MIN		((t_q128){ ((t_s128)0x8000000000000000 << 64) | 0x0000000000000000 }) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAX		((t_q128){ ((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF }) //!< The largest possible value that a 128-bit fixed-point can hold
 	#endif
 
-	#define FIXED_MIN_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
-	#define FIXED_MAX_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
-	#define FIXED_MIN_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
-	#define FIXED_MAX_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
-	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
-	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MIN_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
+	#define FIXED_MAX_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
+	#define FIXED_MIN_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
+	#define FIXED_MAX_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
+	#define FIXED_MIN		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAX		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
 
 #elif (LIBCONFIG_SINT_NAN)
 
-	#define Q16_MIN_INT	((t_q16)(Q16_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q16_MAX_INT	((t_q16)(Q16_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q16_MIN_VAL	Q16_MIN
 	#define Q16_MAX_VAL	Q16_MAX
-	#define Q16_MIN		((t_q16)-0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_MAX		((t_q16)+0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_NAN		((t_q16) 0x8000)
+	#define Q16_MIN		((t_q16){ (t_s16)-0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAX		((t_q16){ (t_s16)+0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_NAN		((t_q16){ (t_s16) 0x8000 })
 
-	#define Q32_MIN_INT	((t_q32)(Q32_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q32_MAX_INT	((t_q32)(Q32_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q32_MIN_VAL	Q32_MIN
 	#define Q32_MAX_VAL	Q32_MAX
-	#define Q32_MIN		((t_q32)-0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_MAX		((t_q32)+0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_NAN		((t_q32) 0x80000000)
+	#define Q32_MIN		((t_q32){ (t_s32)-0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAX		((t_q32){ (t_s32)+0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_NAN		((t_q32){ (t_s32) 0x80000000 })
 
-	#define Q64_MIN_INT	((t_q64)(Q64_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q64_MAX_INT	((t_q64)(Q64_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q64_MIN_VAL	Q64_MIN
 	#define Q64_MAX_VAL	Q64_MAX
-	#define Q64_MIN		((t_q64)-0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_MAX		((t_q64)+0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_NAN		((t_q64) 0x8000000000000000)
+	#define Q64_MIN		((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAX		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_NAN		((t_q64){ (t_s64) 0x8000000000000000 })
 
 	#if LIBCONFIG_USE_INT128
-	#define Q128_MIN_INT	((t_q128)(Q128_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q128_MAX_INT	((t_q128)(Q128_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q128_MIN_VAL	Q128_MIN
 	#define Q128_MAX_VAL	Q128_MAX
-	#define Q128_MIN		((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_MAX		((t_q128)+(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_NAN		((t_q128) (((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MIN		((t_q128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAX		((t_q128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_NAN		((t_q128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
 	#endif
 
-	#define FIXED_MIN_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
-	#define FIXED_MAX_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
-	#define FIXED_MIN_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
-	#define FIXED_MAX_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
-	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
-	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
-	#define FIXED_NAN		((t_fixed)((t_fixed)1 << (LIBCONFIG_FIXED_BITS - 1)))
+	#define FIXED_MIN_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
+	#define FIXED_MAX_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
+	#define FIXED_MIN_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
+	#define FIXED_MAX_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
+	#define FIXED_MIN		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAX		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_NAN		((t_fixed){ 1 << (LIBCONFIG_FIXED_BITS - 1) })
 
 #elif (LIBCONFIG_SINT_INF)
 
-	#define Q16_MIN_INT	((t_q16)(Q16_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q16_MAX_INT	((t_q16)(Q16_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q16_MIN_VAL	Q16_MIN
 	#define Q16_MAX_VAL	Q16_MAX
-	#define Q16_MIN		((t_q16)-0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_MAX		((t_q16)+0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_INF		((t_q16) 0x8000)
+	#define Q16_MIN		((t_q16){ (t_s16)-0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAX		((t_q16){ (t_s16)+0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_INF		((t_q16){ (t_s16) 0x8000 })
 
-	#define Q32_MIN_INT	((t_q32)(Q32_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q32_MAX_INT	((t_q32)(Q32_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q32_MIN_VAL	Q32_MIN
 	#define Q32_MAX_VAL	Q32_MAX
-	#define Q32_MIN		((t_q32)-0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_MAX		((t_q32)+0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_INF		((t_q32) 0x80000000)
+	#define Q32_MIN		((t_q32){ (t_s32)-0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAX		((t_q32){ (t_s32)+0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_INF		((t_q32){ (t_s32) 0x80000000 })
 
-	#define Q64_MIN_INT	((t_q64)(Q64_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q64_MAX_INT	((t_q64)(Q64_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q64_MIN_VAL	Q64_MIN
 	#define Q64_MAX_VAL	Q64_MAX
-	#define Q64_MIN		((t_q64)-0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_MAX		((t_q64)+0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_INF		((t_q64) 0x8000000000000000)
+	#define Q64_MIN		((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAX		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_INF		((t_q64){ (t_s64) 0x8000000000000000 })
 
 	#if LIBCONFIG_USE_INT128
-	#define Q128_MIN_INT	((t_q128)(Q128_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q128_MAX_INT	((t_q128)(Q128_MAX_VAL / FIXED_DENOMINATOR))
+	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / FIXED_DENOMINATOR })
 	#define Q128_MIN_VAL	Q128_MIN
 	#define Q128_MAX_VAL	Q128_MAX
-	#define Q128_MIN		((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_MAX		((t_q128)+(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_INF		((t_q128) (((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MIN		((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) }) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAX		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) }) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_INF		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
 	#endif
 
-	#define FIXED_MIN_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
-	#define FIXED_MAX_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
-	#define FIXED_MIN_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
-	#define FIXED_MAX_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
-	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
-	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
-	#define FIXED_INF		((t_fixed)((t_fixed)1 << (LIBCONFIG_FIXED_BITS - 1)))
+	#define FIXED_MIN_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
+	#define FIXED_MAX_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
+	#define FIXED_MIN_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
+	#define FIXED_MAX_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
+	#define FIXED_MIN		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAX		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_INF		((t_fixed){ 1 << (LIBCONFIG_FIXED_BITS - 1) })
 
 #else
 
-	#define Q16_MIN_INT	((t_q16)(Q16_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q16_MAX_INT	((t_q16)(Q16_MAX_VAL / FIXED_DENOMINATOR))
-	#define Q16_MIN_VAL	((t_q16)-0x7FFE)
-	#define Q16_MAX_VAL	((t_q16)+0x7FFE)
-	#define Q16_MIN		((t_q16)-0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_MAX		((t_q16)+0x7FFF) //!< The largest possible value that a 16-bit fixed-point can hold
-	#define Q16_INF		((t_q16)+0x7FFF)
-	#define Q16_NAN		((t_q16) 0x8000)
+	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / FIXED_DENOMINATOR })
+	#define Q16_MIN_VAL	((t_q16){ (t_s16)-0x7FFE })
+	#define Q16_MAX_VAL	((t_q16){ (t_s16)+0x7FFE })
+	#define Q16_MIN		((t_q16){ (t_s16)-0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_MAX		((t_q16){ (t_s16)+0x7FFF }) //!< The largest possible value that a 16-bit fixed-point can hold
+	#define Q16_INF		((t_q16){ (t_s16)+0x7FFF })
+	#define Q16_NAN		((t_q16){ (t_s16) 0x8000 })
 
-	#define Q32_MIN_INT	((t_q32)(Q32_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q32_MAX_INT	((t_q32)(Q32_MAX_VAL / FIXED_DENOMINATOR))
-	#define Q32_MIN_VAL	((t_q32)-0x7FFFFFFE)
-	#define Q32_MAX_VAL	((t_q32)+0x7FFFFFFE)
-	#define Q32_MIN		((t_q32)-0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_MAX		((t_q32)+0x7FFFFFFF) //!< The largest possible value that a 32-bit fixed-point can hold
-	#define Q32_INF		((t_q32)+0x7FFFFFFF)
-	#define Q32_NAN		((t_q32) 0x80000000)
+	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / FIXED_DENOMINATOR })
+	#define Q32_MIN_VAL	((t_q32){ (t_s32)-0x7FFFFFFE })
+	#define Q32_MAX_VAL	((t_q32){ (t_s32)+0x7FFFFFFE })
+	#define Q32_MIN		((t_q32){ (t_s32)-0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_MAX		((t_q32){ (t_s32)+0x7FFFFFFF }) //!< The largest possible value that a 32-bit fixed-point can hold
+	#define Q32_INF		((t_q32){ (t_s32)+0x7FFFFFFF })
+	#define Q32_NAN		((t_q32){ (t_s32) 0x80000000 })
 
-	#define Q64_MIN_INT	((t_q64)(Q64_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q64_MAX_INT	((t_q64)(Q64_MAX_VAL / FIXED_DENOMINATOR))
-	#define Q64_MIN_VAL	((t_q64)-0x7FFFFFFFFFFFFFFE)
-	#define Q64_MAX_VAL	((t_q64)+0x7FFFFFFFFFFFFFFE)
-	#define Q64_MIN		((t_q64)-0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_MAX		((t_q64)+0x7FFFFFFFFFFFFFFF) //!< The largest possible value that a 64-bit fixed-point can hold
-	#define Q64_INF		((t_q64)+0x7FFFFFFFFFFFFFFF)
-	#define Q64_NAN		((t_q64) 0x8000000000000000)
+	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / FIXED_DENOMINATOR })
+	#define Q64_MIN_VAL	((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFE })
+	#define Q64_MAX_VAL	((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFE })
+	#define Q64_MIN		((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_MAX		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF }) //!< The largest possible value that a 64-bit fixed-point can hold
+	#define Q64_INF		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF })
+	#define Q64_NAN		((t_q64){ (t_s64) 0x8000000000000000 })
 
 	#if LIBCONFIG_USE_INT128
-	#define Q128_MIN_INT	((t_q128)(Q128_MIN_VAL / FIXED_DENOMINATOR))
-	#define Q128_MAX_INT	((t_q128)(Q128_MAX_VAL / FIXED_DENOMINATOR))
-	#define Q128_MIN_VAL	((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define Q128_MAX_VAL	((t_q128)+(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define Q128_MIN		((t_q128)-(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_MAX		((t_q128)+(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest possible value that a 128-bit fixed-point can hold
-	#define Q128_INF		((t_q128)+(((t_q128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
-	#define Q128_NAN		((t_q128) (((t_q128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / FIXED_DENOMINATOR })
+	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / FIXED_DENOMINATOR })
+	#define Q128_MIN_VAL	((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })
+	#define Q128_MAX_VAL	((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })
+	#define Q128_MIN		((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) }) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_MAX		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) }) //!< The largest possible value that a 128-bit fixed-point can hold
+	#define Q128_INF		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) })
+	#define Q128_NAN		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
 	#endif
 
-	#define FIXED_MIN_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
-	#define FIXED_MAX_INT	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
-	#define FIXED_MIN_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
-	#define FIXED_MAX_VAL	((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
-	#define FIXED_MIN		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
-	#define FIXED_MAX		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
-	#define FIXED_INF		((t_fixed)CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX))
-	#define FIXED_NAN		((t_fixed)((t_fixed)1 << (LIBCONFIG_FIXED_BITS - 1)))
+	#define FIXED_MIN_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_INT))
+	#define FIXED_MAX_INT	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_INT))
+	#define FIXED_MIN_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN_VAL))
+	#define FIXED_MAX_VAL	(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX_VAL))
+	#define FIXED_MIN		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MIN)) //!< The minimum possible value that a configurable-size fixed-point can represent
+	#define FIXED_MAX		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
+	#define FIXED_INF		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX))
+	#define FIXED_NAN		((t_fixed){ 1 << (LIBCONFIG_FIXED_BITS - 1) })
 
 #endif
 
@@ -452,14 +452,14 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#endif
 	#define FIXED_ERROR	FIXED_NAN
 #else
-	#define Q8_ERROR	((t_q8)0)
-	#define Q16_ERROR	((t_q16)0)
-	#define Q32_ERROR	((t_q32)0)
-	#define Q64_ERROR	((t_q64)0)
+	#define Q8_ERROR	((t_q8){ 0 })
+	#define Q16_ERROR	((t_q16){ 0 })
+	#define Q32_ERROR	((t_q32){ 0 })
+	#define Q64_ERROR	((t_q64){ 0 })
 	#if LIBCONFIG_USE_INT128
-	#define Q128_ERROR	((t_q128)0)
+	#define Q128_ERROR	((t_q128){ 0 })
 	#endif
-	#define FIXED_ERROR	((t_fixed)0)
+	#define FIXED_ERROR	((t_fixed){ 0 })
 #endif
 //!@}
 
@@ -823,16 +823,16 @@ t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 #define							Fixed_IntegerPart	CONCAT(FIXED_TYPE,_IntegerPart)
 #define c_fixed_integerpart		Fixed_IntegerPart
 
-t_s16							Q16_IntegerPart(t_q16 number);
+t_q16							Q16_IntegerPart(t_q16 number);
 #define c_q16_integerpart		Q16_IntegerPart
 
-t_s32							Q32_IntegerPart(t_q32 number);
+t_q32							Q32_IntegerPart(t_q32 number);
 #define c_q32_integerpart		Q32_IntegerPart
 
-t_s64							Q64_IntegerPart(t_q64 number);
+t_q64							Q64_IntegerPart(t_q64 number);
 #define c_q64_integerpart		Q64_IntegerPart
 #if LIBCONFIG_USE_INT128
-t_s128							Q128_IntegerPart(t_q128 number);
+t_q128							Q128_IntegerPart(t_q128 number);
 #define c_q128_integerpart		Q128_IntegerPart
 #endif
 //!@}
@@ -845,16 +845,16 @@ t_s128							Q128_IntegerPart(t_q128 number);
 #define							Fixed_FractionPart	CONCAT(FIXED_TYPE,_FractionPart)
 #define c_fixed_fractionpart	Fixed_FractionPart
 
-t_s16							Q16_FractionPart(t_q16 number);
+t_q16							Q16_FractionPart(t_q16 number);
 #define c_q16_fractionpart		Q16_FractionPart
 
-t_s32							Q32_FractionPart(t_q32 number);
+t_q32							Q32_FractionPart(t_q32 number);
 #define c_q32_fractionpart		Q32_FractionPart
 
-t_s64							Q64_FractionPart(t_q64 number);
+t_q64							Q64_FractionPart(t_q64 number);
 #define c_q64_fractionpart		Q64_FractionPart
 #if LIBCONFIG_USE_INT128
-t_s128							Q128_FractionPart(t_q128 number);
+t_q128							Q128_FractionPart(t_q128 number);
 #define c_q128_fractionpart		Q128_FractionPart
 #endif
 //!@}

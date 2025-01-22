@@ -16,7 +16,7 @@ t_size	Q##BITS##_Parse##BASE(t_q##BITS *dest, t_char const* str, t_size n) \
 	t_s##BITS	result = 0; \
 	t_s##BITS	numerator = 0; \
 	t_s##BITS	denominator = 1; \
-	t_q##BITS	fraction = 0; \
+	t_q##BITS	fraction = (t_q##BITS){ 0 }; \
 	t_size	i = 0; \
  \
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string to parse given is NULL") \
@@ -66,19 +66,19 @@ fraction: \
 		goto failure; \
 	fraction = Q##BITS##_From(numerator, denominator); \
 success: \
-	if CCCERROR((result < Q##BITS##_MIN_INT), ERROR_RESULTRANGE, \
-		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MIN_INT) \
+	if CCCERROR((result < Q##BITS##_MIN_INT._), ERROR_RESULTRANGE, \
+		"fixed-point underflow for integer part at " SF_S##BITS, Q##BITS##_MIN_INT._) \
 	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) } \
-	if CCCERROR((result > Q##BITS##_MAX_INT), ERROR_RESULTRANGE, \
-		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAX_INT) \
+	if CCCERROR((result > Q##BITS##_MAX_INT._), ERROR_RESULTRANGE, \
+		"fixed-point overflow for integer part at " SF_S##BITS, Q##BITS##_MAX_INT._) \
 	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) } \
-	if CCCERROR((result + Q##BITS##_Round(fraction) < Q##BITS##_MIN_INT), ERROR_RESULTRANGE, \
-		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MIN_INT) \
+	if CCCERROR((result + Q##BITS##_Round(fraction)._ < Q##BITS##_MIN_INT._), ERROR_RESULTRANGE, \
+		"fixed-point underflow for fraction part at " SF_S##BITS, Q##BITS##_MIN_INT._) \
 	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MIN) } \
-	if CCCERROR((result + Q##BITS##_Round(fraction) > Q##BITS##_MAX_INT), ERROR_RESULTRANGE, \
-		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAX_INT) \
+	if CCCERROR((result + Q##BITS##_Round(fraction)._ > Q##BITS##_MAX_INT._), ERROR_RESULTRANGE, \
+		"fixed-point overflow for fraction part at " SF_S##BITS, Q##BITS##_MAX_INT._) \
 	{ LIBCONFIG_ERROR_PARSEROVERFLOW(Q##BITS##_MAX) } \
-	if (dest)	*dest = (result * FIXED_DENOMINATOR + fraction); \
+	if (dest)	*dest = (t_q##BITS){ (t_s##BITS)(result * FIXED_DENOMINATOR + fraction._) }; \
 	return (i); \
 failure: \
 	if (dest)	*dest = Q##BITS##_ERROR; \

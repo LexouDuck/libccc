@@ -33,8 +33,8 @@ void	print_test_##TYPE##tostr(char const* test_name, t_testflags flags, \
 		t_##TYPE number) \
 { \
 	char* q = String_Format(SF_S64 ".(" SF_S64 "/" SF_S64 ")", \
-		(t_s64)(number / FIXED_DENOMINATOR), \
-		(t_s64)(number % FIXED_DENOMINATOR), \
+		(t_s64)(number._ / FIXED_DENOMINATOR), \
+		(t_s64)(number._ % FIXED_DENOMINATOR), \
 		(t_s64)(FIXED_DENOMINATOR)); \
 	TEST_INIT(str) \
 	TEST_PERFORM(	TYPE##tostr, number) \

@@ -12,9 +12,9 @@ MATH_DECL_REALFUNCTION(Sub, fsub)
 #else
 #define DEFINEFUNC_FLOAT_SUB(BITS) \
 _INLINE() \
-t_f##BITS	F##BITS##_Sub(t_f##BITS a, t_f##BITS b) \
+t_f##BITS	F##BITS##_Sub(t_f##BITS x, t_f##BITS y) \
 { \
-	return (a - b); \
+	return (x - y); \
 } \
 
 DEFINEFUNC_FLOAT_SUB(32)

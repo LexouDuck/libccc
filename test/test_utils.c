@@ -297,9 +297,9 @@ char*	ptrtostr(void const* ptr)
 	char*	result;
 	uint8_t	digits[sizeof(void const*) * 2];
 	uint8_t	i;
-	t_uintmax	n;
+	uintmax_t	n;
 
-	n = (t_uintmax)ptr;
+	n = (uintmax_t)ptr;
 	i = 0;
 	while (n > 0)
 	{
@@ -353,20 +353,20 @@ t_bool	memswap(void* ptr1, void* ptr2, t_size size)
 
 
 
-#define DEFINEFUNCTIONS_STATS(NAME_UPPER, NAME, TYPE, CHECK_INVALID) \
+#define DEFINEFUNCTIONS_STATS(TYPE, TYPE_LOWER, TYPE_MIXED, TYPE_UPPER, CHECK_INVALID, GET) \
 /*! https://en.wikipedia.org/wiki/Quicksort */ \
-void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
+void	quicksort_##TYPE_LOWER(TYPE * array, unsigned int start, unsigned int end) \
 { \
 	TYPE pivot; \
 	unsigned int pivot_id; \
 	unsigned int rise_id; \
 	unsigned int fall_id; \
 	pivot = array[start]; \
-	if (start >= end || pivot != pivot) \
+	if (start >= end || pivot GET != pivot GET) \
 		return; \
 	if (start == end - 1) \
 	{ \
-		if (pivot > array[end]) \
+		if (pivot GET > array[end] GET) \
 			memswap(array + start, array + end, sizeof(TYPE)); \
 		return; \
 	} \
@@ -374,11 +374,11 @@ void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
 	fall_id = end; \
 	while (rise_id < fall_id) \
 	{ \
-		while (rise_id <= end && array[rise_id] <= pivot) \
+		while (rise_id <= end && array[rise_id] GET <= pivot GET) \
 		{ \
 			++rise_id; \
 		} \
-		while (fall_id > start && array[fall_id] > pivot) \
+		while (fall_id > start && array[fall_id] GET > pivot GET) \
 		{ \
 			--fall_id; \
 		} \
@@ -389,77 +389,82 @@ void	quicksort_##NAME(TYPE * array, unsigned int start, unsigned int end) \
 	if (start != fall_id) \
 		memswap(array + start, array + fall_id, sizeof(TYPE)); \
 	if (pivot_id > start) \
-		quicksort_##NAME(array, start, pivot_id - 1); \
+		quicksort_##TYPE_LOWER(array, start, pivot_id - 1); \
 	if (pivot_id < end) \
-		quicksort_##NAME(array, pivot_id + 1, end); \
+		quicksort_##TYPE_LOWER(array, pivot_id + 1, end); \
 } \
 /*! https://en.wikipedia.org/wiki/Sample_maximum_and_minimum */ \
-TYPE	stat_getmin_##NAME(const TYPE * values, unsigned int length) \
+TYPE	stat_getmin_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	result = NAME_UPPER##_MAX; \
-	for (unsigned int i = 0; i < length; ++i) \
+	TYPE	result = TYPE_UPPER##_MAX; \
+	for (unsigned int  i = 0; i < length; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (result > value) \
-			result = value; \
+		if (result GET > value GET) \
+			result GET = value GET; \
 	} \
+	if (result GET == TYPE_UPPER##_MAX GET) \
+		return (TYPE_UPPER##_ERROR); \
 	return (result); \
 } \
 /*! https://en.wikipedia.org/wiki/Sample_maximum_and_minimum */ \
-TYPE	stat_getmax_##NAME(const TYPE * values, unsigned int length) \
+TYPE	stat_getmax_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	result = NAME_UPPER##_MIN; \
-	for (unsigned int i = 0; i < length; ++i) \
+	TYPE	result = TYPE_UPPER##_MIN; \
+	for (unsigned int  i = 0; i < length; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (result < value) \
-			result = value; \
+		if (result GET < value GET) \
+			result GET = value GET; \
 	} \
+	if (result GET == TYPE_UPPER##_MIN GET) \
+		return (TYPE_UPPER##_ERROR); \
 	return (result); \
 } \
 /*! https://en.wikipedia.org/wiki/Quantile */ \
-double*	stat_quantiles_##NAME(const TYPE * values, unsigned int length, unsigned int n) \
+double*	stat_quantiles_##TYPE_LOWER(const TYPE * values, unsigned int length, unsigned int  n) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
 	double*	result = (double*)malloc((n + 1) * sizeof(double)); \
-	unsigned int	position; \
-	for (unsigned int i = 0; i < n; ++i) \
+	if (result == NULL) \
+		return (NULL); \
+	unsigned int 	position; \
+	for (unsigned int  i = 0; i < n; ++i) \
 	{ \
 		position = i * length / n; \
 		result[i] = ((length - (n - 1)) % n == 0) ? \
-			((double)values[position]) : \
-			((double)values[position] + values[position + 1]) / 2; \
+			((double)(values[position]GET)) : \
+			(((double)(values[position]GET) + (double)(values[position + 1]GET)) / 2); \
 	} \
-	result[n] = values[length - 1]; \
+	result[n] = (double)(values[length - 1]GET); \
 	return result; \
 } \
 /*! https://en.wikipedia.org/wiki/Median */ \
-double	stat_median_##NAME(const TYPE * values, unsigned int length) \
+double	stat_median_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
 	return ((length % 2) ? \
-		values[length / 2] : \
-		(values[length / 2] + values[length / 2 + 1]) / 2); \
+		((double)(values[length / 2]GET)) : \
+		(((double)(values[length / 2]GET) + (double)(values[length / 2 + 1]GET)) / 2)); \
 } \
 /*! https://en.wikipedia.org/wiki/Mode_(statistics) */ \
-double	stat_mode_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mode_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
 	TYPE	value; \
-	TYPE	result = NAME_UPPER##_ERROR; \
-	TYPE	previous = 0; \
-	unsigned int	consecutive_record = 0; \
-	unsigned int	consecutive_current = 0; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length; ++i) \
+	TYPE	result = TYPE_UPPER##_ERROR; \
+	TYPE	previous = TYPE_UPPER##_ERROR; \
+	unsigned int 	consecutive_record = 0; \
+	unsigned int 	consecutive_current = 0; \
+	for (unsigned int  i = 0; i < length; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (previous == value) \
+		if (previous GET == value GET) \
 			consecutive_current++; \
 		if (consecutive_record < consecutive_current) \
 		{ \
@@ -467,271 +472,316 @@ double	stat_mode_##NAME(const TYPE * values, unsigned int length) \
 			result = value; \
 		} \
 		previous = value; \
-		n++; \
 	} \
-	return result; \
+	return (double)(result GET); \
 } \
 /*! https://en.wikipedia.org/wiki/Range_(statistics) */ \
-double	stat_range_##NAME(const TYPE * values, unsigned int length) \
+double	stat_range_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
 	TYPE	value; \
-	TYPE	minval = NAME_UPPER##_MIN; \
-	TYPE	maxval = NAME_UPPER##_MAX; \
-	for (unsigned int i = 0; i < length; ++i) \
+	TYPE	minval = TYPE_UPPER##_MAX; \
+	TYPE	maxval = TYPE_UPPER##_MIN; \
+	for (unsigned int  i = 0; i < length; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (minval > values[i]) \
-			minval = values[i]; \
-		if (maxval < values[i]) \
-			maxval = values[i]; \
+		if (minval GET > value GET) \
+			minval GET = value GET; \
+		if (maxval GET < value GET) \
+			maxval GET = value GET; \
 	} \
-	return (maxval - minval); \
+	if (minval GET == TYPE_UPPER##_MAX GET) \
+		return (NAN); \
+	if (maxval GET == TYPE_UPPER##_MIN GET) \
+		return (NAN); \
+	return (double)(maxval GET) - (double)(minval GET); \
 } \
 /*! https://en.wikipedia.org/wiki/Midrange */ \
-double	stat_midrange_##NAME(const TYPE * values, unsigned int length) \
+double	stat_midrange_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
 	TYPE	value; \
-	TYPE	minval = NAME_UPPER##_MIN; \
-	TYPE	maxval = NAME_UPPER##_MAX; \
-	for (unsigned int i = 0; i < length; ++i) \
+	TYPE	minval = TYPE_UPPER##_MAX; \
+	TYPE	maxval = TYPE_UPPER##_MIN; \
+	for (unsigned int  i = 0; i < length; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (minval > values[i]) \
-			minval = values[i]; \
-		if (maxval < values[i]) \
-			maxval = values[i]; \
+		if (minval GET > value GET) \
+			minval GET = value GET; \
+		if (maxval GET < value GET) \
+			maxval GET = value GET; \
 	} \
-	return (minval + maxval) / 2; \
+	if (minval GET == TYPE_UPPER##_MAX GET) \
+		return (NAN); \
+	if (maxval GET == TYPE_UPPER##_MIN GET) \
+		return (NAN); \
+	return (((double)(minval GET) + (double)(maxval GET)) / 2.); \
 } \
 /*! https://en.wikipedia.org/wiki/Midhinge */ \
-double	stat_midhinge_##NAME(const TYPE * values, unsigned int length) \
+double	stat_midhinge_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
-	double*	quartiles = stat_quantiles_##NAME(values, length, 4); \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
+	double*	quartiles = stat_quantiles_##TYPE_LOWER(values, length, 4); \
 	return (quartiles[1] + quartiles[3]) / 2; \
 } \
 /*! https://en.wikipedia.org/wiki/Trimean */ \
-double	stat_trimean_##NAME(const TYPE * values, unsigned int length) \
+double	stat_trimean_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
-	double*	quartiles = stat_quantiles_##NAME(values, length, 4); \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
+	double*	quartiles = stat_quantiles_##TYPE_LOWER(values, length, 4); \
 	return (quartiles[1] + quartiles[2] + quartiles[2] + quartiles[3]) / 4; \
 } \
 /*! https://en.wikipedia.org/wiki/Arithmetic_mean */ \
-double	stat_mean_arithmetic_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_arithmetic_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += value; \
+		sum += (double)(value GET); \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Geometric_mean */ \
-double	stat_mean_geometric_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_geometric_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
 	double	product = 1.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		product *= value; \
+		product *= (double)(value GET); \
 		n++; \
 	} \
-	return pow(product, 1. / length); \
+	if (n == 0) \
+		return (NAN); \
+	return pow(product, 1. / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Harmonic_mean */ \
-double	stat_mean_harmonic_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_harmonic_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
 	double	invsum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		invsum += 1. / value; \
+		invsum += 1. / (double)(value GET); \
 		n++; \
 	} \
+	if (n == 0 || invsum == 0.) \
+		return (NAN); \
 	return (n / invsum); \
 } \
 /*! https://en.wikipedia.org/wiki/Contraharmonic_mean */ \
-double	stat_mean_contraharmonic_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_contraharmonic_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum1 = 0.; \
 	double	sum2 = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum1 += value; \
-		sum2 += value * value; \
-		n++; \
+		value_float = (double)(value GET); \
+		sum1 += value_float; \
+		sum2 += value_float * value_float; \
 	} \
-	return (sum2 / sum1); \
-} \
-/*! https://en.wikipedia.org/wiki/Lehmer_mean */ \
-double	stat_mean_lehmer_##NAME(const TYPE * values, unsigned int length, int power) \
-{ \
-	TYPE	value; \
-	double	sum1 = 0.; \
-	double	sum2 = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
-	{ \
-		value = values[i]; \
-		if (CHECK_INVALID)	continue; \
-		sum1 += pow((double)value, power - 1); \
-		sum2 += pow((double)value, power); \
-		n++; \
-	} \
+	if (sum1 == 0. && sum2 == 0.) \
+		return (NAN); \
 	return (sum2 / sum1); \
 } \
 /*! https://en.wikipedia.org/wiki/Interquartile_mean */ \
-double	stat_mean_interquartile_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_interquartile_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
-	double*	quartiles = stat_quantiles_##NAME(values, length, 4); \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
+	double*	quartiles = stat_quantiles_##TYPE_LOWER(values, length, 4); \
 	TYPE	value; \
+	double	value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		if (value < quartiles[1] || value > quartiles[3]) \
+		value_float = (double)(value GET); \
+		if (value_float < quartiles[1] || value_float > quartiles[3]) \
 			continue; \
-		sum += value; \
+		sum += value_float; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Quadratic_mean */ \
-double	stat_mean_quadratic_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_quadratic_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += (value * value); \
+		value_float = (double)(value GET); \
+		sum += value_float * value_float; \
 		n++; \
 	} \
-	return sqrt(sum / n); \
+	if (n == 0) \
+		return (NAN); \
+	return (sqrt(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Cubic_mean */ \
-double	stat_mean_cubic_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mean_cubic_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += (value * value * value); \
+		value_float = (double)(value GET); \
+		sum += value_float * value_float * value_float; \
 		n++; \
 	} \
-	return cbrt(sum / n); \
+	if (n == 0) \
+		return (NAN); \
+	return (cbrt(sum / n)); \
 } \
 /*! https://en.wikipedia.org/wiki/Power_mean */ \
-double	stat_mean_power_##NAME(const TYPE * values, unsigned int length, double p) \
+double	stat_mean_power_##TYPE_LOWER(const TYPE * values, unsigned int length, double p) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += pow(value, p); \
+		value_float = (double)(value GET); \
+		sum += pow(value_float, p); \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (pow(sum / n, 1 / p)); \
 } \
-/*! https://en.wikipedia.org/wiki/Variance */ \
-double	stat_variance_##NAME(const TYPE * values, unsigned int length) \
+/*! https://en.wikipedia.org/wiki/Lehmer_mean */ \
+double	stat_mean_lehmer_##TYPE_LOWER(const TYPE * values, unsigned int length, int power) \
 { \
 	TYPE	value; \
-	double	sum = 0.; \
-	double	average = stat_mean_arithmetic_##NAME(values, length); \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	double value_float; \
+	double	sum1 = 0.; \
+	double	sum2 = 0.; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += value * value; \
+		value_float = (double)(value GET); \
+		sum1 += pow(value_float, power - 1); \
+		sum2 += pow(value_float, power); \
+	} \
+	if (sum1 == 0. && sum2 == 0.) \
+		return (NAN); \
+	return (sum2 / sum1); \
+} \
+/*! https://en.wikipedia.org/wiki/Variance */ \
+double	stat_variance_##TYPE_LOWER(const TYPE * values, unsigned int length) \
+{ \
+	TYPE	value; \
+	double value_float; \
+	double	sum = 0.; \
+	double	average = stat_mean_arithmetic_##TYPE_LOWER(values, length); \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
+	{ \
+		value = values[i]; \
+		if (CHECK_INVALID)	continue; \
+		value_float = (double)(value GET); \
+		sum += value_float * value_float; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return ((sum / n) - (average * average)); \
 } \
- /*! https://en.wikipedia.org/wiki/Standard_deviation */ \
-double	stat_stddev_##NAME(const TYPE * values, unsigned int length) \
+/*! https://en.wikipedia.org/wiki/Standard_deviation */ \
+double	stat_stddev_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	return sqrt(stat_variance_##NAME(values, length)); \
+	return sqrt(stat_variance_##TYPE_LOWER(values, length)); \
 } \
 /*! https://en.wikipedia.org/wiki/Coefficient_of_variation */ \
-double	stat_cv_##NAME(const TYPE * values, unsigned int length) \
+double	stat_cv_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	return (stat_stddev_##NAME(values, length) / stat_mean_arithmetic_##NAME(values, length)); \
+	double average = stat_mean_arithmetic_##TYPE_LOWER(values, length); \
+	if (average == 0) \
+		return (NAN); \
+	return (stat_stddev_##TYPE_LOWER(values, length) / average); \
 } \
 /*! https://en.wikipedia.org/wiki/Interquartile_range */ \
-double	stat_iqr_##NAME(const TYPE * values, unsigned int length) \
+double	stat_iqr_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
-	/* if (sort)	quicksort_##NAME(values, 0, length); */ \
-	double*	quartiles = stat_quantiles_##NAME(values, length, 4); \
+	/* if (sort)	quicksort_##TYPE_LOWER(values, 0, length); */ \
+	double*	quartiles = stat_quantiles_##TYPE_LOWER(values, length, 4); \
 	return (quartiles[3] - quartiles[1]); \
 } \
 /*! https://en.wikipedia.org/wiki/Median_absolute_deviation */ \
-double	stat_mad_##NAME(const TYPE * values, unsigned int length) \
+double	stat_mad_##TYPE_LOWER(const TYPE * values, unsigned int length) \
 { \
 	double*	pairs = (double*)malloc(length * sizeof(double)); \
-	double	median = stat_median_##NAME(values, length); \
-	for (unsigned int i = 0; i < length ; ++i) \
+	if (pairs == NULL) \
+		return (NAN); \
+	double	median = stat_median_##TYPE_LOWER(values, length); \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
-		pairs[i] = fabs((double)values[i] - median); \
+		pairs[i] = fabs((double)(values[i] GET) - median); \
 	} \
-	double	result = stat_median_f64(pairs, length); \
+	double	result = stat_median_float(pairs, length); \
 	free(pairs); \
 	return result; \
 } \
 /*! https://en.wikipedia.org/wiki/Average_absolute_deviation */ \
-double	stat_aad_##NAME(const TYPE * values, unsigned int length, TYPE center) \
+double	stat_aad_##TYPE_LOWER(const TYPE * values, unsigned int length, TYPE center) \
 { \
 	TYPE	value; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += (value - center); \
+		sum += (double)(value GET) - (double)(center GET); \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Arithmetic%E2%80%93geometric_mean */ \
-double	stat_agm_##NAME(TYPE x, TYPE y) \
+double	stat_agm_##TYPE_LOWER(TYPE x, TYPE y) \
 { \
 	double a, a_n; \
 	double g, g_n; \
-	if(x>y)	{	a = x;	g = y;	} \
-	else	{	a = y;	g = x;	} \
+	if (x GET > y GET) \
+		{	a = (double)(x GET);	g = (double)(y GET);	} \
+	else{	a = (double)(y GET);	g = (double)(x GET);	} \
 	while (a != g) \
 	{ \
 		a_n = (a + g) * 0.5; \
@@ -742,144 +792,166 @@ double	stat_agm_##NAME(TYPE x, TYPE y) \
 	return a; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_signed_deviation */ \
-double	stat_msd_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_msd_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (expect[i] - value); \
-		sum += (double)error; \
+		error = (double)(expect[i] GET) - (double)(value GET); \
+		sum += error; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_squared_error */ \
-double	stat_mse_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_mse_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (value - expect[i]); \
-		sum += (double)error * (double)error; \
+		error = (double)(value GET) - (double)(expect[i] GET); \
+		sum += error * error; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_error */ \
-double	stat_mae_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_mae_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (expect[i] - value); \
-		sum += fabs((double)error); \
+		error = (double)(expect[i] GET) - (double)(value GET); \
+		sum += fabs(error); \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_difference */ \
-double	stat_md_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_md_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double*	pairs = (double*)malloc(length * sizeof(double)); \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	if (pairs == NULL) \
+		return (NAN); \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (expect[i] - value); \
-		pairs[n] = fabs((double)error); \
+		error = (double)(expect[i] GET) - (double)(value GET); \
+		pairs[n] = fabs(error); \
 		n++; \
 	} \
-	double	result = stat_mean_arithmetic_f64(pairs, n); \
+	if (n == 0) \
+		return (NAN); \
+	double	result = stat_mean_arithmetic_float(pairs, n); \
 	free(pairs); \
 	return result; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_difference#Relative_mean_absolute_difference */ \
-double	stat_rmd_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_rmd_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
-	return (stat_md_##NAME(values, expect, length) / stat_mean_arithmetic_##NAME(values, length)); \
+	return (stat_md_##TYPE_LOWER(values, expect, length) / stat_mean_arithmetic_##TYPE_LOWER(values, length)); \
 } \
 /*! https://en.wikipedia.org/wiki/Root_mean_square_deviation */ \
-double	stat_rmsd_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_rmsd_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
-	return sqrt(stat_mse_##NAME(values, expect, length)); \
+	return sqrt(stat_mse_##TYPE_LOWER(values, expect, length)); \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_percentage_error */ \
-double	stat_mpe_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_mpe_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += ((double)value - expect[i]) / value; \
+		if (value GET == 0)	continue; \
+		value_float = (double)(value GET); \
+		sum += (value_float - (double)(expect[i] GET)) / value_float; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n) * 100.; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_absolute_percentage_error */ \
-double	stat_mape_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_mape_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
+	double value_float; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		sum += fabs(((double)value - expect[i]) / value); \
+		if (value GET == 0)	continue; \
+		value_float = (double)(value GET); \
+		sum += fabs((value_float - (double)(expect[i] GET)) / value_float); \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n) * 100.; \
 } \
 /*! https://en.wikipedia.org/wiki/Mean_squared_prediction_error */ \
-double	stat_mspe_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_mspe_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double	sum = 0.; \
-	unsigned int	n = 0; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	unsigned int 	n = 0; \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (value - expect[i]); \
-		sum += (double)error; \
+		error = (double)(value GET) - (double)(expect[i] GET); \
+		sum += error; \
 		n++; \
 	} \
+	if (n == 0) \
+		return (NAN); \
 	return (sum / n); \
 } \
 /*! https://en.wikipedia.org/wiki/Residual_sum_of_squares */ \
-double	stat_rss_##NAME(const TYPE * values, const TYPE * expect, unsigned int length) \
+double	stat_rss_##TYPE_LOWER(const TYPE * values, const TYPE * expect, unsigned int length) \
 { \
 	TYPE	value; \
-	TYPE	error; \
+	double	error; \
 	double	sum = 0.; \
-	for (unsigned int i = 0; i < length ; ++i) \
+	for (unsigned int  i = 0; i < length ; ++i) \
 	{ \
 		value = values[i]; \
 		if (CHECK_INVALID)	continue; \
-		error = (value - expect[i]); \
-		sum += (double)error * (double)error; \
+		error = (double)(value GET) - (double)(expect[i] GET); \
+		sum += error * error; \
 	} \
 	return (sum); \
 } \
@@ -906,35 +978,35 @@ double	stat_moving_average_weighted_##NAME(const TYPE * values, unsigned int len
 
 #endif
 
-DEFINEFUNCTIONS_STATS(UINT , uint , t_uint,  (LIBCONFIG_UINT_NAN  ? (value ==  UINT_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(U8   , u8   , t_u8,    (LIBCONFIG_UINT_NAN  ? (value ==    U8_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(U16  , u16  , t_u16,   (LIBCONFIG_UINT_NAN  ? (value ==   U16_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(U32  , u32  , t_u32,   (LIBCONFIG_UINT_NAN  ? (value ==   U32_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(U64  , u64  , t_u64,   (LIBCONFIG_UINT_NAN  ? (value ==   U64_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_uint,  uint , UInt , UINT , (LIBCONFIG_UINT_NAN  ? (value ==  UINT_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u8,    u8   , U8   , U8   , (LIBCONFIG_UINT_NAN  ? (value ==    U8_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u16,   u16  , U16  , U16  , (LIBCONFIG_UINT_NAN  ? (value ==   U16_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u32,   u32  , U32  , U32  , (LIBCONFIG_UINT_NAN  ? (value ==   U32_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u64,   u64  , U64  , U64  , (LIBCONFIG_UINT_NAN  ? (value ==   U64_ERROR) : FALSE), )
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(U128 , u128 , t_u128,  (LIBCONFIG_UINT_NAN  ? (value ==  U128_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_u128,  u128 , U128 , U128 , (LIBCONFIG_UINT_NAN  ? (value ==  U128_ERROR) : FALSE), )
 #endif
-DEFINEFUNCTIONS_STATS(SINT , sint , t_sint,  (LIBCONFIG_SINT_NAN  ? (value ==  SINT_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(S8   , s8   , t_s8,    (LIBCONFIG_SINT_NAN  ? (value ==    S8_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(S16  , s16  , t_s16,   (LIBCONFIG_SINT_NAN  ? (value ==   S16_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(S32  , s32  , t_s32,   (LIBCONFIG_SINT_NAN  ? (value ==   S32_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(S64  , s64  , t_s64,   (LIBCONFIG_SINT_NAN  ? (value ==   S64_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_sint,  sint , SInt , SINT , (LIBCONFIG_SINT_NAN  ? (value ==  SINT_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s8,    s8   , S8   , S8   , (LIBCONFIG_SINT_NAN  ? (value ==    S8_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s16,   s16  , S16  , S16  , (LIBCONFIG_SINT_NAN  ? (value ==   S16_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s32,   s32  , S32  , S32  , (LIBCONFIG_SINT_NAN  ? (value ==   S32_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s64,   s64  , S64  , S64  , (LIBCONFIG_SINT_NAN  ? (value ==   S64_ERROR) : FALSE), )
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(S128 , s128 , t_s128,  (LIBCONFIG_SINT_NAN  ? (value ==  S128_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_s128,  s128 , S128 , S128 , (LIBCONFIG_SINT_NAN  ? (value ==  S128_ERROR) : FALSE), )
 #endif
-DEFINEFUNCTIONS_STATS(FIXED, fixed, t_fixed, (LIBCONFIG_FIXED_NAN ? (value == FIXED_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(Q16  , q16  , t_q16,   (LIBCONFIG_FIXED_NAN ? (value ==   Q16_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(Q32  , q32  , t_q32,   (LIBCONFIG_FIXED_NAN ? (value ==   Q32_ERROR) : FALSE))
-DEFINEFUNCTIONS_STATS(Q64  , q64  , t_q64,   (LIBCONFIG_FIXED_NAN ? (value ==   Q64_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_fixed, fixed, Fixed, FIXED, (LIBCONFIG_FIXED_NAN ? (value._ == FIXED_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q16,   q16  , Q16  , Q16  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q16_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q32,   q32  , Q32  , Q32  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q32_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q64,   q64  , Q64  , Q64  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q64_ERROR._) : FALSE), ._)
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(Q128 , q128 , t_q128,  (LIBCONFIG_FIXED_NAN ? (value ==  Q128_ERROR) : FALSE))
+DEFINEFUNCTIONS_STATS(t_q128,  q128 , Q128 , Q128 , (LIBCONFIG_FIXED_NAN ? (value._ ==  Q128_ERROR._) : FALSE), ._)
 #endif
-DEFINEFUNCTIONS_STATS(FLOAT, float, t_float, !isnormal(value))
-DEFINEFUNCTIONS_STATS(F32  , f32  , t_f32,   !isnormal(value))
-DEFINEFUNCTIONS_STATS(F64  , f64  , t_f64,   !isnormal(value))
+DEFINEFUNCTIONS_STATS(t_float, float, Float, FLOAT, !isnormal(value), )
+DEFINEFUNCTIONS_STATS(t_f32,   f32  , F32  , F32  , !isnormal(value), )
+DEFINEFUNCTIONS_STATS(t_f64,   f64  , F64  , F64  , !isnormal(value), )
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNCTIONS_STATS(F80  , f80  , t_f80,   !isnormal(value))
+DEFINEFUNCTIONS_STATS(t_f80,   f80  , F80  , F80  , !isnormal(value), )
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNCTIONS_STATS(F128 , f128 , t_f128,  !isnormal(value))
+DEFINEFUNCTIONS_STATS(t_f128,  f128 , F128 , F128 , !isnormal(value), )
 #endif

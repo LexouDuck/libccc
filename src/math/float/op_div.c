@@ -12,9 +12,9 @@ MATH_DECL_REALFUNCTION(Div, fdiv)
 #else
 #define DEFINEFUNC_FLOAT_DIV(BITS) \
 _INLINE() \
-t_f##BITS	F##BITS##_Div(t_f##BITS a, t_f##BITS b) \
+t_f##BITS	F##BITS##_Div(t_f##BITS x, t_f##BITS y) \
 { \
-	return (a / b); \
+	return (x / y); \
 } \
 
 DEFINEFUNC_FLOAT_DIV(32)

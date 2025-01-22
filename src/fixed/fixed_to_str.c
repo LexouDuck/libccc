@@ -14,10 +14,10 @@ t_char*	Q##BITS##_ToString(t_q##BITS number) \
 	t_char*	result = NULL; \
 	t_char*	tmp = NULL; \
  \
-	n = Q##BITS##_IntegerPart(number); \
+	n = Q##BITS##_IntegerPart(number)._; \
 	tmp = S##BITS##_ToString(n); \
 	result = String_Append(&tmp, ".("); \
-	n = Q##BITS##_FractionPart(number); \
+	n = Q##BITS##_FractionPart(number)._; \
 	tmp = S##BITS##_ToString(n); \
 	result = String_Merge(&result, &tmp); \
 	result = String_Append(&result, "/"); \

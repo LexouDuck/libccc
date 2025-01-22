@@ -13,9 +13,9 @@ _INLINE() \
 t_q##BITS	Q##BITS##_Round(t_q##BITS number) \
 { \
 	t_q##BITS fraction = Q##BITS##_FractionPart(number); \
-	if (fraction < FIXED_DENOMINATOR / 2) \
-		return (number - fraction); \
-	else return (number + (FIXED_DENOMINATOR - fraction)); \
+	if (fraction._ < FIXED_DENOMINATOR / 2) \
+		return (t_q##BITS){ (t_s##BITS)(number._ - fraction._) }; \
+	else return (t_q##BITS){ (t_s##BITS)(number._ + (FIXED_DENOMINATOR - fraction._)) }; \
 } \
 
 DEFINEFUNC_FIXED_ROUND(16)

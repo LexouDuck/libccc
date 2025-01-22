@@ -64,12 +64,12 @@ _INLINE()	t_s64	c_distance_s64	(t_s64  x, t_s64  y)	{ return (y < x) ? (x - y) :
 _INLINE()	t_s128	c_distance_s128	(t_s128 x, t_s128 y)	{ return (y < x) ? (x - y) : (y - x); }
 #endif
 
-_INLINE()	t_fixed	c_distance_fixed(t_fixed x, t_fixed y)	{ return (y < x) ? (x - y) : (y - x); }
-_INLINE()	t_q16	c_distance_q16	(t_q16   x, t_q16   y)	{ return (y < x) ? (x - y) : (y - x); }
-_INLINE()	t_q32	c_distance_q32	(t_q32   x, t_q32   y)	{ return (y < x) ? (x - y) : (y - x); }
-_INLINE()	t_q64	c_distance_q64	(t_q64   x, t_q64   y)	{ return (y < x) ? (x - y) : (y - x); }
+_INLINE()	t_fixed	c_distance_fixed(t_fixed x, t_fixed y)	{ return (y._ < x._) ? (t_fixed){ (t_sint)(x._ - y._) } : (t_fixed){ (t_sint)(y._ - x._) }; }
+_INLINE()	t_q16	c_distance_q16	(t_q16   x, t_q16   y)	{ return (y._ < x._) ? (t_q16  ){ (t_s16 )(x._ - y._) } : (t_q16  ){ (t_s16 )(y._ - x._) }; }
+_INLINE()	t_q32	c_distance_q32	(t_q32   x, t_q32   y)	{ return (y._ < x._) ? (t_q32  ){ (t_s32 )(x._ - y._) } : (t_q32  ){ (t_s32 )(y._ - x._) }; }
+_INLINE()	t_q64	c_distance_q64	(t_q64   x, t_q64   y)	{ return (y._ < x._) ? (t_q64  ){ (t_s64 )(x._ - y._) } : (t_q64  ){ (t_s64 )(y._ - x._) }; }
 #if LIBCONFIG_USE_INT128
-_INLINE()	t_q128	c_distance_q128	(t_q128  x, t_q128  y)	{ return (y < x) ? (x - y) : (y - x); }
+_INLINE()	t_q128	c_distance_q128	(t_q128  x, t_q128  y)	{ return (y._ < x._) ? (t_q128 ){ (t_s128)(x._ - y._) } : (t_q128 ){ (t_s128)(y._ - x._) }; }
 #endif
 
 _INLINE()	t_float	c_distance_float(t_float x, t_float y)	{ return (y < x) ? (x - y) : (y - x); }

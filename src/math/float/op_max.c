@@ -10,11 +10,11 @@
 
 #define DEFINEFUNC_FLOAT_MAX(BITS) \
 _INLINE() \
-t_f##BITS	F##BITS##_Max(t_f##BITS a, t_f##BITS b) \
+t_f##BITS	F##BITS##_Max(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR((F##BITS##_IsNaN(a) || F##BITS##_IsNaN(b)), ERROR_NANARGUMENT, NULL) \
+	if CCCERROR((F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 	{ return F##BITS##_ERROR; } \
-	return (a > b ? a : b); \
+	return (x > y ? x : y); \
 } \
 
 DEFINEFUNC_FLOAT_MAX(32)

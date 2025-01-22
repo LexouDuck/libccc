@@ -13,8 +13,8 @@ _INLINE() \
 t_q##BITS	Q##BITS##_Min(t_q##BITS a, t_q##BITS b) \
 { \
 	if CCCERROR((Q##BITS##_IsNaN(a) || Q##BITS##_IsNaN(b)), ERROR_NANARGUMENT, NULL) \
-	{ return Q##BITS##_ERROR; } \
-	return (a < b ? a : b); \
+		return (Q##BITS##_ERROR); \
+	return (a._ < b._ ? a : b); \
 } \
 
 DEFINEFUNC_FIXED_MIN(16)

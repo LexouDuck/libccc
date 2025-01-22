@@ -12,9 +12,9 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Floor(t_q##BITS number) \
 { \
-	return ((number < 0) ? \
-		(number + Q##BITS##_FractionPart(number)) : \
-		(number - Q##BITS##_FractionPart(number))); \
+	return ((number._ < 0) ? \
+		(t_q##BITS){ (t_s##BITS)(number._ + Q##BITS##_FractionPart(number)._) } : \
+		(t_q##BITS){ (t_s##BITS)(number._ - Q##BITS##_FractionPart(number)._) }); \
 } \
 
 DEFINEFUNC_FIXED_FLOOR(16)

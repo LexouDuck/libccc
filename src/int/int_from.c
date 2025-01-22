@@ -88,9 +88,9 @@ _INLINE() \
 t_u##BITS	U##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (U##BITS##_ERROR); \
-	if (number < 0)					return (U##BITS##_ERROR); \
+	if (number._ < 0)				return (U##BITS##_ERROR); \
 	if (Q##FROM##_IsInf(number))	return (U##BITS##_MAX); \
-	return ((t_u##BITS)(number / FIXED_DENOMINATOR)); \
+	return ((t_u##BITS)(number._ / FIXED_DENOMINATOR)); \
 } \
 
 DEFINEFUNC_UINT_FROMFIXED(8, 16)
@@ -239,8 +239,8 @@ _INLINE() \
 t_s##BITS	S##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (S##BITS##_ERROR); \
-	if (Q##FROM##_IsInf(number))	return (S##BITS##_MAX * (t_s##BITS)Q##FROM##_Sgn(number)); \
-	return ((t_s##BITS)(number / FIXED_DENOMINATOR)); \
+	if (Q##FROM##_IsInf(number))	return (S##BITS##_MAX * (t_s##BITS)S##FROM##_Sgn(number._)); \
+	return ((t_s##BITS)(number._ / FIXED_DENOMINATOR)); \
 } \
 
 DEFINEFUNC_SINT_FROMFIXED(8, 16)

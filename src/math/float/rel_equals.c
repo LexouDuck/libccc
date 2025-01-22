@@ -10,9 +10,9 @@
 
 #define DEFINEFUNC_FLOAT_EQUALS(BITS) \
 _INLINE() \
-t_bool	F##BITS##_Equals(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_Equals(t_f##BITS x, t_f##BITS y) \
 { \
-	return (a == b); \
+	return (x == y); \
 } \
 
 DEFINEFUNC_FLOAT_EQUALS(32)
@@ -28,11 +28,11 @@ DEFINEFUNC_FLOAT_EQUALS(128)
 
 #define DEFINEFUNC_FLOAT_APPROX(BITS) \
 _INLINE() \
-t_bool	F##BITS##_EqualsApprox(t_f##BITS a, t_f##BITS b) \
+t_bool	F##BITS##_EqualsApprox(t_f##BITS x, t_f##BITS y) \
 { \
-	t_f##BITS abs_a = F##BITS##_Abs(a); \
-	t_f##BITS abs_b = F##BITS##_Abs(b); \
-	return (F##BITS##_Abs(a - b) <= F##BITS##_Max(abs_a, abs_b) * FLOAT_APPROX); \
+	t_f##BITS abs_a = F##BITS##_Abs(x); \
+	t_f##BITS abs_b = F##BITS##_Abs(y); \
+	return (F##BITS##_Abs(x - y) <= F##BITS##_Max(abs_a, abs_b) * FLOAT_APPROX); \
 } \
 
 DEFINEFUNC_FLOAT_APPROX(32)

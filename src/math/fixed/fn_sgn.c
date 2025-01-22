@@ -12,9 +12,9 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Sgn(t_q##BITS a) \
 { \
-	if CCCERROR((a == Q##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((a._ == Q##BITS##_ERROR._), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (a == 0 ? 0 : (a < 0 ? -1 : +1)); \
+	return (t_q##BITS){ (t_s##BITS)(a._ == 0 ? 0 : (a._ < 0 ? -1 : +1)) }; \
 } \
 
 DEFINEFUNC_FIXED_SGN(16)

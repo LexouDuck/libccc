@@ -11,9 +11,9 @@ MATH_DECL_REALFUNCTION(Add, fadd)
 #else
 #define DEFINEFUNC_FLOAT_ADD(BITS) \
 _INLINE() \
-t_f##BITS	F##BITS##_Add(t_f##BITS a, t_f##BITS b) \
+t_f##BITS	F##BITS##_Add(t_f##BITS x, t_f##BITS y) \
 { \
-	return (a + b); \
+	return (x + y); \
 } \
 
 DEFINEFUNC_FLOAT_ADD(32)

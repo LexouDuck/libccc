@@ -12,7 +12,7 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Trunc(t_q##BITS number) \
 { \
-	return (number & ~Q##BITS##_FractionPart(number)); \
+	return (t_q##BITS){ (t_s##BITS)(number._ & ~Q##BITS##_FractionPart(number)._) }; \
 } \
 
 DEFINEFUNC_FIXED_TRUNC(16)
