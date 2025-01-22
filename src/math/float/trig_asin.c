@@ -77,7 +77,11 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 	return ((0.8047926 * x * x + 0.766) * x); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_ARCSIN(16)
+#endif
 DEFINEFUNC_FLOAT_ARCSIN(32)
+
 DEFINEFUNC_FLOAT_ARCSIN(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_ARCSIN(80)
@@ -140,14 +144,14 @@ t_f32	F32_ArcSin(t_f32 x)
 	t_u32 hx,ix;
 
 	GET_F32_WORD(hx, x);
-	ix = hx & 0x7fffffff;
-	if (ix >= 0x3f800000)
+	ix = hx & 0x7FFFFFFF;
+	if (ix >= 0x3F800000)
 	{  /* |x| >= 1 */
-		if (ix == 0x3f800000)  /* |x| == 1 */
+		if (ix == 0x3F800000)  /* |x| == 1 */
 			return x*pio2 + 0x1p-120f;  /* asin(+-1) = +-pi/2 with inexact */
 		return 0/(x-x);  /* asin(|x|>1) is NaN */
 	}
-	if (ix < 0x3f000000)
+	if (ix < 0x3F000000)
 	{  /* |x| < 0.5 */
 		/* if 0x1p-126 <= |x| < 0x1p-12, avoid raising underflow */
 		if (ix < 0x39800000 && ix >= 0x00800000)
@@ -171,22 +175,22 @@ t_f64	F64_ArcSin(t_f64 x)
 	t_u32 hx,ix;
 
 	GET_F64_WORD_HI(hx, x);
-	ix = hx & 0x7fffffff;
+	ix = hx & 0x7FFFFFFF;
 	/* |x| >= 1 or nan */
-	if (ix >= 0x3ff00000)
+	if (ix >= 0x3FF00000)
 	{
 		t_u32 lx;
 		GET_F64_WORD_LO(lx, x);
-		if (((ix - 0x3ff00000) | lx) == 0)
+		if (((ix - 0x3FF00000) | lx) == 0)
 			/* asin(1) = +-pi/2 with inexact */
 			return x*pio2_hi + 0x1p-120f;
 		return 0/(x-x);
 	}
 	/* |x| < 0.5 */
-	if (ix < 0x3fe00000)
+	if (ix < 0x3FE00000)
 	{
 		/* if 0x1p-1022 <= |x| < 0x1p-26, avoid raising underflow */
-		if (ix < 0x3e500000 && ix >= 0x00100000)
+		if (ix < 0x3E500000 && ix >= 0x00100000)
 			return x;
 		return x + x*__invtrig_polynomial_f64(x*x);
 	}
@@ -194,7 +198,7 @@ t_f64	F64_ArcSin(t_f64 x)
 	z = (1 - F64_Abs(x))*0.5;
 	s = F64_Root2(z);
 	r = __invtrig_polynomial_f64(z);
-	if (ix >= 0x3fef3333)
+	if (ix >= 0x3FEF3333)
 	{  /* if |x| > 0.975 */
 		x = pio2_hi-(2*(s+s*r)-pio2_lo);
 	}
@@ -217,19 +221,19 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 { \
 	union ldshape u = {x}; \
 	t_f##BITS z, r, s; \
-	t_u16 e = u.i.se & 0x7fff; \
+	t_u16 e = u.i.se & 0x7FFF; \
 	int sign = u.i.se >> 15; \
  \
-	if (e >= 0x3fff) \
+	if (e >= 0x3FFF) \
 	{   /* |x| >= 1 or nan */ \
 		/* asin(+-1)=+-pi/2 with inexact */ \
 		if (x == 1 || x == -1) \
 			return x*pio2_hi + 0x1p-120f; \
 		return 0/(x-x); \
 	} \
-	if (e < 0x3fff - 1) \
+	if (e < 0x3FFF - 1) \
 	{  /* |x| < 0.5 */ \
-		if (e < 0x3fff - (LDBL_MANT_DIG+1)/2) \
+		if (e < 0x3FFF - (LDBL_MANT_DIG+1)/2) \
 		{ \
 			/* return x with inexact if x!=0 */ \
 			FORCE_EVAL(x + 0x1p120f); \
@@ -258,7 +262,7 @@ t_f##BITS	F##BITS##_ArcSin(t_f##BITS x) \
 } \
 
 #if LIBCONFIG_USE_FLOAT8
-#define CLOSETO1(u)	(u.i.m>>56 >= 0xf7)
+#define CLOSETO1(u)	(u.i.m>>56 >= 0xF7)
 #define CLEARBOTTOM(u)	(u.i.m &= -1ULL << 32)
 static const t_f80 pio2_hi = +1.57079632679489661926L;
 static const t_f80 pio2_lo = -2.50827880633416601173e-20L;
@@ -266,7 +270,7 @@ DEFINEFUNC_FLOAT_ARCSIN(80)
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-#define CLOSETO1(u)	(u.i.top >= 0xee00)
+#define CLOSETO1(u)	(u.i.top >= 0xEE00)
 #define CLEARBOTTOM(u)	(u.i.lo = 0)
 static const t_f128 pio2_hi = +1.57079632679489661923132169163975140L;
 static const t_f128 pio2_lo = +4.33590506506189051239852201302167613e-35L;

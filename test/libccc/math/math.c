@@ -22,7 +22,7 @@ void	print_math_title(char const * title)
 
 
 #define SF_FORMAT	":\t%s%g"
-#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "% -+9.6g" ANSI_RESET
+#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "%-+9.6g" ANSI_RESET
 
 
 
@@ -237,18 +237,18 @@ int	test_math_realoperator_f##BITS( \
 
 
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINETEST_MATH_FLOAT(16)
+#endif
 #if TRUE
 DEFINETEST_MATH_FLOAT(32)
 #endif
-
 #if TRUE
 DEFINETEST_MATH_FLOAT(64)
 #endif
-
 #if LIBCONFIG_USE_FLOAT80
 DEFINETEST_MATH_FLOAT(80)
 #endif
-
 #if LIBCONFIG_USE_FLOAT128
 DEFINETEST_MATH_FLOAT(128)
 #endif
@@ -260,6 +260,22 @@ DEFINETEST_MATH_FLOAT(128)
 
 #elif LIBCONFIG_USE_FLOAT80
 
+	#if LIBCONFIG_USE_FLOAT16
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f80  ("(f80) "#NAME, &CNAME##l, &c_f80 ##NAME, 0.00001,  AMOUNT, (s_f80_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG1_MIN,ARG1_MAX, (s_f16_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f80  ("(f80) "#NAME, &CNAME##l, &c_f80 ##NAME, 0.00001,  AMOUNT, (s_f80_interval)ARG1_MIN,ARG1_MAX, (s_f80_interval)ARG2_MIN,ARG2_MAX); \
+
+	#else
+
 #define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
 	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
 	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
@@ -270,7 +286,25 @@ DEFINETEST_MATH_FLOAT(128)
 	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
 	test_math_realoperator_f80  ("(f80) "#NAME, &CNAME##l, &c_f80 ##NAME, 0.00001,  AMOUNT, (s_f80_interval)ARG1_MIN,ARG1_MAX, (s_f80_interval)ARG2_MIN,ARG2_MAX); \
 
+	#endif
+
 #elif LIBCONFIG_USE_FLOAT128
+
+	#if LIBCONFIG_USE_FLOAT16
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f128 ("(f128)"#NAME, &CNAME##l, &c_f128##NAME, 0.000001, AMOUNT, (s_f128_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG1_MIN,ARG1_MAX, (s_f16_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f128 ("(f128)"#NAME, &CNAME##l, &c_f128##NAME, 0.000001, AMOUNT, (s_f128_interval)ARG1_MIN,ARG1_MAX, (s_f128_interval)ARG2_MIN,ARG2_MAX); \
+
+	#else
 
 #define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
 	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
@@ -282,7 +316,23 @@ DEFINETEST_MATH_FLOAT(128)
 	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
 	test_math_realoperator_f128 ("(f128)"#NAME, &CNAME##l, &c_f128##NAME, 0.000001, AMOUNT, (s_f128_interval)ARG1_MIN,ARG1_MAX, (s_f128_interval)ARG2_MIN,ARG2_MAX); \
 
+	#endif
+
 #else
+
+	#if LIBCONFIG_USE_FLOAT16
+
+#define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
+	test_math_realfunction_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
+	test_math_realfunction_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG_MIN,ARG_MAX); \
+
+#define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
+	test_math_realoperator_f16  ("(f16) "#NAME, &CNAME##f, &c_f16 ##NAME, 0.01,     AMOUNT, (s_f16_interval)ARG1_MIN,ARG1_MAX, (s_f16_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
+	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+
+	#else
 
 #define RUNTESTS_MATH_FUNCTION(NAME, CNAME, AMOUNT, ARG_MIN,ARG_MAX) \
 	test_math_realfunction_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG_MIN,ARG_MAX); \
@@ -291,6 +341,8 @@ DEFINETEST_MATH_FLOAT(128)
 #define RUNTESTS_MATH_OPERATOR(NAME, CNAME, AMOUNT, ARG1_MIN,ARG1_MAX, ARG2_MIN,ARG2_MAX) \
 	test_math_realoperator_f32  ("(f32) "#NAME, &CNAME##f, &c_f32 ##NAME, 0.001,    AMOUNT, (s_f32_interval)ARG1_MIN,ARG1_MAX, (s_f32_interval)ARG2_MIN,ARG2_MAX); \
 	test_math_realoperator_f64  ("(f64) "#NAME, &CNAME   , &c_f64 ##NAME, 0.0001,   AMOUNT, (s_f64_interval)ARG1_MIN,ARG1_MAX, (s_f64_interval)ARG2_MIN,ARG2_MAX); \
+
+	#endif
 
 #endif
 

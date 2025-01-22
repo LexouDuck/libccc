@@ -17,7 +17,11 @@ t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
 	return (F##BITS##_Root2(x * x + y * y)); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_HYPOT(16)
+#endif
 DEFINEFUNC_FLOAT_HYPOT(32)
+
 DEFINEFUNC_FLOAT_HYPOT(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_HYPOT(80)
@@ -98,7 +102,11 @@ t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
 	return (z * F##BITS##_Root2(ly + lx + hy + hx)); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_HYPOT(16, 0x1p10,     0x1p-10,       7,    7, (0x1p14f+1))
+#endif
 DEFINEFUNC_FLOAT_HYPOT(32, 0x1p90,     0x1p-90,      60,   60, (0x1p27f+1))
+
 DEFINEFUNC_FLOAT_HYPOT(64, 0x1p700,    0x1p-700,    510,  450, (0x1p32+1))
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_HYPOT(80, 0x1p10000,  0x1p-10000, 8000, 8000, (0x1p32L+1))

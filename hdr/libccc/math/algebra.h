@@ -32,6 +32,13 @@ HEADER_CPP
 ||                                 Definitions                                ||
 \*============================================================================*/
 
+
+
+//! TODO document this
+#define SAMPLE_NB		(1024)
+
+
+
 /*! @endgroup */
 HEADER_END
 #endif

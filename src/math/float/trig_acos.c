@@ -36,7 +36,11 @@ t_f##BITS	F##BITS##_ArcCos(t_f##BITS x) \
 	return ((-0.8047926 * x * x - 0.766) * x + PI_HALF); // (-0.69813170079773212 * x * x - 0.87266462599716477)
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_ARCCOS(16)
+#endif
 DEFINEFUNC_FLOAT_ARCCOS(32)
+
 DEFINEFUNC_FLOAT_ARCCOS(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_ARCCOS(80)
@@ -88,17 +92,17 @@ DEFINEFUNC_FLOAT_ARCCOS(128)
 
 t_f32	F32_ArcCos(t_f32 x)
 {
-	static const t_f32 pio2_hi = 1.5707962513e+00; /* 0x3fc90fda */
-	static const t_f32 pio2_lo = 7.5497894159e-08; /* 0x33a22168 */
+	static const t_f32 pio2_hi = 1.5707962513e+00; /* 0x3FC90FDA */
+	static const t_f32 pio2_lo = 7.5497894159e-08; /* 0x33A22168 */
 	t_f32 z,w,s,c,df;
 	t_u32 hx,ix;
 
 	GET_F32_WORD(hx, x);
-	ix = hx & 0x7fffffff;
+	ix = hx & 0x7FFFFFFF;
 	/* |x| >= 1 or nan */
-	if (ix >= 0x3f800000)
+	if (ix >= 0x3F800000)
 	{
-		if (ix == 0x3f800000)
+		if (ix == 0x3F800000)
 		{
 			if (hx >> 31)
 				return 2*pio2_hi + 0x1p-120f;
@@ -107,7 +111,7 @@ t_f32	F32_ArcCos(t_f32 x)
 		return 0/(x-x);
 	}
 	/* |x| < 0.5 */
-	if (ix < 0x3f000000)
+	if (ix < 0x3F000000)
 	{
 		if (ix <= 0x32800000) /* |x| < 2**-26 */
 			return pio2_hi + 0x1p-120f;
@@ -125,7 +129,7 @@ t_f32	F32_ArcCos(t_f32 x)
 	z = (1-x)*0.5f;
 	s = F32_Root2(z);
 	GET_F32_WORD(hx,s);
-	SET_F32_WORD(df,hx&0xfffff000);
+	SET_F32_WORD(df,hx&0xFFFFF000);
 	c = (z-df*df)/(s+df);
 	w = __invtrig_polynomial_f32(z)*s+c;
 	return 2*(df+w);
@@ -139,14 +143,14 @@ t_f64	F64_ArcCos(t_f64 x)
 	t_u32 hx,ix;
 
 	GET_F64_WORD_HI(hx, x);
-	ix = hx & 0x7fffffff;
+	ix = hx & 0x7FFFFFFF;
 	/* |x| >= 1 or nan */
-	if (ix >= 0x3ff00000)
+	if (ix >= 0x3FF00000)
 	{
 		t_u32 lx;
 
 		GET_F64_WORD_LO(lx,x);
-		if (((ix - 0x3ff00000) | lx) == 0)
+		if (((ix - 0x3FF00000) | lx) == 0)
 		{
 			/* acos(1)=0, acos(-1)=pi */
 			if (hx >> 31)
@@ -156,9 +160,9 @@ t_f64	F64_ArcCos(t_f64 x)
 		return 0/(x-x);
 	}
 	/* |x| < 0.5 */
-	if (ix < 0x3fe00000)
+	if (ix < 0x3FE00000)
 	{
-		if (ix <= 0x3c600000)  /* |x| < 2**-57 */
+		if (ix <= 0x3C600000)  /* |x| < 2**-57 */
 			return pio2_hi + 0x1p-120f;
 		return pio2_hi - (x - (pio2_lo-x*__invtrig_polynomial_f64(x*x)));
 	}
@@ -185,10 +189,10 @@ t_f##BITS	F##BITS##_ArcCos(t_f##BITS x) \
 { \
 	union ldshape u = {x}; \
 	t_f##BITS z, s, c, f; \
-	t_u16 e = u.i.se & 0x7fff; \
+	t_u16 e = u.i.se & 0x7FFF; \
  \
 	/* |x| >= 1 or nan */ \
-	if (e >= 0x3fff) \
+	if (e >= 0x3FFF) \
 	{ \
 		if (x == 1) \
 			return 0; \
@@ -197,9 +201,9 @@ t_f##BITS	F##BITS##_ArcCos(t_f##BITS x) \
 		return 0/(x-x); \
 	} \
 	/* |x| < 0.5 */ \
-	if (e < 0x3fff - 1) \
+	if (e < 0x3FFF - 1) \
 	{ \
-		if (e < 0x3fff - LDBL_MANT_DIG - 1) \
+		if (e < 0x3FFF - LDBL_MANT_DIG - 1) \
 			return pio2_hi + 0x1p-120f; \
 		return pio2_hi - (__invtrig_polynomial_f##BITS(x*x)*x - pio2_lo + x); \
 	} \

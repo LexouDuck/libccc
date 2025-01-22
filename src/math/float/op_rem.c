@@ -8,7 +8,11 @@
 
 
 #if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C99__)
+#if LIBCONFIG_USE_FLOAT16
+_INLINE() t_f16   F16_RemQuo  (t_f16  x, t_f16  y, t_sint* quotient)	{ int tmp;	t_f16  result = __builtin_remquo  (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+#endif
 _INLINE() t_f32   F32_RemQuo  (t_f32  x, t_f32  y, t_sint* quotient)	{ int tmp;	t_f32  result = __builtin_remquof (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
+
 _INLINE() t_f64   F64_RemQuo  (t_f64  x, t_f64  y, t_sint* quotient)	{ int tmp;	t_f64  result = __builtin_remquo  (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }
 #if LIBCONFIG_USE_FLOAT80
 _INLINE() t_f80   F80_RemQuo  (t_f80  x, t_f80  y, t_sint* quotient)	{ int tmp;	t_f80  result = __builtin_remquol (x, y, &tmp);	*quotient = (t_sint)tmp;	return (result); }

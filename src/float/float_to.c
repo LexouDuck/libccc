@@ -8,7 +8,11 @@
 
 #if LIBCONFIG_USE_STD_MATH
 //MATH_DECL_OPERATOR_ROP(t_sint*, SplitExp, frexp)
+#if LIBCONFIG_USE_FLOAT16
+_INLINE() t_f16   F16_SplitExp  (t_f16  a, t_sint* b)   { int tmp;	t_f16  result = __builtin_frexpl (a, &tmp);	*b = (t_sint)tmp;	return (result); }
+#endif
 _INLINE() t_f32   F32_SplitExp  (t_f32  a, t_sint* b)   { int tmp;	t_f32  result = __builtin_frexpf (a, &tmp);	*b = (t_sint)tmp;	return (result); }
+
 _INLINE() t_f64   F64_SplitExp  (t_f64  a, t_sint* b)   { int tmp;	t_f64  result = __builtin_frexp  (a, &tmp);	*b = (t_sint)tmp;	return (result); }
 #if LIBCONFIG_USE_FLOAT80
 _INLINE() t_f80   F80_SplitExp  (t_f80  a, t_sint* b)   { int tmp;	t_f80  result = __builtin_frexpl (a, &tmp);	*b = (t_sint)tmp;	return (result); }
@@ -43,7 +47,11 @@ t_f##BITS	F##BITS##_SplitExp(t_f##BITS x, t_sint* exponent) \
 	return (y.value_float); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_SPLITEXT(16)
+#endif
 DEFINEFUNC_FLOAT_SPLITEXT(32)
+
 DEFINEFUNC_FLOAT_SPLITEXT(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_SPLITEXT(80)
@@ -97,7 +105,11 @@ t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \
 	return (x - u.value_float); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_SPLITINT(16)
+#endif
 DEFINEFUNC_FLOAT_SPLITINT(32)
+
 DEFINEFUNC_FLOAT_SPLITINT(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_SPLITINT(80)
@@ -125,7 +137,11 @@ t_f##BITS F##BITS##_CopySign(t_f##BITS x, t_f##BITS y) \
 	return (cast_x.value_float); \
 }
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_COPYSIGN(16)
+#endif
 DEFINEFUNC_FLOAT_COPYSIGN(32)
+
 DEFINEFUNC_FLOAT_COPYSIGN(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_COPYSIGN(80)

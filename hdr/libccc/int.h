@@ -747,6 +747,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 		t_q64:	 FUNCTYPE##_FromQ64, \
 		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f16:	 FUNCTYPE##_FromF16, \
 		t_f32:	 FUNCTYPE##_FromF32, \
 		t_f64:	 FUNCTYPE##_FromF64, \
 		t_f80:	 FUNCTYPE##_FromF80, \
@@ -1043,6 +1044,8 @@ t_u128					U128_FromQ128(t_q128 number);
 //!@{
 #define					UInt_FromFloat	CONCAT(UINT_TYPE,CONCAT(_From,FLOAT_TYPE))
 #define c_ftou			UInt_FromFloat
+#define					UInt_FromF16	CONCAT(UINT_TYPE,_FromF16)
+#define c_f16tou		UInt_FromF16
 #define					UInt_FromF32	CONCAT(UINT_TYPE,_FromF32)
 #define c_f32tou		UInt_FromF32
 #define					UInt_FromF64	CONCAT(UINT_TYPE,_FromF64)
@@ -1056,8 +1059,13 @@ t_u128					U128_FromQ128(t_q128 number);
 #define c_f128tou		UInt_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_u8					U8_FromF16(t_f16 number);
+#define c_f16tou8		U8_FromF16
+#endif
 t_u8					U8_FromF32(t_f32 number);
 #define c_f32tou8		U8_FromF32
+
 t_u8					U8_FromF64(t_f64 number);
 #define c_f64tou8		U8_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1069,8 +1077,13 @@ t_u8					U8_FromF128(t_f128 number);
 #define c_f128tou8		U8_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_u16					U16_FromF16(t_f16 number);
+#define c_f16tou16		U16_FromF16
+#endif
 t_u16					U16_FromF32(t_f32 number);
 #define c_f32tou16		U16_FromF32
+
 t_u16					U16_FromF64(t_f64 number);
 #define c_f64tou16		U16_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1082,8 +1095,13 @@ t_u16					U16_FromF128(t_f128 number);
 #define c_f128tou16		U16_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_u32					U32_FromF16(t_f16 number);
+#define c_f16tou32		U32_FromF16
+#endif
 t_u32					U32_FromF32(t_f32 number);
 #define c_f32tou32		U32_FromF32
+
 t_u32					U32_FromF64(t_f64 number);
 #define c_f64tou32		U32_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1095,8 +1113,13 @@ t_u32					U32_FromF128(t_f128 number);
 #define c_f128tou32		U32_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_u64					U64_FromF16(t_f16 number);
+#define c_f16tou64		U64_FromF16
+#endif
 t_u64					U64_FromF32(t_f32 number);
 #define c_f32tou64		U64_FromF32
+
 t_u64					U64_FromF64(t_f64 number);
 #define c_f64tou64		U64_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1109,8 +1132,13 @@ t_u64					U64_FromF128(t_f128 number);
 #endif
 
 #if LIBCONFIG_USE_INT128
+#if LIBCONFIG_USE_FLOAT16
+t_u128					U128_FromF16(t_f16 number);
+#define c_f16tou128		U128_FromF16
+#endif
 t_u128					U128_FromF32(t_f32 number);
 #define c_f32tou128		U128_FromF32
+
 t_u128					U128_FromF64(t_f64 number);
 #define c_f64tou128		U128_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1148,6 +1176,7 @@ t_u128					U128_FromF128(t_f128 number);
 		t_q64:	 FUNCTYPE##_FromQ64, \
 		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f16:	 FUNCTYPE##_FromF16, \
 		t_f32:	 FUNCTYPE##_FromF32, \
 		t_f64:	 FUNCTYPE##_FromF64, \
 		t_f80:	 FUNCTYPE##_FromF80, \
@@ -1444,6 +1473,8 @@ t_s128					S128_FromQ128(t_q128 number);
 //!@{
 #define					SInt_FromFloat	CONCAT(SINT_TYPE,CONCAT(_From,FLOAT_TYPE))
 #define c_ftos			SInt_FromFloat
+#define					SInt_FromF16	CONCAT(SINT_TYPE,_FromF16)
+#define c_f16tos		SInt_FromF16
 #define					SInt_FromF32	CONCAT(SINT_TYPE,_FromF32)
 #define c_f32tos		SInt_FromF32
 #define					SInt_FromF64	CONCAT(SINT_TYPE,_FromF64)
@@ -1457,8 +1488,13 @@ t_s128					S128_FromQ128(t_q128 number);
 #define c_f128tos		SInt_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_s8					S8_FromF16(t_f16 number);
+#define c_f16tos8		S8_FromF16
+#endif
 t_s8					S8_FromF32(t_f32 number);
 #define c_f32tos8		S8_FromF32
+
 t_s8					S8_FromF64(t_f64 number);
 #define c_f64tos8		S8_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1470,8 +1506,13 @@ t_s8					S8_FromF128(t_f128 number);
 #define c_f128tos8		S8_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_s16					S16_FromF16(t_f16 number);
+#define c_f16tos16		S16_FromF16
+#endif
 t_s16					S16_FromF32(t_f32 number);
 #define c_f32tos16		S16_FromF32
+
 t_s16					S16_FromF64(t_f64 number);
 #define c_f64tos16		S16_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1483,8 +1524,13 @@ t_s16					S16_FromF128(t_f128 number);
 #define c_f128tos16		S16_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_s32					S32_FromF16(t_f16 number);
+#define c_f16tos32		S32_FromF16
+#endif
 t_s32					S32_FromF32(t_f32 number);
 #define c_f32tos32		S32_FromF32
+
 t_s32					S32_FromF64(t_f64 number);
 #define c_f64tos32		S32_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1496,8 +1542,13 @@ t_s32					S32_FromF128(t_f128 number);
 #define c_f128tos32		S32_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_s64					S64_FromF16(t_f16 number);
+#define c_f16tos64		S64_FromF16
+#endif
 t_s64					S64_FromF32(t_f32 number);
 #define c_f32tos64		S64_FromF32
+
 t_s64					S64_FromF64(t_f64 number);
 #define c_f64tos64		S64_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -1509,8 +1560,13 @@ t_s64					S64_FromF128(t_f128 number);
 #define c_f128tos64		S64_FromF128
 #endif
 #if LIBCONFIG_USE_INT128
+#if LIBCONFIG_USE_FLOAT16
+t_s128					S128_FromF16(t_f16 number);
+#define c_f16tos128		S128_FromF16
+#endif
 t_s128					S128_FromF32(t_f32 number);
 #define c_f32tos128		S128_FromF32
+
 t_s128					S128_FromF64(t_f64 number);
 #define c_f64tos128		S128_FromF64
 #if LIBCONFIG_USE_FLOAT80

@@ -978,35 +978,43 @@ double	stat_moving_average_weighted_##NAME(const TYPE * values, unsigned int len
 
 #endif
 
-DEFINEFUNCTIONS_STATS(t_uint,  uint , UInt , UINT , (LIBCONFIG_UINT_NAN  ? (value ==  UINT_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_u8,    u8   , U8   , U8   , (LIBCONFIG_UINT_NAN  ? (value ==    U8_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_u16,   u16  , U16  , U16  , (LIBCONFIG_UINT_NAN  ? (value ==   U16_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_u32,   u32  , U32  , U32  , (LIBCONFIG_UINT_NAN  ? (value ==   U32_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_u64,   u64  , U64  , U64  , (LIBCONFIG_UINT_NAN  ? (value ==   U64_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_uint , uint , UInt , UINT , (LIBCONFIG_UINT_NAN  ? (value ==  UINT_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u8   , u8   , U8   , U8   , (LIBCONFIG_UINT_NAN  ? (value ==    U8_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u16  , u16  , U16  , U16  , (LIBCONFIG_UINT_NAN  ? (value ==   U16_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u32  , u32  , U32  , U32  , (LIBCONFIG_UINT_NAN  ? (value ==   U32_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u64  , u64  , U64  , U64  , (LIBCONFIG_UINT_NAN  ? (value ==   U64_ERROR) : FALSE), )
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(t_u128,  u128 , U128 , U128 , (LIBCONFIG_UINT_NAN  ? (value ==  U128_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_u128 , u128 , U128 , U128 , (LIBCONFIG_UINT_NAN  ? (value ==  U128_ERROR) : FALSE), )
 #endif
-DEFINEFUNCTIONS_STATS(t_sint,  sint , SInt , SINT , (LIBCONFIG_SINT_NAN  ? (value ==  SINT_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_s8,    s8   , S8   , S8   , (LIBCONFIG_SINT_NAN  ? (value ==    S8_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_s16,   s16  , S16  , S16  , (LIBCONFIG_SINT_NAN  ? (value ==   S16_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_s32,   s32  , S32  , S32  , (LIBCONFIG_SINT_NAN  ? (value ==   S32_ERROR) : FALSE), )
-DEFINEFUNCTIONS_STATS(t_s64,   s64  , S64  , S64  , (LIBCONFIG_SINT_NAN  ? (value ==   S64_ERROR) : FALSE), )
+
+DEFINEFUNCTIONS_STATS(t_sint , sint , SInt , SINT , (LIBCONFIG_SINT_NAN  ? (value ==  SINT_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s8   , s8   , S8   , S8   , (LIBCONFIG_SINT_NAN  ? (value ==    S8_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s16  , s16  , S16  , S16  , (LIBCONFIG_SINT_NAN  ? (value ==   S16_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s32  , s32  , S32  , S32  , (LIBCONFIG_SINT_NAN  ? (value ==   S32_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s64  , s64  , S64  , S64  , (LIBCONFIG_SINT_NAN  ? (value ==   S64_ERROR) : FALSE), )
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(t_s128,  s128 , S128 , S128 , (LIBCONFIG_SINT_NAN  ? (value ==  S128_ERROR) : FALSE), )
+DEFINEFUNCTIONS_STATS(t_s128 , s128 , S128 , S128 , (LIBCONFIG_SINT_NAN  ? (value ==  S128_ERROR) : FALSE), )
 #endif
+
 DEFINEFUNCTIONS_STATS(t_fixed, fixed, Fixed, FIXED, (LIBCONFIG_FIXED_NAN ? (value._ == FIXED_ERROR._) : FALSE), ._)
-DEFINEFUNCTIONS_STATS(t_q16,   q16  , Q16  , Q16  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q16_ERROR._) : FALSE), ._)
-DEFINEFUNCTIONS_STATS(t_q32,   q32  , Q32  , Q32  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q32_ERROR._) : FALSE), ._)
-DEFINEFUNCTIONS_STATS(t_q64,   q64  , Q64  , Q64  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q64_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q8   , q8   , Q8   , Q8   , (LIBCONFIG_FIXED_NAN ? (value._ ==    Q8_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q16  , q16  , Q16  , Q16  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q16_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q32  , q32  , Q32  , Q32  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q32_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q64  , q64  , Q64  , Q64  , (LIBCONFIG_FIXED_NAN ? (value._ ==   Q64_ERROR._) : FALSE), ._)
 #if LIBCONFIG_USE_INT128
-DEFINEFUNCTIONS_STATS(t_q128,  q128 , Q128 , Q128 , (LIBCONFIG_FIXED_NAN ? (value._ ==  Q128_ERROR._) : FALSE), ._)
+DEFINEFUNCTIONS_STATS(t_q128 , q128 , Q128 , Q128 , (LIBCONFIG_FIXED_NAN ? (value._ ==  Q128_ERROR._) : FALSE), ._)
 #endif
+
 DEFINEFUNCTIONS_STATS(t_float, float, Float, FLOAT, !isnormal(value), )
-DEFINEFUNCTIONS_STATS(t_f32,   f32  , F32  , F32  , !isnormal(value), )
-DEFINEFUNCTIONS_STATS(t_f64,   f64  , F64  , F64  , !isnormal(value), )
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNCTIONS_STATS(t_f16  , f16  , F16  , F16  , !isnormal(value), )
+#endif
+DEFINEFUNCTIONS_STATS(t_f32  , f32  , F32  , F32  , !isnormal(value), )
+
+DEFINEFUNCTIONS_STATS(t_f64  , f64  , F64  , F64  , !isnormal(value), )
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNCTIONS_STATS(t_f80,   f80  , F80  , F80  , !isnormal(value), )
+DEFINEFUNCTIONS_STATS(t_f80  , f80  , F80  , F80  , !isnormal(value), )
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNCTIONS_STATS(t_f128,  f128 , F128 , F128 , !isnormal(value), )
+DEFINEFUNCTIONS_STATS(t_f128 , f128 , F128 , F128 , !isnormal(value), )
 #endif

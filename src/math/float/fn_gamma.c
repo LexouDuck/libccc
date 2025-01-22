@@ -158,6 +158,13 @@ t_f64	S(t_f64 x)
 	return (num / den);
 }
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16	F16_Gamma(t_f16 x)
+{
+	return (t_f16)F64_Gamma((t_f64)x);
+}
+#endif
+
 t_f32	F32_Gamma(t_f32 x)
 {
 	return (t_f32)F64_Gamma((t_f64)x);

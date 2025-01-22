@@ -39,6 +39,26 @@ HEADER_CPP
 ||                                 Definitions                                ||
 \*============================================================================*/
 
+#if LIBCONFIG_USE_FLOAT16
+//!@doc Primitive type: 16-bit 'half precision' IEEE-754 floating-point numbers (only certain platforms)
+/*!
+**	@isostd{C,https://en.cppreference.com/w/cpp/types/floating-point}
+**
+**	Learn more: https://en.wikipedia.org/wiki/Quadruple-precision_floating-point_format
+**
+**	This floating-point type consists of:
+**	- 1 sign bit
+**	- 5 exponent bits
+**	- 10 mantissa bits
+*/
+//!@{
+typedef _Float16	t_f16;
+TYPEDEF_ALIAS(		t_f16,	FLOAT_16,	PRIMITIVE)
+//!@}
+#elif (LIBCONFIG_FLOAT_BITS == 16)
+#error "Cannot set default float to 16-bit half-precision, unavailable on this platform"
+#endif
+
 //!@doc Primitive type: 32-bit 'single precision' IEEE-754 floating-point numbers
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/language/arithmetic_types#Real_floating_types}
@@ -48,7 +68,7 @@ HEADER_CPP
 **	This floating-point type consists of:
 **	- 1 sign bit
 **	- 8 exponent bits
-**	- 23 fraction bits
+**	- 23 mantissa bits
 */
 //!@{
 typedef float	t_f32;
@@ -64,7 +84,7 @@ TYPEDEF_ALIAS(	t_f32,	FLOAT_32,	PRIMITIVE)
 **	This floating-point type consists of:
 **	- 1 sign bit
 **	- 11 exponent bits
-**	- 52 fraction bits
+**	- 52 mantissa bits
 */
 //!@{
 typedef double	t_f64;
@@ -90,7 +110,7 @@ TYPEDEF_ALIAS(	t_f64,	FLOAT_64,	PRIMITIVE)
 **	- 15 exponent bits
 **	- [16 padding bits, if 96-bit]
 **	- 1 integer bit
-**	- 63 fraction bits
+**	- 63 mantissa bits
 */
 //!@{
 typedef _Float80	t_f80;
@@ -101,7 +121,7 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-//!@doc Primitive type: 32-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
+//!@doc Primitive type: 128-bit 'quadruple precision' IEEE-754 floating-point numbers (only certain platforms)
 /*!
 **	@isostd{C,https://gcc.gnu.org/onlinedocs/gcc/Floating-Types.html}
 **
@@ -110,7 +130,7 @@ TYPEDEF_ALIAS(		t_f80,	FLOAT_80,	PRIMITIVE)
 **	This floating-point type consists of:
 **	- 1 sign bit
 **	- 15 exponent bits
-**	- 112 fraction bits
+**	- 112 mantissa bits
 */
 //!@{
 typedef _Float128	t_f128;
@@ -187,10 +207,21 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
+//f16
+#if LIBCONFIG_USE_FLOAT16
+#define AS_U16(f)	((union { t_f16 _f; t_u16 _i; }){f})._i
+#define AS_F16(i)	((union { t_u16 _i; t_f16 _f; }){i})._f
+#else
+#define AS_U16(f)	((t_u16)0)
+#define AS_F16(i)	((t_f16)0)
+#endif
+//f32
 #define AS_U32(f)	((union { t_f32  _f; t_u32  _i; }){f})._i
 #define AS_F32(i)	((union { t_u32  _i; t_f32  _f; }){i})._f
+//f64
 #define AS_U64(f)	((union { t_f64  _f; t_u64  _i; }){f})._i
 #define AS_F64(i)	((union { t_u64  _i; t_f64  _f; }){i})._f
+//f80
 #if LIBCONFIG_USE_FLOAT80
 #if LIBCONFIG_USE_INT128
 #define AS_U80(f)	((union { t_f80  _f; t_u128 _i; }){f})._i
@@ -203,6 +234,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define AS_U80(f)	((t_u128)0)
 #define AS_F80(i)	((t_f128)0)
 #endif
+//f128
 #if LIBCONFIG_USE_FLOAT128
 #if LIBCONFIG_USE_INT128
 #define AS_U128(f)	((union { t_f128 _f; t_u128 _i; }){f})._i
@@ -251,11 +283,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/HUGE_VAL}
 **	@isostd{C,https://en.cppreference.com/w/c/types/limits#Limits_of_floating_point_types}
 */
-
-
-
-//! TODO document this
-#define SAMPLE_NB		(1024)
 
 
 
@@ -308,9 +335,32 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 // TODO instead of using FLT_MIN/FLT_MAX/FLT_EPSILON, calculate them manually (in a cross-platform manner)
 
+//!@doc 16-bit float bitwise constants
+/*!
+**	IEEE 754 16-bit floating point "half precision" bitwise macros
+*/
+//!@{
+#define F16_SIGN_BIT_MASK	(0x8000)				//!< A 16-bit floating-point number's sign bit (bitmask)
+#define F16_EXPONENT_BIAS	(15)					//!< A 16-bit floating-point number's exponent bias offset
+#define F16_EXPONENT_MASK	(0x7C00)				//!< A 16-bit floating-point number's exponent bit region (bitmask)
+#define F16_EXPONENT_ZERO	(0x3C00)				//!< A 16-bit floating-point number's 0-exponent value, accounting for bias (bitmask)
+#define F16_EXPONENT_BITS	(5)						//!< A 16-bit floating-point number's amount of bits dedicated to the exponent
+#define F16_MANTISSA_MASK	(0x03FF)				//!< A 16-bit floating-point number's mantissa bit region (bitmask)
+#define F16_MANTISSA_SIGNED	(0x83FF)				//!< A 16-bit floating-point number's mantissa and sign bit regions (bitmask)
+#define F16_MANTISSA_BITS	(10)					//!< A 16-bit floating-point number's amount of bits dedicated to the mantissa
+#define F16_INIT_VALUE		(0x1.p-10)				//!< A 16-bit floating-point number's value if all bits are zero
+#define F16_EPSILON			(0x1.p-10)				//!< Difference between 1 and the least value greater than 1 that is representable.
+#define F16_MIN_INT			(0x2.p-11)				//!< A 16-bit floating-point's minimum representable integer value.
+#define F16_MAX_INT			(0x2.p+11)				//!< A 16-bit floating-point's maximum representable integer value.
+#define F16_MIN_VAL			(FLT16_MIN)				//!< A 16-bit floating-point's minimum representable positive normal value.
+#define F16_MAX_VAL			(FLT16_MAX)				//!< A 16-bit floating-point's maximum finite representable value.
+#define F16_MIN				(-INF)					//!< A 16-bit floating-point's minimum value (-infinity)
+#define F16_MAX				(+INF)					//!< A 16-bit floating-point's maximum value (+infinity)
+//!@}
+
 //!@doc 32-bit float bitwise constants
 /*!
-**	IEEE 754 32-bit floating point "single" precision bitwise macros
+**	IEEE 754 32-bit floating point "single precision" bitwise macros
 */
 //!@{
 #define F32_SIGN_BIT_MASK	(0x80000000)			//!< A 32-bit floating-point number's sign bit (bitmask)
@@ -333,7 +383,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 //!@doc 64-bit float bitwise constants
 /*!
-**	IEEE 754 64-bit floating point double-precision bitwise macros
+**	IEEE 754 64-bit floating point "double precision" bitwise macros
 */
 //!@{
 #define F64_SIGN_BIT_MASK	(0x8000000000000000)	//!< A 64-bit floating-point number's sign bit (bitmask)
@@ -356,7 +406,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 //!@doc 80-bit float bitwise constants
 /*!
-**	x86 80-bit floating point extended precision bitwise macros
+**	x86 80-bit floating point "extended precision" bitwise macros
 */
 //!@{
 #define F80_SIGN_BIT_MASK	(0x80000000000000000000l)	//!< A 80-bit floating-point number's sign bit (bitmask)
@@ -379,7 +429,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 //!@doc 128-bit float bitwise constants
 /*!
-**	IEEE 754 128-bit floating point quadruple-precision bitwise macros
+**	IEEE 754 128-bit floating point "quadruple precision" bitwise macros
 */
 //!@{
 #define F128_SIGN_BIT_MASK		(0x80000000000000000000000000000000l)	//!< A 128-bit floating-point number's sign bit (bitmask)
@@ -460,6 +510,16 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 **	manipulate float bits directly, by using bitwise operators with int types.
 */
 //!@{
+#if LIBCONFIG_USE_FLOAT16
+typedef union cast_f16
+{
+	t_f16	value_float;
+	t_s16	value_sint;
+	t_u16	value_uint;
+	struct { t_u8 hi; t_u8 lo; }	split;
+}	u_cast_f16;
+#endif
+
 typedef union cast_f32
 {
 	t_f32	value_float;
@@ -544,6 +604,7 @@ typedef union cast_float
 		t_q64:	 FUNCTYPE##_FromQ64, \
 		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
+		t_f16:	 FUNCTYPE##_FromF16, \
 		t_f32:	 FUNCTYPE##_FromF32, \
 		t_f64:	 FUNCTYPE##_FromF64, \
 		t_f80:	 FUNCTYPE##_FromF80, \
@@ -552,6 +613,7 @@ typedef union cast_float
 	)(X)
 
 #define Float(X)	DEFINEFUNC_Float(X, Float)
+#define F16(X)		DEFINEFUNC_Float(X, F16)
 #define F32(X)		DEFINEFUNC_Float(X, F32)
 #define F64(X)		DEFINEFUNC_Float(X, F64)
 #if LIBCONFIG_USE_FLOAT80
@@ -562,6 +624,7 @@ typedef union cast_float
 #endif
 
 #define c_float(X)	Float(X)
+#define c_f16(X)	F16(X)
 #define c_f32(X)	F32(X)
 #define c_f64(X)	F64(X)
 #if LIBCONFIG_USE_FLOAT80
@@ -592,6 +655,21 @@ typedef union cast_float
 #if LIBCONFIG_USE_INT128
 #define					Float_FromU128	CONCAT(FLOAT_TYPE,_FromU128)
 #define c_u128tof		Float_FromU128
+#endif
+
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromU8(t_u8 number);
+#define c_u8tof16		F16_FromU8
+t_f16					F16_FromU16(t_u16 number);
+#define c_u16tof16		F16_FromU16
+t_f16					F16_FromU32(t_u32 number);
+#define c_u32tof16		F16_FromU32
+t_f16					F16_FromU64(t_u64 number);
+#define c_u64tof16		F16_FromU64
+#if LIBCONFIG_USE_INT128
+t_f16					F16_FromU128(t_u128 number);
+#define c_u128tof16		F16_FromU128
+#endif
 #endif
 
 t_f32					F32_FromU8(t_u8 number);
@@ -670,6 +748,21 @@ t_f128					F128_FromU128(t_u128 number);
 #define c_s128tof		Float_FromS128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromS8(t_s8 number);
+#define c_s8tof16		F16_FromS8
+t_f16					F16_FromS16(t_s16 number);
+#define c_s16tof16		F16_FromS16
+t_f16					F16_FromS32(t_s32 number);
+#define c_s32tof16		F16_FromS32
+t_f16					F16_FromS64(t_s64 number);
+#define c_s64tof16		F16_FromS64
+#if LIBCONFIG_USE_INT128
+t_f16					F16_FromS128(t_s128 number);
+#define c_s128tof16		F16_FromS128
+#endif
+#endif
+
 t_f32					F32_FromS8(t_s8 number);
 #define c_s8tof32		F32_FromS8
 t_f32					F32_FromS16(t_s16 number);
@@ -746,6 +839,21 @@ t_f128					F128_FromS128(t_s128 number);
 #define c_q128tof		Float_FromQ128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromQ8(t_q8 number);
+#define c_q8tof16		F16_FromQ8
+t_f16					F16_FromQ16(t_q16 number);
+#define c_q16tof16		F16_FromQ16
+t_f16					F16_FromQ32(t_q32 number);
+#define c_q32tof16		F16_FromQ32
+t_f16					F16_FromQ64(t_q64 number);
+#define c_q64tof16		F16_FromQ64
+#if LIBCONFIG_USE_INT128
+t_f16					F16_FromQ128(t_q128 number);
+#define c_q128tof16		F16_FromQ128
+#endif
+#endif
+
 t_f32					F32_FromQ8(t_q8 number);
 #define c_q8tof32		F32_FromQ8
 t_f32					F32_FromQ16(t_q16 number);
@@ -809,6 +917,8 @@ t_f128					F128_FromQ128(t_q128 number);
 //!@{
 #define	 				Float_FromFloat	CONCAT(FLOAT_TYPE,CONCAT(_From,FLOAT_TYPE))
 #define c_ftof			Float_FromFloat
+#define	 				Float_FromF16	CONCAT(FLOAT_TYPE,_FromF16)
+#define c_f16tof		Float_FromF16
 #define	 				Float_FromF32	CONCAT(FLOAT_TYPE,_FromF32)
 #define c_f32tof		Float_FromF32
 #define	 				Float_FromF64	CONCAT(FLOAT_TYPE,_FromF64)
@@ -822,8 +932,32 @@ t_f128					F128_FromQ128(t_q128 number);
 #define c_f128tof		Float_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16	 				F16_FromF16(t_f16 number);
+#define c_f16tof32		F16_FromF16
+
+t_f16	 				F16_FromF32(t_f32 number);
+#define c_f32tof32		F16_FromF32
+
+t_f16	 				F16_FromF64(t_f64 number);
+#define c_f64tof32		F16_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_f16	 				F16_FromF80(t_f80 number);
+#define c_f80tof32		F16_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f16	 				F16_FromF128(t_f128 number);
+#define c_f128tof32		F16_FromF128
+#endif
+#endif
+
+#if LIBCONFIG_USE_FLOAT16
+t_f32	 				F32_FromF16(t_f16 number);
+#define c_f16tof32		F32_FromF16
+#endif
 t_f32	 				F32_FromF32(t_f32 number);
 #define c_f32tof32		F32_FromF32
+
 t_f32	 				F32_FromF64(t_f64 number);
 #define c_f64tof32		F32_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -835,8 +969,13 @@ t_f32	 				F32_FromF128(t_f128 number);
 #define c_f128tof32		F32_FromF128
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+t_f64	 				F64_FromF16(t_f16 number);
+#define c_f16tof64		F64_FromF16
+#endif
 t_f64	 				F64_FromF32(t_f32 number);
 #define c_f32tof64		F64_FromF32
+
 t_f64	 				F64_FromF64(t_f64 number);
 #define c_f64tof64		F64_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -849,8 +988,13 @@ t_f64	 				F64_FromF128(t_f128 number);
 #endif
 
 #if LIBCONFIG_USE_FLOAT80
+#if LIBCONFIG_USE_FLOAT16
+t_f80	 				F80_FromF16(t_f16 number);
+#define c_f16tof80		F80_FromF16
+#endif
 t_f80	 				F80_FromF32(t_f32 number);
 #define c_f32tof80		F80_FromF32
+
 t_f80	 				F80_FromF64(t_f64 number);
 #define c_f64tof80		F80_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -863,8 +1007,13 @@ t_f80	 				F80_FromF128(t_f128 number);
 #endif
 #endif
 #if LIBCONFIG_USE_FLOAT128
+#if LIBCONFIG_USE_FLOAT16
+t_f128	 				F128_FromF16(t_f16 number);
+#define c_f16tof128		F128_FromF16
+#endif
 t_f128	 				F128_FromF32(t_f32 number);
 #define c_f32tof128		F128_FromF32
+
 t_f128	 				F128_FromF64(t_f64 number);
 #define c_f64tof128		F128_FromF64
 #if LIBCONFIG_USE_FLOAT80
@@ -902,6 +1051,14 @@ t_f128	 				F128_FromF128(t_f128 number);
 #define c_fscalbn		Float_From
 #define c_tof			Float_From
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_From(t_f16 mantissa, t_sint exponent);
+#define c_ldexpl		F16_From
+#define c_scalbnl		F16_From
+#define c_f16ldexp		F16_From
+#define c_f16scalbn		F16_From
+#define c_tof16			F16_From
+#endif
 t_f32					F32_From(t_f32 mantissa, t_sint exponent);
 #define c_ldexpf		F32_From
 #define c_scalbnf		F32_From
@@ -958,6 +1115,12 @@ t_f128					F128_From(t_f128 mantissa, t_sint exponent);
 #define c_ffrexp		Float_SplitExp
 #define c_fsplitexp		Float_SplitExp
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_SplitExp(t_f16 number, t_sint* exponent);
+#define c_frexpl		F16_SplitExp
+#define c_f16frexp		F16_SplitExp
+#define c_f16splitexp	F16_SplitExp
+#endif
 t_f32					F32_SplitExp(t_f32 number, t_sint* exponent);
 #define c_frexpf		F32_SplitExp
 #define c_f32frexp		F32_SplitExp
@@ -994,6 +1157,12 @@ t_f128					F128_SplitExp(t_f128 number, t_sint* exponent);
 #define c_fmodf	 		Float_SplitInt
 #define c_fsplitint		Float_SplitInt
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_SplitInt(t_f16 number, t_f16* integral);
+#define c_modfl 		F16_SplitInt
+#define c_f16modf 		F16_SplitInt
+#define c_f16splitint	F16_SplitInt
+#endif
 t_f32					F32_SplitInt(t_f32 number, t_f32* integral);
 #define c_modff 		F32_SplitInt
 #define c_f32modf 		F32_SplitInt
@@ -1029,6 +1198,11 @@ t_f128					F128_SplitInt(t_f128 number, t_f128* integral);
 #define c_copysign		Float_CopySign
 #define c_fcopysign		Float_CopySign
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_CopySign(t_f16 target, t_f16 source);
+#define c_copysignl		F16_CopySign
+#define c_f16copysign	F16_CopySign
+#endif
 t_f32					F32_CopySign(t_f32 target, t_f32 source);
 #define c_copysignf		F32_CopySign
 #define c_f32copysign	F32_CopySign
@@ -1060,6 +1234,11 @@ t_f128					F128_CopySign(t_f128 target, t_f128 source);
 #define c_nextafter		Float_NextAfter
 #define c_fnextafter	Float_NextAfter
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_NextAfter(t_f16 number, t_f16 toward);
+#define c_nextafterl	F16_NextAfter
+#define c_f16nextafter	F16_NextAfter
+#endif
 t_f32					F32_NextAfter(t_f32 number, t_f32 toward);
 #define c_nextafterf	F32_NextAfter
 #define c_f32nextafter	F32_NextAfter
@@ -1093,6 +1272,13 @@ t_f128					F128_NextAfter(t_f128 number, t_f128 toward);
 #define c_frint			Float_NearbyInt
 #define c_fnearbyint	Float_NearbyInt
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_NearbyInt(t_f16 number);
+#define c_rintl			F16_NearbyInt
+#define c_nearbyintl	F16_NearbyInt
+#define c_f16rint		F16_NearbyInt
+#define c_f16nearbyint	F16_NearbyInt
+#endif
 t_f32					F32_NearbyInt(t_f32 number);
 #define c_rintf			F32_NearbyInt
 #define c_nearbyintf	F32_NearbyInt
@@ -1131,6 +1317,12 @@ t_f128					F128_NearbyInt(t_f128 number);
 #define c_flrint		Float_ToInt
 #define c_ftoint		Float_ToInt
 
+#if LIBCONFIG_USE_FLOAT16
+t_sint					F16_ToInt(t_f16 number);
+#define c_lrintl		F16_ToInt
+#define c_f16lrint		F16_ToInt
+#define c_f16toint		F16_ToInt
+#endif
 t_sint					F32_ToInt(t_f32 number);
 #define c_lrintf		F32_ToInt
 #define c_f32lrint		F32_ToInt
@@ -1170,6 +1362,14 @@ t_sint					F128_ToInt(t_f128 number);
 #define c_fgetexp2			Float_GetExp2
 #define Float_GetExponent2	Float_GetExp2
 
+#if LIBCONFIG_USE_FLOAT16
+t_sint						F16_GetExp2(t_f16 number);
+#define c_ilogbl			F16_GetExp2
+#define c_f16ilogb			F16_GetExp2
+#define c_f16ilog2			F16_GetExp2
+#define c_f16getexp2		F16_GetExp2
+#define F16_GetExponent2	F16_GetExp2
+#endif
 t_sint						F32_GetExp2(t_f32 number);
 #define c_ilogbf			F32_GetExp2
 #define c_f32ilogb			F32_GetExp2
@@ -1215,6 +1415,15 @@ t_sint						F128_GetExp2(t_f128 number);
 #define c_fgetexp10			Float_GetExp10
 #define Float_GetExponent10	Float_GetExp10
 
+#if LIBCONFIG_USE_FLOAT16
+t_sint						F16_GetExp10(t_f16 number);
+#define c_ilogl				F16_GetExp10
+#define c_f16ilog			F16_GetExp10
+#define c_f16ilogd			F16_GetExp10
+#define c_f16ilog10			F16_GetExp10
+#define c_f16getexp10		F16_GetExp10
+#define F16_GetExponent10	F16_GetExp10
+#endif
 t_sint						F32_GetExp10(t_f32 number);
 #define c_ilogf				F32_GetExp10
 #define c_f32ilog			F32_GetExp10
@@ -1272,6 +1481,10 @@ t_sint						F128_GetExp10(t_f128 number);
 #define					Float_ToString	CONCAT(FLOAT_TYPE,_ToString)
 #define c_ftostr		Float_ToString
 
+#if LIBCONFIG_USE_FLOAT16
+_MALLOC()	t_char*		F16_ToString(t_f16 number, t_u8 precision);
+#define c_f16tostr		F16_ToString
+#endif
 _MALLOC()	t_char*		F32_ToString(t_f32 number, t_u8 precision);
 #define c_f32tostr		F32_ToString
 
@@ -1305,6 +1518,12 @@ _MALLOC()	t_char*		F128_ToString(t_f128 number, t_u8 precision);
 #define c_ftostrsci					Float_ToString_Exp
 #define Float_ToString_Sci			Float_ToString_Exp
 
+#if LIBCONFIG_USE_FLOAT16
+_MALLOC()	t_char*					F16_ToString_Exp(t_f16 number, t_u8 precision);
+#define c_f16tostrexp				F16_ToString_Exp
+#define c_f16tostrsci				F16_ToString_Exp
+#define F16_ToString_Sci			F16_ToString_Exp
+#endif
 _MALLOC()	t_char*					F32_ToString_Exp(t_f32 number, t_u8 precision);
 #define c_f32tostrexp				F32_ToString_Exp
 #define c_f32tostrsci				F32_ToString_Exp
@@ -1344,6 +1563,10 @@ _MALLOC()	t_char*					F128_ToString_Exp(t_f128 number, t_u8 precision);
 #define					Float_ToString_Dec	CONCAT(FLOAT_TYPE,_ToString_Dec)
 #define c_ftostrdec		Float_ToString_Dec
 
+#if LIBCONFIG_USE_FLOAT16
+_MALLOC()	t_char*		F16_ToString_Dec(t_f16 number, t_u8 precision);
+#define c_f16tostrdec	F16_ToString_Dec
+#endif
 _MALLOC()	t_char*		F32_ToString_Dec(t_f32 number, t_u8 precision);
 #define c_f32tostrdec	F32_ToString_Dec
 
@@ -1375,6 +1598,10 @@ _MALLOC()	t_char*		F128_ToString_Dec(t_f128 number, t_u8 precision);
 #define					Float_ToString_Hex	CONCAT(FLOAT_TYPE,_ToString_Hex)
 #define c_ftostrhex		Float_ToString_Hex
 
+#if LIBCONFIG_USE_FLOAT16
+_MALLOC()	t_char*		F16_ToString_Hex(t_f16 number, t_u8 precision);
+#define c_f16tostrhex	F16_ToString_Hex
+#endif
 _MALLOC()	t_char*		F32_ToString_Hex(t_f32 number, t_u8 precision);
 #define c_f32tostrhex	F32_ToString_Hex
 
@@ -1406,6 +1633,10 @@ _MALLOC()	t_char*		F128_ToString_Hex(t_f128 number, t_u8 precision);
 #define					Float_ToString_Bin	CONCAT(FLOAT_TYPE,_ToString_Bin)
 #define c_ftostrbin		Float_ToString_Bin
 
+#if LIBCONFIG_USE_FLOAT16
+_MALLOC()	t_char*		F16_ToString_Bin(t_f16 number, t_u8 precision);
+#define c_f16tostrbin	F16_ToString_Bin
+#endif
 _MALLOC()	t_char*		F32_ToString_Bin(t_f32 number, t_u8 precision);
 #define c_f32tostrbin	F32_ToString_Bin
 
@@ -1452,6 +1683,10 @@ _MALLOC()	t_char*		F128_ToString_Bin(t_f128 number, t_u8 precision);
 #define					Float_Parse	CONCAT(FIXED_TYPE,_Parse)
 #define c_fparse		Float_Parse
 
+#if LIBCONFIG_USE_FLOAT16
+t_size					F16_Parse	(t_f16	*dest, t_char const* str, t_size n);
+#define c_f16parse		F16_Parse
+#endif
 t_size					F32_Parse	(t_f32	*dest, t_char const* str, t_size n);
 #define c_f32parse		F32_Parse
 
@@ -1480,6 +1715,10 @@ t_size					F128_Parse	(t_f128	*dest, t_char const* str, t_size n);
 #define					Float_FromString	CONCAT(FLOAT_TYPE,_FromString)
 #define c_strtof		Float_FromString
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromString(t_char const* str);
+#define c_strtof16		F16_FromString
+#endif
 t_f32					F32_FromString(t_char const* str);
 #define c_strtof32		F32_FromString
 
@@ -1516,6 +1755,10 @@ t_f128					F128_FromString(t_char const* str);
 #define					Float_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
 #define c_fparsedec		Float_Parse_Dec
 
+#if LIBCONFIG_USE_FLOAT16
+t_size					F16_Parse_Dec	(t_f16	*dest, t_char const* str, t_size n);
+#define c_f16parsedec	F16_Parse_Dec
+#endif
 t_size					F32_Parse_Dec	(t_f32	*dest, t_char const* str, t_size n);
 #define c_f32parsedec	F32_Parse_Dec
 
@@ -1545,6 +1788,10 @@ t_size					F128_Parse_Dec	(t_f128	*dest, t_char const* str, t_size n);
 #define					Float_FromString_Dec	CONCAT(FLOAT_TYPE,_FromString_Dec)
 #define c_strdectof		Float_FromString_Dec
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromString_Dec(t_char const* str);
+#define c_strdectof16	F16_FromString_Dec
+#endif
 t_f32					F32_FromString_Dec(t_char const* str);
 #define c_strdectof32	F32_FromString_Dec
 
@@ -1581,6 +1828,10 @@ t_f128					F128_FromString_Dec(t_char const* str);
 #define					Float_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
 #define c_fparsehex		Float_Parse_Hex
 
+#if LIBCONFIG_USE_FLOAT16
+t_size					F16_Parse_Hex	(t_f16	*dest, t_char const* str, t_size n);
+#define c_f16parsehex	F16_Parse_Hex
+#endif
 t_size					F32_Parse_Hex	(t_f32	*dest, t_char const* str, t_size n);
 #define c_f32parsehex	F32_Parse_Hex
 
@@ -1610,6 +1861,10 @@ t_size					F128_Parse_Hex	(t_f128	*dest, t_char const* str, t_size n);
 #define					Float_FromString_Hex	CONCAT(FLOAT_TYPE,_FromString_Hex)
 #define c_strhextof		Float_FromString_Hex
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromString_Hex(t_char const* str);
+#define c_strhextof16	F16_FromString_Hex
+#endif
 t_f32					F32_FromString_Hex(t_char const* str);
 #define c_strhextof32	F32_FromString_Hex
 
@@ -1646,6 +1901,10 @@ t_f128					F128_FromString_Hex(t_char const* str);
 #define					Float_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
 #define c_fparseoct		Float_Parse_Oct
 
+#if LIBCONFIG_USE_FLOAT16
+t_size					F16_Parse_Oct	(t_f16	*dest, t_char const* str, t_size n);
+#define c_f16parseoct	F16_Parse_Oct
+#endif
 t_size					F32_Parse_Oct	(t_f32	*dest, t_char const* str, t_size n);
 #define c_f32parseoct	F32_Parse_Oct
 
@@ -1675,6 +1934,10 @@ t_size					F128_Parse_Oct	(t_f128	*dest, t_char const* str, t_size n);
 #define					Float_FromString_Oct	CONCAT(TYPE_FLOAT,_FromString_Oct)
 #define c_strocttof		Float_FromString_Oct
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromString_Oct(t_char const* str);
+#define c_strocttof16	F16_FromString_Oct
+#endif
 t_f32					F32_FromString_Oct(t_char const* str);
 #define c_strocttof32	F32_FromString_Oct
 
@@ -1711,6 +1974,10 @@ t_f128					F128_FromString_Oct(t_char const* str);
 #define					Float_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
 #define c_fparsebin		Float_Parse_Bin
 
+#if LIBCONFIG_USE_FLOAT16
+t_size					F16_Parse_Bin	(t_f16	*dest, t_char const* str, t_size n);
+#define c_f16parsebin	F16_Parse_Bin
+#endif
 t_size					F32_Parse_Bin	(t_f32	*dest, t_char const* str, t_size n);
 #define c_f32parsebin	F32_Parse_Bin
 
@@ -1740,6 +2007,10 @@ t_size					F128_Parse_Bin	(t_f128	*dest, t_char const* str, t_size n);
 #define					Float_FromString_Bin	CONCAT(TYPE_FLOAT,_FromString_Bin)
 #define c_strbintof		Float_FromString_Bin
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_FromString_Bin(t_char const* str);
+#define c_strbintof16	F16_FromString_Bin
+#endif
 t_f32					F32_FromString_Bin(t_char const* str);
 #define c_strbintof32	F32_FromString_Bin
 

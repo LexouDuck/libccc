@@ -405,6 +405,13 @@ HEADER_CPP
 **	- `t_f128`: quadruple-precision floating-point type
 */
 //!@{
+#ifndef LIBCONFIG_USE_FLOAT16
+#define LIBCONFIG_USE_FLOAT16	0 //_HAS_FLOAT16
+#endif
+#if !defined(__float16) && LIBCONFIG_USE_FLOAT16
+#error "Current platform does not support native 16-bit float type: please set LIBCONFIG_USE_FLOAT16 to 0"
+#endif
+
 #ifndef LIBCONFIG_USE_FLOAT80
 #define LIBCONFIG_USE_FLOAT80	0 //_HAS_FLOAT80
 #endif

@@ -24,7 +24,11 @@ t_f##BITS	F##BITS##_InvSinH(t_f##BITS x) \
 		return (x / (1 + F##BITS##_Abs(-0.22103915 * x))); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_INVSINH(16)
+#endif
 DEFINEFUNC_FLOAT_INVSINH(32)
+
 DEFINEFUNC_FLOAT_INVSINH(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_INVSINH(80)
@@ -44,31 +48,27 @@ DEFINEFUNC_FLOAT_INVSINH(128)
 t_f32	F32_InvSinH(t_f32 x)
 {
 	union {t_f32 f; t_u32 i;} u = {.f = x};
-	t_u32 i = u.i & 0x7fffffff;
+	t_u32 i = u.i & 0x7FFFFFFF;
 	unsigned s = u.i >> 31;
 
 	/* |x| */
 	u.i = i;
 	x = u.f;
 
-	if (i >= 0x3f800000 + (12<<23))
-	{
-		/* |x| >= 0x1p12 or inf or nan */
+	if (i >= 0x3F800000 + (12<<23))
+	{	/* |x| >= 0x1p12 or inf or nan */
 		x = F32_Log(x) + 0.693147180559945309417232121458176568f;
 	}
-	else if (i >= 0x3f800000 + (1<<23))
-	{
-		/* |x| >= 2 */
+	else if (i >= 0x3F800000 + (1<<23))
+	{	/* |x| >= 2 */
 		x = F32_Log(2*x + 1/(F32_Root2(x*x+1)+x));
 	}
-	else if (i >= 0x3f800000 - (12<<23))
-	{
-		/* |x| >= 0x1p-12, up to 1.6ulp error in [0.125,0.5] */
+	else if (i >= 0x3F800000 - (12<<23))
+	{	/* |x| >= 0x1p-12, up to 1.6ulp error in [0.125,0.5] */
 		x = F32_Log(1 + (x + x*x/(F32_Root2(x*x+1)+1)));
 	}
 	else
-	{
-		/* |x| < 0x1p-12, raise inexact if x!=0 */
+	{	/* |x| < 0x1p-12, raise inexact if x!=0 */
 		/*FORCE_EVAL(x + 0x1p120f);*/
 	}
 	return s ? -x : x;
@@ -77,31 +77,27 @@ t_f32	F32_InvSinH(t_f32 x)
 t_f64	F64_InvSinH(t_f64 x)
 {
 	union {t_f64 f; t_u64 i;} u = {.f = x};
-	unsigned e = u.i >> 52 & 0x7ff;
+	unsigned e = u.i >> 52 & 0x7FF;
 	unsigned s = u.i >> 63;
 
 	/* |x| */
 	u.i &= (t_u64)-1/2;
 	x = u.f;
 
-	if (e >= 0x3ff + 26)
-	{
-		/* |x| >= 0x1p26 or inf or nan */
+	if (e >= 0x3FF + 26)
+	{	/* |x| >= 0x1p26 or inf or nan */
 		x = F64_Log(x) + 0.693147180559945309417232121458176568;
 	}
-	else if (e >= 0x3ff + 1)
-	{
-		/* |x| >= 2 */
+	else if (e >= 0x3FF + 1)
+	{	/* |x| >= 2 */
 		x = F64_Log(2*x + 1/(F64_Root2(x*x+1)+x));
 	}
-	else if (e >= 0x3ff - 26)
-	{
-		/* |x| >= 0x1p-26, up to 1.6ulp error in [0.125,0.5] */
+	else if (e >= 0x3FF - 26)
+	{	/* |x| >= 0x1p-26, up to 1.6ulp error in [0.125,0.5] */
 		x = F64_Log(1 + (x + x*x/(F64_Root2(x*x+1)+1)));
 	}
 	else
-	{
-		/* |x| < 0x1p-26, raise inexact if x != 0 */
+	{	/* |x| < 0x1p-26, raise inexact if x != 0 */
 		/*FORCE_EVAL(x + 0x1p120f);*/
 	}
 	return s ? -x : x;
@@ -111,31 +107,27 @@ t_f64	F64_InvSinH(t_f64 x)
 t_f80	F80_InvSinH(t_f80 x)
 {
 	union ldshape u = {x};
-	unsigned e = u.i.se & 0x7fff;
+	unsigned e = u.i.se & 0x7FFF;
 	unsigned s = u.i.se >> 15;
 
 	/* |x| */
 	u.i.se = e;
 	x = u.f;
 
-	if (e >= 0x3fff + 32)
-	{
-		/* |x| >= 0x1p32 or inf or nan */
+	if (e >= 0x3FFF + 32)
+	{	/* |x| >= 0x1p32 or inf or nan */
 		x = F80_Log(x) + 0.693147180559945309417232121458176568L;
 	}
-	else if (e >= 0x3fff + 1)
-	{
-		/* |x| >= 2 */
+	else if (e >= 0x3FFF + 1)
+	{	/* |x| >= 2 */
 		x = F80_Log(2*x + 1/(F80_Root2(x*x+1)+x));
 	}
-	else if (e >= 0x3fff - 32)
-	{
-		/* |x| >= 0x1p-32 */
+	else if (e >= 0x3FFF - 32)
+	{	/* |x| >= 0x1p-32 */
 		x = F80_Log(1 + (x + x*x/(F80_Root2(x*x+1)+1)));
 	}
 	else
-	{
-		/* |x| < 0x1p-32, raise inexact if x!=0 */
+	{	/* |x| < 0x1p-32, raise inexact if x!=0 */
 		/*FORCE_EVAL(x + 0x1p120f);*/
 	}
 	return s ? -x : x;
@@ -146,31 +138,27 @@ t_f80	F80_InvSinH(t_f80 x)
 t_f128	F128_InvSinH(t_f128 x)
 {
 	union ldshape u = {x};
-	unsigned e = u.i.se & 0x7fff;
+	unsigned e = u.i.se & 0x7FFF;
 	unsigned s = u.i.se >> 15;
 
 	/* |x| */
 	u.i.se = e;
 	x = u.f;
 
-	if (e >= 0x3fff + 32)
-	{
-		/* |x| >= 0x1p32 or inf or nan */
+	if (e >= 0x3FFF + 32)
+	{	/* |x| >= 0x1p32 or inf or nan */
 		x = F128_Log(x) + 0.693147180559945309417232121458176568L;
 	}
-	else if (e >= 0x3fff + 1)
-	{
-		/* |x| >= 2 */
+	else if (e >= 0x3FFF + 1)
+	{	/* |x| >= 2 */
 		x = F128_Log(2*x + 1/(F128_Root2(x*x+1)+x));
 	}
-	else if (e >= 0x3fff - 32)
-	{
-		/* |x| >= 0x1p-32 */
+	else if (e >= 0x3FFF - 32)
+	{	/* |x| >= 0x1p-32 */
 		x = F128_Log(1 + (x + x*x/(F128_Root2(x*x+1)+1)));
 	}
 	else
-	{
-		/* |x| < 0x1p-32, raise inexact if x!=0 */
+	{	/* |x| < 0x1p-32, raise inexact if x!=0 */
 		/*FORCE_EVAL(x + 0x1p120f);*/
 	}
 	return s ? -x : x;

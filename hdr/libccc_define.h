@@ -256,8 +256,15 @@ HEADER_CPP
 
 
 
-//!@doc Platform-specific extended-precision `long double` floating-point types
+//!@doc Compatiblity with platform-specific floating-point types
 //!@{
+#ifdef __is_identifier // Compatibility with non-clang compilers.
+	#if __is_identifier(_Float16)
+		#ifndef __float16
+		#define __float16	_Float16
+		#endif
+	#endif
+#endif
 
 #if defined(__LDBL_MANT_DIG__) \
 	|| defined(__float80) \
@@ -294,7 +301,14 @@ HEADER_CPP
 #endif
 #endif
 
-//! This macro is set to `1` if the current platform supports 80-bit (96-bit) floats, or `0` otherwise
+//! This macro is set to `1` if the current platform supports 16-bit floats, or `0` otherwise
+#ifdef __float16
+#define _HAS_FLOAT16	1
+#else
+#define _HAS_FLOAT16	0
+#endif
+
+//! This macro is set to `1` if the current platform supports 80-bit floats, or `0` otherwise
 #ifdef __float80
 #define _HAS_FLOAT80	1
 #else

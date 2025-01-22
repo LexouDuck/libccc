@@ -190,6 +190,13 @@ void	test_##TYPE##nextafter(void) \
 	print_test_##TYPE##nextafter(#TYPE"nextafter (+nan, +nan)",	FALSE,  +NAN, +NAN); \
 } \
 
+#if !defined(c_f16nextafter) || !defined(__float16)
+void test_f16nextafter(void)	{}
+#warning "f16nextafter() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_NEXTAFTER(f16,l)
+#endif
+
 #ifndef c_f32nextafter
 void test_f32nextafter(void)	{}
 #warning "f32nextafter() test suite function defined, but the function isn't defined."
@@ -377,6 +384,13 @@ void	test_##TYPE##copysign(void) \
 	print_test_##TYPE##copysign(#TYPE"copysign (+nan, +nan)",	FALSE,  +NAN, +NAN); \
 } \
 
+#if !defined(c_f16copysign) || !defined(__float16)
+void test_f16copysign(void)	{}
+#warning "f16copysign() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_COPYSIGN(f16,l)
+#endif
+
 #ifndef c_f32copysign
 void test_f32copysign(void)	{}
 #warning "f32copysign() test suite function defined, but the function isn't defined."
@@ -462,6 +476,13 @@ void	test_##TYPE##rint(void) \
 	print_test_##TYPE##rint(#TYPE"rint (+nan)    ",	FALSE,  +NAN); \
 } \
 
+#if !defined(c_f16rint) || !defined(__float16)
+void test_f16rint(void)	{}
+#warning "f16rint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_RINT(f16,l)
+#endif
+
 #ifndef c_f32rint
 void test_f32rint(void)	{}
 #warning "f32rint() test suite function defined, but the function isn't defined."
@@ -522,6 +543,13 @@ void	test_##TYPE##lrint(void) \
 	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FALSE,  -NAN); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+nan)  ",	FALSE,  +NAN); \
 } \
+
+#if !defined(c_f16lrint) || !defined(__float16)
+void test_f16lrint(void)	{}
+#warning "f16lrint() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LRINT(f16,l)
+#endif
 
 #ifndef c_f32lrint
 void test_f32lrint(void)	{}
@@ -625,6 +653,13 @@ void	test_##TYPE##frexp(void) \
 	print_test_##TYPE##frexp(#TYPE"frexp (-nan)      ",	FALSE,  -NAN      , &exponent_libc, &exponent_libccc); \
 	print_test_##TYPE##frexp(#TYPE"frexp (+nan)      ",	FALSE,  +NAN      , &exponent_libc, &exponent_libccc); \
 } \
+
+#if !defined(c_f16frexp) || !defined(__float16)
+void test_f16frexp(void)	{}
+#warning "f16frexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FREXP(f16,l)
+#endif
 
 #ifndef c_f32frexp
 void test_f32frexp(void)	{}
@@ -759,6 +794,13 @@ void	test_##TYPE##NAME(void) \
 	print_test_##TYPE##NAME(#TYPE#NAME" (+nan, -2)   ",	FALSE,  +NAN,  -2); \
 } \
 
+#if !defined(c_f16ldexp) || !defined(__float16)
+void test_f16ldexp(void)	{}
+#warning "f16ldexp() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(ldexp,f16,l)
+#endif
+
 #ifndef c_f32ldexp
 void test_f32ldexp(void)	{}
 #warning "f32ldexp() test suite function defined, but the function isn't defined."
@@ -785,6 +827,15 @@ void test_f128ldexp(void)	{}
 #warning "f128ldexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_LDEXP(ldexp,f128,l)
+#endif
+
+
+
+#if !defined(c_f16scalbn) || !defined(__float16)
+void test_f16scalbn(void)	{}
+#warning "f16scalbn() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_LDEXP(scalbn,f16,l)
 #endif
 
 #ifndef c_f32scalbn
@@ -848,6 +899,13 @@ void	test_##TYPE##modf(void) \
 	print_test_##TYPE##modf(#TYPE"modf (-nan)    ",	FALSE,  -NAN,  &integral); \
 	print_test_##TYPE##modf(#TYPE"modf (+nan)    ",	FALSE,  +NAN,  &integral); \
 } \
+
+#if !defined(c_f16modf) || !defined(__float16)
+void test_f16modf(void)	{}
+#warning "f16modf() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_MODF(f16,l)
+#endif
 
 #ifndef c_f32modf
 void test_f32modf(void)	{}
@@ -940,6 +998,13 @@ void	test_##TYPE##ilogb(void) \
 	print_test_##TYPE##ilogb(#TYPE"ilogb (+nan)  ",	FALSE,  +NAN); \
 } \
 
+#if !defined(c_f16ilogb) || !defined(__float16)
+void test_f16ilogb(void)	{}
+#warning "f16ilogb() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGB(f16,l)
+#endif
+
 #ifndef c_f32ilogb
 void test_f32ilogb(void)	{}
 #warning "f32ilogb() test suite function defined, but the function isn't defined."
@@ -1031,6 +1096,13 @@ void	test_##TYPE##ilogd(void) \
 	print_test_##TYPE##ilogd(#TYPE"ilogd (-nan)    ",	FALSE, S32_MIN, -NAN); \
 	print_test_##TYPE##ilogd(#TYPE"ilogd (+nan)    ",	FALSE, S32_MIN, +NAN); \
 } \
+
+#if !defined(c_f16ilogd) || !defined(__float16)
+void test_f16ilogd(void)	{}
+#warning "f16ilogd() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_ILOGD(f16,l)
+#endif
 
 #ifndef c_f32ilogd
 void test_f32ilogd(void)	{}
@@ -1161,6 +1233,12 @@ void	test_##TYPE##tostr(void) \
 	print_test_##TYPE##tostr(#TYPE"tostr (-nan)        ",	FALSE,                     "NAN",-NAN                   , 1); \
 }
 
+#if (!defined(c_f16tostr) || !defined(__float16))
+void test_f16tostr(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STR(f16)
+#endif
+
 #ifndef c_f32tostr
 void test_f32tostr(void)	{}
 #warning "f32tostr() test suite function defined, but the function isn't defined."
@@ -1188,6 +1266,12 @@ DEFINETEST_FLOAT_TO_STR(f128)
 #endif
 
 /*
+
+#if (!defined(c_f16tostrexp) || !defined(__float16))
+void test_f16tostrexp(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STREXP(f16)
+#endif
 
 #ifndef c_f32tostrexp
 void test_f32tostrexp(void)	{}
@@ -1224,6 +1308,12 @@ DEFINETEST_FLOAT_TO_STREXP(float)
 
 
 
+#if (!defined(c_f16tostrdec) || !defined(__float16))
+void test_f16tostrdec(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRDEC(f16)
+#endif
+
 #ifndef c_f32tostrdec
 void test_f32tostrdec(void)	{}
 #warning "f32tostrdec() test suite function defined, but the function isn't defined."
@@ -1259,6 +1349,12 @@ DEFINETEST_FLOAT_TO_STRDEC(float)
 
 
 
+#if (!defined(c_f16tostrhex) || !defined(__float16))
+void test_f16tostrhex(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRHEX(f16)
+#endif
+
 #ifndef c_f32tostrhex
 void test_f32tostrhex(void)	{}
 #warning "f32tostrhex() test suite function defined, but the function isn't defined."
@@ -1293,6 +1389,12 @@ DEFINETEST_FLOAT_TO_STRHEX(float)
 #endif
 
 
+
+#if (!defined(c_f16tostrbin) || !defined(__float16))
+void test_f16tostrbin(void)	{}
+#else
+DEFINETEST_FLOAT_TO_STRBIN(f16) // TODO
+#endif
 
 #ifndef c_f32tostrbin
 void test_f32tostrbin(void)	{}
@@ -2440,6 +2542,12 @@ void	test_strto##TYPE(void) \
 	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	FLAG_SIGSEGV,                    0, NULL                         ); \
 }
 
+#if (!defined(c_strtof16) || !defined(__float16))
+void test_strtof16(void)	{}
+#else
+DEFINETEST_STR_TO_FLOAT(f16)
+#endif
+
 #ifndef c_strtof32
 void test_strtof32(void)	{}
 #warning "strtof32() test suite function defined, but the function isn't defined."
@@ -2489,60 +2597,70 @@ int		testsuite_float(void)
 	print_nonstd();
 
 //	test_fnextafter();
+	test_f16nextafter();
 	test_f32nextafter();
 	test_f64nextafter();
 	test_f80nextafter();
 	test_f128nextafter();
 
 //	test_fcopysign();
+	test_f16copysign();
 	test_f32copysign();
 	test_f64copysign();
 	test_f80copysign();
 	test_f128copysign();
 
 //	test_frint();
+	test_f16rint();
 	test_f32rint();
 	test_f64rint();
 	test_f80rint();
 	test_f128rint();
 
 //	test_flrint();
+	test_f16lrint();
 	test_f32lrint();
 	test_f64lrint();
 	test_f80lrint();
 	test_f128lrint();
 
 //	test_ffrexp();
+	test_f16frexp();
 	test_f32frexp();
 	test_f64frexp();
 	test_f80frexp();
 	test_f128frexp();
 
 //	test_fldexp();
+	test_f16ldexp();
 	test_f32ldexp();
 	test_f64ldexp();
 	test_f80ldexp();
 	test_f128ldexp();
 
 //	test_fscalbn();
+	test_f16scalbn();
 	test_f32scalbn();
 	test_f64scalbn();
 	test_f80scalbn();
 	test_f128scalbn();
 
 //	test_fmodf();
+	test_f16modf();
 	test_f32modf();
 	test_f64modf();
 	test_f80modf();
 	test_f128modf();
 
 //	test_filogb();
+	test_f16ilogb();
 	test_f32ilogb();
 	test_f64ilogb();
 	test_f80ilogb();
 	test_f128ilogb();
 
 //	test_filog();
+	test_f16ilogd();
 	test_f32ilogd();
 	test_f64ilogd();
 	test_f80ilogd();
@@ -2550,12 +2668,14 @@ int		testsuite_float(void)
 
 
 //	test_ftostr();
+	test_f16tostr();
 	test_f32tostr();
 	test_f64tostr();
 	test_f80tostr();
 	test_f128tostr();
 
 //	test_strtof();
+	test_strtof16();
 	test_strtof32();
 	test_strtof64();
 	test_strtof80();

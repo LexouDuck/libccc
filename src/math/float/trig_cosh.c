@@ -28,7 +28,11 @@ t_f##BITS	F##BITS##_CosH(t_f##BITS x) \
 	return (result); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_COSH(16)
+#endif
 DEFINEFUNC_FLOAT_COSH(32)
+
 DEFINEFUNC_FLOAT_COSH(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_COSH(80)
@@ -55,13 +59,13 @@ t_f32	F32_CosH(t_f32 x)
 	t_f32 t;
 
 	/* |x| */
-	u.i &= 0x7fffffff;
+	u.i &= 0x7FFFFFFF;
 	x = u.f;
 	w = u.i;
 	/* |x| < log(2) */
-	if (w < 0x3f317217)
+	if (w < 0x3F317217)
 	{
-		if (w < 0x3f800000 - (12<<23))
+		if (w < 0x3F800000 - (12<<23))
 		{
 			/*FORCE_EVAL(x + 0x1p120f);*/
 			return 1;
@@ -70,7 +74,7 @@ t_f32	F32_CosH(t_f32 x)
 		return 1 + t*t/(2*(1+t));
 	}
 	/* |x| < log(FLT_MAX) */
-	if (w < 0x42b17217)
+	if (w < 0x42B17217)
 	{
 		t = F32_Exp(x);
 		return 0.5f*(t + 1/t);
@@ -91,9 +95,9 @@ t_f64	F64_CosH(t_f64 x)
 	x = u.f;
 	w = u.i >> 32;
 	/* |x| < log(2) */
-	if (w < 0x3fe62e42)
+	if (w < 0x3FE62E42)
 	{
-		if (w < 0x3ff00000 - (26<<20))
+		if (w < 0x3FF00000 - (26<<20))
 		{
 			/* raise inexact if x!=0 */
 			/*FORCE_EVAL(x + 0x1p120f);*/
@@ -103,7 +107,7 @@ t_f64	F64_CosH(t_f64 x)
 		return 1 + t*t/(2*(1+t));
 	}
 	/* |x| < log(DBL_MAX) */
-	if (w < 0x40862e42)
+	if (w < 0x40862E42)
 	{
 		t = F64_Exp(x);
 		/* note: if x>log(0x1p26) then the 1/t is not needed */
@@ -119,7 +123,7 @@ t_f64	F64_CosH(t_f64 x)
 t_f##BITS	F##BITS##_CosH(t_f##BITS x) \
 { \
 	union ldshape u = {x}; \
-	unsigned ex = u.i.se & 0x7fff; \
+	unsigned ex = u.i.se & 0x7FFF; \
 	t_u32 w; \
 	t_f##BITS t; \
  \
@@ -128,9 +132,9 @@ t_f##BITS	F##BITS##_CosH(t_f##BITS x) \
 	x = u.f; \
 	w = u.i.m >> 32; \
 	/* |x| < log(2) */ \
-	if (ex < 0x3fff-1 || (ex == 0x3fff-1 && w < 0xb17217f7)) \
+	if (ex < 0x3FFF-1 || (ex == 0x3FFF-1 && w < 0xB17217F7)) \
 	{ \
-		if (ex < 0x3fff-32) \
+		if (ex < 0x3FFF-32) \
 		{ \
 			/*FORCE_EVAL(x + 0x1p120f);*/ \
 			return 1; \
@@ -139,7 +143,7 @@ t_f##BITS	F##BITS##_CosH(t_f##BITS x) \
 		return 1 + t*t/(2*(1+t)); \
 	} \
 	/* |x| < log(LDBL_MAX) */ \
-	if (ex < 0x3fff+13 || (ex == 0x3fff+13 && w < 0xb17217f7)) \
+	if (ex < 0x3FFF+13 || (ex == 0x3FFF+13 && w < 0xB17217F7)) \
 	{ \
 		t = F##BITS##_Exp(x); \
 		return 0.5*(t + 1/t); \

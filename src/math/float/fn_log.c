@@ -18,7 +18,7 @@ MATH_DECL_REALFUNCTION(Ln, log)
 */
 #define DEFINEFUNC_FLOAT_LN(BITS) \
 static \
-t_f##BITS	F##BITS##_Ln_TaylorSeries(t_f##BITS x) \
+t_f##BITS	F##BITS##_Log_TaylorSeries(t_f##BITS x) \
 { \
 	t_f##BITS	result; \
 	t_f##BITS	result_previous; \
@@ -70,7 +70,7 @@ t_f##BITS	F##BITS##_Log(t_f##BITS x) \
 	} \
 	if (1.9 <= x && x < 2.) \
 		return (F##BITS##_Log(x * DIV_2_3) + LN_3_2); \
-	result = F##BITS##_Ln_TaylorSeries(x - 1.); \
+	result = F##BITS##_Log_TaylorSeries(x - 1.); \
 	return (result); \
 } \
 

@@ -35,7 +35,11 @@ HEADER_CPP
 //!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_float	(*f_float_function)	(t_float x);
+#if LIBCONFIG_USE_FLOAT16
+typedef		t_f16	(*f_f16_function)	(t_f16   x);
+#endif
 typedef		t_f32	(*f_f32_function)	(t_f32   x);
+
 typedef		t_f64	(*f_f64_function)	(t_f64   x);
 #if LIBCONFIG_USE_FLOAT80
 typedef		t_f80	(*f_f80_function)	(t_f80   x);
@@ -48,7 +52,11 @@ typedef		t_f128	(*f_f128_function)	(t_f128  x);
 //!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
 typedef		t_float	(*f_float_operator)	(t_float x, t_float y);
+#if LIBCONFIG_USE_FLOAT16
+typedef		t_f16	(*f_f16_operator)	(t_f16   x, t_f16   y);
+#endif
 typedef		t_f32	(*f_f32_operator)	(t_f32   x, t_f32   y);
+
 typedef		t_f64	(*f_f64_operator)	(t_f64   x, t_f64   y);
 #if LIBCONFIG_USE_FLOAT80
 typedef		t_f80	(*f_f80_operator)	(t_f80   x, t_f80   y);
@@ -73,6 +81,10 @@ typedef		t_f128	(*f_f128_operator)	(t_f128  x, t_f128  y);
 #define c_fabs				Float_Abs
 #define Float_AbsoluteValue	Float_Abs
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Abs(t_f16 x);
+#define c_f16abs			F16_Abs
+#endif
 t_f32						F32_Abs(t_f32 x);
 #define c_f32abs			F32_Abs
 
@@ -99,6 +111,10 @@ t_f128						F128_Abs(t_f128 x);
 #define Float_Sign			Float_Sgn
 #define Float_SignOf		Float_Sgn
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Sgn(t_f16 x);
+#define c_f16sgn			F16_Sgn
+#endif
 t_f32						F32_Sgn(t_f32 x);
 #define c_f32sgn			F32_Sgn
 
@@ -131,6 +147,10 @@ t_f128						F128_Sgn(t_f128 x);
 #define						Float_IsNaN	CONCAT(FLOAT_TYPE,_IsNaN)
 #define c_fisnan			Float_IsNaN
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool						F16_IsNaN(t_f16 a);
+#define c_f16isnan			F16_IsNaN
+#endif
 t_bool						F32_IsNaN(t_f32 a);
 #define c_f32isnan			F32_IsNaN
 
@@ -157,6 +177,10 @@ t_bool						F128_IsNaN(t_f128 a);
 #define						Float_IsInf	CONCAT(FLOAT_TYPE,_IsInf)
 #define c_fisinf			Float_IsInf
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool						F16_IsInf(t_f16 a);
+#define c_f16isinf			F16_IsInf
+#endif
 t_bool						F32_IsInf(t_f32 a);
 #define c_f32isinf			F32_IsInf
 
@@ -183,6 +207,10 @@ t_bool						F128_IsInf(t_f128 a);
 #define						Float_IsPrime	CONCAT(FLOAT_TYPE,_IsPrime)
 #define c_fisprime			Float_IsPrime
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool						F16_IsPrime(t_f16 a);
+#define c_f16isprime		F16_IsPrime
+#endif
 t_bool						F32_IsPrime(t_f32 a);
 #define c_f32isprime		F32_IsPrime
 
@@ -213,6 +241,10 @@ t_bool						F128_IsPrime(t_f128 a);
 #define						Float_Round	CONCAT(FLOAT_TYPE,_Round)
 #define c_fround			Float_Round
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Round(t_f16 x);
+#define c_f16round			F16_Round
+#endif
 t_f32						F32_Round(t_f32 x);
 #define c_f32round			F32_Round
 
@@ -238,6 +270,10 @@ t_f128						F128_Round(t_f128 x);
 #define c_ftrunc			Float_Trunc
 #define Float_Truncate		Float_Trunc
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Trunc(t_f16 x);
+#define c_f16trunc			F16_Trunc
+#endif
 t_f32						F32_Trunc(t_f32 x);
 #define c_f32trunc			F32_Trunc
 
@@ -262,6 +298,10 @@ t_f128						F128_Trunc(t_f128 x);
 #define						Float_Floor	CONCAT(FLOAT_TYPE,_Floor)
 #define c_ffloor			Float_Floor
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Floor(t_f16 x);
+#define c_f16floor			F16_Floor
+#endif
 t_f32						F32_Floor(t_f32 x);
 #define c_f32floor			F32_Floor
 
@@ -287,6 +327,10 @@ t_f128						F128_Floor(t_f128 x);
 #define c_fceil				Float_Ceil
 #define Float_Ceiling		Float_Ceil
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Ceil(t_f16 x);
+#define c_f16ceil			F16_Ceil
+#endif
 t_f32						F32_Ceil(t_f32 x);
 #define c_f32ceil			F32_Ceil
 
@@ -323,6 +367,10 @@ t_f128						F128_Ceil(t_f128 x);
 #define					Float_Equals	CONCAT(FLOAT_TYPE,_Equals)
 #define c_fequ			Float_Equals
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_Equals(t_f16 x, t_f16 y);
+#define c_f16equ		F16_Equals
+#endif
 t_bool					F32_Equals(t_f32 x, t_f32 y);
 #define c_f32equ		F32_Equals
 
@@ -354,6 +402,10 @@ t_bool					F128_Equals(t_f128 x, t_f128 y);
 #define					Float_EqualsApprox	CONCAT(FLOAT_TYPE,_EqualsApprox)
 #define c_fequa			Float_EqualsApprox
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_EqualsApprox(t_f16 x, t_f16 y, t_f16 approx);
+#define c_f16equa		F16_EqualsApprox
+#endif
 t_bool					F32_EqualsApprox(t_f32 x, t_f32 y, t_f32 approx);
 #define c_f32equa		F32_EqualsApprox
 
@@ -377,6 +429,10 @@ t_bool					F128_EqualsApprox(t_f128 x, t_f128 y, t_f128 approx);
 #define					Float_LessThan	CONCAT(FLOAT_TYPE,_LessThan)
 #define c_flt			Float_LessThan
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_LessThan(t_f16 x, t_f16 y);
+#define c_f16lt			F16_LessThan
+#endif
 t_bool					F32_LessThan(t_f32 x, t_f32 y);
 #define c_f32lt			F32_LessThan
 
@@ -398,6 +454,10 @@ t_bool					F128_LessThan(t_f128 x, t_f128 y);
 #define					Float_LessThanOrEqual	CONCAT(FLOAT_TYPE,_LessThanOrEqual)
 #define c_flte			Float_LessThanOrEqual
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_LessThanOrEqual(t_f16 x, t_f16 y);
+#define c_f16lte		F16_LessThanOrEqual
+#endif
 t_bool					F32_LessThanOrEqual(t_f32 x, t_f32 y);
 #define c_f32lte		F32_LessThanOrEqual
 
@@ -419,6 +479,10 @@ t_bool					F128_LessThanOrEqual(t_f128 x, t_f128 y);
 #define					Float_GreaterThan	CONCAT(FLOAT_TYPE,_GreaterThan)
 #define c_fgt			Float_GreaterThan
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_GreaterThan(t_f16 x, t_f16 y);
+#define c_f16gt			F16_GreaterThan
+#endif
 t_bool					F32_GreaterThan(t_f32 x, t_f32 y);
 #define c_f32gt			F32_GreaterThan
 
@@ -440,6 +504,10 @@ t_bool					F128_GreaterThan(t_f128 x, t_f128 y);
 #define					Float_GreaterThanOrEqual	CONCAT(FLOAT_TYPE,_GreaterThanOrEqual)
 #define c_fgte			Float_GreaterThanOrEqual
 
+#if LIBCONFIG_USE_FLOAT16
+t_bool					F16_GreaterThanOrEqual(t_f16 x, t_f16 y);
+#define c_f16gte		F16_GreaterThanOrEqual
+#endif
 t_bool					F32_GreaterThanOrEqual(t_f32 x, t_f32 y);
 #define c_f32gte		F32_GreaterThanOrEqual
 
@@ -467,6 +535,10 @@ t_bool					F128_GreaterThanOrEqual(t_f128 x, t_f128 y);
 #define c_fmin			Float_Min
 #define Float_Minimum	Float_Min
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Min(t_f16 x, t_f16 y);
+#define c_f16min		F16_Min
+#endif
 t_f32					F32_Min(t_f32 x, t_f32 y);
 #define c_f32min		F32_Min
 
@@ -492,6 +564,10 @@ t_f128					F128_Min(t_f128 x, t_f128 y);
 #define c_fmax			Float_Max
 #define Float_Maximum	Float_Max
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Max(t_f16 x, t_f16 y);
+#define c_f16max		F16_Max
+#endif
 t_f32					F32_Max(t_f32 x, t_f32 y);
 #define c_f32max		F32_Max
 
@@ -525,6 +601,10 @@ t_f128					F128_Max(t_f128 x, t_f128 y);
 #define c_fadd			Float_Add
 #define Float_Addition	Float_Add
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Add(t_f16 x, t_f16 y);
+#define c_f16add		F16_Add
+#endif
 t_f32					F32_Add(t_f32 x, t_f32 y);
 #define c_f32add		F32_Add
 
@@ -553,6 +633,10 @@ t_f128					F128_Add(t_f128 x, t_f128 y);
 #define Float_Subtract	Float_Sub
 #define Float_Subtraction	Float_Sub
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Sub(t_f16 x, t_f16 y);
+#define c_f16sub		F16_Sub
+#endif
 t_f32					F32_Sub(t_f32 x, t_f32 y);
 #define c_f32sub		F32_Sub
 
@@ -581,6 +665,10 @@ t_f128					F128_Sub(t_f128 x, t_f128 y);
 #define Float_Multiply	Float_Mul
 #define Float_Multiplication	Float_Mul
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Mul(t_f16 x, t_f16 y);
+#define c_f16mul		F16_Mul
+#endif
 t_f32					F32_Mul(t_f32 x, t_f32 y);
 #define c_f32mul		F32_Mul
 
@@ -609,6 +697,10 @@ t_f128					F128_Mul(t_f128 x, t_f128 y);
 #define Float_Divide	Float_Div
 #define Float_Division	Float_Div
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16					F16_Div(t_f16 x, t_f16 y);
+#define c_f16div		F16_Div
+#endif
 t_f32					F32_Div(t_f32 x, t_f32 y);
 #define c_f32div		F32_Div
 
@@ -636,6 +728,10 @@ t_f128					F128_Div(t_f128 x, t_f128 y);
 #define c_fmod				Float_Mod
 #define Float_Modulo		Float_Mod
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Mod(t_f16 x, t_f16 y);
+#define c_f16mod			F16_Mod
+#endif
 t_f32						F32_Mod(t_f32 x, t_f32 y);
 #define c_f32mod			F32_Mod
 
@@ -664,6 +760,12 @@ t_f128						F128_Mod(t_f128 x, t_f128 y);
 #define c_fremainder		Float_Rem
 #define Float_Remainder		Float_Rem
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Rem(t_f16 x, t_f16 y);
+#define c_f16rem			F16_Rem
+#define c_f16remainder		F16_Rem
+#define F16_Remainder		F16_Rem
+#endif
 t_f32						F32_Rem(t_f32 x, t_f32 y);
 #define c_f32rem			F32_Rem
 #define c_f32remainder		F32_Rem
@@ -699,6 +801,10 @@ t_f128						F128_Rem(t_f128 x, t_f128 y);
 #define c_fremquo				Float_RemQuo
 #define Float_RemainderQuotient	Float_RemQuo
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_RemQuo(t_f16 x, t_f16 y, t_sint* quotient);
+#define c_f16remquo			F16_RemQuo
+#endif
 t_f32						F32_RemQuo(t_f32 x, t_f32 y, t_sint* quotient);
 #define c_f32remquo			F32_RemQuo
 
@@ -732,6 +838,10 @@ t_f128						F128_RemQuo(t_f128 x, t_f128 y, t_sint* quotient);
 #define c_fpow				Float_Pow
 #define Float_Power			Float_Pow
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Pow(t_f16 x, t_f16 y);
+#define c_f16pow			F16_Pow
+#endif
 t_f32						F32_Pow(t_f32 x, t_f32 y);
 #define c_f32pow			F32_Pow
 
@@ -761,6 +871,11 @@ t_f128						F128_Pow(t_f128 x, t_f128 y);
 #define Float_SqRt			Float_Root2
 #define Float_SquareRoot	Float_Root2
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Root2(t_f16 x);
+#define c_f16sqrt			F16_Root2
+#define c_f16root2			F16_Root2
+#endif
 t_f32						F32_Root2(t_f32 x);
 #define c_f32sqrt			F32_Root2
 #define c_f32root2			F32_Root2
@@ -792,6 +907,11 @@ t_f128						F128_Root2(t_f128 x);
 #define Float_CbRt			Float_Root3
 #define Float_CubeRoot		Float_Root3
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Root3(t_f16 x);
+#define c_f16cbrt			F16_Root3
+#define c_f16root3			F16_Root3
+#endif
 t_f32						F32_Root3(t_f32 x);
 #define c_f32cbrt			F32_Root3
 #define c_f32root3			F32_Root3
@@ -823,6 +943,11 @@ t_f128						F128_Root3(t_f128 x);
 #define Float_NRt			Float_RootN
 #define Float_NRoot			Float_RootN
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_RootN(t_f16 x, t_u8 n);
+#define c_f16nrt			F16_RootN
+#define c_f16rootn			F16_RootN
+#endif
 t_f32						F32_RootN(t_f32 x, t_u8 n);
 #define c_f32nrt			F32_RootN
 #define c_f32rootn			F32_RootN
@@ -856,6 +981,10 @@ t_f128						F128_RootN(t_f128 x, t_u8 n);
 #define c_fhypot			Float_Hypotenuse
 #define Float_Hypot			Float_Hypotenuse
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Hypotenuse(t_f16 x, t_f16 y);
+#define c_f16hypot			F16_Hypotenuse
+#endif
 t_f32						F32_Hypotenuse(t_f32 x, t_f32 y);
 #define c_f32hypot			F32_Hypotenuse
 
@@ -889,6 +1018,10 @@ t_f128						F128_Hypotenuse(t_f128 x, t_f128 y);
 #define c_fexp					Float_Exp
 #define Float_Exponential		Float_Exp
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Exp(t_f16 x);
+#define c_f16exp				F16_Exp
+#endif
 t_f32							F32_Exp(t_f32 x);
 #define c_f32exp				F32_Exp
 
@@ -915,6 +1048,11 @@ t_f128							F128_Exp(t_f128 x);
 #define c_fpow2					Float_Exp2
 #define Float_Pow2				Float_Exp2
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Exp2(t_f16 x);
+#define c_f16exp2				F16_Exp2
+#define c_f16pow2				F16_Exp2
+#endif
 t_f32							F32_Exp2(t_f32 x);
 #define c_f32exp2				F32_Exp2
 #define c_f32pow2				F32_Exp2
@@ -945,6 +1083,11 @@ t_f128							F128_Exp2(t_f128 x);
 #define c_fpow10				Float_Exp10
 #define Float_Pow10				Float_Exp10
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Exp10(t_f16 x);
+#define c_f16exp10				F16_Exp10
+#define c_f16pow10				F16_Exp10
+#endif
 t_f32							F32_Exp10(t_f32 x);
 #define c_f32exp10				F32_Exp10
 #define c_f32pow10				F32_Exp10
@@ -979,6 +1122,12 @@ t_f128							F128_Exp10(t_f128 x);
 #define Float_NaturalLog		Float_Log
 #define Float_NaturalLogarithm	Float_Log
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Log(t_f16 x);
+#define c_f16log				F16_Log
+#define c_f16ln					F16_Log
+#define F16_Ln					F16_Log
+#endif
 t_f32							F32_Log(t_f32 x);
 #define c_f32log				F32_Log
 #define c_f32ln					F32_Log
@@ -1014,6 +1163,11 @@ t_f128							F128_Log(t_f128 x);
 #define Float_Base2Log			Float_Log2
 #define Float_Logarithm_Base2	Float_Log2
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Log2(t_f16 x);
+#define c_f16lg					F16_Log2
+#define c_f16log2				F16_Log2
+#endif
 t_f32							F32_Log2(t_f32 x);
 #define c_f32lg					F32_Log2
 #define c_f32log2				F32_Log2
@@ -1044,6 +1198,10 @@ t_f128							F128_Log2(t_f128 x);
 #define Float_Base10Log			Float_Log10
 #define Float_Logarithm_Base10	Float_Log10
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Log10(t_f16 x);
+#define c_f16log10				F16_Log10
+#endif
 t_f32							F32_Log10(t_f32 x);
 #define c_f32log10				F32_Log10
 
@@ -1070,6 +1228,11 @@ t_f128							F128_Log10(t_f128 x);
 #define Float_BaseNLog			Float_LogN
 #define Float_Logarithm_BaseN	Float_LogN
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_LogN(t_f16 x, t_f16 n);
+#define c_f16logn				F16_LogN
+#define c_flognl				F16_LogN
+#endif
 t_f32							F32_LogN(t_f32 x, t_f32 n);
 #define c_f32logn				F32_LogN
 #define c_flognf				F32_LogN
@@ -1103,6 +1266,11 @@ t_f128							F128_LogN(t_f128 x, t_f128 n);
 #define c_ferf					Float_Erf
 #define Float_ErrorFunction		Float_Erf
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Erf(t_f16 x);
+#define c_f16erf				F16_Erf
+#define c_erfl					F16_Erf
+#endif
 t_f32							F32_Erf(t_f32 x);
 #define c_f32erf				F32_Erf
 #define c_erff					F32_Erf
@@ -1134,6 +1302,11 @@ t_f128							F128_Erf(t_f128 x);
 #define c_ferfc					Float_ErfC
 #define Float_ErrorFunctionComplement	Float_ErfC
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_ErfC(t_f16 x);
+#define c_f16erfc				F16_ErfC
+#define c_erfcl					F16_ErfC
+#endif
 t_f32							F32_ErfC(t_f32 x);
 #define c_f32erfc				F32_ErfC
 #define c_erfcf					F32_ErfC
@@ -1167,6 +1340,12 @@ t_f128							F128_ErfC(t_f128 x);
 #define c_fgamma				Float_Gamma
 #define c_ftgamma				Float_Gamma
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_Gamma(t_f16 x);
+#define c_f16gamma				F16_Gamma
+#define c_gammal				F16_Gamma
+#define c_tgammal				F16_Gamma
+#endif
 t_f32							F32_Gamma(t_f32 x);
 #define c_f32gamma				F32_Gamma
 #define c_gammaf				F32_Gamma
@@ -1202,6 +1381,11 @@ t_f128							F128_Gamma(t_f128 x);
 #define c_flngamma				Float_LnGamma
 #define c_flgamma				Float_LnGamma
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_LnGamma(t_f16 x);
+#define c_f16lngamma			F16_LnGamma
+#define c_lgammal				F16_LnGamma
+#endif
 t_f32							F32_LnGamma(t_f32 x);
 #define c_f32lngamma			F32_LnGamma
 #define c_lgammaf				F32_LnGamma
@@ -1239,6 +1423,11 @@ t_f128							F128_LnGamma(t_f128 x);
 #define c_fsin				Float_Sin
 #define Float_Sine			Float_Sin
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Sin(t_f16 x);
+#define c_f16sin			F16_Sin
+#define c_sinl				F16_Sin
+#endif
 t_f32						F32_Sin(t_f32 x);
 #define c_f32sin			F32_Sin
 #define c_sinf				F32_Sin
@@ -1268,6 +1457,11 @@ t_f128						F128_Sin(t_f128 x);
 #define c_fcos				Float_Cos
 #define Float_Cosine		Float_Cos
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Cos(t_f16 x);
+#define c_f16cos			F16_Cos
+#define c_cosl				F16_Cos
+#endif
 t_f32						F32_Cos(t_f32 x);
 #define c_f32cos			F32_Cos
 #define c_cosf				F32_Cos
@@ -1297,6 +1491,11 @@ t_f128						F128_Cos(t_f128 x);
 #define c_ftan				Float_Tan
 #define Float_Tangent		Float_Tan
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_Tan(t_f16 x);
+#define c_f16tan			F16_Tan
+#define c_tanl				F16_Tan
+#endif
 t_f32						F32_Tan(t_f32 x);
 #define c_f32tan			F32_Tan
 #define c_tanf				F32_Tan
@@ -1330,6 +1529,11 @@ t_f128						F128_Tan(t_f128 x);
 #define Float_ArcSine		Float_ArcSin
 #define Float_InvSine		Float_ArcSin
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_ArcSin(t_f16 x);
+#define c_f16asin			F16_ArcSin
+#define c_asinl				F16_ArcSin
+#endif
 t_f32						F32_ArcSin(t_f32 x);
 #define c_f32asin			F32_ArcSin
 #define c_asinf				F32_ArcSin
@@ -1361,6 +1565,11 @@ t_f128						F128_ArcSin(t_f128 x);
 #define Float_ArcCosine		Float_ArcCos
 #define Float_InvCosine		Float_ArcCos
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_ArcCos(t_f16 x);
+#define c_f16acos			F16_ArcCos
+#define c_acosl				F16_ArcCos
+#endif
 t_f32						F32_ArcCos(t_f32 x);
 #define c_f32acos			F32_ArcCos
 #define c_acosf				F32_ArcCos
@@ -1392,6 +1601,11 @@ t_f128						F128_ArcCos(t_f128 x);
 #define Float_ArcTangent	Float_ArcTan
 #define Float_InvTangent	Float_ArcTan
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16						F16_ArcTan(t_f16 x);
+#define c_f16atan			F16_ArcTan
+#define c_atanl				F16_ArcTan
+#endif
 t_f32						F32_ArcTan(t_f32 x);
 #define c_f32atan			F32_ArcTan
 #define c_atanf				F32_ArcTan
@@ -1428,6 +1642,11 @@ t_f128						F128_ArcTan(t_f128 x);
 #define Float_InvTangent2		Float_ArcTan2
 #define Float_InvTangent_YoverX	Float_ArcTan2
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_ArcTan2(t_f16 y, t_f16 x);
+#define c_f16atan2				F16_ArcTan2
+#define c_atan2l				F16_ArcTan2
+#endif
 t_f32							F32_ArcTan2(t_f32 y, t_f32 x);
 #define c_f32atan2				F32_ArcTan2
 #define c_atan2f				F32_ArcTan2
@@ -1464,6 +1683,11 @@ t_f128							F128_ArcTan2(t_f128 y, t_f128 x);
 #define Float_Sin_H				Float_SinH
 #define Float_Sine_Hyperbolic	Float_SinH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_SinH(t_f16 x);
+#define c_f16sinh				F16_SinH
+#define c_sinhl					F16_SinH
+#endif
 t_f32							F32_SinH(t_f32 x);
 #define c_f32sinh				F32_SinH
 #define c_sinhf					F32_SinH
@@ -1494,6 +1718,11 @@ t_f128							F128_SinH(t_f128 x);
 #define Float_Cos_H				Float_CosH
 #define Float_Cosine_Hyperbolic	Float_CosH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_CosH(t_f16 x);
+#define c_f16cosh				F16_CosH
+#define c_coshl					F16_CosH
+#endif
 t_f32							F32_CosH(t_f32 x);
 #define c_f32cosh				F32_CosH
 #define c_coshf					F32_CosH
@@ -1524,6 +1753,11 @@ t_f128							F128_CosH(t_f128 x);
 #define Float_Tan_H					Float_TanH
 #define Float_Tangent_Hyperbolic	Float_TanH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16							F16_TanH(t_f16 x);
+#define c_f16tanh				F16_TanH
+#define c_tanhl					F16_TanH
+#endif
 t_f32							F32_TanH(t_f32 x);
 #define c_f32tanh				F32_TanH
 #define c_tanhf					F32_TanH
@@ -1556,6 +1790,11 @@ t_f128							F128_TanH(t_f128 x);
 #define Float_Sin_1_H				Float_InvSinH
 #define Float_InvSine_Hyperbolic	Float_InvSinH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16								F16_InvSinH(t_f16 x);
+#define c_f16asinh					F16_InvSinH
+#define c_asinhl					F16_InvSinH
+#endif
 t_f32								F32_InvSinH(t_f32 x);
 #define c_f32asinh					F32_InvSinH
 #define c_asinhf					F32_InvSinH
@@ -1586,6 +1825,11 @@ t_f128								F128_InvSinH(t_f128 x);
 #define Float_Cos_1_H				Float_InvCosH
 #define Float_InvCosine_Hyperbolic	Float_InvCosH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16								F16_InvCosH(t_f16 x);
+#define c_f16acosh					F16_InvCosH
+#define c_acoshl					F16_InvCosH
+#endif
 t_f32								F32_InvCosH(t_f32 x);
 #define c_f32acosh					F32_InvCosH
 #define c_acoshf					F32_InvCosH
@@ -1616,6 +1860,11 @@ t_f128								F128_InvCosH(t_f128 x);
 #define Float_Tan_1_H				Float_InvTanH
 #define Float_InvTangent_Hyperbolic	Float_InvTanH
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16								F16_InvTanH(t_f16 x);
+#define c_f16atanh					F16_InvTanH
+#define c_atanhl					F16_InvTanH
+#endif
 t_f32								F32_InvTanH(t_f32 x);
 #define c_f32atanh					F32_InvTanH
 #define c_atanhf					F32_InvTanH
@@ -1665,11 +1914,13 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
+#define GET_F16_WORD(word,d)	do { union { t_f16 f; t_u16 i; } __u;  __u.f = (d);  (word) = __u.i;                          } while (0)
 #define GET_F32_WORD(word,d)	do { union { t_f32 f; t_u32 i; } __u;  __u.f = (d);  (word) = __u.i;                          } while (0)
 #define GET_F64_WORD_HI(hi,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32;                      } while (0)
 #define GET_F64_WORD_LO(lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);                      (lo) = (t_u32)__u.i; } while (0)
 #define GET_F64_WORDS(hi,lo,d)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  (hi) = __u.i >> 32; (lo) = (t_u32)__u.i; } while (0)
 
+#define SET_F16_WORD(d,word)	do { union { t_f16 f; t_u16 i; } __u;  __u.i = (word);                                                             (d) = __u.f; } while (0)
 #define SET_F32_WORD(d,word)	do { union { t_f32 f; t_u32 i; } __u;  __u.i = (word);                                                             (d) = __u.f; } while (0)
 #define SET_F64_WORD_HI(d,hi)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF;             __u.i |= (t_u64)(hi) << 32;  (d) = __u.f; } while (0)
 #define SET_F64_WORD_LO(d,lo)	do { union { t_f64 f; t_u64 i; } __u;  __u.f = (d);  __u.i &= 0xFFFFFFFF00000000ull;  __u.i |= (t_u32)(lo);        (d) = __u.f; } while (0)
@@ -1724,6 +1975,47 @@ extern const uint16_t __rsqrt_tab[128];
 t_sint	__rem_pi2_large(t_f64 *x, t_f64 *y, t_sint e0, t_sint nx, t_sint prec);
 t_f32	__expo2_f32(t_f32 x, t_f32 sign);
 t_f64	__expo2_f64(t_f64 x, t_f64 sign);
+
+
+
+#if LIBCONFIG_USE_FLOAT16
+#define TABLEBITS_EXP_F16	7
+#define N_EXP_F16	(1 << TABLEBITS_EXP_F16)
+struct data_exp_f16
+{
+	t_f16	ln2hi;
+	t_f16	ln2lo;
+	t_f16	log2e;
+	t_f16	exp_poly_p[3];
+	t_f16	exp_poly_q[4];
+	t_f64	redux;
+	t_f64	poly[7];
+	t_f64	table[2*N_EXP_F16];
+};
+extern const	struct data_exp_f16	__data_exp_f16;
+
+struct data_log_f16
+{
+	t_f16	P[7];
+	t_f16	Q[6];
+	t_f16	R[4];
+	t_f16	S[4];
+	t_f16	C1;
+	t_f16	C2;
+	t_f16	SQRTH;
+};
+extern const	struct data_log_f16	__data_log_f16;
+
+t_f16	__sin_f16(t_f16 x, t_f16 y, int iy);
+t_f16	__cos_f16(t_f16 x, t_f16 y);
+t_f16	__tan_f16(t_f16 x, t_f16 y, t_bool odd);
+t_sint	__rem_pi2_f16(t_f16 x, t_f16*  y);
+t_f16	__polynomial_f16(t_f16 x, t_f16 const* coefficients, int n);
+t_f16	__root2pN_f16(t_sint n);
+t_f16	__inv_factorial_f16(t_uint n);
+t_f16	__invtrig_polynomial_f16(t_f16 z);
+#endif
+
 
 
 #define TABLEBITS_EXP_F32	5

@@ -54,7 +54,11 @@ static const t_f##BITS	f##BITS##_powers_neg[] = \
 	(t_f##BITS)0. \
 }; \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEDATA_FLOAT_SQRT(16)
+#endif
 DEFINEDATA_FLOAT_SQRT(32)
+
 DEFINEDATA_FLOAT_SQRT(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEDATA_FLOAT_SQRT(80)
@@ -93,6 +97,11 @@ t_f##BITS	__root2pN_f##BITS(t_s32 n) \
 	return (result); \
 }
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_ROOT2PN(16,
+	if (n & 0x0400) { result *= powers[0xA]; }
+)
+#endif
 DEFINEFUNC_FLOAT_ROOT2PN(32,
 	if (n & 0x0400) { result *= powers[0xA]; }
 )

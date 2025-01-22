@@ -57,7 +57,11 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
 	return (3. / (1 + Float_Exp(-1.1 * x)) - 1.5);
 #endif
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_ARCTAN(16)
+#endif
 DEFINEFUNC_FLOAT_ARCTAN(32)
+
 DEFINEFUNC_FLOAT_ARCTAN(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_ARCTAN(80)
@@ -107,17 +111,17 @@ t_f32	F32_ArcTan(t_f32 x)
 {
 	static const t_f32 atanhi[] =
 	{
-		+4.6364760399e-01, /* atan(0.5)hi 0x3eed6338 */
-		+7.8539812565e-01, /* atan(1.0)hi 0x3f490fda */
-		+9.8279368877e-01, /* atan(1.5)hi 0x3f7b985e */
-		+1.5707962513e+00, /* atan(inf)hi 0x3fc90fda */
+		+4.6364760399e-01, /* atan(0.5)hi 0x3EED6338 */
+		+7.8539812565e-01, /* atan(1.0)hi 0x3F490FDA */
+		+9.8279368877e-01, /* atan(1.5)hi 0x3F7B985E */
+		+1.5707962513e+00, /* atan(inf)hi 0x3FC90FDA */
 	};
 	static const t_f32 atanlo[] =
 	{
-		+5.0121582440e-09, /* atan(0.5)lo 0x31ac3769 */
+		+5.0121582440e-09, /* atan(0.5)lo 0x31AC3769 */
 		+3.7748947079e-08, /* atan(1.0)lo 0x33222168 */
-		+3.4473217170e-08, /* atan(1.5)lo 0x33140fb4 */
-		+7.5497894159e-08, /* atan(inf)lo 0x33a22168 */
+		+3.4473217170e-08, /* atan(1.5)lo 0x33140FB4 */
+		+7.5497894159e-08, /* atan(inf)lo 0x33A22168 */
 	};
 	static const t_f32 aT[] =
 	{
@@ -133,15 +137,15 @@ t_f32	F32_ArcTan(t_f32 x)
 
 	GET_F32_WORD(ix, x);
 	sign = ix>>31;
-	ix &= 0x7fffffff;
-	if (ix >= 0x4c800000)
+	ix &= 0x7FFFFFFF;
+	if (ix >= 0x4C800000)
 	{	/* if |x| >= 2**26 */
 		if (IS_NAN(x))
 			return x;
 		z = atanhi[3] + 0x1p-120f;
 		return sign ? -z : z;
 	}
-	if (ix < 0x3ee00000)
+	if (ix < 0x3EE00000)
 	{	/* |x| < 0.4375 */
 		if (ix < 0x39800000)
 		{	/* |x| < 2**-12 */
@@ -155,9 +159,9 @@ t_f32	F32_ArcTan(t_f32 x)
 	else
 	{
 		x = F32_Abs(x);
-		if (ix < 0x3f980000)
+		if (ix < 0x3F980000)
 		{	/* |x| < 1.1875 */
-			if (ix < 0x3f300000)
+			if (ix < 0x3F300000)
 			{	/*  7/16 <= |x| < 11/16 */
 				id = 0;
 				x = (2.0f*x - 1.0f)/(2.0f + x);
@@ -170,7 +174,7 @@ t_f32	F32_ArcTan(t_f32 x)
 		}
 		else
 		{
-			if (ix < 0x401c0000)
+			if (ix < 0x401C0000)
 			{	/* |x| < 2.4375 */
 				id = 2;
 				x = (x - 1.5f)/(1.0f + 1.5f*x);
@@ -232,7 +236,7 @@ t_f64	F64_ArcTan(t_f64 x)
 
 	GET_F64_WORD_HI(ix, x);
 	sign = ix >> 31;
-	ix &= 0x7fffffff;
+	ix &= 0x7FFFFFFF;
 	if (ix >= 0x44100000)
 	{	/* if |x| >= 2^66 */
 		if (IS_NAN(x))
@@ -240,9 +244,9 @@ t_f64	F64_ArcTan(t_f64 x)
 		z = atanhi[3] + 0x1p-120f;
 		return sign ? -z : z;
 	}
-	if (ix < 0x3fdc0000)
+	if (ix < 0x3FDC0000)
 	{	/* |x| < 0.4375 */
-		if (ix < 0x3e400000)
+		if (ix < 0x3E400000)
 		{	/* |x| < 2^-27 */
 			if (ix < 0x00100000)
 				/* raise underflow for subnormal x */
@@ -254,9 +258,9 @@ t_f64	F64_ArcTan(t_f64 x)
 	else
 	{
 		x = F64_Abs(x);
-		if (ix < 0x3ff30000)
+		if (ix < 0x3FF30000)
 		{	/* |x| < 1.1875 */
-			if (ix < 0x3fe60000)
+			if (ix < 0x3FE60000)
 			{	/*  7/16 <= |x| < 11/16 */
 				id = 0;
 				x = (2.0*x-1.0)/(2.0+x);
@@ -299,11 +303,11 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
 	union ldshape u = {x}; \
 	t_f##BITS w, s1, s2, z; \
 	int id; \
-	unsigned e = u.i.se & 0x7fff; \
+	unsigned e = u.i.se & 0x7FFF; \
 	unsigned sign = u.i.se >> 15; \
 	unsigned expman; \
  \
-	if (e >= 0x3fff + LDBL_MANT_DIG + 1) \
+	if (e >= 0x3FFF + LDBL_MANT_DIG + 1) \
 	{	/* if |x| is large, atan(x)~=pi/2 */ \
 		if (IS_NAN(x)) \
 			return x; \
@@ -311,9 +315,9 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
 	} \
 	/* Extract the exponent and the first few bits of the mantissa. */ \
 	expman = EXPMAN(u); \
-	if (expman < ((0x3fff - 2) << 8) + 0xc0) \
+	if (expman < ((0x3FFF - 2) << 8) + 0xC0) \
 	{	/* |x| < 0.4375 */ \
-		if (e < 0x3fff - (LDBL_MANT_DIG+1)/2) \
+		if (e < 0x3FFF - (LDBL_MANT_DIG+1)/2) \
 		{	/* if |x| is small, atanl(x)~=x */ \
 			/* raise underflow if subnormal */ \
 			if (e == 0) \
@@ -325,9 +329,9 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
 	else \
 	{ \
 		x = F##BITS##_Abs(x); \
-		if (expman < (0x3fff << 8) + 0x30) \
+		if (expman < (0x3FFF << 8) + 0x30) \
 		{	/* |x| < 1.1875 */ \
-			if (expman < ((0x3fff - 1) << 8) + 0x60) \
+			if (expman < ((0x3FFF - 1) << 8) + 0x60) \
 			{	/*  7/16 <= |x| < 11/16 */ \
 				id = 0; \
 				x = (2.0*x-1.0)/(2.0+x); \
@@ -340,7 +344,7 @@ t_f##BITS	F##BITS##_ArcTan(t_f##BITS x) \
 		} \
 		else \
 		{ \
-			if (expman < ((0x3fff + 1) << 8) + 0x38) \
+			if (expman < ((0x3FFF + 1) << 8) + 0x38) \
 			{	/* |x| < 2.4375 */ \
 				id = 2; \
 				x = (x-1.5)/(1.0+1.5*x); \
@@ -395,7 +399,7 @@ static const t_f80 aT[] =
 	-2.91303858419364158725e-02L,
 	+1.24822046299269234080e-02L,
 };
-#define EXPMAN(u) ((u.i.se & 0x7fff)<<8 | (u.i.m>>55 & 0xff))
+#define EXPMAN(u) ((u.i.se & 0x7FFF)<<8 | (u.i.m>>55 & 0xFF))
 
 static
 t_f80	T_even(t_f80 x)
@@ -451,7 +455,7 @@ static const t_f128 aT[] =
 	+8.64492360989278761493037861575248038e-03L,
 	-2.58521121597609872727919154569765469e-03L,
 };
-#define EXPMAN(u) ((u.i.se & 0x7fff)<<8 | u.i.top>>8)
+#define EXPMAN(u) ((u.i.se & 0x7FFF)<<8 | u.i.top>>8)
 
 static
 t_f128 T_even(t_f128 x)

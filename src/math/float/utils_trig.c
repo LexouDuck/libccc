@@ -79,6 +79,13 @@ t_float	__inv_factorial(t_uint n)
 
 /* |sin(x)/x - s(x)| < 2**-37.5 (~[-4.89e-12, 4.824e-12]). */
 
+#if LIBCONFIG_USE_FLOAT16
+t_f16	__sin_f16(t_f64 x)
+{
+	return (t_f16)__sin_f32(x);
+}
+#endif
+
 t_f32	__sin_f32(t_f64 x)
 {
 	static const t_f64 S1 = -0x15555554CBAC77.0p-55; /* -0.166666666416265235595 */
@@ -200,6 +207,13 @@ t_f128	__sin_f128(t_f128 x, t_f128 y, int iy)
 */
 
 /* |cos(x) - c(x)| < 2**-34.1 (~[-5.37e-11, 5.295e-11]). */
+
+#if LIBCONFIG_USE_FLOAT16
+t_f16	__cos_f16(t_f64 x)
+{
+	return (t_f16)__cos_f32(x);
+}
+#endif
 
 t_f32	__cos_f32(t_f64 x)
 {
@@ -351,6 +365,13 @@ t_f128	__cos_f128(t_f128 x, t_f128 y)
 **              tan(x) = tan(pi/4-y) = (1-tan(y))/(1+tan(y))
 **                     = 1 - 2*(tan(y) - (tan(y)^2)/(1+tan(y)))
 */
+
+#if LIBCONFIG_USE_FLOAT16
+t_f16	__tan_f16(t_f64 x)
+{
+	return (t_f16)__tan_f32(x);
+}
+#endif
 
 t_f32	__tan_f32(t_f64 x, t_bool odd)
 {
@@ -599,6 +620,12 @@ DEFINEFUNC_FLOAT_TAN(128)
 ** use __rem_pi2_large() for large x
 */
 
+#if LIBCONFIG_USE_FLOAT16
+t_sint	__rem_pi2_f16(t_f16 x, t_f64 *y)
+{
+	return __rem_pi2_f32(x, y);
+}
+#endif
 
 #if FLT_EVAL_METHOD==0 || FLT_EVAL_METHOD==1
 #define EPS DBL_EPSILON
@@ -1599,6 +1626,13 @@ recompute:
 
 /* used in asinl() and acosl() */
 /* R(x^2) is a rational approximation of (asin(x)-x)/x^3 with Remez algorithm */
+
+#if LIBCONFIG_USE_FLOAT16
+t_f16	__invtrig_polynomial_f16(t_f16 z)
+{
+	return (t_f16)__invtrig_polynomial_f32(z);
+}
+#endif
 
 t_f32 __invtrig_polynomial_f32(t_f32 z)
 {

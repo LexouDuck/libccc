@@ -17,7 +17,11 @@ t_f##BITS	F##BITS##_Log2(t_f##BITS x) \
 	return (F##BITS##_Log(x) / LN_2); \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_LOG2(16)
+#endif
 DEFINEFUNC_FLOAT_LOG2(32)
+
 DEFINEFUNC_FLOAT_LOG2(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_LOG2(80)
@@ -132,7 +136,7 @@ t_f32	F32_Log2(t_f32 x)
 #undef N
 #undef OFF
 #define N (1 << LOG2_TABLE_BITS)
-#define OFF 0x3fe6000000000000
+#define OFF 0x3FE6000000000000
 
 extern const struct data_log2_f64
 {
@@ -150,7 +154,7 @@ const struct data_log2_f64 __data_log2_f64 =
 {
 	// First coefficient: 0x1.71547652b82fe1777d0ffda0d24p0
 	.invln2hi = 0x1.7154765200000p+0,
-	.invln2lo = 0x1.705fc2eefa200p-33,
+	.invln2lo = 0x1.705FC2EEFA200p-33,
 	.poly1 =
 	{
 	// relative error: 0x1.2fad8188p-63
@@ -638,7 +642,6 @@ done: \
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_LOG2(80)
 #endif
-
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_LOG2(128)
 #endif
