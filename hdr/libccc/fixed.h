@@ -781,8 +781,10 @@ t_q8					Q8_FromQ32(t_q32 number);
 #define c_q32toq8		Q8_FromQ32
 t_q8					Q8_FromQ64(t_q64 number);
 #define c_q64toq8		Q8_FromQ64
+#if LIBCONFIG_USE_INT128
 t_q8					Q8_FromQ128(t_q128 number);
 #define c_q128toq8		Q8_FromQ128
+#endif
 
 t_q16					Q16_FromQ8(t_q8 number);
 #define c_q8toq16		Q16_FromQ8
@@ -792,8 +794,10 @@ t_q16					Q16_FromQ32(t_q32 number);
 #define c_q32toq16		Q16_FromQ32
 t_q16					Q16_FromQ64(t_q64 number);
 #define c_q64toq16		Q16_FromQ64
+#if LIBCONFIG_USE_INT128
 t_q16					Q16_FromQ128(t_q128 number);
 #define c_q128toq16		Q16_FromQ128
+#endif
 
 t_q32					Q32_FromQ8(t_q8 number);
 #define c_q8toq32		Q32_FromQ8
@@ -803,8 +807,10 @@ t_q32					Q32_FromQ32(t_q32 number);
 #define c_q32toq32		Q32_FromQ32
 t_q32					Q32_FromQ64(t_q64 number);
 #define c_q64toq32		Q32_FromQ64
+#if LIBCONFIG_USE_INT128
 t_q32					Q32_FromQ128(t_q128 number);
 #define c_q128toq32		Q32_FromQ128
+#endif
 
 t_q64					Q64_FromQ8(t_q8 number);
 #define c_q8toq64		Q64_FromQ8
@@ -814,8 +820,10 @@ t_q64					Q64_FromQ32(t_q32 number);
 #define c_q32toq64		Q64_FromQ32
 t_q64					Q64_FromQ64(t_q64 number);
 #define c_q64toq64		Q64_FromQ64
+#if LIBCONFIG_USE_INT128
 t_q64					Q64_FromQ128(t_q128 number);
 #define c_q128toq64		Q64_FromQ128
+#endif
 #if LIBCONFIG_USE_INT128
 t_q128					Q128_FromQ8(t_q8 number);
 #define c_q8toq128		Q128_FromQ8

@@ -44,76 +44,76 @@ void	print_test_##TYPE##tostr(char const* test_name, t_testflags flags, \
 } \
 void	test_##TYPE##tostr(void) \
 { \
-/*	| TEST FUNCTION         | TEST NAME                  |TESTFLAG| EXPECTING                                         | TEST ARGS								*/ \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/"STRING(NAME##_DENOM)")", NAME##_From( 0,                       1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1.(0/"STRING(NAME##_DENOM)")", NAME##_From(+1,                       1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-1.(0/"STRING(NAME##_DENOM)")", NAME##_From(-1,                       1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "10.(0/"STRING(NAME##_DENOM)")", NAME##_From(+10,                      1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "-10.(0/"STRING(NAME##_DENOM)")", NAME##_From(-10,                      1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "42.(0/"STRING(NAME##_DENOM)")", NAME##_From(+42,                      1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/"STRING(NAME##_DENOM)")", NAME##_From( 0,                       2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "0.(128/"STRING(NAME##_DENOM)")", NAME##_From(+1,                       2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "0.(-128/"STRING(NAME##_DENOM)")", NAME##_From(-1,                       2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "5.(0/"STRING(NAME##_DENOM)")", NAME##_From(+10,                      2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-5.(0/"STRING(NAME##_DENOM)")", NAME##_From(-10,                      2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "21.(0/"STRING(NAME##_DENOM)")", NAME##_From(+42,                      2)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/"STRING(NAME##_DENOM)")", NAME##_From( 0,                     128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(2/"STRING(NAME##_DENOM)")", NAME##_From(+1,                     128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(-2/"STRING(NAME##_DENOM)")", NAME##_From(-1,                     128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(20/"STRING(NAME##_DENOM)")", NAME##_From(+10,                    128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "0.(-20/"STRING(NAME##_DENOM)")", NAME##_From(-10,                    128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(84/"STRING(NAME##_DENOM)")", NAME##_From(+42,                    128)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "111.(0/"STRING(NAME##_DENOM)")", NAME##_From(+111,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-111.(0/"STRING(NAME##_DENOM)")", NAME##_From(-111,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 min)     ",	FALSE,                   "-128.(0/"STRING(NAME##_DENOM)")", NAME##_From(-128,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 max)     ",	FALSE,                    "127.(0/"STRING(NAME##_DENOM)")", NAME##_From(+127,                     1)); \
+/*	| TEST FUNCTION         | TEST NAME                  |TESTFLAG| EXPECTING                                           | TEST ARGS								*/ \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/" STRING(NAME##_DENOM) ")", NAME##_From( 0,                       1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "1.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+1,                       1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-1.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-1,                       1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "10.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+10,                      1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "-10.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-10,                      1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "42.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+42,                      1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/" STRING(NAME##_DENOM) ")", NAME##_From( 0,                       2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "0.(128/" STRING(NAME##_DENOM) ")", NAME##_From(+1,                       2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "0.(-128/" STRING(NAME##_DENOM) ")", NAME##_From(-1,                       2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "5.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+10,                      2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "-5.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-10,                      2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "21.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+42,                      2)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(0/" STRING(NAME##_DENOM) ")", NAME##_From( 0,                     128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                      "0.(2/" STRING(NAME##_DENOM) ")", NAME##_From(+1,                     128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(-2/" STRING(NAME##_DENOM) ")", NAME##_From(-1,                     128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(20/" STRING(NAME##_DENOM) ")", NAME##_From(+10,                    128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "0.(-20/" STRING(NAME##_DENOM) ")", NAME##_From(-10,                    128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                     "0.(84/" STRING(NAME##_DENOM) ")", NAME##_From(+42,                    128)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "111.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+111,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-111.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-111,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 min)     ",	FALSE,                   "-128.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-128,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 8 max)     ",	FALSE,                    "127.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+127,                     1)); \
 	if (g_test.config.test_overflow) { \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 min)     ",	FALSE,                   "-129.(0/"STRING(NAME##_DENOM)")", NAME##_From(-129,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 max)     ",	FALSE,                    "128.(0/"STRING(NAME##_DENOM)")", NAME##_From(+128,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 maxdigit)",	FALSE,                 "-99999.(0/"STRING(NAME##_DENOM)")", NAME##_From(-99999,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 maxdigit)",	FALSE,                  "99999.(0/"STRING(NAME##_DENOM)")", NAME##_From(+99999,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 min)     ",	FALSE,                   "-129.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-129,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 max)     ",	FALSE,                    "128.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+128,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 8 maxdigit)",	FALSE,                 "-99999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-99999,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 8 maxdigit)",	FALSE,                  "99999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+99999,                   1)); \
 	} \
 	if (sizeof(t_##TYPE) * 8 >= 16) \
 	{ \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "777.(0/"STRING(NAME##_DENOM)")", NAME##_From(+777,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-666.(0/"STRING(NAME##_DENOM)")", NAME##_From(-666,                     1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                 "-10000.(0/"STRING(NAME##_DENOM)")", NAME##_From(-10000,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000.(0/"STRING(NAME##_DENOM)")", NAME##_From(+10000,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 16min)     ",	FALSE,                 "-32768.(0/"STRING(NAME##_DENOM)")", NAME##_From(-32768,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "32767.(0/"STRING(NAME##_DENOM)")", NAME##_From(+32767,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                    "777.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+777,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                   "-666.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-666,                     1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                 "-10000.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-10000,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,                  "10000.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+10000,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16min)     ",	FALSE,                 "-32768.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-32768,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 16max)     ",	FALSE,                  "32767.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+32767,                   1)); \
 	if (g_test.config.test_overflow) { \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                 "-32769.(0/"STRING(NAME##_DENOM)")", NAME##_From(-32769,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "32768.(0/"STRING(NAME##_DENOM)")", NAME##_From(+32768,                   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(-9999999,                 1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,                "9999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(+9999999,                 1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16min)     ",	FALSE,                 "-32769.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-32769,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16max)     ",	FALSE,                  "32768.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+32768,                   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 16maxdigit)",	FALSE,               "-9999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-9999999,                 1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 16maxdigit)",	FALSE,                "9999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+9999999,                 1)); \
 	} \
 	if (sizeof(t_##TYPE) * 8 >= 32) \
 	{ \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-123456789.(0/"STRING(NAME##_DENOM)")", NAME##_From(-123456789,               1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "123456789.(0/"STRING(NAME##_DENOM)")", NAME##_From(+123456789,               1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-987654321.(0/"STRING(NAME##_DENOM)")", NAME##_From(-987654321,               1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321.(0/"STRING(NAME##_DENOM)")", NAME##_From(+987654321,               1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 32min)     ",	FALSE,            "-2147483648.(0/"STRING(NAME##_DENOM)")", NAME##_From(-2147483648,              1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "2147483647.(0/"STRING(NAME##_DENOM)")", NAME##_From(+2147483647,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-123456789.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-123456789,               1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "123456789.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+123456789,               1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "-987654321.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-987654321,               1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,              "987654321.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+987654321,               1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32min)     ",	FALSE,            "-2147483648.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-2147483648,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 32max)     ",	FALSE,             "2147483647.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+2147483647,              1)); \
 	if (g_test.config.test_overflow) { \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,            "-2147483649.(0/"STRING(NAME##_DENOM)")", NAME##_From(-2147483649,              1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "2147483648.(0/"STRING(NAME##_DENOM)")", NAME##_From(+2147483648,              1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(-999999999999,            1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,           "999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(+999999999999,            1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32min)     ",	FALSE,            "-2147483649.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-2147483649,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32max)     ",	FALSE,             "2147483648.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+2147483648,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 32maxdigit)",	FALSE,          "-999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-999999999999,            1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 32maxdigit)",	FALSE,           "999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+999999999999,            1)); \
 	} \
 	if (sizeof(t_##TYPE) * 8 >= 64) \
 	{ \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,            "-2147483649.(0/"STRING(NAME##_DENOM)")", NAME##_From(-2147483649,              1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "2147483648.(0/"STRING(NAME##_DENOM)")", NAME##_From(+2147483648,              1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,          "-999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(-999999999999,            1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(+999999999999,            1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808.(0/"STRING(NAME##_DENOM)")", NAME##_From(-9223372036854775808ll,   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,    "9223372036854775807.(0/"STRING(NAME##_DENOM)")", NAME##_From(+9223372036854775807ll,   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,            "-2147483649.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-2147483649,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,             "2147483648.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+2147483648,              1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,          "-999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-999999999999,            1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr                 ",	FALSE,           "999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+999999999999,            1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64min)     ",	FALSE,   "-9223372036854775808.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-9223372036854775808ll,   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n = 64max)     ",	FALSE,    "9223372036854775807.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+9223372036854775807ll,   1)); \
 	if (g_test.config.test_overflow) { \
-	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809.(0/"STRING(NAME##_DENOM)")", NAME##_From(-9223372036854775809ll,   1)); \
-	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,    "9223372036854775808.(0/"STRING(NAME##_DENOM)")", NAME##_From(+9223372036854775808ll,   1)); \
-/*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(-999999999999999999999ll, 1));*/\
-/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999.(0/"STRING(NAME##_DENOM)")", NAME##_From(+999999999999999999999ll, 1));*/\
+	print_test_##TYPE##tostr(#TYPE"tostr (n < 64min)     ",	FALSE,   "-9223372036854775809.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-9223372036854775809ll,   1)); \
+	print_test_##TYPE##tostr(#TYPE"tostr (n > 64max)     ",	FALSE,    "9223372036854775808.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+9223372036854775808ll,   1)); \
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n < 64maxdigit)",	FALSE, "-999999999999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(-999999999999999999999ll, 1));*/\
+/*	print_test_##TYPE##tostr(#TYPE"tostr (n > 64maxdigit)",	FALSE,  "999999999999999999999.(0/" STRING(NAME##_DENOM) ")", NAME##_From(+999999999999999999999ll, 1));*/\
 	} \
 	}}} \
 }
