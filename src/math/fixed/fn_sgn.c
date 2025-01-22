@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Sgn(t_q##BITS a) \
 	return (t_q##BITS){ (t_s##BITS)(a._ == 0 ? 0 : (a._ < 0 ? -1 : +1)) }; \
 } \
 
+DEFINEFUNC_FIXED_SGN(8)
 DEFINEFUNC_FIXED_SGN(16)
 DEFINEFUNC_FIXED_SGN(32)
 DEFINEFUNC_FIXED_SGN(64)

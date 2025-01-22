@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Div(t_q##BITS x, t_q##BITS y) \
 } \
 // TODO fix this and test
 
+DEFINEFUNC_FIXED_DIV(8)
 DEFINEFUNC_FIXED_DIV(16)
 DEFINEFUNC_FIXED_DIV(32)
 DEFINEFUNC_FIXED_DIV(64)
@@ -25,10 +26,11 @@ DEFINEFUNC_FIXED_DIV(128)
 #endif
 
 #ifdef __cplusplus
-t_q16	operator / (t_q16	x, t_q16	y)	{ return Q16_Div(x, y); }
-t_q32	operator / (t_q32	x, t_q32	y)	{ return Q32_Div(x, y); }
-t_q64	operator / (t_q64	x, t_q64	y)	{ return Q64_Div(x, y); }
+t_q8	operator / (t_q8   x, t_q8   y)	{ return Q8_Div(x, y); }
+t_q16	operator / (t_q16  x, t_q16  y)	{ return Q16_Div(x, y); }
+t_q32	operator / (t_q32  x, t_q32  y)	{ return Q32_Div(x, y); }
+t_q64	operator / (t_q64  x, t_q64  y)	{ return Q64_Div(x, y); }
 #if LIBCONFIG_USE_INT128
-t_q128	operator / (t_q128	x, t_q128	y)	{ return Q128_Div(x, y); }
+t_q128	operator / (t_q128 x, t_q128 y)	{ return Q128_Div(x, y); }
 #endif
 #endif

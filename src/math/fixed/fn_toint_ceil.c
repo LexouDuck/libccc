@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Ceil(t_q##BITS number) \
 		(t_q##BITS){ (t_s##BITS)(number._ + (Q##BITS##_DENOM - Q##BITS##_FractionPart(number)._)) }); \
 } \
 
+DEFINEFUNC_FIXED_CEIL(8)
 DEFINEFUNC_FIXED_CEIL(16)
 DEFINEFUNC_FIXED_CEIL(32)
 DEFINEFUNC_FIXED_CEIL(64)

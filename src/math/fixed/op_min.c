@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Min(t_q##BITS a, t_q##BITS b) \
 	return (a._ < b._ ? a : b); \
 } \
 
+DEFINEFUNC_FIXED_MIN(8)
 DEFINEFUNC_FIXED_MIN(16)
 DEFINEFUNC_FIXED_MIN(32)
 DEFINEFUNC_FIXED_MIN(64)

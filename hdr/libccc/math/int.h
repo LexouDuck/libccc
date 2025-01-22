@@ -1152,46 +1152,58 @@ t_s128					S128_Pow(t_s128 x, t_s128 y);
 //!@{
 #define						UInt_Root2	CONCAT(UINT_TYPE,_Root2)
 #define c_usqrt				UInt_Root2
+#define c_uroot2			UInt_Root2
 #define UInt_SqRt			UInt_Root2
 #define UInt_SquareRoot		UInt_Root2
 
 t_u8						U8_Root2(t_u8 x);
 #define c_u8sqrt			U8_Root2
+#define c_u8root2			U8_Root2
 
 t_u16						U16_Root2(t_u16 x);
 #define c_u16sqrt			U16_Root2
+#define c_u16root2			U16_Root2
 
 t_u32						U32_Root2(t_u32 x);
 #define c_u32sqrt			U32_Root2
+#define c_u32root2			U32_Root2
 
 t_u64						U64_Root2(t_u64 x);
 #define c_u64sqrt			U64_Root2
+#define c_u64root2			U64_Root2
 
 #if LIBCONFIG_USE_INT128
 t_u128						U128_Root2(t_u128 x);
 #define c_u128sqrt			U128_Root2
+#define c_u128root2			U128_Root2
 #endif
 
 #define						SInt_Root2	CONCAT(SINT_TYPE,_Root2)
 #define c_ssqrt				SInt_Root2
+#define c_sroot2			SInt_Root2
 #define SInt_SqRt			SInt_Root2
 #define SInt_SquareRoot		SInt_Root2
 
 t_s8						S8_Root2(t_s8 x);
 #define c_s8sqrt			S8_Root2
+#define c_s8root2			S8_Root2
 
 t_s16						S16_Root2(t_s16 x);
 #define c_s16sqrt			S16_Root2
+#define c_s16root2			S16_Root2
 
 t_s32						S32_Root2(t_s32 x);
 #define c_s32sqrt			S32_Root2
+#define c_s32root2			S32_Root2
 
 t_s64						S64_Root2(t_s64 x);
 #define c_s64sqrt			S64_Root2
+#define c_s64root2			S64_Root2
 
 #if LIBCONFIG_USE_INT128
 t_s128						S128_Root2(t_s128 x);
 #define c_s128sqrt			S128_Root2
+#define c_s128root2			S128_Root2
 #endif
 //!@}
 

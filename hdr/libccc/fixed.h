@@ -149,6 +149,21 @@ TYPEDEF_ALIAS(t_q64,	FIXED_64,	PRIMITIVE)
 
 #else
 
+//!@doc Primitive type: 8-bit signed fixed-point rational number (configurable bit portions)
+/*!
+**	@nonstd
+**
+**	Fixed-point rational number type which is 8 bits in size.
+**	Which amount is dedicated to the fraction/integer part is
+**	determined by the value of #FIXED_BITS_FRACTIONPART.
+**	All the other `#define`s depend on this one macro.
+**	The largest possible value for this type is #Q8_MAX.
+*/
+//!@{
+typedef struct q8 { s8_t _; }	t_q8;
+TYPEDEF_ALIAS(	t_q8,	FIXED_8,	PRIMITIVE)
+//!@}
+
 //!@doc Primitive type: 16-bit signed fixed-point rational number (configurable bit portions)
 /*!
 **	@nonstd
@@ -282,6 +297,13 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 #if (LIBCONFIG_FIXED_NAN == 0) && (LIBCONFIG_FIXED_INF == 0)
 
+	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM })
+	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM })
+	#define Q8_MIN_VAL	Q8_MIN
+	#define Q8_MAX_VAL	Q8_MAX
+	#define Q8_MIN		((t_q8){ (t_s8)0x80 }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_MAX		((t_q8){ (t_s8)0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM })
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM })
 	#define Q16_MIN_VAL	Q16_MIN
@@ -320,6 +342,14 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define FIXED_MAX		(CONCAT(CONCAT(Q,LIBCONFIG_FIXED_BITS),_MAX)) //!< The maximum possible value that a configurable-size fixed-point can represent
 
 #elif (LIBCONFIG_SINT_NAN)
+
+	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM })
+	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM })
+	#define Q8_MIN_VAL	Q8_MIN
+	#define Q8_MAX_VAL	Q8_MAX
+	#define Q8_MIN		((t_q8){ (t_s8)-0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_MAX		((t_q8){ (t_s8)+0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_NAN		((t_q8){ (t_s8) 0x80 })
 
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM })
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM })
@@ -365,6 +395,14 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 #elif (LIBCONFIG_SINT_INF)
 
+	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM })
+	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM })
+	#define Q8_MIN_VAL	Q8_MIN
+	#define Q8_MAX_VAL	Q8_MAX
+	#define Q8_MIN		((t_q8){ (t_s8)-0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_MAX		((t_q8){ (t_s8)+0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_INF		((t_q8){ (t_s8) 0x80 })
+
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM })
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM })
 	#define Q16_MIN_VAL	Q16_MIN
@@ -408,6 +446,15 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define FIXED_INF		((t_fixed){ 1 << (LIBCONFIG_FIXED_BITS - 1) })
 
 #else
+
+	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM })
+	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM })
+	#define Q8_MIN_VAL	((t_q8){ (t_s8)-0x7E })
+	#define Q8_MAX_VAL	((t_q8){ (t_s8)+0x7E })
+	#define Q8_MIN		((t_q8){ (t_s8)-0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_MAX		((t_q8){ (t_s8)+0x7F }) //!< The largest possible value that a 8-bit fixed-point can hold
+	#define Q8_INF		((t_q8){ (t_s8)+0x7F })
+	#define Q8_NAN		((t_q8){ (t_s8) 0x80 })
 
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM })
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM })
@@ -507,6 +554,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 		t_s64:	 FUNCTYPE##_FromS64, \
 		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
+		t_q8:	 FUNCTYPE##_FromQ8, \
 		t_q16:	 FUNCTYPE##_FromQ16, \
 		t_q32:	 FUNCTYPE##_FromQ32, \
 		t_q64:	 FUNCTYPE##_FromQ64, \
@@ -520,6 +568,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	)(X)
 
 #define Fixed(X)	DEFINEFUNC_Fixed(X, Fixed)
+#define Q8(X)		DEFINEFUNC_Fixed(X, Q8)
 #define Q16(X)		DEFINEFUNC_Fixed(X, Q16)
 #define Q32(X)		DEFINEFUNC_Fixed(X, Q32)
 #define Q64(X)		DEFINEFUNC_Fixed(X, Q64)
@@ -528,6 +577,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #endif
 
 #define c_fixed(X)	Fixed(X)
+#define c_q8(X)		Q8(X)
 #define c_q16(X)	Q16(X)
 #define c_q32(X)	Q32(X)
 #define c_q64(X)	Q64(X)
@@ -555,6 +605,19 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #define c_u64toq		Fixed_FromU64
 #define					Fixed_FromU128	CONCAT(FIXED_TYPE,_FromU128)
 #define c_u128toq		Fixed_FromU128
+
+t_q8					Q8_FromU8(t_u8 number);
+#define c_u8toq8		Q8_FromU8
+t_q8					Q8_FromU16(t_u16 number);
+#define c_u16toq8		Q8_FromU16
+t_q8					Q8_FromU32(t_u32 number);
+#define c_u32toq8		Q8_FromU32
+t_q8					Q8_FromU64(t_u64 number);
+#define c_u64toq8		Q8_FromU64
+#if LIBCONFIG_USE_INT128
+t_q8					Q8_FromU128(t_u128 number);
+#define c_u128toq8		Q8_FromU128
+#endif
 
 t_q16					Q16_FromU8(t_u8 number);
 #define c_u8toq16		Q16_FromU8
@@ -626,6 +689,19 @@ t_q128					Q128_FromU128(t_u128 number);
 #define					Fixed_FromS128	CONCAT(FIXED_TYPE,_FromS128)
 #define c_s128toq		Fixed_FromS128
 
+t_q8					Q8_FromS8(t_s8 number);
+#define c_s8toq8		Q8_FromS8
+t_q8					Q8_FromS16(t_s16 number);
+#define c_s16toq8		Q8_FromS16
+t_q8					Q8_FromS32(t_s32 number);
+#define c_s32toq8		Q8_FromS32
+t_q8					Q8_FromS64(t_s64 number);
+#define c_s64toq8		Q8_FromS64
+#if LIBCONFIG_USE_INT128
+t_q8					Q8_FromS128(t_s128 number);
+#define c_s128toq8		Q8_FromS128
+#endif
+
 t_q16					Q16_FromS8(t_s8 number);
 #define c_s8toq16		Q16_FromS8
 t_q16					Q16_FromS16(t_s16 number);
@@ -685,6 +761,8 @@ t_q128					Q128_FromS128(t_s128 number);
 //!@{
 #define					Fixed_FromFixed	CONCAT(FIXED_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtoq			Fixed_FromFixed
+#define					Fixed_FromQ8	CONCAT(FIXED_TYPE,_FromQ8)
+#define c_q8toq			Fixed_FromQ8
 #define					Fixed_FromQ16	CONCAT(FIXED_TYPE,_FromQ16)
 #define c_q16toq		Fixed_FromQ16
 #define					Fixed_FromQ32	CONCAT(FIXED_TYPE,_FromQ32)
@@ -694,6 +772,19 @@ t_q128					Q128_FromS128(t_s128 number);
 #define					Fixed_FromQ128	CONCAT(FIXED_TYPE,_FromQ128)
 #define c_q128toq		Fixed_FromQ128
 
+t_q8					Q8_FromQ8(t_q8 number);
+#define c_q8toq8		Q8_FromQ8
+t_q8					Q8_FromQ16(t_q16 number);
+#define c_q16toq8		Q8_FromQ16
+t_q8					Q8_FromQ32(t_q32 number);
+#define c_q32toq8		Q8_FromQ32
+t_q8					Q8_FromQ64(t_q64 number);
+#define c_q64toq8		Q8_FromQ64
+t_q8					Q8_FromQ128(t_q128 number);
+#define c_q128toq8		Q8_FromQ128
+
+t_q16					Q16_FromQ8(t_q8 number);
+#define c_q8toq16		Q16_FromQ8
 t_q16					Q16_FromQ16(t_q16 number);
 #define c_q16toq16		Q16_FromQ16
 t_q16					Q16_FromQ32(t_q32 number);
@@ -703,6 +794,8 @@ t_q16					Q16_FromQ64(t_q64 number);
 t_q16					Q16_FromQ128(t_q128 number);
 #define c_q128toq16		Q16_FromQ128
 
+t_q32					Q32_FromQ8(t_q8 number);
+#define c_q8toq32		Q32_FromQ8
 t_q32					Q32_FromQ16(t_q16 number);
 #define c_q16toq32		Q32_FromQ16
 t_q32					Q32_FromQ32(t_q32 number);
@@ -712,6 +805,8 @@ t_q32					Q32_FromQ64(t_q64 number);
 t_q32					Q32_FromQ128(t_q128 number);
 #define c_q128toq32		Q32_FromQ128
 
+t_q64					Q64_FromQ8(t_q8 number);
+#define c_q8toq64		Q64_FromQ8
 t_q64					Q64_FromQ16(t_q16 number);
 #define c_q16toq64		Q64_FromQ16
 t_q64					Q64_FromQ32(t_q32 number);
@@ -721,6 +816,8 @@ t_q64					Q64_FromQ64(t_q64 number);
 t_q64					Q64_FromQ128(t_q128 number);
 #define c_q128toq64		Q64_FromQ128
 #if LIBCONFIG_USE_INT128
+t_q128					Q128_FromQ8(t_q8 number);
+#define c_q8toq128		Q128_FromQ8
 t_q128					Q128_FromQ16(t_q16 number);
 #define c_q16toq128		Q128_FromQ16
 t_q128					Q128_FromQ32(t_q32 number);
@@ -747,6 +844,19 @@ t_q128					Q128_FromQ128(t_q128 number);
 #define c_f80toq		Fixed_FromF80
 #define	 				Fixed_FromF128	CONCAT(FIXED_TYPE,_FromF128)
 #define c_f128toq		Fixed_FromF128
+
+t_q8	 				Q8_FromF32(t_f32 number);
+#define c_f32toq8		Q8_FromF32
+t_q8	 				Q8_FromF64(t_f64 number);
+#define c_f64toq8		Q8_FromF64
+#if LIBCONFIG_USE_FLOAT80
+t_q8	 				Q8_FromF80(t_f80 number);
+#define c_f80toq8		Q8_FromF80
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_q8	 				Q8_FromF128(t_f128 number);
+#define c_f128toq8		Q8_FromF128
+#endif
 
 t_q16	 				Q16_FromF32(t_f32 number);
 #define c_f32toq16		Q16_FromF32
@@ -819,6 +929,9 @@ $$	@param	numerator		the numerator: number at the top of the fraction
 #define					Fixed_From	CONCAT(FIXED_TYPE,_From)
 #define c_toq			Fixed_From
 
+t_q8					Q8_From(t_s8 part_fraction, t_s8 denominator);
+#define c_toq8			Q8_From
+
 t_q16					Q16_From(t_s16 part_fraction, t_s16 denominator);
 #define c_toq16			Q16_From
 
@@ -841,6 +954,9 @@ t_q128					Q128_From(t_s128 part_fraction, t_s128 denominator);
 #define							Fixed_IntegerPart	CONCAT(FIXED_TYPE,_IntegerPart)
 #define c_fixed_integerpart		Fixed_IntegerPart
 
+t_q8							Q8_IntegerPart(t_q8 number);
+#define c_q8_integerpart		Q8_IntegerPart
+
 t_q16							Q16_IntegerPart(t_q16 number);
 #define c_q16_integerpart		Q16_IntegerPart
 
@@ -862,6 +978,9 @@ t_q128							Q128_IntegerPart(t_q128 number);
 //!@{
 #define							Fixed_FractionPart	CONCAT(FIXED_TYPE,_FractionPart)
 #define c_fixed_fractionpart	Fixed_FractionPart
+
+t_q8							Q8_FractionPart(t_q8 number);
+#define c_q8_fractionpart		Q8_FractionPart
 
 t_q16							Q16_FractionPart(t_q16 number);
 #define c_q16_fractionpart		Q16_FractionPart
@@ -895,6 +1014,9 @@ t_q128							Q128_FractionPart(t_q128 number);
 #define					Fixed_ToString	CONCAT(FIXED_TYPE,_ToString)
 #define c_qtostr		Fixed_ToString
 
+_MALLOC()	t_char*		Q8_ToString(t_q8 number); // TODO implement
+#define c_q8tostr		Q8_ToString
+
 _MALLOC()	t_char*		Q16_ToString(t_q16 number); // TODO implement
 #define c_q16tostr		Q16_ToString
 
@@ -920,6 +1042,9 @@ _MALLOC()	t_char*		Q128_ToString(t_q128 number); // TODO implement
 //!@{
 #define					Fixed_ToString_Hex	CONCAT(FIXED_TYPE,_ToString_Hex)
 #define c_qtostrhex		Fixed_ToString_Hex
+
+_MALLOC()	t_char*		Q8_ToString_Hex(t_q8 number); // TODO implement
+#define c_q8tostrhex	Q8_ToString_Hex
 
 _MALLOC()	t_char*		Q16_ToString_Hex(t_q16 number); // TODO implement
 #define c_q16tostrhex	Q16_ToString_Hex
@@ -947,6 +1072,9 @@ _MALLOC()	t_char*		Q128_ToString_Hex(t_q128 number); // TODO implement
 #define					Fixed_ToString_Oct	CONCAT(FIXED_TYPE,_ToString_Oct)
 #define c_qtostroct		Fixed_ToString_Oct
 
+_MALLOC()	t_char*		Q8_ToString_Oct(t_q8 number); // TODO implement
+#define c_q8tostroct	Q8_ToString_Oct
+
 _MALLOC()	t_char*		Q16_ToString_Oct(t_q16 number); // TODO implement
 #define c_q16tostroct	Q16_ToString_Oct
 
@@ -972,6 +1100,9 @@ _MALLOC()	t_char*		Q128_ToString_Oct(t_q128 number); // TODO implement
 //!@{
 #define					Fixed_ToString_Bin	CONCAT(FIXED_TYPE,_ToString_Bin)
 #define c_qtostrbin		Fixed_ToString_Bin
+
+_MALLOC()	t_char*		Q8_ToString_Bin(t_q8 number); // TODO implement
+#define c_q8tostrbin	Q8_ToString_Bin
 
 _MALLOC()	t_char*		Q16_ToString_Bin(t_q16 number); // TODO implement
 #define c_q16tostrbin	Q16_ToString_Bin
@@ -999,6 +1130,9 @@ _MALLOC()	t_char*		Q128_ToString_Bin(t_q128 number); // TODO implement
 //!@{
 #define					Fixed_ToString_Base	CONCAT(FIXED_TYPE,_ToString_Base)
 #define c_qtostrbase	Fixed_ToString_Base
+
+_MALLOC()	t_char*		Q8_ToString_Base(t_q8 number, t_char const* base); // TODO implement
+#define c_q8tostrbase	Q8_ToString_Base
 
 _MALLOC()	t_char*		Q16_ToString_Base(t_q16 number, t_char const* base); // TODO implement
 #define c_q16tostrbase	Q16_ToString_Base
@@ -1040,6 +1174,9 @@ _MALLOC()	t_char*		Q128_ToString_Base(t_q128 number, t_char const* base); // TOD
 #define					Fixed_Parse	CONCAT(FIXED_TYPE,_Parse)
 #define c_qparse		Fixed_Parse
 
+t_size					Q8_Parse	(t_q8	*dest, t_char const* str, t_size n);
+#define c_q8parse		Q8_Parse
+
 t_size					Q16_Parse	(t_q16	*dest, t_char const* str, t_size n);
 #define c_q16parse		Q16_Parse
 
@@ -1064,6 +1201,9 @@ t_size					Q128_Parse	(t_q128	*dest, t_char const* str, t_size n);
 //!@{
 #define					Fixed_FromString	CONCAT(FIXED_TYPE,_FromString)
 #define c_strtoq		Fixed_FromString
+
+t_q8					Q8_FromString(t_char const* str); // TODO implement
+#define c_strtoq8		Q8_FromString
 
 t_q16					Q16_FromString(t_char const* str); // TODO implement
 #define c_strtoq16		Q16_FromString
@@ -1099,6 +1239,9 @@ t_q128					Q128_FromString(t_char const* str); // TODO implement
 #define					Fixed_Parse_Dec	CONCAT(FIXED_TYPE,_Parse_Dec)
 #define c_qparsedec		Fixed_Parse_Dec
 
+t_size					Q8_Parse_Dec	(t_q8	*dest, t_char const* str, t_size n);
+#define c_q8parsedec	Q8_Parse_Dec
+
 t_size					Q16_Parse_Dec	(t_q16	*dest, t_char const* str, t_size n);
 #define c_q16parsedec	Q16_Parse_Dec
 
@@ -1123,6 +1266,9 @@ t_size					Q128_Parse_Dec	(t_q128	*dest, t_char const* str, t_size n);
 //!@{
 #define					Fixed_FromString_Dec	CONCAT(FIXED_TYPE,_FromString_Dec)
 #define c_strdectoq		Fixed_FromString_Dec
+
+t_q8					Q8_FromString_Dec(t_char const* str); // TODO implement
+#define c_strdectoq8	Q8_FromString_Dec
 
 t_q16					Q16_FromString_Dec(t_char const* str); // TODO implement
 #define c_strdectoq16	Q16_FromString_Dec
@@ -1158,6 +1304,9 @@ t_q128					Q128_FromString_Dec(t_char const* str); // TODO implement
 #define					Fixed_Parse_Hex	CONCAT(FIXED_TYPE,_Parse_Hex)
 #define c_qparsehex		Fixed_Parse_Hex
 
+t_size					Q8_Parse_Hex	(t_q8	*dest, t_char const* str, t_size n);
+#define c_q8parsehex	Q8_Parse_Hex
+
 t_size					Q16_Parse_Hex	(t_q16	*dest, t_char const* str, t_size n);
 #define c_q16parsehex	Q16_Parse_Hex
 
@@ -1182,6 +1331,9 @@ t_size					Q128_Parse_Hex	(t_q128	*dest, t_char const* str, t_size n);
 //!@{
 #define					Fixed_FromString_Hex	CONCAT(FIXED_TYPE,_FromString_Hex)
 #define c_strhextoq		Fixed_FromString_Hex
+
+t_q8					Q8_FromString_Hex(t_char const* str); // TODO implement
+#define c_strhextoq8	Q8_FromString_Hex
 
 t_q16					Q16_FromString_Hex(t_char const* str); // TODO implement
 #define c_strhextoq16	Q16_FromString_Hex
@@ -1217,6 +1369,9 @@ t_q128					Q128_FromString_Hex(t_char const* str); // TODO implement
 #define					Fixed_Parse_Oct	CONCAT(FIXED_TYPE,_Parse_Oct)
 #define c_qparseoct		Fixed_Parse_Oct
 
+t_size					Q8_Parse_Oct	(t_q8	*dest, t_char const* str, t_size n);
+#define c_q8parseoct	Q8_Parse_Oct
+
 t_size					Q16_Parse_Oct	(t_q16	*dest, t_char const* str, t_size n);
 #define c_q16parseoct	Q16_Parse_Oct
 
@@ -1241,6 +1396,9 @@ t_size					Q128_Parse_Oct	(t_q128	*dest, t_char const* str, t_size n);
 //!@{
 #define					Fixed_FromString_Oct	CONCAT(FIXED_TYPE,_FromString_Oct)
 #define c_strocttoq		Fixed_FromString_Oct
+
+t_q8					Q8_FromString_Oct(t_char const* str); // TODO implement
+#define c_strocttoq8	Q8_FromString_Oct
 
 t_q16					Q16_FromString_Oct(t_char const* str); // TODO implement
 #define c_strocttoq16	Q16_FromString_Oct
@@ -1276,6 +1434,9 @@ t_q128					Q128_FromString_Oct(t_char const* str); // TODO implement
 #define					Fixed_Parse_Bin	CONCAT(FIXED_TYPE,_Parse_Bin)
 #define c_qparsebin		Fixed_Parse_Bin
 
+t_size					Q8_Parse_Bin	(t_q8	*dest, t_char const* str, t_size n);
+#define c_q8parsebin	Q8_Parse_Bin
+
 t_size					Q16_Parse_Bin	(t_q16	*dest, t_char const* str, t_size n);
 #define c_q16parsebin	Q16_Parse_Bin
 
@@ -1300,6 +1461,9 @@ t_size					Q128_Parse_Bin	(t_q128	*dest, t_char const* str, t_size n);
 //!@{
 #define					Fixed_FromString_Bin	CONCAT(FIXED_TYPE,_FromString_Bin)
 #define c_strbintoq		Fixed_FromString_Bin
+
+t_q8					Q8_FromString_Bin(t_char const* str); // TODO implement
+#define c_strbintoq8	Q8_FromString_Bin
 
 t_q16					Q16_FromString_Bin(t_char const* str); // TODO implement
 #define c_strbintoq16	Q16_FromString_Bin
@@ -1337,6 +1501,9 @@ t_q128					Q128_FromString_Bin(t_char const* str); // TODO implement
 #define					Fixed_Parse_Base	CONCAT(FIXED_TYPE,_Parse_Base)
 #define c_qparsebase	Fixed_Parse_Base
 
+t_size					Q8_Parse_Base	(t_q8	*dest, t_char const* str, t_char const* base, t_size n);
+#define c_q8parsebase	Q8_Parse_Base
+
 t_size					Q16_Parse_Base	(t_q16	*dest, t_char const* str, t_char const* base, t_size n);
 #define c_q16parsebase	Q16_Parse_Base
 
@@ -1362,6 +1529,9 @@ t_size					Q128_Parse_Base	(t_q128	*dest, t_char const* str, t_char const* base,
 //!@{
 #define					Fixed_FromString_Base	CONCAT(FIXED_TYPE,_FromString_Base)
 #define c_strbasetoq	Fixed_FromString_Base
+
+t_q8					Q8_FromString_Base(t_char const* str, t_char const* base); // TODO implement
+#define c_strbasetoq8	Q8_FromString_Base
 
 t_q16					Q16_FromString_Base(t_char const* str, t_char const* base); // TODO implement
 #define c_strbasetoq16	Q16_FromString_Base

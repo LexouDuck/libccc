@@ -18,6 +18,7 @@ t_q##BITS	Q##BITS##_Round(t_q##BITS number) \
 	else return (t_q##BITS){ (t_s##BITS)(number._ + (Q##BITS##_DENOM - fraction._)) }; \
 } \
 
+DEFINEFUNC_FIXED_ROUND(8)
 DEFINEFUNC_FIXED_ROUND(16)
 DEFINEFUNC_FIXED_ROUND(32)
 DEFINEFUNC_FIXED_ROUND(64)

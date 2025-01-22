@@ -32,40 +32,29 @@ HEADER_CPP
 
 
 
-/*!
-**	This very small float is typically used to compare two floating-point values.
-**	Floating point equality checks aren't the most dependable kind of operation,
-**	so it's often better to do `(ABS(x - y) <= FLOAT_APPROX)` to check for equality.
-**	You can use the Float_EqualsApprox() functions for this purpose.
-**	NOTE: Not to be confused with #FLOAT_EPSILON - this "APPROX" value is configurable !
-*/
-#define FLOAT_APPROX	LIBCONFIG_FLOAT_APPROX
-
-
-
 //!@doc The type of function which takes one real number and outputs one real number
 //!@{
 typedef		t_float	(*f_float_function)	(t_float x);
-typedef		t_f32	(*f_f32_function)	(t_f32 x);
-typedef		t_f64	(*f_f64_function)	(t_f64 x);
+typedef		t_f32	(*f_f32_function)	(t_f32   x);
+typedef		t_f64	(*f_f64_function)	(t_f64   x);
 #if LIBCONFIG_USE_FLOAT80
-typedef		t_f80	(*f_f80_function)	(t_f80 x);
+typedef		t_f80	(*f_f80_function)	(t_f80   x);
 #endif
 #if LIBCONFIG_USE_FLOAT128
-typedef		t_f128	(*f_f128_function)	(t_f128 x);
+typedef		t_f128	(*f_f128_function)	(t_f128  x);
 #endif
 //!@}
 
 //!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
 typedef		t_float	(*f_float_operator)	(t_float x, t_float y);
-typedef		t_f32	(*f_f32_operator)	(t_f32 x,	t_f32 y);
-typedef		t_f64	(*f_f64_operator)	(t_f64 x,	t_f64 y);
+typedef		t_f32	(*f_f32_operator)	(t_f32   x, t_f32   y);
+typedef		t_f64	(*f_f64_operator)	(t_f64   x, t_f64   y);
 #if LIBCONFIG_USE_FLOAT80
-typedef		t_f80	(*f_f80_operator)	(t_f80 x,	t_f80 y);
+typedef		t_f80	(*f_f80_operator)	(t_f80   x, t_f80   y);
 #endif
 #if LIBCONFIG_USE_FLOAT128
-typedef		t_f128	(*f_f128_operator)	(t_f128 x,	t_f128 y);
+typedef		t_f128	(*f_f128_operator)	(t_f128  x, t_f128  y);
 #endif
 //!@}
 
@@ -768,22 +757,27 @@ t_f128						F128_Pow(t_f128 x, t_f128 y);
 //!@{
 #define						Float_Root2	CONCAT(FLOAT_TYPE,_Root2)
 #define c_fsqrt				Float_Root2
+#define c_froot2			Float_Root2
 #define Float_SqRt			Float_Root2
 #define Float_SquareRoot	Float_Root2
 
 t_f32						F32_Root2(t_f32 x);
 #define c_f32sqrt			F32_Root2
+#define c_f32root2			F32_Root2
 
 t_f64						F64_Root2(t_f64 x);
 #define c_f64sqrt			F64_Root2
+#define c_f64root2			F64_Root2
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_Root2(t_f80 x);
 #define c_f80sqrt			F80_Root2
+#define c_f80root2			F80_Root2
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Root2(t_f128 x);
 #define c_f128sqrt			F128_Root2
+#define c_f128root2			F128_Root2
 #endif
 //!@}
 
@@ -794,22 +788,27 @@ t_f128						F128_Root2(t_f128 x);
 //!@{
 #define						Float_Root3	CONCAT(FLOAT_TYPE,_Root3)
 #define c_fcbrt				Float_Root3
+#define c_froot3			Float_Root3
 #define Float_CbRt			Float_Root3
 #define Float_CubeRoot		Float_Root3
 
 t_f32						F32_Root3(t_f32 x);
 #define c_f32cbrt			F32_Root3
+#define c_f32root3			F32_Root3
 
 t_f64						F64_Root3(t_f64 x);
 #define c_f64cbrt			F64_Root3
+#define c_f64root3			F64_Root3
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_Root3(t_f80 x);
 #define c_f80cbrt			F80_Root3
+#define c_f80root3			F80_Root3
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_Root3(t_f128 x);
 #define c_f128cbrt			F128_Root3
+#define c_f128root3			F128_Root3
 #endif
 //!@}
 
@@ -820,22 +819,27 @@ t_f128						F128_Root3(t_f128 x);
 //!@{
 #define						Float_RootN	CONCAT(FLOAT_TYPE,_RootN)
 #define c_fnrt				Float_RootN
+#define c_frootn			Float_RootN
 #define Float_NRt			Float_RootN
 #define Float_NRoot			Float_RootN
 
 t_f32						F32_RootN(t_f32 x, t_u8 n);
 #define c_f32nrt			F32_RootN
+#define c_f32rootn			F32_RootN
 
 t_f64						F64_RootN(t_f64 x, t_u8 n);
 #define c_f64nrt			F64_RootN
+#define c_f64rootn			F64_RootN
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80						F80_RootN(t_f80 x, t_u8 n);
 #define c_f80nrt			F80_RootN
+#define c_f80rootn			F80_RootN
 #endif
 #if LIBCONFIG_USE_FLOAT128
 t_f128						F128_RootN(t_f128 x, t_u8 n);
 #define c_f128nrt			F128_RootN
+#define c_f128rootn			F128_RootN
 #endif
 //!@}
 

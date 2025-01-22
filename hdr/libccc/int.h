@@ -38,32 +38,32 @@
 	#include <stdint.h>
 #else
 // TODO: better logic than just using 'long' here, with the __DATAMODEL__ macro ?
-	typedef unsigned char		uint8_t;
-	typedef unsigned short		uint16_t;
-	typedef unsigned long		uint32_t;
-	typedef unsigned long long	uint64_t;
-	typedef signed char			int8_t;
-	typedef signed short		int16_t;
-	typedef signed long			int32_t;
-	typedef signed long long	int64_t;
+	typedef unsigned char        uint8_t;
+	typedef unsigned short       uint16_t;
+	typedef unsigned long        uint32_t;
+	typedef unsigned long long   uint64_t;
+	typedef   signed char         int8_t;
+	typedef   signed short        int16_t;
+	typedef   signed long         int32_t;
+	typedef   signed long long    int64_t;
 
-	typedef uint8_t		uint_least8_t;
-	typedef uint16_t	uint_least16_t;
-	typedef uint32_t	uint_least32_t;
-	typedef uint64_t	uint_least64_t;
-	typedef int8_t		int_least8_t;
-	typedef int16_t		int_least16_t;
-	typedef int32_t		int_least32_t;
-	typedef int64_t		int_least64_t;
+	typedef uint8_t    uint_least8_t;
+	typedef uint16_t   uint_least16_t;
+	typedef uint32_t   uint_least32_t;
+	typedef uint64_t   uint_least64_t;
+	typedef int8_t     int_least8_t;
+	typedef int16_t    int_least16_t;
+	typedef int32_t    int_least32_t;
+	typedef int64_t    int_least64_t;
 
-	typedef uint8_t		uint_fast8_t;
-	typedef uint16_t	uint_fast16_t;
-	typedef uint32_t	uint_fast32_t;
-	typedef uint64_t	uint_fast64_t;
-	typedef int8_t		int_fast8_t;
-	typedef int16_t		int_fast16_t;
-	typedef int32_t		int_fast32_t;
-	typedef int64_t		int_fast64_t;
+	typedef uint8_t    uint_fast8_t;
+	typedef uint16_t   uint_fast16_t;
+	typedef uint32_t   uint_fast32_t;
+	typedef uint64_t   uint_fast64_t;
+	typedef int8_t     int_fast8_t;
+	typedef int16_t    int_fast16_t;
+	typedef int32_t    int_fast32_t;
+	typedef int64_t    int_fast64_t;
 #endif
 
 #ifndef LIBCONFIG_INTEGER_TYPES
@@ -741,10 +741,11 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 		t_s64:	 FUNCTYPE##_FromS64, \
 		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
-		t_q16:	 FUNCTYPE##_FromF16, \
-		t_q32:	 FUNCTYPE##_FromF32, \
-		t_q64:	 FUNCTYPE##_FromF64, \
-		t_q128:	 FUNCTYPE##_FromF128, \
+		t_q8:	 FUNCTYPE##_FromQ8, \
+		t_q16:	 FUNCTYPE##_FromQ16, \
+		t_q32:	 FUNCTYPE##_FromQ32, \
+		t_q64:	 FUNCTYPE##_FromQ64, \
+		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
 		t_f32:	 FUNCTYPE##_FromF32, \
 		t_f64:	 FUNCTYPE##_FromF64, \
@@ -754,6 +755,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	)(X)
 
 #define UInt(X)		DEFINEFUNC_UInt(X, UInt)
+#define U8(X)		DEFINEFUNC_UInt(X, U8)
 #define U16(X)		DEFINEFUNC_UInt(X, U16)
 #define U32(X)		DEFINEFUNC_UInt(X, U32)
 #define U64(X)		DEFINEFUNC_UInt(X, U64)
@@ -762,6 +764,7 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 #endif
 
 #define c_uint(X)	UInt(X)
+#define c_u8(X)		U8(X)
 #define c_u16(X)	U16(X)
 #define c_u32(X)	U32(X)
 #define c_u64(X)	U64(X)
@@ -953,6 +956,8 @@ t_u128					U128_FromS128(t_s128 number);
 //!@{
 #define					UInt_FromFixed	CONCAT(UINT_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtou			UInt_FromFixed
+#define					UInt_FromQ8	CONCAT(UINT_TYPE,_FromQ8)
+#define c_q8tou			UInt_FromQ8
 #define					UInt_FromQ16	CONCAT(UINT_TYPE,_FromQ16)
 #define c_q16tou		UInt_FromQ16
 #define					UInt_FromQ32	CONCAT(UINT_TYPE,_FromQ32)
@@ -964,6 +969,8 @@ t_u128					U128_FromS128(t_s128 number);
 #define c_q128tou		UInt_FromQ128
 #endif
 
+t_u8					U8_FromQ8(t_q8 number);
+#define c_q8tou8		U8_FromQ8
 t_u8					U8_FromQ16(t_q16 number);
 #define c_q16tou8		U8_FromQ16
 t_u8					U8_FromQ32(t_q32 number);
@@ -975,6 +982,8 @@ t_u8					U8_FromQ128(t_q128 number);
 #define c_q128tou8		U8_FromQ128
 #endif
 
+t_u16					U16_FromQ8(t_q8 number);
+#define c_q8tou16		U16_FromQ8
 t_u16					U16_FromQ16(t_q16 number);
 #define c_q16tou16		U16_FromQ16
 t_u16					U16_FromQ32(t_q32 number);
@@ -986,6 +995,8 @@ t_u16					U16_FromQ128(t_q128 number);
 #define c_q128tou16		U16_FromQ128
 #endif
 
+t_u32					U32_FromQ8(t_q8 number);
+#define c_q8tou32		U32_FromQ8
 t_u32					U32_FromQ16(t_q16 number);
 #define c_q16tou32		U32_FromQ16
 t_u32					U32_FromQ32(t_q32 number);
@@ -997,6 +1008,8 @@ t_u32					U32_FromQ128(t_q128 number);
 #define c_q128tou32		U32_FromQ128
 #endif
 
+t_u64					U64_FromQ8(t_q8 number);
+#define c_q8tou64		U64_FromQ8
 t_u64					U64_FromQ16(t_q16 number);
 #define c_q16tou64		U64_FromQ16
 t_u64					U64_FromQ32(t_q32 number);
@@ -1008,6 +1021,8 @@ t_u64					U64_FromQ128(t_q128 number);
 #define c_q128tou64		U64_FromQ128
 #endif
 #if LIBCONFIG_USE_INT128
+t_u128					U128_FromQ8(t_q8 number);
+#define c_q8tou128		U128_FromQ8
 t_u128					U128_FromQ16(t_q16 number);
 #define c_q16tou128		U128_FromQ16
 t_u128					U128_FromQ32(t_q32 number);
@@ -1127,10 +1142,11 @@ t_u128					U128_FromF128(t_f128 number);
 		t_s64:	 FUNCTYPE##_FromS64, \
 		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
-		t_q16:	 FUNCTYPE##_FromF16, \
-		t_q32:	 FUNCTYPE##_FromF32, \
-		t_q64:	 FUNCTYPE##_FromF64, \
-		t_q128:	 FUNCTYPE##_FromF128, \
+		t_q8:	 FUNCTYPE##_FromQ8, \
+		t_q16:	 FUNCTYPE##_FromQ16, \
+		t_q32:	 FUNCTYPE##_FromQ32, \
+		t_q64:	 FUNCTYPE##_FromQ64, \
+		t_q128:	 FUNCTYPE##_FromQ128, \
 		t_fixed: FUNCTYPE##_FromFixed, \
 		t_f32:	 FUNCTYPE##_FromF32, \
 		t_f64:	 FUNCTYPE##_FromF64, \
@@ -1140,6 +1156,7 @@ t_u128					U128_FromF128(t_f128 number);
 	)(X)
 
 #define SInt(X)		DEFINEFUNC_SInt(X, SInt)
+#define S8(X)		DEFINEFUNC_SInt(X, S8)
 #define S16(X)		DEFINEFUNC_SInt(X, S16)
 #define S32(X)		DEFINEFUNC_SInt(X, S32)
 #define S64(X)		DEFINEFUNC_SInt(X, S64)
@@ -1148,6 +1165,7 @@ t_u128					U128_FromF128(t_f128 number);
 #endif
 
 #define c_sint(X)	SInt(X)
+#define c_s8(X)		S8(X)
 #define c_s16(X)	S16(X)
 #define c_s32(X)	S32(X)
 #define c_s64(X)	S64(X)
@@ -1339,6 +1357,8 @@ t_s128					S128_FromS128(t_s128 number);
 //!@{
 #define					SInt_FromFixed	CONCAT(SINT_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtos			SInt_FromFixed
+#define					SInt_FromQ8	CONCAT(SINT_TYPE,_FromQ8)
+#define c_q8tos			SInt_FromQ8
 #define					SInt_FromQ16	CONCAT(SINT_TYPE,_FromQ16)
 #define c_q16tos		SInt_FromQ16
 #define					SInt_FromQ32	CONCAT(SINT_TYPE,_FromQ32)
@@ -1350,6 +1370,8 @@ t_s128					S128_FromS128(t_s128 number);
 #define c_q128tos		SInt_FromQ128
 #endif
 
+t_s8					S8_FromQ8(t_q8 number);
+#define c_q8tos8		S8_FromQ8
 t_s8					S8_FromQ16(t_q16 number);
 #define c_q16tos8		S8_FromQ16
 t_s8					S8_FromQ32(t_q32 number);
@@ -1361,6 +1383,8 @@ t_s8					S8_FromQ128(t_q128 number);
 #define c_q128tos8		S8_FromQ128
 #endif
 
+t_s16					S16_FromQ8(t_q8 number);
+#define c_q8tos16		S16_FromQ8
 t_s16					S16_FromQ16(t_q16 number);
 #define c_q16tos16		S16_FromQ16
 t_s16					S16_FromQ32(t_q32 number);
@@ -1372,6 +1396,8 @@ t_s16					S16_FromQ128(t_q128 number);
 #define c_q128tos16		S16_FromQ128
 #endif
 
+t_s32					S32_FromQ8(t_q8 number);
+#define c_q8tos32		S32_FromQ8
 t_s32					S32_FromQ16(t_q16 number);
 #define c_q16tos32		S32_FromQ16
 t_s32					S32_FromQ32(t_q32 number);
@@ -1383,6 +1409,8 @@ t_s32					S32_FromQ128(t_q128 number);
 #define c_q128tos32		S32_FromQ128
 #endif
 
+t_s64					S64_FromQ8(t_q8 number);
+#define c_q8tos64		S64_FromQ8
 t_s64					S64_FromQ16(t_q16 number);
 #define c_q16tos64		S64_FromQ16
 t_s64					S64_FromQ32(t_q32 number);
@@ -1394,6 +1422,8 @@ t_s64					S64_FromQ128(t_q128 number);
 #define c_q128tos64		S64_FromQ128
 #endif
 #if LIBCONFIG_USE_INT128
+t_s128					S128_FromQ8(t_q8 number);
+#define c_q8tos128		S128_FromQ8
 t_s128					S128_FromQ16(t_q16 number);
 #define c_q16tos128		S128_FromQ16
 t_s128					S128_FromQ32(t_q32 number);

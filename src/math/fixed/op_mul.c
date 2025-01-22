@@ -20,6 +20,7 @@ t_q##BITS	Q##BITS##_Mul(t_q##BITS x, t_q##BITS y) \
 } \
 // TODO fix this and test
 
+DEFINEFUNC_FIXED_MUL(8)
 DEFINEFUNC_FIXED_MUL(16)
 DEFINEFUNC_FIXED_MUL(32)
 DEFINEFUNC_FIXED_MUL(64)
@@ -28,10 +29,11 @@ DEFINEFUNC_FIXED_MUL(128)
 #endif
 
 #ifdef __cplusplus
-t_q16	operator * (t_q16	x, t_q16	y)	{ return Q16_Mul(x, y); }
-t_q32	operator * (t_q32	x, t_q32	y)	{ return Q32_Mul(x, y); }
-t_q64	operator * (t_q64	x, t_q64	y)	{ return Q64_Mul(x, y); }
+t_q8	operator * (t_q8   x, t_q8   y)	{ return Q8_Mul(x, y); }
+t_q16	operator * (t_q16  x, t_q16  y)	{ return Q16_Mul(x, y); }
+t_q32	operator * (t_q32  x, t_q32  y)	{ return Q32_Mul(x, y); }
+t_q64	operator * (t_q64  x, t_q64  y)	{ return Q64_Mul(x, y); }
 #if LIBCONFIG_USE_INT128
-t_q128	operator * (t_q128	x, t_q128	y)	{ return Q128_Mul(x, y); }
+t_q128	operator * (t_q128 x, t_q128 y)	{ return Q128_Mul(x, y); }
 #endif
 #endif

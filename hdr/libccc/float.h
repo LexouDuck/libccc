@@ -538,6 +538,7 @@ typedef union cast_float
 		t_s64:	 FUNCTYPE##_FromS64, \
 		t_s128:	 FUNCTYPE##_FromS128, \
 		t_sint:  FUNCTYPE##_FromSInt, \
+		t_q8:	 FUNCTYPE##_FromQ8, \
 		t_q16:	 FUNCTYPE##_FromQ16, \
 		t_q32:	 FUNCTYPE##_FromQ32, \
 		t_q64:	 FUNCTYPE##_FromQ64, \
@@ -732,6 +733,8 @@ t_f128					F128_FromS128(t_s128 number);
 //!@{
 #define					Float_FromFixed	CONCAT(FLOAT_TYPE,CONCAT(_From,FIXED_TYPE))
 #define c_qtof			Float_FromFixed
+#define					Float_FromQ8	CONCAT(FLOAT_TYPE,_FromQ8)
+#define c_q8tof			Float_FromQ8
 #define					Float_FromQ16	CONCAT(FLOAT_TYPE,_FromQ16)
 #define c_q16tof		Float_FromQ16
 #define					Float_FromQ32	CONCAT(FLOAT_TYPE,_FromQ32)
@@ -743,6 +746,8 @@ t_f128					F128_FromS128(t_s128 number);
 #define c_q128tof		Float_FromQ128
 #endif
 
+t_f32					F32_FromQ8(t_q8 number);
+#define c_q8tof32		F32_FromQ8
 t_f32					F32_FromQ16(t_q16 number);
 #define c_q16tof32		F32_FromQ16
 t_f32					F32_FromQ32(t_q32 number);
@@ -754,6 +759,8 @@ t_f32					F32_FromQ128(t_q128 number);
 #define c_q128tof32		F32_FromQ128
 #endif
 
+t_f64					F64_FromQ8(t_q8 number);
+#define c_q8tof64		F64_FromQ8
 t_f64					F64_FromQ16(t_q16 number);
 #define c_q16tof64		F64_FromQ16
 t_f64					F64_FromQ32(t_q32 number);
@@ -766,6 +773,8 @@ t_f64					F64_FromQ128(t_q128 number);
 #endif
 
 #if LIBCONFIG_USE_FLOAT80
+t_f80					F80_FromQ8(t_q8 number);
+#define c_q8tof80		F80_FromQ8
 t_f80					F80_FromQ16(t_q16 number);
 #define c_q16tof80		F80_FromQ16
 t_f80					F80_FromQ32(t_q32 number);
@@ -778,6 +787,8 @@ t_f80					F80_FromQ128(t_q128 number);
 #endif
 #endif
 #if LIBCONFIG_USE_FLOAT128
+t_f128					F128_FromQ8(t_q8 number);
+#define c_q8tof128		F128_FromQ8
 t_f128					F128_FromQ16(t_q16 number);
 #define c_q16tof128		F128_FromQ16
 t_f128					F128_FromQ32(t_q32 number);

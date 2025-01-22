@@ -17,6 +17,7 @@ t_bool	Q##BITS##_Equals(t_q##BITS x, t_q##BITS y) \
 	return (x._ == y._); \
 } \
 
+DEFINEFUNC_FIXED_EQUALS(8)
 DEFINEFUNC_FIXED_EQUALS(16)
 DEFINEFUNC_FIXED_EQUALS(32)
 DEFINEFUNC_FIXED_EQUALS(64)
@@ -25,11 +26,12 @@ DEFINEFUNC_FIXED_EQUALS(128)
 #endif
 
 #ifdef __cplusplus
-t_bool	operator == (t_q16	x, t_q16	y)	{ return Q16_Equals(x, y); }
-t_bool	operator == (t_q32	x, t_q32	y)	{ return Q32_Equals(x, y); }
-t_bool	operator == (t_q64	x, t_q64	y)	{ return Q64_Equals(x, y); }
+t_bool	operator == (t_q8   x, t_q8   y)	{ return Q8_Equals(x, y); }
+t_bool	operator == (t_q16  x, t_q16  y)	{ return Q16_Equals(x, y); }
+t_bool	operator == (t_q32  x, t_q32  y)	{ return Q32_Equals(x, y); }
+t_bool	operator == (t_q64  x, t_q64  y)	{ return Q64_Equals(x, y); }
 #if LIBCONFIG_USE_INT128
-t_bool	operator == (t_q128	x, t_q128	y)	{ return Q128_Equals(x, y); }
+t_bool	operator == (t_q128 x, t_q128 y)	{ return Q128_Equals(x, y); }
 #endif
 #endif
 
@@ -46,6 +48,7 @@ t_bool	Q##BITS##_EqualsApprox(t_q##BITS x, t_q##BITS y, t_q##BITS approx) \
 	return (Q##BITS##_Abs(Q##BITS##_Sub(x, y))._ <= Q##BITS##_Max(abs_a, abs_b)._ * approx._); \
 } \
 
+DEFINEFUNC_FIXED_APPROX(8)
 DEFINEFUNC_FIXED_APPROX(16)
 DEFINEFUNC_FIXED_APPROX(32)
 DEFINEFUNC_FIXED_APPROX(64)
@@ -55,11 +58,12 @@ DEFINEFUNC_FIXED_APPROX(128)
 
 /*
 #ifdef __cplusplus
-t_bool	operator ~= (t_q16	x, t_q16	y)	{ return Q16_EqualsApprox(x, y); }
-t_bool	operator ~= (t_q32	x, t_q32	y)	{ return Q32_EqualsApprox(x, y); }
-t_bool	operator ~= (t_q64	x, t_q64	y)	{ return Q64_EqualsApprox(x, y); }
+t_bool	operator ~= (t_q8   x, t_q8   y)	{ return Q8_EqualsApprox(x, y); }
+t_bool	operator ~= (t_q16  x, t_q16  y)	{ return Q16_EqualsApprox(x, y); }
+t_bool	operator ~= (t_q32  x, t_q32  y)	{ return Q32_EqualsApprox(x, y); }
+t_bool	operator ~= (t_q64  x, t_q64  y)	{ return Q64_EqualsApprox(x, y); }
 #if LIBCONFIG_USE_INT128
-t_bool	operator ~= (t_q128	x, t_q128	y)	{ return Q128_EqualsApprox(x, y); }
+t_bool	operator ~= (t_q128 x, t_q128 y)	{ return Q128_EqualsApprox(x, y); }
 #endif
 #endif
 */

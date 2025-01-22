@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Floor(t_q##BITS number) \
 		(t_q##BITS){ (t_s##BITS)(number._ - Q##BITS##_FractionPart(number)._) }); \
 } \
 
+DEFINEFUNC_FIXED_FLOOR(8)
 DEFINEFUNC_FIXED_FLOOR(16)
 DEFINEFUNC_FIXED_FLOOR(32)
 DEFINEFUNC_FIXED_FLOOR(64)

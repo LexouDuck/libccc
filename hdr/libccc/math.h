@@ -49,6 +49,7 @@ HEADER_CPP
 
 #define DEFINE_GENERIC_MATH_QF(FUNCTION) \
 	_Generic((X), \
+		t_q8    : Q8_   ##FUNCTION, \
 		t_q16   : Q16_  ##FUNCTION, \
 		t_q32   : Q32_  ##FUNCTION, \
 		t_q64   : Q64_  ##FUNCTION, \
@@ -69,6 +70,7 @@ HEADER_CPP
 		t_s64   : S64_  ##FUNCTION, \
 		t_s128  : S128_ ##FUNCTION, \
 		t_sint  : SInt_ ##FUNCTION, \
+		t_q8    : Q8_   ##FUNCTION, \
 		t_q16   : Q16_  ##FUNCTION, \
 		t_q32   : Q32_  ##FUNCTION, \
 		t_q64   : Q64_  ##FUNCTION, \
@@ -95,6 +97,7 @@ HEADER_CPP
 		t_s64   : S64_  ##FUNCTION, \
 		t_s128  : S128_ ##FUNCTION, \
 		t_sint  : SInt_ ##FUNCTION, \
+		t_q8    : Q8_   ##FUNCTION, \
 		t_q16   : Q16_  ##FUNCTION, \
 		t_q32   : Q32_  ##FUNCTION, \
 		t_q64   : Q64_  ##FUNCTION, \

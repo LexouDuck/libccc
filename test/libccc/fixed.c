@@ -118,6 +118,13 @@ void	test_##TYPE##tostr(void) \
 	}}} \
 }
 
+#ifndef c_q8tostr
+void test_q8tostr(void)	{}
+#warning "q8tostr() test suite function defined, but the function isn't defined."
+#else
+DEFINETEST_FIXED_TO_STR(q8, Q8)
+#endif
+
 #ifndef c_q16tostr
 void test_q16tostr(void)	{}
 #warning "q16tostr() test suite function defined, but the function isn't defined."

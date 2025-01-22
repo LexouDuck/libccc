@@ -17,6 +17,7 @@ t_q##BITS	Q##BITS##_Abs(t_q##BITS x) \
 	return (t_q##BITS){ (t_s##BITS)((x._ < 0) ? -x._ : +x._) }; \
 } \
 
+DEFINEFUNC_FIXED_ABS(8)
 DEFINEFUNC_FIXED_ABS(16)
 DEFINEFUNC_FIXED_ABS(32)
 DEFINEFUNC_FIXED_ABS(64)
