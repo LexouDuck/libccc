@@ -189,14 +189,14 @@ t_char*	F##BITS##_ToString_Dec(t_f##BITS number, t_u8 precision) \
 // TODO Float_ToString_Hex()
 #define DEFINEFUNC_FLOAT_TOSTRHEX(BITS) \
 t_char*	F##BITS##_ToString_Hex(t_f##BITS number, t_u8 precision) \
-{ return (IS_NAN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
+{ return (F##BITS##_IsNaN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
 
 
 
 // TODO Float_ToString_Bin()
 #define DEFINEFUNC_FLOAT_TOSTRBIN(BITS) \
 t_char*	F##BITS##_ToString_Bin(t_f##BITS number, t_u8 precision) \
-{ return (IS_NAN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
+{ return (F##BITS##_IsNaN(number) ? "NAN" : (precision == 0 ? "" : NULL)); }
 
 
 
