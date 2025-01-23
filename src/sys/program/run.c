@@ -23,7 +23,7 @@ _INLINE()
 e_cccerror	Program_Run(t_char const* command)
 {
 	// check if command processor exists
-	if CCCERROR(system(NULL), ERROR_SYSTEM,
+	if CCCERROR(system(""), ERROR_SYSTEM,
 		"call to system() failed")
 		return (ERROR_SYSTEM);
 	// run terminal command
