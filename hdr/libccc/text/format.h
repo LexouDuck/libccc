@@ -271,28 +271,34 @@ HEADER_CPP
 #define SF_FIXED_HEX  "%" SF_FIXED_HEX_
 #define SF_FIXED_HEX_ CONCAT(SF_Q,CONCAT(LIBCONFIG_FIXED_BITS,_HEX_))
 
+#define SF_t_q8_          SF_Q8_
+#define SF_Q8         "%" SF_Q8_ "/" STRING(Q8_DENOM)
+#define SF_Q8_        SF_S8_ // TODO "q"
+#define SF_Q8_HEX     "0x%" SF_Q8_HEX_ "/" STRING(Q8_DENOM)
+#define SF_Q8_HEX_    SF_S8_HEX_ // TODO "K"
+
 #define SF_t_q16_         SF_Q16_
-#define SF_Q16        "%" SF_Q16_
+#define SF_Q16        "%" SF_Q16_ "/" STRING(Q16_DENOM)
 #define SF_Q16_       SF_S16_ // TODO "q"
-#define SF_Q16_HEX    "0x%" SF_Q16_HEX_
+#define SF_Q16_HEX    "0x%" SF_Q16_HEX_ "/" STRING(Q16_DENOM)
 #define SF_Q16_HEX_   SF_S16_HEX_ // TODO "K"
 
 #define SF_t_q32_         SF_Q32_
-#define SF_Q32        "%" SF_Q32_
+#define SF_Q32        "%" SF_Q32_ "/" STRING(Q32_DENOM)
 #define SF_Q32_       SF_S32_ // TODO "q"
-#define SF_Q32_HEX    "0x%" SF_Q32_HEX_
+#define SF_Q32_HEX    "0x%" SF_Q32_HEX_ "/" STRING(Q32_DENOM)
 #define SF_Q32_HEX_   SF_S32_HEX_ // TODO "K"
 
 #define SF_t_q64_         SF_Q64_
-#define SF_Q64        "%" SF_Q64_
+#define SF_Q64        "%" SF_Q64_ "/" STRING(Q64_DENOM)
 #define SF_Q64_       SF_S64_ // TODO "lq"
-#define SF_Q64_HEX    "0x%" SF_Q64_HEX_
+#define SF_Q64_HEX    "0x%" SF_Q64_HEX_ "/" STRING(Q64_DENOM)
 #define SF_Q64_HEX_   SF_S64_HEX_ // TODO "lK"
 
 #define SF_t_q128_        SF_Q128_
-#define SF_Q128       "%" SF_Q128_
+#define SF_Q128       "%" SF_Q128_ "/" STRING(Q128_DENOM)
 #define SF_Q128_      SF_S128_ // TODO "Lq"
-#define SF_Q128_HEX   "0x%" SF_Q128_HEX_
+#define SF_Q128_HEX   "0x%" SF_Q128_HEX_ "/" STRING(Q128_DENOM)
 #define SF_Q128_HEX_  SF_S128_HEX_ // TODO "LK"
 //!@}
 
@@ -303,6 +309,13 @@ HEADER_CPP
 #define SF_FLOAT_      CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_))
 #define SF_FLOAT_HEX   "%" SF_FLOAT_HEX_
 #define SF_FLOAT_HEX_  CONCAT(SF_F,CONCAT(LIBCONFIG_FLOAT_BITS,_HEX_))
+
+#define SF_t_f16_          SF_F16_
+#define SF_F16        "%#" SF_F16_
+#define SF_F16_       "g"
+#define SF_F16_HEX    "%#" SF_F16_HEX_
+#define SF_F16_HEX_   "a"
+#define SF_F16_FULL   "%.9E"
 
 #define SF_t_f32_          SF_F32_
 #define SF_F32        "%#" SF_F32_
