@@ -14,6 +14,9 @@ t_u##BITS	U##BITS##_FromU##FROM(t_u##FROM number) \
 { \
 	if (U##FROM##_IsNaN(number))	return (U##BITS##_ERROR); \
 	if (U##FROM##_IsInf(number))	return (U##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && number >= (t_u##FROM)U##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit unsigned integer overflow for " SF_U##FROM " at " SF_U##BITS, number, U##BITS##_MAX) \
+		return (U##BITS##_MAX); \
 	return ((t_u##BITS)number); \
 } \
 
@@ -50,8 +53,11 @@ _INLINE() \
 t_u##BITS	U##BITS##_FromS##FROM(t_s##FROM number) \
 { \
 	if (S##FROM##_IsNaN(number))	return (U##BITS##_ERROR); \
-	if (number < 0)			return (U##BITS##_ERROR); \
+	if (number < 0)					return (U##BITS##_ERROR); \
 	if (S##FROM##_IsInf(number))	return (U##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && (t_u##FROM)number >= (t_u##FROM)U##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit unsigned integer overflow for " SF_S##FROM " at " SF_U##BITS, number, U##BITS##_MAX) \
+		return (U##BITS##_MAX); \
 	return ((t_u##BITS)number); \
 } \
 
@@ -90,6 +96,9 @@ t_u##BITS	U##BITS##_FromQ##FROM(t_q##FROM number) \
 	if (Q##FROM##_IsNaN(number))	return (U##BITS##_ERROR); \
 	if (number._ < 0)				return (U##BITS##_ERROR); \
 	if (Q##FROM##_IsInf(number))	return (U##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && (number._ / Q##FROM##_DENOM) > (t_s##FROM)U##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit unsigned integer overflow for " SF_Q##FROM " at " SF_U##BITS, number._, U##BITS##_MAX) \
+		return (U##BITS##_MAX); \
 	return ((t_u##BITS)(number._ / Q##BITS##_DENOM)); \
 } \
 
@@ -126,8 +135,11 @@ _INLINE() \
 t_u##BITS	U##BITS##_FromF##FROM(t_f##FROM number) \
 { \
 	if (F##FROM##_IsNaN(number))	return (U##BITS##_ERROR); \
-	if (number < 0)					return (U##BITS##_ERROR); \
+	if (number < 0.)				return (U##BITS##_ERROR); \
 	if (F##FROM##_IsInf(number))	return (U##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && number > (t_f##FROM)U##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit unsigned integer overflow for " SF_F##FROM " at " SF_U##BITS, number, U##BITS##_MAX) \
+		return (U##BITS##_MAX); \
 	return ((t_u##BITS)number); \
 } \
 
@@ -202,7 +214,8 @@ t_s##BITS	S##BITS##_FromU##FROM(t_u##FROM number) \
 { \
 	if (U##FROM##_IsNaN(number))	return (S##BITS##_ERROR); \
 	if (U##FROM##_IsInf(number))	return (S##BITS##_MAX); \
-	if (FROM >= BITS && number > (t_u##FROM)S##BITS##_MAX) \
+	if CCCERROR((FROM >= BITS && number >= (t_u##FROM)S##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer positive overflow for " SF_U##FROM " at " SF_S##BITS, number, S##BITS##_MAX) \
 		return (S##BITS##_MAX); \
 	return ((t_s##BITS)number); \
 } \
@@ -241,8 +254,12 @@ t_s##BITS	S##BITS##_FromS##FROM(t_s##FROM number) \
 { \
 	if (S##FROM##_IsNaN(number))	return (S##BITS##_ERROR); \
 	if (S##FROM##_IsInf(number))	return (S##BITS##_MAX * (t_s##BITS)S##FROM##_Sgn(number)); \
-	if (FROM >= BITS && number > (t_s##FROM)S##BITS##_MAX) \
+	if CCCERROR((FROM >= BITS && number >= (t_s##FROM)S##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer positive overflow for " SF_S##FROM " at " SF_S##BITS, number, S##BITS##_MAX) \
 		return (S##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && number <= (t_s##FROM)S##BITS##_MIN), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer negative overflow for " SF_S##FROM " at " SF_S##BITS, number, S##BITS##_MIN) \
+		return (S##BITS##_MIN); \
 	return ((t_s##BITS)number); \
 } \
 
@@ -280,6 +297,12 @@ t_s##BITS	S##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (S##BITS##_ERROR); \
 	if (Q##FROM##_IsInf(number))	return (S##BITS##_MAX * (t_s##BITS)S##FROM##_Sgn(number._)); \
+	if CCCERROR((FROM >= BITS && (number._ / Q##FROM##_DENOM) >= (t_s##FROM)S##BITS##_MAX), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer positive overflow for " SF_Q##FROM " at " SF_S##BITS, number._, S##BITS##_MAX) \
+		return (S##BITS##_MAX); \
+	if CCCERROR((FROM >= BITS && (number._ / Q##FROM##_DENOM) <= (t_s##FROM)S##BITS##_MIN), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer negative overflow for " SF_Q##FROM " at " SF_S##BITS, number._, S##BITS##_MIN) \
+		return (S##BITS##_MIN); \
 	return ((t_s##BITS)(number._ / Q##BITS##_DENOM)); \
 } \
 
@@ -312,8 +335,12 @@ t_s##BITS	S##BITS##_FromF##FROM(t_f##FROM number) \
 { \
 	if (F##FROM##_IsNaN(number))	return (S##BITS##_ERROR); \
 	if (F##FROM##_IsInf(number))	return (S##BITS##_MAX * (t_s##BITS)F##FROM##_Sgn(number)); \
-	if (number > F##FROM##_FromS##BITS(S##BITS##_MAX_VAL))	return (S##BITS##_MAX); \
-	if (number < F##FROM##_FromS##BITS(S##BITS##_MIN_VAL))	return (S##BITS##_MIN); \
+	if CCCERROR((number > F##FROM##_FromS##BITS(S##BITS##_MAX_VAL)), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer positive overflow for " SF_F##FROM " at " SF_S##BITS, number, S##BITS##_MIN) \
+		return (S##BITS##_MAX); \
+	if CCCERROR((number < F##FROM##_FromS##BITS(S##BITS##_MIN_VAL)), ERROR_RESULTRANGE, \
+		#BITS"-bit signed integer negative overflow for " SF_F##FROM " at " SF_S##BITS, number, S##BITS##_MIN) \
+		return (S##BITS##_MIN); \
 	return ((t_s##BITS)number); \
 } \
 

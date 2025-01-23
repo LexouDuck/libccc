@@ -230,6 +230,14 @@ DEFINEFUNC_FLOAT_FROMFIXED(128, 128)
 _INLINE() \
 t_f##BITS	F##BITS##_FromF##FROM(t_f##FROM number) \
 { \
+	if CCCERROR((!F##FROM##_IsInf(number) && F##BITS##_IsInf((t_f##BITS)number)), ERROR_RESULTRANGE, \
+		#BITS"-bit floating-point %s overflow for " SF_F##FROM, \
+		((number < 0) ? "negative" : "positive"), number) \
+		return ((t_f##BITS)number); \
+	if CCCERROR((number != 0. && (t_f##BITS)number == 0.), ERROR_RESULTRANGE, \
+		#BITS"-bit floating-point %s underflow for " SF_F##FROM, \
+		((number < 0) ? "negative" : "positive"), number) \
+		return ((t_f##BITS)number); \
 	return ((t_f##BITS)number); \
 } \
 
