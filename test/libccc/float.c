@@ -1235,6 +1235,7 @@ void	test_##TYPE##tostr(void) \
 
 #if (!defined(c_f16tostr) || !defined(__float16))
 void test_f16tostr(void)	{}
+#warning "f16tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STR(f16)
 #endif
@@ -1255,12 +1256,14 @@ DEFINETEST_FLOAT_TO_STR(f64)
 
 #if (!defined(c_f80tostr) || !defined(__float80))
 void test_f80tostr(void)	{}
+#warning "f80tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STR(f80)
 #endif
 
 #if (!defined(c_f128tostr) || !defined(__float128))
 void test_f128tostr(void)	{}
+#warning "f128tostr() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STR(f128)
 #endif
@@ -1269,6 +1272,7 @@ DEFINETEST_FLOAT_TO_STR(f128)
 
 #if (!defined(c_f16tostrexp) || !defined(__float16))
 void test_f16tostrexp(void)	{}
+#warning "f16tostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(f16)
 #endif
@@ -1289,12 +1293,14 @@ DEFINETEST_FLOAT_TO_STREXP(f64)
 
 #if (!defined(c_f80tostrexp) || !defined(__float80))
 void test_f80tostrexp(void)	{}
+#warning "f80tostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(f80)
 #endif
 
 #if (!defined(c_f128tostrexp) || !defined(__float128))
 void test_f128tostrexp(void)	{}
+#warning "f128tostrexp() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STREXP(f128)
 #endif
@@ -1310,6 +1316,7 @@ DEFINETEST_FLOAT_TO_STREXP(float)
 
 #if (!defined(c_f16tostrdec) || !defined(__float16))
 void test_f16tostrdec(void)	{}
+#warning "f16tostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f16)
 #endif
@@ -1330,12 +1337,14 @@ DEFINETEST_FLOAT_TO_STRDEC(f64)
 
 #if (!defined(c_f80tostrdec) || !defined(__float80))
 void test_f80tostrdec(void)	{}
+#warning "f80tostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f80)
 #endif
 
 #if (!defined(c_f128tostrdec) || !defined(__float128))
 void test_f128tostrdec(void)	{}
+#warning "f128tostrdec() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRDEC(f128)
 #endif
@@ -1351,6 +1360,7 @@ DEFINETEST_FLOAT_TO_STRDEC(float)
 
 #if (!defined(c_f16tostrhex) || !defined(__float16))
 void test_f16tostrhex(void)	{}
+#warning "f16tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f16)
 #endif
@@ -1371,12 +1381,14 @@ DEFINETEST_FLOAT_TO_STRHEX(f64)
 
 #if (!defined(c_f80tostrhex) || !defined(__float80))
 void test_f80tostrhex(void)	{}
+#warning "f80tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f80)
 #endif
 
 #if (!defined(c_f128tostrhex) || !defined(__float128))
 void test_f128tostrhex(void)	{}
+#warning "f128tostrhex() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRHEX(f128)
 #endif
@@ -1392,6 +1404,7 @@ DEFINETEST_FLOAT_TO_STRHEX(float)
 
 #if (!defined(c_f16tostrbin) || !defined(__float16))
 void test_f16tostrbin(void)	{}
+#warning "f16tostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f16) // TODO
 #endif
@@ -1412,12 +1425,14 @@ DEFINETEST_FLOAT_TO_STRBIN(f64) // TODO
 
 #if (!defined(c_f80tostrbin) || !defined(__float80))
 void test_f80tostrbin(void)	{}
+#warning "f80tostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f80) // TODO
 #endif
 
 #if (!defined(c_f128tostrbin) || !defined(__float128))
 void test_f128tostrbin(void)	{}
+#warning "f128tostrbin() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_FLOAT_TO_STRBIN(f128) // TODO
 #endif
@@ -2544,6 +2559,7 @@ void	test_strto##TYPE(void) \
 
 #if (!defined(c_strtof16) || !defined(__float16))
 void test_strtof16(void)	{}
+#warning "strtof16() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_FLOAT(f16)
 #endif
@@ -2564,12 +2580,14 @@ DEFINETEST_STR_TO_FLOAT(f64)
 
 #if (!defined(c_strtof80) || !defined(__float80))
 void test_strtof80(void)	{}
+#warning "strtof80() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_FLOAT(f80)
 #endif
 
 #if (!defined(c_strtof128) || !defined(__float128))
 void test_strtof128(void)	{}
+#warning "strtof128() test suite function defined, but the function isn't defined."
 #else
 DEFINETEST_STR_TO_FLOAT(f128)
 #endif
