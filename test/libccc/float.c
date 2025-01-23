@@ -194,7 +194,7 @@ void	test_##TYPE##nextafter(void) \
 void test_f16nextafter(void)	{}
 #warning "f16nextafter() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_NEXTAFTER(f16,l)
+DEFINETEST_NEXTAFTER(f16,h)
 #endif
 
 #ifndef c_f32nextafter
@@ -388,7 +388,7 @@ void	test_##TYPE##copysign(void) \
 void test_f16copysign(void)	{}
 #warning "f16copysign() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_COPYSIGN(f16,l)
+DEFINETEST_COPYSIGN(f16,h)
 #endif
 
 #ifndef c_f32copysign
@@ -480,7 +480,7 @@ void	test_##TYPE##rint(void) \
 void test_f16rint(void)	{}
 #warning "f16rint() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_RINT(f16,l)
+DEFINETEST_RINT(f16,h)
 #endif
 
 #ifndef c_f32rint
@@ -548,7 +548,7 @@ void	test_##TYPE##lrint(void) \
 void test_f16lrint(void)	{}
 #warning "f16lrint() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_LRINT(f16,l)
+DEFINETEST_LRINT(f16,h)
 #endif
 
 #ifndef c_f32lrint
@@ -658,7 +658,7 @@ void	test_##TYPE##frexp(void) \
 void test_f16frexp(void)	{}
 #warning "f16frexp() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_FREXP(f16,l)
+DEFINETEST_FREXP(f16,h)
 #endif
 
 #ifndef c_f32frexp
@@ -904,7 +904,7 @@ void	test_##TYPE##modf(void) \
 void test_f16modf(void)	{}
 #warning "f16modf() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_MODF(f16,l)
+DEFINETEST_MODF(f16,h)
 #endif
 
 #ifndef c_f32modf
@@ -1002,7 +1002,7 @@ void	test_##TYPE##ilogb(void) \
 void test_f16ilogb(void)	{}
 #warning "f16ilogb() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_ILOGB(f16,l)
+DEFINETEST_ILOGB(f16,h)
 #endif
 
 #ifndef c_f32ilogb
@@ -1101,7 +1101,7 @@ void	test_##TYPE##ilogd(void) \
 void test_f16ilogd(void)	{}
 #warning "f16ilogd() test suite function defined, but the function isn't defined."
 #else
-DEFINETEST_ILOGD(f16,l)
+DEFINETEST_ILOGD(f16,h)
 #endif
 
 #ifndef c_f32ilogd
