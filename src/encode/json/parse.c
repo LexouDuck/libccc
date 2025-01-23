@@ -189,7 +189,7 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
 	}
-//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//	if (F64_IsNaN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
 //		PARSINGERROR_JSON("Error while parsing number: \"%s\"", number)
 	String_Delete(&number);
 	p->offset += length;

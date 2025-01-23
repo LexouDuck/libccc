@@ -278,7 +278,7 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
 	}
-//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//	if (F64_IsNaN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
 //		PARSINGERROR_TOML("Error while parsing number: \"%s\"", number)
 	String_Delete(&number);
 	p->offset += length;

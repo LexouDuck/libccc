@@ -322,11 +322,11 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 	else
 	{
 		t_f64	d = item->value.number;
-		if (IS_NAN(d))
+		if (F64_IsNaN(d))
 		{
 			length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "nan");
 		}
-		else if (IS_INF(d))
+		else if (F64_IsInf(d))
 		{
 			if (d > 0)	length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "+inf");
 			if (d < 0)	length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "-inf");
