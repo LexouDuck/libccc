@@ -84,7 +84,7 @@ DEFINETEST_RANDOM(float, Float)
 
 int	testsuite_math_random(void)
 {
-	static const int	sample_size = 20000;
+	static const int	sample_size = 50000;
 
 	print_suite_title("libccc/math/random");
 

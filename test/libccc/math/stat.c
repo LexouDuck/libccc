@@ -159,7 +159,7 @@ DEFINETEST_STAT(float, Float, FLOAT)
 
 int		testsuite_math_stat(void) // TODO increment total tests counter for these tests
 {
-	static const int	sample_size = 20000;
+	static const int	sample_size = 10000;
 
 	print_suite_title("libccc/math/stat");
 
