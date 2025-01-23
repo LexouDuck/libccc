@@ -69,7 +69,7 @@ static void	handle_arg_test_all()
 	g_test.config.test_overflow = TRUE;
 }
 
-/*
+/*!
 **	This function initializes the global variable 'g_test', which is used everywhere.
 */
 static void	init(void)
