@@ -9,11 +9,13 @@
 
 #define DEFINEFUNC_UINT_DIV(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Div(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_Div(t_u##BITS x, t_u##BITS y) \
 { \
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((U##BITS##_IsNaN(x) || U##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (U##BITS##_ERROR); \
-	return (a / b); \
+	if CCCERROR((U##BITS##_IsInf(x) || (y == 0)), ERROR_MATHDOMAIN, NULL) \
+		return (U##BITS##_ERROR); \
+	return (x / y); \
 } \
 
 DEFINEFUNC_UINT_DIV(8)
@@ -28,11 +30,13 @@ DEFINEFUNC_UINT_DIV(128)
 
 #define DEFINEFUNC_SINT_DIV(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Div(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_Div(t_s##BITS x, t_s##BITS y) \
 { \
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((S##BITS##_IsNaN(x) || S##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (S##BITS##_ERROR); \
-	return (a / b); \
+	if CCCERROR((S##BITS##_IsInf(x) || (y == 0)), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	return (x / y); \
 } \
 
 DEFINEFUNC_SINT_DIV(8)

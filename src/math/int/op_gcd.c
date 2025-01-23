@@ -11,11 +11,11 @@
 
 #define DEFINEFUNC_UINT_GCD(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_GCD(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_GCD(t_u##BITS x, t_u##BITS y) \
 { \
-	if (a && b) \
-		while ((a %= b) && (b %= a)); \
-	return (a | b); \
+	if (x && y) \
+		while ((x %= y) && (y %= x)); \
+	return (x | y); \
 } \
 
 DEFINEFUNC_UINT_GCD(8)
@@ -30,11 +30,11 @@ DEFINEFUNC_UINT_GCD(128)
 
 #define DEFINEFUNC_SINT_GCD(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_GCD(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_GCD(t_s##BITS x, t_s##BITS y) \
 { \
-	if (a && b) \
-		while ((a %= b) && (b %= a)); \
-	return (a | b); \
+	if (x && y) \
+		while ((x %= y) && (y %= x)); \
+	return (x | y); \
 } \
 
 DEFINEFUNC_SINT_GCD(8)

@@ -11,9 +11,11 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Div(t_q##BITS x, t_q##BITS y) \
 { \
-	if CCCERROR((y._ == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (t_q##BITS){ (t_s##BITS)(x._ * Q##BITS##_DENOM / y._) }; \
+	if CCCERROR((Q##BITS##_IsInf(x) || (y._ == 0.)), ERROR_MATHDOMAIN, NULL) \
+		return (Q##BITS##_ERROR); \
+	return (t_q##BITS){ (t_s##BITS)(x._ / y._) }; \
 } \
 // TODO fix this and test
 

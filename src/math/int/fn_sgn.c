@@ -10,11 +10,11 @@
 
 #define DEFINEFUNC_UINT_SGN(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Sgn(t_u##BITS a) \
+t_u##BITS	U##BITS##_Sgn(t_u##BITS x) \
 { \
-	if CCCERROR((a == U##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((x == U##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
 		return (U##BITS##_ERROR); \
-	return (a == 0 ? 0 : 1); \
+	return (x == 0 ? 0 : 1); \
 } \
 
 DEFINEFUNC_UINT_SGN(8)
@@ -29,11 +29,11 @@ DEFINEFUNC_UINT_SGN(128)
 
 #define DEFINEFUNC_SINT_SGN(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Sgn(t_s##BITS a) \
+t_s##BITS	S##BITS##_Sgn(t_s##BITS x) \
 { \
-	if CCCERROR((a == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((x == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
 		return (S##BITS##_ERROR); \
-	return (a == 0 ? 0 : (a < 0 ? -1 : +1)); \
+	return (x == 0 ? 0 : (x < 0 ? -1 : +1)); \
 } \
 
 DEFINEFUNC_SINT_SGN(8)

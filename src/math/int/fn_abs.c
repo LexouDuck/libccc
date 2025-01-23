@@ -10,9 +10,9 @@
 
 #define DEFINEFUNC_UINT_ABS(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Abs(t_u##BITS a) \
+t_u##BITS	U##BITS##_Abs(t_u##BITS x) \
 { \
-	return (a); \
+	return (x); \
 } \
 
 DEFINEFUNC_UINT_ABS(8)
@@ -27,11 +27,11 @@ DEFINEFUNC_UINT_ABS(128)
 
 #define DEFINEFUNC_SINT_ABS(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Abs(t_s##BITS a) \
+t_s##BITS	S##BITS##_Abs(t_s##BITS x) \
 { \
-	if CCCERROR((a == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((x == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
 		return (S##BITS##_ERROR); \
-	return (a < 0 ? -a : +a); \
+	return (x < 0 ? -x : +x); \
 } \
 
 DEFINEFUNC_SINT_ABS(8)

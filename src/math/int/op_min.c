@@ -10,11 +10,11 @@
 
 #define DEFINEFUNC_UINT_MIN(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Min(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_Min(t_u##BITS x, t_u##BITS y) \
 { \
-	if CCCERROR((U##BITS##_IsNaN(a) || U##BITS##_IsNaN(b)), ERROR_NANARGUMENT, NULL) \
+	if CCCERROR((U##BITS##_IsNaN(x) || U##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 	{ return U##BITS##_ERROR; } \
-	return (a < b ? a : b); \
+	return (x < y ? x : y); \
 } \
 
 DEFINEFUNC_UINT_MIN(8)
@@ -29,11 +29,11 @@ DEFINEFUNC_UINT_MIN(128)
 
 #define DEFINEFUNC_SINT_MIN(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Min(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_Min(t_s##BITS x, t_s##BITS y) \
 { \
-	if CCCERROR((S##BITS##_IsNaN(a) || S##BITS##_IsNaN(b)), ERROR_NANARGUMENT, NULL) \
+	if CCCERROR((S##BITS##_IsNaN(x) || S##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 	{ return S##BITS##_ERROR; } \
-	return (a < b ? a : b); \
+	return (x < y ? x : y); \
 } \
 
 DEFINEFUNC_SINT_MIN(8)

@@ -10,11 +10,11 @@
 
 #define DEFINEFUNC_UINT_ADD(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Add(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_Add(t_u##BITS x, t_u##BITS y) \
 { \
-	if CCCERROR((a > U##BITS##_MAX - b), ERROR_RESULTRANGE, NULL) \
+	if CCCERROR((x > U##BITS##_MAX - y), ERROR_RESULTRANGE, NULL) \
 	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(U##BITS, U##BITS##_MAX) } \
-	return (a + b); \
+	return (x + y); \
 } \
 
 DEFINEFUNC_UINT_ADD(8)
@@ -29,16 +29,16 @@ DEFINEFUNC_UINT_ADD(128)
 
 #define DEFINEFUNC_SINT_ADD(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Add(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_Add(t_s##BITS x, t_s##BITS y) \
 { \
-	if (a && b && SGN(a) == SGN(b)) \
+	if (x && y && SGN(x) == SGN(y)) \
 	{ \
-		if CCCERROR((a > S##BITS##_MAX - b), ERROR_RESULTRANGE, NULL) \
+		if CCCERROR((x > S##BITS##_MAX - y), ERROR_RESULTRANGE, NULL) \
 		{ LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MAX) } \
-		if CCCERROR((a < S##BITS##_MIN - b), ERROR_RESULTRANGE, NULL) \
+		if CCCERROR((x < S##BITS##_MIN - y), ERROR_RESULTRANGE, NULL) \
 		{ LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MIN) } \
 	} \
-	return (a + b); \
+	return (x + y); \
 } \
 
 DEFINEFUNC_SINT_ADD(8)
@@ -50,8 +50,8 @@ DEFINEFUNC_SINT_ADD(128)
 #endif
 
 /*
-(+) + (+) = [0, +2N] => (a > MAX - b)
+(+) + (+) = [0, +2N] => (x > MAX - y)
 (+) + (-) = [-N, +N]
 (-) + (+) = [-N, +N]
-(-) + (-) = [-2N, 0] => (a < MIN - b)
+(-) + (-) = [-2N, 0] => (x < MIN - y)
 */

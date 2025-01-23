@@ -11,11 +11,13 @@
 
 #define DEFINEFUNC_UINT_MOD(BITS) \
 _INLINE() \
-t_u##BITS	U##BITS##_Mod(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_Mod(t_u##BITS x, t_u##BITS y) \
 { \
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((U##BITS##_IsNaN(x) || U##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (U##BITS##_ERROR); \
-	return (a % b); \
+	if CCCERROR((U##BITS##_IsInf(x) || (y == 0)), ERROR_MATHDOMAIN, NULL) \
+		return (U##BITS##_ERROR); \
+	return (x % y); \
 } \
 
 DEFINEFUNC_UINT_MOD(8)
@@ -30,11 +32,13 @@ DEFINEFUNC_UINT_MOD(128)
 
 #define DEFINEFUNC_SINT_MOD(BITS) \
 _INLINE() \
-t_s##BITS	S##BITS##_Mod(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_Mod(t_s##BITS x, t_s##BITS y) \
 { \
-	if CCCERROR((b == 0), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((S##BITS##_IsNaN(x) || S##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (S##BITS##_ERROR); \
-	return (S##BITS##_Abs(a) % S##BITS##_Abs(b)) * S##BITS##_Sgn(b); \
+	if CCCERROR((S##BITS##_IsInf(x) || (y == 0)), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	return (S##BITS##_Abs(x) % S##BITS##_Abs(y)) * S##BITS##_Sgn(y); \
 } \
 
 DEFINEFUNC_SINT_MOD(8)

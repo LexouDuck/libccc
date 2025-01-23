@@ -14,6 +14,10 @@ MATH_DECL_REALFUNCTION(Div, fdiv)
 _INLINE() \
 t_f##BITS	F##BITS##_Div(t_f##BITS x, t_f##BITS y) \
 { \
+	if CCCERROR((IS_NAN(x) || IS_NAN(y)), ERROR_NANARGUMENT, NULL) \
+		return (x + y); \
+	if CCCERROR((IS_INF(x) || (y == 0.)), ERROR_MATHDOMAIN, NULL) \
+		return (F##BITS##_ERROR); \
 	return (x / y); \
 } \
 

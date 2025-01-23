@@ -10,18 +10,18 @@
 // TODO: handle overflows
 
 #define DEFINEFUNC_UINT_POW(BITS) \
-t_u##BITS	U##BITS##_Pow(t_u##BITS a, t_u##BITS b) \
+t_u##BITS	U##BITS##_Pow(t_u##BITS x, t_u##BITS y) \
 { \
 	/* exponentiation by squares */ \
 	t_u##BITS result = 1; \
 	while (TRUE) \
 	{ \
-		if (b & 1) \
-			result *= a; \
-		b >>= 1; \
-		if (b == 0) \
+		if (y & 1) \
+			result *= x; \
+		y >>= 1; \
+		if (y == 0) \
 			break; \
-		a *= a; \
+		x *= x; \
 	} \
 	return result; \
 } \
@@ -37,18 +37,18 @@ DEFINEFUNC_UINT_POW(128)
 
 
 #define DEFINEFUNC_SINT_POW(BITS) \
-t_s##BITS	S##BITS##_Pow(t_s##BITS a, t_s##BITS b) \
+t_s##BITS	S##BITS##_Pow(t_s##BITS x, t_s##BITS y) \
 { \
 	/* exponentiation by squares */ \
 	t_s##BITS result = 1; \
 	while (TRUE) \
 	{ \
-		if (b & 1) \
-			result *= a; \
-		b >>= 1; \
-		if (b == 0) \
+		if (y & 1) \
+			result *= x; \
+		y >>= 1; \
+		if (y == 0) \
 			break; \
-		a *= a; \
+		x *= x; \
 	} \
 	return result; \
 } \
@@ -62,8 +62,8 @@ DEFINEFUNC_SINT_POW(128)
 #endif
 
 /*
-(+) * (+) = [0, +aᵇ] => ()
-(-) * (+) = [-aᵇ, 0] => ()
-(+) * (-) = [-aᵇ, 0] => ()
-(-) * (-) = [0, +aᵇ] => ()
+(+) * (+) = [0, +xʸ] => ()
+(-) * (+) = [-xʸ, 0] => ()
+(+) * (-) = [-xʸ, 0] => ()
+(-) * (-) = [0, +xʸ] => ()
 */
