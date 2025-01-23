@@ -439,7 +439,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH	1
+#define LIBCONFIG_USE_STD_MATH	0
 #endif
 #if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
 #error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"
