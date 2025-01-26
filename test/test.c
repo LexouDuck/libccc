@@ -260,7 +260,9 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		error = FALSE; \
 	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result); \
 	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect); \
-	if (error && !isnan(test->result) && !isnan(test->expect)) \
+	if (error && \
+		!isnan(test->result) && !isnan(test->expect) && \
+		!isinf(test->result) && !isinf(test->expect)) \
 	{ \
 		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_EPSILON) \
 		{ \

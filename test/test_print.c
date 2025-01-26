@@ -135,9 +135,9 @@ void	print_suite_title(char const* suite_name)
 	if (g_test.config.verbose)
 	{
 		printf("\n");
-		printf("       .-------------------------------------.       \n");
-		printf("---==={   LIBCCC TEST: %20.20s   }===---\n", suite_name);
-		printf("       '-------------------------------------'       \n");
+		printf("//==================================\\\\\n");
+		printf("||  %-30.30s  ||\n", suite_name);
+		printf("\\\\==================================//\n");
 	}
 }
 
