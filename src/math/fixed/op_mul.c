@@ -12,10 +12,10 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Mul(t_q##BITS x, t_q##BITS y) \
 { \
+	if CCCERROR((Q##BITS##_IsInf(x) && y._ == 0) || (Q##BITS##_IsInf(y) && x._ == 0), ERROR_MATHDOMAIN, NULL) \
+		return (Q##BITS##_ERROR); \
 	if CCCERROR((Memory_GetMSB(Q##BITS##_Abs(x)._) + Memory_GetMSB(Q##BITS##_Abs(y)._) >= BITS), ERROR_RESULTRANGE, NULL) \
-	{ \
-		LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, (Q##BITS##_Sgn(x) == Q##BITS##_Sgn(y)) ? Q##BITS##_MAX : Q##BITS##_MIN) \
-	} \
+	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, (Q##BITS##_Sgn(x) == Q##BITS##_Sgn(y)) ? Q##BITS##_MAX : Q##BITS##_MIN) } \
 	return (t_q##BITS){ (t_s##BITS)((x._ * y._) / Q##BITS##_DENOM) }; \
 } \
 // TODO fix this and test

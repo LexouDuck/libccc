@@ -353,7 +353,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F16_MIN_INT			(0x2.p-11)				//!< A 16-bit floating-point's minimum representable integer value.
 #define F16_MAX_INT			(0x2.p+11)				//!< A 16-bit floating-point's maximum representable integer value.
 #define F16_MIN_VAL			(FLT16_MIN)				//!< A 16-bit floating-point's minimum representable positive normal value.
-#define F16_MAX_VAL			(FLT16_MAX)				//!< A 16-bit floating-point's maximum finite representable value.
+#define F16_MAX_VAL			(FLT16_MAX)				//!< A 16-bit floating-point's maximum representable positive finite value.
 #define F16_MIN				(-INF)					//!< A 16-bit floating-point's minimum value (-infinity)
 #define F16_MAX				(+INF)					//!< A 16-bit floating-point's maximum value (+infinity)
 //!@}
@@ -376,7 +376,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F32_MIN_INT			(0x2.p-24)				//!< A 32-bit floating-point's minimum representable integer value.
 #define F32_MAX_INT			(0x2.p+24)				//!< A 32-bit floating-point's maximum representable integer value.
 #define F32_MIN_VAL			(FLT_MIN)				//!< A 32-bit floating-point's minimum representable positive normal value.
-#define F32_MAX_VAL			(FLT_MAX)				//!< A 32-bit floating-point's maximum finite representable value.
+#define F32_MAX_VAL			(FLT_MAX)				//!< A 32-bit floating-point's maximum representable positive finite value.
 #define F32_MIN				(-INF)					//!< A 32-bit floating-point's minimum value (-infinity)
 #define F32_MAX				(+INF)					//!< A 32-bit floating-point's maximum value (+infinity)
 //!@}
@@ -399,7 +399,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F64_MIN_INT			(0x2.p-53)				//!< A 64-bit floating-point's minimum representable integer value.
 #define F64_MAX_INT			(0x2.p+53)				//!< A 64-bit floating-point's maximum representable integer value.
 #define F64_MIN_VAL			(DBL_MIN)				//!< A 64-bit floating-point's minimum representable positive normal value.
-#define F64_MAX_VAL			(DBL_MAX)				//!< A 64-bit floating-point's maximum finite representable value.
+#define F64_MAX_VAL			(DBL_MAX)				//!< A 64-bit floating-point's maximum representable positive finite value.
 #define F64_MIN				(-INF)					//!< A 64-bit floating-point's minimum value (-infinity)
 #define F64_MAX				(+INF)					//!< A 64-bit floating-point's maximum value (+infinity)
 //!@}
@@ -422,7 +422,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F80_MIN_INT			(0x2.p-64)					//!< A 80-bit floating-point's minimum representable integer value.
 #define F80_MAX_INT			(0x2.p+64)					//!< A 80-bit floating-point's maximum representable integer value.
 #define F80_MIN_VAL			(LDBL_MIN)					//!< A 80-bit floating-point's minimum representable positive normal value.
-#define F80_MAX_VAL			(LDBL_MAX)					//!< A 80-bit floating-point's maximum finite representable value.
+#define F80_MAX_VAL			(LDBL_MAX)					//!< A 80-bit floating-point's maximum representable positive finite value.
 #define F80_MIN				(-INF)						//!< A 80-bit floating-point's minimum value (-infinity)
 #define F80_MAX				(+INF)						//!< A 80-bit floating-point's maximum value (+infinity)
 //!@}
@@ -445,7 +445,7 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #define F128_MIN_INT			(0x2.p-113)								//!< A 128-bit floating-point's minimum representable integer value.
 #define F128_MAX_INT			(0x2.p+113)								//!< A 128-bit floating-point's maximum representable integer value.
 #define F128_MIN_VAL			(LDBL_MIN)								//!< A 128-bit floating-point's minimum representable positive normal value.
-#define F128_MAX_VAL			(LDBL_MAX)								//!< A 128-bit floating-point's maximum finite representable value.
+#define F128_MAX_VAL			(LDBL_MAX)								//!< A 128-bit floating-point's maximum representable positive finite value.
 #define F128_MIN				(-INF)									//!< A 128-bit floating-point's minimum value (-infinity)
 #define F128_MAX				(+INF)									//!< A 128-bit floating-point's maximum value (+infinity)
 //!@}

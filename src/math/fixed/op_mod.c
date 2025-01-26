@@ -13,8 +13,9 @@ t_q##BITS	Q##BITS##_Mod(t_q##BITS x, t_q##BITS y) \
 { \
 	if CCCERROR((Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (Q##BITS##_ERROR); \
-	if CCCERROR((Q##BITS##_IsInf(x) || (y._ == 0.)), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((Q##BITS##_IsInf(x) || (y._ == 0)), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(y))	return (Q##BITS##_Sgn(x)._ == Q##BITS##_Sgn(y)._ ? x : y); \
 	return (t_q##BITS){ (t_s##BITS)(x._ % y._) }; \
 } \
 // TODO fix this and test

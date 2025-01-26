@@ -356,323 +356,165 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 #endif
 
 
-/*
-#ifdef LIBCONFIG_INTEGER_TYPES
 
-	#define U8_MAX	((t_u8)-1)						//!< The largest representable value for at least size  8-bit, unsigned integer type
-	#define S8_MAX	((t_s8)(U8_MAX  >> 1))			//!< The largest representable value for at least size  8-bit, signed integer type
-	#define S8_MIN	((t_s8)((U8_MAX  >> 1) + 1))	//!< The minimum representable value for at least size  8-bit, signed integer type
-
-	#define U16_MAX	((t_u16)-1)						//!< The largest representable value for at least size 16-bit, unsigned integer type
-	#define S16_MAX	((t_s16)(U16_MAX >> 1))			//!< The largest representable value for at least size 16-bit, signed integer type
-	#define S16_MIN	((t_s16)((U16_MAX >> 1) + 1))	//!< The minimum representable value for at least size 16-bit, signed integer type
-
-	#define U32_MAX	((t_u32)-1)						//!< The largest representable value for at least size 32-bit, unsigned integer type
-	#define S32_MAX	((t_s32)(U32_MAX >> 1))			//!< The largest representable value for at least size 32-bit, signed integer type
-	#define S32_MIN	((t_s32)((U32_MAX >> 1) + 1))	//!< The minimum representable value for at least size 32-bit, signed integer type
-
-	#define U64_MAX	((t_u64)-1)						//!< The largest representable value for at least size 64-bit, unsigned integer type
-	#define S64_MAX	((t_s64)(U64_MAX >> 1))			//!< The largest representable value for at least size 64-bit, signed integer type
-	#define S64_MIN	((t_s64)((U64_MAX >> 1) + 1))	//!< The minimum representable value for at least size 64-bit, signed integer type
-
-	#if LIBCONFIG_USE_INT128
-	#define U128_MAX ((t_u128)-1)					//!< The largest representable value for at least size 128-bit, unsigned integer type
-	#define S128_MAX ((t_s128)(U128_MAX >> 1))		//!< The largest representable value for at least size 128-bit, signed integer type
-	#define S128_MIN ((t_s128)((U128_MAX >> 1) + 1))//!< The minimum representable value for at least size 128-bit, signed integer type
-	#endif
-#else
-#endif
-*/
-
-//!@doc Macros which define upper/lower bounds of integer types, and special values
+//!@doc Macros which define upper/lower bounds of unsigned integer types, and special values
 //!@{
+
 #undef UINT_ERROR
 #undef UINT_MAX
 
-#undef SINT_ERROR
-#undef SINT_MAX
-#undef SINT_MIN
+#if (LIBCONFIG_UINT_NAN == 0) && (LIBCONFIG_UINT_INF == 0) // classic overflow behavior, with zero as error-value
 
-#if (LIBCONFIG_UINT_NAN == 0) && (LIBCONFIG_UINT_INF == 0)
-
+	#define U8_MIN_VAL	U8_MIN	//!< The minimum finite representable value for a 8-bit unsigned integer (0)
+	#define U8_MAX_VAL	U8_MAX	//!< The maximum finite representable value for a 8-bit unsigned integer (255)
 	#define U8_MIN		((t_u8)0x00)	//!< The minimum representable value for a 8-bit unsigned integer (0)
-	#define U8_MAX		((t_u8)0xFF)	//!< The largest representable value for a 8-bit unsigned integer (255)
+	#define U8_MAX		((t_u8)0xFF)	//!< The maximum representable value for a 8-bit unsigned integer (255)
 
+	#define U16_MIN_VAL	U16_MIN	//!< The minimum finite representable value for a 16-bit unsigned integer (0)
+	#define U16_MAX_VAL	U16_MAX	//!< The maximum finite representable value for a 16-bit unsigned integer (65535)
 	#define U16_MIN		((t_u16)0x0000)	//!< The minimum representable value for a 16-bit unsigned integer (0)
-	#define U16_MAX		((t_u16)0xFFFF)	//!< The largest representable value for a 16-bit unsigned integer (65535)
+	#define U16_MAX		((t_u16)0xFFFF)	//!< The maximum representable value for a 16-bit unsigned integer (65535)
 
+	#define U32_MIN_VAL	U32_MIN	//!< The minimum finite representable value for a 32-bit unsigned integer (0)
+	#define U32_MAX_VAL	U32_MAX	//!< The maximum finite representable value for a 32-bit unsigned integer (4294967295)
 	#define U32_MIN		((t_u32)0x00000000)	//!< The minimum representable value for a 32-bit unsigned integer (0)
-	#define U32_MAX		((t_u32)0xFFFFFFFF)	//!< The largest representable value for a 32-bit unsigned integer (4294967295)
+	#define U32_MAX		((t_u32)0xFFFFFFFF)	//!< The maximum representable value for a 32-bit unsigned integer (4294967295)
 
+	#define U64_MIN_VAL	U64_MIN	//!< The minimum finite representable value for a 64-bit unsigned integer (0)
+	#define U64_MAX_VAL	U64_MAX	//!< The maximum finite representable value for a 64-bit unsigned integer (18446744073709551615)
 	#define U64_MIN		((t_u64)0x0000000000000000)	//!< The minimum representable value for a 64-bit unsigned integer (0)
-	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551615)
+	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFF)	//!< The maximum representable value for a 64-bit unsigned integer (18446744073709551615)
 
 	#if LIBCONFIG_USE_INT128
+	#define U128_MIN_VAL	U128_MIN	//!< The minimum finite representable value for a 128-bit unsigned integer (0)
+	#define U128_MAX_VAL	U128_MAX	//!< The maximum finite representable value for a 128-bit unsigned integer (340282366920938463463374607431768211455)
 	#define U128_MIN	((t_u128)0) //!< The minimum representable value for a 128-bit unsigned integer (0)
-	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211455)
+	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF)) //!< The maximum representable value for a 128-bit unsigned integer (340282366920938463463374607431768211455)
 	#endif
 
-	#define UINT_MIN	((t_uint) 0)	//!< The minimum representable value for a configurable-size unsigned integer type (0)
-	#define UINT_MAX	((t_uint)-1)	//!< The largest representable value for a configurable-size unsigned integer type
+#elif (LIBCONFIG_UINT_NAN) // overflow behavior, with special NAN error-value
 
-#elif (LIBCONFIG_UINT_NAN)
-
+	#define U8_MIN_VAL	U8_MIN	//!< The minimum finite representable value for a 8-bit unsigned integer (0)
+	#define U8_MAX_VAL	U8_MAX	//!< The maximum finite representable value for a 8-bit unsigned integer (254)
 	#define U8_MIN		((t_u8)0x00)	//!< The minimum representable value for a 8-bit unsigned integer (0)
-	#define U8_MAX		((t_u8)0xFE)	//!< The largest representable value for a 8-bit unsigned integer (254)
+	#define U8_MAX		((t_u8)0xFE)	//!< The maximum representable value for a 8-bit unsigned integer (254)
 	#define U8_NAN		((t_u8)0xFF)
 
+	#define U16_MIN_VAL	U16_MIN	//!< The minimum finite representable value for a 16-bit unsigned integer (0)
+	#define U16_MAX_VAL	U16_MAX	//!< The maximum finite representable value for a 16-bit unsigned integer (65534)
 	#define U16_MIN		((t_u16)0x0000)	//!< The minimum representable value for a 16-bit unsigned integer (0)
-	#define U16_MAX		((t_u16)0xFFFE)	//!< The largest representable value for a 16-bit unsigned integer (65534)
+	#define U16_MAX		((t_u16)0xFFFE)	//!< The maximum representable value for a 16-bit unsigned integer (65534)
 	#define U16_NAN		((t_u16)0xFFFF)
 
+	#define U32_MIN_VAL	U32_MIN	//!< The minimum finite representable value for a 32-bit unsigned integer (0)
+	#define U32_MAX_VAL	U32_MAX	//!< The maximum finite representable value for a 32-bit unsigned integer (4294967294)
 	#define U32_MIN		((t_u32)0x00000000)	//!< The minimum representable value for a 32-bit unsigned integer (0)
-	#define U32_MAX		((t_u32)0xFFFFFFFE)	//!< The largest representable value for a 32-bit unsigned integer (4294967294)
+	#define U32_MAX		((t_u32)0xFFFFFFFE)	//!< The maximum representable value for a 32-bit unsigned integer (4294967294)
 	#define U32_NAN		((t_u32)0xFFFFFFFF)
 
+	#define U64_MIN_VAL	U64_MIN	//!< The minimum finite representable value for a 64-bit unsigned integer (0)
+	#define U64_MAX_VAL	U64_MAX	//!< The maximum finite representable value for a 64-bit unsigned integer (18446744073709551614)
 	#define U64_MIN		((t_u64)0x0000000000000000)	//!< The minimum representable value for a 64-bit unsigned integer (0)
-	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551614)
+	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The maximum representable value for a 64-bit unsigned integer (18446744073709551614)
 	#define U64_NAN		((t_u64)0xFFFFFFFFFFFFFFFF)
 
 	#if LIBCONFIG_USE_INT128
+	#define U128_MIN_VAL	U128_MIN	//!< The minimum finite representable value for a 128-bit unsigned integer (0)
+	#define U128_MAX_VAL	U128_MAX	//!< The maximum finite representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#define U128_MIN	((t_u128)0) //!< The minimum representable value for a 128-bit unsigned integer (0)
-	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE)) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
+	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE)) //!< The maximum representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#define U128_NAN	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
 	#endif
 
-	#define UINT_MIN	((t_uint) 0)	//!< The minimum representable value for a configurable-size unsigned integer type (0)
-	#define UINT_MAX	((t_uint)-2)	//!< The largest representable value for a configurable-size unsigned integer type
-	#define UINT_NAN	((t_uint)-1)
+#elif (LIBCONFIG_UINT_INF) // saturate behavior, with zero as error-value
 
-#elif (LIBCONFIG_UINT_INF)
-
+	#define U8_MIN_VAL	U8_MIN	//!< The minimum finite representable value for a 8-bit unsigned integer (0)
+	#define U8_MAX_VAL	U8_MAX	//!< The maximum finite representable value for a 8-bit unsigned integer (254)
 	#define U8_MIN		((t_u8)0x00)	//!< The minimum representable value for a 8-bit unsigned integer (0)
-	#define U8_MAX		((t_u8)0xFE)	//!< The largest representable value for a 8-bit unsigned integer (254)
+	#define U8_MAX		((t_u8)0xFE)	//!< The maximum representable value for a 8-bit unsigned integer (254)
 	#define U8_INF		((t_u8)0xFF)
 
+	#define U16_MIN_VAL	U16_MIN	//!< The minimum finite representable value for a 16-bit unsigned integer (0)
+	#define U16_MAX_VAL	U16_MAX	//!< The maximum finite representable value for a 16-bit unsigned integer (65534)
 	#define U16_MIN		((t_u16)0x0000)	//!< The minimum representable value for a 16-bit unsigned integer (0)
-	#define U16_MAX		((t_u16)0xFFFE)	//!< The largest representable value for a 16-bit unsigned integer (65534)
+	#define U16_MAX		((t_u16)0xFFFE)	//!< The maximum representable value for a 16-bit unsigned integer (65534)
 	#define U16_INF		((t_u16)0xFFFF)
 
+	#define U32_MIN_VAL	U32_MIN	//!< The minimum finite representable value for a 32-bit unsigned integer (0)
+	#define U32_MAX_VAL	U32_MAX	//!< The maximum finite representable value for a 32-bit unsigned integer (4294967294)
 	#define U32_MIN		((t_u32)0x00000000)	//!< The minimum representable value for a 32-bit unsigned integer (0)
-	#define U32_MAX		((t_u32)0xFFFFFFFE)	//!< The largest representable value for a 32-bit unsigned integer (4294967294)
+	#define U32_MAX		((t_u32)0xFFFFFFFE)	//!< The maximum representable value for a 32-bit unsigned integer (4294967294)
 	#define U32_INF		((t_u32)0xFFFFFFFF)
 
+	#define U64_MIN_VAL	U64_MIN	//!< The minimum finite representable value for a 64-bit unsigned integer (0)
+	#define U64_MAX_VAL	U64_MAX	//!< The maximum finite representable value for a 64-bit unsigned integer (18446744073709551614)
 	#define U64_MIN		((t_u64)0x0000000000000000)	//!< The minimum representable value for a 64-bit unsigned integer (0)
-	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551614)
+	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFE)	//!< The maximum representable value for a 64-bit unsigned integer (18446744073709551614)
 	#define U64_INF		((t_u64)0xFFFFFFFFFFFFFFFF)
 
 	#if LIBCONFIG_USE_INT128
+	#define U128_MIN_VAL	U128_MIN	//!< The minimum finite representable value for a 128-bit unsigned integer (0)
+	#define U128_MAX_VAL	U128_MAX	//!< The maximum finite representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#define U128_MIN	((t_u128)0) //!< The minimum representable value for a 128-bit unsigned integer (0)
-	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE)) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
+	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE)) //!< The maximum representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#define U128_INF	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
 	#endif
 
-	#define UINT_MIN	((t_uint) 0)	//!< The minimum representable value for a configurable-size unsigned integer type (0)
-	#define UINT_MAX	((t_uint)-2)	//!< The largest representable value for a configurable-size unsigned integer type
-	#define UINT_INF	((t_uint)-1)
+#else // saturate behavior, with special NAN error-value
 
-#else
-
-	#define U8_MIN		((t_u8)0x00)	//!< The minimum representable value for a 8-bit unsigned integer (0)
-	#define U8_MAX		((t_u8)0xFD)	//!< The largest representable value for a 8-bit unsigned integer (254)
+	#define U8_MIN_VAL	((t_u8)0x00)	//!< The minimum finite representable value for a 8-bit unsigned integer (0)
+	#define U8_MAX_VAL	((t_u8)0xFD)	//!< The maximum finite representable value for a 8-bit unsigned integer (254)
+	#define U8_MIN		U8_MIN_VAL	//!< The minimum representable value for a 8-bit unsigned integer (0)
+	#define U8_MAX		U8_INF	//!< The maximum representable value for a 8-bit unsigned integer (254)
 	#define U8_INF		((t_u8)0xFE)
 	#define U8_NAN		((t_u8)0xFF)
 
-	#define U16_MIN		((t_u16)0x0000)	//!< The minimum representable value for a 16-bit unsigned integer (0)
-	#define U16_MAX		((t_u16)0xFFFD)	//!< The largest representable value for a 16-bit unsigned integer (65534)
+	#define U16_MIN_VAL	((t_u16)0x0000)	//!< The minimum finite representable value for a 16-bit unsigned integer (0)
+	#define U16_MAX_VAL	((t_u16)0xFFFD)	//!< The maximum finite representable value for a 16-bit unsigned integer (65534)
+	#define U16_MIN		U16_MIN_VAL	//!< The minimum representable value for a 16-bit unsigned integer (0)
+	#define U16_MAX		U16_INF	//!< The maximum representable value for a 16-bit unsigned integer (65534)
 	#define U16_INF		((t_u16)0xFFFE)
 	#define U16_NAN		((t_u16)0xFFFF)
 
-	#define U32_MIN		((t_u32)0x00000000)	//!< The minimum representable value for a 32-bit unsigned integer (0)
-	#define U32_MAX		((t_u32)0xFFFFFFFD)	//!< The largest representable value for a 32-bit unsigned integer (4294967294)
+	#define U32_MIN_VAL	((t_u32)0x00000000)	//!< The minimum finite representable value for a 32-bit unsigned integer (0)
+	#define U32_MAX_VAL	((t_u32)0xFFFFFFFD)	//!< The maximum finite representable value for a 32-bit unsigned integer (4294967294)
+	#define U32_MIN		U32_MIN_VAL	//!< The minimum representable value for a 32-bit unsigned integer (0)
+	#define U32_MAX		U32_INF	//!< The maximum representable value for a 32-bit unsigned integer (4294967294)
 	#define U32_INF		((t_u32)0xFFFFFFFE)
 	#define U32_NAN		((t_u32)0xFFFFFFFF)
 
-	#define U64_MIN		((t_u64)0x0000000000000000)	//!< The minimum representable value for a 64-bit unsigned integer (0)
-	#define U64_MAX		((t_u64)0xFFFFFFFFFFFFFFFD)	//!< The largest representable value for a 64-bit unsigned integer (18446744073709551614)
+	#define U64_MIN_VAL	((t_u64)0x0000000000000000)	//!< The minimum finite representable value for a 64-bit unsigned integer (0)
+	#define U64_MAX_VAL	((t_u64)0xFFFFFFFFFFFFFFFD)	//!< The maximum finite representable value for a 64-bit unsigned integer (18446744073709551614)
+	#define U64_MIN		U64_MIN_VAL	//!< The minimum representable value for a 64-bit unsigned integer (0)
+	#define U64_MAX		U64_INF	//!< The maximum representable value for a 64-bit unsigned integer (18446744073709551614)
 	#define U64_INF		((t_u64)0xFFFFFFFFFFFFFFFE)
 	#define U64_NAN		((t_u64)0xFFFFFFFFFFFFFFFF)
 
 	#if LIBCONFIG_USE_INT128
-	#define U128_MIN	((t_u128)0) //!< The minimum representable value for a 128-bit unsigned integer (0)
-	#define U128_MAX	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFD)) //!< The largest representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
+	#define U128_MIN_VAL	((t_u128)0)	//!< The minimum finite representable value for a 128-bit unsigned integer (0)
+	#define U128_MAX_VAL	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFD))	//!< The maximum finite representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
+	#define U128_MIN	U128_MIN_VAL //!< The minimum representable value for a 128-bit unsigned integer (0)
+	#define U128_MAX	U128_INF //!< The maximum representable value for a 128-bit unsigned integer (340282366920938463463374607431768211454)
 	#define U128_INF	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
 	#define U128_NAN	((t_u128)(((t_u128)0xFFFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
 	#endif
 
-	#define UINT_MIN	((t_uint) 0)	//!< The minimum representable value for a configurable-size unsigned integer type (0)
-	#define UINT_MAX	((t_uint)-3)	//!< The largest representable value for a configurable-size unsigned integer type
-	#define UINT_INF	((t_uint)-2)
-	#define UINT_NAN	((t_uint)-1)
-
 #endif
 
-
-
-#if (LIBCONFIG_SINT_NAN == 0) && (LIBCONFIG_SINT_INF == 0)
-
-	#define S8_MIN_VAL	S8_MIN
-	#define S8_MAX_VAL	S8_MAX
-	#define S8_MIN		((t_s8)0x80)	//!< The minimum representable value for a 8-bit signed integer (-128)
-	#define S8_MAX		((t_s8)0x7F)	//!< The largest representable value for a 8-bit signed integer (+127)
-
-	#define S16_MIN_VAL	S16_MIN
-	#define S16_MAX_VAL	S16_MAX
-	#define S16_MIN		((t_s16)0x8000)	//!< The minimum representable value for a 16-bit signed integer (-32768)
-	#define S16_MAX		((t_s16)0x7FFF)	//!< The largest representable value for a 16-bit signed integer (+32767)
-
-	#define S32_MIN_VAL	S32_MIN
-	#define S32_MAX_VAL	S32_MAX
-	#define S32_MIN		((t_s32)0x80000000)	//!< The minimum representable value for a 32-bit signed integer (-2147483648)
-	#define S32_MAX		((t_s32)0x7FFFFFFF)	//!< The largest representable value for a 32-bit signed integer (+2147483647)
-
-	#define S64_MIN_VAL	S64_MIN
-	#define S64_MAX_VAL	S64_MAX
-	#define S64_MIN		((t_s64)0x8000000000000000)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775808)
-	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
-
-	#if LIBCONFIG_USE_INT128
-	#define S128_MIN_VAL	S128_MIN
-	#define S128_MAX_VAL	S128_MAX
-	#define S128_MIN		((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
-	#define S128_MAX		((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
-	#endif
-
-	#define SINT_MIN_VAL	SINT_MIN
-	#define SINT_MAX_VAL	SINT_MAX
-	#define SINT_MIN		((t_sint)((t_uint)1 << (LIBCONFIG_UINT_BITS - 1)))	//!< The minimum representable value for a configurable-size signed integer type
-	#define SINT_MAX		((t_sint)((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
-
-#elif (LIBCONFIG_SINT_NAN)
-
-	#define S8_MIN_VAL	S8_MIN
-	#define S8_MAX_VAL	S8_MAX
-	#define S8_MIN		((t_s8)-0x7F)	//!< The minimum representable value for a 8-bit signed integer (-127)
-	#define S8_MAX		((t_s8)+0x7F)	//!< The largest representable value for a 8-bit signed integer (+127)
-	#define S8_NAN		((t_s8) 0x80)
-
-	#define S16_MIN_VAL	S16_MIN
-	#define S16_MAX_VAL	S16_MAX
-	#define S16_MIN		((t_s16)-0x7FFF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
-	#define S16_MAX		((t_s16)+0x7FFF)	//!< The largest representable value for a 16-bit signed integer (+32767)
-	#define S16_NAN		((t_s16) 0x8000)
-
-	#define S32_MIN_VAL	S32_MIN
-	#define S32_MAX_VAL	S32_MAX
-	#define S32_MIN		((t_s32)-0x7FFFFFFF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
-	#define S32_MAX		((t_s32)+0x7FFFFFFF)	//!< The largest representable value for a 32-bit signed integer (+2147483647)
-	#define S32_NAN		((t_s32) 0x80000000)
-
-	#define S64_MIN_VAL	S64_MIN
-	#define S64_MAX_VAL	S64_MAX
-	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
-	#define S64_MAX		((t_s64)+0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
-	#define S64_NAN		((t_s64) 0x8000000000000000)
-
-	#if LIBCONFIG_USE_INT128
-	#define S128_MIN_VAL	S128_MIN
-	#define S128_MAX_VAL	S128_MAX
-	#define S128_MIN		((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
-	#define S128_MAX		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
-	#define S128_NAN		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
-	#endif
-
-	#define SINT_MIN_VAL	SINT_MIN
-	#define SINT_MAX_VAL	SINT_MAX
-	#define SINT_MIN		((t_sint)-((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
-	#define SINT_MAX		((t_sint)+((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
-	#define SINT_NAN		((t_sint)((t_uint)1 << (LIBCONFIG_UINT_BITS - 1)))
-
-#elif (LIBCONFIG_SINT_INF)
-
-	#define S8_MIN_VAL	((t_s8)-0x7E)
-	#define S8_MAX_VAL	((t_s8)+0x7E)
-	#define S8_MIN		((t_s8)-0x7F)	//!< The minimum representable value for a 8-bit signed integer (-127)
-	#define S8_MAX		((t_s8)+0x7F)	//!< The largest representable value for a 8-bit signed integer (+127)
-	#define S8_INF		((t_s8) 0x80)
-
-	#define S16_MIN_VAL	((t_s16)-0x7FFE)
-	#define S16_MAX_VAL	((t_s16)+0x7FFE)
-	#define S16_MIN		((t_s16)-0x7FFF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
-	#define S16_MAX		((t_s16)+0x7FFF)	//!< The largest representable value for a 16-bit signed integer (+32767)
-	#define S16_INF		((t_s16) 0x8000)
-
-	#define S32_MIN_VAL	((t_s32)-0x7FFFFFFE)
-	#define S32_MAX_VAL	((t_s32)+0x7FFFFFFE)
-	#define S32_MIN		((t_s32)-0x7FFFFFFF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
-	#define S32_MAX		((t_s32)+0x7FFFFFFF)	//!< The largest representable value for a 32-bit signed integer (+2147483647)
-	#define S32_INF		((t_s32) 0x80000000)
-
-	#define S64_MIN_VAL	((t_s64)-0x7FFFFFFFFFFFFFFE)
-	#define S64_MAX_VAL	((t_s64)+0x7FFFFFFFFFFFFFFE)
-	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
-	#define S64_MAX		((t_s64)+0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
-	#define S64_INF		((t_s64) 0x8000000000000000)
-
-	#if LIBCONFIG_USE_INT128
-	#define S128_MIN_VAL	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define S128_MAX_VAL	((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define S128_MIN		((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
-	#define S128_MAX		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
-	#define S128_INF		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
-	#endif
-
-	#define SINT_MIN_VAL	((t_sint)-(((~(t_uint)0) << 1) >> 1))
-	#define SINT_MAX_VAL	((t_sint)+(((~(t_uint)0) << 1) >> 1))
-	#define SINT_MIN		((t_sint)-((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
-	#define SINT_MAX		((t_sint)+((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
-	#define SINT_INF		((t_sint)((t_uint)1 << (LIBCONFIG_UINT_BITS - 1)))
-
-#else
-
-	#define S8_MIN_VAL	((t_s8)-0x7E)
-	#define S8_MAX_VAL	((t_s8)+0x7E)
-	#define S8_MIN		((t_s8)-0x7F)	//!< The minimum representable value for a 8-bit signed integer (-127)
-	#define S8_MAX		((t_s8)+0x7F)	//!< The largest representable value for a 8-bit signed integer (+127)
-	#define S8_INF		((t_s8)+0x7F)
-	#define S8_NAN		((t_s8) 0x80)
-
-	#define S16_MIN_VAL	((t_s16)-0x7FFE)
-	#define S16_MAX_VAL	((t_s16)+0x7FFE)
-	#define S16_MIN		((t_s16)-0x7FFF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
-	#define S16_MAX		((t_s16)+0x7FFF)	//!< The largest representable value for a 16-bit signed integer (+32767)
-	#define S16_INF		((t_s16)+0x7FFF)
-	#define S16_NAN		((t_s16) 0x8000)
-
-	#define S32_MIN_VAL	((t_s32)-0x7FFFFFFE)
-	#define S32_MAX_VAL	((t_s32)+0x7FFFFFFE)
-	#define S32_MIN		((t_s32)-0x7FFFFFFF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
-	#define S32_MAX		((t_s32)+0x7FFFFFFF)	//!< The largest representable value for a 32-bit signed integer (+2147483647)
-	#define S32_INF		((t_s32)+0x7FFFFFFF)
-	#define S32_NAN		((t_s32) 0x80000000)
-
-	#define S64_MIN_VAL	((t_s64)-0x7FFFFFFFFFFFFFFE)
-	#define S64_MAX_VAL	((t_s64)+0x7FFFFFFFFFFFFFFE)
-	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
-	#define S64_MAX		((t_s64)+0x7FFFFFFFFFFFFFFF)	//!< The largest representable value for a 64-bit signed integer (+9223372036854775807)
-	#define S64_INF		((t_s64)+0x7FFFFFFFFFFFFFFF)
-	#define S64_NAN		((t_s64) 0x8000000000000000)
-
-	#if LIBCONFIG_USE_INT128
-	#define S128_MIN_VAL	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define S128_MAX_VAL	((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))
-	#define S128_MIN		((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
-	#define S128_MAX		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The largest representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
-	#define S128_INF		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
-	#define S128_NAN		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
-	#endif
-
-	#define SINT_MIN_VAL	((t_sint)-(((~(t_uint)0) << 1) >> 1))
-	#define SINT_MAX_VAL	((t_sint)+(((~(t_uint)0) << 1) >> 1))
-	#define SINT_MIN		((t_sint)-((~(t_uint)0) >> 1))	//!< The minimum representable value for a configurable-size signed integer type
-	#define SINT_MAX		((t_sint)+((~(t_uint)0) >> 1))	//!< The largest representable value for a configurable-size signed integer type
-	#define SINT_INF		((t_sint)+((~(t_uint)0) >> 1))
-	#define SINT_NAN		((t_sint)((t_uint)1 << (LIBCONFIG_UINT_BITS - 1)))
-
+#define UINT_MIN_INT	(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_MIN_INT))
+#define UINT_MAX_INT	(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_MAX_INT))
+#define UINT_MIN		(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_MIN))
+#define UINT_MAX		(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_MAX))
+#if LIBCONFIG_UINT_INF
+#define UINT_INF		(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_INF))
 #endif
+#if LIBCONFIG_UINT_NAN
+#define UINT_NAN		(CONCAT(CONCAT(U,LIBCONFIG_UINT_BITS),_NAN))
+#endif
+
 //!@}
 
-//!@doc Macros which define the default error value of integer types
+//!@doc Macros which define the default error value of unsigned integer types
 //!@{
 #if (LIBCONFIG_UINT_NAN)
 	#define U8_ERROR	U8_NAN
@@ -693,7 +535,170 @@ TYPEDEF_ALIAS(t_sint, SINT, PRIMITIVE)
 	#endif
 	#define UINT_ERROR	((t_uint)0)
 #endif
+//!@}
 
+
+
+//!@doc Macros which define upper/lower bounds of signed integer types, and special values
+//!@{
+
+#undef SINT_ERROR
+#undef SINT_MAX
+#undef SINT_MIN
+
+#if (LIBCONFIG_SINT_NAN == 0) && (LIBCONFIG_SINT_INF == 0) // classic overflow behavior, with zero as error-value
+
+	#define S8_MIN_VAL	S8_MIN	//!< The minimum finite representable value for a 8-bit signed integer (-128)
+	#define S8_MAX_VAL	S8_MAX	//!< The maximum finite representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		((t_s8)0x80)	//!< The minimum representable value for a 8-bit signed integer (-128)
+	#define S8_MAX		((t_s8)0x7F)	//!< The maximum representable value for a 8-bit signed integer (+127)
+
+	#define S16_MIN_VAL	S16_MIN	//!< The minimum finite representable value for a 16-bit signed integer (-32768)
+	#define S16_MAX_VAL	S16_MAX	//!< The maximum finite representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		((t_s16)0x8000)	//!< The minimum representable value for a 16-bit signed integer (-32768)
+	#define S16_MAX		((t_s16)0x7FFF)	//!< The maximum representable value for a 16-bit signed integer (+32767)
+
+	#define S32_MIN_VAL	S32_MIN	//!< The minimum finite representable value for a 32-bit signed integer (-2147483648)
+	#define S32_MAX_VAL	S32_MAX	//!< The maximum finite representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		((t_s32)0x80000000)	//!< The minimum representable value for a 32-bit signed integer (-2147483648)
+	#define S32_MAX		((t_s32)0x7FFFFFFF)	//!< The maximum representable value for a 32-bit signed integer (+2147483647)
+
+	#define S64_MIN_VAL	S64_MIN	//!< The minimum finite representable value for a 64-bit signed integer (-9223372036854775808)
+	#define S64_MAX_VAL	S64_MAX	//!< The maximum finite representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		((t_s64)0x8000000000000000)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775808)
+	#define S64_MAX		((t_s64)0x7FFFFFFFFFFFFFFF)	//!< The maximum representable value for a 64-bit signed integer (+9223372036854775807)
+
+	#if LIBCONFIG_USE_INT128
+	#define S128_MIN_VAL	S128_MIN	//!< The minimum finite representable value for a 128-bit signed integer	((−170141183460469231731687303715884105728)
+	#define S128_MAX_VAL	S128_MAX	//!< The maximum finite representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN		((t_s128)(((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#define S128_MAX		((t_s128)(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The maximum representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#endif
+
+#elif (LIBCONFIG_SINT_NAN) // overflow behavior, with special NAN error-value
+
+	#define S8_MIN_VAL	S8_MIN	//!< The minimum finite representable value for a 8-bit signed integer (-127)
+	#define S8_MAX_VAL	S8_MAX	//!< The maximum finite representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		((t_s8)-0x7F)	//!< The minimum representable value for a 8-bit signed integer (-127)
+	#define S8_MAX		((t_s8)+0x7F)	//!< The maximum representable value for a 8-bit signed integer (+127)
+	#define S8_NAN		((t_s8) 0x80)
+
+	#define S16_MIN_VAL	S16_MIN	//!< The minimum finite representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX_VAL	S16_MAX	//!< The maximum finite representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		((t_s16)-0x7FFF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX		((t_s16)+0x7FFF)	//!< The maximum representable value for a 16-bit signed integer (+32767)
+	#define S16_NAN		((t_s16) 0x8000)
+
+	#define S32_MIN_VAL	S32_MIN	//!< The minimum finite representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX_VAL	S32_MAX	//!< The maximum finite representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		((t_s32)-0x7FFFFFFF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX		((t_s32)+0x7FFFFFFF)	//!< The maximum representable value for a 32-bit signed integer (+2147483647)
+	#define S32_NAN		((t_s32) 0x80000000)
+
+	#define S64_MIN_VAL	S64_MIN	//!< The minimum finite representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX_VAL	S64_MAX	//!< The maximum finite representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX		((t_s64)+0x7FFFFFFFFFFFFFFF)	//!< The maximum representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_NAN		((t_s64) 0x8000000000000000)
+
+	#if LIBCONFIG_USE_INT128
+	#define S128_MIN_VAL	S128_MIN	//!< The minimum finite representable value for a 128-bit signed integer	((−170141183460469231731687303715884105728)
+	#define S128_MAX_VAL	S128_MAX	//!< The maximum finite representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN		((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#define S128_MAX		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The maximum representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_NAN		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#endif
+
+#elif (LIBCONFIG_SINT_INF) // saturate behavior, with zero as error-value
+
+	#define S8_MIN_VAL	S8_MIN	//!< The minimum finite representable value for a 8-bit signed integer (-127)
+	#define S8_MAX_VAL	S8_MAX	//!< The maximum finite representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		((t_s8)-0x7F)	//!< The minimum representable value for a 8-bit signed integer (-127)
+	#define S8_MAX		((t_s8)+0x7F)	//!< The maximum representable value for a 8-bit signed integer (+127)
+	#define S8_INF		((t_s8) 0x80)
+
+	#define S16_MIN_VAL	S16_MIN	//!< The minimum finite representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX_VAL	S16_MAX	//!< The maximum finite representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		((t_s16)-0x7FFF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX		((t_s16)+0x7FFF)	//!< The maximum representable value for a 16-bit signed integer (+32767)
+	#define S16_INF		((t_s16) 0x8000)
+
+	#define S32_MIN_VAL	S32_MIN	//!< The minimum finite representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX_VAL	S32_MAX	//!< The maximum finite representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		((t_s32)-0x7FFFFFFF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX		((t_s32)+0x7FFFFFFF)	//!< The maximum representable value for a 32-bit signed integer (+2147483647)
+	#define S32_INF		((t_s32) 0x80000000)
+
+	#define S64_MIN_VAL	S64_MIN	//!< The minimum finite representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX_VAL	S64_MAX	//!< The maximum finite representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		((t_s64)-0x7FFFFFFFFFFFFFFF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX		((t_s64)+0x7FFFFFFFFFFFFFFF)	//!< The maximum representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_INF		((t_s64) 0x8000000000000000)
+
+	#if LIBCONFIG_USE_INT128
+	#define S128_MIN_VAL	S128_MIN	//!< The minimum finite representable value for a 128-bit signed integer	((−170141183460469231731687303715884105728)
+	#define S128_MAX_VAL	S128_MAX	//!< The maximum finite representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN		((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#define S128_MAX		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The maximum representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_INF		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#endif
+
+#else // saturate behavior, with special NAN error-value
+
+	#define S8_MIN_VAL	((t_s8)-0x7E)	//!< The minimum finite representable value for a 8-bit signed integer (-127)
+	#define S8_MAX_VAL	((t_s8)+0x7E)	//!< The maximum finite representable value for a 8-bit signed integer (+127)
+	#define S8_MIN		(-S8_INF)	//!< The minimum representable value for a 8-bit signed integer (-127)
+	#define S8_MAX		(+S8_INF)	//!< The maximum representable value for a 8-bit signed integer (+127)
+	#define S8_INF		((t_s8)+0x7F)
+	#define S8_NAN		((t_s8) 0x80)
+
+	#define S16_MIN_VAL	((t_s16)-0x7FFE)	//!< The minimum finite representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX_VAL	((t_s16)+0x7FFE)	//!< The maximum finite representable value for a 16-bit signed integer (+32767)
+	#define S16_MIN		(-S16_INF)	//!< The minimum representable value for a 16-bit signed integer (-32767)
+	#define S16_MAX		(+S16_INF)	//!< The maximum representable value for a 16-bit signed integer (+32767)
+	#define S16_INF		((t_s16)+0x7FFF)
+	#define S16_NAN		((t_s16) 0x8000)
+
+	#define S32_MIN_VAL	((t_s32)-0x7FFFFFFE)	//!< The minimum finite representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX_VAL	((t_s32)+0x7FFFFFFE)	//!< The maximum finite representable value for a 32-bit signed integer (+2147483647)
+	#define S32_MIN		(-S32_INF)	//!< The minimum representable value for a 32-bit signed integer (-2147483647)
+	#define S32_MAX		(+S32_INF)	//!< The maximum representable value for a 32-bit signed integer (+2147483647)
+	#define S32_INF		((t_s32)+0x7FFFFFFF)
+	#define S32_NAN		((t_s32) 0x80000000)
+
+	#define S64_MIN_VAL	((t_s64)-0x7FFFFFFFFFFFFFFE)	//!< The minimum finite representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX_VAL	((t_s64)+0x7FFFFFFFFFFFFFFE)	//!< The maximum finite representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_MIN		(-S64_INF)	//!< The minimum representable value for a 64-bit signed integer (-9223372036854775807)
+	#define S64_MAX		(+S64_INF)	//!< The maximum representable value for a 64-bit signed integer (+9223372036854775807)
+	#define S64_INF		((t_s64)+0x7FFFFFFFFFFFFFFF)
+	#define S64_NAN		((t_s64) 0x8000000000000000)
+
+	#if LIBCONFIG_USE_INT128
+	#define S128_MIN_VAL	((t_s128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))	//!< The minimum finite representable value for a 128-bit signed integer	((−170141183460469231731687303715884105728)
+	#define S128_MAX_VAL	((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE))	//!< The maximum finite representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_MIN		(-S128_INF)	//!< The minimum representable value for a 128-bit signed integer	(−170141183460469231731687303715884105728)
+	#define S128_MAX		(+S128_INF)	//!< The maximum representable value for a 128-bit signed integer	(+170141183460469231731687303715884105727)
+	#define S128_INF		((t_s128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))
+	#define S128_NAN		((t_s128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#endif
+
+#endif
+
+#define SINT_MIN_INT	(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_MIN_INT))
+#define SINT_MAX_INT	(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_MAX_INT))
+#define SINT_MIN		(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_MIN))
+#define SINT_MAX		(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_MAX))
+#if LIBCONFIG_SINT_INF
+#define SINT_INF		(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_INF))
+#endif
+#if LIBCONFIG_SINT_NAN
+#define SINT_NAN		(CONCAT(CONCAT(S,LIBCONFIG_SINT_BITS),_NAN))
+#endif
+
+//!@}
+
+//!@doc Macros which define the default error value of signed integer types
+//!@{
 #if (LIBCONFIG_SINT_NAN)
 	#define S8_ERROR	S8_NAN
 	#define S16_ERROR	S16_NAN

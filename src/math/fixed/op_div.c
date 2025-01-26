@@ -2,6 +2,7 @@
 #include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
+#include "libccc/math/int.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -13,8 +14,13 @@ t_q##BITS	Q##BITS##_Div(t_q##BITS x, t_q##BITS y) \
 { \
 	if CCCERROR((Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (Q##BITS##_ERROR); \
-	if CCCERROR((Q##BITS##_IsInf(x) || (y._ == 0.)), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((Q##BITS##_IsInf(x) && Q##BITS##_IsInf(y)), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
+	if CCCERROR(((x._ == 0) && (y._ == 0)), ERROR_MATHDOMAIN, NULL) \
+		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(x))	return (t_q##BITS){ Q##BITS##_MAX._ * (S##BITS##_Sgn(x._) * S##BITS##_Sgn(y._)) }; \
+	if (Q##BITS##_IsInf(y))	return (t_q##BITS){               0 * (S##BITS##_Sgn(x._) * S##BITS##_Sgn(y._)) }; \
+	if (y._ == 0)	return (t_q##BITS){ (LIBCONFIG_FIXED_INF ? (Q##BITS##_MAX._ * S##BITS##_Sgn(x._)) : Q##BITS##_ERROR._) }; \
 	return (t_q##BITS){ (t_s##BITS)(x._ / y._) }; \
 } \
 // TODO fix this and test
