@@ -247,20 +247,39 @@ HEADER_CPP
 #define SF_S64_OCT   "0o%" SF_S64_OCT_
 #define SF_S64_OCT_  PRIo64
 
-#define SF_t_u128_   "[128-bit unsigned int, dec]"//"%"SF_U128_
-#define SF_U128      "[128-bit unsigned int, dec]"//"%"SF_U128_
-#define SF_U128_     "Lu" // TODO
-#define SF_U128_HEX  "[128-bit unsigned int, hex]"//"0x%"SF_U128_HEX_
-#define SF_U128_HEX_ "LX" // TODO
-#define SF_U128_OCT  "[128-bit unsigned int, oct]"//"0o%"SF_U128_OCT_
-#define SF_U128_OCT_ "Lo" // TODO
-#define SF_t_s128_   "[128-bit signed int, dec]"//"%"SF_S128_
-#define SF_S128      "[128-bit signed int, dec]"//"%"SF_S128_
-#define SF_S128_     "Li" // TODO
-#define SF_S128_HEX  "[128-bit signed int, hex]"//"0x%"SF_S128_HEX_
-#define SF_S128_HEX_ "LX" // TODO
-#define SF_S128_OCT  "[128-bit signed int, oct]"//"0o%"SF_S128_OCT_
-#define SF_S128_OCT_ "Lo" // TODO
+#define SF_t_u128_       SF_U128_
+#define SF_U128      "%" SF_U128_
+#define SF_U128_     PRIu128 //TODO
+#define SF_U128_HEX  "0x%" SF_U128_HEX_
+#define SF_U128_HEX_ PRIX128 //TODO
+#define SF_U128_OCT  "0o%" SF_U128_OCT_
+#define SF_U128_OCT_ PRIo128 //TODO
+#define SF_t_s128_       SF_S128_
+#define SF_S128      "%" SF_S128_
+#define SF_S128_     PRIi128 //TODO
+#define SF_S128_HEX  "0x%" SF_S128_HEX_
+#define SF_S128_HEX_ PRIX128 //TODO
+#define SF_S128_OCT  "0o%" SF_S128_OCT_
+#define SF_S128_OCT_ PRIo128 //TODO
+
+#ifndef PRIu128
+#define PRIu128	"Lu"
+#endif
+#ifndef PRIX128
+#define PRIX128	"LX"
+#endif
+#ifndef PRIo128
+#define PRIo128	"Lo"
+#endif
+#ifndef PRIi128
+#define PRIi128	"Li"
+#endif
+#ifndef PRIX128
+#define PRIX128	"LX"
+#endif
+#ifndef PRIo128
+#define PRIo128	"Lo"
+#endif
 //!@}
 
 //!@doc String format specifier macros for libccc/fixed.h
