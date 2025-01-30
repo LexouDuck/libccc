@@ -65,7 +65,30 @@ DEFINEFUNC_FLOAT_ROOTN(80)
 DEFINEFUNC_FLOAT_ROOTN(128)
 #endif
 
+
+
 #else
+
+#define DEFINEFUNC_FLOAT_ROOTN(BITS) \
+t_f##BITS	F##BITS##_RootN(t_f##BITS x, t_u8 n) \
+{ \
+	if (n == 2)	return F##BITS##_Root2(x); \
+	if (n == 3)	return F##BITS##_Root3(x); \
+	return (F##BITS##_Pow(x, 1. / n)); \
+} \
+
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_ROOTN(16)
+#endif
+DEFINEFUNC_FLOAT_ROOTN(32)
+
+DEFINEFUNC_FLOAT_ROOTN(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_ROOTN(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_ROOTN(128)
+#endif
 
 
 

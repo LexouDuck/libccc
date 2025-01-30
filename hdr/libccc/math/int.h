@@ -1143,6 +1143,54 @@ t_s128					S128_Pow(t_s128 x, t_s128 y);
 
 
 
+//!@doc Returns the nearest integer to the `y`th root of `x` (truncated, ie: rounded down)
+/*!
+**	@nonstd
+*/
+//!@{
+#define					UInt_RootN	CONCAT(UINT_TYPE,_RootN)
+#define c_urootn		UInt_RootN
+#define UInt_Root		UInt_RootN
+
+t_u8					U8_RootN(t_u8 x, t_u8 n);
+#define c_u8rootn			U8_RootN
+
+t_u16					U16_RootN(t_u16 x, t_u8 n);
+#define c_u16rootn		U16_RootN
+
+t_u32					U32_RootN(t_u32 x, t_u8 n);
+#define c_u32rootn		U32_RootN
+
+t_u64					U64_RootN(t_u64 x, t_u8 n);
+#define c_u64rootn		U64_RootN
+
+#if LIBCONFIG_USE_INT128
+t_u128					U128_RootN(t_u128 x, t_u8 n);
+#define c_u128rootn		U128_RootN
+#endif
+
+#define					SInt_RootN	CONCAT(SINT_TYPE,_RootN)
+#define c_srootn		SInt_RootN
+#define SInt_Root		SInt_RootN
+
+t_s8					S8_RootN(t_s8 x, t_u8 n);
+#define c_s8rootn			S8_RootN
+
+t_s16					S16_RootN(t_s16 x, t_u8 n);
+#define c_s16rootn		S16_RootN
+
+t_s32					S32_RootN(t_s32 x, t_u8 n);
+#define c_s32rootn		S32_RootN
+
+t_s64					S64_RootN(t_s64 x, t_u8 n);
+#define c_s64rootn		S64_RootN
+
+#if LIBCONFIG_USE_INT128
+t_s128					S128_RootN(t_s128 x, t_u8 n);
+#define c_s128rootn		S128_RootN
+#endif
+//!@}
+
 
 
 //!@doc Returns the nearest integer to the square root of `x` (truncated, ie: rounded down)
@@ -1204,6 +1252,68 @@ t_s64						S64_Root2(t_s64 x);
 t_s128						S128_Root2(t_s128 x);
 #define c_s128sqrt			S128_Root2
 #define c_s128root2			S128_Root2
+#endif
+//!@}
+
+//!@doc Returns the nearest integer to the cubic root of `x` (truncated, ie: rounded down)
+/*!
+**	@nonstd
+*/
+//!@{
+#define						UInt_Root3	CONCAT(UINT_TYPE,_Root3)
+#define c_ucbrt				UInt_Root3
+#define c_uroot3			UInt_Root3
+#define UInt_CbRt			UInt_Root3
+#define UInt_CubicRoot		UInt_Root3
+
+t_u8						U8_Root3(t_u8 x);
+#define c_u8cbrt			U8_Root3
+#define c_u8root3			U8_Root3
+
+t_u16						U16_Root3(t_u16 x);
+#define c_u16cbrt			U16_Root3
+#define c_u16root3			U16_Root3
+
+t_u32						U32_Root3(t_u32 x);
+#define c_u32cbrt			U32_Root3
+#define c_u32root3			U32_Root3
+
+t_u64						U64_Root3(t_u64 x);
+#define c_u64cbrt			U64_Root3
+#define c_u64root3			U64_Root3
+
+#if LIBCONFIG_USE_INT128
+t_u128						U128_Root3(t_u128 x);
+#define c_u128cbrt			U128_Root3
+#define c_u128root3			U128_Root3
+#endif
+
+#define						SInt_Root3	CONCAT(SINT_TYPE,_Root3)
+#define c_scbrt				SInt_Root3
+#define c_sroot3			SInt_Root3
+#define SInt_CbRt			SInt_Root3
+#define SInt_CubicRoot		SInt_Root3
+
+t_s8						S8_Root3(t_s8 x);
+#define c_s8cbrt			S8_Root3
+#define c_s8root3			S8_Root3
+
+t_s16						S16_Root3(t_s16 x);
+#define c_s16cbrt			S16_Root3
+#define c_s16root3			S16_Root3
+
+t_s32						S32_Root3(t_s32 x);
+#define c_s32cbrt			S32_Root3
+#define c_s32root3			S32_Root3
+
+t_s64						S64_Root3(t_s64 x);
+#define c_s64cbrt			S64_Root3
+#define c_s64root3			S64_Root3
+
+#if LIBCONFIG_USE_INT128
+t_s128						S128_Root3(t_s128 x);
+#define c_s128cbrt			S128_Root3
+#define c_s128root3			S128_Root3
 #endif
 //!@}
 

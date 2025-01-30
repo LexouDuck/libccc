@@ -81,7 +81,10 @@ CFLAGS_EXTRA ?= \
 #	-std=c23 \
 #	-flto \
 #	-fanalyzer \
+#	-fsanitize=leak \
+#	-fsanitize=memory \
 #	-fsanitize=address \
+#	-fsanitize=undefined \
 #	-fsanitize=thread \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
