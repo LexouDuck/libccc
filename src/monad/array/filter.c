@@ -31,7 +31,7 @@ s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
+	if CCCERROR((result == NULL || result->items == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (result);
 	if (result->items == NULL)
 		return (result);
@@ -75,7 +75,7 @@ s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, 
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
+	if CCCERROR((result == NULL || result->items == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (result);
 	if (result->items == NULL)
 		return (result);

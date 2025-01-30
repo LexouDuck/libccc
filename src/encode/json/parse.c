@@ -607,7 +607,7 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 
 failure:
-	if (p->result != NULL)
+	if (p != NULL && p->result != NULL)
 	{
 		JSON_Delete(p->result);
 		p->result = NULL;

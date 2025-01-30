@@ -184,8 +184,9 @@ HEADER_CPP
 /*!
 **	This `#define` enables libccc error-handling when set to `1`.
 **	You can set this `#define` to `0` if you wish to deactivate all error checking/handling.
-**	This is not recommended, since no checks will be performed, so segfaults will happen.
-**	Only do so if your code is robust and thoroughly tested, and you really need some extra performance.
+**	This is not recommended, since no error checks will be performed, so signals/crashes are likely.
+**	The recommendation is to only do so if your code is already robust and thoroughly tested,
+**	and you really need some extra performance by removing error checks throughout.
 */
 #define CHECK_ERRORS	1
 
@@ -207,7 +208,7 @@ HEADER_CPP
 		_ERRORTYPE_, \
 		SHOULDHANDLE_##_ERRORTYPE_, \
 		(const char*)__func__, \
-		__VA_ARGS__)) \
+		__VA_ARGS__)+1) /* this `+1` here allows any compiler to know trivially that Error_If() always returns `TRUE` */
 
 //!@}
 
