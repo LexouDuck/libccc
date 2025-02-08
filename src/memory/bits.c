@@ -127,13 +127,11 @@ t_u8	Memory_CountBits(t_uintmax value)
 	t_u8	i;
 
 	result = 0;
-	i = 0;
-	while (i < UINTMAX_BITS)
+	for (i = 0; i < UINTMAX_BITS; ++i)
 	{
 		if (value & 1)
 			result += 1;
 		value >>= 1;
-		++i;
 	}
 	return (result);
 }
@@ -143,18 +141,16 @@ t_u8	Memory_CountBits(t_uintmax value)
 // TODO implement using CLZ functions, and check if leading bits go beyond range
 t_s8	Memory_GetMostSignificantBit(t_uintmax value)
 {
-	static const t_uintmax	mask = ((t_uintmax)1 << ((UINTMAX_BITS) - 1));
-	t_u8	i;
+	t_uintmax	mask;
+	t_sint	i;
 
 	if (value == 0)
 		return (ERROR);
-	i = 0;
-	while (i < UINTMAX_BITS)
+	for (i = UINTMAX_BITS - 1; i >= 0; --i)
 	{
+		mask = ((t_uintmax)1 << i);
 		if (value & mask)
 			return (i);
-		value >>= 1;
-		++i;
 	}
 	return (ERROR);
 }
@@ -163,17 +159,15 @@ t_s8	Memory_GetMostSignificantBit(t_uintmax value)
 
 t_s8	Memory_GetLeastSignificantBit(t_uintmax value)
 {
-	t_u8	i;
+	t_uint	i;
 
 	if (value == 0)
 		return (ERROR);
-	i = 0;
-	while (i < UINTMAX_BITS)
+	for (i = 0; i < UINTMAX_BITS; ++i)
 	{
 		if (value & 1)
 			return (i);
 		value >>= 1;
-		++i;
 	}
 	return (ERROR);
 }
