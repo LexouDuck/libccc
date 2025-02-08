@@ -71,8 +71,10 @@ typedef enum signal
 ENUMLENGTH_SIGNAL	//!< Signal region size: amount of different signal flags, i.e. the amount of bits in #FLAG_SIGNALMASK
 }	e_signal;
 
-//! global array which holds the string equivalents for the SIGNAL_ enum
-extern char const* const	signals[ENUMLENGTH_SIGNAL + 1];
+//! global array which holds the signal integer equivalents for the SIGNAL_ enum values
+extern int const	signals[ENUMLENGTH_SIGNAL + 1];
+//! global array which holds the signal string representations for the SIGNAL_ enum values
+extern char const* const	signal_strs[ENUMLENGTH_SIGNAL + 1];
 
 //! global variable which stores the latest signal emitted
 extern e_signal	sig;
@@ -110,7 +112,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 #if (defined(_WIN32) || defined(__MINGW32__))
 #define _END \
 	if ((sig & FLAG_SIGNALMASK) != 0) \
-		signal(SIGSEGV, signal_handler); \
+		signal(signals[sig], signal_handler); \
 
 #else
 #define _END	;

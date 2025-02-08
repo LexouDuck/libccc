@@ -310,7 +310,7 @@ e_cccerror				Log_Fatal(s_logger const* logger, t_char const* str);
 
 //! Text prefix used when logging a "failure" message
 #ifndef LOGPREFIX_ERROR
-#define LOGPREFIX_ERROR	"error"
+#define LOGPREFIX_ERROR	"runtime error"
 #endif
 
 //!@doc Log an error message (with a secondary `message` string) - use this to notify the user of a failure/problem

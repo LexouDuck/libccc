@@ -45,12 +45,11 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_ERROR_DEFAULTHANDLER
 	#ifdef DEBUG
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
-	{\
-		s_logger logger = DEFAULT_LOGGER_STDERR;\
-		Log_Error_CCC(&logger, error,\
-			"%s -> %s", FUNCNAME, MESSAGE);\
-	}\
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNC, FILE, LINE, MESSAGE) \
+	{ \
+		s_logger logger = DEFAULT_LOGGER_STDERR; \
+		Log_Error_CCC(&logger, error, "%s:" SF_UINT ": %s() -> %s", FILE, LINE, FUNC, MESSAGE); \
+	} \
 
 	#else
 	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
@@ -207,7 +206,9 @@ HEADER_CPP
 	((_CONDITION_) && Error_If( \
 		_ERRORTYPE_, \
 		SHOULDHANDLE_##_ERRORTYPE_, \
-		(const char*)__func__, \
+		(char const*)__func__, \
+		(char const*)__FILE__, \
+		__LINE__, \
 		__VA_ARGS__)+1) /* this `+1` here allows any compiler to know trivially that Error_If() always returns `TRUE` */
 
 //!@}

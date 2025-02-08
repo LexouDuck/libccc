@@ -26,13 +26,17 @@ int	check_no_test_suites(void)
 }
 
 static
-void	test_cccerrorhandler(e_cccerror error, t_char const* funcname, t_char const* message)
+void	test_cccerrorhandler(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char const* message)
 {
 	t_char const* errorname = Error_CCC_Name(error);
 	t_char const* error_msg = Error_CCC_Message(error);
 	t_char* errorlog = String_Format(
-		"libccc: " ANSI_COLOR_FG_RED "error[CCC:%d:%s]" ANSI_RESET ": %s -> %s -> %s%s",
-		error, errorname, funcname, error_msg, message,
+		"libccc:%s:%li: " ANSI_COLOR_FG_RED "runtime error [CCC:%d:%s]" ANSI_RESET ": %s() -> %s -> %s%s",
+		file, line, error, errorname, func, error_msg, message,
 		(message == NULL || message[0] == '\0' || message[String_Length(message) - 1] != '\n') ? "\n" : "");
 	if (g_test.last_test_error == NULL)
 		g_test.last_test_error = errorlog;
@@ -264,7 +268,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		!isnan(test->result) && !isnan(test->expect) && \
 		!isinf(test->result) && !isinf(test->expect)) \
 	{ \
-		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_EPSILON) \
+		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * 1e-6) \
 		{ \
 			error = FALSE; \
 			warning = TRUE; \

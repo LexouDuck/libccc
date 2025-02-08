@@ -5,7 +5,19 @@
 
 
 
-char const*	const signals[ENUMLENGTH_SIGNAL + 1] =
+int	const signals[ENUMLENGTH_SIGNAL + 1] =
+{
+	0,       //!< no signal emitted
+	SIGTERM, //!< (SIGnal: TERMination request)
+	SIGINT,  //!< (SIGnal: INTerrupt) external
+	SIGABRT, //!< (SIGnal: ABoRTed execution)
+	SIGSEGV, //!< (SIGnal: SEGmentation Violation)
+	SIGILL,  //!< (SIGnal: ILLegal instruction)
+	SIGFPE,  //!< (SIGnal: Floating-Point Exception)
+	0
+};
+
+char const*	const signal_strs[ENUMLENGTH_SIGNAL + 1] =
 {
 	"", //!< no signal emitted
 	"#SIGTERM",	//!< (SIGnal: TERMination request)
