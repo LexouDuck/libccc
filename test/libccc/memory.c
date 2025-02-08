@@ -541,16 +541,387 @@ void	test_memrep(void)
 void test_getbits(void)	{}
 #warning "getbits() test suite function defined, but the function isn't defined."
 #else
-void	print_test_getbits(void)
+void	print_test_getbits(char const* test_name, t_testflags flags,
+	t_uintmax expecting,
+	void const* ptr, t_size bit, t_u8 n)
 {
-	s_timer t = {0};
-//	TODO
-	print_timer_result(&t, FALSE);
+	TEST_INIT(uintmax)
+	TEST_PERFORM(       getbits, ptr, bit, n)
+	TEST_PRINT(uintmax,	getbits, "ptr=%p, bit=%lu, n=%u", ptr, bit, n)
 }
 void	test_getbits(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
-//	TODO
+	void const* test = "0123456789";
+//	| TEST FUNCTION   | TEST NAME           | TESTFLAGS    | EXPECTING          | TEST ARGS
+	print_test_getbits("getbits            ", FALSE,                           0, test,  0,  1);
+	print_test_getbits("getbits            ", FALSE,                          48, test,  0,  8);
+	print_test_getbits("getbits            ", FALSE,                       12337, test,  0, 16);
+	print_test_getbits("getbits            ", FALSE,                   808530483, test,  0, 32);
+	print_test_getbits("getbits            ", FALSE,         3472611983179986487, test,  0, 64);
+	print_test_getbits("getbits (n > max)  ", FALSE,         3472611983179986487, test,  0, 80);
+	print_test_getbits("getbits            ", FALSE,                           0, test,  8,  1);
+	print_test_getbits("getbits            ", FALSE,                          49, test,  8,  8);
+	print_test_getbits("getbits            ", FALSE,                       12594, test,  8, 16);
+	print_test_getbits("getbits            ", FALSE,                   825373492, test,  8, 32);
+	print_test_getbits("getbits            ", FALSE,         3544952156018063160, test,  8, 64);
+	print_test_getbits("getbits (n > max)  ", FALSE,         3544952156018063160, test,  8, 80);
+	print_test_getbits("getbits            ", FALSE,                           6, test, 12,  1);
+	print_test_getbits("getbits            ", FALSE,                         787, test, 12,  8);
+	print_test_getbits("getbits            ", FALSE,                      201507, test, 12, 16);
+	print_test_getbits("getbits            ", FALSE,                 13205975875, test, 12, 32);
+	print_test_getbits("getbits            ", FALSE,          226080770553508739, test, 12, 64);
+	print_test_getbits("getbits (n > max)  ", FALSE,          226080770553508739, test, 12, 80);
+	print_test_getbits("getbits (n = 0)    ", FALSE,                           0, test,  0,  0);
+	print_test_getbits("getbits (null ptr) ", ALLOW_SIGSEGV,                   0, NULL,  0,  8);
+}
+#endif
+
+
+
+#ifndef c_setbits
+void test_setbits(void)	{}
+#warning "setbits() test suite function defined, but the function isn't defined."
+#else
+void	print_test_setbits(char const* test_name, t_testflags flags,
+	void const* expecting,
+	void* ptr, t_size bit, t_u8 n, t_uintmax value)
+{
+	TEST_INIT(mem)
+	test.length = 10; // (bit + n) / 8 + 1;
+	TEST_PERFORM_VOID(ptr, setbits, ptr, bit, n, value)
+	TEST_PRINT(mem,	       setbits, "ptr=%p, bit=%lu, n=%u, value=%lX", ptr, bit, n, value)
+}
+void	test_setbits(void)
+{
+	char* test = strdup("0123456789");
+//	| TEST FUNCTION   | TEST NAME           | TESTFLAGS      | EXPECTING                      | TEST ARGS
+	print_test_setbits("setbits            ", FALSE,         "\xB0\x31\x32\x33\x34\x35""6789",  test,  0,  1, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\xF0\x31\x32\x33\x34\x35""6789",  test,  0,  4, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\xFF\x31\x32\x33\x34\x35""6789",  test,  0,  8, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\xFF\xF1\x32\x33\x34\x35""6789",  test,  0, 10, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\xFF\xFF\x32\x33\x34\x35""6789",  test,  0, 16, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\xFF\xFF\xFF\xFF\x34\x35""6789",  test,  0, 32, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x00\x00\x00\x34\x35""6789",  test,  0, 32, 0x00000000);
+	print_test_setbits("setbits            ", FALSE,         "\x08\x00\x00\x00\x34\x35""6789",  test,  4,  1, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x0F\x00\x00\x00\x34\x35""6789",  test,  4,  4, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x0F\xF0\x00\x00\x34\x35""6789",  test,  4,  8, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x0F\xFC\x00\x00\x34\x35""6789",  test,  4, 10, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x0F\xFF\xF0\x00\x34\x35""6789",  test,  4, 16, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x0F\xFF\xFF\xFF\xF4\x35""6789",  test,  4, 32, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x00\x00\x00\x04\x35""6789",  test,  4, 32, 0x00000000);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x80\x00\x00\x04\x35""6789",  test,  8,  1, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\xF0\x00\x00\x04\x35""6789",  test,  8,  4, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\xFF\x00\x00\x04\x35""6789",  test,  8,  8, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\xFF\xC0\x00\x04\x35""6789",  test,  8, 10, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\xFF\xFF\x00\x04\x35""6789",  test,  8, 16, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\xFF\xFF\xFF\xFF\x35""6789",  test,  8, 32, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x00\x00\x00\x00\x35""6789",  test,  8, 32, 0x00000000);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x08\x00\x00\x00\x35""6789",  test, 12,  1, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x0F\x00\x00\x00\x35""6789",  test, 12,  4, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x0F\xF0\x00\x00\x35""6789",  test, 12,  8, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x0F\xFC\x00\x00\x35""6789",  test, 12, 10, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x0F\xFF\xF0\x00\x35""6789",  test, 12, 16, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x0F\xFF\xFF\xFF\xF5""6789",  test, 12, 32, 0xFFFFFFFF);
+	print_test_setbits("setbits            ", FALSE,         "\x00\x00\x00\x00\x00\x05""6789",  test, 12, 32, 0x00000000);
+	print_test_setbits("setbits (n = 0)    ", FALSE,         "\x00\x00\x00\x00\x00\x05""6789",  test,  0,  0, 0xFFFFFFFF);
+	print_test_setbits("setbits (null ptr) ", ALLOW_SIGSEGV, NULL,                              NULL,  0,  8, 0xFFFFFFFF);
+	free(test);
+}
+#endif
+
+
+
+#ifndef c_bitregion
+void test_bitregion(void)	{}
+#warning "bitregion() test suite function defined, but the function isn't defined."
+#else
+void	print_test_bitregion(char const* test_name, t_testflags flags,
+	t_uintmax expecting,
+	t_uintmax value, t_u8 bit, t_u8 n)
+{
+	TEST_INIT(uintmax)
+	TEST_PERFORM(       bitregion, value, bit, n)
+	TEST_PRINT(uintmax,	bitregion, "value=%lX, bit=%u, n=%u", value, bit, n)
+}
+void	test_bitregion(void)
+{
+//	| TEST FUNCTION     | TEST NAME  |TESTFLAG| EXPECTING | TEST ARGS
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x01, 0x00000001, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x02, 0x00000002, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x04, 0x00000004, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x08, 0x00000008, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x80, 0x00000080, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0000000F, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x00000F0F, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x000F0F0F, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0F0F0F0F, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x000000F0, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x0000F0F0, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x00F0F0F0, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0xF0F0F0F0, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F000000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F0F0000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F0F0F00, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0F0F0F0F, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0000000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0F00000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0F0F000, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0xF0F0F0F0, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x88, 0x88888888, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xFF, 0xFFFFFFFF, 0, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000001, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000002, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000004, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000008, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x08, 0x00000080, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0000000F, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x00000F0F, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x000F0F0F, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x0F0F0F0F, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x000000F0, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0000F0F0, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x00F0F0F0, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0xF0F0F0F0, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F000000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F0F0000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x0F0F0F00, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x0F0F0F0F, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0000000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0F00000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0F0F000, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0xF0F0F0F0, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x88, 0x88888888, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xFF, 0xFFFFFFFF, 4, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000001, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000002, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000004, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000008, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x00000080, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0000000F, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x00000F0F, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x000F0F0F, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0F0F0F0F, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x000000F0, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x0000F0F0, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0x00F0F0F0, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0xF0F0F0F0, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F000000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0x0F0F0000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0F0F0F00, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x0F, 0x0F0F0F0F, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0000000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x00, 0xF0F00000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0xF0F0F000, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xF0, 0xF0F0F0F0, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0x88, 0x88888888, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,         0xFF, 0xFFFFFFFF, 8, 8);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00001, 0x00000001, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00002, 0x00000002, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00004, 0x00000004, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00008, 0x00000008, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00080, 0x00000080, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0000F, 0x0000000F, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00F0F, 0x00000F0F, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x000F0F0F, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x0F0F0F0F, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x000F0, 0x000000F0, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x0000F0F0, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x00F0F0F0, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0xF0F0F0F0, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x0F000000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0000, 0x0F0F0000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F00, 0x0F0F0F00, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x0F0F0F0F, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0xF0000000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0xF0F00000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F000, 0xF0F0F000, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0xF0F0F0F0, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x88888, 0x88888888, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xFFFFF, 0xFFFFFFFF, 0, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000001, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000002, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000004, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000008, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00008, 0x00000080, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x0000000F, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x000F0, 0x00000F0F, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x000F0F0F, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x0F0F0F0F, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0000F, 0x000000F0, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00F0F, 0x0000F0F0, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x00F0F0F0, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0xF0F0F0F0, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x0F000000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F000, 0x0F0F0000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x0F0F0F00, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x0F0F0F0F, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0xF0000000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0000, 0xF0F00000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F00, 0xF0F0F000, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0xF0F0F0F0, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x88888, 0x88888888, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xFFFFF, 0xFFFFFFFF, 4, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000001, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000002, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000004, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000008, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x00000080, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x0000000F, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0000F, 0x00000F0F, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00F0F, 0x000F0F0F, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x0F0F0F0F, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0x000000F0, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x000F0, 0x0000F0F0, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0x00F0F0F0, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0xF0F0F0F0, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0000, 0x0F000000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F00, 0x0F0F0000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x0F0F0F00, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xF0F0F, 0x0F0F0F0F, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x00000, 0xF0000000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F000, 0xF0F00000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0xF0F0F000, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x0F0F0, 0xF0F0F0F0, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0x88888, 0x88888888, 8, 20);
+	print_test_bitregion("bitregion ", FALSE,      0xFFFFF, 0xFFFFFFFF, 8, 20);
+}
+#endif
+
+
+
+#ifndef c_countbits
+void test_countbits(void)	{}
+#warning "countbits() test suite function defined, but the function isn't defined."
+#else
+void	print_test_countbits(char const* test_name, t_testflags flags,
+	t_u8 expecting,
+	t_uintmax value)
+{
+	TEST_INIT(u8)
+	TEST_PERFORM(   countbits, value)
+	TEST_PRINT(u8,	countbits, "value=%lX", value)
+}
+void	test_countbits(void)
+{
+//	| TEST FUNCTION     | TEST NAME  |TESTFLAG| EXPECTING | TEST ARGS
+	print_test_countbits("countbits ", FALSE,         0, 0x00000000);
+	print_test_countbits("countbits ", FALSE,         1, 0x00000001);
+	print_test_countbits("countbits ", FALSE,         1, 0x00000002);
+	print_test_countbits("countbits ", FALSE,         1, 0x00000004);
+	print_test_countbits("countbits ", FALSE,         1, 0x00000008);
+	print_test_countbits("countbits ", FALSE,         1, 0x00000080);
+	print_test_countbits("countbits ", FALSE,         4, 0x0000000F);
+	print_test_countbits("countbits ", FALSE,         8, 0x00000F0F);
+	print_test_countbits("countbits ", FALSE,        12, 0x000F0F0F);
+	print_test_countbits("countbits ", FALSE,        16, 0x0F0F0F0F);
+	print_test_countbits("countbits ", FALSE,         4, 0x000000F0);
+	print_test_countbits("countbits ", FALSE,         8, 0x0000F0F0);
+	print_test_countbits("countbits ", FALSE,        12, 0x00F0F0F0);
+	print_test_countbits("countbits ", FALSE,        16, 0xF0F0F0F0);
+	print_test_countbits("countbits ", FALSE,         4, 0x0F000000);
+	print_test_countbits("countbits ", FALSE,         8, 0x0F0F0000);
+	print_test_countbits("countbits ", FALSE,        12, 0x0F0F0F00);
+	print_test_countbits("countbits ", FALSE,        16, 0x0F0F0F0F);
+	print_test_countbits("countbits ", FALSE,         4, 0xF0000000);
+	print_test_countbits("countbits ", FALSE,         8, 0xF0F00000);
+	print_test_countbits("countbits ", FALSE,        12, 0xF0F0F000);
+	print_test_countbits("countbits ", FALSE,        16, 0xF0F0F0F0);
+	print_test_countbits("countbits ", FALSE,         8, 0x88888888);
+	print_test_countbits("countbits ", FALSE,        32, 0xFFFFFFFF);
+}
+#endif
+
+
+
+#ifndef c_getmsb
+void test_getmsb(void)	{}
+#warning "getmsb() test suite function defined, but the function isn't defined."
+#else
+void	print_test_getmsb(char const* test_name, t_testflags flags,
+	t_s8 expecting,
+	t_uintmax value)
+{
+	TEST_INIT(s8)
+	TEST_PERFORM(   getmsb, value)
+	TEST_PRINT(s8,	getmsb, "value=%lX", value)
+}
+void	test_getmsb(void)
+{
+//	| TEST FUNCTION  | TEST NAME |TESTFLAG|EXPECTING| TEST ARGS
+	print_test_getmsb("getmsb    ", FALSE,        -1, 0x00000000);
+	print_test_getmsb("getmsb    ", FALSE,         0, 0x00000001);
+	print_test_getmsb("getmsb    ", FALSE,         1, 0x00000002);
+	print_test_getmsb("getmsb    ", FALSE,         2, 0x00000004);
+	print_test_getmsb("getmsb    ", FALSE,         3, 0x00000008);
+	print_test_getmsb("getmsb    ", FALSE,         7, 0x00000080);
+	print_test_getmsb("getmsb    ", FALSE,         3, 0x0000000F);
+	print_test_getmsb("getmsb    ", FALSE,        11, 0x00000F0F);
+	print_test_getmsb("getmsb    ", FALSE,        19, 0x000F0F0F);
+	print_test_getmsb("getmsb    ", FALSE,        27, 0x0F0F0F0F);
+	print_test_getmsb("getmsb    ", FALSE,         7, 0x000000F0);
+	print_test_getmsb("getmsb    ", FALSE,        15, 0x0000F0F0);
+	print_test_getmsb("getmsb    ", FALSE,        23, 0x00F0F0F0);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xF0F0F0F0);
+	print_test_getmsb("getmsb    ", FALSE,        27, 0x0F000000);
+	print_test_getmsb("getmsb    ", FALSE,        27, 0x0F0F0000);
+	print_test_getmsb("getmsb    ", FALSE,        27, 0x0F0F0F00);
+	print_test_getmsb("getmsb    ", FALSE,        27, 0x0F0F0F0F);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xF0000000);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xF0F00000);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xF0F0F000);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xF0F0F0F0);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0x88888888);
+	print_test_getmsb("getmsb    ", FALSE,        31, 0xFFFFFFFF);
+}
+#endif
+
+
+
+#ifndef c_getlsb
+void test_getlsb(void)	{}
+#warning "getlsb() test suite function defined, but the function isn't defined."
+#else
+void	print_test_getlsb(char const* test_name, t_testflags flags,
+	t_s8 expecting,
+	t_uintmax value)
+{
+	TEST_INIT(s8)
+	TEST_PERFORM(   getlsb, value)
+	TEST_PRINT(s8,	getlsb, "value=%lX", value)
+}
+void	test_getlsb(void)
+{
+//	| TEST FUNCTION  | TEST NAME |TESTFLAG|EXPECTING| TEST ARGS
+	print_test_getlsb("getlsb    ", FALSE,        -1, 0x00000000);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x00000001);
+	print_test_getlsb("getlsb    ", FALSE,         1, 0x00000002);
+	print_test_getlsb("getlsb    ", FALSE,         2, 0x00000004);
+	print_test_getlsb("getlsb    ", FALSE,         3, 0x00000008);
+	print_test_getlsb("getlsb    ", FALSE,         7, 0x00000080);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x0000000F);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x00000F0F);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x000F0F0F);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x0F0F0F0F);
+	print_test_getlsb("getlsb    ", FALSE,         4, 0x000000F0);
+	print_test_getlsb("getlsb    ", FALSE,         4, 0x0000F0F0);
+	print_test_getlsb("getlsb    ", FALSE,         4, 0x00F0F0F0);
+	print_test_getlsb("getlsb    ", FALSE,         4, 0xF0F0F0F0);
+	print_test_getlsb("getlsb    ", FALSE,        24, 0x0F000000);
+	print_test_getlsb("getlsb    ", FALSE,        16, 0x0F0F0000);
+	print_test_getlsb("getlsb    ", FALSE,         8, 0x0F0F0F00);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0x0F0F0F0F);
+	print_test_getlsb("getlsb    ", FALSE,        28, 0xF0000000);
+	print_test_getlsb("getlsb    ", FALSE,        20, 0xF0F00000);
+	print_test_getlsb("getlsb    ", FALSE,        12, 0xF0F0F000);
+	print_test_getlsb("getlsb    ", FALSE,         4, 0xF0F0F0F0);
+	print_test_getlsb("getlsb    ", FALSE,         3, 0x88888888);
+	print_test_getlsb("getlsb    ", FALSE,         0, 0xFFFFFFFF);
 }
 #endif
 
@@ -593,7 +964,14 @@ int		testsuite_memory(void)
 
 	test_memrep();
 
-//	test_getbits();
+	test_getbits();
+	test_setbits();
+
+	test_bitregion();
+	test_countbits();
+
+	test_getmsb();
+	test_getlsb();
 
 	return (OK);
 }

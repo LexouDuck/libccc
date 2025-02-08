@@ -9,17 +9,19 @@
 
 
 
-t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n)
+t_uintmax	Memory_GetBits(void const* ptr, t_size bit, t_u8 n)
 {
 	t_uintmax	result = 0;
 	t_size		i;
 	t_s8		b;
 
-	if (n == 0)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
 		return (0);
 	if CCCERROR((n > UINTMAX_BITS), ERROR_LENGTH2LARGE,
 		"bit amount given (%u bits) is beyond the largest integer type (%u bits)", n, UINTMAX_BITS)
 		n = UINTMAX_BITS;
+	else if (n == 0)
+		return (0);
 	i = bit / 8;
 	b = bit % 8;
 	if (b + n <= 8) // fits entirely inside one byte, no need to loop
@@ -51,25 +53,27 @@ t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n)
 	return (result);
 }
 
-void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value)
+void	Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value)
 {
 	t_u8*	result = (t_u8*)ptr;
 	t_size	i;
 	t_s8	b;
 	t_u8	set;
 
-	if (n == 0)
+	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, NULL)
 		return;
 	if CCCERROR((n > UINTMAX_BITS), ERROR_LENGTH2LARGE,
 		"bit amount given (%u bits) is beyond the largest integer type (%u bits)", n, UINTMAX_BITS)
 		n = UINTMAX_BITS;
+	else if (n == 0)
+		return;
 	i = bit / 8;
 	b = bit % 8;
 	value = Memory_BitRegion(value, 0, n);
 	if (b + n <= 8) // fits entirely inside one byte, no need to loop
 	{
 		set = ((t_u8)value << (8 - b - n));
-		result[i] &= ~Memory_BitRegion(result[i], b, n);
+		result[i] &= ~((((t_uintmax)1 << n) - 1) << b);
 		result[i] |= set;
 		return;
 	}
@@ -77,15 +81,16 @@ void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value)
 	{
 		if (b >= 0)
 		{	// region begin
-			result[i] >>= (8 - b);
-			result[i] <<= (8 - b);
-			result[i] |= Memory_BitRegion(value, (n - (8 - b)), (8 - b));
-			n -= (8 - b);
+			b = (8 - b);
+			result[i] >>= b;
+			result[i] <<= b;
+			result[i] |= Memory_BitRegion(value, (n - b), b);
+			n -= b;
 			b = -1;
 		}
 		else if (n >= 8)
 		{	// region middle
-			result[i] = Memory_BitRegion(value, (n - (8)), 8);
+			result[i] = Memory_BitRegion(value, (n - 8), 8);
 			n -= 8;
 		}
 		else
@@ -113,9 +118,9 @@ t_uintmax	Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 length)
 		"bit region end (%u) is beyond the largest integer type (%u bits)", bit + length, UINTMAX_BITS)
 		return (0);
 	if (length >= UINTMAX_BITS)
-		mask = ~0;
+		mask = ~(t_uintmax)0;
 	else
-		mask = (1 << length) - 1;
+		mask = ((t_uintmax)1 << length) - 1;
 	return ((value >> bit) & mask);
 }
 

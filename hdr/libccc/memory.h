@@ -554,7 +554,7 @@ void*					Memory_Fold_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* a
 **	@nonstd
 **
 **	@param	ptr		The point which stores the data
-**	@param	bit		The offset at which to get (in bits)
+**	@param	bit		The bit offset at which to start reading (max: 128)
 **	@param	n		The amount of bits to copy into the return value (max: 128)
 **	@returns
 **	A subsection of the data in `ptr` argument which is `n` bits long,
@@ -564,7 +564,7 @@ void*					Memory_Fold_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* a
 **	TODO document how this function handles endian-ness ?
 */
 //!@{
-t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
+t_uintmax			Memory_GetBits(void const* ptr, t_size bit, t_u8 n);
 #define c_getbits	Memory_GetBits
 //!@}
 
@@ -573,8 +573,8 @@ t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
 **	@nonstd
 **
 **	@param	ptr		The point which stores the data
-**	@param	bit		The offset at which to get (in bits)
-**	@param	n		The amount of bits to copy into the return value (max: 128)
+**	@param	bit		The bit offset at which to start writing (max: 128)
+**	@param	n		The amount of bits to write into the buffer (max: 128)
 **	@param	value	The bits to write to `ptr + bit`
 **	@returns
 **	A subsection of the data in `ptr` argument which is `n` bits long,
@@ -594,6 +594,9 @@ void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value);
 /*!
 **	@nonstd
 **
+**	@param	value	The value from which to extract bits
+**	@param	bit		The bit offset at which to start reading (max: 128)
+**	@param	n		The amount of bits to copy into the return value (max: 128)
 **	@returns
 **	A subsection of the `value` argument which is `n` bits long,
 **	starting at the given bit index `bit`, and bit-shifting the resulting
@@ -610,6 +613,7 @@ t_uintmax			Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 n);
 /*!
 **	@nonstd
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The total amount of bits set to `1` in the given `value`.
 */
@@ -622,8 +626,9 @@ t_u8				Memory_CountBits(t_uintmax value);
 
 //!@doc Get the bit index of the most signficant `1`-bit of the given `value`
 /*!
-**	@nonstd, similar to the builtin `clz()` function
+**	@nonstd, though similar to the builtin `clz()` function
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The bit index of the highest bit which is set to 1 in the given `value`.
 **	If `value == 0` (all bits set to zero), returns `-1`
@@ -636,8 +641,9 @@ t_s8					Memory_GetMostSignificantBit(t_uintmax value);
 
 //!@doc Get the bit index of the least signficant `1`-bit of the given `value`
 /*!
-**	@nonstd, similar to the builtin `clz()` function
+**	@nonstd
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The bit index of the lowest bit which is set to 1 in the given `value`.
 **	If `value == 0` (all bits set to zero), returns `-1`
