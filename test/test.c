@@ -154,7 +154,7 @@ void	print_test(
 				int length_function = (int)strlen(function) + 1;
 				length_expected = (length_expected > length_function) ? length_expected : length_function;
 				length_function = length_expected - length_function + 1;
-				printf(">%*.*s%s: (%s)\n"
+				printf( ">%*.*s%s: (%s)\n"
 						">%*.*s: (%s)\n" ANSI_RESET,
 					length_function,
 					length_function,
@@ -176,13 +176,13 @@ void	print_test(
 	}
 	else if (warning)
 	{
-		printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET": %s\n", warning);
+		printf(ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": %s\n", warning);
 		if (flags & FLAG_WARNING)
 			g_test.suites[g_test.current_suite].totals.warnings += 1;
 	}
 	else if (g_test.config.verbose)
 	{
-		printf(ANSI_COLOR_FG_GREEN "OK!" ANSI_RESET"\n");
+		printf(ANSI_COLOR_FG_GREEN "OK!" ANSI_RESET "\n");
 	}
 	fflush(stdout);
 	fflush(stderr);
@@ -201,8 +201,8 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		error = !SHOULDHANDLE_ERROR_NULLPOINTER; \
 	else error = (test->result != test->expect); \
 	print_test(test->name, test->function, args, \
-		(test->result_sig ? signals[test->result_sig] : SIGNED##BITS##tostr(test->result)), \
-		(test->expect_sig ? signals[test->expect_sig] : SIGNED##BITS##tostr(test->expect)), \
+		(test->result_sig ? signal_strs[test->result_sig] : SIGNED##BITS##tostr(test->result)), \
+		(test->expect_sig ? signal_strs[test->expect_sig] : SIGNED##BITS##tostr(test->expect)), \
 		test->flags, \
 		error, NULL); \
 } \
@@ -240,12 +240,12 @@ DEFINE_TESTFUNCTION_INT(uintmax, u,64)
 
 
 
-#define F32_PRECISION_FORMAT	"%.8f"
+#define F32_PRECISION_FORMAT	"%.12f"
 #define F64_PRECISION_FORMAT	"%.16lf"
 #define F80_PRECISION_FORMAT	"%.20Lf"
 #define F128_PRECISION_FORMAT	"%.32Lf"
 
-#define FLOAT_PRECISION_FORMAT	
+#define FLOAT_TEST_PRECISION	1e-6
 
 #define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
 void	print_test_##NAME(s_test_##NAME* test, char const* args) \
@@ -262,24 +262,27 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 	else error = (test->result != test->expect); \
 	if (isnan(test->result) && isnan(test->expect)) \
 		error = FALSE; \
-	snprintf(str_result, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->result); \
-	snprintf(str_expect, BITS, CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT), test->expect); \
+	snprintf(str_result, BITS, F##BITS##_PRECISION_FORMAT, test->result); \
+	snprintf(str_expect, BITS, F##BITS##_PRECISION_FORMAT, test->expect); \
 	if (error && \
 		!isnan(test->result) && !isnan(test->expect) && \
 		!isinf(test->result) && !isinf(test->expect)) \
 	{ \
-		if (fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * 1e-6) \
+		if ((fabs(test->result - test->expect) <= F##BITS##_EPSILON) || \
+			(fabs(test->result - test->expect) <= max(fabs(test->result), fabs(test->expect)) * FLOAT_TEST_PRECISION)) \
 		{ \
 			error = FALSE; \
 			warning = TRUE; \
 		} \
+		/* else printf("DEBUG: result=%g | expect=%g | diff=%g\n", test->result, test->expect, fabs(test->result - test->expect)); */\
 	} \
 	if (warning) \
 	{ \
 		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return; \
-		size_t len = snprintf(tmp,	128, "Approximation error:\n" \
-				"- received: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n" \
-				"- expected: " CONCAT(CONCAT(F,BITS),_PRECISION_FORMAT) "\n", \
+		size_t len = snprintf(tmp,	128, "Approximation error (%g):\n" \
+				"- received: " F##BITS##_PRECISION_FORMAT "\n" \
+				"- expected: " F##BITS##_PRECISION_FORMAT "\n", \
+			fabs(test->result - test->expect), \
 			test->result, \
 			test->expect); \
 		g_test.suites[g_test.current_suite].totals.warnings += 1; \
@@ -287,14 +290,18 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 			return; \
 	} \
 	print_test(test->name, test->function, args, \
-		(test->result_sig ? signals[test->result_sig] : str_result), \
-		(test->expect_sig ? signals[test->expect_sig] : str_expect), \
+		(test->result_sig ? signal_strs[test->result_sig] : str_result), \
+		(test->expect_sig ? signal_strs[test->expect_sig] : str_expect), \
 		test->flags, \
 		error, (warning ? tmp : NULL)); \
 	if (tmp)	{ free(tmp); } \
 } \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINE_TESTFUNCTION_FLOAT(f16, 16)
+#endif
 DEFINE_TESTFUNCTION_FLOAT(f32, 32)
+
 DEFINE_TESTFUNCTION_FLOAT(f64, 64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINE_TESTFUNCTION_FLOAT(f80, 80)
@@ -302,7 +309,11 @@ DEFINE_TESTFUNCTION_FLOAT(f80, 80)
 #if LIBCONFIG_USE_FLOAT128
 DEFINE_TESTFUNCTION_FLOAT(f128, 128)
 #endif
-DEFINE_TESTFUNCTION_FLOAT(float, LIBCONFIG_FLOAT_BITS)
+
+void	print_test_float(s_test_float* test, char const* args)
+{
+	CONCAT(print_test_f,LIBCONFIG_FLOAT_BITS)((CONCAT(s_test_f,LIBCONFIG_FLOAT_BITS)*)test, args);
+}
 
 
 
@@ -340,8 +351,8 @@ void	print_test_sign(s_test_sign* test, char const* args)
 			return;
 	}
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : s64tostr(test->result)),
-		(test->expect_sig ? signals[test->expect_sig] : s64tostr(test->expect)),
+		(test->result_sig ? signal_strs[test->result_sig] : s64tostr(test->result)),
+		(test->expect_sig ? signal_strs[test->expect_sig] : s64tostr(test->expect)),
 		test->flags,
 		error, (warning ? tmp : NULL));
 	if (tmp)	free(tmp);
@@ -359,8 +370,8 @@ void	print_test_ptr(s_test_ptr* test, char const* args)
 		error = (test->result_sig != test->expect_sig);
 	else error = (test->result != test->expect);
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : tmp_result),
-		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
+		(test->result_sig ? signal_strs[test->result_sig] : tmp_result),
+		(test->expect_sig ? signal_strs[test->expect_sig] : tmp_expect),
 		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);
@@ -382,8 +393,8 @@ void	print_test_mem(s_test_mem* test, char const* args)
 	else
 		error = memcmp(test->result, test->expect, test->length);
 	print_test(test->name, test->function, args,
-		(test->result_sig ? signals[test->result_sig] : tmp_result),
-		(test->expect_sig ? signals[test->expect_sig] : tmp_expect),
+		(test->result_sig ? signal_strs[test->result_sig] : tmp_result),
+		(test->expect_sig ? signal_strs[test->expect_sig] : tmp_expect),
 		test->flags,
 		error, NULL);
 	if (tmp_result)	free(tmp_result);

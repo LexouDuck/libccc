@@ -1,4 +1,6 @@
 
+#include <math.h>
+
 #include "libccc/text/format.h"
 #include "libccc/float.h"
 #include "libccc/math/float.h"
@@ -60,16 +62,334 @@ DEFINETEST_FLOAT_(128)
 
 
 
+#if LIBCONFIG_USE_FLOAT16
+
+	#if !LIBCONFIG_USE_FLOAT80 && !LIBCONFIG_USE_FLOAT128
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x, t_f16   y)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#elif LIBCONFIG_USE_FLOAT80
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_f8	FUNCNAME##f80	(t_f8    x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x, t_f16   y)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_f8	FUNCNAME##f80	(t_f8    x, t_f8    y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#elif LIBCONFIG_USE_FLOAT128
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_f128	FUNCNAME##f128	(t_f128  x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f16	FUNCNAME##f16	(t_f16   x, t_f16   y)	{ FUNCBODY } \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_f128	FUNCNAME##f128	(t_f128  x, t_f128  y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#endif
+
+#else
+
+	#if !LIBCONFIG_USE_FLOAT80 && !LIBCONFIG_USE_FLOAT128
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#elif LIBCONFIG_USE_FLOAT80
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_f8	FUNCNAME##f80	(t_f8    x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_f8	FUNCNAME##f80	(t_f8    x, t_f8    y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#elif LIBCONFIG_USE_FLOAT128
+
+		#define DEFINEFUNC_FLOAT_FUNCTION(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x)	{ FUNCBODY } \
+		t_f128	FUNCNAME##f128	(t_f128  x)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x)	{ FUNCBODY } \
+
+		#define DEFINEFUNC_FLOAT_OPERATOR(FUNCNAME, FUNCBODY) \
+		t_f32	FUNCNAME##f32	(t_f32   x, t_f32   y)	{ FUNCBODY } \
+		t_f64	FUNCNAME##f64	(t_f64   x, t_f64   y)	{ FUNCBODY } \
+		t_f128	FUNCNAME##f128	(t_f128  x, t_f128  y)	{ FUNCBODY } \
+		t_float	FUNCNAME##float	(t_float x, t_float y)	{ FUNCBODY } \
+
+	#endif
+
+#endif
+
+DEFINEFUNC_FLOAT_FUNCTION(isnan,   return (t_bool)isnan(x);)
+DEFINEFUNC_FLOAT_FUNCTION(isinf,   return (t_bool)isinf(x);)
+DEFINEFUNC_FLOAT_FUNCTION(abs,     return fabs(x);)
+DEFINEFUNC_FLOAT_FUNCTION(sgn,     return (x == 0 ? 0 : (x < 0 ? -1 : +1));)
+DEFINEFUNC_FLOAT_OPERATOR(min,     return fmin(x, y);)
+DEFINEFUNC_FLOAT_OPERATOR(max,     return fmax(x, y);)
+DEFINEFUNC_FLOAT_OPERATOR(add,     return (x + y);)
+DEFINEFUNC_FLOAT_OPERATOR(sub,     return (x - y);)
+DEFINEFUNC_FLOAT_OPERATOR(mul,     return (x * y);)
+DEFINEFUNC_FLOAT_OPERATOR(div,     return (x / y);)
+DEFINEFUNC_FLOAT_OPERATOR(mod,     return fmod(x, y);)
+DEFINEFUNC_FLOAT_OPERATOR(rem,     int tmp;	return remquo(x, y, &tmp);)
+DEFINEFUNC_FLOAT_OPERATOR(pow,     return pow(x, y);)
+DEFINEFUNC_FLOAT_FUNCTION(root2,   return sqrt(x);)
+DEFINEFUNC_FLOAT_FUNCTION(root3,   return cbrt(x);)
+DEFINEFUNC_FLOAT_OPERATOR(rootn,   return pow(x, 1. / y);)
+DEFINEFUNC_FLOAT_OPERATOR(hypot,   return hypot(x, y);)
+DEFINEFUNC_FLOAT_FUNCTION(exp,     return exp(x);)
+DEFINEFUNC_FLOAT_FUNCTION(exp2,    return exp2(x);)
+DEFINEFUNC_FLOAT_FUNCTION(exp10,   return pow(10., x);)
+DEFINEFUNC_FLOAT_FUNCTION(log,     return log(x);)
+DEFINEFUNC_FLOAT_FUNCTION(log2,    return log2(x);)
+DEFINEFUNC_FLOAT_FUNCTION(log10,   return log10(x);)
+DEFINEFUNC_FLOAT_FUNCTION(sin,     return sin(x);)
+DEFINEFUNC_FLOAT_FUNCTION(cos,     return cos(x);)
+DEFINEFUNC_FLOAT_FUNCTION(tan,     return tan(x);)
+DEFINEFUNC_FLOAT_FUNCTION(asin,    return asin(x);)
+DEFINEFUNC_FLOAT_FUNCTION(acos,    return acos(x);)
+DEFINEFUNC_FLOAT_FUNCTION(atan,    return atan(x);)
+DEFINEFUNC_FLOAT_OPERATOR(atan2,   return atan2(x, y);)
+DEFINEFUNC_FLOAT_FUNCTION(sinh,    return sinh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(cosh,    return cosh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(tanh,    return tanh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(asinh,   return asinh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(acosh,   return acosh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(atanh,   return atanh(x);)
+DEFINEFUNC_FLOAT_FUNCTION(erf,     return erf(x);)
+DEFINEFUNC_FLOAT_FUNCTION(erfc,    return erfc(x);)
+DEFINEFUNC_FLOAT_FUNCTION(gamma,   return tgamma(x);)
+DEFINEFUNC_FLOAT_FUNCTION(lngamma, return lgamma(x);)
+
+
+
 #undef  TEST
-#define TEST(BITS, LHS, OPERATOR, RHS) \
-	EXCEPTION(BITS, LHS, OPERATOR, RHS) ((LHS) OPERATOR (RHS)), (LHS), (RHS)
+#define TEST(BITS, FUNCTION, ARG) \
+	FUNCTION##f##BITS((ARG)), (ARG)
 
-#undef  EXCEPTION
-#define EXCEPTION(BITS, LHS, OP, RHS)	
+#define DEFINETEST_FLOAT_FUNCTION(BITS, FUNCNAME) \
+void	print_test_f##BITS##FUNCNAME(char const* test_name, t_testflags flags, \
+		t_f##BITS	expecting, \
+		t_f##BITS	x) \
+{ \
+	TEST_INIT(f##BITS) \
+	TEST_PERFORM(		f##BITS##FUNCNAME, x) \
+	TEST_PRINT(f##BITS,	f##BITS##FUNCNAME, "x=" SF_F##BITS, x)\
+} \
+void	test_f##BITS##FUNCNAME(void) \
+{ \
+/*	| TEST FUNCTION             | TEST NAME         |TESTFLAG| TEST */ \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR) ); \
+}
+
+#if LIBCONFIG_USE_FLOAT16
+DEFINETEST_FLOAT_FUNCTION(16, isnan)
+DEFINETEST_FLOAT_FUNCTION(16, isinf)
+DEFINETEST_FLOAT_FUNCTION(16, abs)
+DEFINETEST_FLOAT_FUNCTION(16, sgn)
+DEFINETEST_FLOAT_FUNCTION(16, root2)
+DEFINETEST_FLOAT_FUNCTION(16, root3)
+DEFINETEST_FLOAT_FUNCTION(16, exp)
+DEFINETEST_FLOAT_FUNCTION(16, exp2)
+DEFINETEST_FLOAT_FUNCTION(16, exp10)
+DEFINETEST_FLOAT_FUNCTION(16, log)
+DEFINETEST_FLOAT_FUNCTION(16, log2)
+DEFINETEST_FLOAT_FUNCTION(16, log10)
+DEFINETEST_FLOAT_FUNCTION(16, sin)
+DEFINETEST_FLOAT_FUNCTION(16, cos)
+DEFINETEST_FLOAT_FUNCTION(16, tan)
+DEFINETEST_FLOAT_FUNCTION(16, asin)
+DEFINETEST_FLOAT_FUNCTION(16, acos)
+DEFINETEST_FLOAT_FUNCTION(16, atan)
+DEFINETEST_FLOAT_FUNCTION(16, sinh)
+DEFINETEST_FLOAT_FUNCTION(16, cosh)
+DEFINETEST_FLOAT_FUNCTION(16, tanh)
+DEFINETEST_FLOAT_FUNCTION(16, asinh)
+DEFINETEST_FLOAT_FUNCTION(16, acosh)
+DEFINETEST_FLOAT_FUNCTION(16, atanh)
+DEFINETEST_FLOAT_FUNCTION(16, erf)
+DEFINETEST_FLOAT_FUNCTION(16, erfc)
+DEFINETEST_FLOAT_FUNCTION(16, gamma)
+DEFINETEST_FLOAT_FUNCTION(16, lngamma)
+#endif
+DEFINETEST_FLOAT_FUNCTION(32, isnan)
+DEFINETEST_FLOAT_FUNCTION(32, isinf)
+DEFINETEST_FLOAT_FUNCTION(32, abs)
+DEFINETEST_FLOAT_FUNCTION(32, sgn)
+DEFINETEST_FLOAT_FUNCTION(32, root2)
+DEFINETEST_FLOAT_FUNCTION(32, root3)
+DEFINETEST_FLOAT_FUNCTION(32, exp)
+DEFINETEST_FLOAT_FUNCTION(32, exp2)
+DEFINETEST_FLOAT_FUNCTION(32, exp10)
+DEFINETEST_FLOAT_FUNCTION(32, log)
+DEFINETEST_FLOAT_FUNCTION(32, log2)
+DEFINETEST_FLOAT_FUNCTION(32, log10)
+DEFINETEST_FLOAT_FUNCTION(32, sin)
+DEFINETEST_FLOAT_FUNCTION(32, cos)
+DEFINETEST_FLOAT_FUNCTION(32, tan)
+DEFINETEST_FLOAT_FUNCTION(32, asin)
+DEFINETEST_FLOAT_FUNCTION(32, acos)
+DEFINETEST_FLOAT_FUNCTION(32, atan)
+DEFINETEST_FLOAT_FUNCTION(32, sinh)
+DEFINETEST_FLOAT_FUNCTION(32, cosh)
+DEFINETEST_FLOAT_FUNCTION(32, tanh)
+DEFINETEST_FLOAT_FUNCTION(32, asinh)
+DEFINETEST_FLOAT_FUNCTION(32, acosh)
+DEFINETEST_FLOAT_FUNCTION(32, atanh)
+DEFINETEST_FLOAT_FUNCTION(32, erf)
+DEFINETEST_FLOAT_FUNCTION(32, erfc)
+DEFINETEST_FLOAT_FUNCTION(32, gamma)
+DEFINETEST_FLOAT_FUNCTION(32, lngamma)
+
+DEFINETEST_FLOAT_FUNCTION(64, isnan)
+DEFINETEST_FLOAT_FUNCTION(64, isinf)
+DEFINETEST_FLOAT_FUNCTION(64, abs)
+DEFINETEST_FLOAT_FUNCTION(64, sgn)
+DEFINETEST_FLOAT_FUNCTION(64, root2)
+DEFINETEST_FLOAT_FUNCTION(64, root3)
+DEFINETEST_FLOAT_FUNCTION(64, exp)
+DEFINETEST_FLOAT_FUNCTION(64, exp2)
+DEFINETEST_FLOAT_FUNCTION(64, exp10)
+DEFINETEST_FLOAT_FUNCTION(64, log)
+DEFINETEST_FLOAT_FUNCTION(64, log2)
+DEFINETEST_FLOAT_FUNCTION(64, log10)
+DEFINETEST_FLOAT_FUNCTION(64, sin)
+DEFINETEST_FLOAT_FUNCTION(64, cos)
+DEFINETEST_FLOAT_FUNCTION(64, tan)
+DEFINETEST_FLOAT_FUNCTION(64, asin)
+DEFINETEST_FLOAT_FUNCTION(64, acos)
+DEFINETEST_FLOAT_FUNCTION(64, atan)
+DEFINETEST_FLOAT_FUNCTION(64, sinh)
+DEFINETEST_FLOAT_FUNCTION(64, cosh)
+DEFINETEST_FLOAT_FUNCTION(64, tanh)
+DEFINETEST_FLOAT_FUNCTION(64, asinh)
+DEFINETEST_FLOAT_FUNCTION(64, acosh)
+DEFINETEST_FLOAT_FUNCTION(64, atanh)
+DEFINETEST_FLOAT_FUNCTION(64, erf)
+DEFINETEST_FLOAT_FUNCTION(64, erfc)
+DEFINETEST_FLOAT_FUNCTION(64, gamma)
+DEFINETEST_FLOAT_FUNCTION(64, lngamma)
+#if LIBCONFIG_USE_FLOAT80
+DEFINETEST_FLOAT_FUNCTION(80, isnan)
+DEFINETEST_FLOAT_FUNCTION(80, isinf)
+DEFINETEST_FLOAT_FUNCTION(80, abs)
+DEFINETEST_FLOAT_FUNCTION(80, sgn)
+DEFINETEST_FLOAT_FUNCTION(80, root2)
+DEFINETEST_FLOAT_FUNCTION(80, root3)
+DEFINETEST_FLOAT_FUNCTION(80, exp)
+DEFINETEST_FLOAT_FUNCTION(80, exp2)
+DEFINETEST_FLOAT_FUNCTION(80, exp10)
+DEFINETEST_FLOAT_FUNCTION(80, log)
+DEFINETEST_FLOAT_FUNCTION(80, log2)
+DEFINETEST_FLOAT_FUNCTION(80, log10)
+DEFINETEST_FLOAT_FUNCTION(80, sin)
+DEFINETEST_FLOAT_FUNCTION(80, cos)
+DEFINETEST_FLOAT_FUNCTION(80, tan)
+DEFINETEST_FLOAT_FUNCTION(80, asin)
+DEFINETEST_FLOAT_FUNCTION(80, acos)
+DEFINETEST_FLOAT_FUNCTION(80, atan)
+DEFINETEST_FLOAT_FUNCTION(80, sinh)
+DEFINETEST_FLOAT_FUNCTION(80, cosh)
+DEFINETEST_FLOAT_FUNCTION(80, tanh)
+DEFINETEST_FLOAT_FUNCTION(80, asinh)
+DEFINETEST_FLOAT_FUNCTION(80, acosh)
+DEFINETEST_FLOAT_FUNCTION(80, atanh)
+DEFINETEST_FLOAT_FUNCTION(80, erf)
+DEFINETEST_FLOAT_FUNCTION(80, erfc)
+DEFINETEST_FLOAT_FUNCTION(80, gamma)
+DEFINETEST_FLOAT_FUNCTION(80, lngamma)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINETEST_FLOAT_FUNCTION(128, isnan)
+DEFINETEST_FLOAT_FUNCTION(128, isinf)
+DEFINETEST_FLOAT_FUNCTION(128, abs)
+DEFINETEST_FLOAT_FUNCTION(128, sgn)
+DEFINETEST_FLOAT_FUNCTION(128, root2)
+DEFINETEST_FLOAT_FUNCTION(128, root3)
+DEFINETEST_FLOAT_FUNCTION(128, exp)
+DEFINETEST_FLOAT_FUNCTION(128, exp2)
+DEFINETEST_FLOAT_FUNCTION(128, exp10)
+DEFINETEST_FLOAT_FUNCTION(128, log)
+DEFINETEST_FLOAT_FUNCTION(128, log2)
+DEFINETEST_FLOAT_FUNCTION(128, log10)
+DEFINETEST_FLOAT_FUNCTION(128, sin)
+DEFINETEST_FLOAT_FUNCTION(128, cos)
+DEFINETEST_FLOAT_FUNCTION(128, tan)
+DEFINETEST_FLOAT_FUNCTION(128, asin)
+DEFINETEST_FLOAT_FUNCTION(128, acos)
+DEFINETEST_FLOAT_FUNCTION(128, atan)
+DEFINETEST_FLOAT_FUNCTION(128, sinh)
+DEFINETEST_FLOAT_FUNCTION(128, cosh)
+DEFINETEST_FLOAT_FUNCTION(128, tanh)
+DEFINETEST_FLOAT_FUNCTION(128, asinh)
+DEFINETEST_FLOAT_FUNCTION(128, acosh)
+DEFINETEST_FLOAT_FUNCTION(128, atanh)
+DEFINETEST_FLOAT_FUNCTION(128, erf)
+DEFINETEST_FLOAT_FUNCTION(128, erfc)
+DEFINETEST_FLOAT_FUNCTION(128, gamma)
+DEFINETEST_FLOAT_FUNCTION(128, lngamma)
+#endif
 
 
 
-#define DEFINETEST_FLOAT_OPERATOR(OP, FUNCNAME, BITS) \
+#undef  TEST
+#define TEST(BITS, OPERATOR, LHS, RHS) \
+	OPERATOR##f##BITS((LHS),(RHS)), (LHS), (RHS)
+
+#define DEFINETEST_FLOAT_OPERATOR(BITS, FUNCNAME) \
 void	print_test_f##BITS##FUNCNAME(char const* test_name, t_testflags flags, \
 		t_f##BITS	expecting, \
 		t_f##BITS	x, \
@@ -81,263 +401,326 @@ void	print_test_f##BITS##FUNCNAME(char const* test_name, t_testflags flags, \
 } \
 void	test_f##BITS##FUNCNAME(void) \
 { \
-/*	| TEST FUNCTION             | TEST NAME                      |TESTFLAG| TEST */ \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS,  0.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.0,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +1.5,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.0,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, +2.5,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.0,OP,-0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.0,OP,-0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.5,OP,-0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -0.5,OP,-0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.0,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -1.5,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.0,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP, 0.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP, 0.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, -2.5,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.0,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,+1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,+1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,+2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,+2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,-1.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,-1.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,-2.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,-2.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,10.0) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME"              ",	FALSE, TEST(BITS, 10.5,OP,10.5) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=min;y= 0) ",	FALSE, TEST(BITS, F##BITS##_MIN, OP,  0.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=min;y=-1) ",	FALSE, TEST(BITS, F##BITS##_MIN, OP, -1.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=min;y=-2) ",	FALSE, TEST(BITS, F##BITS##_MIN, OP, -2.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=max;y= 0) ",	FALSE, TEST(BITS, F##BITS##_MAX, OP,  0.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=max;y=+1) ",	FALSE, TEST(BITS, F##BITS##_MAX, OP, +1.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=max;y=+2) ",	FALSE, TEST(BITS, F##BITS##_MAX, OP, +2.) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x= 0;y=min) ",	FALSE, TEST(BITS,  0., OP, F##BITS##_MIN) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=-1;y=min) ",	FALSE, TEST(BITS, -1., OP, F##BITS##_MIN) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=-2;y=min) ",	FALSE, TEST(BITS, -2., OP, F##BITS##_MIN) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x= 0;y=max) ",	FALSE, TEST(BITS,  0., OP, F##BITS##_MAX) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=+1;y=max) ",	FALSE, TEST(BITS, +1., OP, F##BITS##_MAX) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=+2;y=max) ",	FALSE, TEST(BITS, +2., OP, F##BITS##_MAX) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=min;y=min)",	FALSE, TEST(BITS, F##BITS##_MIN, OP, F##BITS##_MIN) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=min;y=max)",	FALSE, TEST(BITS, F##BITS##_MIN, OP, F##BITS##_MAX) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=max;y=min)",	FALSE, TEST(BITS, F##BITS##_MAX, OP, F##BITS##_MIN) ); \
-	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" (x=max;y=max)",	FALSE, TEST(BITS, F##BITS##_MAX, OP, F##BITS##_MAX) ); \
+/*	| TEST FUNCTION             | TEST NAME         |TESTFLAG| TEST */ \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -0.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.0, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2.5, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10.0, 10.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MAX, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_MIN, F##BITS##_ERROR) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR,  0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR,  0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, +1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, +1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, +2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, +2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -0.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -0.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -1.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -1.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -2.0) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, -2.5) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, F##BITS##_MAX) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, F##BITS##_MIN) ); \
+	print_test_f##BITS##FUNCNAME("f"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, F##BITS##_ERROR, F##BITS##_ERROR) ); \
 }
 
 #if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(+, add, 16)
+DEFINETEST_FLOAT_OPERATOR(16, min)
+DEFINETEST_FLOAT_OPERATOR(16, max)
+DEFINETEST_FLOAT_OPERATOR(16, add)
+DEFINETEST_FLOAT_OPERATOR(16, sub)
+DEFINETEST_FLOAT_OPERATOR(16, mul)
+DEFINETEST_FLOAT_OPERATOR(16, div)
+DEFINETEST_FLOAT_OPERATOR(16, mod)
+DEFINETEST_FLOAT_OPERATOR(16, rem)
+DEFINETEST_FLOAT_OPERATOR(16, pow)
+DEFINETEST_FLOAT_OPERATOR(16, rootn)
+DEFINETEST_FLOAT_OPERATOR(16, hypot)
+DEFINETEST_FLOAT_OPERATOR(16, atan2)
 #endif
-DEFINETEST_FLOAT_OPERATOR(+, add, 32)
+DEFINETEST_FLOAT_OPERATOR(32, min)
+DEFINETEST_FLOAT_OPERATOR(32, max)
+DEFINETEST_FLOAT_OPERATOR(32, add)
+DEFINETEST_FLOAT_OPERATOR(32, sub)
+DEFINETEST_FLOAT_OPERATOR(32, mul)
+DEFINETEST_FLOAT_OPERATOR(32, div)
+DEFINETEST_FLOAT_OPERATOR(32, mod)
+DEFINETEST_FLOAT_OPERATOR(32, rem)
+DEFINETEST_FLOAT_OPERATOR(32, pow)
+DEFINETEST_FLOAT_OPERATOR(32, rootn)
+DEFINETEST_FLOAT_OPERATOR(32, hypot)
+DEFINETEST_FLOAT_OPERATOR(32, atan2)
 
-DEFINETEST_FLOAT_OPERATOR(+, add, 64)
+DEFINETEST_FLOAT_OPERATOR(64, min)
+DEFINETEST_FLOAT_OPERATOR(64, max)
+DEFINETEST_FLOAT_OPERATOR(64, add)
+DEFINETEST_FLOAT_OPERATOR(64, sub)
+DEFINETEST_FLOAT_OPERATOR(64, mul)
+DEFINETEST_FLOAT_OPERATOR(64, div)
+DEFINETEST_FLOAT_OPERATOR(64, mod)
+DEFINETEST_FLOAT_OPERATOR(64, rem)
+DEFINETEST_FLOAT_OPERATOR(64, pow)
+DEFINETEST_FLOAT_OPERATOR(64, rootn)
+DEFINETEST_FLOAT_OPERATOR(64, hypot)
+DEFINETEST_FLOAT_OPERATOR(64, atan2)
 #if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(+, add, 80)
+DEFINETEST_FLOAT_OPERATOR(80, min)
+DEFINETEST_FLOAT_OPERATOR(80, max)
+DEFINETEST_FLOAT_OPERATOR(80, add)
+DEFINETEST_FLOAT_OPERATOR(80, sub)
+DEFINETEST_FLOAT_OPERATOR(80, mul)
+DEFINETEST_FLOAT_OPERATOR(80, div)
+DEFINETEST_FLOAT_OPERATOR(80, mod)
+DEFINETEST_FLOAT_OPERATOR(80, rem)
+DEFINETEST_FLOAT_OPERATOR(80, pow)
+DEFINETEST_FLOAT_OPERATOR(80, rootn)
+DEFINETEST_FLOAT_OPERATOR(80, hypot)
+DEFINETEST_FLOAT_OPERATOR(80, atan2)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(+, add, 128)
+DEFINETEST_FLOAT_OPERATOR(128, min)
+DEFINETEST_FLOAT_OPERATOR(128, max)
+DEFINETEST_FLOAT_OPERATOR(128, add)
+DEFINETEST_FLOAT_OPERATOR(128, sub)
+DEFINETEST_FLOAT_OPERATOR(128, mul)
+DEFINETEST_FLOAT_OPERATOR(128, div)
+DEFINETEST_FLOAT_OPERATOR(128, mod)
+DEFINETEST_FLOAT_OPERATOR(128, rem)
+DEFINETEST_FLOAT_OPERATOR(128, pow)
+DEFINETEST_FLOAT_OPERATOR(128, rootn)
+DEFINETEST_FLOAT_OPERATOR(128, hypot)
+DEFINETEST_FLOAT_OPERATOR(128, atan2)
 #endif
-
-#if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(-, sub, 16)
-#endif
-DEFINETEST_FLOAT_OPERATOR(-, sub, 32)
-
-DEFINETEST_FLOAT_OPERATOR(-, sub, 64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(-, sub, 80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(-, sub, 128)
-#endif
-
-#if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(*, mul, 16)
-#endif
-DEFINETEST_FLOAT_OPERATOR(*, mul, 32)
-
-DEFINETEST_FLOAT_OPERATOR(*, mul, 64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(*, mul, 80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(*, mul, 128)
-#endif
-
-#undef EXCEPTION
-#define EXCEPTION(BITS, LHS, OP, RHS)	(RHS == 0.) ? ((LHS == 0.) ? F##BITS##_ERROR : (F##BITS##_MAX * F##BITS##_Sgn(LHS))) :
-
-#if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(/, div, 16)
-#endif
-DEFINETEST_FLOAT_OPERATOR(/, div, 32)
-
-DEFINETEST_FLOAT_OPERATOR(/, div, 64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(/, div, 80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(/, div, 128)
-#endif
-
-/*
-
-#undef EXCEPTION
-#define EXCEPTION(BITS, LHS, OP, RHS)	(RHS == 0.) ? ((LHS == 0.) ? F##BITS##_ERROR : (F##BITS##_MAX * F##BITS##_Sgn(LHS))) :
-
-#if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(%, mod, 16)
-#endif
-DEFINETEST_FLOAT_OPERATOR(%, mod, 32)
-
-DEFINETEST_FLOAT_OPERATOR(%, mod, 64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(%, mod, 80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(%, mod, 128)
-#endif
-
-#undef EXCEPTION
-#define EXCEPTION(BITS, LHS, OP, RHS)	(RHS == 0.) ? ((LHS == 0.) ? F##BITS##_ERROR : (F##BITS##_MAX * F##BITS##_Sgn(LHS))) :
-
-#if LIBCONFIG_USE_FLOAT16
-DEFINETEST_FLOAT_OPERATOR(%, rem, 16)
-#endif
-DEFINETEST_FLOAT_OPERATOR(%, rem, 32)
-
-DEFINETEST_FLOAT_OPERATOR(%, rem, 64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINETEST_FLOAT_OPERATOR(%, rem, 80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINETEST_FLOAT_OPERATOR(%, rem, 128)
-#endif
-
-*/
 
 
 
@@ -398,46 +781,46 @@ int		testsuite_math_float(void)
 
 #endif
 
-//	RUNTESTSUITE(isnan)
-//	RUNTESTSUITE(isinf)
-//	RUNTESTSUITE(abs)
-//	RUNTESTSUITE(sgn)
-//	RUNTESTSUITE(min)
-//	RUNTESTSUITE(max)
+	RUNTESTSUITE(isnan)
+	RUNTESTSUITE(isinf)
+	RUNTESTSUITE(abs)
+	RUNTESTSUITE(sgn)
+	RUNTESTSUITE(min)
+	RUNTESTSUITE(max)
 	RUNTESTSUITE(add)
 	RUNTESTSUITE(sub)
 	RUNTESTSUITE(mul)
 	RUNTESTSUITE(div)
-//	RUNTESTSUITE(mod)
-//	RUNTESTSUITE(rem)
-//	RUNTESTSUITE(pow)
-//	RUNTESTSUITE(root2)
-//	RUNTESTSUITE(root3)
+	RUNTESTSUITE(mod)
+	RUNTESTSUITE(rem)
+	RUNTESTSUITE(pow)
+	RUNTESTSUITE(root2)
+	RUNTESTSUITE(root3)
 //	RUNTESTSUITE(rootn)
-//	RUNTESTSUITE(hypot)
-//	RUNTESTSUITE(exp)
-//	RUNTESTSUITE(exp2)
-//	RUNTESTSUITE(exp10)
-//	RUNTESTSUITE(log)
-//	RUNTESTSUITE(log2)
-//	RUNTESTSUITE(log10)
-//	RUNTESTSUITE(erf)
-//	RUNTESTSUITE(erfc)
-//	RUNTESTSUITE(gamma)
-//	RUNTESTSUITE(lngamma)
-//	RUNTESTSUITE(sin)
-//	RUNTESTSUITE(cos)
-//	RUNTESTSUITE(tan)
-//	RUNTESTSUITE(asin)
-//	RUNTESTSUITE(acos)
-//	RUNTESTSUITE(atan)
-//	RUNTESTSUITE(atan2)
-//	RUNTESTSUITE(sinh)
-//	RUNTESTSUITE(cosh)
-//	RUNTESTSUITE(tanh)
-//	RUNTESTSUITE(asinh)
-//	RUNTESTSUITE(acosh)
-//	RUNTESTSUITE(atanh)
+	RUNTESTSUITE(hypot)
+	RUNTESTSUITE(exp)
+	RUNTESTSUITE(exp2)
+	RUNTESTSUITE(exp10)
+	RUNTESTSUITE(log)
+	RUNTESTSUITE(log2)
+	RUNTESTSUITE(log10)
+	RUNTESTSUITE(erf)
+	RUNTESTSUITE(erfc)
+	RUNTESTSUITE(gamma)
+	RUNTESTSUITE(lngamma)
+	RUNTESTSUITE(sin)
+	RUNTESTSUITE(cos)
+	RUNTESTSUITE(tan)
+	RUNTESTSUITE(asin)
+	RUNTESTSUITE(acos)
+	RUNTESTSUITE(atan)
+	RUNTESTSUITE(atan2)
+	RUNTESTSUITE(sinh)
+	RUNTESTSUITE(cosh)
+	RUNTESTSUITE(tanh)
+	RUNTESTSUITE(asinh)
+	RUNTESTSUITE(acosh)
+	RUNTESTSUITE(atanh)
 
 	return (OK);
 }
