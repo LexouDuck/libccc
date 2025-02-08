@@ -10,11 +10,11 @@
 
 #define DEFINEFUNC_FIXED_SGN(BITS) \
 _INLINE() \
-t_q##BITS	Q##BITS##_Sgn(t_q##BITS a) \
+t_q##BITS	Q##BITS##_Sgn(t_q##BITS x) \
 { \
-	if CCCERROR((a._ == Q##BITS##_ERROR._), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR(Q##BITS##_IsNaN(x), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (t_q##BITS){ (t_s##BITS)(a._ == 0 ? 0 : (a._ < 0 ? -1 : +1)) }; \
+	return (t_q##BITS){ (t_s##BITS)(x._ == 0 ? 0 : (x._ < 0 ? -1 : +1)) }; \
 } \
 
 DEFINEFUNC_FIXED_SGN(8)

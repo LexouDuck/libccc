@@ -68,154 +68,84 @@ DEFINEFUNC_FLOAT_MOD(128)
 
 #else
 
-t_f32	F32_Mod(t_f32 x, t_f32 y)
-{
-	union { t_f32 f; t_u32 i; } ux = {x}, uy = {y};
-	int ex = (ux.i & F32_EXPONENT_MASK) >> F32_MANTISSA_BITS;
-	int ey = (uy.i & F32_EXPONENT_MASK) >> F32_MANTISSA_BITS;
-	t_u32 sx = ux.i & F32_SIGN_BIT_MASK;
-	t_u32 uxi = ux.i; /* `uxi` should be `ux.i`, but then gcc wrongly adds float load/store to inner loops ruining performance and code size */
-	t_u32 i;
+#define DEFINEFUNC_FLOAT_MOD(BITS) \
+t_f##BITS	F##BITS##_Mod(t_f##BITS x, t_f##BITS y) \
+{ \
+	union { t_f##BITS f; t_u##BITS i; } ux = {x}, uy = {y}; \
+	int ex = (ux.i & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
+	int ey = (uy.i & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
+	t_u##BITS sx = ux.i & F##BITS##_SIGN_BIT_MASK; \
+	t_u##BITS uxi = ux.i; /* `uxi` should be `ux.i`, but then gcc wrongly adds float load/store to inner loops ruining performance and code size */ \
+	t_u##BITS i; \
+ \
+	if (uy.i << 1 == 0 || ex == 0xff || F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y) || F##BITS##_IsInf(x)) \
+		return (x * y) / (x * y); \
+	if (uxi << 1 <= uy.i << 1) \
+	{ \
+		if (uxi << 1 == uy.i << 1) \
+			return (0 * x); \
+		return (x); \
+	} \
+	/* normalize x and y */ \
+	if (!ex) \
+	{ \
+		for (i = uxi << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ex--, i <<= 1); \
+		uxi <<= -ex + 1; \
+	} \
+	else \
+	{ \
+		uxi &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
+		uxi |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+	} \
+	if (!ey) \
+	{ \
+		for (i = uy.i << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ey--, i <<= 1); \
+		uy.i <<= -ey + 1; \
+	} \
+	else \
+	{ \
+		uy.i &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
+		uy.i |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+	} \
+	/* x mod y */ \
+	for (; ex > ey; ex--) \
+	{ \
+		i = uxi - uy.i; \
+		if (i >> (BITS - 1) == 0) \
+		{ \
+			if (i == 0) \
+				return (0 * x); \
+			uxi = i; \
+		} \
+		uxi <<= 1; \
+	} \
+	i = uxi - uy.i; \
+	if (i >> (BITS - 1) == 0) \
+	{ \
+		if (i == 0) \
+			return (0 * x); \
+		uxi = i; \
+	} \
+	for (; uxi>>F##BITS##_MANTISSA_BITS == 0; uxi <<= 1, ex--); \
+	/* scale result up */ \
+	if (ex > 0) \
+	{ \
+		uxi -= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+		uxi |= (t_u##BITS)ex << F##BITS##_MANTISSA_BITS; \
+	} \
+	else \
+	{ \
+		uxi >>= -ex + 1; \
+	} \
+	uxi |= sx; \
+	ux.i = uxi; \
+	return (ux.f); \
+} \
 
-	if (uy.i<<1 == 0 || isnan(y) || ex == 0xff)
-		return (x*y)/(x*y);
-	if (uxi<<1 <= uy.i<<1)
-	{
-		if (uxi<<1 == uy.i<<1)
-			return 0*x;
-		return x;
-	}
+DEFINEFUNC_FLOAT_MOD(32)
+DEFINEFUNC_FLOAT_MOD(64)
 
-	/* normalize x and y */
-	if (!ex)
-	{
-		for (i = uxi<<9; i>>31 == 0; ex--, i <<= 1);
-		uxi <<= -ex + 1;
-	}
-	else
-	{
-		uxi &= -1U >> 9;
-		uxi |= 1U << 23;
-	}
-	if (!ey)
-	{
-		for (i = uy.i<<9; i>>31 == 0; ey--, i <<= 1);
-		uy.i <<= -ey + 1;
-	}
-	else
-	{
-		uy.i &= -1U >> 9;
-		uy.i |= 1U << 23;
-	}
 
-	/* x mod y */
-	for (; ex > ey; ex--)
-	{
-		i = uxi - uy.i;
-		if (i >> 31 == 0)
-		{
-			if (i == 0)
-				return 0*x;
-			uxi = i;
-		}
-		uxi <<= 1;
-	}
-	i = uxi - uy.i;
-	if (i >> 31 == 0)
-	{
-		if (i == 0)
-			return 0*x;
-		uxi = i;
-	}
-	for (; uxi>>23 == 0; uxi <<= 1, ex--);
-
-	/* scale result up */
-	if (ex > 0)
-	{
-		uxi -= 1U << 23;
-		uxi |= (t_u32)ex << 23;
-	}
-	else
-	{
-		uxi >>= -ex + 1;
-	}
-	uxi |= sx;
-	ux.i = uxi;
-	return ux.f;
-}
-
-t_f64	F64_Mod(t_f64 x, t_f64 y)
-{
-	union { t_f64 f; t_u64 i; } ux = {x}, uy = {y};
-	int ex = (ux.i & F64_EXPONENT_MASK) >> F64_MANTISSA_BITS;
-	int ey = (uy.i & F64_EXPONENT_MASK) >> F64_MANTISSA_BITS;
-	int sx = ux.i & F64_SIGN_BIT_MASK;
-	t_u64 uxi = ux.i; /* `uxi` should be `ux.i`, but then gcc wrongly adds float load/store to inner loops ruining performance and code size */
-	t_u64 i;
-
-	if (uy.i<<1 == 0 || isnan(y) || ex == 0x7ff)
-		return (x*y)/(x*y);
-	if (uxi<<1 <= uy.i<<1)
-	{
-		if (uxi<<1 == uy.i<<1)
-			return 0*x;
-		return x;
-	}
-	/* normalize x and y */
-	if (!ex)
-	{
-		for (i = uxi<<12; i>>63 == 0; ex--, i <<= 1);
-		uxi <<= -ex + 1;
-	}
-	else
-	{
-		uxi &= -1ull >> 12;
-		uxi |= 1ull << 52;
-	}
-	if (!ey)
-	{
-		for (i = uy.i<<12; i>>63 == 0; ey--, i <<= 1);
-		uy.i <<= -ey + 1;
-	}
-	else
-	{
-		uy.i &= -1ull >> 12;
-		uy.i |= 1ull << 52;
-	}
-	/* x mod y */
-	for (; ex > ey; ex--)
-	{
-		i = uxi - uy.i;
-		if (i >> 63 == 0)
-		{
-			if (i == 0)
-				return 0*x;
-			uxi = i;
-		}
-		uxi <<= 1;
-	}
-	i = uxi - uy.i;
-	if (i >> 63 == 0)
-	{
-		if (i == 0)
-			return 0*x;
-		uxi = i;
-	}
-	for (; uxi>>52 == 0; uxi <<= 1, ex--);
-	/* scale result */
-	if (ex > 0)
-	{
-		uxi -= 1ull << 52;
-		uxi |= (t_u64)ex << 52;
-	}
-	else
-	{
-		uxi >>= -ex + 1;
-	}
-	uxi |= sx;
-	ux.i = uxi;
-	return ux.f;
-}
 
 #if LIBCONFIG_USE_FLOAT80
 t_f80	F80_Mod(t_f80 x, t_f80 y)

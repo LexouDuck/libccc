@@ -12,8 +12,8 @@
 _INLINE() \
 t_f##BITS	F##BITS##_Max(t_f##BITS x, t_f##BITS y) \
 { \
-	if CCCERROR((F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
-	{ return F##BITS##_ERROR; } \
+	if CCCERROR((F##BITS##_IsNaN(x)), ERROR_NANARGUMENT, NULL)	return y; \
+	if CCCERROR((F##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL)	return x; \
 	return (x > y ? x : y); \
 } \
 

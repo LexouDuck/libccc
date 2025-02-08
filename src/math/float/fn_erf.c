@@ -328,7 +328,7 @@ const struct data_erf_f64 __data_erf_f64 =
 	},
 };
 
-#define DEFINEDATA_FLOAT_ERF_CONSTANTS(BITS) \
+#define DEFINEDATA_FLOAT_ERF_LD(BITS) \
 const struct data_erf_f##BITS __data_erf_f##BITS = \
 { \
 	.erx = 0.845062911510467529296875L, \
@@ -451,10 +451,10 @@ const struct data_erf_f##BITS __data_erf_f##BITS = \
 }; \
 
 #if LIBCONFIG_USE_FLOAT80
-DEFINEDATA_FLOAT_ERF_CONSTANTS(80)
+DEFINEDATA_FLOAT_ERF_LD(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEDATA_FLOAT_ERF_CONSTANTS(128)
+DEFINEDATA_FLOAT_ERF_LD(128)
 #endif
 
 
@@ -477,7 +477,7 @@ t_f##BITS F##BITS##_ErfC2(t_f##BITS abs_x) \
 	t_f##BITS z,s,R,S; \
 	u_cast_f##BITS tmp; \
 	s = 1 / (abs_x * abs_x); \
-	if (abs_x < (1./0.35)) \
+	if (abs_x < (1. / 0.35)) \
 	{ \
 		R = __polynomial_f##BITS(s, __data_erf_f##BITS.ra, 7); \
 		S = __polynomial_f##BITS(s, __data_erf_f##BITS.sa, 8); \
@@ -500,9 +500,11 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 	t_f##BITS r,s,x2,y; \
 	t_f##BITS abs_x = F##BITS##_Abs(x); \
 	t_bool sign = (x < 0); /* F##BITS##_SIGN_BIT_MASK >> (BITS - 1); */ \
-	if (IS_NAN(x) || IS_INF(x)) \
-	{	/* erf(nan)=nan, erf(+-inf)=+-1 */ \
-		return (1 - 2 * SGN(x) + 1 / x); \
+	if CCCERROR(F##BITS##_IsNaN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if (F##BITS##_IsInf(x)) \
+	{	/* erf(+-inf)=+-1 */ \
+		return (F##BITS##_Sgn(x)); \
 	} \
 	if (abs_x < 0.84375) \
 	{ \
@@ -510,11 +512,11 @@ t_f##BITS F##BITS##_Erf(t_f##BITS x) \
 		{	/* avoid underflow */ \
 			return (0.125 * (8 * x + __data_erf_f##BITS.efx8 * x)); \
 		} \
-		x2 = x*x; \
+		x2 = x * x; \
 		r = __polynomial_f##BITS(x2, __data_erf_f##BITS.pp, 4); \
 		s = __polynomial_f##BITS(x2, __data_erf_f##BITS.qq, 5); \
-		y = r/s; \
-		return (x + x*y); \
+		y = r / s; \
+		return (x + x * y); \
 	} \
 	else if (abs_x < 6.) \
 	{ \
@@ -535,9 +537,11 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 	t_f##BITS r,s,x2,y; \
 	t_f##BITS abs_x = F##BITS##_Abs(x); \
 	t_bool sign = (x < 0); /* F##BITS##_SIGN_BIT_MASK >> (BITS - 1); */ \
-	if (IS_NAN(x) || IS_INF(x)) \
+	if CCCERROR(F##BITS##_IsNaN(x), ERROR_NANARGUMENT, NULL) \
+		return (NAN); \
+	if (F##BITS##_IsInf(x)) \
 	{ \
-		return (2 * SGN(x) + 1 / x); \
+		return (1 - F##BITS##_Sgn(x)); \
 	} \
 	if (abs_x < 0.84375) \
 	{ \
@@ -545,15 +549,15 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 		{ \
 			return (1.0 - x); \
 		} \
-		x2 = x*x; \
+		x2 = x * x; \
 		r = __polynomial_f##BITS(x2, __data_erf_f##BITS.pp, 4); \
 		s = __polynomial_f##BITS(x2, __data_erf_f##BITS.qq, 5); \
-		y = r/s; \
+		y = r / s; \
 		if (x < 0.25) \
 		{ \
-			return (1.0 - (x+x*y)); \
+			return (1.0 - (x + x * y)); \
 		} \
-		return (0.5 - (x - 0.5 + x*y)); \
+		return (0.5 - (x - 0.5 + x * y)); \
 	} \
 	else if (abs_x < 28.) \
 	{ \
@@ -563,7 +567,7 @@ t_f##BITS F##BITS##_ErfC(t_f##BITS x) \
 	} \
 	else \
 	{ \
-		y = (sign ? TINY : TINY*TINY); \
+		y = (sign ? TINY : (TINY * TINY)); \
 	} \
 	return (sign ? (2 - y) : y); \
 } \

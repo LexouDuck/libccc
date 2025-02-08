@@ -12,7 +12,7 @@
 _INLINE() \
 t_q##BITS	Q##BITS##_Abs(t_q##BITS x) \
 { \
-	if CCCERROR((x._ == Q##BITS##_ERROR._), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR(Q##BITS##_IsNaN(x), ERROR_MATHDOMAIN, NULL) \
 		return (Q##BITS##_ERROR); \
 	return (t_q##BITS){ (t_s##BITS)((x._ < 0) ? -x._ : +x._) }; \
 } \
