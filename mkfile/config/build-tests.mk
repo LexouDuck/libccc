@@ -7,6 +7,7 @@ TEST_CFLAGS = \
 	-Wall \
 	-Wextra \
 	-Winline \
+	-Wno-unknown-pragmas \
 	-Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-format-extra-args \
@@ -135,7 +136,10 @@ endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
 TEST_LDLIBS_EXTRA ?= \
-#	-L/usr/local/lib -ltsan \
+#	-L/usr/local/lib \
+#	-ltsan \
+#	-lasan \
+#	-lubsan \
 
 
 

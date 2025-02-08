@@ -44,7 +44,7 @@ CPPCHECK_FLAGS =
 lint-cppcheck #! Runs code linter on source code: cppcheck (http://cppcheck.sourceforge.net/)
 lint-cppcheck:
 	@$(CPPCHECK) $(SRCDIR) $(HDRDIR) $(CPPCHECK_FLAGS) \
-		--quiet --std=c99 --enable=all \
+		--quiet --std=c11 --enable=all \
 		-DTRUE=1 -DFALSE=0 -DERROR=-1 -DOK=0 -D__GNUC__ \
 		--suppress=variableScope \
 		--suppress=unusedFunction \
