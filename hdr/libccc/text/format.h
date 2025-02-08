@@ -263,22 +263,22 @@ HEADER_CPP
 #define SF_S128_OCT_ PRIo128 //TODO
 
 #ifndef PRIu128
-#define PRIu128	"Lu"
+#define PRIu128	"LLu"
 #endif
 #ifndef PRIX128
-#define PRIX128	"LX"
+#define PRIX128	"LLX"
 #endif
 #ifndef PRIo128
-#define PRIo128	"Lo"
+#define PRIo128	"LLo"
 #endif
 #ifndef PRIi128
-#define PRIi128	"Li"
+#define PRIi128	"LLi"
 #endif
 #ifndef PRIX128
-#define PRIX128	"LX"
+#define PRIX128	"LLX"
 #endif
 #ifndef PRIo128
-#define PRIo128	"Lo"
+#define PRIo128	"LLo"
 #endif
 //!@}
 
