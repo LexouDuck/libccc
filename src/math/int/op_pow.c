@@ -17,8 +17,12 @@ t_u##BITS	U##BITS##_Pow(t_u##BITS x, t_u##BITS y) \
 	while (TRUE) \
 	{ \
 		if (y & 1) \
+		{ \
+			if CCCERROR((result * x < result), ERROR_RESULTRANGE, NULL) \
+				return (U##BITS##_MAX); \
 			result *= x; \
-		y >>= 1; \
+		} \
+		y = y >> 1; \
 		if (y == 0) \
 			break; \
 		x *= x; \
@@ -44,8 +48,12 @@ t_s##BITS	S##BITS##_Pow(t_s##BITS x, t_s##BITS y) \
 	while (TRUE) \
 	{ \
 		if (y & 1) \
+		{ \
+			if CCCERROR((result * x < result), ERROR_RESULTRANGE, NULL) \
+				return (U##BITS##_MAX); \
 			result *= x; \
-		y >>= 1; \
+		} \
+		y = y >> 1; \
 		if (y == 0) \
 			break; \
 		x *= x; \

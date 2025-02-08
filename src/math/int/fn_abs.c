@@ -12,6 +12,8 @@
 _INLINE() \
 t_u##BITS	U##BITS##_Abs(t_u##BITS x) \
 { \
+	if CCCERROR(U##BITS##_IsNaN(x), ERROR_MATHDOMAIN, NULL) \
+		return (U##BITS##_ERROR); \
 	return (x); \
 } \
 
@@ -29,7 +31,7 @@ DEFINEFUNC_UINT_ABS(128)
 _INLINE() \
 t_s##BITS	S##BITS##_Abs(t_s##BITS x) \
 { \
-	if CCCERROR((x == S##BITS##_ERROR), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR(S##BITS##_IsNaN(x), ERROR_MATHDOMAIN, NULL) \
 		return (S##BITS##_ERROR); \
 	return (x < 0 ? -x : +x); \
 } \
