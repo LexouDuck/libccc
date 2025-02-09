@@ -69,11 +69,11 @@ t_f##BITS	F##BITS##_From(t_f##BITS x, t_sint n) \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
-DEFINEFUNC_FLOAT_FROM(16,  0x1p15f    , 0x1p-14f    , 0x1p11f  , u.value_uint = (t_u16)(((1 << F16_EXPONENT_BITS) - 1) + n) << F16_MANTISSA_BITS;)
+DEFINEFUNC_FLOAT_FROM(16,  0x1p15f    , 0x1p-14f    , 0x1p11f  , u.value_uint = (t_u16)(((1 << (F16_EXPONENT_BITS - 1)) - 1) + n) << F16_MANTISSA_BITS;)
 #endif
-DEFINEFUNC_FLOAT_FROM(32,  0x1p127f   , 0x1p-126f   , 0x1p24f  , u.value_uint = (t_u32)(((1 << F32_EXPONENT_BITS) - 1) + n) << F32_MANTISSA_BITS;)
+DEFINEFUNC_FLOAT_FROM(32,  0x1p127f   , 0x1p-126f   , 0x1p24f  , u.value_uint = (t_u32)(((1 << (F32_EXPONENT_BITS - 1)) - 1) + n) << F32_MANTISSA_BITS;)
 
-DEFINEFUNC_FLOAT_FROM(64,  0x1p1023   , 0x1p-1022   , 0x1p53   , u.value_uint = (t_u64)(((1 << F64_EXPONENT_BITS) - 1) + n) << F64_MANTISSA_BITS;)
+DEFINEFUNC_FLOAT_FROM(64,  0x1p1023   , 0x1p-1022   , 0x1p53   , u.value_uint = (t_u64)(((1 << (F64_EXPONENT_BITS - 1)) - 1) + n) << F64_MANTISSA_BITS;)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_FROM(80,  0x1p16383L , 0x1p-16382L , 0x1p64L  , u.value_float = 1.0; u.value_uint.se = 0x3fff + n;)
 #endif

@@ -79,6 +79,8 @@ t_float	Float_Parse_CheckSpecial(t_char const* str)
 	return (0.);
 }
 
+
+
 //! Returns `TRUE` if the given `str` contains any invalid characters for float parsing, or FALSE otherwise
 static
 t_bool	Float_Parse_CheckInvalid(t_char const* str)
@@ -177,6 +179,86 @@ t_f##BITS	F##BITS##_FromString(t_char const* str) \
 	F##BITS##_Parse(&result, str, 0); \
 	return (result); \
 } \
+
+
+
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_FROMSTR(16)
+#endif
+DEFINEFUNC_FLOAT_FROMSTR(32)
+
+DEFINEFUNC_FLOAT_FROMSTR(64)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEFUNC_FLOAT_FROMSTR(80)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEFUNC_FLOAT_FROMSTR(128)
+#endif
+
+
+
+#if 1 // LIBCONFIG_USE_STD_MATH
+
+
+
+#define DEFINEWRAPPERS_FLOAT(BITS, FUNCNAME) \
+static \
+t_size	F##BITS##_Parse_(t_f##BITS *dest, t_char const* str, t_size n) \
+{ \
+	t_f##BITS	result; \
+	t_size	i = 0; \
+	t_char* end = (t_char*)str; \
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL") \
+		goto failure; \
+	if (n == 0) \
+		n = String_Length(str); \
+	end += n; \
+	while (i < n && str[i] && Char_IsSpace(str[i])) \
+	{ \
+		++i; \
+	} \
+	result = Float_Parse_CheckSpecial(str + i); \
+	if (result != 0.) \
+		goto success; \
+	if (Float_Parse_CheckInvalid(str + i)) \
+		goto failure; \
+	result = FUNCNAME(str, &end); \
+success: \
+	if (dest) \
+		*dest = result; \
+	return (end - str); \
+failure: \
+	if (dest) \
+		*dest = F##BITS##_ERROR; \
+	return (end - str); \
+} \
+t_size	F##BITS##_Parse_Dec(t_f##BITS *dest, t_char const* str, t_size n)	{	return F##BITS##_Parse_(dest, str, n);	} \
+t_size	F##BITS##_Parse_Hex(t_f##BITS *dest, t_char const* str, t_size n)	{	return F##BITS##_Parse_(dest, str, n);	} \
+t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n)	{	return F##BITS##_Parse_(dest, str, n);	} \
+t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n)	{	return F##BITS##_Parse_(dest, str, n);	} \
+_INLINE()	t_f##BITS	F##BITS##_FromString_Dec(t_char const* str)	{	t_f##BITS	result = F##BITS##_ERROR;	F##BITS##_Parse_Dec(&result, str, 0);	return (result);	} \
+_INLINE()	t_f##BITS	F##BITS##_FromString_Hex(t_char const* str)	{	t_f##BITS	result = F##BITS##_ERROR;	F##BITS##_Parse_Hex(&result, str, 0);	return (result);	} \
+_INLINE()	t_f##BITS	F##BITS##_FromString_Oct(t_char const* str)	{	t_f##BITS	result = F##BITS##_ERROR;	F##BITS##_Parse_Oct(&result, str, 0);	return (result);	} \
+_INLINE()	t_f##BITS	F##BITS##_FromString_Bin(t_char const* str)	{	t_f##BITS	result = F##BITS##_ERROR;	F##BITS##_Parse_Bin(&result, str, 0);	return (result);	} \
+
+
+
+#if LIBCONFIG_USE_FLOAT16
+DEFINEWRAPPERS_FLOAT(16, strtof)
+#endif
+DEFINEWRAPPERS_FLOAT(32, strtof)
+
+DEFINEWRAPPERS_FLOAT(64, strtod)
+#if LIBCONFIG_USE_FLOAT80
+DEFINEWRAPPERS_FLOAT(80, strtold)
+#endif
+#if LIBCONFIG_USE_FLOAT128
+DEFINEWRAPPERS_FLOAT(128, strtold)
+#endif
+
+
+
+#elif LIBCONFIG_USE_CCC_MATH
 
 
 
@@ -374,7 +456,7 @@ t_size	F##BITS##_Parse_Oct(t_f##BITS *dest, t_char const* str, t_size n) \
 		goto failure; \
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Oct(str[i]))) \
 		goto failure; \
-/* TODO */ \
+/* TODO: implement */ \
 success: \
 	if (dest)	*dest = result; \
 	return (0); \
@@ -413,7 +495,7 @@ t_size	F##BITS##_Parse_Bin(t_f##BITS *dest, t_char const* str, t_size n) \
 		goto failure; \
 	if (!(str[i] == '+' || str[i] == '-' || str[i] == '.' || Char_IsDigit_Bin(str[i]))) \
 		goto failure; \
-/* TODO */ \
+/* TODO: implement */ \
 success: \
 	if (dest)	*dest = NAN; \
 	return (0); \
@@ -432,7 +514,6 @@ t_f##BITS	F##BITS##_FromString_Bin(t_char const* str) \
 
 
 #if LIBCONFIG_USE_FLOAT16
-DEFINEFUNC_FLOAT_FROMSTR(   16)
 DEFINEFUNC_FLOAT_FROMSTRDEC(16)
 DEFINEFUNC_FLOAT_FROMSTRHEX(16)
 DEFINEFUNC_FLOAT_FROMSTROCT(16)
@@ -440,14 +521,12 @@ DEFINEFUNC_FLOAT_FROMSTRBIN(16)
 //DEFINEFUNC_FLOAT_FROMSTRBASE(16)
 #endif
 
-DEFINEFUNC_FLOAT_FROMSTR(   32)
 DEFINEFUNC_FLOAT_FROMSTRDEC(32)
 DEFINEFUNC_FLOAT_FROMSTRHEX(32)
 DEFINEFUNC_FLOAT_FROMSTROCT(32)
 DEFINEFUNC_FLOAT_FROMSTRBIN(32)
 //DEFINEFUNC_FLOAT_FROMSTRBASE(32)
 
-DEFINEFUNC_FLOAT_FROMSTR(   64)
 DEFINEFUNC_FLOAT_FROMSTRDEC(64)
 DEFINEFUNC_FLOAT_FROMSTRHEX(64)
 DEFINEFUNC_FLOAT_FROMSTROCT(64)
@@ -455,7 +534,6 @@ DEFINEFUNC_FLOAT_FROMSTRBIN(64)
 //DEFINEFUNC_FLOAT_FROMSTRBASE(64)
 
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_FROMSTR(   80)
 DEFINEFUNC_FLOAT_FROMSTRDEC(80)
 DEFINEFUNC_FLOAT_FROMSTRHEX(80)
 DEFINEFUNC_FLOAT_FROMSTROCT(80)
@@ -464,10 +542,18 @@ DEFINEFUNC_FLOAT_FROMSTRBIN(80)
 #endif
 
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_FROMSTR(   128)
 DEFINEFUNC_FLOAT_FROMSTRDEC(128)
 DEFINEFUNC_FLOAT_FROMSTRHEX(128)
 DEFINEFUNC_FLOAT_FROMSTROCT(128)
 DEFINEFUNC_FLOAT_FROMSTRBIN(128)
 //DEFINEFUNC_FLOAT_FROMSTRBASE(128)
+#endif
+
+
+
+#else
+
+
+
+
 #endif

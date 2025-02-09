@@ -1719,15 +1719,32 @@ void	test_strto##TYPE(void) \
 	print_test_strto##TYPE("strto"#TYPE" (exp, invalid)",	FALSE,                         NAN, "eXp"                        ); \
 	print_test_strto##TYPE("strto"#TYPE" (exp, invalid)",	FALSE,                         NAN, "eXP"                        ); \
 	print_test_strto##TYPE("strto"#TYPE" (exp, invalid)",	FALSE,                         NAN, "EXP"                        ); \
-/*\
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0xp"                        ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0XP"                        ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p"                       ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P"                       ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x0p0"                      ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X0P0"                      ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0p1"                      ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0P1"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                       0xEp0, "0xep"                       ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                       0xEp0, "0Xep"                       ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                       0xEp0, "0XeP"                       ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                       0xEp0, "0XEP"                       ); \
+/* TODO fix these tests wherein parser is too lenient \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0xepe"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0Xepe"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XePe"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XEPE"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0xexp"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0Xexp"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XexP"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XExP"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0xexpe"                     ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0Xexpe"                     ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XexPe"                     ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex, invalid)",	FALSE,                         NAN, "0XExPE"                     ); \
+*/ \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0xp"                        ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0XP"                        ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0x0p"                       ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0X0P"                       ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0x0p0"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p0, "0X0P0"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p1, "0x0p1"                      ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x0p1, "0X0P1"                      ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0X1P"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p0, "0x1p0"                      ); \
@@ -1736,16 +1753,16 @@ void	test_strto##TYPE(void) \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1P1"                      ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.p1"                     ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.P1"                     ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.0p1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.0P1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X1.1p1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x1.1P1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.1p1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.1P1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.0p1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.0P1"                    ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0X0.p1"                     ); \
-	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p1, "0x0.P1"                     ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x1.0p1, "0X1.0p1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x1.0p1, "0x1.0P1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x1.1p1, "0X1.1p1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x1.1p1, "0x1.1P1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.1p1, "0X0.1p1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.1p1, "0x0.1P1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.0p1, "0X0.0p1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.0p1, "0x0.0P1"                    ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.0p1, "0X0.p1"                     ); \
+	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                     0x0.0p1, "0x0.P1"                     ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                         0x2, "0x2p"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                         0x2, "0X2P"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,                       0x1p2, "0x1p2"                      ); \
@@ -1763,12 +1780,13 @@ void	test_strto##TYPE(void) \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,        0x1.921FB54442D18p+2, "0x1.921FB54442D18p+2"       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-2, "0x1.45F306DC9C883p-2"       ); \
 	print_test_strto##TYPE("strto"#TYPE" (hex)",        	FALSE,        0x1.45F306DC9C883p-3, "0x1.45F306DC9C883p-3"       ); \
+/* TODO fix these tests \
 	print_test_strto##TYPE("strto"#TYPE" (bin)",        	FALSE,                          0., "0b0"                        ); \
 	print_test_strto##TYPE("strto"#TYPE" (bin)",        	FALSE,                          1., "0b1"                        ); \
 	print_test_strto##TYPE("strto"#TYPE" (bin)",        	FALSE,                          2., "0b10"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (bin)",        	FALSE,                          3., "0b11"                       ); \
 	print_test_strto##TYPE("strto"#TYPE" (bin)",        	FALSE,                         13., "0b1101"                     ); \
-*/\
+*/ \
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         NAN, "(-(123"                     ); \
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         NAN, "[12]123"                    ); \
 	print_test_strto##TYPE("strto"#TYPE,                	FALSE,                         NAN, "45_"                        ); \
@@ -2554,7 +2572,7 @@ void	test_strto##TYPE(void) \
 	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP"                     ); \
 	print_test_strto##TYPE("strto"#TYPE" (nan hex, bad)",	FALSE,                         NAN, "0xNANP0"                    ); \
 	print_test_strto##TYPE("strto"#TYPE" (empty str)   ",	FALSE,                         NAN, ""                           ); \
-	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	FLAG_SIGSEGV,                    0, NULL                         ); \
+	print_test_strto##TYPE("strto"#TYPE" (null str)    ",	FLAG_SIGSEGV,                  NAN, NULL                         ); \
 }
 
 #if (!defined(c_strtof16) || !defined(__float16))
