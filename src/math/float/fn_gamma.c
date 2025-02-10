@@ -180,14 +180,16 @@ t_f64	F64_Gamma(t_f64 x)
 	/* special cases */
 	if (ix >= 0x7FF00000) /* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */
 		return x + INFINITY;
+	if (x == 0.0)
+		return (F64_CopySign(INFINITY, x));
 	if (ix < (0x3FF-54)<<20) /* |x| < 2^-54: tgamma(x) ~ 1/x, +-0 raises div-by-zero */
-		return 1/x;
+		return (1 / x);
 	/* integer arguments */
 	/* raise inexact when non-integer */
 	if (x == F64_Floor(x))
 	{
 		if (sign)
-			return 0/0.0;
+			return (0 / 0.0);
 		if (x <= sizeof(data_gamma_f64.fact) / sizeof(*data_gamma_f64.fact))
 			return data_gamma_f64.fact[(int)x - 1];
 	}
@@ -280,7 +282,7 @@ t_f64	F64_Gamma(t_f64 x)
 ** Accuracy for large arguments is dominated by error in powl().
 */
 
-#define DEFINEFUNC_FLOAT_GAMMAL(BITS) \
+#define DEFINEFUNC_FLOAT_GAMMA_LD(BITS) \
 /* \
 tgamma(x+2) = tgamma(x+2) P(x)/Q(x) \
 0 <= x <= 1 \
@@ -539,10 +541,10 @@ small: \
 
 
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_GAMMAL(80)
+DEFINEFUNC_FLOAT_GAMMA_LD(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_GAMMAL(128)
+DEFINEFUNC_FLOAT_GAMMA_LD(128)
 #endif
 
 

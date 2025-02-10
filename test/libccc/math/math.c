@@ -506,13 +506,11 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e+9,+1e+9});
 	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e-9,+1e-9});
 
-#if 0
 	print_math_title("Gamma function");
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+1, 0e+0});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-0e+0,+1e+1});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+9,+1e+9});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e-9,+1e-9});
-#endif
 	print_math_title("Log-Gamma function");
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e+1, 0e+0});
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-0e+0,+1e+1});
