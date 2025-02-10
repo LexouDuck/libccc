@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 { return (memchr(ptr, byte, n)); }
 #else
@@ -31,7 +31,7 @@ void*	Memory_Find(void const* ptr, t_u8 byte, t_size n)
 		++i;
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
-		"no byte 0x%2.2X found in memory region 0x%p (length: "SF_SIZE")", byte, ptr, n);
+		"no byte 0x%2.2X found in memory region 0x%p (length: " SF_SIZE ")", byte, ptr, n);
 	return (NULL);
 }
 #endif

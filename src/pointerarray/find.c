@@ -18,7 +18,7 @@ void* const*	PointerArray_Find(void* const* ptrarr, void const* ptr)
 			return (&(ptrarr[i]));
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
-		"no pointer matching %p found in pointer array of size "SF_UINT, ptr, length);
+		"no pointer matching %p found in pointer array of size " SF_UINT, ptr, length);
 	return (NULL);
 }
 
@@ -36,7 +36,7 @@ void* const*	PointerArray_Find_F(void* const* ptrarr, t_bool (*match)(void const
 			return (&(ptrarr[i]));
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
-		"no matching pointer found in pointer array of size "SF_UINT, length);
+		"no matching pointer found in pointer array of size " SF_UINT, length);
 	return (NULL);
 }
 
@@ -54,7 +54,7 @@ t_sint	PointerArray_IndexOf(void const* const* ptrarr, void const* ptr)
 			return (i);
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
-		"no pointer matching %p found in pointer array of size "SF_UINT, ptr, length);
+		"no pointer matching %p found in pointer array of size " SF_UINT, ptr, length);
 	return (ERROR);
 }
 
@@ -72,6 +72,6 @@ t_sint	PointerArray_IndexOf_F(void const* const* ptrarr, t_bool (*match)(void co
 			return (i);
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
-		"no matching pointer found in pointer array of size "SF_UINT, length);
+		"no matching pointer found in pointer array of size " SF_UINT, length);
 	return (ERROR);
 }

@@ -1,22 +1,24 @@
 
-#include <time.h>
-#include <sys/time.h>
+#if (defined(_WIN32) && !defined(__MINGW32__))
+	#include <time.h>
+#else
+	#include <sys/time.h>
+#endif
 
 #include "libccc.h"
 #include "libccc/bool.h"
 #include "libccc/sys/time.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
-/*
-** ************************************************************************** *|
-**                              Testing Variables                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              Testing Variables                             ||
+\*============================================================================*/
 
-#define SF_UTC	(SF_DATE_UNIX" "SF_TIME_UNIX)
+#define SF_UTC	(SF_DATE_UNIX " " SF_TIME_UNIX)
 
 /*
 	.year		; Amount of years since 1900	
@@ -31,7 +33,7 @@
 */
 
 #define DATE_STR_BUFFER		512
-#define DATE_STR_FORMAT	\
+#define DATE_STR_FORMAT \
 	" .year"      "=%4i," \
 	" .month"     "=%2i," \
 	" .day_month" "=%2u," \
@@ -166,11 +168,9 @@ s_date	bad_leap_second_date =
 
 
 
-/*
-** ************************************************************************** *|
-**                              Testing Functions                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              Testing Functions                             ||
+\*============================================================================*/
 
 
 
@@ -185,7 +185,7 @@ void	print_test_datetostr(char const* test_name, t_testflags flags,
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	datetostr, date, format)
-	TEST_PRINT(str,	datetostr, "format=\"%s\", date = {"DATE_STR_FORMAT"}",
+	TEST_PRINT(str,	datetostr, "format=\"%s\", date = {" DATE_STR_FORMAT "}",
 		format,
 		date->year,
 		date->month,
@@ -254,11 +254,9 @@ void	test_strtodate(void)
 
 
 
-/*
-** ************************************************************************** *|
-**                            Test Suite Function                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                            Test Suite Function                             ||
+\*============================================================================*/
 
 
 

@@ -26,9 +26,11 @@ INCLUDES := $(INCLUDES) \
 bin_copylibs = \
 	mkdir -p $(BINPATH)$(1) ; \
 	$(foreach i,$(PACKAGES), \
-		for i in $(PACKAGE_$(i)_LINKDIR)* ; do \
-			cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
-		done ; )
+		if [ $(PACKAGE_$(i)_LIBMODE) = "dynamic" ] ; then \
+			for i in $(PACKAGE_$(i)_LINKDIR)*.$(LIBEXT_dynamic)* ; do \
+				cp -Rp "$$i" $(BINPATH)$(1) || $(call print_warning,"No library files to copy from $(PACKAGE_$(i)_LINKDIR)*") ; \
+			done ; \
+		fi ; )
 
 #! Shell command used to create symbolic links for version-named library binary
 #! @param $(1)	path of the binary file (folder, relative to root-level Makefile)
@@ -111,27 +113,31 @@ ifeq ($(OSMODE),other)
 	@$(call print_warning,"Unknown platform: needs manual configuration.")
 	@$(call print_warning,"You must manually configure the script to build a dynamic library")
 endif
-ifeq ($(OSMODE),windows)
+ifeq ($(OSMODE),linux)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-Wl,--output-def,$(NAME).def \
-		-Wl,--out-implib,$(NAME).lib \
-		-Wl,--export-all-symbols
-	@cp -p $(NAME).def $(BINPATH)dynamic/
-	@cp -p $(NAME).lib $(BINPATH)dynamic/
+		-Wl,-rpath='$$ORIGIN/'
 endif
 ifeq ($(OSMODE),macos)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
 		-install_name '@loader_path/$(NAME_dynamic)'
 endif
-ifeq ($(OSMODE),linux)
+ifeq ($(OSMODE),windows)
+ifneq ($(findstring clang,$(CC)),)
 	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-Wl,-rpath='$$ORIGIN/'
+		-Wl,-output-def:$(BINPATH)dynamic/$(NAME).def \
+		-fuse-ld=lld
+else
+	@$(CC) -shared -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
+		-Wl,--out-implib,$(BINPATH)dynamic/$(NAME).lib \
+		-Wl,--output-def,$(BINPATH)dynamic/$(NAME).def \
+		-Wl,--export-all-symbols
+endif
 endif
 ifeq ($(OSMODE),emscripten)
 	@$(CC) -o $@ $(CFLAGS) $(LDFLAGS) $(call objs) $(LDLIBS) \
-		-s MODULARIZE \
 		-s EXPORTED_FUNCTIONS=[_JSON_FromString_Lenient,_JSON_ToString_Minify,_KVT_Delete] \
-		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8]
+		-s EXPORTED_RUNTIME_METHODS=[ccall,cwrap,getValue,setValue,stringToUTF8,UTF8ToString,lengthBytesUTF8] \
+		-s MODULARIZE
 endif
 	@printf $(IO_GREEN)"OK!"$(IO_RESET)"\n"
 	@$(call bin_copylibs,dynamic)

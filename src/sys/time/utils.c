@@ -28,12 +28,12 @@ t_bool	Date_IsValid(s_date const* date)
 
 	if (date->day_week >= ENUMLENGTH_WEEKDAY)
 		return (FALSE);
-	if (ISNEG(date->day_week))
+	if (isneg(date->day_week))
 		return (FALSE);
 
 	if (date->month >= ENUMLENGTH_MONTH)
 		return (FALSE);
-	if (ISNEG(date->month))
+	if (isneg(date->month))
 		return (FALSE);
 	return (TRUE);
 }
@@ -70,13 +70,13 @@ void	Date_MakeValid(s_date* date)
 	tmp = ENUMLENGTH_WEEKDAY;
 	if (date->day_week >= tmp)
 		date->day_week = (e_weekday)(tmp - 1);
-	if (ISNEG(date->day_week))
+	if (isneg(date->day_week))
 		date->day_week = (e_weekday)0;
 
 	tmp = ENUMLENGTH_MONTH;
 	if (date->month >= tmp)
 		date->month = (e_month)(tmp - 1);
-	if (ISNEG(date->month))
+	if (isneg(date->month))
 		date->month = (e_month)0;
 }
 
@@ -85,7 +85,7 @@ void	Date_MakeValid(s_date* date)
 t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 {
 	if CCCERROR((month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), ERROR_INVALIDENUM, 
-		"month enum value is invalid: "SF_ENUM, month)
+		"month enum value is invalid: " SF_ENUM, month)
 		return (FALSE);
 	if (month == MONTH_FEBRUARY)
 		return (Date_IsLeapYear(year) ? 29 : 28);
@@ -100,13 +100,13 @@ t_uint	Date_DaysInMonth(e_month month, t_s32 year)
 e_weekday	Date_DayOfTheWeek(s_date* date)
 {
 // algorithm courtesy of Tomohiko Sakamoto
-    static t_char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
-    t_s32 y = date->year;
-    if (date->month < MONTH_MARCH)
-    {
-        y -= 1;
-    }
-    return ((e_weekday)((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY));
+	static t_char const t[] = { 0, 3, 2, 5, 0, 3, 5, 1, 4, 6, 2, 4 };
+	t_s32 y = date->year;
+	if (date->month < MONTH_MARCH)
+	{
+		y -= 1;
+	}
+	return ((e_weekday)((y + y/4 - y/100 + y/400 + t[date->month] + date->day_month) % ENUMLENGTH_WEEKDAY));
 /*
 // simple epoch-based algorithm
 	t_time t = Date_ToTime(date);
@@ -130,7 +130,7 @@ t_bool	Date_IsLeapYear(t_s32 year)
 t_bool	Date_HasLeapSecond(e_month month, t_s32 year)
 {
 	if CCCERROR((month < MONTH_JANUARY || month >= ENUMLENGTH_MONTH), ERROR_INVALIDENUM, 
-		"month enum value is invalid: "SF_ENUM, month)
+		"month enum value is invalid: " SF_ENUM, month)
 		return (FALSE);
 	if (month != MONTH_JUNE &&
 		month != MONTH_DECEMBER)

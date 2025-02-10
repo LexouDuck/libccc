@@ -3,6 +3,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -23,7 +24,7 @@
 
 
 
-inline
+_INLINE()
 t_char*	Program_GetCWD(void)
 {
 	t_char*	result = NULL;
@@ -48,7 +49,7 @@ t_char*	Program_GetCWD(void)
 	}
 	while (result == NULL && size < MAX_BUFFER_SIZE);
 	if CCCERROR((size >= MAX_BUFFER_SIZE), ERROR_INVALIDARGS, 
-		"could not write date to string, size is too large ("SF_SIZE"), should be under "SF_SIZE,
+		"could not write date to string, size is too large (" SF_SIZE "), should be under " SF_SIZE,
 		size, MAX_BUFFER_SIZE)
 		return (NULL);
 	return (NULL);

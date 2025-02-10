@@ -14,7 +14,7 @@ t_ascii	String_Parse_GetEscape(t_ascii escapechar)
 {
 	static const struct { t_ascii esc; t_ascii chr; } lookuptable[] =
 	{
-		{ .esc =  '0',	.chr = '\x00',	}, // Null-terminator
+		{ .esc =  '0',	.chr = '\0',	}, // Null-terminator
 		{ .esc =  'a',	.chr = '\a',	}, // Alert (Beep, Bell) (added in C89)[1]
 		{ .esc =  'b',	.chr = '\b',	}, // Backspace
 		{ .esc =  't',	.chr = '\t',	}, // Horizontal Tab
@@ -27,7 +27,7 @@ t_ascii	String_Parse_GetEscape(t_ascii escapechar)
 		{ .esc = '\"',	.chr = '\"',	}, // Double quotation mark
 		{ .esc =  '/',	.chr =  '/',	}, // Forward slash
 		{ .esc = '\\',	.chr = '\\',	}, // Backslash
-		{ .esc = '\0' }
+		{ .esc = '\0',	.chr = '\0',	}, // Null-terminator
 	};
 	for (t_uint i = 0; lookuptable[i].esc != '\0'; ++i)
 	{
@@ -79,17 +79,17 @@ t_size	String_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 
 
 //! Parses a unicode escape sequence, and encodes the result into a UTF-8 multibyte character
-#define	String_Parse_Unicode(_BITS_) \
-	for (t_u8 c = 0; c < ((_BITS_) / 8); ++c)									\
-	{																			\
-		tmp[c*2+0] = str[++index];												\
-		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; }			\
-		tmp[c*2+1] = str[++index];												\
-		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; }			\
-	}																			\
-	tmp[((_BITS_) / 4)] = '\0';													\
-	unicode = U##_BITS_##_FromString_Hex(tmp);									\
-	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode);						\
+#define	STRING_PARSE_UNICODE(BITS) \
+	for (t_u8 c = 0; c < ((BITS) / 8); ++c) \
+	{ \
+		tmp[c*2+0] = str[++index]; \
+		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; } \
+		tmp[c*2+1] = str[++index]; \
+		if (!Char_IsDigit_Hex(str[index]))	{ error = TRUE; break; } \
+	} \
+	tmp[((BITS) / 4)] = '\0'; \
+	unicode = U##BITS##_FromString_Hex(tmp); \
+	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode); \
 
 
 
@@ -122,8 +122,8 @@ t_size	String_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_esca
 				result[i++] = escapechar;
 			else switch (str[index])
 			{
-				case 'u':	String_Parse_Unicode(16)	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
-				case 'U':	String_Parse_Unicode(32)	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
+				case 'u':	STRING_PARSE_UNICODE(16)	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
+				case 'U':	STRING_PARSE_UNICODE(32)	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
 				case 'x': // Hexadecimal byte value
 					tmp[0] = str[++index];	if (!Char_IsDigit_Hex(tmp[0]))	error = TRUE;
 					tmp[1] = str[++index];	if (!Char_IsDigit_Hex(tmp[1]))	error = TRUE;
@@ -164,7 +164,7 @@ failure:
 
 
 
-inline
+_INLINE()
 t_utf8*	String_FromEscape(t_ascii const* str, t_bool any_escape)
 {
 	t_ascii*	result = NULL;

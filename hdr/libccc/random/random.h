@@ -18,22 +18,18 @@
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/random}
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc/random/prng.h"
 #include "libccc/random/csprng.h"
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //! This type stores the current state of the random number generator
 /*!
@@ -43,11 +39,9 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 
 
-/*
-** ************************************************************************** *|
-**                               Random Functions                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                               Random Functions                             ||
+\*============================================================================*/
 
 //!@doc TODO document this macro alias
 //!@{
@@ -93,58 +87,51 @@ typedef LIBCONFIG_RANDOM_TYPE   t_rand;
 
 //!@doc TODO document this macro alias
 //!@{
-#define				Random_UInt			CONCAT(LIBCONFIG_RANDOM_NAME,_UInt)
-#define c_randu		Random_UInt
+#define				Random_Get_UInt			CONCAT(LIBCONFIG_RANDOM_NAME,_Get_UInt)
+#define c_randu		Random_Get_UInt
+#define				Random_Get_SInt			CONCAT(LIBCONFIG_RANDOM_NAME,_Get_SInt)
+#define c_rands		Random_Get_SInt
+#define				Random_Get_Fixed		CONCAT(LIBCONFIG_RANDOM_NAME,_Get_Fixed)
+#define c_randq		Random_Get_Fixed
+#define				Random_Get_Float		CONCAT(LIBCONFIG_RANDOM_NAME,_Get_Float)
+#define c_randf		Random_Get_Float
 //!@}
 
 //!@doc TODO document this macro alias
 //!@{
-#define				Random_UInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_UInt_Range)
-#define c_randxu	Random_UInt_Range
-//!@}
-
-
-
-//!@doc TODO document this macro alias
-//!@{
-#define				Random_SInt			CONCAT(LIBCONFIG_RANDOM_NAME,_SInt)
-#define c_rands		Random_SInt
-//!@}
-
-//!@doc TODO document this macro alias
-//!@{
-#define				Random_SInt_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_SInt_Range)
-#define c_randxs	Random_SInt_Range
-//!@}
-
-
-
-//!@doc TODO document this macro alias
-//!@{
-#define				Random_Fixed		CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed)
-#define c_randq		Random_Fixed
+#define				Random_GetInRange_UInt	CONCAT(LIBCONFIG_RANDOM_NAME,_GetInRange_UInt)
+#define c_randxu	Random_GetInRange_UInt
+#define				Random_GetInRange_SInt	CONCAT(LIBCONFIG_RANDOM_NAME,_GetInRange_SInt)
+#define c_randxs	Random_GetInRange_SInt
+#define				Random_GetInRange_Fixed	CONCAT(LIBCONFIG_RANDOM_NAME,_GetInRange_Fixed)
+#define c_randxq	Random_GetInRange_Fixed
+#define				Random_GetInRange_Float	CONCAT(LIBCONFIG_RANDOM_NAME,_GetInRange_Float)
+#define c_randxf	Random_GetInRange_Float
 //!@}
 
 //!@doc TODO document this macro alias
 //!@{
-#define				Random_Fixed_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Fixed_Range)
-#define c_randxq	Random_Fixed_Range
+#define				Random_Sample_UInt		CONCAT(LIBCONFIG_RANDOM_NAME,_Sample_UInt)
+#define c_randnu	Random_Sample_UInt
+#define				Random_Sample_SInt		CONCAT(LIBCONFIG_RANDOM_NAME,_Sample_SInt)
+#define c_randns	Random_Sample_SInt
+#define				Random_Sample_Fixed		CONCAT(LIBCONFIG_RANDOM_NAME,_Sample_Fixed)
+#define c_randnq	Random_Sample_Fixed
+#define				Random_Sample_Float		CONCAT(LIBCONFIG_RANDOM_NAME,_Sample_Float)
+#define c_randnf	Random_Sample_Float
 //!@}
-
-
 
 //!@doc TODO document this macro alias
 //!@{
-#define				Random_Float		CONCAT(LIBCONFIG_RANDOM_NAME,_Float)
-#define c_randf		Random_Float
+#define				Random_SampleInRange_UInt	CONCAT(LIBCONFIG_RANDOM_NAME,_SampleInRange_UInt)
+#define c_randnxu	Random_SampleInRange_UInt
+#define				Random_SampleInRange_SInt	CONCAT(LIBCONFIG_RANDOM_NAME,_SampleInRange_SInt)
+#define c_randnxs	Random_SampleInRange_SInt
+#define				Random_SampleInRange_Fixed	CONCAT(LIBCONFIG_RANDOM_NAME,_SampleInRange_Fixed)
+#define c_randnxq	Random_SampleInRange_Fixed
+#define				Random_SampleInRange_Float	CONCAT(LIBCONFIG_RANDOM_NAME,_SampleInRange_Float)
+#define c_randnxf	Random_SampleInRange_Float
 //!@}
-
-//!@doc TODO document this macro alias
-//!@{
-#define				Random_Float_Range	CONCAT(LIBCONFIG_RANDOM_NAME,_Float_Range)
-#define c_randxf	Random_Float_Range
-//!@}
-
 
 
 

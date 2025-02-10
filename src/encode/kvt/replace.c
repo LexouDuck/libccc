@@ -58,7 +58,7 @@ e_cccerror	KVT_Replace_InArray(s_kvt* array, t_sint index, s_kvt* newitem)
 		return (ERROR_NULLPOINTER);
 	item = KVT_GetArrayItem(array, index);
 	if CCCERROR((item == NULL), ERROR_INVALIDARGS,
-		"could not get kvt array item at index "SF_SINT, index)
+		"could not get kvt array item at index " SF_SINT, index)
 		return (ERROR_INDEX2SMALL);
 	return (KVT_Replace(array, item, newitem));
 }

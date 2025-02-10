@@ -16,21 +16,17 @@
 **	This header defines all the primitive types and common macros to use.
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc_define.h"
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                             Error handling logic                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                             Error handling logic                           ||
+\*============================================================================*/
 
 
 
@@ -49,15 +45,14 @@ HEADER_CPP
 //!@{
 #ifndef LIBCONFIG_ERROR_DEFAULTHANDLER
 	#ifdef DEBUG
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
-	{\
-		s_logger logger = DEFAULT_LOGGER_STDERR;\
-		Log_Error_CCC(&logger, error,\
-			"%s -> %s", FUNCNAME, MESSAGE);\
-	}\
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNC, FILE, LINE, MESSAGE) \
+	{ \
+		s_logger logger = DEFAULT_LOGGER_STDERR; \
+		Log_Error_CCC(&logger, error, "%s:" SF_UINT ": %s() -> %s", FILE, LINE, FUNC, MESSAGE); \
+	} \
 
 	#else
-	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNCNAME, MESSAGE) \
+	#define LIBCONFIG_ERROR_DEFAULTHANDLER(ERRORCODE, FUNC, FILE, LINE, MESSAGE) \
 	{}
 	
 	#endif
@@ -66,21 +61,48 @@ HEADER_CPP
 
 
 
-//!@doc The action to take when there is an integer overflow (by default, let it continue)
+//!@doc The action to take when there is an integer overflow
 //!@{
-#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW
-#define LIBCONFIG_ERROR_HANDLEOVERFLOW(VALUE) \
-{}	//	return (VALUE);
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT
+#if LIBCONFIG_UINT_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	return (VALUE);
+#elif LIBCONFIG_UINT_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	return (TYPE##_NAN);
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(TYPE, VALUE)	{}	//	return (VALUE);
 #endif
-#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
-#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
-{}	//	if (dest)	*dest = VALUE;	return (i);
 #endif
 
-// TODO implement configurable return values in cases of number overflow with this macro
-#define LIBCONFIG_ERROR_OVERFLOW(TYPE, VALUE) \
-	CONCAT(TYPE,_ERROR)	//!< configurable error value
-//	(VALUE)				//!< saturated type
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT
+#if LIBCONFIG_SINT_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	return (VALUE);
+#elif LIBCONFIG_SINT_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	return (TYPE##_NAN);
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(TYPE, VALUE)	{}	//	return (VALUE);
+#endif
+#endif
+
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED
+#if LIBCONFIG_FIXED_INF
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	return (VALUE);
+#elif LIBCONFIG_FIXED_NAN
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	return (TYPE##_NAN);
+#else // default action: let it continue
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(TYPE, VALUE)	{}	//	return (VALUE);
+#endif
+#endif
+
+#ifndef LIBCONFIG_ERROR_HANDLEOVERFLOW_FLOAT
+#define LIBCONFIG_ERROR_HANDLEOVERFLOW_FLOAT(TYPE, VALUE)	return (VALUE);
+#endif
+
+
+
+#ifndef LIBCONFIG_ERROR_PARSEROVERFLOW
+#define LIBCONFIG_ERROR_PARSEROVERFLOW(VALUE) \
+	{}	//	if (dest)	*dest = VALUE;	return (i);
+#endif
 //!@}
 
 
@@ -161,8 +183,9 @@ HEADER_CPP
 /*!
 **	This `#define` enables libccc error-handling when set to `1`.
 **	You can set this `#define` to `0` if you wish to deactivate all error checking/handling.
-**	This is not recommended, since no checks will be performed, so segfaults will happen.
-**	Only do so if your code is robust and thoroughly tested, and you really need some extra performance.
+**	This is not recommended, since no error checks will be performed, so signals/crashes are likely.
+**	The recommendation is to only do so if your code is already robust and thoroughly tested,
+**	and you really need some extra performance by removing error checks throughout.
 */
 #define CHECK_ERRORS	1
 
@@ -180,11 +203,13 @@ HEADER_CPP
 **	@param _ERRORTYPE_	The type of error to emit (an #e_cccerror value)
 */
 #define CCCERROR(_CONDITION_, _ERRORTYPE_, ...) \
-    ((_CONDITION_) && Error_If(			\
-        _ERRORTYPE_,					\
-        SHOULDHANDLE_##_ERRORTYPE_,		\
-        (const char*)__func__,			\
-        __VA_ARGS__))					\
+	((_CONDITION_) && Error_If( \
+		_ERRORTYPE_, \
+		SHOULDHANDLE_##_ERRORTYPE_, \
+		(char const*)__func__, \
+		(char const*)__FILE__, \
+		__LINE__, \
+		__VA_ARGS__)+1) /* this `+1` here allows any compiler to know trivially that Error_If() always returns `TRUE` */
 
 //!@}
 
@@ -192,11 +217,9 @@ HEADER_CPP
 
 
 
-/*
-** ************************************************************************** *|
-**                           Error codes for libccc                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Error codes for libccc                           ||
+\*============================================================================*/
 
 //! This type represents an error code for a libccc function (ie: a value for the 'errno' global variable)
 /*!
@@ -258,11 +281,9 @@ typedef struct stdglobal
 
 
 
-/*
-** ************************************************************************** *|
-**                           IO 'errno' Error codes                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           IO 'errno' Error codes                           ||
+\*============================================================================*/
 
 /*
 **	Below is a list of the symbolic error names that are defined on Linux:

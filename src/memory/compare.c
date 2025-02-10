@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 { return (memcmp(ptr1, ptr2, n)); }
 #else
@@ -40,7 +40,7 @@ t_sint		Memory_Compare(void const* ptr1, void const* ptr2, t_size n)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool		Memory_Equals(void const* ptr1, void const* ptr2, t_size n)
 { return (memcmp(ptr1, ptr2, n) == 0); }
 #else

@@ -16,11 +16,9 @@
 **	This header defines some simple pseudo-random number generator functions.
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc/int.h"
 #include "libccc/fixed.h"
@@ -29,11 +27,9 @@
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //!@doc Pseudo-random number generator (Linear Congruential Generator). Modulus is `2^31`
 /*!
@@ -66,15 +62,13 @@ HEADER_CPP
 
 
 //! This type stores the current state of the random number generator
-typedef t_u32   t_prng;
+typedef struct prng_state { t_u32 seed; }	t_prng;
 
 
 
-/*
-** ************************************************************************** *|
-**                               Random Functions                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                               Random Functions                             ||
+\*============================================================================*/
 
 //!@doc TODO document this
 //!@{
@@ -111,11 +105,9 @@ void				PRNG_Delete(t_prng* *a_state);
 
 
 
-/*
-** ************************************************************************** *|
-**                          Stateful RNG functions                            *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Stateful RNG functions                            ||
+\*============================================================================*/
 
 //!@doc	Writes `n` bytes of random data to `dest`.
 /*!
@@ -132,57 +124,35 @@ e_cccerror			PRNG_Next(t_prng* state, void* dest, t_size n);
 
 
 
-//!@doc	Get a random unsigned integer value
+//!@doc	Get a random number
 //!@{
-t_uint				PRNG_UInt(t_prng* state);
-#define c_prngu		PRNG_UInt
-//!@}
-//!@doc	Get a random unsigned integer value, in the range `[min, max[`
-//!@{
-t_uint				PRNG_UInt_Range(t_prng* state, t_uint  min, t_uint  max);
-#define c_prngxu	PRNG_UInt_Range
-//!@}
-
-//!@doc	Get a random integer value
-//!@{
-t_sint				PRNG_SInt(t_prng* state);
-#define c_prngs		PRNG_SInt
-//!@}
-//!@doc	Get a random integer value, in the range `[min, max[`
-//!@{
-t_sint				PRNG_SInt_Range(t_prng* state, t_sint  min, t_sint  max);
-#define c_prngxs	PRNG_SInt_Range
+t_uint				PRNG_Get_UInt(t_prng* state);
+#define c_prngu		PRNG_Get_UInt
+t_sint				PRNG_Get_SInt(t_prng* state);
+#define c_prngs		PRNG_Get_SInt
+t_fixed				PRNG_Get_Fixed(t_prng* state);
+#define c_prngq		PRNG_Get_Fixed
+t_float				PRNG_Get_Float(t_prng* state);
+#define c_prngf		PRNG_Get_Float
 //!@}
 
-//!@doc	Get a random fixed-point value
+//!@doc	Get a random number, in the range `[min, max[`
 //!@{
-t_fixed				PRNG_Fixed(t_prng* state);
-#define c_prngq		PRNG_Fixed
-//!@}
-//!@doc	Get a random fixed-point value, in the range `[min, max[`
-//!@{
-t_fixed				PRNG_Fixed_Range(t_prng* state, t_fixed min, t_fixed max);
-#define c_prngxq	PRNG_Fixed_Range
-//!@}
-
-//!@doc	Get a random floating-point value
-//!@{
-t_float				PRNG_Float(t_prng* state);
-#define c_prngf		PRNG_Float
-//!@}
-//!@doc	Get a random floating-point value, in the range `[min, max[`
-//!@{
-t_float				PRNG_Float_Range(t_prng* state, t_float min, t_float max);
-#define c_prngxf	PRNG_Float_Range
+t_uint				PRNG_GetInRange_UInt(t_prng* state, t_uint  min, t_uint  max);
+#define c_prngxu	PRNG_GetInRange_UInt
+t_sint				PRNG_GetInRange_SInt(t_prng* state, t_sint  min, t_sint  max);
+#define c_prngxs	PRNG_GetInRange_SInt
+t_fixed				PRNG_GetInRange_Fixed(t_prng* state, t_fixed min, t_fixed max);
+#define c_prngxq	PRNG_GetInRange_Fixed
+t_float				PRNG_GetInRange_Float(t_prng* state, t_float min, t_float max);
+#define c_prngxf	PRNG_GetInRange_Float
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                         Stateless RNG functions                            *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         Stateless RNG functions                            ||
+\*============================================================================*/
 
 //!@doc	Writes `n` bytes of random data to `dest` (creating and deleting a state).
 /*!
@@ -197,48 +167,28 @@ void*				PRNG_Get(void* dest, t_size n);
 
 
 
-//!@doc	Get a random unsigned integer, statelessly.
+//!@doc	Get a sample of numbers, statelessly.
 //!@{
-t_uint				PRNG_UInt_Get(void);
-#define c_prnggetu	PRNG_UInt_Get
-//!@}
-//!@doc	Get a random unsigned integer, within the range `[min, max[`, statelessly.
-//!@{
-t_uint				PRNG_UInt_Get_Range(t_uint  min, t_uint  max);
-#define c_prnggetxu	PRNG_UInt_Get_Range
-//!@}
-
-//!@doc	Get a random integer value, statelessly.
-//!@{
-t_sint				PRNG_SInt_Get(void);
-#define c_prnggets	PRNG_SInt_Get
-//!@}
-//!@doc	Get a random integer value, within the range `[min, max[`, statelessly.
-//!@{
-t_sint				PRNG_SInt_Get_Range	(t_sint  min, t_sint  max);
-#define c_prnggetxs	PRNG_SInt_Get_Range
+t_uint*				PRNG_Sample_UInt(t_size amount);
+#define c_prngnu	PRNG_Sample_UInt
+t_sint*				PRNG_Sample_SInt(t_size amount);
+#define c_prngns	PRNG_Sample_SInt
+t_fixed*			PRNG_Sample_Fixed(t_size amount);
+#define c_prngnq	PRNG_Sample_Fixed
+t_float*			PRNG_Sample_Float(t_size amount);
+#define c_prngnf	PRNG_Sample_Float
 //!@}
 
-//!@doc	Get a random fixed-point value, statelessly.
+//!@doc	Get a sample of numbers, within the range `[min, max[`, statelessly.
 //!@{
-t_fixed				PRNG_Fixed_Get(void);
-#define c_prnggetq	PRNG_Fixed_Get
-//!@}
-//!@doc	Get a random fixed-point value, within the range `[min, max[`, statelessly.
-//!@{
-t_fixed				PRNG_Fixed_Get_Range(t_fixed min, t_fixed max);
-#define c_prnggetxq	PRNG_Fixed_Get_Range
-//!@}
-
-//!@doc	Get a random floating-point value, statelessly.
-//!@{
-t_float				PRNG_Float_Get(void);
-#define c_prnggetf	PRNG_Float_Get
-//!@}
-//!@doc	Get a random floating-point value, within the range `[min, max[`, statelessly.
-//!@{
-t_float				PRNG_Float_Get_Range(t_float min, t_float max);
-#define c_prnggetxf	PRNG_Float_Get_Range
+t_uint*				PRNG_SampleInRange_UInt(t_size amount, t_uint min, t_uint max);
+#define c_prngnxu	PRNG_SampleInRange_UInt
+t_sint*				PRNG_SampleInRange_SInt	(t_size amount, t_sint min, t_sint max);
+#define c_prngnxs	PRNG_SampleInRange_SInt
+t_fixed*			PRNG_SampleInRange_Fixed(t_size amount, t_fixed min, t_fixed max);
+#define c_prngnxq	PRNG_SampleInRange_Fixed
+t_float*			PRNG_SampleInRange_Float(t_size amount, t_float min, t_float max);
+#define c_prngnxf	PRNG_SampleInRange_Float
 //!@}
 
 

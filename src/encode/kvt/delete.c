@@ -51,7 +51,7 @@ e_cccerror	KVT_Delete_FromArray(s_kvt* array, t_sint index)
 		return (ERROR_NULLPOINTER);
 	tmp = KVT_Detach_FromArray(array, index);
 	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
-		"could not delete array value, invalid index: "SF_SINT, index)
+		"could not delete array value, invalid index: " SF_SINT, index)
 		return (ERROR_INDEX2LARGE);
 	return (KVT_Delete(tmp));
 }

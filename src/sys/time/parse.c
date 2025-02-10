@@ -77,12 +77,12 @@ __weak_alias(strptime,_strptime)
 /*                                 Definitions                                */
 /* ************************************************************************** */
 
-#define PARSINGERROR_DATE_MESSAGE	ANSI_COLOR_FG_RED"DATE PARSE ERROR"ANSI_RESET": "
+#define PARSINGERROR_DATE_MESSAGE	ANSI_COLOR_FG_RED "DATE PARSE ERROR" ANSI_RESET ": "
 //! used to handle errors during parsing
 #define PARSINGERROR_DATE(MESSAGE, ...) \
-	if CCCERROR(TRUE, ERROR_PARSE,	\
-		MESSAGE, __VA_ARGS__)			\
-		return (0);						\
+	if CCCERROR(TRUE, ERROR_PARSE, \
+		MESSAGE, __VA_ARGS__) \
+		return (0); \
 
 
 
@@ -108,14 +108,14 @@ typedef t_s16	t_bitmask_tm;
 #define SET_TM(FIELD, VALUE) \
 	date->FIELD = VALUE;	SET_WRITTEN(FIELD)
 
-#ifdef TM_GMTOFF
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
 #define BITMASK_tm_gmtoff	10
 #define SET_TM_GMTOFF(X)	/* tm->offset = (X); 	SET_WRITTEN(tm_gmtoff) */
 #else
 #define SET_TM_GMTOFF(X)	
 #endif
 
-#ifdef TM_ZONE
+#if defined(__USE_MISC) || defined(TM_ZONE)
 #define BITMASK_tm_zone		11
 #define SET_TM_ZONE(X)		/* tm->offset = (X); 	SET_WRITTEN(tm_zone) */
 #else
@@ -640,7 +640,7 @@ recurse:
 					{
 						number = offset % 100;
 						if (number >= 60)
-							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered ("SF_SINT"), should be 60 or less", number)
+							PARSINGERROR_DATE("Invalid timezone offset minutes number encountered (" SF_SINT "), should be 60 or less", number)
 						/* Convert minutes into decimal */
 						offset = (offset / 100) * 100 + (number * 50) / 30;
 						break;

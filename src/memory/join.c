@@ -30,7 +30,7 @@ void*	Memory_Join(void const** ptrarr, t_size const* lengths,
 	}
 	if (amount > 0)
 		total += separator_length * (amount - 1);
-	result = Memory_New(total * sizeof(t_u8));
+	result = (t_u8*)Memory_New(total * sizeof(t_u8));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	total = 0;

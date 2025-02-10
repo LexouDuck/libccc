@@ -4,6 +4,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -29,7 +30,7 @@
 
 
 
-inline
+_INLINE()
 t_fd	IO_Open(t_char const* filepath, t_io_open flags, t_io_mode mode)
 {
 	t_fd	result;

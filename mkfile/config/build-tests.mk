@@ -7,6 +7,7 @@ TEST_CFLAGS = \
 	-Wall \
 	-Wextra \
 	-Winline \
+	-Wno-unknown-pragmas \
 	-Wno-unused-variable \
 	-Wno-unused-parameter \
 	-Wno-format-extra-args \
@@ -30,25 +31,57 @@ TEST_CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 TEST_CFLAGS_OS = $(TEST_CFLAGS_OS_$(OSMODE))
-TEST_CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+TEST_CFLAGS_OS_windows = -fvisibility=default # -fno-ms-compatibility
 TEST_CFLAGS_OS_macos = -Wno-language-extension-token
 TEST_CFLAGS_OS_linux = -Wno-unused-result -fPIC
 TEST_CFLAGS_OS_other = 
 TEST_CFLAGS_OS_emscripten = 
+ifneq ($(findstring mingw,$(CC)),)
+	TEST_CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+endif
 ifneq ($(findstring clang,$(CC)),)
 	TEST_CFLAGS_OS += -Wno-missing-braces
+	TEST_CFLAGS_OS_windows += -target x86_64-pc-windows-msvc # -Wl,-lldmingw -Wl,-dll -Wl,-export-all-symbols
 else
 	TEST_CFLAGS_OS += -Wno-unused-value
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
 TEST_CFLAGS_EXTRA ?= \
+#	-std=c99 \
+#	-std=c11 \
+#	-std=c23 \
 #	-flto \
 #	-fanalyzer \
 #	-fsanitize=address \
 #	-fsanitize=thread \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
+
+# these fixes allow libccc to be compiled using a C++ compiler
+ifneq ($(findstring ++,$(CC)),)
+TEST_CFLAGS += \
+	-std=c++20 \
+	-Wno-pedantic \
+	-Wno-deprecated \
+	-Wno-variadic-macros \
+	-Wno-c99-extensions \
+	-Wno-c++11-extensions \
+	-Wno-c++17-extensions \
+	-Wno-return-type-c-linkage \
+	-Wno-missing-field-initializers \
+
+endif
+TEST_CFLAGS += \
+	-Wno-format \
+	-Wno-write-strings \
+	-Wno-unknown-pragmas \
+
+
+# this fix allows libccc to build on iOS platforms
+ifneq ($(findstring iPhone,$(UNAME_M)),)
+TEST_CFLAGS += -D__IOS__
+endif
 
 
 
@@ -90,18 +123,23 @@ TEST_LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 TEST_LDLIBS_OS = $(TEST_LDLIBS_OS_$(OSMODE))
-TEST_LDLIBS_OS_windows = -lpthread
+TEST_LDLIBS_OS_windows = -L./
 TEST_LDLIBS_OS_macos = 
 TEST_LDLIBS_OS_linux = -lm
 TEST_LDLIBS_OS_other = 
 TEST_LDLIBS_OS_emscripten = -lm
 ifneq ($(findstring mingw,$(CC)),)
-TEST_LDLIBS_OS += -L./ -static-libgcc
+	TEST_LDLIBS_OS_windows += -static-libgcc -lpthread
+endif
+ifneq ($(findstring clang,$(CC)),)
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline
 TEST_LDLIBS_EXTRA ?= \
-#	-L/usr/local/lib -ltsan \
+#	-L/usr/local/lib \
+#	-ltsan \
+#	-lasan \
+#	-lubsan \
 
 
 

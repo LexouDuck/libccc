@@ -45,11 +45,15 @@ void	Log_Logger_FatalError(s_logger const* logger, t_char const* output)
 
 
 static
-void	Log_Logger_ErrorHandler(e_cccerror error, t_char const* funcname, t_char const* message)
+void	Log_Logger_ErrorHandler(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char const* message)
 {
 	t_char*	tmp;
-	if (funcname)
-		tmp = String_Format("%s -> %s", funcname, message);
+	if (func)
+		tmp = String_Format("%s:" SF_UINT ": %s() -> %s", file, line, func, message);
 	else
 		tmp = String_Duplicate(message);
 	Log_Fatal(NULL, tmp);
@@ -157,7 +161,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 	if (prefix && prefix[0] != '\0')
 	{
 		if (prefix_color && logger->format == LOGFORMAT_ANSI)
-			prefix_str = String_Format("%s%s"ANSI_RESET": ", prefix_color, prefix);
+			prefix_str = String_Format("%s%s" ANSI_RESET ": ", prefix_color, prefix);
 		else
 			prefix_str = String_Format("%s: ", prefix);
 	}
@@ -202,7 +206,7 @@ e_cccerror	Log_VA(s_logger const* logger,
 		if (logger->timestamp)
 		{
 			t_char* tmp = timestamp;
-			timestamp = String_Format("%s"LOG_TIMESTAMP_SEPARATOR, timestamp);
+			timestamp = String_Format("%s" LOG_TIMESTAMP_SEPARATOR, timestamp);
 			String_Delete(&tmp);
 		}
 		t_char* message_str = String_Duplicate(message);

@@ -1,8 +1,19 @@
 var searchData=
 [
-  ['bool_5ffromstring_0',['Bool_FromString',['../bool_8h.html#aa62afccb1c0fffff793588cc49ec9e25',1,'bool.h']]],
-  ['bool_5fparse_1',['Bool_Parse',['../bool_8h.html#a90df3aa4d05f20276ecebb12f5430904',1,'bool.h']]],
-  ['bool_5fprint_2',['Bool_Print',['../bool_8h.html#ae6c5931f2ec833fd654c6e26d3b9f64a',1,'bool.h']]],
-  ['bool_5fstring_3',['Bool_String',['../bool_8h.html#a18ea241a1c93febf589ce6c178a8273c',1,'bool.h']]],
-  ['bool_5ftostring_4',['Bool_ToString',['../bool_8h.html#a95ec08002d49c95fb34068d162908da4',1,'bool.h']]]
+  ['array_8972',['array',['../array_8h.html#a91863a6e23c98532d3d86e30307dfbf9',1,'array.h']]],
+  ['ascii_5fisalphanumeric_8973',['ASCII_IsAlphaNumeric',['../ascii_8h.html#ad87287b3dbfaa97761956800e1c8dce8',1,'ascii.h']]],
+  ['ascii_5fisdigit_5fbinary_8974',['ASCII_IsDigit_Binary',['../ascii_8h.html#a532ce5e35b4450d1e8ac48dc08a1954b',1,'ascii.h']]],
+  ['ascii_5fisdigit_5fdecimal_8975',['ASCII_IsDigit_Decimal',['../ascii_8h.html#a5bcb2ee1192c1f09afcce9a899ececf7',1,'ascii.h']]],
+  ['ascii_5fisdigit_5fhexadecimal_8976',['ASCII_IsDigit_Hexadecimal',['../ascii_8h.html#a829e46fb255c56f0b53075312056aeea',1,'ascii.h']]],
+  ['ascii_5fisdigit_5foctal_8977',['ASCII_IsDigit_Octal',['../ascii_8h.html#a3f390d1c46f671160210e49e78da4f9c',1,'ascii.h']]],
+  ['ascii_5fisincharset_8978',['ASCII_IsInCharset',['../ascii_8h.html#ad2d07267144ab926cb1427b62144efec',1,'ascii.h']]],
+  ['ascii_5fisletter_8979',['ASCII_IsLetter',['../ascii_8h.html#ac501fabf1740353ed91a75bc43e33d9a',1,'ascii.h']]],
+  ['ascii_5fislowercase_8980',['ASCII_IsLowercase',['../ascii_8h.html#a730c12083cd34e5d1ef07cb59ea49a8f',1,'ascii.h']]],
+  ['ascii_5fisprintable_8981',['ASCII_IsPrintable',['../ascii_8h.html#a07c5f29503da0e578d1b5b960eb8e10c',1,'ascii.h']]],
+  ['ascii_5fispunctuation_8982',['ASCII_IsPunctuation',['../ascii_8h.html#a4733e7f82f4a67196b21d9e28afdd281',1,'ascii.h']]],
+  ['ascii_5fisuppercase_8983',['ASCII_IsUppercase',['../ascii_8h.html#ac5ebcd3f3082bc24d2f4b035c5bb2a68',1,'ascii.h']]],
+  ['ascii_5fisvalid_8984',['ASCII_IsValid',['../ascii_8h.html#a13af91c1c4c4c94440e60f8d367edbc3',1,'ascii.h']]],
+  ['ascii_5fiswhitespace_8985',['ASCII_IsWhiteSpace',['../ascii_8h.html#ae57c5e1d73f73b4fb45f4beb08157aad',1,'ascii.h']]],
+  ['ascii_5ftolowercase_8986',['ASCII_ToLowercase',['../ascii_8h.html#a21976cccab7749b2fad20e1f2f74198b',1,'ascii.h']]],
+  ['ascii_5ftouppercase_8987',['ASCII_ToUppercase',['../ascii_8h.html#ad1fe53453c41d7913dd007385d166785',1,'ascii.h']]]
 ];

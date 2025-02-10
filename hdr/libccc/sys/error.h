@@ -16,11 +16,9 @@
 **	This header defines the utility functions for error handling
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc.h"
 
@@ -33,11 +31,9 @@ HEADER_CPP
 #ifndef __LIBCCC_SYS_ERROR_T
 #define __LIBCCC_SYS_ERROR_T
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 #if __STDC__ >= __STDC_VERSION_C11__
 typedef errno_t	t_errno;
@@ -58,7 +54,11 @@ typedef struct error_info
 
 
 //! The function pointer type for an error-handling function
-typedef void (*f_ccchandler)(e_cccerror error, t_char const* funcname, t_char const* message);
+typedef void (*f_ccchandler)(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char const* message);
 //! A struct which holds an association of an error handler function, and its corresponding error code
 typedef struct ccchandler
 {
@@ -72,30 +72,38 @@ typedef struct ccchandler
 #ifndef __LIBCCC_SYS_ERROR_F
 #define __LIBCCC_SYS_ERROR_F
 
-/*
-** ************************************************************************** *|
-**                       libccc error handling functions                      *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                       libccc error handling functions                      ||
+\*============================================================================*/
 
 //!@doc The root-most error handling-function: used in `if ()` statements, to check and handle errors
 //!@{
-t_bool Error_If(e_cccerror errorcode,
-    t_bool shouldhandle,
-    char const* funcname,
-    char const* format, ...);
+t_bool	Error_If(e_cccerror errorcode,
+	t_bool shouldhandle,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	char const* format, ...);
 #define c_error		Error_If
 //!@}
 
 //!@doc The parent function which handles any error: is called when an error check evaluates to `TRUE`
 //!@{
-void					Error_Handle(e_cccerror error, t_char const* funcname, t_char* message);
+void	Error_Handle(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char* message);
 #define c_errorhandle	Error_Handle
 //!@}
 
 //!@doc The default error handler function (its body can be configured, see #LIBCONFIG_ERROR_DEFAULTHANDLER)
 //!@{
-void					Error_Handler(e_cccerror error, t_char const* funcname, t_char const* message);
+void	Error_Handler(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char const* message);
 #define c_errorhandler	Error_Handler
 //!@}
 
@@ -121,11 +129,9 @@ void						Error_SetAllHandlers(f_ccchandler handler);
 
 
 
-/*
-** ************************************************************************** *|
-**                         custom error util functions                        *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         custom error util functions                        ||
+\*============================================================================*/
 
 #ifndef LIBCONFIG_ERROR_DEFAULTFUNCTIONS
 #define LIBCONFIG_ERROR_DEFAULTFUNCTIONS	CCC
@@ -158,11 +164,9 @@ void						Error_SetAllHandlers(f_ccchandler handler);
 
 
 
-/*
-** ************************************************************************** *|
-**                         libccc error util functions                        *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         libccc error util functions                        ||
+\*============================================================================*/
 
 //!@doc Returns newly allocated error message corresponding to the given `error` number
 //!@{
@@ -214,11 +218,9 @@ e_cccerror				Error_CCC_Set(e_cccerror error);
 
 
 
-/*
-** ************************************************************************** *|
-**                        Error util functions: std errno                     *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                        Error util functions: std errno                     ||
+\*============================================================================*/
 
 //!@doc Returns the error message for the given `error`
 /*!

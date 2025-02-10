@@ -5,7 +5,19 @@
 
 
 
-char const*	const signals[ENUMLENGTH_SIGNAL + 1] =
+int	const signals[ENUMLENGTH_SIGNAL + 1] =
+{
+	0,       //!< no signal emitted
+	SIGTERM, //!< (SIGnal: TERMination request)
+	SIGINT,  //!< (SIGnal: INTerrupt) external
+	SIGABRT, //!< (SIGnal: ABoRTed execution)
+	SIGSEGV, //!< (SIGnal: SEGmentation Violation)
+	SIGILL,  //!< (SIGnal: ILLegal instruction)
+	SIGFPE,  //!< (SIGnal: Floating-Point Exception)
+	0
+};
+
+char const*	const signal_strs[ENUMLENGTH_SIGNAL + 1] =
 {
 	"", //!< no signal emitted
 	"#SIGTERM",	//!< (SIGnal: TERMination request)
@@ -23,18 +35,16 @@ e_signal	sig = SIGNAL_NULL;
 
 jmp_buf	restore;
 
-#ifndef __MINGW32__
+#if !(defined(_WIN32) || defined(__MINGW32__))
 struct sigaction signal_action;
 #endif
 
 
-/*
-** ************************************************************************** *|
-**                              Segfault Handling                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              Segfault Handling                             ||
+\*============================================================================*/
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 void	signal_handler(int signaltype)
 #else
 void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
@@ -58,7 +68,7 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr)
 
 void	init_signal_handler(void)
 {
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 //	signal(SIGTERM,	signal_handler);
 //	signal(SIGINT,	signal_handler);
 	signal(SIGABRT,	signal_handler);

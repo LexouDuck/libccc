@@ -31,15 +31,15 @@ static t_bool	TOML_Parse_Object		(s_toml* item, s_toml_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_TOML(...) \
-	{																							\
-		t_char* tmp_error;																		\
-		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error);						\
-		if (p != NULL)																			\
-		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
-		else String_Delete(&tmp_error);															\
-		goto failure;																			\
-	}																							\
+	{ \
+		t_char* tmp_error; \
+		tmp_error = String_Format(__VA_ARGS__); \
+		tmp_error = String_Prepend(PARSINGERROR_TOML_PREFIX, &tmp_error); \
+		if (p != NULL) \
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); } \
+		else String_Delete(&tmp_error); \
+		goto failure; \
+	} \
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \
@@ -278,7 +278,7 @@ t_bool		TOML_Parse_Number(s_toml* item, s_toml_parse* p)
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
 	}
-//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//	if (F64_IsNaN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
 //		PARSINGERROR_TOML("Error while parsing number: \"%s\"", number)
 	String_Delete(&number);
 	p->offset += length;
@@ -485,7 +485,7 @@ t_bool	TOML_Parse_Array(s_toml* item, s_toml_parse* p)
 		// parse next value
 		TOML_Parse_SkipWhiteSpace(p);
 		if (TOML_Parse_Value(current_item, p))
-			PARSINGERROR_TOML("Inside array: failed to parse value within array, at index "SF_UINT, index)
+			PARSINGERROR_TOML("Inside array: failed to parse value within array, at index " SF_UINT, index)
 		TOML_Parse_SkipWhiteSpace(p);
 		index++;
 	}

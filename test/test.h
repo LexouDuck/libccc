@@ -34,38 +34,35 @@
 #ifndef LIBCCC_TEST_H
 #define LIBCCC_TEST_H
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
-
-#include <string.h>
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
+#if (!defined(_WIN32) || defined(__MINGW32__))
 #include <strings.h>
+#endif
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-
-#include "libccc.h"
+#include <stdbool.h>
+#include <limits.h>
 
 #include "test_catch.h"
 #include "test_timer.h"
-#include "test_utils.h"
+#include "test_print.h"
 
 
 
-/*
-** ************************************************************************** *|
-**                                   Defines                                  *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Defines                                  ||
+\*============================================================================*/
 
 //! This type stores info about a program argument (ie: `argc`/`argv`)
 typedef struct test_arg
 {
-	void	(*handle_arg)();	//!< The function to execute for this program argument
-	char		arg;			//!< The "character version" of this argument (ie: `-a`)
-	char const*	name;			//!< The "string version" of this argument (ie: `--arg`)
-	char const* description;	//!< The description for this argument (displayed when doing `--help`)
+	void	(*handle_arg)();  //!< The function to execute for this program argument
+	char		arg;          //!< The "character version" of this argument (ie: `-a`)
+	char const*	name;         //!< The "string version" of this argument (ie: `--arg`)
+	char const* description;  //!< The description for this argument (displayed when doing `--help`)
 }	s_test_arg;
 //! The amount of different arguments accepted by the test suite
 #define TEST_ARGS_AMOUNT	10
@@ -73,14 +70,14 @@ typedef struct test_arg
 //! This struct stores the program argument boolean flags
 typedef struct test_flags
 {
-	bool	verbose;		//!< if `TRUE`, display all logger output for each test
-	bool	show_args;		//!< if `TRUE`, display arguments given to each test
-	bool	show_speed;		//!< if `TRUE`, display performance (execution speed) for each test
-	bool	show_result;	//!< if `TRUE`, display result, even when test passed
-	bool	show_errors;	//!< if `TRUE`, display any errors output by libccc during function execution
-	bool	show_escaped;	//!< if `TRUE`, display strings with non-printable characters as escape sequences
-	bool	test_nullptrs;	//!< if `TRUE`, perform all NULL pointer tests
-	bool	test_overflow;	//!< if `TRUE`, perform all the libccc_convert overflowing number tests
+	bool	verbose;        //!< if `TRUE`, display all logger output for each test
+	bool	show_args;      //!< if `TRUE`, display arguments given to each test
+	bool	show_speed;     //!< if `TRUE`, display performance (execution speed) for each test
+	bool	show_result;    //!< if `TRUE`, display result, even when test passed
+	bool	show_errors;    //!< if `TRUE`, display any errors output by libccc during function execution
+	bool	show_escaped;   //!< if `TRUE`, display strings with non-printable characters as escape sequences
+	bool	test_nullptrs;  //!< if `TRUE`, perform all NULL pointer tests
+	bool	test_overflow;  //!< if `TRUE`, perform all the libccc_convert overflowing number tests
 }	s_test_config;
 
 
@@ -88,9 +85,9 @@ typedef struct test_flags
 //! This struct stores the total amount of tests failed/passed
 typedef struct test_totals
 {
-	int	tests;		//!< The total amount of tests ran.
-	int	failed; 	//!< The total amount of tests which had an ERROR result.
-	int	warnings;	//!< The total amount of warnings issued by the test suite.
+	int	tests;     //!< The total amount of tests ran.
+	int	failed;    //!< The total amount of tests which had an ERROR result.
+	int	warnings;  //!< The total amount of warnings issued by the test suite.
 }	s_test_totals;
 
 //! This struct stores one test suite (typically, one header file)
@@ -134,11 +131,9 @@ extern s_program	g_test;
 
 
 
-/*
-** ************************************************************************** *|
-**                              Testing Functions                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              Testing Functions                             ||
+\*============================================================================*/
 
 //! Initializes variables to prepare to run test suites
 void	test_init(void);
@@ -155,9 +150,9 @@ int	_func_(void);
 /*
 **	Global variables used in tests
 */
-extern char const* test1; extern t_size const test1_len;
-extern char const* test2; extern t_size const test2_len;
-extern char const* test3; extern t_size const test3_len;
+extern char const* test1;	extern size_t const test1_len;
+extern char const* test2;	extern size_t const test2_len;
+extern char const* test3;	extern size_t const test3_len;
 
 extern char const* teststr_cc_c0;
 extern char const* teststr_cc_c1;
@@ -167,7 +162,9 @@ extern char const* teststr_utf8_jp;
 extern char const* teststr_utf8_ho;
 extern char const* teststr_utf8_one_symbol_two_seq ;
 extern char const* teststr_utf8_one_symbol_three_seq ;
-extern char const* teststr_utf8_hardcore; extern t_size const teststr_utf8_hardcore_len; extern t_size const teststr_utf8_hardcore_bytelen;
+extern char const* teststr_utf8_hardcore;
+extern size_t const teststr_utf8_hardcore_len;
+extern size_t const teststr_utf8_hardcore_bytelen;
 
 
 

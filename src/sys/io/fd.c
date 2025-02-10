@@ -3,6 +3,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -17,7 +18,7 @@
 
 
 
-inline
+_INLINE()
 t_bool	IO_IsTerminal(t_fd fd)
 {
 	return (fd == STDIN ||

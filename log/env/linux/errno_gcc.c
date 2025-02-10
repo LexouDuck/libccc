@@ -1,6 +1,6 @@
 /*
 ** macro test: errno
-**	OS: 
+**	OS: Linux-Pop_OS
 **	SH: Linux
 **	CC: /usr/bin/gcc
 */

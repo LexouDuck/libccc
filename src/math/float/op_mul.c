@@ -7,17 +7,27 @@
 
 
 
+#if LIBCONFIG_USE_STD_MATH && (__STDC_VERSION__ >= __STDC_VERSION_C23__)
+MATH_DECL_REALFUNCTION(Mul, fmul)
+#else
 #define DEFINEFUNC_FLOAT_MUL(BITS) \
-inline t_f##BITS	F##BITS##_Mul(t_f##BITS a, t_f##BITS b)	\
-{															\
-	return (a * b);											\
-}
+_INLINE() \
+t_f##BITS	F##BITS##_Mul(t_f##BITS x, t_f##BITS y) \
+{ \
+	return (x * y); \
+} \
 
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_MUL(16)
+#endif
 DEFINEFUNC_FLOAT_MUL(32)
+
 DEFINEFUNC_FLOAT_MUL(64)
 #if LIBCONFIG_USE_FLOAT80
 DEFINEFUNC_FLOAT_MUL(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
 DEFINEFUNC_FLOAT_MUL(128)
+#endif
+
 #endif

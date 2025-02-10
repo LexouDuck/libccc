@@ -18,7 +18,9 @@
 
 t_bool Error_If(e_cccerror errorcode,
 	t_bool shouldhandle,
-	t_char const* funcname,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
 	t_char const* format, ...)
 {
 	va_list args;
@@ -29,14 +31,14 @@ t_bool Error_If(e_cccerror errorcode,
 		if (format == NULL)
 		{
 			Error_Handle(errorcode,
-				funcname,
+				func, file, line,
 				NULL);
 		}
 		else
 		{
 			va_start(args, format);
 			Error_Handle(errorcode,
-				funcname,
+				func, file, line,
 				String_Format_VA(format, args));
 			va_end(args);
 		}

@@ -19,12 +19,12 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
-t_bool	CharASCII_IsSpace(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsWhiteSpace(t_ascii c)
 { return (isspace(c)); }
 #else
-inline
-t_bool	CharASCII_IsSpace(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsWhiteSpace(t_ascii c)
 {
 	return ((c == ' ') || ('\t' <= c && c <= '\r'));
 }
@@ -33,11 +33,11 @@ t_bool	CharASCII_IsSpace(t_ascii c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharASCII_IsPunctuation(t_ascii c)
 { return (ispunct(c)); }
 #else
-inline
+_INLINE()
 t_bool	CharASCII_IsPunctuation(t_ascii c)
 {
 	return (
@@ -51,11 +51,11 @@ t_bool	CharASCII_IsPunctuation(t_ascii c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharASCII_IsPrintable(t_ascii c)
 { return (isprint(c)); }
 #else
-inline
+_INLINE()
 t_bool	CharASCII_IsPrintable(t_ascii c)
 {
 	return (!(c == 0x7F)	// DEL character
@@ -74,7 +74,7 @@ t_bool	CharASCII_IsPrintable(t_ascii c)
 
 
 
-inline
+_INLINE()
 t_bool	CharASCII_IsValid(t_ascii c)
 {
 #if ((t_ascii)-1 == UCHAR_MAX)

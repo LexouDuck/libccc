@@ -40,25 +40,33 @@ static s_ccchandler	Error_Handlers[ENUMLENGTH_CCCERROR] =
 
 
 
-void	Error_Handle(e_cccerror error, t_char const* funcname, t_char* message)
+void	Error_Handle(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char* message)
 {
 	f_ccchandler	handler;
 
 	handler = Error_GetHandler(error);
 	if (handler)
 	{
-		handler(error, funcname, message);
+		handler(error, func, file, line, message);
 		String_Delete(&message);
 	}
 }
 
 
 
-void	Error_Handler(e_cccerror error, t_char const* funcname, t_char const* message)
+void	Error_Handler(e_cccerror error,
+	t_char const* func,
+	t_char const* file,
+	t_uint const  line,
+	t_char const* message)
 {
-	if (!error && (message == NULL || funcname == NULL))
+	if (!error && (message == NULL || func == NULL || file == NULL || line == 0))
 		return;
-	LIBCONFIG_ERROR_DEFAULTHANDLER(error, funcname, message)
+	LIBCONFIG_ERROR_DEFAULTHANDLER(error, func, file, line, message)
 }
 
 

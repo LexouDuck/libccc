@@ -11,11 +11,11 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharASCII_IsLetter(t_ascii c)
 { return (isalpha(c)); }
 #else
-inline
+_INLINE()
 t_bool	CharASCII_IsLetter(t_ascii c)
 {
 	return (('A' <= c && c <= 'Z') ||
@@ -26,11 +26,11 @@ t_bool	CharASCII_IsLetter(t_ascii c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharASCII_IsAlphaNumeric(t_ascii c)
 { return (isalnum(c)); }
 #else
-inline
+_INLINE()
 t_bool	CharASCII_IsAlphaNumeric(t_ascii c)
 {
 	return (('A' <= c && c <= 'Z') ||

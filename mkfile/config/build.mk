@@ -40,11 +40,7 @@ CFLAGS = \
 	-Wextra \
 	-Winline \
 	-Wpedantic \
-	-Wstrict-prototypes \
-	-Wmissing-prototypes \
-	-Wold-style-definition \
 	-fstrict-aliasing \
-	-std=c11 \
 	$(CFLAGS_BUILDMODE) \
 	$(CFLAGS_OS) \
 	$(CFLAGS_EXTRA)
@@ -63,41 +59,60 @@ CFLAGS_BUILDMODE_release = \
 
 #! C compiler options which are platform-specific, according to $(OSMODE)
 CFLAGS_OS = $(CFLAGS_OS_$(OSMODE))
-CFLAGS_OS_windows = -D__USE_MINGW_ANSI_STDIO=1 # -fno-ms-compatibility
+CFLAGS_OS_windows = -fvisibility=default # -fno-ms-compatibility
 CFLAGS_OS_macos = -Wno-language-extension-token
 CFLAGS_OS_linux = -Wno-unused-result -fPIC
 CFLAGS_OS_other = 
 CFLAGS_OS_emscripten = -Wno-unused-result -fPIC -pedantic
+ifneq ($(findstring mingw,$(CC)),)
+	CFLAGS_OS += -D__USE_MINGW_ANSI_STDIO=1
+endif
 ifneq ($(findstring clang,$(CC)),)
 	CFLAGS_OS += -Wno-missing-braces
+	CFLAGS_OS_windows += -target x86_64-pc-windows-msvc # -Wl,-lldmingw -Wl,-dll -Wl,-export-all-symbols
 else
 	CFLAGS_OS += -Wno-unused-value
 endif
 
 #! This variable is intentionally empty, to specify additional C compiler options from the commandline
 CFLAGS_EXTRA ?= \
+#	-std=c99 \
+#	-std=c11 \
+#	-std=c23 \
 #	-flto \
 #	-fanalyzer \
+#	-fsanitize=leak \
+#	-fsanitize=memory \
 #	-fsanitize=address \
+#	-fsanitize=undefined \
 #	-fsanitize=thread \
 #	-std=ansi -pedantic \
 #	-D __NOSTD__=1 \
 
 # these fixes allow libccc to be compiled using a C++ compiler
 ifneq ($(findstring ++,$(CC)),)
-CFLAGS_EXTRA += \
+CFLAGS += \
+	-std=c++20 \
+	-Wno-pedantic \
 	-Wno-deprecated \
 	-Wno-variadic-macros \
 	-Wno-c99-extensions \
 	-Wno-c++11-extensions \
 	-Wno-c++17-extensions \
 	-Wno-return-type-c-linkage \
+	-Wno-missing-field-initializers \
+
+else
+CFLAGS += \
+	-Wstrict-prototypes \
+	-Wmissing-prototypes \
+	-Wold-style-definition \
 
 endif
 
 # this fix allows libccc to build on iOS platforms
 ifneq ($(findstring iPhone,$(UNAME_M)),)
-CFLAGS_EXTRA += -D__IOS__
+CFLAGS += -D__IOS__
 endif
 
 
@@ -151,13 +166,13 @@ LDLIBS_BUILDMODE_release =
 
 #! Linked libraries which are platform-specific, according to $(OSMODE)
 LDLIBS_OS = $(LDLIBS_OS_$(OSMODE))
-LDLIBS_OS_windows = 
+LDLIBS_OS_windows = -L./
 LDLIBS_OS_macos = 
 LDLIBS_OS_linux = 
 LDLIBS_OS_other = 
 LDLIBS_OS_emscripten = 
 ifneq ($(findstring mingw,$(CC)),)
-LDLIBS_OS += -L./ -static-libgcc
+	LDLIBS_OS_windows += -static-libgcc
 endif
 
 #! This variable is intentionally empty, to specify additional linked libraries from the commandline

@@ -6,6 +6,7 @@
 #ifndef __NOSTD__
 	#include <stdlib.h>
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -29,7 +30,7 @@
 
 
 
-inline
+_INLINE()
 t_char*	Program_GetEnv(t_char const* name)
 {
 	if CCCERROR((name == NULL), ERROR_NULLPOINTER, "environment variable name given is NULL")
@@ -51,7 +52,7 @@ e_cccerror	Program_SetEnv(t_char const* name, t_char const* value, t_bool overwr
 		return (ERROR_NULLPOINTER);
 #if __HASFUNC_SETENV
 	if CCCERROR(setenv(name, value, overwrite), ERROR_SYSTEM,
-		"call to setenv() failed, with name=\"%s\", value=\"%s\", overwrite="SF_BOOL,
+		"call to setenv() failed, with name=\"%s\", value=\"%s\", overwrite=" SF_BOOL,
 		name, value, overwrite)
 		return (ERROR_SYSTEM);
 #elif _POSIX_C_SOURCE > 0

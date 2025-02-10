@@ -11,7 +11,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 {
 	return (strcmp(str1, str2));
@@ -39,7 +39,7 @@ t_sint	String_Compare(t_ascii const* str1, t_ascii const* str2)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
 	return (strncmp(str1, str2, n));
@@ -71,7 +71,7 @@ t_sint	String_Compare_N(t_ascii const* str1, t_ascii const* str2, t_size n)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 {
 	return (strcasecmp(str1, str2));
@@ -101,7 +101,7 @@ t_sint	String_Compare_IgnoreCase(t_ascii const* str1, t_ascii const* str2)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_sint	String_Compare_N_IgnoreCase(t_ascii const* str1, t_ascii const* str2, t_size n)
 {
 	return (strncasecmp(str1, str2, n));

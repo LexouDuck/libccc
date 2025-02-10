@@ -4,6 +4,7 @@
 #ifndef __NOSTD__
 	#include <stdlib.h>
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -18,11 +19,11 @@
 
 
 
-inline
+_INLINE()
 e_cccerror	Program_Run(t_char const* command)
 {
 	// check if command processor exists
-	if CCCERROR(system(NULL), ERROR_SYSTEM,
+	if CCCERROR(system(""), ERROR_SYSTEM,
 		"call to system() failed")
 		return (ERROR_SYSTEM);
 	// run terminal command

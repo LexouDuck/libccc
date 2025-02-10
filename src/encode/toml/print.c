@@ -13,11 +13,11 @@
 typedef s_kvt_print	s_toml_print;
 
 #define ENSURE(NEEDED) \
-{													\
-	result = KVT_Print_EnsureBuffer(p, (NEEDED));	\
-	if (result == NULL)								\
-		return (ERROR);								\
-}													\
+{ \
+	result = KVT_Print_EnsureBuffer(p, (NEEDED)); \
+	if (result == NULL) \
+		return (ERROR); \
+} \
 
 #define TOML_Print_UpdateOffset \
 		KVT_Print_UpdateOffset
@@ -28,7 +28,7 @@ typedef s_kvt_print	s_toml_print;
 
 
 //! The set of characters which are valid in a bare (unquoted) key
-#define TOML_CHARSET_BAREKEY	"-"CHARSET_ALPHABET"_"CHARSET_DECIMAL
+#define TOML_CHARSET_BAREKEY	"-" CHARSET_ALPHABET "_" CHARSET_DECIMAL
 
 //! The maximum amount of items an inline array/object can have before being spread across multiple lines
 #define TOML_INLINE_MULTILINE	8
@@ -322,11 +322,11 @@ t_bool	TOML_Print_Number(s_toml const* item, s_toml_print* p, t_bool bigint)
 	else
 	{
 		t_f64	d = item->value.number;
-		if (IS_NAN(d))
+		if (F64_IsNaN(d))
 		{
 			length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "nan");
 		}
-		else if (IS_INF(d))
+		else if (F64_IsInf(d))
 		{
 			if (d > 0)	length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "+inf");
 			if (d < 0)	length = String_Format_N(number_buffer, TOML_NUMBER_BUFFERSIZE, "-inf");

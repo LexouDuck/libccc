@@ -2,24 +2,18 @@
 #ifndef LIBCCC_TEST_CATCH_H
 #define LIBCCC_TEST_CATCH_H
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include <setjmp.h>
 #include <signal.h>
 
-#include "libccc.h"
 
 
-
-/*
-** ************************************************************************** *|
-**                                   Defines                                  *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Defines                                  ||
+\*============================================================================*/
 
 //! This integer type is used as a bitflag, to indicate whether a test expects a certain kind of failure
 /*!
@@ -49,13 +43,13 @@ typedef int	t_testflags;
 #define FLAG_SIGILL     (1 << 5) //!< Signal bitflag: illegal assembly instruction, or invalid program image
 #define FLAG_SIGFPE     (1 << 6) //!< Signal bitflag: floating point exception - e.g. `2.0 / 0` or `sqrt(NAN)`
 //! Signal bitmask: to isolate the "signal flags" part of a `t_testflags` integer
-#define FLAG_SIGNALMASK	\
-	( FLAG_SIGTERM	\
-	| FLAG_SIGINT	\
-	| FLAG_SIGABRT	\
-	| FLAG_SIGSEGV	\
-	| FLAG_SIGILL	\
-	| FLAG_SIGFPE	\
+#define FLAG_SIGNALMASK \
+	( FLAG_SIGTERM \
+	| FLAG_SIGINT \
+	| FLAG_SIGABRT \
+	| FLAG_SIGSEGV \
+	| FLAG_SIGILL \
+	| FLAG_SIGFPE \
 	)
 
 #define ALLOW_SIGTERM    (FLAG_WARNING | FLAG_SIGTERM)
@@ -77,8 +71,10 @@ typedef enum signal
 ENUMLENGTH_SIGNAL	//!< Signal region size: amount of different signal flags, i.e. the amount of bits in #FLAG_SIGNALMASK
 }	e_signal;
 
-//! global array which holds the string equivalents for the SIGNAL_ enum
-extern char const* const	signals[ENUMLENGTH_SIGNAL + 1];
+//! global array which holds the signal integer equivalents for the SIGNAL_ enum values
+extern int const	signals[ENUMLENGTH_SIGNAL + 1];
+//! global array which holds the signal string representations for the SIGNAL_ enum values
+extern char const* const	signal_strs[ENUMLENGTH_SIGNAL + 1];
 
 //! global variable which stores the latest signal emitted
 extern e_signal	sig;
@@ -87,15 +83,13 @@ extern jmp_buf	restore;
 
 
 
-/*
-** ************************************************************************** *|
-**                           Signal catching/handling                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Signal catching/handling                         ||
+\*============================================================================*/
 
 void	init_signal_handler(void);
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 void	signal_handler(int signaltype);
 #else
 extern struct sigaction signal_action;
@@ -109,16 +103,16 @@ void	signal_handler(int signaltype, siginfo_t *info, void *ptr);
 */
 //!@{
 #define _TRY \
-	sig = setjmp(restore);	\
-	if (sig == SIGNAL_NULL)	\
+	sig = (e_signal)setjmp(restore); \
+	if (sig == SIGNAL_NULL) \
 
 #define _CATCH \
 	else
 
-#ifdef __MINGW32__
+#if (defined(_WIN32) || defined(__MINGW32__))
 #define _END \
-	if ((sig & FLAG_SIGNALMASK) != 0)	\
-		signal(SIGSEGV, signal_handler);	\
+	if ((sig & FLAG_SIGNALMASK) != 0) \
+		signal(signals[sig], signal_handler); \
 
 #else
 #define _END	;

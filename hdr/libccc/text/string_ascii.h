@@ -18,11 +18,9 @@
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte#StringASCII_manipulation}
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc.h"
 
@@ -32,11 +30,9 @@
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //! Type definition for a string of characters
 /*!
@@ -59,11 +55,9 @@ typedef t_ascii	(*f_string_ascii_map_i)			(unsigned int, t_ascii)
 
 
 
-/*
-** ************************************************************************** *|
-**                          Basic String Operations                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Basic String Operations                           ||
+\*============================================================================*/
 
 //!@doc Returns a new string which is `n + 1` bytes long (to account for the null-terminator).
 /*!
@@ -320,11 +314,9 @@ t_size				StringASCII_Add_L(t_ascii* dest, t_ascii const* src, t_size size);
 
 
 
-/*
-** ************************************************************************** *|
-**                                String Checks                               *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                String Checks                               ||
+\*============================================================================*/
 
 //!@doc Get the length (in bytes) of a string, excluding final '\0'
 /*!
@@ -544,11 +536,9 @@ t_size						StringASCII_Count_String(t_ascii const* str, t_ascii const* query);
 
 
 
-/*
-** ************************************************************************** *|
-**                              String Searching                              *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              String Searching                              ||
+\*============================================================================*/
 
 //!@doc Finds the first occurence of the given char `c` inside the given string `str`
 /*!
@@ -820,11 +810,9 @@ t_sintmax				StringASCII_IndexOf_N_String(t_ascii const* str, t_ascii const* que
 
 
 
-/*
-** ************************************************************************** *|
-**                              String Replacements                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              String Replacements                           ||
+\*============================================================================*/
 
 //!@doc Removes all occurences of the given `query` string within the given string `str`.
 /*!
@@ -889,11 +877,9 @@ t_ascii*					StringASCII_Replace_String(t_ascii const* str, t_ascii const* str_o
 
 
 
-/*
-** ************************************************************************** *|
-**                      String Concatenation Operations                       *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                      String Concatenation Operations                       ||
+\*============================================================================*/
 
 //!@doc Concatenates two strings into a new one
 /*!
@@ -973,11 +959,9 @@ t_ascii*				StringASCII_Join(t_ascii const** strarr, t_ascii const* sep);
 
 
 
-/*
-** ************************************************************************** *|
-**                           String In-Place Editing                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           String In-Place Editing                          ||
+\*============================================================================*/
 
 //!@doc Reallocates the given string `dest`, inserting the string `src` at the given `index`.
 /*!
@@ -1051,11 +1035,9 @@ t_ascii*					StringASCII_Map_InPlace(t_ascii* *a_str, t_ascii (*map)(t_ascii));
 
 
 
-/*
-** ************************************************************************** *|
-**                        String Whitespace Operations                        *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                        String Whitespace Operations                        ||
+\*============================================================================*/
 
 //!@doc Trims any char from `charset` from both sides of the given string `str`
 /*!
@@ -1148,11 +1130,9 @@ t_ascii*				StringASCII_Pad_R(t_ascii const* str, t_ascii c, t_size length);
 
 
 
-/*
-** ************************************************************************** *|
-**                          Other String Operations                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Other String Operations                           ||
+\*============================================================================*/
 
 #define StringASCII_Print	StringASCII_ToASCIIEscapedBuf
 
@@ -1476,11 +1456,9 @@ t_ascii*			StringASCII_Sub(t_ascii const* str, t_size index, t_size n);
 
 
 
-/*
-** ************************************************************************** *|
-**                           Functional Operations                            *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Functional Operations                            ||
+\*============================================================================*/
 
 //!@doc Calls a custom function `f` for each character of the given string `str`
 /*!
@@ -1568,25 +1546,15 @@ t_ascii*				StringASCII_Filter_I(t_ascii const* str, t_bool (*filter)(t_ascii c,
 
 
 
-/*
-** ************************************************************************** *|
-**                    Essential builtins (for compatibility)                  *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                    Essential builtins (for compatibility)                  ||
+\*============================================================================*/
 
 #ifdef __IOS__ // TODO smarter check here
 
-inline
-int		strcmp(char const* str1, char const* str2)
-{ return (StringASCII_Compare(str1, str2)); }
-
-inline
-int		strncmp(char const* str1, char const* str2, size_t n)
-{ return (StringASCII_Compare_N(str1, str2, n)); }
-
-inline
-char*	strchr(char const* str, int c)
-{ return (StringASCII_Find_Char(str, c)); }
+_INLINE() int   strcmp  (char const* str1, char const* str2)            { return (StringASCII_Compare(str1, str2)); }
+_INLINE() int   strncmp (char const* str1, char const* str2, size_t n)  { return (StringASCII_Compare_N(str1, str2, n)); }
+_INLINE() char* strchr  (char const* str, int c)                        { return (StringASCII_Find_Char(str, c)); }
 
 #endif
 

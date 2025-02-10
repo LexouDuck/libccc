@@ -14,7 +14,7 @@
 
 
 //#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 void*	Memory_Allocate(t_size size)
 {
 	return (malloc(size));
@@ -23,7 +23,7 @@ void*	Memory_Allocate(t_size size)
 
 
 //#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 void*	Memory_Reallocate(void* ptr, t_size size)
 {
 	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")
@@ -34,7 +34,7 @@ void*	Memory_Reallocate(void* ptr, t_size size)
 
 
 //#if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 void	Memory_Deallocate(void* ptr)
 {
 	if CCCERROR((ptr == NULL), ERROR_NULLPOINTER, "pointer given is NULL")

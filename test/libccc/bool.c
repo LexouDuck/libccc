@@ -4,6 +4,7 @@
 #include "libccc/sys/io.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
@@ -20,11 +21,9 @@
 
 
 
-/*
-** ************************************************************************** *|
-**                          Other Convert to Strings                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Other Convert to Strings                          ||
+\*============================================================================*/
 
 #ifndef c_booltostr
 void test_booltostr(void)	{}
@@ -52,8 +51,8 @@ void	test_booltostr(void)
 	print_test_booltostr("booltostr (n = max)     ",	FALSE,   "TRUE",    255, TRUE);
 	if (g_test.config.test_overflow)
 	{
-		print_test_booltostr("booltostr (n < min)     ",	FALSE,  "false",     -1, FALSE);
-		print_test_booltostr("booltostr (n < min)     ",	FALSE,  "FALSE",     -1, TRUE);
+		print_test_booltostr("booltostr (n < min)     ",	FALSE,   "true",     -1, FALSE);
+		print_test_booltostr("booltostr (n < min)     ",	FALSE,   "TRUE",     -1, TRUE);
 		print_test_booltostr("booltostr (n > max)     ",	FALSE,   "true",    256, FALSE);
 		print_test_booltostr("booltostr (n > max)     ",	FALSE,   "TRUE",    256, TRUE);
 		print_test_booltostr("booltostr (n < maxdigit)",	FALSE,   "true", 999999, FALSE);
@@ -66,11 +65,9 @@ void	test_booltostr(void)
 
 
 
-/*
-** ************************************************************************** *|
-**                          Other Convert to Strings                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Other Convert to Strings                          ||
+\*============================================================================*/
 
 #ifndef c_strtobool
 void test_strtobool(void)	{}
@@ -188,25 +185,59 @@ void	test_strtobool(void)
 		print_test_strtobool("strtobool (str < 0)       ",	FALSE,     TRUE,                 "-1.e2");
 		print_test_strtobool("strtobool (str < 0)       ",	FALSE,     TRUE,                "-1.0e2");
 		print_test_strtobool("strtobool (str < 0)       ",	FALSE,     TRUE,               "-1.00e2");
-		print_test_strtobool("strtobool (str > 8max)    ",	FALSE,     TRUE,                   "255");
-		print_test_strtobool("strtobool (str > 8max)    ",	FALSE,     TRUE,                  "+255");
-		print_test_strtobool("strtobool (str > 8max)    ",	FALSE,     TRUE,                   "256");
-		print_test_strtobool("strtobool (str > 8max)    ",	FALSE,     TRUE,                  "+256");
-		print_test_strtobool("strtobool (str > 16max)   ",	FALSE,     TRUE,                 "65535");
-		print_test_strtobool("strtobool (str > 16max)   ",	FALSE,     TRUE,                "+65535");
-		print_test_strtobool("strtobool (str > 16max)   ",	FALSE,     TRUE,                 "65536");
-		print_test_strtobool("strtobool (str > 16max)   ",	FALSE,     TRUE,                "+65536");
-		print_test_strtobool("strtobool (str > 32max)   ",	FALSE,     TRUE,            "4294967295");
-		print_test_strtobool("strtobool (str > 32max)   ",	FALSE,     TRUE,           "+4294967295");
-		print_test_strtobool("strtobool (str > 32max)   ",	FALSE,     TRUE,            "4294967296");
-		print_test_strtobool("strtobool (str > 32max)   ",	FALSE,     TRUE,           "+4294967296");
-		print_test_strtobool("strtobool (str > 64max)   ",	FALSE,     TRUE,  "18446744073709551615");
-		print_test_strtobool("strtobool (str > 64max)   ",	FALSE,     TRUE, "+18446744073709551615");
-		print_test_strtobool("strtobool (str > 64max)   ",	FALSE,     TRUE,  "18446744073709551616");
-		print_test_strtobool("strtobool (str > 64max)   ",	FALSE,     TRUE, "+18446744073709551616");
-		print_test_strtobool("strtobool (str > maxdigit)",	FALSE,     TRUE, "999999999999999999999");
-		print_test_strtobool("strtobool (str >+maxdigit)",	FALSE,     TRUE,"+999999999999999999999");
-		print_test_strtobool("strtobool (str <-maxdigit)",	FALSE,     TRUE,"-999999999999999999999");
+		print_test_strtobool("strtobool (str = s8max)   ",	FALSE,     TRUE,                   "127");
+		print_test_strtobool("strtobool (str = s8max)   ",	FALSE,     TRUE,                  "+127");
+		print_test_strtobool("strtobool (str > s8max)   ",	FALSE,     TRUE,                   "128");
+		print_test_strtobool("strtobool (str > s8max)   ",	FALSE,     TRUE,                  "+128");
+		print_test_strtobool("strtobool (str = s8min)   ",	FALSE,     TRUE,                  "-128");
+		print_test_strtobool("strtobool (str < s8min)   ",	FALSE,     TRUE,                  "-129");
+		print_test_strtobool("strtobool (str = u8max)   ",	FALSE,     TRUE,                   "255");
+		print_test_strtobool("strtobool (str = u8max)   ",	FALSE,     TRUE,                  "+255");
+		print_test_strtobool("strtobool (str > u8max)   ",	FALSE,     TRUE,                   "256");
+		print_test_strtobool("strtobool (str > u8max)   ",	FALSE,     TRUE,                  "+256");
+		print_test_strtobool("strtobool (str = s16max)  ",	FALSE,     TRUE,                 "32767");
+		print_test_strtobool("strtobool (str = s16max)  ",	FALSE,     TRUE,                "+32767");
+		print_test_strtobool("strtobool (str > s16max)  ",	FALSE,     TRUE,                 "32768");
+		print_test_strtobool("strtobool (str > s16max)  ",	FALSE,     TRUE,                "+32768");
+		print_test_strtobool("strtobool (str = s16min)  ",	FALSE,     TRUE,                "-32768");
+		print_test_strtobool("strtobool (str < s16min)  ",	FALSE,     TRUE,                "-32769");
+		print_test_strtobool("strtobool (str = u16max)  ",	FALSE,     TRUE,                 "65535");
+		print_test_strtobool("strtobool (str = u16max)  ",	FALSE,     TRUE,                "+65535");
+		print_test_strtobool("strtobool (str > u16max)  ",	FALSE,     TRUE,                 "65536");
+		print_test_strtobool("strtobool (str > u16max)  ",	FALSE,     TRUE,                "+65536");
+		print_test_strtobool("strtobool (str = s32min)  ",	FALSE,     TRUE,            "2147483647");
+		print_test_strtobool("strtobool (str = s32min)  ",	FALSE,     TRUE,           "+2147483647");
+		print_test_strtobool("strtobool (str > s32min)  ",	FALSE,     TRUE,            "2147483648");
+		print_test_strtobool("strtobool (str > s32min)  ",	FALSE,     TRUE,           "+2147483648");
+		print_test_strtobool("strtobool (str = s32min)  ",	FALSE,     TRUE,           "-2147483648");
+		print_test_strtobool("strtobool (str < s32min)  ",	FALSE,     TRUE,           "-2147483649");
+		print_test_strtobool("strtobool (str = u32max)  ",	FALSE,     TRUE,            "4294967295");
+		print_test_strtobool("strtobool (str = u32max)  ",	FALSE,     TRUE,           "+4294967295");
+		print_test_strtobool("strtobool (str > u32max)  ",	FALSE,     TRUE,            "4294967296");
+		print_test_strtobool("strtobool (str > u32max)  ",	FALSE,     TRUE,           "+4294967296");
+		print_test_strtobool("strtobool (str = s64max)  ",	FALSE,     TRUE,   "9223372036854775808");
+		print_test_strtobool("strtobool (str = s64max)  ",	FALSE,     TRUE,  "+9223372036854775808");
+		print_test_strtobool("strtobool (str > s64max)  ",	FALSE,     TRUE,   "9223372036854775808");
+		print_test_strtobool("strtobool (str > s64max)  ",	FALSE,     TRUE,  "+9223372036854775808");
+		print_test_strtobool("strtobool (str = s64min)  ",	FALSE,     TRUE,  "-9223372036854775808");
+		print_test_strtobool("strtobool (str < s64min)  ",	FALSE,     TRUE,  "-9223372036854775809");
+		print_test_strtobool("strtobool (str = u64max)  ",	FALSE,     TRUE,  "18446744073709551615");
+		print_test_strtobool("strtobool (str = u64max)  ",	FALSE,     TRUE, "+18446744073709551615");
+		print_test_strtobool("strtobool (str > u64max)  ",	FALSE,     TRUE,  "18446744073709551616");
+		print_test_strtobool("strtobool (str > u64max)  ",	FALSE,     TRUE, "+18446744073709551616");
+		print_test_strtobool("strtobool (str > maxdigit)",	FALSE,     TRUE,  "999999999999999999999");
+		print_test_strtobool("strtobool (str >+maxdigit)",	FALSE,     TRUE, "+999999999999999999999");
+		print_test_strtobool("strtobool (str <-maxdigit)",	FALSE,     TRUE, "-999999999999999999999");
+		print_test_strtobool("strtobool (str = s128max) ",	FALSE,     TRUE,  "170141183460469231731687303715884105727");
+		print_test_strtobool("strtobool (str = s128max) ",	FALSE,     TRUE, "+170141183460469231731687303715884105727");
+		print_test_strtobool("strtobool (str > s128max) ",	FALSE,     TRUE,  "170141183460469231731687303715884105728");
+		print_test_strtobool("strtobool (str > s128max) ",	FALSE,     TRUE, "+170141183460469231731687303715884105728");
+		print_test_strtobool("strtobool (str = s128min) ",	FALSE,     TRUE, "-170141183460469231731687303715884105728");
+		print_test_strtobool("strtobool (str < s128min) ",	FALSE,     TRUE, "-170141183460469231731687303715884105729");
+		print_test_strtobool("strtobool (str = u128max) ",	FALSE,     TRUE,  "340282366920938463463374607431768211453");
+		print_test_strtobool("strtobool (str = u128max) ",	FALSE,     TRUE, "+340282366920938463463374607431768211453");
+		print_test_strtobool("strtobool (str > u128max) ",	FALSE,     TRUE,  "340282366920938463463374607431768211454");
+		print_test_strtobool("strtobool (str > u128max) ",	FALSE,     TRUE, "+340282366920938463463374607431768211454");
 	}
 	print_test_strtobool("strtobool (empty str)     ",	FALSE,    FALSE,                      "");
 	print_test_strtobool("strtobool (NULL str)     ",	FALSE,    FALSE,                    NULL);
@@ -215,11 +246,9 @@ void	test_strtobool(void)
 
 
 
-/*
-** ************************************************************************** *|
-**                            Test Suite Function                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                            Test Suite Function                             ||
+\*============================================================================*/
 
 // Resets the GCC warning settings back to normal
 #pragma GCC diagnostic pop

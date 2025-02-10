@@ -13,11 +13,11 @@
 typedef s_kvt_print	s_json_print;
 
 #define ENSURE(NEEDED) \
-{													\
-	result = KVT_Print_EnsureBuffer(p, (NEEDED));	\
-	if (result == NULL)								\
-		return (ERROR);								\
-}													\
+{ \
+	result = KVT_Print_EnsureBuffer(p, (NEEDED)); \
+	if (result == NULL) \
+		return (ERROR); \
+} \
 
 #define JSON_Print_UpdateOffset \
 		KVT_Print_UpdateOffset
@@ -195,11 +195,11 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 	else
 	{
 		t_f64	d = item->value.number;
-		if (IS_NAN(d))
+		if (F64_IsNaN(d))
 		{
 			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
 		}
-		else if (IS_INF(d))
+		else if (F64_IsInf(d))
 		{
 			if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
 			if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");

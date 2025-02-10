@@ -4,6 +4,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -19,7 +20,7 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/monad/array.h"
+#include "libccc/generic/array.h"
 #include "libccc/sys/io.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

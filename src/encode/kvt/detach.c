@@ -44,7 +44,7 @@ s_kvt*	KVT_Detach_FromArray(s_kvt* array, t_sint index)
 		return (NULL);
 	tmp = KVT_GetArrayItem(array, index);
 	if CCCERROR((tmp == NULL), ERROR_INDEX2LARGE,
-		"could not detach array value, invalid index: "SF_SINT, index)
+		"could not detach array value, invalid index: " SF_SINT, index)
 		return (NULL);
 	return (KVT_Detach(array, tmp));
 }

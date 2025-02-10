@@ -4,6 +4,7 @@
 #include "libccc/encode/toml.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
@@ -40,20 +41,20 @@ void test_kvtget(void)	{}
 #warning "kvtget() test suite function defined, but the function isn't defined."
 #else
 void	print_test_kvtget(char const* test_name, t_testflags flags, \
-		s_kvt const*	expecting,			\
-		s_kvt const*	item,				\
-		t_char const*	format, ...)		\
-{											\
-	t_char* str;							\
-	va_list va_args;						\
-	va_start(va_args, format);				\
+		s_kvt const*	expecting, \
+		s_kvt const*	item, \
+		t_char const*	format, ...) \
+{ \
+	t_char* str; \
+	va_list va_args; \
+	va_start(va_args, format); \
 	str = String_Format_VA(format, va_args);\
-	va_end(va_args);						\
-	if (str == NULL)	return;				\
-	TEST_INIT(ptr)							\
-	TEST_PERFORM(	kvtget, item, str)		\
-	TEST_PRINT(ptr,	kvtget, str)			\
-	String_Delete(&str);					\
+	va_end(va_args); \
+	if (str == NULL)	return; \
+	TEST_INIT(ptr) \
+	TEST_PERFORM(	kvtget, item, str) \
+	TEST_PRINT(ptr,	kvtget, str) \
+	String_Delete(&str); \
 }
 void	test_kvtget(void)
 {
@@ -180,11 +181,9 @@ void	test_kvtget(void)
 
 
 
-/*
-** ************************************************************************** *|
-**                            Test Suite Function                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                            Test Suite Function                             ||
+\*============================================================================*/
 
 int		testsuite_encode_kvt(void)
 {

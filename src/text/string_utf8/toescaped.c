@@ -32,7 +32,7 @@ t_utf8* StringUTF8_ToASCIIEscaped(t_utf8 const* str)
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
-	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
+	t_utf8* result = (t_utf8*)Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 
@@ -60,7 +60,7 @@ t_utf8* StringUTF8_ToJsonEscaped(t_utf8 const* str)
 	if (expected_len == SIZE_ERROR)
 		return (NULL);
 
-	t_utf8* result = Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
+	t_utf8* result = (t_utf8*)Memory_Allocate((expected_len + 1) * sizeof(t_utf8));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 
@@ -203,7 +203,7 @@ t_size StringUTF8_ToEscapedBuf_e(
 		t_size charset_symcount;
 		t_size charset_bytecount;
 		if CCCERROR(!CharUTF8_IsStringValid(charset, &charset_symcount, &charset_bytecount), ERROR_INVALIDARGS,
-			"Charset contains invalid sequence at symbol "SF_SIZE" (byte "SF_SIZE"): \"%.4s\"",
+			"Charset contains invalid sequence at symbol " SF_SIZE " (byte " SF_SIZE "): \"%.4s\"",
 			charset_symcount,
 			charset_bytecount + 1,
 			charset + charset_bytecount + 1)

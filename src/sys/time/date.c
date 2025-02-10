@@ -48,8 +48,8 @@ int days_from_epoch(int y, int m, int d)
 	return era * 146097 + doe - 719468;
 }
 
-time_t timegm(struct tm const* t);
-time_t timegm(struct tm const* t)
+time_t timegm(struct tm* t);
+time_t timegm(struct tm* t)
 {	// It does not modify broken-down time
 	int year = t->tm_year + 1900;
 	int month = t->tm_mon; // 0-11
@@ -91,7 +91,7 @@ t_time		Date_ToTime_LocalTime(s_date const* value)
 
 
 
-inline
+_INLINE()
 struct tm	Date_ToSTDC(s_date const* value)
 {
 	return ((struct tm)
@@ -99,34 +99,37 @@ struct tm	Date_ToSTDC(s_date const* value)
 		.tm_sec 	= value->sec,
 		.tm_min 	= value->min,
 		.tm_hour 	= value->hour,
-		.tm_wday 	= value->day_week,
 		.tm_mday 	= value->day_month,
-		.tm_yday 	= value->day_year,
 		.tm_mon 	= value->month,
 		.tm_year 	= value->year - TM_YEAR_BASE,
+		.tm_wday 	= value->day_week,
+		.tm_yday 	= (int)value->day_year,
 		.tm_isdst 	= value->is_dst,
-#ifdef TM_GMTOFF
-		.tm_gmtoff	= value->timezone;
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
+		.tm_gmtoff	= value->offset,
+#endif
+#if defined(__USE_MISC) || defined(TM_ZONE)
+		.tm_zone    = NULL,
 #endif
 	});
 }
 
-inline
+_INLINE()
 s_date		Date_FromSTDC(struct tm const* value)
 {
 	return ((s_date)
 	{
-		.sec		= value->tm_sec,
-		.min		= value->tm_min,
-		.hour		= value->tm_hour,
-		.day_week	= (e_weekday)value->tm_wday,
-		.day_month	= value->tm_mday,
-		.day_year	= value->tm_yday,
+		.year		= (t_s32)value->tm_year + TM_YEAR_BASE,
 		.month		= (e_month)value->tm_mon,
-		.year		= value->tm_year + TM_YEAR_BASE,
-		.is_dst		= value->tm_isdst,
-		.offset		=
-#ifdef TM_GMTOFF
+		.day_week	= (e_weekday)value->tm_wday,
+		.day_month	= (t_u8)value->tm_mday,
+		.day_year	= (t_u32)value->tm_yday,
+		.hour		= (t_u8)value->tm_hour,
+		.min		= (t_u8)value->tm_min,
+		.sec		= (t_u8)value->tm_sec,
+		.is_dst		= (t_bool)value->tm_isdst,
+		.offset		= (t_timezone)
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
 			value->tm_gmtoff,
 #else
 			0

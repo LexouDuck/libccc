@@ -65,11 +65,9 @@
 **
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 //!@doc Convenience macro: C++ header code guards
 /*!
@@ -98,11 +96,9 @@ HEADER_CPP
 
 
 
-/*
-** ************************************************************************** *|
-**                   Useful cross-platform compiler macros                    *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                   Useful cross-platform compiler macros                    ||
+\*============================================================================*/
 
 //!@doc Convienence macros, use these to check for different C standards in preprocessor `#if` statements.
 //!@{
@@ -111,19 +107,19 @@ HEADER_CPP
 #define __STDC_VERSION_C99__	199901l
 #define __STDC_VERSION_C11__	201112l
 #define __STDC_VERSION_C17__	201710l
-#define __STDC_VERSION_C23__	(-1)	//!< TBD: this is set to `-1` for now, since its final value (C2x date) is not yet known
+#define __STDC_VERSION_C23__	202311L
 //!@}
 
 
 
 //!@doc Convienence macros, use these to check for different POSIX standards in preprocessor `#if` statements.
 //!@{
-#define __POSIX_VERSION_1990__ 1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
-#define __POSIX_VERSION_1992__ 2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
-#define __POSIX_VERSION_1993__ 199309l	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
-#define __POSIX_VERSION_1995__ 199506l	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
-#define __POSIX_VERSION_2001__ 200112l	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
-#define __POSIX_VERSION_2008__ 200809l	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
+#define __POSIX_VERSION_1990__	1		//!< The 1990 edition of the POSIX.1  standard (IEEE Standard 1003.1-1990)
+#define __POSIX_VERSION_1992__	2		//!< The 1992 edition of the POSIX.2  standard (IEEE Standard 1003.2-1992)
+#define __POSIX_VERSION_1993__	199309l	//!< The 1993 edition of the POSIX.1b standard (IEEE Standard 1003.1b-1993)
+#define __POSIX_VERSION_1995__	199506l	//!< The 1995 edition of the POSIX.1c standard (IEEE Standard 1003.1c-1995)
+#define __POSIX_VERSION_2001__	200112l	//!< The 2001 edition of the POSIX    standard (IEEE Standard 1003.1-2001)
+#define __POSIX_VERSION_2008__	200809l	//!< The 2008 edition of the POSIX    standard (IEEE Standard 1003.1-2008)
 //!@}
 
 
@@ -228,17 +224,24 @@ HEADER_CPP
 #if defined(__SIZEOF_INT128__) \
 	|| defined(__int128)
 
-#if (__SIZEOF_INT128__ != 16)
-#warning "Bad predefined macro: `__SIZEOF_INT128__` should have a value of `16`, or not be defined at all."
-#endif
+	#if (__SIZEOF_INT128__ != 16)
+	#warning "Bad predefined macro: `__SIZEOF_INT128__` should have a value of `16`, or not be defined at all."
+	#endif
+
 	#ifndef __int128
 	#define __int128 \
 			__int128
 	#endif
+
+	/* fix for windows+clang+msvc which doesnt fully support 128-bit integer division */
+	#if defined(__clang__) && defined(__MSVC__)
+	#undef __int128
+	#endif
+
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpedantic"
 	typedef unsigned __int128	_UInt128; //!< Harmonized type for 128-bit unsigned integers
-	typedef signed   __int128	_SInt128; //!< Harmonized type for 128-bit signed integers
+	typedef   signed __int128	_SInt128; //!< Harmonized type for 128-bit signed integers
 	#pragma GCC diagnostic pop
 #endif
 
@@ -253,12 +256,19 @@ HEADER_CPP
 
 
 
-//!@doc Platform-specific extended-precision `long double` floating-point types
+//!@doc Compatiblity with platform-specific floating-point types
 //!@{
+#ifdef __is_identifier // Compatibility with non-clang compilers.
+	#if __is_identifier(_Float16)
+		#ifndef __float16
+		#define __float16	_Float16
+		#endif
+	#endif
+#endif
 
 #if defined(__LDBL_MANT_DIG__) \
-	|| defined(__float80)	\
-	|| defined(__float128)	\
+	|| defined(__float80) \
+	|| defined(__float128) \
 
 #if (__LDBL_MANT_DIG__ == 0)
 #warning "Bad predefined macro: `__LDBL_MANT_DIG__` should not be defined with value of `0`"
@@ -291,7 +301,14 @@ HEADER_CPP
 #endif
 #endif
 
-//! This macro is set to `1` if the current platform supports 80-bit (96-bit) floats, or `0` otherwise
+//! This macro is set to `1` if the current platform supports 16-bit floats, or `0` otherwise
+#ifdef __float16
+#define _HAS_FLOAT16	1
+#else
+#define _HAS_FLOAT16	0
+#endif
+
+//! This macro is set to `1` if the current platform supports 80-bit floats, or `0` otherwise
 #ifdef __float80
 #define _HAS_FLOAT80	1
 #else
@@ -309,11 +326,9 @@ HEADER_CPP
 
 
 
-/*
-** ************************************************************************** *|
-**                           Common Macro Definitions                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Common Macro Definitions                         ||
+\*============================================================================*/
 
 //!@doc General convienence macro constants for function return values
 /*!
@@ -385,32 +400,30 @@ HEADER_CPP
 #define STREQU(STR1, STR2, N)			STRING_EQUALS(STR1, STR2, N)
 #define STRING_EQUALS(STR1, STR2, N)	STRING_EQUALS_##N(STR1, STR2)
 
-#define STRING_EQUALS_0(X)	(1)
-#define STRING_EQUALS_1(X)	(S1[0]==S2[0])
-#define STRING_EQUALS_2(X)	(S1[0]==S2[0] && S1[1]==S2[1])
-#define STRING_EQUALS_3(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2])
-#define STRING_EQUALS_4(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3])
-#define STRING_EQUALS_5(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4])
-#define STRING_EQUALS_6(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5])
-#define STRING_EQUALS_7(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6])
-#define STRING_EQUALS_8(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7])
-#define STRING_EQUALS_9(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8])
-#define STRING_EQUALS_10(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9])
-#define STRING_EQUALS_11(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10])
-#define STRING_EQUALS_12(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11])
-#define STRING_EQUALS_13(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12])
-#define STRING_EQUALS_14(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13])
-#define STRING_EQUALS_15(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13] && S1[14]==S2[14])
-#define STRING_EQUALS_16(X)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13] && S1[14]==S2[14] && S1[15]==S2[15])
+#define STRING_EQUALS_0(S1,S2)	(1)
+#define STRING_EQUALS_1(S1,S2)	(S1[0]==S2[0])
+#define STRING_EQUALS_2(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1])
+#define STRING_EQUALS_3(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2])
+#define STRING_EQUALS_4(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3])
+#define STRING_EQUALS_5(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4])
+#define STRING_EQUALS_6(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5])
+#define STRING_EQUALS_7(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6])
+#define STRING_EQUALS_8(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7])
+#define STRING_EQUALS_9(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8])
+#define STRING_EQUALS_10(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9])
+#define STRING_EQUALS_11(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10])
+#define STRING_EQUALS_12(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11])
+#define STRING_EQUALS_13(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12])
+#define STRING_EQUALS_14(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13])
+#define STRING_EQUALS_15(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13] && S1[14]==S2[14])
+#define STRING_EQUALS_16(S1,S2)	(S1[0]==S2[0] && S1[1]==S2[1] && S1[2]==S2[2] && S1[3]==S2[3] && S1[4]==S2[4] && S1[5]==S2[5] && S1[6]==S2[6] && S1[7]==S2[7] && S1[8]==S2[8] && S1[9]==S2[9] && S1[10]==S2[10] && S1[11]==S2[11] && S1[12]==S2[12] && S1[13]==S2[13] && S1[14]==S2[14] && S1[15]==S2[15])
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                         Cross-platform C keywords                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         Cross-platform C keywords                          ||
+\*============================================================================*/
 
 //!@doc Cross-platform C keyword function macros
 //!@{
@@ -427,18 +440,6 @@ HEADER_CPP
 #endif
 #endif
 
-//! Cross-platform keyword macro: `__inline__`
-/*!
-**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
-*/
-#ifndef __inline__
-#ifdef __MSVC__
-	#define __inline__	__inline
-#elif !defined(__GNUC__)
-	#define __inline__	inline
-#endif
-#endif
-
 //! Cross-platform keyword macro: `__restrict__`
 /*!
 **	@isostd{C99,https://en.cppreference.com/w/c/language/restrict}
@@ -451,15 +452,35 @@ HEADER_CPP
 #endif
 #endif
 
+//! Cross-platform keyword macro: `__inline__`
+/*!
+**	@isostd{C99,https://en.cppreference.com/w/c/language/inline}
+*/
+#ifndef __inline__
+#ifdef __MSVC__
+	#define __inline__	__inline
+#elif !defined(__GNUC__)
+	#define __inline__	inline
+#endif
+#endif
+
 //!@}
 
+#ifndef __cplusplus
+#ifdef __MSVC__
+	#if (_MSC_VER < 1900) /* older versions of MSVC do not support C99 inline at all */
+		#define inline	
+	#else
+		#define inline	__inline
+	#endif
+#endif
+#endif
 
 
-/*
-** ************************************************************************** *|
-**                         Cross-platform C operators                         *|
-** ************************************************************************** *|
-*/
+
+/*============================================================================*\
+||                         Cross-platform C operators                         ||
+\*============================================================================*/
 
 //!@doc Cross-platform C operator function macros
 //!@{
@@ -480,7 +501,7 @@ HEADER_CPP
 **	@isostd{GNU,https://gcc.gnu.org/onlinedocs/gcc/Typeof.html}
 */
 #ifndef __typeof__
-#ifdef __MSVC__
+#if defined(__MSVC__) && defined (__cplusplus)
 	#define __typeof__(X)	decltype(X)
 #elif !defined(__GNUC__)
 	#define __typeof__(X)	typeof(X)
@@ -545,11 +566,9 @@ HEADER_CPP
 
 
 
-/*
-** ************************************************************************** *|
-**                     For-Each loop (FOREACH) keyword macro                  *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                     For-Each loop (FOREACH) keyword macro                  ||
+\*============================================================================*/
 
 //!@doc C extension: `foreach` keyword, to use with iterable types
 /*!
@@ -562,20 +581,18 @@ HEADER_CPP
 **	- for `s_dict<t_char*>`:	`foreach (t_char*, my_str, s_dict,  my_dict)  { ... }`
 */
 #define foreach(VARIABLE_TYPE, VARIABLE, ITERABLE_TYPE, ITERABLE) \
-	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE)			\
-	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE);	\
-		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE),	\
-		foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE))	\
+	foreach_##ITERABLE_TYPE##_init(VARIABLE_TYPE, VARIABLE, ITERABLE) \
+	foreach_##ITERABLE_TYPE##_exit(VARIABLE_TYPE, VARIABLE, ITERABLE) \
+	for(foreach_##ITERABLE_TYPE##_loop_init(VARIABLE_TYPE, VARIABLE, ITERABLE); \
+		foreach_##ITERABLE_TYPE##_loop_exit(VARIABLE_TYPE, VARIABLE, ITERABLE); \
+		foreach_##ITERABLE_TYPE##_loop_incr(VARIABLE_TYPE, VARIABLE, ITERABLE), \
+		foreach_##ITERABLE_TYPE##_loop_setv(VARIABLE_TYPE, VARIABLE, ITERABLE)) \
 
 
 
-/*
-** ************************************************************************** *|
-**              Cross-platform function declaration flag macros               *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||              Cross-platform function declaration flag macros               ||
+\*============================================================================*/
 
 //!@doc Cross-platform generic-typed function declaration specifier
 /*!
@@ -583,7 +600,7 @@ HEADER_CPP
 **	it is used to perform dead code elimination on unused functions automatically.
 **
 **	To be more precise, this macro is used when including a generic-type file
-**	(ie: the files located in `hdr/libccc/monad/` with the file extension `.c`),
+**	(ie: the files located in `hdr/libccc/generic/` with the file extension `.c`),
 **	to make all generic-type functions be declared as `static` (so they are local to a unit),
 **	all the while suppressing the annoying "static function never used" warnings,
 **	and still have the compiler/linker perform dead code elimination as appropriate.
@@ -606,6 +623,7 @@ HEADER_CPP
 #undef _MALLOC
 #undef _UNUSED
 #undef _INLINE
+#undef _FORCEINLINE
 #undef _NOINLINE
 #undef _NORETURN
 #undef _PACKED
@@ -618,8 +636,9 @@ HEADER_CPP
 	#define _PURE()          //!< Before a function def: indicates that the function has no side-effects
 	#define _MALLOC()        //!< Before a function def: indicates that it returns newly allocated ptr
 	#define _UNUSED()        //!< Before a function def: suppresses warnings for empty/incomplete function
-	#define _INLINE()        //!< Before a function def: makes the function be always inlined regardless of compiler config
-	#define _NOINLINE()      //!< Before a function def: makes the function be always inlined regardless of compiler config
+	#define _INLINE()        //!< Before a function def: suggests to the compiler that this function ought to be inlined
+	#define _FORCEINLINE()   //!< Before a function def: makes the function always be inlined regardless of compiler config
+	#define _NOINLINE()      //!< Before a function def: makes the function never be inlined regardless of compiler config
 	#define _NORETURN()      //!< Before a function def: indicates that it never returns (runs forever, and/or calls abort() or exit())
 	#define _PACKED()        //!< Before a struct/union def: do not perform byte-padding on this struct/union type
 //	#define _EXPORT()        //!< Before a function def: always export the symbol (regardless of static/dynamic linking)
@@ -635,7 +654,8 @@ HEADER_CPP
 	#define _PURE()				__attribute__((pure))
 	#define _MALLOC()			__attribute__((malloc))
 	#define _UNUSED()			__attribute__((unused))
-	#define _INLINE()			__attribute__((always_inline))
+	#define _INLINE()			extern __inline__
+	#define _FORCEINLINE()		extern __attribute__((always_inline))
 	#define _NOINLINE()			__attribute__((noinline))
 	#define _NORETURN()			__attribute__((noreturn))
 	#define _PACKED()			__attribute__((packed))
@@ -647,7 +667,8 @@ HEADER_CPP
 	#define _PURE()				__declspec(noalias)
 	#define _MALLOC()			__declspec(allocator)
 	#define _UNUSED()			__declspec(deprecated)
-	#define _INLINE()			inline
+	#define _INLINE()			extern __inline
+	#define _FORCEINLINE()		extern __forceinline
 	#define _NOINLINE()			__declspec(noinline)
 	#define _NORETURN()			__declspec(noreturn)
 	#define _PACKED()			__pragma(pack(push, 1))	__pragma(pack(pop)) // TODO find a way to make this work in pure C ?
@@ -660,21 +681,25 @@ HEADER_CPP
 	#define _MALLOC()			
 	#define _UNUSED()			
 	#define _INLINE()			
+	#define _FORCEINLINE()			
 	#define _NOINLINE()			
 	#define _NORETURN()			
 	#define _PACKED()			
 
 #endif
 
+#ifdef __cplusplus
+#undef  _INLINE
+#define _INLINE()	
+#endif
+
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                        Include Binary (INCBIN) ASM macro                   *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                        Include Binary (INCBIN) ASM macro                   ||
+\*============================================================================*/
 
 //!@doc INCBIN(): include a binary file directly as a global variable.
 /*!
@@ -688,32 +713,27 @@ HEADER_CPP
 **	- `int const*	NAME##_size` : The pointer 1 byte after '*_end', contains the file size. Use it like this: t_size len = (t_size)(*myfile_size);
 */
 #define INCBIN(NAME, FILEPATH) \
-/*extern t_u8 const	NAME[];        */	\
-/*extern t_u8 const	NAME##_end[];  */	\
-/*extern int const	NAME##_size[]; */	\
-__asm__									\
-(										\
-	"\n"INCBIN_SECTION					\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)			\
-	"\n"INCBIN_MANGLE(#NAME)":"			\
-	"\n\t.incbin \""FILEPATH"\""		\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)"_end"		\
-	"\n"INCBIN_MANGLE(#NAME)"_end"":"	\
-	"\n\t"INCBIN_BYTE" 0"				\
-	"\n"								\
-	"\n"INCBIN_GLOBAL" "				\
-		INCBIN_MANGLE(#NAME)"_size"		\
-	"\n"INCBIN_MANGLE(#NAME)"_size"":"	\
-	"\n\t"INCBIN_SIZE					\
-		" ( "INCBIN_MANGLE(#NAME)"_end"	\
-		" - "INCBIN_MANGLE(#NAME)" )"	\
-	"\n"								\
-	"\n"INCBIN_PREVIOUS					\
-	"\n"								\
+/*extern t_u8 const	NAME[];        */ \
+/*extern t_u8 const	NAME##_end[];  */ \
+/*extern int const	NAME##_size[]; */ \
+__asm__ \
+( \
+	"\n" INCBIN_SECTION \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME) \
+	"\n" INCBIN_MANGLE(#NAME)":" \
+	"\n\t.incbin \"" FILEPATH "\"" \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME)"_end" \
+	"\n" INCBIN_MANGLE(#NAME)"_end"":" \
+	"\n\t" INCBIN_BYTE " 0" \
+	"\n" \
+	"\n" INCBIN_GLOBAL " " INCBIN_MANGLE(#NAME)"_size" \
+	"\n" INCBIN_MANGLE(#NAME)"_size"":" \
+	"\n\t" INCBIN_SIZE " ( " INCBIN_MANGLE(#NAME)"_end - " INCBIN_MANGLE(#NAME)" )" \
+	"\n" \
+	"\n" INCBIN_PREVIOUS \
+	"\n" \
 );
 
 //!@doc Cross-platform ASM support macros for INCBIN()
@@ -734,7 +754,7 @@ __asm__									\
 	#define INCBIN_SECTION	".section __DATA,__const"
 	#define INCBIN_PREVIOUS	".previous"
 	#define INCBIN_GLOBAL	".globl"
-	#define INCBIN_MANGLE(NAME)	"_"NAME
+	#define INCBIN_MANGLE(NAME)	"_" NAME
 	#define INCBIN_BYTE	".byte"
 	#define INCBIN_SIZE	".long"
 
@@ -747,7 +767,7 @@ __asm__									\
 		#define INCBIN_PREVIOUS	""
 	#endif
 	#define INCBIN_GLOBAL	".global"
-	#define INCBIN_MANGLE(NAME)	""NAME
+	#define INCBIN_MANGLE(NAME)	"" NAME
 	#define INCBIN_BYTE	".byte"
 	#define INCBIN_SIZE	".int"
 

@@ -4,6 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
+#include "libccc/text/format.h"
 #include "libccc/encode/json.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
@@ -27,15 +28,15 @@ static t_bool JSON_Parse_Object(s_json* item, s_json_parse* p);
 
 //! used to handle errors during parsing
 #define PARSINGERROR_JSON(...) \
-	{																							\
-		t_char* tmp_error;																		\
-		tmp_error = String_Format(__VA_ARGS__);													\
-		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error);						\
-		if (p != NULL)																			\
-		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); }	\
-		else String_Delete(&tmp_error);															\
-		goto failure;																			\
-	}																							\
+	{ \
+		t_char* tmp_error; \
+		tmp_error = String_Format(__VA_ARGS__); \
+		tmp_error = String_Prepend(PARSINGERROR_JSON_PREFIX, &tmp_error); \
+		if (p != NULL) \
+		{ p->error = (p->error == NULL ? tmp_error : String_Merge(&p->error, &tmp_error)); } \
+		else String_Delete(&tmp_error); \
+		goto failure; \
+	} \
 
 //! Safely checks if the content to parse can be accessed at the given index
 #define CAN_PARSE(X) \
@@ -188,7 +189,7 @@ t_bool		JSON_Parse_Number(s_json* item, s_json_parse* p)
 		item->type = DYNAMICTYPE_FLOAT;
 		item->value.number = result;
 	}
-//	if (IS_NAN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
+//	if (F64_IsNaN(result)) // && String_HasOnly(number, CHARSET_ALPHABET".-+"CHARSET_DIGIT))
 //		PARSINGERROR_JSON("Error while parsing number: \"%s\"", number)
 	String_Delete(&number);
 	p->offset += length;
@@ -245,8 +246,8 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 				if ((t_size)(input_end + i - p->content) >= p->length ||
 					!Char_IsDigit_Hex(input_end[i]))
 					PARSINGERROR_JSON("Could not parse string: Unicode escape sequence char '%c' "
-						"must be followed by %i hexadecimal digit chars, instead found \"%.*s\"",
-						c, sequence_chars, sequence_chars + 2, input_end - 1)
+						"must be followed by " SF_SINT " hexadecimal digit chars, instead found \"%.*s\"",
+						c, sequence_chars, (int)(sequence_chars + 2), input_end - 1)
 			}
 			input_end += sequence_chars;
 		}
@@ -392,7 +393,7 @@ t_bool	JSON_Parse_Array(s_json* item, s_json_parse* p)
 			PARSINGERROR_JSON("Inside array: trailing commas are not accepted in strict JSON")
 		// parse next value
 		if (JSON_Parse_Value(current_item, p))
-			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index "SF_UINT, index)
+			PARSINGERROR_JSON("Inside array: failed to parse value within array, at index " SF_UINT, index)
 		JSON_Parse_SkipWhiteSpace(p);
 		index++;
 	}
@@ -606,7 +607,7 @@ t_bool	JSON_Parse_Value(s_json* item, s_json_parse* p)
 	PARSINGERROR_JSON("Unable to determine the kind of parsing to attempt: \"%.6s\"", p->content + p->offset)
 
 failure:
-	if (p->result != NULL)
+	if (p != NULL && p->result != NULL)
 	{
 		JSON_Delete(p->result);
 		p->result = NULL;
@@ -669,7 +670,7 @@ failure:
 		column++;
 	}
 	if CCCERROR(TRUE, ERROR_PARSE,
-		"at nesting depth "SF_UINT": line "SF_SIZE", column "SF_SIZE" (char index "SF_SIZE": '%c'/0x%2X)%s\n",
+		"at nesting depth " SF_UINT ": line " SF_SIZE ", column " SF_SIZE " (char index " SF_SIZE ": '%c'/0x%2X)%s\n",
 		p->depth,
 		p->line,
 		column,

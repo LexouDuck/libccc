@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsDigit(t_utf32 c)
 { return (iswdigit(c)); }
 #else
@@ -24,7 +24,7 @@ t_bool	CharUTF32_IsDigit(t_utf32 c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsDigit_Hex(t_utf32 c)
 { return (iswxdigit(c)); }
 #else

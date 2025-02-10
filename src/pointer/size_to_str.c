@@ -1,4 +1,5 @@
 
+#include "libccc.h"
 #include "libccc/int.h"
 #include "libccc/float.h"
 #include "libccc/memory.h"
@@ -8,7 +9,7 @@
 
 
 
-inline
+_INLINE()
 t_char*	Size_ToString(t_size number)
 {
 	return (U64_ToString(number));
@@ -16,7 +17,7 @@ t_char*	Size_ToString(t_size number)
 
 
 
-inline
+_INLINE()
 t_char*	Size_ToString_Hex(t_size number)
 {
 	return (U64_ToString_Hex(number, TRUE));

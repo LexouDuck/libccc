@@ -31,7 +31,7 @@
 
 /*
 **	Values for the second argument to access.
-**	These may be OR'd together.
+**	These may be bitwise-OR'd together.
 */
 #define R_OK	4	/* Bitmask for read permission. */
 #define W_OK	2	/* Bitmask for write permission. */

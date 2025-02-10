@@ -16,11 +16,9 @@
 **	This header defines a simple yet useful set of functions to do program logging
 */
 
-/*
-** ************************************************************************** *|
-**                                 Includes                                   *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Includes                                   ||
+\*============================================================================*/
 
 #ifndef __NOSTD__
 	#include <stdarg.h>
@@ -92,8 +90,8 @@ typedef s_logger const* const*	t_logptrarr;
 	/*.in_use = FALSE,*/\
 	.silence_logs   = FALSE,\
 	.silence_errors = TRUE,\
-	.timestamp      = FALSE,\
 	.verbose        = FALSE,\
+	.timestamp      = FALSE,\
 	.obfuscated     = FALSE,\
 	.append         = FALSE,\
 	.format = LOGFORMAT_ANSI,\
@@ -106,8 +104,8 @@ typedef s_logger const* const*	t_logptrarr;
 	/*.in_use = FALSE,*/\
 	.silence_logs   = TRUE,\
 	.silence_errors = FALSE,\
-	.timestamp      = FALSE,\
 	.verbose        = FALSE,\
+	.timestamp      = FALSE,\
 	.obfuscated     = FALSE,\
 	.append         = FALSE,\
 	.format = LOGFORMAT_ANSI,\
@@ -122,7 +120,7 @@ typedef s_logger const* const*	t_logptrarr;
 **	`YYYY-MM-DD hh:mm:ss`
 */
 #ifndef LOG_TIMESTAMP_FORMAT
-#define LOG_TIMESTAMP_FORMAT	SF_DATE_UNIX" "SF_TIME_UNIX
+#define LOG_TIMESTAMP_FORMAT	SF_DATE_UNIX " " SF_TIME_UNIX
 #endif
 
 /*!
@@ -155,55 +153,55 @@ typedef s_logger const* const*	t_logptrarr;
 /* ************************************************************************** */
 
 #define LOGONE_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR, FREE_STRINGS) \
-	e_cccerror	result = ERROR_NONE;			\
-	va_list		args;							\
-	if (logger == NULL)							\
-	{											\
-		FREE_STRINGS							\
-		return (ERROR_NULLPOINTER);				\
-	}											\
-	if (SKIP)									\
-	{											\
-		FREE_STRINGS							\
-		return (result);						\
-	}											\
-	va_start(args, format_str);					\
-	result = Log_VA(logger,						\
-		ERRORINT,								\
-		PREFIX,									\
-		PREFIX_COLOR,							\
-		ERRORMSG,								\
-		format_str, args);						\
-	va_end(args);								\
-	FREE_STRINGS								\
-	return (result);							\
+	e_cccerror	result = ERROR_NONE; \
+	va_list		args; \
+	if (logger == NULL) \
+	{ \
+		FREE_STRINGS \
+		return (ERROR_NULLPOINTER); \
+	} \
+	if (SKIP) \
+	{ \
+		FREE_STRINGS \
+		return (result); \
+	} \
+	va_start(args, format_str); \
+	result = Log_VA(logger, \
+		ERRORINT, \
+		PREFIX, \
+		PREFIX_COLOR, \
+		ERRORMSG, \
+		format_str, args); \
+	va_end(args); \
+	FREE_STRINGS \
+	return (result); \
 
 #define LOGALL_FUNCTION_CONTENT(SKIP, ERRORINT, ERRORMSG, PREFIX, PREFIX_COLOR, FREE_STRINGS) \
-	e_cccerror	result = ERROR_NONE;			\
-	va_list		args;							\
-	if (loggers == NULL)						\
-	{											\
-		FREE_STRINGS							\
-		return (ERROR_NULLPOINTER);				\
-	}											\
-	for (t_u32 i = 0; loggers[i]; ++i)			\
-	{											\
-		s_logger const* logger = loggers[i];	\
-		if (SKIP)								\
-		{										\
-			continue;							\
-		}										\
-		va_start(args, format_str);				\
-		result = Log_VA(logger,					\
-			ERRORINT,							\
-			PREFIX,								\
-			PREFIX_COLOR,						\
-			ERRORMSG,							\
-			format_str, args);					\
-		va_end(args);							\
-	}											\
-	FREE_STRINGS								\
-	return (result);							\
+	e_cccerror	result = ERROR_NONE; \
+	va_list		args; \
+	if (loggers == NULL) \
+	{ \
+		FREE_STRINGS \
+		return (ERROR_NULLPOINTER); \
+	} \
+	for (t_u32 i = 0; loggers[i]; ++i) \
+	{ \
+		s_logger const* logger = loggers[i]; \
+		if (SKIP) \
+		{ \
+			continue; \
+		} \
+		va_start(args, format_str); \
+		result = Log_VA(logger, \
+			ERRORINT, \
+			PREFIX, \
+			PREFIX_COLOR, \
+			ERRORMSG, \
+			format_str, args); \
+		va_end(args); \
+	} \
+	FREE_STRINGS \
+	return (result); \
 
 
 
@@ -312,7 +310,7 @@ e_cccerror				Log_Fatal(s_logger const* logger, t_char const* str);
 
 //! Text prefix used when logging a "failure" message
 #ifndef LOGPREFIX_ERROR
-#define LOGPREFIX_ERROR	"error"
+#define LOGPREFIX_ERROR	"runtime error"
 #endif
 
 //!@doc Log an error message (with a secondary `message` string) - use this to notify the user of a failure/problem

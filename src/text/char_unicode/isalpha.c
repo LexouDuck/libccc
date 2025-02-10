@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsLetter(t_utf32 c)
 { return (iswalpha(c)); }
 #else
@@ -35,7 +35,7 @@ t_bool	CharUTF32_IsLetter(t_utf32 c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsAlphaNumeric(t_utf32 c)
 { return (iswalnum(c)); }
 #else

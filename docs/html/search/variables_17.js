@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['x_0',['x',['../vector_8h.html#a527e1768355486fcd284f86901fdcf6b',1,'vec2d::x()'],['../vector_8h.html#a527e1768355486fcd284f86901fdcf6b',1,'vec3d::x()'],['../vector_8h.html#a527e1768355486fcd284f86901fdcf6b',1,'vec4d::x()']]]
+  ['w_11515',['w',['../matrix_8h.html#a7e7650bb2f89c01c4821896224d378d6',1,'mat3d::w()'],['../matrix_8h.html#a88d0218f8819a9f787fbad04e019c55b',1,'mat4d::w()']]]
 ];

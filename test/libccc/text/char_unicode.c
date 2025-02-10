@@ -5,6 +5,7 @@
 #include "libccc/text/char_unicode.h"
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
@@ -12,7 +13,7 @@
 
 #define TEST_PERFORM_CHAR_is(FUNCTION, ERRORPREFIX) \
 	printf(ERRORPREFIX \
-		"c_%s("SF_TEXTCHAR")" \
+		"c_%s(" SF_TEXTCHAR ")" \
 		"\t""returned 0x%X," \
 		"\t""but libc %s() returned 0x%X\n", \
 		#FUNCTION, \
@@ -23,9 +24,9 @@
 
 #define TEST_PERFORM_CHAR_to(FUNCTION, ERRORPREFIX) \
 	printf(ERRORPREFIX \
-		"c_%s("SF_TEXTCHAR")" \
-		"\t""returned "SF_TEXTCHAR"," \
-		"\t""but libc %s() returned "SF_TEXTCHAR"\n", \
+		"c_%s(" SF_TEXTCHAR ")" \
+		"\t""returned " SF_TEXTCHAR "," \
+		"\t""but libc %s() returned " SF_TEXTCHAR "\n", \
 		#FUNCTION, \
 		(wint_t)c, c, \
 		(wint_t)result, result, \
@@ -33,47 +34,45 @@
 		(wint_t)expect, expect); \
 
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
-	warnings = 0;										\
-	errors   = 0;										\
-	c = min;											\
-	while (c++ < max)									\
-	{													\
-		result = c_##FUNCTION(c);						\
-		expect =     FUNCTION(c);						\
-		if (result != expect)							\
-		{												\
-			if (STRICT && !bool_equals(result, expect))	\
-			{											\
-				errors++;								\
-				TEST_PERFORM_CHAR_##KIND(FUNCTION,		\
-					ANSI_COLOR_FG_RED"Error"ANSI_RESET": ")			\
+	warnings = 0; \
+	errors   = 0; \
+	c = min; \
+	while (c++ < max) \
+	{ \
+		result = c_##FUNCTION(c); \
+		expect =     FUNCTION(c); \
+		if (result != expect) \
+		{ \
+			if (STRICT && !bool_equals(result, expect)) \
+			{ \
+				errors++; \
+				TEST_PERFORM_CHAR_##KIND(FUNCTION, \
+					ANSI_COLOR_FG_RED "Error" ANSI_RESET ": ") \
 				g_test.suites[TESTSUITE_TEXT_CHAR_UNICODE].totals.failed += 1;\
-			}											\
-			else										\
-			{											\
-				warnings++;								\
-				if (g_test.config.verbose)				\
-					TEST_PERFORM_CHAR_##KIND(FUNCTION,	\
-						ANSI_COLOR_FG_YELLOW"Warning"ANSI_RESET": ")	\
+			} \
+			else \
+			{ \
+				warnings++; \
+				if (g_test.config.verbose) \
+					TEST_PERFORM_CHAR_##KIND(FUNCTION, \
+						ANSI_COLOR_FG_YELLOW "Warning" ANSI_RESET ": ") \
 				g_test.suites[TESTSUITE_TEXT_CHAR_UNICODE].totals.warnings += 1;\
-			}											\
-		}												\
+			} \
+		} \
 		g_test.suites[TESTSUITE_TEXT_CHAR_UNICODE].totals.tests += 1;\
-	}													\
-	if (errors || warnings)								\
-	{													\
-		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max);	\
-		printf("- %s%d"ANSI_RESET" errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  );	\
-		printf("- %s%d"ANSI_RESET" warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings);	\
+	} \
+	if (errors || warnings) \
+	{ \
+		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max); \
+		printf("- %s%d" ANSI_RESET " errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  ); \
+		printf("- %s%d" ANSI_RESET " warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings); \
 	}
 
 
 
-/*
-** ************************************************************************** *|
-**                            Test Suite Function                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                            Test Suite Function                             ||
+\*============================================================================*/
 
 int		testsuite_text_char_unicode(void)
 {

@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/text/string_utf8.h &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/stringarray.h" href="group_libccc_stringarray.html" />
+    <link rel="prev" title="libccc/string.h" href="group_libccc_string.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/text/string_utf8.h">
+	<meta property="og:description" content="libccc/text/string_utf8.h">
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation - libccc/text/string_utf8.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_string_utf8.html">
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/text/string_utf8.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#typedefs">Typedefs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-variables">Global Variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_tree.html">libccc/generic/tree.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">libccc/text/string_utf8.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-text-string-utf8-h">
+<span id="doxid-group-libccc-string-utf8"></span><span id="index-0"></span><h1>libccc/text/string_utf8.h<a class="headerlink" href="#libccc-text-string-utf8-h" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This header defines the common standard UTF8 text string manipulation functions. <a class="reference internal" href="#details-group-libccc-string-utf8"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
+
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gaa6d7f6bf341b38c561d4b698280002ec"><span></span><span class="kt">p_stringUTF8</span></span><span></span><span class="p">;</span>
+
+<span class="k">typedef</span> <span class="kt">size_t</span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span><span class="p">)(</span>
+    <span class="kt">t_utf8</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span>
+    <span class="kt">t_utf32</span> <span class="n">c</span>
+    <span class="p">);</span>
+
+<span class="k">typedef</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="p">(</span><span class="o">*</span><a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span><span class="p">)(</span><span class="kt">t_utf8</span> <span class="k">const</span> <span class="o">*</span><span class="n">str</span><span class="p">);</span>
+
+<span class="c1">// global variables</span>
+
+<a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1gac181ce29455dff090a79e38abf1a1a85"><span class="std std-ref">p_strUTF8</span></a><span></span><span class="p">;</span>
+
+<span class="c1">// global functions</span>
+
+<a class="reference internal" href="group_libccc_text_ascii.html#doxid-group-libccc-text-ascii-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga5d95c39c7671155c08429336a45a9bd1"><span class="std std-ref">StringUTF8_ToASCIIEscaped</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga96a21675ce5b2c8bdd0a5081cb3034e5"><span class="std std-ref">StringUTF8_ToASCIIEscapedBuf</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_ascii.html#doxid-group-libccc-text-ascii-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga6eabf4fd6f66f637917b607fa8f9b815"><span class="std std-ref">StringUTF8_ToJsonEscaped</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga03c5f3d4277b0b31855ac527004478ca"><span class="std std-ref">StringUTF8_ToJsonEscapedBuf</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga66204657e8eacf800a45afff7f1b8055"><span></span><span class="n">ForceEncodingFor_NonPrintable</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gafcaefbc47d2ed07e8777c55a9495e3b8"><span></span><span class="n">ForceEncodingFor_NonASCII</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga86c994ae156d259cff40bef367912d9a"><span></span><span class="n">ForceEncodingFor_NonASCIIOrNonPrintable</span></span><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga20076e5fe7c7526dc9c32d94985c4fc1"><span class="std std-ref">StringUTF8_ToEscaped</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga15080728dd478b4051e5c24e28899657"><span class="std std-ref">StringUTF8_ToEscaped_e</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_len</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_readlen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max_resultlen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1gabcc293eb1c5b886f03e459d35bf11d4b"><span class="std std-ref">StringUTF8_ToEscapedBuf</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">);</span>
+
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga663c9dc43a1947aebcc010aa16ca1915"><span class="std std-ref">StringUTF8_ToEscapedBuf_e</span></a><span></span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_readlen</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga09de831bb4d7d1a9285704b56a8753c2"><span></span><span class="n">ENCODER_UFFFFFFFF</span></span><span></span>  <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1gae83fa08a479d552be0c30bcd23768113"><span class="std std-ref">CharUTF32_ToEscaped_UFFFFFFFF</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gad85ed765c6a255dd50049e8e35b6d237"><span></span><span class="n">ENCODER_smart</span></span><span></span>  <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga3a43543d138f307f3557a2db70c3fb1b"><span class="std std-ref">CharUTF32_ToEscaped_smart</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga22d60efe1eb06eb4ccb0a4ca8344559b"><span></span><span class="n">ENCODER_uFFFF</span></span><span></span>  <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga806ce4eb9ea666dc5731d4db41a088c2"><span class="std std-ref">CharUTF32_ToEscaped_uFFFF</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga4fc0fb1a66987eef1f093ff3790781df"><span></span><span class="n">ENCODER_xFF</span></span><span></span>    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga6e4fe192879a9b41a92cbac64a952552"><span class="std std-ref">CharUTF32_ToEscaped_xFF</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gaa583b4f3511c2f3612e7d7687f085278"><span></span><span class="n">StringUTF8_Print</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga96a21675ce5b2c8bdd0a5081cb3034e5"><span class="std std-ref">StringUTF8_ToASCIIEscapedBuf</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga4838f0ebc63950a16408a526bc022919"><span></span><span class="n">c_mbstrtoUTF8esc</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga5d95c39c7671155c08429336a45a9bd1"><span class="std std-ref">StringUTF8_ToASCIIEscaped</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1ga038931d69b85f4b913894a3b67fff5db"><span></span><span class="n">c_mbstrtoesc</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga20076e5fe7c7526dc9c32d94985c4fc1"><span class="std std-ref">StringUTF8_ToEscaped</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gab8c491d1c946258a933b0c50aba133d4"><span></span><span class="n">c_mbstrtoesc_e</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga15080728dd478b4051e5c24e28899657"><span class="std std-ref">StringUTF8_ToEscaped_e</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-string-utf8-1gafebc099beff0edbdef63a8d20f873534"><span></span><span class="n">c_mbstrtojsonesc</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga6eabf4fd6f66f637917b607fa8f9b815"><span class="std std-ref">StringUTF8_ToJsonEscaped</span></a></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-string-utf8"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
+<p>This header defines the common standard UTF8 text string manipulation functions.</p>
+<ul class="simple">
+<li><p><em>Standard library equivalent:</em> (C) <a class="reference external" href="https://en.cppreference.com/w/c/string/byte#StringUTF8_manipulation">https://en.cppreference.com/w/c/string/byte#StringUTF8_manipulation</a></p></li>
+</ul>
+<section id="typedefs">
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">size_t</span> <span class="p">(</span><span class="o">*</span><span class="kt">f_char_encoder</span><span class="p">)(</span>
+    <span class="kt">t_utf8</span> <span class="o">*</span><span class="n">dest</span><span class="p">,</span>
+    <span class="kt">t_utf32</span> <span class="n">c</span>
+    <span class="p">)</span></pre>
+<p>Function to encode (or ‘spell out’) a unicode character to an UTF8 string.</p>
+<p>if <code class="docutils literal notranslate"><span class="pre">dest</span></code> is not NULL, writes down the UTF8 string to <code class="docutils literal notranslate"><span class="pre">dest</span></code> without a final ‘0’ One can call the function with a NULL <code class="docutils literal notranslate"><span class="pre">dest</span></code> to just get the number of bytes that would be written to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, and ensure the buffer is big enough</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>dest</p></td>
+<td><p>The buffer in which the output will be written, if non NULL</p></td>
+</tr>
+<tr class="row-even"><td><p>c</p></td>
+<td><p>The unicode character to encode</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p><code class="docutils literal notranslate"><span class="pre">ERROR</span></code> if the given character cannot be encoded, or The number of byte written on <code class="docutils literal notranslate"><span class="pre">dest</span></code>, or that would have been written to <code class="docutils literal notranslate"><span class="pre">dest</span></code> if <code class="docutils literal notranslate"><span class="pre">dest</span></code> wasn’t NULL</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span id="index-2"></span><span></span><span class="k">typedef</span> <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="p">(</span><span class="o">*</span><span class="kt">f_force_encoding_for</span><span class="p">)(</span><span class="kt">t_utf8</span> <span class="k">const</span> <span class="o">*</span><span class="n">str</span><span class="p">)</span></pre>
+<p>Functor to determine if given (potentially multi-byte) character should be encoded by the <code class="docutils literal notranslate"><span class="pre">f_char_encoder</span></code></p>
+</section>
+<section id="global-variables">
+<h3>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1gac181ce29455dff090a79e38abf1a1a85"><span id="index-3"></span><a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="kt">p_strUTF8</span></pre>
+<p>Type definition for a string of characters.</p>
+<p>This typedef is only provided for certain niche purposes, since it is typically not very good practice in C to hide pointers within <code class="docutils literal notranslate"><span class="pre">typedef</span></code> types.</p>
+</section>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga5d95c39c7671155c08429336a45a9bd1"><span id="index-4"></span><a class="reference internal" href="group_libccc_text_ascii.html#doxid-group-libccc-text-ascii-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span><span class="o">*</span> <span class="n">StringUTF8_ToASCIIEscaped</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Creates a new string from <code class="docutils literal notranslate"><span class="pre">str</span></code>, replacing special characters with ascii escape-sequences.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p>Returns a new null-terminated string where every non-printable or non-ascii character of <code class="docutils literal notranslate"><span class="pre">str</span></code> is replaced by either its “normal” escape sequence (if available) or encodes the character with either a <code class="docutils literal notranslate"><span class="pre">\xFF</span></code>, <code class="docutils literal notranslate"><span class="pre">\uFFFF</span></code>, or <code class="docutils literal notranslate"><span class="pre">\UFFFFFFFF</span></code> escape sequence if no simple alias sequence exists (like <code class="docutils literal notranslate"><span class="pre">&quot;\n&quot;</span></code> for instance). Here is the list of characters which will be escaped by default:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code> <code class="docutils literal notranslate"><span class="pre">\</span></code> (a single backslash, escaping the escape character)</p></li>
+<li><p>&amp;rsquo; <code class="docutils literal notranslate"><span class="pre">Apostrophe</span> <span class="pre">-</span></code> ” <code class="docutils literal notranslate"><span class="pre">Double</span> <span class="pre">quotes</span> <span class="pre">-</span></code> / <code class="docutils literal notranslate"><span class="pre">Forward</span> <span class="pre">Slash</span> <span class="pre">-</span></code> ** <code class="docutils literal notranslate"><span class="pre">Bell/Alert/Audible</span> <span class="pre">-</span></code> <a href="#id1"><span class="problematic" id="id2">**</span></a>** <code class="docutils literal notranslate"><span class="pre">Backspace</span> <span class="pre">-</span></code> t <code class="docutils literal notranslate"><span class="pre">Tab</span> <span class="pre">character</span> <span class="pre">-</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">Line</span> <span class="pre">feed</span> <span class="pre">-</span></code> v <code class="docutils literal notranslate"><span class="pre">Vertical</span> <span class="pre">tab</span> <span class="pre">-</span></code> f <code class="docutils literal notranslate"><span class="pre">Form-feed</span> <span class="pre">-</span></code> r <code class="docutils literal notranslate"><span class="pre">Carriage</span> <span class="pre">return</span> <span class="pre">-</span></code> ** <code class="docutils literal notranslate"><span class="pre">Escape</span> <span class="pre">-</span></code> x?? <code class="docutils literal notranslate"><span class="pre">Byte</span> <span class="pre">value,</span> <span class="pre">written</span> <span class="pre">as</span> <span class="pre">hexadecimal</span> <span class="pre">-</span></code> u???? <code class="docutils literal notranslate"><span class="pre">UTF-8</span> <span class="pre">multi-byte</span> <span class="pre">character,</span> <span class="pre">written</span> <span class="pre">as</span> <span class="pre">a</span> <span class="pre">hexadecimal</span> <span class="pre">code</span> <span class="pre">point</span> <span class="pre">(Unicode:</span> <span class="pre">U+????)</span> <span class="pre">-</span></code> U????????` UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)</p>
+</li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga96a21675ce5b2c8bdd0a5081cb3034e5"><span id="index-5"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">StringUTF8_ToASCIIEscapedBuf</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_ascii.html#doxid-group-libccc-text-ascii-1ga1897de8d731a1c5f595af40305a0f7fd"><span class="std std-ref">t_ascii</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Equivalent of <code class="docutils literal notranslate"><span class="pre">StringUTF8_ToUtf8Escaped</span></code> but writes in the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> buffer.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p>One can call with NULL <code class="docutils literal notranslate"><span class="pre">dest</span></code> to get the size it would write</p>
+<p class="rubric">Returns:</p>
+<p>The amount of byte written to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, or that would have been written to <code class="docutils literal notranslate"><span class="pre">dest</span></code> if <code class="docutils literal notranslate"><span class="pre">dest</span></code> wasn’t NULL</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga6eabf4fd6f66f637917b607fa8f9b815"><span id="index-6"></span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">StringUTF8_ToJsonEscaped</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Creates a new string from <code class="docutils literal notranslate"><span class="pre">str</span></code>, replacing special characters with JSON-like escape-sequences.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p>Returns a new null-terminated json-compliant string. Non-pritable characters are escaped with a <code class="docutils literal notranslate"><span class="pre">\uFFFF</span></code> format except for these escape sequences:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">\\</span></code> <code class="docutils literal notranslate"><span class="pre">\</span></code> (a single backslash, escaping the escape character)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\&quot;</span></code> Double quotes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\b</span></code> Backspace</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\t</span></code> Tab character</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\n</span></code> Line feed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\f</span></code> Form-feed</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">\r</span></code> Carriage return</p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga03c5f3d4277b0b31855ac527004478ca"><span id="index-7"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">StringUTF8_ToJsonEscapedBuf</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p>Equivalent of <code class="docutils literal notranslate"><span class="pre">StringUTF8_ToJsonEscaped</span></code> but writes in the given <code class="docutils literal notranslate"><span class="pre">dest</span></code> buffer.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p>One can call with NULL <code class="docutils literal notranslate"><span class="pre">dest</span></code> to get the size it would write</p>
+<p class="rubric">Returns:</p>
+<p>The amount of byte written to <code class="docutils literal notranslate"><span class="pre">dest</span></code>, or that would have been written to <code class="docutils literal notranslate"><span class="pre">dest</span></code> if <code class="docutils literal notranslate"><span class="pre">dest</span></code> wasn’t NULL</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga20076e5fe7c7526dc9c32d94985c4fc1"><span id="index-8"></span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">StringUTF8_ToEscaped</span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">)</span></pre>
+<p>Creates a new string from <code class="docutils literal notranslate"><span class="pre">str</span></code> escaping any relevant characters.</p>
+<ul class="simple">
+<li><p><em>This function is not defined in the C ISO standard.</em></p></li>
+</ul>
+<p>Returns a new string where every character is escaped according to the parameters:</p>
+<p>Every character in <code class="docutils literal notranslate"><span class="pre">charset</span></code> or for which <code class="docutils literal notranslate"><span class="pre">force_encoding_for</span></code> returns <code class="docutils literal notranslate"><span class="pre">TRUE</span></code> will be escaped. If the character is in <code class="docutils literal notranslate"><span class="pre">charset</span></code> and it’s corresponding alias (the value of <code class="docutils literal notranslate"><span class="pre">aliases</span></code> at the same index) is not <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, then the alias will be written. Otherwise, the character will be encoded with <code class="docutils literal notranslate"><span class="pre">char_encoder</span></code></p>
+<p>KNOWN ISSUE: Does not work with empty string as long as <code class="docutils literal notranslate"><span class="pre">SIZE_ERROR</span></code> macro is <code class="docutils literal notranslate"><span class="pre">0</span></code>. DZ_ON_REFACTOR_OF_SIZE_ERROR: delete this line, it’ll have solved the issue</p>
+<p class="rubric">Parameters:</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>str</p></td>
+<td><p>The input string whose content will be copied and escaped</p></td>
+</tr>
+<tr class="row-even"><td><p>charset</p></td>
+<td><p>String containing all characters to escape by an alias</p></td>
+</tr>
+<tr class="row-odd"><td><p>aliases</p></td>
+<td><p>String array containing the alias of every character of <code class="docutils literal notranslate"><span class="pre">charset</span></code>. A character in <code class="docutils literal notranslate"><span class="pre">charset</span></code> corresponds to an alias in <code class="docutils literal notranslate"><span class="pre">aliases</span></code> by index. If an alias is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, then the character will be encoded instead The array doesn’t have to be null-terminated, but needs to be of same size as <code class="docutils literal notranslate"><span class="pre">charset</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>force_encoding_for</p></td>
+<td><p>Predicate that can force a given character to be escaped by returning <code class="docutils literal notranslate"><span class="pre">TRUE</span></code>. If <code class="docutils literal notranslate"><span class="pre">force_encoding_for</span></code> is <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, only character of <code class="docutils literal notranslate"><span class="pre">charset</span></code> that don’t have an alias will be encoded.</p></td>
+</tr>
+<tr class="row-odd"><td><p>char_encoder</p></td>
+<td><p>Function taking care of encoding a character. If <code class="docutils literal notranslate"><span class="pre">NULL</span></code>, the function will fail if it ever needs to encode a character, but will succeed if it never needs to do so.</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Returns:</p>
+<p>The new alloc’d string containing the escaped version of <code class="docutils literal notranslate"><span class="pre">str</span></code>, or NULL in case of error</p>
+<p class="rubric">See also:</p>
+<p><a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga15080728dd478b4051e5c24e28899657"><span id="index-9"></span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">StringUTF8_ToEscaped_e</span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_len</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_readlen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max_resultlen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">)</span></pre>
+<p>Exhaustive version of <code class="docutils literal notranslate"><span class="pre">StringUTF8_ToEscaped</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1gabcc293eb1c5b886f03e459d35bf11d4b"><span id="index-10"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">StringUTF8_ToEscapedBuf</span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">)</span></pre>
+<p>Same as <code class="docutils literal notranslate"><span class="pre">StringUTF8_ToEscaped</span></code> except it will write the escaped string directly to <code class="docutils literal notranslate"><span class="pre">dest</span></code></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-string-utf8-1ga663c9dc43a1947aebcc010aa16ca1915"><span id="index-11"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">StringUTF8_ToEscapedBuf_e</span><span class="p">(</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">dest</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span><span class="o">*</span> <span class="n">out_readlen</span><span class="p">,</span>
+    <span class="kt">size_t</span> <span class="n">max_writelen</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">charset</span><span class="p">,</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span><span class="k">const</span><span class="o">*</span> <span class="n">aliases</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga2c9c417ad32cef88a52a168f88a15468"><span class="std std-ref">f_force_encoding_for</span></a><span></span> <span class="n">force_encoding_for</span><span class="p">,</span>
+    <a class="reference internal" href="#doxid-group-libccc-string-utf8-1ga249cce004d25ff30f184f2a870a9b181"><span class="std std-ref">f_char_encoder</span></a><span></span> <span class="n">char_encoder</span>
+<span class="p">)</span></pre>
+<p>Exhaustive version of <code class="docutils literal notranslate"><span class="pre">StringUTF8_ToEscapedBuf</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_string.html" class="btn btn-neutral float-left" title="libccc/string.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_stringarray.html" class="btn btn-neutral float-right" title="libccc/stringarray.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

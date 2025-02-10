@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/sys/io.h &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+  <title>libccc/sys/io.h &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -18,7 +18,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script src="_static/js/custom.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -30,7 +32,7 @@
 	
 	<meta name="Description" content="libccc/sys/io.h">
 	<meta property="og:description" content="libccc/sys/io.h">
-	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation - libccc/sys/io.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +40,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_sys_io.html">
-	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation">
 
 
@@ -65,10 +67,13 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -77,10 +82,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_utf8.html">libccc/text/string_utf8.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/sys/io.h</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
@@ -98,15 +105,15 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_tree.html">libccc/generic/tree.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
@@ -143,8 +150,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>libccc/sys/io.h</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">libccc/sys/io.h</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -154,11 +161,11 @@
            <div itemprop="articleBody">
              
   <section id="libccc-sys-io-h">
-<span id="doxid-group-libccc-sys-io"></span><span id="index-0"></span><h1>libccc/sys/io.h<a class="headerlink" href="#libccc-sys-io-h" title="Permalink to this headline"></a></h1>
+<span id="doxid-group-libccc-sys-io"></span><span id="index-0"></span><h1>libccc/sys/io.h<a class="headerlink" href="#libccc-sys-io-h" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>This header defines all the functions for OS-level input/output, read/write. <a class="reference internal" href="#details-group-libccc-sys-io"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// typedefs</span>
 
@@ -175,7 +182,7 @@
 <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga1de405b2724d2ab9e24318716e07511e"><span class="std std-ref">t_io_mode</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gabe21577e901911729efe3c3917770537"><span class="std std-ref">IO_GetMode</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga3feee0b4ea86f11374f27fdf15a71b70"><span class="std std-ref">t_sintmax</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga94a94cf1249f5c5da07b6fbda296cdb0"><span class="std std-ref">IO_Read_File</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span><span class="o">**</span> <span class="n">a_file</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">max</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga3feee0b4ea86f11374f27fdf15a71b70"><span class="std std-ref">t_sintmax</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga4e683cc61bf452b45716e275b94afb43"><span class="std std-ref">IO_Read_Filepath</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">,</span> <span class="kt">void</span><span class="o">**</span> <span class="n">a_file</span><span class="p">);</span>
-<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaec3d9e0387893abec120d2fcea474640"><span class="std std-ref">IO_Read_Filepath_Text</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">);</span>
+<span class="kt">char</span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gade996139f05a7b45034fffd9f487b83a"><span class="std std-ref">IO_Read_Filepath_Text</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1ga3feee0b4ea86f11374f27fdf15a71b70"><span class="std std-ref">t_sintmax</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga238d65185cda7c848e8e0f12e08f5df7"><span class="std std-ref">IO_Read_Lines</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span><span class="o">***</span> <span class="n">a_strarr</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga59f511594d6552258492ba86f0872744"><span class="std std-ref">t_sint</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gada55df9a1c966ccadbd3edf40fdb1606"><span class="std std-ref">IO_Read_NextLine</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="k">const</span> <span class="n">fd</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span><span class="o">**</span> <span class="n">a_line</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaca2405c5946eae164619f6b9e3e64392"><span class="std std-ref">IO_Write_Char</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">,</span> <a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="n">c</span><span class="p">);</span>
@@ -191,7 +198,7 @@
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga47621f32af8bd36d786e600ef5b97107"><span class="std std-ref">IO_Output_Lines</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">**</span> <span class="n">strarr</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gae6fac61cb3e1299da14e12154730f2d8"><span class="std std-ref">IO_Output_Memory</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">ptr</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">,</span> <a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">cols</span><span class="p">);</span>
 <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga94268d4b33af1cae230c72c289b10a98"><span class="std std-ref">IO_Output_Format</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">format</span><span class="p">,</span> <span class="p">...);</span>
-<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_color.html#doxid-group-libccc-color-1ga2e6594576412f8d94ad6e0b9ab73d9ba"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span class="std std-ref">IO_GetColor</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_image_color.html#doxid-group-libccc-image-color-1ga96287a0b4816b030958dc8df712cc39f"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
@@ -210,7 +217,7 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gacd416df5a722d247f1ec0c9c298a4fa8"><span class="std std-ref">GNL_END</span></a><span></span>    <span class="mi">0</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9cf0c0bf69e6be78d78202e8699763ad"><span class="std std-ref">GNL_ERROR</span></a><span></span>  <span class="o">-</span><span class="mi">1</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga66c9f6f1f21b8c3daa908032cc700da6"><span class="std std-ref">GNL_LINE</span></a><span></span>   <span class="o">+</span><span class="mi">1</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabe5d3c90538920357e5f36e108e5dcaa"><span class="std std-ref">IO_BUFFER_SIZE</span></a><span></span> <span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-sys-io-1gabe5d3c90538920357e5f36e108e5dcaa"><span class="std std-ref">IO_BUFFER_SIZE</span></a><span></span> <span class="p">(</span><span class="mi">1024</span><span class="o">*</span> <span class="mi">1024</span><span class="p">)</span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga04dc7b6b903e16a6f50b6c701e34e1f1"><span></span><span class="n">IO_File_ChangeMode</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaf1ae9f7787878d032e5aa9f24ad0b00b"><span class="std std-ref">IO_ChangeMode</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gabb6848c1ebb82ae805d85b6e681d7e18"><span></span><span class="n">IO_File_Close</span></span><span></span>   <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga9c274e435014113f2800c339b1805154"><span class="std std-ref">IO_Close</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaf7fefe11236c68ea5ab149e0731dbe21"><span></span><span class="n">IO_File_GetMode</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gabe21577e901911729efe3c3917770537"><span class="std std-ref">IO_GetMode</span></a><span></span>
@@ -251,7 +258,7 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2189f604e296af8ae7a41553065fdca1"><span></span><span class="n">c_putstr</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga21f9d9dfb5caeb7d6817ff1be30d25fe"><span class="std std-ref">IO_Output_String</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2191263bd828c01b3d7b109fd1133034"><span></span><span class="n">c_readfile</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga94a94cf1249f5c5da07b6fbda296cdb0"><span class="std std-ref">IO_Read_File</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga5ee6172158cbe7c629b70d9ba281bc9d"><span></span><span class="n">c_readfpath</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga4e683cc61bf452b45716e275b94afb43"><span class="std std-ref">IO_Read_Filepath</span></a><span></span>
-<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2ada5ae637b28f0602c24c6edc917468"><span></span><span class="n">c_readfpath_txt</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaec3d9e0387893abec120d2fcea474640"><span class="std std-ref">IO_Read_Filepath_Text</span></a><span></span>
+<span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga2ada5ae637b28f0602c24c6edc917468"><span></span><span class="n">c_readfpath_txt</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1gade996139f05a7b45034fffd9f487b83a"><span class="std std-ref">IO_Read_Filepath_Text</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gab8b572236d07d3b3a275e68c9b38b80d"><span></span><span class="n">c_readlines</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga238d65185cda7c848e8e0f12e08f5df7"><span class="std std-ref">IO_Read_Lines</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga8d352c1d7bafe99a1b3e6f40cea9773d"><span></span><span class="n">c_readnextline</span></span><span></span>  <a class="reference internal" href="#doxid-group-libccc-sys-io-1gada55df9a1c966ccadbd3edf40fdb1606"><span class="std std-ref">IO_Read_NextLine</span></a><span></span>
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1ga48cecf764c5e69c9062bc819025bb377"><span></span><span class="n">c_write_char</span></span><span></span>    <a class="reference internal" href="#doxid-group-libccc-sys-io-1gaca2405c5946eae164619f6b9e3e64392"><span class="std std-ref">IO_Write_Char</span></a><span></span>
@@ -263,13 +270,13 @@
 <span class="cp">#define </span><span class="doxyrest-code-target target" id="doxid-group-libccc-sys-io-1gaa88b864a5d7c53646b2a0880c6f040e2"><span></span><span class="n">c_write_str</span></span><span></span> <a class="reference internal" href="#doxid-group-libccc-sys-io-1ga59ba5ee956a4594800abde96290fb5fe"><span class="std std-ref">IO_Write_String</span></a></pre>
 </section>
 <section id="detailed-documentation">
-<span id="details-group-libccc-sys-io"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<span id="details-group-libccc-sys-io"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
 <p>This header defines all the functions for OS-level input/output, read/write.</p>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (C) <a class="reference external" href="https://en.cppreference.com/w/c/io">https://en.cppreference.com/w/c/io</a></p></li>
 </ul>
 <section id="typedefs">
-<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this headline"></a></h3>
+<h3>Typedefs<a class="headerlink" href="#typedefs" title="Permalink to this heading"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga1de405b2724d2ab9e24318716e07511e"><span id="index-1"></span><span></span><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="kt">t_io_mode</span></pre>
 <p>This type represents a file access permissions bitflag value (like you would use with chmod)</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga529de828c63062e6b522d48411c11219"><span id="index-2"></span><span></span><span class="k">typedef</span> <span class="kt">unsigned</span> <span class="kt">int</span> <span class="kt">t_io_open</span></pre>
@@ -279,7 +286,7 @@
 <p>Define a type for file descriptors (which is usually the default machine ‘int’)</p>
 </section>
 <section id="global-functions">
-<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this heading"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gafbf2e86ab1f9a29cf5ac772d96aad1f4"><span id="index-4"></span><a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <span class="n">IO_IsTerminal</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-sys-io-1ga7ce645cf2e5d02fc9efa1e2b4ab80e3f"><span class="std std-ref">t_fd</span></a><span></span> <span class="n">fd</span><span class="p">)</span></pre>
 <p>Checks whether the given file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> points to a terminal.</p>
 <p class="rubric">Returns:</p>
@@ -415,7 +422,7 @@
 </table>
 <p class="rubric">Returns:</p>
 <p>The amount of bytes read from the given file descriptor <code class="docutils literal notranslate"><span class="pre">fd</span></code> in total. If the return value is a negative number, there was a read error: You should then check <code class="docutils literal notranslate"><span class="pre">errno</span></code>, and/or use <code class="docutils literal notranslate"><span class="pre">IO_GetError(errno)</span></code> immediately after.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gaec3d9e0387893abec120d2fcea474640"><span id="index-11"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">IO_Read_Filepath_Text</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gade996139f05a7b45034fffd9f487b83a"><span id="index-11"></span><span></span><span class="kt">char</span><span class="o">*</span> <span class="n">IO_Read_Filepath_Text</span><span class="p">(</span><a class="reference internal" href="group_libccc_char.html#doxid-group-libccc-char-1gaf0556422eb1ef9c94bb5d119f336756a"><span class="std std-ref">t_char</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">filepath</span><span class="p">)</span></pre>
 <p>Reads the contents of the file at <code class="docutils literal notranslate"><span class="pre">filepath</span></code>, and returns a char array</p>
 <p>Reads the full contents of the file at path <code class="docutils literal notranslate"><span class="pre">filepath</span></code> (ie, until read() returns 0), and allocates a memory region which stores the file contents, and is returned.</p>
 <p>NB: if the file read contains the ASCII null terminator <code class="docutils literal notranslate"><span class="pre">\0</span></code>, it will read until the end, but the actual length of the data content will be lost.</p>
@@ -551,12 +558,12 @@
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (C89) <a class="reference external" href="https://en.cppreference.com/w/c/io/printf">https://en.cppreference.com/w/c/io/printf</a></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span id="index-27"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">IO_GetColor</span><span class="p">(</span><a class="reference internal" href="group_libccc_color.html#doxid-group-libccc-color-1ga2e6594576412f8d94ad6e0b9ab73d9ba"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga2d94641dce33e903f3117aed1d472bf2"><span id="index-27"></span><a class="reference internal" href="group_libccc_int.html#doxid-group-libccc-int-1ga7d3ce39d27f118a965842531563942a3"><span class="std std-ref">t_u8</span></a><span></span> <span class="n">IO_GetColor</span><span class="p">(</span><a class="reference internal" href="group_libccc_image_color.html#doxid-group-libccc-image-color-1ga96287a0b4816b030958dc8df712cc39f"><span class="std std-ref">t_argb32</span></a><span></span> <span class="n">color</span><span class="p">)</span></pre>
 <p>Get the ANSI color code number for the nearest color to the given 32-bit <code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
 <p>(Learn more about ANSI colors)[<a class="reference external" href="https://misc.flogisoft.com/bash/tip_colors_and_formatting">https://misc.flogisoft.com/bash/tip_colors_and_formatting</a>]</p>
 </section>
 <section id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this heading"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga302a0781fb89ad9e0d4fb7dd5c1d4f2e"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="fm">ACCESSMODE_GROUP_R</span>  <span class="mo">0040</span></pre>
 <p>S_IRGRP - Group has read permission.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gae9986470766bc9713ebcc6a5492bcb84"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="fm">ACCESSMODE_GROUP_RWX</span>    <span class="mo">0070</span></pre>
@@ -589,7 +596,7 @@
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga66c9f6f1f21b8c3daa908032cc700da6"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="fm">GNL_LINE</span>    <span class="o">+</span><span class="mi">1</span></pre>
 <p>Return value for <a class="reference internal" href="#doxid-group-libccc-sys-io-1gada55df9a1c966ccadbd3edf40fdb1606"><span class="std std-ref">IO_Read_NextLine()</span></a> : indicates succesful line read, more to follow.</p>
 <p>Macros for return values of the <a class="reference internal" href="#doxid-group-libccc-sys-io-1gada55df9a1c966ccadbd3edf40fdb1606"><span class="std std-ref">IO_Read_NextLine()</span></a> function</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabe5d3c90538920357e5f36e108e5dcaa"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="fm">IO_BUFFER_SIZE</span>  <span class="p">(</span><span class="mi">2048</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1gabe5d3c90538920357e5f36e108e5dcaa"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="fm">IO_BUFFER_SIZE</span>  <span class="p">(</span><span class="mi">1024</span><span class="o">*</span> <span class="mi">1024</span><span class="p">)</span></pre>
 <p>Arbitrary buffer size for libccc/sys/io functions.</p>
 <p>This is the arbitrary buffer size to be used by the reading functions. Raising this amount will lower the amount of function calls made to the ‘read’ function from unistd.h, resulting in possible speed improvments, depending on the amount of files to read, and their filesizes. It is also recommended to have this number be a power of 2, as it can be occasionally faster to manage arrays of such sizes on certain machines.</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-sys-io-1ga671d35807f6214e373d6c7a0aadd5cb8"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="fm">OPEN_ACCESSMODE</span> <span class="n">O_ACCMODE</span></pre>

@@ -6,110 +6,118 @@
 
 
 
-#define DEFINEFUNC_FLOAT_FROMINT(BITS) \
-inline t_f##BITS	F##BITS##_FromInt(t_sint number)			\
-{																\
-	return ((t_f##BITS)number);									\
-}
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_REALOPERATOR(NextAfter, nextafter)
+#else
+#define DEFINEFUNC_FLOAT_NEXTAFTER(BITS) \
+t_f##BITS	F##BITS##_NextAfter(t_f##BITS x, t_f##BITS y) \
+{ \
+	u_cast_f##BITS ux = {x}; \
+	u_cast_f##BITS uy = {y}; \
+	t_u##BITS ax; \
+	t_u##BITS ay; \
+	if (F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y)) \
+		return (x + y); \
+	if (ux.as_u == uy.as_u) \
+		return y; \
+	ax = ux.as_u & (t_u##BITS)-1 / 2; \
+	ay = uy.as_u & (t_u##BITS)-1 / 2; \
+	if (ax == 0) \
+	{ \
+		if (ay == 0) \
+			return (y); \
+		ux.as_u = (uy.as_u & (t_u##BITS)1 << (BITS - 1)) | 1; \
+	} \
+	else if (ax > ay || ((ux.as_u ^ uy.as_u) & (t_u##BITS)1 << (BITS - 1))) \
+		ux.as_u--; \
+	else \
+		ux.as_u++; \
+	/* t_s##BITS e; */ \
+	/* e = ux.as_u & F##BITS##_EXPONENT_MASK; */ \
+	/* // raise overflow if ux.as_f is infinite and x is finite */ \
+	/* if (e == F##BITS##_EXPONENT_MASK)	FORCE_EVAL(x + x); */ \
+	/* // raise underflow if ux.as_f is subnormal or zero */ \
+	/* if (e == 0)	FORCE_EVAL(x * x + ux.as_f * ux.as_f); */ \
+	return (ux.as_f); \
+} \
 
-DEFINEFUNC_FLOAT_FROMINT(32)
-DEFINEFUNC_FLOAT_FROMINT(64)
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_NEXTAFTER(16)
+#endif
+DEFINEFUNC_FLOAT_NEXTAFTER(32)
+
+DEFINEFUNC_FLOAT_NEXTAFTER(64)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_FROMINT(80)
+DEFINEFUNC_FLOAT_NEXTAFTER(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_FROMINT(128)
+DEFINEFUNC_FLOAT_NEXTAFTER(128)
 #endif
 
-
-
-#define DEFINEFUNC_FLOAT_FROMFIXED(BITS) \
-inline t_f##BITS	F##BITS##_FromFixed(t_fixed number)			\
-{																\
-	return ((t_f##BITS)number / (t_f##BITS)FIXED_DENOMINATOR);	\
-}
-
-DEFINEFUNC_FLOAT_FROMFIXED(32)
-DEFINEFUNC_FLOAT_FROMFIXED(64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_FROMFIXED(80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_FROMFIXED(128)
-#endif
-
-
-
-#define DEFINEFUNC_FLOAT_FROMFLOAT(BITS) \
-inline t_f##BITS	F##BITS##_FromFloat(t_float number)			\
-{																\
-	return ((t_f##BITS)number);									\
-}
-
-DEFINEFUNC_FLOAT_FROMFLOAT(32)
-DEFINEFUNC_FLOAT_FROMFLOAT(64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_FROMFLOAT(80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_FROMFLOAT(128)
-#endif
-
-
-
-#define DEFINEFUNC_FLOAT_FROM(BITS) \
-t_f##BITS	F##BITS##_From(t_sint integer, t_sint exponent)		\
-{																\
-	return (integer * Float_Pow(2, exponent));					\
-}
-
-DEFINEFUNC_FLOAT_FROM(32)
-DEFINEFUNC_FLOAT_FROM(64)
-#if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_FROM(80)
-#endif
-#if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_FROM(128)
 #endif
 
 
 
 #if LIBCONFIG_USE_STD_MATH
-MATH_DECL_FUNCTION(t_sint, GetExp2, ilogb)
+MATH_DECL_REALFUNCTION(NearbyInt, rint)
 #else
+#define DEFINEFUNC_FLOAT_NEARBYINT(BITS) \
+t_f##BITS F##BITS##_NearbyInt(t_f##BITS x) \
+{ \
+	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \
+	u_cast_f##BITS u = {x}; \
+	t_u##BITS e = (u.as_u >> F##BITS##_MANTISSA_BITS) & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	t_u##BITS s = (u.as_u >> (BITS - 1)); \
+	t_f##BITS y; \
+	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
+		return (x); \
+	if (s) \
+		y = x - toint + toint; \
+	else \
+		y = x + toint - toint; \
+	if (y == 0) \
+		return (s ? (t_f##BITS)-0. : (t_f##BITS)+0.); \
+	return (y); \
+} \
 
-#define DEFINEFUNC_FLOAT_GETEXP2(BITS) \
-t_sint	F##BITS##_GetExp2(t_f##BITS number)						\
-{																\
-	u_f##BITS##_cast	n;										\
-	return (((n.value_uint & F##BITS##_EXPONENT) >>				\
-		F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS);	\
-}
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_NEARBYINT(16)
+#endif
+DEFINEFUNC_FLOAT_NEARBYINT(32)
 
-DEFINEFUNC_FLOAT_GETEXP2(32)
-DEFINEFUNC_FLOAT_GETEXP2(64)
-/* TODO fix this
+DEFINEFUNC_FLOAT_NEARBYINT(64)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_GETEXP2(80)
+DEFINEFUNC_FLOAT_NEARBYINT(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_GETEXP2(128)
-#endif
-*/
+DEFINEFUNC_FLOAT_NEARBYINT(128)
 #endif
 
+#endif
 
-#define DEFINEFUNC_FLOAT_GETEXP10(BITS) \
-t_sint	F##BITS##_GetExp10(t_f##BITS number)					\
-{																\
-	return (F##BITS##_Trunc(F##BITS##_Log10(number)));			\
-}
 
-DEFINEFUNC_FLOAT_GETEXP10(32)
-DEFINEFUNC_FLOAT_GETEXP10(64)
+
+#if LIBCONFIG_USE_STD_MATH
+MATH_DECL_FUNCTION(t_sint, ToInt, lrint)
+#else
+#define DEFINEFUNC_FLOAT_TOINT(BITS) \
+_INLINE() \
+t_sint	F##BITS##_ToInt(t_f##BITS x) \
+{ \
+	return SInt_FromF##BITS(F##BITS##_NearbyInt(x)); \
+} \
+
+#if LIBCONFIG_USE_FLOAT16
+DEFINEFUNC_FLOAT_TOINT(16)
+#endif
+DEFINEFUNC_FLOAT_TOINT(32)
+
+DEFINEFUNC_FLOAT_TOINT(64)
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_GETEXP10(80)
+DEFINEFUNC_FLOAT_TOINT(80)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_GETEXP10(128)
+DEFINEFUNC_FLOAT_TOINT(128)
+#endif
+
 #endif

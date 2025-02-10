@@ -9,43 +9,43 @@
 #define T_NAME	str
 #define T_NULL	NULL
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	char*
 #define T_NAME	str
 #define T_NULL	NULL
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
-//#include <libccc/monad/dict.c>
-//#include <libccc/monad/tree.c>
-//#include <libccc/monad/object.c>
+//#include <libccc/generic/dict.c>
+//#include <libccc/generic/tree.c>
+//#include <libccc/generic/object.c>
 
 #define T_TYPE	int
 #define T_NAME	int
 #define T_NULL	0
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	s_array_int*
 #define T_NAME	array_int
 #define T_NULL	&(s_array_int){ .length = 0, .items = NULL }
 #define T_EQUALS(A, B)	(Array_Equals_int((A), (B)))
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	int
 #define T_NAME	int
 #define T_NULL	0
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
 #define T_TYPE	s_list_int*
 #define T_NAME	list_int
 #define T_NULL	&(s_list_int){ 0 }
 #define T_EQUALS(A, B)	(List_Equals_int((A), (B)))
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
-//#include <libccc/monad/dict.c>
-//#include <libccc/monad/tree.c>
-//#include <libccc/monad/object.c>
+//#include <libccc/generic/dict.c>
+//#include <libccc/generic/tree.c>
+//#include <libccc/generic/object.c>
 
 
 
@@ -106,10 +106,10 @@ int main(int argc, char** argv)
 	IO_Output_String("\n- s_array<s_array<int>>:\n");
 	{
 		s_array(array_int)* tmp = Array_Create(array_int)(4,
-			Array_Create(int)(3,	0, 1, 10),
-			Array_Create(int)(3,	42, 69, 420),
-			Array_Create(int)(3,	42, 69, 420),
-			Array_Create(int)(6,	42, 69, 420, 0, 1, 10));
+			Array_Create(int)(3, 0, 1, 10),
+			Array_Create(int)(3, 42, 69, 420),
+			Array_Create(int)(3, 42, 69, 420),
+			Array_Create(int)(6, 42, 69, 420, 0, 1, 10));
 //		Array_RemoveAt(array_int)(tmp, 1);
 		i = 0;
 		foreach (s_array(int)*, int_array, s_array, tmp)
@@ -130,10 +130,10 @@ int main(int argc, char** argv)
 	IO_Output_String("\n- s_list<s_list<int>>:\n");
 	{
 		s_list(list_int)* tmp = List_Create(list_int)(4,
-			List_Create(int)(3, 	0, 1, 10),
-			List_Create(int)(3, 	42, 69, 420),
-			List_Create(int)(3, 	42, 69, 420),
-			List_Create(int)(6, 	42, 69, 420, 0, 1, 10));
+			List_Create(int)(3, 0, 1, 10),
+			List_Create(int)(3, 42, 69, 420),
+			List_Create(int)(3, 42, 69, 420),
+			List_Create(int)(6, 42, 69, 420, 0, 1, 10));
 //		List_RemoveAt(list_int)(tmp, 1);
 		i = 0;
 		foreach (s_list(int)*, int_list, s_list, tmp)

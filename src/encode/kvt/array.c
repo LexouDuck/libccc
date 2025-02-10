@@ -9,42 +9,41 @@
 
 
 #define KVT_CREATE_ARRAY(_TYPE_) \
-	t_uint i = 0;										\
-	s_kvt* n = NULL;									\
-	s_kvt* p = NULL;									\
-	s_kvt* array = NULL;								\
-														\
-	if CCCERROR((source == NULL), ERROR_NULLPOINTER,	\
-		"source array given is NULL")					\
-		return (NULL);									\
-	array = KVT_CreateArray();							\
-	if CCCERROR((array == NULL), ERROR_ALLOCFAILURE, NULL)	\
-		return (NULL);									\
-	for (i = 0; i < count; i++)							\
-	{													\
-		n = KVT_Create##_TYPE_(source[i]);				\
-		if CCCERROR((n == NULL), ERROR_ALLOCFAILURE,	\
-			"could not create KVT array item of type `"#_TYPE_"` at index "SF_UINT, i)\
-		{												\
-			KVT_Delete(array);							\
-			return (NULL);								\
-		}												\
-		if (i == 0)										\
-		{												\
-			array->value.child = n;						\
-		}												\
-		else											\
-		{												\
-			p->next = n;								\
-			n->prev = p;								\
-		}												\
-		p = n;											\
-	}													\
-	if (array->value.child)								\
-	{													\
-		array->value.child->prev = n;					\
-	}													\
-	return (array);										\
+	t_uint i = 0; \
+	s_kvt* n = NULL; \
+	s_kvt* p = NULL; \
+	s_kvt* array = NULL; \
+	if CCCERROR((source == NULL), ERROR_NULLPOINTER, \
+		"source array given is NULL") \
+		return (NULL); \
+	array = KVT_CreateArray(); \
+	if CCCERROR((array == NULL), ERROR_ALLOCFAILURE, NULL) \
+		return (NULL); \
+	for (i = 0; i < count; i++) \
+	{ \
+		n = KVT_Create##_TYPE_(source[i]); \
+		if CCCERROR((n == NULL), ERROR_ALLOCFAILURE, \
+			"could not create KVT array item of type `"#_TYPE_"` at index " SF_UINT, i) \
+		{ \
+			KVT_Delete(array); \
+			return (NULL); \
+		} \
+		if (i == 0) \
+		{ \
+			array->value.child = n; \
+		} \
+		else \
+		{ \
+			p->next = n; \
+			n->prev = p; \
+		} \
+		p = n; \
+	} \
+	if (array->value.child) \
+	{ \
+		array->value.child->prev = n; \
+	} \
+	return (array); \
 
 
 

@@ -18,21 +18,17 @@
 **	@isostd{C,https://en.cppreference.com/w/c/memory}
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc.h"
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //!@doc Type definition for a pointer
 /*!
@@ -76,11 +72,9 @@ typedef void*	p_pointer;
 
 
 
-/*
-** ************************************************************************** *|
-**                          Basic Memory Operations                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Basic Memory Operations                           ||
+\*============================================================================*/
 
 //!@doc Returns a newly allocated memory area which is `size` bytes long, with every byte set to `0`.
 /*!
@@ -277,11 +271,9 @@ void*				Memory_Duplicate(void const* ptr, t_size n);
 
 
 
-/*
-** ************************************************************************** *|
-**                       Memory Concatenation Operations                      *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                       Memory Concatenation Operations                      ||
+\*============================================================================*/
 
 //!@doc Return a newly allocated memory region, by concatenating `ptr1` and `ptr2`
 /*!
@@ -341,11 +333,9 @@ void*					Memory_Join(void const** ptrarr, t_size const* lengths, void const* se
 
 
 
-/*
-** ************************************************************************** *|
-**                          Other Memory Operations                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Other Memory Operations                           ||
+\*============================================================================*/
 
 //!@doc Finds the first occurence of the given `byte` value in the first `n` bytes at `ptr`.
 /*!
@@ -461,11 +451,9 @@ t_char*				Memory_ToString(void const* ptr, t_size n);
 
 
 
-/*
-** ************************************************************************** *|
-**                         Array: functional operations                       *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         Array: functional operations                       ||
+\*============================================================================*/
 
 //!@doc Iterates upon each byte of the given `ptr`, applying the given function `f` for each of its items.
 /*!
@@ -557,18 +545,16 @@ void*					Memory_Fold_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* a
 
 
 
-/*
-** ************************************************************************** *|
-**                          Bitwise Memory Operations                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Bitwise Memory Operations                         ||
+\*============================================================================*/
 
 //!@doc Get a subsection of `n` bits from the data in `ptr`, starting at bit index `bit`.
 /*!
 **	@nonstd
 **
 **	@param	ptr		The point which stores the data
-**	@param	bit		The offset at which to get (in bits)
+**	@param	bit		The bit offset at which to start reading (max: 128)
 **	@param	n		The amount of bits to copy into the return value (max: 128)
 **	@returns
 **	A subsection of the data in `ptr` argument which is `n` bits long,
@@ -578,7 +564,7 @@ void*					Memory_Fold_I(void const* ptr, t_size n, void* (*f)(t_u8 byte, void* a
 **	TODO document how this function handles endian-ness ?
 */
 //!@{
-t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
+t_uintmax			Memory_GetBits(void const* ptr, t_size bit, t_u8 n);
 #define c_getbits	Memory_GetBits
 //!@}
 
@@ -587,8 +573,8 @@ t_uintmax			Memory_GetBits(void* ptr, t_size bit, t_u8 n);
 **	@nonstd
 **
 **	@param	ptr		The point which stores the data
-**	@param	bit		The offset at which to get (in bits)
-**	@param	n		The amount of bits to copy into the return value (max: 128)
+**	@param	bit		The bit offset at which to start writing (max: 128)
+**	@param	n		The amount of bits to write into the buffer (max: 128)
 **	@param	value	The bits to write to `ptr + bit`
 **	@returns
 **	A subsection of the data in `ptr` argument which is `n` bits long,
@@ -608,6 +594,9 @@ void				Memory_SetBits(void* ptr, t_size bit, t_u8 n, t_uintmax value);
 /*!
 **	@nonstd
 **
+**	@param	value	The value from which to extract bits
+**	@param	bit		The bit offset at which to start reading (max: 128)
+**	@param	n		The amount of bits to copy into the return value (max: 128)
 **	@returns
 **	A subsection of the `value` argument which is `n` bits long,
 **	starting at the given bit index `bit`, and bit-shifting the resulting
@@ -624,6 +613,7 @@ t_uintmax			Memory_BitRegion(t_uintmax value, t_u8 bit, t_u8 n);
 /*!
 **	@nonstd
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The total amount of bits set to `1` in the given `value`.
 */
@@ -636,8 +626,9 @@ t_u8				Memory_CountBits(t_uintmax value);
 
 //!@doc Get the bit index of the most signficant `1`-bit of the given `value`
 /*!
-**	@nonstd, similar to the builtin `clz()` function
+**	@nonstd, though similar to the builtin `clz()` function
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The bit index of the highest bit which is set to 1 in the given `value`.
 **	If `value == 0` (all bits set to zero), returns `-1`
@@ -650,8 +641,9 @@ t_s8					Memory_GetMostSignificantBit(t_uintmax value);
 
 //!@doc Get the bit index of the least signficant `1`-bit of the given `value`
 /*!
-**	@nonstd, similar to the builtin `clz()` function
+**	@nonstd
 **
+**	@param	value	The value from which to read
 **	@returns
 **	The bit index of the lowest bit which is set to 1 in the given `value`.
 **	If `value == 0` (all bits set to zero), returns `-1`
@@ -664,37 +656,18 @@ t_s8					Memory_GetLeastSignificantBit(t_uintmax value);
 
 
 
-/*
-** ************************************************************************** *|
-**                    Essential builtins (for compatibility)                  *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                    Essential builtins (for compatibility)                  ||
+\*============================================================================*/
 
 #ifdef __IOS__ // TODO smarter check here
 
-inline
-void*	memset(void* ptr, int c, size_t n)
-{ Memory_Set(ptr, c, n); return (ptr); }
-
-inline
-int		memcmp(void const* ptr1, void const* ptr2, size_t n)
-{ return (Memory_Compare(ptr1, ptr2, n)); }
-
-inline
-void*	memchr(void const* ptr, int c, size_t n)
-{ return (Memory_Find(ptr, c, n)); }
-
-inline
-void*	memcpy(void* dest, void const* src, size_t n)
-{ return (Memory_Copy(dest, src, n)); }
-
-inline
-void*	memccpy(void* dest, void const* src, int c, size_t n)
-{ return (Memory_Copy_C(dest, src, c, n)); }
-
-inline
-void*	memmove(void* dest, void const* src, t_size n)
-{ return (Memory_Move(dest, src, n)); }
+_INLINE() void* memset  (void* ptr, int c, size_t n)                    { Memory_Set(ptr, c, n); return (ptr); }
+_INLINE() int   memcmp  (void const* ptr1, void const* ptr2, size_t n)  { return (Memory_Compare(ptr1, ptr2, n)); }
+_INLINE() void* memchr  (void const* ptr, int c, size_t n)              { return (Memory_Find(ptr, c, n)); }
+_INLINE() void* memcpy  (void* dest, void const* src, size_t n)         { return (Memory_Copy(dest, src, n)); }
+_INLINE() void* memccpy (void* dest, void const* src, int c, size_t n)  { return (Memory_Copy_C(dest, src, c, n)); }
+_INLINE() void* memmove (void* dest, void const* src, t_size n)         { return (Memory_Move(dest, src, n)); }
 
 #endif
 

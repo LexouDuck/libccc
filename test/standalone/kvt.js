@@ -36,13 +36,13 @@ let DYNAMICTYPE_ISREFERENCE	= (1 << 8);	//!< If this bit is set, the `value` is 
 /** returns `true` if given value is of type "array" */
 let isArray = function(x)
 {
-    return (!!x) && (x.constructor === Array);
+	return (!!x) && (x.constructor === Array);
 };
 
 /** returns `true` if given value is of type "object" */
 let isObject = function(x)
 {
-    return (!!x) && (x.constructor === Object);
+	return (!!x) && (x.constructor === Object);
 };
 
 /** performs a deep equality check between two values */

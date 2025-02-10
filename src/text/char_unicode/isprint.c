@@ -11,7 +11,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsSpace(t_utf32 c)
 { return (iswspace(c)); }
 #else
@@ -36,7 +36,7 @@ t_bool	CharUTF32_IsSpace(t_utf32 c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_bool	CharUTF32_IsPrintable(t_utf32 c)
 { return (iswprint(c)); }
 #else
@@ -53,7 +53,7 @@ t_bool	CharUTF32_IsPrintable(t_utf32 c)
 
 
 
-inline
+_INLINE()
 t_bool	CharUTF32_IsASCII(t_utf32 c)
 {
 	return (c < 0x80);
@@ -61,7 +61,7 @@ t_bool	CharUTF32_IsASCII(t_utf32 c)
 
 
 
-inline
+_INLINE()
 t_bool	CharUTF32_IsValid(t_utf32 c)
 {
 	return (c < 0xFDD0 ||

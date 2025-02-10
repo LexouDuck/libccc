@@ -5,7 +5,7 @@
 
 
 
-inline
+_INLINE()
 t_float	Matrix2D_Determinant(s_matrix2d const* matrix)
 {
 	return (
@@ -15,7 +15,7 @@ t_float	Matrix2D_Determinant(s_matrix2d const* matrix)
 
 
 
-inline
+_INLINE()
 t_float	Matrix3D_Determinant(s_matrix3d const* matrix)
 {
 	return (

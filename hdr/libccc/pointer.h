@@ -27,11 +27,9 @@
 **	- all signed integer types have names that start with `s`, ie: `sint`
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #ifndef __NOSTD__
 	#include <stddef.h>
@@ -68,11 +66,9 @@ HEADER_CPP
 #ifndef __LIBCCC_POINTER_T
 #define __LIBCCC_POINTER_T
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //! Represents a NULL (0-value) pointer, of type 'void'
 /*!
@@ -143,76 +139,44 @@ TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
 
 // @Lexou When you'll do the `#define SIZE_ERROR ((t_size)-1)` refactor, 
 // search for the string "DZ_ON_REFACTOR_OF_SIZE_ERROR" in the code and see what you need to do
-#if (LIBCONFIG_UINT_ERROR == 0)
+//#if (LIBCONFIG_UINT_NAN == 0)
 
-	#define SIZE_ERROR	0
-	#ifndef SIZE_MAX
-	#define SIZE_MAX	((t_size)-1)
-	#endif
-
-	#define UINTMAX_ERROR	0
-	#ifndef UINTMAX_MAX
-	#define UINTMAX_MAX	((t_uintmax)-1)
-	#endif
-
-	#define UINTPTR_ERROR	0
-	#ifndef UINTPTR_MAX
-	#define UINTPTR_MAX	((t_uintptr)-1)
-	#endif
-
-#else
-
-	#define SIZE_ERROR		((t_size)-1)
-	#undef	SIZE_MAX
-	#define SIZE_MAX		((t_size)-2)
-
-	#define UINTMAX_ERROR	((t_uintmax)-1)
-	#undef	UINTMAX_MAX
-	#define UINTMAX_MAX		((t_uintmax)-2)
-
-	#define UINTPTR_ERROR	((t_uintptr)-1)
-	#undef	UINTPTR_MAX
-	#define UINTPTR_MAX		((t_uintptr)-2)
-
+#define SIZE_ERROR	0
+#ifndef SIZE_MAX
+#define SIZE_MAX	((t_size)-1)
 #endif
 
-
-
-#if (LIBCONFIG_SINT_ERROR == 0)
-
-	#define PTRDIFF_ERROR	0
-
-	#define SINTMAX_ERROR	0
-
-	#define SINTPTR_ERROR	0
-
-#else
-
-	#define PTRDIFF_ERROR	((t_ptrdiff)((~(t_size)0) >> 1) + 1))
-	#undef	PTRDIFF_MAX
-	#define PTRDIFF_MAX		((t_ptrdiff)((~(t_size)0) >> 1))
-	#undef	PTRDIFF_MIN
-	#define PTRDIFF_MIN		((t_ptrdiff)-((~(t_size)0) >> 1))
-
-	#define SINTMAX_ERROR	((t_sintmax)((~(t_uintmax)0) >> 1) + 1))
-	#undef	INTMAX_MAX
-	#define INTMAX_MAX		((t_sintmax)((~(t_uintmax)0) >> 1))
-	#undef	INTMAX_MIN
-	#define INTMAX_MIN		((t_sintmax)-((~(t_uintmax)0) >> 1))
-
-	#define SINTPTR_ERROR	((t_sintptr)((~(t_uintptr)0) >> 1) + 1))
-	#undef	INTPTR_MAX
-	#define INTPTR_MAX		((t_sintptr)((~(t_uintptr)0) >> 1))
-	#undef	INTPTR_MIN
-	#define INTPTR_MIN		((t_sintptr)-((~(t_uintptr)0) >> 1))
-
+#define UINTPTR_ERROR	0
+#ifndef UINTPTR_MAX
+#define UINTPTR_MAX	((t_uintptr)-1)
 #endif
 
-#define SINTMAX_MIN		INTMAX_MIN
-#define SINTMAX_MAX		INTMAX_MAX
+#define UINTMAX_ERROR	0
+#ifndef UINTMAX_MAX
+#define UINTMAX_MAX	((t_uintmax)-1)
+#endif
 
+#define PTRDIFF_ERROR	0
+#undef	PTRDIFF_MIN
+#undef	PTRDIFF_MAX
+#define PTRDIFF_MIN		((t_ptrdiff)-((~(t_size)0) >> 1))
+#define PTRDIFF_MAX		((t_ptrdiff)+((~(t_size)0) >> 1))
+
+#define SINTPTR_ERROR	0
+#undef	INTPTR_MIN
+#undef	INTPTR_MAX
+#define INTPTR_MIN		((t_sintptr)-((~(t_uintptr)0) >> 1))
+#define INTPTR_MAX		((t_sintptr)+((~(t_uintptr)0) >> 1))
 #define SINTPTR_MIN		INTPTR_MIN
 #define SINTPTR_MAX		INTPTR_MAX
+
+#define SINTMAX_ERROR	0
+#undef	INTMAX_MIN
+#undef	INTMAX_MAX
+#define INTMAX_MIN		((t_sintmax)-((~(t_uintmax)0) >> 1))
+#define INTMAX_MAX		((t_sintmax)+((~(t_uintmax)0) >> 1))
+#define SINTMAX_MIN		INTMAX_MIN
+#define SINTMAX_MAX		INTMAX_MAX
 
 
 
@@ -220,11 +184,9 @@ TYPEDEF_ALIAS(		t_uintmax, UINTMAX, PRIMITIVE)
 #ifndef __LIBCCC_POINTER_F
 #define __LIBCCC_POINTER_F
 
-/*
-** ************************************************************************** *|
-**                        String Conversion Functions                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                        String Conversion Functions                         ||
+\*============================================================================*/
 
 //!@doc Get the string decimal representation of the given size integer `value`
 /*!
@@ -280,11 +242,9 @@ t_char*					Pointer_ToString_Hex(void const* ptr);
 
 
 
-/*
-** ************************************************************************** *|
-**                        String Conversion Functions                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                        String Conversion Functions                         ||
+\*============================================================================*/
 
 // TODO define macro alias functions UIntMax_Parse() and SIntMax_Parse()
 

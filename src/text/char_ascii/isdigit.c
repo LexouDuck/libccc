@@ -11,12 +11,12 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
-t_bool	CharASCII_IsDigit_Dec(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Decimal(t_ascii c)
 { return (isdigit(c)); }
 #else
-inline
-t_bool	CharASCII_IsDigit_Dec(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Decimal(t_ascii c)
 {
 	return ('0' <= c && c <= '9');
 }
@@ -25,12 +25,12 @@ t_bool	CharASCII_IsDigit_Dec(t_ascii c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
-t_bool	CharASCII_IsDigit_Hex(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Hexadecimal(t_ascii c)
 { return (isxdigit(c)); }
 #else
-inline
-t_bool	CharASCII_IsDigit_Hex(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Hexadecimal(t_ascii c)
 {
 	return (('0' <= c && c <= '9') ||
 			('A' <= c && c <= 'F') ||
@@ -40,16 +40,16 @@ t_bool	CharASCII_IsDigit_Hex(t_ascii c)
 
 
 
-inline
-t_bool	CharASCII_IsDigit_Oct(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Octal(t_ascii c)
 {
 	return (('0' <= c && c <= '7'));
 }
 
 
 
-inline
-t_bool	CharASCII_IsDigit_Bin(t_ascii c)
+_INLINE()
+t_bool	CharASCII_IsDigit_Binary(t_ascii c)
 {
 	return (c == '0' || c == '1');
 }

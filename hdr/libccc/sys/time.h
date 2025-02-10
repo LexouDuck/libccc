@@ -18,11 +18,9 @@
 **	@isostd{C,https://en.cppreference.com/w/c/chrono}
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #ifndef __NOSTD__
 	#if (defined(_WIN32) && !defined(__MINGW32__))
@@ -58,11 +56,9 @@ HEADER_CPP
 #ifndef __LIBCCC_SYS_TIME_T
 #define __LIBCCC_SYS_TIME_T
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //!@doc The standard type used to represent a date and time, normal precision (seconds)
 /*!
@@ -256,14 +252,14 @@ TYPEDEF_ALIAS(	t_timezone, TIMEZONE, PRIMITIVE)
 //!@{
 typedef struct date
 {
+	t_s32		year;		//!< Amount of years since year 0 (https://en.wikipedia.org/wiki/Astronomical_year_numbering)	
+	e_month		month;		//!< [0,11] Amount of months since January
+	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
+	t_u8		day_month;	//!< [1,31] Day of the month
+	t_u32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
 	t_u8		hour;		//!< [0,23] Amount of hours since midnight
 	t_u8		min;		//!< [0,59] Amount of minutes after the hour
 	t_u8		sec;		//!< [0,59(60)] Amount of seconds after the minute (usually 0-59 - leap seconds are the exception)
-	t_s32		year;		//!< Amount of years since year 0 (https://en.wikipedia.org/wiki/Astronomical_year_numbering)	
-	e_month		month;		//!< [0,11] Amount of months since January
-	t_u8		day_month;	//!< [1,31] Day of the month
-	t_u32		day_year;	//!< [0,364(365)] Amount of days since January 1 (max value is 365 on leap years, otherwise 364)
-	e_weekday	day_week;	//!< [0,6] Amount of days since Sunday
 	t_bool		is_dst;		//!< If `TRUE`, then Daylight Savings Time is on
 	t_timezone	offset;		//!< [UTC-12,UTC+12] The timezone offset of this date (adjusted for DST), expressed in seconds (ie: range is [3600*-12, 3600*+12]
 }				s_date;
@@ -272,17 +268,18 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 //!@}
 //! The default/null value for a #s_date struct (all fields set to zero)
 #define DATE_NULL \
-	((s_date){			\
-		.hour      = 0,	\
-		.min       = 0,	\
-		.sec       = 0,	\
-		.year      = 0,	\
-		.month     = (e_month)0,	\
-		.day_month = 0,	\
-		.day_year  = 0,	\
-		.day_week  = (e_weekday)0,	\
-		.is_dst    = 0,	\
-		.offset    = 0,	\
+	((s_date) \
+	{ \
+		.year      = 0, \
+		.month     = (e_month)0, \
+		.day_week  = (e_weekday)0, \
+		.day_month = 0, \
+		.day_year  = 0, \
+		.hour      = 0, \
+		.min       = 0, \
+		.sec       = 0, \
+		.is_dst    = 0, \
+		.offset    = 0, \
 	})
 
 
@@ -335,11 +332,9 @@ TYPEDEF_ALIAS(	s_date, TIME_DATE, STRUCT)
 #ifndef __LIBCCC_SYS_TIME_F
 #define __LIBCCC_SYS_TIME_F
 
-/*
-** ************************************************************************** *|
-**                           Time integer functions                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Time integer functions                           ||
+\*============================================================================*/
 
 //!@doc Returns the current UTC timestamp, according to the system clock
 /*!
@@ -388,11 +383,9 @@ s_date						Time_ToDate_LocalTime(t_time const value);
 
 
 
-/*
-** ************************************************************************** *|
-**                s_nanotime: Precise arbitrary time functions                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                s_nanotime: Precise arbitrary time functions                ||
+\*============================================================================*/
 
 //!@doc Converts the given `s_date` struct to its ISO STD LIBC `struct tm` equivalent
 /*!
@@ -416,11 +409,9 @@ s_nanotime						NanoTime_FromSTDC(struct timespec const* value);
 
 
 
-/*
-** ************************************************************************** *|
-**                          Date structure functions                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Date structure functions                          ||
+\*============================================================================*/
 
 //!@doc Returns the current UTC timestamp, according to the system clock
 /*!
@@ -763,11 +754,9 @@ t_char*						DateNow_ToString_Unix(void);
 //!@}
 
 
-/*
-** ************************************************************************** *|
-**                       Date-related utility functions                       *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                       Date-related utility functions                       ||
+\*============================================================================*/
 
 //!@doc Returns `TRUE` if the given `date` is indeed a valid date according to the Gregorian/Astronomical calendar
 /*!

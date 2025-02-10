@@ -1,27 +1,28 @@
 
-#include <stddef.h>
 #include <stdio.h>
-#include <ctype.h>
+#include <stdlib.h>
+#include <stddef.h>
+#include <stdbool.h>
 #include <string.h>
+#include <ctype.h>
 #include <setjmp.h>
 #include <signal.h>
 #include <locale.h>
 
 #include "test.h"
+#include "test_utils.h"
 
 
 
 static char const* program_name = NULL;
 
-/*
-** ************************************************************************** *|
-**                           Global Testing Variables                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Global Testing Variables                         ||
+\*============================================================================*/
 
-char const* test1 = "Omae wa mou shindeiru.";		t_size const test1_len = 23;
-char const* test2 = "Nani???";						t_size const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.";	t_size const test3_len = 27;
+char const* test1 = "Omae wa mou shindeiru.";		size_t const test1_len = 23;
+char const* test2 = "Nani???";						size_t const test2_len = 8;
+char const* test3 = "Un ange mange de la fange.";	size_t const test3_len = 27;
 
 char const* teststr_cc_c0	= "␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟";
 char const* teststr_cc_c1	= "";
@@ -29,8 +30,8 @@ char const* teststr_utf8_fr	= "Être à même de ça, d'air sûr — manger du m
 char const* teststr_utf8_ru	= "Яцк Ничолсон ; сталин ленин троцкий хрущев москва";
 char const* teststr_utf8_jp	= "お前はもう死んでいる - 愛 - 私は実体の小さな学生です";
 char const* teststr_utf8_ho	= "�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻";
-char const* teststr_utf8_one_symbol_two_seq =   "\xF0\x9F\x91\x8B"  /* U+1F44B: 'WAVING HAND SIGN' */
-                                                "\xF0\x9F\x8F\xBB"; /* U+1F3FB: 'EMOJI MODIFIER FITZPATRICK TYPE-1-2' */
+char const* teststr_utf8_one_symbol_two_seq =	"\xF0\x9F\x91\x8B"  /* U+1F44B: 'WAVING HAND SIGN' */
+												"\xF0\x9F\x8F\xBB"; /* U+1F3FB: 'EMOJI MODIFIER FITZPATRICK TYPE-1-2' */
 
 char const* teststr_utf8_one_symbol_three_seq = "നും"; /* U+0D28, U+0D41, U+0D02 */
 
@@ -38,8 +39,8 @@ char const* teststr_utf8_hardcore	=
 #include "utf8_hardcore.inc"
 ;
 
-t_size const teststr_utf8_hardcore_len = 5101; // Number of graphemes
-t_size const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
+size_t const teststr_utf8_hardcore_len = 5101; // Number of graphemes
+size_t const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
 
 
 
@@ -50,11 +51,9 @@ s_program	g_test;
 
 
 
-/*
-** ************************************************************************** *|
-**                           Main Program Definitions                         *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Main Program Definitions                         ||
+\*============================================================================*/
 
 static void	handle_arg_verbose()		{ g_test.config.verbose       = TRUE; }
 static void	handle_arg_show_args()		{ g_test.config.show_args     = TRUE; }
@@ -70,7 +69,7 @@ static void	handle_arg_test_all()
 	g_test.config.test_overflow = TRUE;
 }
 
-/*
+/*!
 **	This function initializes the global variable 'g_test', which is used everywhere.
 */
 static void	init(void)
@@ -106,18 +105,17 @@ static void	init(void)
 
 
 
-/*
-** ************************************************************************** *|
-**                             Main Program Logic                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                             Main Program Logic                             ||
+\*============================================================================*/
 
 // A special return value to signal when a help argument has been provided by the user
 #define MATCHED_HELP	((int)-1)
 
 
 
-static int	handle_args_test_suites(char const* arg)
+static
+int	handle_args_test_suites(char const* arg)
 {
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
@@ -130,7 +128,8 @@ static int	handle_args_test_suites(char const* arg)
 	return (FALSE);
 }
 
-static int	handle_args_option_char(char arg)
+static
+int	handle_args_option_char(char arg)
 {
 	for (int i = 0; i < TEST_ARGS_AMOUNT; ++i)
 	{
@@ -145,7 +144,8 @@ static int	handle_args_option_char(char arg)
 	return (FALSE);
 }
 
-static int	handle_args_option_string(char const* arg)
+static
+int	handle_args_option_string(char const* arg)
 {
 	for (int i = 0; i < TEST_ARGS_AMOUNT; ++i)
 	{

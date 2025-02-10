@@ -3,6 +3,7 @@
 
 #ifndef __NOSTD__
 	#if (!defined(__GNUC__) && defined(__MSVC__))
+	#include "libccc/compatibility/msvc/types.h"
 	#include "libccc/compatibility/msvc/unistd.h"
 	#else
 	#include <unistd.h>
@@ -18,7 +19,7 @@
 
 
 
-inline
+_INLINE()
 e_cccerror	IO_Close(t_fd fd)
 {
 	if CCCERROR((close(fd) != 0), ERROR_SYSTEM,

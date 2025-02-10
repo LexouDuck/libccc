@@ -6,7 +6,7 @@
 
 
 
-inline
+_INLINE()
 s_vector2d	Vector2D(t_float x, t_float y)
 {
 	return ((s_vector2d)
@@ -18,7 +18,7 @@ s_vector2d	Vector2D(t_float x, t_float y)
 
 
 
-inline
+_INLINE()
 s_vector3d	Vector3D(t_float x, t_float y, t_float z)
 {
 	return ((s_vector3d)

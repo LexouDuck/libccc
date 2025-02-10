@@ -1,10 +1,12 @@
 var libccc__errors_8h =
 [
     [ "LIBCONFIG_ERROR_INCLUDE", "libccc__errors_8h.html#a381cd02c20f593718c25eb94eb01dd5b", null ],
-    [ "LIBCONFIG_ERROR_DEFAULTHANDLER", "libccc__errors_8h.html#abf381704db8263a33cf5ef6b1104ccc6", null ],
-    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW", "libccc__errors_8h.html#afc0b80a84cf9fa8bbbbe9c2c2af02faa", null ],
+    [ "LIBCONFIG_ERROR_DEFAULTHANDLER", "libccc__errors_8h.html#acf9a452efedca00357be159f06a60335", null ],
+    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT", "libccc__errors_8h.html#a437e2dfdbf2ea62336fcd102dc0d78c3", null ],
+    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT", "libccc__errors_8h.html#a9c087e65bd5d657d1ed78944063e0bcb", null ],
+    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED", "libccc__errors_8h.html#aa5a9288be5dca9d8a6d94f341e31dbfa", null ],
+    [ "LIBCONFIG_ERROR_HANDLEOVERFLOW_FLOAT", "libccc__errors_8h.html#a49787ddba4299ab6efa1adfcd2a56831", null ],
     [ "LIBCONFIG_ERROR_PARSEROVERFLOW", "libccc__errors_8h.html#a69367a8a0e32d46fed7db95dfb98c53d", null ],
-    [ "LIBCONFIG_ERROR_OVERFLOW", "libccc__errors_8h.html#a6828a236efba31c97cd16e9265945b1e", null ],
     [ "SHOULDHANDLE_ERROR_UNSPECIFIED", "libccc__errors_8h.html#a1a4f23b42b23ca8453d0bbdfe764493d", null ],
     [ "SHOULDHANDLE_ERROR_SYSTEM", "libccc__errors_8h.html#a33986e5e3a9bc1c8f82c17ebdaf01d23", null ],
     [ "SHOULDHANDLE_ERROR_ALLOCFAILURE", "libccc__errors_8h.html#a5bcd7a5dbc04f7100b7219c2ea82ef01", null ],

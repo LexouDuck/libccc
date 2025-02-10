@@ -18,11 +18,9 @@
 **	@isostd{C,https://en.cppreference.com/w/c/language/ascii}
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc.h"
 
@@ -31,11 +29,9 @@ HEADER_CPP
 #ifndef __LIBCCC_CHAR_ASCII_T
 #define __LIBCCC_CHAR_ASCII_T
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //!@doc Primitive type: `char`, ie: a text character (1 byte: ANSI/ASCII)
 /*!
@@ -138,11 +134,9 @@ TYPEDEF_ALIAS(	t_ascii, ASCII, PRIMITIVE)
 #ifndef __LIBCCC_CHAR_ASCII_F
 #define __LIBCCC_CHAR_ASCII_F
 
-/*
-** ************************************************************************** *|
-**                              Character Checks                              *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                              Character Checks                              ||
+\*============================================================================*/
 
 //!@doc Check if the given char `c` is a letter (lowercase or uppercase)
 /*!
@@ -346,8 +340,8 @@ t_bool						CharASCII_IsPrintable(t_ascii c);
 */
 //!@{
 t_bool					CharASCII_IsValid(t_ascii c);
-#define c_iscascii		CharASCII_IsASCII
-#define c_cisascii		CharASCII_IsASCII
+#define c_iscascii		CharASCII_IsValid
+#define c_cisascii		CharASCII_IsValid
 #define c_isccvalid		CharASCII_IsValid
 //!@}
 
@@ -370,11 +364,9 @@ t_bool					CharASCII_IsInCharset(t_ascii c, t_ascii const* charset);
 
 
 
-/*
-** ************************************************************************** *|
-**                           Character Substitutions                          *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                           Character Substitutions                          ||
+\*============================================================================*/
 
 //!@doc Get the uppercase version of the given char `c`, if possible
 /*!

@@ -16,22 +16,18 @@
 **	This header defines all the configuration macros which alter how libccc works.
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc_define.h"
 #include "libccc_errors.h"
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                            Library Configuration                           *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                            Library Configuration                           ||
+\*============================================================================*/
 
 //!@doc Configures the nomenclature style used by libccc for `typedef` statements.
 /*!
@@ -64,10 +60,18 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_UINT_BITS
-#define LIBCONFIG_UINT_BITS		32
+#define LIBCONFIG_UINT_BITS	64
+#endif
+#if (LIBCONFIG_UINT_BITS != 8) && \
+	(LIBCONFIG_UINT_BITS != 16) && \
+	(LIBCONFIG_UINT_BITS != 32) && \
+	(LIBCONFIG_UINT_BITS != 64) && \
+	(LIBCONFIG_UINT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_UINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
-//!@doc The unsigned integer value which is used for error returns
+
+//!@doc Sets which unsigned integer value ought to be used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
 **	NOTE: The value for the macro #UINT_ERROR depends on this setting
@@ -78,8 +82,30 @@ HEADER_CPP
 **			For example, `U8_MAX` will become `254`, rather than the usual `255`
 */
 //!@{
-#ifndef LIBCONFIG_UINT_ERROR
-#define LIBCONFIG_UINT_ERROR	0
+#ifndef LIBCONFIG_UINT_NAN
+#define LIBCONFIG_UINT_NAN	0
+#endif
+#if (LIBCONFIG_UINT_NAN != 0) && (LIBCONFIG_UINT_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_UINT_NAN, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Sets whether unsigned integer types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #UINT_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable unsigned integer value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #UINT_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
+//!@{
+#ifndef LIBCONFIG_UINT_INF
+#define LIBCONFIG_UINT_INF	0
+#endif
+#if (LIBCONFIG_UINT_INF != 0) && (LIBCONFIG_UINT_INF != 1)
+#error "Invalid value selected for LIBCONFIG_UINT_INF, must be either 0 or 1"
 #endif
 //!@}
 
@@ -97,9 +123,17 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_SINT_BITS
-#define LIBCONFIG_SINT_BITS		32
+#define LIBCONFIG_SINT_BITS	64
+#endif
+#if (LIBCONFIG_SINT_BITS != 8) && \
+	(LIBCONFIG_SINT_BITS != 16) && \
+	(LIBCONFIG_SINT_BITS != 32) && \
+	(LIBCONFIG_SINT_BITS != 64) && \
+	(LIBCONFIG_SINT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_SINT_BITS, must be one of: 8, 16, 32, 64, 128"
 #endif
 //!@}
+
 //!@doc The signed integer value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns an unsigned int has an error
@@ -111,8 +145,30 @@ HEADER_CPP
 **			For example, `S8_MIN` will become `-127`, rather than the usual `-128`
 */
 //!@{
-#ifndef LIBCONFIG_SINT_ERROR
-#define LIBCONFIG_SINT_ERROR	0
+#ifndef LIBCONFIG_SINT_NAN
+#define LIBCONFIG_SINT_NAN	0
+#endif
+#if (LIBCONFIG_SINT_NAN != 0) && (LIBCONFIG_SINT_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_SINT_NAN, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Sets whether signed integer types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #SINT_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable signed integer value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #SINT_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
+//!@{
+#ifndef LIBCONFIG_SINT_INF
+#define LIBCONFIG_SINT_INF	0
+#endif
+#if (LIBCONFIG_SINT_INF != 0) && (LIBCONFIG_SINT_INF != 1)
+#error "Invalid value selected for LIBCONFIG_SINT_INF, must be either 0 or 1"
 #endif
 //!@}
 
@@ -153,37 +209,71 @@ HEADER_CPP
 #ifndef LIBCONFIG_FIXED_BITS
 #define LIBCONFIG_FIXED_BITS	64
 #endif
+#if (LIBCONFIG_FIXED_BITS != 16) && \
+	(LIBCONFIG_FIXED_BITS != 32) && \
+	(LIBCONFIG_FIXED_BITS != 64) && \
+	(LIBCONFIG_FIXED_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_FIXED_BITS, must be one of: 16, 32, 64, 128"
+#endif
 //!@}
 //!@doc The fixed-point value which is used for error returns
 /*!
 **	This macro sets what value is returned when a function which returns a fixed-point number has an error
 **	NOTE: The value for the macro #FIXED_ERROR depends on this setting
 **	There are 2 possible values for this setting:
-**	- `0`	Will return `0`: this mimics how the C standard library works (even though there is no std fixed-point type in stdlib)
+**	- `0`	Will return `0`: this mimics how the C standard library works (even though there is no fixed-point type in stdlib)
 **	- `1`	Will use the smallest representable fixed-point value for the bitsize in question
 **		NB: When using this option, the #FIXED_MIN macros will be different !
 **			For example, `Q16_MIN` will become `-0x7FFF`, rather than the usual `-0x8000`
 */
 //!@{
-#ifndef LIBCONFIG_FIXED_ERROR
-#define LIBCONFIG_FIXED_ERROR	1
+#ifndef LIBCONFIG_FIXED_NAN
+#define LIBCONFIG_FIXED_NAN	1
+#endif
+#if (LIBCONFIG_FIXED_NAN != 0) && (LIBCONFIG_FIXED_NAN != 1)
+#error "Invalid value selected for LIBCONFIG_FIXED_NAN, must be either 0 or 1"
 #endif
 //!@}
-//! @see #FIXED_APPROX and Fixed_EqualsApprox()
+
+//!@doc Sets whether fixed-point types should have an infinity value
+/*!
+**	This macro sets the behavior of uint functions when some calculation exceeds the representable integer values.
+**	NOTE: The value for the macro #FIXED_INFINITY depends on this setting
+**	There are 2 possible values for this setting:
+**	- `0`	No infinity, overflow-behavior: this is how integer types usually work in most any programming language
+**	- `1`	The largest representable fixed-point value is used as an absorbant saturation-behavior INFINITY value
+**	  NOTE: When using this option, the #FIXED_MAX macros will be different !
+**			For example, `U8_MAX` will become `254`, rather than the usual `255`
+*/
 //!@{
-#ifndef LIBCONFIG_FIXED_APPROX
-#define LIBCONFIG_FIXED_APPROX	((t_fixed)(LIBCONFIG_FIXED_DENOMINATOR / 2))
+#ifndef LIBCONFIG_FIXED_INF
+#define LIBCONFIG_FIXED_INF	1
+#endif
+#if (LIBCONFIG_FIXED_INF != 0) && (LIBCONFIG_FIXED_INF != 1)
+#error "Invalid value selected for LIBCONFIG_FIXED_INF, must be either 0 or 1"
 #endif
 //!@}
 
 //!@doc The amount of subdivisions dedicated to the fraction part of the fixed-point types
 /*!
 **	This can be any signed integer value which is representable.
-**	TODO make this more configurable, ie: set each bitsize type individually ?
+**	TODO make this more configurable, i.e. set each bitsize type individually ?
 */
 //!@{
-#ifndef LIBCONFIG_FIXED_DENOMINATOR
-#define LIBCONFIG_FIXED_DENOMINATOR	(256)
+#ifndef LIBCONFIG_Q8_DENOMINATOR
+#define LIBCONFIG_Q8_DENOMINATOR	4
+#endif
+#ifndef LIBCONFIG_Q16_DENOMINATOR
+#define LIBCONFIG_Q16_DENOMINATOR	16
+#endif
+#ifndef LIBCONFIG_Q32_DENOMINATOR
+#define LIBCONFIG_Q32_DENOMINATOR	256
+#endif
+#ifndef LIBCONFIG_Q64_DENOMINATOR
+#define LIBCONFIG_Q64_DENOMINATOR	65536
+#endif
+#ifndef LIBCONFIG_Q128_DENOMINATOR
+#define LIBCONFIG_Q128_DENOMINATOR	4294967296
 #endif
 //!@}
 
@@ -202,6 +292,12 @@ HEADER_CPP
 #ifndef LIBCONFIG_FLOAT_BITS
 #define LIBCONFIG_FLOAT_BITS	64
 #endif
+#if (LIBCONFIG_FLOAT_BITS != 32) && \
+	(LIBCONFIG_FLOAT_BITS != 64) && \
+	(LIBCONFIG_FLOAT_BITS != 80) && \
+	(LIBCONFIG_FLOAT_BITS != 128)
+#error "Invalid value selected for LIBCONFIG_FLOAT_BITS, must be one of: 32, 64, 80, 128"
+#endif
 //!@}
 //!@doc The floating-point value which is used for error returns
 /*!
@@ -215,14 +311,10 @@ HEADER_CPP
 #ifndef LIBCONFIG_FLOAT_ERROR
 #define LIBCONFIG_FLOAT_ERROR	1
 #endif
-//!@}
-//!@doc @see #FLOAT_APPROX and Float_EqualsApprox()
-//!@{
-#ifndef LIBCONFIG_FLOAT_APPROX
-#define LIBCONFIG_FLOAT_APPROX	(1.0e-10)
+#if (LIBCONFIG_FLOAT_ERROR != 0) && (LIBCONFIG_FLOAT_ERROR != 1)
+#error "Invalid value selected for LIBCONFIG_FLOAT_ERROR, must be either 0 or 1"
 #endif
 //!@}
-
 
 
 
@@ -234,10 +326,10 @@ HEADER_CPP
 **
 **	There are 2 possible accepted values for these:
 **
-**	|`TYPE_RANDOM`|`NAME_RANDOM`| Value pair description                       |
-**	|-------------|-------------|----------------------------------------------|
-**	| `t_prng`    | `PRNG`      | for simple pseudo-random number algorithm    |
-**	| `t_csprng`  | `CSPRNG`    | for cryptographically-secure RNG (OS native) |
+**	| `LIBCONFIG_RANDOM_TYPE` | Config description                           |
+**	|-------------------------|----------------------------------------------|
+**	| `t_prng`                | for simple pseudo-random number algorithm    |
+**	| `t_csprng`              | for cryptographically-secure RNG (OS native) |
 */
 //!@{
 #ifndef LIBCONFIG_RANDOM_TYPE
@@ -246,20 +338,36 @@ HEADER_CPP
 #ifndef LIBCONFIG_RANDOM_NAME
 #define LIBCONFIG_RANDOM_NAME	PRNG
 #endif
+#if 0
+#if !defined(LIBCONFIG_RANDOM_TYPE) || !defined(LIBCONFIG_RANDOM_NAME)
+#error "The configuration macros LIBCONFIG_RANDOM_TYPE LIBCONFIG_RANDOM_NAME have not been defined properly"
+#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_prng", 6)
+	#undef  LIBCONFIG_RANDOM_NAME
+	#define LIBCONFIG_RANDOM_NAME	PRNG
+#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_csprng", 8)
+	#undef  LIBCONFIG_RANDOM_NAME
+	#define LIBCONFIG_RANDOM_NAME	CSPRNG
+#else
+#error "Invalid value(s) selected for LIBCONFIG_RANDOM_TYPE and/or LIBCONFIG_RANDOM_NAME"
+#endif
+#endif
 //!@}
 
 
 
-//!@doc Whether the `s_list` linked-list types in "libccc/monad/" will be doubly-linked
+//!@doc Whether the `s_list` linked-list types in "libccc/generic/" will be doubly-linked
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
-**	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
+**	NOTE: This must be set BEFORE including the `<libccc/generic/list.(c|h)>` header files
 **	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */
 //!@{
 #ifndef LIBCONFIG_LIST_DOUBLYLINKED
-#define LIBCONFIG_LIST_DOUBLYLINKED		0
+#define LIBCONFIG_LIST_DOUBLYLINKED	0
+#endif
+#if (LIBCONFIG_LIST_DOUBLYLINKED != 0) && (LIBCONFIG_LIST_DOUBLYLINKED != 1)
+#error "Invalid value selected for LIBCONFIG_LIST_DOUBLYLINKED, must be either 0 or 1"
 #endif
 //!@}
 // TODO make it so doubly-linked lists have the first item's `->prev` point to the last element
@@ -279,7 +387,7 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_INT128
-#define LIBCONFIG_USE_INT128	0 // _HAS_INT128
+#define LIBCONFIG_USE_INT128	_HAS_INT128
 #endif
 #if !defined(__int128) && LIBCONFIG_USE_INT128
 #error "Current platform does not support native 128-bit integer type: please set LIBCONFIG_USE_INT128 to 0"
@@ -297,18 +405,89 @@ HEADER_CPP
 **	- `t_f128`: quadruple-precision floating-point type
 */
 //!@{
+#ifndef LIBCONFIG_USE_FLOAT16
+#define LIBCONFIG_USE_FLOAT16	0 //_HAS_FLOAT16
+#endif
+#if !defined(__float16) && LIBCONFIG_USE_FLOAT16
+#error "Current platform does not support native 16-bit float type: please set LIBCONFIG_USE_FLOAT16 to 0"
+#endif
+
 #ifndef LIBCONFIG_USE_FLOAT80
-#define LIBCONFIG_USE_FLOAT80	0 // _HAS_FLOAT80
+#define LIBCONFIG_USE_FLOAT80	0 //_HAS_FLOAT80
 #endif
 #if !defined(__float80) && LIBCONFIG_USE_FLOAT80
 #error "Current platform does not support native 80-bit float type: please set LIBCONFIG_USE_FLOAT80 to 0"
 #endif
 
 #ifndef LIBCONFIG_USE_FLOAT128
-#define LIBCONFIG_USE_FLOAT128	0 // _HAS_FLOAT128
+#define LIBCONFIG_USE_FLOAT128	0 //_HAS_FLOAT128
 #endif
 #if !defined(__float128) && LIBCONFIG_USE_FLOAT128
 #error "Current platform does not support native 128-bit float type: please set LIBCONFIG_USE_FLOAT128 to 0"
+#endif
+//!@}
+
+
+
+//!@doc Whether or not libccc should use the builtin math calls or its own math functions (most of which are from OpenBSD).
+/*!
+**	This macro determines which math function implementations should be used.
+**	- If `0`, the libccc implementations functions will be used (usually slightly slower than the builtins)
+**	- If `1`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
+**		This is the recommended option, and is on by default (since the standard math functions
+**		are typically well-implemented for the given platform: they're both precise, and fast)
+*/
+//!@{
+#ifndef LIBCONFIG_USE_STD_MATH
+#define LIBCONFIG_USE_STD_MATH	0
+#endif
+#if (LIBCONFIG_USE_STD_MATH != 0) && (LIBCONFIG_USE_STD_MATH != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_MATH, must be either 0 or 1"
+#endif
+//!@}
+
+//!@doc Whether or not libccc should use the very approximate fast math function implementations (this is not recommended, because the functions havent been tested enough, and their error margin is quite large).
+//!@{
+#ifndef LIBCONFIG_USE_CCC_MATH
+#define LIBCONFIG_USE_CCC_MATH	0
+#endif
+#if (LIBCONFIG_USE_CCC_MATH != 0) && (LIBCONFIG_USE_CCC_MATH != 1)
+#error "Invalid value selected for LIBCONFIG_USE_CCC_MATH, must be either 0 or 1"
+#endif
+//!@}
+
+
+
+//!@doc Whether libccc will make the `t_complex` types use the STD C99 `_Complex`/`_Imaginary` types
+/*!
+**	TODO implement & document this
+*/
+//!@{
+#ifndef LIBCONFIG_USE_STD_COMPLEX
+#define LIBCONFIG_USE_STD_COMPLEX	0
+#endif
+#if (LIBCONFIG_USE_STD_COMPLEX != 0) && (LIBCONFIG_USE_STD_COMPLEX != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_COMPLEX, must be either 0 or 1"
+#endif
+//!@}
+
+
+
+//!@doc Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STD ext `_Sat`/`_Fract`/`_Accum` types
+/*!
+**	It is recommended to keep this set to `0`, as the STD C fixed-point types are not yet standard
+**	(ie: `_Accum`, `_Fract`, and `_Sat` are not present on all platforms, only GCC implements them).
+**	Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which
+**	may leverage the platform's full capacities, but it does offer the signficant advantage of
+**	being entirely configurable, regarding what portion of the fixed-point number type
+**	is dedicated to the integer part and the fraction part.
+*/
+//!@{
+#ifndef LIBCONFIG_USE_STD_FIXEDPOINT
+#define LIBCONFIG_USE_STD_FIXEDPOINT	0
+#endif
+#if (LIBCONFIG_USE_STD_FIXEDPOINT != 0) && (LIBCONFIG_USE_STD_FIXEDPOINT != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_FIXEDPOINT, must be either 0 or 1"
 #endif
 //!@}
 
@@ -328,52 +507,10 @@ HEADER_CPP
 */
 //!@{
 #ifndef LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS		0
+#define LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
 #endif
-//!@}
-
-
-
-//!@doc Whether or not libccc uses its own fast-approximate math functions or the builtin math calls.
-/*!
-**	This macro determines which math function implementations should be used.
-**	- If `0`, the libccc fast approximate functions will be used (precision error margin is `10^-4`)
-**	- If `1`, the builtin FPU-call libc math functions will be used (eg: `__builtin_powf()`, etc)
-**		This is the recommended option, and is on by default (since the standard math functions
-**		are typically well-implemented for the given platform: they're both precise, and fast)
-*/
-//!@{
-#ifndef LIBCONFIG_USE_STD_MATH
-#define LIBCONFIG_USE_STD_MATH			1
-#endif
-//!@}
-
-
-
-//!@doc Whether libccc will make the `t_complex` types use the STD C99 `_Complex`/`_Imaginary` types
-/*!
-**	TODO implement & document this
-*/
-//!@{
-#ifndef LIBCONFIG_USE_STD_COMPLEX
-#define LIBCONFIG_USE_STD_COMPLEX		0
-#endif
-//!@}
-
-
-
-//!@doc Whether libccc will make the fixed point types `t_g*` and `t_fixed` use the STD ext `_Sat`/`_Fract`/`_Accum` types
-/*!
-**	It is recommended to keep this set to `0`, as the STD C fixed-point types are not yet standard
-**	(ie: `_Accum`, `_Fract`, and `_Sat` are not present on all platforms, only GCC implements them).
-**	Furthermore, the libccc fixed-point type may not be as fast as a STD C implementation which
-**	may leverage the platform's full capacities, but it does offer the signficant advantage of
-**	being entirely configurable, regarding what portion of the fixed-point number type
-**	is dedicated to the integer part and the fraction part.
-*/
-//!@{
-#ifndef LIBCONFIG_USE_STD_FIXEDPOINT
-#define LIBCONFIG_USE_STD_FIXEDPOINT	0
+#if (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 0) && (LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS != 1)
+#error "Invalid value selected for LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS, must be either 0 or 1"
 #endif
 //!@}
 
@@ -383,17 +520,20 @@ HEADER_CPP
 //!@{
 #ifdef	__NOSTD__
 
-#undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-#define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
-/*
+#undef	LIBCONFIG_USE_CCC_MATH
+#define	LIBCONFIG_USE_CCC_MATH	0
+
 #undef	LIBCONFIG_USE_STD_MATH
-#define	LIBCONFIG_USE_STD_MATH			0
-*/
+#define	LIBCONFIG_USE_STD_MATH	0
+
 #undef	LIBCONFIG_USE_STD_COMPLEX
-#define	LIBCONFIG_USE_STD_COMPLEX		0
+#define	LIBCONFIG_USE_STD_COMPLEX	0
 
 #undef	LIBCONFIG_USE_STD_FIXEDPOINT
 #define	LIBCONFIG_USE_STD_FIXEDPOINT	0
+
+#undef	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
+#define	LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS	0
 
 #endif
 //!@}

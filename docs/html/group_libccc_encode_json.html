@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/encode/json.h &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+  <title>libccc/encode/json.h &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -18,7 +18,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script src="_static/js/custom.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -30,7 +32,7 @@
 	
 	<meta name="Description" content="libccc/encode/json.h">
 	<meta property="og:description" content="libccc/encode/json.h">
-	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation - libccc/encode/json.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +40,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_encode_json.html">
-	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation">
 
 
@@ -65,10 +67,13 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -77,10 +82,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_utf8.html">libccc/text/string_utf8.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -89,15 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_tree.html">libccc/generic/tree.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/encode/json.h</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
@@ -143,8 +150,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>libccc/encode/json.h</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">libccc/encode/json.h</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -154,11 +161,11 @@
            <div itemprop="articleBody">
              
   <section id="libccc-encode-json-h">
-<span id="doxid-group-libccc-encode-json"></span><span id="index-0"></span><h1>libccc/encode/json.h<a class="headerlink" href="#libccc-encode-json-h" title="Permalink to this headline"></a></h1>
+<span id="doxid-group-libccc-encode-json"></span><span id="index-0"></span><h1>libccc/encode/json.h<a class="headerlink" href="#libccc-encode-json-h" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>This header defines a dynamic runtime object type, similar to objects in JS. <a class="reference internal" href="#details-group-libccc-encode-json"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global variables</span>
 
@@ -166,14 +173,14 @@
 
 <span class="c1">// global functions</span>
 
-<a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span class="std std-ref">JSON_Parse_Strict</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
-<a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1gad0aee8e2d79409f9c4190fb9af8fc01d"><span class="std std-ref">JSON_FromString_Strict</span></a><span></span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
-<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span class="std std-ref">JSON_Parse_Strict</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
+<a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga8905e88102da07046a1ce43e9b59f25a"><span class="std std-ref">JSON_FromString_Strict</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">);</span>
+<a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a><span></span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">);</span>
 
 <span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga85467f20c533550a792249dbe43b15c4"><span class="std std-ref">JSON_FromString</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga85467f20c533550a792249dbe43b15c4"><span class="std std-ref">JSON_FromString</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga71726a1f1860d3396b64cddc6803e4b6"><span class="std std-ref">JSON_Parse</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1gab032892873af1964261b5097aaca8082"><span class="std std-ref">JSON_Parse_N</span></a><span></span>  <span class="n">JSON_Parse_Lenient_N</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1gad2edfcc147d0d4d6e6ba0fbe48eaef52"><span class="std std-ref">c_jsonnparse</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-encode-json-1gab032892873af1964261b5097aaca8082"><span class="std std-ref">JSON_Parse_N</span></a><span></span>
@@ -181,11 +188,11 @@
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga509468822283e838c4b8f1652b2967a9"><span class="std std-ref">c_jsonparse_l</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga1dc65498c1223b8c9152d5c0c9b5f913"><span class="std std-ref">c_jsonparse_s</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span class="std std-ref">JSON_Parse_Strict</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga4e83e2b7e94fd757180463df6b1f4eac"><span class="std std-ref">c_strtojson</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga85467f20c533550a792249dbe43b15c4"><span class="std std-ref">JSON_FromString</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3f58a16bfc583c029cc771271c77fd4f"><span class="std std-ref">c_strtojson_l</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga35030a6d66b0832d882a82376c164d96"><span class="std std-ref">c_strtojson_s</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1gad0aee8e2d79409f9c4190fb9af8fc01d"><span class="std std-ref">JSON_FromString_Strict</span></a></pre>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3f58a16bfc583c029cc771271c77fd4f"><span class="std std-ref">c_strtojson_l</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga35030a6d66b0832d882a82376c164d96"><span class="std std-ref">c_strtojson_s</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga8905e88102da07046a1ce43e9b59f25a"><span class="std std-ref">JSON_FromString_Strict</span></a></pre>
 </section>
 <section id="detailed-documentation">
-<span id="details-group-libccc-encode-json"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<span id="details-group-libccc-encode-json"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
 <p>This header defines a dynamic runtime object type, similar to objects in JS.</p>
 <ul class="simple">
 <li><p>JSON spec: <a class="reference external" href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a></p></li>
@@ -195,16 +202,16 @@
 <li><p><a class="reference external" href="https://github.com/DaveGamble/cJSON">https://github.com/DaveGamble/cJSON</a></p></li>
 </ul>
 <section id="global-variables">
-<h3>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this headline"></a></h3>
+<h3>Global Variables<a class="headerlink" href="#global-variables" title="Permalink to this heading"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span id="index-1"></span><a class="reference internal" href="group_libccc_define.html#doxid-group-libccc-define-1ga6e782d6f8a8b80b9b9ba9e1a300a92ab"><span class="std std-ref">HEADER_CPP</span></a><span></span> <span class="k">typedef</span> <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga4eb42ec03a60eac923b156b0ecd3e279"><span class="std std-ref">s_kvt</span></a><span></span> <span class="kt">s_json</span></pre>
 <p>Like other libccc/encode/ types, JSON is simply an alias for the KVT type.</p>
 </section>
 <section id="global-functions">
-<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this headline"></a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <span class="n">JSON_FromString_Lenient</span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span id="index-2"></span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <span class="n">JSON_FromString_Lenient</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
 <p class="rubric">See also:</p>
 <p><a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient()</span></a></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span id="index-3"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">JSON_Parse_Strict</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span id="index-3"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">JSON_Parse_Strict</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>Create a new <code class="docutils literal notranslate"><span class="pre">s_json</span></code> object, parsed from a (valid) JSON string.</p>
 <p>This function creates a <code class="docutils literal notranslate"><span class="pre">s_json</span></code> object by parsing a JSON string, strictly following the JSON official spec (<a class="reference external" href="https://www.json.org/json-en.html">https://www.json.org/json-en.html</a>), aborting with an error if anything non-standard is encountered.</p>
 <p class="rubric">Parameters:</p>
@@ -228,11 +235,11 @@
 <p class="rubric">Returns:</p>
 <p>The amount of characters parsed from the given <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p class="rubric">See also:</p>
-<p><a class="reference internal" href="#doxid-group-libccc-encode-json-1gad0aee8e2d79409f9c4190fb9af8fc01d"><span class="std std-ref">JSON_FromString_Strict()</span></a></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1gad0aee8e2d79409f9c4190fb9af8fc01d"><span id="index-4"></span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <span class="n">JSON_FromString_Strict</span><span class="p">(</span><span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga8905e88102da07046a1ce43e9b59f25a"><span class="std std-ref">JSON_FromString_Strict()</span></a></p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga8905e88102da07046a1ce43e9b59f25a"><span id="index-4"></span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">*</span> <span class="n">JSON_FromString_Strict</span><span class="p">(</span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">)</span></pre>
 <p class="rubric">See also:</p>
 <p><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span class="std std-ref">JSON_Parse_Strict()</span></a></p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span id="index-5"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">JSON_Parse_Lenient</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <span class="kt">t_utf8</span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span id="index-5"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">JSON_Parse_Lenient</span><span class="p">(</span><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga3a4c8ec4182bdd2ab7da004d0851354e"><span class="std std-ref">s_json</span></a><span></span><span class="o">**</span> <span class="n">dest</span><span class="p">,</span> <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">str</span><span class="p">,</span> <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">n</span><span class="p">)</span></pre>
 <p>Create a new <code class="docutils literal notranslate"><span class="pre">s_json</span></code> object, parsed from a (valid) JSON string.</p>
 <p>This function creates a <code class="docutils literal notranslate"><span class="pre">s_json</span></code> object by parsing a JSON string, allowing for several extensions to the JSON official spec, notably:</p>
 <ul class="simple">
@@ -267,19 +274,19 @@
 <p class="rubric">Returns:</p>
 <p>The amount of characters parsed from the given <code class="docutils literal notranslate"><span class="pre">str</span></code></p>
 <p class="rubric">See also:</p>
-<p><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient()</span></a></p>
+<p><a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient()</span></a></p>
 </section>
 <section id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this heading"></a></h3>
 <span class="target" id="doxid-group-libccc-encode-json-1ga71726a1f1860d3396b64cddc6803e4b6"><span id="index-6"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga4b1c02287daf74c6ef1e8f1624a24213"><span id="index-7"></span></span><span class="target" id="doxid-group-libccc-encode-json-1gab032892873af1964261b5097aaca8082"><span id="index-8"></span></span><span class="target" id="doxid-group-libccc-encode-json-1gad2edfcc147d0d4d6e6ba0fbe48eaef52"><span id="index-9"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga85467f20c533550a792249dbe43b15c4"><span id="index-10"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga4e83e2b7e94fd757180463df6b1f4eac"><span id="index-11"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga3f58a16bfc583c029cc771271c77fd4f"><span id="index-12"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga1dc65498c1223b8c9152d5c0c9b5f913"><span id="index-13"></span></span><span class="target" id="doxid-group-libccc-encode-json-1ga35030a6d66b0832d882a82376c164d96"><span id="index-14"></span></span><pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-encode-json-1ga509468822283e838c4b8f1652b2967a9"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">JSON_Parse</span>  <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a><span></span>
 <span class="cp">#define</span> <span class="fm">c_jsonparse</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga71726a1f1860d3396b64cddc6803e4b6"><span class="std std-ref">JSON_Parse</span></a><span></span>
 <span class="cp">#define</span> <span class="fm">JSON_Parse_N</span>    <span class="n">JSON_Parse_Lenient_N</span>
 <span class="cp">#define</span> <span class="fm">c_jsonnparse</span>    <a class="reference internal" href="#doxid-group-libccc-encode-json-1gab032892873af1964261b5097aaca8082"><span class="std std-ref">JSON_Parse_N</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">JSON_FromString</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">JSON_FromString</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
 <span class="cp">#define</span> <span class="fm">c_strtojson</span> <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga85467f20c533550a792249dbe43b15c4"><span class="std std-ref">JSON_FromString</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strtojson_l</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga7d5dcbe9aa2b0c07977231a3277d2e62"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strtojson_l</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga6ab06f17e65609add2eba77ac7816e69"><span class="std std-ref">JSON_FromString_Lenient</span></a><span></span>
 <span class="cp">#define</span> <span class="fm">c_jsonparse_s</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga243bd8536bcbbf44d5ab3ef5267560b7"><span class="std std-ref">JSON_Parse_Strict</span></a><span></span>
-<span class="cp">#define</span> <span class="fm">c_strtojson_s</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1gad0aee8e2d79409f9c4190fb9af8fc01d"><span class="std std-ref">JSON_FromString_Strict</span></a><span></span>
+<span class="cp">#define</span> <span class="fm">c_strtojson_s</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1ga8905e88102da07046a1ce43e9b59f25a"><span class="std std-ref">JSON_FromString_Strict</span></a><span></span>
 <span class="cp">#define</span> <span class="fm">c_jsonparse_l</span>   <a class="reference internal" href="#doxid-group-libccc-encode-json-1gade72aa3ef1d2a8dcf8b9a7e67bb7d39e"><span class="std std-ref">JSON_Parse_Lenient</span></a></pre>
 <p>Macros which configure the default behavior of the JSON parsing functions (<code class="docutils literal notranslate"><span class="pre">Strict</span></code> or <code class="docutils literal notranslate"><span class="pre">Lenient</span></code>)</p>
 </section>

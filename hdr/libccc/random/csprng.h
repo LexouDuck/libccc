@@ -22,11 +22,9 @@
 **  @file
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc/int.h"
 #include "libccc/fixed.h"
@@ -35,11 +33,9 @@
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
 //! This type stores the current state of the random number generator
 /*!
@@ -49,11 +45,9 @@ typedef void   t_csprng;
 
 
 
-/*
-** ************************************************************************** *|
-**                               CSPRNG Functions                             *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                               CSPRNG Functions                             ||
+\*============================================================================*/
 
 //!@doc Creates a new CSPRNG state
 /*!
@@ -76,11 +70,9 @@ void				CSPRNG_Delete(t_csprng* *a_state);
 
 
 
-/*
-** ************************************************************************** *|
-**                          Stateful RNG functions                            *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                          Stateful RNG functions                            ||
+\*============================================================================*/
 
 //!@doc	Writes `n` bytes of random data to `dest`.
 /*!
@@ -96,57 +88,35 @@ e_cccerror			CSPRNG_Next(t_csprng* state, void* dest, t_size n);
 
 
 
-//!@doc	Get a cryptographically secure random unsigned integer value
+//!@doc	Get a cryptographically secure random number
 //!@{
-t_uint				CSPRNG_UInt(t_csprng* state);
-#define c_csprngu	CSPRNG_UInt
-//!@}
-//!@doc	Get a cryptographically secure random unsigned integer value, in the range `[min, max[`
-//!@{
-t_uint				CSPRNG_UInt_Range(t_csprng* state, t_uint  min, t_uint  max);
-#define c_csprngxu	CSPRNG_UInt_Range
-//!@}
-
-//!@doc	Get a cryptographically secure random integer value
-//!@{
-t_sint				CSPRNG_SInt(t_csprng* state);
-#define c_csprngs	CSPRNG_SInt
-//!@}
-//!@doc	Get a cryptographically secure random integer value, in the range `[min, max[`
-//!@{
-t_sint				CSPRNG_SInt_Range(t_csprng* state, t_sint  min, t_sint  max);
-#define c_csprngxs	CSPRNG_SInt_Range
+t_uint				CSPRNG_Get_UInt(t_csprng* state);
+#define c_csprngu	CSPRNG_Get_UInt
+t_sint				CSPRNG_Get_SInt(t_csprng* state);
+#define c_csprngs	CSPRNG_Get_SInt
+t_fixed				CSPRNG_Get_Fixed(t_csprng* state);
+#define c_csprngq	CSPRNG_Get_Fixed
+t_float				CSPRNG_Get_Float(t_csprng* state);
+#define c_csprngf	CSPRNG_Get_Float
 //!@}
 
-//!@doc	Get a cryptographically secure random fixed-point value
+//!@doc	Get a cryptographically secure random number, in the range `[min, max[`
 //!@{
-t_fixed				CSPRNG_Fixed(t_csprng* state);
-#define c_csprngq	CSPRNG_Fixed
-//!@}
-//!@doc	Get a cryptographically secure random fixed-point value, in the range `[min, max[`
-//!@{
-t_fixed				CSPRNG_Fixed_Range(t_csprng* state, t_fixed min, t_fixed max);
-#define c_csprngxq	CSPRNG_Fixed_Range
-//!@}
-
-//!@doc	Get a cryptographically secure random floating-point value
-//!@{
-t_float				CSPRNG_Float(t_csprng* state);
-#define c_csprngf	CSPRNG_Float
-//!@}
-//!@doc	Get a cryptographically secure random floating-point value, in the range `[min, max[`
-//!@{
-t_float				CSPRNG_Float_Range(t_csprng* state, t_float min, t_float max);
-#define c_csprngxf	CSPRNG_Float_Range
+t_uint				CSPRNG_GetInRange_UInt(t_csprng* state, t_uint  min, t_uint  max);
+#define c_csprngxu	CSPRNG_GetInRange_UInt
+t_sint				CSPRNG_GetInRange_SInt(t_csprng* state, t_sint  min, t_sint  max);
+#define c_csprngxs	CSPRNG_GetInRange_SInt
+t_fixed				CSPRNG_GetInRange_Fixed(t_csprng* state, t_fixed min, t_fixed max);
+#define c_csprngxq	CSPRNG_GetInRange_Fixed
+t_float				CSPRNG_GetInRange_Float(t_csprng* state, t_float min, t_float max);
+#define c_csprngxf	CSPRNG_GetInRange_Float
 //!@}
 
 
 
-/*
-** ************************************************************************** *|
-**                         Stateless RNG functions                            *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                         Stateless RNG functions                            ||
+\*============================================================================*/
 
 //!@doc	Writes `n` bytes of random data to `dest` (creating and deleting a state).
 /*!
@@ -155,54 +125,34 @@ t_float				CSPRNG_Float_Range(t_csprng* state, t_float min, t_float max);
 **	@returns `dest` if successful, otherwise a `NULL` pointer
 */
 //!@{
-void*					CSPRNG_Get(void* dest, t_size n);
-#define c_csprngget		CSPRNG_Get
+void*				CSPRNG_Get(void* dest, t_size n);
+#define c_csprngget	CSPRNG_Get
 //!@}
 
 
 
-//!@doc	Get a cryptographically secure random unsigned integer, statelessly.
+//!@doc	Get a sample of cryptographically secure random number, statelessly.
 //!@{
-t_uint					CSPRNG_UInt_Get(void);
-#define c_csprnggetu	CSPRNG_UInt_Get
-//!@}
-//!@doc	Get a cryptographically secure random unsigned integer, within the range `[min, max[`, statelessly.
-//!@{
-t_uint					CSPRNG_UInt_Get_Range(t_uint  min, t_uint  max);
-#define c_csprnggetxu	CSPRNG_UInt_Get_Range
-//!@}
-
-//!@doc	Get a cryptographically secure random integer value, statelessly.
-//!@{
-t_sint					CSPRNG_SInt_Get	(void);
-#define c_csprnggets	CSPRNG_SInt_Get
-//!@}
-//!@doc	Get a cryptographically secure random integer value, within the range `[min, max[`, statelessly.
-//!@{
-t_sint					CSPRNG_SInt_Get_Range(t_sint  min, t_sint  max);
-#define c_csprnggetxs	CSPRNG_SInt_Get_Range
+t_uint*				CSPRNG_Sample_UInt(t_size amount);
+#define c_csprngnu	CSPRNG_Sample_UInt
+t_sint*				CSPRNG_Sample_SInt(t_size amount);
+#define c_csprngns	CSPRNG_Sample_SInt
+t_fixed*			CSPRNG_Sample_Fixed(t_size amount);
+#define c_csprngnq	CSPRNG_Sample_Fixed
+t_float*			CSPRNG_Sample_Float(t_size amount);
+#define c_csprngnf	CSPRNG_Sample_Float
 //!@}
 
-//!@doc	Get a cryptographically secure random fixed-point value, statelessly.
+//!@doc	Get a sample of cryptographically secure random number, within the range `[min, max[`, statelessly.
 //!@{
-t_fixed					CSPRNG_Fixed_Get(void);
-#define c_csprnggetq	CSPRNG_Fixed_Get
-//!@}
-//!@doc	Get a cryptographically secure random fixed-point value, within the range `[min, max[`, statelessly.
-//!@{
-t_fixed					CSPRNG_Fixed_Get_Range(t_fixed min, t_fixed max);
-#define c_csprnggetxq	CSPRNG_Fixed_Get_Range
-//!@}
-
-//!@doc	Get a cryptographically secure random floating-point value, statelessly.
-//!@{
-t_float					CSPRNG_Float_Get(void);
-#define c_csprnggetf	CSPRNG_Float_Get
-//!@}
-//!@doc	Get a cryptographically secure random floating-point value, within the range `[min, max[`, statelessly.
-//!@{
-t_float					CSPRNG_Float_Get_Range(t_float min, t_float max);
-#define c_csprnggetxf	CSPRNG_Float_Get_Range
+t_uint*				CSPRNG_SampleInRange_UInt(t_size amount, t_uint  min, t_uint  max);
+#define c_csprngnxu	CSPRNG_SampleInRange_UInt
+t_sint*				CSPRNG_SampleInRange_SInt(t_size amount, t_sint  min, t_sint  max);
+#define c_csprngnxs	CSPRNG_SampleInRange_SInt
+t_fixed*			CSPRNG_SampleInRange_Fixed(t_size amount, t_fixed min, t_fixed max);
+#define c_csprngnxq	CSPRNG_SampleInRange_Fixed
+t_float*			CSPRNG_SampleInRange_Float(t_size amount, t_float min, t_float max);
+#define c_csprngnxf	CSPRNG_SampleInRange_Float
 //!@}
 
 

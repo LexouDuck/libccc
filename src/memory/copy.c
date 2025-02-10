@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 void*	Memory_Copy(void* dest, void const* src, t_size n)
 { return (memcpy(dest, src, n)); }
 #else

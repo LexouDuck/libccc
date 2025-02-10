@@ -10,7 +10,7 @@
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 {
 	return (strchr(str, c));
@@ -56,7 +56,7 @@ t_ascii*	String_Find_Char(t_ascii const* str, t_utf32 c)
 }
 #endif
 
-inline
+_INLINE()
 t_sintmax	String_IndexOf_Char(t_ascii const* str, t_utf32 c)
 {
 	t_ascii* result = String_Find_Char(str, c);
@@ -68,7 +68,7 @@ t_sintmax	String_IndexOf_Char(t_ascii const* str, t_utf32 c)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	return (strpbrk(str, charset));
@@ -100,7 +100,7 @@ t_ascii*	String_Find_Charset(t_ascii const* str, t_ascii const* charset)
 }
 #endif
 
-inline
+_INLINE()
 t_sintmax	String_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_ascii* result = String_Find_Charset(str, charset);
@@ -112,7 +112,7 @@ t_sintmax	String_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
 
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
-inline
+_INLINE()
 t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
 {
 	return (strstr(str, query));
@@ -148,7 +148,7 @@ t_ascii*	String_Find_String(t_ascii const* str, t_ascii const* query)
 }
 #endif
 
-inline
+_INLINE()
 t_sintmax	String_IndexOf_String(t_ascii const* str, t_ascii const* query)
 {
 	t_ascii* result = String_Find_String(str, query);

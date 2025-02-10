@@ -19,23 +19,19 @@
 **	- https://en.wikipedia.org/wiki/ANSI_escape_code
 */
 
-/*
-** ************************************************************************** *|
-**                                   Includes                                 *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                   Includes                                 ||
+\*============================================================================*/
 
 #include "libccc_define.h"
 
 HEADER_CPP
 
-/*
-** ************************************************************************** *|
-**                                 Definitions                                *|
-** ************************************************************************** *|
-*/
+/*============================================================================*\
+||                                 Definitions                                ||
+\*============================================================================*/
 
-#define ANSI_ESC(SEQUENCE, NUMBER)        "\x1B["#NUMBER""SEQUENCE"" //!< A helper macro used to construct common ANSI commandline escape codes.
+#define ANSI_ESC(SEQUENCE, NUMBER)	"\x1B[" #NUMBER "" SEQUENCE "" //!< A helper macro used to construct common ANSI commandline escape codes.
 
 // ANSI cursor functions
 
