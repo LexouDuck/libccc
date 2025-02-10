@@ -501,7 +501,7 @@ HEADER_CPP
 **	@isostd{GNU,https://gcc.gnu.org/onlinedocs/gcc/Typeof.html}
 */
 #ifndef __typeof__
-#ifdef __MSVC__
+#if defined(__MSVC__) && defined (__cplusplus)
 	#define __typeof__(X)	decltype(X)
 #elif !defined(__GNUC__)
 	#define __typeof__(X)	typeof(X)
