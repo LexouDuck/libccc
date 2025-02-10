@@ -10,7 +10,6 @@
 
 
 #define DEFINEFUNC_FIXED_FROM(BITS) \
-_INLINE() \
 t_q##BITS	Q##BITS##_From( \
 	t_s##BITS numerator, \
 	t_s##BITS denominator) \
@@ -34,7 +33,6 @@ DEFINEFUNC_FIXED_FROM(128)
 
 
 #define DEFINEFUNC_FIXED_FROMUINT(BITS, FROM) \
-_INLINE() \
 t_q##BITS	Q##BITS##_FromU##FROM(t_u##FROM number) \
 { \
 	if (U##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
@@ -74,8 +72,9 @@ DEFINEFUNC_FIXED_FROMUINT(128, 64)
 DEFINEFUNC_FIXED_FROMUINT(128, 128)
 #endif
 
+
+
 #define DEFINEFUNC_FIXED_FROMSINT(BITS, FROM) \
-_INLINE() \
 t_q##BITS	Q##BITS##_FromS##FROM(t_s##FROM number) \
 { \
 	if (S##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
@@ -116,9 +115,9 @@ DEFINEFUNC_FIXED_FROMSINT(128, 64)
 DEFINEFUNC_FIXED_FROMSINT(128, 128)
 #endif
 
-// TODO fix this to be multi-type
+
+
 #define DEFINEFUNC_FIXED_FROMFIXED(BITS, FROM) \
-_INLINE() \
 t_q##BITS	Q##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
@@ -160,8 +159,9 @@ DEFINEFUNC_FIXED_FROMFIXED(128, 64)
 DEFINEFUNC_FIXED_FROMFIXED(128, 128)
 #endif
 
+
+
 #define DEFINEFUNC_FIXED_FROMFLOAT(BITS, FROM) \
-_INLINE() \
 t_q##BITS	Q##BITS##_FromF##FROM(t_f##FROM number) \
 { \
 	if (F##FROM##_IsNaN(number))	return (Q##BITS##_ERROR); \
@@ -172,13 +172,13 @@ t_q##BITS	Q##BITS##_FromF##FROM(t_f##FROM number) \
 	if CCCERROR((number < F##FROM##_FromQ##BITS(Q##BITS##_MIN_VAL)), ERROR_RESULTRANGE, \
 		#BITS"-bit fixed-point negative overflow for " SF_F##FROM " at " SF_Q##BITS, number, Q##BITS##_MIN) \
 		return (Q##BITS##_MIN); \
-	if CCCERROR((F##FROM##_Abs(number) < 1. / Q##BITS##_DENOM), ERROR_RESULTRANGE, \
-		#BITS"-bit fixed-point %s underflow for " SF_F##FROM, \
-		((number < 0) ? "negative" : "positive"), number) \
+	if CCCERROR((number != 0.) && (F##FROM##_Abs(number) < 1. / Q##BITS##_DENOM), ERROR_RESULTRANGE, \
+		#BITS"-bit fixed-point %s underflow for " SF_F##FROM, ((number < 0) ? "negative" : "positive"), number) \
 		return ((t_q##BITS){ 0 }); \
-	return ((t_q##BITS){ (t_s##BITS)( \
+	return ((t_q##BITS) \
+	{	(t_s##BITS)( \
 		(t_s##BITS)(F##FROM##_Trunc(number) * Q##BITS##_DENOM) + \
-		(t_s##BITS)(F##FROM##_Mod(number, 1))) \
+		(t_s##BITS)(F##FROM##_Mod(number, 1) * Q##BITS##_DENOM)) \
 	}); \
 } \
 

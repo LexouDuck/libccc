@@ -132,6 +132,8 @@ DEFINEFUNC_FLOAT_FROMUINT(128, 128)
 #endif
 #endif
 
+
+
 #define DEFINEFUNC_FLOAT_FROMSINT(BITS, FROM) \
 _INLINE() \
 t_f##BITS	F##BITS##_FromS##FROM(t_s##FROM number) \
@@ -179,13 +181,15 @@ DEFINEFUNC_FLOAT_FROMSINT(128, 128)
 #endif
 #endif
 
+
+
 #define DEFINEFUNC_FLOAT_FROMFIXED(BITS, FROM) \
 _INLINE() \
 t_f##BITS	F##BITS##_FromQ##FROM(t_q##FROM number) \
 { \
 	if (Q##FROM##_IsNaN(number))	return (NAN); \
-	if (Q##FROM##_IsInf(number))	return (INF * (t_f##BITS)S##FROM##_Sgn(number._)); \
-	return ((t_f##BITS)number._ / (t_f##BITS)Q##BITS##_DENOM); \
+	if (Q##FROM##_IsInf(number))	return (INF * (t_f##BITS)Q##FROM##_Sgn(number)._); \
+	return ((t_f##BITS)number._ / (t_f##BITS)Q##FROM##_DENOM); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
@@ -225,6 +229,8 @@ DEFINEFUNC_FLOAT_FROMFIXED(80, 128)
 DEFINEFUNC_FLOAT_FROMFIXED(128, 128)
 #endif
 #endif
+
+
 
 #define DEFINEFUNC_FLOAT_FROMFLOAT(BITS, FROM) \
 _INLINE() \

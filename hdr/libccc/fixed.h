@@ -298,46 +298,56 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 #undef FIXED_MAX
 #undef FIXED_MIN
 
-#if (LIBCONFIG_FIXED_NAN == 0) && (LIBCONFIG_FIXED_INF == 0)
+#if LIBCONFIG_FIXED_NAN && LIBCONFIG_FIXED_INF // saturate behavior, with special NAN error-value
 
 	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The minimum representable integer value for a 8-bit fixed-point
 	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The maximum representable integer value for a 8-bit fixed-point
-	#define Q8_MIN_VAL	Q8_MIN	//!< The minimum representable finite value for a 8-bit fixed-point
-	#define Q8_MAX_VAL	Q8_MAX	//!< The maximum representable finite value for a 8-bit fixed-point
-	#define Q8_MIN		((t_q8){ (t_s8)0x80 })	//!< The minimum representable value for a 8-bit fixed-point
-	#define Q8_MAX		((t_q8){ (t_s8)0x7F })	//!< The maximum representable value for a 8-bit fixed-point
+	#define Q8_MIN_VAL	((t_q8){ (t_s8)-0x7E })	//!< The minimum representable finite value for a 8-bit fixed-point
+	#define Q8_MAX_VAL	((t_q8){ (t_s8)+0x7E })	//!< The maximum representable finite value for a 8-bit fixed-point
+	#define Q8_MIN		((t_q8){ -Q8_INF._ })	//!< The minimum representable value for a 8-bit fixed-point
+	#define Q8_MAX		((t_q8){ +Q8_INF._ })	//!< The maximum representable value for a 8-bit fixed-point
+	#define Q8_INF		((t_q8){ (t_s8)+0x7F })
+	#define Q8_NAN		((t_q8){ (t_s8) 0x80 })
 
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM * Q16_DENOM })	//!< The minimum representable integer value for a 16-bit fixed-point
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM * Q16_DENOM })	//!< The maximum representable integer value for a 16-bit fixed-point
-	#define Q16_MIN_VAL	Q16_MIN	//!< The minimum representable finite value for a 16-bit fixed-point
-	#define Q16_MAX_VAL	Q16_MAX	//!< The maximum representable finite value for a 16-bit fixed-point
-	#define Q16_MIN		((t_q16){ (t_s16)0x8000 })	//!< The minimum representable value for a 16-bit fixed-point
-	#define Q16_MAX		((t_q16){ (t_s16)0x7FFF })	//!< The maximum representable value for a 16-bit fixed-point
+	#define Q16_MIN_VAL	((t_q16){ (t_s16)-0x7FFE })	//!< The minimum representable finite value for a 16-bit fixed-point
+	#define Q16_MAX_VAL	((t_q16){ (t_s16)+0x7FFE })	//!< The maximum representable finite value for a 16-bit fixed-point
+	#define Q16_MIN		((t_q16){ -Q16_INF._ })	//!< The minimum representable value for a 16-bit fixed-point
+	#define Q16_MAX		((t_q16){ +Q16_INF._ })	//!< The maximum representable value for a 16-bit fixed-point
+	#define Q16_INF		((t_q16){ (t_s16)+0x7FFF })
+	#define Q16_NAN		((t_q16){ (t_s16) 0x8000 })
 
 	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / Q32_DENOM * Q32_DENOM })	//!< The minimum representable integer value for a 32-bit fixed-point
 	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / Q32_DENOM * Q32_DENOM })	//!< The maximum representable integer value for a 32-bit fixed-point
-	#define Q32_MIN_VAL	Q32_MIN	//!< The minimum representable finite value for a 32-bit fixed-point
-	#define Q32_MAX_VAL	Q32_MAX	//!< The maximum representable finite value for a 32-bit fixed-point
-	#define Q32_MIN		((t_q32){ (t_s32)0x80000000 })	//!< The minimum representable value for a 32-bit fixed-point
-	#define Q32_MAX		((t_q32){ (t_s32)0x7FFFFFFF })	//!< The maximum representable value for a 32-bit fixed-point
+	#define Q32_MIN_VAL	((t_q32){ (t_s32)-0x7FFFFFFE })	//!< The minimum representable finite value for a 32-bit fixed-point
+	#define Q32_MAX_VAL	((t_q32){ (t_s32)+0x7FFFFFFE })	//!< The maximum representable finite value for a 32-bit fixed-point
+	#define Q32_MIN		((t_q32){ -Q32_INF._ })	//!< The minimum representable value for a 32-bit fixed-point
+	#define Q32_MAX		((t_q32){ +Q32_INF._ })	//!< The maximum representable value for a 32-bit fixed-point
+	#define Q32_INF		((t_q32){ (t_s32)+0x7FFFFFFF })
+	#define Q32_NAN		((t_q32){ (t_s32) 0x80000000 })
 
 	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / Q64_DENOM * Q64_DENOM })	//!< The minimum representable integer value for a 64-bit fixed-point
 	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / Q64_DENOM * Q64_DENOM })	//!< The maximum representable integer value for a 64-bit fixed-point
-	#define Q64_MIN_VAL	Q64_MIN	//!< The minimum representable finite value for a 64-bit fixed-point
-	#define Q64_MAX_VAL	Q64_MAX	//!< The maximum representable finite value for a 64-bit fixed-point
-	#define Q64_MIN		((t_q64){ (t_s64)0x8000000000000000 })	//!< The minimum representable value for a 64-bit fixed-point
-	#define Q64_MAX		((t_q64){ (t_s64)0x7FFFFFFFFFFFFFFF })	//!< The maximum representable value for a 64-bit fixed-point
+	#define Q64_MIN_VAL	((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFE })	//!< The minimum representable finite value for a 64-bit fixed-point
+	#define Q64_MAX_VAL	((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFE })	//!< The maximum representable finite value for a 64-bit fixed-point
+	#define Q64_MIN		((t_q64){ -Q64_INF._ })	//!< The minimum representable value for a 64-bit fixed-point
+	#define Q64_MAX		((t_q64){ +Q64_INF._ })	//!< The maximum representable value for a 64-bit fixed-point
+	#define Q64_INF		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF })
+	#define Q64_NAN		((t_q64){ (t_s64) 0x8000000000000000 })
 
 	#if LIBCONFIG_USE_INT128
-	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / Q128_DENOM * Q128_DENOM })	//!< The minimum representable integer value for a 128-bit fixed-point
-	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / Q128_DENOM * Q128_DENOM })	//!< The maximum representable integer value for a 128-bit fixed-point
-	#define Q128_MIN_VAL	Q128_MIN	//!< The minimum representable finite value for a 128-bit fixed-point
-	#define Q128_MAX_VAL	Q128_MAX	//!< The maximum representable finite value for a 128-bit fixed-point
-	#define Q128_MIN		((t_q128){ ((t_s128)0x8000000000000000 << 64) | 0x0000000000000000 })	//!< The minimum representable value for a 128-bit fixed-point
-	#define Q128_MAX		((t_q128){ ((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF })	//!< The maximum representable value for a 128-bit fixed-point
+	#define Q128_MIN_INT	((t_q128){ (t_s128)(Q128_MIN_VAL._ / Q128_DENOM * (t_s128)Q128_DENOM) })	//!< The minimum representable integer value for a 128-bit fixed-point
+	#define Q128_MAX_INT	((t_q128){ (t_s128)(Q128_MAX_VAL._ / Q128_DENOM * (t_s128)Q128_DENOM) })	//!< The maximum representable integer value for a 128-bit fixed-point
+	#define Q128_MIN_VAL	((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })	//!< The minimum representable finite value for a 128-bit fixed-point
+	#define Q128_MAX_VAL	((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })	//!< The maximum representable finite value for a 128-bit fixed-point
+	#define Q128_MIN		((t_q128){ -Q128_INF._ })	//!< The minimum representable value for a 128-bit fixed-point
+	#define Q128_MAX		((t_q128){ +Q128_INF._ })	//!< The maximum representable value for a 128-bit fixed-point
+	#define Q128_INF		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) })
+	#define Q128_NAN		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
 	#endif
 
-#elif (LIBCONFIG_SINT_NAN)
+#elif LIBCONFIG_FIXED_NAN // overflow behavior, with special NAN error-value
 
 	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The minimum representable integer value for a 8-bit fixed-point
 	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The maximum representable integer value for a 8-bit fixed-point
@@ -376,12 +386,12 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / Q128_DENOM * Q128_DENOM })	//!< The maximum representable integer value for a 128-bit fixed-point
 	#define Q128_MIN_VAL	Q128_MIN	//!< The minimum representable finite value for a 128-bit fixed-point
 	#define Q128_MAX_VAL	Q128_MAX	//!< The maximum representable finite value for a 128-bit fixed-point
-	#define Q128_MIN		((t_q128)-(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The minimum representable value for a 128-bit fixed-point
-	#define Q128_MAX		((t_q128)+(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF))	//!< The maximum representable value for a 128-bit fixed-point
-	#define Q128_NAN		((t_q128) (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000))
+	#define Q128_MIN		((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) })	//!< The minimum representable value for a 128-bit fixed-point
+	#define Q128_MAX		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) })	//!< The maximum representable value for a 128-bit fixed-point
+	#define Q128_NAN		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
 	#endif
 
-#elif (LIBCONFIG_SINT_INF)
+#elif LIBCONFIG_FIXED_INF // saturate behavior, with zero as error-value
 
 	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The minimum representable integer value for a 8-bit fixed-point
 	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The maximum representable integer value for a 8-bit fixed-point
@@ -425,53 +435,43 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#define Q128_INF		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
 	#endif
 
-#else
+#else // classic overflow behavior, with zero as error-value
 
 	#define Q8_MIN_INT	((t_q8){ Q8_MIN_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The minimum representable integer value for a 8-bit fixed-point
 	#define Q8_MAX_INT	((t_q8){ Q8_MAX_VAL._ / Q8_DENOM * Q8_DENOM })	//!< The maximum representable integer value for a 8-bit fixed-point
-	#define Q8_MIN_VAL	((t_q8){ (t_s8)-0x7E })	//!< The minimum representable finite value for a 8-bit fixed-point
-	#define Q8_MAX_VAL	((t_q8){ (t_s8)+0x7E })	//!< The maximum representable finite value for a 8-bit fixed-point
-	#define Q8_MIN		((t_q8){ -Q8_INF._ })	//!< The minimum representable value for a 8-bit fixed-point
-	#define Q8_MAX		((t_q8){ +Q8_INF._ })	//!< The maximum representable value for a 8-bit fixed-point
-	#define Q8_INF		((t_q8){ (t_s8)+0x7F })
-	#define Q8_NAN		((t_q8){ (t_s8) 0x80 })
+	#define Q8_MIN_VAL	Q8_MIN	//!< The minimum representable finite value for a 8-bit fixed-point
+	#define Q8_MAX_VAL	Q8_MAX	//!< The maximum representable finite value for a 8-bit fixed-point
+	#define Q8_MIN		((t_q8){ (t_s8)0x80 })	//!< The minimum representable value for a 8-bit fixed-point
+	#define Q8_MAX		((t_q8){ (t_s8)0x7F })	//!< The maximum representable value for a 8-bit fixed-point
 
 	#define Q16_MIN_INT	((t_q16){ Q16_MIN_VAL._ / Q16_DENOM * Q16_DENOM })	//!< The minimum representable integer value for a 16-bit fixed-point
 	#define Q16_MAX_INT	((t_q16){ Q16_MAX_VAL._ / Q16_DENOM * Q16_DENOM })	//!< The maximum representable integer value for a 16-bit fixed-point
-	#define Q16_MIN_VAL	((t_q16){ (t_s16)-0x7FFE })	//!< The minimum representable finite value for a 16-bit fixed-point
-	#define Q16_MAX_VAL	((t_q16){ (t_s16)+0x7FFE })	//!< The maximum representable finite value for a 16-bit fixed-point
-	#define Q16_MIN		((t_q16){ -Q16_INF._ })	//!< The minimum representable value for a 16-bit fixed-point
-	#define Q16_MAX		((t_q16){ +Q16_INF._ })	//!< The maximum representable value for a 16-bit fixed-point
-	#define Q16_INF		((t_q16){ (t_s16)+0x7FFF })
-	#define Q16_NAN		((t_q16){ (t_s16) 0x8000 })
+	#define Q16_MIN_VAL	Q16_MIN	//!< The minimum representable finite value for a 16-bit fixed-point
+	#define Q16_MAX_VAL	Q16_MAX	//!< The maximum representable finite value for a 16-bit fixed-point
+	#define Q16_MIN		((t_q16){ (t_s16)0x8000 })	//!< The minimum representable value for a 16-bit fixed-point
+	#define Q16_MAX		((t_q16){ (t_s16)0x7FFF })	//!< The maximum representable value for a 16-bit fixed-point
 
 	#define Q32_MIN_INT	((t_q32){ Q32_MIN_VAL._ / Q32_DENOM * Q32_DENOM })	//!< The minimum representable integer value for a 32-bit fixed-point
 	#define Q32_MAX_INT	((t_q32){ Q32_MAX_VAL._ / Q32_DENOM * Q32_DENOM })	//!< The maximum representable integer value for a 32-bit fixed-point
-	#define Q32_MIN_VAL	((t_q32){ (t_s32)-0x7FFFFFFE })	//!< The minimum representable finite value for a 32-bit fixed-point
-	#define Q32_MAX_VAL	((t_q32){ (t_s32)+0x7FFFFFFE })	//!< The maximum representable finite value for a 32-bit fixed-point
-	#define Q32_MIN		((t_q32){ -Q32_INF._ })	//!< The minimum representable value for a 32-bit fixed-point
-	#define Q32_MAX		((t_q32){ +Q32_INF._ })	//!< The maximum representable value for a 32-bit fixed-point
-	#define Q32_INF		((t_q32){ (t_s32)+0x7FFFFFFF })
-	#define Q32_NAN		((t_q32){ (t_s32) 0x80000000 })
+	#define Q32_MIN_VAL	Q32_MIN	//!< The minimum representable finite value for a 32-bit fixed-point
+	#define Q32_MAX_VAL	Q32_MAX	//!< The maximum representable finite value for a 32-bit fixed-point
+	#define Q32_MIN		((t_q32){ (t_s32)0x80000000 })	//!< The minimum representable value for a 32-bit fixed-point
+	#define Q32_MAX		((t_q32){ (t_s32)0x7FFFFFFF })	//!< The maximum representable value for a 32-bit fixed-point
 
 	#define Q64_MIN_INT	((t_q64){ Q64_MIN_VAL._ / Q64_DENOM * Q64_DENOM })	//!< The minimum representable integer value for a 64-bit fixed-point
 	#define Q64_MAX_INT	((t_q64){ Q64_MAX_VAL._ / Q64_DENOM * Q64_DENOM })	//!< The maximum representable integer value for a 64-bit fixed-point
-	#define Q64_MIN_VAL	((t_q64){ (t_s64)-0x7FFFFFFFFFFFFFFE })	//!< The minimum representable finite value for a 64-bit fixed-point
-	#define Q64_MAX_VAL	((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFE })	//!< The maximum representable finite value for a 64-bit fixed-point
-	#define Q64_MIN		((t_q64){ -Q64_INF._ })	//!< The minimum representable value for a 64-bit fixed-point
-	#define Q64_MAX		((t_q64){ +Q64_INF._ })	//!< The maximum representable value for a 64-bit fixed-point
-	#define Q64_INF		((t_q64){ (t_s64)+0x7FFFFFFFFFFFFFFF })
-	#define Q64_NAN		((t_q64){ (t_s64) 0x8000000000000000 })
+	#define Q64_MIN_VAL	Q64_MIN	//!< The minimum representable finite value for a 64-bit fixed-point
+	#define Q64_MAX_VAL	Q64_MAX	//!< The maximum representable finite value for a 64-bit fixed-point
+	#define Q64_MIN		((t_q64){ (t_s64)0x8000000000000000 })	//!< The minimum representable value for a 64-bit fixed-point
+	#define Q64_MAX		((t_q64){ (t_s64)0x7FFFFFFFFFFFFFFF })	//!< The maximum representable value for a 64-bit fixed-point
 
 	#if LIBCONFIG_USE_INT128
 	#define Q128_MIN_INT	((t_q128){ Q128_MIN_VAL._ / Q128_DENOM * Q128_DENOM })	//!< The minimum representable integer value for a 128-bit fixed-point
 	#define Q128_MAX_INT	((t_q128){ Q128_MAX_VAL._ / Q128_DENOM * Q128_DENOM })	//!< The maximum representable integer value for a 128-bit fixed-point
-	#define Q128_MIN_VAL	((t_q128){ -(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })	//!< The minimum representable finite value for a 128-bit fixed-point
-	#define Q128_MAX_VAL	((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFE) })	//!< The maximum representable finite value for a 128-bit fixed-point
-	#define Q128_MIN		((t_q128){ -Q128_INF._ })	//!< The minimum representable value for a 128-bit fixed-point
-	#define Q128_MAX		((t_q128){ +Q128_INF._ })	//!< The maximum representable value for a 128-bit fixed-point
-	#define Q128_INF		((t_q128){ +(((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF) })
-	#define Q128_NAN		((t_q128){  (((t_s128)0x8000000000000000 << 64) | 0x0000000000000000) })
+	#define Q128_MIN_VAL	Q128_MIN	//!< The minimum representable finite value for a 128-bit fixed-point
+	#define Q128_MAX_VAL	Q128_MAX	//!< The maximum representable finite value for a 128-bit fixed-point
+	#define Q128_MIN		((t_q128){ ((t_s128)0x8000000000000000 << 64) | 0x0000000000000000 })	//!< The minimum representable value for a 128-bit fixed-point
+	#define Q128_MAX		((t_q128){ ((t_s128)0x7FFFFFFFFFFFFFFF << 64) | 0xFFFFFFFFFFFFFFFF })	//!< The maximum representable value for a 128-bit fixed-point
 	#endif
 
 #endif
@@ -493,7 +493,7 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 
 //!@doc Macros which define the default error value of integer types
 //!@{
-#if (LIBCONFIG_SINT_NAN)
+#if (LIBCONFIG_FIXED_NAN)
 	#define Q8_ERROR	Q8_NAN
 	#define Q16_ERROR	Q16_NAN
 	#define Q32_ERROR	Q32_NAN
@@ -503,14 +503,14 @@ TYPEDEF_ALIAS(t_fixed, FIXED_128, PRIMITIVE)
 	#endif
 	#define FIXED_ERROR	FIXED_NAN
 #else
-	#define Q8_ERROR	((t_q8){ 0 })
-	#define Q16_ERROR	((t_q16){ 0 })
-	#define Q32_ERROR	((t_q32){ 0 })
-	#define Q64_ERROR	((t_q64){ 0 })
+	#define Q8_ERROR	((t_q8)   { (t_s8)0 })
+	#define Q16_ERROR	((t_q16)  { (t_s16)0 })
+	#define Q32_ERROR	((t_q32)  { (t_s32)0 })
+	#define Q64_ERROR	((t_q64)  { (t_s64)0 })
 	#if LIBCONFIG_USE_INT128
-	#define Q128_ERROR	((t_q128){ 0 })
+	#define Q128_ERROR	((t_q128) { (t_s128)0 })
 	#endif
-	#define FIXED_ERROR	((t_fixed){ 0 })
+	#define FIXED_ERROR	((t_fixed) { 0 })
 #endif
 //!@}
 

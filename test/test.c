@@ -236,7 +236,63 @@ DEFINE_TESTFUNCTION_INT(uintmax, u,64)
 
 
 
-// TODO implement print_test_fixed functions
+#define DEFINE_TESTFUNCTION_FIXED(NAME, BITS) \
+void	print_test_##NAME(s_test_##NAME* test, char const* args) \
+{ \
+	int warning = FALSE; \
+	int error = FALSE; \
+	char* str_result; \
+	char* str_expect; \
+	if (test->result_sig) \
+		error = !test->expect_sig; \
+	else if (test->expect_sig) \
+		error = !SHOULDHANDLE_ERROR_NULLPOINTER; \
+	else error = (test->result._ != test->expect._); \
+	str_result = q##BITS##tostr(test->result); \
+	str_expect = q##BITS##tostr(test->expect); \
+	if (error && \
+		!Q##BITS##_IsNaN(test->result) && !Q##BITS##_IsNaN(test->expect) && \
+		!Q##BITS##_IsInf(test->result) && !Q##BITS##_IsInf(test->expect)) \
+	{ \
+		if (ABS(test->result._ - test->expect._) <= 1) \
+		{ \
+			error = FALSE; \
+			warning = TRUE; \
+		} \
+	} \
+	char* tmp = NULL; \
+	if (warning) \
+	{ \
+		tmp = malloc(1 + 128); \
+		if (tmp == NULL) return; \
+		size_t len = snprintf(tmp,	128, "Approximation error (%i):\n" \
+				"- received: %s\n" \
+				"- expected: %s\n", \
+			ABS(test->result._ - test->expect._), \
+			str_result, \
+			str_expect); \
+		g_test.suites[g_test.current_suite].totals.warnings += 1; \
+		if (len == 0) \
+			return; \
+	} \
+	print_test(test->name, test->function, args, \
+		(test->result_sig ? signal_strs[test->result_sig] : str_result), \
+		(test->expect_sig ? signal_strs[test->expect_sig] : str_expect), \
+		test->flags, \
+		error, (warning ? tmp : NULL)); \
+	if (tmp)	free(tmp); \
+	if (str_result)	free(str_result); \
+	if (str_expect)	free(str_expect); \
+} \
+
+DEFINE_TESTFUNCTION_FIXED(q8,    8)
+DEFINE_TESTFUNCTION_FIXED(q16,   16)
+DEFINE_TESTFUNCTION_FIXED(q32,   32)
+DEFINE_TESTFUNCTION_FIXED(q64,   64)
+#if LIBCONFIG_USE_INT128
+DEFINE_TESTFUNCTION_FIXED(q128,  128)
+#endif
+DEFINE_TESTFUNCTION_FIXED(fixed, 64) // LIBCONFIG_FIXED
 
 
 
@@ -250,7 +306,6 @@ DEFINE_TESTFUNCTION_INT(uintmax, u,64)
 #define DEFINE_TESTFUNCTION_FLOAT(NAME, BITS) \
 void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 { \
-	char* tmp = NULL; \
 	int warning = FALSE; \
 	int error = FALSE; \
 	char str_result[BITS]; \
@@ -276,9 +331,11 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		} \
 		/* else printf("DEBUG: result=%g | expect=%g | diff=%g\n", test->result, test->expect, fabs(test->result - test->expect)); */\
 	} \
+	char* tmp = NULL; \
 	if (warning) \
 	{ \
-		tmp = (char*)malloc(1 + 128);	if (tmp == NULL) return; \
+		tmp = malloc(1 + 128); \
+		if (tmp == NULL) return; \
 		size_t len = snprintf(tmp,	128, "Approximation error (%g):\n" \
 				"- received: " F##BITS##_PRECISION_FORMAT "\n" \
 				"- expected: " F##BITS##_PRECISION_FORMAT "\n", \
@@ -294,7 +351,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		(test->expect_sig ? signal_strs[test->expect_sig] : str_expect), \
 		test->flags, \
 		error, (warning ? tmp : NULL)); \
-	if (tmp)	{ free(tmp); } \
+	if (tmp)	free(tmp); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16

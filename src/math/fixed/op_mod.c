@@ -2,20 +2,30 @@
 #include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 #define DEFINEFUNC_FIXED_MOD(BITS) \
-_INLINE() \
 t_q##BITS	Q##BITS##_Mod(t_q##BITS x, t_q##BITS y) \
 { \
 	if CCCERROR((Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (Q##BITS##_ERROR); \
-	if CCCERROR((Q##BITS##_IsInf(x) || (y._ == 0)), ERROR_MATHDOMAIN, NULL) \
+	if CCCERROR((Q##BITS##_IsInf(x) && Q##BITS##_IsInf(y)), ERROR_MATHDOMAIN, \
+		"result of infinite value divided by infinite value is undefined") \
 		return (Q##BITS##_ERROR); \
-	if (Q##BITS##_IsInf(y))	return (Q##BITS##_Sgn(x)._ == Q##BITS##_Sgn(y)._ ? x : y); \
+	if CCCERROR(((x._ == 0) && (y._ == 0)), ERROR_MATHDOMAIN, \
+		"result of zero divided by zero is undefined by convention") \
+		return (Q##BITS##_ERROR); \
+	if CCCERROR((y._ == 0), ERROR_MATHDOMAIN, \
+		"cannot get modulo of zero") \
+		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(x)) \
+		return (Q##BITS##_ERROR); \
+	if (Q##BITS##_IsInf(y)) \
+		return (x); /* python behavior: (Q##BITS##_Sgn(x)._ == Q##BITS##_Sgn(y)._ ? x : y); */ \
 	return (t_q##BITS){ (t_s##BITS)(x._ % y._) }; \
 } \
 // TODO fix this and test
@@ -27,6 +37,8 @@ DEFINEFUNC_FIXED_MOD(64)
 #if LIBCONFIG_USE_INT128
 DEFINEFUNC_FIXED_MOD(128)
 #endif
+
+
 
 #ifdef __cplusplus
 t_q8	operator % (t_q8   x, t_q8   y)	{ return Q8_Mod(x, y); }

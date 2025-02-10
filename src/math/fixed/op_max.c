@@ -9,11 +9,13 @@
 
 #define DEFINEFUNC_FIXED_MAX(BITS) \
 _INLINE() \
-t_q##BITS	Q##BITS##_Max(t_q##BITS a, t_q##BITS b) \
+t_q##BITS	Q##BITS##_Max(t_q##BITS x, t_q##BITS y) \
 { \
-	if CCCERROR((Q##BITS##_IsNaN(a) || Q##BITS##_IsNaN(b)), ERROR_NANARGUMENT, NULL) \
+	if CCCERROR(Q##BITS##_IsNaN(x) && Q##BITS##_IsNaN(y), ERROR_NANARGUMENT, NULL) \
 		return (Q##BITS##_ERROR); \
-	return (a._ > b._ ? a : b); \
+	else if CCCERROR(Q##BITS##_IsNaN(x), ERROR_NANARGUMENT, NULL)	return (y); \
+	else if CCCERROR(Q##BITS##_IsNaN(y), ERROR_NANARGUMENT, NULL)	return (x); \
+	return (x._ > y._ ? x : y); \
 } \
 
 DEFINEFUNC_FIXED_MAX(8)

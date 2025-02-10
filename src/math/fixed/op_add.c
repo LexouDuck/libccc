@@ -2,22 +2,40 @@
 #include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/math/fixed.h"
+#include "libccc/math.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
 
 #define DEFINEFUNC_FIXED_ADD(BITS) \
-_INLINE() \
-t_q##BITS	Q##BITS##_Add(t_q##BITS a, t_q##BITS b) \
+t_q##BITS	Q##BITS##_Add(t_q##BITS x, t_q##BITS y) \
 { \
-	t_s##BITS i1 = (a._ / Q##BITS##_DENOM); \
-	t_s##BITS i2 = (b._ / Q##BITS##_DENOM); \
-	if CCCERROR((i2 > 0) && (i1 > (Q##BITS##_MAX._ / Q##BITS##_DENOM) - i2), ERROR_RESULTRANGE, NULL) \
-	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MAX); } \
-	if CCCERROR((i2 < 0) && (i1 < (Q##BITS##_MIN._ / Q##BITS##_DENOM) - i2), ERROR_RESULTRANGE, NULL) \
-	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MIN); } \
-	return (t_q##BITS){ (t_s##BITS)(a._ + b._) }; \
+	if CCCERROR((Q##BITS##_IsNaN(x) || Q##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
+		return (Q##BITS##_ERROR); \
+	if CCCERROR((Q##BITS##_IsInf(x) && Q##BITS##_IsInf(y)) && S##BITS##_Sgn(x._) != S##BITS##_Sgn(y._), ERROR_RESULTRANGE, \
+		"result of adding infinite values of different sign is undefined") \
+		return (Q##BITS##_ERROR); \
+	else if (Q##BITS##_IsInf(x))	return (x); \
+	else if (Q##BITS##_IsInf(y))	return (y); \
+	if (x._ && y._ && Q##BITS##_Sgn(x)._ == Q##BITS##_Sgn(y)._) \
+	{ \
+		if CCCERROR((x._ > S##BITS##_MAX - y._), ERROR_RESULTRANGE, \
+			"positive overflow for " SF_Q##BITS " + " SF_Q##BITS " = " SF_Q##BITS " (as t_q"#BITS")", x._, y._, (t_s##BITS)(x._ + y._)) \
+		{	LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MAX);	} \
+		if CCCERROR((x._ < S##BITS##_MIN - y._), ERROR_RESULTRANGE, \
+			"negative overflow for " SF_Q##BITS " + " SF_Q##BITS " = " SF_Q##BITS " (as t_q"#BITS")", x._, y._, (t_s##BITS)(x._ + y._)) \
+		{	LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MIN);	} \
+	} \
+	t_s##BITS i1 = (x._ / Q##BITS##_DENOM); \
+	t_s##BITS i2 = (y._ / Q##BITS##_DENOM); \
+	if CCCERROR((i2 > 0) && (i1 > (Q##BITS##_MAX._ / Q##BITS##_DENOM) - i2), ERROR_RESULTRANGE, \
+		"positive overflow for " SF_Q##BITS " + " SF_Q##BITS " = " SF_Q##BITS " (as t_q"#BITS")", x._, y._, (t_s##BITS)(x._ + y._)) \
+	{	LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MAX);	} \
+	if CCCERROR((i2 < 0) && (i1 < (Q##BITS##_MIN._ / Q##BITS##_DENOM) - i2), ERROR_RESULTRANGE, \
+		"negative overflow for " SF_Q##BITS " + " SF_Q##BITS " = " SF_Q##BITS " (as t_q"#BITS")", x._, y._, (t_s##BITS)(x._ + y._)) \
+	{	LIBCONFIG_ERROR_HANDLEOVERFLOW_FIXED(Q##BITS, Q##BITS##_MIN);	} \
+	return (t_q##BITS){ (t_s##BITS)(x._ + y._) }; \
 } \
 
 DEFINEFUNC_FIXED_ADD(8)

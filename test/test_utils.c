@@ -7,6 +7,7 @@
 #include "libccc/int.h"
 #include "libccc/fixed.h"
 #include "libccc/float.h"
+#include "libccc/text/format.h"
 
 #include "test.h"
 #include "test_utils.h"
@@ -215,6 +216,46 @@ typedef _UInt128	uint128_t;
 
 
 
+#define DEFINEFUNC_UINTTOSTR(BITS) \
+char*	u##BITS##tostr(t_u##BITS number) \
+{ \
+	char*		result; \
+	uint8_t	digits[64] = { 0 }; \
+	uint8_t	i; \
+	uint##BITS##_t	n; \
+	if (LIBCONFIG_UINT_NAN && number == U##BITS##_ERROR)	return (strdup("nan")); \
+	if (LIBCONFIG_UINT_INF && number == U##BITS##_MAX)	return (strdup("+inf")); \
+	if (LIBCONFIG_UINT_INF && number == U##BITS##_MIN)	return (strdup("-inf")); \
+	n = number; \
+	i = 0; \
+	while (n > 0) \
+	{ \
+		digits[i++] = n % 10; \
+		n /= 10; \
+	} \
+	if (i == 0) \
+		digits[i++] = 0; \
+	if (!(result = (char*)malloc(i + 1))) \
+		return (NULL); \
+	n = 0; \
+	while (i--) \
+	{ \
+		result[n++] = '0' + digits[i]; \
+	} \
+	result[n] = '\0'; \
+	return (result); \
+} \
+
+DEFINEFUNC_UINTTOSTR(8)
+DEFINEFUNC_UINTTOSTR(16)
+DEFINEFUNC_UINTTOSTR(32)
+DEFINEFUNC_UINTTOSTR(64)
+#if LIBCONFIG_USE_INT128
+DEFINEFUNC_UINTTOSTR(128)
+#endif
+
+
+
 #define DEFINEFUNC_SINTTOSTR(BITS) \
 char*	s##BITS##tostr(t_s##BITS number) \
 { \
@@ -222,7 +263,9 @@ char*	s##BITS##tostr(t_s##BITS number) \
 	uint8_t	digits[64] = { 0 }; \
 	uint8_t	i; \
 	uint##BITS##_t	n; \
- \
+	if (LIBCONFIG_SINT_NAN && number == S##BITS##_ERROR)	return (strdup("nan")); \
+	if (LIBCONFIG_SINT_INF && number == S##BITS##_MAX)	return (strdup("+inf")); \
+	if (LIBCONFIG_SINT_INF && number == S##BITS##_MIN)	return (strdup("-inf")); \
 	n = number; \
 	if (number < 0) \
 		n = -n; \
@@ -254,40 +297,24 @@ DEFINEFUNC_SINTTOSTR(128)
 
 
 
-#define DEFINEFUNC_UINTTOSTR(BITS) \
-char*	u##BITS##tostr(t_u##BITS number) \
+#define DEFINEFUNC_FIXEDTOSTR(BITS) \
+char*	q##BITS##tostr(t_q##BITS number) \
 { \
-	char*		result; \
-	uint8_t	digits[64] = { 0 }; \
-	uint8_t	i; \
-	uint##BITS##_t	n; \
- \
-	n = number; \
-	i = 0; \
-	while (n > 0) \
-	{ \
-		digits[i++] = n % 10; \
-		n /= 10; \
-	} \
-	if (i == 0) \
-		digits[i++] = 0; \
-	if (!(result = (char*)malloc(i + 1))) \
-		return (NULL); \
-	n = 0; \
-	while (i--) \
-	{ \
-		result[n++] = '0' + digits[i]; \
-	} \
-	result[n] = '\0'; \
+	char* result = NULL; \
+	if (LIBCONFIG_FIXED_NAN && number._ == Q##BITS##_ERROR._)	return (strdup("nan")); \
+	if (LIBCONFIG_FIXED_INF && number._ == Q##BITS##_MAX._)	return (strdup("+inf")); \
+	if (LIBCONFIG_FIXED_INF && number._ == Q##BITS##_MIN._)	return (strdup("-inf")); \
+/*	asprintf(&result, "%g", Q##BITS##_IntegerPart(number)._ + Q##BITS##_FractionPart(number)._ / (double)Q##BITS##_DENOM); */ \
+	asprintf(&result, "" SF_S##BITS ".(" SF_S##BITS "/" SF_S##BITS ")", Q##BITS##_IntegerPart(number)._, Q##BITS##_FractionPart(number)._, Q##BITS##_DENOM); \
 	return (result); \
 } \
 
-DEFINEFUNC_UINTTOSTR(8)
-DEFINEFUNC_UINTTOSTR(16)
-DEFINEFUNC_UINTTOSTR(32)
-DEFINEFUNC_UINTTOSTR(64)
+DEFINEFUNC_FIXEDTOSTR(8)
+DEFINEFUNC_FIXEDTOSTR(16)
+DEFINEFUNC_FIXEDTOSTR(32)
+DEFINEFUNC_FIXEDTOSTR(64)
 #if LIBCONFIG_USE_INT128
-DEFINEFUNC_UINTTOSTR(128)
+DEFINEFUNC_FIXEDTOSTR(128)
 #endif
 
 

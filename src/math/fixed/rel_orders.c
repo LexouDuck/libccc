@@ -10,9 +10,9 @@
 
 #define DEFINEFUNC_FIXED_LT(BITS) \
 _INLINE() \
-t_bool	Q##BITS##_LessThan(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_LessThan(t_q##BITS x, t_q##BITS y) \
 { \
-	return (a._ < b._); \
+	return (x._ < y._); \
 } \
 
 DEFINEFUNC_FIXED_LT(8)
@@ -37,9 +37,9 @@ t_bool	operator < (t_q128 x, t_q128 y)	{ return Q128_LessThan(x, y); }
 
 #define DEFINEFUNC_FIXED_LTE(BITS) \
 _INLINE() \
-t_bool	Q##BITS##_LessThanOrEqual(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_LessThanOrEqual(t_q##BITS x, t_q##BITS y) \
 { \
-	return (a._ <= b._); \
+	return (x._ <= y._); \
 } \
 
 DEFINEFUNC_FIXED_LTE(8)
@@ -64,9 +64,9 @@ t_bool	operator <= (t_q128 x, t_q128 y)	{ return Q128_LessThanOrEqual(x, y); }
 
 #define DEFINEFUNC_FIXED_GT(BITS) \
 _INLINE() \
-t_bool	Q##BITS##_GreaterThan(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_GreaterThan(t_q##BITS x, t_q##BITS y) \
 { \
-	return (a._ > b._); \
+	return (x._ > y._); \
 } \
 
 DEFINEFUNC_FIXED_GT(8)
@@ -91,9 +91,9 @@ t_bool	operator > (t_q128 x, t_q128 y)	{ return Q128_GreaterThan(x, y); }
 
 #define DEFINEFUNC_FIXED_GTE(BITS) \
 _INLINE() \
-t_bool	Q##BITS##_GreaterThanOrEqual(t_q##BITS a, t_q##BITS b) \
+t_bool	Q##BITS##_GreaterThanOrEqual(t_q##BITS x, t_q##BITS y) \
 { \
-	return (a._ >= b._); \
+	return (x._ >= y._); \
 } \
 
 DEFINEFUNC_FIXED_GTE(8)

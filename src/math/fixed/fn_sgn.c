@@ -13,8 +13,8 @@ _INLINE() \
 t_q##BITS	Q##BITS##_Sgn(t_q##BITS x) \
 { \
 	if CCCERROR(Q##BITS##_IsNaN(x), ERROR_MATHDOMAIN, NULL) \
-		return (Q##BITS##_ERROR); \
-	return (t_q##BITS){ (t_s##BITS)(x._ == 0 ? 0 : (x._ < 0 ? -1 : +1)) }; \
+		return ((t_q##BITS){ 0 }); \
+	return (t_q##BITS){ (t_s##BITS)(x._ == 0 ? 0 : (x._ < 0 ? -Q##BITS##_DENOM : +Q##BITS##_DENOM)) }; \
 } \
 
 DEFINEFUNC_FIXED_SGN(8)
