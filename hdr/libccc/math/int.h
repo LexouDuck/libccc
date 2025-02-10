@@ -34,42 +34,65 @@ HEADER_CPP
 
 //!@doc The type of function which takes one number and outputs one number
 //!@{
-typedef		t_uint	(*f_uint_function)	(t_uint x);
-typedef		t_sint	(*f_sint_function)	(t_sint x);
-
-typedef		t_u16	(*f_u16_function)	(t_u16  x);
-typedef		t_s16	(*f_s16_function)	(t_s16  x);
-
-typedef		t_u32	(*f_u32_function)	(t_u32  x);
-typedef		t_s32	(*f_s32_function)	(t_s32  x);
-
-typedef		t_u64	(*f_u64_function)	(t_u64  x);
-typedef		t_s64	(*f_s64_function)	(t_s64  x);
-
+typedef	t_u8	(*f_u8_function)	(t_u8   x);
+typedef	t_u16	(*f_u16_function)	(t_u16  x);
+typedef	t_u32	(*f_u32_function)	(t_u32  x);
+typedef	t_u64	(*f_u64_function)	(t_u64  x);
 #if LIBCONFIG_USE_INT128
-typedef		t_u128	(*f_u128_function)	(t_u128 x);
-typedef		t_s128	(*f_s128_function)	(t_s128 x);
+typedef	t_u128	(*f_u128_function)	(t_u128 x);
 #endif
+typedef	t_uint	(*f_uint_function)	(t_uint x);
+
+typedef	t_s8	(*f_s8_function)	(t_s8   x);
+typedef	t_s16	(*f_s16_function)	(t_s16  x);
+typedef	t_s32	(*f_s32_function)	(t_s32  x);
+typedef	t_s64	(*f_s64_function)	(t_s64  x);
+#if LIBCONFIG_USE_INT128
+typedef	t_s128	(*f_s128_function)	(t_s128 x);
+#endif
+typedef	t_sint	(*f_sint_function)	(t_sint x);
 //!@}
 
 //!@doc The type of function which takes two numbers and outputs one number
 //!@{
-typedef		t_uint	(*f_uint_operator)	(t_uint x, t_uint y);
-typedef		t_sint	(*f_sint_operator)	(t_sint x, t_sint y);
-
-typedef		t_u16	(*f_u16_operator)	(t_u16  x, t_u16  y);
-typedef		t_s16	(*f_s16_operator)	(t_s16  x, t_s16  y);
-
-typedef		t_u32	(*f_u32_operator)	(t_u32  x, t_u32  y);
-typedef		t_s32	(*f_s32_operator)	(t_s32  x, t_s32  y);
-
-typedef		t_u64	(*f_u64_operator)	(t_u64  x, t_u64  y);
-typedef		t_s64	(*f_s64_operator)	(t_s64  x, t_s64  y);
-
+typedef	t_u8	(*f_u8_operator)	(t_u8   x, t_u8   y);
+typedef	t_u16	(*f_u16_operator)	(t_u16  x, t_u16  y);
+typedef	t_u32	(*f_u32_operator)	(t_u32  x, t_u32  y);
+typedef	t_u64	(*f_u64_operator)	(t_u64  x, t_u64  y);
 #if LIBCONFIG_USE_INT128
-typedef		t_u128	(*f_u128_operator)	(t_u128 x, t_u128 y);
-typedef		t_s128	(*f_s128_operator)	(t_s128 x, t_s128 y);
+typedef	t_u128	(*f_u128_operator)	(t_u128 x, t_u128 y);
 #endif
+typedef	t_uint	(*f_uint_operator)	(t_uint x, t_uint y);
+
+typedef	t_s8	(*f_s8_operator)	(t_s8   x, t_s8   y);
+typedef	t_s16	(*f_s16_operator)	(t_s16  x, t_s16  y);
+typedef	t_s32	(*f_s32_operator)	(t_s32  x, t_s32  y);
+typedef	t_s64	(*f_s64_operator)	(t_s64  x, t_s64  y);
+#if LIBCONFIG_USE_INT128
+typedef	t_s128	(*f_s128_operator)	(t_s128 x, t_s128 y);
+#endif
+typedef	t_sint	(*f_sint_operator)	(t_sint x, t_sint y);
+//!@}
+
+//!@doc The type of function which relates two numbers to each other
+//!@{
+typedef	t_bool	(*f_u8_relation)	(t_u8   x, t_u8   y);
+typedef	t_bool	(*f_u16_relation)	(t_u16  x, t_u16  y);
+typedef	t_bool	(*f_u32_relation)	(t_u32  x, t_u32  y);
+typedef	t_bool	(*f_u64_relation)	(t_u64  x, t_u64  y);
+#if LIBCONFIG_USE_INT128
+typedef	t_bool	(*f_u128_relation)	(t_u128 x, t_u128 y);
+#endif
+typedef	t_bool	(*f_uint_relation)	(t_uint x, t_uint y);
+
+typedef	t_bool	(*f_s8_relation)	(t_s8   x, t_s8   y);
+typedef	t_bool	(*f_s16_relation)	(t_s16  x, t_s16  y);
+typedef	t_bool	(*f_s32_relation)	(t_s32  x, t_s32  y);
+typedef	t_bool	(*f_s64_relation)	(t_s64  x, t_s64  y);
+#if LIBCONFIG_USE_INT128
+typedef	t_bool	(*f_s128_relation)	(t_s128 x, t_s128 y);
+#endif
+typedef	t_bool	(*f_sint_relation)	(t_sint x, t_sint y);
 //!@}
 
 

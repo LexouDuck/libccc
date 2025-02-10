@@ -32,28 +32,40 @@ HEADER_CPP
 
 
 
-//!@doc The type of function which takes one real number and outputs one real number
+//!@doc The type of function which takes one number and outputs one number
 //!@{
-typedef		t_fixed	(*f_fixed_function)	(t_fixed x);
-typedef		t_q8	(*f_q8_function)	(t_q8    x);
-typedef		t_q16	(*f_q16_function)	(t_q16   x);
-typedef		t_q32	(*f_q32_function)	(t_q32   x);
-typedef		t_q64	(*f_q64_function)	(t_q64   x);
+typedef	t_q8	(*f_q8_function)	(t_q8    x);
+typedef	t_q16	(*f_q16_function)	(t_q16   x);
+typedef	t_q32	(*f_q32_function)	(t_q32   x);
+typedef	t_q64	(*f_q64_function)	(t_q64   x);
 #if LIBCONFIG_USE_INT128
-typedef		t_q128	(*f_q128_function)	(t_q128  x);
+typedef	t_q128	(*f_q128_function)	(t_q128  x);
 #endif
+typedef	t_fixed	(*f_fixed_function)	(t_fixed x);
 //!@}
 
-//!@doc The type of function which takes two real numbers and outputs one real number
+//!@doc The type of function which takes two numbers and outputs one number
 //!@{
-typedef		t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
-typedef		t_q8	(*f_q8_operator)	(t_q8    x, t_q8    y);
-typedef		t_q16	(*f_q16_operator)	(t_q16   x, t_q16   y);
-typedef		t_q32	(*f_q32_operator)	(t_q32   x, t_q32   y);
-typedef		t_q64	(*f_q64_operator)	(t_q64   x, t_q64   y);
+typedef	t_q8	(*f_q8_operator)	(t_q8    x, t_q8    y);
+typedef	t_q16	(*f_q16_operator)	(t_q16   x, t_q16   y);
+typedef	t_q32	(*f_q32_operator)	(t_q32   x, t_q32   y);
+typedef	t_q64	(*f_q64_operator)	(t_q64   x, t_q64   y);
 #if LIBCONFIG_USE_INT128
-typedef		t_q128	(*f_q128_operator)	(t_q128  x, t_q128  y);
+typedef	t_q128	(*f_q128_operator)	(t_q128  x, t_q128  y);
 #endif
+typedef	t_fixed	(*f_fixed_operator)	(t_fixed x,	t_fixed y);
+//!@}
+
+//!@doc The type of function which relates two numbers to each other
+//!@{
+typedef	t_bool	(*f_q8_relation)	(t_q8    x, t_q8    y);
+typedef	t_bool	(*f_q16_relation)	(t_q16   x, t_q16   y);
+typedef	t_bool	(*f_q32_relation)	(t_q32   x, t_q32   y);
+typedef	t_bool	(*f_q64_relation)	(t_q64   x, t_q64   y);
+#if LIBCONFIG_USE_INT128
+typedef	t_bool	(*f_q128_relation)	(t_q128  x, t_q128  y);
+#endif
+typedef	t_bool	(*f_fixed_relation)	(t_fixed x,	t_fixed y);
 //!@}
 
 

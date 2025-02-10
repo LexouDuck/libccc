@@ -34,36 +34,53 @@ HEADER_CPP
 
 //!@doc The type of function which takes one real number and outputs one real number
 //!@{
-typedef		t_float	(*f_float_function)	(t_float x);
 #if LIBCONFIG_USE_FLOAT16
-typedef		t_f16	(*f_f16_function)	(t_f16   x);
+typedef	t_f16	(*f_f16_function)	(t_f16   x);
 #endif
-typedef		t_f32	(*f_f32_function)	(t_f32   x);
+typedef	t_f32	(*f_f32_function)	(t_f32   x);
 
-typedef		t_f64	(*f_f64_function)	(t_f64   x);
+typedef	t_f64	(*f_f64_function)	(t_f64   x);
 #if LIBCONFIG_USE_FLOAT80
-typedef		t_f80	(*f_f80_function)	(t_f80   x);
+typedef	t_f80	(*f_f80_function)	(t_f80   x);
 #endif
 #if LIBCONFIG_USE_FLOAT128
-typedef		t_f128	(*f_f128_function)	(t_f128  x);
+typedef	t_f128	(*f_f128_function)	(t_f128  x);
 #endif
+typedef	t_float	(*f_float_function)	(t_float x);
 //!@}
 
 //!@doc The type of function which takes two real numbers and outputs one real number
 //!@{
-typedef		t_float	(*f_float_operator)	(t_float x, t_float y);
 #if LIBCONFIG_USE_FLOAT16
-typedef		t_f16	(*f_f16_operator)	(t_f16   x, t_f16   y);
+typedef	t_f16	(*f_f16_operator)	(t_f16   x, t_f16   y);
 #endif
-typedef		t_f32	(*f_f32_operator)	(t_f32   x, t_f32   y);
+typedef	t_f32	(*f_f32_operator)	(t_f32   x, t_f32   y);
 
-typedef		t_f64	(*f_f64_operator)	(t_f64   x, t_f64   y);
+typedef	t_f64	(*f_f64_operator)	(t_f64   x, t_f64   y);
 #if LIBCONFIG_USE_FLOAT80
-typedef		t_f80	(*f_f80_operator)	(t_f80   x, t_f80   y);
+typedef	t_f80	(*f_f80_operator)	(t_f80   x, t_f80   y);
 #endif
 #if LIBCONFIG_USE_FLOAT128
-typedef		t_f128	(*f_f128_operator)	(t_f128  x, t_f128  y);
+typedef	t_f128	(*f_f128_operator)	(t_f128  x, t_f128  y);
 #endif
+typedef	t_float	(*f_float_operator)	(t_float x, t_float y);
+//!@}
+
+//!@doc The type of function which relates two numbers to each other
+//!@{
+#if LIBCONFIG_USE_FLOAT16
+typedef	t_bool	(*f_f16_relation)	(t_f16   x, t_f16   y);
+#endif
+typedef	t_bool	(*f_f32_relation)	(t_f32   x, t_f32   y);
+
+typedef	t_bool	(*f_f64_relation)	(t_f64   x, t_f64   y);
+#if LIBCONFIG_USE_FLOAT80
+typedef	t_bool	(*f_f80_relation)	(t_f80   x, t_f80   y);
+#endif
+#if LIBCONFIG_USE_FLOAT128
+typedef	t_bool	(*f_f128_relation)	(t_f128  x, t_f128  y);
+#endif
+typedef	t_bool	(*f_float_relation)	(t_float x, t_float y);
 //!@}
 
 
