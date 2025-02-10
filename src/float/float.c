@@ -101,20 +101,9 @@ DEFINEFUNC_FLOAT_NEARBYINT(128)
 MATH_DECL_FUNCTION(t_sint, ToInt, lrint)
 #else
 #define DEFINEFUNC_FLOAT_TOINT(BITS) \
+_INLINE() \
 t_sint	F##BITS##_ToInt(t_f##BITS x) \
 { \
-	u_cast_f64 u = {(t_f64)x}; \
-	t_u32 abstop = u.as_u >> 32 & 0x7FFFFFFF; \
-	t_u64 sign = u.as_u & ((t_u64)1 << 63); \
-	if (abstop < 0x41DFFFFF) \
-	{ \
-		/* |x| < 0x7FFFFC00, no overflow */ \
-		u.as_f = 1. / F64_EPSILON; \
-		u.as_u |= sign; \
-		t_f64 toint = u.as_f; \
-		t_f64 y = x + toint - toint; \
-		return ((t_sint)y); \
-	} \
 	return F##BITS##_NearbyInt(x); \
 } \
 

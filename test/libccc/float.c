@@ -524,24 +524,24 @@ void	print_test_##TYPE##lrint(char const* test_name, t_testflags flags, \
 void	test_##TYPE##lrint(void) \
 { \
 /*	| TEST FUNCTION         | TEST NAME          |TESTFLAG| TEST ARGS */ \
-	print_test_##TYPE##lrint(#TYPE"lrint (-0.0)  ",	FALSE,  -0.0); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+0.0)  ",	FALSE,  +0.0); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-0.1)  ",	FALSE,  -0.1); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+0.1)  ",	FALSE,  +0.1); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-1e-2) ",	FALSE,  -1e-2); \
-	print_test_##TYPE##lrint(#TYPE"lrint (+1e-2) ",	FALSE,  +1e-2); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-1e-9) ",	FALSE,  -1e-9); \
-	print_test_##TYPE##lrint(#TYPE"lrint (+1e-9) ",	FALSE,  +1e-9); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-1.0)  ",	FALSE,  -1.0); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+1.0)  ",	FALSE,  +1.0); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-1e+2) ",	FALSE,  -1e+2); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+1e+2) ",	FALSE,  +1e+2); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-1e+9) ",	FALSE,  -1e+9); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+1e+9) ",	FALSE,  +1e+9); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-inf)  ",	FALSE,  -INF); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e-2) ",	FALSE,  +1e-2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+1e-9) ",	FALSE,  +1e-9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-0.0)  ",	FALSE,  -0.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-0.1)  ",	FALSE,  -0.1); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1.0)  ",	FALSE,  -1.0); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e+2) ",	FALSE,  -1e+2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e+9) ",	FALSE,  -1e+9); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e-2) ",	FALSE,  -1e-2); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-1e-9) ",	FALSE,  -1e-9); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+inf)  ",	FALSE,  +INF); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FALSE,  -NAN); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+nan)  ",	FALSE,  +NAN); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-inf)  ",	FALSE,  -INF); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FALSE,  -NAN); \
 } \
 
 #if !defined(c_f16lrint) || !defined(__float16)
