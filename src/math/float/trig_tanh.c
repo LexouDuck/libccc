@@ -58,156 +58,106 @@ DEFINEFUNC_FLOAT_TANH(128)
 
 
 
-/* tanh(x) = (exp(x) - exp(-x))/(exp(x) + exp(-x))
-**         = (exp(2*x) - 1)/(exp(2*x) - 1 + 2)
-**         = (1 - exp(-2*x))/(exp(-2*x) - 1 + 2)
+/* tanh(x)
+	= (exp(x) - exp(-x))/(exp(x) + exp(-x))
+	= (exp(2*x) - 1)/(exp(2*x) - 1 + 2)
+	= (1 - exp(-2*x))/(exp(-2*x) - 1 + 2)
 */
 
-t_f32	F32_TanH(t_f32 x)
-{
-	u_cast_f32 u = {x};
-	t_u32 w;
-	int sign;
-	t_f32 t;
+#define DEFINEFUNC_FLOAT_TANH(BITS, CONSTANT, C_0c5493, C_0c2554, C_1p2m1022) \
+t_f##BITS	F##BITS##_TanH(t_f##BITS x) \
+{ \
+	u_cast_f##BITS u = {x}; \
+	t_u32 w; \
+	int sign; \
+	t_f##BITS result; \
+	/* x = |x| */ \
+	sign = u.as_u >> (BITS - 1); \
+	u.as_u &= (~(t_u##BITS)0 >> 1); \
+	x = u.as_f; \
+	w = u.as_u >> (BITS - 32); \
+	if (w > C_0c5493) /* |x| > log(3)/2 ~= 0.5493 or nan */ \
+	{ \
+		if (w > CONSTANT) /* f32:(|x| > 10) or f64:(|x| > 20) or nan */ \
+		{	/* note: this branch avoids raising overflow */ \
+			result = 1 - 0/x; \
+		} \
+		else \
+		{ \
+			result = F##BITS##_Exp(2*x) - 1; \
+			result = 1 - 2 / (result + 2); \
+		} \
+	} \
+	else if (w > C_0c2554) /* |x| > log(5/3)/2 ~= 0.2554 */ \
+	{ \
+		result = F##BITS##_Exp(2*x) - 1; \
+		result = result / (result + 2); \
+	} \
+	else if (x > 0x1p-41) /* |x| >= 0x1p-1022, up to 2ulp error in [0.1,0.2554] */ \
+	{ \
+		result = F64_Exp(-2*x) - 1; \
+		result = -result / (result + 2); \
+	} \
+	else if (w >= C_1p2m1022) /* |x| >= 0x1p-1022, up to 2ulp error in [0.1,0.2554] */ \
+	{ \
+		result = x; \
+	} \
+	else /* |x| is subnormal */ \
+	{	/* note: the branch above would not raise underflow in [0x1p-1023,0x1p-1022) */ \
+		/*FORCE_EVAL((t_f32)x);*/ \
+		result = x; \
+	} \
+	return (sign ? -result : result); \
+} \
 
-	/* x = |x| */
-	sign = u.as_u >> 31;
-	u.as_u &= 0x7fffffff;
-	x = u.as_f;
-	w = u.as_u;
+DEFINEFUNC_FLOAT_TANH(32, 0x41200000, 0x3F0C9F54, 0x3E82C578, 0x00800000)
+DEFINEFUNC_FLOAT_TANH(64, 0x40340000, 0x3FE193EA, 0x3FD058AE, 0x00100000)
 
-	if (w > 0x3f0c9f54)
-	{
-		/* |x| > log(3)/2 ~= 0.5493 or nan */
-		if (w > 0x41200000)
-		{
-			/* |x| > 10 */
-			t = 1 + 0/x;
-		}
-		else
-		{
-			t = F32_Exp(2*x) - 1;
-			t = 1 - 2/(t+2);
-		}
-	}
-	else if (w > 0x3e82c578)
-	{
-		/* |x| > log(5/3)/2 ~= 0.2554 */
-		t = F32_Exp(2*x) - 1;
-		t = t/(t+2);
-	}
-	else if (w >= 0x00800000)
-	{
-		/* |x| >= 0x1p-126 */
-		t = F32_Exp(-2*x) - 1;
-		t = -t/(t+2);
-	}
-	else
-	{
-		/* |x| is subnormal */
-		/*FORCE_EVAL(x*x);*/
-		t = x;
-	}
-	return sign ? -t : t;
-}
 
-t_f64	F64_TanH(t_f64 x)
-{
-	u_cast_f64 u = {x};
-	t_u32 w;
-	int sign;
-	t_f64 t;
 
-	/* x = |x| */
-	sign = u.as_u >> 63;
-	u.as_u &= (t_u64)-1/2;
-	x = u.as_f;
-	w = u.as_u >> 32;
-
-	if (w > 0x3fe193ea)
-	{
-		/* |x| > log(3)/2 ~= 0.5493 or nan */
-		if (w > 0x40340000)
-		{
-			/* |x| > 20 or nan */
-			/* note: this branch avoids raising overflow */
-			t = 1 - 0/x;
-		}
-		else
-		{
-			t = F64_Exp(2*x) - 1;
-			t = 1 - 2/(t+2);
-		}
-	}
-	else if (w > 0x3fd058ae)
-	{
-		/* |x| > log(5/3)/2 ~= 0.2554 */
-		t = F64_Exp(2*x) - 1;
-		t = t/(t+2);
-	}
-	else if (w >= 0x00100000)
-	{
-		/* |x| >= 0x1p-1022, up to 2ulp error in [0.1,0.2554] */
-		t = F64_Exp(-2*x) - 1;
-		t = -t/(t+2);
-	}
-	else
-	{
-		/* |x| is subnormal */
-		/* note: the branch above would not raise underflow in [0x1p-1023,0x1p-1022) */
-		/*FORCE_EVAL((t_f32)x);*/
-		t = x;
-	}
-	return sign ? -t : t;
-}
-
-#define DEFINEFUNC_FLOAT_TANH(BITS) \
+#define DEFINEFUNC_FLOAT_TANH_LD(BITS, CONSTANT, C_0c5493, C_0c2554) \
 t_f##BITS	F##BITS##_TanH(t_f##BITS x) \
 { \
 	union ldshape u = {x}; \
-	unsigned ex = u.i.se & 0x7fff; \
+	unsigned ex = u.i.se & 0x7FFF; \
 	unsigned sign = u.i.se & 0x8000; \
 	t_u32 w; \
-	t_f80 t; \
+	t_f80 result; \
  \
 	/* x = |x| */ \
 	u.i.se = ex; \
 	x = u.f; \
 	w = u.i.m >> 32; \
-	if (ex > 0x3ffe || (ex == 0x3ffe && w > 0x8c9f53d5)) \
+	if (ex > 0x3FFE || (ex == 0x3FFE && w > C_0c5493)) /* |x| > log(3)/2 ~= 0.5493 or nan */ \
 	{ \
-		/* |x| > log(3)/2 ~= 0.5493 or nan */ \
-		if (ex >= 0x3fff+5) \
+		if (ex >= CONSTANT) /* |x| >= 32 */ \
 		{ \
-			/* |x| >= 32 */ \
-			t = 1 + 0/(x + 0x1p-120f); \
+			result = 1 + 0/(x + 0x1p-120f); \
 		} \
 		else \
 		{ \
-			t = F##BITS##_Exp(2*x) - 1; \
-			t = 1 - 2/(t+2); \
+			result = F##BITS##_Exp(2*x) - 1; \
+			result = 1 - 2 / (result + 2); \
 		} \
 	} \
-	else if (ex > 0x3ffd || (ex == 0x3ffd && w > 0x82c577d4)) \
+	else if (ex > 0x3FFD || (ex == 0x3FFD && w > C_0c2554)) /* |x| > log(5/3)/2 ~= 0.2554 */ \
 	{ \
-		/* |x| > log(5/3)/2 ~= 0.2554 */ \
-		t = F##BITS##_Exp(2*x) - 1; \
-		t = t/(t+2); \
+		result = F##BITS##_Exp(2*x) - 1; \
+		result = result / (result + 2); \
 	} \
-	else \
+	else /* |x| is small */ \
 	{ \
-		/* |x| is small */ \
-		t = F##BITS##_Exp(-2*x) - 1; \
-		t = -t/(t+2); \
+		result = F##BITS##_Exp(-2*x) - 1; \
+		result = -result / (result + 2); \
 	} \
-	return sign ? -t : t; \
+	return (sign ? -result : result); \
 } \
 
 #if LIBCONFIG_USE_FLOAT80
-DEFINEFUNC_FLOAT_TANH(80)
+DEFINEFUNC_FLOAT_TANH_LD(80, 0x3FFF+5, 0x8C9F53D5, 0x82C577D4)
 #endif
 #if LIBCONFIG_USE_FLOAT128
-DEFINEFUNC_FLOAT_TANH(128)
+DEFINEFUNC_FLOAT_TANH_LD(128, 0x3FFF+5, 0x8C9F53D5, 0x82C577D4)
 #endif
 
 

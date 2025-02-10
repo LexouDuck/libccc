@@ -2,6 +2,19 @@
 #include <math.h>
 #include <time.h>
 
+#ifndef isnan
+#define isnan	isnan
+#endif
+#ifndef isinf
+#define isinf	isinf
+#endif
+#ifndef isfinite
+#define isfinite	isfinite
+#endif
+#ifndef isnormal
+#define isnormal	isnormal
+#endif
+
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
 #include "libccc/math/stat.h"
@@ -22,7 +35,7 @@ void	print_math_title(char const * title)
 
 
 #define SF_FORMAT	":\t%s%g"
-#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "%-+9.6g" ANSI_RESET
+#define SF_NUMBER	ANSI_COLOR_FG_YELLOW "%-+9.6e" ANSI_RESET
 
 
 
@@ -70,7 +83,7 @@ void	print_math_title(char const * title)
 			errors[i] = fabs(expects[i] - results[i]); \
 		/*	errors[i] /= MAX(fabs(expects[i]), fabs(results[i])); / * uncomment this line for relative error */ \
 		} \
-		if (isinf(errors[i]) || errors[i] > fabs(precision * expects[i])) \
+		if (isinf(errors[i]) || (errors[i] > precision * fabs(expects[i]))) \
 		{ \
 			++failed_tests; \
 			if (TRUE) /* (g_test.config.verbose && g_test.config.show_args) */ \
@@ -177,8 +190,9 @@ int	test_math_realfunction_f##BITS( \
 		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")", \
-			i, func_name, args[i], results[i], expects[i], errors[i]);) \
+		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ") -> " \
+			"libccc:" SF_NUMBER " | stdlib:" SF_NUMBER " (absolute diff:" SF_NUMBER " ; relative diff:" SF_NUMBER ")", \
+			i, func_name, args[i], results[i], expects[i], errors[i], errors[i] / fabs(expects[i]));) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
 	print_test_math_f##BITS(timer, results, expects, errors, precision, tests); \
 	free(expects); \
@@ -215,8 +229,9 @@ int	test_math_realoperator_f##BITS( \
 		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")", \
-			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i]);) \
+		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ", " SF_NUMBER ") -> " \
+			"libccc:" SF_NUMBER " | stdlib:" SF_NUMBER " (absolute diff:" SF_NUMBER " ; relative diff:" SF_NUMBER ")", \
+			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i], errors[i] / fabs(expects[i]));) \
 	TEST_PRINT_MATH("Ran %d tests with:\n" \
 		"arg1: interval [%g,%g], with increment=%g\n" \
 		"arg2: interval [%g,%g], with increment=%g\n", \
@@ -373,173 +388,203 @@ int		testsuite_math(void)
 #endif
 /*
 	print_math_title("Split float exponent");
-	RUNTESTS_MATH_FUNCTION(splitexp, frexp, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(splitexp, frexp, 1000, {-1e+9,+1e+9});
 	print_math_title("Split float integer / fraction");
-	RUNTESTS_MATH_FUNCTION(splitint, modf, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(splitint, modf, 1000, {-1e+9,+1e+9});
 	print_math_title("Get Exponent (base-2)");
-	RUNTESTS_MATH_FUNCTION(getexp2, ilogb, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(getexp2, ilogb, 1000, {-1e+9,+1e+9});
 	print_math_title("Get Exponent (base-10)");
-	RUNTESTS_MATH_FUNCTION(getexp10, ilog, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(getexp10, ilog, 1000, {-1e+9,+1e+9});
 */
 	print_math_title("Nearby Int");
-	RUNTESTS_MATH_FUNCTION(nearbyint, nearbyint, 50, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(nearbyint, nearbyint, 100, {-1e+9,+1e+9});
 	print_math_title("Next After");
-	RUNTESTS_MATH_OPERATOR(nextafter, nextafter, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(nextafter, nextafter, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 	print_math_title("Copy Sign");
-	RUNTESTS_MATH_OPERATOR(copysign, copysign, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(copysign, copysign, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 
 	print_math_title("Absolute Value");
-	RUNTESTS_MATH_FUNCTION(abs, fabs, 500, {-1e1,+1e1});
-	RUNTESTS_MATH_FUNCTION(abs, fabs, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(abs, fabs, 1000, {-1e+1,+1e+1});
+	RUNTESTS_MATH_FUNCTION(abs, fabs, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(abs, fabs, 1000, {-1e-9,+1e-9});
 	print_math_title("Round");
-	RUNTESTS_MATH_FUNCTION(round, round, 500, {-1e1,+1e1});
-	RUNTESTS_MATH_FUNCTION(round, round, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(round, round, 1000, {-1e+1,+1e+1});
+	RUNTESTS_MATH_FUNCTION(round, round, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(round, round, 1000, {-1e-9,+1e-9});
 	print_math_title("Trunc");
-	RUNTESTS_MATH_FUNCTION(trunc, trunc, 500, {-1e1,+1e1});
-	RUNTESTS_MATH_FUNCTION(trunc, trunc, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(trunc, trunc, 1000, {-1e+1,+1e+1});
+	RUNTESTS_MATH_FUNCTION(trunc, trunc, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(trunc, trunc, 1000, {-1e-9,+1e-9});
 	print_math_title("Floor");
-	RUNTESTS_MATH_FUNCTION(floor, floor, 500, {-1e1,+1e1});
-	RUNTESTS_MATH_FUNCTION(floor, floor, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(floor, floor, 1000, {-1e+1,+1e+1});
+	RUNTESTS_MATH_FUNCTION(floor, floor, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(floor, floor, 1000, {-1e-9,+1e-9});
 	print_math_title("Ceil");
-	RUNTESTS_MATH_FUNCTION(ceil, ceil, 500, {-1e1,+1e1});
-	RUNTESTS_MATH_FUNCTION(ceil, ceil, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(ceil, ceil, 1000, {-1e+1,+1e+1});
+	RUNTESTS_MATH_FUNCTION(ceil, ceil, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(ceil, ceil, 1000, {-1e-9,+1e-9});
 
 	print_math_title("Modulo");
-	RUNTESTS_MATH_OPERATOR(mod, fmod, 50, {-1e1,+1e1}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(mod, fmod, 50, {-1e9,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(mod, fmod, 50, {-1e1,+1e1}, {-1e9,+1e9});
-	RUNTESTS_MATH_OPERATOR(mod, fmod, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e+1,+1e+1}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
+	RUNTESTS_MATH_OPERATOR(mod, fmod, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 	print_math_title("Remainder");
-	RUNTESTS_MATH_OPERATOR(rem, remainder, 50, {-1e1,+1e1}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(rem, remainder, 50, {-1e9,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(rem, remainder, 50, {-1e1,+1e1}, {-1e9,+1e9});
-	RUNTESTS_MATH_OPERATOR(rem, remainder, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e+1,+1e+1}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
+	RUNTESTS_MATH_OPERATOR(rem, remainder, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 
 	print_math_title("Power");
-	RUNTESTS_MATH_OPERATOR(pow, pow, 50, { 0e0,+4e0}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(pow, pow, 50, {-1e1,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(pow, pow, 50, { 0e0,+4e0}, {-1e6,+1e6});
-	RUNTESTS_MATH_OPERATOR(pow, pow, 50, {-1e1,+1e9}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, { 0e+0,+4e+0}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, {-1e+1,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, { 0e+0,+4e+0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow, pow, 100, {-1e+1,+1e+9}, {-1e6,+1e6});
 /*
 	print_math_title("N-Power");
-	RUNTESTS_MATH_OPERATOR(pow_n, ?, 50, { 0e0,+4e0}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(pow_n, ?, 50, {-1e1,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(pow_n, ?, 50, { 0e0,+4e0}, {-1e6,+1e6});
-	RUNTESTS_MATH_OPERATOR(pow_n, ?, 50, {-1e1,+1e9}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, { 0e+0,+4e+0}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, {-1e+1,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, { 0e+0,+4e+0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(pow_n, ?, 100, {-1e+1,+1e+9}, {-1e6,+1e6});
 */
 	print_math_title("Square root");
-	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 500, { 0e0,+5e0});
-	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 500, {-1e1,+1e9});
+	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 1000, { 0e+0,+5e+0});
+	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 1000, {-1e+1,+1e+9});
+	RUNTESTS_MATH_FUNCTION(sqrt, sqrt, 1000, { 0e+0,+1e-9});
 	print_math_title("Cubic root");
-	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 500, { 0e0,+5e0});
-	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 1000, { 0e+0,+5e+0});
+	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(cbrt, cbrt, 1000, {-1e-9,+1e-9});
 /*
 	print_math_title("N-Power root");
-	RUNTESTS_MATH_OPERATOR(nrt, ?, 50, { 0e0,+5e0}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(nrt, ?, 50, {-1e9,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(nrt, ?, 50, { 0e0,+5e0}, {-1e6,+1e6});
-	RUNTESTS_MATH_OPERATOR(nrt, ?, 50, {-1e9,+1e9}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, { 0e+0,+5e+0}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, { 0e+0,+5e+0}, {-1e6,+1e6});
+	RUNTESTS_MATH_OPERATOR(nrt, ?, 100, {-1e+9,+1e+9}, {-1e6,+1e6});
 */
 	print_math_title("Hypotenuse");
-	RUNTESTS_MATH_OPERATOR(hypot, hypot, 50, {-1e1,+1e1}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(hypot, hypot, 50, {-1e9,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(hypot, hypot, 50, {-1e1,+1e1}, {-1e9,+1e9});
-	RUNTESTS_MATH_OPERATOR(hypot, hypot, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+1,+1e+1}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
+	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 
 	print_math_title("Exponential, base e");
-	RUNTESTS_MATH_FUNCTION(exp, exp, 500, {-1e3,+1e0});
-	RUNTESTS_MATH_FUNCTION(exp, exp, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(exp, exp, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {-1e+3,+1e+0});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, { 0e+0,+1e-9});
 	print_math_title("Exponential, base 2");
-	RUNTESTS_MATH_FUNCTION(exp2, exp2, 500, {-1e3,+1e0});
-	RUNTESTS_MATH_FUNCTION(exp2, exp2, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(exp2, exp2, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {-1e+3,+1e+0});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(exp2, exp2, 1000, { 0e+0,+1e-9});
 /*
 	print_math_title("Exponential, base 10");
-	RUNTESTS_MATH_FUNCTION(exp10, exp10, 500, {-1e3,+1e0});
-	RUNTESTS_MATH_FUNCTION(exp10, exp10, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(exp10, exp10, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {-1e+3,+1e+0});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(exp10, exp10, 1000, { 0e+0,+1e-9});
 */
 	print_math_title("Logarithm, base e");
-	RUNTESTS_MATH_FUNCTION(log, log, 500, { 0e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(log, log, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(log, log, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, { 0e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(log, log, 1000, { 0e+0,+1e-9});
 	print_math_title("Logarithm, base 2");
-	RUNTESTS_MATH_FUNCTION(log2, log2, 500, { 0e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(log2, log2, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(log2, log2, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, { 0e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(log2, log2, 1000, { 0e+0,+1e-9});
 	print_math_title("Logarithm, base 10");
-	RUNTESTS_MATH_FUNCTION(log10, log10, 500, { 0e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(log10, log10, 500, {+1e0,+1e3});
-	RUNTESTS_MATH_FUNCTION(log10, log10, 500, {+1e0,+1e9});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, { 0e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, {+1e+0,+1e+3});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, {+1e+0,+1e+9});
+	RUNTESTS_MATH_FUNCTION(log10, log10, 1000, { 0e+0,+1e-9});
 /*
 	print_math_title("Logarithm, base N");
-	RUNTESTS_MATH_OPERATOR(log_n, logn, 50, {-1e1,+1e1}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(log_n, logn, 50, {-1e2,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(log_n, logn, 50, {-1e1,+1e1}, {-1e9,+1e9});
-	RUNTESTS_MATH_OPERATOR(log_n, logn, 50, {-1e2,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e+1,+1e+1}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
+	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e+9}, {-1e+9,+1e+9});
 */
 	print_math_title("Error function");
-	RUNTESTS_MATH_FUNCTION(erf, erf, 500, {-3e0,+3e0});
-	RUNTESTS_MATH_FUNCTION(erf, erf, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-3e+0,+3e+0});
+	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-1e-9,+1e-9});
 	print_math_title("Error function complementary");
-	RUNTESTS_MATH_FUNCTION(erfc, erfc, 500, {-3e0,+3e0});
-	RUNTESTS_MATH_FUNCTION(erfc, erfc, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-3e+0,+3e+0});
+	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e-9,+1e-9});
 
 	print_math_title("Gamma function");
-	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 500, {-1e1,+0e0});
-	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 500, {-0e0,+1e1});
-	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+1, 0e+0});
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-0e+0,+1e+1});
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e-9,+1e-9});
 	print_math_title("Log-Gamma function");
-	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 500, {-1e1,+0e0});
-	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 500, {-0e0,+1e1});
-	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e+1, 0e+0});
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-0e+0,+1e+1});
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e-9,+1e-9});
 
 	print_math_title("Sine");
-	RUNTESTS_MATH_FUNCTION(sin, sin, 500, { 0, +PI });
-	RUNTESTS_MATH_FUNCTION(sin, sin, 500, {-TAU,+TAU*2});
-	RUNTESTS_MATH_FUNCTION(sin, sin, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, { 0, +PI });
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-TAU,+TAU*2});
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-1e-9,+1e-9});
 	print_math_title("Cosine");
-	RUNTESTS_MATH_FUNCTION(cos, cos, 500, {-PI_HALF,+PI_HALF});
-	RUNTESTS_MATH_FUNCTION(cos, cos, 500, {-TAU,+TAU*2});
-	RUNTESTS_MATH_FUNCTION(cos, cos, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-PI_HALF,+PI_HALF});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-TAU,+TAU*2});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(cos, cos, 1000, {-1e-9,+1e-9});
 	print_math_title("Tangent");
-	RUNTESTS_MATH_FUNCTION(tan, tan, 500, {-PI_HALF,+PI_HALF});
-	RUNTESTS_MATH_FUNCTION(tan, tan, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-PI_HALF,+PI_HALF});
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-TAU,+TAU*2});
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(tan, tan, 1000, {-1e-9,+1e-9});
 	print_math_title("Arc-Sine");
-	RUNTESTS_MATH_FUNCTION(asin, asin, 500, {-1e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(asin, asin, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(asin, asin, 1000, {-1e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(asin, asin, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(asin, asin, 1000, {-1e-9,+1e-9});
 	print_math_title("Arc-Cosine");
-	RUNTESTS_MATH_FUNCTION(acos, acos, 500, {-1e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(acos, acos, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(acos, acos, 1000, {-1e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(acos, acos, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(acos, acos, 1000, {-1e-9,+1e-9});
 	print_math_title("Arc-Tangent");
-	RUNTESTS_MATH_FUNCTION(atan, atan, 500, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(atan, atan, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(atan, atan, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(atan, atan, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(atan, atan, 1000, {-1e-9,+1e-9});
 
 	print_math_title("Arc-Tangent of (Y / X)");
-	RUNTESTS_MATH_OPERATOR(atan2, atan2, 50, {-1e1,+1e1}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(atan2, atan2, 50, {-1e9,+1e9}, {-1e1,+1e1});
-	RUNTESTS_MATH_OPERATOR(atan2, atan2, 50, {-1e1,+1e1}, {-1e9,+1e9});
-	RUNTESTS_MATH_OPERATOR(atan2, atan2, 50, {-1e9,+1e9}, {-1e9,+1e9});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e+1,+1e+1}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
+	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
 
 	print_math_title("Hyperbolic Sine");
-	RUNTESTS_MATH_FUNCTION(sinh, sinh, 500, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(sinh, sinh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-1e-9,+1e-9});
 	print_math_title("Hyperbolic Cosine");
-	RUNTESTS_MATH_FUNCTION(cosh, cosh, 500, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(cosh, cosh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-1e-9,+1e-9});
 	print_math_title("Hyperbolic Tangent");
-	RUNTESTS_MATH_FUNCTION(tanh, tanh, 500, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(tanh, tanh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-1e-9,+1e-9});
 	print_math_title("Hyperbolic Arc-Sine");
-	RUNTESTS_MATH_FUNCTION(asinh, asinh, 500, {-5e1,+5e1});
-	RUNTESTS_MATH_FUNCTION(asinh, asinh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-5e+1,+5e+1});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-1e-9,+1e-9});
 	print_math_title("Hyperbolic Arc-Cosine");
-	RUNTESTS_MATH_FUNCTION(acosh, acosh, 500, {+1e0,+5e1});
-	RUNTESTS_MATH_FUNCTION(acosh, acosh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {+1e+0,+5e+1});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {-1e-9,+1e-9});
 	print_math_title("Hyperbolic Arc-Tangent");
-	RUNTESTS_MATH_FUNCTION(atanh, atanh, 500, {-1e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(atanh, atanh, 500, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e+0,+1e+0});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e+9,+1e+9});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e-9,+1e-9});
 
 	return (OK);
 }
