@@ -947,55 +947,81 @@ void	print_test_##TYPE##ilogb(char const* test_name, t_testflags flags, \
 } \
 void	test_##TYPE##ilogb(void) \
 { \
-/*	| TEST FUNCTION         | TEST NAME          |TESTFLAG| TEST ARGS */ \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-0.0)  ",	FALSE,  -0.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+0.0)  ",	FALSE,  +0.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1.0)  ",	FALSE,  -1.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2.0)  ",	FALSE,  -2.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9.0)  ",	FALSE,  -9.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1.0)  ",	FALSE,  +1.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2.0)  ",	FALSE,  +2.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9.0)  ",	FALSE,  +9.0); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+1) ",	FALSE,  -1e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+1) ",	FALSE,  -2e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+1) ",	FALSE,  -9e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+1) ",	FALSE,  +1e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+1) ",	FALSE,  +2e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+1) ",	FALSE,  +9e+1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+2) ",	FALSE,  -1e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+2) ",	FALSE,  -2e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+2) ",	FALSE,  -9e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+2) ",	FALSE,  +1e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+2) ",	FALSE,  +2e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+2) ",	FALSE,  +9e+2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e+9) ",	FALSE,  -1e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e+9) ",	FALSE,  -2e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e+9) ",	FALSE,  -9e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e+9) ",	FALSE,  +1e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e+9) ",	FALSE,  +2e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e+9) ",	FALSE,  +9e+9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-1) ",	FALSE,  -1e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-1) ",	FALSE,  -2e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-1) ",	FALSE,  -9e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-1) ",	FALSE,  +1e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-1) ",	FALSE,  +2e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-1) ",	FALSE,  +9e-1); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-2) ",	FALSE,  -1e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-2) ",	FALSE,  -2e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-2) ",	FALSE,  -9e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-2) ",	FALSE,  +1e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-2) ",	FALSE,  +2e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-2) ",	FALSE,  +9e-2); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-1e-9) ",	FALSE,  -1e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-2e-9) ",	FALSE,  -2e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-9e-9) ",	FALSE,  -9e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+1e-9) ",	FALSE,  +1e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+2e-9) ",	FALSE,  +2e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+9e-9) ",	FALSE,  +9e-9); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-inf)  ",	FALSE,  -INF); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+inf)  ",	FALSE,  +INF); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (-nan)  ",	FALSE,  -NAN); \
-	print_test_##TYPE##ilogb(#TYPE"ilogb (+nan)  ",	FALSE,  +NAN); \
+/*	| TEST FUNCTION         | TEST NAME            | TEST FLAGS | TEST ARGS */ \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0)     ",FLAG_WARNING, -0x0p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0)     ",FLAG_WARNING, +0x0p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p0)    ",	FALSE,    +0x1p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+1)   ",	FALSE,    +0x1p+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+2)   ",	FALSE,    +0x1p+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+9)   ",	FALSE,    +0x1p+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+10)  ",	FALSE,    +0x1p+10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+23)  ",	FALSE,    +0x1p+23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+52)  ",	FALSE,    +0x1p+52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+63)  ",	FALSE,    +0x1p+63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p+112) ",	FALSE,    +0x1p+112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-1)   ",	FALSE,    +0x1p-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-2)   ",	FALSE,    +0x1p-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-9)   ",	FALSE,    +0x1p-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-10)  ",	FALSE,    +0x1p-10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-23)  ",	FALSE,    +0x1p-23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-52)  ",	FALSE,    +0x1p-52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-63)  ",	FALSE,    +0x1p-63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x1p-112) ",	FALSE,    +0x1p-112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p0)    ",	FALSE,    +0x2p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+1)   ",	FALSE,    +0x2p+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+2)   ",	FALSE,    +0x2p+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+9)   ",	FALSE,    +0x2p+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+10)  ",	FALSE,    +0x2p+10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+23)  ",	FALSE,    +0x2p+23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+52)  ",	FALSE,    +0x2p+52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+63)  ",	FALSE,    +0x2p+63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p+112) ",	FALSE,    +0x2p+112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-1)   ",	FALSE,    +0x2p-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-2)   ",	FALSE,    +0x2p-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-9)   ",	FALSE,    +0x2p-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-10)  ",	FALSE,    +0x2p-10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-23)  ",	FALSE,    +0x2p-23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-52)  ",	FALSE,    +0x2p-52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-63)  ",	FALSE,    +0x2p-63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+0x2p-112) ",	FALSE,    +0x2p-112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p0)    ",	FALSE,    -0x1p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+1)   ",	FALSE,    -0x1p+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+2)   ",	FALSE,    -0x1p+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+9)   ",	FALSE,    -0x1p+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+10)  ",	FALSE,    -0x1p+10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+23)  ",	FALSE,    -0x1p+23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+52)  ",	FALSE,    -0x1p+52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+63)  ",	FALSE,    -0x1p+63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p+112) ",	FALSE,    -0x1p+112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-1)   ",	FALSE,    -0x1p-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-2)   ",	FALSE,    -0x1p-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-9)   ",	FALSE,    -0x1p-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-10)  ",	FALSE,    -0x1p-10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-23)  ",	FALSE,    -0x1p-23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-52)  ",	FALSE,    -0x1p-52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-63)  ",	FALSE,    -0x1p-63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x1p-112) ",	FALSE,    -0x1p-112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p0)    ",	FALSE,    -0x2p0); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+1)   ",	FALSE,    -0x2p+1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+2)   ",	FALSE,    -0x2p+2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+9)   ",	FALSE,    -0x2p+9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+10)  ",	FALSE,    -0x2p+10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+23)  ",	FALSE,    -0x2p+23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+52)  ",	FALSE,    -0x2p+52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+63)  ",	FALSE,    -0x2p+63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p+112) ",	FALSE,    -0x2p+112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-1)   ",	FALSE,    -0x2p-1); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-2)   ",	FALSE,    -0x2p-2); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-9)   ",	FALSE,    -0x2p-9); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-10)  ",	FALSE,    -0x2p-10); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-23)  ",	FALSE,    -0x2p-23); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-52)  ",	FALSE,    -0x2p-52); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-63)  ",	FALSE,    -0x2p-63); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-0x2p-112) ",	FALSE,    -0x2p-112); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-inf)   ",FLAG_WARNING, -INF); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+inf)   ",FLAG_WARNING, +INF); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (-nan)   ",FLAG_WARNING, -NAN); \
+	print_test_##TYPE##ilogb(#TYPE"ilogb (+nan)   ",FLAG_WARNING, +NAN); \
 } \
 
 #if !defined(c_f16ilogb) || !defined(__float16)
@@ -1046,55 +1072,81 @@ void	print_test_##TYPE##ilogd(char const* test_name, t_testflags flags, \
 } \
 void	test_##TYPE##ilogd(void) \
 { \
-/*	| TEST FUNCTION        | TEST NAME               |TESTFLAG|EXPECT| TEST ARGS */ \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-0.0)    ",	FALSE,   0,     -0.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+0.0)    ",	FALSE,   0,     +0.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1.0)    ",	FALSE,   0,     -1.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2.0)    ",	FALSE,   0,     -2.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9.0)    ",	FALSE,   0,     -9.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1.0)    ",	FALSE,   0,     +1.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2.0)    ",	FALSE,   0,     +2.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9.0)    ",	FALSE,   0,     +9.0); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+1)   ",	FALSE,  +1,     -1e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+1)   ",	FALSE,  +1,     -2e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+1)   ",	FALSE,  +1,     -9e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+1)   ",	FALSE,  +1,     +1e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+1)   ",	FALSE,  +1,     +2e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+1)   ",	FALSE,  +1,     +9e+1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+2)   ",	FALSE,  +2,     -1e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+2)   ",	FALSE,  +2,     -2e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+2)   ",	FALSE,  +2,     -9e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+2)   ",	FALSE,  +2,     +1e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+2)   ",	FALSE,  +2,     +2e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+2)   ",	FALSE,  +2,     +9e+2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+9)   ",	FALSE,  +9,     -1e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+9)   ",	FALSE,  +9,     -2e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e+9)   ",	FALSE,  +9,     -9e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+9)   ",	FALSE,  +9,     +1e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+9)   ",	FALSE,  +9,     +2e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e+9)   ",	FALSE,  +9,     +9e+9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-1)   ",	FALSE,  -1,     -1e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-1)   ",	FALSE,  -1,     -2e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-1)   ",	FALSE,  -1,     -9e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-1)   ",	FALSE,  -1,     +1e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-1)   ",	FALSE,  -1,     +2e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-1)   ",	FALSE,  -1,     +9e-1); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-2)   ",	FALSE,  -2,     -1e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-2)   ",	FALSE,  -2,     -2e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-2)   ",	FALSE,  -2,     -9e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-2)   ",	FALSE,  -2,     +1e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-2)   ",	FALSE,  -2,     +2e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-2)   ",	FALSE,  -2,     +9e-2); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-9)   ",	FALSE,  -9,     -1e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-9)   ",	FALSE,  -9,     -2e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-9e-9)   ",	FALSE,  -9,     -9e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-9)   ",	FALSE,  -9,     +1e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-9)   ",	FALSE,  -9,     +2e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+9e-9)   ",	FALSE,  -9,     +9e-9); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-inf)    ",	FALSE, S32_MAX, -INF); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+inf)    ",	FALSE, S32_MAX, +INF); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (-nan)    ",	FALSE, S32_MIN, -NAN); \
-	print_test_##TYPE##ilogd(#TYPE"ilogd (+nan)    ",	FALSE, S32_MIN, +NAN); \
+/*	| TEST FUNCTION        | TEST NAME              | TEST FLAGS | EXPECTS | TEST ARGS */ \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0)      ",FLAG_WARNING, SINT_MIN, -0e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0)      ",FLAG_WARNING, SINT_MIN, +0e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e0)      ",	FALSE,      0,       +1e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+1)     ",	FALSE,     +1,       +1e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+2)     ",	FALSE,     +2,       +1e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e+9)     ",	FALSE,     +9,       +1e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p+10)  ",	FALSE,     +3,       +0x1p+10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p+23)  ",	FALSE,     +6,       +0x1p+23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p+52)  ",	FALSE,     +15,      +0x1p+52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p+63)  ",	FALSE,     +18,      +0x1p+63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p+112) ",	FALSE,     +33,      +0x1p+112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-1)     ",	FALSE,     -1,       +1e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-2)     ",	FALSE,     -2,       +1e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+1e-9)     ",	FALSE,     -9,       +1e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p-10)  ",	FALSE,     -4,       +0x1p-10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p-23)  ",	FALSE,     -7,       +0x1p-23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p-52)  ",	FALSE,     -16,      +0x1p-52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p-63)  ",	FALSE,     -19,      +0x1p-63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x1p-112) ",	FALSE,     -34,      +0x1p-112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e0)      ",	FALSE,      0,       +2e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+1)     ",	FALSE,     +1,       +2e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+2)     ",	FALSE,     +2,       +2e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e+9)     ",	FALSE,     +9,       +2e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p+10)  ",	FALSE,     +3,       +0x2p+10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p+23)  ",	FALSE,     +7,       +0x2p+23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p+52)  ",	FALSE,     +15,      +0x2p+52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p+63)  ",	FALSE,     +19,      +0x2p+63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p+112) ",	FALSE,     +34,      +0x2p+112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-1)     ",	FALSE,     -1,       +2e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-2)     ",	FALSE,     -2,       +2e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+2e-9)     ",	FALSE,     -9,       +2e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p-10)  ",	FALSE,     -3,       +0x2p-10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p-23)  ",	FALSE,     -7,       +0x2p-23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p-52)  ",	FALSE,     -16,      +0x2p-52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p-63)  ",	FALSE,     -19,      +0x2p-63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+0x2p-112) ",	FALSE,     -34,      +0x2p-112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e0)      ",	FALSE,      0,       -1e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+1)     ",	FALSE,     +1,       -1e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+2)     ",	FALSE,     +2,       -1e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e+9)     ",	FALSE,     +9,       -1e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p+10)  ",	FALSE,     +3,       -0x1p+10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p+23)  ",	FALSE,     +6,       -0x1p+23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p+52)  ",	FALSE,     +15,      -0x1p+52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p+63)  ",	FALSE,     +18,      -0x1p+63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p+112) ",	FALSE,     +33,      -0x1p+112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-1)     ",	FALSE,     -1,       -1e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-2)     ",	FALSE,     -2,       -1e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-1e-9)     ",	FALSE,     -9,       -1e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p-10)  ",	FALSE,     -4,       -0x1p-10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p-23)  ",	FALSE,     -7,       -0x1p-23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p-52)  ",	FALSE,     -16,      -0x1p-52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p-63)  ",	FALSE,     -19,      -0x1p-63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x1p-112) ",	FALSE,     -34,      -0x1p-112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e0)      ",	FALSE,      0,       -2e0); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+1)     ",	FALSE,     +1,       -2e+1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+2)     ",	FALSE,     +2,       -2e+2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e+9)     ",	FALSE,     +9,       -2e+9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p+10)  ",	FALSE,     +3,       -0x2p+10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p+23)  ",	FALSE,     +7,       -0x2p+23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p+52)  ",	FALSE,     +15,      -0x2p+52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p+63)  ",	FALSE,     +19,      -0x2p+63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p+112) ",	FALSE,     +34,      -0x2p+112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-1)     ",	FALSE,     -1,       -2e-1); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-2)     ",	FALSE,     -2,       -2e-2); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-2e-9)     ",	FALSE,     -9,       -2e-9); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p-10)  ",	FALSE,     -3,       -0x2p-10); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p-23)  ",	FALSE,     -7,       -0x2p-23); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p-52)  ",	FALSE,     -16,      -0x2p-52); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p-63)  ",	FALSE,     -19,      -0x2p-63); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-0x2p-112) ",	FALSE,     -34,      -0x2p-112); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-inf)    ",FLAG_WARNING, SINT_MAX, -INF); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+inf)    ",FLAG_WARNING, SINT_MAX, +INF); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (-nan)    ",FLAG_WARNING, SINT_MIN, -NAN); \
+	print_test_##TYPE##ilogd(#TYPE"ilogd (+nan)    ",FLAG_WARNING, SINT_MIN, +NAN); \
 } \
 
 #if !defined(c_f16ilogd) || !defined(__float16)

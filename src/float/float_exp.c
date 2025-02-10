@@ -7,13 +7,13 @@
 
 
 #ifndef FP_ILOGB0
-#define FP_ILOGB0	FP_ILOGBNAN
+#define FP_ILOGB0	SINT_MIN
 #endif
 #ifndef FP_ILOGBINF
-#define FP_ILOGBINF	S32_MAX
+#define FP_ILOGBINF	SINT_MAX
 #endif
 #ifndef FP_ILOGBNAN
-#define FP_ILOGBNAN	(-1 - 0x7FFFFFFF)
+#define FP_ILOGBNAN	SINT_MIN
 #endif
 
 
@@ -144,13 +144,13 @@ DEFINEFUNC_FLOAT_GETEXP2(128, x *= 0x1p120;	return F128_GetExp2(x) - 120;)
 
 
 #ifndef FP_ILOGD0
-#define FP_ILOGD0	FP_ILOGDNAN
+#define FP_ILOGD0	SINT_MIN
 #endif
 #ifndef FP_ILOGDINF
-#define FP_ILOGDINF	S32_MAX
+#define FP_ILOGDINF	SINT_MAX
 #endif
 #ifndef FP_ILOGDNAN
-#define FP_ILOGDNAN	(-1 - 0x7FFFFFFF)
+#define FP_ILOGDNAN	SINT_MIN
 #endif
 
 
