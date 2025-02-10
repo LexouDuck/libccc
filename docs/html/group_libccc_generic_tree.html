@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>libccc/generic/tree.h &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
+      <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="_static/doxyrest-pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/nbsphinx.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/target-highlight.js"></script>
+        <script src="_static/js/custom.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="libccc/math/complex.h" href="group_libccc_math_complex.html" />
+    <link rel="prev" title="libccc/generic/dict.h" href="group_libccc_generic_dict.html" />
+	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
+	
+	<meta name="Description" content="libccc/generic/tree.h">
+	<meta property="og:description" content="libccc/generic/tree.h">
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation - libccc/generic/tree.h">
+	<meta property="og:image" content="_static/images/libccc_icon.png">
+	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
+	<meta property="og:image:type" content="image/png" />
+	<meta property="og:image:width" content="380" />
+	<meta property="og:image:height" content="380" />
+	<meta property="og:url" content="group_libccc_generic_tree.html">
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
+ documentation">
+
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> libccc
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="group_libccc.html">libccc.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_define.html">libccc_define.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_fixed.html">libccc/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_float.html">libccc/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_utf8.html">libccc/text/string_utf8.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_program.html">libccc/sys/program.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_time.html">libccc/sys/time.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">libccc/generic/tree.h</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#detailed-documentation">Detailed Documentation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#global-functions">Global Functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#macros">Macros</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math.html">libccc/math.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_int.html">libccc/math/int.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_fixed.html">libccc/math/fixed.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_float.html">libccc/math/float.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_constants.html">libccc/math/constants.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_vlq.html">libccc/math/vlq.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_stat.html">libccc/math/stat.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_sort.html">libccc/math/sort.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra.html">libccc/math/algebra.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_vector.html">libccc/math/algebra/vector.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_matrix.html">libccc/math/algebra/matrix.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_math_algebra_interval.html">libccc/math/algebra/interval.h</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="page_index.html">libccc</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="global.html">Global Namespace</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">libccc</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">libccc/generic/tree.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="libccc-generic-tree-h">
+<span id="doxid-group-libccc-generic-tree"></span><span id="index-0"></span><h1>libccc/generic/tree.h<a class="headerlink" href="#libccc-generic-tree-h" title="Permalink to this heading"></a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
+<p>This header defines a simple tree/node/leaf type and utility functions for it. <a class="reference internal" href="#details-group-libccc-generic-tree"><span class="std std-ref">More…</span></a></p>
+<pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// global functions</span>
+
+<span class="kd">struct</span> <a class="reference internal" href="#doxid-group-libccc-generic-tree-1ga948a4a515352746b4601f21afe5d2019"><span class="std std-ref">tree</span></a><span></span><span class="p">(</span><a class="reference internal" href="group_libccc_generic_list.html#doxid-group-libccc-generic-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">);</span>
+
+<span class="c1">// macros</span>
+
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-generic-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span class="std std-ref">T</span></a><span></span>    <span class="n">T_TYPE</span></pre>
+</section>
+<section id="detailed-documentation">
+<span id="details-group-libccc-generic-tree"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
+<p>This header defines a simple tree/node/leaf type and utility functions for it.</p>
+<section id="global-functions">
+<h3>Global Functions<a class="headerlink" href="#global-functions" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-generic-tree-1ga948a4a515352746b4601f21afe5d2019"><span id="index-1"></span><span></span><span class="kd">struct</span> <span class="n">tree</span><span class="p">(</span><a class="reference internal" href="group_libccc_generic_list.html#doxid-group-libccc-generic-list-1ga212dd8a56aa29f04716e3263fa19ee14"><span class="std std-ref">T</span></a><span></span><span class="p">)</span></pre>
+<p>A simple tree/node/leaf struct, stores an array of “branches” (ie: sub-nodes).</p>
+</section>
+<section id="macros">
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-generic-tree-1ga0acb682b8260ab1c60b918599864e2e5"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">T</span>   <span class="n">T_TYPE</span></pre>
+<p>set up generic declaration macros, to have <code class="docutils literal notranslate"><span class="pre">mygeneric(T)</span></code> syntax</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="group_libccc_generic_dict.html" class="btn btn-neutral float-left" title="libccc/generic/dict.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="group_libccc_math_complex.html" class="btn btn-neutral float-right" title="libccc/math/complex.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright Free &amp; Open Source: MIT License.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

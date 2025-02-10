@@ -1,0 +1,27 @@
+var string__utf8_8h =
+[
+    [ "StringUTF8_Print", "string__utf8_8h.html#aa583b4f3511c2f3612e7d7687f085278", null ],
+    [ "c_mbstrtoUTF8esc", "string__utf8_8h.html#a4838f0ebc63950a16408a526bc022919", null ],
+    [ "c_mbstrtojsonesc", "string__utf8_8h.html#afebc099beff0edbdef63a8d20f873534", null ],
+    [ "ENCODER_xFF", "string__utf8_8h.html#a4fc0fb1a66987eef1f093ff3790781df", null ],
+    [ "ENCODER_uFFFF", "string__utf8_8h.html#a22d60efe1eb06eb4ccb0a4ca8344559b", null ],
+    [ "ENCODER_UFFFFFFFF", "string__utf8_8h.html#a09de831bb4d7d1a9285704b56a8753c2", null ],
+    [ "ENCODER_smart", "string__utf8_8h.html#ad85ed765c6a255dd50049e8e35b6d237", null ],
+    [ "c_mbstrtoesc", "string__utf8_8h.html#a038931d69b85f4b913894a3b67fff5db", null ],
+    [ "c_mbstrtoesc_e", "string__utf8_8h.html#ab8c491d1c946258a933b0c50aba133d4", null ],
+    [ "p_stringUTF8", "string__utf8_8h.html#aa6d7f6bf341b38c561d4b698280002ec", null ],
+    [ "f_char_encoder", "string__utf8_8h.html#a249cce004d25ff30f184f2a870a9b181", null ],
+    [ "f_force_encoding_for", "string__utf8_8h.html#a2c9c417ad32cef88a52a168f88a15468", null ],
+    [ "StringUTF8_ToASCIIEscaped", "string__utf8_8h.html#a5d95c39c7671155c08429336a45a9bd1", null ],
+    [ "StringUTF8_ToASCIIEscapedBuf", "string__utf8_8h.html#a96a21675ce5b2c8bdd0a5081cb3034e5", null ],
+    [ "StringUTF8_ToJsonEscaped", "string__utf8_8h.html#a6eabf4fd6f66f637917b607fa8f9b815", null ],
+    [ "StringUTF8_ToJsonEscapedBuf", "string__utf8_8h.html#a03c5f3d4277b0b31855ac527004478ca", null ],
+    [ "ForceEncodingFor_NonPrintable", "string__utf8_8h.html#a66204657e8eacf800a45afff7f1b8055", null ],
+    [ "ForceEncodingFor_NonASCII", "string__utf8_8h.html#afcaefbc47d2ed07e8777c55a9495e3b8", null ],
+    [ "ForceEncodingFor_NonASCIIOrNonPrintable", "string__utf8_8h.html#a86c994ae156d259cff40bef367912d9a", null ],
+    [ "StringUTF8_ToEscaped", "string__utf8_8h.html#a20076e5fe7c7526dc9c32d94985c4fc1", null ],
+    [ "StringUTF8_ToEscaped_e", "string__utf8_8h.html#a15080728dd478b4051e5c24e28899657", null ],
+    [ "StringUTF8_ToEscapedBuf", "string__utf8_8h.html#abcc293eb1c5b886f03e459d35bf11d4b", null ],
+    [ "StringUTF8_ToEscapedBuf_e", "string__utf8_8h.html#a663c9dc43a1947aebcc010aa16ca1915", null ],
+    [ "p_strUTF8", "string__utf8_8h.html#ac181ce29455dff090a79e38abf1a1a85", null ]
+];

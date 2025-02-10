@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>libccc/math/constants.h &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+  <title>libccc/math/constants.h &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -18,7 +18,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script src="_static/js/custom.js"></script>
@@ -26,12 +28,12 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="libccc/math/vlq.h" href="group_libccc_math_vlq.html" />
-    <link rel="prev" title="libccc/math/float.h" href="group_libccc_math_float.html" />
+    <link rel="prev" title="union ldshape" href="union_ldshape.html" />
 	<link rel="shortcut icon" href="_static/images/favicon.ico"/>
 	
 	<meta name="Description" content="libccc/math/constants.h">
 	<meta property="og:description" content="libccc/math/constants.h">
-	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation - libccc/math/constants.h">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -39,7 +41,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="group_libccc_math_constants.html">
-	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation">
 
 
@@ -66,10 +68,13 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -78,10 +83,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_utf8.html">libccc/text/string_utf8.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -90,15 +97,15 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_tree.html">libccc/generic/tree.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_json.html">libccc/encode/json.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_encode_toml.html">libccc/encode/toml.h</a></li>
@@ -142,8 +149,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>libccc/math/constants.h</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">libccc/math/constants.h</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -153,180 +160,310 @@
            <div itemprop="articleBody">
              
   <section id="libccc-math-constants-h">
-<span id="doxid-group-libccc-math-constants"></span><span id="index-0"></span><h1>libccc/math/constants.h<a class="headerlink" href="#libccc-math-constants-h" title="Permalink to this headline"></a></h1>
+<span id="doxid-group-libccc-math-constants"></span><span id="index-0"></span><h1>libccc/math/constants.h<a class="headerlink" href="#libccc-math-constants-h" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>This header defines the common standard math constants and macro defines. <a class="reference internal" href="#details-group-libccc-math-constants"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="c1">// macros</span>
 
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3489469a334310ae0afa8cebf666b0fb"><span class="std std-ref">CBRT_2</span></a><span></span> <span class="p">(</span><span class="mf">1.25992107391357421875</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gae636b3a8f1888a75dced410e1a5fc0b9"><span class="std std-ref">CBRT_3</span></a><span></span> <span class="p">(</span><span class="mf">1.442249570307408301772511549643240869045257568359375</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7f51dde03ee2aee81351e7bbb020bdfd"><span class="std std-ref">DELTA_S</span></a><span></span>    <span class="p">(</span><span class="mf">2.414213562373095048801688724209698078569671875376948073176679738</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a><span></span>   <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span class="std std-ref">DIV_PI_3</span></a><span></span>   <span class="p">(</span><span class="mf">1.0471975511965977461542144610931676280657231331250352736583148641</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a><span></span>   <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2840f18bad63701ca8f9b440d44cf046"><span class="std std-ref">DIV_PI_5</span></a><span></span>   <span class="p">(</span><span class="mf">0.6283185307179586476925286766559005768394338798750211641949889185</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga07484107e6d9fdf38b53edf631d6511d"><span class="std std-ref">E</span></a><span></span>  <span class="p">(</span><span class="mf">0x1.5BF0A8B145769</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga694331d48949e5e45c779dc913666535"><span class="std std-ref">EGAMMA</span></a><span></span> <span class="p">(</span><span class="mf">0.57721566490153286060651209008240243104215933593992</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3ead96ace17f17b0a1ff9dd6527b6bea"><span class="std std-ref">FEIGENBAUM_ALPHA</span></a><span></span>   <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2a175aabf9d6f8f8684bb0bece7bc55d"><span class="std std-ref">FEIGENBAUM_DELTA</span></a><span></span>   <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga913fd45c3d26c73f7a37c245f25137cd"><span class="std std-ref">GGAUSS</span></a><span></span> <span class="p">(</span><span class="mf">0.834626841674073194354832594399340450763702392578125</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gae3ec3219e4eee3b0992bfd59c2e2bc42"><span class="std std-ref">HALF_PI</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gab1e9ddf2a46c8ef844c05a10ee700b69"><span class="std std-ref">GILDED_RATIO</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1gaaf9d626d252ef2b4781eca6f9d2c38f2"><span class="std std-ref">PHI_BAR</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaaa59fc84e8e02db608cd1d9e44b430d3"><span class="std std-ref">GOLDEN_RATIO</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span class="std std-ref">PHI</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga572e97cd68fdc6cf36d3e2ce75775ba5"><span class="std std-ref">INV_2</span></a><span></span>  <span class="p">(</span><span class="mf">0.5</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga5a480b233e209f2e7387ec2464cf1b9f"><span class="std std-ref">INV_3</span></a><span></span>  <span class="p">(</span><span class="mf">0.333333333333333333333333333333333333</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga558a43968f92d518e26c0ca48bc29179"><span class="std std-ref">INV_4</span></a><span></span>  <span class="p">(</span><span class="mf">0.25</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga6100ed49ecb7590f7e4097d18e3a3075"><span class="std std-ref">INV_5</span></a><span></span>  <span class="p">(</span><span class="mf">0.2</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaa4d0b5b15fb1e8ec1e139bb4dab624d2"><span class="std std-ref">INV_6</span></a><span></span>  <span class="p">(</span><span class="mf">0.166666666666666666666666666666666667</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gacceb97e525f35c243b31e1c5b9559712"><span class="std std-ref">INV_7</span></a><span></span>  <span class="p">(</span><span class="mf">0.142857142857142857142857142857142857</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaf5dabec5acf15d9bd2ead55b559dd1f7"><span class="std std-ref">INV_E</span></a><span></span>  <span class="p">(</span><span class="mf">0x1.5BF0A8B145769</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaebad45bfa06a5d66805c5813fbc59f4b"><span class="std std-ref">INV_PI</span></a><span></span> <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga00ce1546c572fa40f917142388f0c22a"><span class="std std-ref">INV_SQRT_2</span></a><span></span> <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaf222396c3647ae6759c49030cf77f32a"><span class="std std-ref">INV_SQRT_3</span></a><span></span> <span class="p">(</span><span class="mf">0x1.279A74590331C</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga1203d1632ed7e5e9c4f4ada3142183a1"><span class="std std-ref">INV_SQRT_5</span></a><span></span> <span class="p">(</span><span class="mf">0x1.C9F25C5BFEDD9</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga35a2869ee6a57f735389321807e7028a"><span class="std std-ref">INV_SQRT_7</span></a><span></span> <span class="p">(</span><span class="mf">0x1.83091E6A7F7E7</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga0953c243a13f952dc418ccc86879d765"><span class="std std-ref">INV_SQRT_PI</span></a><span></span>    <span class="p">(</span><span class="mf">0.5641895835477562869480794515607725858440506293289988568440857217</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gac0f50e36ec8be11bf9584e71c4641f43"><span class="std std-ref">INV_SQRT_TAU</span></a><span></span>   <span class="p">(</span><span class="mf">0.3989422804014326779399460599343818684758586311649346576659258297</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga6749b4f22cea97620a9a04e83534c72e"><span class="std std-ref">INV_TAU</span></a><span></span>    <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">3</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gada0599f7ce9a633571e3073fc008091a"><span class="std std-ref">LN_10</span></a><span></span>  <span class="p">(</span><span class="mf">0x1.26BB1BBB55516</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaa94d5c40b9f567f0bb88c23634f9d106"><span class="std std-ref">LN_2</span></a><span></span>   <span class="p">(</span><span class="mf">0x1.62E42FEFA39EF</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span class="std std-ref">PHI</span></a><span></span>    <span class="p">(</span><span class="mf">1.6180339887498949025257388711906969547271728515625</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga20ef8fa5918a08f8a6a17920bada544c"><span class="std std-ref">LN_3</span></a><span></span>   <span class="p">(</span><span class="mf">1.098612288668109691395245236922525704647490557823</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3d66f14edbd6de201285c99a18e71bd9"><span class="std std-ref">LN_5</span></a><span></span>   <span class="p">(</span><span class="mf">1.609437912434100374600759333226187639525601354269</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga9af8701b89e444b4961789d7ecf422f7"><span class="std std-ref">LN_7</span></a><span></span>   <span class="p">(</span><span class="mf">1.945910149055313305105352743443179729637084729582</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span class="std std-ref">PHI</span></a><span></span>    <span class="p">(</span><span class="mf">1.6180339887498948482045868343656381177203091798057628621354486227</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaaf9d626d252ef2b4781eca6f9d2c38f2"><span class="std std-ref">PHI_BAR</span></a><span></span>    <span class="p">(</span><span class="o">-</span><span class="mf">0.6180339887498948482045868343656381177203091798057628621354486227</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga598a3330b3c21701223ee0ca14316eca"><span class="std std-ref">PI</span></a><span></span> <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
-<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga5727947dfa0f901d1415a6e7233bc61b"><span class="std std-ref">QUARTER_PI</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga295bc180f2e707b2fb1dbc0fd320261e"><span class="std std-ref">PI_DOUBLE</span></a><span></span>  <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span class="std std-ref">TAU</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gac39729c185e1b04359c8d9fb31a21706"><span class="std std-ref">PI_FIFTH</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2840f18bad63701ca8f9b440d44cf046"><span class="std std-ref">DIV_PI_5</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gac42fcc49e806098bfc299fdd783369c2"><span class="std std-ref">PI_HALF</span></a><span></span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga199b34a5efb05985e858eafdf87e5a5e"><span class="std std-ref">PI_QUARTER</span></a><span></span> <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gaf18c47b75b84cbb936a048a9ade8ef21"><span class="std std-ref">PI_THIRD</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span class="std std-ref">DIV_PI_3</span></a><span></span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gac4cede39fc6ab67a9e57f522dc282936"><span class="std std-ref">SILVER_RATIO</span></a><span></span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7f51dde03ee2aee81351e7bbb020bdfd"><span class="std std-ref">DELTA_S</span></a><span></span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gabc63ab2a8e7782de38a5dbdfc33da717"><span class="std std-ref">SQRT_2</span></a><span></span> <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga4c7cca717941f9eb5c7f90f44ac8746b"><span class="std std-ref">SQRT_3</span></a><span></span> <span class="p">(</span><span class="mf">0x1.BB67AE8584CAA</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1gab6073a2630d7c65369c70c5f8c03a132"><span class="std std-ref">SQRT_5</span></a><span></span> <span class="p">(</span><span class="mf">0x1.1E3779B97F4A7</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
+<span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3fd0e86216584f7a3e249e70ffebca1c"><span class="std std-ref">SQRT_7</span></a><span></span> <span class="p">(</span><span class="mf">0x1.52A7FA9D2F8EA</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span>
 <span class="cp">#define </span><a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span class="std std-ref">TAU</span></a><span></span>    <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
 </section>
 <section id="detailed-documentation">
-<span id="details-group-libccc-math-constants"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<span id="details-group-libccc-math-constants"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
 <p>This header defines the common standard math constants and macro defines.</p>
 <ul class="simple">
 <li><p><em>Standard library equivalent:</em> (C) <a class="reference external" href="https://en.cppreference.com/w/c/numeric/math">https://en.cppreference.com/w/c/numeric/math</a></p></li>
 </ul>
 <p>This file holds various relevant mathematical constants. Many of these constants are used to speed up the fast-approximate versions of some fundamental algorithms and math functions.</p>
 <section id="macros">
-<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this headline"></a></h3>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3489469a334310ae0afa8cebf666b0fb"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="fm">CBRT_2</span>  <span class="p">(</span><span class="mf">1.25992107391357421875</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Cube root of 2 (<code class="docutils literal notranslate"><span class="pre">cbrt(2)</span></code>), the Delian constant.</p>
+<h3>Macros<a class="headerlink" href="#macros" title="Permalink to this heading"></a></h3>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga7f51dde03ee2aee81351e7bbb020bdfd"><span id="index-1"></span><span></span><span class="cp">#define</span> <span class="fm">DELTA_S</span> <span class="p">(</span><span class="mf">2.414213562373095048801688724209698078569671875376948073176679738</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Delta-S <code class="docutils literal notranslate"><span class="pre">δs</span> <span class="pre">=</span> <span class="pre">1+√2</span></code>, (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">+</span> <span class="pre">sqrt(2)</span></code>), the silver ratio.</p>
 <ul class="simple">
-<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt[3]{2}}\)</span></p></li>
-<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.2599210498948731647672106072782283505702514647015079800819751121...</span></code></p></li>
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{2}(1 - \sqrt{5})}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.414213562373095048801688724209698078569671875376948073176679738...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gae636b3a8f1888a75dced410e1a5fc0b9"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">CBRT_3</span>  <span class="p">(</span><span class="mf">1.442249570307408301772511549643240869045257568359375</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Cube root of 3 (<code class="docutils literal notranslate"><span class="pre">cbrt(3)</span></code>)</p>
-<ul class="simple">
-<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt[3]{3}}\)</span></p></li>
-<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.4422495703074083823216383107801095883918692534993505775464161945...</span></code></p></li>
-</ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">DIV_PI_2</span>    <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Half of pi (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span id="index-2"></span><span></span><span class="cp">#define</span> <span class="fm">DIV_PI_2</span>    <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Half of pi <code class="docutils literal notranslate"><span class="pre">π/2</span></code> (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{\pi}{2}}\)</span></p></li>
-<li><p>Decimal: TODO</p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.5707963267948966192313216916397514420985846996875529104874722962...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span id="index-3"></span><span></span><span class="cp">#define</span> <span class="fm">DIV_PI_3</span>    <span class="p">(</span><span class="mf">1.0471975511965977461542144610931676280657231331250352736583148641</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Third of pi <code class="docutils literal notranslate"><span class="pre">π/3</span></code> (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">3</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{\pi}{3}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.0471975511965977461542144610931676280657231331250352736583148641...</span></code></p></li>
 </ul>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span id="index-4"></span><span></span><span class="cp">#define</span> <span class="fm">DIV_PI_4</span>    <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Quarter of pi (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">4</span></code>)</p>
+<p>Mathematical constant: Quarter of pi <code class="docutils literal notranslate"><span class="pre">π/4</span></code> (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">4</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{\pi}{4}}\)</span></p></li>
-<li><p>Decimal: TODO</p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.7853981633974483096156608458198757210492923498437764552437361481...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga07484107e6d9fdf38b53edf631d6511d"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="fm">E</span>   <span class="p">(</span><span class="mf">0x1.5BF0A8B145769</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga2840f18bad63701ca8f9b440d44cf046"><span id="index-5"></span><span></span><span class="cp">#define</span> <span class="fm">DIV_PI_5</span>    <span class="p">(</span><span class="mf">0.6283185307179586476925286766559005768394338798750211641949889185</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Fifth of pi <code class="docutils literal notranslate"><span class="pre">π/5</span></code> (<code class="docutils literal notranslate"><span class="pre">PI</span> <span class="pre">/</span> <span class="pre">5</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{\pi}{5}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.6283185307179586476925286766559005768394338798750211641949889185...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga07484107e6d9fdf38b53edf631d6511d"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="fm">E</span>   <span class="p">(</span><span class="mf">0x1.5BF0A8B145769</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The exponential number, e (<code class="docutils literal notranslate"><span class="pre">exp(1)</span></code>), Euler’s number.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({e}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.718281828459045235360287471352662497757247093699959574966...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga694331d48949e5e45c779dc913666535"><span id="index-6"></span><span></span><span class="cp">#define</span> <span class="fm">EGAMMA</span>  <span class="p">(</span><span class="mf">0.57721566490153286060651209008240243104215933593992</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Gamma, the Euler–Mascheroni constant, the limiting difference between the harmonic series and the natural logarithm.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga694331d48949e5e45c779dc913666535"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="fm">EGAMMA</span>  <span class="p">(</span><span class="mf">0.57721566490153286060651209008240243104215933593992</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Gamma, <code class="docutils literal notranslate"><span class="pre">γ</span></code>, the Euler–Mascheroni constant, the limiting difference between the harmonic series and the natural logarithm.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\gamma} = \lim_{n\to\infty} \biggl( -\ln{n} + \sum_{k=1}^n \frac{1}{k} \biggr)\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.5772156649015328606065120900824024310421593359399235988057672348...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3ead96ace17f17b0a1ff9dd6527b6bea"><span id="index-7"></span><span></span><span class="cp">#define</span> <span class="fm">FEIGENBAUM_ALPHA</span>    <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3ead96ace17f17b0a1ff9dd6527b6bea"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="fm">FEIGENBAUM_ALPHA</span>    <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The bifurcation ratio, Feigenbaum’s second constant, alpha.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\alpha }\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.502907875095892822283902873218...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga2a175aabf9d6f8f8684bb0bece7bc55d"><span id="index-8"></span><span></span><span class="cp">#define</span> <span class="fm">FEIGENBAUM_DELTA</span>    <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga2a175aabf9d6f8f8684bb0bece7bc55d"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="fm">FEIGENBAUM_DELTA</span>    <span class="p">(</span><span class="mf">4.669201609102990671853203820466</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The bifurcation velocity, Feigenbaum’s first constant, delta.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\delta }\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">4.669201609102990671853203820466...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga913fd45c3d26c73f7a37c245f25137cd"><span id="index-9"></span><span></span><span class="cp">#define</span> <span class="fm">GGAUSS</span>  <span class="p">(</span><span class="mf">0.834626841674073194354832594399340450763702392578125</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga913fd45c3d26c73f7a37c245f25137cd"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="fm">GGAUSS</span>  <span class="p">(</span><span class="mf">0.834626841674073194354832594399340450763702392578125</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: G, the Gauss constant, the reciprocal of the arithmetic–geometric mean of 1 and the square root of 2.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({G = \frac{2}{\pi} \int_{0}^{1} \frac{dx}{\sqrt{1 - x^4}}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.8346268416740731862814297327990468089939930134903470024498273701...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gae3ec3219e4eee3b0992bfd59c2e2bc42"><span id="index-10"></span><span></span><span class="cp">#define</span> <span class="fm">HALF_PI</span> <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a></pre>
-<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a>.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaebad45bfa06a5d66805c5813fbc59f4b"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="fm">INV_PI</span>  <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Inverse of pi (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">pi</span></code>)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gab1e9ddf2a46c8ef844c05a10ee700b69"><span id="index-11"></span><span></span><span class="cp">#define</span> <span class="fm">GILDED_RATIO</span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1gaaf9d626d252ef2b4781eca6f9d2c38f2"><span class="std std-ref">PHI_BAR</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1gaaf9d626d252ef2b4781eca6f9d2c38f2"><span class="std std-ref">PHI_BAR</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaaa59fc84e8e02db608cd1d9e44b430d3"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="fm">GOLDEN_RATIO</span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span class="std std-ref">PHI</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span class="std std-ref">PHI</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga572e97cd68fdc6cf36d3e2ce75775ba5"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="fm">INV_2</span>   <span class="p">(</span><span class="mf">0.5</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 2, one half (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{2}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga5a480b233e209f2e7387ec2464cf1b9f"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="fm">INV_3</span>   <span class="p">(</span><span class="mf">0.333333333333333333333333333333333333</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 3, one third (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">3</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{3}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.333333...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga558a43968f92d518e26c0ca48bc29179"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">INV_4</span>   <span class="p">(</span><span class="mf">0.25</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 4, one quarter (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">4</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{4}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.25</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga6100ed49ecb7590f7e4097d18e3a3075"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="fm">INV_5</span>   <span class="p">(</span><span class="mf">0.2</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 5, one fifth (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">5</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{5}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.5</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaa4d0b5b15fb1e8ec1e139bb4dab624d2"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="fm">INV_6</span>   <span class="p">(</span><span class="mf">0.166666666666666666666666666666666667</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 6, one sixth (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">6</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{6}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.1666666...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gacceb97e525f35c243b31e1c5b9559712"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="fm">INV_7</span>   <span class="p">(</span><span class="mf">0.142857142857142857142857142857142857</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse of 7, one seventh (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">7</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{7}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.142857...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaf5dabec5acf15d9bd2ead55b559dd1f7"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="fm">INV_E</span>   <span class="p">(</span><span class="mf">0x1.5BF0A8B145769</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The exponential number, e (<code class="docutils literal notranslate"><span class="pre">exp(1)</span></code>), Euler’s number.</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({e}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.718281828459045235360287471352662497757247093699959574966...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaebad45bfa06a5d66805c5813fbc59f4b"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="fm">INV_PI</span>  <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Inverse of pi <code class="docutils literal notranslate"><span class="pre">1/π</span></code> (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">PI</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\pi}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.318309886183790671537767526745028724068919291480912897495...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga00ce1546c572fa40f917142388f0c22a"><span id="index-12"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_2</span>  <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga00ce1546c572fa40f917142388f0c22a"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_2</span>  <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The inverse square root of 2 (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(2)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{2}}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.7071067811865475244008443621048490392848359376884740365883398689...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaf222396c3647ae6759c49030cf77f32a"><span id="index-13"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_3</span>  <span class="p">(</span><span class="mf">0x1.279A74590331C</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaf222396c3647ae6759c49030cf77f32a"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_3</span>  <span class="p">(</span><span class="mf">0x1.279A74590331C</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The inverse square root of 3 (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(3)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{3}}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.5773502691896257645091487805019574556476017512701268760186023264...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga1203d1632ed7e5e9c4f4ada3142183a1"><span id="index-14"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_5</span>  <span class="p">(</span><span class="mf">0x1.C9F25C5BFEDD9</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga1203d1632ed7e5e9c4f4ada3142183a1"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_5</span>  <span class="p">(</span><span class="mf">0x1.C9F25C5BFEDD9</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The inverse square root of 5 (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(5)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{5}}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.4472135954999579392818347337462552470881236719223051448541794490...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga6749b4f22cea97620a9a04e83534c72e"><span id="index-15"></span><span></span><span class="cp">#define</span> <span class="fm">INV_TAU</span> <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">3</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Inverse of tau (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">tau</span></code>)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga35a2869ee6a57f735389321807e7028a"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_7</span>  <span class="p">(</span><span class="mf">0x1.83091E6A7F7E7</span><span class="kc">p</span><span class="o">-</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The inverse square root of 7 (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(7)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{7}}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.3779644730092272272145165362341800608157513118689214543383334942...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga0953c243a13f952dc418ccc86879d765"><span id="index-25"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_PI</span> <span class="p">(</span><span class="mf">0.5641895835477562869480794515607725858440506293289988568440857217</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Inverse of the square root of pi <code class="docutils literal notranslate"><span class="pre">1/√π</span></code> (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(PI)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{\pi}}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.5641895835477562869480794515607725858440506293289988568440857217...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gac0f50e36ec8be11bf9584e71c4641f43"><span id="index-26"></span><span></span><span class="cp">#define</span> <span class="fm">INV_SQRT_TAU</span>    <span class="p">(</span><span class="mf">0.3989422804014326779399460599343818684758586311649346576659258297</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Inverse of the square root of tau <code class="docutils literal notranslate"><span class="pre">1/√τ</span></code> (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">sqrt(TAU)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{\sqrt{2\pi}}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.3989422804014326779399460599343818684758586311649346576659258297...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga6749b4f22cea97620a9a04e83534c72e"><span id="index-27"></span><span></span><span class="cp">#define</span> <span class="fm">INV_TAU</span> <span class="p">(</span><span class="mf">0x1.45F306DC9C883</span><span class="kc">p</span><span class="o">-</span><span class="m">3</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Inverse of tau <code class="docutils literal notranslate"><span class="pre">1/τ</span></code> (<code class="docutils literal notranslate"><span class="pre">1</span> <span class="pre">/</span> <span class="pre">TAU</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{2\pi}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.159154943091895335768883763372514362034459645740456448747...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gada0599f7ce9a633571e3073fc008091a"><span id="index-16"></span><span></span><span class="cp">#define</span> <span class="fm">LN_10</span>   <span class="p">(</span><span class="mf">0x1.26BB1BBB55516</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gada0599f7ce9a633571e3073fc008091a"><span id="index-28"></span><span></span><span class="cp">#define</span> <span class="fm">LN_10</span>   <span class="p">(</span><span class="mf">0x1.26BB1BBB55516</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The natural logarithm of 10 (<code class="docutils literal notranslate"><span class="pre">ln(10)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\ln {10}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.302585092994045684017991454684364207601101488628772976033...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaa94d5c40b9f567f0bb88c23634f9d106"><span id="index-17"></span><span></span><span class="cp">#define</span> <span class="fm">LN_2</span>    <span class="p">(</span><span class="mf">0x1.62E42FEFA39EF</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaa94d5c40b9f567f0bb88c23634f9d106"><span id="index-29"></span><span></span><span class="cp">#define</span> <span class="fm">LN_2</span>    <span class="p">(</span><span class="mf">0x1.62E42FEFA39EF</span><span class="kc">p</span><span class="o">-</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The natural logarithm of 2 (<code class="docutils literal notranslate"><span class="pre">ln(2)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\ln {2}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">0.693147180559945309417232121458176568075500134360255254120...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span id="index-18"></span><span></span><span class="cp">#define</span> <span class="fm">PHI</span> <span class="p">(</span><span class="mf">1.6180339887498949025257388711906969547271728515625</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: Phi, (<code class="docutils literal notranslate"><span class="pre">(1/2)</span> <span class="pre">*</span> <span class="pre">(1</span> <span class="pre">+</span> <span class="pre">sqrt(5))</span></code>), the golden ratio.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga20ef8fa5918a08f8a6a17920bada544c"><span id="index-30"></span><span></span><span class="cp">#define</span> <span class="fm">LN_3</span>    <span class="p">(</span><span class="mf">1.098612288668109691395245236922525704647490557823</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The natural logarithm of 3 (<code class="docutils literal notranslate"><span class="pre">ln(3)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\ln {3}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.098612288668109691395245236922525704647490557823...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3d66f14edbd6de201285c99a18e71bd9"><span id="index-31"></span><span></span><span class="cp">#define</span> <span class="fm">LN_5</span>    <span class="p">(</span><span class="mf">1.609437912434100374600759333226187639525601354269</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The natural logarithm of 5 (<code class="docutils literal notranslate"><span class="pre">ln(5)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\ln {5}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.609437912434100374600759333226187639525601354269...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga9af8701b89e444b4961789d7ecf422f7"><span id="index-32"></span><span></span><span class="cp">#define</span> <span class="fm">LN_7</span>    <span class="p">(</span><span class="mf">1.945910149055313305105352743443179729637084729582</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The natural logarithm of 7 (<code class="docutils literal notranslate"><span class="pre">ln(7)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\ln {7}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.945910149055313305105352743443179729637084729582...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga2203853edabc3de5f785e54b55eb5e3c"><span id="index-33"></span><span></span><span class="cp">#define</span> <span class="fm">PHI</span> <span class="p">(</span><span class="mf">1.6180339887498948482045868343656381177203091798057628621354486227</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Phi <code class="docutils literal notranslate"><span class="pre">φ</span> <span class="pre">=</span> <span class="pre">(1+√5)/2</span></code>, (<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">+</span> <span class="pre">sqrt(5))</span> <span class="pre">/</span> <span class="pre">2</span></code>), the golden ratio.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{2}(1 + \sqrt{5})}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.6180339887498948482045868343656381177203091798057628621354486227...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga598a3330b3c21701223ee0ca14316eca"><span id="index-19"></span><span></span><span class="cp">#define</span> <span class="fm">PI</span>  <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: circle periphery from diameter, pi (<code class="docutils literal notranslate"><span class="pre">TAU</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaaf9d626d252ef2b4781eca6f9d2c38f2"><span id="index-34"></span><span></span><span class="cp">#define</span> <span class="fm">PHI_BAR</span> <span class="p">(</span><span class="o">-</span><span class="mf">0.6180339887498948482045868343656381177203091798057628621354486227</span><span class="kc">e</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: Phi <code class="docutils literal notranslate"><span class="pre">-1/φ</span> <span class="pre">=</span> <span class="pre">(1-√5)/2</span></code>, (<code class="docutils literal notranslate"><span class="pre">(1</span> <span class="pre">-</span> <span class="pre">sqrt(5))</span> <span class="pre">/</span> <span class="pre">2</span></code>), the golden ratio conjugate.</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\frac{1}{2}(1 - \sqrt{5})}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">-0.6180339887498948482045868343656381177203091798057628621354486227...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga598a3330b3c21701223ee0ca14316eca"><span id="index-35"></span><span></span><span class="cp">#define</span> <span class="fm">PI</span>  <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: circle periphery from diameter, pi <code class="docutils literal notranslate"><span class="pre">π</span></code> (<code class="docutils literal notranslate"><span class="pre">TAU</span> <span class="pre">/</span> <span class="pre">2</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\pi}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">3.141592653589793238462643383279502884197169399375105820974...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga5727947dfa0f901d1415a6e7233bc61b"><span id="index-20"></span><span></span><span class="cp">#define</span> <span class="fm">QUARTER_PI</span>  <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga295bc180f2e707b2fb1dbc0fd320261e"><span id="index-36"></span><span></span><span class="cp">#define</span> <span class="fm">PI_DOUBLE</span>   <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span class="std std-ref">TAU</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span class="std std-ref">TAU</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gac39729c185e1b04359c8d9fb31a21706"><span id="index-37"></span><span></span><span class="cp">#define</span> <span class="fm">PI_FIFTH</span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga2840f18bad63701ca8f9b440d44cf046"><span class="std std-ref">DIV_PI_5</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span class="std std-ref">DIV_PI_3</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gac42fcc49e806098bfc299fdd783369c2"><span id="index-38"></span><span></span><span class="cp">#define</span> <span class="fm">PI_HALF</span> <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga67d18553da9ad796b35f6a2068c089ca"><span class="std std-ref">DIV_PI_2</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga199b34a5efb05985e858eafdf87e5a5e"><span id="index-39"></span><span></span><span class="cp">#define</span> <span class="fm">PI_QUARTER</span>  <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a></pre>
 <p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7496d253a45e07baba042c41a5ad2b18"><span class="std std-ref">DIV_PI_4</span></a>.</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gabc63ab2a8e7782de38a5dbdfc33da717"><span id="index-21"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_2</span>  <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gaf18c47b75b84cbb936a048a9ade8ef21"><span id="index-40"></span><span></span><span class="cp">#define</span> <span class="fm">PI_THIRD</span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span class="std std-ref">DIV_PI_3</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1gad0891697afa3c303254cc8ca3f0df373"><span class="std std-ref">DIV_PI_3</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gac4cede39fc6ab67a9e57f522dc282936"><span id="index-41"></span><span></span><span class="cp">#define</span> <span class="fm">SILVER_RATIO</span>    <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7f51dde03ee2aee81351e7bbb020bdfd"><span class="std std-ref">DELTA_S</span></a></pre>
+<p>Alias for <a class="reference internal" href="#doxid-group-libccc-math-constants-1ga7f51dde03ee2aee81351e7bbb020bdfd"><span class="std std-ref">DELTA_S</span></a>.</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gabc63ab2a8e7782de38a5dbdfc33da717"><span id="index-42"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_2</span>  <span class="p">(</span><span class="mf">0x1.6A09E667F3BCD</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The square root of 2 (<code class="docutils literal notranslate"><span class="pre">sqrt(2)</span></code>), the Pythagoras constant.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\sqrt{2}}\)</span></p></li>
-<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.414213562373095048801688724209698078569671875376948073176...</span></code></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.414213562373095048801688724209698078569671875376948073176679738...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga4c7cca717941f9eb5c7f90f44ac8746b"><span id="index-22"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_3</span>  <span class="p">(</span><span class="mf">0x1.BB67AE8584CAA</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga4c7cca717941f9eb5c7f90f44ac8746b"><span id="index-43"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_3</span>  <span class="p">(</span><span class="mf">0x1.BB67AE8584CAA</span><span class="kc">p</span><span class="o">+</span><span class="m">0</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The square root of 3 (<code class="docutils literal notranslate"><span class="pre">sqrt(3)</span></code>), the Theodorus constant.</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\sqrt{3}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">1.732050807568877293527446341505872366942805253810380628055...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gab6073a2630d7c65369c70c5f8c03a132"><span id="index-23"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_5</span>  <span class="p">(</span><span class="mf">0x1.1E3779B97F4A7</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1gab6073a2630d7c65369c70c5f8c03a132"><span id="index-44"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_5</span>  <span class="p">(</span><span class="mf">0x1.1E3779B97F4A7</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
 <p>Mathematical constant: The square root of 5 (<code class="docutils literal notranslate"><span class="pre">sqrt(5)</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({\sqrt{5}}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.236067977499789696409173668731276235440618359611525724270...</span></code></p></li>
 </ul>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span id="index-24"></span><span></span><span class="cp">#define</span> <span class="fm">TAU</span> <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
-<p>Mathematical constant: circle periphery from radius, tau (<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">PI</span></code>)</p>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3fd0e86216584f7a3e249e70ffebca1c"><span id="index-45"></span><span></span><span class="cp">#define</span> <span class="fm">SQRT_7</span>  <span class="p">(</span><span class="mf">0x1.52A7FA9D2F8EA</span><span class="kc">p</span><span class="o">+</span><span class="m">1</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: The square root of 7 (<code class="docutils literal notranslate"><span class="pre">sqrt(7)</span></code>)</p>
+<ul class="simple">
+<li><p>Math: <span class="math notranslate nohighlight">\({\sqrt{7}}\)</span></p></li>
+<li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">2.6457513110645905905016157536392604257102591830824501803683344592...</span></code></p></li>
+</ul>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-group-libccc-math-constants-1ga3d8c9c145887af5174ba4cc6789862ad"><span id="index-46"></span><span></span><span class="cp">#define</span> <span class="fm">TAU</span> <span class="p">(</span><span class="mf">0x1.921FB54442D18</span><span class="kc">p</span><span class="o">+</span><span class="m">2</span><span class="kt">L</span><span class="p">)</span></pre>
+<p>Mathematical constant: circle periphery from radius, tau <code class="docutils literal notranslate"><span class="pre">τ</span></code> (<code class="docutils literal notranslate"><span class="pre">2</span> <span class="pre">*</span> <span class="pre">PI</span></code>)</p>
 <ul class="simple">
 <li><p>Math: <span class="math notranslate nohighlight">\({2\pi}\)</span></p></li>
 <li><p>Decimal: <code class="docutils literal notranslate"><span class="pre">6.283185307179586476925286766559005768394338798750211641949...</span></code></p></li>
@@ -339,7 +476,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="group_libccc_math_float.html" class="btn btn-neutral float-left" title="libccc/math/float.h" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="union_ldshape.html" class="btn btn-neutral float-left" title="union ldshape" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="group_libccc_math_vlq.html" class="btn btn-neutral float-right" title="libccc/math/vlq.h" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['length_0',['length',['../enum_8h.html#af254525fd5a51671ebf256c83a7571ba',1,'enum_type::length()'],['../stat_8h.html#af254525fd5a51671ebf256c83a7571ba',1,'prob_mass::length()'],['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_parse::length()'],['../common_8h.html#ad2854979feecb475015c824f6120edd4',1,'kvt_print::length()']]],
-  ['line_1',['line',['../common_8h.html#a7507f2cbe6b4d5f42ddafb26bc03dabd',1,'kvt_parse']]],
-  ['lum_2',['lum',['../image_2color_8h.html#ac8fc8a99de5f31d8884cb636db576e35',1,'ahsl']]]
+  ['k_11425',['k',['../complex_8h.html#a7d2d5289b503886f53d7b945d1b28370',1,'quaternion']]],
+  ['key_11426',['key',['../common_8h.html#acb3c557ab3dbe0459fe432a1b65098e7',1,'kvt']]],
+  ['keypath_11427',['keypath',['../common_8h.html#abf6d8c2d698cd12aee856cfe62df84ca',1,'kvt_print']]]
 ];

@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>struct kvt_print &mdash; libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+  <title>struct kvt_print &mdash; libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/style.css" type="text/css" />
@@ -18,7 +18,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script src="_static/target-highlight.js"></script>
         <script src="_static/js/custom.js"></script>
     <script src="_static/js/theme.js"></script>
@@ -30,7 +32,7 @@
 	
 	<meta name="Description" content="struct kvt_print">
 	<meta property="og:description" content="struct kvt_print">
-	<meta property="og:title" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:title" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation - struct kvt_print">
 	<meta property="og:image" content="_static/images/libccc_icon.png">
 	<meta property="og:image:secure_url" content="_static/images/libccc_icon.png" />
@@ -38,7 +40,7 @@
 	<meta property="og:image:width" content="380" />
 	<meta property="og:image:height" content="380" />
 	<meta property="og:url" content="struct_kvt_print.html">
-	<meta property="og:site_name" content="libccc libccc@0.11.16-2022-07-16_ba31eb8ccdd0dcd4ea09a4d9b68afdb5bfdc0b30
+	<meta property="og:site_name" content="libccc libccc@0.12.136-2025-02-10_d24ea21bc035203874e8ab7a61c9ba68d6e3962f
  documentation">
 
 
@@ -65,10 +67,13 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_config.html">libccc_config.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_errors.html">libccc_errors.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_naming.html">libccc_naming.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_ascii.html">libccc/text/ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char_ascii.html">libccc/text/char_ascii.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_unicode.html">libccc/text/char_unicode.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_format.html">libccc/format.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_error.html">libccc/error.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_error.html">libccc/sys/error.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_format.html">libccc/text/format.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_char.html">libccc/char.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_enum.html">libccc/enum.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_bool.html">libccc/bool.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_int.html">libccc/int.h</a></li>
@@ -77,10 +82,12 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_memory.html">libccc/memory.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointer.html">libccc/pointer.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_pointerarray.html">libccc/pointerarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_ascii.html">libccc/text/string_ascii.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_string.html">libccc/string.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_string_utf8.html">libccc/text/string_utf8.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_stringarray.html">libccc/stringarray.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_text_regex.html">libccc/text/regex.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_image_color.html">libccc/image/color.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_color.html">libccc/color.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_ansi.html">libccc/sys/ansi.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_io.html">libccc/sys/io.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_sys_logger.html">libccc/sys/logger.h</a></li>
@@ -89,15 +96,15 @@
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_random.html">libccc/random/random.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_prng.html">libccc/random/prng.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_random_csprng.html">libccc/random/csprng.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_array.html">libccc/monad/array.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_list.html">libccc/monad/list.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_hashmap.html">libccc/monad/hashmap.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_dict.html">libccc/monad/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_array.html">libccc/generic/array.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_list.html">libccc/generic/list.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_hashmap.html">libccc/generic/hashmap.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_dict.html">libccc/generic/dict.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_tree.html">libccc/generic/tree.h</a></li>
 <li class="toctree-l1"><a class="reference internal" href="group_libccc_math_complex.html">libccc/math/complex.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_tree.html">libccc/monad/tree.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_stack.html">libccc/monad/stack.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_queue.html">libccc/monad/queue.h</a></li>
-<li class="toctree-l1"><a class="reference internal" href="group_libccc_monad_convert.html">libccc/monad/convert.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_stack.html">libccc/generic/stack.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_queue.html">libccc/generic/queue.h</a></li>
+<li class="toctree-l1"><a class="reference internal" href="group_libccc_generic_convert.html">libccc/generic/convert.h</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="group_libccc_encode_common.html">libccc/encode/common.h</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="struct_kvt.html">struct kvt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="struct_kvt_parse.html">struct kvt_parse</a></li>
@@ -148,9 +155,9 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="group_libccc_encode_common.html">libccc/encode/common.h</a> &raquo;</li>
-      <li>struct kvt_print</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="group_libccc_encode_common.html">libccc/encode/common.h</a></li>
+      <li class="breadcrumb-item active">struct kvt_print</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -160,11 +167,11 @@
            <div itemprop="articleBody">
              
   <section id="struct-kvt-print">
-<span id="doxid-structkvt-print"></span><span id="index-0"></span><h1>struct kvt_print<a class="headerlink" href="#struct-kvt-print" title="Permalink to this headline"></a></h1>
+<span id="doxid-structkvt-print"></span><span id="index-0"></span><h1>struct kvt_print<a class="headerlink" href="#struct-kvt-print" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline"></a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h2>
 <p>This struct is used to print a data file string (JSON, TOML, YAML, XML, etc) <a class="reference internal" href="#details-structkvt-print"><span class="std std-ref">More…</span></a></p>
 <pre class="highlight doxyrest-overview-code-block literal-block"><span></span><span class="cp">#include</span> <span class="cpf">&lt;common.h&gt;</span><span class="cp"></span>
 
@@ -173,23 +180,23 @@
     <span class="c1">// fields</span>
 
     <a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga4eb42ec03a60eac923b156b0ecd3e279"><span class="std std-ref">s_kvt</span></a><span></span> <span class="k">const</span><span class="o">*</span> <a class="reference internal" href="#doxid-structkvt-print-1a9df4a117145bebe73d5c1d5305576205"><span class="std std-ref">item</span></a><span></span><span class="p">;</span>
-    <span class="kt">t_utf8</span><span class="o">*</span> <a class="reference internal" href="#doxid-structkvt-print-1aec017411482963b79f36f93fb83bbc77"><span class="std std-ref">result</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-structkvt-print-1aec017411482963b79f36f93fb83bbc77"><span class="std std-ref">result</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-structkvt-print-1aeb6e1868799d5f1c32058d9917af1847"><span class="std std-ref">offset</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-structkvt-print-1ad2854979feecb475015c824f6120edd4"><span class="std std-ref">length</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structkvt-print-1afa2530ca03c26b8fac037a7d75722504"><span class="std std-ref">noalloc</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_bool.html#doxid-group-libccc-bool-1gae02c68c70680b999c74ccda6c6be3af2"><span class="std std-ref">t_bool</span></a><span></span> <a class="reference internal" href="#doxid-structkvt-print-1a4d1d058169df3e6b8117e26c462bf77d"><span class="std std-ref">format</span></a><span></span><span class="p">;</span>
     <a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <a class="reference internal" href="#doxid-structkvt-print-1a12986f2deb5c81e5c23d942249182f76"><span class="std std-ref">depth</span></a><span></span><span class="p">;</span>
-    <span class="kt">t_utf8</span><span class="o">*</span> <a class="reference internal" href="#doxid-structkvt-print-1abf6d8c2d698cd12aee856cfe62df84ca"><span class="std std-ref">keypath</span></a><span></span><span class="p">;</span>
+    <a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <a class="reference internal" href="#doxid-structkvt-print-1abf6d8c2d698cd12aee856cfe62df84ca"><span class="std std-ref">keypath</span></a><span></span><span class="p">;</span>
 <span class="p">};</span></pre>
 </section>
 <section id="detailed-documentation">
-<span id="details-structkvt-print"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this headline"></a></h2>
+<span id="details-structkvt-print"></span><h2>Detailed Documentation<a class="headerlink" href="#detailed-documentation" title="Permalink to this heading"></a></h2>
 <p>This struct is used to print a data file string (JSON, TOML, YAML, XML, etc)</p>
 <section id="fields">
-<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this headline"></a></h3>
+<h3>Fields<a class="headerlink" href="#fields" title="Permalink to this heading"></a></h3>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1a9df4a117145bebe73d5c1d5305576205"><span id="index-1"></span><a class="reference internal" href="group_libccc_encode_common.html#doxid-group-libccc-encode-common-1ga4eb42ec03a60eac923b156b0ecd3e279"><span class="std std-ref">s_kvt</span></a><span></span> <span class="k">const</span><span class="o">*</span> <span class="n">item</span></pre>
 <p>the object to print</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1aec017411482963b79f36f93fb83bbc77"><span id="index-2"></span><span></span><span class="kt">t_utf8</span><span class="o">*</span> <span class="n">result</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1aec017411482963b79f36f93fb83bbc77"><span id="index-2"></span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">result</span></pre>
 <p>the result string which is written to</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1aeb6e1868799d5f1c32058d9917af1847"><span id="index-3"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">offset</span></pre>
 <p>current writing offset of the string to print</p>
@@ -201,7 +208,7 @@
 <p>is this print a formatted print</p>
 <pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1a12986f2deb5c81e5c23d942249182f76"><span id="index-7"></span><a class="reference internal" href="group_libccc_pointer.html#doxid-group-libccc-pointer-1gab26ea4b5e8504781be1c368c28967472"><span class="std std-ref">t_size</span></a><span></span> <span class="n">depth</span></pre>
 <p>the current nesting depth (for formatted printing)</p>
-<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1abf6d8c2d698cd12aee856cfe62df84ca"><span id="index-8"></span><span></span><span class="kt">t_utf8</span><span class="o">*</span> <span class="n">keypath</span></pre>
+<pre class="highlight doxyrest-title-code-block literal-block" id="doxid-structkvt-print-1abf6d8c2d698cd12aee856cfe62df84ca"><span id="index-8"></span><a class="reference internal" href="group_libccc_text_unicode.html#doxid-group-libccc-text-unicode-1ga2396a518dd5aee70d553e1963826d21f"><span class="std std-ref">t_utf8</span></a><span></span><span class="o">*</span> <span class="n">keypath</span></pre>
 <p>the current path of keys, separated by periods (think TOML section tables)</p>
 </section>
 </section>

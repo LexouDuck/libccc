@@ -64,6 +64,7 @@ var char_8h =
     [ "Char_IsValid", "char_8h.html#a39c51c08e4afc39fda650c626383a4ce", null ],
     [ "c_isascii", "char_8h.html#ace39a716918bafb234bff07d3f329401", null ],
     [ "c_isvalid", "char_8h.html#a3e4ddfb23e8096b4fb861b24a1f7a0bb", null ],
+    [ "Char_IsASCII", "char_8h.html#a2cebc88a17280a83a0a2a6f16b7dadcc", null ],
     [ "Char_IsInCharset", "char_8h.html#aa34b25f96cde7a2cd60f998c2a4deed4", null ],
     [ "c_isincharset", "char_8h.html#a0173ccf0013ddbbdc84bc70a2745434a", null ],
     [ "Char_ToUppercase", "char_8h.html#aa20e9018024a778fafd2c3d7ddf303e3", null ],

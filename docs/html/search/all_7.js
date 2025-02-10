@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['g_0',['g',['../image_2color_8h.html#a5f7f7f7826e0ff39c6800c520a5401f9',1,'argb']]],
-  ['g_5fmonth_1',['g_month',['../time_8h.html#acf364f5654d7efc4b03c2733d2380e51',1,'time.h']]],
-  ['g_5fmonth_5fabbreviated_2',['g_month_abbreviated',['../time_8h.html#a25d1e2d81e2c95af79b3d6c5dd5c7ae2',1,'time.h']]],
-  ['g_5fweekday_3',['g_weekday',['../time_8h.html#a8db2c112616708223bf162f3f4f211b7',1,'time.h']]],
-  ['g_5fweekday_5fabbreviated_4',['g_weekday_abbreviated',['../time_8h.html#a9aa7d9d670c95d8f202b8c09aa35e841',1,'time.h']]],
-  ['gb_5',['GB',['../memory_8h.html#ac0efefdf392a1bdf22a44dae9f9d33eb',1,'memory.h']]],
-  ['ggauss_6',['GGAUSS',['../constants_8h.html#a913fd45c3d26c73f7a37c245f25137cd',1,'constants.h']]],
-  ['gnl_5fend_7',['GNL_END',['../io_8h.html#acd416df5a722d247f1ec0c9c298a4fa8',1,'io.h']]],
-  ['gnl_5ferror_8',['GNL_ERROR',['../io_8h.html#a9cf0c0bf69e6be78d78202e8699763ad',1,'io.h']]],
-  ['gnl_5fline_9',['GNL_LINE',['../io_8h.html#a66c9f6f1f21b8c3daa908032cc700da6',1,'io.h']]]
+  ['g_5054',['g',['../color_8h.html#a5f7f7f7826e0ff39c6800c520a5401f9',1,'argb']]],
+  ['g_5fmonth_5055',['g_month',['../time_8h.html#acf364f5654d7efc4b03c2733d2380e51',1,'time.h']]],
+  ['g_5fmonth_5fabbreviated_5056',['g_month_abbreviated',['../time_8h.html#a25d1e2d81e2c95af79b3d6c5dd5c7ae2',1,'time.h']]],
+  ['g_5fweekday_5057',['g_weekday',['../time_8h.html#a8db2c112616708223bf162f3f4f211b7',1,'time.h']]],
+  ['g_5fweekday_5fabbreviated_5058',['g_weekday_abbreviated',['../time_8h.html#a9aa7d9d670c95d8f202b8c09aa35e841',1,'time.h']]],
+  ['gb_5059',['GB',['../memory_8h.html#ac0efefdf392a1bdf22a44dae9f9d33eb',1,'memory.h']]],
+  ['get_5ff16_5fword_5060',['GET_F16_WORD',['../math_2float_8h.html#a4c755366153ef4e44a941c14506b0d61',1,'float.h']]],
+  ['get_5ff32_5fword_5061',['GET_F32_WORD',['../math_2float_8h.html#a15295ea14fb460dd57e24d1f673e7d32',1,'float.h']]],
+  ['get_5ff64_5fword_5fhi_5062',['GET_F64_WORD_HI',['../math_2float_8h.html#a1e7f3c0a54e8e9d8a0a3fe9c62b6e64b',1,'float.h']]],
+  ['get_5ff64_5fword_5flo_5063',['GET_F64_WORD_LO',['../math_2float_8h.html#a19a8b0337e1a468083349e1c8510cf0f',1,'float.h']]],
+  ['get_5ff64_5fwords_5064',['GET_F64_WORDS',['../math_2float_8h.html#a445bc3009886fe1fc86bf5947405597a',1,'float.h']]],
+  ['ggauss_5065',['GGAUSS',['../constants_8h.html#a913fd45c3d26c73f7a37c245f25137cd',1,'constants.h']]],
+  ['gilded_5fratio_5066',['GILDED_RATIO',['../constants_8h.html#ab1e9ddf2a46c8ef844c05a10ee700b69',1,'constants.h']]],
+  ['gnl_5fend_5067',['GNL_END',['../io_8h.html#acd416df5a722d247f1ec0c9c298a4fa8',1,'io.h']]],
+  ['gnl_5ferror_5068',['GNL_ERROR',['../io_8h.html#a9cf0c0bf69e6be78d78202e8699763ad',1,'io.h']]],
+  ['gnl_5fline_5069',['GNL_LINE',['../io_8h.html#a66c9f6f1f21b8c3daa908032cc700da6',1,'io.h']]],
+  ['golden_5fratio_5070',['GOLDEN_RATIO',['../constants_8h.html#aaa59fc84e8e02db608cd1d9e44b430d3',1,'constants.h']]]
 ];
