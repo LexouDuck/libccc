@@ -207,49 +207,6 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 
 
 
-//f16
-#if LIBCONFIG_USE_FLOAT16
-#define AS_U16(f)	((union { t_f16 _f; t_u16 _i; }){f})._i
-#define AS_F16(i)	((union { t_u16 _i; t_f16 _f; }){i})._f
-#else
-#define AS_U16(f)	((t_u16)0)
-#define AS_F16(i)	((t_f16)0)
-#endif
-//f32
-#define AS_U32(f)	((union { t_f32  _f; t_u32  _i; }){f})._i
-#define AS_F32(i)	((union { t_u32  _i; t_f32  _f; }){i})._f
-//f64
-#define AS_U64(f)	((union { t_f64  _f; t_u64  _i; }){f})._i
-#define AS_F64(i)	((union { t_u64  _i; t_f64  _f; }){i})._f
-//f80
-#if LIBCONFIG_USE_FLOAT80
-#if LIBCONFIG_USE_INT128
-#define AS_U80(f)	((union { t_f80  _f; t_u128 _i; }){f})._i
-#define AS_F80(i)	((union { t_u128 _i; t_f80  _f; }){i})._f
-#else
-#define AS_U80(f)	((union { t_f80    _f; t_u64[2] _i; }){f})._i
-#define AS_F80(i)	((union { t_u64[2] _i; t_f80    _f; }){i})._f
-#endif
-#else
-#define AS_U80(f)	((t_u128)0)
-#define AS_F80(i)	((t_f128)0)
-#endif
-//f128
-#if LIBCONFIG_USE_FLOAT128
-#if LIBCONFIG_USE_INT128
-#define AS_U128(f)	((union { t_f128 _f; t_u128 _i; }){f})._i
-#define AS_F128(i)	((union { t_u128 _i; t_f128 _f; }){i})._f
-#else
-#define AS_U128(f)	((union { t_f128   _f; t_u64[2] _i; }){f})._i
-#define AS_F128(i)	((union { t_u64[2] _i; t_f128   _f; }){i})._f
-#endif
-#else
-#define AS_U128(f)	((t_u128)0)
-#define AS_F128(i)	((t_f128)0)
-#endif
-
-
-
 //!@doc The floating-point "not a number" value.
 /*!
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/math/NAN}
@@ -513,35 +470,40 @@ TYPEDEF_ALIAS(t_float, FLOAT, PRIMITIVE)
 #if LIBCONFIG_USE_FLOAT16
 typedef union cast_f16
 {
-	t_f16	value_float;
-	t_s16	value_sint;
-	t_u16	value_uint;
+	t_f16	as_f;
+	t_u16	as_u;
+	t_s16	as_s;
 	struct { t_u8 hi; t_u8 lo; }	split;
 }	u_cast_f16;
 #endif
 
 typedef union cast_f32
 {
-	t_f32	value_float;
-	t_s32	value_sint;
-	t_u32	value_uint;
+	t_f32	as_f;
+	t_u32	as_u;
+	t_s32	as_s;
 	struct { t_u16 hi; t_u16 lo; }	split;
 }	u_cast_f32;
 
 typedef union cast_f64
 {
-	t_f64	value_float;
-	t_s64	value_sint;
-	t_u64	value_uint;
+	t_f64	as_f;
+	t_u64	as_u;
+	t_s64	as_s;
 	struct { t_u32 hi; t_u32 lo; }	split;
 }	u_cast_f64;
 
 #if LIBCONFIG_USE_FLOAT80
 typedef union cast_f80
 {
-	t_f80	value_float;
-	t_s128	value_sint;
-	t_u128	value_uint;
+	t_f80	as_f;
+#if LIBCONFIG_USE_INT128
+	t_u128	as_u;
+	t_s128	as_s;
+#else
+	t_u64[2]	as_u;
+	t_s64[2]	as_s;
+#endif
 	struct { t_u64 hi; t_u64 lo; }	split;
 }	u_cast_f80;
 #endif
@@ -549,28 +511,66 @@ typedef union cast_f80
 #if LIBCONFIG_USE_FLOAT128
 typedef union cast_f128
 {
-	t_f128	value_float;
-	t_s128	value_sint;
-	t_u128	value_uint;
+	t_f128	as_f;
+#if LIBCONFIG_USE_INT128
+	t_u128	as_u;
+	t_s128	as_s;
+#else
+	t_u64[2]	as_u;
+	t_s64[2]	as_s;
+#endif
 	struct { t_u64 hi; t_u64 lo; }	split;
 }	u_cast_f128;
 #endif
 
 typedef union cast_float
 {
-	t_float	value_float;
+	t_float	as_f;
 #if (LIBCONFIG_FLOAT_BITS == 32)
-	t_s32	value_sint;
-	t_u32	value_uint;
+	t_u32	as_u;
+	t_s32	as_s;
 #elif (LIBCONFIG_FLOAT_BITS == 64)
-	t_s64	value_sint;
-	t_u64	value_uint;
+	t_u64	as_u;
+	t_s64	as_s;
 #else
-	t_s128	value_sint;
-	t_u128	value_uint;
+	t_u128	as_u;
+	t_s128	as_s;
 #endif
 }	u_cast_float;
 //!@}
+
+
+
+//f16
+#if LIBCONFIG_USE_FLOAT16
+#define AS_U16(f)	((union cast_f16){ .as_f = f }).as_u
+#define AS_F16(i)	((union cast_f16){ .as_u = i }).as_f
+#else
+#define AS_U16(f)	((t_u16)0)
+#define AS_F16(i)	((t_f16)0)
+#endif
+//f32
+#define AS_U32(f)	((union cast_f32){ .as_f = f }).as_u
+#define AS_F32(i)	((union cast_f32){ .as_u = i }).as_f
+//f64
+#define AS_U64(f)	((union cast_f64){ .as_f = f }).as_u
+#define AS_F64(i)	((union cast_f64){ .as_u = i }).as_f
+//f80
+#if LIBCONFIG_USE_FLOAT80
+#define AS_U80(f)	((union cast_f80){ .as_f = f }).as_u
+#define AS_F80(i)	((union cast_f80){ .as_u = i }).as_f
+#else
+#define AS_U80(f)	((t_u128)0)
+#define AS_F80(i)	((t_f128)0)
+#endif
+//f128
+#if LIBCONFIG_USE_FLOAT128
+#define AS_U128(f)	((union cast_f128){ .as_f = f }).as_u
+#define AS_F128(i)	((union cast_f128){ .as_u = i }).as_f
+#else
+#define AS_U128(f)	((t_u128)0)
+#define AS_F128(i)	((t_f128)0)
+#endif
 
 
 

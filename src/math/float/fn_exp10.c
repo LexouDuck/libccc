@@ -73,7 +73,7 @@ t_f##BITS	F##BITS##_Exp10(t_f##BITS x) \
 	t_f##BITS n, y = F##BITS##_SplitInt(x, &n); \
 	u_cast_f##BITS u = {n}; \
 	/* abs(n) < 16 without raising invalid on NaN */ \
-	if (((u.value_uint & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS) < ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + 4) \
+	if (((u.as_u & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS) < ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + 4) \
 	{ \
 		if (!y) \
 			return (p10[(int)n + 15]); \

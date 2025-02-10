@@ -491,9 +491,9 @@ t_f##BITS F##BITS##_ErfC2(t_f##BITS abs_x) \
 		R = __polynomial_f##BITS(s, __data_erf_f##BITS.rb, 6); \
 		S = __polynomial_f##BITS(s, __data_erf_f##BITS.sb, 7); \
 	} \
-	tmp.value_float = abs_x; \
-	tmp.value_uint &= ((~(t_u##BITS)0) << ZMASK); \
-	z = tmp.value_float; \
+	tmp.as_f = abs_x; \
+	tmp.as_u &= ((~(t_u##BITS)0) << ZMASK); \
+	z = tmp.as_f; \
 	return ( \
 		F##BITS##_Exp(-z * z - 0.5625) * \
 		F##BITS##_Exp((z - abs_x) * (z + abs_x) + R / S) / abs_x); \

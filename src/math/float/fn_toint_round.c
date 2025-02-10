@@ -18,16 +18,16 @@ t_f##BITS	F##BITS##_Round(t_f##BITS x) \
 	t_f##BITS y; \
 	t_sint e; \
 	u_cast_f##BITS cast; \
-	cast.value_float = x; \
-	e = (cast.value_uint & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
+	cast.as_f = x; \
+	e = (cast.as_u & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
 	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
 		return x; \
-	if (cast.value_uint >> (BITS - 1)) \
+	if (cast.as_u >> (BITS - 1)) \
 		x = -x; \
 	if (e < ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) - 1) \
 	{ \
 		/* FORCE_EVAL(x + toint); */ \
-		return (0 * cast.value_float); \
+		return (0 * cast.as_f); \
 	} \
 	y = x + toint - toint - x; \
 	if (y > 0.5) \
@@ -36,7 +36,7 @@ t_f##BITS	F##BITS##_Round(t_f##BITS x) \
 		y = y + x + 1; \
 	else \
 		y = y + x; \
-	if (cast.value_uint >> (BITS - 1)) \
+	if (cast.as_u >> (BITS - 1)) \
 		y = -y; \
 	return y; \
 }

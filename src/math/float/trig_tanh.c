@@ -65,16 +65,16 @@ DEFINEFUNC_FLOAT_TANH(128)
 
 t_f32	F32_TanH(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {.f = x};
+	u_cast_f32 u = {x};
 	t_u32 w;
 	int sign;
 	t_f32 t;
 
 	/* x = |x| */
-	sign = u.i >> 31;
-	u.i &= 0x7fffffff;
-	x = u.f;
-	w = u.i;
+	sign = u.as_u >> 31;
+	u.as_u &= 0x7fffffff;
+	x = u.as_f;
+	w = u.as_u;
 
 	if (w > 0x3f0c9f54)
 	{
@@ -113,16 +113,16 @@ t_f32	F32_TanH(t_f32 x)
 
 t_f64	F64_TanH(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {.f = x};
+	u_cast_f64 u = {x};
 	t_u32 w;
 	int sign;
 	t_f64 t;
 
 	/* x = |x| */
-	sign = u.i >> 63;
-	u.i &= (t_u64)-1/2;
-	x = u.f;
-	w = u.i >> 32;
+	sign = u.as_u >> 63;
+	u.as_u &= (t_u64)-1/2;
+	x = u.as_f;
+	w = u.as_u >> 32;
 
 	if (w > 0x3fe193ea)
 	{

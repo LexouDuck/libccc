@@ -13,8 +13,8 @@ MATH_DECL_FUNCTION(t_sint, GetExp2, ilogb)
 t_sint	F##BITS##_GetExp2(t_f##BITS number) \
 { \
 	u_cast_f##BITS	cast; \
-	cast.value_float = number; \
-	return (((cast.value_uint & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS); \
+	cast.as_f = number; \
+	return (((cast.as_u & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS) - F##BITS##_EXPONENT_BIAS); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16

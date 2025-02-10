@@ -55,17 +55,17 @@ DEFINEFUNC_FLOAT_SINH(128)
 
 t_f32	F32_SinH(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {.f = x};
+	u_cast_f32 u = {x};
 	t_u32 w;
 	t_f32 t, h, absx;
 
 	h = 0.5;
-	if (u.i >> 31)
+	if (u.as_u >> 31)
 		h = -h;
 	/* |x| */
-	u.i &= 0x7fffffff;
-	absx = u.f;
-	w = u.i;
+	u.as_u &= 0x7fffffff;
+	absx = u.as_f;
+	w = u.as_u;
 	/* |x| < log(FLT_MAX) */
 	if (w < 0x42b17217)
 	{
@@ -86,17 +86,17 @@ t_f32	F32_SinH(t_f32 x)
 
 t_f64	F64_SinH(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {.f = x};
+	u_cast_f64 u = {x};
 	t_u32 w;
 	t_f64 t, h, absx;
 
 	h = 0.5;
-	if (u.i >> 63)
+	if (u.as_u >> 63)
 		h = -h;
 	/* |x| */
-	u.i &= (t_u64)-1/2;
-	absx = u.f;
-	w = u.i >> 32;
+	u.as_u &= (t_u64)-1/2;
+	absx = u.as_f;
+	w = u.as_u >> 32;
 	/* |x| < log(DBL_MAX) */
 	if (w < 0x40862e42)
 	{

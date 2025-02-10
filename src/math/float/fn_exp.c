@@ -48,7 +48,7 @@ DEFINEFUNC_FLOAT_EXP(128)
 
 	result.value_int = (1512775 * result.value_int + 1072632447);
 	result.value_int <<= (BITS / 2);
-	return (result.value_float);
+	return (result.as_f);
 #endif
 
 #if 0 // precise but slow iterative method

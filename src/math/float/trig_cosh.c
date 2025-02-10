@@ -54,14 +54,14 @@ DEFINEFUNC_FLOAT_COSH(128)
 
 t_f32	F32_CosH(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {.f = x};
+	u_cast_f32 u = {x};
 	t_u32 w;
 	t_f32 t;
 
 	/* |x| */
-	u.i &= 0x7FFFFFFF;
-	x = u.f;
-	w = u.i;
+	u.as_u &= 0x7FFFFFFF;
+	x = u.as_f;
+	w = u.as_u;
 	/* |x| < log(2) */
 	if (w < 0x3F317217)
 	{
@@ -86,14 +86,14 @@ t_f32	F32_CosH(t_f32 x)
 
 t_f64	F64_CosH(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {.f = x};
+	u_cast_f64 u = {x};
 	t_u32 w;
 	t_f64 t;
 
 	/* |x| */
-	u.i &= (t_u64)-1/2;
-	x = u.f;
-	w = u.i >> 32;
+	u.as_u &= (t_u64)-1/2;
+	x = u.as_f;
+	w = u.as_u >> 32;
 	/* |x| < log(2) */
 	if (w < 0x3FE62E42)
 	{
@@ -123,13 +123,13 @@ t_f64	F64_CosH(t_f64 x)
 t_f##BITS	F##BITS##_CosH(t_f##BITS x) \
 { \
 	union ldshape u = {x}; \
-	unsigned ex = u.i.se & 0x7FFF; \
+	t_uint ex = u.i.se & 0x7FFF; \
 	t_u32 w; \
 	t_f##BITS t; \
  \
 	/* |x| */ \
 	u.i.se = ex; \
-	x = u.f; \
+	x = u.as_f; \
 	w = u.i.m >> 32; \
 	/* |x| < log(2) */ \
 	if (ex < 0x3FFF-1 || (ex == 0x3FFF-1 && w < 0xB17217F7)) \

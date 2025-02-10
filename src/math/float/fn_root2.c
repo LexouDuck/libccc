@@ -64,12 +64,12 @@ DEFINEFUNC_FLOAT_ROOT2(128)
 	/* Fast Inverse square root (from the Quake III source code) */
 	u_float_cast result = { x };
 	t_float x_2;
-	x_2 = result.value_float * 0.5;
+	x_2 = result.as_f * 0.5;
 	result.value_int = FLOAT_FASTSQRT_CONSTANT - (result.value_int >> 1);
 	// TODO handle extended precision types
-	result.value_float = result.value_float * (1.5 - (x_2 * result.value_float * result.value_float)); // 1st iteration
-	result.value_float = result.value_float * (1.5 - (x_2 * result.value_float * result.value_float)); // 2nd iteration, this can be removed
-	return (result.value_float * x);
+	result.as_f = result.as_f * (1.5 - (x_2 * result.as_f * result.as_f)); // 1st iteration
+	result.as_f = result.as_f * (1.5 - (x_2 * result.as_f * result.as_f)); // 2nd iteration, this can be removed
+	return (result.as_f * x);
 #endif
 
 

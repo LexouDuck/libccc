@@ -76,8 +76,8 @@ t_f32	F32_Root3(t_f32 x)
 	static const unsigned B2 = 642849266; /* B2 = (127-127.0/3-24/3-0.03306235651)*2**23 */
 
 	t_f64 r,t;
-	union {t_f32 f; t_u32 i;} u = {x};
-	t_u32 hx = u.i & 0X7FFFFFFF;
+	u_cast_f32 u = {x};
+	t_u32 hx = u.as_u & 0X7FFFFFFF;
 
 	if (hx >= 0X7F800000)  /* cbrt(NaN,INF) is itself */
 		return x + x;
@@ -86,17 +86,17 @@ t_f32	F32_Root3(t_f32 x)
 	{  /* zero or subnormal? */
 		if (hx == 0)
 			return x;  /* cbrt(+-0) is itself */
-		u.f = x*0x1p24f;
-		hx = u.i & 0X7FFFFFFF;
+		u.as_f = x*0x1p24f;
+		hx = u.as_u & 0X7FFFFFFF;
 		hx = hx/3 + B2;
 	}
 	else
 		hx = hx/3 + B1;
-	u.i &= 0x80000000;
-	u.i |= hx;
+	u.as_u &= 0x80000000;
+	u.as_u |= hx;
 	/* First step Newton iteration (solving t*t-x/t == 0) to 16 bits. */
 	/* In t_f64 precision so that its terms can be arranged for efficiency without causing overflow or underflow. */
-	t = u.f;
+	t = u.as_f;
 	r = t*t*t;
 	t = t*((t_f64)x+x+r)/(x+r+r);
 	/* Second step Newton iteration to 47 bits.  In t_f64 precision for efficiency and accuracy. */
@@ -119,9 +119,9 @@ t_f64	F64_Root3(t_f64 x)
 	static const t_f64 P2 = +1.621429720105354466140; /* 0X3FF9F160, 0X4A49D6C2 */
 	static const t_f64 P3 = -0.758397934778766047437; /* 0xbfe844cb, 0xbee751d9 */
 	static const t_f64 P4 = +0.145996192886612446982; /* 0X3FC2B000, 0xd4e4edd7 */
-	union {t_f64 f; t_u64 i;} u = {x};
+	u_cast_f64 u = {x};
 	t_f64 r,s,t,w;
-	t_u32 hx = u.i>>32 & 0X7FFFFFFF;
+	t_u32 hx = u.as_u>>32 & 0X7FFFFFFF;
 
 	if (hx >= 0X7FF00000)  /* cbrt(NaN,INF) is itself */
 		return x+x;
@@ -142,17 +142,17 @@ t_f64	F64_Root3(t_f64 x)
 	*/
 	if (hx < 0x00100000)
 	{	/* zero or subnormal? */
-		u.f = x*0x1p54;
-		hx = u.i>>32 & 0X7FFFFFFF;
+		u.as_f = x*0x1p54;
+		hx = u.as_u>>32 & 0X7FFFFFFF;
 		if (hx == 0)
 			return x;  /* cbrt(0) is itself */
 		hx = hx/3 + B2;
 	}
 	else
 		hx = hx/3 + B1;
-	u.i &= 1ULL<<63;
-	u.i |= (t_u64)hx << 32;
-	t = u.f;
+	u.as_u &= 1ULL<<63;
+	u.as_u |= (t_u64)hx << 32;
+	t = u.as_f;
 	/*
 	New cbrt to 23 bits: cbrt(x) = t*cbrt(x/t**3) ~= t*P(t**3/x)
 	where P(r) is a polynomial of degree 4 that approximates 1/cbrt(r) to within 2**-23.5 when |r - 1| < 1/10.
@@ -173,9 +173,9 @@ t_f64	F64_Root3(t_f64 x)
 	**	0.667; the error in the rounded t can be up to about 3 23-bit ulps
 	**	before the final error is larger than 0.667 ulps.
 	*/
-	u.f = t;
-	u.i = (u.i + 0x80000000) & 0xffffffffc0000000ULL;
-	t = u.f;
+	u.as_f = t;
+	u.as_u = (u.as_u + 0x80000000) & 0xffffffffc0000000ULL;
+	t = u.as_f;
 
 	/* one step Newton iteration to 53 bits with error < 0.667 ulps */
 	s = t*t;         /* t*t is exact */
@@ -193,7 +193,7 @@ t_f##BITS	F##BITS##_Root3(t_f##BITS x) \
 { \
 	static const unsigned B1 = 709958130; /* B1 = (127-127.0/3-0.03306235651)*2**23 */ \
 	union ldshape u = {x}, v; \
-	union {t_f32 f; t_u32 i;} uft; \
+	u_cast_f32 uft; \
 	t_f##BITS r, s, t, w; \
 	t_f64 dr, dt, dx; \
 	t_f32 ft; \

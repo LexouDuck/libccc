@@ -60,23 +60,23 @@ t_f##BITS	F##BITS##_Hypotenuse(t_f##BITS x, t_f##BITS y) \
 	t_f##BITS ly; \
 	t_f##BITS z; \
 	/* arrange |x| >= |y| */ \
-	ux.value_uint &= (t_u##BITS)-1 >> 1; \
-	uy.value_uint &= (t_u##BITS)-1 >> 1; \
-	if (ux.value_uint < uy.value_uint) \
+	ux.as_u &= (t_u##BITS)-1 >> 1; \
+	uy.as_u &= (t_u##BITS)-1 >> 1; \
+	if (ux.as_u < uy.as_u) \
 	{ \
 		ut = ux; \
 		ux = uy; \
 		uy = ut; \
 	} \
 	/* special cases */ \
-	ex = ux.value_uint >> F##BITS##_MANTISSA_BITS; \
-	ey = uy.value_uint >> F##BITS##_MANTISSA_BITS; \
-	x = ux.value_float; \
-	y = uy.value_float; \
+	ex = ux.as_u >> F##BITS##_MANTISSA_BITS; \
+	ey = uy.as_u >> F##BITS##_MANTISSA_BITS; \
+	x = ux.as_f; \
+	y = uy.as_f; \
 	/* note: hypot(inf,nan) == inf */ \
 	if (ey == (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) \
 		return y; \
-	if (ex == (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS) || uy.value_uint == 0) \
+	if (ex == (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS) || uy.as_u == 0) \
 		return x; \
 	/* note: hypot(x,y) ~= x + y*y/x/2 with inexact for small y/x */ \
 	/* 64 difference is enough for ld80 t_f64 */ \

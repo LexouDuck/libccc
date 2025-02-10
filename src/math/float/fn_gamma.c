@@ -175,8 +175,8 @@ t_f64	F64_Gamma(t_f64 x)
 	u_cast_f64 u = {x};
 	t_f64 abs_x, y;
 	t_f64 dy, z, r;
-	t_u32 ix = u.value_uint >> 32 & 0x7FFFFFFF;
-	t_sint sign = u.value_uint >> 63;
+	t_u32 ix = u.as_u >> 32 & 0x7FFFFFFF;
+	t_sint sign = u.as_u >> 63;
 	/* special cases */
 	if (ix >= 0x7FF00000) /* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */
 		return x + INFINITY;

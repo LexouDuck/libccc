@@ -267,7 +267,7 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 			-1.6309292987e-03, /* 0xbad5c4e8 */
 		},
 	};
-	union {t_f32 f; t_u32 i;} u = {x};
+	u_cast_f32 u = {x};
 	t_f32	t,y,z,p,p1,p2,p3,q,r,w;
 	t_f32	nadj = NAN;
 	t_u32	ix;
@@ -276,8 +276,8 @@ t_f32 F32_lgammaf_r(t_f32 x, int *signgamp)
 
 	/* purge off +-inf, NaN, +-0, tiny and negative arguments */
 	*signgamp = 1;
-	sign = (u.i >> 31);
-	ix = u.i & ~F32_SIGN_BIT_MASK;
+	sign = (u.as_u >> 31);
+	ix = u.as_u & ~F32_SIGN_BIT_MASK;
 	if (ix >= F32_EXPONENT_MASK)
 		return x*x;
 	if (ix < 0x35000000) /* |x| < 2**-21, return -log(|x|) */
@@ -674,7 +674,7 @@ t_f64 F64_lgamma_r(t_f64 x, int *signgamp)
 			-1.63092934096575273989e-03, /* 0xBF5AB89D, 0x0B9E43E4 */
 		},
 	};
-	union {t_f64 f; t_u64 i;} u = {x};
+	u_cast_f64 u = {x};
 	t_f64 t,y,z,p,p1,p2,p3,q,r,w;
 	t_f64 nadj = NAN;
 	t_u32 ix;
@@ -682,8 +682,8 @@ t_f64 F64_lgamma_r(t_f64 x, int *signgamp)
 
 	/* purge off +-inf, NaN, +-0, tiny and negative arguments */
 	*signgamp = 1;
-	sign = u.i>>63;
-	ix = u.i>>32 & 0x7fffffff;
+	sign = u.as_u>>63;
+	ix = u.as_u>>32 & 0x7fffffff;
 	if (ix >= 0x7ff00000)
 		return x*x;
 	if (ix < (0x3ff-70)<<20)
@@ -709,7 +709,7 @@ t_f64 F64_lgamma_r(t_f64 x, int *signgamp)
 	}
 
 	/* purge off 1 and 2 */
-	if ((ix == 0x3ff00000 || ix == 0x40000000) && (t_u32)u.i == 0)
+	if ((ix == 0x3ff00000 || ix == 0x40000000) && (t_u32)u.as_u == 0)
 		r = 0;
 	/* for x < 2.0 */
 	else if (ix < 0x40000000)

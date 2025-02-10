@@ -46,10 +46,10 @@ DEFINEFUNC_MATH_FLOAT_POW(128, 64, ?)
 		return (1.);
 	if (y == 1.)
 		return (x);
-	result.value_float = x;
+	result.as_f = x;
 	result.value_int = (t_s32)(y * (result.value_int[1] - 1072632447) + 1072632447);
 	result.value_int = 0;
-	return (result.value_float);
+	return (result.as_f);
 #endif
 
 // lame exp*ln method

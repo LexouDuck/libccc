@@ -224,7 +224,7 @@ t_f80	F80_Exp2(t_f80 x)
 	t_sint e = u.i.se & 0x7fff;
 	t_f80 r, z;
 	t_u32 i0;
-	union {t_u32 u; t_s32 i;} k;
+	u_cast_f32 k;
 	/* Filter out exceptional cases. */
 	if (e >= 0x3fff + 13) /* |x| >= 8192 or x is NaN */
 	{
@@ -257,8 +257,8 @@ t_f80	F80_Exp2(t_f80 x)
 	*/
 	u.f = x + __data_exp_f80.redux;
 	i0 = u.i.m + N_EXP_F80 / 2;
-	k.u = i0 / N_EXP_F80 * N_EXP_F80;
-	k.i /= N_EXP_F80;
+	k.as_u = i0 / N_EXP_F80 * N_EXP_F80;
+	k.as_s /= N_EXP_F80;
 	i0 %= N_EXP_F80;
 	u.f -= __data_exp_f80.redux;
 	z = x - u.f;
@@ -274,7 +274,7 @@ t_f80	F80_Exp2(t_f80 x)
 		z*(__data_exp_f80.poly[5]+
 		z*(__data_exp_f80.poly[6])
 		)))))+tbl_hi;
-	return F80_From(r, k.i);
+	return F80_From(r, k.as_s);
 }
 #endif
 
@@ -315,7 +315,7 @@ t_f128	F128_Exp2(t_f128 x)
 	t_sint e = u.i.se & 0x7fff;
 	t_f128 r, z, t;
 	t_u32 i0;
-	union {t_u32 u; t_s32 i;} k;
+	u_cast_f32 k;
 	/* Filter out exceptional cases. */
 	if (e >= 0x3fff + 14) /* |x| >= 16384 or x is NaN */
 	{
@@ -348,8 +348,8 @@ t_f128	F128_Exp2(t_f128 x)
 	*/
 	u.f = x + __data_exp_f128.redux;
 	i0 = u.i2.lo + N_EXP_F128 / 2;
-	k.u = i0 / N_EXP_F128 * N_EXP_F128;
-	k.i /= N_EXP_F128;
+	k.as_u = i0 / N_EXP_F128 * N_EXP_F128;
+	k.as_s /= N_EXP_F128;
 	i0 %= N_EXP_F128;
 	u.f -= __data_exp_f128.redux;
 	z = x - u.f;
@@ -368,7 +368,7 @@ t_f128	F128_Exp2(t_f128 x)
 		z*(__data_exp_f128.poly[9]+
 		z*(__data_exp_f128.poly[10])
 		)))))))));
-	return F128_From(r, k.i);
+	return F128_From(r, k.as_s);
 }
 #endif
 

@@ -26,7 +26,7 @@ _INLINE() t_f128  F128_SplitExp (t_f128 a, t_sint* b)   { int tmp;	t_f128 result
 t_f##BITS	F##BITS##_SplitExp(t_f##BITS x, t_sint* exponent) \
 { \
 	u_cast_f##BITS y = {x}; \
-	t_sint ee = (y.value_uint >> F##BITS##_MANTISSA_BITS) & (((t_sint)1 << F##BITS##_EXPONENT_BITS) - 1); \
+	t_sint ee = (y.as_u >> F##BITS##_MANTISSA_BITS) & (((t_sint)1 << F##BITS##_EXPONENT_BITS) - 1); \
 	if (!ee) \
 	{ \
 		if (x) \
@@ -42,9 +42,9 @@ t_f##BITS	F##BITS##_SplitExp(t_f##BITS x, t_sint* exponent) \
 		return (x); \
 	} \
 	*exponent = ee - (((t_sint)1 << (F##BITS##_EXPONENT_BITS - 1)) - 1); \
-	y.value_uint &= (t_u##BITS)F##BITS##_MANTISSA_SIGNED; \
-	y.value_uint |= (t_u##BITS)F##BITS##_EXPONENT_ZERO - ((t_u##BITS)1 << F##BITS##_MANTISSA_BITS); \
-	return (y.value_float); \
+	y.as_u &= (t_u##BITS)F##BITS##_MANTISSA_SIGNED; \
+	y.as_u |= (t_u##BITS)F##BITS##_EXPONENT_ZERO - ((t_u##BITS)1 << F##BITS##_MANTISSA_BITS); \
+	return (y.as_f); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
@@ -75,7 +75,7 @@ t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \
 { \
 	t_u##BITS mask; \
 	u_cast_f##BITS u = {x}; \
-	t_sint e = (t_sint)(u.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
+	t_sint e = (t_sint)(u.as_u >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
 		(F##BITS##_EXPONENT_ZERO >> F##BITS##_MANTISSA_BITS); \
 	/* no fractional part */ \
 	if (e >= F##BITS##_MANTISSA_BITS) \
@@ -83,26 +83,26 @@ t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \
 		*integral = x; \
 		if (IS_NAN(x)) \
 			return (x); \
-		u.value_uint &= (t_u##BITS)1 << (BITS - 1); \
-		return (u.value_float); \
+		u.as_u &= (t_u##BITS)1 << (BITS - 1); \
+		return (u.as_f); \
 	} \
 	/* no integral part*/ \
 	if (e < 0) \
 	{ \
-		u.value_uint &= (t_u##BITS)1 << (BITS - 1); \
-		*integral = u.value_float; \
+		u.as_u &= (t_u##BITS)1 << (BITS - 1); \
+		*integral = u.as_f; \
 		return (x); \
 	} \
 	mask = (t_u##BITS)-1 >> (F##BITS##_EXPONENT_BITS + 1) >> e; \
-	if ((u.value_uint & mask) == 0) \
+	if ((u.as_u & mask) == 0) \
 	{ \
 		*integral = x; \
-		u.value_uint &= (t_u##BITS)1 << (BITS - 1); \
-		return (u.value_float); \
+		u.as_u &= (t_u##BITS)1 << (BITS - 1); \
+		return (u.as_f); \
 	} \
-	u.value_uint &= ~mask; \
-	*integral = u.value_float; \
-	return (x - u.value_float); \
+	u.as_u &= ~mask; \
+	*integral = u.as_f; \
+	return (x - u.as_f); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
@@ -130,11 +130,11 @@ t_f##BITS F##BITS##_CopySign(t_f##BITS x, t_f##BITS y) \
 { \
 	u_cast_f##BITS cast_x; \
 	u_cast_f##BITS cast_y; \
-	cast_x.value_float = x; \
-	cast_y.value_float = y; \
-	cast_x.value_uint &= ~F##BITS##_SIGN_BIT_MASK; \
-	cast_x.value_uint |= cast_y.value_uint & F##BITS##_SIGN_BIT_MASK; \
-	return (cast_x.value_float); \
+	cast_x.as_f = x; \
+	cast_y.as_f = y; \
+	cast_x.as_u &= ~F##BITS##_SIGN_BIT_MASK; \
+	cast_x.as_u |= cast_y.as_u & F##BITS##_SIGN_BIT_MASK; \
+	return (cast_x.as_f); \
 }
 
 #if LIBCONFIG_USE_FLOAT16

@@ -26,17 +26,17 @@ t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_sint* quotient) \
 { \
 	u_cast_f##BITS ux = {x}; \
 	u_cast_f##BITS uy = {y}; \
-	int ex = ux.value_uint >> F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
-	int ey = uy.value_uint >> F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
-	int sx = ux.value_uint >> (BITS - 1); \
-	int sy = uy.value_uint >> (BITS - 1); \
+	int ex = ux.as_u >> F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	int ey = uy.as_u >> F##BITS##_MANTISSA_BITS & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	int sx = ux.as_u >> (BITS - 1); \
+	int sy = uy.as_u >> (BITS - 1); \
 	t_u32 q; \
 	t_u##BITS i; \
-	t_u##BITS uxi = ux.value_uint; \
+	t_u##BITS uxi = ux.as_u; \
 	*quotient = 0; \
-	if (uy.value_uint << 1 == 0 || IS_NAN(y) || ex == ((1 << F##BITS##_EXPONENT_BITS) - 1)) \
+	if (uy.as_u << 1 == 0 || IS_NAN(y) || ex == ((1 << F##BITS##_EXPONENT_BITS) - 1)) \
 		return (x*y)/(x*y); \
-	if (ux.value_uint << 1 == 0) \
+	if (ux.as_u << 1 == 0) \
 		return x; \
 	/* normalize x and y */ \
 	if (!ex) \
@@ -51,13 +51,13 @@ t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_sint* quotient) \
 	} \
 	if (!ey) \
 	{ \
-		for (i = uy.value_uint << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ey--, i <<= 1); \
-		uy.value_uint <<= -ey + 1; \
+		for (i = uy.as_u << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ey--, i <<= 1); \
+		uy.as_u <<= -ey + 1; \
 	} \
 	else \
 	{ \
-		uy.value_uint &= (t_u##BITS)-1 >> (F##BITS##_EXPONENT_BITS + 1); \
-		uy.value_uint |= (t_u##BITS)+1 << F##BITS##_MANTISSA_BITS; \
+		uy.as_u &= (t_u##BITS)-1 >> (F##BITS##_EXPONENT_BITS + 1); \
+		uy.as_u |= (t_u##BITS)+1 << F##BITS##_MANTISSA_BITS; \
 	} \
 	q = 0; \
 	if (ex < ey) \
@@ -69,7 +69,7 @@ t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_sint* quotient) \
 	/* x mod y */ \
 	for (; ex > ey; ex--) \
 	{ \
-		i = uxi - uy.value_uint; \
+		i = uxi - uy.as_u; \
 		if (i >> (BITS - 1) == 0) \
 		{ \
 			uxi = i; \
@@ -78,7 +78,7 @@ t_f##BITS	F##BITS##_RemQuo(t_f##BITS x, t_f##BITS y, t_sint* quotient) \
 		uxi <<= 1; \
 		q <<= 1; \
 	} \
-	i = uxi - uy.value_uint; \
+	i = uxi - uy.as_u; \
 	if (i >> (BITS - 1) == 0) \
 	{ \
 		uxi = i; \
@@ -99,8 +99,8 @@ end: \
 	{ \
 		uxi >>= -ex + 1; \
 	} \
-	ux.value_uint = uxi; \
-	x = ux.value_float; \
+	ux.as_u = uxi; \
+	x = ux.as_f; \
 	if (sy) \
 		y = -y; \
 	if (ex == ey || (ex+1 == ey && (2*x > y || (2*x == y && q%2)))) \

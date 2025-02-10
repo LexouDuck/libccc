@@ -640,7 +640,7 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 	static const t_f64	invpio2 = 6.36619772367581382433e-01; /* 0x3FE45F30, 0x6DC9C883 */	/* 53 bits of 2/pi */
 	static const t_f64	pio2_1  = 1.57079631090164184570e+00; /* 0x3FF921FB, 0x50000000 */	/* first 25 bits of pi/2 */
 	static const t_f64	pio2_1t = 1.58932547735281966916e-08; /* 0x3E5110b4, 0x611A6263 */	/* pi/2 - pio2_1 */
-	union {t_f32 f; t_u32 i;} u = {x};
+	u_cast_f32 u = {x};
 	t_f64	tx[1],ty[1];
 	t_f64	fn;
 	t_u32	ix;
@@ -648,7 +648,7 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 	t_sint	e0;
 	t_bool	sign;
 
-	ix = u.i & 0x7FFFFFFF;
+	ix = u.as_u & 0x7FFFFFFF;
 	/* 25+53 bit pi is good enough for medium size */
 	if (ix < 0x4DC90FDB) /* |x| ~< 2^28*(pi/2), medium size */
 	{
@@ -677,10 +677,10 @@ t_sint __rem_pi2_f32(t_f32 x, t_f64 *y)
 		return 0;
 	}
 	/* scale x into [2^23, 2^24-1] */
-	sign = u.i>>31;
+	sign = u.as_u>>31;
 	e0 = (ix >> F32_MANTISSA_BITS) - (0x7F + F32_MANTISSA_BITS); /* e0 = ilogb(|x|)-23, positive */
-	u.i = ix - (e0 << F32_MANTISSA_BITS);
-	tx[0] = u.f;
+	u.as_u = ix - (e0 << F32_MANTISSA_BITS);
+	tx[0] = u.as_f;
 	n  =  __rem_pi2_large(tx,ty,e0,1,0);
 	if (sign)
 	{
@@ -730,14 +730,14 @@ t_sint __rem_pi2_f64(t_f64 x, t_f64 *y)
 	pio2_3  = 2.02226624871116645580e-21, /* 0x3BA3198A, 0x2E000000 */	/* third  33 bit of pi/2 */
 	pio2_3t = 8.47842766036889956997e-32; /* 0x397B839A, 0x252049C1 */	/* pi/2 - (pio2_1+pio2_2+pio2_3) */
 
-	union {t_f64 f; t_u64 i;} u = {x};
+	u_cast_f64 u = {x};
 	t_f64 z,w,t,r,fn;
 	t_f64 tx[3],ty[2];
 	t_u32 ix;
 	int sign, n, ex, ey, i;
 
-	sign = u.i>>63;
-	ix = u.i>>32 & 0x7fffffff;
+	sign = u.as_u>>63;
+	ix = u.as_u>>32 & 0x7fffffff;
 	if (ix <= 0x400f6a7a)
 	{ /* |x| ~<= 5pi/4 */
 		if ((ix & 0xfffff) == 0x921fb) /* |x| ~= pi/2 or 2pi/2 */
@@ -842,8 +842,8 @@ medium:
 			w = fn*pio2_1t;
 		}
 		y[0] = r - w;
-		u.f = y[0];
-		ey = u.i>>52 & 0x7ff;
+		u.as_f = y[0];
+		ey = u.as_u>>52 & 0x7ff;
 		ex = ix>>20;
 		if (ex - ey > 16)
 		{	/* 2nd round, good to 118 bits */
@@ -852,8 +852,8 @@ medium:
 			r = t - w;
 			w = fn*pio2_2t - ((t-r)-w);
 			y[0] = r - w;
-			u.f = y[0];
-			ey = u.i>>52 & 0x7ff;
+			u.as_f = y[0];
+			ey = u.as_u>>52 & 0x7ff;
 			if (ex - ey > 49)
 			{	/* 3rd round, good to 151 bits, covers all cases */
 				t = r;
@@ -875,10 +875,10 @@ medium:
 		return 0;
 	}
 	/* set z = scalbn(|x|,-ilogb(x)+23) */
-	u.f = x;
-	u.i &= (t_u64)-1>>12;
-	u.i |= (t_u64)(0x3ff + 23)<<52;
-	z = u.f;
+	u.as_f = x;
+	u.as_u &= (t_u64)-1>>12;
+	u.as_u |= (t_u64)(0x3ff + 23)<<52;
+	z = u.as_f;
 	for (i=0; i < 2; i++)
 	{
 		tx[i] = (t_f64)(t_s32)z;

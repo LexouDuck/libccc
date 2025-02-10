@@ -62,12 +62,12 @@ __data_log10_f32 =
 
 t_f32	F32_Log10(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {x};
+	u_cast_f32 u = {x};
 	t_f32 hfsq,f,s,s2,s4,R,t1,t2,dk,hi,lo;
 	t_u32 ix;
 	int k;
 
-	ix = u.i;
+	ix = u.as_u;
 	k = 0;
 	if (ix < 0x00800000 || ix >> 31) /* x < 2**-126  */
 	{
@@ -78,8 +78,8 @@ t_f32	F32_Log10(t_f32 x)
 		/* subnormal number, scale up x */
 		k -= 25;
 		x *= 0x1p25f;
-		u.f = x;
-		ix = u.i;
+		u.as_f = x;
+		ix = u.as_u;
 	}
 	else if (ix >= 0x7F800000)
 		return x;
@@ -89,8 +89,8 @@ t_f32	F32_Log10(t_f32 x)
 	ix += 0x3F800000 - 0x3F3504F3;
 	k += (int)(ix >> 23) - 0x7F;
 	ix = (ix & 0x007FFFFF) + 0x3F3504F3;
-	u.i = ix;
-	x = u.f;
+	u.as_u = ix;
+	x = u.as_f;
 
 	f = x - 1.0f;
 	s = f / (2.0f + f);
@@ -102,9 +102,9 @@ t_f32	F32_Log10(t_f32 x)
 	hfsq = 0.5f * f * f;
 
 	hi = f - hfsq;
-	u.f = hi;
-	u.i &= 0xFFFFF000;
-	hi = u.f;
+	u.as_f = hi;
+	u.as_u &= 0xFFFFF000;
+	hi = u.as_f;
 	lo = f - hi - hfsq + s * (hfsq + R);
 	dk = k;
 	return (
@@ -154,36 +154,36 @@ __data_log10_f64 =
 
 t_f64	F64_Log10(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {x};
+	u_cast_f64 u = {x};
 	t_f64 hfsq,f,s,s2,s4,w,R,t1,t2,dk,y,hi,lo,val_hi,val_lo;
 	t_u32 hx;
 	int k;
 
-	hx = u.i>>32;
+	hx = u.as_u>>32;
 	k = 0;
 	if (hx < 0x00100000 || hx >> 31)
 	{
-		if (u.i << 1 == 0)
+		if (u.as_u << 1 == 0)
 			return -1 / (x * x); /* log(+-0)=-inf */
 		if (hx >> 31)
 			return (x - x) / 0.0; /* log(-#) = NaN */
 		/* subnormal number, scale x up */
 		k -= 54;
 		x *= 0x1p54;
-		u.f = x;
-		hx = u.i>>32;
+		u.as_f = x;
+		hx = u.as_u>>32;
 	}
 	else if (hx >= 0x7FF00000)
 		return x;
-	else if (hx == 0x3FF00000 && u.i << 32 == 0)
+	else if (hx == 0x3FF00000 && u.as_u << 32 == 0)
 		return 0;
 
 	/* reduce x into [sqrt(2)/2, sqrt(2)] */
 	hx += 0x3FF00000 - 0x3FE6A09E;
 	k += (int)(hx >> 20) - 0x3FF;
 	hx = (hx & 0x000FFFFF) + 0x3FE6A09E;
-	u.i = (t_u64)hx << 32 | (u.i & 0xFFFFFFFF);
-	x = u.f;
+	u.as_u = (t_u64)hx << 32 | (u.as_u & 0xFFFFFFFF);
+	x = u.as_f;
 
 	f = x - 1.0;
 	hfsq = 0.5 * f * f;
@@ -197,9 +197,9 @@ t_f64	F64_Log10(t_f64 x)
 	/* See log2.c for details. */
 	/* hi+lo = f - hfsq + s*(hfsq+R) ~ log(1+f) */
 	hi = f - hfsq;
-	u.f = hi;
-	u.i &= (t_u64)-1<<32;
-	hi = u.f;
+	u.as_f = hi;
+	u.as_u &= (t_u64)-1<<32;
+	hi = u.as_f;
 	lo = f - hi - hfsq + s*(hfsq+R);
 
 	/* val_hi+val_lo ~ log10(1+f) + k*log10(2) */

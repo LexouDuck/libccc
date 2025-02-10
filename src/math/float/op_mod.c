@@ -71,75 +71,76 @@ DEFINEFUNC_FLOAT_MOD(128)
 #define DEFINEFUNC_FLOAT_MOD(BITS) \
 t_f##BITS	F##BITS##_Mod(t_f##BITS x, t_f##BITS y) \
 { \
-	union { t_f##BITS f; t_u##BITS i; } ux = {x}, uy = {y}; \
-	int ex = (ux.i & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
-	int ey = (uy.i & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
-	t_u##BITS sx = ux.i & F##BITS##_SIGN_BIT_MASK; \
-	t_u##BITS uxi = ux.i; /* `uxi` should be `ux.i`, but then gcc wrongly adds float load/store to inner loops ruining performance and code size */ \
+	u_cast_f##BITS ux = {x}; \
+	u_cast_f##BITS uy = {y}; \
+	int ex = (ux.as_u & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
+	int ey = (uy.as_u & F##BITS##_EXPONENT_MASK) >> F##BITS##_MANTISSA_BITS; \
+	t_u##BITS sx = ux.as_u & F##BITS##_SIGN_BIT_MASK; \
+	t_u##BITS uxu = ux.as_u; /* `uxu` should be `ux.as_u`, but then gcc wrongly adds float load/store to inner loops ruining performance and code size */ \
 	t_u##BITS i; \
  \
-	if (uy.i << 1 == 0 || ex == 0xff || F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y) || F##BITS##_IsInf(x)) \
+	if (uy.as_u << 1 == 0 || ex == 0xff || F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y) || F##BITS##_IsInf(x)) \
 		return (x * y) / (x * y); \
-	if (uxi << 1 <= uy.i << 1) \
+	if (uxu << 1 <= uy.as_u << 1) \
 	{ \
-		if (uxi << 1 == uy.i << 1) \
+		if (uxu << 1 == uy.as_u << 1) \
 			return (0 * x); \
 		return (x); \
 	} \
 	/* normalize x and y */ \
 	if (!ex) \
 	{ \
-		for (i = uxi << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ex--, i <<= 1); \
-		uxi <<= -ex + 1; \
+		for (i = uxu << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ex--, i <<= 1); \
+		uxu <<= -ex + 1; \
 	} \
 	else \
 	{ \
-		uxi &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
-		uxi |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+		uxu &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
+		uxu |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
 	} \
 	if (!ey) \
 	{ \
-		for (i = uy.i << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ey--, i <<= 1); \
-		uy.i <<= -ey + 1; \
+		for (i = uy.as_u << (F##BITS##_EXPONENT_BITS + 1); i >> (BITS - 1) == 0; ey--, i <<= 1); \
+		uy.as_u <<= -ey + 1; \
 	} \
 	else \
 	{ \
-		uy.i &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
-		uy.i |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+		uy.as_u &= -(t_u##BITS)1 >> (F##BITS##_EXPONENT_BITS + 1); \
+		uy.as_u |= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
 	} \
 	/* x mod y */ \
 	for (; ex > ey; ex--) \
 	{ \
-		i = uxi - uy.i; \
+		i = uxu - uy.as_u; \
 		if (i >> (BITS - 1) == 0) \
 		{ \
 			if (i == 0) \
 				return (0 * x); \
-			uxi = i; \
+			uxu = i; \
 		} \
-		uxi <<= 1; \
+		uxu <<= 1; \
 	} \
-	i = uxi - uy.i; \
+	i = uxu - uy.as_u; \
 	if (i >> (BITS - 1) == 0) \
 	{ \
 		if (i == 0) \
 			return (0 * x); \
-		uxi = i; \
+		uxu = i; \
 	} \
-	for (; uxi>>F##BITS##_MANTISSA_BITS == 0; uxi <<= 1, ex--); \
+	for (; uxu>>F##BITS##_MANTISSA_BITS == 0; uxu <<= 1, ex--); \
 	/* scale result up */ \
 	if (ex > 0) \
 	{ \
-		uxi -= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
-		uxi |= (t_u##BITS)ex << F##BITS##_MANTISSA_BITS; \
+		uxu -= (t_u##BITS)1 << F##BITS##_MANTISSA_BITS; \
+		uxu |= (t_u##BITS)ex << F##BITS##_MANTISSA_BITS; \
 	} \
 	else \
 	{ \
-		uxi >>= -ex + 1; \
+		uxu >>= -ex + 1; \
 	} \
-	uxi |= sx; \
-	ux.i = uxi; \
-	return (ux.f); \
+	uxu |= sx; \
+	ux.as_u = uxu; \
+	return (ux.as_f); \
 } \
 
 DEFINEFUNC_FLOAT_MOD(32)

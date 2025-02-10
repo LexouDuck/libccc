@@ -16,18 +16,18 @@ t_f##BITS	F##BITS##_Trunc(t_f##BITS x) \
 { \
 	t_u##BITS mantissa; \
 	u_cast_f##BITS cast = {x}; \
-	t_s##BITS e = (t_s##BITS)(cast.value_uint >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
+	t_s##BITS e = (t_s##BITS)(cast.as_u >> F##BITS##_MANTISSA_BITS & (F##BITS##_EXPONENT_MASK >> F##BITS##_MANTISSA_BITS)) - \
 			(F##BITS##_EXPONENT_ZERO >> F##BITS##_MANTISSA_BITS) + (F##BITS##_EXPONENT_BITS + 1); \
 	if (e >= F##BITS##_MANTISSA_BITS + (F##BITS##_EXPONENT_BITS + 1)) \
 		return x; \
 	if (e < (F##BITS##_EXPONENT_BITS + 1)) \
 		e = 1; \
 	mantissa = (t_u##BITS)-1 >> e; \
-	if ((cast.value_uint & mantissa) == 0) \
+	if ((cast.as_u & mantissa) == 0) \
 		return x; \
 	/* FORCE_EVAL(x + 0x1p120f); */ \
-	cast.value_uint &= ~mantissa; \
-	return cast.value_float; \
+	cast.as_u &= ~mantissa; \
+	return cast.as_f; \
 } \
 
 #if LIBCONFIG_USE_FLOAT16

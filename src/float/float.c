@@ -18,27 +18,27 @@ t_f##BITS	F##BITS##_NextAfter(t_f##BITS x, t_f##BITS y) \
 	t_u##BITS ay; \
 	if (IS_NAN(x) || IS_NAN(y)) \
 		return (x + y); \
-	if (ux.value_uint == uy.value_uint) \
+	if (ux.as_u == uy.as_u) \
 		return y; \
-	ax = ux.value_uint & (t_u##BITS)-1 / 2; \
-	ay = uy.value_uint & (t_u##BITS)-1 / 2; \
+	ax = ux.as_u & (t_u##BITS)-1 / 2; \
+	ay = uy.as_u & (t_u##BITS)-1 / 2; \
 	if (ax == 0) \
 	{ \
 		if (ay == 0) \
 			return (y); \
-		ux.value_uint = (uy.value_uint & (t_u##BITS)1 << (BITS - 1)) | 1; \
+		ux.as_u = (uy.as_u & (t_u##BITS)1 << (BITS - 1)) | 1; \
 	} \
-	else if (ax > ay || ((ux.value_uint ^ uy.value_uint) & (t_u##BITS)1 << (BITS - 1))) \
-		ux.value_uint--; \
+	else if (ax > ay || ((ux.as_u ^ uy.as_u) & (t_u##BITS)1 << (BITS - 1))) \
+		ux.as_u--; \
 	else \
-		ux.value_uint++; \
+		ux.as_u++; \
 	/* t_s##BITS e; */ \
-	/* e = ux.value_uint & F##BITS##_EXPONENT_MASK; */ \
-	/* // raise overflow if ux.value_float is infinite and x is finite */ \
+	/* e = ux.as_u & F##BITS##_EXPONENT_MASK; */ \
+	/* // raise overflow if ux.as_f is infinite and x is finite */ \
 	/* if (e == F##BITS##_EXPONENT_MASK)	FORCE_EVAL(x + x); */ \
-	/* // raise underflow if ux.value_float is subnormal or zero */ \
-	/* if (e == 0)	FORCE_EVAL(x * x + ux.value_float * ux.value_float); */ \
-	return (ux.value_float); \
+	/* // raise underflow if ux.as_f is subnormal or zero */ \
+	/* if (e == 0)	FORCE_EVAL(x * x + ux.as_f * ux.as_f); */ \
+	return (ux.as_f); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
@@ -66,8 +66,8 @@ t_f##BITS F##BITS##_NearbyInt(t_f##BITS x) \
 { \
 	static const t_f##BITS toint = 1. / F##BITS##_EPSILON; \
 	u_cast_f##BITS u = {x}; \
-	t_u##BITS e = (u.value_uint >> F##BITS##_MANTISSA_BITS) & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
-	t_u##BITS s = (u.value_uint >> (BITS - 1)); \
+	t_u##BITS e = (u.as_u >> F##BITS##_MANTISSA_BITS) & ((1 << F##BITS##_EXPONENT_BITS) - 1); \
+	t_u##BITS s = (u.as_u >> (BITS - 1)); \
 	t_f##BITS y; \
 	if (e >= ((1 << (F##BITS##_EXPONENT_BITS - 1)) - 1) + F##BITS##_MANTISSA_BITS) \
 		return (x); \
@@ -104,14 +104,14 @@ MATH_DECL_FUNCTION(t_sint, ToInt, lrint)
 t_sint	F##BITS##_ToInt(t_f##BITS x) \
 { \
 	u_cast_f64 u = {(t_f64)x}; \
-	t_u32 abstop = u.value_uint >> 32 & 0x7FFFFFFF; \
-	t_u64 sign = u.value_uint & ((t_u64)1 << 63); \
+	t_u32 abstop = u.as_u >> 32 & 0x7FFFFFFF; \
+	t_u64 sign = u.as_u & ((t_u64)1 << 63); \
 	if (abstop < 0x41DFFFFF) \
 	{ \
 		/* |x| < 0x7FFFFC00, no overflow */ \
-		u.value_float = 1. / F64_EPSILON; \
-		u.value_uint |= sign; \
-		t_f64 toint = u.value_float; \
+		u.as_f = 1. / F64_EPSILON; \
+		u.as_u |= sign; \
+		t_f64 toint = u.as_f; \
 		t_f64 y = x + toint - toint; \
 		return ((t_sint)y); \
 	} \

@@ -55,46 +55,46 @@ DEFINEFUNC_FLOAT_INVTANH(128)
 
 t_f32	F32_InvTanH(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {.f = x};
-	unsigned s = u.i >> 31;
+	u_cast_f32 u = {x};
+	unsigned s = u.as_u >> 31;
 	t_f32 y;
 
 	/* |x| */
-	u.i &= 0x7fffffff;
-	y = u.f;
+	u.as_u &= 0x7fffffff;
+	y = u.as_f;
 
-	if (u.i < 0x3f800000 - (1<<23))
+	if (u.as_u < 0x3f800000 - (1<<23))
 	{
-		if (u.i < 0x3f800000 - (32<<23))
+		if (u.as_u < 0x3f800000 - (32<<23))
 		{
 			/* handle underflow */
-			if (u.i < (1<<23))
+			if (u.as_u < (1<<23))
 				{}/*FORCE_EVAL((t_f32)(y*y));*/
 		}
 		else
 		{
 			/* |x| < 0.5, up to 1.7ulp error */
-			y = 0.5f*F32_Log(1 + (2*y + 2*y*y/(1-y)));
+			y = 0.5f * F32_Log(1 + (2 * y + 2*y*y/(1-y)));
 		}
 	}
 	else
 	{
 		/* avoid overflow */
-		y = 0.5f*F32_Log(1 + (2*(y/(1-y))));
+		y = 0.5f * F32_Log(1 + (2 * (y/(1-y))));
 	}
 	return s ? -y : y;
 }
 
 t_f64	F64_InvTanH(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {.f = x};
-	unsigned e = u.i >> 52 & 0x7ff;
-	unsigned s = u.i >> 63;
+	u_cast_f64 u = {x};
+	unsigned e = u.as_u >> 52 & 0x7ff;
+	unsigned s = u.as_u >> 63;
 	t_f64 y;
 
 	/* |x| */
-	u.i &= (t_u64)-1/2;
-	y = u.f;
+	u.as_u &= (t_u64)-1/2;
+	y = u.as_f;
 	if (e < 0x3ff - 1)
 	{
 		if (e < 0x3ff - 32)
@@ -106,13 +106,13 @@ t_f64	F64_InvTanH(t_f64 x)
 		else
 		{
 			/* |x| < 0.5, up to 1.7ulp error */
-			y = 0.5*F64_Log(1 + (2*y + 2*y*y/(1-y)));
+			y = 0.5 * F64_Log(1 + (2 * y + 2*y*y/(1-y)));
 		}
 	}
 	else
 	{
 		/* avoid overflow */
-		y = 0.5*F64_Log(1 + (2*(y/(1-y))));
+		y = 0.5 * F64_Log(1 + (2 * (y/(1-y))));
 	}
 	return s ? -y : y;
 }

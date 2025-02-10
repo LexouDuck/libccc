@@ -47,13 +47,13 @@ DEFINEFUNC_FLOAT_INVSINH(128)
 
 t_f32	F32_InvSinH(t_f32 x)
 {
-	union {t_f32 f; t_u32 i;} u = {.f = x};
-	t_u32 i = u.i & 0x7FFFFFFF;
-	unsigned s = u.i >> 31;
+	u_cast_f32 u = {x};
+	t_u32 i = u.as_u & 0x7FFFFFFF;
+	unsigned s = u.as_u >> 31;
 
 	/* |x| */
-	u.i = i;
-	x = u.f;
+	u.as_u = i;
+	x = u.as_f;
 
 	if (i >= 0x3F800000 + (12<<23))
 	{	/* |x| >= 0x1p12 or inf or nan */
@@ -76,13 +76,13 @@ t_f32	F32_InvSinH(t_f32 x)
 
 t_f64	F64_InvSinH(t_f64 x)
 {
-	union {t_f64 f; t_u64 i;} u = {.f = x};
-	unsigned e = u.i >> 52 & 0x7FF;
-	unsigned s = u.i >> 63;
+	u_cast_f64 u = {x};
+	unsigned e = u.as_u >> 52 & 0x7FF;
+	unsigned s = u.as_u >> 63;
 
 	/* |x| */
-	u.i &= (t_u64)-1/2;
-	x = u.f;
+	u.as_u &= (t_u64)-1/2;
+	x = u.as_f;
 
 	if (e >= 0x3FF + 26)
 	{	/* |x| >= 0x1p26 or inf or nan */
