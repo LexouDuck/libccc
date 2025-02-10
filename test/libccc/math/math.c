@@ -60,16 +60,11 @@ void	print_math_title(char const * title)
 #define TEST_GET_RESULTS(...) \
 	for (unsigned int i = 0; i < tests; ++i) \
 	{ \
-		if (expects[i] == results[i]) \
-			errors[i] = 0; \
-		else if (isnan(expects[i]) && isnan(results[i])) \
-			errors[i] = 0; \
-		else if (isnan(expects[i]) || isnan(results[i])) \
-			errors[i] = INF; \
-		else if (isinf(expects[i]) && isinf(results[i])) \
-			errors[i] = INF; \
-		else if (isinf(expects[i]) || isinf(results[i])) \
-			errors[i] = INF; \
+		if (expects[i] == results[i])	errors[i] = 0; \
+		else if (isnan(expects[i]) && isnan(results[i]))	errors[i] = 0; \
+		else if (isnan(expects[i]) || isnan(results[i]))	errors[i] = INF; \
+		else if (isinf(expects[i]) && isinf(results[i]))	errors[i] = INF; \
+		else if (isinf(expects[i]) || isinf(results[i]))	errors[i] = INF; \
 		else \
 		{ \
 			errors[i] = fabs(expects[i] - results[i]); \
@@ -78,7 +73,7 @@ void	print_math_title(char const * title)
 		if (isinf(errors[i]) || errors[i] > fabs(precision * expects[i])) \
 		{ \
 			++failed_tests; \
-			if (g_test.config.verbose && g_test.config.show_args) \
+			if (TRUE) /* (g_test.config.verbose && g_test.config.show_args) */ \
 			{ \
 				__VA_ARGS__ \
 			} \
@@ -91,7 +86,7 @@ void	print_math_title(char const * title)
 	g_test.suites[TESTSUITE_MATH].totals.tests += tests; \
 	g_test.suites[TESTSUITE_MATH].totals.failed += failed_tests; \
 	t_float percent = (tests - failed_tests) * 100. / tests; \
-	if (g_test.config.verbose || percent < 90.) \
+	if (g_test.config.verbose || percent < 100.) \
 	{ \
 		printf("\n%s\n", func_name); \
 		printf(__VA_ARGS__); \
@@ -182,7 +177,7 @@ int	test_math_realfunction_f##BITS( \
 		TEST_PERFORM_MATH_REALFUNCTION(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST #%03d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
+		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")", \
 			i, func_name, args[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests on interval [%g,%g], with increment=%g\n", tests, interval.start, interval.end, step) \
 	print_test_math_f##BITS(timer, results, expects, errors, precision, tests); \
@@ -220,7 +215,7 @@ int	test_math_realoperator_f##BITS( \
 		TEST_PERFORM_MATH_REALOPERATOR(expect, expects, func_libc) \
 	} \
 	TEST_GET_RESULTS( \
-		printf("TEST #%03d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")\n", \
+		printf("\n" ANSI_COLOR_FG_RED "TEST FAILED" ANSI_RESET " #%03d: %s(" SF_NUMBER ", " SF_NUMBER ") -> returned " SF_NUMBER " but libc returned " SF_NUMBER " (difference is " SF_NUMBER ")", \
 			i, func_name, args_x[i], args_y[i], results[i], expects[i], errors[i]);) \
 	TEST_PRINT_MATH("Ran %d tests with:\n" \
 		"arg1: interval [%g,%g], with increment=%g\n" \
@@ -528,23 +523,23 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_OPERATOR(atan2, atan2, 100, {-1e9,+1e9}, {-1e9,+1e9});
 
 	print_math_title("Hyperbolic Sine");
-	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(sinh, sinh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 3000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(sinh, sinh, 3000, {-1e9,+1e9});
 	print_math_title("Hyperbolic Cosine");
-	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(cosh, cosh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 3000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(cosh, cosh, 3000, {-1e9,+1e9});
 	print_math_title("Hyperbolic Tangent");
-	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-TAU,+TAU});
-	RUNTESTS_MATH_FUNCTION(tanh, tanh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 3000, {-TAU,+TAU});
+	RUNTESTS_MATH_FUNCTION(tanh, tanh, 3000, {-1e9,+1e9});
 	print_math_title("Hyperbolic Arc-Sine");
-	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-5e1,+5e1});
-	RUNTESTS_MATH_FUNCTION(asinh, asinh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 3000, {-5e1,+5e1});
+	RUNTESTS_MATH_FUNCTION(asinh, asinh, 3000, {-1e9,+1e9});
 	print_math_title("Hyperbolic Arc-Cosine");
-	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {+1e0,+5e1});
-	RUNTESTS_MATH_FUNCTION(acosh, acosh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 3000, {+1e0,+5e1});
+	RUNTESTS_MATH_FUNCTION(acosh, acosh, 3000, {-1e9,+1e9});
 	print_math_title("Hyperbolic Arc-Tangent");
-	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e0,+1e0});
-	RUNTESTS_MATH_FUNCTION(atanh, atanh, 1000, {-1e9,+1e9});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 3000, {-1e0,+1e0});
+	RUNTESTS_MATH_FUNCTION(atanh, atanh, 3000, {-1e9,+1e9});
 
 	return (OK);
 }
