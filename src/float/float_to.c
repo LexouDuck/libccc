@@ -81,7 +81,7 @@ t_f##BITS	F##BITS##_SplitInt(t_f##BITS x, t_f##BITS* integral) \
 	if (e >= F##BITS##_MANTISSA_BITS) \
 	{ \
 		*integral = x; \
-		if (IS_NAN(x)) \
+		if (F##BITS##_IsNaN(x)) \
 			return (x); \
 		u.as_u &= (t_u##BITS)1 << (BITS - 1); \
 		return (u.as_f); \

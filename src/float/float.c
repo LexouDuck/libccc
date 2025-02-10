@@ -16,7 +16,7 @@ t_f##BITS	F##BITS##_NextAfter(t_f##BITS x, t_f##BITS y) \
 	u_cast_f##BITS uy = {y}; \
 	t_u##BITS ax; \
 	t_u##BITS ay; \
-	if (IS_NAN(x) || IS_NAN(y)) \
+	if (F##BITS##_IsNaN(x) || F##BITS##_IsNaN(y)) \
 		return (x + y); \
 	if (ux.as_u == uy.as_u) \
 		return y; \
