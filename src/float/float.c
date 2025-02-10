@@ -104,7 +104,7 @@ MATH_DECL_FUNCTION(t_sint, ToInt, lrint)
 _INLINE() \
 t_sint	F##BITS##_ToInt(t_f##BITS x) \
 { \
-	return F##BITS##_NearbyInt(x); \
+	return SInt_FromF##BITS(F##BITS##_NearbyInt(x)); \
 } \
 
 #if LIBCONFIG_USE_FLOAT16
