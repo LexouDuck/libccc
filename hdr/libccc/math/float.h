@@ -1945,21 +1945,33 @@ t_f128								F128_InvTanH(t_f128 x);
 
 
 
-float	__math_oflowf	(float x);
-double	__math_oflow	(double x);
+#if LIBCONFIG_USE_FLOAT16
+t_f16	__math_divzero_f16(t_bool sign);
+t_f16	__math_invalid_f16(t_f16 x);
+t_f16	__math_overflow_f16(t_f16 x);
+t_f16	__math_underflow_f16(t_f16 x);
+#endif
+t_f32	__math_divzero_f32(t_bool sign);
+t_f32	__math_invalid_f32(t_f32 x);
+t_f32	__math_overflow_f32(t_f32 x);
+t_f32	__math_underflow_f32(t_f32 x);
 
-float	__math_uflowf	(float x);
-double	__math_uflow	(double x);
-
-float	__math_xflowf	(uint32_t sign, float y);
-double	__math_xflow	(uint32_t sign, double y);
-
-float	__math_divzerof (uint32_t sign);
-double	__math_divzero  (uint32_t sign);
-
-float		__math_invalidf	(float x);
-double		__math_invalid	(double x);
-long double	__math_invalidl	(long double x);
+t_f64	__math_divzero_f64(t_bool sign);
+t_f64	__math_invalid_f64(t_f64 x);
+t_f64	__math_overflow_f64(t_f64 x);
+t_f64	__math_underflow_f64(t_f64 x);
+#if LIBCONFIG_USE_FLOAT80
+t_f80	__math_divzero_f80(t_bool sign);
+t_f80	__math_invalid_f80(t_f80 x);
+t_f80	__math_overflow_f80(t_f80 x);
+t_f80	__math_underflow_f80(t_f80 x);
+#endif
+#if LIBCONFIG_USE_FLOAT128
+t_f128	__math_divzero_f128(t_bool sign);
+t_f128	__math_invalid_f128(t_f128 x);
+t_f128	__math_overflow_f128(t_f128 x);
+t_f128	__math_underflow_f128(t_f128 x);
+#endif
 
 
 

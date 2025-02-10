@@ -149,7 +149,7 @@ t_f32	F32_Exp(t_f32 x)
 	t_u64 ki, t;
 	t_f64 kd, xd, z, r, r2, y, s;
 	/* Filter out exceptional cases. */
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)
+	if CCCERROR(F32_IsNaN(x), ERROR_NANARGUMENT, NULL)
 		return (NAN);
 	xd = (t_f64)x;
 	abstop = top12bits_f32(x) & 0x7ff;
@@ -159,10 +159,12 @@ t_f32	F32_Exp(t_f32 x)
 			return 0.0f;
 		if (abstop >= top12bits_f32(INFINITY))
 			return x + x;
-		if (x > +0x1.62E42Ep6f) /* x > log(0x1p128) ~= 88.72 */
-			return __math_oflowf(x);
-		if (x < -0x1.9FE368p6f) /* x < log(0x1p-150) ~= -103.97 */
-			return __math_uflowf(x);
+		if CCCERROR((x > +0x1.62E42Ep6f), ERROR_RESULTRANGE, /* x > log(0x1p128) ~= 88.72 */
+			"32-bit floating-point overflow to infinity for " SF_F32, x)
+			return __math_overflow_f32(x);
+		if CCCERROR((x < -0x1.9FE368p6f), ERROR_RESULTRANGE, /* x < log(0x1p-150) ~= -103.97 */
+			"32-bit floating-point underflow to zero for " SF_F32, x)
+			return __math_underflow_f64(x);
 	}
 	/* x*N/Ln2 = k + r with r in [-1/2, 1/2] and int k. */
 	z = __data_exp_f32.invln2_scaled * xd;
@@ -197,7 +199,7 @@ t_f64	F64_Exp(t_f64 x)
 	t_u64 ki, idx, top, sbits;
 	t_f64 kd, z, r, r2, scale, tail, tmp;
 	/* Filter out exceptional cases. */
-	if CCCERROR(IS_NAN(x), ERROR_NANARGUMENT, NULL)
+	if CCCERROR(F64_IsNaN(x), ERROR_NANARGUMENT, NULL)
 		return (NAN);
 	abstop = top12bits_f64(x) & 0x7ff;
 	if (predict_false(abstop - top12bits_f64(0x1p-54) >= top12bits_f64(512.0) - top12bits_f64(0x1p-54)))
@@ -210,10 +212,12 @@ t_f64	F64_Exp(t_f64 x)
 				return 0.0;
 			if (abstop >= top12bits_f64(INFINITY))
 				return 1.0 + x;
-			if (AS_U64(x) >> 63)
-				return __math_uflow(x);
-			else
-				return __math_oflow(x);
+			if CCCERROR((AS_U64(x) >> 63), ERROR_RESULTRANGE,
+				"64-bit floating-point underflow to zero for " SF_F64, x)
+				return __math_underflow_f64(x);
+			else if CCCERROR((TRUE), ERROR_RESULTRANGE,
+				"64-bit floating-point overflow to infinity for " SF_F64, x)
+				return __math_overflow_f64(x);
 		}
 		/* Large x is special cased below. */
 		abstop = 0;

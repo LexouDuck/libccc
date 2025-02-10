@@ -249,8 +249,8 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 		{
 			/* Finite x < 0. */
 			int yint = F32_checkint(iy);
-			if (yint == 0)
-				return __math_invalidf(x);
+			if CCCERROR((yint == 0), ERROR_MATHDOMAIN, NULL)
+				return __math_invalid_f32(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
 			ix &= ~F32_SIGN_BIT_MASK;
@@ -268,10 +268,12 @@ t_f32	F32_Pow(t_f32 x, t_f32 y)
 	if (predict_false((AS_U64(ylogx) >> 47 & 0xFFFF) >= AS_U64(126.0 * SCALE_POW_F32) >> 47))
 	{
 		/* |y*log(x)| >= 126. */
-		if (ylogx > 0x1.FFFFFFFD1D571p+6 * SCALE_POW_F32)
-			return __math_oflowf(sign_bias ? -1.f : +1.f);
-		if (ylogx <= -150.0 * SCALE_POW_F32)
-			return __math_uflowf(sign_bias ? -1.f : +1.f);
+		if CCCERROR((ylogx > 0x1.FFFFFFFD1D571p+6 * SCALE_POW_F32), ERROR_RESULTRANGE,
+			"32-bit floating-point overflow to infinity for " SF_F32 " ^ " SF_F32, x, y)
+			return __math_overflow_f32(sign_bias ? -1.f : +1.f);
+		if CCCERROR((ylogx <= -150.0 * SCALE_POW_F32), ERROR_RESULTRANGE,
+			"32-bit floating-point underflow to zero for " SF_F32 " ^ " SF_F32, x, y)
+			return __math_underflow_f32(sign_bias ? -1.f : +1.f);
 	}
 	return F32_exp2_inline(ylogx, sign_bias);
 }
@@ -635,10 +637,12 @@ t_f64	F64_Pow_exp_inline(t_f64 x, t_f64 xtail, t_u32 sign_bias)
 		if (abstop >= F64_Pow_top12(1024.0))
 		{
 			/* Note: inf and nan are already handled. */
-			if (AS_U64(x) >> 63)
-				return __math_uflow(sign_bias ? -1. : +1.);
-			else
-				return __math_oflow(sign_bias ? -1. : +1.);
+			if CCCERROR((AS_U64(x) >> 63), ERROR_RESULTRANGE,
+				"64-bit floating-point overflow to infinity for " SF_F32, x)
+				return __math_underflow_f64(sign_bias ? -1. : +1.);
+			else if CCCERROR((TRUE), ERROR_RESULTRANGE,
+				"64-bit floating-point underflow to zero for " SF_F32, x)
+				return __math_overflow_f64(sign_bias ? -1. : +1.);
 		}
 		/* Large x is special cased below. */
 		abstop = 0;
@@ -757,8 +761,8 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 		{
 			/* Finite x < 0. */
 			int yint = F64_Pow_checkint(iy);
-			if (yint == 0)
-				return __math_invalid(x);
+			if CCCERROR((yint == 0), ERROR_MATHDOMAIN, NULL)
+				return __math_invalid_f64(x);
 			if (yint == 1)
 				sign_bias = SIGN_BIAS;
 			ix &= ~F64_SIGN_BIT_MASK;
@@ -777,9 +781,12 @@ t_f64	F64_Pow(t_f64 x, t_f64 y)
 				else
 					return 1.0;
 			}
-			return (ix > AS_U64(1.0)) == (topy < 0x800) ?
-				__math_oflow(sign_bias ? -1. : +1.) :
-				__math_uflow(sign_bias ? -1. : +1.);
+			if CCCERROR((ix > AS_U64(1.0)) == (topy < 0x800), ERROR_RESULTRANGE,
+				"64-bit floating-point overflow to infinity for " SF_F64 " ^ " SF_F64, x, y)
+				return __math_overflow_f64(sign_bias ? -1. : +1.);
+			else if CCCERROR((TRUE), ERROR_RESULTRANGE,
+				"64-bit floating-point underflow to zero for " SF_F64 " ^ " SF_F64, x, y)
+				return __math_underflow_f64(sign_bias ? -1. : +1.);
 		}
 		if (topx == 0)
 		{

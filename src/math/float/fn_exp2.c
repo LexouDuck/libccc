@@ -121,10 +121,12 @@ t_f32	F32_Exp2(t_f32 x)
 			return 0.0f;
 		if (abstop >= top12_f32(INFINITY))
 			return x + x;
-		if (x > 0.0f) //TODO: CCCERROR((x > 0.0f), ERROR_MATHROUNDING, "value overflowed to inf")?
-			return __math_oflowf(x);
-		if (x <= -150.0f) //TODO: CCCERROR((x <= -150.0f), ERROR_MATHROUNDING, "value underflowed to 0")?
-			return __math_uflowf(x);
+		if CCCERROR((x > 0.0f), ERROR_RESULTRANGE,
+			"32-bit floating-point overflow to infinity for " SF_F32, x)
+			return __math_overflow_f32(x);
+		if CCCERROR((x <= -150.0f), ERROR_RESULTRANGE,
+			"32-bit floating-point underflow to zero for " SF_F32, x)
+			return __math_underflow_f32(x);
 	}
 	/* x = k/N + r with r in [-1/(2N), 1/(2N)] and int k. */
 	kd = xd + __data_exp_f32.shift_scaled;
@@ -160,10 +162,12 @@ t_f64	F64_Exp2(t_f64 x)
 				return 0.0;
 			if (abstop >= top12_f64(INFINITY))
 				return 1.0 + x;
-			if (!(AS_U64(x) >> 63)) //TODO: CCCERROR((!(AS_U64(x) >> 63)), ERROR_MATHROUNDING, "value overflowed to inf")?
-				return __math_oflowf(x);
-			if (AS_U64(x) >= AS_U64(-1075.0)) //TODO: CCCERROR((AS_U64(x) >= AS_U64(-1075.0)), ERROR_MATHROUNDING, "value underflowed to 0")?
-				return __math_uflowf(x);
+			if CCCERROR((!(AS_U64(x) >> 63)), ERROR_RESULTRANGE,
+				"64-bit floating-point overflow to infinity for " SF_F64, x)
+				return __math_overflow_f32(x);
+			if CCCERROR((AS_U64(x) >= AS_U64(-1075.0)), ERROR_RESULTRANGE,
+				"64-bit floating-point underflow to zero for " SF_F64, x)
+				return __math_underflow_f32(x);
 		}
 		if (2 * AS_U64(x) > 2 * AS_U64(928.0)) /* Large x is special cased below. */
 			abstop = 0;

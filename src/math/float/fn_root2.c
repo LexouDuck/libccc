@@ -280,8 +280,8 @@ t_f32 F32_Root2(t_f32 x)
 			return x;
 		if (ix == 0x7f800000)
 			return x;
-		if (ix > 0x7f800000)
-			return __math_invalidf(x);
+		if CCCERROR((ix > 0x7f800000), ERROR_MATHDOMAIN, NULL)
+			return __math_invalid_f32(x);
 		/* x is subnormal, normalize it.  */
 		ix = AS_U32(x * 0x1p23f);
 		ix -= 23 << 23;
@@ -354,8 +354,8 @@ t_f64 F64_Root2(t_f64 x)
 			return x;
 		if (ix == 0x7ff0000000000000)
 			return x;
-		if (ix > 0x7ff0000000000000)
-			return __math_invalid(x);
+		if CCCERROR((ix > 0x7ff0000000000000), ERROR_MATHDOMAIN, NULL)
+			return __math_invalid_f64(x);
 		/* x is subnormal, normalize it.  */
 		ix = AS_U64(x * 0x1p52);
 		top = ix >> 52;
@@ -495,8 +495,8 @@ t_f##BITS F##BITS##_Root2(t_f##BITS x) \
 			return x; \
 		if (ix.hi == 0x7fff000000000000 && ix.lo == 0) \
 			return x; \
-		if (top >= 0x7fff) \
-			return __math_invalidl(x); \
+		if CCCERROR((top >= 0x7fff), ERROR_MATHDOMAIN, NULL) \
+			return __math_invalid_f##BITS(x); \
 		/* x is subnormal, normalize it.  */ \
 		ix = asu128(x * 0x1p112); \
 		top = ix.hi >> 48; \

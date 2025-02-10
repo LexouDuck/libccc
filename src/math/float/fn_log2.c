@@ -95,12 +95,12 @@ t_f32	F32_Log2(t_f32 x)
 	if (predict_false(ix - 0x00800000 >= 0x7f800000 - 0x00800000))
 	{
 		/* x < 0x1p-126 or inf or nan.  */
-		if (ix * 2 == 0)
-			return __math_divzerof(1);
+		if CCCERROR((ix * 2 == 0), ERROR_MATHDOMAIN, NULL)
+			return __math_divzero_f32(1);
 		if (ix == 0x7f800000) /* log2(inf) == inf.  */
 			return x;
-		if ((ix & 0x80000000) || ix * 2 >= 0xff000000)
-			return __math_invalidf(x);
+		if CCCERROR(((ix & 0x80000000) || ix * 2 >= 0xff000000), ERROR_MATHDOMAIN, NULL)
+			return __math_invalid_f32(x);
 		/* x is subnormal, normalize it.  */
 		ix = AS_U32(x * 0x1p23f);
 		ix -= 23 << 23;
@@ -398,12 +398,12 @@ t_f64	F64_Log2(t_f64 x)
 	if (predict_false(top - 0x0010 >= 0x7ff0 - 0x0010))
 	{
 		/* x < 0x1p-1022 or inf or nan.  */
-		if (ix * 2 == 0)
-			return __math_divzero(1);
+		if CCCERROR((ix * 2 == 0), ERROR_MATHDOMAIN, NULL)
+			return __math_divzero_f64(1);
 		if (ix == AS_U64(INFINITY)) /* log(inf) == inf.  */
 			return x;
-		if ((top & 0x8000) || (top & 0x7ff0) == 0x7ff0)
-			return __math_invalid(x);
+		if CCCERROR(((top & 0x8000) || (top & 0x7ff0) == 0x7ff0), ERROR_MATHDOMAIN, NULL)
+			return __math_invalid_f64(x);
 		/* x is subnormal, normalize it.  */
 		ix = AS_U64(x * 0x1p52);
 		ix -= 52ULL << 52;
