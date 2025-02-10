@@ -539,9 +539,9 @@ void	test_##TYPE##lrint(void) \
 	print_test_##TYPE##lrint(#TYPE"lrint (-1e-2) ",	FALSE,  -1e-2); \
 	print_test_##TYPE##lrint(#TYPE"lrint (-1e-9) ",	FALSE,  -1e-9); \
 	print_test_##TYPE##lrint(#TYPE"lrint (+inf)  ",	FALSE,  +INF); \
-	print_test_##TYPE##lrint(#TYPE"lrint (+nan)  ",	FALSE,  +NAN); \
 	print_test_##TYPE##lrint(#TYPE"lrint (-inf)  ",	FALSE,  -INF); \
-	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FALSE,  -NAN); \
+	print_test_##TYPE##lrint(#TYPE"lrint (+nan)  ",	FLAG_WARNING, +NAN); \
+	print_test_##TYPE##lrint(#TYPE"lrint (-nan)  ",	FLAG_WARNING, -NAN); \
 } \
 
 #if !defined(c_f16lrint) || !defined(__float16)
