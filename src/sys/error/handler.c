@@ -64,7 +64,7 @@ void	Error_Handler(e_cccerror error,
 	t_uint const  line,
 	t_char const* message)
 {
-	if (!error && (message == NULL || func == NULL))
+	if (!error && (message == NULL || func == NULL || file == NULL || line == 0))
 		return;
 	LIBCONFIG_ERROR_DEFAULTHANDLER(error, func, file, line, message)
 }
