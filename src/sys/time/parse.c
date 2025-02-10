@@ -108,14 +108,14 @@ typedef t_s16	t_bitmask_tm;
 #define SET_TM(FIELD, VALUE) \
 	date->FIELD = VALUE;	SET_WRITTEN(FIELD)
 
-#ifdef TM_GMTOFF
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
 #define BITMASK_tm_gmtoff	10
 #define SET_TM_GMTOFF(X)	/* tm->offset = (X); 	SET_WRITTEN(tm_gmtoff) */
 #else
 #define SET_TM_GMTOFF(X)	
 #endif
 
-#ifdef TM_ZONE
+#if defined(__USE_MISC) || defined(TM_ZONE)
 #define BITMASK_tm_zone		11
 #define SET_TM_ZONE(X)		/* tm->offset = (X); 	SET_WRITTEN(tm_zone) */
 #else

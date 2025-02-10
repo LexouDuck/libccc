@@ -142,8 +142,8 @@ extern const struct data_log2_f64
 {
 	t_f64 invln2hi;
 	t_f64 invln2lo;
-	t_f64 poly[6];
 	t_f64 poly1[10];
+	t_f64 poly[6];
 	struct { t_f64 invc, logc; } table[N];
 #if !__FP_FAST_FMA
 	struct { t_f64 chi, clo; } table2[N];

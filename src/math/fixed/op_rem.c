@@ -26,7 +26,7 @@ t_q##BITS	Q##BITS##_Rem(t_q##BITS x, t_q##BITS y) \
 		return (Q##BITS##_ERROR); \
 	if (Q##BITS##_IsInf(y)) \
 		return (x); /* python behavior: (Q##BITS##_Sgn(x)._ == Q##BITS##_Sgn(y)._ ? x : y); */ \
-	return (t_q##BITS){ (Q##BITS##_Abs(x)._ % Q##BITS##_Abs(y)._) * S##BITS##_Sgn(x._) }; \
+	return (t_q##BITS){ (t_s##BITS)((Q##BITS##_Abs(x)._ % Q##BITS##_Abs(y)._) * S##BITS##_Sgn(x._)) }; \
 } \
 
 DEFINEFUNC_FIXED_REM(8)

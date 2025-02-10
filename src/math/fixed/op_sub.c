@@ -17,7 +17,7 @@ t_q##BITS	Q##BITS##_Sub(t_q##BITS x, t_q##BITS y) \
 		"result of subtracting infinite values of identical sign is undefined") \
 		return (Q##BITS##_ERROR); \
 	else if (Q##BITS##_IsInf(x))	return (x); \
-	else if (Q##BITS##_IsInf(y))	return (t_q##BITS){ -y._ }; \
+	else if (Q##BITS##_IsInf(y))	return (t_q##BITS){ (t_s##BITS)(-y._) }; \
 	if (x._ && y._ && SGN(x._) != SGN(y._)) \
 	{ \
 		if CCCERROR((x._ > Q##BITS##_MAX._ + y._), ERROR_RESULTRANGE, \

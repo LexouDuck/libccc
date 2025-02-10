@@ -235,6 +235,8 @@ const struct data_erf_f32 __data_erf_f32 =
 		+3.0338060379e+01, /* 0x41F2B459 */
 		+1.0000000000e+00,
 	},
+	.rc = {0},
+	.sc = {0},
 };
 
 const struct data_erf_f64 __data_erf_f64 =
@@ -326,6 +328,8 @@ const struct data_erf_f64 __data_erf_f64 =
 		+3.03380607434824582924e+01, /* 0x403E568B, 0x261D5190 */
 		+1.00000000000000000000e+00,
 	},
+	.rc = {0},
+	.sc = {0},
 };
 
 #define DEFINEDATA_FLOAT_ERF_LD(BITS) \

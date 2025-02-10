@@ -23,6 +23,19 @@ struct data_exp_f32 __data_exp_f32 =
 	used for computing 2^(k/N) for an int |k| < 150 N as
 	t_f64(table[k%N] + (k << 52-BITS))
 	*/
+	.shift = 0x1.8p+52,
+	.shift_scaled = 0x1.8p+52 / N_EXP_F32,
+	.invln2_scaled = 0x1.71547652B82FEp+0 * N_EXP_F32,
+	.poly = {
+		0x1.C6AF84B912394p-5,
+		0x1.EBFCE50FAC4F3p-3,
+		0x1.62E42FF0C52D6p-1,
+	},
+	.poly_scaled = {
+		0x1.C6AF84B912394p-5/N_EXP_F32/N_EXP_F32/N_EXP_F32,
+		0x1.EBFCE50FAC4F3p-3/N_EXP_F32/N_EXP_F32,
+		0x1.62E42FF0C52D6p-1/N_EXP_F32,
+	},
 	.table = {
 		0x3FF0000000000000,
 		0x3FEFD9B0D3158574,
@@ -57,19 +70,6 @@ struct data_exp_f32 __data_exp_f32 =
 		0x3FEFA4AFA2A490DA,
 		0x3FEFD0765B6E4540,
 	},
-	.poly = {
-		0x1.C6AF84B912394p-5,
-		0x1.EBFCE50FAC4F3p-3,
-		0x1.62E42FF0C52D6p-1,
-	},
-	.poly_scaled = {
-		0x1.C6AF84B912394p-5/N_EXP_F32/N_EXP_F32/N_EXP_F32,
-		0x1.EBFCE50FAC4F3p-3/N_EXP_F32/N_EXP_F32,
-		0x1.62E42FF0C52D6p-1/N_EXP_F32,
-	},
-	.shift = 0x1.8p+52,
-	.shift_scaled = 0x1.8p+52 / N_EXP_F32,
-	.invln2_scaled = 0x1.71547652B82FEp+0 * N_EXP_F32,
 };
 
 
@@ -77,15 +77,15 @@ struct data_exp_f32 __data_exp_f32 =
 const
 struct data_exp_f64 __data_exp_f64 =
 {
-	.invln2N   = +0x1.71547652B82FEp0 * N_EXP_F64, // N/ln2
-	.negln2hiN = -0x1.62E42FEFA0000p-8, // -ln2/N (hi)
-	.negln2loN = -0x1.CF79ABC9E3B3Ap-47, // -ln2/N (lo)
 	// Used for rounding when !TOINT_INTRINSICS
 	#if EXP_USE_TOINT_NARROW
 	.shift = 0x1800000000.8p0,
 	#else
 	.shift = 0x1.8p52,
 	#endif
+	.invln2N   = +0x1.71547652B82FEp0 * N_EXP_F64, // N/ln2
+	.negln2hiN = -0x1.62E42FEFA0000p-8, // -ln2/N (hi)
+	.negln2loN = -0x1.CF79ABC9E3B3Ap-47, // -ln2/N (lo)
 	// exp polynomial coefficients.
 	.poly = {
 		// abs error: 1.555*2^-66

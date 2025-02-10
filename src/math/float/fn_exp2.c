@@ -117,7 +117,7 @@ t_f32	F32_Exp2(t_f32 x)
 	abstop = top12_f32(x) & 0x7ff;
 	if (predict_false(abstop >= top12_f32(128.0f))) /* |x| >= 128 or x is nan. */
 	{
-		if (AS_U32(x) == AS_U32(-INFINITY))
+		if (AS_U32(x) == AS_U32((t_f32)-INFINITY))
 			return 0.0f;
 		if (abstop >= top12_f32(INFINITY))
 			return x + x;

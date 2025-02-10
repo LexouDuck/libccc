@@ -17,8 +17,8 @@ t_q##BITS	Q##BITS##_Mul(t_q##BITS x, t_q##BITS y) \
 	if CCCERROR((Q##BITS##_IsInf(x) && y._ == 0) || (Q##BITS##_IsInf(y) && x._ == 0), ERROR_MATHDOMAIN, \
 		"result of infinite value multiplied by 0 is undefined") \
 		return (Q##BITS##_ERROR); \
-	else if (Q##BITS##_IsInf(x))	return (t_q##BITS){ x._ * S##BITS##_Sgn(y._) }; \
-	else if (Q##BITS##_IsInf(y))	return (t_q##BITS){ y._ * S##BITS##_Sgn(x._) }; \
+	else if (Q##BITS##_IsInf(x))	return (t_q##BITS){ (t_s##BITS)(x._ * S##BITS##_Sgn(y._)) }; \
+	else if (Q##BITS##_IsInf(y))	return (t_q##BITS){ (t_s##BITS)(y._ * S##BITS##_Sgn(x._)) }; \
 	if CCCERROR( \
 		(x._ != 0 && x._ != 1) && \
 		(y._ != 0 && y._ != 1) && \

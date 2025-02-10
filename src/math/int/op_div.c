@@ -87,6 +87,7 @@ DEFINEFUNC_SINT_DIV(128)
 (-) / (-) = [0, +N]
 */
 
+/*
 #ifdef __cplusplus
 t_s8	operator / (t_s8   x, t_s8   y)	{ return S8_Div(x, y); }
 t_s16	operator / (t_s16  x, t_s16  y)	{ return S16_Div(x, y); }
@@ -96,3 +97,4 @@ t_s64	operator / (t_s64  x, t_s64  y)	{ return S64_Div(x, y); }
 t_s128	operator / (t_s128 x, t_s128 y)	{ return S128_Div(x, y); }
 #endif
 #endif
+*/

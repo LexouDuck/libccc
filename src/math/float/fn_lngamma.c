@@ -675,7 +675,8 @@ t_f64 F64_lgamma_r(t_f64 x, int *signgamp)
 		},
 	};
 	union {t_f64 f; t_u64 i;} u = {x};
-	t_f64 t,y,z,nadj,p,p1,p2,p3,q,r,w;
+	t_f64 t,y,z,p,p1,p2,p3,q,r,w;
+	t_f64 nadj = NAN;
 	t_u32 ix;
 	int sign,i;
 

@@ -254,7 +254,7 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 		!Q##BITS##_IsNaN(test->result) && !Q##BITS##_IsNaN(test->expect) && \
 		!Q##BITS##_IsInf(test->result) && !Q##BITS##_IsInf(test->expect)) \
 	{ \
-		if (ABS(test->result._ - test->expect._) <= 1) \
+		if (abs((long)(test->result._ - test->expect._)) <= 1) \
 		{ \
 			error = FALSE; \
 			warning = TRUE; \
@@ -263,12 +263,11 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 	char* tmp = NULL; \
 	if (warning) \
 	{ \
-		tmp = malloc(1 + 128); \
+		tmp = (char*)malloc(1 + 128); \
 		if (tmp == NULL) return; \
-		size_t len = snprintf(tmp,	128, "Approximation error (%i):\n" \
+		size_t len = snprintf(tmp,	128, "Approximation error:\n" \
 				"- received: %s\n" \
 				"- expected: %s\n", \
-			ABS(test->result._ - test->expect._), \
 			str_result, \
 			str_expect); \
 		g_test.suites[g_test.current_suite].totals.warnings += 1; \
@@ -334,9 +333,9 @@ void	print_test_##NAME(s_test_##NAME* test, char const* args) \
 	char* tmp = NULL; \
 	if (warning) \
 	{ \
-		tmp = malloc(1 + 128); \
+		tmp = (char*)malloc(1 + 128); \
 		if (tmp == NULL) return; \
-		size_t len = snprintf(tmp,	128, "Approximation error (%g):\n" \
+		size_t len = snprintf(tmp,	128, "Approximation error (diff:%g):\n" \
 				"- received: " F##BITS##_PRECISION_FORMAT "\n" \
 				"- expected: " F##BITS##_PRECISION_FORMAT "\n", \
 			fabs(test->result - test->expect), \

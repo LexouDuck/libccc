@@ -70,6 +70,7 @@ DEFINEFUNC_SINT_ADD(128)
 (-) + (-) = [-2N, 0] => (x < MIN - y)
 */
 
+/*
 #ifdef __cplusplus
 t_s8	operator + (t_s8   x, t_s8   y)	{ return S8_Add(x, y); }
 t_s16	operator + (t_s16  x, t_s16  y)	{ return S16_Add(x, y); }
@@ -79,3 +80,4 @@ t_s64	operator + (t_s64  x, t_s64  y)	{ return S64_Add(x, y); }
 t_s128	operator + (t_s128 x, t_s128 y)	{ return S128_Add(x, y); }
 #endif
 #endif
+*/

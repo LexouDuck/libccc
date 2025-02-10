@@ -91,7 +91,7 @@ CFLAGS_EXTRA ?= \
 
 # these fixes allow libccc to be compiled using a C++ compiler
 ifneq ($(findstring ++,$(CC)),)
-CFLAGS_EXTRA += \
+CFLAGS += \
 	-std=c++20 \
 	-Wno-pedantic \
 	-Wno-deprecated \
@@ -103,7 +103,7 @@ CFLAGS_EXTRA += \
 	-Wno-missing-field-initializers \
 
 else
-CFLAGS_EXTRA += \
+CFLAGS += \
 	-Wstrict-prototypes \
 	-Wmissing-prototypes \
 	-Wold-style-definition \
@@ -112,7 +112,7 @@ endif
 
 # this fix allows libccc to build on iOS platforms
 ifneq ($(findstring iPhone,$(UNAME_M)),)
-CFLAGS_EXTRA += -D__IOS__
+CFLAGS += -D__IOS__
 endif
 
 

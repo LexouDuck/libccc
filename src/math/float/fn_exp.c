@@ -84,13 +84,13 @@ DEFINEFUNC_FLOAT_EXP(128)
 
 /* Top 12 bits of a t_f64 (sign and exponent bits). */
 static inline
-t_u32	top12bits_f32(t_f64 x)
+t_u32	top12bits_f32(t_f32 x)
 {
 	return AS_U32(x) >> 20;
 }
 
 static inline
-t_u32	top12bits_f64(t_f32 x)
+t_u32	top12bits_f64(t_f64 x)
 {
 	return AS_U64(x) >> 52;
 }
@@ -155,7 +155,7 @@ t_f32	F32_Exp(t_f32 x)
 	abstop = top12bits_f32(x) & 0x7ff;
 	if (predict_false(abstop >= top12bits_f32(88.0f))) /* |x| >= 88 or x is nan. */
 	{
-		if (AS_U32(x) == AS_U32(-INFINITY))
+		if (AS_U32(x) == AS_U32((t_f32)-INFINITY))
 			return 0.0f;
 		if (abstop >= top12bits_f32(INFINITY))
 			return x + x;

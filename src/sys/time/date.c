@@ -105,8 +105,11 @@ struct tm	Date_ToSTDC(s_date const* value)
 		.tm_wday 	= value->day_week,
 		.tm_yday 	= (int)value->day_year,
 		.tm_isdst 	= value->is_dst,
-#ifdef TM_GMTOFF
-		.tm_gmtoff	= value->timezone;
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
+		.tm_gmtoff	= value->offset,
+#endif
+#if defined(__USE_MISC) || defined(TM_ZONE)
+		.tm_zone    = NULL,
 #endif
 	});
 }
@@ -126,7 +129,7 @@ s_date		Date_FromSTDC(struct tm const* value)
 		.sec		= (t_u8)value->tm_sec,
 		.is_dst		= (t_bool)value->tm_isdst,
 		.offset		= (t_timezone)
-#ifdef TM_GMTOFF
+#if defined(__USE_MISC) || defined(TM_GMTOFF)
 			value->tm_gmtoff,
 #else
 			0

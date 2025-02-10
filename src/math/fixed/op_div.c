@@ -32,9 +32,9 @@ t_q##BITS	Q##BITS##_Div(t_q##BITS x, t_q##BITS y) \
 		return (Q##BITS##_MIN); \
 	} \
 	if (y._ == 0) \
-		return ((t_q##BITS){ (Q##BITS##_MAX._ * S##BITS##_Sgn(x._)) }); \
+		return ((t_q##BITS){ (t_s##BITS)(Q##BITS##_MAX._ * S##BITS##_Sgn(x._)) }); \
 	if (Q##BITS##_IsInf(x)) \
-		return (t_q##BITS){ (S##BITS##_Sgn(x._) * S##BITS##_Sgn(y._)) * Q##BITS##_MAX._ }; \
+		return (t_q##BITS){ (t_s##BITS)((S##BITS##_Sgn(x._) * S##BITS##_Sgn(y._)) * Q##BITS##_MAX._) }; \
 	if (Q##BITS##_IsInf(y)) \
 		return (t_q##BITS){ 0 }; \
 	if (y._ == x._) \
