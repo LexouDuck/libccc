@@ -180,8 +180,6 @@ t_f64	F64_Gamma(t_f64 x)
 	/* special cases */
 	if (ix >= 0x7FF00000) /* tgamma(nan)=nan, tgamma(inf)=inf, tgamma(-inf)=nan with invalid */
 		return x + INFINITY;
-	if (x == 0.0)
-		return (F64_CopySign(INFINITY, x));
 	if (ix < (0x3FF-54)<<20) /* |x| < 2^-54: tgamma(x) ~ 1/x, +-0 raises div-by-zero */
 		return (1 / x);
 	/* integer arguments */
