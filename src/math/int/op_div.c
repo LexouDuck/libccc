@@ -61,9 +61,12 @@ t_s##BITS	S##BITS##_Div(t_s##BITS x, t_s##BITS y) \
 		LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MAX) \
 		return (S##BITS##_MIN); \
 	} \
-	if (y == 0)	return ((S##BITS##_MAX * S##BITS##_Sgn(x))); \
-	if (S##BITS##_IsInf(x))	return (S##BITS##_MAX * (S##BITS##_Sgn(x) * S##BITS##_Sgn(y))); \
-	if (S##BITS##_IsInf(y))	return (            0 * (S##BITS##_Sgn(x) * S##BITS##_Sgn(y))); \
+	if (y == 0) \
+		return ((S##BITS##_MAX * S##BITS##_Sgn(x))); \
+	if (S##BITS##_IsInf(x)) \
+		return ((S##BITS##_Sgn(x) * S##BITS##_Sgn(y)) * S##BITS##_MAX); \
+	if (S##BITS##_IsInf(y)) \
+		return (0); \
 	return (x / y); \
 } \
 

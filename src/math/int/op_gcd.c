@@ -32,6 +32,12 @@ DEFINEFUNC_UINT_GCD(128)
 _INLINE() \
 t_s##BITS	S##BITS##_GCD(t_s##BITS x, t_s##BITS y) \
 { \
+	if CCCERROR( \
+		!LIBCONFIG_SINT_INF && \
+		!LIBCONFIG_SINT_NAN && \
+		((x == S##BITS##_MIN && y == -1) || (x == -1 && y == S##BITS##_MIN)), ERROR_RESULTRANGE, \
+		"cannot perform modulo with -1 and t_s"#BITS" minimum value (" SF_S##BITS ")", S##BITS##_MIN) \
+		return (1); \
 	if (x && y) \
 		while ((x %= y) && (y %= x)); \
 	return (x | y); \

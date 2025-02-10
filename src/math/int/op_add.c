@@ -13,9 +13,11 @@ t_u##BITS	U##BITS##_Add(t_u##BITS x, t_u##BITS y) \
 { \
 	if CCCERROR((U##BITS##_IsNaN(x) || U##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (U##BITS##_ERROR); \
-	if CCCERROR((x > U##BITS##_MAX - y),ERROR_RESULTRANGE, \
+	else if (U##BITS##_IsInf(x))	return (x); \
+	else if (U##BITS##_IsInf(y))	return (y); \
+	if CCCERROR((x > U##BITS##_MAX - y), ERROR_RESULTRANGE, \
 		"positive overflow for " SF_U##BITS " + " SF_U##BITS " = " SF_U##BITS " (as t_u"#BITS")", x, y, (t_u##BITS)(x + y)) \
-	{ LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(U##BITS, U##BITS##_MAX) } \
+	{	LIBCONFIG_ERROR_HANDLEOVERFLOW_UINT(U##BITS, U##BITS##_MAX);	} \
 	return (x + y); \
 } \
 
@@ -34,14 +36,19 @@ t_s##BITS	S##BITS##_Add(t_s##BITS x, t_s##BITS y) \
 { \
 	if CCCERROR((S##BITS##_IsNaN(x) || S##BITS##_IsNaN(y)), ERROR_NANARGUMENT, NULL) \
 		return (S##BITS##_ERROR); \
-	if (x && y && SGN(x) == SGN(y)) \
+	if CCCERROR((S##BITS##_IsInf(x) && S##BITS##_IsInf(y)) && S##BITS##_Sgn(x) != S##BITS##_Sgn(y), ERROR_RESULTRANGE, \
+		"result of adding infinite values of different sign is undefined") \
+		return (S##BITS##_ERROR); \
+	else if (S##BITS##_IsInf(x))	return (x); \
+	else if (S##BITS##_IsInf(y))	return (y); \
+	if (x && y && S##BITS##_Sgn(x) == S##BITS##_Sgn(y)) \
 	{ \
 		if CCCERROR((x > S##BITS##_MAX - y), ERROR_RESULTRANGE, \
 			"positive overflow for " SF_S##BITS " + " SF_S##BITS " = " SF_S##BITS " (as t_s"#BITS")", x, y, (t_s##BITS)(x + y)) \
-		{ LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MAX) } \
+		{	LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MAX);	} \
 		if CCCERROR((x < S##BITS##_MIN - y), ERROR_RESULTRANGE, \
 			"negative overflow for " SF_S##BITS " + " SF_S##BITS " = " SF_S##BITS " (as t_s"#BITS")", x, y, (t_s##BITS)(x + y)) \
-		{ LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MIN) } \
+		{	LIBCONFIG_ERROR_HANDLEOVERFLOW_SINT(S##BITS, S##BITS##_MIN);	} \
 	} \
 	return (x + y); \
 } \

@@ -8,6 +8,7 @@
 #include LIBCONFIG_ERROR_INCLUDE
 
 
+
 #define DEFINEFUNC_UINT_ROOT2(BITS) \
 t_u##BITS	U##BITS##_Root2(t_u##BITS x) \
 { \
@@ -44,18 +45,18 @@ DEFINEFUNC_UINT_ROOT2(128)
 #define DEFINEFUNC_SINT_ROOT2(BITS) \
 t_s##BITS	S##BITS##_Root2(t_s##BITS x) \
 { \
-	t_s##BITS result = 0; \
-	t_s##BITS one = (t_s##BITS)1 << (BITS - 2); \
+	if CCCERROR((x < 0), ERROR_MATHDOMAIN, NULL) \
+		return (S##BITS##_ERROR); \
+	t_u##BITS result = 0; \
+	t_u##BITS one = (t_u##BITS)1 << (BITS - 2); \
 /* `one` starts at the highest power of four greater than or equal to `x` */ \
-	if CCCERROR((x < 0), ERROR_MATHDOMAIN, NULL)\
-		return (S##BITS##_ERROR);               \
-	while (one > x) \
+	while (one > (t_u##BITS)x) \
 	{ \
 		one >>= 2; \
 	} \
 	while (one != 0) \
 	{ \
-		if (x >= result + one) \
+		if ((t_u##BITS)x >= result + one) \
 		{ \
 			x = x - (result + one); \
 			result = result + 2 * one; \

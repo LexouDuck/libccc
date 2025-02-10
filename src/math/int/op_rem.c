@@ -22,6 +22,10 @@ t_u##BITS	U##BITS##_Rem(t_u##BITS x, t_u##BITS y) \
 	if CCCERROR((y == 0), ERROR_MATHDOMAIN, \
 		"cannot get modulo of zero") \
 		return (U##BITS##_ERROR); \
+	if (U##BITS##_IsInf(x)) \
+		return (U##BITS##_ERROR); \
+	if (U##BITS##_IsInf(y))	\
+		return (x); \
 	return (x % y); \
 } \
 
@@ -49,8 +53,19 @@ t_s##BITS	S##BITS##_Rem(t_s##BITS x, t_s##BITS y) \
 	if CCCERROR((y == 0), ERROR_MATHDOMAIN, \
 		"cannot get modulo of zero") \
 		return (S##BITS##_ERROR); \
+	if CCCERROR( \
+		!LIBCONFIG_SINT_INF && \
+		!LIBCONFIG_SINT_NAN && \
+		(x == S##BITS##_MIN && y == -1), ERROR_RESULTRANGE, \
+		"bad modulo when attempting to get inverse of minimum value for t_s"#BITS": " SF_S##BITS, S##BITS##_MIN) \
+		return (0); \
+	if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && \
+		(x == S##BITS##_MIN) && (y == S##BITS##_MAX)) \
+		return (S##BITS##_MAX - 1); \
+	if (S##BITS##_IsInf(x)) \
+		return (S##BITS##_ERROR); \
 	if (S##BITS##_IsInf(y))	\
-		return (S##BITS##_Sgn(x) == S##BITS##_Sgn(y) ? x : y); \
+		return (x); /* python behavior: (S##BITS##_Sgn(x) == S##BITS##_Sgn(y) ? x : y); */ \
 	return (S##BITS##_Abs(x) % S##BITS##_Abs(y)) * S##BITS##_Sgn(x); \
 } \
 

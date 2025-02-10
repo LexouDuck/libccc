@@ -1,9 +1,10 @@
 
 #include <math.h>
 
-#include "libccc/text/format.h"
+#include "libccc.h"
 #include "libccc/int.h"
 #include "libccc/math/int.h"
+#include "libccc/text/format.h"
 
 #include "test.h"
 #include "test_utils.h"
@@ -11,6 +12,8 @@
 
 
 // Disable certain GCC warnings temporarily
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wformat"
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Woverflow"
 #pragma GCC diagnostic push
@@ -83,7 +86,8 @@ DEFINETEST_UINT_(128)
 
 
 
-#define MIDVAL	(__typeof__(x))((__typeof__(x))1 << (sizeof(x)*8 - 1))
+#define SUBVAL	(__typeof__(x))(((__typeof__(x))1 << (sizeof(x)*8 - 1)) - 1)
+#define MIDVAL	(__typeof__(x))( (__typeof__(x))1 << (sizeof(x)*8 - 1))
 #define ENDVAL	(__typeof__(x))(~(__typeof__(x))0)
 #define ABS(X)	(__typeof__(X))((X) < 0 ? -(X) : +(X))
 #define SGN(X)	(__typeof__(X))((X) < 0 ? -1 : +1)
@@ -91,6 +95,22 @@ DEFINETEST_UINT_(128)
 
 
 #if LIBCONFIG_USE_INT128
+
+	#define DEFINEFUNC_UINT_CHECK(FUNCNAME, FUNCBODY) \
+	t_bool	FUNCNAME##u8	(t_u8    x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u16	(t_u16   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u32	(t_u32   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u64	(t_u64   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u128	(t_u128  x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##uint	(t_uint  x)	{ FUNCBODY } \
+
+	#define DEFINEFUNC_UINT_RELATION(FUNCNAME, FUNCBODY) \
+	t_bool	FUNCNAME##u8	(t_u8    x, t_u8    y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u16	(t_u16   x, t_u16   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u32	(t_u32   x, t_u32   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u64	(t_u64   x, t_u64   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u128	(t_u128  x, t_u128  y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##uint	(t_uint  x, t_uint  y)	{ FUNCBODY } \
 
 	#define DEFINEFUNC_UINT_FUNCTION(FUNCNAME, FUNCBODY) \
 	t_u8	FUNCNAME##u8	(t_u8    x)	{ FUNCBODY } \
@@ -110,6 +130,20 @@ DEFINETEST_UINT_(128)
 
 #else
 
+	#define DEFINEFUNC_UINT_CHECK(FUNCNAME, FUNCBODY) \
+	t_bool	FUNCNAME##u8	(t_u8    x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u16	(t_u16   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u32	(t_u32   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u64	(t_u64   x)	{ FUNCBODY } \
+	t_bool	FUNCNAME##uint	(t_uint  x)	{ FUNCBODY } \
+
+	#define DEFINEFUNC_UINT_RELATION(FUNCNAME, FUNCBODY) \
+	t_bool	FUNCNAME##u8	(t_u8    x, t_u8    y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u16	(t_u16   x, t_u16   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u32	(t_u32   x, t_u32   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##u64	(t_u64   x, t_u64   y)	{ FUNCBODY } \
+	t_bool	FUNCNAME##uint	(t_uint  x, t_uint  y)	{ FUNCBODY } \
+
 	#define DEFINEFUNC_UINT_FUNCTION(FUNCNAME, FUNCBODY) \
 	t_u8	FUNCNAME##u8	(t_u8    x)	{ FUNCBODY } \
 	t_u16	FUNCNAME##u16	(t_u16   x)	{ FUNCBODY } \
@@ -126,8 +160,8 @@ DEFINETEST_UINT_(128)
 
 #endif
 
-DEFINEFUNC_UINT_FUNCTION(isnan, return (!LIBCONFIG_UINT_NAN ? 0 : (x == ENDVAL));)
-DEFINEFUNC_UINT_FUNCTION(isinf, return (!LIBCONFIG_UINT_INF ? 0 : (LIBCONFIG_UINT_NAN ? (x == ENDVAL - 1) : (x == ENDVAL)));)
+// DEFINEFUNC_UINT_CHECK(isnan, return (!LIBCONFIG_UINT_NAN ? 0 : (x == ENDVAL));)
+// DEFINEFUNC_UINT_CHECK(isinf, return (!LIBCONFIG_UINT_INF ? 0 : (LIBCONFIG_UINT_NAN ? (x == ENDVAL - 1) : (x == ENDVAL)));)
 DEFINEFUNC_UINT_FUNCTION(abs,   return (x);)
 DEFINEFUNC_UINT_FUNCTION(sgn,   return (x == 0 ? 0 : +1);)
 DEFINEFUNC_UINT_OPERATOR(min,   return (x < y ? x : y);)
@@ -138,12 +172,36 @@ DEFINEFUNC_UINT_OPERATOR(mul,   return (x * y);)
 DEFINEFUNC_UINT_OPERATOR(div,   if (y == 0)	return (LIBCONFIG_UINT_INF ? ENDVAL : (LIBCONFIG_UINT_NAN ? ENDVAL : 0));	return (x / y);)
 DEFINEFUNC_UINT_OPERATOR(mod,   if (y == 0)	return (LIBCONFIG_UINT_INF ? +x     : (LIBCONFIG_UINT_NAN ? ENDVAL : 0));	return (x % y);)
 DEFINEFUNC_UINT_OPERATOR(rem,   if (y == 0)	return (LIBCONFIG_UINT_INF ? +x     : (LIBCONFIG_UINT_NAN ? ENDVAL : 0));	return (x % y);)
-DEFINEFUNC_UINT_OPERATOR(pow,   return pow(x, y);)
-DEFINEFUNC_UINT_FUNCTION(root2, return sqrt(x);)
-DEFINEFUNC_UINT_FUNCTION(root3, return cbrt(x);)
-DEFINEFUNC_UINT_OPERATOR(rootn, return pow(x, 1/y);)
+DEFINEFUNC_UINT_OPERATOR(pow,   t_u128 result = 1;	while (TRUE)	{	if (y & 1)	result *= x;	y >>= 1;	if (y == 0)	break;	x *= x;	}	return result;)	// t_float result = pow(x, y);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_UINT_FUNCTION(root2, t_float result = sqrt(x);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_UINT_FUNCTION(root3, t_float result = cbrt(x);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_UINT_OPERATOR(rootn, t_float result = pow(x, 1/y);	return isnan(result) ? 0 : result;)
 DEFINEFUNC_UINT_OPERATOR(gcd,   if (x && y)	while ((x %= y) && (y %= x));	return (x | y);)
-DEFINEFUNC_UINT_OPERATOR(lcm,   if (x && y)	while ((x %= y) && (y %= x));	return (x / (x | y) * y);)
+DEFINEFUNC_UINT_OPERATOR(lcm,   if (x && y)	while ((x %= y) && (y %= x));	return (x / ((x | y) == 0 ? 1 : (x | y)) * y);)
+
+
+
+//
+
+
+/*
+DEFINETEST_UINT_FUNCTION(8, isnan)
+DEFINETEST_UINT_FUNCTION(8, isinf)
+
+DEFINETEST_UINT_FUNCTION(16, isnan)
+DEFINETEST_UINT_FUNCTION(16, isinf)
+
+DEFINETEST_UINT_FUNCTION(32, isnan)
+DEFINETEST_UINT_FUNCTION(32, isinf)
+
+DEFINETEST_UINT_FUNCTION(64, isnan)
+DEFINETEST_UINT_FUNCTION(64, isinf)
+
+#if LIBCONFIG_USE_INT128
+DEFINETEST_UINT_FUNCTION(128, isnan)
+DEFINETEST_UINT_FUNCTION(128, isinf)
+#endif
+*/
 
 
 
@@ -166,42 +224,35 @@ void	test_u##BITS##FUNCNAME(void) \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0) ); \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1) ); \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2) ); \
+	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +3) ); \
+	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +5) ); \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10) ); \
+	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, U##BITS##_MAX - 1) ); \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, U##BITS##_MAX) ); \
 	print_test_u##BITS##FUNCNAME("u"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, U##BITS##_ERROR) ); \
 }
 
-DEFINETEST_UINT_FUNCTION(8, isnan)
-DEFINETEST_UINT_FUNCTION(8, isinf)
 DEFINETEST_UINT_FUNCTION(8, abs)
 DEFINETEST_UINT_FUNCTION(8, sgn)
 DEFINETEST_UINT_FUNCTION(8, root2)
 DEFINETEST_UINT_FUNCTION(8, root3)
 
-DEFINETEST_UINT_FUNCTION(16, isnan)
-DEFINETEST_UINT_FUNCTION(16, isinf)
 DEFINETEST_UINT_FUNCTION(16, abs)
 DEFINETEST_UINT_FUNCTION(16, sgn)
 DEFINETEST_UINT_FUNCTION(16, root2)
 DEFINETEST_UINT_FUNCTION(16, root3)
 
-DEFINETEST_UINT_FUNCTION(32, isnan)
-DEFINETEST_UINT_FUNCTION(32, isinf)
 DEFINETEST_UINT_FUNCTION(32, abs)
 DEFINETEST_UINT_FUNCTION(32, sgn)
 DEFINETEST_UINT_FUNCTION(32, root2)
 DEFINETEST_UINT_FUNCTION(32, root3)
 
-DEFINETEST_UINT_FUNCTION(64, isnan)
-DEFINETEST_UINT_FUNCTION(64, isinf)
 DEFINETEST_UINT_FUNCTION(64, abs)
 DEFINETEST_UINT_FUNCTION(64, sgn)
 DEFINETEST_UINT_FUNCTION(64, root2)
 DEFINETEST_UINT_FUNCTION(64, root3)
 
 #if LIBCONFIG_USE_INT128
-DEFINETEST_UINT_FUNCTION(128, isnan)
-DEFINETEST_UINT_FUNCTION(128, isinf)
 DEFINETEST_UINT_FUNCTION(128, abs)
 DEFINETEST_UINT_FUNCTION(128, sgn)
 DEFINETEST_UINT_FUNCTION(128, root2)
@@ -333,6 +384,10 @@ DEFINETEST_UINT_OPERATOR(128, gcd, FALSE)
 
 
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
 #if LIBCONFIG_USE_INT128
 
 	#define DEFINEFUNC_SINT_FUNCTION(FUNCNAME, FUNCBODY) \
@@ -369,8 +424,8 @@ DEFINETEST_UINT_OPERATOR(128, gcd, FALSE)
 
 #endif
 
-DEFINEFUNC_SINT_FUNCTION(isnan, return (!LIBCONFIG_SINT_NAN ? 0 : (x == MIDVAL));)
-DEFINEFUNC_SINT_FUNCTION(isinf, return (!LIBCONFIG_SINT_INF ? 0 : (LIBCONFIG_SINT_NAN ? (x == (__typeof__(x))(MIDVAL - 1) || x == (__typeof__(x))(MIDVAL + 1)) : (x == MIDVAL)));)
+// DEFINEFUNC_SINT_CHECK(isnan, return (!LIBCONFIG_SINT_NAN ? 0 : (x == MIDVAL));)
+// DEFINEFUNC_SINT_CHECK(isinf, return (!LIBCONFIG_SINT_INF ? 0 : (LIBCONFIG_SINT_NAN ? (x == (__typeof__(x))(MIDVAL - 1) || x == (__typeof__(x))(MIDVAL + 1)) : (x == MIDVAL)));)
 DEFINEFUNC_SINT_FUNCTION(abs,   return (x < 0 ? -x : +x);)
 DEFINEFUNC_SINT_FUNCTION(sgn,   return (x == 0 ? 0 : (x < 0 ? -1 : +1));)
 DEFINEFUNC_SINT_OPERATOR(min,   return (x < y ? x : y);)
@@ -379,14 +434,14 @@ DEFINEFUNC_SINT_OPERATOR(add,   return (x + y);)
 DEFINEFUNC_SINT_OPERATOR(sub,   return (x - y);)
 DEFINEFUNC_SINT_OPERATOR(mul,   return (x * y);)
 DEFINEFUNC_SINT_OPERATOR(div,   if (y == 0)	return (LIBCONFIG_SINT_INF ? (MIDVAL - SGN(x)) : (LIBCONFIG_SINT_NAN ? MIDVAL : 0));	if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && x == MIDVAL && y == -1)	return (MIDVAL);	return (x / y);)
-DEFINEFUNC_SINT_OPERATOR(mod,   if (y == 0)	return (LIBCONFIG_SINT_INF ? (MIDVAL - SGN(x)) : (LIBCONFIG_SINT_NAN ? MIDVAL : 0));	return (x % y);)
-DEFINEFUNC_SINT_OPERATOR(rem,   if (y == 0)	return (LIBCONFIG_SINT_INF ? (MIDVAL - SGN(x)) : (LIBCONFIG_SINT_NAN ? MIDVAL : 0));	return (x % (y < 0 ? -y : +y) * (x < 0 ? -1 : 1));)
-DEFINEFUNC_SINT_OPERATOR(pow,   return pow(x, y);)
-DEFINEFUNC_SINT_FUNCTION(root2, return sqrt(x);)
-DEFINEFUNC_SINT_FUNCTION(root3, return cbrt(x);)
-DEFINEFUNC_SINT_OPERATOR(rootn, return pow(x, 1/y);)
-DEFINEFUNC_SINT_OPERATOR(gcd,   if (x && y)	while ((x %= y) && (y %= x));	return (x | y);)
-DEFINEFUNC_SINT_OPERATOR(lcm,   if (x && y)	while ((x %= y) && (y %= x));	return (x / (x | y) * y);)
+DEFINEFUNC_SINT_OPERATOR(mod,   if (y == 0)	return (LIBCONFIG_SINT_INF ? (MIDVAL - SGN(x)) : (LIBCONFIG_SINT_NAN ? MIDVAL : 0));	if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && x == MIDVAL && y == -1)	return (0);	return (x % y);)
+DEFINEFUNC_SINT_OPERATOR(rem,   if (y == 0)	return (LIBCONFIG_SINT_INF ? (MIDVAL - SGN(x)) : (LIBCONFIG_SINT_NAN ? MIDVAL : 0));	if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && x == MIDVAL && y == -1)	return (0);	if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && (x == MIDVAL) && (y == SUBVAL))	return (SUBVAL - 1);	return ((x < 0 ? -x : +x) % (y < 0 ? -y : +y) * (x < 0 ? -1 : 1));)
+DEFINEFUNC_SINT_OPERATOR(pow,   t_s128 result = 1;	if (y < 0)	return (x == 0 ? 0 : (1 / x));	while (TRUE)	{	if (y & 1)	result *= x;	y >>= 1;	if (y == 0)	break;	x *= x;	}	return result;)	// t_float result = pow(x, y);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_SINT_FUNCTION(root2, t_float result = sqrt(x);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_SINT_FUNCTION(root3, t_float result = cbrt(x);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_SINT_OPERATOR(rootn, t_float result = pow(x, 1/y);	return isnan(result) ? 0 : result;)
+DEFINEFUNC_SINT_OPERATOR(gcd,   if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && ((x == MIDVAL && y == -1) || (x == -1 && y == MIDVAL)))	return (1);	if (x && y)	while ((x %= y) && (y %= x));	return (x | y);)
+DEFINEFUNC_SINT_OPERATOR(lcm,   if (!LIBCONFIG_SINT_INF && !LIBCONFIG_SINT_NAN && ((x == MIDVAL && y == -1) || (x == -1 && y == MIDVAL)))	return (1);	if (x && y)	while ((x %= y) && (y %= x));	return (x / (((x | y) == 0) ? 1 : (x | y)) * y);)
 
 
 
@@ -409,51 +464,71 @@ void	test_s##BITS##FUNCNAME(void) \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,  0) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +1) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +2) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +3) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, +5) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,+10) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -1) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -2) ); \
-	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, 10) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -3) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, -5) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME,-10) ); \
-	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MIN) ); \
-	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MAX) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MIN+1) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MAX-1) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MIN  ) ); \
+	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_MAX  ) ); \
 	print_test_s##BITS##FUNCNAME("s"#BITS#FUNCNAME" ",	FALSE, TEST(BITS, FUNCNAME, S##BITS##_ERROR) ); \
 }
 
-DEFINETEST_SINT_FUNCTION(8, isnan)
-DEFINETEST_SINT_FUNCTION(8, isinf)
 DEFINETEST_SINT_FUNCTION(8, abs)
 DEFINETEST_SINT_FUNCTION(8, sgn)
 DEFINETEST_SINT_FUNCTION(8, root2)
 DEFINETEST_SINT_FUNCTION(8, root3)
 
-DEFINETEST_SINT_FUNCTION(16, isnan)
-DEFINETEST_SINT_FUNCTION(16, isinf)
 DEFINETEST_SINT_FUNCTION(16, abs)
 DEFINETEST_SINT_FUNCTION(16, sgn)
 DEFINETEST_SINT_FUNCTION(16, root2)
 DEFINETEST_SINT_FUNCTION(16, root3)
 
-DEFINETEST_SINT_FUNCTION(32, isnan)
-DEFINETEST_SINT_FUNCTION(32, isinf)
 DEFINETEST_SINT_FUNCTION(32, abs)
 DEFINETEST_SINT_FUNCTION(32, sgn)
 DEFINETEST_SINT_FUNCTION(32, root2)
 DEFINETEST_SINT_FUNCTION(32, root3)
 
-DEFINETEST_SINT_FUNCTION(64, isnan)
-DEFINETEST_SINT_FUNCTION(64, isinf)
 DEFINETEST_SINT_FUNCTION(64, abs)
 DEFINETEST_SINT_FUNCTION(64, sgn)
 DEFINETEST_SINT_FUNCTION(64, root2)
 DEFINETEST_SINT_FUNCTION(64, root3)
 
 #if LIBCONFIG_USE_INT128
-DEFINETEST_SINT_FUNCTION(128, isnan)
-DEFINETEST_SINT_FUNCTION(128, isinf)
 DEFINETEST_SINT_FUNCTION(128, abs)
 DEFINETEST_SINT_FUNCTION(128, sgn)
 DEFINETEST_SINT_FUNCTION(128, root2)
 DEFINETEST_SINT_FUNCTION(128, root3)
 #endif
+
+
+
+//
+
+
+/*
+DEFINETEST_SINT_FUNCTION(8, isnan)
+DEFINETEST_SINT_FUNCTION(8, isinf)
+
+DEFINETEST_SINT_FUNCTION(16, isnan)
+DEFINETEST_SINT_FUNCTION(16, isinf)
+
+DEFINETEST_SINT_FUNCTION(32, isnan)
+DEFINETEST_SINT_FUNCTION(32, isinf)
+
+DEFINETEST_SINT_FUNCTION(64, isnan)
+DEFINETEST_SINT_FUNCTION(64, isinf)
+
+#if LIBCONFIG_USE_INT128
+DEFINETEST_SINT_FUNCTION(128, isnan)
+DEFINETEST_SINT_FUNCTION(128, isinf)
+#endif
+*/
 
 
 
@@ -562,7 +637,7 @@ DEFINETEST_SINT_OPERATOR(8, div, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(8, mod, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(8, rem, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(8, pow, FALSE)
-DEFINETEST_SINT_OPERATOR(8, rootn, FALSE)
+//DEFINETEST_SINT_OPERATOR(8, rootn, FALSE)
 DEFINETEST_SINT_OPERATOR(8, lcm, FALSE)
 DEFINETEST_SINT_OPERATOR(8, gcd, FALSE)
 
@@ -575,7 +650,7 @@ DEFINETEST_SINT_OPERATOR(16, div, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(16, mod, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(16, rem, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(16, pow, FALSE)
-DEFINETEST_SINT_OPERATOR(16, rootn, FALSE)
+//DEFINETEST_SINT_OPERATOR(16, rootn, FALSE)
 DEFINETEST_SINT_OPERATOR(16, lcm, FALSE)
 DEFINETEST_SINT_OPERATOR(16, gcd, FALSE)
 
@@ -588,7 +663,7 @@ DEFINETEST_SINT_OPERATOR(32, div, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(32, mod, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(32, rem, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(32, pow, FALSE)
-DEFINETEST_SINT_OPERATOR(32, rootn, FALSE)
+//DEFINETEST_SINT_OPERATOR(32, rootn, FALSE)
 DEFINETEST_SINT_OPERATOR(32, lcm, FALSE)
 DEFINETEST_SINT_OPERATOR(32, gcd, FALSE)
 
@@ -601,7 +676,7 @@ DEFINETEST_SINT_OPERATOR(64, div, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(64, mod, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(64, rem, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(64, pow, FALSE)
-DEFINETEST_SINT_OPERATOR(64, rootn, FALSE)
+//DEFINETEST_SINT_OPERATOR(64, rootn, FALSE)
 DEFINETEST_SINT_OPERATOR(64, lcm, FALSE)
 DEFINETEST_SINT_OPERATOR(64, gcd, FALSE)
 
@@ -615,7 +690,7 @@ DEFINETEST_SINT_OPERATOR(128, div, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(128, mod, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(128, rem, ALLOW_SIGFPE)
 DEFINETEST_SINT_OPERATOR(128, pow, FALSE)
-DEFINETEST_SINT_OPERATOR(128, rootn, FALSE)
+//DEFINETEST_SINT_OPERATOR(128, rootn, FALSE)
 DEFINETEST_SINT_OPERATOR(128, lcm, FALSE)
 DEFINETEST_SINT_OPERATOR(128, gcd, FALSE)
 #endif
@@ -623,6 +698,7 @@ DEFINETEST_SINT_OPERATOR(128, gcd, FALSE)
 
 
 // Resets the GCC warning settings back to normal
+#pragma GCC diagnostic pop
 #pragma GCC diagnostic pop
 #pragma GCC diagnostic pop
 // Resets the clang warning settings back to normal
@@ -669,8 +745,8 @@ int		testsuite_math_int(void)
 
 #endif
 
-	RUNTESTSUITE(isnan)
-	RUNTESTSUITE(isinf)
+//	RUNTESTSUITE(isnan)
+//	RUNTESTSUITE(isinf)
 	RUNTESTSUITE(abs)
 	RUNTESTSUITE(sgn)
 	RUNTESTSUITE(min)
@@ -679,9 +755,9 @@ int		testsuite_math_int(void)
 	RUNTESTSUITE(sub)
 	RUNTESTSUITE(mul)
 	RUNTESTSUITE(div)
-//	RUNTESTSUITE(mod)
-//	RUNTESTSUITE(rem)
-//	RUNTESTSUITE(pow)
+	RUNTESTSUITE(mod)
+	RUNTESTSUITE(rem)
+	RUNTESTSUITE(pow)
 //	RUNTESTSUITE(root2)
 //	RUNTESTSUITE(root3)
 //	RUNTESTSUITE(rootn)

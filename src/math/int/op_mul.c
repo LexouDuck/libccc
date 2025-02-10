@@ -17,6 +17,8 @@ t_u##BITS	U##BITS##_Mul(t_u##BITS x, t_u##BITS y) \
 	if CCCERROR((U##BITS##_IsInf(x) && y == 0) || (U##BITS##_IsInf(y) && x == 0), ERROR_MATHDOMAIN, \
 		"result of infinite value multiplied by 0 is undefined") \
 		return (U##BITS##_ERROR); \
+	else if (S##BITS##_IsInf(x) || S##BITS##_IsInf(y)) \
+		return (U##BITS##_MAX); \
 	if CCCERROR( \
 		(x != 0 && x != 1) && \
 		(y != 0 && y != 1) && \
@@ -44,6 +46,8 @@ t_s##BITS	S##BITS##_Mul(t_s##BITS x, t_s##BITS y) \
 	if CCCERROR((S##BITS##_IsInf(x) && y == 0) || (S##BITS##_IsInf(y) && x == 0), ERROR_MATHDOMAIN, \
 		"result of infinite value multiplied by 0 is undefined") \
 		return (S##BITS##_ERROR); \
+	else if (S##BITS##_IsInf(x))	return (x * S##BITS##_Sgn(y)); \
+	else if (S##BITS##_IsInf(y))	return (y * S##BITS##_Sgn(x)); \
 	if CCCERROR( \
 		(x != 0 && x != 1) && \
 		(y != 0 && y != 1) && \

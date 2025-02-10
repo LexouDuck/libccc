@@ -13,7 +13,10 @@
 _INLINE() \
 t_u##BITS	U##BITS##_LCM(t_u##BITS x, t_u##BITS y) \
 { \
-	return (x / U##BITS##_GCD(x, y) * y); \
+	t_u##BITS gcd = U##BITS##_GCD(x, y); \
+	if (gcd == 0) \
+		gcd = 1; \
+	return (x / gcd * y); \
 } \
 
 DEFINEFUNC_UINT_LCM(8)
@@ -30,7 +33,10 @@ DEFINEFUNC_UINT_LCM(128)
 _INLINE() \
 t_s##BITS	S##BITS##_LCM(t_s##BITS x, t_s##BITS y) \
 { \
-	return (x / S##BITS##_GCD(x, y) * y); \
+	t_s##BITS gcd = S##BITS##_GCD(x, y); \
+	if (gcd == 0) \
+		gcd = 1; \
+	return (x / gcd * y); \
 } \
 
 DEFINEFUNC_SINT_LCM(8)
