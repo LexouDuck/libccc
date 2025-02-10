@@ -386,16 +386,7 @@ int		testsuite_math(void)
 		printf("\n\n" ANSI_COLOR_FG_BLUE "Floating-point (%d-bit %s precision) math functions" ANSI_RESET "\n\n", BITS, NAME);
 	}
 #endif
-/*
-	print_math_title("Split float exponent");
-	RUNTESTS_MATH_FUNCTION(splitexp, frexp, 1000, {-1e+9,+1e+9});
-	print_math_title("Split float integer / fraction");
-	RUNTESTS_MATH_FUNCTION(splitint, modf, 1000, {-1e+9,+1e+9});
-	print_math_title("Get Exponent (base-2)");
-	RUNTESTS_MATH_FUNCTION(getexp2, ilogb, 1000, {-1e+9,+1e+9});
-	print_math_title("Get Exponent (base-10)");
-	RUNTESTS_MATH_FUNCTION(getexp10, ilog, 1000, {-1e+9,+1e+9});
-*/
+
 	print_math_title("Nearby Int");
 	RUNTESTS_MATH_FUNCTION(nearbyint, nearbyint, 100, {-1e+9,+1e+9});
 	print_math_title("Next After");
@@ -506,7 +497,6 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
 	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e+9}, {-1e+9,+1e+9});
 */
-#if 0
 	print_math_title("Error function");
 	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-3e+0,+3e+0});
 	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-1e+9,+1e+9});
@@ -516,17 +506,19 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e+9,+1e+9});
 	RUNTESTS_MATH_FUNCTION(erfc, erfc, 1000, {-1e-9,+1e-9});
 
+#if 0
 	print_math_title("Gamma function");
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+1, 0e+0});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-0e+0,+1e+1});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e+9,+1e+9});
 	RUNTESTS_MATH_FUNCTION(gamma, tgamma, 1000, {-1e-9,+1e-9});
+#endif
 	print_math_title("Log-Gamma function");
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e+1, 0e+0});
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-0e+0,+1e+1});
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e+9,+1e+9});
 	RUNTESTS_MATH_FUNCTION(lngamma, lgamma, 1000, {-1e-9,+1e-9});
-#endif
+
 	print_math_title("Sine");
 	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, { 0, +PI });
 	RUNTESTS_MATH_FUNCTION(sin, sin, 1000, {-TAU,+TAU*2});
