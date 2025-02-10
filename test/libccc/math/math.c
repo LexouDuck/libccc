@@ -467,7 +467,6 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+9,+1e+9}, {-1e+1,+1e+1});
 	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
 	RUNTESTS_MATH_OPERATOR(hypot, hypot, 100, {-1e+9,+1e+9}, {-1e+9,+1e+9});
-#if 0
 	print_math_title("Exponential, base e");
 	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {-1e+3,+1e+0});
 	RUNTESTS_MATH_FUNCTION(exp, exp, 1000, {+1e+0,+1e+3});
@@ -507,6 +506,7 @@ int		testsuite_math(void)
 	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e+1,+1e+1}, {-1e+9,+1e+9});
 	RUNTESTS_MATH_OPERATOR(log_n, logn, 100, {-1e2,+1e+9}, {-1e+9,+1e+9});
 */
+#if 0
 	print_math_title("Error function");
 	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-3e+0,+3e+0});
 	RUNTESTS_MATH_FUNCTION(erf, erf, 1000, {-1e+9,+1e+9});
