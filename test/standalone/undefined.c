@@ -25,14 +25,14 @@
 #include <libccc/math/stat.h>
 #include <libccc/math/vlq.h>
 #include <libccc/memory.h>
-#include <libccc/monad/array.h>
-#include <libccc/monad/convert.h>
-#include <libccc/monad/dict.h>
-#include <libccc/monad/hashmap.h>
-#include <libccc/monad/list.h>
-#include <libccc/monad/queue.h>
-#include <libccc/monad/stack.h>
-#include <libccc/monad/tree.h>
+#include <libccc/generic/array.h>
+#include <libccc/generic/convert.h>
+#include <libccc/generic/dict.h>
+#include <libccc/generic/hashmap.h>
+#include <libccc/generic/list.h>
+#include <libccc/generic/queue.h>
+#include <libccc/generic/stack.h>
+#include <libccc/generic/tree.h>
 #include <libccc/pointer.h>
 #include <libccc/pointerarray.h>
 #include <libccc/random/csprng.h>
@@ -59,11 +59,11 @@
 #define T_TYPE	t_sint
 #define T_NAME	int
 #define T_NULL	0
-#include <libccc/monad/array.h>
+#include <libccc/generic/array.h>
 #define T_TYPE	t_float
 #define T_NAME	float
 #define T_NULL	0.0
-#include <libccc/monad/array.h>
+#include <libccc/generic/array.h>
 
 int main()
 {

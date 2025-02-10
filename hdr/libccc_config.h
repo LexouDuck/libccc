@@ -355,10 +355,10 @@ HEADER_CPP
 
 
 
-//!@doc Whether the `s_list` linked-list types in "libccc/monad/" will be doubly-linked
+//!@doc Whether the `s_list` linked-list types in "libccc/generic/" will be doubly-linked
 /*!
 **	This macro configures whether the `s_list` type is singly-linked or doubly-linked.
-**	NOTE: This must be set BEFORE including the `<libccc/monad/list.(c|h)>` header files
+**	NOTE: This must be set BEFORE including the `<libccc/generic/list.(c|h)>` header files
 **	- If `0`, `s_list` is singly-linked (that is, the struct only holds a `.next` pointer)
 **	- If `1`, `s_list` is doubly-linked (that is, the struct has both a `.prev` and `.next` pointer)
 */

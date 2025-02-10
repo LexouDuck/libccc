@@ -67,10 +67,10 @@
 
 HEADER_CPP
 
-typedef struct array_uint	s_array_uint;	//!< @see "libccc/monad/array.h"
-typedef struct array_sint	s_array_sint;	//!< @see "libccc/monad/array.h"
-typedef struct array_fixed	s_array_fixed;	//!< @see "libccc/monad/array.h"
-typedef struct array_float	s_array_float;	//!< @see "libccc/monad/array.h"
+typedef struct array_uint	s_array_uint;	//!< @see "libccc/generic/array.h"
+typedef struct array_sint	s_array_sint;	//!< @see "libccc/generic/array.h"
+typedef struct array_fixed	s_array_fixed;	//!< @see "libccc/generic/array.h"
+typedef struct array_float	s_array_float;	//!< @see "libccc/generic/array.h"
 
 /*============================================================================*\
 ||                                 Definitions                                ||

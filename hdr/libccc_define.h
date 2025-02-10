@@ -600,7 +600,7 @@ HEADER_CPP
 **	it is used to perform dead code elimination on unused functions automatically.
 **
 **	To be more precise, this macro is used when including a generic-type file
-**	(ie: the files located in `hdr/libccc/monad/` with the file extension `.c`),
+**	(ie: the files located in `hdr/libccc/generic/` with the file extension `.c`),
 **	to make all generic-type functions be declared as `static` (so they are local to a unit),
 **	all the while suppressing the annoying "static function never used" warnings,
 **	and still have the compiler/linker perform dead code elimination as appropriate.

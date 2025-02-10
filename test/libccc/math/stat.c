@@ -14,22 +14,22 @@
 #define T_NAME	uint
 #define T_NULL	0
 #define T_EQUALS(X,Y)	UInt_Equals((X),(Y))
-#include "libccc/monad/array.c"
+#include "libccc/generic/array.c"
 #define T_TYPE	t_sint
 #define T_NAME	sint
 #define T_NULL	0
 #define T_EQUALS(X,Y)	SInt_Equals((X),(Y))
-#include "libccc/monad/array.c"
+#include "libccc/generic/array.c"
 #define T_TYPE	t_fixed
 #define T_NAME	fixed
 #define T_NULL	(t_fixed){ 0 }
 #define T_EQUALS(X,Y)	Fixed_Equals((X),(Y))
-#include "libccc/monad/array.c"
+#include "libccc/generic/array.c"
 #define T_TYPE	t_float
 #define T_NAME	float
 #define T_NULL	0
 #define T_EQUALS(X,Y)	Float_Equals((X),(Y))
-#include "libccc/monad/array.c"
+#include "libccc/generic/array.c"
 
 #include "test.h"
 #include "test_utils.h"

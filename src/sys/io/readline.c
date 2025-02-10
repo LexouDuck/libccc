@@ -20,7 +20,7 @@
 
 #include "libccc/memory.h"
 #include "libccc/string.h"
-#include "libccc/monad/array.h"
+#include "libccc/generic/array.h"
 #include "libccc/sys/io.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

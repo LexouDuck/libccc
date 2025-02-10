@@ -9,43 +9,43 @@
 #define T_NAME	str
 #define T_NULL	NULL
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	char*
 #define T_NAME	str
 #define T_NULL	NULL
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
-//#include <libccc/monad/dict.c>
-//#include <libccc/monad/tree.c>
-//#include <libccc/monad/object.c>
+//#include <libccc/generic/dict.c>
+//#include <libccc/generic/tree.c>
+//#include <libccc/generic/object.c>
 
 #define T_TYPE	int
 #define T_NAME	int
 #define T_NULL	0
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	s_array_int*
 #define T_NAME	array_int
 #define T_NULL	&(s_array_int){ .length = 0, .items = NULL }
 #define T_EQUALS(A, B)	(Array_Equals_int((A), (B)))
-#include <libccc/monad/array.c>
+#include <libccc/generic/array.c>
 
 #define T_TYPE	int
 #define T_NAME	int
 #define T_NULL	0
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
 #define T_TYPE	s_list_int*
 #define T_NAME	list_int
 #define T_NULL	&(s_list_int){ 0 }
 #define T_EQUALS(A, B)	(List_Equals_int((A), (B)))
-#include <libccc/monad/list.c>
+#include <libccc/generic/list.c>
 
-//#include <libccc/monad/dict.c>
-//#include <libccc/monad/tree.c>
-//#include <libccc/monad/object.c>
+//#include <libccc/generic/dict.c>
+//#include <libccc/generic/tree.c>
+//#include <libccc/generic/object.c>
 
 
 

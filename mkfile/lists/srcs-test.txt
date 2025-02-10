@@ -6,6 +6,12 @@
 ./test/libccc/encode/toml.c
 ./test/libccc/fixed.c
 ./test/libccc/float.c
+./test/libccc/generic/array.c
+./test/libccc/generic/convert.c
+./test/libccc/generic/dict.c
+./test/libccc/generic/hashmap.c
+./test/libccc/generic/list.c
+./test/libccc/generic/tree.c
 ./test/libccc/int.c
 ./test/libccc/math/algebra.c
 ./test/libccc/math/complex.c
@@ -16,12 +22,6 @@
 ./test/libccc/math/stat.c
 ./test/libccc/math/vlq.c
 ./test/libccc/memory.c
-./test/libccc/monad/array.c
-./test/libccc/monad/convert.c
-./test/libccc/monad/dict.c
-./test/libccc/monad/hashmap.c
-./test/libccc/monad/list.c
-./test/libccc/monad/tree.c
 ./test/libccc/pointer.c
 ./test/libccc/pointerarray.c
 ./test/libccc/random/random.c
