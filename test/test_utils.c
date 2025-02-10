@@ -1,4 +1,12 @@
 
+#ifdef __STDC_ALLOC_LIB__
+#define __STDC_WANT_LIB_EXT2__ 1
+#else
+#define _POSIX_C_SOURCE 200809L
+#endif
+
+#include <stdlib.h>
+#include <string.h>
 #include <ctype.h>
 #include <float.h>
 #include <math.h>
@@ -300,12 +308,13 @@ DEFINEFUNC_SINTTOSTR(128)
 #define DEFINEFUNC_FIXEDTOSTR(BITS) \
 char*	q##BITS##tostr(t_q##BITS number) \
 { \
-	char* result = NULL; \
 	if (LIBCONFIG_FIXED_NAN && number._ == Q##BITS##_ERROR._)	return (strdup("nan")); \
 	if (LIBCONFIG_FIXED_INF && number._ == Q##BITS##_MAX._)	return (strdup("+inf")); \
 	if (LIBCONFIG_FIXED_INF && number._ == Q##BITS##_MIN._)	return (strdup("-inf")); \
-/*	asprintf(&result, "%g", Q##BITS##_IntegerPart(number)._ + Q##BITS##_FractionPart(number)._ / (double)Q##BITS##_DENOM); */ \
-	asprintf(&result, "" SF_S##BITS ".(" SF_S##BITS "/" SF_S##BITS ")", Q##BITS##_IntegerPart(number)._, Q##BITS##_FractionPart(number)._, Q##BITS##_DENOM); \
+	size_t maxlen = 40 * 3 + 8; \
+	char* result = (char*)malloc(maxlen); \
+/*	snprintf(result, maxlen, "%g", Q##BITS##_IntegerPart(number)._ + Q##BITS##_FractionPart(number)._ / (double)Q##BITS##_DENOM); */ \
+	snprintf(result, maxlen, "" SF_S##BITS ".(" SF_S##BITS "/%i)", Q##BITS##_IntegerPart(number)._, Q##BITS##_FractionPart(number)._, Q##BITS##_DENOM); \
 	return (result); \
 } \
 
