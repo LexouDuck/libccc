@@ -2,6 +2,7 @@
 #include <ctype.h>
 
 #include "libccc.h"
+#include "libccc/text/format.h"
 #include "libccc/text/char_ascii.h"
 
 #include "test.h"
@@ -36,8 +37,7 @@
 #define TEST_PERFORM_CHAR(KIND, FUNCTION, STRICT) \
 	warnings = 0; \
 	errors   = 0; \
-	c = min; \
-	while (c++ < max) \
+	for (c = min; c < max; ++c) \
 	{ \
 		result = c_##FUNCTION(c); \
 		expect =     FUNCTION(c); \
@@ -63,9 +63,9 @@
 	} \
 	if (errors || warnings) \
 	{ \
-		printf(#FUNCTION"(): tested every character from %u to %u, got in total:\n", min, max); \
-		printf("- %s%d" ANSI_RESET " errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  ); \
-		printf("- %s%d" ANSI_RESET " warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings); \
+		printf(#FUNCTION"(): tested every character from " SF_U32 " to " SF_U32 ", got in total:\n", min, max); \
+		printf("- %s" SF_SINT ANSI_RESET " errors""\n", (errors   == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_RED),    errors  ); \
+		printf("- %s" SF_SINT ANSI_RESET " warnings\n", (warnings == 0 ? ANSI_COLOR_FG_GREEN : ANSI_COLOR_FG_YELLOW), warnings); \
 	}
 
 
@@ -78,12 +78,12 @@ int		testsuite_text_char_ascii(void)
 {
 	print_suite_title("libccc/text/char_ascii");
 
-	int warnings = 0;
-	int errors = 0;
+	t_sint warnings = 0;
+	t_sint errors = 0;
 	t_sint result;
 	t_sint expect;
 	t_utf32 c = 0;
-	t_utf32 min = 0x0;
+	t_utf32 min = 0x00;
 	t_utf32 max = 0x80;
 
 	bool strict = TRUE;
@@ -103,8 +103,9 @@ int		testsuite_text_char_ascii(void)
 	TEST_PERFORM_CHAR(to, tolower, TRUE)
 	TEST_PERFORM_CHAR(to, toupper, TRUE)
 
-	printf("\n""NOTE: The following tests go beyond the ASCII plane (128 and above)."
-		"\n\t""As such, libc implmentations vary, so it is quite normal to have many warnings.\n\n");
+	printf("\n""NOTE: The following tests go beyond the ASCII plane (0x80=128 and above)."
+		"\n\t""As such, libc implmentations vary, so it is quite normal to have many warnings."
+		"\n\n");
 
 	min = 0x80;
 	max = 0x100;
