@@ -37,6 +37,21 @@ lint: $(LINT)
 
 
 
+CLANGTIDY = clang-tidy
+CLANGTIDY_FLAGS = 
+
+.PHONY:\
+lint-clangtidy #! Runs code linter on source code: clang-tidy (https://clang.llvm.org/extra/clang-tidy/)
+lint-clangtidy:
+	@for f in $(SRCS) ; \
+	do \
+		printf "Checking file: $$f -> " ; \
+		$(CLANGTIDY) "$$f" -- -I$(HDRDIR) $(CLANGTIDY_FLAGS) ; \
+		printf $(IO_GREEN)"OK!"$(IO_RESET)"\n" ; \
+	done
+
+
+
 CPPCHECK = cppcheck
 CPPCHECK_FLAGS = 
 
