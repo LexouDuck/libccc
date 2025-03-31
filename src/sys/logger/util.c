@@ -55,11 +55,17 @@ e_cccerror	Log_Fatal(s_logger const* logger, t_char const* str)
 	is_sh = IO_IsTerminal(fd);
 	prefix = (is_sh ? "libccc: " ANSI_COLOR_FG_RED "fatal" ANSI_RESET ": " : "libccc: fatal: ");
 	result = write(fd, prefix, String_Length(prefix));
+	if (result <= 0)
+		return (ERROR_PRINT);
 	if (str)
 	{
 		result = write(fd, str, String_Length(str));
+	if (result <= 0)
+		return (ERROR_PRINT);
 	}
 	result = write(fd, "\n", (sizeof("\n") - sizeof("")));
+	if (result <= 0)
+		return (ERROR_PRINT);
 
 // printf/dprintf method (less compatible)
 /*
