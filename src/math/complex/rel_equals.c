@@ -11,3 +11,10 @@ t_bool	Complex_Equals(s_complex const* z1, s_complex const* z2)
 	return ((z1->re == z2->re) &&
 			(z1->im == z2->im));
 }
+
+#ifdef __cplusplus
+t_bool	operator == (s_complex const x, s_complex const y)
+{
+	return Complex_Equals(x, y);
+}
+#endif

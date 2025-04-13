@@ -16,3 +16,10 @@ s_complex	Complex_Div(s_complex const* z1, s_complex const* z2)
 	c.im = -z2->im * tmp;
 	return (Complex_Mul(z1, &c));
 }
+
+#ifdef __cplusplus
+s_complex	operator / (s_complex const x, s_complex const y)
+{
+	return Complex_Div(x, y);
+}
+#endif

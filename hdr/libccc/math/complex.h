@@ -13,7 +13,7 @@
 #define __LIBCCC_MATH_COMPLEX_H
 /*!@group{libccc_math_complex,34,libccc/math/complex.h}
 **
-**	This header defines useful algebra and calculus types, and functions.
+**	This header defines types and functions for complex number arithmetic.
 **
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/complex}
 **	@isostd{C,https://en.cppreference.com/w/c/numeric/tgmath}
@@ -56,8 +56,12 @@ HEADER_CPP
 	typedef _Complex	s_complex;
 	TYPEDEF_ALIAS(		s_complex, COMPLEX, STRUCT)
 	//!@}
+
 	//!	A complex number value of zero (both real and imaginary parts are zero)
 	#define COMPLEX_NULL	(0.0 + 0.0*I)
+
+	//! A complex number used to represent error returns (all terms are NAN)
+	#define COMPLEX_ERROR	(NAN + NAN*I)
 
 #else
 
@@ -70,13 +74,23 @@ HEADER_CPP
 	//!@{
 	typedef struct complex
 	{
-		t_float		re;		//!< The "real" part of this complex number
-		t_float		im;		//!< The "imaginary" part of this complex number
+		t_float		re;	//!< The "real" part of this complex number
+		t_float		im;	//!< The "imaginary" part of this complex number
 	}				s_complex;
 	TYPEDEF_ALIAS(	s_complex, COMPLEX, STRUCT)
 	//!@}
+
 	//!	A complex number value of zero (both real and imaginary parts are zero)
-	#define COMPLEX_NULL	(s_complex){ .re = 0, .im = 0 }
+	#define COMPLEX_NULL	(s_complex){ \
+		.re = 0., \
+		.im = 0., \
+	}
+
+	//! A complex number used to represent error returns (all terms are NAN)
+	#define COMPLEX_ERROR	(s_complex){ \
+		.re = NAN, \
+		.im = NAN, \
+	}
 
 #endif
 
@@ -117,18 +131,36 @@ t_bool					Complex_Equals(s_complex const* z1, s_complex const* z2);
 ||                          Complex: unary operators                          ||
 \*============================================================================*/
 
-//!@doc Returns the absolute value |z| of the given complex number 'z' (its distance from zero)
+//!@doc Returns the norm `|z|` of the given complex number `z` (its distance from zero)
 //!@{
-t_float					Complex_Abs(s_complex const* z1);
-#define c_cplxabs		Complex_Abs
-#define Complex_Modulus	Complex_Abs
+t_float						Complex_Norm(s_complex const* z);
+#define c_cplxnorm			Complex_Norm
+#define c_cplxabs			Complex_Norm
+#define Complex_Abs			Complex_Norm
+#define Complex_Absolute	Complex_Norm
+#define Complex_Modulus		Complex_Norm
 //!@}
 
 //!@doc Returns the conjugate of the given complex number (inverts the sign of its imaginary part)
 //!@{
-s_complex				Complex_Conjugate(s_complex const* z1);
-#define c_cplxconj		Complex_Conjugate
-#define Complex_Conj	Complex_Conjugate
+s_complex					Complex_Conjugate(s_complex const* z);
+#define c_cplxconj			Complex_Conjugate
+#define Complex_Conj		Complex_Conjugate
+//!@}
+
+//!@doc Returns the inverse of the given complex number (conjugate / (norm squared))
+//!@{
+s_complex					Complex_Inverse(s_complex const* z);
+#define c_cplxinv			Complex_Inverse
+#define Complex_Inv			Complex_Inverse
+//!@}
+
+//!@doc Returns the normalized version of the given complex number (each term divided by its norm)
+//!@{
+s_complex					Complex_Normalize(s_complex const* z);
+#define c_cplxnormal		Complex_Normalize
+#define c_cplxnormalize		Complex_Normalize
+#define Complex_Normal		Complex_Normalize
 //!@}
 
 
@@ -168,13 +200,7 @@ s_complex					Complex_Div(s_complex const* z1, s_complex const* z2);
 
 
 
-//!@doc Returns the given complex number, to the power of 'n'
-//!@{
-s_complex					Complex_Pow(s_complex const* z, t_u8 n);
-#define c_cplxpow			Complex_Pow
-#define Complex_Power		Complex_Pow
-//!@}
-
+// TODO cplxpow
 // TODO cplxsqrt
 // TODO cplxcbrt
 // TODO cplxnrt
@@ -212,28 +238,6 @@ s_complex					Complex_Pow(s_complex const* z, t_u8 n);
 // TODO cplxatanh
 
 // TODO add polar form operations
-
-
-
-/*============================================================================*\
-||                            Quaternion Operations                           ||
-\*============================================================================*/
-
-//! A struct for storing quaternions
-//!@{
-typedef struct quaternion
-{
-	t_float		s;		//!< The S value of this quaternion
-	t_float		i;		//!< The I value of this quaternion
-	t_float		j;		//!< The J value of this quaternion
-	t_float		k;		//!< The K value of this quaternion
-}					s_quaternion;
-TYPEDEF_ALIAS(		s_quaternion, QUATERNION, STRUCT)
-//!@}
-
-
-
-// TODO define, implement, document
 
 
 
