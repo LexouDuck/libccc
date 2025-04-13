@@ -28,6 +28,8 @@
 ./hdr/libccc/math/fixed.h
 ./hdr/libccc/math/float.h
 ./hdr/libccc/math/int.h
+./hdr/libccc/math/octonion.h
+./hdr/libccc/math/quaternion.h
 ./hdr/libccc/math/sort.h
 ./hdr/libccc/math/stat.h
 ./hdr/libccc/math/vlq.h
