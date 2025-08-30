@@ -48,6 +48,11 @@ typedef s_kvt	s_json;
 
 
 
+//! If `TRUE`, bracket indentation style will be "Allman" style, otherwise will be "K&R" style
+#define JSON_PRINTSTYLE_BRACKET_ALLMAN	FALSE
+
+
+
 /*============================================================================*\
 ||                            JSON Parsing Operations                         ||
 \*============================================================================*/

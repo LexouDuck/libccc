@@ -30,9 +30,6 @@ typedef s_kvt_print	s_toml_print;
 //! The set of characters which are valid in a bare (unquoted) key
 #define TOML_CHARSET_BAREKEY	"-" CHARSET_ALPHABET "_" CHARSET_DECIMAL
 
-//! The maximum amount of items an inline array/object can have before being spread across multiple lines
-#define TOML_INLINE_MULTILINE	8
-
 
 
 static
@@ -145,7 +142,7 @@ t_bool	TOML_Print_IsObjectComplex(s_toml const* item)
 		tmp = tmp->next;
 		++i;
 	}
-	if (i > TOML_INLINE_MULTILINE)
+	if (i > TOML_PRINTSTYLE_INLINE_MULTILINE)
 	{
 		return (TRUE);
 	}
@@ -377,6 +374,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+#if (TOML_PRINTSTYLE_BRACKET_ALLMAN)
 	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == '=')
@@ -389,7 +387,7 @@ t_bool	TOML_Print_Array(s_toml const* item, s_toml_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
-
+#endif
 	// opening square bracket
 	ENSURE(1)
 	*result++ = '[';
@@ -473,6 +471,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		return (ERROR);
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+#if (TOML_PRINTSTYLE_BRACKET_ALLMAN)
 	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == '=')
@@ -485,7 +484,7 @@ t_bool	TOML_Print_Object(s_toml const* item, s_toml_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
-
+#endif
 	// opening curly brace
 	ENSURE(1)
 	*result++ = '{';

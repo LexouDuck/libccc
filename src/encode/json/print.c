@@ -13,11 +13,11 @@
 typedef s_kvt_print	s_json_print;
 
 #define ENSURE(NEEDED) \
-{ \
-	result = KVT_Print_EnsureBuffer(p, (NEEDED)); \
-	if (result == NULL) \
-		return (ERROR); \
-} \
+{													\
+	result = KVT_Print_EnsureBuffer(p, (NEEDED));	\
+	if (result == NULL)								\
+		return (ERROR);								\
+}													\
 
 #define JSON_Print_UpdateOffset \
 		KVT_Print_UpdateOffset
@@ -195,11 +195,11 @@ t_bool	JSON_Print_Number(s_json const* item, s_json_print* p, t_bool bigint)
 	else
 	{
 		t_f64	d = item->value.number;
-		if (F64_IsNaN(d))
+		if (IS_NAN(d))
 		{
 			length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "nan");
 		}
-		else if (F64_IsInf(d))
+		else if (IS_INF(d))
 		{
 			if (d > 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "+inf");
 			if (d < 0)	length = String_Format_N(number_buffer, JSON_NUMBER_BUFFERSIZE, "-inf");
@@ -264,6 +264,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 	// Compose the output array.
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+#if (JSON_PRINTSTYLE_BRACKET_ALLMAN)
 	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == ':')
@@ -276,6 +277,7 @@ t_bool	JSON_Print_Array(s_json const* item, s_json_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
+#endif
 	// opening square bracket
 	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
 	ENSURE(length)
@@ -345,6 +347,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		return (ERROR);
 	if (!(current_item && (current_item->next || current_item->prev != current_item)))
 		multiline = FALSE;
+#if (JSON_PRINTSTYLE_BRACKET_ALLMAN)
 	if (multiline && p->offset >= 2 &&
 		p->result[p->offset - 1] == ' ' &&
 		p->result[p->offset - 2] == ':')
@@ -357,6 +360,7 @@ t_bool	JSON_Print_Object(s_json const* item, s_json_print* p)
 		}
 		p->offset += p->depth + 1;
 	}
+#endif
 	// opening curly brace
 	length = 1;//(t_size)(1 + (p->format && !multiline ? 1 : 0));
 	ENSURE(length)

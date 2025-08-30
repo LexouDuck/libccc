@@ -46,6 +46,14 @@ typedef s_kvt	s_toml;
 
 
 
+//! If `TRUE`, bracket indentation style will be "Allman" style, otherwise will be "K&R" style
+#define TOML_PRINTSTYLE_BRACKET_ALLMAN	FALSE
+
+//! The maximum amount of items an inline array/object can have before being spread across multiple lines
+#define TOML_PRINTSTYLE_INLINE_MULTILINE	8
+
+
+
 /*============================================================================*\
 ||                            TOML Parsing Operations                         ||
 \*============================================================================*/
