@@ -40,10 +40,10 @@
 #include <libccc/math/algebra.h>// TODO add 's_tensor' type
 #include <libccc/math/complex.h>// TODO add 's_quaternion' type
 ```
-- TODO: reorganize test suite to reflect new header file folder tree + add empty files for tests
-- TODO: add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
-- TODO: for each compound type in 'monad' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
-- TODO: add printf format specifier flags to String_Format wrapper for the following:
+- reorganize test suite to reflect new header file folder tree + add empty files for tests
+- add option #define LIBCONFIG_PRINT_ENCODING	(ANSI,ASCII,UTF8) which changes printf behavior ?
+- for each compound type in 'monad' folder: implement functions _New, _Delete, _Equals, _Duplicate, _Sub, _Insert, _Replace, _Filter, _Map
+- add printf format specifier flags to String_Format wrapper for the following:
 	- specifier: unsigned binary integer: `%b`
 	- specifier: boolean (TRUE or FALSE): `%B`
 	- specifier: char	(escape-sequence): `%C`
@@ -54,6 +54,11 @@
 		- `%.5[s]` will show only the 5 first strings
 		- `%[.5s]` will show the first 5 chars of each string
 		- `%.5[.5s]` will show the first 5 chars of the 5 first strings
+- add profiler / speed indicator documentation for each function
+	- shows execution time for 0 elems
+	- shows execution time for 1 elems
+	- shows execution time for 100 elems
+	- shows big O notation
 
 
 
