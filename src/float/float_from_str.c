@@ -16,7 +16,7 @@
 #include "libccc/string.h"
 #include "libccc/math/int.h"
 #include "libccc/math/float.h"
-#include "libccc/text/char_unicode.h"
+#include "libccc/text/char/unicode.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 

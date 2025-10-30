@@ -2,7 +2,7 @@
 #include <locale.h>
 
 #include "libccc.h"
-#include "libccc/text/char_unicode.h"
+#include "libccc/text/char/unicode.h"
 
 #include "test.h"
 #include "test_utils.h"

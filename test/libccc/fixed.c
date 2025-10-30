@@ -2,6 +2,7 @@
 #include "libccc.h"
 #include "libccc/fixed.h"
 #include "libccc/string.h"
+#include "libccc/text/format.h"
 #include "libccc/sys/io.h"
 #include "libccc/math.h"
 

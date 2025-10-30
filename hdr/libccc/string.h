@@ -14,7 +14,7 @@
 /*!@group{libccc_string,18,libccc/string.h}
 **
 **	This header defines the common standard string manipulation functions.
-**	NOTE: This header includes both ASCII and UTF8 string function APIs.
+**	NOTE: This header includes multiple string function APIs: ASCII, UTF32, UTF8
 **
 **	@isostd{C,https://en.cppreference.com/w/c/string/byte#StringASCII_manipulation}
 */
@@ -24,8 +24,9 @@
 \*============================================================================*/
 
 #include "libccc.h"
-#include "libccc/text/string_ascii.h"
-#include "libccc/char.h"
+#include "libccc/text/string/ascii.h"
+#include "libccc/text/string/utf32.h"
+#include "libccc/text/string/utf8.h"
 
 HEADER_CPP
 
@@ -33,163 +34,125 @@ HEADER_CPP
 ||                                 Definitions                                ||
 \*============================================================================*/
 
+//! Type definition for a string of characters
+/*!
+**	This typedef is only provided for certain niche purposes (such as use with generics),
+**	since it is typically not very good practice in C to hide pointers within `typedef` types.
+*/
+//!@{
 typedef t_char*	p_str;
 typedef t_char*	p_string;
+//!@}
 
 
 
-typedef void	(*f_string_iterate)		(t_char* );
-typedef void	(*f_string_iterate_i)	(unsigned int, t_char* );
-typedef t_char	(*f_string_map)			(t_char);
-typedef t_char	(*f_string_map_i)		(unsigned int, t_char);
+typedef void	(*f_string_iterate)		(t_char* c);
+typedef void	(*f_string_iterate_i)	(t_char* c, t_size i);
+typedef t_char	(*f_string_map)			(t_char c);
+typedef t_char	(*f_string_map_i)		(t_char c, t_size i);
+typedef t_bool	(*f_string_filter)		(t_char c);
+typedef t_bool	(*f_string_filter_i)	(t_char c, t_size i);
 
 
 
 /*============================================================================*\
-||                              String functions                              ||
+||                       String API redirection macros                        ||
 \*============================================================================*/
 
-#define String_New                     StringASCII_New
-#define String_New_C                   StringASCII_New_C
-
-#define String_Free                    StringASCII_Free
-#define String_Delete                  StringASCII_Delete
-
-#define String_Duplicate               StringASCII_Duplicate
-#define String_Duplicate_N             StringASCII_Duplicate_N
-#define String_Duplicate_Char          StringASCII_Duplicate_Char
-#define String_Duplicate_Charset       StringASCII_Duplicate_Charset
-#define String_Duplicate_String        StringASCII_Duplicate_String
-
-#define String_Clear                   StringASCII_Clear
-#define String_Set                     StringASCII_Set
-
-#define String_Copy                    StringASCII_Copy
-#define String_Copy_N                  StringASCII_Copy_N
-#define String_Copy_L                  StringASCII_Copy_L
-
-#define String_Add                     StringASCII_Add
-#define String_Add_N                   StringASCII_Add_N
-#define String_Add_L                   StringASCII_Add_L
-
-#define String_Length                  StringASCII_Length
-#define String_Length_N                StringASCII_Length_N
-
-#define String_Equals                  StringASCII_Equals
-#define String_Equals_N                StringASCII_Equals_N
-#define String_Equals_IgnoreCase       StringASCII_Equals_IgnoreCase
-#define String_Equals_N_IgnoreCase     StringASCII_Equals_N_IgnoreCase
-
-#define String_Compare                 StringASCII_Compare
-#define String_Compare_N               StringASCII_Compare_N
-#define String_Compare_IgnoreCase      StringASCII_Compare_IgnoreCase
-#define String_Compare_N_IgnoreCase    StringASCII_Compare_N_IgnoreCase
-
-#define String_Has                     StringASCII_Has
-#define String_HasOnly                 StringASCII_HasOnly
-
-#define String_Count_Char              StringASCII_Count_Char
-#define String_Count_Charset           StringASCII_Count_Charset
-#define String_Count_String            StringASCII_Count_String
-
-#define String_Find_Char               StringASCII_Find_Char
-#define String_Find_Charset            StringASCII_Find_Charset
-#define String_Find_String             StringASCII_Find_String
-
-#define String_Find_R_Char             StringASCII_Find_R_Char
-#define String_FindLast_Char           StringASCII_Find_R_Char
-
-#define String_Find_R_Charset          StringASCII_Find_R_Charset
-#define String_FindLast_Charset        StringASCII_Find_R_Charset
-
-#define String_Find_R_String           StringASCII_Find_R_String
-#define String_FindLast_String         StringASCII_Find_R_String
-
-#define String_Find_N_Char             StringASCII_Find_N_Char
-#define String_Find_N_Charset          StringASCII_Find_N_Charset
-#define String_Find_N_String           StringASCII_Find_N_String
-
-#define String_IndexOf_Char            StringASCII_IndexOf_Char
-#define String_IndexOf_Charset         StringASCII_IndexOf_Charset
-#define String_IndexOf_String          StringASCII_IndexOf_String
-
-#define String_IndexOf_R_Char          StringASCII_IndexOf_R_Char
-#define String_LastIndexOf_Char        StringASCII_IndexOf_R_Char
-
-#define String_IndexOf_R_Charset       StringASCII_IndexOf_R_Charset
-#define String_LastIndexOf_Charset     StringASCII_IndexOf_R_Charset
-
-#define String_IndexOf_R_String        StringASCII_IndexOf_R_String
-#define String_LastIndexOf_String      StringASCII_IndexOf_R_String
-
-#define String_IndexOf_N_Char          StringASCII_IndexOf_N_Char
-#define String_IndexOf_N_Charset       StringASCII_IndexOf_N_Charset
-#define String_IndexOf_N_String        StringASCII_IndexOf_N_String
-
-#define String_Remove                  StringASCII_Remove
-
-#define String_Replace_Char            StringASCII_Replace_Char
-#define String_Replace_Charset         StringASCII_Replace_Charset
-#define String_Replace_String          StringASCII_Replace_String
-
-#define String_Concat                  StringASCII_Concat
-#define String_Append                  StringASCII_Append
-#define String_Prepend                 StringASCII_Prepend
-#define String_Merge                   StringASCII_Merge
-
-#define String_Join                    StringASCII_Join
-#define String_Insert_InPlace          StringASCII_Insert_InPlace
-
-
-#define String_Replace_Char_InPlace    StringASCII_Replace_Char_InPlace
-#define String_Replace_Charset_InPlace StringASCII_Replace_Charset_InPlace
-#define String_Replace_String_InPlace  StringASCII_Replace_String_InPlace
-
-#define String_Map_InPlace             StringASCII_Map_InPlace
-
-#define String_Trim                    StringASCII_Trim
-#define String_Trim_L                  StringASCII_Trim_L
-#define String_Trim_R                  StringASCII_Trim_R
-
-#define String_Pad                     StringASCII_Pad
-#define String_Pad_L                   StringASCII_Pad_L
-#define String_Pad_R                   StringASCII_Pad_R
-
-
-#define String_Print                   StringASCII_ToAsciiEscapedBuf
-
-#define String_ToAsciiEscaped          StringASCII_ToAsciiEscaped
-#define String_ToAsciiEscapedBuf       StringASCII_ToAsciiEscapedBuf
-
-#define String_ToJsonEscaped           StringASCII_ToJsonEscaped
-#define String_ToJsonEscapedBuf        StringASCII_ToJsonEscapedBuf
-
-#define ENCODER_CHAR_xFF               CharASCII_ToEscaped_xFF
-
-#define String_ToEscaped               StringASCII_ToEscaped
-#define String_ToEscaped_e             StringASCII_ToEscaped_e
-#define String_ToEscapedBuf            StringASCII_ToEscapedBuf
-#define String_ToEscapedBuf_e          StringASCII_ToEscapedBuf_e
-
-
-#define String_Parse                   StringASCII_Parse
-
-#define String_FromEscape              StringASCII_FromEscape
-
-#define String_Reverse                 StringASCII_Reverse
-
-#define String_Insert                  StringASCII_Insert
-
-#define String_Sub                     StringASCII_Sub
-
-#define String_Iterate                 StringASCII_Iterate
-#define String_Iterate_I               StringASCII_Iterate_I
-
-#define String_Map                     StringASCII_Map
-#define String_Map_I                   StringASCII_Map_I
-
-#define String_Filter                  StringASCII_Filter
-#define String_Filter_I                StringASCII_Filter_I
+// Basic String Operations
+#define String_New                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_New))
+#define String_New_C                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_New_C))
+#define String_Free                    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Free))
+#define String_Delete                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Delete))
+#define String_Duplicate               (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Duplicate))
+#define String_Duplicate_N             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Duplicate_N))
+#define String_Duplicate_Char          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Duplicate_Char))
+#define String_Duplicate_Charset       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Duplicate_Charset))
+#define String_Duplicate_String        (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Duplicate_String))
+#define String_Clear                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Clear))
+#define String_Set                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Set))
+#define String_Copy                    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Copy))
+#define String_Copy_N                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Copy_N))
+#define String_Copy_L                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Copy_L))
+#define String_Add                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Add))
+#define String_Add_N                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Add_N))
+#define String_Add_L                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Add_L))
+// String Checks
+#define String_Length                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Length))
+#define String_Length_N                (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Length_N))
+#define String_Equals                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Equals))
+#define String_Equals_N                (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Equals_N))
+#define String_Equals_IgnoreCase       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Equals_IgnoreCase))
+#define String_Equals_N_IgnoreCase     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Equals_N_IgnoreCase))
+#define String_Compare                 (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Compare))
+#define String_Compare_N               (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Compare_N))
+#define String_Compare_IgnoreCase      (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Compare_IgnoreCase))
+#define String_Compare_N_IgnoreCase    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Compare_N_IgnoreCase))
+#define String_Has                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Has))
+#define String_HasOnly                 (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_HasOnly))
+#define String_Count_Char              (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Count_Char))
+#define String_Count_Charset           (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Count_Charset))
+#define String_Count_String            (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Count_String))
+// String Searching
+#define String_Find_Char               (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_Char))
+#define String_Find_Charset            (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_Charset))
+#define String_Find_String             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_String))
+#define String_Find_R_Char             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_Char))
+#define String_FindLast_Char           (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_Char))
+#define String_Find_R_Charset          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_Charset))
+#define String_FindLast_Charset        (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_Charset))
+#define String_Find_R_String           (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_String))
+#define String_FindLast_String         (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_R_String))
+#define String_Find_N_Char             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_N_Char))
+#define String_Find_N_Charset          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_N_Charset))
+#define String_Find_N_String           (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Find_N_String))
+#define String_IndexOf_Char            (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_Char))
+#define String_IndexOf_Charset         (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_Charset))
+#define String_IndexOf_String          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_String))
+#define String_IndexOf_R_Char          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_Char))
+#define String_LastIndexOf_Char        (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_Char))
+#define String_IndexOf_R_Charset       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_Charset))
+#define String_LastIndexOf_Charset     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_Charset))
+#define String_IndexOf_R_String        (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_String))
+#define String_LastIndexOf_String      (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_R_String))
+#define String_IndexOf_N_Char          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_N_Char))
+#define String_IndexOf_N_Charset       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_N_Charset))
+#define String_IndexOf_N_String        (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_IndexOf_N_String))
+// String Replacements
+#define String_Remove                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Remove))
+#define String_Replace_Char            (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_Char))
+#define String_Replace_Charset         (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_Charset))
+#define String_Replace_String          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_String))
+// String Concatenation Operations
+#define String_Concat                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Concat))
+#define String_Append                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Append))
+#define String_Prepend                 (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Prepend))
+#define String_Merge                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Merge))
+#define String_Join                    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Join))
+// String In-Place Editing
+#define String_Insert_InPlace          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Insert_InPlace))
+#define String_Replace_Char_InPlace    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_Char_InPlace))
+#define String_Replace_Charset_InPlace (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_Charset_InPlace))
+#define String_Replace_String_InPlace  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Replace_String_InPlace))
+#define String_Map_InPlace             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Map_InPlace))
+// String Whitespace Operations
+#define String_Trim                    (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Trim))
+#define String_Trim_L                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Trim_L))
+#define String_Trim_R                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Trim_R))
+#define String_Pad                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Pad))
+#define String_Pad_L                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Pad_L))
+#define String_Pad_R                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Pad_R))
+// Other String Operations
+#define String_Reverse                 (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Reverse))
+#define String_Insert                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Insert))
+#define String_Sub                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Sub))
+// Functional Operations
+#define String_Iterate                 (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Iterate))
+#define String_Iterate_I               (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Iterate_I))
+#define String_Map                     (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Map))
+#define String_Map_I                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Map_I))
+#define String_Filter                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Filter))
+#define String_Filter_I                (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Filter_I))
 
 HEADER_END
 #endif

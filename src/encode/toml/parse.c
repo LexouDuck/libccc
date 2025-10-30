@@ -4,6 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
+#include "libccc/text/escape.h"
 #include "libccc/encode/toml.h"
 
 #include LIBCONFIG_ERROR_INCLUDE

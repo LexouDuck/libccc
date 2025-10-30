@@ -15,8 +15,8 @@
 
 #include "libccc.h"
 #include "libccc/char.h"
-#include "libccc/text/char_ascii.h"
-#include "libccc/text/char_unicode.h"
+#include "libccc/text/char/ascii.h"
+#include "libccc/text/char/unicode.h"
 #include "libccc/sys/time.h"
 #include "libccc/math/stat.h"
 

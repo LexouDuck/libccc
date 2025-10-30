@@ -46,12 +46,16 @@
 #include <libccc/sys/logger.h>
 #include <libccc/sys/program.h>
 #include <libccc/sys/time.h>
-#include <libccc/text/char_ascii.h>
-#include <libccc/text/char_unicode.h>
+#include <libccc/text/char/ascii.h>
+#include <libccc/text/char/unicode.h>
+#include <libccc/text/string/ascii.h>
+#include <libccc/text/string/utf32.h>
+#include <libccc/text/string/utf8.h>
+#include <libccc/text/stringarray/ascii.h>
+#include <libccc/text/stringarray/utf32.h>
+#include <libccc/text/stringarray/utf8.h>
 #include <libccc/text/format.h>
 #include <libccc/text/regex.h>
-#include <libccc/text/string_ascii.h>
-#include <libccc/text/string_utf8.h>
 #include <libccc_config.h>
 #include <libccc_define.h>
 #include <libccc_errors.h>
@@ -67,6 +71,6 @@
 
 int main()
 {
-	                     var_0001 =                               (NULL);
-	                     var_0002 =                               (NULL, 0, 0, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0);
+	var_0001 = (NULL);
+	var_0002 = (NULL, 0, 0, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, 0, 0, 0);
 }

@@ -32,7 +32,8 @@
 
 #include "libccc.h"
 
-#include "libccc/text/char_ascii.h"
+#include "libccc/text/char/ascii.h"
+#include "libccc/text/char/unicode.h"
 
 HEADER_CPP
 

@@ -85,7 +85,7 @@ int	print_results(s_test_suite const* suites)
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
 		percent = (suites[i].totals.tests == 0 ? 100. : ((suites[i].totals.tests - suites[i].totals.failed) * 100. / suites[i].totals.tests));
-		printf(" - %-20s: (%s%8d" ANSI_RESET " tests, %s%8d" ANSI_RESET " failed, %s%8d" ANSI_RESET " warnings)\t-> ",
+		printf(" - %-24s: (%s%8d" ANSI_RESET " tests, %s%8d" ANSI_RESET " failed, %s%8d" ANSI_RESET " warnings)\t-> ",
 			suites[i].name,
 			(suites[i].totals.tests    == 0 ? ANSI_COLOR_FG_YELLOW : ""),       suites[i].totals.tests,
 			(suites[i].totals.failed   == 0 ? ANSI_COLOR_FG_GREEN  : ANSI_COLOR_FG_RED),    suites[i].totals.failed,

@@ -4,6 +4,7 @@
 #include "libccc/memory.h"
 #include "libccc/string.h"
 #include "libccc/memory.h"
+#include "libccc/text/escape.h"
 #include "libccc/text/format.h"
 #include "libccc/encode/json.h"
 

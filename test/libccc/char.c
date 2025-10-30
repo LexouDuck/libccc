@@ -18,8 +18,8 @@ int	testsuite_char(void)
 /*
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
-		if ((g_test.suites[i].run == FALSE && g_test.suites[i].name && strcmp(g_test.suites[i].name, "text/char_ascii")   == 0) ||
-			(g_test.suites[i].run == FALSE && g_test.suites[i].name && strcmp(g_test.suites[i].name, "text/char_unicode") == 0))
+		if ((g_test.suites[i].run == FALSE && g_test.suites[i].name && strcmp(g_test.suites[i].name, "text/char/ascii")   == 0) ||
+			(g_test.suites[i].run == FALSE && g_test.suites[i].name && strcmp(g_test.suites[i].name, "text/char/unicode") == 0))
 		{
 			g_test.suites[i].run = TRUE;
 		}

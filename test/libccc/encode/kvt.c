@@ -1,5 +1,6 @@
 
 #include "libccc/string.h"
+#include "libccc/text/format.h"
 #include "libccc/encode/common.h"
 #include "libccc/encode/toml.h"
 

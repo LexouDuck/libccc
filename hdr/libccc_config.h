@@ -326,10 +326,10 @@ HEADER_CPP
 **
 **	There are 2 possible accepted values for these:
 **
-**	| `LIBCONFIG_RANDOM_TYPE` | Config description                           |
-**	|-------------------------|----------------------------------------------|
-**	| `t_prng`                | for simple pseudo-random number algorithm    |
-**	| `t_csprng`              | for cryptographically-secure RNG (OS native) |
+**	| `LIBCONFIG_RANDOM_TYPE` | `LIBCONFIG_RANDOM_NAME` | Config description                           |
+**	|-------------------------|-------------------------|----------------------------------------------|
+**	| `t_prng`                | `PRNG`                  | for simple pseudo-random number algorithm    |
+**	| `t_csprng`              | `CSPRNG`                | for cryptographically-secure RNG (OS native) |
 */
 //!@{
 #ifndef LIBCONFIG_RANDOM_TYPE
@@ -338,18 +338,40 @@ HEADER_CPP
 #ifndef LIBCONFIG_RANDOM_NAME
 #define LIBCONFIG_RANDOM_NAME	PRNG
 #endif
-#if 0
 #if !defined(LIBCONFIG_RANDOM_TYPE) || !defined(LIBCONFIG_RANDOM_NAME)
 #error "The configuration macros LIBCONFIG_RANDOM_TYPE LIBCONFIG_RANDOM_NAME have not been defined properly"
-#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_prng", 6)
-	#undef  LIBCONFIG_RANDOM_NAME
-	#define LIBCONFIG_RANDOM_NAME	PRNG
-#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_csprng", 8)
-	#undef  LIBCONFIG_RANDOM_NAME
-	#define LIBCONFIG_RANDOM_NAME	CSPRNG
-#else
-#error "Invalid value(s) selected for LIBCONFIG_RANDOM_TYPE and/or LIBCONFIG_RANDOM_NAME"
+//	#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_prng", 6)
+//		#undef  LIBCONFIG_RANDOM_NAME
+//		#define LIBCONFIG_RANDOM_NAME	PRNG
+//	#elif (STREQU(STRING(LIBCONFIG_RANDOM_TYPE), "t_csprng", 8)
+//		#undef  LIBCONFIG_RANDOM_NAME
+//		#define LIBCONFIG_RANDOM_NAME	CSPRNG
+//	#else
+//	#error "Invalid value(s) set for LIBCONFIG_RANDOM_TYPE and/or LIBCONFIG_RANDOM_NAME"
 #endif
+//!@}
+
+
+
+//!@doc Which string function API should be used by default
+/*!
+**	This macro configures which underlying API will be used by the `String_*()` `StringArray_*()` functions
+**	There are 3 possible accepted values for this configuration macro:
+**	- ASCII
+**	- UTF32
+**	- UTF8
+*/
+//!@{
+#ifndef LIBCONFIG_STRING_FORMAT
+#define LIBCONFIG_STRING_FORMAT	ASCII
+#endif
+#if !defined(LIBCONFIG_STRING_FORMAT)
+#error "The configuration macro LIBCONFIG_STRING_FORMAT has not been defined properly"
+//#elif (STREQU(STRING(LIBCONFIG_STRING_FORMAT), "ASCII", 5))
+//#elif (STREQU(STRING(LIBCONFIG_STRING_FORMAT), "UTF32", 5))
+//#elif (STREQU(STRING(LIBCONFIG_STRING_FORMAT), "UTF8", 4))
+//#else
+//#error "Invalid value set for LIBCONFIG_STRING_FORMAT"
 #endif
 //!@}
 
@@ -370,7 +392,7 @@ HEADER_CPP
 #error "Invalid value selected for LIBCONFIG_LIST_DOUBLYLINKED, must be either 0 or 1"
 #endif
 //!@}
-// TODO make it so doubly-linked lists have the first item's `->prev` point to the last element
+// TODO make it so doubly-linked lists have the first item's `->prev` point to the last element ?
 
 
 
