@@ -223,6 +223,7 @@
 ./src/math/int/fn_sgn.c
 ./src/math/int/is_inf.c
 ./src/math/int/is_nan.c
+./src/math/int/is_prime.c
 ./src/math/int/op_add.c
 ./src/math/int/op_div.c
 ./src/math/int/op_gcd.c
