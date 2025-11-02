@@ -121,7 +121,7 @@ void	print_test_strarrlen(char const* test_name, t_testflags flags,
 }
 void	test_strarrlen()
 {
-//	| TEST FUNCTION			| TEST NAME				| TESTFLAG	| EXPECTING | TEST ARGS
+//	| TEST FUNCTION		| TEST NAME				| TESTFLAG	| EXPECTING | TEST ARGS
 	print_test_strarrlen("strarrlen",				FALSE,		18,         strarr1_A);
 	print_test_strarrlen("strarrlen",				FALSE,		18,         strarr1_B);
 	print_test_strarrlen("strarrlen",				FALSE,		 7,         strarr1_C);
@@ -131,7 +131,7 @@ void	test_strarrlen()
 	print_test_strarrlen("strarrlen",				FALSE,		 2,         strarr4_A);
 	print_test_strarrlen("strarrlen",				FALSE,		 4,         strarr4_B);
 	print_test_strarrlen("strarrlen",				FALSE,		 8,         strarr4_C);
-	print_test_strarrlen("strarrlen (null strarr)",	TRUE,		-1,         NULL);
+	print_test_strarrlen("strarrlen (null strarr)",	TRUE,		 0,         NULL);
 }
 #endif
 
@@ -233,30 +233,6 @@ void	test_strsplit_str()
 
 
 
-#ifndef c_strarrconcat
-void test_strarrconcat(void)	{}
-#warning "strarrconcat() test suite function defined, but the function isn't defined."
-#else
-void	print_test_strarrconcat(char const* test_name, t_testflags flags,
-		char const**	expecting,
-		char const**	strarr1,
-		char const**	strarr2)
-{
-	TEST_INIT(strarr)
-	TEST_PERFORM_(result, (char**)c_strarrconcat, strarr1, strarr2)
-	test.expect = (char**)expecting;
-	TEST_PRINT(strarr,	strarrconcat, "strarr1=[ %p ], strarr2=[ %p ]", (void*)strarr1, (void*)strarr2) // TODO
-	TEST_FREE_RESULT(c_strarrfree)
-}
-void	test_strarrconcat()
-{
-//	| TEST FUNCTION			| TEST NAME					| TESTFLAG	| EXPECTING			| TEST ARGS
-	// TODO
-}
-#endif
-
-
-
 #ifndef c_strjoin
 void test_strjoin(void)	{}
 #warning "strjoin() test suite function defined, but the function isn't defined."
@@ -281,8 +257,32 @@ void	test_strjoin()
 	print_test_strjoin("strjoin",					FALSE,			strarr3_as_str_A,	strarr3,	" ");
 	print_test_strjoin("strjoin",					FALSE,			strarr4_as_str,		strarr4_B,	"aa");
 	print_test_strjoin("strjoin (null strarr)",		ALLOW_SIGSEGV,	NULL,				NULL,		"");
-	print_test_strjoin("strjoin (null sep)",			ALLOW_SIGSEGV,	NULL,				strarr3,	NULL);
-	print_test_strjoin("strjoin (both null)",		ALLOW_SIGSEGV,	NULL,				NULL,		NULL);
+	print_test_strjoin("strjoin (null sep)   ",		ALLOW_SIGSEGV,	NULL,				strarr3,	NULL);
+	print_test_strjoin("strjoin (both null)  ",		ALLOW_SIGSEGV,	NULL,				NULL,		NULL);
+}
+#endif
+
+
+
+#ifndef c_strarrconcat
+void test_strarrconcat(void)	{}
+#warning "strarrconcat() test suite function defined, but the function isn't defined."
+#else
+void	print_test_strarrconcat(char const* test_name, t_testflags flags,
+		char const**	expecting,
+		char const**	strarr1,
+		char const**	strarr2)
+{
+	TEST_INIT(strarr)
+	TEST_PERFORM_(result, (char**)c_strarrconcat, strarr1, strarr2)
+	test.expect = (char**)expecting;
+	TEST_PRINT(strarr,	strarrconcat, "strarr1=[ %p ], strarr2=[ %p ]", (void*)strarr1, (void*)strarr2) // TODO
+	TEST_FREE_RESULT(c_strarrfree)
+}
+void	test_strarrconcat()
+{
+//	| TEST FUNCTION			| TEST NAME					| TESTFLAG	| EXPECTING			| TEST ARGS
+	// TODO
 }
 #endif
 
@@ -299,9 +299,8 @@ int		testsuite_text_stringarray_ascii(void)
 	print_nonstd();
 
 
-/*
+
 	test_strarrlen();
-	test_strarrstrlen();
 
 //	test_strarrnew();
 //	test_strarrcnew();
@@ -332,6 +331,5 @@ int		testsuite_text_stringarray_ascii(void)
 //	test_strarrfold();
 //	test_strarrifold();
 
-*/
 	return (0);
 }
