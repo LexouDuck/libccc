@@ -11,22 +11,22 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 _INLINE()
-t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_utf32 c)
+t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
 {
 	return (strchr(str, c));
 }
 #else
-t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_utf32 c)
+t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
 {
 	t_size	i = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);
-	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
+	if ((unsigned)c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
 		t_sint size = 0;
-		t_utf32 current = 0;
+		t_ascii current = 0;
 		while (str[i])
 		{
 			current = CharUTF32_FromUTF8(str + i);
@@ -56,8 +56,7 @@ t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_utf32 c)
 }
 #endif
 
-_INLINE()
-t_sintmax	StringASCII_IndexOf_Char(t_ascii const* str, t_utf32 c)
+t_sintmax	StringASCII_IndexOf_Char(t_ascii const* str, t_ascii c)
 {
 	t_ascii* result = StringASCII_Find_Char(str, c);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
@@ -100,7 +99,6 @@ t_ascii*	StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset)
 }
 #endif
 
-_INLINE()
 t_sintmax	StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
 {
 	t_ascii* result = StringASCII_Find_Charset(str, charset);
@@ -148,7 +146,6 @@ t_ascii*	StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
 }
 #endif
 
-_INLINE()
 t_sintmax	StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query)
 {
 	t_ascii* result = StringASCII_Find_String(str, query);

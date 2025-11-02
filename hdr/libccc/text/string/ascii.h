@@ -498,13 +498,12 @@ t_bool					StringASCII_HasOnly(t_ascii const* str, t_ascii const* charset);
 /*!
 **	@nonstd
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The amount of occurences of t_ascii `c` in the given string `str`.
 */
 //!@{
-t_size						StringASCII_Count_Char(t_ascii const* str, t_utf32 c);
+t_size						StringASCII_Count_Char(t_ascii const* str, t_ascii c);
 #define c_strcount_char		StringASCII_Count_Char
 //!@}
 
@@ -542,14 +541,13 @@ t_size						StringASCII_Count_String(t_ascii const* str, t_ascii const* query);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr} but with support for unicode if t_ascii is of type t_utf8
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched.
 */
 //!@{
-t_ascii*			StringASCII_Find_Char(t_ascii const* str, t_utf32 c);
+t_ascii*			StringASCII_Find_Char(t_ascii const* str, t_ascii c);
 #define c_strchr	StringASCII_Find_Char
 //!@}
 
@@ -586,14 +584,13 @@ t_ascii*			StringASCII_Find_String(t_ascii const* str, t_ascii const* query);
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strrchr}
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The last occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched.
 */
 //!@{
-t_ascii*							StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c);
+t_ascii*							StringASCII_Find_R_Char(t_ascii const* str, t_ascii c);
 #define c_strrchr					StringASCII_Find_R_Char
 #define StringASCII_FindLast_Char	StringASCII_Find_R_Char
 //!@}
@@ -633,14 +630,13 @@ t_ascii*								StringASCII_Find_R_String(t_ascii const* str, t_ascii const* que
 /*!
 **	@nonstd
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The first occurence of the given char `c` inside the given string `str`,
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_ascii*			StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n);
+t_ascii*			StringASCII_Find_N_Char(t_ascii const* str, t_ascii c, t_size n);
 #define c_strnchr	StringASCII_Find_N_Char
 //!@}
 
@@ -677,14 +673,13 @@ t_ascii*			StringASCII_Find_N_String(t_ascii const* str, t_ascii const* query, t
 /*!
 **	@nonstd
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The index of the first occurrence at which `c` is found in `str`,
 **	or -1 if `c` does not exist in `str`.
 */
 //!@{
-t_sintmax			StringASCII_IndexOf_Char(t_ascii const* str, t_utf32 c);
+t_sintmax			StringASCII_IndexOf_Char(t_ascii const* str, t_ascii c);
 #define c_strichr	StringASCII_IndexOf_Char
 //!@}
 
@@ -721,14 +716,13 @@ t_sintmax			StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query)
 /*!
 **	@nonstd
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The last occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched.
 */
 //!@{
-t_sintmax								StringASCII_IndexOf_R_Char(t_ascii const* str, t_utf32 c);
+t_sintmax								StringASCII_IndexOf_R_Char(t_ascii const* str, t_ascii c);
 #define c_strirchr						StringASCII_IndexOf_R_Char
 #define StringASCII_LastIndexOf_Char	StringASCII_IndexOf_R_Char
 //!@}
@@ -768,14 +762,13 @@ t_sintmax								StringASCII_IndexOf_R_String(t_ascii const* str, t_ascii const*
 /*!
 **	@nonstd
 **
-**	//TODO: change `c` type to t_ascii when the `String(ASCII|UTF8)` split is complete 
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
 */
 //!@{
-t_sintmax				StringASCII_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n);
+t_sintmax				StringASCII_IndexOf_N_Char(t_ascii const* str, t_ascii c, t_size n);
 #define c_strinchr		StringASCII_IndexOf_N_Char
 //!@}
 

@@ -12,12 +12,12 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 _INLINE()
-t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c)
+t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_ascii c)
 {
 	return (strchr(str, c));
 }
 #else
-t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c)
+t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_ascii c)
 {
 	t_size	i = 0;
 
@@ -28,10 +28,10 @@ t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c)
 	i = StringASCII_Length(str);
 	if (i == 0)
 		return (NULL);
-	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
+	if ((unsigned)c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
-		t_utf32 current = 0;
+		t_ascii current = 0;
 		while (i--)
 		{
 			while (i && (str[i] & 0xC0) == 0x80)
@@ -59,7 +59,7 @@ t_ascii*	StringASCII_Find_R_Char(t_ascii const* str, t_utf32 c)
 #endif
 
 _INLINE()
-t_sintmax	StringASCII_IndexOf_R_Char(t_ascii const* str, t_utf32 c)
+t_sintmax	StringASCII_IndexOf_R_Char(t_ascii const* str, t_ascii c)
 {
 	t_ascii* result = StringASCII_Find_R_Char(str, c);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)

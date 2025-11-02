@@ -6,18 +6,18 @@
 
 
 
-t_size	StringASCII_Count_Char(t_ascii const* str, t_utf32 c)
+t_size	StringASCII_Count_Char(t_ascii const* str, t_ascii c)
 {
 	t_size	result = 0;
 	t_size	i = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (0);
-	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
+	if ((unsigned)c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
 		t_sint size = 0;
-		t_utf32 current = 0;
+		t_ascii current = 0;
 		while (str[i])
 		{
 			current = CharUTF32_FromUTF8(str + i);

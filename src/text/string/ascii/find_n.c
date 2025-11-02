@@ -10,17 +10,17 @@
 
 
 
-t_ascii*	StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
+t_ascii*	StringASCII_Find_N_Char(t_ascii const* str, t_ascii c, t_size n)
 {
 	t_size	i = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);
-	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
+	if ((unsigned)c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
 		// TODO: if t_ascii is t_ascii then return NULL
 		t_sint size = 0;
-		t_utf32 current = 0;
+		t_ascii current = 0;
 		while (i < n && str[i])
 		{
 			current = CharUTF32_FromUTF8(str + i);
@@ -50,7 +50,7 @@ t_ascii*	StringASCII_Find_N_Char(t_ascii const* str, t_utf32 c, t_size n)
 }
 
 _INLINE()
-t_sintmax	StringASCII_IndexOf_N_Char(t_ascii const* str, t_utf32 c, t_size n)
+t_sintmax	StringASCII_IndexOf_N_Char(t_ascii const* str, t_ascii c, t_size n)
 {
 	t_ascii* result = StringASCII_Find_N_Char(str, c, n);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
