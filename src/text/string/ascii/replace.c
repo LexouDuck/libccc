@@ -34,7 +34,7 @@ t_ascii*		StringASCII_Replace_Char(t_ascii const* str, t_ascii const char_old, t
 	return (result);
 }
 
-
+#include <stdio.h>
 
 t_ascii*		StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cset_old, t_ascii const* cset_new)
 {
@@ -53,26 +53,25 @@ t_ascii*		StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cset_ol
 		return (StringASCII_Duplicate(str));
 	if (StringASCII_Length(cset_old) != StringASCII_Length(cset_new))
 		return (NULL);
-	i = 0;
-	while (cset_old[i])
+	// check for duplicate chars in old charset
+	for (i = 0; cset_old[i]; ++i)
 	{
-		j = i;
-		while (cset_old[++j])
-			if (cset_old[i] == cset_old[j])
+		for (j = i + 1; cset_old[j]; ++j)
+		{
+			if CCCERROR((cset_old[i] == cset_old[j]), ERROR_INVALIDARGS,
+				"duplicate character in source charset: \'%c\'", cset_old[i])
 				return (NULL);
-		++i;
+		}
 	}
 	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
-	i = 0;
-	while (str[i])
+	for (i = 0; str[i]; ++i)
 	{
 		if ((c_index = StringASCII_IndexOf_Char(cset_old, str[i])) >= 0)
 			result[i] = cset_new[c_index];
 		else
 			result[i] = str[i];
-		++i;
 	}
 	result[i] = '\0';
 	return (result);
@@ -91,7 +90,7 @@ t_ascii*		StringASCII_Replace_String(t_ascii const* str, t_ascii const* str_old,
 		return (NULL);
 	if CCCERROR((str_new == NULL), ERROR_NULLPOINTER, "new replace string given is NULL")
 		return (NULL);
-	if (str_old == str_new)
+	if ((str_old == str_new) || (StringASCII_Length(str_old) == 0))
 		return (StringASCII_Duplicate(str));
 	strarr = StringASCII_Split_String(str, str_old);
 	result = StringASCII_Join((t_ascii const**)strarr, str_new);

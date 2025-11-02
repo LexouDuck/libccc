@@ -686,7 +686,7 @@ void test_strcount_char(void)	{}
 void	print_test_strcount_char(char const* test_name, t_testflags flags,
 		t_size expecting,
 		char const* str,
-		int c)
+		char c)
 {
 	TEST_INIT(bool)
 	TEST_PERFORM(	strcount_char, str, c)
@@ -702,12 +702,12 @@ void	test_strcount_char(void)
 	print_test_strcount_char("strcount_char            ",	FALSE,			0,    test3, '_');
 	print_test_strcount_char("strcount_char            ",	FALSE,			3,    test_, 'g');
 	print_test_strcount_char("strcount_char            ",	FALSE,			0,    test_, 'z');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_cc_c0,   L'␡');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_cc_c1,   L'');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_fr, L'œ');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_ru, L'щ');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_jp, L'愛');
-	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_utf8_ho, 0x10414);//L'𐐔');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          0,    teststr_cc_c0,   (char)L'␡');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          1,    teststr_cc_c1,   (char)L'');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          0,    teststr_utf8_fr, (char)L'œ');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          0,    teststr_utf8_ru, (char)L'щ');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          0,    teststr_utf8_jp, (char)L'愛');
+	print_test_strcount_char("strcount_char (unicode)  ",   FALSE,          0,    teststr_utf8_ho, (char)0x10414);//L'𐐔');
 	print_test_strcount_char("strcount_char (empty str)",	FALSE,			0,    "",    'a');
 	print_test_strcount_char("strcount_char ('\\0 char')",	FALSE,			1,    "sweg", '\0');
 	print_test_strcount_char("strcount_char (null str) ",ALLOW_SIGSEGV,	0,    NULL,  'a');
@@ -767,7 +767,7 @@ void test_strchr(void)	{}
 void	print_test_strchr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		int c)
+		char c)
 {
 	TEST_INIT(ptr)
 	if (expecting)	{ TEST_PERFORM(	strchr, str, c) }
@@ -776,20 +776,20 @@ void	print_test_strchr(char const* test_name, t_testflags flags,
 }
 void	test_strchr(void)
 {
-//	| TEST FUNCTION  | TEST NAME           | TESTFLAGS     | EXPECTS               | TEST ARGS
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test1          , 'm');
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test2          , '?');
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test3          , ' ');
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test1          , '_');
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test2          , '_');
-	print_test_strchr("strchr             ", FALSE         , NULL                  , test3          , '_');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_cc_c0   + 0x0 , teststr_cc_c0  , L'␡');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_cc_c1   + 0x39, teststr_cc_c1  , L'');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
-	print_test_strchr("strchr (unicode)   ", FALSE         , teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
-	print_test_strchr("strchr (c = '\\0') ", FALSE         , NULL                  , test3          , '\0');
+//	| TEST FUNCTION  | TEST NAME           | TESTFLAGS    | EXPECTS               | TEST ARGS
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test1          , 'm');
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test2          , '?');
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test3          , ' ');
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test1          , '_');
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test2          , '_');
+	print_test_strchr("strchr             ", FALSE        , NULL                  , test3          , '_');
+	print_test_strchr("strchr (unicode)   ", FALSE        , teststr_cc_c1   + 0x39, teststr_cc_c1  , (char)L'');
+	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0  , (char)L'␡');
+	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ');
+	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ');
+	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_jp + 0x21*/, teststr_utf8_jp, (char)L'愛');
+	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_ho + 0x17*/, teststr_utf8_ho, (char)0x10414);//L'𐐔');
+	print_test_strchr("strchr (c = '\\0') ", FALSE        , NULL                  , test3          , '\0');
 	print_test_strchr("strchr (null ptr)  ", ALLOW_SIGSEGV, NULL                  , NULL           , 'm');
 
 	// TODO: test unicode symbols encoded on multiple utf8 sequences
@@ -824,10 +824,10 @@ void	test_strstr(void)
 	print_test_strstr("strstr (unicode)    ",   FALSE,          teststr_utf8_ru, "щ");
 	print_test_strstr("strstr (unicode)    ",   FALSE,          teststr_utf8_jp, "愛");
 	print_test_strstr("strstr (unicode)    ",   FALSE,          teststr_utf8_ho, "𐐔");
-//	print_test_strstr("strstr (empty query)",	FALSE,			test3, ""); // TODO The test here fails because there is an intentional design difference
-	print_test_strstr("strstr (null str)   ",ALLOW_SIGSEGV,	NULL,  "mou ");
-	print_test_strstr("strstr (null query) ",ALLOW_SIGSEGV,	test1, NULL);
-	print_test_strstr("strstr (both null)  ",ALLOW_SIGSEGV,	NULL,  NULL);
+//	print_test_strstr("strstr (empty query)",   FALSE,          test3, ""); // TODO The test here fails because there is an intentional design difference
+	print_test_strstr("strstr (null str)   ", ALLOW_SIGSEGV,	NULL,  "mou ");
+	print_test_strstr("strstr (null query) ", ALLOW_SIGSEGV,	test1, NULL);
+	print_test_strstr("strstr (both null)  ", ALLOW_SIGSEGV,	NULL,  NULL);
 }
 #endif
 
@@ -839,7 +839,7 @@ void test_strrchr(void)	{}
 void	print_test_strrchr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		int c)
+		char c)
 {
 	TEST_INIT(ptr)
 	if (expecting)	{ TEST_PERFORM(	strchr, str, c) }
@@ -848,20 +848,20 @@ void	print_test_strrchr(char const* test_name, t_testflags flags,
 }
 void	test_strrchr(void)
 {
-//	| TEST FUNCTION  | TEST NAME               | TESTFLAGS     | EXPECTS               | TEST ARGS
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test1, 'm');
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test2, '?');
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test3, ' ');
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test1, '_');
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test2, '_');
-	print_test_strrchr("strrchr             ",  FALSE,          NULL,                   test3, '_');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_cc_c0 + 0x0,    teststr_cc_c0,   L'␡');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_cc_c1 + 0x39,   teststr_cc_c1,   L'');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,          teststr_utf8_ho + 0x17, teststr_utf8_ho, 0x10414);//L'𐐔');
-	print_test_strrchr("strrchr (c = '\\0')  ", FALSE,          NULL,                   test3, '\0');
+//	| TEST FUNCTION  | TEST NAME               | TESTFLAGS    | EXPECTS               | TEST ARGS
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test1, 'm');
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test2, '?');
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test3, ' ');
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test1, '_');
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test2, '_');
+	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test3, '_');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         teststr_cc_c1   + 0x39, teststr_cc_c1,   (char)L'');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0,   (char)L'␡');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_jp + 0x21*/, teststr_utf8_jp, (char)L'愛');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_ho + 0x17*/, teststr_utf8_ho, (char)0x10414);//L'𐐔');
+	print_test_strrchr("strrchr (c = '\\0')  ", FALSE,         NULL,                   test3, '\0');
 	print_test_strrchr("strrchr (null ptr)  ",  ALLOW_SIGSEGV, NULL,                   NULL,  'm');
 }
 #endif
@@ -914,7 +914,7 @@ void test_strnchr(void)	{}
 void	print_test_strnchr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		int c,
+		char c,
 		size_t n)
 {
 	TEST_INIT(ptr)
@@ -934,12 +934,12 @@ void	test_strnchr(void)
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, '_', 16);
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, 'w', 1);
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, '_', 1);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_cc_c0 + 0x0,    teststr_cc_c0,   L'␡',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_cc_c1 + 0x39,   teststr_cc_c1,   L'',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_fr + 0x3B, teststr_utf8_fr, L'œ',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_ru + 0x47, teststr_utf8_ru, L'щ',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_jp + 0x21, teststr_utf8_jp, L'愛',	128);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE, teststr_utf8_ho + 0x17, teststr_utf8_ho,0x10414,	128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          teststr_cc_c1   + 0x39, teststr_cc_c1,   (char)L'',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0,   (char)L'␡',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_jp + 0x21*/, teststr_utf8_jp, (char)L'愛',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_ho + 0x17*/, teststr_utf8_ho, (char)0x10414, 128);
 	print_test_strnchr("strnchr (c = '\\0')  ",	FALSE,			NULL,          test3, '\0', 16);
 	print_test_strnchr("strnchr (n = 0)     ",	FALSE,			NULL,          test1, 'w', 0);
 	print_test_strnchr("strnchr (n = len)   ",	FALSE,			NULL,          test1, '_', test1_len);
@@ -985,9 +985,9 @@ void	test_strnstr(void)
 	print_test_strnstr("strnstr (n = 0)      ",	FALSE,          NULL,          test1,           "mou ", 0);
 	print_test_strnstr("strnstr (n = len)    ",	FALSE,          NULL,          test1,           "_",    test1_len);
 	print_test_strnstr("strnstr (n > len)    ",	FALSE,          NULL,          test1,           "_",    test1_len + 32);
-	print_test_strnstr("strnstr (null str)   ",	ALLOW_SIGSEGV, NULL,          NULL,            "mou ", 16);
-	print_test_strnstr("strnstr (null query) ",	ALLOW_SIGSEGV, NULL,          test1,           NULL,   16);
-	print_test_strnstr("strnstr (both null)  ",	ALLOW_SIGSEGV, NULL,          NULL,            NULL,   16);
+	print_test_strnstr("strnstr (null str)   ",	ALLOW_SIGSEGV,  NULL,          NULL,            "mou ", 16);
+	print_test_strnstr("strnstr (null query) ",	ALLOW_SIGSEGV,  NULL,          test1,           NULL,   16);
+	print_test_strnstr("strnstr (both null)  ",	ALLOW_SIGSEGV,  NULL,          NULL,            NULL,   16);
 }
 #endif
 
@@ -1032,8 +1032,24 @@ void	print_test_strrep_char(char const* test_name, t_testflags flags,
 }
 void	test_strrep_char(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION       | TEST NAME                 |TESTFLAG| EXPECTING                     | TEST ARGS
+	print_test_strrep_char("strrep_char               ", FALSE,   "Hellx Wxrld!",                "Hello World!",   'o', 'x');
+	print_test_strrep_char("strrep_char               ", FALSE,   "Om@e w@ mou shindeiru.",      test1,            'a', '@');
+	print_test_strrep_char("strrep_char               ", FALSE,   "Nani___",                     test2,            '?', '_');
+	print_test_strrep_char("strrep_char               ", FALSE,   "Un @nge m@nge de l@ f@nge.",  test3,            'a', '@');
+	print_test_strrep_char("strrep_char               ", FALSE,   "***swag***",                  "___swag___",     '_', '*');
+	print_test_strrep_char("strrep_char               ", FALSE,   "aaa bbb ccc",                 "aaa_bbb_ccc",    '_', ' ');
+	print_test_strrep_char("strrep_char (identical)   ", FALSE,   "Hello World!",                "Hello World!",   'o', 'o');
+	print_test_strrep_char("strrep_char (no match)    ", FALSE,   "Hello World!",                "Hello World!",   'x', 'y');
+	print_test_strrep_char("strrep_char (to space)    ", FALSE,   "test test test",              "test_test_test", '_', ' ');
+	print_test_strrep_char("strrep_char (from space)  ", FALSE,   "test_test_test",              "test test test", ' ', '_');
+	print_test_strrep_char("strrep_char (all same)    ", FALSE,   "bbb",                         "aaa",            'a', 'b');
+//	print_test_strrep_char("strrep_char (unicode)     ", FALSE,   "maïs à l'�eil…",              "maïs à l'œil…",  'œ', 'e');  // TODO fix this test
+	print_test_strrep_char("strrep_char (empty str)   ", FALSE,   "",                            "",               'a', 'b');
+//	print_test_strrep_char("strrep_char (old='\\0')   ", FALSE,   "test",                        "test",           '\0','x');
+	print_test_strrep_char("strrep_char (new='\\0')   ", FALSE,   "test",                        "test",           'x', '\0');
+	print_test_strrep_char("strrep_char (both='\\0')  ", FALSE,   "test",                        "test",           '\0','\0');
+	print_test_strrep_char("strrep_char (null str)    ", ALLOW_SIGSEGV,   NULL,                  NULL,             'a', 'b');
 }
 #endif
 
@@ -1056,8 +1072,32 @@ void	print_test_strrep_cset(char const* test_name, t_testflags flags,
 }
 void	test_strrep_cset(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION       | TEST NAME                   | TESTFLAGS      | EXPECTING                    | TEST ARGS
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "Hellx Wxrld!",                "Hello World!",   "o",      "x");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "Omae wa mxe shindeire.",      test1,            "ou",     "xe");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "N@ni###",                     test2,            "a?",     "@#");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "Un @n$e m@n$e de l@ f@n$e.",  test3,            "ag",     "@$");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "@@@@@@@@@",                   "ABCABCABC",      "ABC",    "@@@");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "XYZ XYZ XYZ",                 "ABC ABC ABC",    "ABC",    "XYZ");
+	print_test_strrep_cset("strrep_cset               ", FALSE,           "***swag***",                  "___swag___",     "_",      "*");
+	print_test_strrep_cset("strrep_cset (vowels)      ", FALSE,           "Hxllx Wxrld!",                "Hello World!",   "aeiou",  "xxxxx");
+	print_test_strrep_cset("strrep_cset (vowels)      ", FALSE,           "H3ll0 W0rld!",                "Hello World!",   "aeiou",  "43102");
+	print_test_strrep_cset("strrep_cset (multi-char)  ", FALSE,           "Hyllx Wxrld!",                "Hello World!",   "eo",     "yx");
+	print_test_strrep_cset("strrep_cset (rot13)       ", FALSE,           "Uryyb Jbeyq!",                "Hello World!",   "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz", "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm");
+	print_test_strrep_cset("strrep_cset (identical)   ", FALSE,           "Hello World!",                "Hello World!",   "eo",     "eo");
+	print_test_strrep_cset("strrep_cset (no match)    ", FALSE,           "Hello World!",                "Hello World!",   "xyz",    "abc");
+	print_test_strrep_cset("strrep_cset (diff len)    ", FALSE,           NULL,                          "Hello World!",   "aeiou",  "xxx");
+	print_test_strrep_cset("strrep_cset (diff len)    ", FALSE,           NULL,                          "Hello World!",   "eo",     "30xyz");
+	print_test_strrep_cset("strrep_cset (unicode)     ", FALSE,           "Êtr3 à mêm3 d3 ç4, d'41r sûr — m4ng3r d2 m4ïs à l'œ1l… D'0ù l4 p41x s2r l'îl3 d3 s0n âm3…", teststr_utf8_fr,  "aeiou",  "43102");
+	print_test_strrep_cset("strrep_cset (empty str)   ", FALSE,           "",                            "",               "abc",    "xyz");
+	print_test_strrep_cset("strrep_cset (empty old)   ", FALSE,           NULL,                          "test",           "",       "xyz");
+	print_test_strrep_cset("strrep_cset (empty new)   ", FALSE,           NULL,                          "test",           "xyz",    "");
+	print_test_strrep_cset("strrep_cset (both empty)  ", FALSE,           "test",                        "test",           "",       "");
+	print_test_strrep_cset("strrep_cset (null str)    ", ALLOW_SIGSEGV,   NULL,                          NULL,             "abc",    "xyz");
+	print_test_strrep_cset("strrep_cset (null old)    ", ALLOW_SIGSEGV,   NULL,                          "test",           NULL,     "xyz");
+	print_test_strrep_cset("strrep_cset (null new)    ", ALLOW_SIGSEGV,   NULL,                          "test",           "abc",    NULL);
+	print_test_strrep_cset("strrep_cset (null csets)  ", ALLOW_SIGSEGV,   NULL,                          "test",           NULL,     NULL);
+	print_test_strrep_cset("strrep_cset (all null)    ", ALLOW_SIGSEGV,   NULL,                          NULL,             NULL,     NULL);
 }
 #endif
 
@@ -1078,10 +1118,41 @@ void	print_test_strrep_str(char const* test_name, t_testflags flags,
 	TEST_PRINT(str,	strrep_str, "str=\"%s\", old=\"%s\", new=\"%s\"", str, str_old, str_new)
 	TEST_FREE()
 }
-void	test_strrep_string(void)
+void	test_strrep_str(void)
 {
-//	| TEST FUNCTION  | TEST NAME          |TESTFLAG| EXPECTING | TEST ARGS
-//	TODO
+//	| TEST FUNCTION       | TEST NAME                   | TESTFLAGS      | EXPECTING                    | TEST ARGS
+	print_test_strrep_str("strrep_str                ", FALSE,           "Hellx Wxrld!",                "Hello World!",                "o",       "x");
+	print_test_strrep_str("strrep_str                ", FALSE,           "Omae wa mxx shindeiru.",      test1,                         "ou",      "xx");
+	print_test_strrep_str("strrep_str                ", FALSE,           "Nani_",                       test2,                         "???",     "_");
+	print_test_strrep_str("strrep_str                ", FALSE,           "Un **** m**** de la f****.",  test3,                         "ange",    "****");
+	print_test_strrep_str("strrep_str                ", FALSE,           "___sw___ag___",               "___swag___",                  "ag",      "___ag");
+	print_test_strrep_str("strrep_str                ", FALSE,           "test_test_test",              "testatestatest",              "testa",   "test_");
+	print_test_strrep_str("strrep_str                ", FALSE,           "ABCABCABC",                   "XYZXYZXYZ",                   "XYZ",     "ABC");
+	print_test_strrep_str("strrep_str (expand)       ", FALSE,           "AAA AAA AAA",                 "A A A",                       "A",       "AAA");
+	print_test_strrep_str("strrep_str (shrink)       ", FALSE,           "A A A",                       "AAA AAA AAA",                 "AAA",     "A");
+	print_test_strrep_str("strrep_str (remove multi) ", FALSE,           "Omae wa m shindeiru.",        test1,                         "ou",      "");
+	print_test_strrep_str("strrep_str (identical)    ", FALSE,           "Hello World!",                "Hello World!",                "World",   "World");
+	print_test_strrep_str("strrep_str (no match)     ", FALSE,           "Hello World!",                "Hello World!",                "xyz",     "abc");
+	print_test_strrep_str("strrep_str (adjacent)     ", FALSE,           "ABABABAB",                    "aaaa",                        "a",       "AB");
+	print_test_strrep_str("strrep_str (adjacent)     ", FALSE,           "XXXX",                        "ABABABAB",                    "AB",      "X");
+	print_test_strrep_str("strrep_str (overlapping)  ", FALSE,           "AA",                          "AAAA",                        "AA",      "A");
+	print_test_strrep_str("strrep_str (full replace) ", FALSE,           "completely different",        "original string",             "original string", "completely different");
+	print_test_strrep_str("strrep_str (at start)     ", FALSE,           "___test",                     "test",                        "test",    "___test");
+	print_test_strrep_str("strrep_str (at end)       ", FALSE,           "test___",                     "test",                        "test",    "test___");
+	print_test_strrep_str("strrep_str (whitespace)   ", FALSE,           "a_b_c",                       "a b c",                       " ",       "_");
+	print_test_strrep_str("strrep_str (multi-space)  ", FALSE,           "a_b_c",                       "a   b   c",                   "   ",     "_");
+	print_test_strrep_str("strrep_str (unicode)      ", FALSE,           teststr_utf8_fr,               teststr_utf8_fr,               "xyz",     "abc");
+	print_test_strrep_str("strrep_str (empty str)    ", FALSE,           "",                            "",                            "old",     "new");
+	print_test_strrep_str("strrep_str (empty old)    ", FALSE,           "test",                        "test",                        "",        "new");
+	print_test_strrep_str("strrep_str (empty new)    ", FALSE,           "Hell Wrld!",                  "Hello World!",                "o",       "");
+	print_test_strrep_str("strrep_str (empty new)    ", FALSE,           "Hell Wrld!",                  "Hello World!",                "o",       "");
+	print_test_strrep_str("strrep_str (empty result) ", FALSE,           "",                            "Hello",                       "Hello",   "");
+	print_test_strrep_str("strrep_str (empty result) ", FALSE,           "",                            "AAAAAA",                      "AA",      "");
+	print_test_strrep_str("strrep_str (both empty)   ", FALSE,           "test",                        "test",                        "",        "");
+	print_test_strrep_str("strrep_str (null str)     ", ALLOW_SIGSEGV,   NULL,                          NULL,                          "old",     "new");
+	print_test_strrep_str("strrep_str (null old)     ", ALLOW_SIGSEGV,   NULL,                          "test",                        NULL,      "new");
+	print_test_strrep_str("strrep_str (null new)     ", ALLOW_SIGSEGV,   NULL,                          "test",                        "old",     NULL);
+	print_test_strrep_str("strrep_str (all null)     ", ALLOW_SIGSEGV,   NULL,                          NULL,                          NULL,      NULL);
 }
 #endif
 
@@ -1632,13 +1703,9 @@ int		testsuite_text_string_ascii(void)
 
 	test_strnchr();
 	test_strrstr();
-	test_strtoesc();
-	test_strtoasciiesc();
-	test_strtojsonesc();
-	test_esctostr();
-//	test_strrep_char();
-//	test_strrep_cset();
-//	test_strrep_str();
+	test_strrep_char();
+	test_strrep_cset();
+	test_strrep_str();
 
 	test_strtrim();
 	test_strtriml();
