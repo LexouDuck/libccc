@@ -378,7 +378,6 @@
 ./src/text/string/ascii/iterate.c
 ./src/text/string/ascii/join.c
 ./src/text/string/ascii/length.c
-./src/text/string/ascii/length_n.c
 ./src/text/string/ascii/map.c
 ./src/text/string/ascii/new.c
 ./src/text/string/ascii/pad.c

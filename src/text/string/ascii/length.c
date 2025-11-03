@@ -29,3 +29,20 @@ t_size	StringASCII_Length(t_ascii const* str)
 	return (i);
 }
 #endif
+
+
+
+_INLINE()
+t_size	StringASCII_Length_N(t_ascii const* str, t_size n)
+{
+	t_size	i;
+
+	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
+		return (0);
+	i = 0;
+	while (str[i] && i < n)
+	{
+		++i;
+	}
+	return (i);
+}
