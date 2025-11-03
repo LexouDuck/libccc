@@ -32,7 +32,9 @@ HEADER_CPP
 
 
 // String Escaping Operations
-#define String_Print                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscapedBuf))
+#define String_Unescape                (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Unescape))
+#define String_FromEscape              (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_FromEscape))
+#define String_Escape                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscapedBuf))
 #define String_ToAsciiEscaped          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscaped))
 #define String_ToAsciiEscapedBuf       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscapedBuf))
 #define String_ToJsonEscaped           (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToJsonEscaped))
@@ -41,8 +43,6 @@ HEADER_CPP
 #define String_ToEscaped_e             (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToEscaped_e))
 #define String_ToEscapedBuf            (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToEscapedBuf))
 #define String_ToEscapedBuf_e          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToEscapedBuf_e))
-#define String_Parse                   (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Parse))
-#define String_FromEscape              (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_FromEscape))
 
 
 
@@ -323,8 +323,8 @@ t_size StringASCII_ToEscapedBuf_e(
 **	The amount of characters parsed from the given `str`.
 */
 //!@{
-t_size					StringASCII_Parse(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
-#define c_strparse		StringASCII_Parse
+t_size					StringASCII_Unescape(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
+#define c_strparse		StringASCII_Unescape
 //!@}
 
 //!@doc

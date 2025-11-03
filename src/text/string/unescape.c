@@ -11,7 +11,7 @@
 
 
 static
-t_ascii	StringASCII_Parse_GetEscape(t_ascii escapechar)
+t_ascii	StringASCII_Unescape_GetEscape(t_ascii escapechar)
 {
 	static const struct { t_ascii esc; t_ascii chr; } lookuptable[] =
 	{
@@ -41,7 +41,7 @@ t_ascii	StringASCII_Parse_GetEscape(t_ascii escapechar)
 
 
 static
-t_size	StringASCII_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
+t_size	StringASCII_Unescape_GetLength(t_ascii const* str, t_bool any_escape, t_size n)
 {
 	t_size	length = 0;
 	t_size	i = 0;
@@ -54,7 +54,7 @@ t_size	StringASCII_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size
 			if CCCERROR((i == n || str[i] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
 				return (0);
-			if (StringASCII_Parse_GetEscape(str[i]) != (t_ascii)ERROR)
+			if (StringASCII_Unescape_GetEscape(str[i]) != (t_ascii)ERROR)
 				length += 1 * sizeof(t_ascii);
 			else switch (str[i])
 			{
@@ -94,7 +94,7 @@ t_size	StringASCII_Parse_GetLength(t_ascii const* str, t_bool any_escape, t_size
 
 
 
-t_size	StringASCII_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_escape)
+t_size	StringASCII_Unescape(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any_escape)
 {
 	t_ascii*	result = NULL;
 	t_ascii	tmp[9] = { 0 };
@@ -107,7 +107,7 @@ t_size	StringASCII_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any
 		goto failure;
 	if (n == 0)
 		n = SIZE_MAX;
-	result = (t_ascii*)Memory_New(StringASCII_Parse_GetLength(str, any_escape, n) + sizeof(""));
+	result = (t_ascii*)Memory_New(StringASCII_Unescape_GetLength(str, any_escape, n) + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		goto failure;
 	while (index < n && str[index])
@@ -118,7 +118,7 @@ t_size	StringASCII_Parse(t_utf8* *dest, t_ascii const* str, t_size n, t_bool any
 			if CCCERROR((index == n || str[index] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
 				return (0);
-			t_ascii	escapechar = StringASCII_Parse_GetEscape(str[index]);
+			t_ascii	escapechar = StringASCII_Unescape_GetEscape(str[index]);
 			if (escapechar != (t_ascii)ERROR)
 				result[i++] = escapechar;
 			else switch (str[index])
