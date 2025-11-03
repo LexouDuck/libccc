@@ -11,36 +11,53 @@
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 _INLINE()
-t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
+t_utf8*	StringUTF8_Find_Char(t_utf8 const* str, t_utf32 c)
 {
 	return (strchr(str, c));
 }
 #else
-t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
+t_utf8*	StringUTF8_Find_Char(t_utf8 const* str, t_utf32 c)
 {
-	t_size	i
+	t_size	i = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);
-	//c &= 0x7F;
-	i = 0;
-	while (str[i])
+	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		if (str[i] == (t_ascii)c)
-			return ((t_ascii*)str + i);
-		i += 1;
+		t_sint size = 0;
+		t_utf32 current = 0;
+		while (str[i])
+		{
+			current = CharUTF32_FromUTF8(str + i);
+			if (current == c)
+				return ((t_utf8 *)str + i);
+			size = CharUTF8_Length(str + i);
+			if (size <= 0)
+				break;
+			i += size;
+		}
 	}
-	if (str[i] == '\0' && c == '\0')
-		return ((t_ascii*)str + i);
+	else // Searching for an ascii character
+	{
+		c &= 0x7F;
+		while (str[i])
+		{
+			if (str[i] == (t_utf8)c)
+				return ((t_utf8*)str + i);
+			i += 1;
+		}
+		if (str[i] == '\0' && c == '\0')
+			return ((t_utf8*)str + i);
+	}
 	CCCERROR(TRUE, ERROR_NOTFOUND,
 		"no char '%c'/0x%X found in string \"%s\"", c, c, str);
 	return (NULL);
 }
 #endif
 
-t_sintmax	StringASCII_IndexOf_Char(t_ascii const* str, t_ascii c)
+t_sintmax	StringUTF8_IndexOf_Char(t_utf8 const* str, t_utf32 c)
 {
-	t_ascii* result = StringASCII_Find_Char(str, c);
+	t_utf8* result = StringUTF8_Find_Char(str, c);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
 		return (ERROR);
 	return (result - str);
@@ -50,12 +67,12 @@ t_sintmax	StringASCII_IndexOf_Char(t_ascii const* str, t_ascii c)
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 _INLINE()
-t_ascii*	StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset)
+t_utf8*	StringUTF8_Find_Charset(t_utf8 const* str, t_utf8 const* charset)
 {
 	return (strpbrk(str, charset));
 }
 #else
-t_ascii*	StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset)
+t_utf8*	StringUTF8_Find_Charset(t_utf8 const* str, t_utf8 const* charset)
 {
 	t_size	i;
 
@@ -71,7 +88,7 @@ t_ascii*	StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset)
 		for (t_size j = 0; charset[j]; ++j)
 		{
 			if (str[i] == charset[j])
-				return ((t_ascii*)str + i);
+				return ((t_utf8*)str + i);
 		}
 		++i;
 	}
@@ -81,9 +98,9 @@ t_ascii*	StringASCII_Find_Charset(t_ascii const* str, t_ascii const* charset)
 }
 #endif
 
-t_sintmax	StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* charset)
+t_sintmax	StringUTF8_IndexOf_Charset(t_utf8 const* str, t_utf8 const* charset)
 {
-	t_ascii* result = StringASCII_Find_Charset(str, charset);
+	t_utf8* result = StringUTF8_Find_Charset(str, charset);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
 		return (ERROR);
 	return (result - str);
@@ -93,12 +110,12 @@ t_sintmax	StringASCII_IndexOf_Charset(t_ascii const* str, t_ascii const* charset
 
 #if LIBCONFIG_USE_STD_FUNCTIONS_ALWAYS
 _INLINE()
-t_ascii*	StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
+t_utf8*	StringUTF8_Find_String(t_utf8 const* str, t_utf8 const* query)
 {
 	return (strstr(str, query));
 }
 #else
-t_ascii*	StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
+t_utf8*	StringUTF8_Find_String(t_utf8 const* str, t_utf8 const* query)
 {
 	t_size	i;
 
@@ -116,7 +133,7 @@ t_ascii*	StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
 		{
 			++j;
 			if (query[j] == '\0')
-				return ((t_ascii*)str + i);
+				return ((t_utf8*)str + i);
 			if (str[i + j] == '\0')
 				return (NULL);
 		}
@@ -128,9 +145,9 @@ t_ascii*	StringASCII_Find_String(t_ascii const* str, t_ascii const* query)
 }
 #endif
 
-t_sintmax	StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query)
+t_sintmax	StringUTF8_IndexOf_String(t_utf8 const* str, t_utf8 const* query)
 {
-	t_ascii* result = StringASCII_Find_String(str, query);
+	t_utf8* result = StringUTF8_Find_String(str, query);
 	if CCCERROR((result == NULL), ERROR_NOTFOUND, NULL)
 		return (ERROR);
 	return (result - str);

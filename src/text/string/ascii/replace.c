@@ -153,10 +153,10 @@ void		StringASCII_Replace_Charset_InPlace(t_ascii* str, t_ascii const* cset_old,
 
 
 
-void	StringASCII_Replace_String_InPlace(t_ascii** a_str, t_ascii const* str_old, t_ascii const* str_new)
+void	StringASCII_Replace_String_InPlace(t_ascii** str, t_ascii const* str_old, t_ascii const* str_new)
 {
 	t_ascii*	tmp;
-	tmp = StringASCII_Replace_String(*a_str, str_old, str_new);
-	StringASCII_Delete(a_str);
-	*a_str = tmp;
+	tmp = StringASCII_Replace_String(*str, str_old, str_new);
+	StringASCII_Delete(str);
+	*str = tmp;
 }

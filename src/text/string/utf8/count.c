@@ -6,28 +6,46 @@
 
 
 
-t_size	StringASCII_Count_Char(t_ascii const* str, t_ascii c)
+t_size	StringUTF8_Count_Char(t_utf8 const* str, t_utf32 c)
 {
 	t_size	result = 0;
 	t_size	i = 0;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (0);
-	//c &= 0x7F;
-	while (str[i])
+	if (c >= 0x80) // Searching for a multi-byte utf8 glyph
 	{
-		if (str[i] == (t_ascii)c)
-			result += 1;
-		i += 1;
+		t_sint size = 0;
+		t_utf32 current = 0;
+		while (str[i])
+		{
+			current = CharUTF32_FromUTF8(str + i);
+			if (current == c)
+				result += 1;
+			size = CharUTF8_Length(str + i);
+			if (size <= 0)
+				break;
+			i += size;
+		}
 	}
-	if (str[i] == '\0' && c == '\0')
-		result += 1;
+	else // Searching for an ascii character
+	{
+		c &= 0x7F;
+		while (str[i])
+		{
+			if (str[i] == (t_utf8)c)
+				result += 1;
+			i += 1;
+		}
+		if (str[i] == '\0' && c == '\0')
+			result += 1;
+	}
 	return (result);
 }
 
 
 
-t_size	StringASCII_Count_Charset(t_ascii const* str, t_ascii const* charset)
+t_size	StringUTF8_Count_Charset(t_utf8 const* str, t_utf8 const* charset)
 {
 	t_size	result;
 	t_size	i;
@@ -56,7 +74,7 @@ t_size	StringASCII_Count_Charset(t_ascii const* str, t_ascii const* charset)
 
 
 
-t_size	StringASCII_Count_String(t_ascii const* str, t_ascii const* query)
+t_size	StringUTF8_Count_String(t_utf8 const* str, t_utf8 const* query)
 {
 	t_size	result;
 	t_size	length;

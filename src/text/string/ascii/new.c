@@ -14,11 +14,9 @@ t_ascii*	StringASCII_New(t_size n)
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
-	i = 0;
-	while (i < n)
+	for (i = 0; i < n; ++i)
 	{
 		result[i] = '\0';
-		++i;
 	}
 	result[n] = '\0';
 	return (result);
@@ -34,11 +32,9 @@ t_ascii*	StringASCII_New_C(t_size n, t_ascii c)
 	result = (t_ascii*)Memory_Allocate(n + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
-	i = 0;
-	while (i < n)
+	for (i = 0; i < n; ++i)
 	{
 		result[i] = c;
-		++i;
 	}
 	result[n] = '\0';
 	return (result);

@@ -56,13 +56,11 @@ typedef t_bool	(*f_string_utf8_filter_i)	(t_utf8 c, t_size i);
 
 
 
-
-// These functions do not yet exist and are a work in progress on the `StringUTF8` branch
-#if 0
-
 /*============================================================================*\
 ||                          Basic String Operations                           ||
 \*============================================================================*/
+
+#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Returns a new string which is `n + 1` bytes long (to account for the null-terminator).
 /*!
@@ -118,7 +116,7 @@ void				StringUTF8_Free(t_utf8* str);
 */
 //!@{
 void				StringUTF8_Delete(t_utf8* *a_str);
-#define c_mbsdel		StringUTF8_Delete
+#define c_mbsdel	StringUTF8_Delete
 //!@}
 
 
@@ -233,12 +231,12 @@ void					StringUTF8_SetBytes(t_utf8* str, t_utf8 c);
 **	@param	c	The character value to fill with
 */
 //!@{
-void					StringUTF8_SetGlyphs(t_utf8* str, t_utf8 c);
-#define c_mbssetglyphs	StringUTF8_SetGlyphs
+void					StringUTF8_SetChars(t_utf8* str, t_utf8 c);
+#define c_mbssetglyphs	StringUTF8_SetChars
 //!@}
 
 // TODO strnsetbytes() StringUTF8_SetBytes_N
-// TODO strnsetglyphs() StringUTF8_SetGlyphs_N
+// TODO strnsetglyphs() StringUTF8_SetChars_N
 
 
 
@@ -252,7 +250,7 @@ void					StringUTF8_SetGlyphs(t_utf8* str, t_utf8 c);
 **	`dest` (no allocation is performed).
 */
 //!@{
-t_utf8*			StringUTF8_Copy(t_utf8* dest, t_utf8 const* src);
+t_utf8*				StringUTF8_Copy(t_utf8* dest, t_utf8 const* src);
 #define c_mbscpy	StringUTF8_Copy
 //!@}
 
@@ -333,7 +331,7 @@ t_size				StringUTF8_Add_L(t_utf8* dest, t_utf8 const* src, t_size size);
 #define c_mbsladd	StringUTF8_Add_L
 //!@}
 
-
+#endif
 
 /*============================================================================*\
 ||                                String Checks                               ||
@@ -347,7 +345,7 @@ t_size				StringUTF8_Add_L(t_utf8* dest, t_utf8 const* src, t_size size);
 **	The length of the given null-terminated string `str`.
 */
 //!@{
-t_size				StringUTF8_Length(t_utf8 const* str, t_size *out_glyphcount);
+t_size				StringUTF8_Length(t_utf8 const* str);
 #define c_mbslen	StringUTF8_Length
 //!@}
 
@@ -359,9 +357,34 @@ t_size				StringUTF8_Length(t_utf8 const* str, t_size *out_glyphcount);
 **	`StringUTF8_Length(str)` if that is less than `n`, or `n` if there is no '\0' among the first `n` bytes of the string
 */
 //!@{
-t_size				StringUTF8_Length_N(t_utf8 const* str, t_size *out_glyphcount, t_size n);
+t_size				StringUTF8_Length_N(t_utf8 const* str, t_size n);
 #define c_mbsnlen	StringUTF8_Length_N
 //!@}
+
+//!@doc Get the amount of characters of a UTF-8 string, excluding final '\0'
+/*!
+**	@nonstd
+**
+**	@returns
+**	The amount of characters in the given null-terminated UTF-8 string `str`.
+*/
+//!@{
+t_size				StringUTF8_Chars(t_utf8 const* str);
+#define c_mbsclen	StringUTF8_Chars
+//!@}
+
+//!@doc Get the amount of characters of a UTF-8 string, excluding final '\0', but at most `n` chars 
+/*!
+**	@nonstd
+**
+**	@returns
+**	`StringUTF8_Chars(str)` if that is less than `n`, or `n` if there is no `'\0'` among the first `n` chars of the string
+*/
+//!@{
+t_size				StringUTF8_Chars_N(t_utf8 const* str, t_size n);
+#define c_mbsnclen	StringUTF8_Chars_N
+//!@}
+
 
 
 //!@doc	Checks whether the two given strings match
@@ -484,7 +507,7 @@ t_sint					StringUTF8_Compare_N_IgnoreCase(t_utf8 const* str1, t_utf8 const* str
 // TODO StringUTF8_CompareUntil_Charset()
 // TODO StringUTF8_CompareUntil_String()
 
-
+#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Check if the given `str` contains characters from `charset`
 /*!
@@ -517,7 +540,7 @@ t_bool						StringUTF8_HasOnly(t_utf8 const* str, t_utf8 const* charset);
 // TODO strspn()
 // TODO strcspn()
 
-
+#endif
 
 //!@doc Count the total occurences of the given char `c` in the given string `str`
 /*!
@@ -570,7 +593,7 @@ t_size						StringUTF8_Count_String(t_utf8 const* str, t_utf8 const* query);
 **	or `NULL` if no char matched.
 */
 //!@{
-t_utf8*							StringUTF8_Find_Char(t_utf8 const* str, t_utf32 c, t_size *out_glyphindex);
+t_utf8*							StringUTF8_Find_Char(t_utf8 const* str, t_utf32 c);
 #define c_mbschr				StringUTF8_Find_Char
 //!@}
 
@@ -823,6 +846,8 @@ t_sintmax							StringUTF8_IndexOf_N_String(t_utf8 const* str, t_utf8 const* que
 ||                              String Replacements                           ||
 \*============================================================================*/
 
+#if 0 // These functions do not yet exist and/or are a work in progress
+
 //!@doc Removes all occurences of the given `query` string within the given string `str`.
 /*!
 **	@nonstd
@@ -884,11 +909,13 @@ t_utf8*						StringUTF8_Replace_String(t_utf8 const* str, t_utf8 const* str_old,
 #define c_mbsrep_str		StringUTF8_Replace_String
 //!@}
 
-
+#endif
 
 /*============================================================================*\
 ||                      String Concatenation Operations                       ||
 \*============================================================================*/
+
+#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Concatenates two strings into a new one
 /*!
@@ -966,11 +993,13 @@ t_utf8*					StringUTF8_Join(t_utf8 const** strarr, t_utf8 const* sep);
 #define c_mbsjoin		StringUTF8_Join
 //!@}
 
-
+#endif
 
 /*============================================================================*\
 ||                           String In-Place Editing                          ||
 \*============================================================================*/
+
+#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Reallocates the given string `dest`, inserting the string `src` at the given `index`.
 /*!
@@ -1042,11 +1071,13 @@ t_utf8*							StringUTF8_Map_InPlace(t_utf8* *a_str, t_utf32 (*map)(t_utf32));
 #define c_mbsmap_inplace		StringUTF8_Map_InPlace
 //!@}
 
-
+#endif
 
 /*============================================================================*\
 ||                        String Whitespace Operations                        ||
 \*============================================================================*/
+
+#if 0 // These functions do not yet exist and/or are a work in progress
 
 //!@doc Trims any char from `charset` from both sides of the given string `str`
 /*!
@@ -1137,7 +1168,7 @@ t_utf8*					StringUTF8_Pad_R(t_utf8 const* str, t_utf32 c, t_size length);
 #define c_mbspadr		StringUTF8_Pad_R
 //!@}
 
-
+#endif
 
 /*============================================================================*\
 ||                          Other String Operations                           ||
@@ -1264,6 +1295,8 @@ t_utf8*					StringUTF8_Sub(t_utf8 const* str, t_size index, t_size n);
 ||                           Functional Operations                            ||
 \*============================================================================*/
 
+#if 0 // These functions do not yet exist and/or are a work in progress
+
 //!@doc Calls a custom function `f` for each character of the given string `str`
 /*!
 **	@nonstd
@@ -1351,7 +1384,7 @@ t_utf8*					StringUTF8_Filter_I(t_utf8 const* str, t_bool (*filter)(t_utf32 c, t
 #define c_mbsifilter	StringUTF8_Filter_I
 //!@}
 
-#endif // if 0
+#endif
 
 /*! @endgroup */
 HEADER_END

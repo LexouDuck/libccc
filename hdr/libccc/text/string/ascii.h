@@ -136,8 +136,7 @@ t_ascii*			StringASCII_Duplicate(t_ascii const* str);
 **
 **	@returns
 **	A newly allocated string which is a copy of the given string `str`,
-**	or `NULL` if the required memory could not be allocated,
-**	copying at most `n` characters.
+**	or `NULL` if the required memory could not be allocated, copying at most `n` characters.
 */
 //!@{
 _MALLOC()
@@ -498,7 +497,6 @@ t_bool					StringASCII_HasOnly(t_ascii const* str, t_ascii const* charset);
 /*!
 **	@nonstd
 **
-**
 **	@returns
 **	The amount of occurences of t_ascii `c` in the given string `str`.
 */
@@ -539,8 +537,7 @@ t_size						StringASCII_Count_String(t_ascii const* str, t_ascii const* query);
 
 //!@doc Finds the first occurence of the given char `c` inside the given string `str`
 /*!
-**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr} but with support for unicode if t_ascii is of type t_utf8
-**
+**	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strchr}
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
@@ -583,7 +580,6 @@ t_ascii*			StringASCII_Find_String(t_ascii const* str, t_ascii const* query);
 //!@doc Finds the last occurence of the given char `c` inside the given string `str`
 /*!
 **	@isostd{C89,https://en.cppreference.com/w/c/string/byte/strrchr}
-**
 **
 **	@returns
 **	The last occurence of the given char `c` within `str`,
@@ -630,7 +626,6 @@ t_ascii*								StringASCII_Find_R_String(t_ascii const* str, t_ascii const* que
 /*!
 **	@nonstd
 **
-**
 **	@returns
 **	The first occurence of the given char `c` inside the given string `str`,
 **	or `NULL` if no char matched. (checks only `n` chars in `str`).
@@ -673,7 +668,6 @@ t_ascii*			StringASCII_Find_N_String(t_ascii const* str, t_ascii const* query, t
 /*!
 **	@nonstd
 **
-**
 **	@returns
 **	The index of the first occurrence at which `c` is found in `str`,
 **	or -1 if `c` does not exist in `str`.
@@ -715,7 +709,6 @@ t_sintmax			StringASCII_IndexOf_String(t_ascii const* str, t_ascii const* query)
 //!@doc Finds the last occurence of the given char `c` inside the given string `str`
 /*!
 **	@nonstd
-**
 **
 **	@returns
 **	The last occurence of the given char `c` within `str`,
@@ -761,7 +754,6 @@ t_sintmax								StringASCII_IndexOf_R_String(t_ascii const* str, t_ascii const*
 //!@doc Finds the first occurence of the given char `c` inside the first `n` chars of the given string `str`
 /*!
 **	@nonstd
-**
 **
 **	@returns
 **	The first occurence of the given char `c` within `str`,
