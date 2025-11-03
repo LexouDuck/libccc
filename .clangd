@@ -1,0 +1,17 @@
+CompileFlags:
+  Add:
+    - "-D DEBUG=1"
+    - "-Ilocal_folder"
+    - "-I./"
+    - "-I./hdr/"
+    - "-I./test/"
+    - "-I./++c/ppp/gen/"
+    - "-std=c99"
+    - "-Wall"
+    - "-Wextra"
+    - "-Winline"
+    - "-Wpedantic"
+    - "-Wstrict-prototypes "
+    - "-Wmissing-prototypes "
+    - "-Wold-style-definition "
+    - "-fstrict-aliasing"

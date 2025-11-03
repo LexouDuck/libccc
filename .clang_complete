@@ -9,7 +9,7 @@
 -Wextra
 -Winline
 -Wpedantic
--Wstrict-prototypes \
--Wmissing-prototypes \
--Wold-style-definition \
+-Wstrict-prototypes
+-Wmissing-prototypes
+-Wold-style-definition
 -fstrict-aliasing
