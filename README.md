@@ -3,7 +3,7 @@ libccc
 A comprehensive, cross-platform, customizable standard library for C
 
 <a href="https://github.com/LexouDuck/libccc/actions">
-	<img src="https://github.com/LexouDuck/libccc/workflows/CI+CD/badge.svg" />
+	<img src="https://github.com/LexouDuck/libccc/actions/workflows/ci.yml/badge.svg" />
 </a>
 
 
