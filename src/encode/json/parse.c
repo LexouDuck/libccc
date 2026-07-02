@@ -261,7 +261,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 	{
 		if ((input_end - input_ptr) == 0)
 			output = String_Duplicate("");
-		else String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
+		else String_Unescape(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
 	else
 	{
@@ -293,7 +293,7 @@ t_bool JSON_Parse_String(s_json* item, s_json_parse* p)
 						break;
 					case 'u': // UTF-16 literal
 						c = '\0';
-						sequence_length = CharUTF32_Parse(&c, input_ptr, (input_end - input_ptr));
+						sequence_length = CharUTF32_Unescape(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_JSON("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 						else if (c < UTF8_1BYTE)	{ if (offset + 1 > alloc_length)	PARSINGERROR_JSON("Could not parse string: Insufficient length of newly allocated string (1-byte char)") }

@@ -166,9 +166,9 @@ failure:
 
 
 _INLINE()
-t_utf8*	StringASCII_FromEscape(t_ascii const* str, t_bool any_escape)
+t_utf8*	StringASCII_FromEscaped(t_ascii const* str, t_bool any_escape)
 {
 	t_ascii*	result = NULL;
-	StringASCII_Parse(&result, str, 0, any_escape);
+	StringASCII_Unescape(&result, str, 0, any_escape);
 	return (result);
 }

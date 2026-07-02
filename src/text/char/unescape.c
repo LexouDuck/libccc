@@ -1,8 +1,9 @@
 
-#include "libccc/text/char/unicode.h"
 #include "libccc/pointer.h"
 #include "libccc/string.h"
 #include "libccc/sys/io.h"
+#include "libccc/text/char/unicode.h"
+#include "libccc/text/escape.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -10,7 +11,7 @@
 //! parse a 4-digit hexadecimal number from the given `str`
 #define DEFINEFUNC_PARSE_HEX(BITS) \
 static \
-t_bool	CharUTF32_Parse_Hex_##BITS(t_u##BITS* dest, t_ascii const* str) \
+t_bool	CharUTF32_Unescape_Hex_##BITS(t_u##BITS* dest, t_ascii const* str) \
 { \
 	t_u##BITS result; \
 	t_size i; \
@@ -45,7 +46,7 @@ DEFINEFUNC_PARSE_HEX(32)
 #define PARSINGERROR_UTF16_SURROGATE \
 		PARSINGERROR_UTF16 "2nd half of surrogate pair -> "
 
-t_size	CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
+t_size	CharUTF32_Unescape(t_utf32* dest, t_ascii const* str, t_size n)
 {
 	t_utf32	result = 0;
 	t_size	length = 0;
@@ -68,7 +69,7 @@ t_size	CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 			PARSINGERROR_UTF16 "input ends unexpectedly (should be at least " SF_SIZE " chars, but is only " SF_SIZE " chars long", length, n)
 			return (ERROR);
 		i += 1;
-		if CCCERROR((CharUTF32_Parse_Hex_32(&result, str + i)), ERROR_PARSE,
+		if CCCERROR((CharUTF32_Unescape_Hex_32(&result, str + i)), ERROR_PARSE,
 			PARSINGERROR_UTF16 "not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			return (ERROR); // get the whole UTF-32 sequence
 		i += 8;
@@ -80,7 +81,7 @@ t_size	CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 			PARSINGERROR_UTF16 "input ends unexpectedly (should be at least " SF_SIZE " chars, but is only " SF_SIZE " chars long", length, n)
 			return (ERROR);
 		i += 1;
-		if CCCERROR((CharUTF32_Parse_Hex_16(&code1, str + i)), ERROR_PARSE,
+		if CCCERROR((CharUTF32_Unescape_Hex_16(&code1, str + i)), ERROR_PARSE,
 			PARSINGERROR_UTF16 "not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 			return (ERROR); // get the first UTF-16 sequence
 		i += 4;
@@ -102,7 +103,7 @@ t_size	CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 				PARSINGERROR_UTF16_SURROGATE "not a valid UTF-16 escape sequence, expected 'u' char")
 				return (ERROR);
 			i += 1;
-			if CCCERROR((CharUTF32_Parse_Hex_16(&code2, str + 2)), ERROR_PARSE,
+			if CCCERROR((CharUTF32_Unescape_Hex_16(&code2, str + 2)), ERROR_PARSE,
 				PARSINGERROR_UTF16_SURROGATE "not a valid UTF-16 escape sequence, expected 4 hexadecimal digits")
 				return (ERROR); // get the second UTF-16 sequence
 			i += 4;
@@ -129,10 +130,10 @@ t_size	CharUTF32_Parse(t_utf32* dest, t_ascii const* str, t_size n)
 
 
 
-t_utf32	CharUTF32_FromEscape(t_ascii const* str)
+t_utf32	CharUTF32_FromEscaped(t_ascii const* str)
 {
 	t_utf32	result = ERROR;
-	if (CharUTF32_Parse(&result, str, 0))
+	if (CharUTF32_Unescape(&result, str, 0))
 		return (result);
 	return (ERROR);
 }

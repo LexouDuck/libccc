@@ -359,7 +359,7 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 	{
 		if ((input_end - input_ptr) == 0)
 			output = String_Duplicate("");
-		else String_Parse(&output, input_ptr, (input_end - input_ptr), FALSE);
+		else String_Unescape(&output, input_ptr, (input_end - input_ptr), FALSE);
 	}
 	else
 	{
@@ -390,7 +390,7 @@ t_bool	TOML_Parse_String(s_toml* item, s_toml_parse* p)
 						break;
 					case 'u': // UTF-32 literal TODO ensure 4 hex chars
 					case 'U': // UTF-32 literal TODO ensure 8 hex chars
-						sequence_length = CharUTF32_Parse(&c, input_ptr, (input_end - input_ptr));
+						sequence_length = CharUTF32_Unescape(&c, input_ptr, (input_end - input_ptr));
 						if (sequence_length == 0)
 							PARSINGERROR_TOML("Could not parse string: Failed to convert UTF16-literal to UTF-8")
 						output_ptr += CharUTF32_ToUTF8(output_ptr, c);

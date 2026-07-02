@@ -4,8 +4,37 @@
 #include "libccc/stringarray.h"
 #include "libccc/memory.h"
 #include "libccc/math.h"
+#include "libccc/text/escape.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
+
+
+
+t_size CharUTF32_ToEscaped(t_char *dest, t_utf32 c)
+{
+	if (c <= 0xFF)
+		return CharUTF32_ToEscaped_xFF(dest, c);
+	else if (c <= 0xFFFF)
+		return CharUTF32_ToEscaped_uFFFF(dest, c);
+	else
+		return CharUTF32_ToEscaped_UFFFFFFFF(dest, c);
+}
+
+t_size CharASCII_ToEscaped_xFF(t_ascii *dest, t_ascii c)
+{
+	if (dest)
+	{
+		t_u8 nibble0 = (c & 0x0F) >> 0;
+		t_u8 nibble1 = (c & 0xF0) >> 4;
+
+		dest[0] = '\\';
+		dest[1] = 'x';
+		dest[2] = (nibble1 < 10) ? (nibble1 + '0') : (nibble1 - 10 + 'A');
+		dest[3] = (nibble0 < 10) ? (nibble0 + '0') : (nibble0 - 10 + 'A');
+	}
+	return 4;
+}
+
 
 
 t_size CharUTF32_ToEscaped_xFF(t_char *dest, t_utf32 c)
@@ -74,14 +103,3 @@ t_size CharUTF32_ToEscaped_UFFFFFFFF(t_char *dest, t_utf32 c)
 	}
 	return 10;
 }
-
-t_size CharUTF32_ToEscaped_smart(t_char *dest, t_utf32 c)
-{
-	if (c <= 0xFF)
-		return CharUTF32_ToEscaped_xFF(dest, c);
-	else if (c <= 0xFFFF)
-		return CharUTF32_ToEscaped_uFFFF(dest, c);
-	else
-		return CharUTF32_ToEscaped_UFFFFFFFF(dest, c);
-}
-

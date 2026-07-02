@@ -1199,10 +1199,10 @@ t_size							StringUTF32_Parse(t_utf32* *dest, t_utf32 const* str, t_size n, t_b
 */
 //!@{
 _MALLOC()
-t_utf32*							StringUTF32_FromEscape(t_utf32 const* str, t_bool any_escape);
-#define c_esctostr				StringUTF32_FromEscape
-#define StringUTF32_Decode			StringUTF32_FromEscape
-#define StringUTF32_FromPrintable	StringUTF32_FromEscape
+t_utf32*							StringUTF32_FromEscaped(t_utf32 const* str, t_bool any_escape);
+#define c_esctostr				StringUTF32_FromEscaped
+#define StringUTF32_Decode			StringUTF32_FromEscaped
+#define StringUTF32_FromPrintable	StringUTF32_FromEscaped
 //!@}
 
 //!@}

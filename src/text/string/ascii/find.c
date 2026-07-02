@@ -18,7 +18,7 @@ t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
 #else
 t_ascii*	StringASCII_Find_Char(t_ascii const* str, t_ascii c)
 {
-	t_size	i
+	t_size	i;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (NULL);

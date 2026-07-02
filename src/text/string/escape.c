@@ -50,7 +50,7 @@ t_size StringUTF8_ToASCIIEscapedBuf(t_utf8 *dest, t_size max_writelen, t_utf8 co
 	t_utf8 const* charset   =     "\\"     "'"     "\""     "/"    "\a"    "\b"    "\t"    "\n"    "\v"    "\f"    "\r"  "\x1B" ;
 	t_utf8 const* aliases[] = { "\\\\" , "\\'" , "\\\"" , "\\/" , "\\a" , "\\b" , "\\t" , "\\n" , "\\v" , "\\f" , "\\r" , "\\e" };
 
-	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonASCIIOrNonPrintable, ENCODER_smart);
+	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonASCIIOrNonPrintable, ESCAPE_ENCODER);
 }
 
 
@@ -78,7 +78,7 @@ t_size StringUTF8_ToJsonEscapedBuf(t_utf8 *dest, t_size max_writelen, t_utf8 con
 	t_utf8 const* charset   =    "\b"    "\f"    "\n"    "\r"    "\t"     "\""     "\\";
 	t_utf8 const* aliases[] = { "\\b" , "\\f" , "\\n" , "\\r" , "\\t" , "\\\"" , "\\\\"};
 
-	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ENCODER_uFFFF);
+	return StringUTF8_ToEscapedBuf(dest, max_writelen, str, charset, aliases, ForceEncodingFor_NonPrintable, ESCAPE_ENCODER_uFFFF);
 }
 
 

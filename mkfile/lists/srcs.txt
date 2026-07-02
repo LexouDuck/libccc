@@ -344,7 +344,8 @@
 ./src/text/char/ascii/isprint.c
 ./src/text/char/ascii/isupper.c
 ./src/text/char/ascii/to.c
-./src/text/char/ascii/toescaped.c
+./src/text/char/escape.c
+./src/text/char/unescape.c
 ./src/text/char/unicode/incharset.c
 ./src/text/char/unicode/isalpha.c
 ./src/text/char/unicode/isdigit.c
@@ -352,8 +353,6 @@
 ./src/text/char/unicode/isprint.c
 ./src/text/char/unicode/ispunct.c
 ./src/text/char/unicode/isupper.c
-./src/text/char/unicode/parse.c
-./src/text/char/unicode/toescaped.c
 ./src/text/char/unicode/tolower.c
 ./src/text/char/unicode/toupper.c
 ./src/text/char/unicode/utf16.c
@@ -372,7 +371,6 @@
 ./src/text/string/ascii/find.c
 ./src/text/string/ascii/find_n.c
 ./src/text/string/ascii/find_r.c
-./src/text/string/ascii/format.c
 ./src/text/string/ascii/has.c
 ./src/text/string/ascii/insert.c
 ./src/text/string/ascii/iterate.c
@@ -388,6 +386,7 @@
 ./src/text/string/ascii/sub.c
 ./src/text/string/ascii/trim.c
 ./src/text/string/escape.c
+./src/text/string/format.c
 ./src/text/string/unescape.c
 ./src/text/string/utf8/compare.c
 ./src/text/string/utf8/count.c

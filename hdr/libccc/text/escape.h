@@ -33,7 +33,7 @@ HEADER_CPP
 
 // String Escaping Operations
 #define String_Unescape                (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_Unescape))
-#define String_FromEscape              (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_FromEscape))
+#define String_FromEscaped              (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_FromEscaped))
 #define String_Escape                  (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscapedBuf))
 #define String_ToAsciiEscaped          (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscaped))
 #define String_ToAsciiEscapedBuf       (CONCAT(CONCAT(String,LIBCONFIG_STRING_FORMAT),_ToAsciiEscapedBuf))
@@ -59,10 +59,10 @@ HEADER_CPP
 */
 typedef size_t (*f_char_encoder)(t_utf8 *dest, t_utf32 c);
 
-#define ENCODER_xFF				CharUTF32_ToEscaped_xFF
-#define ENCODER_uFFFF			CharUTF32_ToEscaped_uFFFF
-#define ENCODER_UFFFFFFFF		CharUTF32_ToEscaped_UFFFFFFFF
-#define ENCODER_smart			CharUTF32_ToEscaped_smart
+#define ESCAPE_ENCODER				CharUTF32_ToEscaped
+#define ESCAPE_ENCODER_xFF			CharUTF32_ToEscaped_xFF
+#define ESCAPE_ENCODER_uFFFF		CharUTF32_ToEscaped_uFFFF
+#define ESCAPE_ENCODER_UFFFFFFFF	CharUTF32_ToEscaped_UFFFFFFFF
 
 
 //! Functor to determine if given (potentially multi-byte) character should be encoded by the `f_char_encoder`
@@ -76,10 +76,254 @@ t_bool		ForceEncodingFor_NonASCIIOrNonPrintable(t_utf8 const* str);
 
 
 /*============================================================================*\
-||                                  Functions                                 ||
+||                          Single-Character Functions                        ||
 \*============================================================================*/
 
-#define StringASCII_Print	StringASCII_ToASCIIEscapedBuf
+
+
+//! Converts `c` to the shortest format the character can fit in. Will write at mose 10 ASCI char to dest
+/*! 
+**	@nonstd
+**
+**	Converts `c` to the shortest format the character can fit in. Either \xFF or \uFFFF or \UFFFFFFFF where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `dest` is not NULL, writes at most 10 ASCII char to dest to represent the character
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	The number of bytes written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL. This is at most 10
+*/
+t_size 					CharUTF32_ToEscaped(t_ascii *dest, t_utf32 c);
+#define c_utf32encode	CharUTF32_ToEscaped
+#define c_wcencode		CharUTF32_ToEscaped
+
+//! Converts `c` to \xFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \xFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 4 ASCII char to dest to represent the character in the format \xFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \xFF format, or
+**	4: The number of bytes written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							CharUTF32_ToEscaped_xFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_xff		CharUTF32_ToEscaped_xFF
+#define c_wcencode_xff			CharUTF32_ToEscaped_xFF
+
+//! Converts `c` to \uFFFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \uFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `c` is too big to be encoded with this format (if c > 0xFFFF), then `ERROR` is returned and nothing is written
+**	If `dest` is not NULL, writes 6 ASCII char to dest to represent the character in the format \uFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	`ERROR`: if the given character cannot be encoded with \uFFFF format, or
+**	6: The number of bytes written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							CharUTF32_ToEscaped_uFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_uffff		CharUTF32_ToEscaped_uFFFF
+#define c_wcencode_xffff		CharUTF32_ToEscaped_uFFFF
+
+//! Converts `c` to \UFFFFFFFF
+/*! 
+**	@nonstd
+**
+**	Converts `c` to \UFFFFFFFF format where each 'F' is an hexadecimal number represented with ASCII char 0-9 and A-F
+**	If `dest` is not NULL, writes 10 ASCII char to dest to represent the character in the format \UFFFFFFFF
+**
+**	@param	dest	The buffer in which the output will be written, if non NULL
+**	@param	c		the unicode character to encode
+**	@returns
+**	10: The number of bytes written to `dest`, or that would have been written to `dest` if `dest` wasn't NULL
+*/
+t_size							CharUTF32_ToEscaped_UFFFFFFFF(t_ascii *dest, t_utf32 c);
+#define c_utf32encode_Uffffffff	CharUTF32_ToEscaped_UFFFFFFFF
+#define c_wcencode_Uffffffff	CharUTF32_ToEscaped_UFFFFFFFF
+
+
+
+//!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`) from the given `str`
+/*!
+**	@nonstd
+**
+**	@param	str	The string from which to parse an escape sequence
+**	@returns
+**	The UTF-32 code point for the parsed unicode character,
+**	or `-1`(#ERROR) if there was a parsing error.
+*/
+//!@{
+t_utf32					CharUTF32_FromEscaped(t_ascii const* str);
+#define c_wcdecode		CharUTF32_FromEscaped
+//!@}
+
+//!@doc Parses a UTF-8 string escape sequence (`\U????????`, or `\u????`), reading at most `n` chars from `str`
+/*!
+**	@nonstd
+**
+**	@param	dest	The pointer to the 32-bit integer in which the result will be written.
+**	@param	str		The string from which to parse an escape sequence.
+**	@param	n		The maximum amount of characters to read from `str`.
+**					NOTE: if `0` is given, then there will be no maximum amount.
+**	@returns
+**	The total amount of bytes read from the given `str` buffer.
+*/
+//!@{
+t_size					CharUTF32_Unescape(t_utf32* dest, t_ascii const* str, t_size n);
+#define c_wcndecode		CharUTF32_Unescape
+//!@}
+
+
+
+/*============================================================================*\
+||                              Unescape Functions                            ||
+\*============================================================================*/
+
+
+
+//! Creates a new string from `str`, replacing escape-sequences with their corresponding char value
+/*!
+**	@nonstd
+**
+**	Inverse of `StringASCII_ToASCIIEscaped`
+**
+**	Returns a new null-terminated string where every valid backslash escape sequence
+**	is converted to its corresponding string byte.
+**	Here is the list of character escape sequences which will be properly parsed:
+**	- `\\`	`\` (a single backslash, escaping the escape character)
+**	- `\'`	Apostrophe
+**	- `\"`	Double quotes
+**	- `\a`	Bell/Alert/Audible
+**	- `\b`	Backspace
+**	- `\t`	Tab character
+**	- `\n`	Line feed
+**	- `\v`	Vertical tab
+**	- `\f`	Form-feed
+**	- `\r`	Carriage return
+**	- `\e`	Escape
+**	- `\x??`		Byte value, written as hexadecimal
+**	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
+**	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
+**	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
+*/
+//!@{
+
+/*!@doc
+**	@param	dest		The destination string
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	n			The maximum amount of characters to parse (infinite if `0` is given)
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
+**						(ie: any escape sequance will function, with any char after the `'\'`)
+**	@returns
+**	The amount of characters parsed from the given `str`.
+*/
+//!@{
+t_size					StringASCII_Unescape(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
+#define c_strparse		StringASCII_Unescape
+//!@}
+
+//!@doc
+/*!
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character. 
+**						Every backslashed character will be resolved to either the character this known escape 
+**						sequence represents, or simply character if this escape sequence is not known (effectively
+**						removing the backslash)
+**
+**	@returns
+**	A newly allocated modified copy of the given `str` (can be smaller than `str`),
+**	with any escape-sequences transformed into their target character value.
+*/
+//!@{
+_MALLOC()
+t_ascii*							StringASCII_FromEscaped(t_ascii const* str, t_bool any_escape);
+#define c_esctostr					StringASCII_FromEscaped
+#define StringASCII_Decode			StringASCII_FromEscaped
+#define StringASCII_FromPrintable	StringASCII_FromEscaped
+//!@}
+
+//!@}
+
+
+
+//! Creates a new string from `str`, replacing escape-sequences with their corresponding char value
+/*!
+**	@nonstd
+**
+**	Inverse of `StringUTF8_ToUtf8Escaped`
+**
+**	Returns a new null-terminated string where every valid backslash escape sequence
+**	is converted to its corresponding string byte.
+**	Here is the list of character escape sequences which will be properly parsed:
+**	- `\\`	`\` (a single backslash, escaping the escape character)
+**	- `\'`	Apostrophe
+**	- `\"`	Double quotes
+**	- `\a`	Bell/Alert/Audible
+**	- `\b`	Backspace
+**	- `\t`	Tab character
+**	- `\n`	Line feed
+**	- `\v`	Vertical tab
+**	- `\f`	Form-feed
+**	- `\r`	Carriage return
+**	- `\e`	Escape
+**	- `\x??`		Byte value, written as hexadecimal
+**	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
+**	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
+**	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
+*/
+//!@{
+
+/*!@doc
+**	@param	dest		The destination string
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	n			The maximum amount of characters to parse (infinite if `0` is given)
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
+**						(ie: any escape sequance will function, with any char after the `'\'`)
+**	@returns
+**	The amount of characters parsed from the given `str`.
+*/
+//!@{
+t_size							StringUTF8_Parse(t_utf8* *dest, t_utf8 const* str, t_size n, t_bool any_escape);
+#define c_mbsparse				StringUTF8_Parse
+//!@}
+
+//!@doc
+/*!
+**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
+**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character. 
+**						Every backslashed character will be resolved to either the character this known escape 
+**						sequence represents, or simply character if this escape sequence is not known (effectively
+**						removing the backslash)
+**
+**	@returns
+**	A newly allocated modified copy of the given `str` (can be smaller than `str`),
+**	with any escape-sequences transformed into their target character value.
+*/
+//!@{
+_MALLOC()
+t_utf8*								StringUTF8_FromEscaped(t_utf8 const* str, t_bool any_escape);
+#define c_esctombs					StringUTF8_FromEscaped
+#define StringUTF8_Decode			StringUTF8_FromEscaped
+#define StringUTF8_FromPrintable	StringUTF8_FromEscaped
+//!@}
+
+//!@}
+
+
+
+/*============================================================================*\
+||                               Escape Functions                             ||
+\*============================================================================*/
+
+
 
 //! Creates a new string from `str`, replacing special characters with ASCII escape-sequences
 /*!
@@ -127,7 +371,7 @@ t_size					StringASCII_ToASCIIEscapedBuf(t_ascii *dest, size_t max_writelen, t_a
 **	@nonstd
 **
 **	Returns a new null-terminated json-compliant string.
-**	Non-pritable characters are escaped with a `\uFFFF` format except for these escape sequences:
+**	Non-printable characters are escaped with a `\uFFFF` format except for these escape sequences:
 **	- `\\`	`\` (a single backslash, escaping the escape character)
 **	- `\"`	Double quotes
 **	- `\b`	Backspace
@@ -281,71 +525,6 @@ t_size StringASCII_ToEscapedBuf_e(
 		t_ascii const* const* aliases,
 		f_force_encoding_for force_encoding_for,
 		f_char_encoder char_encoder);
-
-//!@}
-
-
-
-//! Creates a new string from `str`, replacing escape-sequences with their corresponding char value
-/*!
-**	@nonstd
-**
-**	Inverse of `StringASCII_ToASCIIEscaped`
-**
-**	Returns a new null-terminated string where every valid backslash escape sequence
-**	is converted to its corresponding string byte.
-**	Here is the list of character escape sequences which will be properly parsed:
-**	- `\\`	`\` (a single backslash, escaping the escape character)
-**	- `\'`	Apostrophe
-**	- `\"`	Double quotes
-**	- `\a`	Bell/Alert/Audible
-**	- `\b`	Backspace
-**	- `\t`	Tab character
-**	- `\n`	Line feed
-**	- `\v`	Vertical tab
-**	- `\f`	Form-feed
-**	- `\r`	Carriage return
-**	- `\e`	Escape
-**	- `\x??`		Byte value, written as hexadecimal
-**	- `\u????`		UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????)
-**	- `\U????????`	UTF-8 multi-byte character, written as a hexadecimal code point (Unicode: U+????????)
-**	Any other backslash-ed character will simply resolve to itself (ie: removing the preceding backslash)
-*/
-//!@{
-
-/*!@doc
-**	@param	dest		The destination string
-**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
-**	@param	n			The maximum amount of characters to parse (infinite if `0` is given)
-**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character
-**						(ie: any escape sequance will function, with any char after the `'\'`)
-**	@returns
-**	The amount of characters parsed from the given `str`.
-*/
-//!@{
-t_size					StringASCII_Unescape(t_ascii* *dest, t_ascii const* str, t_size n, t_bool any_escape);
-#define c_strparse		StringASCII_Unescape
-//!@}
-
-//!@doc
-/*!
-**	@param	str			The string to duplicate, while resolving all escape-sequences to their corresponding char
-**	@param	any_escape	If `TRUE`, every backslash will be understood as an escape character. 
-**						Every backslashed character will be resolved to either the character this known escape 
-**						sequence represents, or simply character if this escape sequence is not known (effectively
-**						removing the backslash)
-**
-**	@returns
-**	A newly allocated modified copy of the given `str` (can be smaller than `str`),
-**	with any escape-sequences transformed into their target character value.
-*/
-//!@{
-_MALLOC()
-t_ascii*							StringASCII_FromEscape(t_ascii const* str, t_bool any_escape);
-#define c_esctostr					StringASCII_FromEscape
-#define StringASCII_Decode			StringASCII_FromEscape
-#define StringASCII_FromPrintable	StringASCII_FromEscape
-//!@}
 
 //!@}
 
