@@ -79,11 +79,11 @@ static void	init(void)
 
 	static const s_test_suite suites[TEST_SUITE_AMOUNT] =
 	{
-	#undef ENUM
-	#define ENUM(_name_, _func_, _enum_, ...) \
+		#undef ENUM
+		#define ENUM(_name_, _func_, _enum_, ...) \
 		{ FALSE, _name_, _func_, /*(s_test_totals)*/{ 0 } },
-	#include "test_suites.enum"
-	#undef ENUM
+		#include "test_suites.enum"
+		#undef ENUM
 	};
 	memcpy(g_test.suites, suites, sizeof(s_test_suite) * TEST_SUITE_AMOUNT);
 

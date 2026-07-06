@@ -40,12 +40,12 @@ void	print_totals(int amount, int failed, int warnings, char const* suite_name)
 {
 	double percent = (amount == 0 ? 100. : ((amount - failed) * 100. / amount));
 
-	printf("\n\n");
-	printf("|========================================\n");
+	printf("\n");
+	printf("========================================\n");
 	if (suite_name == NULL)
-		 printf("|  In total:\n");
-	else printf("|  Test suite: libccc/%s\n", suite_name);
-	printf("|========================================\n");
+		printf("Total results:\n");
+	else
+		printf("Test suite results: libccc/%s\n", suite_name);
 	printf("- Amount of tests: %d\n", amount);
 
 	int passed = amount - failed;
@@ -66,7 +66,7 @@ void	print_totals(int amount, int failed, int warnings, char const* suite_name)
 		}
 		else printf("\n" ANSI_COLOR_FG_GREEN "SUCCESS: All tests passed." ANSI_RESET "\n");
 	}
-	printf("\n");
+	printf("========================================\n");
 }
 
 
@@ -79,9 +79,9 @@ int	print_results(s_test_suite const* suites)
 	double percent = 0;
 
 	printf("\n\n");
-	printf("|========================================\n");
-	printf("| Final results:\n");
-	printf("|========================================\n");
+	printf("========================================\n");
+	printf(" Final results:\n");
+	printf("========================================\n");
 	for (int i = 0; i < TEST_SUITE_AMOUNT; ++i)
 	{
 		percent = (suites[i].totals.tests == 0 ? 100. : ((suites[i].totals.tests - suites[i].totals.failed) * 100. / suites[i].totals.tests));
@@ -132,13 +132,11 @@ void	print_usage(char const* program_name)
 
 void	print_suite_title(char const* suite_name)
 {
-	if (g_test.config.verbose)
-	{
-		printf("\n");
-		printf("//==================================\\\\\n");
-		printf("||  %-30.30s  ||\n", suite_name);
-		printf("\\\\==================================//\n");
-	}
+	printf("\n");
+	printf("//====================================\\\\\n");
+	printf("||  %-32.32s  ||\n", suite_name);
+	printf("\\\\====================================//\n");
+	fflush(stdout);
 }
 
 
