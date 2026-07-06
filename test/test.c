@@ -496,13 +496,9 @@ void	print_test_alloc(s_test_alloc* test, char const* args)
 	{
 		error = TRUE;
 	}
-	else for (i = 0; i < test->length; ++i)
+	else
 	{
-		if (((t_u8*)test->result)[i])
-		{
-			error = TRUE;
-			break;
-		}
+		error = memcmp(test->result, test->expect, test->length);
 	}
 	print_test(test->name, test->function, args,
 		tmp_result,

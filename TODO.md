@@ -11,7 +11,7 @@
 #include <libccc/pointer.h>
 #include <libccc/memory.h>
 #include <libccc/string.h>
-#include <libccc/regex.h>	// TODO all: functions for regular expressions pattern matching/replacing
+#include <libccc/regexp.h>	// TODO all: functions for regular expressions pattern matching/replacing
 #include <libccc/color.h>
 #include <libccc/array/array.h>	// TODO s_array = contiguous array: { t_size item_count, t_size item_size, (void*) items }
 #include <libccc/array/tuple.h>	// TODO s_tuple = ???

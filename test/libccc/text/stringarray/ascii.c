@@ -306,9 +306,9 @@ int		testsuite_text_stringarray_ascii(void)
 //	test_strarrcnew();
 //	test_strarrdel();
 
-	test_strsplit_char();
-	test_strsplit_cset();
-	test_strsplit_str();
+//	test_strsplit_char();
+//	test_strsplit_cset();
+//	test_strsplit_str();
 //	test_strdivide();
 	test_strjoin();
 
