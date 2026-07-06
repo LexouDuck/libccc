@@ -18,23 +18,27 @@ t_ascii*	StringASCII_Add(t_ascii* dest, t_ascii const* src)
 #else
 t_ascii*	StringASCII_Add(t_ascii* dest, t_ascii const* src)
 {
-	t_size	length;
+	t_size	dst_len;
+	t_size	src_len;
 	t_size	i;
 
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string to append given is NULL")
 		return (dest);
-	length = 0;
-	while (dest[length])
-		++length;
+	src_len = 0;
+	while (src[src_len])
+		++src_len;
+	dst_len = 0;
+	while (dest[dst_len])
+		++dst_len;
 	i = 0;
-	while (src[i])
+	while (i < src_len)
 	{
-		dest[length + i] = src[i];
+		dest[dst_len + i] = src[i];
 		++i;
 	}
-	dest[length + i] = '\0';
+	dest[dst_len + src_len] = '\0';
 	return (dest);
 }
 #endif
@@ -50,28 +54,32 @@ t_ascii*	StringASCII_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 #else
 t_ascii*	StringASCII_Add_N(t_ascii* dest, t_ascii const* src, t_size n)
 {
-	t_size	length;
+	t_size	dst_len;
+	t_size	src_len;
 	t_size	i;
 
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "string to append given is NULL")
 		return (dest);
-	length = 0;
-	while (dest[length])
-		++length;
+	src_len = 0;
+	while (src[src_len])
+		++src_len;
+	dst_len = 0;
+	while (dest[dst_len])
+		++dst_len;
 	i = 0;
-	while (i < n && src[i])
+	while (i < n && i < src_len)
 	{
-		dest[length + i] = src[i];
+		dest[dst_len + i] = src[i];
 		++i;
 	}
-	while (src[i])
+	while (i < src_len)
 	{
-		dest[length + i] = '\0';
+		dest[dst_len + i] = '\0';
 		++i;
 	}
-	dest[length + i] = '\0';
+	dest[dst_len + i] = '\0';
 	return (dest);
 }
 #endif
@@ -106,7 +114,7 @@ t_size	StringASCII_Add_L(t_ascii* dest, t_ascii const* src, t_size size)
 	if (dst_len != size)
 	{
 		i = 0;
-		while (dst_len + i + 1 < size && src[i])
+		while (dst_len + i + 1 < size && i < src_len)
 		{
 			dest[dst_len + i] = src[i];
 			++i;

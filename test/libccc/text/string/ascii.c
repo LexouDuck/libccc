@@ -17,13 +17,16 @@
 void test_strnew(void)	{}
 #warning "strnew() test suite function defined, but the function isn't defined."
 #else
-static void*	strnew(t_size n) { void* result = malloc(n + sizeof(""));	memset(result, '\0', n);	return (result); }
+static
+void*	strnew(size_t n)
+{ void* result = malloc(n + sizeof(""));	memset(result, '\0', n);	return (result); }
+
 void	print_test_strnew(char const* test_name, t_testflags flags,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(alloc)
 	test.length = n;
-	TEST_PERFORM_LIBC(	strnew, n) // TODO fix
+	TEST_PERFORM_LIBC(	strnew, n)
 	TEST_PRINT(alloc,	strnew, "n=%zu", n)
 	TEST_FREE()
 }
@@ -39,7 +42,35 @@ void	test_strnew(void)
 
 
 
-//! TODO strcnew()
+#ifndef c_strcnew
+void test_strcnew(void)	{}
+#warning "strcnew() test suite function defined, but the function isn't defined."
+#else
+static
+void*	strcnew(size_t n, char c)
+{ void* result = malloc(n + sizeof(""));	memset(result, c, n);	return (result); }
+
+void	print_test_strcnew(char const* test_name, t_testflags flags,
+		size_t n,
+		t_ascii c)
+{
+	TEST_INIT(alloc)
+	test.length = n;
+	TEST_PERFORM_LIBC(	strcnew, n, c)
+	TEST_PRINT(alloc,	strcnew, "n=%zu, c='%c'/0x%X", n, c, c)
+	TEST_FREE()
+}
+void	test_strcnew(void)
+{
+//	| TEST FUNCTION   | TEST NAME             |TESTFLAG|TEST ARGS
+	print_test_strcnew("strcnew              ", FALSE,	12,      '_');
+	print_test_strcnew("strcnew (n = 0xFFFF) ", FALSE,	0xFFFF,  '_');
+	print_test_strcnew("strcnew (n = 0x10000)", FALSE,	0x10000, '_');
+	print_test_strcnew("strcnew (c = 0)      ", FALSE,	12,      '\0');
+	print_test_strcnew("strcnew (n = 0)      ", FALSE,	0,       '_');
+	print_test_strcnew("strcnew (n = 0,c = 0)", FALSE,	0,       '\0');
+}
+#endif
 
 
 
@@ -88,8 +119,8 @@ void	print_test_strclr(char const* test_name, t_testflags flags,
 }
 void	test_strclr(void)
 {
-	char str1[32] = "______________________________";
-	char str2[32] = "______________________________";
+	char str1[32] = {'_'};
+	char str2[32] = {'_'};
 //	| TEST FUNCTION  | TEST NAME         | TESTFLAGS     | EXPECT | TEST ARGS
 	print_test_strclr("strclr           ", FALSE,			"",    str1 + 20, str2 + 20);
 	print_test_strclr("strclr           ", FALSE,			"",    str1 + 10, str2 + 10);
@@ -168,6 +199,21 @@ void	print_test_strcpy(char const* test_name, t_testflags flags,
 	test.expect = dest_libc;
 	print_test_str(&test, NULL);
 }
+void	print_test_strcpy_overlap(char const* test_name, t_testflags flags,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc)
+{
+	TEST_INIT(str)
+	TEST_PERFORM_(result, c_strcpy, dest_libccc, src_libccc)
+	TEST_PERFORM_(expect,   strcpy, dest_libc,   src_libc)
+	TEST_PRINT(str,			strcpy, "dest=\"%s\", src=\"%s\"", dest_libccc, src_libccc)
+	test.function = "strcpy 'dest' arg";
+	test.result = dest_libccc;
+	test.expect = dest_libc;
+	print_test_str(&test, NULL);
+}
 void	test_strcpy(void)
 {
 	char str1[64] = { '_' };
@@ -177,10 +223,15 @@ void	test_strcpy(void)
 	print_test_strcpy("strcpy            ",	FALSE,			str1, str2, test2);
 	print_test_strcpy("strcpy            ",	FALSE,			str1, str2, test3);
 	print_test_strcpy("strcpy (empty str)",	FALSE,			str1, str2, "");
-	print_test_strcpy("strcpy (null dest)",	ALLOW_SIGSEGV, NULL, NULL, test2);
-	print_test_strcpy("strcpy (null src) ",	ALLOW_SIGSEGV, str1, str2, NULL);
-	print_test_strcpy("strcpy (both null)",	ALLOW_SIGSEGV, NULL, NULL, NULL);
-	// TODO add overlapping memory test
+	print_test_strcpy("strcpy (null dest)",	ALLOW_SIGSEGV,  NULL, NULL, test2);
+	print_test_strcpy("strcpy (null src) ",	ALLOW_SIGSEGV,  str1, str2, NULL);
+	print_test_strcpy("strcpy (both null)",	ALLOW_SIGSEGV,  NULL, NULL, NULL);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strcpy_overlap("strcpy (overlap <)",	FALSE,	str1, str2, str1+8, str2+8);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strcpy_overlap("strcpy (overlap >)",	FALSE,	str1+8, str2+8, str1, str2);
 }
 #endif
 
@@ -194,7 +245,7 @@ void	print_test_strncpy(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(str)
 	TEST_PERFORM_LIBC_DEST(	strncpy, src, n)
@@ -204,10 +255,26 @@ void	print_test_strncpy(char const* test_name, t_testflags flags,
 	test.expect = dest_libc;
 	print_test_str(&test, NULL);
 }
+void	print_test_strncpy_overlap(char const* test_name, t_testflags flags,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc,
+		size_t n)
+{
+	TEST_INIT(str)
+	TEST_PERFORM_(result, c_strncpy, dest_libccc, src_libccc, n)
+	TEST_PERFORM_(expect,   strncpy, dest_libc,   src_libc,   n)
+	TEST_PRINT(str,			strncpy, "dest=\"%s\", src=\"%s\", n=%zu", dest_libccc, src_libccc, n)
+	test.function = "strncpy 'dest' arg";
+	test.result = dest_libccc;
+	test.expect = dest_libc;
+	print_test_str(&test, NULL);
+}
 void	test_strncpy(void)
 {
-	char str1[32];
-	char str2[32];
+	char str1[64] = {'_'};
+	char str2[64] = {'_'};
 //	| TEST FUNCTION   | TEST NAME               | TESTFLAGS        | TEST ARGS
 	print_test_strncpy("strncpy                ", FALSE,			str1, str2, test1,     test1_len);
 	print_test_strncpy("strncpy                ", FALSE,			str1, str2, test2,     test2_len);
@@ -219,7 +286,12 @@ void	test_strncpy(void)
 	print_test_strncpy("strncpy (null dest)    ", ALLOW_SIGSEGV,	NULL, NULL, test1,             5);
 	print_test_strncpy("strncpy (null src)     ", ALLOW_SIGSEGV,	str1, str2, NULL,              5);
 	print_test_strncpy("strncpy (both null)    ", ALLOW_SIGSEGV,	NULL, NULL, NULL,              5);
-	// TODO add overlapping memory test
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strncpy_overlap("strncpy (overlap <)    ", FALSE,	str1, str2, str1+8, str2+8, test1_len);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strncpy_overlap("strncpy (overlap >)    ", FALSE,	str1+8, str2+8, str1, str2, test1_len);
 }
 #endif
 
@@ -230,15 +302,15 @@ void test_strlcpy(void)	{}
 #warning "strlcpy() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strlcpy(char const* test_name, t_testflags flags,
-		t_size expecting,
+		size_t expecting,
 		char const* expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
-		t_size size)
+		size_t size)
 {
 	TEST_INIT(size)
-#ifdef __APPLE__
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 	TEST_PERFORM_LIBC_DEST(	strlcpy, src, size)
 #else
 	TEST_PERFORM_DEST(		strlcpy, src, size)
@@ -251,7 +323,41 @@ void	print_test_strlcpy(char const* test_name, t_testflags flags,
 		.flags = flags,
 		.result = dest_libccc,
 		.result_sig = test.result_sig,
-#ifdef __APPLE__
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
+		.expect = dest_libc,
+#else
+		.expect = expecting_dest,
+#endif
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, NULL);
+}
+void	print_test_strlcpy_overlap(char const* test_name, t_testflags flags,
+		char const* expecting_dest,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc,
+		size_t size)
+{
+	TEST_INIT(size)
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
+	TEST_PERFORM_(result, c_strlcpy, dest_libccc, src_libccc, size)
+	TEST_PERFORM_(expect,   strlcpy, dest_libc,   src_libc,   size)
+#else
+	TEST_PERFORM_(result, c_strlcpy, dest_libccc, src_libccc, size)
+	test.expect = strlen(src_libccc);
+#endif
+	TEST_PRINT(size, strlcpy, "dest=\"%s\", src=\"%s\", n=%zu", dest_libccc, src_libccc, size)
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strlcpy 'dest' arg",
+		.flags = flags,
+		.result = dest_libccc,
+		.result_sig = test.result_sig,
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 		.expect = dest_libc,
 #else
 		.expect = expecting_dest,
@@ -263,8 +369,8 @@ void	print_test_strlcpy(char const* test_name, t_testflags flags,
 }
 void	test_strlcpy(void)
 {
-	char str1[32] = "______________________________";
-	char str2[32] = "______________________________";
+	char str1[64] = {'_'};
+	char str2[64] = {'_'};
 //	| TEST FUNCTION   | TEST NAME              | TESTFLAGS     | EXPECTING         | TEST ARGS
 	print_test_strlcpy("strlcpy               ", FALSE,			test1_len-1, test1, str1, str2, test1, test1_len);
 	print_test_strlcpy("strlcpy               ", FALSE,			test2_len-1, test2, str1, str2, test2, test2_len);
@@ -278,7 +384,15 @@ void	test_strlcpy(void)
 	print_test_strlcpy("strlcpy (null dest)   ", ALLOW_SIGSEGV,	0,  NULL,           NULL, NULL, " shindeiru", 5);
 	print_test_strlcpy("strlcpy (null src)    ", ALLOW_SIGSEGV,	0,  "shindeiru ",   str1, str2, NULL,         5);
 	print_test_strlcpy("strlcpy (both null)   ", ALLOW_SIGSEGV,	0,  NULL,           NULL, NULL, NULL,         5);
-	// TODO add overlapping memory test
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strlcpy_overlap("strlcpy (overlap <)   ", FALSE,	test1+8,    str1, str2, str1+8, str2+8, test1_len);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	char* expect = strnew(test1_len + 9);
+	memcpy(expect,   (void*)test1, test1_len);
+	memcpy(expect+8, (void*)test1, test1_len);
+	print_test_strlcpy_overlap("strlcpy (overlap >)   ", FALSE,	expect+8,   str1+8, str2+8, str1, str2, test1_len);
 }
 #endif
 
@@ -301,10 +415,25 @@ void	print_test_strcat(char const* test_name, t_testflags flags,
 	test.expect = dest_libc;
 	print_test_str(&test, NULL);
 }
+void	print_test_strcat_overlap(char const* test_name, t_testflags flags,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc)
+{
+	TEST_INIT(str)
+	TEST_PERFORM_(result, c_strcat, dest_libccc, src_libccc)
+	TEST_PERFORM_(expect,   strcat, dest_libc,   src_libc)
+	TEST_PRINT(str,			strcat, "dest=\"%s\", src=\"%s\"", dest_libccc, src_libccc)
+	test.function = "strcat 'dest' arg";
+	test.result = dest_libccc;
+	test.expect = dest_libc;
+	print_test_str(&test, NULL);
+}
 void	test_strcat(void)
 {
-	char str1[128];
-	char str2[128];
+	char str1[128] = {'_'};
+	char str2[128] = {'_'};
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
 //	| TEST FUNCTION  | TEST NAME           | TESTFLAGS     | TEST ARGS
@@ -315,7 +444,12 @@ void	test_strcat(void)
 	print_test_strcat("strcat (null dest)", ALLOW_SIGSEGV,	NULL, NULL, "Bob\0");
 	print_test_strcat("strcat (null src) ", ALLOW_SIGSEGV,	str1, str2, NULL);
 	print_test_strcat("strcat (both null)", ALLOW_SIGSEGV,	NULL, NULL, NULL);
-	// TODO add overlapping memory test
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strcat_overlap("strcat (overlap <)",	FALSE,	str1, str2, str1+8, str2+8);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strcat_overlap("strcat (overlap >)",	FALSE,	str1+8, str2+8, str1, str2);
 }
 #endif
 
@@ -329,7 +463,7 @@ void	print_test_strncat(char const* test_name, t_testflags flags,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(str)
 	TEST_PERFORM_LIBC_DEST(	strncat, src, n)
@@ -339,10 +473,26 @@ void	print_test_strncat(char const* test_name, t_testflags flags,
 	test.expect = dest_libc;
 	print_test_str(&test, NULL);
 }
+void	print_test_strncat_overlap(char const* test_name, t_testflags flags,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc,
+		size_t n)
+{
+	TEST_INIT(str)
+	TEST_PERFORM_(result, c_strncat, dest_libccc, src_libccc, n)
+	TEST_PERFORM_(expect,   strncat, dest_libc,   src_libc,   n)
+	TEST_PRINT(str,			strncat, "dest=\"%s\", src=\"%s\", n=%zu", dest_libccc, src_libccc, n)
+	test.function = "strncat 'dest' arg";
+	test.result = dest_libccc;
+	test.expect = dest_libc;
+	print_test_str(&test, NULL);
+}
 void	test_strncat(void)
 {
-	char str1[128];
-	char str2[128];
+	char str1[128] = {'_'};
+	char str2[128] = {'_'};
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
 //	| TEST FUNCTION   | TEST NAME            | TESTFLAGS       | TEST ARGS
@@ -356,7 +506,12 @@ void	test_strncat(void)
 	print_test_strncat("strncat (null dest)", ALLOW_SIGSEGV,	NULL, NULL, "Bob\0",    5);
 	print_test_strncat("strncat (null src) ", ALLOW_SIGSEGV,	str1, str2, NULL,       5);
 	print_test_strncat("strncat (both null)", ALLOW_SIGSEGV,	NULL, NULL, NULL,       5);
-	// TODO add overlapping memory test
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strncat_overlap("strncat (overlap <)    ", FALSE,	str1, str2, str1+8, str2+8, test1_len);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	print_test_strncat_overlap("strncat (overlap >)    ", FALSE,	str1+8, str2+8, str1, str2, test1_len);
 }
 #endif
 
@@ -367,15 +522,15 @@ void test_strlcat(void)	{}
 #warning "strlcat() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strlcat(char const* test_name, t_testflags flags,
-		t_size expecting,
+		size_t expecting,
 		char const * expecting_dest,
 		char* dest_libccc,
 		char* dest_libc,
 		char const* src,
-		t_size size)
+		size_t size)
 {
 	TEST_INIT(size)
-#ifdef __APPLE__
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 	TEST_PERFORM_LIBC_DEST(	strlcat, src, size)
 #else
 	TEST_PERFORM_DEST(		strlcat, src, size)
@@ -388,7 +543,42 @@ void	print_test_strlcat(char const* test_name, t_testflags flags,
 		.flags = flags,
 		.result = dest_libccc,
 		.result_sig = test.result_sig,
-#ifdef __APPLE__
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
+		.expect = dest_libc,
+#else
+		.expect = expecting_dest,
+#endif
+		.expect_sig = test.expect_sig,
+		.timer = test.timer,
+	};
+	print_test_str(&test2, NULL);
+}
+void	print_test_strlcat_overlap(char const* test_name, t_testflags flags,
+		size_t expecting,
+		char const * expecting_dest,
+		char* dest_libccc,
+		char* dest_libc,
+		char const* src_libccc,
+		char const* src_libc,
+		size_t size)
+{
+	TEST_INIT(size)
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
+	TEST_PERFORM_(result, c_strlcat, dest_libccc, src_libccc, size)
+	TEST_PERFORM_(expect,   strlcat, dest_libc,   src_libc,   size)
+#else
+	TEST_PERFORM_(result, c_strlcat, dest_libccc, src_libccc, size)
+	test.expect = expecting;
+#endif
+	TEST_PRINT(size,		strlcat, "dest=\"%s\", src=\"%s\", size=%zu", dest_libccc, src_libccc, size)
+	s_test_str test2 = (s_test_str)
+	{
+		.name = test_name,
+		.function = "strlcat 'dest' arg",
+		.flags = flags,
+		.result = dest_libccc,
+		.result_sig = test.result_sig,
+#if (defined(__FreeBSD__) && __FreeBSD__ >= 3)
 		.expect = dest_libc,
 #else
 		.expect = expecting_dest,
@@ -400,8 +590,10 @@ void	print_test_strlcat(char const* test_name, t_testflags flags,
 }
 void	test_strlcat(void)
 {
-	char str1[64] = "______________________________";
-	char str2[64] = "______________________________";
+	char str1[64] = {'_'};
+	char str2[64] = {'_'};
+	char* expect;
+	size_t expect_len;
 	strcpy(str1, "Sponge\0");
 	strcpy(str2, "Sponge\0");
 //	| TEST FUNCTION   | TEST NAME            | TESTFLAGS       | EXPECTING                         | TEST ARGS
@@ -415,7 +607,20 @@ void	test_strlcat(void)
 	print_test_strlcat("strlcat (null dest)", ALLOW_SIGSEGV,	0,  NULL,                           NULL, NULL, " a",         5);
 	print_test_strlcat("strlcat (null src) ", ALLOW_SIGSEGV,	0,  "SpongeOmae wa mou shinUn a a", str1, str2, NULL,         5);
 	print_test_strlcat("strlcat (both null)", ALLOW_SIGSEGV,	0,  NULL,                           NULL, NULL, NULL,         5);
-	// TODO add overlapping memory test
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	expect = strnew(test1_len + test1_len);
+	strncpy(expect, test1,   test1_len);
+	strncat(expect, test1+8, test1_len);
+	expect_len = strlen(expect);
+	print_test_strlcat_overlap("strlcat (overlap <)   ", FALSE,	expect_len, expect, str1, str2, str1+8, str2+8, test1_len+test1_len);
+	strcpy(str1, test1);
+	strcpy(str2, test1);
+	expect = strnew(test1_len + test1_len);
+	strncpy(expect, test1, test1_len);
+	strncat(expect, test1, test1_len);
+	expect_len = strlen(expect+8);
+	print_test_strlcat_overlap("strlcat (overlap >)   ", FALSE,	expect_len, expect+8, str1+8, str2+8, str1, str2, test1_len+test1_len);
 }
 #endif
 
@@ -495,7 +700,7 @@ void test_strncmp(void)	{}
 void	print_test_strncmp(char const* test_name, t_testflags flags,
 		char const* str1,
 		char const* str2,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(sign)
 	TEST_PERFORM_LIBC(	strncmp, str1, str2, n)
@@ -574,7 +779,7 @@ void test_strnequ(void)	{}
 void	print_test_strnequ(char const* test_name, t_testflags flags,
 		char const* str1,
 		char const* str2,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(bool)
 	TEST_PERFORM_LIBC(	strnequ, str1, str2, n)
@@ -684,7 +889,7 @@ void test_strcount_char(void)	{}
 #warning "strcount_char() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcount_char(char const* test_name, t_testflags flags,
-		t_size expecting,
+		size_t expecting,
 		char const* str,
 		char c)
 {
@@ -720,7 +925,7 @@ void test_strcount_str(void)	{}
 #warning "strcount_str() test suite function defined, but the function isn't defined."
 #else
 void	print_test_strcount_str(char const* test_name, t_testflags flags,
-		t_size expecting,
+		size_t expecting,
 		char const* str,
 		char const* query)
 {
@@ -957,7 +1162,7 @@ void	print_test_strnstr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
 		char const* query,
-		t_size n)
+		size_t n)
 {
 	TEST_INIT(ptr)
 // TODO inspect which platforms have this function
@@ -1046,7 +1251,7 @@ void	test_strrep_char(void)
 	print_test_strrep_char("strrep_char (all same)    ", FALSE,   "bbb",                         "aaa",            'a', 'b');
 //	print_test_strrep_char("strrep_char (unicode)     ", FALSE,   "maïs à l'�eil…",              "maïs à l'œil…",  'œ', 'e');  // TODO fix this test
 	print_test_strrep_char("strrep_char (empty str)   ", FALSE,   "",                            "",               'a', 'b');
-//	print_test_strrep_char("strrep_char (old='\\0')   ", FALSE,   "test",                        "test",           '\0','x');
+//	print_test_strrep_char("strrep_char (old='\\0')   ", FALSE,   "test",                        "test",           '\0','x'); // TODO proper buffer overrun test
 	print_test_strrep_char("strrep_char (new='\\0')   ", FALSE,   "test",                        "test",           'x', '\0');
 	print_test_strrep_char("strrep_char (both='\\0')  ", FALSE,   "test",                        "test",           '\0','\0');
 	print_test_strrep_char("strrep_char (null str)    ", ALLOW_SIGSEGV,   NULL,                  NULL,             'a', 'b');
@@ -1276,7 +1481,7 @@ void	print_test_strpad(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const *str,
 		char c,
-		t_size length)
+		size_t length)
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strpad, str, c, length)
@@ -1315,7 +1520,7 @@ void	print_test_strpadl(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const *str,
 		char c,
-		t_size length)
+		size_t length)
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strpadl, str, c, length)
@@ -1354,7 +1559,7 @@ void	print_test_strpadr(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const *str,
 		char c,
-		t_size length)
+		size_t length)
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strpadr, str, c, length)
@@ -1457,7 +1662,7 @@ void	print_test_strinsert(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const *dest,
 		char const *src,
-		t_size offset)
+		size_t offset)
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strinsert, dest, src, offset)
@@ -1480,8 +1685,8 @@ void test_strsub(void)	{}
 void	print_test_strsub(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const *str,
-		t_size offset,
-		t_size n)
+		size_t offset,
+		size_t n)
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strsub, str, offset, n)
@@ -1522,7 +1727,7 @@ void	strtolower(t_char* c)
 		*c = tolower(*c);
 }
 
-void	strtolower_1on2(t_char* c, t_size i)
+void	strtolower_1on2(t_char* c, size_t i)
 {
 	if (i % 2 == 0 && isupper(*c))
 		*c = tolower(*c);
@@ -1535,7 +1740,7 @@ t_char	strtoupper(t_char c)
 	else return (c);
 }
 
-t_char	strtoupper_1on2(t_char c, t_size i)
+t_char	strtoupper_1on2(t_char c, size_t i)
 {
 	if (i % 2 == 1 && islower(c))
 		 return (toupper(c));
@@ -1579,7 +1784,7 @@ void test_striiter(void)	{}
 void	print_test_striiter(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		void (*f)(t_char*, t_size))
+		void (*f)(t_char*, size_t))
 {
 	TEST_INIT(str)
 	char* result_libccc = str == NULL ? NULL : strdup(str);
@@ -1632,7 +1837,7 @@ void test_strimap(void)	{}
 void	print_test_strimap(char const* test_name, t_testflags flags,
 		char const* expecting,
 		char const* str,
-		t_char (*f)(t_char, t_size))
+		t_char (*f)(t_char, size_t))
 {
 	TEST_INIT(str)
 	TEST_PERFORM(	strimap, str, f)
@@ -1662,6 +1867,7 @@ int		testsuite_text_string_ascii(void)
 
 
 	test_strnew();
+	test_strcnew();
 	test_strdup();
 	test_strcpy();
 	test_strncpy();
@@ -1703,6 +1909,7 @@ int		testsuite_text_string_ascii(void)
 
 	test_strnchr();
 	test_strrstr();
+	test_strremove();
 	test_strrep_char();
 	test_strrep_cset();
 	test_strrep_str();
@@ -1715,7 +1922,7 @@ int		testsuite_text_string_ascii(void)
 	test_strpadr();
 
 	test_strrev();
-//	test_strinsert();
+	test_strinsert();
 	test_strsub();
 	test_striter();
 	test_striiter();

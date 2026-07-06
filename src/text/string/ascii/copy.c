@@ -18,17 +18,33 @@ t_ascii*	StringASCII_Copy(t_ascii* dest, t_ascii const* src)
 #else
 t_ascii*	StringASCII_Copy(t_ascii* dest, t_ascii const* src)
 {
+	t_size	n;
 	t_size	i;
 
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source string given is NULL")
 		return (dest);
+	n = 0;
+	while (src[n])
+		++n;
 	i = 0;
-	while (src[i])
+	if (src < dest && src + n >= dest)
 	{
-		dest[i] = src[i];
-		++i;
+		i = n;
+		while (i--)
+		{
+			dest[i] = src[i];
+		}
+	}
+	else
+	{
+		i = 0;
+		while (i < n)
+		{
+			dest[i] = src[i];
+			++i;
+		}
 	}
 	dest[i] = '\0';
 	return (dest);
@@ -46,26 +62,35 @@ t_ascii*	StringASCII_Copy_N(t_ascii* dest, t_ascii const* src, t_size n)
 #else
 t_ascii*	StringASCII_Copy_N(t_ascii* dest, t_ascii const* src, t_size n)
 {
-	t_ascii*	str;
 	t_size	i;
 
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (NULL);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source string given is NULL")
 		return (dest);
-	str = dest;
 	i = 0;
-	while (n > 0 && src[i])
+	if (src < dest && src + n >= dest) // TODO properly handle extra '\0' terms when `n` is too long
 	{
-		str[i] = src[i];
-		++i;
-		--n;
+		i = n;
+		while (i--)
+		{
+			dest[i] = src[i];
+		}
 	}
-	while (n > 0)
+	else
 	{
-		str[i] = '\0';
-		++i;
-		--n;
+		while (n > 0 && src[i])
+		{
+			dest[i] = src[i];
+			++i;
+			--n;
+		}
+		while (n > 0)
+		{
+			dest[i] = '\0';
+			++i;
+			--n;
+		}
 	}
 	return (dest);
 }
@@ -82,20 +107,37 @@ t_size	StringASCII_Copy_L(t_ascii* dest, t_ascii const* src, t_size size)
 #else
 t_size	StringASCII_Copy_L(t_ascii* dest, t_ascii const* src, t_size size)
 {
+	t_size	n;
 	t_size	i;
 
 	if CCCERROR((dest == NULL), ERROR_NULLPOINTER, "destination string given is NULL")
 		return (0);
 	if CCCERROR((src == NULL), ERROR_NULLPOINTER, "source string given is NULL")
 		return (0);
+	n = size - 1;
 	i = 0;
-	while (i < size - 1 && src[i])
+	if (size > 0)
 	{
-		if (size)
-			dest[i] = src[i];
-		++i;
+		if (src < dest && src + n >= dest)
+		{
+			i = n;
+			while (i--)
+			{
+				dest[i] = src[i];
+			}
+			dest[n] = '\0';
+		}
+		else
+		{
+			i = 0;
+			while (i < n)
+			{
+				dest[i] = src[i];
+				++i;
+			}
+			dest[i] = '\0';
+		}
 	}
-	dest[i] = '\0';
 	i = 0;
 	while (src[i])
 		++i;
