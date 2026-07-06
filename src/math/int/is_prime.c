@@ -8,7 +8,6 @@
 // Modular exponentiation: compute (base^exp) % mod efficiently
 // This prevents overflow by taking modulo at each multiplication step
 static
-inline
 t_u64	modpow_u64(t_u64 base, t_u64 exp, t_u64 mod)
 {
 	t_u64	result;
@@ -27,7 +26,6 @@ t_u64	modpow_u64(t_u64 base, t_u64 exp, t_u64 mod)
 
 // For 128-bit integers, we need special handling
 static
-inline
 t_u128	modpow_u128(t_u128 base, t_u128 exp, t_u128 mod)
 {
 	t_u128	result;
@@ -68,7 +66,6 @@ t_u128	modpow_u128(t_u128 base, t_u128 exp, t_u128 mod)
 
 // Miller-Rabin primality test with a single witness
 static
-inline
 t_bool	miller_rabin_u64(t_u64 n, t_u64 witness)
 {
 	t_u64	d;
@@ -106,7 +103,6 @@ t_bool	miller_rabin_u64(t_u64 n, t_u64 witness)
 }
 
 static
-inline
 t_bool	miller_rabin_u128(t_u128 n, t_u128 witness)
 {
 	t_u128	d;
