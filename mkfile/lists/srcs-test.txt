@@ -1,6 +1,12 @@
 ./test/libccc/bool.c
 ./test/libccc/char.c
 ./test/libccc/color.c
+./test/libccc/compress/huffman.c
+./test/libccc/compress/lz77.c
+./test/libccc/compress/lzma.c
+./test/libccc/compress/lzss.c
+./test/libccc/compress/lzw.c
+./test/libccc/compress/rle.c
 ./test/libccc/encode/json.c
 ./test/libccc/encode/kvt.c
 ./test/libccc/encode/toml.c

@@ -16,35 +16,6 @@
 
 static char const* program_name = NULL;
 
-/*============================================================================*\
-||                           Global Testing Variables                         ||
-\*============================================================================*/
-
-char const* test1 = "Omae wa mou shindeiru.";		size_t const test1_len = 23;
-char const* test2 = "Nani???";						size_t const test2_len = 8;
-char const* test3 = "Un ange mange de la fange.";	size_t const test3_len = 27;
-
-char const* teststr_cc_c0	= "␡␁␂␃␄␅␆␇␈␉␊␋␌␍␎␏␐␑␒␓␔␕␖␗␘␙␚␛␜␝␞␟";
-char const* teststr_cc_c1	= "";
-char const* teststr_utf8_fr	= "Être à même de ça, d'air sûr — manger du maïs à l'œil… D'où la paix sur l'île de son âme…";
-char const* teststr_utf8_ru	= "Яцк Ничолсон ; сталин ленин троцкий хрущев москва";
-char const* teststr_utf8_jp	= "お前はもう死んでいる - 愛 - 私は実体の小さな学生です";
-char const* teststr_utf8_ho	= "�𑢰����� 𐐔𐐯𐑅𐐨𐑉𐐯𐐻";
-char const* teststr_utf8_one_symbol_two_seq =	"\xF0\x9F\x91\x8B"  /* U+1F44B: 'WAVING HAND SIGN' */
-												"\xF0\x9F\x8F\xBB"; /* U+1F3FB: 'EMOJI MODIFIER FITZPATRICK TYPE-1-2' */
-
-char const* teststr_utf8_one_symbol_three_seq = "നും"; /* U+0D28, U+0D41, U+0D02 */
-
-char const* teststr_utf8_hardcore = 
-#include "utf8_hardcore.inc"
-;
-
-size_t const teststr_utf8_hardcore_len = 5101; // Number of graphemes
-size_t const teststr_utf8_hardcore_bytelen = 10037; // Number of bytes, including terminating '\0'
-
-
-
-
 
 
 s_program	g_test;

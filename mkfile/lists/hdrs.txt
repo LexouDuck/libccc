@@ -2,6 +2,12 @@
 ./hdr/libccc.h
 ./hdr/libccc/bool.h
 ./hdr/libccc/char.h
+./hdr/libccc/compress/huffman.h
+./hdr/libccc/compress/lz77.h
+./hdr/libccc/compress/lzma.h
+./hdr/libccc/compress/lzss.h
+./hdr/libccc/compress/lzw.h
+./hdr/libccc/compress/rle.h
 ./hdr/libccc/encode/common.h
 ./hdr/libccc/encode/json.h
 ./hdr/libccc/encode/toml.h
