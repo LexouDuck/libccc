@@ -79,10 +79,7 @@ t_size	StringASCII_Count_String(t_ascii const* str, t_ascii const* query)
 		for (j = 0; (str[i + j] == query[j]); ++j)
 		{
 			if (query[j] == '\0' && str[i + j] == '\0')
-			{
-				++j;
-				break;
-			}
+				break; // (a match at the very end of the string: `j` already equals `length` here)
 		}
 		if (j == length)
 			++result;
