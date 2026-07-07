@@ -28,13 +28,21 @@
 //! Get rid of any previously-defined generic macros from user code
 //!@{
 #undef Array_ToList
+#undef Array_ToSet
 #undef List_ToArray
+#undef List_ToSet
+#undef Set_ToArray
+#undef Set_ToList
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
 #define Array_ToList(X)	CONCAT(Array_ToList_,	X##_NAME)
+#define Array_ToSet(X)	CONCAT(Array_ToSet_,	X##_NAME)
 #define List_ToArray(X)	CONCAT(List_ToArray_,	X##_NAME)
+#define List_ToSet(X)	CONCAT(List_ToSet_,	X##_NAME)
+#define Set_ToArray(X)	CONCAT(Set_ToArray_,	X##_NAME)
+#define Set_ToList(X)	CONCAT(Set_ToList_,	X##_NAME)
 //!@}
 
 
@@ -73,6 +81,7 @@
 //!@{
 #include "libccc/../.././src/generic/convert/array.c"
 #include "libccc/../.././src/generic/convert/list.c"
+#include "libccc/../.././src/generic/convert/set.c"
 //!@}
 
 //! Redefine the `_GENERIC()` macro as empty, so everything works as normal again
@@ -95,13 +104,21 @@
 //! Get rid of all generic macros used for declaration
 //!@{
 #undef Array_ToList
+#undef Array_ToSet
 #undef List_ToArray
+#undef List_ToSet
+#undef Set_ToArray
+#undef Set_ToList
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
 #define Array_ToList(T)	CONCAT(Array_ToList_,	T)
+#define Array_ToSet(T)	CONCAT(Array_ToSet_,	T)
 #define List_ToArray(T)	CONCAT(List_ToArray_,	T)
+#define List_ToSet(T)	CONCAT(List_ToSet_,	T)
+#define Set_ToArray(T)	CONCAT(Set_ToArray_,	T)
+#define Set_ToList(T)	CONCAT(Set_ToList_,	T)
 //!@}
 
 
