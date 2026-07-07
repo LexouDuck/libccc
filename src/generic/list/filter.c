@@ -23,16 +23,16 @@ s_list(T)*	List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item))
 			item = List_Item(T)(list->item);
 			if (item == NULL)
 				break;
-		if (result == NULL)
-			result = item;
-		else
-		{
+			if (result == NULL)
+				result = item;
+			else
+			{
 #if LIBCONFIG_LIST_DOUBLYLINKED
-			item->prev = tail;
+				item->prev = tail;
 #endif
-			tail->next = item;
-		}
-		tail = item;
+				tail->next = item;
+			}
+			tail = item;
 		}
 		list = list->next;
 	}
@@ -61,16 +61,16 @@ s_list(T)*	List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_ui
 			item = List_Item(T)(list->item);
 			if (item == NULL)
 				break;
-		if (result == NULL)
-			result = item;
-		else
-		{
+			if (result == NULL)
+				result = item;
+			else
+			{
 #if LIBCONFIG_LIST_DOUBLYLINKED
-			item->prev = tail;
+				item->prev = tail;
 #endif
-			tail->next = item;
-		}
-		tail = item;
+				tail->next = item;
+			}
+			tail = item;
 		}
 		list = list->next;
 		++i;
