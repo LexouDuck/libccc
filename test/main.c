@@ -199,7 +199,8 @@ int	main(int argc, char** argv)
 		if (g_test.suites[i].run)
 		{
 			g_test.current_suite = (e_test_suite_libccc)i;
-			g_test.suites[i].test();
+			if (g_test.suites[i].test)
+				g_test.suites[i].test();
 			if (g_test.suites[i].totals.tests)
 			{
 				print_totals(

@@ -66,8 +66,18 @@ typedef struct  list_int	s_list_int;	//!< @see "libccc/generic/list.h"
 ||                                   Defines                                  ||
 \*============================================================================*/
 
+
+
+typedef enum test_suite_libccc
+{
+	#undef ENUM
+	#define ENUM(_name_, _func_, _enum_, ...) \
+	_enum_,
+	#include "test_suites.enum"
+	#undef ENUM
+	TEST_SUITE_AMOUNT,
+}	e_test_suite_libccc;
 //! The total amount of test suites for libccc
-#define TEST_SUITE_AMOUNT	48
 
 
 
@@ -113,17 +123,6 @@ typedef struct test_suite
 	int		(*test)(void);	//!< Test suite launcher
 	s_test_totals	totals;	//!< Stores the total amounts of tests ran/failed
 }	s_test_suite;
-
-
-
-typedef enum test_suite_libccc
-{
-	#undef ENUM
-	#define ENUM(_name_, _func_, _enum_, ...) \
-	_enum_,
-	#include "test_suites.enum"
-	#undef ENUM
-}	e_test_suite_libccc;
 
 
 

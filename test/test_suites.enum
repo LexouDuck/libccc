@@ -41,9 +41,9 @@ ENUM("random",                 testsuite_random,                 TESTSUITE_RANDO
 /* !("random/csprng",          testsuite_random_csprng,          TESTSUITE_RANDOM_CSPRNG,          )*/
 ENUM("generic/array",          testsuite_generic_array,          TESTSUITE_GENERIC_ARRAY,          )
 ENUM("generic/list",           testsuite_generic_list,           TESTSUITE_GENERIC_LIST,           )
+ENUM("generic/set",            testsuite_generic_set,            TESTSUITE_GENERIC_SET,            )
 ENUM("generic/dict",           testsuite_generic_dict,           TESTSUITE_GENERIC_DICT,           )
 ENUM("generic/tree",           testsuite_generic_tree,           TESTSUITE_GENERIC_TREE,           )
-//UM("generic/set",            testsuite_generic_set,            TESTSUITE_GENERIC_SET,            )
 //UM("generic/object",         testsuite_generic_object,         TESTSUITE_GENERIC_OBJECT,         )
 ENUM("sys/io",                 testsuite_sys_io,                 TESTSUITE_SYS_IO,                 )
 ENUM("sys/time",               testsuite_sys_time,               TESTSUITE_SYS_TIME,               )
@@ -55,6 +55,7 @@ ENUM("sys/time",               testsuite_sys_time,               TESTSUITE_SYS_T
 //UM("sys/network",            testsuite_sys_network,            TESTSUITE_SYS_NETWORK,            )
 /* !("encode/common",          testsuite_encode_common,          TESTSUITE_ENCODE_COMMON,          )*/
 ENUM("encode/json",            testsuite_encode_json,            TESTSUITE_ENCODE_JSON,            )
+ENUM("encode/kvt",             testsuite_encode_kvt,             TESTSUITE_ENCODE_KVT,             )
 //UM("encode/xml",             testsuite_encode_xml,             TESTSUITE_ENCODE_XML,             )
 //UM("encode/yaml",            testsuite_encode_yaml,            TESTSUITE_ENCODE_YAML,            )
 ENUM("encode/toml",            testsuite_encode_toml,            TESTSUITE_ENCODE_TOML,            )
