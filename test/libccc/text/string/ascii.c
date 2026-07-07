@@ -686,6 +686,10 @@ void	test_strcmp(void)
 	print_test_strcmp("strcmp            ", FALSE,			test3, test1);
 	print_test_strcmp("strcmp            ", FALSE,			test3, test2);
 	print_test_strcmp("strcmp            ", FALSE,			test3, test3);
+	print_test_strcmp("strcmp (both empty)", FALSE,			"",    "");
+	print_test_strcmp("strcmp (vs empty)  ", FALSE,			test1, "");
+	print_test_strcmp("strcmp (prefix >)  ", FALSE,			"abc", "ab");
+	print_test_strcmp("strcmp (prefix <)  ", FALSE,			"ab",  "abc");
 	print_test_strcmp("strcmp (null str1)", ALLOW_SIGSEGV,	NULL,  test3);
 	print_test_strcmp("strcmp (null str2)", ALLOW_SIGSEGV,	test2, NULL);
 	print_test_strcmp("strcmp (both null)", ALLOW_SIGSEGV,	NULL,  NULL);
@@ -721,6 +725,9 @@ void	test_strncmp(void)
 	print_test_strncmp("strncmp            ", FALSE,			"abc",     "abcdef",  3);
 	print_test_strncmp("strncmp            ", FALSE,			test2 + 1, test3 + 3, 2);
 	print_test_strncmp("strncmp (n = 0)    ", FALSE,			test2,     test3,     0);
+	print_test_strncmp("strncmp (both empty)", FALSE,			"",        "",        5);
+	print_test_strncmp("strncmp (prefix, n beyond)", FALSE,	"abc",     "ab",      5);
+	print_test_strncmp("strncmp (prefix, n at end)", FALSE,	"abc",     "ab",      2);
 	print_test_strncmp("strncmp (null str1)", ALLOW_SIGSEGV,	NULL,      test3,     5);
 	print_test_strncmp("strncmp (null str2)", ALLOW_SIGSEGV,	test2,     NULL,      5);
 	print_test_strncmp("strncmp (both null)", ALLOW_SIGSEGV,	NULL,      NULL,      5);
@@ -988,7 +995,7 @@ void	test_strchr(void)
 	print_test_strchr("strchr             ", FALSE        , NULL                  , test1          , '_');
 	print_test_strchr("strchr             ", FALSE        , NULL                  , test2          , '_');
 	print_test_strchr("strchr             ", FALSE        , NULL                  , test3          , '_');
-	print_test_strchr("strchr (unicode)   ", FALSE        , teststr_cc_c1   + 0x39, teststr_cc_c1  , (char)L'');
+	print_test_strchr("strchr (unicode)   ", FALSE        , teststr_cc_c1   + 0x3B, teststr_cc_c1  , (char)L'');
 	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0  , (char)L'␡');
 	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ');
 	print_test_strchr("strchr (unicode)   ", FALSE        , NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ');
@@ -1021,6 +1028,8 @@ void	test_strstr(void)
 	print_test_strstr("strstr              ",	FALSE,			test2, "?");
 	print_test_strstr("strstr              ",	FALSE,			test3, " ");
 	print_test_strstr("strstr              ",	FALSE,			test1, "mou ");
+	print_test_strstr("strstr (whole str)  ",	FALSE,			test1, test1);
+	print_test_strstr("strstr (at tail)    ",	FALSE,			"aaab", "ab");
 	print_test_strstr("strstr              ",	FALSE,			test1, "??");
 	print_test_strstr("strstr              ",	FALSE,			test3, "???");
 	print_test_strstr("strstr (unicode)    ",   FALSE,          teststr_cc_c0,   "␡");
@@ -1060,7 +1069,7 @@ void	test_strrchr(void)
 	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test1, '_');
 	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test2, '_');
 	print_test_strrchr("strrchr             ",  FALSE,         NULL,                   test3, '_');
-	print_test_strrchr("strrchr (unicode)   ",  FALSE,         teststr_cc_c1   + 0x39, teststr_cc_c1,   (char)L'');
+	print_test_strrchr("strrchr (unicode)   ",  FALSE,         teststr_cc_c1   + 0x3B, teststr_cc_c1,   (char)L'');
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0,   (char)L'␡');
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ');
 	print_test_strrchr("strrchr (unicode)   ",  FALSE,         NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ');
@@ -1139,7 +1148,7 @@ void	test_strnchr(void)
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, '_', 16);
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, 'w', 1);
 	print_test_strnchr("strnchr             ",	FALSE,			NULL,          test1, '_', 1);
-	print_test_strnchr("strnchr (unicode)   ",  FALSE,          teststr_cc_c1   + 0x39, teststr_cc_c1,   (char)L'',	 128);
+	print_test_strnchr("strnchr (unicode)   ",  FALSE,          teststr_cc_c1   + 0x3B, teststr_cc_c1,   (char)L'',	 128);
 	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_cc_c0   + 0x00*/, teststr_cc_c0,   (char)L'␡',	 128);
 	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_fr + 0x3B*/, teststr_utf8_fr, (char)L'œ',	 128);
 	print_test_strnchr("strnchr (unicode)   ",  FALSE,          NULL /*teststr_utf8_ru + 0x47*/, teststr_utf8_ru, (char)L'щ',	 128);
