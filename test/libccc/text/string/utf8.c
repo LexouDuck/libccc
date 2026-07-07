@@ -210,8 +210,9 @@ void	test_mbsiequ(void)
 	print_test_mbsiequ("mbsiequ (actually different)", FALSE     , FALSE     , (t_utf8 const*)"hella", (t_utf8 const*)"hello");
 	print_test_mbsiequ("mbsiequ (jp, no case)       ", FALSE     , TRUE      , teststr_jp, (t_utf8 const*)"お前はもう死んでいる");
 	print_test_mbsiequ("mbsiequ (both empty)        ", FALSE     , TRUE      , (t_utf8 const*)"", (t_utf8 const*)"");
-	// NOTE: this documents current behavior: case-insensitivity only applies to ASCII letters (not accented latin chars)
-	print_test_mbsiequ("mbsiequ (accented case)     ", FALSE     , FALSE     , (t_utf8 const*)"\xC3\x89CLAIR", (t_utf8 const*)"\xC3\xA9""clair");
+	print_test_mbsiequ("mbsiequ (accented case)     ", FALSE     , TRUE      , (t_utf8 const*)"ÉCLAIR", (t_utf8 const*)"éclair");
+	print_test_mbsiequ("mbsiequ (accented case)     ", FALSE     , TRUE      , (t_utf8 const*)"ÁÈîȮŪ", (t_utf8 const*)"áèîȯū");
+	print_test_mbsiequ("mbsiequ (accented diff)     ", FALSE     , FALSE     , (t_utf8 const*)"ÁÈîȮŪ", (t_utf8 const*)"àèîȯū");
 }
 #endif
 

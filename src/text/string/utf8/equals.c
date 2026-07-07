@@ -72,8 +72,8 @@ t_bool	StringUTF8_Equals_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2)
 		c1 = CharUTF32_FromUTF8(str1 + i);
 		c2 = CharUTF32_FromUTF8(str2 + i);
 		if (c1 != c2 &&
-			!(CharUTF32_ToLower(c1) == CharUTF32_ToLower(c2)) &&
-			!(CharUTF32_ToUpper(c1) == CharUTF32_ToUpper(c2)))
+			CharUTF32_ToLower(c1) != CharUTF32_ToLower(c2) &&
+			CharUTF32_ToUpper(c1) != CharUTF32_ToUpper(c2))
 			return (FALSE);
 		++i;
 	}
@@ -98,8 +98,8 @@ t_bool	StringUTF8_Equals_N_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2, t_
 		c1 = CharUTF32_FromUTF8(str1 + i);
 		c2 = CharUTF32_FromUTF8(str2 + i);
 		if (c1 != c2 &&
-			!(CharUTF32_ToLower(c1) == CharUTF32_ToLower(c2)) &&
-			!(CharUTF32_ToUpper(c1) == CharUTF32_ToUpper(c2)))
+			CharUTF32_ToLower(c1) != CharUTF32_ToLower(c2) &&
+			CharUTF32_ToUpper(c1) != CharUTF32_ToUpper(c2))
 			return (FALSE);
 		++i;
 		if (i == n)
