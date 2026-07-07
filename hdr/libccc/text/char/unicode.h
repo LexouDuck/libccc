@@ -343,24 +343,6 @@ t_bool					CharUTF32_IsValid(t_utf32 c);
 
 
 
-//!@doc Check if the given char `c` is contained in the given 'charset'
-/*!
-**	Check if the given char `c` is contained in the given 'charset'
-**
-**	@param	c		The character to check
-**	@param	charset	The set of characters to look through
-**	@returns
-**	`TRUE` if the given char `c` is contained within the given `charset` array,
-**	otherwise returns `FALSE`.
-*/
-//!@{
-t_bool						CharUTF32_IsInCharset(t_utf32 c, t_utf32 const* charset);
-#define c_wcincharset		CharUTF32_IsInCharset
-#define Unicode_IsInCharset	CharUTF32_IsInCharset
-//!@}
-
-
-
 // TODO wctype_t enum, and wctype() function
 
 
@@ -658,6 +640,42 @@ t_sint				CharUTF16_ByteOrderMark(t_utf16 const* str);
 t_sint				CharUTF32_ByteOrderMark(t_utf32 const* str);
 #define c_wcbom		CharUTF32_ByteOrderMark
 //!@}
+
+
+
+//!@doc Checks whether the codepoint `c` matches any (potentially multi-byte) symbol of the UTF-8 `charset` string
+/*!
+**	Check if the given char `c` is contained in the given `charset`
+**	NOTE: this performs proper symbol-wise (codepoint) comparison: a byte-wise
+**	comparison would falsely match individual bytes of multi-byte sequences
+**	(for example, all japanese hiragana share the same 0xE3 leading byte).
+**
+**	@param	charset	The set of characters to look through
+**	@param	c		The character to check for
+**	@returns
+**	`TRUE` if the given char `c` is contained within the given `charset` array, otherwise `FALSE`.
+*/
+//!@{
+t_bool						CharUTF8_IsInCharset(t_utf8 const* charset, t_utf32 c);
+#define c_mbcincharset		CharUTF8_IsInCharset
+//!@}
+
+// TODO: UTF16_Charset_Contains
+
+//!@doc Check whether the codepoint `c` is contained in the given `charset`
+/*!
+**	Check if the given char `c` is contained in the given `charset`
+**
+**	@param	charset	The set of characters to look through
+**	@param	c		The character to check for
+**	@returns
+**	`TRUE` if the given char `c` is contained within the given `charset` array, otherwise `FALSE`.
+*/
+//!@{
+t_bool						CharUTF32_IsInCharset(t_utf32 const* charset, t_utf32 c);
+#define c_wcincharset		CharUTF32_IsInCharset
+//!@}
+
 
 
 /*============================================================================*\
