@@ -444,7 +444,13 @@ void test_arradd(void)	{}
 #else
 static char*	c_gen_arradd(t_uint fixture_size, void* item)
 {
-	s_array(any)*	array = (fixture_size == 0 ? NULL : gen_array_fixture());
+	s_array(any)*	array;
+	if (fixture_size == 0)
+		array = NULL;
+	else if (fixture_size == 1)
+		array = c_arrnew(any)(0, NULL); // a valid (but empty) array struct
+	else
+		array = gen_array_fixture();
 	array = c_arradd(any)(array, item);
 	return (gen_array_consume(array));
 }
@@ -463,6 +469,7 @@ void	test_arradd(void)
 //	| TEST FUNCTION   | TEST NAME            |TESTFLAG| EXPECTING                                 | TEST ARGS
 	print_test_arradd("arradd             ",	FALSE,	"[Omae][ wa ][mou ][shindeiru.][YO]",       4, (void*)"YO");
 	print_test_arradd("arradd (null array)",	FALSE,	"[YO]",                                     0, (void*)"YO");
+	print_test_arradd("arradd (empty arr) ",	FALSE,	"[YO]",                                     1, (void*)"YO");
 	print_test_arradd("arradd (null item) ",	FALSE,	"[Omae][ wa ][mou ][shindeiru.][NULL]",     4, NULL);
 }
 #endif
