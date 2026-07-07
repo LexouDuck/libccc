@@ -36,7 +36,7 @@ t_sint	StringUTF8_Compare(t_utf8 const* str1, t_utf8 const* str2)
 			return ((t_sint)(c1 - c2));
 		++i;
 	}
-	return ((t_sint)(c1 - c2));
+	return ((t_sint)str1[i] - (t_sint)str2[i]);
 }
 #endif
 
@@ -72,7 +72,7 @@ t_sint	StringUTF8_Compare_N(t_utf8 const* str1, t_utf8 const* str2, t_size n)
 		if (i == n)
 			return (0);
 	}
-	return ((t_sint)(c1 - c2));
+	return ((t_sint)str1[i] - (t_sint)str2[i]);
 }
 #endif
 
@@ -106,7 +106,7 @@ t_sint	StringUTF8_Compare_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2)
 			return ((t_sint)(c1 - c2));
 		++i;
 	}
-	return ((t_sint)(c1 - c2));
+	return ((t_sint)str1[i] - (t_sint)str2[i]);
 }
 #endif
 
@@ -144,6 +144,6 @@ t_sint	StringUTF8_Compare_N_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2, t
 		if (i == n)
 			return (0);
 	}
-	return ((t_sint)(c1 - c2));
+	return ((t_sint)str1[i] - (t_sint)str2[i]);
 }
 #endif
