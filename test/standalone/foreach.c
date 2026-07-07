@@ -33,6 +33,12 @@
 #define T_NAME	str
 #define T_NULL	NULL
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
+#include <libccc/generic/set.c>
+
+#define T_TYPE	char*
+#define T_NAME	str
+#define T_NULL	NULL
+#define T_EQUALS(A, B)	(String_Equals((A), (B)))
 #include <libccc/generic/convert.c>
 
 //#include <libccc/generic/object.c>
@@ -68,6 +74,11 @@
 #define T_NAME	int
 #define T_NULL	0
 #include <libccc/generic/tree.c>
+
+#define T_TYPE	int
+#define T_NAME	int
+#define T_NULL	0
+#include <libccc/generic/set.c>
 
 #define T_TYPE	int
 #define T_NAME	int
@@ -248,6 +259,40 @@ int main(int argc, char** argv)
 			++i;
 		}
 		Tree_Delete(int)(&tmp);
+	}
+#endif
+
+#if 1
+	IO_Output_String("\n- s_set<char*> (values are unique):\n");
+	{
+		s_set(str)* tmp = Set_Create(str)(6, "Omae", " wa ", "mou ", "Omae", "shindeiru.", "mou ");
+		i = 0;
+		foreach (char*, str, s_set, tmp) // NOTE: the 6 given values only produce 4 items (duplicates are ignored)
+		{
+			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""str:\"%s\"\n", i++, str_i, str);
+		}
+		Set_Delete(str)(&tmp);
+	}
+#endif
+#if 1
+	IO_Output_String("\n- s_set<int> (union/intersection):\n");
+	{
+		s_set(int)* evens = Set_Create(int)(3, 2, 4, 6);
+		s_set(int)* small = Set_Create(int)(3, 1, 2, 3);
+		s_set(int)* both = Set_Union(int)(evens, small);
+		s_set(int)* common = Set_Intersect(int)(evens, small);
+		i = 0;
+		foreach (int, integer, s_set, both)
+		{
+			IO_Output_Format("\t""i:%u,\t""int:%i\n", i++, integer);
+		}
+		IO_Output_Format("\t""union length: %u (2 appears once), intersection contains 2: %s\n",
+			Set_Length(int)(both),
+			(Set_Contains(int)(common, 2) ? "TRUE" : "FALSE"));
+		Set_Delete(int)(&common);
+		Set_Delete(int)(&both);
+		Set_Delete(int)(&small);
+		Set_Delete(int)(&evens);
 	}
 #endif
 
