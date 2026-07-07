@@ -63,7 +63,7 @@ t_ascii*		StringASCII_Replace_Charset(t_ascii const* str, t_ascii const* cset_ol
 				return (NULL);
 		}
 	}
-	result = (t_ascii*)Memory_Allocate(i + sizeof(""));
+	result = (t_ascii*)Memory_Allocate(StringASCII_Length(str) + sizeof(""));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 	for (i = 0; str[i]; ++i)
