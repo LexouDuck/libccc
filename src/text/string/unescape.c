@@ -79,8 +79,8 @@ t_size	StringASCII_Unescape_GetLength(t_ascii const* str, t_bool any_escape, t_s
 
 
 
-//! Parses a unicode escape sequence, and encodes the result into a UTF-8 multibyte character
-#define	STRING_PARSE_UNICODE(BITS) \
+//! Parses the hexadecimal digits of a unicode escape sequence into `unicode`
+#define	STRING_PARSE_UNICODE_HEX(BITS) \
 	for (t_u8 c = 0; c < ((BITS) / 8); ++c) \
 	{ \
 		tmp[c*2+0] = str[++index]; \
@@ -90,7 +90,16 @@ t_size	StringASCII_Unescape_GetLength(t_ascii const* str, t_bool any_escape, t_s
 	} \
 	tmp[((BITS) / 4)] = '\0'; \
 	unicode = U##BITS##_FromString_Hex(tmp); \
-	i += CharUTF32_ToUTF8((t_utf8*)result + i, unicode); \
+
+//! Encodes the parsed `unicode` codepoint into the result buffer (setting `error` if it is not encodable)
+#define	STRING_WRITE_UNICODE() \
+	if (!error) \
+	{ \
+		t_size encoded_len = CharUTF32_ToUTF8((t_utf8*)result + i, unicode); \
+		if (encoded_len == 0 || encoded_len == (t_size)ERROR) \
+			error = TRUE; \
+		else i += encoded_len; \
+	} \
 
 
 
@@ -117,14 +126,56 @@ t_size	StringASCII_Unescape(t_utf8* *dest, t_ascii const* str, t_size n, t_bool 
 			++index;
 			if CCCERROR((index == n || str[index] == '\0'), ERROR_PARSE, 
 				"string ends with backslash, potential buffer overrun:\n%s", str)
-				return (0);
+				goto failure;
 			t_ascii	escapechar = StringASCII_Unescape_GetEscape(str[index]);
 			if (escapechar != (t_ascii)ERROR)
 				result[i++] = escapechar;
 			else switch (str[index])
 			{
-				case 'u':	STRING_PARSE_UNICODE(16)	break; // Unicode 2-byte t_ascii (encodes UTF-32 code point to UTF-8)
-				case 'U':	STRING_PARSE_UNICODE(32)	break; // Unicode 4-byte t_ascii (encodes UTF-32 code point to UTF-8)
+				case 'u': // Unicode UTF-16 code unit: "\uXXXX" (or surrogate pair: "\uXXXX\uXXXX"), encoded to UTF-8
+				{
+					STRING_PARSE_UNICODE_HEX(16)
+					if (error)
+						break;
+					if ((unicode >= UTF16_SURROGATE_HI) && (unicode < UTF16_SURROGATE_LO))
+					{	// high surrogate: a second "\uXXXX" sequence (the low surrogate) must follow
+						t_utf32	code1 = unicode;
+						if (str[index + 1] != '\\' || str[index + 2] != 'u')
+						{
+							error = TRUE;
+							break;
+						}
+						index += 2;
+						STRING_PARSE_UNICODE_HEX(16)
+						if (error)
+							break;
+						if ((unicode < UTF16_SURROGATE_LO) || (unicode >= UTF16_SURROGATE_END))
+						{	// the second code unit is not a valid low surrogate
+							error = TRUE;
+							break;
+						}
+						// calculate the unicode codepoint from the surrogate pair
+						unicode = (t_utf32)(UTF16_BIAS + (((code1 & UTF16_SURROGATE_MASK) << 10) | (unicode & UTF16_SURROGATE_MASK)));
+					}
+					else if ((unicode >= UTF16_SURROGATE_LO) && (unicode < UTF16_SURROGATE_END))
+					{	// lone low surrogate: not a valid unicode character
+						error = TRUE;
+						break;
+					}
+					STRING_WRITE_UNICODE()
+					break;
+				}
+				case 'U': // Unicode UTF-32 code point: "\UXXXXXXXX", encoded to UTF-8
+				{
+					STRING_PARSE_UNICODE_HEX(32)
+					if (!error && (unicode >= UTF16_SURROGATE_HI) && (unicode < UTF16_SURROGATE_END))
+					{	// surrogate code points are not valid unicode characters
+						error = TRUE;
+						break;
+					}
+					STRING_WRITE_UNICODE()
+					break;
+				}
 				case 'x': // Hexadecimal byte value
 					tmp[0] = str[++index];	if (!CharASCII_IsDigit_Hex(tmp[0]))	error = TRUE;
 					tmp[1] = str[++index];	if (!CharASCII_IsDigit_Hex(tmp[1]))	error = TRUE;
@@ -159,7 +210,8 @@ failure:
 	{
 		StringASCII_Delete(&result);
 	}
-	*dest = NULL;
+	if (dest)
+		*dest = NULL;
 	return (i);
 }
 

@@ -101,6 +101,9 @@ static t_size Write_Alias(t_utf8 *dest, t_size max_writelen, t_utf8 const* alias
 
 static t_size Write_Encoded(t_utf8 *dest, t_utf8 const* str, t_size writeable_len, f_char_encoder encoder)
 {
+	if CCCERROR((encoder == NULL), ERROR_NULLPOINTER,
+		"char_encoder() function given is NULL, but a character needs to be encoded")
+		return ((t_size)-1); // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size)-1" to "SIZE_ERROR"
 	t_utf32 c = CharUTF32_FromUTF8(str);
 	//note: `str` has already been check for validity, call could not fail
 
@@ -115,6 +118,36 @@ static t_size Write_Encoded(t_utf8 *dest, t_utf8 const* str, t_size writeable_le
 		return ((t_size)-1); // DZ_ON_REFACTOR_OF_SIZE_ERROR: change "(t_size-1" to "SIZE_ERROR"
 
 	return actual_len;
+}
+
+
+//! Finds the symbol equal to the codepoint `c` within the UTF-8 `charset` string
+/*!
+**	NOTE: the given `charset` must be a valid UTF-8 string (this is checked once,
+**	at the start of `StringUTF8_ToEscapedBuf_e()`, before this helper is used).
+**	This performs proper symbol-wise (codepoint) comparison, unlike
+**	`StringASCII_Find_Char()`, which does byte-wise comparison (and would
+**	byte-truncate the given codepoint, matching multi-byte symbols wrongly).
+**
+**	@returns the symbol index of the matched charset symbol, or `ERROR` (-1) if absent
+*/
+static t_sint Charset_IndexOf(t_utf8 const* charset, t_utf32 c)
+{
+	t_sint	index = 0;
+	t_size	i = 0;
+	t_sint	seqlen;
+
+	while (charset[i])
+	{
+		if (CharUTF32_FromUTF8(charset + i) == c)
+			return (index);
+		seqlen = CharUTF8_Length(charset + i);
+		if (seqlen <= 0)
+			return (ERROR); // (cannot happen: the charset's validity is checked beforehand)
+		i += (t_size)seqlen;
+		index += 1;
+	}
+	return (ERROR);
 }
 
 
@@ -226,15 +259,14 @@ t_size StringUTF8_ToEscapedBuf_e(
 			goto failure;
 
 		t_utf8 const *alias = NULL;
-		t_utf8 const *find_res = StringASCII_Find_Char(charset, CharUTF32_FromUTF8(read_head));
+		t_sint charset_index = Charset_IndexOf(charset, CharUTF32_FromUTF8(read_head));
 
-		if (find_res != NULL)
+		if (charset_index >= 0)
 		{
-			t_sint index = CharUTF8_SymbolCount_N(charset, find_res - charset);
-			alias = aliases[index];
+			alias = aliases[charset_index];
 		}
 
-		if (find_res != NULL || (force_encoding_for && force_encoding_for(read_head)))
+		if (charset_index >= 0 || (force_encoding_for && force_encoding_for(read_head)))
 		{
 			if (alias)
 			{
