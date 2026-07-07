@@ -27,10 +27,14 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
+#undef Array_ToList
+#undef List_ToArray
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
+#define Array_ToList(X)	CONCAT(Array_ToList_,	X##_NAME)
+#define List_ToArray(X)	CONCAT(List_ToArray_,	X##_NAME)
 //!@}
 
 
@@ -90,10 +94,14 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
+#undef Array_ToList
+#undef List_ToArray
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
+#define Array_ToList(T)	CONCAT(Array_ToList_,	T)
+#define List_ToArray(T)	CONCAT(List_ToArray_,	T)
 //!@}
 
 

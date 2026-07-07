@@ -1,44 +1,61 @@
 
 #include "libccc/memory.h"
-#include "libccc/generic/array.h"
-#include "libccc/generic/list.h"
+#include "libccc/generic/convert.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
 
-#if 0
-s_array	List_ToArray(s_list const** a_lst)
-{
-	s_list const* lst;
-	s_array result;
-	t_size	count;
-	t_size	i;
 
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_lst == NULL || *a_lst == NULL)
-		return (ARRAY_NULL);
-#endif
-	lst = *a_lst;
-	result.item_size = lst->item_size;
-	count = 0;
-	while (lst && ++count)
+//! NOTE: the foreign generic symbols used by this file must be in "declaration"
+//! form (see the note in "libccc/generic/convert.h" for a detailed explanation)
+//!@{
+#undef	s_array
+#undef	s_list
+#define	s_array(X)	CONCAT(s_array_,	X##_NAME)
+#define	s_list(X)	CONCAT(s_list_,	X##_NAME)
+//!@}
+
+
+
+_GENERIC()
+s_array(T)*	List_ToArray(T)(s_list(T) const* list)
+{
+	s_array(T)*	result;
+	s_list(T) const*	elem;
+	t_uint	length;
+	t_uint	i;
+
+	if CCCERROR((list == NULL), ERROR_NULLPOINTER, "list given is NULL")
+		return (NULL);
+	length = 0;
+	for (elem = list; elem != NULL; elem = elem->next)
 	{
-		lst = lst->next;
-		if (lst->item_size != result.item_size)
-			return (ARRAY_NULL);
+		length += 1;
 	}
-	result.item_count = (count + 1);
-	result.items = (void*)Memory_Allocate(result.item_count * result.item_size);
-	if CCCERROR((result.items == NULL), ERROR_ALLOCFAILURE, NULL)
-		return (ARRAY_NULL);
+	result = (s_array(T)*)Memory_New(sizeof(s_array(T)));
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+		return (NULL);
+	result->items = (T*)Memory_Allocate(length * sizeof(T));
+	if CCCERROR((result->items == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
+		Memory_Free(result);
+		return (NULL);
+	}
 	i = 0;
-	while (lst && ++i < count)
+	for (elem = list; elem != NULL; elem = elem->next)
 	{
-		Memory_Copy((t_u8*)result.items + (i * result.item_size),
-			lst->item, result.item_size);
-		lst = lst->next;
+		result->items[i++] = elem->item;
 	}
-//	Memory_Clear(result + (i * result.item_size), result.item_size);
+	result->length = length;
 	return (result);
 }
-#endif
+
+
+
+//! NOTE: restore the foreign generic symbols to their normal user-facing form
+//!@{
+#undef	s_array
+#undef	s_list
+#define	s_array(T)	CONCAT(s_array_,	T)
+#define	s_list(T)	CONCAT(s_list_,	T)
+//!@}

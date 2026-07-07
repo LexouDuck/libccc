@@ -31,8 +31,18 @@ HEADER_CPP
 
 #include "libccc/generic/array.h"
 #include "libccc/generic/list.h"
-#include "libccc/generic/dict.h"
-#include "libccc/generic/tree.h"
+
+//! NOTE: this header declares cross-type generic functions, which requires the
+//! foreign type macros (`s_array`, `s_list`) to be in "declaration" form (ie:
+//! `X##_NAME` suffixing), regardless of which form they are currently in (they
+//! will be in their user-facing form if the array/list generic import files
+//! were already fully included beforehand, within this translation unit).
+//!@{
+#undef	s_array
+#undef	s_list
+#define	s_array(X)	CONCAT(s_array_,	X##_NAME)
+#define	s_list(X)	CONCAT(s_list_,	X##_NAME)
+//!@}
 
 /*============================================================================*\
 ||                                 Definitions                                ||
@@ -70,8 +80,11 @@ HEADER_CPP
 **	or `NULL` if an error occurred.
 */
 //!@{
+_MALLOC()
+_GENERIC()
 s_list(T)*					Array_ToList(T)(s_array(T) const* array);
 #define c_arrtolst(T)		Array_ToList(T)
+//!@}
 
 
 
@@ -90,11 +103,21 @@ s_list(T)*					Array_ToList(T)(s_array(T) const* array);
 **	or `NULL` if an error occurred.
 */
 //!@{
+_MALLOC()
+_GENERIC()
 s_array(T)*					List_ToArray(T)(s_list(T) const* list);
 #define c_lsttoarr(T)		List_ToArray(T)
 //!@}
 
 
+
+//! NOTE: restore the foreign type macros to their normal user-facing form
+//!@{
+#undef	s_array
+#undef	s_list
+#define	s_array(T)	CONCAT(s_array_,	T)
+#define	s_list(T)	CONCAT(s_list_,	T)
+//!@}
 
 /*! @endgroup */
 HEADER_END
