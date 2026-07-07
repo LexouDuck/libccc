@@ -22,11 +22,17 @@
 #include <libccc/text/stringarray/ascii.h>
 #include <libccc/text/stringarray/utf32.h>
 #include <libccc/text/stringarray/utf8.h>
+#include <libccc/text/format.h> // TODO printf
+#include <libccc/text/escape.h>
+#include <libccc/text/unicode.h>
 #include <libccc/text/regexp.h>	// TODO all: functions for regular expressions pattern matching/replacing
 #include <libccc/math/math.h>
 #include <libccc/math/int.h>
 #include <libccc/math/fixed.h>	// TODO advanced math functions
 #include <libccc/math/float.h>
+#include <libccc/math/complex.h>
+#include <libccc/math/quaternion.h>	// TODO
+#include <libccc/math/octonion.h>	// TODO
 #include <libccc/math/vlq.h>	// TODO all: variable-length-quantites (VLQ) arbitrary-precision math
 #include <libccc/math/sort.h>
 #include <libccc/math/stat.h>
@@ -35,9 +41,6 @@
 #include <libccc/math/algebra/vector.h>
 #include <libccc/math/algebra/matrix.h>
 #include <libccc/math/algebra/tensor.h>// TODO
-#include <libccc/math/complex.h>
-#include <libccc/math/quaternion.h>	// TODO
-#include <libccc/math/octonion.h>	// TODO
 #include <libccc/random.h>	// TODO several RNG methods (use function pointer, so others can implement custom RNG logic ?)
 #include <libccc/random/prng.h>
 #include <libccc/random/csprng.h>

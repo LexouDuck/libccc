@@ -82,11 +82,11 @@ DEFINETEST_RANDOM(float, Float)
 ||                            Test Suite Function                             ||
 \*============================================================================*/
 
-int	testsuite_math_random(void)
+int	testsuite_random(void)
 {
 	static const int	sample_size = 10000;
 
-	print_suite_title("libccc/math/random");
+	print_suite_title("libccc/random");
 
 	s_sorted_uint	values_sorted_uint	= print_test_random_uint	(sample_size,  UInt_FromSInt(   0),  UInt_FromSInt(1000));	Stat_UInt_Delete(&values_sorted_uint);
 	s_sorted_sint	values_sorted_sint	= print_test_random_sint	(sample_size,  SInt_FromSInt(-500),  SInt_FromSInt(+500));	Stat_SInt_Delete(&values_sorted_sint);

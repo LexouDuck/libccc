@@ -28,10 +28,8 @@
 #include <libccc/generic/array.h>
 #include <libccc/generic/convert.h>
 #include <libccc/generic/dict.h>
-#include <libccc/generic/hashmap.h>
 #include <libccc/generic/list.h>
-#include <libccc/generic/queue.h>
-#include <libccc/generic/stack.h>
+#include <libccc/generic/set.h>
 #include <libccc/generic/tree.h>
 #include <libccc/pointer.h>
 #include <libccc/pointerarray.h>
