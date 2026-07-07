@@ -9,6 +9,7 @@ _GENERIC()
 s_list(T)*	List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item))
 {
 	s_list(T)*	result = NULL;
+	s_list(T)*	tail = NULL;
 	s_list(T)*	item;
 
 	if CCCERROR((filter == NULL), ERROR_NULLPOINTER, "filter() function given is NULL")
@@ -20,7 +21,18 @@ s_list(T)*	List_Filter(T)(s_list(T) const* list, t_bool (*filter)(T item))
 		if (filter(list->item))
 		{
 			item = List_Item(T)(list->item);
-			List_Append(T)(result, item);
+			if (item == NULL)
+				break;
+		if (result == NULL)
+			result = item;
+		else
+		{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			item->prev = tail;
+#endif
+			tail->next = item;
+		}
+		tail = item;
 		}
 		list = list->next;
 	}
@@ -33,6 +45,7 @@ _GENERIC()
 s_list(T)*	List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_uint index))
 {
 	s_list(T)*	result = NULL;
+	s_list(T)*	tail = NULL;
 	s_list(T)*	item;
 	t_uint	i;
 
@@ -46,7 +59,18 @@ s_list(T)*	List_Filter_I(T)(s_list(T) const* list, t_bool (*filter)(T item, t_ui
 		if (filter(list->item, i))
 		{
 			item = List_Item(T)(list->item);
-			List_Append(T)(result, item);
+			if (item == NULL)
+				break;
+		if (result == NULL)
+			result = item;
+		else
+		{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			item->prev = tail;
+#endif
+			tail->next = item;
+		}
+		tail = item;
 		}
 		list = list->next;
 		++i;

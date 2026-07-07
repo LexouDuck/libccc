@@ -28,7 +28,11 @@ s_list(T)*	List_Copy(T)(
 	if (n == 0)
 		n = src_length - src_i;
 	result = dest;
-	while (dest && n--)
+	while (dest_i--)
+		dest = dest->next;
+	while (src_i--)
+		src = src->next;
+	while (dest && src && n--)
 	{
 		dest->item = src->item;
 		dest = dest->next;

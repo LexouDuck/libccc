@@ -30,21 +30,26 @@ s_list(T)*		List_Sub(T)(s_list(T) const* list, t_uint index, t_uint n)
 	if (list == NULL)
 		return (NULL);
 	elem = result;
-	list = list->next;
 	while (list && n--)
 	{
 		tmp = (s_list(T)*)Memory_Duplicate(list, sizeof(s_list(T)));
 		if CCCERROR((tmp == NULL), ERROR_ALLOCFAILURE, NULL)
 		{
-			List_Free(T)(tmp);
+			List_Free(T)(result);
 			return (NULL);
 		}
+		tmp->next = NULL; // Memory_Duplicate() copied the original node's `next` pointer
 		if (result == NULL)
+		{
+#if LIBCONFIG_LIST_DOUBLYLINKED
+			tmp->prev = NULL;
+#endif
 			result = tmp;
+		}
 		else
 		{
 #if LIBCONFIG_LIST_DOUBLYLINKED
-			elem->prev = elem;
+			tmp->prev = elem;
 #endif
 			elem->next = tmp;
 		}

@@ -32,7 +32,8 @@ s_list(T)*	List_RemoveAt(T)(s_list(T)* list, t_uint index)
 	tmp = elem->next;
 	elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	elem->next->prev = elem;
+	if (elem->next)
+		elem->next->prev = elem;
 #endif
 	Memory_Free(tmp);
 	return (list);
@@ -67,7 +68,8 @@ s_list(T)*	List_RemoveAt_F(T)(s_list(T)* list, t_uint index, void (*del)(T))
 	tmp = elem->next;
 	elem->next = tmp->next;
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	elem->next->prev = elem;
+	if (elem->next)
+		elem->next->prev = elem;
 #endif
 	Memory_Free(tmp);
 	return (list);

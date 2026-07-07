@@ -19,9 +19,9 @@ s_list(T)*	List_Insert(T)(s_list(T)* dest, T item, t_uint index)
 	newitem = (s_list(T)*)Memory_Allocate(sizeof(s_list(T)));
 	if CCCERROR((newitem == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (dest);
+	newitem->item = item;
 	if (dest == NULL || index == 0)
 	{
-		newitem->item = item;
 		newitem->next = dest;
 #if LIBCONFIG_LIST_DOUBLYLINKED
 		if (dest)
@@ -42,7 +42,10 @@ s_list(T)*	List_Insert(T)(s_list(T)* dest, T item, t_uint index)
 		if CCCERROR((elem == NULL), ERROR_INDEX2LARGE, 
 			"index given (" SF_UINT ") is beyond the end of the destination list (length: " SF_UINT ")",
 			index, List_Length(T)(dest))
+		{
+			Memory_Free(newitem);
 			return (NULL);
+		}
 		before = elem;
 		elem = elem->next;
 	}

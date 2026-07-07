@@ -19,7 +19,7 @@ t_bool	List_Equals(T)(s_list(T) const* list1, s_list(T) const* list2)
 		list1 = list1->next;
 		list2 = list2->next;
 	}
-	return (TRUE);
+	return (list1 == list2); // both must have reached their end (equal-length lists)
 }
 
 
@@ -31,8 +31,10 @@ t_bool	List_Equals_N(T)(s_list(T) const* list1, s_list(T) const* list2, t_uint n
 		return (TRUE);
 	if CCCERROR((list1 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
 	if CCCERROR((list2 == NULL), ERROR_NULLPOINTER, NULL) return (FALSE);
-	while (list1 && list2 && n--)
+	while (n--)
 	{
+		if (list1 == NULL || list2 == NULL)
+			return (list1 == list2); // if one list ends before `n` items, the other must too
 		if (!T_EQUALS(list1->item, list2->item))
 			return (FALSE);
 		list1 = list1->next;

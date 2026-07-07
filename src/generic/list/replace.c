@@ -70,7 +70,11 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
 #if LIBCONFIG_LIST_DOUBLYLINKED
-	elem = result->prev;
+	elem = result;
+	while (elem->next)
+	{
+		elem = elem->next;
+	}
 	while (elem)
 	{
 		if (n == 0)
@@ -80,6 +84,8 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_
 			elem->item = item_new;
 			n -= 1;
 		}
+		if (elem == result)
+			break;
 		elem = elem->prev;
 	}
 #else
@@ -95,7 +101,7 @@ s_list(T)*	List_ReplaceLast(T)(s_list(T) const* list, T item_old, T item_new, t_
 			return (result);
 		if (T_EQUALS(elem->item, item_old))
 		{
-			if (total == n)
+			if (total <= n)
 			{
 				elem->item = item_new;
 				n -= 1;
