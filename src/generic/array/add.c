@@ -17,10 +17,11 @@ s_array(T)*	Array_Add(T)(s_array(T)* array, T item)
 		*array = Array_Item(T)(item);
 		return (array);
 	}
-	array->length += 1;
-	array->items = (T*)Memory_Reallocate(array->items, sizeof(T) * array->length);
-	if CCCERROR((array->items == NULL), ERROR_ALLOCFAILURE, NULL)
+	T* items = (T*)Memory_Reallocate(array->items, sizeof(T) * (array->length + 1));
+	if CCCERROR((items == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
-	array->items[array->length - 1] = item;
+	array->items = items;
+	array->items[array->length] = item;
+	array->length += 1;
 	return (array);
 }

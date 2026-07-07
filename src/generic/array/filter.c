@@ -31,19 +31,18 @@ s_array(T)*	Array_Filter(T)(s_array(T) const* array, t_bool (*filter)(T item))
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	if CCCERROR((result == NULL || result->items == NULL), ERROR_ALLOCFAILURE, NULL)
-		return (result);
-	if (result->items == NULL)
-		return (result);
-	result->length = length;
-	length = 0;
-	for (i = 0; i < result->length; ++i)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
+		Memory_Free(tmp);
+		return (NULL);
+	}
+	length = 0; // reused as the write index into the filtered array
+	for (i = 0; i < array->length; ++i)
 	{
 		if (tmp[i])
 		{
-			result->items[i] = array->items[i + length];
+			result->items[length++] = array->items[i];
 		}
-		else ++length;
 	}
 	Memory_Free(tmp);
 	return (result);
@@ -75,19 +74,18 @@ s_array(T)*	Array_Filter_I(T)(s_array(T) const* array, t_bool (*filter)(T item, 
 			++length;
 	}
 	result = Array_New(T)(length, T_NULL);
-	if CCCERROR((result == NULL || result->items == NULL), ERROR_ALLOCFAILURE, NULL)
-		return (result);
-	if (result->items == NULL)
-		return (result);
-	result->length = length;
-	length = 0;
-	for (i = 0; i < result->length; ++i)
+	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
+	{
+		Memory_Free(tmp);
+		return (NULL);
+	}
+	length = 0; // reused as the write index into the filtered array
+	for (i = 0; i < array->length; ++i)
 	{
 		if (tmp[i])
 		{
-			result->items[i] = array->items[i + length];
+			result->items[length++] = array->items[i];
 		}
-		else ++length;
 	}
 	Memory_Free(tmp);
 	return (result);

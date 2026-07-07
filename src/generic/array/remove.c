@@ -73,19 +73,16 @@ void	Array_RemoveAll(T)(s_array(T)* array, T item)
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return;
-	amount = 0;
+	amount = 0; // reused as the write index into the compacted array
 	for (i = 0; i < array->length; ++i)
 	{
 		if (T_EQUALS(array->items[i], item))
-		{
-			++amount;
 			continue;
-		}
-		result[i] = array->items[i + amount];
+		result[amount++] = array->items[i];
 	}
 	Memory_Free(array->items);
 	array->items = result;
-	array->length = i;
+	array->length = amount;
 }
 
 
@@ -122,18 +119,17 @@ void	Array_RemoveAll_F(T)(s_array(T)* array, T item, void (*del)(T))
 	}
 	result = (T*)Memory_Allocate(sizeof(T) * (array->length - amount));
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL) return;
-	amount = 0;
+	amount = 0; // reused as the write index into the compacted array
 	for (i = 0; i < array->length; ++i)
 	{
 		if (T_EQUALS(array->items[i], item))
 		{
 			del(array->items[i]);
-			++amount;
 			continue;
 		}
-		result[i] = array->items[i + amount];
+		result[amount++] = array->items[i];
 	}
 	Memory_Free(array->items);
 	array->items = result;
-	array->length = i;
+	array->length = amount;
 }

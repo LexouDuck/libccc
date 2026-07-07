@@ -13,6 +13,8 @@ s_array(T)*	Array_Reverse(T)(s_array(T) const* array)
 
 	if CCCERROR((array == NULL), ERROR_NULLPOINTER, "array given is NULL")
 		return (NULL);
+	if CCCERROR((array->length > 0 && array->items == NULL), ERROR_INVALIDARGS, "array given is invalid")
+		return (NULL);
 	result = Array_New(T)(array->length, T_NULL);
 	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
 		return (NULL);
