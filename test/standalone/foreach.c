@@ -17,8 +17,24 @@
 #define T_EQUALS(A, B)	(String_Equals((A), (B)))
 #include <libccc/generic/list.c>
 
-//#include <libccc/generic/dict.c>
-//#include <libccc/generic/tree.c>
+#define T_TYPE	char*
+#define T_NAME	str
+#define T_NULL	NULL
+#define T_EQUALS(A, B)	(String_Equals((A), (B)))
+#include <libccc/generic/dict.c>
+
+#define T_TYPE	char*
+#define T_NAME	str
+#define T_NULL	NULL
+#define T_EQUALS(A, B)	(String_Equals((A), (B)))
+#include <libccc/generic/tree.c>
+
+#define T_TYPE	char*
+#define T_NAME	str
+#define T_NULL	NULL
+#define T_EQUALS(A, B)	(String_Equals((A), (B)))
+#include <libccc/generic/convert.c>
+
 //#include <libccc/generic/object.c>
 
 #define T_TYPE	int
@@ -43,8 +59,21 @@
 #define T_EQUALS(A, B)	(List_Equals_int((A), (B)))
 #include <libccc/generic/list.c>
 
-//#include <libccc/generic/dict.c>
-//#include <libccc/generic/tree.c>
+#define T_TYPE	int
+#define T_NAME	int
+#define T_NULL	0
+#include <libccc/generic/dict.c>
+
+#define T_TYPE	int
+#define T_NAME	int
+#define T_NULL	0
+#include <libccc/generic/tree.c>
+
+#define T_TYPE	int
+#define T_NAME	int
+#define T_NULL	0
+#include <libccc/generic/convert.c>
+
 //#include <libccc/generic/object.c>
 
 
@@ -148,6 +177,114 @@ int main(int argc, char** argv)
 			++i;
 		}
 		List_Delete_F(list_int)(&tmp, List_Delete(int));
+	}
+#endif
+
+#if 1
+	IO_Output_String("\n- s_dict<char*>:\n");
+	{
+		s_dict(str)* tmp = Dict_Create(str)(4,
+			"first",  "Omae",
+			"second", " wa ",
+			"third",  "mou ",
+			"fourth", "shindeiru.");
+		i = 0;
+		foreach (s_keyval(str), keyval, s_dict, tmp)
+		{
+			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""key:\"%s\" -> value:\"%s\"\n",
+				i++, keyval_i, keyval.key, keyval.value);
+		}
+		Dict_Delete(str)(&tmp);
+	}
+#endif
+#if 1
+	IO_Output_String("\n- s_dict<int>:\n");
+	{
+		s_dict(int)* tmp = Dict_Create(int)(3,
+			"one",   1,
+			"two",   2,
+			"three", 3);
+		i = 0;
+		foreach (s_keyval(int), keyval, s_dict, tmp)
+		{
+			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""key:\"%s\" -> value:%i (hash:%llX)\n",
+				i++, keyval_i, keyval.key, keyval.value, (unsigned long long)keyval.hash);
+		}
+		Dict_Delete(int)(&tmp);
+	}
+#endif
+
+#if 1
+	IO_Output_String("\n- s_tree<char*>:\n");
+	{
+		s_tree(str)* tmp = Tree_Create(str)("Omae", 2, " wa ", "mou ");
+		Tree_Append(str)(Tree_Get(str)(tmp, 1), Tree_Item(str)("shindeiru."));
+		i = 0;
+		foreach (s_tree(str)*, node, s_tree, tmp) // NOTE: iterates the DIRECT sub-nodes of the given node
+		{
+			IO_Output_Format("\t""i:%u,\t""iter:%u,\t""node:%p -> value:\"%s\" (%u sub-nodes)\n",
+				i++, (t_uint)node_i, (void*)node, node->value, (t_uint)node->node_count);
+		}
+		Tree_Delete(str)(&tmp);
+	}
+#endif
+#if 1
+	IO_Output_String("\n- s_tree<s_tree<int>> (nested foreach):\n");
+	{
+		s_tree(int)* tmp = Tree_Create(int)(1, 2, 10, 20);
+		Tree_Append(int)(Tree_Get(int)(tmp, 0), Tree_Item(int)(100));
+		Tree_Append(int)(Tree_Get(int)(tmp, 0), Tree_Item(int)(101));
+		i = 0;
+		foreach (s_tree(int)*, node, s_tree, tmp)
+		{
+			IO_Output_Format("\t""i:%u,\t""value:%i (%u sub-nodes)\n",
+				i, node->value, (t_uint)node->node_count);
+			j = 0;
+			foreach (s_tree(int)*, subnode, s_tree, node)
+			{
+				IO_Output_Format("\t\t""i:%u,\t""j:%u,\t""value:%i\n",
+					i, j++, subnode->value);
+			}
+			++i;
+		}
+		Tree_Delete(int)(&tmp);
+	}
+#endif
+
+#if 1
+	IO_Output_String("\n- Array_ToList<char*> / List_ToArray<char*> (round-trip):\n");
+	{
+		s_array(str)* array = Array_Create(str)(3, "Omae", "wa", "shindeiru.");
+		s_list(str)*  list = Array_ToList(str)(array);
+		s_array(str)* back = List_ToArray(str)(list);
+		i = 0;
+		foreach (char*, str, s_list, list)
+		{
+			IO_Output_Format("\t""i:%u,\t""str:\"%s\"\n", i++, str);
+		}
+		IO_Output_Format("\t""round-trip equals: %s\n",
+			(Array_Equals(str)(array, back) ? "TRUE" : "FALSE"));
+		Array_Delete(str)(&back);
+		List_Delete(str)(&list);
+		Array_Delete(str)(&array);
+	}
+#endif
+#if 1
+	IO_Output_String("\n- List_ToArray<int> / Array_ToList<int> (round-trip):\n");
+	{
+		s_list(int)*  list = List_Create(int)(4, 42, 69, 420, 1337);
+		s_array(int)* array = List_ToArray(int)(list);
+		s_list(int)*  back = Array_ToList(int)(array);
+		i = 0;
+		foreach (int, integer, s_array, array)
+		{
+			IO_Output_Format("\t""i:%u,\t""int:%i\n", i++, integer);
+		}
+		IO_Output_Format("\t""round-trip equals: %s\n",
+			(List_Equals(int)(list, back) ? "TRUE" : "FALSE"));
+		List_Delete(int)(&back);
+		Array_Delete(int)(&array);
+		List_Delete(int)(&list);
 	}
 #endif
 	return (OK);
