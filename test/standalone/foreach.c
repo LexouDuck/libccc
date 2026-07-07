@@ -315,6 +315,46 @@ int main(int argc, char** argv)
 	}
 #endif
 #if 1
+	IO_Output_String("\n- Array_ToSet<char*> (deduplicates) / Set_ToArray<char*>:\n");
+	{
+		s_array(str)* array = Array_Create(str)(6, "Omae", " wa ", "mou ", "Omae", "shindeiru.", "mou ");
+		s_set(str)*   uniq = Array_ToSet(str)(array);
+		s_array(str)* back = Set_ToArray(str)(uniq);
+		i = 0;
+		foreach (char*, str, s_set, uniq)
+		{
+			IO_Output_Format("\t""i:%u,\t""str:\"%s\"\n", i++, str);
+		}
+		IO_Output_Format("\t""array length: %u -> set length: %u (duplicates removed), back to array length: %u\n",
+			array->length, Set_Length(str)(uniq), back->length);
+		Array_Delete(str)(&back);
+		Set_Delete(str)(&uniq);
+		Array_Delete(str)(&array);
+	}
+#endif
+#if 1
+	IO_Output_String("\n- List_ToSet<int> (deduplicates) / Set_ToList<int> (round-trip):\n");
+	{
+		s_list(int)* list = List_Create(int)(6, 4, 8, 15, 4, 23, 8);
+		s_set(int)*  uniq = List_ToSet(int)(list);
+		s_list(int)* back = Set_ToList(int)(uniq);
+		s_set(int)*  uniq2 = List_ToSet(int)(back);
+		i = 0;
+		foreach (int, integer, s_list, back)
+		{
+			IO_Output_Format("\t""i:%u,\t""int:%i\n", i++, integer);
+		}
+		IO_Output_Format("\t""list length: %u -> set length: %u (duplicates removed), round-trip set equals: %s\n",
+			List_Length(int)(list), Set_Length(int)(uniq),
+			(Set_Equals(int)(uniq, uniq2) ? "TRUE" : "FALSE"));
+		Set_Delete(int)(&uniq2);
+		List_Delete(int)(&back);
+		Set_Delete(int)(&uniq);
+		List_Delete(int)(&list);
+	}
+#endif
+
+#if 1
 	IO_Output_String("\n- List_ToArray<int> / Array_ToList<int> (round-trip):\n");
 	{
 		s_list(int)*  list = List_Create(int)(4, 42, 69, 420, 1337);

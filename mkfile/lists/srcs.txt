@@ -72,6 +72,7 @@
 ./src/generic/array/wedge.c
 ./src/generic/convert/array.c
 ./src/generic/convert/list.c
+./src/generic/convert/set.c
 ./src/generic/dict/add.c
 ./src/generic/dict/count.c
 ./src/generic/dict/create.c
