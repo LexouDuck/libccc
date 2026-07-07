@@ -8,10 +8,10 @@
 #include <libccc/int.h>
 #include <libccc/fixed.h>
 #include <libccc/float.h>
-#include <libccc/pointer.h>
 #include <libccc/memory.h>
-#include <libccc/string.h>
+#include <libccc/pointer.h>
 #include <libccc/pointerarray.h>
+#include <libccc/string.h>
 #include <libccc/stringarray.h>
 #include <libccc/enum.h>
 #include <libccc/text/char/ascii.h>
