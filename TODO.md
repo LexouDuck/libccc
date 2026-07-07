@@ -28,7 +28,7 @@
 #include <libccc/sys/thread.h>	// TODO all: POSIX-thread (pthread) cross-platform interface/wrappers
 #include <libccc/sys/signal.h>	// TODO all: system signal handling: SIGSEGV, SIGFPE, SIGTRAP, SIGABORT, etc
 #include <libccc/sys/socket.h>	// TODO all: network socket functions - send(), recv(), etc
-#include <libccc/sys/compression.h>	// TODO all: compress/decompress functions (RLE, LZ77, LZW, Huffman)
+#include <libccc/sys/compress/*.h>
 #include <libccc/sys/cryptography.h>// TODO all: ???
 #include <libccc/sys/network.h>	// TODO all: utility functions for common network protocols: TCP/IP, UDP (maybe DELTA-T?)
 #include <libccc/math/math.h>
