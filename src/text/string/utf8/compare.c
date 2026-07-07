@@ -33,7 +33,7 @@ t_sint	StringUTF8_Compare(t_utf8 const* str1, t_utf8 const* str2)
 		c1 = CharUTF32_FromUTF8(str1 + i);
 		c2 = CharUTF32_FromUTF8(str2 + i);
 		if (c1 != c2)
-			return ((t_sint)(c1 - c2));
+			return ((t_sint)c1 - (t_sint)c2);
 		++i;
 	}
 	return ((t_sint)str1[i] - (t_sint)str2[i]);
@@ -67,7 +67,7 @@ t_sint	StringUTF8_Compare_N(t_utf8 const* str1, t_utf8 const* str2, t_size n)
 		c1 = CharUTF32_FromUTF8(str1 + i);
 		c2 = CharUTF32_FromUTF8(str2 + i);
 		if (c1 != c2)
-			return ((t_sint)(c1 - c2));
+			return ((t_sint)c1 - (t_sint)c2);
 		++i;
 		if (i == n)
 			return (0);
@@ -103,7 +103,7 @@ t_sint	StringUTF8_Compare_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2)
 		if (c1 != c2 &&
 			!(CharUTF32_ToLower(c1) == CharUTF32_ToLower(c2)) &&
 			!(CharUTF32_ToUpper(c1) == CharUTF32_ToUpper(c2)))
-			return ((t_sint)(c1 - c2));
+			return ((t_sint)c1 - (t_sint)c2);
 		++i;
 	}
 	return ((t_sint)str1[i] - (t_sint)str2[i]);
@@ -139,7 +139,7 @@ t_sint	StringUTF8_Compare_N_IgnoreCase(t_utf8 const* str1, t_utf8 const* str2, t
 		if (c1 != c2 &&
 			!(CharUTF32_ToLower(c1) == CharUTF32_ToLower(c2)) &&
 			!(CharUTF32_ToUpper(c1) == CharUTF32_ToUpper(c2)))
-			return ((t_sint)(c1 - c2));
+			return ((t_sint)c1 - (t_sint)c2);
 		++i;
 		if (i == n)
 			return (0);

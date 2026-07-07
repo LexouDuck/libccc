@@ -70,12 +70,13 @@ t_utf8*	StringUTF8_Find_N_Charset(t_utf8 const* str, t_utf8 const* charset, t_si
 	i = 0;
 	while (str[i] && i <= n)
 	{
-		for (t_size j = 0; charset[j]; ++j)
-		{
-			if (str[i] == charset[j])
-				return ((t_utf8*)str + i);
-		}
-		++i;
+		t_sint size;
+		if (CharUTF8_IsInCharset(charset, CharUTF32_FromUTF8(str + i)))
+			return ((t_utf8*)str + i);
+		size = CharUTF8_Length(str + i);
+		if (size <= 0)
+			break;
+		i += (t_size)size;
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND, 
 		"no char from charset \"%s\" found in the first " SF_SIZE " chars of string \"%s\"", charset, n, str);

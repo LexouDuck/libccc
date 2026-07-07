@@ -61,7 +61,7 @@ t_size	StringUTF8_Chars(t_utf8 const* str)
 		++result;
 		i += CharUTF8_Length(str + i);
 	}
-	return (i);
+	return (result);
 }
 
 
@@ -80,5 +80,5 @@ t_size	StringUTF8_Chars_N(t_utf8 const* str, t_size n)
 		++result;
 		i += CharUTF8_Length(str + i);
 	}
-	return (i);
+	return (result);
 }

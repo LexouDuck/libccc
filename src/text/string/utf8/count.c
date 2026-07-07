@@ -49,7 +49,6 @@ t_size	StringUTF8_Count_Charset(t_utf8 const* str, t_utf8 const* charset)
 {
 	t_size	result;
 	t_size	i;
-	t_size	j;
 
 	if CCCERROR((str == NULL), ERROR_NULLPOINTER, "string given is NULL")
 		return (0);
@@ -59,15 +58,13 @@ t_size	StringUTF8_Count_Charset(t_utf8 const* str, t_utf8 const* charset)
 	i = 0;
 	while (str[i])
 	{
-		for (j = 0; charset[j]; ++j)
-		{
-			if (str[i] == charset[j])
-			{
-				++result;
-				break;
-			}
-		}
-		++i;
+		t_sint size;
+		if (CharUTF8_IsInCharset(charset, CharUTF32_FromUTF8(str + i)))
+			++result;
+		size = CharUTF8_Length(str + i);
+		if (size <= 0)
+			break;
+		i += (t_size)size;
 	}
 	return (result);
 }
@@ -97,10 +94,7 @@ t_size	StringUTF8_Count_String(t_utf8 const* str, t_utf8 const* query)
 		for (j = 0; (str[i + j] == query[j]); ++j)
 		{
 			if (query[j] == '\0' && str[i + j] == '\0')
-			{
-				++j;
-				break;
-			}
+				break; // (a match at the very end of the string: `j` already equals `length` here)
 		}
 		if (j == length)
 			++result;

@@ -83,13 +83,23 @@ t_utf8*	StringUTF8_Find_R_Charset(t_utf8 const* str, t_utf8 const* charset)
 		return ((t_utf8*)(str + i));
 	else if (i == 0)
 		return (NULL);
-	while (i--)
+	// scan forward through the string symbol-wise, remembering the last match
+	// (UTF-8 strings cannot be safely iterated backwards byte-by-byte)
 	{
-		for (t_size j = 0; charset[j]; ++j)
+		t_utf8 const*	last = NULL;
+		t_sint	size;
+		i = 0;
+		while (str[i])
 		{
-			if (str[i] == charset[j])
-				return ((t_utf8*)str + i);
+			if (CharUTF8_IsInCharset(charset, CharUTF32_FromUTF8(str + i)))
+				last = (str + i);
+			size = CharUTF8_Length(str + i);
+			if (size <= 0)
+				break;
+			i += (t_size)size;
 		}
+		if (last != NULL)
+			return ((t_utf8*)last);
 	}
 	CCCERROR(TRUE, ERROR_NOTFOUND, 
 		"no char from charset \"%s\" found in string \"%s\"", charset, str);
