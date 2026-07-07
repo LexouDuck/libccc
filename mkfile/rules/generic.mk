@@ -3,7 +3,7 @@
 
 
 #! If not explicitly specified, use full of list of all generic headers
-GENERIC_HEADERS ?= $(wildcard $(HDRDIR)libccc/monad/*.h)
+GENERIC_HEADERS ?= $(wildcard $(HDRDIR)libccc/generic/*.h)
 GENERIC_OUTPUTS = $(GENERIC_HEADERS:%.h=%.c)
 
 #! The file which holds the template of C code to make an importable generic-type code header

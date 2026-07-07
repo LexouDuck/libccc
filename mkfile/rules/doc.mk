@@ -167,7 +167,7 @@ doc-preprocess:
 	@mkdir -p ./docs/$(HDRDIR)
 	@cp -rf $(HDRDIR)* ./docs/$(HDRDIR)
 	@# /!\ put any custom preprocessing code here
-	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/monad/%.h, $(HDRS))) ; do \
+	@for i in $(addprefix ./docs/$(HDRDIR), $(filter libccc/generic/%.h, $(HDRS))) ; do \
 		awk '/^#define/ { gsub(/\(T\)/, "<T>"); } { print; }' $$i > $$i.tmp && mv $$i.tmp $$i ; \
 	done
 	@$(call print_success,"Successfully pre-processed header files")
