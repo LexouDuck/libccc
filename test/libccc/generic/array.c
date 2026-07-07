@@ -1709,6 +1709,176 @@ void	test_arrifold(void)
 
 
 /*============================================================================*\
+||                         Array: conversion operations                       ||
+\*============================================================================*/
+
+#ifndef c_arrfrommem
+void test_arrfrommem(void)	{}
+#warning "arrfrommem() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_arrfrommem(t_uint n, t_bool null_ptr)
+{
+	void*	buffer[4] =
+	{
+		(void*)g_arr_item[0],
+		(void*)g_arr_item[1],
+		(void*)g_arr_item[2],
+		(void*)g_arr_item[3],
+	};
+	return (gen_array_consume(c_arrfrommem(any)((null_ptr ? NULL : buffer), n)));
+}
+void	print_test_arrfrommem(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint n,
+		t_bool null_ptr)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_arrfrommem, n, null_ptr)
+	TEST_PRINT(str,	arrfrommem, "ptr=%s, n=%u", (null_ptr ? "NULL" : "(4-item buffer)"), n)
+	TEST_FREE()
+}
+void	test_arrfrommem(void)
+{
+//	| TEST FUNCTION      | TEST NAME               |TESTFLAG| EXPECTING              | TEST ARGS
+	print_test_arrfrommem("arrfrommem           ",	FALSE,	GEN_ARRAY_FIXTURE_STR,   4, FALSE);
+	print_test_arrfrommem("arrfrommem (partial) ",	FALSE,	"[Omae][ wa ]",          2, FALSE);
+	print_test_arrfrommem("arrfrommem (n = 0)   ",	FALSE,	"",                      0, FALSE);
+	print_test_arrfrommem("arrfrommem (null ptr)",	FALSE,	"",                      4, TRUE);
+}
+#endif
+
+
+
+#ifndef c_arrtomem
+void test_arrtomem(void)	{}
+#warning "arrtomem() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_arrtomem(t_uint fixture_size)
+{
+	s_array(any)*	array = (fixture_size == 4 ? gen_array_fixture() : c_arrnew(any)(fixture_size, NULL));
+	void**	buffer = c_arrtomem(any)(array);
+	char*	result;
+	size_t	length = 0;
+	if (buffer == NULL)
+	{
+		c_arrfree(any)(array);
+		return (strdup("(null)"));
+	}
+	for (t_uint i = 0; i < fixture_size; ++i)
+		length += 2 + strlen((char const*)buffer[i]);
+	result = (char*)malloc(length + 1);
+	length = 0;
+	for (t_uint i = 0; i < fixture_size; ++i)
+		length += sprintf(result + length, "[%s]", (char const*)buffer[i]);
+	free(buffer);
+	c_arrfree(any)(array); // the buffer must survive the array being freed
+	return (result);
+}
+void	print_test_arrtomem(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint fixture_size)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_arrtomem, fixture_size)
+	TEST_PRINT(str,	arrtomem, "array=(%u items)", fixture_size)
+	TEST_FREE()
+}
+void	test_arrtomem(void)
+{
+//	| TEST FUNCTION    | TEST NAME            |TESTFLAG| EXPECTING             | TEST ARGS
+	print_test_arrtomem("arrtomem           ",	FALSE,	GEN_ARRAY_FIXTURE_STR,  4);
+	print_test_arrtomem("arrtomem (empty)   ",	FALSE,	"(null)",               0);
+}
+#endif
+
+
+
+#ifndef c_arrfromptrarr
+void test_arrfromptrarr(void)	{}
+#warning "arrfromptrarr() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_arrfromptrarr(t_uint n, t_bool null_ptrarr)
+{
+	void*	buffer[4] =
+	{
+		(void*)g_arr_item[0],
+		(void*)g_arr_item[1],
+		(void*)g_arr_item[2],
+		(void*)g_arr_item[3],
+	};
+	void* const*	ptrarr[5] = { NULL, NULL, NULL, NULL, NULL };
+	for (t_uint i = 0; i < n && i < 4; ++i)
+		ptrarr[i] = &buffer[i]; // the pointer array holds pointers to the items, and is NULL-terminated
+	return (gen_array_consume(c_arrfromptrarr(any)(null_ptrarr ? NULL : ptrarr)));
+}
+void	print_test_arrfromptrarr(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint n,
+		t_bool null_ptrarr)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_arrfromptrarr, n, null_ptrarr)
+	TEST_PRINT(str,	arrfromptrarr, "ptrarr=%s (%u items)", (null_ptrarr ? "NULL" : "(pointer array)"), n)
+	TEST_FREE()
+}
+void	test_arrfromptrarr(void)
+{
+//	| TEST FUNCTION         | TEST NAME                  |TESTFLAG| EXPECTING              | TEST ARGS
+	print_test_arrfromptrarr("arrfromptrarr           ",	FALSE,	GEN_ARRAY_FIXTURE_STR,   4, FALSE);
+	print_test_arrfromptrarr("arrfromptrarr (partial) ",	FALSE,	"[Omae][ wa ]",          2, FALSE);
+	print_test_arrfromptrarr("arrfromptrarr (empty)   ",	FALSE,	"",                      0, FALSE);
+	print_test_arrfromptrarr("arrfromptrarr (null)    ",	FALSE,	"",                      4, TRUE);
+}
+#endif
+
+
+
+#ifndef c_arrtoptrarr
+void test_arrtoptrarr(void)	{}
+#warning "arrtoptrarr() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_arrtoptrarr(t_uint fixture_size)
+{
+	s_array(any)*	array = (fixture_size == 4 ? gen_array_fixture() : c_arrnew(any)(fixture_size, NULL));
+	void**	ptrarr = c_arrtoptrarr(any)(array);
+	char	result[256];
+	size_t	length = 0;
+	if (ptrarr == NULL)
+	{
+		c_arrfree(any)(array);
+		return (strdup("(null)"));
+	}
+	result[0] = '\0';
+	for (t_uint i = 0; ptrarr[i]; ++i)
+	{	// each entry is a pointer to an item stored within the array
+		void*	item = *(void**)ptrarr[i];
+		length += snprintf(result + length, sizeof(result) - length,
+			"[%s]", (item ? (char const*)item : "NULL"));
+	}
+	free(ptrarr);
+	c_arrfree(any)(array);
+	return (strdup(result));
+}
+void	print_test_arrtoptrarr(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint fixture_size)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_arrtoptrarr, fixture_size)
+	TEST_PRINT(str,	arrtoptrarr, "array=(%u items)", fixture_size)
+	TEST_FREE()
+}
+void	test_arrtoptrarr(void)
+{
+//	| TEST FUNCTION       | TEST NAME             |TESTFLAG| EXPECTING             | TEST ARGS
+	print_test_arrtoptrarr("arrtoptrarr         ",	FALSE,	GEN_ARRAY_FIXTURE_STR,  4);
+	print_test_arrtoptrarr("arrtoptrarr (empty) ",	FALSE,	"",                     0);
+}
+#endif
+
+
+
+/*============================================================================*\
 ||                            Test Suite Function                             ||
 \*============================================================================*/
 
@@ -1764,6 +1934,10 @@ int		testsuite_generic_array(void)
 	test_arrireduce();
 	test_arrfold();
 	test_arrifold();
+	test_arrfrommem();
+	test_arrtomem();
+	test_arrfromptrarr();
+	test_arrtoptrarr();
 
 	return (OK);
 }

@@ -67,6 +67,7 @@
 
 //! Include all source files, to generate code for all generic functions
 //!@{
+#include "libccc/../.././src/generic/convert/array.c"
 #include "libccc/../.././src/generic/convert/list.c"
 //!@}
 

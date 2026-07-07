@@ -1730,6 +1730,178 @@ void	test_lstifold(void)
 
 
 /*============================================================================*\
+||                          List: conversion operations                       ||
+\*============================================================================*/
+
+#ifndef c_lstfrommem
+void test_lstfrommem(void)	{}
+#warning "lstfrommem() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_lstfrommem(t_uint n, t_bool null_ptr)
+{
+	void*	buffer[4] =
+	{
+		(void*)g_lst_item[0],
+		(void*)g_lst_item[1],
+		(void*)g_lst_item[2],
+		(void*)g_lst_item[3],
+	};
+	return (gen_list_consume(c_lstfrommem(any)((null_ptr ? NULL : buffer), n)));
+}
+void	print_test_lstfrommem(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint n,
+		t_bool null_ptr)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_lstfrommem, n, null_ptr)
+	TEST_PRINT(str,	lstfrommem, "ptr=%s, n=%u", (null_ptr ? "NULL" : "(4-item buffer)"), n)
+	TEST_FREE()
+}
+void	test_lstfrommem(void)
+{
+//	| TEST FUNCTION      | TEST NAME               |TESTFLAG| EXPECTING              | TEST ARGS
+	print_test_lstfrommem("lstfrommem           ",	FALSE,	GEN_LIST_FIXTURE_STR,    4, FALSE);
+	print_test_lstfrommem("lstfrommem (partial) ",	FALSE,	"[Omae][ wa ]",          2, FALSE);
+	print_test_lstfrommem("lstfrommem (n = 0)   ",	FALSE,	"",                      0, FALSE);
+	print_test_lstfrommem("lstfrommem (null ptr)",	FALSE,	"",                      4, TRUE);
+}
+#endif
+
+
+
+#ifndef c_lsttomem
+void test_lsttomem(void)	{}
+#warning "lsttomem() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_lsttomem(t_uint fixture_size)
+{
+	s_list(any)*	list = (fixture_size == 0 ? NULL : gen_list_fixture());
+	void**	buffer = c_lsttomem(any)(list);
+	char*	result;
+	size_t	length = 0;
+	if (buffer == NULL)
+	{
+		if (list)
+			c_lstfree(any)(list);
+		return (strdup("(null)"));
+	}
+	for (t_uint i = 0; i < fixture_size; ++i)
+		length += 2 + strlen((char const*)buffer[i]);
+	result = (char*)malloc(length + 1);
+	length = 0;
+	for (t_uint i = 0; i < fixture_size; ++i)
+		length += sprintf(result + length, "[%s]", (char const*)buffer[i]);
+	free(buffer);
+	c_lstfree(any)(list); // the buffer must survive the list being freed
+	return (result);
+}
+void	print_test_lsttomem(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint fixture_size)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_lsttomem, fixture_size)
+	TEST_PRINT(str,	lsttomem, "list=(%u items)", fixture_size)
+	TEST_FREE()
+}
+void	test_lsttomem(void)
+{
+//	| TEST FUNCTION    | TEST NAME            |TESTFLAG| EXPECTING            | TEST ARGS
+	print_test_lsttomem("lsttomem           ",	FALSE,	GEN_LIST_FIXTURE_STR,  4);
+	print_test_lsttomem("lsttomem (null)    ",	FALSE,	"(null)",              0);
+}
+#endif
+
+
+
+#ifndef c_lstfromptrarr
+void test_lstfromptrarr(void)	{}
+#warning "lstfromptrarr() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_lstfromptrarr(t_uint n, t_bool null_ptrarr)
+{
+	void*	buffer[4] =
+	{
+		(void*)g_lst_item[0],
+		(void*)g_lst_item[1],
+		(void*)g_lst_item[2],
+		(void*)g_lst_item[3],
+	};
+	void* const*	ptrarr[5] = { NULL, NULL, NULL, NULL, NULL };
+	for (t_uint i = 0; i < n && i < 4; ++i)
+		ptrarr[i] = &buffer[i]; // the pointer array holds pointers to the items, and is NULL-terminated
+	return (gen_list_consume(c_lstfromptrarr(any)(null_ptrarr ? NULL : ptrarr)));
+}
+void	print_test_lstfromptrarr(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint n,
+		t_bool null_ptrarr)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_lstfromptrarr, n, null_ptrarr)
+	TEST_PRINT(str,	lstfromptrarr, "ptrarr=%s (%u items)", (null_ptrarr ? "NULL" : "(pointer array)"), n)
+	TEST_FREE()
+}
+void	test_lstfromptrarr(void)
+{
+//	| TEST FUNCTION         | TEST NAME                  |TESTFLAG| EXPECTING              | TEST ARGS
+	print_test_lstfromptrarr("lstfromptrarr           ",	FALSE,	GEN_LIST_FIXTURE_STR,    4, FALSE);
+	print_test_lstfromptrarr("lstfromptrarr (partial) ",	FALSE,	"[Omae][ wa ]",          2, FALSE);
+	print_test_lstfromptrarr("lstfromptrarr (empty)   ",	FALSE,	"",                      0, FALSE);
+	print_test_lstfromptrarr("lstfromptrarr (null)    ",	FALSE,	"",                      4, TRUE);
+}
+#endif
+
+
+
+#ifndef c_lsttoptrarr
+void test_lsttoptrarr(void)	{}
+#warning "lsttoptrarr() test suite function defined, but the function isn't defined."
+#else
+static char*	c_gen_lsttoptrarr(t_uint fixture_size)
+{
+	s_list(any)*	list = (fixture_size == 0 ? NULL : gen_list_fixture());
+	void**	ptrarr = c_lsttoptrarr(any)(list);
+	char	result[256];
+	size_t	length = 0;
+	if (ptrarr == NULL)
+	{
+		if (list)
+			c_lstfree(any)(list);
+		return (strdup("(null)"));
+	}
+	result[0] = '\0';
+	for (t_uint i = 0; ptrarr[i]; ++i)
+	{	// each entry is a pointer to an item stored within the list
+		void*	item = *(void**)ptrarr[i];
+		length += snprintf(result + length, sizeof(result) - length,
+			"[%s]", (item ? (char const*)item : "NULL"));
+	}
+	free(ptrarr);
+	c_lstfree(any)(list);
+	return (strdup(result));
+}
+void	print_test_lsttoptrarr(char const* test_name, t_testflags flags,
+		char const* expecting,
+		t_uint fixture_size)
+{
+	TEST_INIT(str)
+	TEST_PERFORM(gen_lsttoptrarr, fixture_size)
+	TEST_PRINT(str,	lsttoptrarr, "list=(%u items)", fixture_size)
+	TEST_FREE()
+}
+void	test_lsttoptrarr(void)
+{
+//	| TEST FUNCTION       | TEST NAME             |TESTFLAG| EXPECTING            | TEST ARGS
+	print_test_lsttoptrarr("lsttoptrarr         ",	FALSE,	GEN_LIST_FIXTURE_STR,  4);
+	print_test_lsttoptrarr("lsttoptrarr (null)  ",	FALSE,	"(null)",              0);
+}
+#endif
+
+
+
+/*============================================================================*\
 ||                            Test Suite Function                             ||
 \*============================================================================*/
 
@@ -1786,6 +1958,10 @@ int		testsuite_generic_list(void)
 	test_lstireduce();
 	test_lstfold();
 	test_lstifold();
+	test_lstfrommem();
+	test_lsttomem();
+	test_lstfromptrarr();
+	test_lsttoptrarr();
 
 	return (OK);
 }

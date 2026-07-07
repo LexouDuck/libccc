@@ -13,7 +13,6 @@
 ./test/libccc/fixed.c
 ./test/libccc/float.c
 ./test/libccc/generic/array.c
-./test/libccc/generic/convert.c
 ./test/libccc/generic/dict.c
 ./test/libccc/generic/hashmap.c
 ./test/libccc/generic/list.c

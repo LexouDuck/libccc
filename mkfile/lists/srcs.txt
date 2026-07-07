@@ -46,6 +46,7 @@
 ./src/generic/array/compare.c
 ./src/generic/array/concat.c
 ./src/generic/array/contains.c
+./src/generic/array/convert.c
 ./src/generic/array/copy.c
 ./src/generic/array/count.c
 ./src/generic/array/create.c
@@ -69,11 +70,13 @@
 ./src/generic/array/set.c
 ./src/generic/array/sub.c
 ./src/generic/array/wedge.c
+./src/generic/convert/array.c
 ./src/generic/convert/list.c
 ./src/generic/list/add.c
 ./src/generic/list/compare.c
 ./src/generic/list/concat.c
 ./src/generic/list/contains.c
+./src/generic/list/convert.c
 ./src/generic/list/copy.c
 ./src/generic/list/count.c
 ./src/generic/list/create.c

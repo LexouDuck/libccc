@@ -187,6 +187,7 @@
 #include "libccc/../.././src/generic/list/compare.c"
 #include "libccc/../.././src/generic/list/concat.c"
 #include "libccc/../.././src/generic/list/contains.c"
+#include "libccc/../.././src/generic/list/convert.c"
 #include "libccc/../.././src/generic/list/copy.c"
 #include "libccc/../.././src/generic/list/count.c"
 #include "libccc/../.././src/generic/list/create.c"

@@ -185,6 +185,7 @@
 #include "libccc/../.././src/generic/array/compare.c"
 #include "libccc/../.././src/generic/array/concat.c"
 #include "libccc/../.././src/generic/array/contains.c"
+#include "libccc/../.././src/generic/array/convert.c"
 #include "libccc/../.././src/generic/array/copy.c"
 #include "libccc/../.././src/generic/array/count.c"
 #include "libccc/../.././src/generic/array/create.c"

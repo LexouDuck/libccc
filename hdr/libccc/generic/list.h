@@ -331,8 +331,6 @@ void					List_Delete_F(T)(s_list(T)* *a_list, void (*del)(T* item));
 ||                         List: conversion operations                        ||
 \*============================================================================*/
 
-#if 0
-
 //!@doc Creates a new generic list, converted from the given memory buffer `ptr` and size `n`
 //!@{
 _MALLOC()
@@ -375,8 +373,6 @@ _GENERIC()
 void**						List_ToPointerArray(T)(s_list(T) const* list);
 #define c_lsttoptrarr(T)	List_ToPointerArray(T)
 //!@}
-
-#endif
 
 /*============================================================================*\
 ||                           List: editing operations                         ||

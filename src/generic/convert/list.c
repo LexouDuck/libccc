@@ -1,7 +1,7 @@
 
 #include "libccc/memory.h"
-#include "libccc/generic/list.h"
 #include "libccc/generic/array.h"
+#include "libccc/generic/list.h"
 
 #include LIBCONFIG_ERROR_INCLUDE
 
@@ -39,37 +39,6 @@ s_array	List_ToArray(s_list const** a_lst)
 		lst = lst->next;
 	}
 //	Memory_Clear(result + (i * result.item_size), result.item_size);
-	return (result);
-}
-#endif
-
-#if 0
-void**	List_ToPointerArray(s_list const** a_lst)
-{
-	s_list const* lst;
-	void**	result;
-	t_size	length;
-	t_u32	count;
-	t_u32	i;
-
-#if LIBCONFIG_HANDLE_NULLPOINTERS
-	if (a_lst == NULL)
-		return (NULL);
-#endif
-	lst = *a_lst;
-	count = List_(lst);
-	length = (count + 1) * sizeof(void* );
-	result = (void**)Memory_Allocate(length);
-	if CCCERROR((result == NULL), ERROR_ALLOCFAILURE, NULL)
-		return (NULL);
-	i = 0;
-	while (lst && i < count)
-	{
-		result[i] = lst->item;
-		lst = lst->next;
-		++i;
-	}
-	result[i] = NULL;
 	return (result);
 }
 #endif
