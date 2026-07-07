@@ -17,10 +17,8 @@
 ./hdr/libccc/generic/array.h
 ./hdr/libccc/generic/convert.h
 ./hdr/libccc/generic/dict.h
-./hdr/libccc/generic/hashmap.h
 ./hdr/libccc/generic/list.h
-./hdr/libccc/generic/queue.h
-./hdr/libccc/generic/stack.h
+./hdr/libccc/generic/set.h
 ./hdr/libccc/generic/tree.h
 ./hdr/libccc/image/color.h
 ./hdr/libccc/int.h

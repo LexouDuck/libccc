@@ -27,14 +27,14 @@
 
 //! Get rid of any previously-defined generic macros from user code
 //!@{
-#undef stack
-#undef s_stack
+#undef set
+#undef s_set
 //!@}
 
 //! Set the generic macros to allow for declarations, written as `mygeneric(T)`
 //!@{
-#define stack(X)	CONCAT(stack_,	X##_NAME)
-#define s_stack(X)	CONCAT(s_stack_,	X##_NAME)
+#define set(X)	CONCAT(set_,	X##_NAME)
+#define s_set(X)	CONCAT(s_set_,	X##_NAME)
 //!@}
 
 
@@ -65,8 +65,8 @@
 
 //! Force re-inclusion of header (with the current generic type `T`)
 //!@{
-#undef __LIBCCC_GENERIC_STACK_H
-#include "libccc/generic/stack.h"
+#undef __LIBCCC_GENERIC_SET_H
+#include "libccc/generic/set.h"
 //!@}
 
 //! Include all source files, to generate code for all generic functions
@@ -92,14 +92,14 @@
 
 //! Get rid of all generic macros used for declaration
 //!@{
-#undef stack
-#undef s_stack
+#undef set
+#undef s_set
 //!@}
 
 //! Finally, redefine all generic macros, for user code
 //!@{
-#define stack(T)	CONCAT(stack_,	T)
-#define s_stack(T)	CONCAT(s_stack_,	T)
+#define set(T)	CONCAT(set_,	T)
+#define s_set(T)	CONCAT(s_set_,	T)
 //!@}
 
 

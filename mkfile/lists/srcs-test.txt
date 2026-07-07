@@ -14,8 +14,8 @@
 ./test/libccc/float.c
 ./test/libccc/generic/array.c
 ./test/libccc/generic/dict.c
-./test/libccc/generic/hashmap.c
 ./test/libccc/generic/list.c
+./test/libccc/generic/set.c
 ./test/libccc/generic/tree.c
 ./test/libccc/int.c
 ./test/libccc/math/algebra.c
